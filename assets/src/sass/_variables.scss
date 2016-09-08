@@ -1,0 +1,10 @@
+$chosen-sprite: url('../img/chosen-sprite.png');
+$chosen-sprite-retina: url('../img/chosen-sprite@2x.png');
+
+$mobile-width: 782px;
+
+@mixin mobile {
+	@media (max-width: #{$mobile-width}) {
+		@content;
+	}
+}
