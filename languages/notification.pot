@@ -1,0 +1,379 @@
+# WordPress Blank Pot
+# Copyright (C) 2014 ...
+# This file is distributed under the GNU General Public License v2 or later.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: "
+"Notification\n"
+"POT-Creation-Date: "
+"2016-09-05 13:07+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Your "
+"Name <you@example.com>\n"
+"Language-Team: underDEV "
+"<hello@underdev.it>\n"
+"Report-Msgid-Bugs-To: "
+"Translator Name "
+"<translations@example."
+"com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/"
+"plain; charset=UTF-8\n"
+"Content-Transfer-"
+"Encoding: 8bit\n"
+"Plural-Forms: "
+"nplurals=2; plural=n != "
+"1;\n"
+"X-Textdomain-Support: "
+"yesX-Generator: Poedit "
+"1.6.4\n"
+"X-Poedit-SourceCharset: "
+"UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;esc_html_e;"
+"esc_html_x:1,2c;"
+"esc_html__;esc_attr_e;"
+"esc_attr_x:1,2c;"
+"esc_attr__;_ex:1,2c;"
+"_nx:4c,1,2;"
+"_nx_noop:4c,1,2;_x:1,2c;"
+"_n:1,2;_n_noop:1,2;"
+"__ngettext:1,2;"
+"__ngettext_noop:1,2;_c,"
+"_nc:4c,1,2\n"
+"X-Poedit-Basepath: ..\n"
+"Language: en_US\n"
+"X-Generator: Poedit "
+"1.8.8\n"
+"X-Poedit-"
+"SearchPath-0: .\n"
+
+#: inc/notification/recipients.php:72
+#, php-format
+msgid ""
+"No \"%s\" recipient "
+"defined"
+msgstr ""
+
+#: inc/notification/recipients.php:125
+msgid "Remove recipient"
+msgstr ""
+
+#: inc/notification/triggers.php:46
+msgid "Other"
+msgstr ""
+
+#: inc/notification/triggers.php:166
+#: inc/notification/triggers.php:181
+#: inc/notification/triggers.php:196
+#, php-format
+msgid ""
+"No \"%s\" trigger defined"
+msgstr ""
+
+#: inc/notifications.php:52
+#: inc/notifications.php:63
+msgid "Notifications"
+msgstr ""
+
+#: inc/notifications.php:53
+msgid "Notification"
+msgstr ""
+
+#: inc/notifications.php:54
+msgctxt "notification"
+msgid ""
+"Add New Notification"
+msgstr ""
+
+#: inc/notifications.php:55
+msgid ""
+"Add New Notification"
+msgstr ""
+
+#: inc/notifications.php:56
+msgid "Edit Notification"
+msgstr ""
+
+#: inc/notifications.php:57
+msgid "New Notification"
+msgstr ""
+
+#: inc/notifications.php:58
+msgid "View Notification"
+msgstr ""
+
+#: inc/notifications.php:59
+msgid ""
+"Search Notifications"
+msgstr ""
+
+#: inc/notifications.php:60
+msgid ""
+"No Notifications found"
+msgstr ""
+
+#: inc/notifications.php:61
+msgid ""
+"No Notifications found "
+"in Trash"
+msgstr ""
+
+#: inc/notifications.php:62
+msgid ""
+"Parent Notification:"
+msgstr ""
+
+#: inc/notifications.php:96
+#: inc/notifications.php:507
+msgid "Trigger"
+msgstr ""
+
+#: inc/notifications.php:105
+msgid "Merge tags"
+msgstr ""
+
+#: inc/notifications.php:114
+#: inc/notifications.php:508
+msgid "Recipients"
+msgstr ""
+
+#: inc/notifications.php:201
+#, php-format
+msgid ""
+"You have some "
+"unavailable merge tags "
+"for selected trigger in "
+"the content: %s. These "
+"will be skipped during "
+"rendering."
+msgstr ""
+
+#: inc/notifications.php:212
+msgid ""
+"You are using images in "
+"the message content. "
+"Please remember these "
+"will be probably "
+"filtered by most of the "
+"email clients"
+msgstr ""
+
+#: inc/notifications.php:240
+msgid ""
+"You have empty "
+"recipients defined, "
+"these will be skipped"
+msgstr ""
+
+#: inc/notifications.php:250
+#, php-format
+msgid ""
+"%d <code>%s</code> in "
+"recipients <code>%s</"
+"code> group"
+msgstr ""
+
+#: inc/notifications.php:258
+#, php-format
+msgid ""
+"You have some duplicated "
+"recipients:<br>%s"
+msgstr ""
+
+#: inc/notifications.php:314
+msgid ""
+"No Triggers defined yet"
+msgstr ""
+
+#: inc/notifications.php:354
+msgid ""
+"Please select trigger "
+"first"
+msgstr ""
+
+#: inc/notifications.php:366
+#: inc/notifications.php:450
+msgid ""
+"No merge tags defined "
+"for this trigger"
+msgstr ""
+
+#: inc/notifications.php:390
+msgid ""
+"No recipients available"
+msgstr ""
+
+#: inc/notifications.php:431
+msgid "Add recipient"
+msgstr ""
+
+#: inc/notifications.php:473
+msgid "Copied"
+msgstr ""
+
+#: inc/notifications.php:486
+msgid "Enter Subject here"
+msgstr ""
+
+#: inc/notifications.php:504
+msgid "Subject"
+msgstr ""
+
+#: inc/notifications.php:531
+msgid "No trigger selected"
+msgstr ""
+
+#: inc/notifications.php:549
+msgid ""
+"No recipients defined"
+msgstr ""
+
+#: recipients/core/administrator.php:32
+msgid "Administrator"
+msgstr ""
+
+#: recipients/core/email.php:32
+msgid "Email address"
+msgstr ""
+
+#: recipients/core/email.php:64
+msgid "email@domain.com"
+msgstr ""
+
+#: recipients/core/mergetag.php:35
+msgid "Merge tag"
+msgstr ""
+
+#: triggers/wordpress/comment.php:13
+msgid "Comment added"
+msgstr ""
+
+#: triggers/wordpress/comment.php:14
+#: triggers/wordpress/comment.php:57
+#: triggers/wordpress/comment.php:100
+#: triggers/wordpress/comment.php:143
+#: triggers/wordpress/comment.php:186
+msgid ""
+"WordPress : Comments"
+msgstr ""
+
+#: triggers/wordpress/comment.php:56
+msgid "Comment approved"
+msgstr ""
+
+#: triggers/wordpress/comment.php:99
+msgid "Comment unapproved"
+msgstr ""
+
+#: triggers/wordpress/comment.php:142
+msgid ""
+"Comment moved to trash"
+msgstr ""
+
+#: triggers/wordpress/comment.php:185
+msgid ""
+"Comment marked as spam"
+msgstr ""
+
+#: triggers/wordpress/page.php:13
+msgid "Page published"
+msgstr ""
+
+#: triggers/wordpress/page.php:14
+#: triggers/wordpress/page.php:53
+#: triggers/wordpress/page.php:92
+msgid "WordPress : Pages"
+msgstr ""
+
+#: triggers/wordpress/page.php:52
+msgid ""
+"Page sent for review"
+msgstr ""
+
+#: triggers/wordpress/page.php:91
+msgid "Page moved to trash"
+msgstr ""
+
+#: triggers/wordpress/pingback.php:13
+msgid "Pingback added"
+msgstr ""
+
+#: triggers/wordpress/pingback.php:14
+#: triggers/wordpress/pingback.php:61
+#: triggers/wordpress/pingback.php:104
+#: triggers/wordpress/pingback.php:147
+#: triggers/wordpress/pingback.php:190
+msgid ""
+"WordPress : Pingbacks"
+msgstr ""
+
+#: triggers/wordpress/pingback.php:60
+msgid "Pingback approved"
+msgstr ""
+
+#: triggers/wordpress/pingback.php:103
+msgid "Pingback unapproved"
+msgstr ""
+
+#: triggers/wordpress/pingback.php:146
+msgid ""
+"Pingback moved to trash"
+msgstr ""
+
+#: triggers/wordpress/pingback.php:189
+msgid ""
+"Pingback marked as spam"
+msgstr ""
+
+#: triggers/wordpress/post.php:13
+msgid "Post published"
+msgstr ""
+
+#: triggers/wordpress/post.php:14
+#: triggers/wordpress/post.php:57
+#: triggers/wordpress/post.php:100
+msgid "WordPress : Posts"
+msgstr ""
+
+#: triggers/wordpress/post.php:56
+msgid ""
+"Post sent for review"
+msgstr ""
+
+#: triggers/wordpress/post.php:99
+msgid "Post moved to trash"
+msgstr ""
+
+#: triggers/wordpress/trackback.php:13
+msgid "Trackback added"
+msgstr ""
+
+#: triggers/wordpress/trackback.php:14
+#: triggers/wordpress/trackback.php:61
+#: triggers/wordpress/trackback.php:104
+#: triggers/wordpress/trackback.php:147
+#: triggers/wordpress/trackback.php:190
+msgid ""
+"WordPress : Trackbacks"
+msgstr ""
+
+#: triggers/wordpress/trackback.php:60
+msgid "Trackback approved"
+msgstr ""
+
+#: triggers/wordpress/trackback.php:103
+msgid ""
+"Trackback unapproved"
+msgstr ""
+
+#: triggers/wordpress/trackback.php:146
+msgid ""
+"Trackback moved to trash"
+msgstr ""
+
+#: triggers/wordpress/trackback.php:189
+msgid ""
+"Trackback marked as spam"
+msgstr ""
