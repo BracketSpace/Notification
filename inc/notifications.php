@@ -558,7 +558,7 @@ class Notifications {
 							if ( empty( $recipient_meta['value'] ) ) {
 								echo $recipient->get_default_value() . '<br><br>';
 							} else {
-								echo $recipient_meta['value'] . '<br><br>';
+								echo $recipient->parse_value( $recipient_meta['value'] ) . '<br><br>';
 							}
 
 						}

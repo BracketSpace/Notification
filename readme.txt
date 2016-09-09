@@ -105,6 +105,8 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 == Changelog ==
 
 = Unreleased =
+* [Added]: New User recipient (takes WordPress users)
+* [Changed]: In Notifications table values are now parsed before displaying
 * [Changed]: Readme file
 
 = 1.1.2 =
