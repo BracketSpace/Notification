@@ -72,6 +72,11 @@ More to come:
 * Media triggers
 * Feel free to suggest new core triggers in support forum
 
+`-------------------------------`
+
+* [GitHub repository](https://github.com/Kubitomakita/Notification)
+* [Report a bug](https://github.com/Kubitomakita/Notification/issues/new)
+
 == Installation ==
 
 = Requirements =
@@ -98,6 +103,9 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 2. All triggers
 
 == Changelog ==
+
+= Unreleased =
+* [Changed]: Readme file
 
 = 1.1.2 =
 * Changed priority for main init action from 10 to 5
