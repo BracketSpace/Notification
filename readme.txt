@@ -106,6 +106,8 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 
 = Unreleased =
 * [Added]: New User recipient (takes WordPress users)
+* [Added]: Post/Page updated trigger
+* [Changed]: Default post published trigger for posts and pages - it was triggered every time post was updated
 * [Changed]: In Notifications table values are now parsed before displaying
 * [Changed]: Readme file
 

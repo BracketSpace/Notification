@@ -25,7 +25,15 @@ register_trigger( array(
 	)
 ) );
 
-function published( $ID, $post ) {
+function published( $new_status, $old_status, $post ) {
+
+	if ( $post->post_type != 'page' ) {
+		return;
+	}
+
+	if ( $new_status == $old_status ) {
+		return;
+	}
 
 	notification( 'wordpress/page/published', array(
 		'ID'           => $ID,
@@ -41,6 +49,43 @@ function published( $ID, $post ) {
 
 }
 add_action( 'publish_page', __NAMESPACE__ . '\\published', 10, 2 );
+
+/**
+ * Updated
+ */
+register_trigger( array(
+	'slug' => 'wordpress/page/updated',
+	'name' => __( 'Page updated', 'notification' ),
+	'group' => __( 'WordPress : Pages', 'notification' ),
+	'tags' => array(
+		'ID'           => 'integer',
+		'permalink'    => 'url',
+		'page_title'   => 'string',
+		'page_name'    => 'string',
+		'page_date'    => 'string',
+		'page_content' => 'string',
+		'author_ID'    => 'integer',
+		'author_name'  => 'string',
+		'author_email' => 'email'
+	)
+) );
+
+function updated( $ID, $post ) {
+
+	notification( 'wordpress/page/updated', array(
+		'ID'           => $ID,
+		'permalink'    => get_permalink( $ID ),
+		'page_title'   => $post->post_title,
+		'page_name'    => $post->post_name,
+		'page_date'    => $post->post_date,
+		'page_content' => $post->post_content,
+		'author_ID'    => $post->post_author,
+		'author_name'  => get_the_author_meta( 'display_name', $post->post_author ),
+		'author_email' => get_the_author_meta( 'user_email', $post->post_author )
+	) );
+
+}
+add_action( 'publish_page', __NAMESPACE__ . '\\updated', 10, 2 );
 
 /**
  * Sent for review

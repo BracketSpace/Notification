@@ -26,13 +26,60 @@ register_trigger( array(
 	)
 ) );
 
-function published( $ID, $post ) {
+function published( $new_status, $old_status, $post ) {
+
+	if ( $post->post_type != 'post' ) {
+		return;
+	}
+
+	if ( $new_status == $old_status ) {
+		return;
+	}
+
+	notification( 'wordpress/post/published', array(
+		'ID'           => $post->ID,
+		'permalink'    => get_permalink( $post->ID ),
+		'post_title'   => $post->post_title,
+		'post_name'    => $post->post_name,
+		'post_date'    => $post->post_date,
+		'post_content' => $post->post_content,
+		'post_excerpt' => $post->post_excerpt,
+		'author_ID'    => $post->post_author,
+		'author_name'  => get_the_author_meta( 'display_name', $post->post_author ),
+		'author_email' => get_the_author_meta( 'user_email', $post->post_author )
+	) );
+
+}
+add_action( 'transition_post_status', __NAMESPACE__ . '\\published', 10, 3 );
+
+/**
+ * Updated
+ */
+register_trigger( array(
+	'slug' => 'wordpress/post/updated',
+	'name' => __( 'Post updated', 'notification' ),
+	'group' => __( 'WordPress : Posts', 'notification' ),
+	'tags' => array(
+		'ID'           => 'integer',
+		'permalink'    => 'url',
+		'post_title'   => 'string',
+		'post_name'    => 'string',
+		'post_date'    => 'string',
+		'post_content' => 'string',
+		'post_excerpt' => 'string',
+		'author_ID'    => 'integer',
+		'author_name'  => 'string',
+		'author_email' => 'email'
+	)
+) );
+
+function updated( $ID, $post ) {
 
 	if ( get_post_type( $post ) != 'post' ) {
 		return;
 	}
 
-	notification( 'wordpress/post/published', array(
+	notification( 'wordpress/post/updated', array(
 		'ID'           => $ID,
 		'permalink'    => get_permalink( $ID ),
 		'post_title'   => $post->post_title,
@@ -46,7 +93,7 @@ function published( $ID, $post ) {
 	) );
 
 }
-add_action( 'publish_post', __NAMESPACE__ . '\\published', 10, 2 );
+add_action( 'publish_post', __NAMESPACE__ . '\\updated', 10, 2 );
 
 /**
  * Sent for review

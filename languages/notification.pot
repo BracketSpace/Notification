@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Notification\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2016-09-12 20:34+0100\n"
+"POT-Creation-Date: 2016-09-12 20:49+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jakub Mikita <jakub@underdev.it>\n"
 "Language-Team: underDEV <hello@underdev.it>\n"
@@ -242,16 +242,20 @@ msgstr ""
 msgid "Page published"
 msgstr ""
 
-#: triggers/wordpress/page.php:14 triggers/wordpress/page.php:51
-#: triggers/wordpress/page.php:88
+#: triggers/wordpress/page.php:14 triggers/wordpress/page.php:59
+#: triggers/wordpress/page.php:96 triggers/wordpress/page.php:133
 msgid "WordPress : Pages"
 msgstr ""
 
-#: triggers/wordpress/page.php:50
+#: triggers/wordpress/page.php:58
+msgid "Page updated"
+msgstr ""
+
+#: triggers/wordpress/page.php:95
 msgid "Page sent for review"
 msgstr ""
 
-#: triggers/wordpress/page.php:87
+#: triggers/wordpress/page.php:132
 msgid "Page moved to trash"
 msgstr ""
 
@@ -285,15 +289,19 @@ msgstr ""
 msgid "Post published"
 msgstr ""
 
-#: triggers/wordpress/post.php:14 triggers/wordpress/post.php:57
-#: triggers/wordpress/post.php:100
+#: triggers/wordpress/post.php:14 triggers/wordpress/post.php:61
+#: triggers/wordpress/post.php:104 triggers/wordpress/post.php:147
 msgid "WordPress : Posts"
 msgstr ""
 
-#: triggers/wordpress/post.php:56
+#: triggers/wordpress/post.php:60
+msgid "Post updated"
+msgstr ""
+
+#: triggers/wordpress/post.php:103
 msgid "Post sent for review"
 msgstr ""
 
-#: triggers/wordpress/post.php:99
+#: triggers/wordpress/post.php:146
 msgid "Post moved to trash"
 msgstr ""
