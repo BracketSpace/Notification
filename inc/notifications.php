@@ -38,6 +38,7 @@ class Notifications {
 		add_action( 'admin_notices', array( $this, 'validation_errors' ) );
 
 		add_action( 'wp_ajax_notification_get_merge_tags', array( $this, 'ajax_get_merge_tags' ) );
+		add_action( 'wp_ajax_notification_get_template', array( $this, 'ajax_get_template' ) );
 
 	}
 
@@ -437,7 +438,7 @@ class Notifications {
 	 * Merge tags for metabox
 	 * @return object       json encoded response
 	 */
-	public function ajax_get_merge_tags( $post ) {
+	public function ajax_get_merge_tags() {
 
 		try {
 			$tags = Triggers::get()->get_trigger_tags( $_POST['trigger'] );
@@ -450,6 +451,22 @@ class Notifications {
 		}
 
 		wp_send_json_success( $tags );
+
+	}
+
+	/**
+	 * Get template for trigger
+	 * @return object       json encoded response
+	 */
+	public function ajax_get_template() {
+
+		try {
+			$template = Triggers::get()->get_trigger_template( $_POST['trigger'] );
+		} catch ( \Exception $e ) {
+			wp_send_json_error( $e->getMessage() );
+		}
+
+		wp_send_json_success( $template );
 
 	}
 

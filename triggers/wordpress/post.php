@@ -5,6 +5,16 @@
 
 namespace Notification\Triggers\WordPress\Post;
 
+function published_template() {
+
+	$html = '<p>' . __( 'Howdy!', 'notification' ) . '</p>';
+	$html .= '<p>' . __( '{author_name} just published new post: {post_title}', 'notification' ) . '</p>';
+	$html .= '<p>' . __( 'You can read it here: {permalink}', 'notification' ) . '</p>';
+
+	return $html;
+
+}
+
 /**
  * Published
  */
@@ -12,6 +22,7 @@ register_trigger( array(
 	'slug' => 'wordpress/post/published',
 	'name' => __( 'Post published', 'notification' ),
 	'group' => __( 'WordPress : Posts', 'notification' ),
+	'template' => call_user_func( __NAMESPACE__ . '\\published_template' ),
 	'tags' => array(
 		'ID'           => 'integer',
 		'permalink'    => 'url',
