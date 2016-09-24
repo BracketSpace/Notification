@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: Notification
-Description: Create custom triggers and send email notifications
+Description: Send email notifications about various events in WordPress. You can also create your custom triggers for any action.
 Author: underDEV
 Author URI: https://www.wpart.co
-Version: 1.1.2
+Version: 1.2
 License: GPL3
 Text Domain: notification
 Domain Path: /languages

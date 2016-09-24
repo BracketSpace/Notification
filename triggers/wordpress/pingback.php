@@ -8,11 +8,23 @@ namespace Notification\Triggers\WordPress\Pingback;
 /**
  * Published
  */
+
+function added_template() {
+
+	$html = '<p>' . __( 'Howdy!', 'notification' ) . '</p>';
+	$html .= '<p>' . __( 'There is new pingback to your article:', 'notification' ) . '</p>';
+	$html .= '<p>{comment_content}</p>';
+
+	return $html;
+
+}
+
 register_trigger( array(
-	'slug' => 'wordpress/pingback/added',
-	'name' => __( 'Pingback added', 'notification' ),
-	'group' => __( 'WordPress : Pingbacks', 'notification' ),
-	'tags' => array(
+	'slug'     => 'wordpress/pingback/added',
+	'name'     => __( 'Pingback added', 'notification' ),
+	'group'    => __( 'WordPress : Pingbacks', 'notification' ),
+	'template' => call_user_func( __NAMESPACE__ . '\\added_template' ),
+	'tags'     => array(
 		'ID'               => 'integer',
 		'post_ID'          => 'integer',
 		'author_name'      => 'string',
@@ -55,11 +67,24 @@ add_action( 'wp_insert_comment', __NAMESPACE__ . '\\added', 10, 2 );
 /**
  * Approved
  */
+
+function approved_template() {
+
+	$html = '<p>' . __( 'Howdy!', 'notification' ) . '</p>';
+	$html .= '<p>' . __( 'Pingback:', 'notification' ) . '</p>';
+	$html .= '<p>{comment_content}</p>';
+	$html .= '<p>' . __( 'from {author_name} has been approved.', 'notification' ) . '</p>';
+
+	return $html;
+
+}
+
 register_trigger( array(
-	'slug' => 'wordpress/pingback/approved',
-	'name' => __( 'Pingback approved', 'notification' ),
-	'group' => __( 'WordPress : Pingbacks', 'notification' ),
-	'tags' => array(
+	'slug'     => 'wordpress/pingback/approved',
+	'name'     => __( 'Pingback approved', 'notification' ),
+	'group'    => __( 'WordPress : Pingbacks', 'notification' ),
+	'template' => call_user_func( __NAMESPACE__ . '\\approved_template' ),
+	'tags'     => array(
 		'ID'               => 'integer',
 		'post_ID'          => 'integer',
 		'author_name'      => 'string',
@@ -98,11 +123,24 @@ add_action( 'comment_approved_pingback', __NAMESPACE__ . '\\approved', 10, 2 );
 /**
  * Unapproved
  */
+
+function unapproved_template() {
+
+	$html = '<p>' . __( 'Howdy!', 'notification' ) . '</p>';
+	$html .= '<p>' . __( 'Pingback:', 'notification' ) . '</p>';
+	$html .= '<p>{comment_content}</p>';
+	$html .= '<p>' . __( 'from {author_name} has been unapproved.', 'notification' ) . '</p>';
+
+	return $html;
+
+}
+
 register_trigger( array(
-	'slug' => 'wordpress/pingback/unapproved',
-	'name' => __( 'Pingback unapproved', 'notification' ),
-	'group' => __( 'WordPress : Pingbacks', 'notification' ),
-	'tags' => array(
+	'slug'     => 'wordpress/pingback/unapproved',
+	'name'     => __( 'Pingback unapproved', 'notification' ),
+	'group'    => __( 'WordPress : Pingbacks', 'notification' ),
+	'template' => call_user_func( __NAMESPACE__ . '\\unapproved_template' ),
+	'tags'     => array(
 		'ID'               => 'integer',
 		'post_ID'          => 'integer',
 		'author_name'      => 'string',
@@ -141,11 +179,24 @@ add_action( 'comment_unapproved_pingback', __NAMESPACE__ . '\\unapproved', 10, 2
 /**
  * Trashed
  */
+
+function trashed_template() {
+
+	$html = '<p>' . __( 'Howdy!', 'notification' ) . '</p>';
+	$html .= '<p>' . __( 'Trackback:', 'notification' ) . '</p>';
+	$html .= '<p>{comment_content}</p>';
+	$html .= '<p>' . __( 'from {author_name} has been moved to trash.', 'notification' ) . '</p>';
+
+	return $html;
+
+}
+
 register_trigger( array(
-	'slug' => 'wordpress/pingback/trashed',
-	'name' => __( 'Pingback moved to trash', 'notification' ),
-	'group' => __( 'WordPress : Pingbacks', 'notification' ),
-	'tags' => array(
+	'slug'     => 'wordpress/pingback/trashed',
+	'name'     => __( 'Pingback moved to trash', 'notification' ),
+	'group'    => __( 'WordPress : Pingbacks', 'notification' ),
+	'template' => call_user_func( __NAMESPACE__ . '\\trashed_template' ),
+	'tags'     => array(
 		'ID'               => 'integer',
 		'post_ID'          => 'integer',
 		'author_name'      => 'string',
@@ -184,11 +235,24 @@ add_action( 'comment_trash_pingback', __NAMESPACE__ . '\\trashed', 10, 2 );
 /**
  * Marked as spam
  */
+
+function spam_template() {
+
+	$html = '<p>' . __( 'Howdy!', 'notification' ) . '</p>';
+	$html .= '<p>' . __( 'Pingback:', 'notification' ) . '</p>';
+	$html .= '<p>{comment_content}</p>';
+	$html .= '<p>' . __( 'from {author_name} has been moved to trash.', 'notification' ) . '</p>';
+
+	return $html;
+
+}
+
 register_trigger( array(
-	'slug' => 'wordpress/pingback/spam',
-	'name' => __( 'Pingback marked as spam', 'notification' ),
-	'group' => __( 'WordPress : Pingbacks', 'notification' ),
-	'tags' => array(
+	'slug'     => 'wordpress/pingback/spam',
+	'name'     => __( 'Pingback marked as spam', 'notification' ),
+	'group'    => __( 'WordPress : Pingbacks', 'notification' ),
+	'template' => call_user_func( __NAMESPACE__ . '\\spam_template' ),
+	'tags'     => array(
 		'ID'               => 'integer',
 		'post_ID'          => 'integer',
 		'author_name'      => 'string',

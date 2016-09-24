@@ -3,7 +3,7 @@ Contributors: Kubitomakita
 Tags: notification, notify, email, mail
 Requires at least: 3.6
 Tested up to: 4.6
-Stable tag: 1.1.2
+Stable tag: 1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -72,6 +72,11 @@ More to come:
 * Media triggers
 * Feel free to suggest new core triggers in support forum
 
+`-------------------------------`
+
+* [GitHub repository](https://github.com/Kubitomakita/Notification)
+* [Report a bug](https://github.com/Kubitomakita/Notification/issues/new)
+
 == Installation ==
 
 = Requirements =
@@ -98,6 +103,14 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 2. All triggers
 
 == Changelog ==
+
+= 1.2 =
+* [Added]: New User recipient (takes WordPress users)
+* [Added]: Post/Page updated trigger
+* [Added]: Template for triggers. You can now load default template for user
+* [Changed]: Default post published trigger for posts and pages - it was triggered every time post was updated
+* [Changed]: In Notifications table values are now parsed before displaying
+* [Changed]: Readme file
 
 = 1.1.2 =
 * Changed priority for main init action from 10 to 5

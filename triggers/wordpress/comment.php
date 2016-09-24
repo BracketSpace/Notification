@@ -8,11 +8,23 @@ namespace Notification\Triggers\WordPress\Comment;
 /**
  * Published
  */
+
+function added_template() {
+
+	$html = '<p>' . __( 'Howdy!', 'notification' ) . '</p>';
+	$html .= '<p>' . __( '{author_name} just commented your article:', 'notification' ) . '</p>';
+	$html .= '<p>{comment_content}</p>';
+
+	return $html;
+
+}
+
 register_trigger( array(
-	'slug' => 'wordpress/comment/added',
-	'name' => __( 'Comment added', 'notification' ),
-	'group' => __( 'WordPress : Comments', 'notification' ),
-	'tags' => array(
+	'slug'     => 'wordpress/comment/added',
+	'name'     => __( 'Comment added', 'notification' ),
+	'group'    => __( 'WordPress : Comments', 'notification' ),
+	'template' => call_user_func( __NAMESPACE__ . '\\added_template' ),
+	'tags'     => array(
 		'ID'               => 'integer',
 		'post_ID'          => 'integer',
 		'author_name'      => 'string',
@@ -51,11 +63,24 @@ add_action( 'wp_insert_comment', __NAMESPACE__ . '\\added', 10, 2 );
 /**
  * Approved
  */
+
+function approved_template() {
+
+	$html = '<p>' . __( 'Howdy!', 'notification' ) . '</p>';
+	$html .= '<p>' . __( 'Comment:', 'notification' ) . '</p>';
+	$html .= '<p>{comment_content}</p>';
+	$html .= '<p>' . __( 'from {author_name} has been approved.', 'notification' ) . '</p>';
+
+	return $html;
+
+}
+
 register_trigger( array(
-	'slug' => 'wordpress/comment/approved',
-	'name' => __( 'Comment approved', 'notification' ),
-	'group' => __( 'WordPress : Comments', 'notification' ),
-	'tags' => array(
+	'slug'     => 'wordpress/comment/approved',
+	'name'     => __( 'Comment approved', 'notification' ),
+	'group'    => __( 'WordPress : Comments', 'notification' ),
+	'template' => call_user_func( __NAMESPACE__ . '\\approved_template' ),
+	'tags'     => array(
 		'ID'               => 'integer',
 		'post_ID'          => 'integer',
 		'author_name'      => 'string',
@@ -94,11 +119,24 @@ add_action( 'comment_approved_', __NAMESPACE__ . '\\approved', 10, 2 );
 /**
  * Unapproved
  */
+
+function unapproved_template() {
+
+	$html = '<p>' . __( 'Howdy!', 'notification' ) . '</p>';
+	$html .= '<p>' . __( 'Comment:', 'notification' ) . '</p>';
+	$html .= '<p>{comment_content}</p>';
+	$html .= '<p>' . __( 'from {author_name} has been unapproved.', 'notification' ) . '</p>';
+
+	return $html;
+
+}
+
 register_trigger( array(
-	'slug' => 'wordpress/comment/unapproved',
-	'name' => __( 'Comment unapproved', 'notification' ),
-	'group' => __( 'WordPress : Comments', 'notification' ),
-	'tags' => array(
+	'slug'     => 'wordpress/comment/unapproved',
+	'name'     => __( 'Comment unapproved', 'notification' ),
+	'group'    => __( 'WordPress : Comments', 'notification' ),
+	'template' => call_user_func( __NAMESPACE__ . '\\unapproved_template' ),
+	'tags'     => array(
 		'ID'               => 'integer',
 		'post_ID'          => 'integer',
 		'author_name'      => 'string',
@@ -137,11 +175,24 @@ add_action( 'comment_unapproved_', __NAMESPACE__ . '\\unapproved', 10, 2 );
 /**
  * Trashed
  */
+
+function trashed_template() {
+
+	$html = '<p>' . __( 'Howdy!', 'notification' ) . '</p>';
+	$html .= '<p>' . __( 'Comment:', 'notification' ) . '</p>';
+	$html .= '<p>{comment_content}</p>';
+	$html .= '<p>' . __( 'from {author_name} has been moved to trash.', 'notification' ) . '</p>';
+
+	return $html;
+
+}
+
 register_trigger( array(
-	'slug' => 'wordpress/comment/trashed',
-	'name' => __( 'Comment moved to trash', 'notification' ),
-	'group' => __( 'WordPress : Comments', 'notification' ),
-	'tags' => array(
+	'slug'     => 'wordpress/comment/trashed',
+	'name'     => __( 'Comment moved to trash', 'notification' ),
+	'group'    => __( 'WordPress : Comments', 'notification' ),
+	'template' => call_user_func( __NAMESPACE__ . '\\trashed_template' ),
+	'tags'     => array(
 		'ID'               => 'integer',
 		'post_ID'          => 'integer',
 		'author_name'      => 'string',
@@ -180,11 +231,24 @@ add_action( 'comment_trash_', __NAMESPACE__ . '\\trashed', 10, 2 );
 /**
  * Marked as spam
  */
+
+function spam_template() {
+
+	$html = '<p>' . __( 'Howdy!', 'notification' ) . '</p>';
+	$html .= '<p>' . __( 'Comment:', 'notification' ) . '</p>';
+	$html .= '<p>{comment_content}</p>';
+	$html .= '<p>' . __( 'from {author_name} has been moved to trash.', 'notification' ) . '</p>';
+
+	return $html;
+
+}
+
 register_trigger( array(
-	'slug' => 'wordpress/comment/spam',
-	'name' => __( 'Comment marked as spam', 'notification' ),
-	'group' => __( 'WordPress : Comments', 'notification' ),
-	'tags' => array(
+	'slug'     => 'wordpress/comment/spam',
+	'name'     => __( 'Comment marked as spam', 'notification' ),
+	'group'    => __( 'WordPress : Comments', 'notification' ),
+	'template' => call_user_func( __NAMESPACE__ . '\\spam_template' ),
+	'tags'     => array(
 		'ID'               => 'integer',
 		'post_ID'          => 'integer',
 		'author_name'      => 'string',

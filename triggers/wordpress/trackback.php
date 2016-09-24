@@ -8,11 +8,23 @@ namespace Notification\Triggers\WordPress\Trackback;
 /**
  * Published
  */
+
+function added_template() {
+
+	$html = '<p>' . __( 'Howdy!', 'notification' ) . '</p>';
+	$html .= '<p>' . __( 'There is new trackback to your article:', 'notification' ) . '</p>';
+	$html .= '<p>{comment_content}</p>';
+
+	return $html;
+
+}
+
 register_trigger( array(
-	'slug' => 'wordpress/trackback/added',
-	'name' => __( 'Trackback added', 'notification' ),
-	'group' => __( 'WordPress : Trackbacks', 'notification' ),
-	'tags' => array(
+	'slug'     => 'wordpress/trackback/added',
+	'name'     => __( 'Trackback added', 'notification' ),
+	'group'    => __( 'WordPress : Trackbacks', 'notification' ),
+	'template' => call_user_func( __NAMESPACE__ . '\\added_template' ),
+	'tags'     => array(
 		'ID'               => 'integer',
 		'post_ID'          => 'integer',
 		'author_name'      => 'string',
@@ -55,11 +67,24 @@ add_action( 'wp_insert_comment', __NAMESPACE__ . '\\added', 10, 2 );
 /**
  * Approved
  */
+
+function approved_template() {
+
+	$html = '<p>' . __( 'Howdy!', 'notification' ) . '</p>';
+	$html .= '<p>' . __( 'Trackback:', 'notification' ) . '</p>';
+	$html .= '<p>{comment_content}</p>';
+	$html .= '<p>' . __( 'from {author_name} has been approved.', 'notification' ) . '</p>';
+
+	return $html;
+
+}
+
 register_trigger( array(
-	'slug' => 'wordpress/trackback/approved',
-	'name' => __( 'Trackback approved', 'notification' ),
-	'group' => __( 'WordPress : Trackbacks', 'notification' ),
-	'tags' => array(
+	'slug'     => 'wordpress/trackback/approved',
+	'name'     => __( 'Trackback approved', 'notification' ),
+	'group'    => __( 'WordPress : Trackbacks', 'notification' ),
+	'template' => call_user_func( __NAMESPACE__ . '\\approved_template' ),
+	'tags'     => array(
 		'ID'               => 'integer',
 		'post_ID'          => 'integer',
 		'author_name'      => 'string',
@@ -98,11 +123,24 @@ add_action( 'comment_approved_trackback', __NAMESPACE__ . '\\approved', 10, 2 );
 /**
  * Unapproved
  */
+
+function unapproved_template() {
+
+	$html = '<p>' . __( 'Howdy!', 'notification' ) . '</p>';
+	$html .= '<p>' . __( 'Trackback:', 'notification' ) . '</p>';
+	$html .= '<p>{comment_content}</p>';
+	$html .= '<p>' . __( 'from {author_name} has been unapproved.', 'notification' ) . '</p>';
+
+	return $html;
+
+}
+
 register_trigger( array(
-	'slug' => 'wordpress/trackback/unapproved',
-	'name' => __( 'Trackback unapproved', 'notification' ),
-	'group' => __( 'WordPress : Trackbacks', 'notification' ),
-	'tags' => array(
+	'slug'     => 'wordpress/trackback/unapproved',
+	'name'     => __( 'Trackback unapproved', 'notification' ),
+	'group'    => __( 'WordPress : Trackbacks', 'notification' ),
+	'template' => call_user_func( __NAMESPACE__ . '\\unapproved_template' ),
+	'tags'     => array(
 		'ID'               => 'integer',
 		'post_ID'          => 'integer',
 		'author_name'      => 'string',
@@ -141,11 +179,24 @@ add_action( 'comment_unapproved_trackback', __NAMESPACE__ . '\\unapproved', 10, 
 /**
  * Trashed
  */
+
+function trashed_template() {
+
+	$html = '<p>' . __( 'Howdy!', 'notification' ) . '</p>';
+	$html .= '<p>' . __( 'Trackback:', 'notification' ) . '</p>';
+	$html .= '<p>{comment_content}</p>';
+	$html .= '<p>' . __( 'from {author_name} has been moved to trash.', 'notification' ) . '</p>';
+
+	return $html;
+
+}
+
 register_trigger( array(
-	'slug' => 'wordpress/trackback/trashed',
-	'name' => __( 'Trackback moved to trash', 'notification' ),
-	'group' => __( 'WordPress : Trackbacks', 'notification' ),
-	'tags' => array(
+	'slug'     => 'wordpress/trackback/trashed',
+	'name'     => __( 'Trackback moved to trash', 'notification' ),
+	'group'    => __( 'WordPress : Trackbacks', 'notification' ),
+	'template' => call_user_func( __NAMESPACE__ . '\\trashed_template' ),
+	'tags'     => array(
 		'ID'               => 'integer',
 		'post_ID'          => 'integer',
 		'author_name'      => 'string',
@@ -184,11 +235,24 @@ add_action( 'comment_trash_trackback', __NAMESPACE__ . '\\trashed', 10, 2 );
 /**
  * Marked as spam
  */
+
+function spam_template() {
+
+	$html = '<p>' . __( 'Howdy!', 'notification' ) . '</p>';
+	$html .= '<p>' . __( 'Trackback:', 'notification' ) . '</p>';
+	$html .= '<p>{comment_content}</p>';
+	$html .= '<p>' . __( 'from {author_name} has been moved to trash.', 'notification' ) . '</p>';
+
+	return $html;
+
+}
+
 register_trigger( array(
-	'slug' => 'wordpress/trackback/spam',
-	'name' => __( 'Trackback marked as spam', 'notification' ),
-	'group' => __( 'WordPress : Trackbacks', 'notification' ),
-	'tags' => array(
+	'slug'     => 'wordpress/trackback/spam',
+	'name'     => __( 'Trackback marked as spam', 'notification' ),
+	'group'    => __( 'WordPress : Trackbacks', 'notification' ),
+	'template' => call_user_func( __NAMESPACE__ . '\\spam_template' ),
+	'tags'     => array(
 		'ID'               => 'integer',
 		'post_ID'          => 'integer',
 		'author_name'      => 'string',
