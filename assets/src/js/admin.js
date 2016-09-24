@@ -64,7 +64,7 @@
 	});
 
 	// Update recipient rows: number and remove button
-	
+
 	var update_recipients = function() {
 
 		var i = 0;
@@ -137,7 +137,7 @@
 	});
 
 	// Remove recipient
-	
+
 	$('#notification_recipients').on( 'click', '.recipient .actions .dashicons-trash', function( event ) {
 
 		event.preventDefault();
@@ -157,7 +157,7 @@
 	});
 
 	// Get input field for recipient
-	
+
 	$('#notification_recipients').on( 'change', '.recipient .group select', function() {
 
 		var $select    = $(this),
@@ -195,7 +195,7 @@
 	});
 
 	// Process all recipient fields which needs live update
-	
+
 	var update_all_inputs = function() {
 
 		$('#notification_recipients .recipient').each( function() {
@@ -214,7 +214,7 @@
 	wp.hooks.addAction( 'notification.changed_trigger', update_all_inputs );
 
 	// Update merge tags input
-	
+
 	wp.hooks.addAction( 'notification.update_input', function( $input, value, update_type ) {
 
 		if ( update_type == 'email_merge_tags' ) {
@@ -243,7 +243,7 @@
 
 		    		$.each(response.data, function(tag_value, tag_name) {
 
-		    			var atts = { 
+		    			var atts = {
 					        value: tag_value,
 					        text : tag_name
 					    };
@@ -264,6 +264,31 @@
 
 		}
 
-	} );	
+	} );
+
+	// Update notification content
+
+	wp.hooks.addAction( 'notification.changed_trigger', function( trigger_slug, tags ) {
+
+		if ( tinymce.activeEditor.getContent() == '' ) {
+
+			var data = {
+				'action':  'notification_get_template',
+				'trigger': trigger_slug
+			};
+
+			$.post(ajaxurl, data, function(response) {
+
+		    	if ( response.success == false ) {
+		    		alert( response.data );
+		    	} else {
+		    		tinymce.activeEditor.setContent( response.data );
+		    	}
+
+			});
+
+		}
+
+	} );
 
 })(jQuery);

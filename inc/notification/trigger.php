@@ -35,16 +35,23 @@ class Trigger {
 	private $group;
 
 	/**
+	 * Trigger template
+	 * @var string
+	 */
+	private $template;
+
+	/**
 	 * Class constructor
 	 * @param  array $trigger trigger parameters
 	 * @return void
 	 */
 	public function __construct( $trigger ) {
 
-		$this->slug  = $trigger['slug'];
-		$this->name  = $trigger['name'];
-		$this->tags  = $trigger['tags'];
-		$this->group = $trigger['group'];
+		$this->slug     = $trigger['slug'];
+		$this->name     = $trigger['name'];
+		$this->tags     = $trigger['tags'];
+		$this->group    = $trigger['group'];
+		$this->template = $trigger['template'];
 
 	}
 
@@ -154,6 +161,16 @@ class Trigger {
 	public function get_name() {
 
 		return apply_filters( 'notification/trigger/name', $this->name, $this->slug );
+
+	}
+
+	/**
+	 * Return trigger template
+	 * @return string template
+	 */
+	public function get_template() {
+
+		return apply_filters( 'notification/trigger/template', $this->template, $this->slug , $this->tags );
 
 	}
 
