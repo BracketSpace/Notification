@@ -3,7 +3,7 @@ Contributors: Kubitomakita
 Tags: notification, notify, email, mail
 Requires at least: 3.6
 Tested up to: 4.6
-Stable tag: 1.1.2
+Stable tag: 1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -104,9 +104,10 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 
 == Changelog ==
 
-= Unreleased =
+= 1.2 =
 * [Added]: New User recipient (takes WordPress users)
 * [Added]: Post/Page updated trigger
+* [Added]: Template for triggers. You can now load default template for user
 * [Changed]: Default post published trigger for posts and pages - it was triggered every time post was updated
 * [Changed]: In Notifications table values are now parsed before displaying
 * [Changed]: Readme file
