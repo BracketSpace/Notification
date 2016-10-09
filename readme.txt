@@ -11,7 +11,7 @@ Customisable notifications with API for custom triggers
 
 == Description ==
 
-This plugin allow you to send custom email notifications about various events in WordPress. It also comes with simple API by which you can add literally **any** trigger action.
+This plugin allows you to send custom email notifications about various events in WordPress. It also comes with a simple API by which you can add literally **any** trigger action.
 
 In messages you can use defined merge tags which will be later changed to content applicable for trigger.
 
