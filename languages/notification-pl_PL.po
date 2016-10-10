@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Notification\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2016-09-24 10:50+0200\n"
+"POT-Creation-Date: 2016-10-10 18:44+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jakub Mikita <jakub@underdev.it>\n"
 "Language-Team: underDEV <hello@underdev.it>\n"
@@ -172,6 +172,17 @@ msgstr "Nie wybrano wyzwalacza"
 #: inc/notifications.php:565
 msgid "No recipients defined"
 msgstr "Nie zdefiniowano odbiorców"
+
+#: notification.php:100
+msgid ""
+"This plugin requires PHP in version at least 5.3. WordPress itself <a href="
+"\"https://wordpress.org/about/requirements/\" target=\"_blank\">requires at "
+"least PHP 5.6</a>. Please upgrade your PHP version or contact your Server "
+"administrator."
+msgstr ""
+"Ta wtyczka potrzebuje PHP w wersji co najmniej 5.3. Sam WordPress wymaga PHP "
+"w wersji co najmniej 5.6. Zaktualizuj PHP skontaktuj się z administratorem "
+"swojego serwera."
 
 #: recipients/core/administrator.php:32
 msgid "Administrator"

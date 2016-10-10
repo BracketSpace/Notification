@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Notification\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2016-09-24 10:49+0200\n"
+"POT-Creation-Date: 2016-10-10 18:43+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jakub Mikita <jakub@underdev.it>\n"
 "Language-Team: underDEV <hello@underdev.it>\n"
@@ -168,6 +168,14 @@ msgstr ""
 
 #: inc/notifications.php:565
 msgid "No recipients defined"
+msgstr ""
+
+#: notification.php:100
+msgid ""
+"This plugin requires PHP in version at least 5.3. WordPress itself <a href="
+"\"https://wordpress.org/about/requirements/\" target=\"_blank\">requires "
+"at least PHP 5.6</a>. Please upgrade your PHP version or contact your "
+"Server administrator."
 msgstr ""
 
 #: recipients/core/administrator.php:32
