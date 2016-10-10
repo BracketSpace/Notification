@@ -3,15 +3,15 @@ Contributors: Kubitomakita
 Tags: notification, notify, email, mail
 Requires at least: 3.6
 Tested up to: 4.6
-Stable tag: 1.2
+Stable tag: 1.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Customisable notifications with API for custom triggers
+Customisable email notifications with API for custom triggers
 
 == Description ==
 
-This plugin allow you to send custom email notifications about various events in WordPress. It also comes with simple API by which you can add literally **any** trigger action.
+This plugin allows you to send custom email notifications about various events in WordPress. It also comes with a simple API by which you can add literally **any** trigger action.
 
 In messages you can use defined merge tags which will be later changed to content applicable for trigger.
 
@@ -103,6 +103,10 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 2. All triggers
 
 == Changelog ==
+
+= 1.3 =
+* [Added]: PHP version check
+* [Changed]: Typos in readme.txt file thanks to justyn-clark (https://github.com/Kubitomakita/Notification/pull/1)
 
 = 1.2 =
 * [Added]: New User recipient (takes WordPress users)
