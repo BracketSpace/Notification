@@ -86,3 +86,20 @@ function notification_initialize() {
 
 }
 add_action( 'init', 'notification_initialize', 5 );
+
+/**
+ * Do some check on plugin activation
+ * @return void
+ */
+function notification_activation() {
+
+	if ( version_compare( PHP_VERSION, '7', '<' ) ) {
+
+		deactivate_plugins( plugin_basename( __FILE__ ) );
+
+		wp_die( __( 'This plugin requires PHP in version at least 5.3. WordPress itself <a href="https://wordpress.org/about/requirements/" target="_blank">requires at least PHP 5.6</a>. Please upgrade your PHP version or contact your Server administrator.', 'notification' ) );
+
+	}
+
+}
+register_activation_hook( __FILE__, 'notification_activation' );
