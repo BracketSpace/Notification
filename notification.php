@@ -4,7 +4,7 @@ Plugin Name: Notification
 Description: Send email notifications about various events in WordPress. You can also create your custom triggers for any action.
 Author: underDEV
 Author URI: https://www.wpart.co
-Version: 1.2
+Version: 1.3
 License: GPL3
 Text Domain: notification
 Domain Path: /languages
@@ -93,7 +93,7 @@ add_action( 'init', 'notification_initialize', 5 );
  */
 function notification_activation() {
 
-	if ( version_compare( PHP_VERSION, '7', '<' ) ) {
+	if ( version_compare( PHP_VERSION, '5.3', '<' ) ) {
 
 		deactivate_plugins( plugin_basename( __FILE__ ) );
 
