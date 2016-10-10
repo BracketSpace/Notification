@@ -7,11 +7,11 @@ Stable tag: 1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Customisable notifications with API for custom triggers
+Customisable email notifications with API for custom triggers
 
 == Description ==
 
-This plugin allow you to send custom email notifications about various events in WordPress. It also comes with simple API by which you can add literally **any** trigger action.
+This plugin allows you to send custom email notifications about various events in WordPress. It also comes with a simple API by which you can add literally **any** trigger action.
 
 In messages you can use defined merge tags which will be later changed to content applicable for trigger.
 
