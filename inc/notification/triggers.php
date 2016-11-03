@@ -91,7 +91,9 @@ class Triggers extends Singleton {
 
 		if ( isset( $this->triggers[ $trigger ] ) ) {
 
-			if ( ! empty( array_diff( array_keys( $this->triggers[ $trigger ]->get_tags() ), array_keys( $tags ) ) ) ) {
+			$diff = array_diff( array_keys( $this->triggers[ $trigger ]->get_tags() ), array_keys( $tags ) );
+
+			if ( ! empty( $diff ) ) {
 
 				throw new \Exception( 'You must pass all defined merge tags to the trigger' );
 
