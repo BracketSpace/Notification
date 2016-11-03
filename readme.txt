@@ -3,7 +3,7 @@ Contributors: Kubitomakita
 Tags: notification, notify, email, mail
 Requires at least: 3.6
 Tested up to: 4.6
-Stable tag: 1.3
+Stable tag: 1.3.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -103,6 +103,9 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 2. All triggers
 
 == Changelog ==
+
+= 1.3.1 =
+* [Fixed]: Error with "Can't use function return value in write context" in empty() function
 
 = 1.3 =
 * [Added]: PHP version check
