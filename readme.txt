@@ -3,7 +3,7 @@ Contributors: Kubitomakita
 Tags: notification, notify, email, mail
 Requires at least: 3.6
 Tested up to: 4.6
-Stable tag: 1.3.1
+Stable tag: 1.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -32,12 +32,14 @@ These are already defined in plugin's core and are ready to use.
 Post:
 
 * Published post notification
+* Updated post notification
 * Post send for review (pending post) notification
 * Post moved to trash notification
 
 Page:
 
 * Published page notification
+* Updated page notification
 * Page send for review (pending page) notification
 * Page moved to trash notification
 
@@ -67,7 +69,6 @@ Trackback:
 
 More to come:
 
-* Pending post/page accepted
 * User triggers
 * Media triggers
 * Feel free to suggest new core triggers in support forum
@@ -104,7 +105,7 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 
 == Changelog ==
 
-= NEXT =
+= 1.4 =
 * [Fixed]: Missing 3rd argument on page publish
 * [Fixed]: Namespace issue for PHP < 5.3
 * [Fixed]: Constant notification on post edit. Thanks to @pehbeh
@@ -154,10 +155,11 @@ You can use `register_trigger()` function to register new notification trigger. 
 
 `
 register_trigger( array(
-	'slug' => 'my_plugin/action',
-	'name' => __( 'Custom action', 'textdomain' ),
-	'group' => __( 'My Plugin', 'textdomain' ),
-	'tags' => array(
+	'slug'     => 'my_plugin/action',
+	'name'     => __( 'Custom action', 'textdomain' ),
+	'group'    => __( 'My Plugin', 'textdomain' ),
+	'template' => 'This is default template using {merge_tag}. It can accept <strong>HTML</strong>',
+	'tags'     => array(
 		'page_ID'    => 'integer',
 		'page_url'   => 'url',
 		'user_email' => 'email'
@@ -175,7 +177,7 @@ Possible merge_tags types:
 * boolean
 * ip
 
-Group and tags are optional. You don't have to register them.
+Group, tags and template are optional. You don't have to register them.
 
 = Executing triggers =
 
