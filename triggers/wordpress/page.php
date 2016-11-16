@@ -60,7 +60,7 @@ function published( $new_status, $old_status, $post ) {
 	) );
 
 }
-add_action( 'publish_page', __NAMESPACE__ . '\\published', 10, 2 );
+add_action( 'publish_page', __NAMESPACE__ . '\\published', 10, 3 );
 
 /**
  * Updated
