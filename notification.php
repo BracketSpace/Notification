@@ -70,7 +70,7 @@ function notification_initialize() {
 	/**
 	 * Notifications instance
 	 */
-	new Notification\Notifications\Notifications();
+	new Notification\Notifications();
 
 	/**
 	 * Load some default triggers
