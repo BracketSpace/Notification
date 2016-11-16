@@ -3,7 +3,7 @@ Contributors: Kubitomakita
 Tags: notification, notify, email, mail
 Requires at least: 3.6
 Tested up to: 4.6
-Stable tag: 1.3.1
+Stable tag: 1.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -104,7 +104,7 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 
 == Changelog ==
 
-= NEXT =
+= 1.4 =
 * [Fixed]: Missing 3rd argument on page publish
 * [Fixed]: Namespace issue for PHP < 5.3
 * [Fixed]: Constant notification on post edit. Thanks to @pehbeh
