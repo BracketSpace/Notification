@@ -48,6 +48,10 @@ function published( $new_status, $old_status, $post ) {
 		return;
 	}
 
+	if ( $new_status != 'publish' ) {
+		return;
+	}
+
 	notification( 'wordpress/post/published', array(
 		'ID'           => $post->ID,
 		'permalink'    => get_permalink( $post->ID ),

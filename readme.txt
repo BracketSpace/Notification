@@ -107,10 +107,11 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 = NEXT =
 * [Fixed]: Missing 3rd argument on page publish
 * [Fixed]: Namespace issue for PHP < 5.3
+* [Fixed]: Constant notification on post edit. Thanks to @pehbeh
 * [Changed]: Allow for merge tags empty values. Thanks to kokoq
 
 = 1.3.1 =
-* [Fixed]: Error with "Can't use function return value in write context" in empty() function
+* [Fixed]: Error with "Can't use function return value in write context" in empty() function. Thanks to Błażej Zabłotny
 
 = 1.3 =
 * [Added]: PHP version check
