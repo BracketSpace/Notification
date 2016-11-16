@@ -109,6 +109,7 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 * [Fixed]: Namespace issue for PHP < 5.3
 * [Fixed]: Constant notification on post edit. Thanks to @pehbeh
 * [Changed]: Allow for merge tags empty values. Thanks to kokoq
+* [Added]: Admin notice: beg for a review. It will display only if there's at least one notification set, on the Notification plugin screens and can be dismissed easly.
 
 = 1.3.1 =
 * [Fixed]: Error with "Can't use function return value in write context" in empty() function. Thanks to Błażej Zabłotny

@@ -37,8 +37,12 @@ class Notifications {
 
 		add_action( 'admin_notices', array( $this, 'validation_errors' ) );
 
+		add_action( 'admin_notices', array( $this, 'beg_for_review' ) );
+
 		add_action( 'wp_ajax_notification_get_merge_tags', array( $this, 'ajax_get_merge_tags' ) );
 		add_action( 'wp_ajax_notification_get_template', array( $this, 'ajax_get_template' ) );
+
+		add_action( 'wp_ajax_notification_dismiss_beg_message', array( $this, 'dismiss_beg_message' ) );
 
 	}
 
@@ -298,6 +302,46 @@ class Notifications {
 	}
 
 	/**
+	 * Display notice with review beg
+	 * @return void
+	 */
+	public function beg_for_review() {
+
+		if ( get_post_type() != 'notification' ) {
+            return;
+        }
+
+        $screen = get_current_screen();
+
+        if ( $screen->id != 'notification' && $screen->id != 'edit-notification' ) {
+        	return;
+        }
+
+        $notification_posts = get_posts( array(
+        	'post_type' => 'notification'
+    	) );
+
+        if ( get_option( 'notification_beg_messsage' ) == 'dismissed' ) {
+        	return;
+        }
+
+        if ( empty( $notification_posts ) ) {
+        	return;
+        }
+
+        echo '<div class="notice notice-info notification-notice"><p>';
+
+	        printf( __( 'Do you like Notification plugin? Please consider giving it a %1$sreview%2$s', 'notification' ), '<a href="https://wordpress.org/support/plugin/notification/reviews/" class="button button-secondary" target="_blank">⭐⭐⭐⭐⭐ ', '</a>', '<a href="#" class="dismiss-beg-message">' );
+
+	        echo '<a href="#" class="dismiss-beg-message" data-nonce="' . wp_create_nonce( 'notification-beg-dismiss' ) . '">';
+		        _e( 'I already reviewed it', 'notification' );
+	        echo '</a>';
+
+        echo '</p></div>';
+
+	}
+
+	/**
 	 * Trigger metabox content
 	 * @param  object $post current WP_Post
 	 * @return void
@@ -467,6 +511,20 @@ class Notifications {
 		}
 
 		wp_send_json_success( $template );
+
+	}
+
+	/**
+	 * Dismiss beg message
+	 * @return object       json encoded response
+	 */
+	public function dismiss_beg_message() {
+
+		check_ajax_referer( 'notification-beg-dismiss', 'nonce' );
+
+		update_option( 'notification_beg_messsage', 'dismissed' );
+
+		wp_send_json_success();
 
 	}
 
