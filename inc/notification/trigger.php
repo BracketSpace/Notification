@@ -64,7 +64,7 @@ class Trigger {
 
 		foreach ( $values as $tag => $value ) {
 
-			if ( ! isset( $this->tags[ $tag ] ) ) {
+			if ( ! isset( $this->tags[ $tag ] ) || empty( $value ) ) {
 				continue;
 			}
 

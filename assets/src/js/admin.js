@@ -291,4 +291,23 @@
 
 	} );
 
+	// Dismiss beg message
+
+	$( '.notification-notice' ).on( 'click', '.dismiss-beg-message', function( event ) {
+
+		event.preventDefault();
+
+		var $button = $( this );
+
+		var data = {
+			'action':  'notification_dismiss_beg_message',
+			'nonce': $button.data( 'nonce' )
+		};
+
+		$.post( ajaxurl, data, function( response ) {
+	    	$button.parents( '.notification-notice' ).slideUp();
+		});
+
+	});
+
 })(jQuery);

@@ -4,13 +4,11 @@ Plugin Name: Notification
 Description: Send email notifications about various events in WordPress. You can also create your custom triggers for any action.
 Author: underDEV
 Author URI: https://www.wpart.co
-Version: 1.3.1
+Version: 1.4
 License: GPL3
 Text Domain: notification
 Domain Path: /languages
 */
-
-use \Notification\Notifications;
 
 if ( ! defined( 'NOTIFICATION_URL' ) ) {
 	define( 'NOTIFICATION_URL', plugin_dir_url( __FILE__ ) );
@@ -72,7 +70,7 @@ function notification_initialize() {
 	/**
 	 * Notifications instance
 	 */
-	new Notifications();
+	new Notification\Notifications();
 
 	/**
 	 * Load some default triggers

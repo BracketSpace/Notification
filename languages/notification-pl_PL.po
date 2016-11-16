@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Notification\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2016-10-10 18:44+0200\n"
+"POT-Creation-Date: 2016-11-16 14:27+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jakub Mikita <jakub@underdev.it>\n"
 "Language-Team: underDEV <hello@underdev.it>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
 "_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: .git\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
@@ -39,70 +39,70 @@ msgstr "Usuń odbiorcę"
 msgid "Other"
 msgstr "Inne"
 
-#: inc/notification/triggers.php:161 inc/notification/triggers.php:176
-#: inc/notification/triggers.php:191 inc/notification/triggers.php:206
+#: inc/notification/triggers.php:163 inc/notification/triggers.php:178
+#: inc/notification/triggers.php:193 inc/notification/triggers.php:208
 #, php-format
 msgid "No \"%s\" trigger defined"
 msgstr "Wyzwalacz \"%s\" nie został zdefiniowany"
 
-#: inc/notifications.php:52 inc/notifications.php:63
+#: inc/notifications.php:56 inc/notifications.php:67
 msgid "Notifications"
 msgstr "Powiadomienia"
 
-#: inc/notifications.php:53
+#: inc/notifications.php:57
 msgid "Notification"
 msgstr "Powiadomienie"
 
-#: inc/notifications.php:54
+#: inc/notifications.php:58
 msgctxt "notification"
 msgid "Add New Notification"
 msgstr "Dodaj nowe powiadomienie"
 
-#: inc/notifications.php:55
+#: inc/notifications.php:59
 msgid "Add New Notification"
 msgstr "Dodaj nowe powiadomienie"
 
-#: inc/notifications.php:56
+#: inc/notifications.php:60
 msgid "Edit Notification"
 msgstr "Edytuj powiadomienie"
 
-#: inc/notifications.php:57
+#: inc/notifications.php:61
 msgid "New Notification"
 msgstr "Nowe powiadomienie"
 
-#: inc/notifications.php:58
+#: inc/notifications.php:62
 msgid "View Notification"
 msgstr "Zobacz powiadomienie"
 
-#: inc/notifications.php:59
+#: inc/notifications.php:63
 msgid "Search Notifications"
 msgstr "Szukaj powiadomień"
 
-#: inc/notifications.php:60
+#: inc/notifications.php:64
 msgid "No Notifications found"
 msgstr "Nie znaleziono powiadomień"
 
-#: inc/notifications.php:61
+#: inc/notifications.php:65
 msgid "No Notifications found in Trash"
 msgstr "Nie ma powiadomień w koszu"
 
-#: inc/notifications.php:62
+#: inc/notifications.php:66
 msgid "Parent Notification:"
 msgstr "Rodzic powiadomienia:"
 
-#: inc/notifications.php:96 inc/notifications.php:523
+#: inc/notifications.php:100 inc/notifications.php:581
 msgid "Trigger"
 msgstr "Wyzwalacz"
 
-#: inc/notifications.php:105
+#: inc/notifications.php:109
 msgid "Merge tags"
 msgstr "Znaczniki"
 
-#: inc/notifications.php:114 inc/notifications.php:524
+#: inc/notifications.php:118 inc/notifications.php:582
 msgid "Recipients"
 msgstr "Odbiorcy"
 
-#: inc/notifications.php:201
+#: inc/notifications.php:205
 #, php-format
 msgid ""
 "You have some unavailable merge tags for selected trigger in the content: "
@@ -111,7 +111,7 @@ msgstr ""
 "W treści wiadomości używasz niezdefiniowanych znaczników: %s. Będą one "
 "pominięte podczas komponowania wiadomości"
 
-#: inc/notifications.php:212
+#: inc/notifications.php:216
 msgid ""
 "You are using images in the message content. Please remember these will be "
 "probably filtered by most of the email clients"
@@ -119,61 +119,72 @@ msgstr ""
 "W treści wiadomości używać obrazów. Pamiętaj, że większość klientów "
 "mailowych filtruje je z treści."
 
-#: inc/notifications.php:240
+#: inc/notifications.php:244
 msgid "You have empty recipients defined, these will be skipped"
 msgstr "Masz zdefiniowanych pustych odbiorców, którzy zostaną pominięci"
 
-#: inc/notifications.php:250
+#: inc/notifications.php:254
 #, php-format
 msgid "%d <code>%s</code> in recipients <code>%s</code> group"
 msgstr "%d <code>%s</code> w grupie odbiorców <code>%s</code>"
 
-#: inc/notifications.php:258
+#: inc/notifications.php:262
 #, php-format
 msgid "You have some duplicated recipients:<br>%s"
 msgstr "Masz zduplikowanych odbiorców:<br>%s"
 
-#: inc/notifications.php:314
+#: inc/notifications.php:334
+#, php-format
+msgid ""
+"Do you like Notification plugin? Please consider giving it a %1$sreview%2$s"
+msgstr ""
+"Czy podoba Ci się wtyczka Powiadomienie? Rozważ danie jej %1$soceny%2$s"
+
+#: inc/notifications.php:337
+msgid "I already reviewed it"
+msgstr "Już ją oceniłem"
+
+#: inc/notifications.php:358
 msgid "No Triggers defined yet"
 msgstr "Nie ma jeszcze żadnych wyzwalaczy"
 
-#: inc/notifications.php:354
+#: inc/notifications.php:398
 msgid "Please select trigger first"
 msgstr "Wybierz najpierw wyzwalacz"
 
-#: inc/notifications.php:366 inc/notifications.php:450
+#: inc/notifications.php:410 inc/notifications.php:494
 msgid "No merge tags defined for this trigger"
 msgstr "Nie zdefiniowano żadnych znaczników dla tego wyzwalacza"
 
-#: inc/notifications.php:390
+#: inc/notifications.php:434
 msgid "No recipients available"
 msgstr "Brak obiorców"
 
-#: inc/notifications.php:431
+#: inc/notifications.php:475
 msgid "Add recipient"
 msgstr "Dodaj odbiorcę"
 
-#: inc/notifications.php:489
+#: inc/notifications.php:547
 msgid "Copied"
 msgstr "Skopiowano"
 
-#: inc/notifications.php:502
+#: inc/notifications.php:560
 msgid "Enter Subject here"
 msgstr "Wpisz tutaj temat wiadomości"
 
-#: inc/notifications.php:520
+#: inc/notifications.php:578
 msgid "Subject"
 msgstr "Temat"
 
-#: inc/notifications.php:547
+#: inc/notifications.php:605
 msgid "No trigger selected"
 msgstr "Nie wybrano wyzwalacza"
 
-#: inc/notifications.php:565
+#: inc/notifications.php:623
 msgid "No recipients defined"
 msgstr "Nie zdefiniowano odbiorców"
 
-#: notification.php:100
+#: notification.php:98
 msgid ""
 "This plugin requires PHP in version at least 5.3. WordPress itself <a href="
 "\"https://wordpress.org/about/requirements/\" target=\"_blank\">requires at "
@@ -211,8 +222,8 @@ msgstr "Użytkownik"
 #: triggers/wordpress/page.php:169 triggers/wordpress/pingback.php:14
 #: triggers/wordpress/pingback.php:73 triggers/wordpress/pingback.php:129
 #: triggers/wordpress/pingback.php:185 triggers/wordpress/pingback.php:241
-#: triggers/wordpress/post.php:14 triggers/wordpress/post.php:73
-#: triggers/wordpress/post.php:128 triggers/wordpress/post.php:183
+#: triggers/wordpress/post.php:14 triggers/wordpress/post.php:77
+#: triggers/wordpress/post.php:132 triggers/wordpress/post.php:187
 #: triggers/wordpress/trackback.php:14 triggers/wordpress/trackback.php:73
 #: triggers/wordpress/trackback.php:129 triggers/wordpress/trackback.php:185
 #: triggers/wordpress/trackback.php:241
@@ -275,7 +286,7 @@ msgid "{author_name} just published new page: {post_title}"
 msgstr "(author_name} opublikował(a) nową stronę: {post_title}"
 
 #: triggers/wordpress/page.php:16 triggers/wordpress/page.php:73
-#: triggers/wordpress/post.php:16 triggers/wordpress/post.php:75
+#: triggers/wordpress/post.php:16 triggers/wordpress/post.php:79
 msgid "You can read it here: {permalink}"
 msgstr "Możesz przeczytać ją tutaj: {permalink}"
 
@@ -300,7 +311,7 @@ msgstr "Strona zaktualizowana"
 msgid "{author_name} just send his brand new page for review: {post_title}"
 msgstr "(author_name} wysłał(a) swoją nową stronę do akceptacji: {post_title}"
 
-#: triggers/wordpress/page.php:122 triggers/wordpress/post.php:130
+#: triggers/wordpress/page.php:122 triggers/wordpress/post.php:134
 msgid "Review now"
 msgstr "Przejrzyj teraz"
 
@@ -312,7 +323,7 @@ msgstr "Strona wysłana do przeglądu"
 msgid "{author_name} just moved page: {post_title} to the trash."
 msgstr "(author_name} przeniósł/przeniosła stronę: {post_title} do kosza."
 
-#: triggers/wordpress/page.php:171 triggers/wordpress/post.php:185
+#: triggers/wordpress/page.php:171 triggers/wordpress/post.php:189
 msgid "View trash"
 msgstr "Zobacz kosz"
 
@@ -369,32 +380,32 @@ msgstr "{author_name} just published new post: {post_title}"
 msgid "Post published"
 msgstr "Post opublikowany"
 
-#: triggers/wordpress/post.php:25 triggers/wordpress/post.php:84
-#: triggers/wordpress/post.php:139 triggers/wordpress/post.php:194
+#: triggers/wordpress/post.php:25 triggers/wordpress/post.php:88
+#: triggers/wordpress/post.php:143 triggers/wordpress/post.php:198
 msgid "WordPress : Posts"
 msgstr "WordPress : Posty"
 
-#: triggers/wordpress/post.php:74
+#: triggers/wordpress/post.php:78
 msgid "{author_name} just updated post: {post_title}"
 msgstr "(author_name} opublikował(a) nowy post: {post_title}"
 
-#: triggers/wordpress/post.php:83
+#: triggers/wordpress/post.php:87
 msgid "Post updated"
 msgstr "Post zaktualizowany"
 
-#: triggers/wordpress/post.php:129
+#: triggers/wordpress/post.php:133
 msgid "{author_name} just send his brand new post for review: {post_title}"
 msgstr "(author_name} wysłał(a) swój nowy post do akceptacji: {post_title}"
 
-#: triggers/wordpress/post.php:138
+#: triggers/wordpress/post.php:142
 msgid "Post sent for review"
 msgstr "Posty wysłany do przeglądu"
 
-#: triggers/wordpress/post.php:184
+#: triggers/wordpress/post.php:188
 msgid "{author_name} just moved post: {post_title} to the trash."
 msgstr "(author_name} przeniósł/przeniosła posta: {post_title} do kosza."
 
-#: triggers/wordpress/post.php:193
+#: triggers/wordpress/post.php:197
 msgid "Post moved to trash"
 msgstr "Post usunięty"
 
