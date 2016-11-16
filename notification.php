@@ -10,8 +10,6 @@ Text Domain: notification
 Domain Path: /languages
 */
 
-use \Notification\Notifications;
-
 if ( ! defined( 'NOTIFICATION_URL' ) ) {
 	define( 'NOTIFICATION_URL', plugin_dir_url( __FILE__ ) );
 }
@@ -72,7 +70,7 @@ function notification_initialize() {
 	/**
 	 * Notifications instance
 	 */
-	new Notifications();
+	new Notification\Notifications\Notifications();
 
 	/**
 	 * Load some default triggers
