@@ -72,7 +72,7 @@ class User extends Recipient {
 		$html = '<select name="notification_recipient[' . $id . '][value]" class="widefat">';
 
 			foreach ( $users as $user ) {
-				$html .= '<option value="' . $user->ID . '">' . $user->display_name . ' (' . $user->user_email . ')</option>';
+				$html .= '<option value="' . $user->ID . '" ' . selected( $value, $user->ID, false ) . '>' . $user->display_name . ' (' . $user->user_email . ')</option>';
 			}
 
 		$html .= '</select>';

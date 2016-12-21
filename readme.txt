@@ -105,6 +105,10 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 
 == Changelog ==
 
+= Next release =
+* [Fixed]: Correct choice selected for WP User recipient after saving notification. Thanks to whitwye
+
+
 = 1.4 =
 * [Fixed]: Missing 3rd argument on page publish
 * [Fixed]: Namespace issue for PHP < 5.3
