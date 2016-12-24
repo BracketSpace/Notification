@@ -535,7 +535,7 @@ class Notifications {
 	 */
 	public function enqueue_scripts( $page_hook ) {
 
-		if ( get_post_type() != 'notification' ) {
+		if ( get_post_type() != 'notification' && $page_hook != 'notification_page_settings' ) {
 			return false;
 		}
 

@@ -73,6 +73,11 @@ function notification_initialize() {
 	new Notification\Notifications();
 
 	/**
+	 * Settings instance
+	 */
+	Notification\Settings::get();
+
+	/**
 	 * Load some default triggers
 	 */
 	require_once( NOTIFICATION_DIR . trailingslashit( 'triggers' ) . 'triggers.php' );
