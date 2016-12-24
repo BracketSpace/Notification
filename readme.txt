@@ -107,6 +107,9 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 
 = Next release =
 * [Fixed]: Correct choice selected for WP User recipient after saving notification. Thanks to whitwye
+* [Added]: Settings API
+* [Added]: Setting - what to remove upon plugin removal
+* [Added]: Plugin cleanup procedure
 
 
 = 1.4 =

@@ -154,6 +154,10 @@ class Group {
 			$field->description( $args['description'] );
 		}
 
+		if ( isset( $args['addons'] ) ) {
+			$field->addons( $args['addons'] );
+		}
+
 		$this->fields[ $args['slug'] ] = $field;
 
 		do_action( 'notification/settings/field/added', $this->fields[ $args['slug'] ], $this );

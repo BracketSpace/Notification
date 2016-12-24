@@ -64,6 +64,12 @@ class Field {
 	private $group;
 
 	/**
+	 * Addons
+	 * @var string
+	 */
+	private $addons;
+
+	/**
 	 * Group constructor
 	 * @param string $name    Field name
 	 * @param string $slug    Field slug
@@ -200,6 +206,38 @@ class Field {
 	}
 
 	/**
+	 * Set or get addons
+	 * @param mixed $addons field additional settings or null to get them
+	 * @return array addons
+	 */
+	public function addons( $addons = null ) {
+
+		if ( $addons !== null ) {
+			$this->addons = $addons;
+		}
+
+		return apply_filters( 'notification/settings/field/addons', $this->addons, $this );
+
+	}
+
+	/**
+	 * Get addon
+	 * @param mixed $addons field additional settings or null to get them
+	 * @return mixed addon value or null
+	 */
+	public function addon( $addon = null ) {
+
+		$addons = $this->addons();
+
+		if ( isset( $addons[ $addon ] ) ) {
+			return apply_filters( 'notification/settings/field/addon', $addons[ $addon ], $this );
+		}
+
+		return null;
+
+	}
+
+	/**
 	 * Get Field input name
 	 * @return string name
 	 */
@@ -248,7 +286,7 @@ class Field {
 	public function set_sanitizer( $sanitizer ) {
 
 		if ( ! is_callable( $sanitizer ) ) {
-			throw new \Exception( 'Field sanitizer `' . print_r( $sanitizer, true ) . '` is not callable' );
+			throw new \Exception( 'Field sanitizer is not callable' );
 		}
 
 		$this->sanitizer = $sanitizer;

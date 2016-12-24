@@ -7,6 +7,7 @@ namespace Notification;
 
 use Notification\Singleton;
 use Notification\Settings\Section;
+use Notification\Settings\CoreFields;
 
 class Settings extends Singleton {
 
@@ -170,8 +171,10 @@ class Settings extends Singleton {
 	 */
 	public function get_section( $slug = '' ) {
 
-		if ( isset( $this->sections[ $slug ] ) ) {
-			return apply_filters( 'notification/settings/section', $this->sections[ $slug ], $this );
+		$sections = $this->get_sections();
+
+		if ( isset( $sections[ $slug ] ) ) {
+			return apply_filters( 'notification/settings/section', $sections[ $slug ], $this );
 		}
 
 		return false;
@@ -183,6 +186,33 @@ class Settings extends Singleton {
 	 * @return void
 	 */
 	public function register_settings() {
+
+		$corefields = CoreFields::get();
+
+		$general = new Section( __( 'General', 'notification' ), 'general' );
+
+		$general->add_group( __( 'Uninstallation', 'notification' ), 'uninstallation' )
+			->add_field( array(
+				'name'     => __( 'Notifications', 'notification' ),
+				'slug'     => 'notifications',
+				'default'  => 'true',
+				'addons'   => array(
+					'label' => __( 'Remove all added notifications', 'notification' )
+				),
+				'render'   => array( $corefields, 'checkbox' ),
+				'sanitize' => array( $corefields, 'sanitize_checkbox' ),
+			) )
+			->add_field( array(
+				'name'     => __( 'Settings', 'notification' ),
+				'slug'     => 'settings',
+				'default'  => 'true',
+				'addons'   => array(
+					'label' => __( 'Remove plugin settings', 'notification' )
+				),
+				'render'   => array( $corefields, 'checkbox' ),
+				'sanitize' => array( $corefields, 'sanitize_checkbox' ),
+			) )
+			->description( __( 'Choose what to remove upon plugin removal', 'notification' ) );
 
 	}
 
@@ -236,22 +266,29 @@ class Settings extends Singleton {
 	 */
 	public function get_settings() {
 
-		if ( ! empty( $this->settings ) ) {
-			return $this->settings;
-		}
+		if ( empty( $this->settings ) ) {
 
-		foreach ( $this->get_sections() as $section_slug => $section ) {
+			foreach ( $this->get_sections() as $section_slug => $section ) {
 
-			$setting = get_option( 'notification_' . $section_slug );
+				$setting = get_option( 'notification_' . $section_slug );
 
-			foreach ( $section->get_groups() as $group_slug => $group ) {
+				$this->settings[ $section_slug ] = array();
 
-				foreach ( $group->get_fields() as $field_slug => $field ) {
+				foreach ( $section->get_groups() as $group_slug => $group ) {
 
-					if ( isset( $setting[ $group_slug ][ $field_slug ] ) ) {
-						$field->value( $setting[ $group_slug ][ $field_slug ] );
-					} else {
-						$field->value( $field->default_value() );
+					$this->settings[ $section_slug ][ $group_slug ] = array();
+
+					foreach ( $group->get_fields() as $field_slug => $field ) {
+
+						if ( isset( $setting[ $group_slug ][ $field_slug ] ) ) {
+							$value = $setting[ $group_slug ][ $field_slug ];
+						} else {
+							$value = $field->default_value();
+						}
+
+						$field->value( $value );
+						$this->settings[ $section_slug ][ $group_slug ][ $field_slug ] = $value;
+
 					}
 
 				}
@@ -259,6 +296,8 @@ class Settings extends Singleton {
 			}
 
 		}
+
+		return apply_filters( 'notification/settings/saved_settings', $this->settings, $this );
 
 	}
 
