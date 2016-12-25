@@ -112,6 +112,7 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 * [Added]: Plugin cleanup procedure
 * [Added]: Plugin deactivation feedback popup
 * [Added]: Conditional tag `is_notification_defined()` to check if notification will be send
+* [Changed]: Notifications class is now singleton and partialy moved to Admin class
 
 = 1.4 =
 * [Fixed]: Missing 3rd argument on page publish

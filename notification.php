@@ -70,7 +70,7 @@ function notification_initialize() {
 	/**
 	 * Notifications instance
 	 */
-	new Notification\Notifications();
+	Notification\Notifications::get();
 
 	/**
 	 * Settings instance
@@ -89,6 +89,20 @@ function notification_initialize() {
 
 }
 add_action( 'init', 'notification_initialize', 5 );
+
+/**
+ * Initialize plugin on admin side
+ * @return void
+ */
+function notification_admin_initialize() {
+
+	/**
+	 * Admin instance
+	 */
+	Notification\Admin::get();
+
+}
+add_action( 'init', 'notification_admin_initialize', 5 );
 
 /**
  * Do some check on plugin activation
