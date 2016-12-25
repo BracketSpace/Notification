@@ -113,6 +113,8 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 * [Added]: Plugin deactivation feedback popup
 * [Added]: Conditional tag `is_notification_defined()` to check if notification will be send
 * [Changed]: Notifications class is now singleton and partialy moved to Admin class
+* [Changed]: Notification trigger metabox is now under the subject
+* [Changed]: On the single Notification edit screen there are only allowed metaboxes displayed
 
 = 1.4 =
 * [Fixed]: Missing 3rd argument on page publish

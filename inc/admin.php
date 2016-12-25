@@ -11,17 +11,29 @@ use \Notification\Notification\Recipients;
 
 class Admin extends Singleton {
 
+	/**
+	 * Core metaboxes
+	 * @var array
+	 */
+	private $meta_boxes = array();
+
 	public function __construct() {
 
 		add_filter( 'enter_title_here', array( $this, 'custom_enter_title' ) );
 
-		add_filter( 'manage_notification_posts_columns', array( $this, 'table_columns' ), 10 ,1 );
+		add_filter( 'manage_notification_posts_columns', array( $this, 'table_columns' ), 10, 1 );
 
-		add_action( 'manage_notification_posts_custom_column', array( $this, 'table_column_content' ), 10 ,2 );
+		add_action( 'manage_notification_posts_custom_column', array( $this, 'table_column_content' ), 10, 2 );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10, 1 );
 
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ), 10, 1 );
+		add_action( 'add_meta_boxes', array( $this, 'meta_box_cleanup' ), 999999999, 1 );
+		add_action( 'edit_form_after_title', array( $this, 'move_metaboxes_under_subject' ), 10, 1 );
+
+		// allow WP core metaboxes
+		add_filter( 'notification/admin/allow_metabox/submitdiv', '__return_true' );
+		add_filter( 'notification/admin/allow_metabox/slugdiv', '__return_true' );
 
 		add_action( 'admin_notices', array( $this, 'beg_for_review' ) );
 
@@ -44,9 +56,11 @@ class Admin extends Singleton {
             __( 'Trigger', 'notification' ),
             array( $this, 'trigger_metabox' ),
             'notification',
-            'side',
-            'default'
+            'after_subject',
+            'high'
         );
+
+        $this->meta_boxes[] = 'notification_trigger';
 
 		add_meta_box(
             'notification_merge_tags',
@@ -57,6 +71,8 @@ class Admin extends Singleton {
             'default'
         );
 
+        $this->meta_boxes[] = 'notification_merge_tags';
+
 		add_meta_box(
             'notification_recipients',
             __( 'Recipients', 'notification' ),
@@ -65,6 +81,50 @@ class Admin extends Singleton {
             'normal',
             'high'
         );
+
+        $this->meta_boxes[] = 'notification_recipients';
+
+	}
+
+	/**
+	 * Clean up all metaboxes to keep the screen nice and clean
+	 * @return void
+	 */
+	public function meta_box_cleanup() {
+
+		global $wp_meta_boxes;
+
+		if ( ! isset( $wp_meta_boxes['notification'] ) ) {
+			return;
+		}
+
+		foreach ( $wp_meta_boxes['notification'] as $context_name => $context ) {
+
+			foreach ( $context as $priority => $boxes ) {
+
+				foreach ( $boxes as $box_id => $box ) {
+
+					$allow_box = apply_filters( 'notification/admin/allow_metabox/' . $box_id, false );
+
+					if ( ! in_array( $box_id, $this->meta_boxes ) && ! $allow_box ) {
+						unset( $wp_meta_boxes['notification'][ $context_name ][ $priority ][ $box_id ] );
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+	public function move_metaboxes_under_subject() {
+
+		global $post, $wp_meta_boxes;
+
+    	do_meta_boxes( get_current_screen(), 'after_subject', $post );
+
+    	unset( $wp_meta_boxes['notification']['after_subject'] );
 
 	}
 
