@@ -110,7 +110,7 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 * [Added]: Settings API
 * [Added]: Setting - what to remove upon plugin removal
 * [Added]: Plugin cleanup procedure
-
+* [Added]: Plugin deactivation feedback popup
 
 = 1.4 =
 * [Fixed]: Missing 3rd argument on page publish
