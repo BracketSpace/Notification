@@ -76,6 +76,7 @@ function notification_initialize() {
 	 * Settings instance
 	 */
 	Notification\Settings::get();
+	Notification\Settings::get()->register_settings();
 
 	/**
 	 * Load some default triggers

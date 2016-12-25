@@ -10,12 +10,8 @@
  */
 if ( apply_filters( 'notification/triggers/default/wordpress', true ) ) :
 
-if ( apply_filters( 'notification/triggers/default/wordpress/post', true ) ) {
-	include_once( 'wordpress/post.php' );
-}
-
-if ( apply_filters( 'notification/triggers/default/wordpress/page', true ) ) {
-	include_once( 'wordpress/page.php' );
+if ( apply_filters( 'notification/triggers/default/wordpress/post_types', true ) ) {
+	include_once( 'wordpress/post-types.php' );
 }
 
 if ( apply_filters( 'notification/triggers/default/wordpress/comment', true ) ) {

@@ -27,7 +27,6 @@ class Settings extends Singleton {
 
 		add_action( 'admin_menu', array( $this, 'register_settings_page' ) );
 
-		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		add_action( 'admin_init', array( $this, 'get_settings' ), 20 );
 
 		add_action( 'admin_post_save_notification_settings', array( $this, 'save_settings' ) );
@@ -190,6 +189,22 @@ class Settings extends Singleton {
 		$corefields = CoreFields::get();
 
 		$general = new Section( __( 'General', 'notification' ), 'general' );
+
+		$general->add_group( __( 'Post Types', 'notification' ), 'post_types_triggers' )
+			->add_field( array(
+				'name'        => __( 'Post Types', 'notification' ),
+				'slug'        => 'post_types',
+				'default'     => array( 'post', 'page' ),
+				'addons'      => array(
+					'multiple' => true,
+					'chosen'   => true
+				),
+				'description' => __( 'For these post types you will be able to define <i>published</i>, <i>updated</i>, <i>pending moderation</i> etc. notifications' ),
+				'render'      => array( $corefields, 'select' ),
+				'sanitize'    => array( $corefields, 'sanitize_select' ),
+			) )
+			->description( __( 'This is where you can control post types and comments triggers you want to use', 'notification' ) );
+
 
 		$general->add_group( __( 'Uninstallation', 'notification' ), 'uninstallation' )
 			->add_field( array(
