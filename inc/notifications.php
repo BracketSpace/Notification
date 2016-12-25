@@ -44,6 +44,10 @@ class Notifications {
 
 		add_action( 'wp_ajax_notification_dismiss_beg_message', array( $this, 'dismiss_beg_message' ) );
 
+		add_action( 'wp_ajax_notification_send_feedback', array( $this, 'send_feedback' ) );
+		add_filter( 'plugin_action_links', array( $this, 'plugins_table_link' ), 10, 5 );
+		add_action( 'admin_footer-plugins.php', array( $this, 'deactivation_popup' ) );
+
 	}
 
 	/**
@@ -535,7 +539,7 @@ class Notifications {
 	 */
 	public function enqueue_scripts( $page_hook ) {
 
-		if ( get_post_type() != 'notification' && $page_hook != 'notification_page_settings' ) {
+		if ( get_post_type() != 'notification' && $page_hook != 'notification_page_settings' && $page_hook != 'plugins.php' ) {
 			return false;
 		}
 
@@ -647,6 +651,85 @@ class Notifications {
 				break;
 
 		}
+
+	}
+
+	/**
+	 * Filter plugin inline actions links
+	 * @param  array  $actions     actions
+	 * @param  string $plugin_file current plugin basename
+	 * @return array               filtered actions
+	 */
+	public function plugins_table_link( $actions, $plugin_file ) {
+
+		if ( $plugin_file != 'notification/notification.php' ) {
+			return $actions;
+		}
+
+		$deactivate_link = new \SimpleXMLElement( $actions['deactivate'] );
+		$deactivate_url  = $deactivate_link['href'];
+
+		$actions['deactivate'] = '<a href="#TB_inline?width=500&height=400&inlineId=notification-deactivate" class="thickbox" data-deactivate="' . $deactivate_url . '">' . __( 'Deactivate', 'notification' ) . '</a>';
+
+		return $actions;
+
+	}
+
+	/**
+	 * Display plugin deactivation popup
+	 * @return void
+	 */
+	public function deactivation_popup() {
+
+		add_thickbox();
+
+		echo '<div id="notification-deactivate" style="display: none;"><div>';
+
+			echo '<h1>' . __( 'Help improve Notification plugin', 'notification' ) . '</h1>';
+
+			echo '<p>' . __( 'Please choose a reason why you want to deactivate the Notification. This will help me improve this plugin.', 'notification' ) . '</p>';
+
+			echo '<form id="notification-plugin-feedback-form">';
+
+				echo '<input type="hidden" name="hahahash" value="' . md5( $_SERVER['HTTP_HOST'] . '_living_on_the_edge' ) . '">';
+				echo '<input type="hidden" name="nonononce" value="' . wp_create_nonce( 'notification_plugin_smoke_message' ) . '">';
+				echo '<input type="hidden" id="deactivation" value="">';
+
+				echo '<div class="reasons">';
+					echo '<label><input type="radio" name="reason" value="noreason" checked="checked"> ' . __( 'I just want to deactivate, don\'t bother me', 'notification' ) . '</label>';
+					echo '<label><input type="radio" name="reason" value="foundbetter"> ' . __( 'I found better plugin', 'notification' ) . '</label>';
+					echo '<label><input type="radio" name="reason" value="notworking"> ' . __( 'Plugin doesn\'t work', 'notification' ) . '</label>';
+					echo '<label><input type="radio" name="reason" value="notrigger"> ' . __( 'There\'s no trigger I was looking for', 'notification' ) . '</label>';
+				echo '</div>';
+
+				echo '<p><label>If you don\'t mind you can also type few words of additional informations.<br><input type="text" name="text" class="widefat"></label></p>';
+
+				echo '<p><input type="submit" class="button button-primary" value="' . __( 'Deactivate', 'notification' ) . '"><span class="spinner"></span></p>';
+
+			echo '</form>';
+
+		echo '</div></div>';
+
+	}
+
+	/**
+	 * Handler for AJAX Feedback form
+	 * @return object       json encoded response
+	 */
+	public function send_feedback() {
+
+		$data = wp_list_pluck( $_POST['form'], 'value', 'name' );
+
+		if ( wp_verify_nonce( $data['nonononce'], 'notification_plugin_smoke_message' ) === false ) {
+			wp_send_json_error();
+		}
+
+		wp_remote_post( 'https://notification.underdev.it/?action=plugin_feedback', array(
+			'headers' => array( 'REQUESTER' => $_SERVER['HTTP_HOST'] ),
+			'body' => $data
+		) );
+
+		wp_send_json_success();
 
 	}
 
