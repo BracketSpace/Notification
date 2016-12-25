@@ -4,6 +4,7 @@
  */
 
 use \Notification\Notification\Triggers;
+use \Notification\Notifications;
 
 /**
  * Register new notification trigger
@@ -60,5 +61,27 @@ function notification( $trigger = null, $tags = array() ) {
 	Triggers::get()->notify( $trigger, $tags );
 
 	return true;
+
+}
+
+/**
+ * Check if there are notifications defined
+ * @param  string  $trigger trigger slug
+ * @return boolean
+ */
+function is_notification_defined( $trigger = null ) {
+
+	if ( empty( $trigger ) ) {
+		throw new \Exception( 'Define trigger slug' );
+	}
+
+	$notifications = get_posts( array(
+		'numberposts' => -1,
+		'post_type'	  => 'notification',
+		'meta_key'	  => '_trigger',
+		'meta_value'  => $trigger
+	) );
+
+	return ! empty( $notifications );
 
 }
