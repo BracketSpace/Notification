@@ -48,14 +48,10 @@ class CoreFields extends Singleton {
 
 		echo '<select ' . $multiple . ' name="' . $name . '" id="' . $field->input_id() . '" class="' . $chosen . '">';
 
-			foreach ( get_post_types( array( 'public' => true ), 'objects' ) as $post_type ) {
+			foreach ( $field->addon( 'options' ) as $option_value => $option_label ) {
 
-				if ( $post_type->name == 'attachment' ) {
-					continue;
-				}
-
-				$selected = in_array( $post_type->name, (array) $field->value() ) ? 'selected="selected"' : '';
-				echo '<option value="' . $post_type->name . '" ' . $selected . '>' . $post_type->labels->name . '</option>';
+				$selected = in_array( $option_value, (array) $field->value() ) ? 'selected="selected"' : '';
+				echo '<option value="' . $option_value . '" ' . $selected . '>' . $option_label . '</option>';
 
 			}
 

@@ -169,6 +169,13 @@ $settings = Settings::get()->get_settings();
 
 foreach ( $settings['general']['post_types_triggers']['post_types'] as $post_type ) :
 
+	/**
+	 * @deprecated 2.0 Do not use this filter
+	 */
+	if ( ! apply_filters( 'notification/triggers/default/wordpress/' . $post_type, true ) ) {
+		continue;
+	}
+
 	if ( ! apply_filters( 'notification/triggers/default/wordpress/post_types/' . $post_type, true ) ) {
 		continue;
 	}

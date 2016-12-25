@@ -76,7 +76,15 @@ function notification_initialize() {
 	 * Settings instance
 	 */
 	Notification\Settings::get();
-	Notification\Settings::get()->register_settings();
+
+}
+add_action( 'init', 'notification_initialize', 5 );
+
+/**
+ * Initialize default triggers and recipients
+ * @return void
+ */
+function notification_default_triggers_recipients_initialization() {
 
 	/**
 	 * Load some default triggers
@@ -89,7 +97,7 @@ function notification_initialize() {
 	require_once( NOTIFICATION_DIR . trailingslashit( 'recipients' ) . 'recipients.php' );
 
 }
-add_action( 'init', 'notification_initialize', 5 );
+add_action( 'init', 'notification_default_triggers_recipients_initialization', 50 );
 
 /**
  * Initialize plugin on admin side
