@@ -7,7 +7,7 @@ Stable tag: 2.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Customisable email notifications with API for custom triggers
+Customisable email notifications with developer friendly API for custom triggers
 
 == Description ==
 
@@ -15,7 +15,9 @@ This plugin allows you to send custom email notifications about various events i
 
 In messages you can use defined merge tags which will be later changed to content applicable for trigger.
 
-Please see Screenshots tab to see it in action.
+Please see Screenshots tab to get the overall idea about the plugin and see it in action.
+
+You may also want to check [Other Notes](https://wordpress.org/plugins/notification/other_notes/) to see how to use the plugin's API and include it in your own theme or plugin.
 
 = Default recipients =
 
@@ -196,3 +198,11 @@ You can deregister any trigger with `deregister_trigger()` function. Just pass t
 `
 deregister_trigger( 'my_plugin/action' );
 `
+
+= Include Notification in other plugin or theme =
+
+Including it in another plugin or theme requires *just one thing*. Take a look at that:
+
+`require_once( 'path/to/plugin/notification/load.php' );`
+
+Notification will figure out from where it's loaded and will set all paths and URIs automatically.
