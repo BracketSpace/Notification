@@ -115,6 +115,7 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 * [Changed]: Notifications class is now singleton and partialy moved to Admin class
 * [Changed]: Notification trigger metabox is now under the subject
 * [Changed]: On the single Notification edit screen there are only allowed metaboxes displayed
+* [Changed]: You can now controll what post types and comment types trigger use via plugin Settings
 
 = 1.4 =
 * [Fixed]: Missing 3rd argument on page publish
