@@ -51,7 +51,7 @@ More to come:
 * Media triggers
 * Feel free to suggest new core triggers in support forum
 
-`-------------------------------`
+= Useful links =
 
 * [GitHub repository](https://github.com/Kubitomakita/Notification)
 * [Report a bug](https://github.com/Kubitomakita/Notification/issues/new)
