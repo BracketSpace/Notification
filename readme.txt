@@ -3,7 +3,7 @@ Contributors: Kubitomakita
 Tags: notification, notify, email, mail
 Requires at least: 3.6
 Tested up to: 4.7
-Stable tag: 2.0
+Stable tag: 2.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -83,6 +83,9 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 3. Settings
 
 == Changelog ==
+
+= 2.0.1 =
+* [Fixed] Issue with not sent emails because of wrong current post type while registering notification action. Thanks to Karl Camenzuli
 
 = 2.0 =
 * [Fixed]: Correct choice selected for WP User recipient after saving notification. Thanks to whitwye
