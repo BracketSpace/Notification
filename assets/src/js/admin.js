@@ -310,4 +310,29 @@
 
 	});
 
+	// Plugin removal
+
+	$( '#the-list tr[data-slug="notification"] .deactivate a' ).click( function( event ) {
+		event.preventDefault();
+	} );
+
+	$( 'body' ).on( 'submit', '#notification-plugin-feedback-form', function( event ) {
+
+		event.preventDefault();
+
+		var $form = $(this);
+
+		$form.find( '.spinner' ).addClass( 'is-active' );
+
+		var data = {
+			'action': 'notification_send_feedback',
+			'form'  : $form.serializeArray()
+		};
+
+		$.post( ajaxurl, data, function( response ) {
+			window.location.href = $( '#the-list tr[data-slug="notification"] .deactivate a' ).data( 'deactivate' );
+		});
+
+	} );
+
 })(jQuery);

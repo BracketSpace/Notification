@@ -5,10 +5,11 @@
 
 namespace Notification;
 
+use Notification\Singleton;
 use \Notification\Notification\Triggers;
 use \Notification\Notification\Recipients;
 
-class Notifications {
+class Notifications extends Singleton {
 
 	/**
 	 * Regex pattern for merge tags
@@ -20,16 +21,6 @@ class Notifications {
 
 		add_action( 'init', array( $this, 'register_cpt' ), 20 );
 
-		add_filter( 'enter_title_here', array( $this, 'custom_enter_title' ) );
-
-		add_filter( 'manage_notification_posts_columns', array( $this, 'table_columns' ), 10 ,1 );
-
-		add_action( 'manage_notification_posts_custom_column', array( $this, 'table_column_content' ), 10 ,2 );
-
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10, 1 );
-
-		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ), 10, 1 );
-
 		add_action( 'save_post', array( $this, 'save_trigger' ) );
 		add_action( 'save_post', array( $this, 'save_recipients' ) );
 
@@ -37,12 +28,8 @@ class Notifications {
 
 		add_action( 'admin_notices', array( $this, 'validation_errors' ) );
 
-		add_action( 'admin_notices', array( $this, 'beg_for_review' ) );
-
 		add_action( 'wp_ajax_notification_get_merge_tags', array( $this, 'ajax_get_merge_tags' ) );
 		add_action( 'wp_ajax_notification_get_template', array( $this, 'ajax_get_template' ) );
-
-		add_action( 'wp_ajax_notification_dismiss_beg_message', array( $this, 'dismiss_beg_message' ) );
 
 	}
 
@@ -86,41 +73,6 @@ class Notifications {
 			'capability_type'     => apply_filters( 'notification/cpt/capability_type', 'post' ),
 			'supports'            => array( 'title', 'editor' )
 		) );
-
-	}
-
-	/**
-	 * Add metabox for trigger
-	 * @return void
-	 */
-	public function add_meta_box() {
-
-		add_meta_box(
-            'notification_trigger',
-            __( 'Trigger', 'notification' ),
-            array( $this, 'trigger_metabox' ),
-            'notification',
-            'side',
-            'default'
-        );
-
-		add_meta_box(
-            'notification_merge_tags',
-            __( 'Merge tags', 'notification' ),
-            array( $this, 'merge_tags_metabox' ),
-            'notification',
-            'side',
-            'default'
-        );
-
-		add_meta_box(
-            'notification_recipients',
-            __( 'Recipients', 'notification' ),
-            array( $this, 'recipients_metabox' ),
-            'notification',
-            'normal',
-            'high'
-        );
 
 	}
 
@@ -302,46 +254,6 @@ class Notifications {
 	}
 
 	/**
-	 * Display notice with review beg
-	 * @return void
-	 */
-	public function beg_for_review() {
-
-		if ( get_post_type() != 'notification' ) {
-            return;
-        }
-
-        $screen = get_current_screen();
-
-        if ( $screen->id != 'notification' && $screen->id != 'edit-notification' ) {
-        	return;
-        }
-
-        $notification_posts = get_posts( array(
-        	'post_type' => 'notification'
-    	) );
-
-        if ( get_option( 'notification_beg_messsage' ) == 'dismissed' ) {
-        	return;
-        }
-
-        if ( empty( $notification_posts ) ) {
-        	return;
-        }
-
-        echo '<div class="notice notice-info notification-notice"><p>';
-
-	        printf( __( 'Do you like Notification plugin? Please consider giving it a %1$sreview%2$s', 'notification' ), '<a href="https://wordpress.org/support/plugin/notification/reviews/" class="button button-secondary" target="_blank">⭐⭐⭐⭐⭐ ', '</a>', '<a href="#" class="dismiss-beg-message">' );
-
-	        echo '<a href="#" class="dismiss-beg-message" data-nonce="' . wp_create_nonce( 'notification-beg-dismiss' ) . '">';
-		        _e( 'I already reviewed it', 'notification' );
-	        echo '</a>';
-
-        echo '</p></div>';
-
-	}
-
-	/**
 	 * Trigger metabox content
 	 * @param  object $post current WP_Post
 	 * @return void
@@ -511,142 +423,6 @@ class Notifications {
 		}
 
 		wp_send_json_success( $template );
-
-	}
-
-	/**
-	 * Dismiss beg message
-	 * @return object       json encoded response
-	 */
-	public function dismiss_beg_message() {
-
-		check_ajax_referer( 'notification-beg-dismiss', 'nonce' );
-
-		update_option( 'notification_beg_messsage', 'dismissed' );
-
-		wp_send_json_success();
-
-	}
-
-	/**
-	 * Enqueue scripts and styles for admin
-	 * @param  string $page_hook current page hook
-	 * @return void
-	 */
-	public function enqueue_scripts( $page_hook ) {
-
-		if ( get_post_type() != 'notification' ) {
-			return false;
-		}
-
-		wp_enqueue_script( 'notification', NOTIFICATION_URL . 'assets/dist/js/scripts.min.js', array( 'jquery' ), null, true );
-
-		wp_enqueue_style( 'notification', NOTIFICATION_URL . 'assets/dist/css/style.css' );
-
-		wp_localize_script( 'notification', 'notification', array(
-			'copied' => __( 'Copied', 'notification' )
-		) );
-
-	}
-
-	/**
-	 * Filter title placeholder on post edit screen
-	 * @param  string $placeholder placeholder
-	 * @return $label              changed placeholder
-	 */
-	public function custom_enter_title( $placeholder ) {
-
-		if ( get_post_type() == 'notification' ) {
-			$placeholder = __( 'Enter Subject here', 'notification' );
-		}
-
-		return $placeholder;
-
-	}
-
-	/**
-	 * Adds custom table columns
-	 * @param  array $columns current columns
-	 * @return array          filtered columns
-	 */
-	public function table_columns( $columns ) {
-
-		$date_column = $columns['date'];
-		unset( $columns['date'] );
-
-		// Change title column to subject
-		$columns['title'] = __( 'Subject', 'notification' );
-
-		// Custom columns
-		$columns['trigger']    = __( 'Trigger', 'notification' );
-		$columns['recipients'] = __( 'Recipients', 'notification' );
-
-		$columns['date'] = $date_column;
-
-		return $columns;
-
-	}
-
-	/**
-	 * Content for custom columns
-	 * @param  string  $column  column slug
-	 * @param  integer $post_id post ID
-	 * @return void
-	 */
-	public function table_column_content( $column, $post_id ) {
-
-		switch ( $column ) {
-
-			case 'trigger':
-
-				$trigger_slug = get_post_meta( $post_id, '_trigger', true );
-
-				if ( empty( $trigger_slug ) ) {
-					_e( 'No trigger selected', 'notification' );
-				} else {
-
-					try {
-						echo Triggers::get()->get_trigger_name( $trigger_slug );
-					} catch ( \Exception $e ) {
-						echo $e->getMessage();
-					}
-
-				}
-
-				break;
-
-			case 'recipients':
-
-				$recipients = get_post_meta( $post_id, '_recipients', true );
-
-				if ( empty( $recipients ) ) {
-					_e( 'No recipients defined', 'notification' );
-				} else {
-
-					try {
-
-						foreach ( $recipients as $recipient_meta ) {
-
-							$recipient = Recipients::get()->get_recipient( $recipient_meta['group'] );
-							echo '<strong>' . $recipient->get_description() . '</strong>:<br>';
-
-							if ( empty( $recipient_meta['value'] ) ) {
-								echo $recipient->get_default_value() . '<br><br>';
-							} else {
-								echo $recipient->parse_value( $recipient_meta['value'] ) . '<br><br>';
-							}
-
-						}
-
-					} catch ( \Exception $e ) {
-						echo $e->getMessage();
-					}
-
-				}
-
-				break;
-
-		}
 
 	}
 

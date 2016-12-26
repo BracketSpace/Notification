@@ -3,8 +3,8 @@
 Plugin Name: Notification
 Description: Send email notifications about various events in WordPress. You can also create your custom triggers for any action.
 Author: underDEV
-Author URI: https://www.wpart.co
-Version: 1.4
+Author URI: https://underdev.it
+Version: 2.0
 License: GPL3
 Text Domain: notification
 Domain Path: /languages
@@ -70,7 +70,21 @@ function notification_initialize() {
 	/**
 	 * Notifications instance
 	 */
-	new Notification\Notifications();
+	Notification\Notifications::get();
+
+	/**
+	 * Settings instance
+	 */
+	Notification\Settings::get();
+
+}
+add_action( 'init', 'notification_initialize', 5 );
+
+/**
+ * Initialize default triggers and recipients
+ * @return void
+ */
+function notification_default_triggers_recipients_initialization() {
 
 	/**
 	 * Load some default triggers
@@ -83,7 +97,21 @@ function notification_initialize() {
 	require_once( NOTIFICATION_DIR . trailingslashit( 'recipients' ) . 'recipients.php' );
 
 }
-add_action( 'init', 'notification_initialize', 5 );
+add_action( 'init', 'notification_default_triggers_recipients_initialization', 50 );
+
+/**
+ * Initialize plugin on admin side
+ * @return void
+ */
+function notification_admin_initialize() {
+
+	/**
+	 * Admin instance
+	 */
+	Notification\Admin::get();
+
+}
+add_action( 'init', 'notification_admin_initialize', 5 );
 
 /**
  * Do some check on plugin activation

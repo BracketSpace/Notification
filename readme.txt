@@ -2,8 +2,8 @@
 Contributors: Kubitomakita
 Tags: notification, notify, email, mail
 Requires at least: 3.6
-Tested up to: 4.6
-Stable tag: 1.4
+Tested up to: 4.7
+Stable tag: 2.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -23,49 +23,27 @@ Plugin comes with few registered by default recipient types:
 
 * Email address - free type email address
 * Administrator - takes an email from General Settings page
+* User - takes an email from WordPress user profile
 * Merge tag - email rendered by merge tag
 
 = Default triggers =
 
-These are already defined in plugin's core and are ready to use.
+These are already defined in plugin's core and are ready to use. You can enable or disable them on the Settings page.
 
-Post:
+Any Post Type:
 
 * Published post notification
 * Updated post notification
 * Post send for review (pending post) notification
 * Post moved to trash notification
 
-Page:
-
-* Published page notification
-* Updated page notification
-* Page send for review (pending page) notification
-* Page moved to trash notification
-
-Comment:
+Comment / Pingback / Trackback:
 
 * New comment notification
 * Comment approved notification
 * Comment unapproved notification
 * Comment marked as spam notification
 * Comment moved to trash notification
-
-Pingback:
-
-* New pingback notification
-* Pingback approved notification
-* Pingback unapproved notification
-* Pingback marked as spam notification
-* Pingback moved to trash notification
-
-Trackback:
-
-* New trackback notification
-* Trackback approved notification
-* Trackback unapproved notification
-* Trackback marked as spam notification
-* Trackback moved to trash notification
 
 More to come:
 
@@ -102,8 +80,22 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 
 1. Trigger edit screen
 2. All triggers
+3. Settings
 
 == Changelog ==
+
+= 2.0 =
+* [Fixed]: Correct choice selected for WP User recipient after saving notification. Thanks to whitwye
+* [Added]: Settings API
+* [Added]: Setting - what to remove upon plugin removal
+* [Added]: Plugin cleanup procedure
+* [Added]: Plugin deactivation feedback popup
+* [Added]: Conditional tag `is_notification_defined()` to check if notification will be send
+* [Added]: Post permalink to comment triggers
+* [Changed]: Notifications class is now singleton and partialy moved to Admin class
+* [Changed]: Notification trigger metabox is now under the subject
+* [Changed]: On the single Notification edit screen there are only allowed metaboxes displayed
+* [Changed]: You can now controll what post types and comment types trigger use via plugin Settings
 
 = 1.4 =
 * [Fixed]: Missing 3rd argument on page publish
@@ -181,14 +173,20 @@ Group, tags and template are optional. You don't have to register them.
 
 = Executing triggers =
 
-To actualy trigger new notification call `notification()` function with 2 parameters: trigger slug and merge tags array. Sample usage:
+To actualy trigger new notification call `notification()` function with 2 parameters: trigger slug and merge tags array.
+
+It's a good practice to first check if notification should be send to not pull all the data for nothing.
+
+Sample usage:
 
 `
-notification( 'my_plugin/action', array(
-	'page_ID'    => $ID,
-	'page_url'   => get_permalink( $ID ),
-	'user_email' => $user_email,
-) );
+if ( is_notification_defined( 'my_plugin/action' ) ) {
+	notification( 'my_plugin/action', array(
+		'page_ID'    => $ID,
+		'page_url'   => get_permalink( $ID ),
+		'user_email' => $user_email,
+	) );
+}
 `
 
 = Registering new triggers =
