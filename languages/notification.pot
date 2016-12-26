@@ -1,191 +1,278 @@
-# WordPress Blank Pot
-# Copyright (C) 2014 ...
-# This file is distributed under the GNU General Public License v2 or later.
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Notification\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2016-11-16 14:26+0100\n"
-"PO-Revision-Date: \n"
+"POT-Creation-Date: 2016-12-26 08:48+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jakub Mikita <jakub@underdev.it>\n"
 "Language-Team: underDEV <hello@underdev.it>\n"
-"Language: en_US\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
 "X-Textdomain-Support: yesX-Generator: Poedit 1.6.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
-"_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,"
-"_nc:4c,1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:"
+"1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Loco - https://localise.biz/\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
-"X-Poedit-SearchPathExcluded-1: .git\n"
+"X-Poedit-SearchPathExcluded-1: .git"
 
-#: inc/notification/recipients.php:72
-#, php-format
-msgid "No \"%s\" recipient defined"
+#: notification.php:126
+msgid ""
+"This plugin requires PHP in version at least 5.3. WordPress itself <a "
+"href=\"https://wordpress.org/about/requirements/\" target=\"_blank\">"
+"requires at least PHP 5.6</a>. Please upgrade your PHP version or contact "
+"your Server administrator."
 msgstr ""
 
-#: inc/notification/recipients.php:125
-msgid "Remove recipient"
+#: inc/settings.php:49
+msgid "Notification settings"
 msgstr ""
 
-#: inc/notification/triggers.php:46
-msgid "Other"
+#: inc/settings.php:50 inc/settings.php:66 inc/settings.php:251
+msgid "Settings"
 msgstr ""
 
-#: inc/notification/triggers.php:163 inc/notification/triggers.php:178
-#: inc/notification/triggers.php:193 inc/notification/triggers.php:208
-#, php-format
-msgid "No \"%s\" trigger defined"
+#: inc/settings.php:69
+msgid "No Settings available at the moment"
 msgstr ""
 
-#: inc/notifications.php:56 inc/notifications.php:67
+#: inc/settings.php:134
+msgid "Save Settings"
+msgstr ""
+
+#: inc/settings.php:194
+msgid "General"
+msgstr ""
+
+#: inc/settings.php:206 inc/settings.php:208
+msgid "Post Types"
+msgstr ""
+
+#: inc/settings.php:216
+msgid ""
+"For these post types you will be able to define <i>published</i>, <i>"
+"updated</i>, <i>pending moderation</i> etc. notifications"
+msgstr ""
+
+#: inc/settings.php:221
+msgid "Comment Types"
+msgstr ""
+
+#: inc/settings.php:228
+msgid "Comment"
+msgstr ""
+
+#: inc/settings.php:229
+msgid "Pingback"
+msgstr ""
+
+#: inc/settings.php:230
+msgid "Trackback"
+msgstr ""
+
+#: inc/settings.php:236
+msgid ""
+"This is where you can control post types and comments triggers you want to "
+"use"
+msgstr ""
+
+#: inc/settings.php:239
+msgid "Uninstallation"
+msgstr ""
+
+#: inc/settings.php:241 inc/notifications.php:43 inc/notifications.php:54
 msgid "Notifications"
 msgstr ""
 
-#: inc/notifications.php:57
+#: inc/settings.php:245
+msgid "Remove all added notifications"
+msgstr ""
+
+#: inc/settings.php:255
+msgid "Remove plugin settings"
+msgstr ""
+
+#: inc/settings.php:260
+msgid "Choose what to remove upon plugin removal"
+msgstr ""
+
+#: inc/settings.php:365
+msgid "Settings saved"
+msgstr ""
+
+#: inc/notifications.php:44
 msgid "Notification"
 msgstr ""
 
-#: inc/notifications.php:58
+#: inc/notifications.php:45
 msgctxt "notification"
 msgid "Add New Notification"
 msgstr ""
 
-#: inc/notifications.php:59
+#: inc/notifications.php:46
 msgid "Add New Notification"
 msgstr ""
 
-#: inc/notifications.php:60
+#: inc/notifications.php:47
 msgid "Edit Notification"
 msgstr ""
 
-#: inc/notifications.php:61
+#: inc/notifications.php:48
 msgid "New Notification"
 msgstr ""
 
-#: inc/notifications.php:62
+#: inc/notifications.php:49
 msgid "View Notification"
 msgstr ""
 
-#: inc/notifications.php:63
+#: inc/notifications.php:50
 msgid "Search Notifications"
 msgstr ""
 
-#: inc/notifications.php:64
+#: inc/notifications.php:51
 msgid "No Notifications found"
 msgstr ""
 
-#: inc/notifications.php:65
+#: inc/notifications.php:52
 msgid "No Notifications found in Trash"
 msgstr ""
 
-#: inc/notifications.php:66
+#: inc/notifications.php:53
 msgid "Parent Notification:"
 msgstr ""
 
-#: inc/notifications.php:100 inc/notifications.php:581
-msgid "Trigger"
-msgstr ""
-
-#: inc/notifications.php:109
-msgid "Merge tags"
-msgstr ""
-
-#: inc/notifications.php:118 inc/notifications.php:582
-msgid "Recipients"
-msgstr ""
-
-#: inc/notifications.php:205
+#: inc/notifications.php:157
 #, php-format
 msgid ""
-"You have some unavailable merge tags for selected trigger in the content: "
-"%s. These will be skipped during rendering."
+"You have some unavailable merge tags for selected trigger in the content: %s."
+" These will be skipped during rendering."
 msgstr ""
 
-#: inc/notifications.php:216
+#: inc/notifications.php:168
 msgid ""
 "You are using images in the message content. Please remember these will be "
 "probably filtered by most of the email clients"
 msgstr ""
 
-#: inc/notifications.php:244
+#: inc/notifications.php:196
 msgid "You have empty recipients defined, these will be skipped"
 msgstr ""
 
-#: inc/notifications.php:254
+#: inc/notifications.php:206
 #, php-format
 msgid "%d <code>%s</code> in recipients <code>%s</code> group"
 msgstr ""
 
-#: inc/notifications.php:262
+#: inc/notifications.php:214
 #, php-format
 msgid "You have some duplicated recipients:<br>%s"
 msgstr ""
 
-#: inc/notifications.php:334
+#: inc/notifications.php:270 inc/admin.php:185
+msgid "No Triggers defined yet"
+msgstr ""
+
+#: inc/notifications.php:310 inc/admin.php:225
+msgid "Please select trigger first"
+msgstr ""
+
+#: inc/notifications.php:322 inc/notifications.php:406 inc/admin.php:237
+msgid "No merge tags defined for this trigger"
+msgstr ""
+
+#: inc/notifications.php:346 inc/admin.php:261
+msgid "No recipients available"
+msgstr ""
+
+#: inc/notifications.php:387 inc/admin.php:302
+msgid "Add recipient"
+msgstr ""
+
+#: inc/admin.php:56 inc/admin.php:372
+msgid "Trigger"
+msgstr ""
+
+#: inc/admin.php:67
+msgid "Merge tags"
+msgstr ""
+
+#: inc/admin.php:78 inc/admin.php:373
+msgid "Recipients"
+msgstr ""
+
+#: inc/admin.php:161
 #, php-format
 msgid ""
 "Do you like Notification plugin? Please consider giving it a %1$sreview%2$s"
 msgstr ""
 
-#: inc/notifications.php:337
+#: inc/admin.php:164
 msgid "I already reviewed it"
 msgstr ""
 
-#: inc/notifications.php:358
-msgid "No Triggers defined yet"
-msgstr ""
-
-#: inc/notifications.php:398
-msgid "Please select trigger first"
-msgstr ""
-
-#: inc/notifications.php:410 inc/notifications.php:494
-msgid "No merge tags defined for this trigger"
-msgstr ""
-
-#: inc/notifications.php:434
-msgid "No recipients available"
-msgstr ""
-
-#: inc/notifications.php:475
-msgid "Add recipient"
-msgstr ""
-
-#: inc/notifications.php:547
+#: inc/admin.php:338
 msgid "Copied"
 msgstr ""
 
-#: inc/notifications.php:560
+#: inc/admin.php:351
 msgid "Enter Subject here"
 msgstr ""
 
-#: inc/notifications.php:578
+#: inc/admin.php:369
 msgid "Subject"
 msgstr ""
 
-#: inc/notifications.php:605
+#: inc/admin.php:396
 msgid "No trigger selected"
 msgstr ""
 
-#: inc/notifications.php:623
+#: inc/admin.php:414
 msgid "No recipients defined"
 msgstr ""
 
-#: notification.php:98
+#: inc/admin.php:459 inc/admin.php:494
+msgid "Deactivate"
+msgstr ""
+
+#: inc/admin.php:475
+msgid "Help improve Notification plugin"
+msgstr ""
+
+#: inc/admin.php:477
 msgid ""
-"This plugin requires PHP in version at least 5.3. WordPress itself <a href="
-"\"https://wordpress.org/about/requirements/\" target=\"_blank\">requires "
-"at least PHP 5.6</a>. Please upgrade your PHP version or contact your "
-"Server administrator."
+"Please choose a reason why you want to deactivate the Notification. This "
+"will help me improve this plugin."
+msgstr ""
+
+#: inc/admin.php:486
+msgid "I just want to deactivate, don't bother me"
+msgstr ""
+
+#: inc/admin.php:487
+msgid "I found better plugin"
+msgstr ""
+
+#: inc/admin.php:488
+msgid "Plugin doesn't work"
+msgstr ""
+
+#: inc/admin.php:489
+msgid "There's no trigger I was looking for"
+msgstr ""
+
+#: recipients/core/user.php:32
+msgid "User"
+msgstr ""
+
+#: recipients/core/mergetag.php:35
+msgid "Merge tag"
 msgstr ""
 
 #: recipients/core/administrator.php:32
@@ -200,234 +287,154 @@ msgstr ""
 msgid "email@domain.com"
 msgstr ""
 
-#: recipients/core/mergetag.php:35
-msgid "Merge tag"
-msgstr ""
-
-#: recipients/core/user.php:32
-msgid "User"
-msgstr ""
-
-#: triggers/wordpress/comment.php:14 triggers/wordpress/comment.php:69
-#: triggers/wordpress/comment.php:125 triggers/wordpress/comment.php:181
-#: triggers/wordpress/comment.php:237 triggers/wordpress/page.php:14
-#: triggers/wordpress/page.php:71 triggers/wordpress/page.php:120
-#: triggers/wordpress/page.php:169 triggers/wordpress/pingback.php:14
-#: triggers/wordpress/pingback.php:73 triggers/wordpress/pingback.php:129
-#: triggers/wordpress/pingback.php:185 triggers/wordpress/pingback.php:241
-#: triggers/wordpress/post.php:14 triggers/wordpress/post.php:77
-#: triggers/wordpress/post.php:132 triggers/wordpress/post.php:187
-#: triggers/wordpress/trackback.php:14 triggers/wordpress/trackback.php:73
-#: triggers/wordpress/trackback.php:129 triggers/wordpress/trackback.php:185
-#: triggers/wordpress/trackback.php:241
+#: triggers/wordpress/post-types.php:16 triggers/wordpress/post-types.php:30
+#: triggers/wordpress/post-types.php:44 triggers/wordpress/post-types.php:57
+#: triggers/wordpress/comment-types.php:16
+#: triggers/wordpress/comment-types.php:30
+#: triggers/wordpress/comment-types.php:44
+#: triggers/wordpress/comment-types.php:57
+#: triggers/wordpress/comment-types.php:70
 msgid "Howdy!"
 msgstr ""
 
-#: triggers/wordpress/comment.php:15
-msgid "{author_name} just commented your article:"
+#. please do not translate strings in { }
+#: triggers/wordpress/post-types.php:19
+#, php-format
+msgid "{author_name} just published new %1$s: {%1$s_title}"
 msgstr ""
 
-#: triggers/wordpress/comment.php:24
-msgid "Comment added"
-msgstr ""
-
-#: triggers/wordpress/comment.php:25 triggers/wordpress/comment.php:81
-#: triggers/wordpress/comment.php:137 triggers/wordpress/comment.php:193
-#: triggers/wordpress/comment.php:249
-msgid "WordPress : Comments"
-msgstr ""
-
-#: triggers/wordpress/comment.php:70 triggers/wordpress/comment.php:126
-#: triggers/wordpress/comment.php:182 triggers/wordpress/comment.php:238
-msgid "Comment:"
-msgstr ""
-
-#: triggers/wordpress/comment.php:72 triggers/wordpress/pingback.php:76
-#: triggers/wordpress/trackback.php:76
-msgid "from {author_name} has been approved."
-msgstr ""
-
-#: triggers/wordpress/comment.php:80
-msgid "Comment approved"
-msgstr ""
-
-#: triggers/wordpress/comment.php:128 triggers/wordpress/pingback.php:132
-#: triggers/wordpress/trackback.php:132
-msgid "from {author_name} has been unapproved."
-msgstr ""
-
-#: triggers/wordpress/comment.php:136
-msgid "Comment unapproved"
-msgstr ""
-
-#: triggers/wordpress/comment.php:184 triggers/wordpress/comment.php:240
-#: triggers/wordpress/pingback.php:188 triggers/wordpress/pingback.php:244
-#: triggers/wordpress/trackback.php:188 triggers/wordpress/trackback.php:244
-msgid "from {author_name} has been moved to trash."
-msgstr ""
-
-#: triggers/wordpress/comment.php:192
-msgid "Comment moved to trash"
-msgstr ""
-
-#: triggers/wordpress/comment.php:248
-msgid "Comment marked as spam"
-msgstr ""
-
-#: triggers/wordpress/page.php:15
-msgid "{author_name} just published new page: {post_title}"
-msgstr ""
-
-#: triggers/wordpress/page.php:16 triggers/wordpress/page.php:73
-#: triggers/wordpress/post.php:16 triggers/wordpress/post.php:79
+#: triggers/wordpress/post-types.php:22 triggers/wordpress/post-types.php:36
 msgid "You can read it here: {permalink}"
 msgstr ""
 
-#: triggers/wordpress/page.php:24
-msgid "Page published"
+#. please do not translate strings in { }
+#: triggers/wordpress/post-types.php:33
+#, php-format
+msgid "{author_name} just updated %1$s: {%1$s_title}"
 msgstr ""
 
-#: triggers/wordpress/page.php:25 triggers/wordpress/page.php:82
-#: triggers/wordpress/page.php:131 triggers/wordpress/page.php:180
-msgid "WordPress : Pages"
+#. please do not translate strings in { }
+#: triggers/wordpress/post-types.php:47
+#, php-format
+msgid "{author_name} just send his brand new %1$s for review: {%1$s_title}"
 msgstr ""
 
-#: triggers/wordpress/page.php:72
-msgid "{author_name} just updated page: {post_title}"
-msgstr ""
-
-#: triggers/wordpress/page.php:81
-msgid "Page updated"
-msgstr ""
-
-#: triggers/wordpress/page.php:121
-msgid "{author_name} just send his brand new page for review: {post_title}"
-msgstr ""
-
-#: triggers/wordpress/page.php:122 triggers/wordpress/post.php:134
+#: triggers/wordpress/post-types.php:49
 msgid "Review now"
 msgstr ""
 
-#: triggers/wordpress/page.php:130
-msgid "Page sent for review"
+#. please do not translate strings in { }
+#: triggers/wordpress/post-types.php:60
+#, php-format
+msgid "{author_name} just moved %1$s: {%1$s_title} to the trash."
 msgstr ""
 
-#: triggers/wordpress/page.php:170
-msgid "{author_name} just moved page: {post_title} to the trash."
-msgstr ""
-
-#: triggers/wordpress/page.php:171 triggers/wordpress/post.php:189
+#: triggers/wordpress/post-types.php:62
 msgid "View trash"
 msgstr ""
 
-#: triggers/wordpress/page.php:179
-msgid "Page moved to trash"
+#: triggers/wordpress/post-types.php:202
+#, php-format
+msgid "%s published"
 msgstr ""
 
-#: triggers/wordpress/pingback.php:15
-msgid "There is new pingback to your article:"
+#: triggers/wordpress/post-types.php:231
+#, php-format
+msgid "%s updated"
 msgstr ""
 
-#: triggers/wordpress/pingback.php:24
-msgid "Pingback added"
+#: triggers/wordpress/post-types.php:260
+#, php-format
+msgid "%s sent for review"
 msgstr ""
 
-#: triggers/wordpress/pingback.php:25 triggers/wordpress/pingback.php:85
-#: triggers/wordpress/pingback.php:141 triggers/wordpress/pingback.php:197
-#: triggers/wordpress/pingback.php:253
-msgid "WordPress : Pingbacks"
+#: triggers/wordpress/post-types.php:289
+#, php-format
+msgid "%s moved to trash"
 msgstr ""
 
-#: triggers/wordpress/pingback.php:74 triggers/wordpress/pingback.php:130
-#: triggers/wordpress/pingback.php:242
-msgid "Pingback:"
+#. please do not translate strings in { }
+#: triggers/wordpress/comment-types.php:19
+#, php-format
+msgid "There is new %s to your article sent by {author_name}:"
 msgstr ""
 
-#: triggers/wordpress/pingback.php:84
-msgid "Pingback approved"
+#: triggers/wordpress/comment-types.php:36
+msgid "from {author_name} has been approved."
 msgstr ""
 
-#: triggers/wordpress/pingback.php:140
-msgid "Pingback unapproved"
+#: triggers/wordpress/comment-types.php:49
+msgid "from {author_name} has been unapproved."
 msgstr ""
 
-#: triggers/wordpress/pingback.php:186 triggers/wordpress/trackback.php:74
-#: triggers/wordpress/trackback.php:130 triggers/wordpress/trackback.php:186
-#: triggers/wordpress/trackback.php:242
-msgid "Trackback:"
+#: triggers/wordpress/comment-types.php:62
+#: triggers/wordpress/comment-types.php:75
+msgid "from {author_name} has been moved to trash."
 msgstr ""
 
-#: triggers/wordpress/pingback.php:196
-msgid "Pingback moved to trash"
+#: triggers/wordpress/comment-types.php:224
+#, php-format
+msgid "%s added"
 msgstr ""
 
-#: triggers/wordpress/pingback.php:252
-msgid "Pingback marked as spam"
+#: triggers/wordpress/comment-types.php:225
+#: triggers/wordpress/comment-types.php:257
+#: triggers/wordpress/comment-types.php:289
+#: triggers/wordpress/comment-types.php:321
+#: triggers/wordpress/comment-types.php:353
+#, php-format
+msgid "WordPress : %s"
 msgstr ""
 
-#: triggers/wordpress/post.php:15
-msgid "{author_name} just published new post: {post_title}"
+#: triggers/wordpress/comment-types.php:256
+#, php-format
+msgid "%s approved"
 msgstr ""
 
-#: triggers/wordpress/post.php:24
-msgid "Post published"
+#: triggers/wordpress/comment-types.php:288
+#, php-format
+msgid "%s unapproved"
 msgstr ""
 
-#: triggers/wordpress/post.php:25 triggers/wordpress/post.php:88
-#: triggers/wordpress/post.php:143 triggers/wordpress/post.php:198
-msgid "WordPress : Posts"
+#: triggers/wordpress/comment-types.php:320
+#, php-format
+msgid "%s trashed"
 msgstr ""
 
-#: triggers/wordpress/post.php:78
-msgid "{author_name} just updated post: {post_title}"
+#: triggers/wordpress/comment-types.php:352
+#, php-format
+msgid "%s marked as spam"
 msgstr ""
 
-#: triggers/wordpress/post.php:87
-msgid "Post updated"
+#: inc/notification/triggers.php:46
+msgid "Other"
 msgstr ""
 
-#: triggers/wordpress/post.php:133
-msgid "{author_name} just send his brand new post for review: {post_title}"
+#: inc/notification/triggers.php:163 inc/notification/triggers.php:178
+#: inc/notification/triggers.php:193 inc/notification/triggers.php:208
+#, php-format
+msgid "No \"%s\" trigger defined"
 msgstr ""
 
-#: triggers/wordpress/post.php:142
-msgid "Post sent for review"
+#: inc/notification/recipients.php:72
+#, php-format
+msgid "No \"%s\" recipient defined"
 msgstr ""
 
-#: triggers/wordpress/post.php:188
-msgid "{author_name} just moved post: {post_title} to the trash."
+#: inc/notification/recipients.php:125
+msgid "Remove recipient"
 msgstr ""
 
-#: triggers/wordpress/post.php:197
-msgid "Post moved to trash"
+#. Description of the plugin
+msgid ""
+"Send email notifications about various events in WordPress. You can also "
+"create your custom triggers for any action."
 msgstr ""
 
-#: triggers/wordpress/trackback.php:15
-msgid "There is new trackback to your article:"
+#. Author of the plugin
+msgid "underDEV"
 msgstr ""
 
-#: triggers/wordpress/trackback.php:24
-msgid "Trackback added"
-msgstr ""
-
-#: triggers/wordpress/trackback.php:25 triggers/wordpress/trackback.php:85
-#: triggers/wordpress/trackback.php:141 triggers/wordpress/trackback.php:197
-#: triggers/wordpress/trackback.php:253
-msgid "WordPress : Trackbacks"
-msgstr ""
-
-#: triggers/wordpress/trackback.php:84
-msgid "Trackback approved"
-msgstr ""
-
-#: triggers/wordpress/trackback.php:140
-msgid "Trackback unapproved"
-msgstr ""
-
-#: triggers/wordpress/trackback.php:196
-msgid "Trackback moved to trash"
-msgstr ""
-
-#: triggers/wordpress/trackback.php:252
-msgid "Trackback marked as spam"
+#. Author URI of the plugin
+msgid "https://underdev.it"
 msgstr ""
