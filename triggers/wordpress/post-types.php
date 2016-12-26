@@ -190,8 +190,7 @@ foreach ( $settings['general']['post_types_triggers']['post_types'] as $post_typ
 		continue;
 	}
 
-	$notification_post_type = $post_type;
-	$post_type_name         = get_post_type_object( $post_type )->labels->name;
+	$post_type_name = get_post_type_object( $post_type )->labels->name;
 
 	// Published
 
@@ -217,6 +216,7 @@ foreach ( $settings['general']['post_types_triggers']['post_types'] as $post_typ
 		) );
 
 		if ( is_notification_defined( 'wordpress/' . $post_type . '/published' ) ) {
+			$notification_post_type = $post_type;
 			add_action( 'transition_post_status', __NAMESPACE__ . '\\published', 10, 3 );
 		}
 
@@ -246,6 +246,7 @@ foreach ( $settings['general']['post_types_triggers']['post_types'] as $post_typ
 		) );
 
 		if ( is_notification_defined( 'wordpress/' . $post_type . '/updated' ) ) {
+			$notification_post_type = $post_type;
 			add_action( 'publish_' . $post_type , __NAMESPACE__ . '\\updated', 10, 2 );
 		}
 
@@ -275,6 +276,7 @@ foreach ( $settings['general']['post_types_triggers']['post_types'] as $post_typ
 		) );
 
 		if ( is_notification_defined( 'wordpress/' . $post_type . '/pending_review' ) ) {
+			$notification_post_type = $post_type;
 			add_action( 'pending_' . $post_type , __NAMESPACE__ . '\\pending_review', 10, 2 );
 		}
 
@@ -304,6 +306,7 @@ foreach ( $settings['general']['post_types_triggers']['post_types'] as $post_typ
 		) );
 
 		if ( is_notification_defined( 'wordpress/' . $post_type . '/trashed' ) ) {
+			$notification_post_type = $post_type;
 			add_action( 'trash_' . $post_type , __NAMESPACE__ . '\\trashed', 10, 2 );
 		}
 
