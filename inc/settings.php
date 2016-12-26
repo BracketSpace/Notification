@@ -27,7 +27,9 @@ class Settings extends Singleton {
 
 		add_action( 'admin_menu', array( $this, 'register_settings_page' ) );
 
-		add_action( 'admin_init', array( $this, 'register_settings' ) );
+		add_action( 'init', array( $this, 'register_settings' ), 20 );
+
+		// settings autoload on admin side
 		add_action( 'admin_init', array( $this, 'get_settings' ), 20 );
 
 		add_action( 'admin_post_save_notification_settings', array( $this, 'save_settings' ) );
@@ -190,6 +192,49 @@ class Settings extends Singleton {
 		$corefields = CoreFields::get();
 
 		$general = new Section( __( 'General', 'notification' ), 'general' );
+
+		// prepare post types for post types option select
+		$valid_post_types = get_post_types( array( 'public' => true ), 'objects' );
+		unset( $valid_post_types['attachment'] );
+
+		$post_types = array();
+
+		foreach ( $valid_post_types as $post_type ) {
+			$post_types[ $post_type->name ] = $post_type->labels->name;
+		}
+
+		$general->add_group( __( 'Post Types', 'notification' ), 'post_types_triggers' )
+			->add_field( array(
+				'name'        => __( 'Post Types', 'notification' ),
+				'slug'        => 'post_types',
+				'default'     => array( 'post', 'page' ),
+				'addons'      => array(
+					'multiple' => true,
+					'chosen'   => true,
+					'options'  => $post_types
+				),
+				'description' => __( 'For these post types you will be able to define <i>published</i>, <i>updated</i>, <i>pending moderation</i> etc. notifications', 'notification' ),
+				'render'      => array( $corefields, 'select' ),
+				'sanitize'    => array( $corefields, 'sanitize_select' ),
+			) )
+			->add_field( array(
+				'name'        => __( 'Comment Types', 'notification' ),
+				'slug'        => 'comment_types',
+				'default'     => array( 'comment', 'pingback', 'trackback' ),
+				'addons'      => array(
+					'multiple' => true,
+					'chosen'   => true,
+					'options'  => array(
+						'comment' => __( 'Comment', 'notification' ),
+						'pingback' => __( 'Pingback', 'notification' ),
+						'trackback' => __( 'Trackback', 'notification' )
+					)
+				),
+				'render'      => array( $corefields, 'select' ),
+				'sanitize'    => array( $corefields, 'sanitize_select' ),
+			) )
+			->description( __( 'This is where you can control post types and comments triggers you want to use', 'notification' ) );
+
 
 		$general->add_group( __( 'Uninstallation', 'notification' ), 'uninstallation' )
 			->add_field( array(
