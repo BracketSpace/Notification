@@ -4,7 +4,7 @@ Plugin Name: Notification
 Description: Send email notifications about various events in WordPress. You can also create your custom triggers for any action.
 Author: underDEV
 Author URI: https://underdev.it
-Version: 2.0
+Version: 2.0.1
 License: GPL3
 Text Domain: notification
 Domain Path: /languages

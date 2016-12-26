@@ -213,8 +213,6 @@ foreach ( $settings['general']['post_types_triggers']['comment_types'] as $comme
 		continue;
 	}
 
-	$notification_comment_type = $comment_type;
-
 	// Added
 
 	if ( apply_filters( 'notification/triggers/default/wordpress/comment_types/' . $comment_type . '/added', true ) ) :
@@ -242,6 +240,7 @@ foreach ( $settings['general']['post_types_triggers']['comment_types'] as $comme
 		) );
 
 		if ( is_notification_defined( 'wordpress/' . $comment_type . '/added' ) ) {
+			$notification_comment_type = $comment_type;
 			add_action( 'wp_insert_comment', __NAMESPACE__ . '\\added', 10, 2 );
 		}
 
@@ -274,6 +273,7 @@ foreach ( $settings['general']['post_types_triggers']['comment_types'] as $comme
 		) );
 
 		if ( is_notification_defined( 'wordpress/' . $comment_type . '/approved' ) ) {
+			$notification_comment_type = $comment_type;
 			add_action( 'comment_approved_' . $comment_type, __NAMESPACE__ . '\\approved', 10, 2 );
 		}
 
@@ -306,6 +306,7 @@ foreach ( $settings['general']['post_types_triggers']['comment_types'] as $comme
 		) );
 
 		if ( is_notification_defined( 'wordpress/' . $comment_type . '/unapproved' ) ) {
+			$notification_comment_type = $comment_type;
 			add_action( 'comment_unapproved_' . $comment_type, __NAMESPACE__ . '\\unapproved', 10, 2 );
 		}
 
@@ -338,6 +339,7 @@ foreach ( $settings['general']['post_types_triggers']['comment_types'] as $comme
 		) );
 
 		if ( is_notification_defined( 'wordpress/' . $comment_type . '/trashed' ) ) {
+			$notification_comment_type = $comment_type;
 			add_action( 'comment_trashed_' . $comment_type, __NAMESPACE__ . '\\trashed', 10, 2 );
 		}
 
@@ -370,6 +372,7 @@ foreach ( $settings['general']['post_types_triggers']['comment_types'] as $comme
 		) );
 
 		if ( is_notification_defined( 'wordpress/' . $comment_type . '/spam' ) ) {
+			$notification_comment_type = $comment_type;
 			add_action( 'comment_spam_' . $comment_type, __NAMESPACE__ . '\\spam', 10, 2 );
 		}
 
