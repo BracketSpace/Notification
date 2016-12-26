@@ -189,7 +189,7 @@ if ( is_notification_defined( 'my_plugin/action' ) ) {
 }
 `
 
-= Registering new triggers =
+= Deregistering triggers =
 
 You can deregister any trigger with `deregister_trigger()` function. Just pass the trigger slug as an argument. Sample usage:
 
