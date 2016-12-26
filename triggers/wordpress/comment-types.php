@@ -89,6 +89,7 @@ function added( $ID, $comment ) {
 	notification( 'wordpress/' . $notification_comment_type . '/added', array(
 		'ID'               => $ID,
 		'post_ID'          => $comment->comment_post_ID,
+		'post_permalink'   => get_permalink( $comment->comment_post_ID ),
 		'author_name'      => $comment->comment_author,
 		'author_email'     => $comment->comment_author_email,
 		'author_url'       => $comment->comment_author_url,
@@ -110,6 +111,7 @@ function approved( $ID, $comment ) {
 	notification( 'wordpress/' . $notification_comment_type . '/approved', array(
 		'ID'               => $ID,
 		'post_ID'          => $comment->comment_post_ID,
+		'post_permalink'   => get_permalink( $comment->comment_post_ID ),
 		'author_name'      => $comment->comment_author,
 		'author_email'     => $comment->comment_author_email,
 		'author_url'       => $comment->comment_author_url,
@@ -131,6 +133,7 @@ function unapproved( $ID, $comment ) {
 	notification( 'wordpress/' . $notification_comment_type . '/unapproved', array(
 		'ID'               => $ID,
 		'post_ID'          => $comment->comment_post_ID,
+		'post_permalink'   => get_permalink( $comment->comment_post_ID ),
 		'author_name'      => $comment->comment_author,
 		'author_email'     => $comment->comment_author_email,
 		'author_url'       => $comment->comment_author_url,
@@ -152,6 +155,7 @@ function trashed( $ID, $comment ) {
 	notification( 'wordpress/' . $notification_comment_type . '/trashed', array(
 		'ID'               => $ID,
 		'post_ID'          => $comment->comment_post_ID,
+		'post_permalink'   => get_permalink( $comment->comment_post_ID ),
 		'author_name'      => $comment->comment_author,
 		'author_email'     => $comment->comment_author_email,
 		'author_url'       => $comment->comment_author_url,
@@ -173,6 +177,7 @@ function spam( $ID, $comment ) {
 	notification( 'wordpress/' . $notification_comment_type . '/spam', array(
 		'ID'               => $ID,
 		'post_ID'          => $comment->comment_post_ID,
+		'post_permalink'   => get_permalink( $comment->comment_post_ID ),
 		'author_name'      => $comment->comment_author,
 		'author_email'     => $comment->comment_author_email,
 		'author_url'       => $comment->comment_author_url,
@@ -222,6 +227,7 @@ foreach ( $settings['general']['post_types_triggers']['comment_types'] as $comme
 			'tags'     => array(
 				'ID'               => 'integer',
 				'post_ID'          => 'integer',
+				'post_permalink'   => 'url',
 				'author_name'      => 'string',
 				'author_email'     => 'email',
 				'author_url'       => 'url',
@@ -253,6 +259,7 @@ foreach ( $settings['general']['post_types_triggers']['comment_types'] as $comme
 			'tags'     => array(
 				'ID'               => 'integer',
 				'post_ID'          => 'integer',
+				'post_permalink'   => 'url',
 				'author_name'      => 'string',
 				'author_email'     => 'email',
 				'author_url'       => 'url',
@@ -284,6 +291,7 @@ foreach ( $settings['general']['post_types_triggers']['comment_types'] as $comme
 			'tags'     => array(
 				'ID'               => 'integer',
 				'post_ID'          => 'integer',
+				'post_permalink'   => 'url',
 				'author_name'      => 'string',
 				'author_email'     => 'email',
 				'author_url'       => 'url',
@@ -315,6 +323,7 @@ foreach ( $settings['general']['post_types_triggers']['comment_types'] as $comme
 			'tags'     => array(
 				'ID'               => 'integer',
 				'post_ID'          => 'integer',
+				'post_permalink'   => 'url',
 				'author_name'      => 'string',
 				'author_email'     => 'email',
 				'author_url'       => 'url',
@@ -346,6 +355,7 @@ foreach ( $settings['general']['post_types_triggers']['comment_types'] as $comme
 			'tags'     => array(
 				'ID'               => 'integer',
 				'post_ID'          => 'integer',
+				'post_permalink'   => 'url',
 				'author_name'      => 'string',
 				'author_email'     => 'email',
 				'author_url'       => 'url',
