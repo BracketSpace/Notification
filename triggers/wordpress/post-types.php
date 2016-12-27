@@ -177,140 +177,143 @@ global $notification_post_type;
 
 $settings = Settings::get()->get_settings();
 
-foreach ( $settings['general']['post_types_triggers']['post_types'] as $post_type ) :
+if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! empty( $settings['general']['post_types_triggers']['post_types'] ) ) :
 
-	/**
-	 * @deprecated 2.0 Do not use this filter
-	 */
-	if ( ! apply_filters( 'notification/triggers/default/wordpress/' . $post_type, true ) ) {
-		continue;
-	}
+	foreach ( $settings['general']['post_types_triggers']['post_types'] as $post_type ) :
 
-	if ( ! apply_filters( 'notification/triggers/default/wordpress/post_types/' . $post_type, true ) ) {
-		continue;
-	}
-
-	$post_type_name = get_post_type_object( $post_type )->labels->name;
-
-	// Published
-
-	if ( apply_filters( 'notification/triggers/default/wordpress/post_types/' . $post_type . '/published', true ) ) :
-
-		register_trigger( array(
-			'slug'     => 'wordpress/' . $post_type . '/published',
-			'name'     => sprintf( __( '%s published', 'notification' ), $post_type_name ),
-			'group'    => ucfirst( $post_type ),
-			'template' => call_user_func( __NAMESPACE__ . '\\published_template', $post_type ),
-			'tags'     => array(
-				'ID'                    => 'integer',
-				'permalink'             => 'url',
-				$post_type . '_title'   => 'string',
-				$post_type . '_name'    => 'string',
-				$post_type . '_date'    => 'string',
-				$post_type . '_content' => 'string',
-				$post_type . '_excerpt' => 'string',
-				'author_ID'             => 'integer',
-				'author_name'           => 'string',
-				'author_email'          => 'email'
-			)
-		) );
-
-		if ( is_notification_defined( 'wordpress/' . $post_type . '/published' ) ) {
-			$notification_post_type = $post_type;
-			add_action( 'transition_post_status', __NAMESPACE__ . '\\published', 10, 3 );
+		/**
+		 * @deprecated 2.0 Do not use this filter
+		 */
+		if ( ! apply_filters( 'notification/triggers/default/wordpress/' . $post_type, true ) ) {
+			continue;
 		}
 
-	endif;
-
-	// Updated
-
-	if ( apply_filters( 'notification/triggers/default/wordpress/post_types/' . $post_type . '/updated', true ) ) :
-
-		register_trigger( array(
-			'slug'     => 'wordpress/' . $post_type . '/updated',
-			'name'     => sprintf( __( '%s updated', 'notification' ), $post_type_name ),
-			'group'    => ucfirst( $post_type ),
-			'template' => call_user_func( __NAMESPACE__ . '\\updated_template', $post_type ),
-			'tags'     => array(
-				'ID'                    => 'integer',
-				'permalink'             => 'url',
-				$post_type . '_title'   => 'string',
-				$post_type . '_name'    => 'string',
-				$post_type . '_date'    => 'string',
-				$post_type . '_content' => 'string',
-				$post_type . '_excerpt' => 'string',
-				'author_ID'             => 'integer',
-				'author_name'           => 'string',
-				'author_email'          => 'email'
-			)
-		) );
-
-		if ( is_notification_defined( 'wordpress/' . $post_type . '/updated' ) ) {
-			$notification_post_type = $post_type;
-			add_action( 'publish_' . $post_type , __NAMESPACE__ . '\\updated', 10, 2 );
+		if ( ! apply_filters( 'notification/triggers/default/wordpress/post_types/' . $post_type, true ) ) {
+			continue;
 		}
 
-	endif;
+		$post_type_name = get_post_type_object( $post_type )->labels->name;
 
-	// Sent for review
+		// Published
 
-	if ( apply_filters( 'notification/triggers/default/wordpress/post_types/' . $post_type . '/pending_review', true ) ) :
+		if ( apply_filters( 'notification/triggers/default/wordpress/post_types/' . $post_type . '/published', true ) ) :
 
-		register_trigger( array(
-			'slug'     => 'wordpress/' . $post_type . '/pending_review',
-			'name'     => sprintf( __( '%s sent for review', 'notification' ), $post_type_name ),
-			'group'    => ucfirst( $post_type ),
-			'template' => call_user_func( __NAMESPACE__ . '\\pending_review_template', $post_type ),
-			'tags'     => array(
-				'ID'                    => 'integer',
-				'permalink'             => 'url',
-				$post_type . '_title'   => 'string',
-				$post_type . '_name'    => 'string',
-				$post_type . '_date'    => 'string',
-				$post_type . '_content' => 'string',
-				$post_type . '_excerpt' => 'string',
-				'author_ID'             => 'integer',
-				'author_name'           => 'string',
-				'author_email'          => 'email'
-			)
-		) );
+			register_trigger( array(
+				'slug'     => 'wordpress/' . $post_type . '/published',
+				'name'     => sprintf( __( '%s published', 'notification' ), $post_type_name ),
+				'group'    => ucfirst( $post_type ),
+				'template' => call_user_func( __NAMESPACE__ . '\\published_template', $post_type ),
+				'tags'     => array(
+					'ID'                    => 'integer',
+					'permalink'             => 'url',
+					$post_type . '_title'   => 'string',
+					$post_type . '_name'    => 'string',
+					$post_type . '_date'    => 'string',
+					$post_type . '_content' => 'string',
+					$post_type . '_excerpt' => 'string',
+					'author_ID'             => 'integer',
+					'author_name'           => 'string',
+					'author_email'          => 'email'
+				)
+			) );
 
-		if ( is_notification_defined( 'wordpress/' . $post_type . '/pending_review' ) ) {
-			$notification_post_type = $post_type;
-			add_action( 'pending_' . $post_type , __NAMESPACE__ . '\\pending_review', 10, 2 );
-		}
+			if ( is_notification_defined( 'wordpress/' . $post_type . '/published' ) ) {
+				$notification_post_type = $post_type;
+				add_action( 'transition_post_status', __NAMESPACE__ . '\\published', 10, 3 );
+			}
 
-	endif;
+		endif;
 
-	// Trashed
+		// Updated
 
-	if ( apply_filters( 'notification/triggers/default/wordpress/post_types/' . $post_type . '/trashed', true ) ) :
+		if ( apply_filters( 'notification/triggers/default/wordpress/post_types/' . $post_type . '/updated', true ) ) :
 
-		register_trigger( array(
-			'slug'     => 'wordpress/' . $post_type . '/trashed',
-			'name'     => sprintf( __( '%s moved to trash', 'notification' ), $post_type_name ),
-			'group'    => ucfirst( $post_type ),
-			'template' => call_user_func( __NAMESPACE__ . '\\pending_review_template', $post_type ),
-			'tags'     => array(
-				'ID'                    => 'integer',
-				'permalink'             => 'url',
-				$post_type . '_title'   => 'string',
-				$post_type . '_name'    => 'string',
-				$post_type . '_date'    => 'string',
-				$post_type . '_content' => 'string',
-				$post_type . '_excerpt' => 'string',
-				'author_ID'             => 'integer',
-				'author_name'           => 'string',
-				'author_email'          => 'email'
-			)
-		) );
+			register_trigger( array(
+				'slug'     => 'wordpress/' . $post_type . '/updated',
+				'name'     => sprintf( __( '%s updated', 'notification' ), $post_type_name ),
+				'group'    => ucfirst( $post_type ),
+				'template' => call_user_func( __NAMESPACE__ . '\\updated_template', $post_type ),
+				'tags'     => array(
+					'ID'                    => 'integer',
+					'permalink'             => 'url',
+					$post_type . '_title'   => 'string',
+					$post_type . '_name'    => 'string',
+					$post_type . '_date'    => 'string',
+					$post_type . '_content' => 'string',
+					$post_type . '_excerpt' => 'string',
+					'author_ID'             => 'integer',
+					'author_name'           => 'string',
+					'author_email'          => 'email'
+				)
+			) );
 
-		if ( is_notification_defined( 'wordpress/' . $post_type . '/trashed' ) ) {
-			$notification_post_type = $post_type;
-			add_action( 'trash_' . $post_type , __NAMESPACE__ . '\\trashed', 10, 2 );
-		}
+			if ( is_notification_defined( 'wordpress/' . $post_type . '/updated' ) ) {
+				$notification_post_type = $post_type;
+				add_action( 'publish_' . $post_type , __NAMESPACE__ . '\\updated', 10, 2 );
+			}
 
-	endif;
+		endif;
 
-endforeach;
+		// Sent for review
 
+		if ( apply_filters( 'notification/triggers/default/wordpress/post_types/' . $post_type . '/pending_review', true ) ) :
+
+			register_trigger( array(
+				'slug'     => 'wordpress/' . $post_type . '/pending_review',
+				'name'     => sprintf( __( '%s sent for review', 'notification' ), $post_type_name ),
+				'group'    => ucfirst( $post_type ),
+				'template' => call_user_func( __NAMESPACE__ . '\\pending_review_template', $post_type ),
+				'tags'     => array(
+					'ID'                    => 'integer',
+					'permalink'             => 'url',
+					$post_type . '_title'   => 'string',
+					$post_type . '_name'    => 'string',
+					$post_type . '_date'    => 'string',
+					$post_type . '_content' => 'string',
+					$post_type . '_excerpt' => 'string',
+					'author_ID'             => 'integer',
+					'author_name'           => 'string',
+					'author_email'          => 'email'
+				)
+			) );
+
+			if ( is_notification_defined( 'wordpress/' . $post_type . '/pending_review' ) ) {
+				$notification_post_type = $post_type;
+				add_action( 'pending_' . $post_type , __NAMESPACE__ . '\\pending_review', 10, 2 );
+			}
+
+		endif;
+
+		// Trashed
+
+		if ( apply_filters( 'notification/triggers/default/wordpress/post_types/' . $post_type . '/trashed', true ) ) :
+
+			register_trigger( array(
+				'slug'     => 'wordpress/' . $post_type . '/trashed',
+				'name'     => sprintf( __( '%s moved to trash', 'notification' ), $post_type_name ),
+				'group'    => ucfirst( $post_type ),
+				'template' => call_user_func( __NAMESPACE__ . '\\pending_review_template', $post_type ),
+				'tags'     => array(
+					'ID'                    => 'integer',
+					'permalink'             => 'url',
+					$post_type . '_title'   => 'string',
+					$post_type . '_name'    => 'string',
+					$post_type . '_date'    => 'string',
+					$post_type . '_content' => 'string',
+					$post_type . '_excerpt' => 'string',
+					'author_ID'             => 'integer',
+					'author_name'           => 'string',
+					'author_email'          => 'email'
+				)
+			) );
+
+			if ( is_notification_defined( 'wordpress/' . $post_type . '/trashed' ) ) {
+				$notification_post_type = $post_type;
+				add_action( 'trash_' . $post_type , __NAMESPACE__ . '\\trashed', 10, 2 );
+			}
+
+		endif;
+
+	endforeach;
+
+endif;

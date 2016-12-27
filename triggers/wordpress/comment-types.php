@@ -200,182 +200,186 @@ global $notification_comment_type;
 
 $settings = Settings::get()->get_settings();
 
-foreach ( $settings['general']['post_types_triggers']['comment_types'] as $comment_type ) :
+if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! empty( $settings['general']['post_types_triggers']['comment_types'] ) ) :
 
-	/**
-	 * @deprecated 2.0 Do not use this filter
-	 */
-	if ( ! apply_filters( 'notification/triggers/default/wordpress/' . $comment_type, true ) ) {
-		continue;
-	}
+	foreach ( $settings['general']['post_types_triggers']['comment_types'] as $comment_type ) :
 
-	if ( ! apply_filters( 'notification/triggers/default/wordpress/comment_types/' . $comment_type, true ) ) {
-		continue;
-	}
-
-	// Added
-
-	if ( apply_filters( 'notification/triggers/default/wordpress/comment_types/' . $comment_type . '/added', true ) ) :
-
-		register_trigger( array(
-			'slug'     => 'wordpress/' . $comment_type . '/added',
-			'name'     => sprintf( __( '%s added', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
-			'group'    => sprintf( __( 'WordPress : %s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
-			'template' => call_user_func( __NAMESPACE__ . '\\approved_template', $comment_type ),
-			'tags'     => array(
-				'ID'               => 'integer',
-				'post_ID'          => 'integer',
-				'post_permalink'   => 'url',
-				'author_name'      => 'string',
-				'author_email'     => 'email',
-				'author_url'       => 'url',
-				'author_IP'        => 'string',
-				'author_user_id'   => 'integer',
-				'author_agent'     => 'string',
-				'comment_date'     => 'string',
-				'comment_content'  => 'string',
-				'comment_approved' => 'string',
-				'comment_type'     => 'string',
-			)
-		) );
-
-		if ( is_notification_defined( 'wordpress/' . $comment_type . '/added' ) ) {
-			$notification_comment_type = $comment_type;
-			add_action( 'wp_insert_comment', __NAMESPACE__ . '\\added', 10, 2 );
+		/**
+		 * @deprecated 2.0 Do not use this filter
+		 */
+		if ( ! apply_filters( 'notification/triggers/default/wordpress/' . $comment_type, true ) ) {
+			continue;
 		}
 
-	endif;
-
-	// Approved
-
-	if ( apply_filters( 'notification/triggers/default/wordpress/comment_types/' . $comment_type . '/approved', true ) ) :
-
-		register_trigger( array(
-			'slug'     => 'wordpress/' . $comment_type . '/approved',
-			'name'     => sprintf( __( '%s approved', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
-			'group'    => sprintf( __( 'WordPress : %s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
-			'template' => call_user_func( __NAMESPACE__ . '\\approved_template', $comment_type ),
-			'tags'     => array(
-				'ID'               => 'integer',
-				'post_ID'          => 'integer',
-				'post_permalink'   => 'url',
-				'author_name'      => 'string',
-				'author_email'     => 'email',
-				'author_url'       => 'url',
-				'author_IP'        => 'string',
-				'author_user_id'   => 'integer',
-				'author_agent'     => 'string',
-				'comment_date'     => 'string',
-				'comment_content'  => 'string',
-				'comment_approved' => 'string',
-				'comment_type'     => 'string',
-			)
-		) );
-
-		if ( is_notification_defined( 'wordpress/' . $comment_type . '/approved' ) ) {
-			$notification_comment_type = $comment_type;
-			add_action( 'comment_approved_' . $comment_type, __NAMESPACE__ . '\\approved', 10, 2 );
+		if ( ! apply_filters( 'notification/triggers/default/wordpress/comment_types/' . $comment_type, true ) ) {
+			continue;
 		}
 
-	endif;
+		// Added
 
-	// Unapproved
+		if ( apply_filters( 'notification/triggers/default/wordpress/comment_types/' . $comment_type . '/added', true ) ) :
 
-	if ( apply_filters( 'notification/triggers/default/wordpress/comment_types/' . $comment_type . '/unapproved', true ) ) :
+			register_trigger( array(
+				'slug'     => 'wordpress/' . $comment_type . '/added',
+				'name'     => sprintf( __( '%s added', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
+				'group'    => sprintf( __( 'WordPress : %s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
+				'template' => call_user_func( __NAMESPACE__ . '\\approved_template', $comment_type ),
+				'tags'     => array(
+					'ID'               => 'integer',
+					'post_ID'          => 'integer',
+					'post_permalink'   => 'url',
+					'author_name'      => 'string',
+					'author_email'     => 'email',
+					'author_url'       => 'url',
+					'author_IP'        => 'string',
+					'author_user_id'   => 'integer',
+					'author_agent'     => 'string',
+					'comment_date'     => 'string',
+					'comment_content'  => 'string',
+					'comment_approved' => 'string',
+					'comment_type'     => 'string',
+				)
+			) );
 
-		register_trigger( array(
-			'slug'     => 'wordpress/' . $comment_type . '/unapproved',
-			'name'     => sprintf( __( '%s unapproved', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
-			'group'    => sprintf( __( 'WordPress : %s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
-			'template' => call_user_func( __NAMESPACE__ . '\\unapproved_template', $comment_type ),
-			'tags'     => array(
-				'ID'               => 'integer',
-				'post_ID'          => 'integer',
-				'post_permalink'   => 'url',
-				'author_name'      => 'string',
-				'author_email'     => 'email',
-				'author_url'       => 'url',
-				'author_IP'        => 'string',
-				'author_user_id'   => 'integer',
-				'author_agent'     => 'string',
-				'comment_date'     => 'string',
-				'comment_content'  => 'string',
-				'comment_approved' => 'string',
-				'comment_type'     => 'string',
-			)
-		) );
+			if ( is_notification_defined( 'wordpress/' . $comment_type . '/added' ) ) {
+				$notification_comment_type = $comment_type;
+				add_action( 'wp_insert_comment', __NAMESPACE__ . '\\added', 10, 2 );
+			}
 
-		if ( is_notification_defined( 'wordpress/' . $comment_type . '/unapproved' ) ) {
-			$notification_comment_type = $comment_type;
-			add_action( 'comment_unapproved_' . $comment_type, __NAMESPACE__ . '\\unapproved', 10, 2 );
-		}
+		endif;
 
-	endif;
+		// Approved
 
-	// Trashed
+		if ( apply_filters( 'notification/triggers/default/wordpress/comment_types/' . $comment_type . '/approved', true ) ) :
 
-	if ( apply_filters( 'notification/triggers/default/wordpress/comment_types/' . $comment_type . '/trashed', true ) ) :
+			register_trigger( array(
+				'slug'     => 'wordpress/' . $comment_type . '/approved',
+				'name'     => sprintf( __( '%s approved', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
+				'group'    => sprintf( __( 'WordPress : %s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
+				'template' => call_user_func( __NAMESPACE__ . '\\approved_template', $comment_type ),
+				'tags'     => array(
+					'ID'               => 'integer',
+					'post_ID'          => 'integer',
+					'post_permalink'   => 'url',
+					'author_name'      => 'string',
+					'author_email'     => 'email',
+					'author_url'       => 'url',
+					'author_IP'        => 'string',
+					'author_user_id'   => 'integer',
+					'author_agent'     => 'string',
+					'comment_date'     => 'string',
+					'comment_content'  => 'string',
+					'comment_approved' => 'string',
+					'comment_type'     => 'string',
+				)
+			) );
 
-		register_trigger( array(
-			'slug'     => 'wordpress/' . $comment_type . '/trashed',
-			'name'     => sprintf( __( '%s trashed', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
-			'group'    => sprintf( __( 'WordPress : %s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
-			'template' => call_user_func( __NAMESPACE__ . '\\trashed_template', $comment_type ),
-			'tags'     => array(
-				'ID'               => 'integer',
-				'post_ID'          => 'integer',
-				'post_permalink'   => 'url',
-				'author_name'      => 'string',
-				'author_email'     => 'email',
-				'author_url'       => 'url',
-				'author_IP'        => 'string',
-				'author_user_id'   => 'integer',
-				'author_agent'     => 'string',
-				'comment_date'     => 'string',
-				'comment_content'  => 'string',
-				'comment_approved' => 'string',
-				'comment_type'     => 'string',
-			)
-		) );
+			if ( is_notification_defined( 'wordpress/' . $comment_type . '/approved' ) ) {
+				$notification_comment_type = $comment_type;
+				add_action( 'comment_approved_' . $comment_type, __NAMESPACE__ . '\\approved', 10, 2 );
+			}
 
-		if ( is_notification_defined( 'wordpress/' . $comment_type . '/trashed' ) ) {
-			$notification_comment_type = $comment_type;
-			add_action( 'comment_trashed_' . $comment_type, __NAMESPACE__ . '\\trashed', 10, 2 );
-		}
+		endif;
 
-	endif;
+		// Unapproved
 
-	// Marked as spam
+		if ( apply_filters( 'notification/triggers/default/wordpress/comment_types/' . $comment_type . '/unapproved', true ) ) :
 
-	if ( apply_filters( 'notification/triggers/default/wordpress/comment_types/' . $comment_type . '/spam', true ) ) :
+			register_trigger( array(
+				'slug'     => 'wordpress/' . $comment_type . '/unapproved',
+				'name'     => sprintf( __( '%s unapproved', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
+				'group'    => sprintf( __( 'WordPress : %s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
+				'template' => call_user_func( __NAMESPACE__ . '\\unapproved_template', $comment_type ),
+				'tags'     => array(
+					'ID'               => 'integer',
+					'post_ID'          => 'integer',
+					'post_permalink'   => 'url',
+					'author_name'      => 'string',
+					'author_email'     => 'email',
+					'author_url'       => 'url',
+					'author_IP'        => 'string',
+					'author_user_id'   => 'integer',
+					'author_agent'     => 'string',
+					'comment_date'     => 'string',
+					'comment_content'  => 'string',
+					'comment_approved' => 'string',
+					'comment_type'     => 'string',
+				)
+			) );
 
-		register_trigger( array(
-			'slug'     => 'wordpress/' . $comment_type . '/spam',
-			'name'     => sprintf( __( '%s marked as spam', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
-			'group'    => sprintf( __( 'WordPress : %s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
-			'template' => call_user_func( __NAMESPACE__ . '\\spam_template', $comment_type ),
-			'tags'     => array(
-				'ID'               => 'integer',
-				'post_ID'          => 'integer',
-				'post_permalink'   => 'url',
-				'author_name'      => 'string',
-				'author_email'     => 'email',
-				'author_url'       => 'url',
-				'author_IP'        => 'string',
-				'author_user_id'   => 'integer',
-				'author_agent'     => 'string',
-				'comment_date'     => 'string',
-				'comment_content'  => 'string',
-				'comment_approved' => 'string',
-				'comment_type'     => 'string',
-			)
-		) );
+			if ( is_notification_defined( 'wordpress/' . $comment_type . '/unapproved' ) ) {
+				$notification_comment_type = $comment_type;
+				add_action( 'comment_unapproved_' . $comment_type, __NAMESPACE__ . '\\unapproved', 10, 2 );
+			}
 
-		if ( is_notification_defined( 'wordpress/' . $comment_type . '/spam' ) ) {
-			$notification_comment_type = $comment_type;
-			add_action( 'comment_spam_' . $comment_type, __NAMESPACE__ . '\\spam', 10, 2 );
-		}
+		endif;
 
-	endif;
+		// Trashed
 
-endforeach;
+		if ( apply_filters( 'notification/triggers/default/wordpress/comment_types/' . $comment_type . '/trashed', true ) ) :
+
+			register_trigger( array(
+				'slug'     => 'wordpress/' . $comment_type . '/trashed',
+				'name'     => sprintf( __( '%s trashed', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
+				'group'    => sprintf( __( 'WordPress : %s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
+				'template' => call_user_func( __NAMESPACE__ . '\\trashed_template', $comment_type ),
+				'tags'     => array(
+					'ID'               => 'integer',
+					'post_ID'          => 'integer',
+					'post_permalink'   => 'url',
+					'author_name'      => 'string',
+					'author_email'     => 'email',
+					'author_url'       => 'url',
+					'author_IP'        => 'string',
+					'author_user_id'   => 'integer',
+					'author_agent'     => 'string',
+					'comment_date'     => 'string',
+					'comment_content'  => 'string',
+					'comment_approved' => 'string',
+					'comment_type'     => 'string',
+				)
+			) );
+
+			if ( is_notification_defined( 'wordpress/' . $comment_type . '/trashed' ) ) {
+				$notification_comment_type = $comment_type;
+				add_action( 'comment_trashed_' . $comment_type, __NAMESPACE__ . '\\trashed', 10, 2 );
+			}
+
+		endif;
+
+		// Marked as spam
+
+		if ( apply_filters( 'notification/triggers/default/wordpress/comment_types/' . $comment_type . '/spam', true ) ) :
+
+			register_trigger( array(
+				'slug'     => 'wordpress/' . $comment_type . '/spam',
+				'name'     => sprintf( __( '%s marked as spam', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
+				'group'    => sprintf( __( 'WordPress : %s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
+				'template' => call_user_func( __NAMESPACE__ . '\\spam_template', $comment_type ),
+				'tags'     => array(
+					'ID'               => 'integer',
+					'post_ID'          => 'integer',
+					'post_permalink'   => 'url',
+					'author_name'      => 'string',
+					'author_email'     => 'email',
+					'author_url'       => 'url',
+					'author_IP'        => 'string',
+					'author_user_id'   => 'integer',
+					'author_agent'     => 'string',
+					'comment_date'     => 'string',
+					'comment_content'  => 'string',
+					'comment_approved' => 'string',
+					'comment_type'     => 'string',
+				)
+			) );
+
+			if ( is_notification_defined( 'wordpress/' . $comment_type . '/spam' ) ) {
+				$notification_comment_type = $comment_type;
+				add_action( 'comment_spam_' . $comment_type, __NAMESPACE__ . '\\spam', 10, 2 );
+			}
+
+		endif;
+
+	endforeach;
+
+endif;
