@@ -192,7 +192,7 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 			continue;
 		}
 
-		$post_type_name = get_post_type_object( $post_type )->labels->name;
+		$post_type_name = get_post_type_object( $post_type )->labels->singular_name;
 
 		// Published
 
