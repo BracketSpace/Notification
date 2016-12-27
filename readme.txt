@@ -90,6 +90,7 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 * [Fixed] Warning when no post or comment type are selected in the settings. Thanks to JoeHana
 * [Fixed] post published trigger
 * [Changed] Post type name in trigger title is now singular
+* [Added] {author_login} merge tag to each post trigger
 
 = 2.0.1 =
 * [Fixed] Issue with not sent emails because of wrong current post type while registering notification action. Thanks to Karl Camenzuli

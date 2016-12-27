@@ -95,7 +95,8 @@ function published( $new_status, $old_status, $post ) {
 		$notification_post_type . '_excerpt' => $post->post_excerpt,
 		'author_ID'                          => $post->post_author,
 		'author_name'                        => get_the_author_meta( 'display_name', $post->post_author ),
-		'author_email'                       => get_the_author_meta( 'user_email', $post->post_author )
+		'author_email'                       => get_the_author_meta( 'user_email', $post->post_author ),
+		'author_login'                       => get_the_author_meta( 'user_login', $post->post_author )
 	) );
 
 }
@@ -118,7 +119,8 @@ function updated( $ID, $post ) {
 		$notification_post_type . '_excerpt' => $post->post_excerpt,
 		'author_ID'                          => $post->post_author,
 		'author_name'                        => get_the_author_meta( 'display_name', $post->post_author ),
-		'author_email'                       => get_the_author_meta( 'user_email', $post->post_author )
+		'author_email'                       => get_the_author_meta( 'user_email', $post->post_author ),
+		'author_login'                       => get_the_author_meta( 'user_login', $post->post_author )
 	) );
 
 }
@@ -141,7 +143,8 @@ function pending_review( $ID, $post ) {
 		$notification_post_type . '_excerpt' => $post->post_excerpt,
 		'author_ID'                          => $post->post_author,
 		'author_name'                        => get_the_author_meta( 'display_name', $post->post_author ),
-		'author_email'                       => get_the_author_meta( 'user_email', $post->post_author )
+		'author_email'                       => get_the_author_meta( 'user_email', $post->post_author ),
+		'author_login'                       => get_the_author_meta( 'user_login', $post->post_author )
 	) );
 
 }
@@ -164,7 +167,8 @@ function trashed( $ID, $post ) {
 		$notification_post_type . '_excerpt' => $post->post_excerpt,
 		'author_ID'                          => $post->post_author,
 		'author_name'                        => get_the_author_meta( 'display_name', $post->post_author ),
-		'author_email'                       => get_the_author_meta( 'user_email', $post->post_author )
+		'author_email'                       => get_the_author_meta( 'user_email', $post->post_author ),
+		'author_login'                       => get_the_author_meta( 'user_login', $post->post_author )
 	) );
 
 }
@@ -213,7 +217,8 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 					$post_type . '_excerpt' => 'string',
 					'author_ID'             => 'integer',
 					'author_name'           => 'string',
-					'author_email'          => 'email'
+					'author_email'          => 'email',
+					'author_login'          => 'string'
 				)
 			) );
 
@@ -243,7 +248,8 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 					$post_type . '_excerpt' => 'string',
 					'author_ID'             => 'integer',
 					'author_name'           => 'string',
-					'author_email'          => 'email'
+					'author_email'          => 'email',
+					'author_login'          => 'string'
 				)
 			) );
 
@@ -273,7 +279,8 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 					$post_type . '_excerpt' => 'string',
 					'author_ID'             => 'integer',
 					'author_name'           => 'string',
-					'author_email'          => 'email'
+					'author_email'          => 'email',
+					'author_login'          => 'string'
 				)
 			) );
 
@@ -303,7 +310,8 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 					$post_type . '_excerpt' => 'string',
 					'author_ID'             => 'integer',
 					'author_name'           => 'string',
-					'author_email'          => 'email'
+					'author_email'          => 'email',
+					'author_login'          => 'string'
 				)
 			) );
 
