@@ -73,7 +73,7 @@ function published( $new_status, $old_status, $post ) {
 
 	global $notification_post_type;
 
-	if ( $post->notification_post_type != $notification_post_type ) {
+	if ( $post->post_type != $notification_post_type ) {
 		return;
 	}
 

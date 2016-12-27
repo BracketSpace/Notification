@@ -88,6 +88,7 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 
 = Next release =
 * [Fixed] Warning when no post or comment type are selected in the settings. Thanks to JoeHana
+* [Fixed] post published trigger
 * [Changed] Post type name in trigger title is now singular
 
 = 2.0.1 =
