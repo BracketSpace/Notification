@@ -19,6 +19,8 @@ Please see Screenshots tab to get the overall idea about the plugin and see it i
 
 You may also want to check [Other Notes](https://wordpress.org/plugins/notification/other_notes/) to see how to use the plugin's API and include it in your own theme or plugin.
 
+https://www.youtube.com/watch?v=usdBMPjdiuw
+
 = Default recipients =
 
 Plugin comes with few registered by default recipient types:
@@ -91,6 +93,7 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 * [Fixed] post published trigger
 * [Changed] Post type name in trigger title is now singular
 * [Added] {author_login} merge tag to each post trigger
+* [Added] Promo video: https://www.youtube.com/watch?v=usdBMPjdiuw
 
 = 2.0.1 =
 * [Fixed] Issue with not sent emails because of wrong current post type while registering notification action. Thanks to Karl Camenzuli
