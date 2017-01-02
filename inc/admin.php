@@ -186,6 +186,8 @@ class Admin extends Singleton {
 			return;
 		}
 
+		do_action( 'notification/metabox/trigger/before', $triggers, $selected, $post );
+
 		echo '<select id="notification_trigger_select" name="notification_trigger" class="chosen-select">';
 
 			echo '<option value=""></option>';
@@ -209,6 +211,8 @@ class Admin extends Singleton {
 			}
 
 		echo '</select>';
+
+		do_action( 'notification/metabox/trigger/after', $triggers, $selected, $post );
 
 	}
 
