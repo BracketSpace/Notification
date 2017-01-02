@@ -270,6 +270,8 @@ class Admin extends Singleton {
 
 		$saved_recipients = get_post_meta( $post->ID, '_recipients', true );
 
+		do_action( 'notification/metabox/recipients/before', $saved_recipients, $recipients, $post );
+
 		echo '<div class="recipients">';
 
 		if ( empty( $saved_recipients ) ) {
@@ -306,6 +308,8 @@ class Admin extends Singleton {
 		echo '<a href="#" id="notification_add_recipient" class="button button-secondary">' . __( 'Add recipient', 'notification' ) . '</a>';
 
 		echo '<div class="clear"></div>';
+
+		do_action( 'notification/metabox/recipients/after', $saved_recipients, $recipients, $post );
 
 	}
 
