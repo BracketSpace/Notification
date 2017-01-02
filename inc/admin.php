@@ -238,6 +238,8 @@ class Admin extends Singleton {
 			return;
 		}
 
+		do_action( 'notification/metabox/trigger/tags/before', $trigger, $post );
+
 		echo '<ul>';
 
 			foreach ( $tags as $tag ) {
@@ -245,6 +247,8 @@ class Admin extends Singleton {
 			}
 
 		echo '</ul>';
+
+		do_action( 'notification/metabox/trigger/tags/after', $trigger, $post );
 
 	}
 
