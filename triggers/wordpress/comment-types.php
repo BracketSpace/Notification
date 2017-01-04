@@ -84,6 +84,13 @@ function spam_template( $comment_type = 'comment' ) {
 
 function added( $ID, $comment ) {
 
+	$settings = Settings::get()->get_settings();
+
+	// If Akismet marked the comment as a spam, do nothing
+	if ( $comment->comment_approved == 'spam' && $settings['general']['comments']['akismet'] == 'true' ) {
+		return;
+	}
+
 	global $notification_comment_type;
 
 	notification( 'wordpress/' . $notification_comment_type . '/added', array(

@@ -96,6 +96,7 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 * [Fixed] Post type trashed template
 * [Changed] Gulpfile to not include any browser
 * [Fixed] Comment type added template
+* [Changed] Comment added trigger now is Akismet compatibile, thanks to Nels Johnson
 
 = 2.1 =
 * [Fixed] Warning when no post or comment type are selected in the settings. Thanks to JoeHana
