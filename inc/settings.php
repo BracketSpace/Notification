@@ -27,7 +27,7 @@ class Settings extends Singleton {
 
 		add_action( 'admin_menu', array( $this, 'register_settings_page' ) );
 
-		add_action( 'init', array( $this, 'register_settings' ), 20 );
+		add_action( 'init', array( $this, 'register_settings' ), 10 );
 
 		// settings autoload on admin side
 		add_action( 'admin_init', array( $this, 'get_settings' ), 20 );
@@ -203,7 +203,7 @@ class Settings extends Singleton {
 			$post_types[ $post_type->name ] = $post_type->labels->name;
 		}
 
-		$general->add_group( __( 'Post Types', 'notification' ), 'post_types_triggers' )
+		$general->add_group( __( 'Content Types', 'notification' ), 'post_types_triggers' )
 			->add_field( array(
 				'name'        => __( 'Post Types', 'notification' ),
 				'slug'        => 'post_types',
@@ -234,6 +234,18 @@ class Settings extends Singleton {
 				'sanitize'    => array( $corefields, 'sanitize_select' ),
 			) )
 			->description( __( 'This is where you can control post types and comments triggers you want to use', 'notification' ) );
+
+		$general->add_group( __( 'Comments', 'notification' ), 'comments' )
+			->add_field( array(
+				'name'     => __( 'Akismet', 'notification' ),
+				'slug'     => 'akismet',
+				'default'  => 'true',
+				'addons'   => array(
+					'label' => __( 'Do not send notification if comment has been marked as a spam by Akismet', 'notification' )
+				),
+				'render'   => array( $corefields, 'checkbox' ),
+				'sanitize' => array( $corefields, 'sanitize_checkbox' ),
+			) );
 
 
 		$general->add_group( __( 'Uninstallation', 'notification' ), 'uninstallation' )

@@ -53,8 +53,7 @@ gulp.task( 'scripts', function() {
 gulp.task( 'default', function() {
 
     browserSync({
-        proxy: 'notification.dev',
-        browser: ['google chrome'],
+        proxy: 'notification.dev'
     });
 
     gulp.watch( style_sources, ['styles'] );

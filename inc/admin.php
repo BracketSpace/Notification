@@ -186,6 +186,8 @@ class Admin extends Singleton {
 			return;
 		}
 
+		do_action( 'notification/metabox/trigger/before', $triggers, $selected, $post );
+
 		echo '<select id="notification_trigger_select" name="notification_trigger" class="chosen-select">';
 
 			echo '<option value=""></option>';
@@ -209,6 +211,8 @@ class Admin extends Singleton {
 			}
 
 		echo '</select>';
+
+		do_action( 'notification/metabox/trigger/after', $triggers, $selected, $post );
 
 	}
 
@@ -238,6 +242,8 @@ class Admin extends Singleton {
 			return;
 		}
 
+		do_action( 'notification/metabox/trigger/tags/before', $trigger, $post );
+
 		echo '<ul>';
 
 			foreach ( $tags as $tag ) {
@@ -245,6 +251,8 @@ class Admin extends Singleton {
 			}
 
 		echo '</ul>';
+
+		do_action( 'notification/metabox/trigger/tags/after', $trigger, $post );
 
 	}
 
@@ -265,6 +273,8 @@ class Admin extends Singleton {
 		wp_nonce_field( 'notification_recipients', 'recipients_nonce' );
 
 		$saved_recipients = get_post_meta( $post->ID, '_recipients', true );
+
+		do_action( 'notification/metabox/recipients/before', $saved_recipients, $recipients, $post );
 
 		echo '<div class="recipients">';
 
@@ -302,6 +312,8 @@ class Admin extends Singleton {
 		echo '<a href="#" id="notification_add_recipient" class="button button-secondary">' . __( 'Add recipient', 'notification' ) . '</a>';
 
 		echo '<div class="clear"></div>';
+
+		do_action( 'notification/metabox/recipients/after', $saved_recipients, $recipients, $post );
 
 	}
 
