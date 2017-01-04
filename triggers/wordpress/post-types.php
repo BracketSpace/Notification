@@ -299,7 +299,7 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 				'slug'     => 'wordpress/' . $post_type . '/trashed',
 				'name'     => sprintf( __( '%s moved to trash', 'notification' ), $post_type_name ),
 				'group'    => ucfirst( $post_type ),
-				'template' => call_user_func( __NAMESPACE__ . '\\pending_review_template', $post_type ),
+				'template' => call_user_func( __NAMESPACE__ . '\\trashed_template', $post_type ),
 				'tags'     => array(
 					'ID'                    => 'integer',
 					'permalink'             => 'url',
