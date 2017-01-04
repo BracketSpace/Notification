@@ -79,131 +79,8 @@ function spam_template( $comment_type = 'comment' ) {
 }
 
 /**
- * Notification functions
- */
-
-function added( $ID, $comment ) {
-
-	$settings = Settings::get()->get_settings();
-
-	// If Akismet marked the comment as a spam, do nothing
-	if ( $comment->comment_approved == 'spam' && $settings['general']['comments']['akismet'] == 'true' ) {
-		return;
-	}
-
-	global $notification_comment_type;
-
-	notification( 'wordpress/' . $notification_comment_type . '/added', array(
-		'ID'               => $ID,
-		'post_ID'          => $comment->comment_post_ID,
-		'post_permalink'   => get_permalink( $comment->comment_post_ID ),
-		'author_name'      => $comment->comment_author,
-		'author_email'     => $comment->comment_author_email,
-		'author_url'       => $comment->comment_author_url,
-		'author_IP'        => $comment->comment_author_IP,
-		'author_user_id'   => $comment->user_id,
-		'author_agent'     => $comment->comment_agent,
-		'comment_date'     => $comment->comment_date,
-		'comment_content'  => $comment->comment_content,
-		'comment_approved' => $comment->comment_approved,
-		'comment_type'     => $comment->comment_type,
-	) );
-
-}
-
-function approved( $ID, $comment ) {
-
-	global $notification_comment_type;
-
-	notification( 'wordpress/' . $notification_comment_type . '/approved', array(
-		'ID'               => $ID,
-		'post_ID'          => $comment->comment_post_ID,
-		'post_permalink'   => get_permalink( $comment->comment_post_ID ),
-		'author_name'      => $comment->comment_author,
-		'author_email'     => $comment->comment_author_email,
-		'author_url'       => $comment->comment_author_url,
-		'author_IP'        => $comment->comment_author_IP,
-		'author_user_id'   => $comment->user_id,
-		'author_agent'     => $comment->comment_agent,
-		'comment_date'     => $comment->comment_date,
-		'comment_content'  => $comment->comment_content,
-		'comment_approved' => $comment->comment_approved,
-		'comment_type'     => $comment->comment_type,
-	) );
-
-}
-
-function unapproved( $ID, $comment ) {
-
-	global $notification_comment_type;
-
-	notification( 'wordpress/' . $notification_comment_type . '/unapproved', array(
-		'ID'               => $ID,
-		'post_ID'          => $comment->comment_post_ID,
-		'post_permalink'   => get_permalink( $comment->comment_post_ID ),
-		'author_name'      => $comment->comment_author,
-		'author_email'     => $comment->comment_author_email,
-		'author_url'       => $comment->comment_author_url,
-		'author_IP'        => $comment->comment_author_IP,
-		'author_user_id'   => $comment->user_id,
-		'author_agent'     => $comment->comment_agent,
-		'comment_date'     => $comment->comment_date,
-		'comment_content'  => $comment->comment_content,
-		'comment_approved' => $comment->comment_approved,
-		'comment_type'     => $comment->comment_type,
-	) );
-
-}
-
-function trashed( $ID, $comment ) {
-
-	global $notification_comment_type;
-
-	notification( 'wordpress/' . $notification_comment_type . '/trashed', array(
-		'ID'               => $ID,
-		'post_ID'          => $comment->comment_post_ID,
-		'post_permalink'   => get_permalink( $comment->comment_post_ID ),
-		'author_name'      => $comment->comment_author,
-		'author_email'     => $comment->comment_author_email,
-		'author_url'       => $comment->comment_author_url,
-		'author_IP'        => $comment->comment_author_IP,
-		'author_user_id'   => $comment->user_id,
-		'author_agent'     => $comment->comment_agent,
-		'comment_date'     => $comment->comment_date,
-		'comment_content'  => $comment->comment_content,
-		'comment_approved' => $comment->comment_approved,
-		'comment_type'     => $comment->comment_type,
-	) );
-
-}
-
-function spam( $ID, $comment ) {
-
-	global $notification_comment_type;
-
-	notification( 'wordpress/' . $notification_comment_type . '/spam', array(
-		'ID'               => $ID,
-		'post_ID'          => $comment->comment_post_ID,
-		'post_permalink'   => get_permalink( $comment->comment_post_ID ),
-		'author_name'      => $comment->comment_author,
-		'author_email'     => $comment->comment_author_email,
-		'author_url'       => $comment->comment_author_url,
-		'author_IP'        => $comment->comment_author_IP,
-		'author_user_id'   => $comment->user_id,
-		'author_agent'     => $comment->comment_agent,
-		'comment_date'     => $comment->comment_date,
-		'comment_content'  => $comment->comment_content,
-		'comment_approved' => $comment->comment_approved,
-		'comment_type'     => $comment->comment_type,
-	) );
-
-}
-
-/**
  * Triggers
  */
-
-global $notification_comment_type;
 
 $settings = Settings::get()->get_settings();
 
@@ -249,8 +126,34 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 			) );
 
 			if ( is_notification_defined( 'wordpress/' . $comment_type . '/added' ) ) {
-				$notification_comment_type = $comment_type;
-				add_action( 'wp_insert_comment', __NAMESPACE__ . '\\added', 10, 2 );
+
+				add_action( 'wp_insert_comment', function( $ID, $comment ) use ( $comment_type ) {
+
+					$settings = Settings::get()->get_settings();
+
+					// If Akismet marked the comment as a spam, do nothing
+					if ( $comment->comment_approved == 'spam' && $settings['general']['comments']['akismet'] == 'true' ) {
+						return;
+					}
+
+					notification( 'wordpress/' . $comment_type . '/added', array(
+						'ID'               => $ID,
+						'post_ID'          => $comment->comment_post_ID,
+						'post_permalink'   => get_permalink( $comment->comment_post_ID ),
+						'author_name'      => $comment->comment_author,
+						'author_email'     => $comment->comment_author_email,
+						'author_url'       => $comment->comment_author_url,
+						'author_IP'        => $comment->comment_author_IP,
+						'author_user_id'   => $comment->user_id,
+						'author_agent'     => $comment->comment_agent,
+						'comment_date'     => $comment->comment_date,
+						'comment_content'  => $comment->comment_content,
+						'comment_approved' => $comment->comment_approved,
+						'comment_type'     => $comment->comment_type,
+					) );
+
+				}, 10, 2 );
+
 			}
 
 		endif;
@@ -282,8 +185,27 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 			) );
 
 			if ( is_notification_defined( 'wordpress/' . $comment_type . '/approved' ) ) {
-				$notification_comment_type = $comment_type;
-				add_action( 'comment_approved_' . $comment_type, __NAMESPACE__ . '\\approved', 10, 2 );
+
+				add_action( 'comment_approved_' . $comment_type, function( $ID, $comment ) use ( $comment_type ) {
+
+					notification( 'wordpress/' . $comment_type . '/approved', array(
+						'ID'               => $ID,
+						'post_ID'          => $comment->comment_post_ID,
+						'post_permalink'   => get_permalink( $comment->comment_post_ID ),
+						'author_name'      => $comment->comment_author,
+						'author_email'     => $comment->comment_author_email,
+						'author_url'       => $comment->comment_author_url,
+						'author_IP'        => $comment->comment_author_IP,
+						'author_user_id'   => $comment->user_id,
+						'author_agent'     => $comment->comment_agent,
+						'comment_date'     => $comment->comment_date,
+						'comment_content'  => $comment->comment_content,
+						'comment_approved' => $comment->comment_approved,
+						'comment_type'     => $comment->comment_type,
+					) );
+
+				}, 10, 2 );
+
 			}
 
 		endif;
@@ -315,8 +237,27 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 			) );
 
 			if ( is_notification_defined( 'wordpress/' . $comment_type . '/unapproved' ) ) {
-				$notification_comment_type = $comment_type;
-				add_action( 'comment_unapproved_' . $comment_type, __NAMESPACE__ . '\\unapproved', 10, 2 );
+
+				add_action( 'comment_unapproved_' . $comment_type, function( $ID, $comment ) use ( $comment_type ) {
+
+					notification( 'wordpress/' . $comment_type . '/unapproved', array(
+						'ID'               => $ID,
+						'post_ID'          => $comment->comment_post_ID,
+						'post_permalink'   => get_permalink( $comment->comment_post_ID ),
+						'author_name'      => $comment->comment_author,
+						'author_email'     => $comment->comment_author_email,
+						'author_url'       => $comment->comment_author_url,
+						'author_IP'        => $comment->comment_author_IP,
+						'author_user_id'   => $comment->user_id,
+						'author_agent'     => $comment->comment_agent,
+						'comment_date'     => $comment->comment_date,
+						'comment_content'  => $comment->comment_content,
+						'comment_approved' => $comment->comment_approved,
+						'comment_type'     => $comment->comment_type,
+					) );
+
+				}, 10, 2 );
+
 			}
 
 		endif;
@@ -348,8 +289,27 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 			) );
 
 			if ( is_notification_defined( 'wordpress/' . $comment_type . '/trashed' ) ) {
-				$notification_comment_type = $comment_type;
-				add_action( 'comment_trashed_' . $comment_type, __NAMESPACE__ . '\\trashed', 10, 2 );
+
+				add_action( 'comment_trashed_' . $comment_type, function( $ID, $comment ) use ( $comment_type ) {
+
+					notification( 'wordpress/' . $comment_type . '/trashed', array(
+						'ID'               => $ID,
+						'post_ID'          => $comment->comment_post_ID,
+						'post_permalink'   => get_permalink( $comment->comment_post_ID ),
+						'author_name'      => $comment->comment_author,
+						'author_email'     => $comment->comment_author_email,
+						'author_url'       => $comment->comment_author_url,
+						'author_IP'        => $comment->comment_author_IP,
+						'author_user_id'   => $comment->user_id,
+						'author_agent'     => $comment->comment_agent,
+						'comment_date'     => $comment->comment_date,
+						'comment_content'  => $comment->comment_content,
+						'comment_approved' => $comment->comment_approved,
+						'comment_type'     => $comment->comment_type,
+					) );
+
+				}, 10, 2 );
+
 			}
 
 		endif;
@@ -381,8 +341,27 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 			) );
 
 			if ( is_notification_defined( 'wordpress/' . $comment_type . '/spam' ) ) {
-				$notification_comment_type = $comment_type;
-				add_action( 'comment_spam_' . $comment_type, __NAMESPACE__ . '\\spam', 10, 2 );
+
+				add_action( 'comment_spam_' . function( $ID, $comment ) use ( $comment_type ) {
+
+					notification( 'wordpress/' . $comment_type . '/spam', array(
+						'ID'               => $ID,
+						'post_ID'          => $comment->comment_post_ID,
+						'post_permalink'   => get_permalink( $comment->comment_post_ID ),
+						'author_name'      => $comment->comment_author,
+						'author_email'     => $comment->comment_author_email,
+						'author_url'       => $comment->comment_author_url,
+						'author_IP'        => $comment->comment_author_IP,
+						'author_user_id'   => $comment->user_id,
+						'author_agent'     => $comment->comment_agent,
+						'comment_date'     => $comment->comment_date,
+						'comment_content'  => $comment->comment_content,
+						'comment_approved' => $comment->comment_approved,
+						'comment_type'     => $comment->comment_type,
+					) );
+
+				}, 10, 2 );
+
 			}
 
 		endif;
