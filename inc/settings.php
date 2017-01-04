@@ -27,7 +27,7 @@ class Settings extends Singleton {
 
 		add_action( 'admin_menu', array( $this, 'register_settings_page' ) );
 
-		add_action( 'init', array( $this, 'register_settings' ), 20 );
+		add_action( 'init', array( $this, 'register_settings' ), 10 );
 
 		// settings autoload on admin side
 		add_action( 'admin_init', array( $this, 'get_settings' ), 20 );

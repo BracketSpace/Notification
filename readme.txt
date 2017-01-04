@@ -92,6 +92,7 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 * [Added] `notification/metabox/trigger/tags/before` and `notification/metabox/trigger/tags/after` actions to merge tags metabox
 * [Added] `notification/metabox/recipients/before` and `notification/metabox/recipients/after` actions to recipients metabox
 * [Added] `notification/metabox/trigger/before` and `notification/metabox/trigger/after` actions to trigger metabox
+* [Fixed] Settings register action priority
 
 = 2.1 =
 * [Fixed] Warning when no post or comment type are selected in the settings. Thanks to JoeHana
