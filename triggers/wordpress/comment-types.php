@@ -223,7 +223,7 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 				'slug'     => 'wordpress/' . $comment_type . '/added',
 				'name'     => sprintf( __( '%s added', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
 				'group'    => sprintf( __( 'WordPress : %s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
-				'template' => call_user_func( __NAMESPACE__ . '\\approved_template', $comment_type ),
+				'template' => call_user_func( __NAMESPACE__ . '\\added_template', $comment_type ),
 				'tags'     => array(
 					'ID'               => 'integer',
 					'post_ID'          => 'integer',

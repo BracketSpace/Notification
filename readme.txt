@@ -95,6 +95,7 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 * [Fixed] Settings register action priority
 * [Fixed] Post type trashed template
 * [Changed] Gulpfile to not include any browser
+* [Fixed] Comment type added template
 
 = 2.1 =
 * [Fixed] Warning when no post or comment type are selected in the settings. Thanks to JoeHana
