@@ -3,7 +3,7 @@ Contributors: Kubitomakita
 Tags: notification, notify, email, mail
 Requires at least: 3.6
 Tested up to: 4.7
-Stable tag: 2.1
+Stable tag: 2.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -88,7 +88,7 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 
 == Changelog ==
 
-= Next release =
+= 2.2 =
 * [Added] `notification/metabox/trigger/tags/before` and `notification/metabox/trigger/tags/after` actions to merge tags metabox
 * [Added] `notification/metabox/recipients/before` and `notification/metabox/recipients/after` actions to recipients metabox
 * [Added] `notification/metabox/trigger/before` and `notification/metabox/trigger/after` actions to trigger metabox

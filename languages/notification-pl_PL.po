@@ -2,112 +2,99 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Notification\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2016-12-26 08:49+0000\n"
-"PO-Revision-Date: 2016-12-26 08:57+0000\n"
+"POT-Creation-Date: 2017-01-04 16:56+0100\n"
+"PO-Revision-Date: 2017-01-04 16:56+0100\n"
 "Last-Translator: admin <admin@notification.dev>\n"
 "Language-Team: Polish\n"
-"Language: pl-PL\n"
+"Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10 >= 2 && n%10<=4 "
-"&&(n%100<10||n%100 >= 20)? 1 : 2)\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10 >= 2 && n%10<=4 &&(n"
+"%100<10||n%100 >= 20)? 1 : 2);\n"
 "X-Textdomain-Support: yesX-Generator: Poedit 1.6.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:"
-"1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
+"_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Loco - https://localise.biz/\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: .git\n"
-"X-Poedit-SearchPathExcluded-1: node_modules"
+"X-Poedit-SearchPathExcluded-1: node_modules\n"
 
-#: inc/settings.php:49
-msgid "Notification settings"
-msgstr "Ustawienia powiadomień"
+#: inc/admin.php:56 inc/admin.php:384
+msgid "Trigger"
+msgstr "Wyzwalacz"
 
-#: inc/settings.php:50 inc/settings.php:66 inc/settings.php:251
-msgid "Settings"
-msgstr "Ustawienia"
+#: inc/admin.php:67
+msgid "Merge tags"
+msgstr "Znaczniki"
 
-#: inc/settings.php:69
-msgid "No Settings available at the moment"
-msgstr "Nie ma dostępnych żadnych ustawień na tą chwilę"
+#: inc/admin.php:78 inc/admin.php:385
+msgid "Recipients"
+msgstr "Odbiorcy"
 
-#: inc/settings.php:134
-msgid "Save Settings"
-msgstr "Zapisz ustawienia"
-
-#: inc/settings.php:194
-msgid "General"
-msgstr "Ogólne"
-
-#: inc/settings.php:206 inc/settings.php:208
-msgid "Post Types"
-msgstr "Typy postów"
-
-#: inc/settings.php:216
+#: inc/admin.php:161
+#, php-format
 msgid ""
-"For these post types you will be able to define <i>published</i>, <i>"
-"updated</i>, <i>pending moderation</i> etc. notifications"
+"Do you like Notification plugin? Please consider giving it a %1$sreview%2$s"
 msgstr ""
-"Dla tych typów postów będzie można definiować powiadomienia takie jak <i>"
-"opublikowano</i>, <i>zaktualizowano</i>, <i>oczekuje na moderację</i> itp."
+"Czy podoba Ci się wtyczka Powiadomienie? Rozważ danie jej %1$soceny%2$s"
 
-#: inc/settings.php:221
-msgid "Comment Types"
-msgstr "Typy komentarzy"
+#: inc/admin.php:164
+msgid "I already reviewed it"
+msgstr "Już ją oceniłem"
 
-#: inc/settings.php:228
-msgid "Comment"
-msgstr "Komentarz"
+#: inc/admin.php:185 inc/notifications.php:270
+msgid "No Triggers defined yet"
+msgstr "Nie ma jeszcze żadnych wyzwalaczy"
 
-#: inc/settings.php:229
-msgid "Pingback"
-msgstr "Pingback"
+#: inc/admin.php:229 inc/notifications.php:310
+msgid "Please select trigger first"
+msgstr "Wybierz najpierw wyzwalacz"
 
-#: inc/settings.php:230
-msgid "Trackback"
-msgstr "Trackback"
+#: inc/admin.php:241 inc/notifications.php:322 inc/notifications.php:406
+msgid "No merge tags defined for this trigger"
+msgstr "Nie zdefiniowano żadnych znaczników dla tego wyzwalacza"
 
-#: inc/settings.php:236
-msgid ""
-"This is where you can control post types and comments triggers you want to "
-"use"
-msgstr ""
-"Tutaj możesz kontrolować typy postów i komentarzy, których chcesz używać do "
-"powiadomień"
+#: inc/admin.php:269 inc/notifications.php:346
+msgid "No recipients available"
+msgstr "Brak obiorców"
 
-#: inc/settings.php:239
-msgid "Uninstallation"
-msgstr "Odinstalowywanie"
+#: inc/admin.php:312 inc/notifications.php:387
+msgid "Add recipient"
+msgstr "Dodaj odbiorcę"
 
-#: inc/settings.php:245
-msgid "Remove all added notifications"
-msgstr "Usuń wszystkie dodane powiadomienia"
+#: inc/admin.php:350
+msgid "Copied"
+msgstr "Skopiowano"
 
-#: inc/settings.php:255
-msgid "Remove plugin settings"
-msgstr "Usuń ustawienia wtyczki"
+#: inc/admin.php:363
+msgid "Enter Subject here"
+msgstr "Wpisz tutaj temat wiadomości"
 
-#: inc/settings.php:260
-msgid "Choose what to remove upon plugin removal"
-msgstr "Wybierz co wyczyścić podczas usuwania wtyczki"
+#: inc/admin.php:381
+msgid "Subject"
+msgstr "Temat"
 
-#: inc/settings.php:365
-msgid "Settings saved"
-msgstr "Ustawienia zapisane"
+#: inc/admin.php:408
+msgid "No trigger selected"
+msgstr "Nie wybrano wyzwalacza"
 
-#: inc/admin.php:459 inc/admin.php:494
+#: inc/admin.php:426
+msgid "No recipients defined"
+msgstr "Nie zdefiniowano odbiorców"
+
+#: inc/admin.php:471 inc/admin.php:506
 msgid "Deactivate"
 msgstr "Deaktywuj"
 
-#: inc/admin.php:475
+#: inc/admin.php:487
 msgid "Help improve Notification plugin"
 msgstr "Pomóż ulepszyć wtyczkę Powiadomienie"
 
-#: inc/admin.php:477
+#: inc/admin.php:489
 msgid ""
 "Please choose a reason why you want to deactivate the Notification. This "
 "will help me improve this plugin."
@@ -115,136 +102,42 @@ msgstr ""
 "Wybierz proszę powód, dla którego deaktywujesz wtyczkę Powiadomienie. "
 "Pozwoli mi ją ulepszyć."
 
-#: inc/admin.php:486
+#: inc/admin.php:498
 msgid "I just want to deactivate, don't bother me"
 msgstr "Chcę po prostu deaktywować, nie zawracaj mi głowy"
 
-#: inc/admin.php:487
+#: inc/admin.php:499
 msgid "I found better plugin"
 msgstr "Znalazłem lepszą wtyczkę"
 
-#: inc/admin.php:488
+#: inc/admin.php:500
 msgid "Plugin doesn't work"
 msgstr "Wtyczka nie działa"
 
-#: inc/admin.php:489
+#: inc/admin.php:501
 msgid "There's no trigger I was looking for"
 msgstr "Nie ma wyzwalacza, którego szukam"
 
-#. please do not translate strings in { }
-#: triggers/wordpress/post-types.php:19
+#: inc/notification/recipients.php:72
 #, php-format
-msgid "{author_name} just published new %1$s: {%1$s_title}"
-msgstr "{author_name} właśnie opublikował nowy %1$s: {%1$s_title}"
+msgid "No \"%s\" recipient defined"
+msgstr "Odbiorca \"%s\" nie został zdefiniowany"
 
-#. please do not translate strings in { }
-#: triggers/wordpress/post-types.php:33
+#: inc/notification/recipients.php:125
+msgid "Remove recipient"
+msgstr "Usuń odbiorcę"
+
+#: inc/notification/triggers.php:46
+msgid "Other"
+msgstr "Inne"
+
+#: inc/notification/triggers.php:163 inc/notification/triggers.php:178
+#: inc/notification/triggers.php:193 inc/notification/triggers.php:208
 #, php-format
-msgid "{author_name} just updated %1$s: {%1$s_title}"
-msgstr "{author_name} właśnie zaktualizował %1$s: {%1$s_title}"
+msgid "No \"%s\" trigger defined"
+msgstr "Wyzwalacz \"%s\" nie został zdefiniowany"
 
-#. please do not translate strings in { }
-#: triggers/wordpress/post-types.php:47
-#, php-format
-msgid "{author_name} just send his brand new %1$s for review: {%1$s_title}"
-msgstr "{author_name} właśnie wysłał swój nowy %1$s na moderację: {%1$s_title}"
-
-#. please do not translate strings in { }
-#: triggers/wordpress/post-types.php:60
-#, php-format
-msgid "{author_name} just moved %1$s: {%1$s_title} to the trash."
-msgstr "{author_name} właśnie przeniósł %1$s: {%1$s_title} do kosza."
-
-#: triggers/wordpress/post-types.php:202
-#, php-format
-msgid "%s published"
-msgstr "%s opublikowany(a)"
-
-#: triggers/wordpress/post-types.php:231
-#, php-format
-msgid "%s updated"
-msgstr "%s zaktualizowany(a)"
-
-#: triggers/wordpress/post-types.php:260
-#, php-format
-msgid "%s sent for review"
-msgstr "%s wysłany(a) do moderacji"
-
-#: triggers/wordpress/post-types.php:289
-#, php-format
-msgid "%s moved to trash"
-msgstr "%s przeniesiony(a) do kosza"
-
-#. please do not translate strings in { }
-#: triggers/wordpress/comment-types.php:19
-#, php-format
-msgid "There is new %s to your article sent by {author_name}:"
-msgstr ""
-"W panelu czeka na Ciebie nowy %s do Twojego posta, wysłany przez "
-"{author_name}:"
-
-#: triggers/wordpress/comment-types.php:224
-#, php-format
-msgid "%s added"
-msgstr "%s dodany"
-
-#: triggers/wordpress/comment-types.php:225
-#: triggers/wordpress/comment-types.php:257
-#: triggers/wordpress/comment-types.php:289
-#: triggers/wordpress/comment-types.php:321
-#: triggers/wordpress/comment-types.php:353
-#, php-format
-msgid "WordPress : %s"
-msgstr "WordPress : %s"
-
-#: triggers/wordpress/comment-types.php:256
-#, php-format
-msgid "%s approved"
-msgstr "%s zaakceptowany"
-
-#: triggers/wordpress/comment-types.php:288
-#, php-format
-msgid "%s unapproved"
-msgstr "%s niezaakceptowany"
-
-#: triggers/wordpress/comment-types.php:320
-#, php-format
-msgid "%s trashed"
-msgstr "%s przeniesiony do kosza"
-
-#: triggers/wordpress/comment-types.php:352
-#, php-format
-msgid "%s marked as spam"
-msgstr "%s oznaczony jako spam"
-
-#. Description of the plugin
-msgid ""
-"Send email notifications about various events in WordPress. You can also "
-"create your custom triggers for any action."
-msgstr ""
-"Wysyłaj powiadomienia o różnych zdarzeniach w WordPress. Możesz również "
-"tworzyć własne wyzwalacze dla dowolnej akcji."
-
-#. Author of the plugin
-msgid "underDEV"
-msgstr "underDEV"
-
-#. Author URI of the plugin
-msgid "https://underdev.it"
-msgstr "https://underdev.it"
-
-#: notification.php:126
-msgid ""
-"This plugin requires PHP in version at least 5.3. WordPress itself <a "
-"href=\"https://wordpress.org/about/requirements/\" target=\"_blank\">"
-"requires at least PHP 5.6</a>. Please upgrade your PHP version or contact "
-"your Server administrator."
-msgstr ""
-"Ta wtyczka potrzebuje PHP w wersji co najmniej 5.3. Sam WordPress wymaga PHP "
-"w wersji co najmniej 5.6. Zaktualizuj PHP skontaktuj się z administratorem "
-"swojego serwera."
-
-#: inc/settings.php:241 inc/notifications.php:43 inc/notifications.php:54
+#: inc/notifications.php:43 inc/notifications.php:54 inc/settings.php:253
 msgid "Notifications"
 msgstr "Powiadomienia"
 
@@ -292,8 +185,8 @@ msgstr "Rodzic powiadomienia:"
 #: inc/notifications.php:157
 #, php-format
 msgid ""
-"You have some unavailable merge tags for selected trigger in the content: %s."
-" These will be skipped during rendering."
+"You have some unavailable merge tags for selected trigger in the content: "
+"%s. These will be skipped during rendering."
 msgstr ""
 "W treści wiadomości używasz niezdefiniowanych znaczników: %s. Będą one "
 "pominięte podczas komponowania wiadomości"
@@ -320,76 +213,111 @@ msgstr "%d <code>%s</code> w grupie odbiorców <code>%s</code>"
 msgid "You have some duplicated recipients:<br>%s"
 msgstr "Masz zduplikowanych odbiorców:<br>%s"
 
-#: inc/notifications.php:270 inc/admin.php:185
-msgid "No Triggers defined yet"
-msgstr "Nie ma jeszcze żadnych wyzwalaczy"
+#: inc/settings.php:49
+msgid "Notification settings"
+msgstr "Ustawienia powiadomień"
 
-#: inc/notifications.php:310 inc/admin.php:225
-msgid "Please select trigger first"
-msgstr "Wybierz najpierw wyzwalacz"
+#: inc/settings.php:50 inc/settings.php:66 inc/settings.php:263
+msgid "Settings"
+msgstr "Ustawienia"
 
-#: inc/notifications.php:322 inc/notifications.php:406 inc/admin.php:237
-msgid "No merge tags defined for this trigger"
-msgstr "Nie zdefiniowano żadnych znaczników dla tego wyzwalacza"
+#: inc/settings.php:69
+msgid "No Settings available at the moment"
+msgstr "Nie ma dostępnych żadnych ustawień na tą chwilę"
 
-#: inc/notifications.php:346 inc/admin.php:261
-msgid "No recipients available"
-msgstr "Brak obiorców"
+#: inc/settings.php:134
+msgid "Save Settings"
+msgstr "Zapisz ustawienia"
 
-#: inc/notifications.php:387 inc/admin.php:302
-msgid "Add recipient"
-msgstr "Dodaj odbiorcę"
+#: inc/settings.php:194
+msgid "General"
+msgstr "Ogólne"
 
-#: inc/admin.php:56 inc/admin.php:372
-msgid "Trigger"
-msgstr "Wyzwalacz"
+#: inc/settings.php:206
+msgid "Content Types"
+msgstr "Typy treści"
 
-#: inc/admin.php:67
-msgid "Merge tags"
-msgstr "Znaczniki"
+#: inc/settings.php:208
+msgid "Post Types"
+msgstr "Typy postów"
 
-#: inc/admin.php:78 inc/admin.php:373
-msgid "Recipients"
-msgstr "Odbiorcy"
-
-#: inc/admin.php:161
-#, php-format
+#: inc/settings.php:216
 msgid ""
-"Do you like Notification plugin? Please consider giving it a %1$sreview%2$s"
+"For these post types you will be able to define <i>published</i>, "
+"<i>updated</i>, <i>pending moderation</i> etc. notifications"
 msgstr ""
-"Czy podoba Ci się wtyczka Powiadomienie? Rozważ danie jej %1$soceny%2$s"
+"Dla tych typów postów będzie można definiować powiadomienia takie jak "
+"<i>opublikowano</i>, <i>zaktualizowano</i>, <i>oczekuje na moderację</i> itp."
 
-#: inc/admin.php:164
-msgid "I already reviewed it"
-msgstr "Już ją oceniłem"
+#: inc/settings.php:221
+msgid "Comment Types"
+msgstr "Typy komentarzy"
 
-#: inc/admin.php:338
-msgid "Copied"
-msgstr "Skopiowano"
+#: inc/settings.php:228
+msgid "Comment"
+msgstr "Komentarz"
 
-#: inc/admin.php:351
-msgid "Enter Subject here"
-msgstr "Wpisz tutaj temat wiadomości"
+#: inc/settings.php:229
+msgid "Pingback"
+msgstr "Pingback"
 
-#: inc/admin.php:369
-msgid "Subject"
-msgstr "Temat"
+#: inc/settings.php:230
+msgid "Trackback"
+msgstr "Trackback"
 
-#: inc/admin.php:396
-msgid "No trigger selected"
-msgstr "Nie wybrano wyzwalacza"
+#: inc/settings.php:236
+msgid ""
+"This is where you can control post types and comments triggers you want to "
+"use"
+msgstr ""
+"Tutaj możesz kontrolować typy postów i komentarzy, których chcesz używać do "
+"powiadomień"
 
-#: inc/admin.php:414
-msgid "No recipients defined"
-msgstr "Nie zdefiniowano odbiorców"
+#: inc/settings.php:238
+msgid "Comments"
+msgstr "Komentarze"
 
-#: recipients/core/user.php:32
-msgid "User"
-msgstr "Użytkownik"
+#: inc/settings.php:240
+msgid "Akismet"
+msgstr "Akismet"
 
-#: recipients/core/mergetag.php:35
-msgid "Merge tag"
-msgstr "Znacznik"
+#: inc/settings.php:244
+msgid ""
+"Do not send notification if comment has been marked as a spam by Akismet"
+msgstr ""
+"Nie wysyłaj powiadomienia jeśli komentarz został oznaczony jako spam przez "
+"Akismet"
+
+#: inc/settings.php:251
+msgid "Uninstallation"
+msgstr "Odinstalowywanie"
+
+#: inc/settings.php:257
+msgid "Remove all added notifications"
+msgstr "Usuń wszystkie dodane powiadomienia"
+
+#: inc/settings.php:267
+msgid "Remove plugin settings"
+msgstr "Usuń ustawienia wtyczki"
+
+#: inc/settings.php:272
+msgid "Choose what to remove upon plugin removal"
+msgstr "Wybierz co wyczyścić podczas usuwania wtyczki"
+
+#: inc/settings.php:377
+msgid "Settings saved"
+msgstr "Ustawienia zapisane"
+
+#: notification.php:126
+msgid ""
+"This plugin requires PHP in version at least 5.3. WordPress itself <a href="
+"\"https://wordpress.org/about/requirements/\" target=\"_blank\">requires at "
+"least PHP 5.6</a>. Please upgrade your PHP version or contact your Server "
+"administrator."
+msgstr ""
+"Ta wtyczka potrzebuje PHP w wersji co najmniej 5.3. Sam WordPress wymaga PHP "
+"w wersji co najmniej 5.6. Zaktualizuj PHP skontaktuj się z administratorem "
+"swojego serwera."
 
 #: recipients/core/administrator.php:32
 msgid "Administrator"
@@ -403,27 +331,30 @@ msgstr "Adres email"
 msgid "email@domain.com"
 msgstr "email@domena.pl"
 
-#: triggers/wordpress/post-types.php:16 triggers/wordpress/post-types.php:30
-#: triggers/wordpress/post-types.php:44 triggers/wordpress/post-types.php:57
+#: recipients/core/mergetag.php:35
+msgid "Merge tag"
+msgstr "Znacznik"
+
+#: recipients/core/user.php:32
+msgid "User"
+msgstr "Użytkownik"
+
 #: triggers/wordpress/comment-types.php:16
 #: triggers/wordpress/comment-types.php:30
 #: triggers/wordpress/comment-types.php:44
 #: triggers/wordpress/comment-types.php:57
-#: triggers/wordpress/comment-types.php:70
+#: triggers/wordpress/comment-types.php:70 triggers/wordpress/post-types.php:16
+#: triggers/wordpress/post-types.php:30 triggers/wordpress/post-types.php:44
+#: triggers/wordpress/post-types.php:57
 msgid "Howdy!"
 msgstr "Cześć!"
 
-#: triggers/wordpress/post-types.php:22 triggers/wordpress/post-types.php:36
-msgid "You can read it here: {permalink}"
-msgstr "Możesz przeczytać ją tutaj: {permalink}"
-
-#: triggers/wordpress/post-types.php:49
-msgid "Review now"
-msgstr "Przejrzyj teraz"
-
-#: triggers/wordpress/post-types.php:62
-msgid "View trash"
-msgstr "Zobacz kosz"
+#: triggers/wordpress/comment-types.php:19
+#, php-format
+msgid "There is new %s to your article sent by {author_name}:"
+msgstr ""
+"W panelu czeka na Ciebie nowy %s do Twojego posta, wysłany przez "
+"{author_name}:"
 
 #: triggers/wordpress/comment-types.php:36
 msgid "from {author_name} has been approved."
@@ -438,21 +369,101 @@ msgstr "od {author_name} został odrzucony"
 msgid "from {author_name} has been moved to trash."
 msgstr "od {author_name} został przeniesiony do kosza."
 
-#: inc/notification/triggers.php:46
-msgid "Other"
-msgstr "Inne"
-
-#: inc/notification/triggers.php:163 inc/notification/triggers.php:178
-#: inc/notification/triggers.php:193 inc/notification/triggers.php:208
+#: triggers/wordpress/comment-types.php:108
 #, php-format
-msgid "No \"%s\" trigger defined"
-msgstr "Wyzwalacz \"%s\" nie został zdefiniowany"
+msgid "%s added"
+msgstr "%s dodany"
 
-#: inc/notification/recipients.php:72
+#: triggers/wordpress/comment-types.php:109
+#: triggers/wordpress/comment-types.php:168
+#: triggers/wordpress/comment-types.php:220
+#: triggers/wordpress/comment-types.php:272
+#: triggers/wordpress/comment-types.php:324
 #, php-format
-msgid "No \"%s\" recipient defined"
-msgstr "Odbiorca \"%s\" nie został zdefiniowany"
+msgid "WordPress : %s"
+msgstr "WordPress : %s"
 
-#: inc/notification/recipients.php:125
-msgid "Remove recipient"
-msgstr "Usuń odbiorcę"
+#: triggers/wordpress/comment-types.php:167
+#, php-format
+msgid "%s approved"
+msgstr "%s zaakceptowany"
+
+#: triggers/wordpress/comment-types.php:219
+#, php-format
+msgid "%s unapproved"
+msgstr "%s niezaakceptowany"
+
+#: triggers/wordpress/comment-types.php:271
+#, php-format
+msgid "%s trashed"
+msgstr "%s przeniesiony do kosza"
+
+#: triggers/wordpress/comment-types.php:323
+#, php-format
+msgid "%s marked as spam"
+msgstr "%s oznaczony jako spam"
+
+#: triggers/wordpress/post-types.php:19
+#, php-format
+msgid "{author_name} just published new %1$s: {%1$s_title}"
+msgstr "{author_name} właśnie opublikował nowy %1$s: {%1$s_title}"
+
+#: triggers/wordpress/post-types.php:22 triggers/wordpress/post-types.php:36
+msgid "You can read it here: {permalink}"
+msgstr "Możesz przeczytać ją tutaj: {permalink}"
+
+#: triggers/wordpress/post-types.php:33
+#, php-format
+msgid "{author_name} just updated %1$s: {%1$s_title}"
+msgstr "{author_name} właśnie zaktualizował %1$s: {%1$s_title}"
+
+#: triggers/wordpress/post-types.php:47
+#, php-format
+msgid "{author_name} just send his brand new %1$s for review: {%1$s_title}"
+msgstr "{author_name} właśnie wysłał swój nowy %1$s na moderację: {%1$s_title}"
+
+#: triggers/wordpress/post-types.php:49
+msgid "Review now"
+msgstr "Przejrzyj teraz"
+
+#: triggers/wordpress/post-types.php:60
+#, php-format
+msgid "{author_name} just moved %1$s: {%1$s_title} to the trash."
+msgstr "{author_name} właśnie przeniósł %1$s: {%1$s_title} do kosza."
+
+#: triggers/wordpress/post-types.php:62
+msgid "View trash"
+msgstr "Zobacz kosz"
+
+#: triggers/wordpress/post-types.php:97
+#, php-format
+msgid "%s published"
+msgstr "%s opublikowany(a)"
+
+#: triggers/wordpress/post-types.php:157
+#, php-format
+msgid "%s updated"
+msgstr "%s zaktualizowany(a)"
+
+#: triggers/wordpress/post-types.php:209
+#, php-format
+msgid "%s sent for review"
+msgstr "%s wysłany(a) do moderacji"
+
+#: triggers/wordpress/post-types.php:261
+#, php-format
+msgid "%s moved to trash"
+msgstr "%s przeniesiony(a) do kosza"
+
+#~ msgid ""
+#~ "Send email notifications about various events in WordPress. You can also "
+#~ "create your custom triggers for any action."
+#~ msgstr ""
+#~ "Wysyłaj powiadomienia o różnych zdarzeniach w WordPress. Możesz również "
+#~ "tworzyć własne wyzwalacze dla dowolnej akcji."
+
+#~ msgid "underDEV"
+#~ msgstr "underDEV"
+
+#~ msgid "https://underdev.it"
+#~ msgstr "https://underdev.it"
