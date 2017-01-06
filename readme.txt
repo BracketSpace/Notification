@@ -1,5 +1,6 @@
 === Notification ===
 Contributors: Kubitomakita
+Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, email, mail
 Requires at least: 3.6
 Tested up to: 4.7
@@ -56,6 +57,7 @@ More to come:
 = Useful links =
 
 * [Homepage](https://notification.underdev.it)
+* [Support plugin developement](https://www.paypal.me/underDEV/)
 * [GitHub repository](https://github.com/Kubitomakita/Notification)
 * [Report a bug](https://github.com/Kubitomakita/Notification/issues/new)
 
