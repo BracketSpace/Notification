@@ -87,11 +87,11 @@ class Notification {
 			$this->notification_post_id = $notification->ID;
 
 			do_action( 'notification/notify/pre/submit', $this );
-			
+
 			$this->notification = new \stdClass();
 
 			$this->notification->subject = $notification->post_title;
-			
+
 			$this->set_recipients( get_post_meta( $this->notification_post_id, '_recipients', true ) );
 
 			$this->set_message( $notification->post_content );
@@ -114,13 +114,18 @@ class Notification {
 		$this->notification->recipients = array();
 
 		if ( is_array( $recipients ) ) {
-			
+
 			foreach ( $recipients as $recipient ) {
-				$recipient_email = Recipients::get()->get_recipient( $recipient['group'] )->parse_value( $recipient['value'], $this->tags );
-				$this->add_recipient( $recipient_email );
+
+				$recipient_emails = (array) Recipients::get()->get_recipient( $recipient['group'] )->parse_value( $recipient['value'], $this->tags );
+
+				foreach ( $recipient_emails as $email ) {
+					$this->add_recipient( $email );
+				}
+
 			}
 
-		}	
+		}
 
 	}
 

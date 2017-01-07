@@ -87,7 +87,7 @@ abstract class Recipient {
 	 * Parse saved value to email
 	 * Must be defined in child class
 	 */
-	abstract protected function parse_value( $value = '', $tags_values = array() );
+	abstract protected function parse_value( $value = '', $tags_values = array(), $human_readable = false );
 
 	/**
 	 * Return input for metabox

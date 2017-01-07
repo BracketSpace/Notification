@@ -45,8 +45,8 @@ class Administrator extends Recipient {
 	 * @param array   $tags_values parsed merge tags
 	 * @return string              parsed value
 	 */
-	public function parse_value( $value = '', $tags_values = array() ) {
-		
+	public function parse_value( $value = '', $tags_values = array(), $human_readable = false ) {
+
 		if ( empty( $value ) ) {
 			$value = $this->get_default_value();
 		}

@@ -110,6 +110,8 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 = Next release =
 * [Changed] Removed unused default post controls
 * [Changed] Better error handling, plugin will not die now unless WP_DEBUG is active
+* [Changed] Role class parse_value() method now must define 3rd parameter $human_readable
+* [Added] Role recipient
 
 = 2.2 =
 * [Added] `notification/metabox/trigger/tags/before` and `notification/metabox/trigger/tags/after` actions to merge tags metabox
