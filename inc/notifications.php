@@ -426,4 +426,23 @@ class Notifications extends Singleton {
 
 	}
 
+	/**
+	 * Handle plugin errors
+	 * If WP_DEBUG is enable it will die or else will do nothing
+	 * @param  object $exception Exception instance
+	 * @return void
+	 */
+	public function handle_error( $exception ) {
+
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+
+			$html = '<strong>' . $exception->getMessage() . '</strong> ';
+			$html .= 'in ' . $exception->getFile() . ' at line ' . $exception->getLine();
+
+			wp_die( $html );
+
+		}
+
+	}
+
 }

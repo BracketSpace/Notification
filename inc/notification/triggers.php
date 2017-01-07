@@ -80,10 +80,7 @@ class Triggers extends Singleton {
 	}
 
 	/**
-	 * Deregister trigger
-	 *
-	 * Please do not call this method directly, use deregister_trigger() instead
-	 *
+	 * Send notification for defined trigger with populated tags
 	 * @param  array $trigger trigger slug
 	 * @return $this
 	 */

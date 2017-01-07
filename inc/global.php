@@ -25,7 +25,11 @@ function register_trigger( $trigger = null ) {
 		throw new \Exception( 'Specify required trigger parameters: slug and name' );
 	}
 
-	Triggers::get()->register( $trigger );
+	try {
+		Triggers::get()->register( $trigger );
+	} catch ( \Exception $e ) {
+		Notifications::get()->handle_error( $e );
+	}
 
 }
 
@@ -40,9 +44,13 @@ function deregister_trigger( $trigger_slug = null ) {
 		throw new \Exception( 'Trigger slug cannot be empty' );
 	}
 
-	Triggers::get()->deregister( $trigger_slug );
-
-	return true;
+	try {
+		Triggers::get()->deregister( $trigger_slug );
+		return true;
+	} catch ( \Exception $e ) {
+		Notifications::get()->handle_error( $e );
+		return false;
+	}
 
 }
 
@@ -58,7 +66,13 @@ function notification( $trigger = null, $tags = array() ) {
 		throw new \Exception( 'Define trigger slug' );
 	}
 
-	Triggers::get()->notify( $trigger, $tags );
+	try {
+		Triggers::get()->notify( $trigger, $tags );
+		return true;
+	} catch ( \Exception $e ) {
+		Notifications::get()->handle_error( $e );
+		return false;
+	}
 
 	return true;
 

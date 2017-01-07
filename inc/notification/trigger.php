@@ -70,7 +70,7 @@ class Trigger {
 
 			$type = $this->tags[ $tag ];
 
-			$error = 'Tag `' . $tag . '` is not ' . $type;
+			$error = 'Tag `' . $tag . '` in `' . $this->get_name() . '` trigger is not ' . $type;
 
 			switch ( $type ) {
 				case 'integer':
