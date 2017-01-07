@@ -31,6 +31,8 @@ class Admin extends Singleton {
 		add_action( 'add_meta_boxes', array( $this, 'meta_box_cleanup' ), 999999999, 1 );
 		add_action( 'edit_form_after_title', array( $this, 'move_metaboxes_under_subject' ), 10, 1 );
 
+		add_filter( 'post_row_actions', array( $this, 'remove_quick_edit' ), 10, 2 );
+
 		// allow WP core metaboxes
 		add_filter( 'notification/admin/allow_metabox/submitdiv', '__return_true' );
 		add_filter( 'notification/admin/allow_metabox/slugdiv', '__return_true' );
@@ -471,6 +473,30 @@ class Admin extends Singleton {
 		$actions['deactivate'] = '<a href="#TB_inline?width=500&height=400&inlineId=notification-deactivate" class="thickbox" data-deactivate="' . $deactivate_url . '">' . __( 'Deactivate', 'notification' ) . '</a>';
 
 		return $actions;
+
+	}
+
+	/**
+	 * Remove quick edit from post inline actions
+	 * @param  array  $row_actions array with action links
+	 * @param  object $post        WP_Post object
+	 * @return array               filtered actions
+	 */
+	public function remove_quick_edit( $row_actions, $post ) {
+
+		if ( $post->post_type == 'notification' ) {
+
+			if ( isset( $row_actions['inline hide-if-no-js'] ) ) {
+				unset( $row_actions['inline hide-if-no-js'] );
+			}
+
+			if ( isset( $row_actions['inline'] ) ) {
+				unset( $row_actions['inline'] );
+			}
+
+		}
+
+		return $row_actions;
 
 	}
 
