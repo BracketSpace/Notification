@@ -107,6 +107,9 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 
 == Changelog ==
 
+= Next release =
+* [Changed] Removed unused default post controls
+
 = 2.2 =
 * [Added] `notification/metabox/trigger/tags/before` and `notification/metabox/trigger/tags/after` actions to merge tags metabox
 * [Added] `notification/metabox/recipients/before` and `notification/metabox/recipients/after` actions to recipients metabox
