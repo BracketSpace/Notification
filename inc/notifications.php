@@ -161,6 +161,43 @@ class Notifications extends Singleton {
 
 		}
 
+        /**
+         * Check used merge tags in subject
+         */
+        if ( isset( $_POST['notification_trigger'] ) ) {
+
+	        preg_match_all( $this->merge_tag_pattern, $post->post_title, $used_merge_tags );
+
+	        // raw tags without {}
+	        $used_merge_tags = $used_merge_tags[1];
+
+	        $used_trigger = sanitize_text_field( $_POST['notification_trigger'] );
+
+			try {
+				$trigger_tag_types = Triggers::get()->get_trigger_tags_types( $used_trigger );
+			} catch ( \Exception $e ) {
+				$trigger_tag_types = array();
+			}
+
+			$allowed_types = apply_filters( 'notification/notify/subject/allowed_tags_type', array(
+				'integer', 'float', 'string'
+			), $this->trigger, $this->tags );
+
+			foreach ( $used_merge_tags as $id => $tag_slug ) {
+
+				if ( in_array( $trigger_tag_types[ $tag_slug ], $allowed_types ) ) {
+					unset( $used_merge_tags[ $id ] );
+				}
+
+			}
+
+			if ( ! empty( $used_merge_tags ) ) {
+				$tag_codes = '<code>{' . implode( '}</code>, <code>{', array_values( $used_merge_tags ) ) . '}</code>';
+				$errors[] = sprintf( __( 'You have used wrong tags in the message subject: %s. These will be skipped.', 'notification' ), $tag_codes );
+			}
+
+		}
+
 		/**
 		 * Check if using images
 		 */

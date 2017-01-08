@@ -7,6 +7,7 @@
 
 namespace Notification;
 use \Notification\Notification\Recipients;
+use \Notification\Notification\Triggers;
 
 class Notification {
 
@@ -90,7 +91,7 @@ class Notification {
 
 			$this->notification = new \stdClass();
 
-			$this->notification->subject = $notification->post_title;
+			$this->set_subject( $notification->post_title );
 
 			$this->set_recipients( get_post_meta( $this->notification_post_id, '_recipients', true ) );
 
@@ -138,6 +139,39 @@ class Notification {
 		if ( filter_var( $recipient, FILTER_VALIDATE_EMAIL ) !== false ) {
 			$this->notification->recipients[] = $recipient;
 		}
+
+	}
+
+	/**
+	 * Parse the subject with provided merge tags
+	 * @param  string $subject notification subject
+	 * @return void
+	 */
+	public function set_subject( $subject ) {
+
+		$subject = apply_filters( 'notification/notify/pre/subject', $subject, $this->trigger, $this->tags );
+
+		$allowed_types = apply_filters( 'notification/notify/subject/allowed_tags_type', array(
+			'integer', 'float', 'string'
+		), $this->trigger, $this->tags );
+
+		$trigger_tags = Triggers::get()->get_trigger_tags_types( $this->trigger );
+
+		foreach ( $this->tags as $tag_slug => $tag_value ) {
+
+			if ( in_array( $trigger_tags[ $tag_slug ], $allowed_types ) ) {
+				$subject = str_replace( '{' . $tag_slug . '}', $tag_value, $subject );
+			}
+
+		}
+
+		if ( apply_filters( 'notification/notify/subject/remove_empty_merge_tags', true, $this->trigger ) ) {
+			$subject = preg_replace( $this->merge_tag_pattern, '', $subject );
+		}
+
+		$subject = apply_filters( 'notification/notify/subject', $subject, $this->trigger, $this->tags );
+
+		$this->notification->subject = $subject;
 
 	}
 
