@@ -16,6 +16,8 @@ This plugin allows you to send custom email notifications about various events i
 
 In messages you can use defined merge tags which will be later changed to content applicable for trigger.
 
+There is also option to disable the notifications for specific post, comment or user in case you don't want to send notification for a secret article.
+
 > [See Notification homepage](https://notification.underdev.it) and check Developer docs
 
 https://www.youtube.com/watch?v=usdBMPjdiuw
