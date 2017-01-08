@@ -495,11 +495,13 @@ class Notifications extends Singleton {
 		// Check if some Notifications should be excluded
 		$settings = Settings::get()->get_settings();
 
-		if ( ! $settings['general']['additional']['disable_post_notification'] == 'true' ) {
-			return false;
-		}
+		$disabled = false;
 
 		foreach ( $objects as $type => $ID ) {
+
+			if ( $settings['general']['additional']['disable_' . $type . '_notification'] != 'true' ) {
+				continue;
+			}
 
 			if ( is_array( $ID ) ) {
 
@@ -507,7 +509,7 @@ class Notifications extends Singleton {
 					$disabled_triggers = (array) get_metadata( $type, $object_id, '_notification_disable', true );
 
 					if ( in_array( $trigger, $disabled_triggers ) ) {
-						return true;
+						$disabled = true;
 					}
 
 				}
@@ -517,14 +519,14 @@ class Notifications extends Singleton {
 				$disabled_triggers = (array) get_metadata( $type, $ID, '_notification_disable', true );
 
 				if ( in_array( $trigger, $disabled_triggers ) ) {
-					return true;
+					$disabled = true;
 				}
 
 			}
 
 		}
 
-		return false;
+		return $disabled;
 
 	}
 

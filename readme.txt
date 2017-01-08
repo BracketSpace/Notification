@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, email, mail
 Requires at least: 3.6
 Tested up to: 4.7
-Stable tag: 2.3
+Stable tag: 2.3.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -106,6 +106,9 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 3. Settings
 
 == Changelog ==
+
+= 2.3.1 =
+* [Fixed] Bug with not activated "Disable" option
 
 = 2.3 =
 * [Changed] Removed unused default post controls
