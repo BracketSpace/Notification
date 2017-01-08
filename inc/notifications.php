@@ -6,6 +6,7 @@
 namespace Notification;
 
 use Notification\Singleton;
+use Notification\Settings;
 use \Notification\Notification\Triggers;
 use \Notification\Notification\Recipients;
 
@@ -95,6 +96,7 @@ class Notifications extends Singleton {
 
 
 	}
+
 	/**
 	 * Save the recipients in post meta (key: _recipients)
 	 * @param  integer $post_id current post ID
@@ -155,6 +157,43 @@ class Notifications extends Singleton {
 			if ( ! empty( $tags_diff ) ) {
 				$tag_codes = '<code>{' . implode( '}</code>, <code>{', array_values( $tags_diff ) ) . '}</code>';
 				$errors[] = sprintf( __( 'You have some unavailable merge tags for selected trigger in the content: %s. These will be skipped during rendering.', 'notification' ), $tag_codes );
+			}
+
+		}
+
+        /**
+         * Check used merge tags in subject
+         */
+        if ( isset( $_POST['notification_trigger'] ) ) {
+
+	        preg_match_all( $this->merge_tag_pattern, $post->post_title, $used_merge_tags );
+
+	        // raw tags without {}
+	        $used_merge_tags = $used_merge_tags[1];
+
+	        $used_trigger = sanitize_text_field( $_POST['notification_trigger'] );
+
+			try {
+				$trigger_tag_types = Triggers::get()->get_trigger_tags_types( $used_trigger );
+			} catch ( \Exception $e ) {
+				$trigger_tag_types = array();
+			}
+
+			$allowed_types = apply_filters( 'notification/notify/subject/allowed_tags_type', array(
+				'integer', 'float', 'string'
+			), $this->trigger, $this->tags );
+
+			foreach ( $used_merge_tags as $id => $tag_slug ) {
+
+				if ( in_array( $trigger_tag_types[ $tag_slug ], $allowed_types ) ) {
+					unset( $used_merge_tags[ $id ] );
+				}
+
+			}
+
+			if ( ! empty( $used_merge_tags ) ) {
+				$tag_codes = '<code>{' . implode( '}</code>, <code>{', array_values( $used_merge_tags ) ) . '}</code>';
+				$errors[] = sprintf( __( 'You have used wrong tags in the message subject: %s. These will be skipped.', 'notification' ), $tag_codes );
 			}
 
 		}
@@ -423,6 +462,69 @@ class Notifications extends Singleton {
 		}
 
 		wp_send_json_success( $template );
+
+	}
+
+	/**
+	 * Handle plugin errors
+	 * If WP_DEBUG is enable it will die or else will do nothing
+	 * @param  object $exception Exception instance
+	 * @return void
+	 */
+	public function handle_error( $exception ) {
+
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+
+			$html = '<strong>' . $exception->getMessage() . '</strong> ';
+			$html .= 'in ' . $exception->getFile() . ' at line ' . $exception->getLine();
+
+			wp_die( $html );
+
+		}
+
+	}
+
+	/**
+	 * Check if specific trigger is disabled for provided objects
+	 * @param  string  $trigger trigger slug
+	 * @param  array   $objects array witch object types and corresponding IDs
+	 * @return boolean
+	 */
+	public function is_trigger_disabled( $trigger, $objects ) {
+
+		// Check if some Notifications should be excluded
+		$settings = Settings::get()->get_settings();
+
+		if ( ! $settings['general']['additional']['disable_post_notification'] == 'true' ) {
+			return false;
+		}
+
+		foreach ( $objects as $type => $ID ) {
+
+			if ( is_array( $ID ) ) {
+
+				foreach ( $ID as $object_id ) {
+					$disabled_triggers = (array) get_metadata( $type, $object_id, '_notification_disable', true );
+
+					if ( in_array( $trigger, $disabled_triggers ) ) {
+						return true;
+					}
+
+				}
+
+			} else {
+
+				$disabled_triggers = (array) get_metadata( $type, $ID, '_notification_disable', true );
+
+				if ( in_array( $trigger, $disabled_triggers ) ) {
+					return true;
+				}
+
+			}
+
+		}
+
+		return false;
 
 	}
 

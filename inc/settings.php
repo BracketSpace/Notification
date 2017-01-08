@@ -247,6 +247,39 @@ class Settings extends Singleton {
 				'sanitize' => array( $corefields, 'sanitize_checkbox' ),
 			) );
 
+		$general->add_group( __( 'Additional options', 'notification' ), 'additional' )
+			->add_field( array(
+				'name'     => __( 'Disable Notifications for post', 'notification' ),
+				'slug'     => 'disable_post_notification',
+				'default'  => false,
+				'addons'   => array(
+					'label' => __( 'Allow to disable Notifications for specific post', 'notification' )
+				),
+				'description' => __( 'This will be available to set on post edit screen', 'notification' ),
+				'render'   => array( $corefields, 'checkbox' ),
+				'sanitize' => array( $corefields, 'sanitize_checkbox' ),
+			) )->add_field( array(
+				'name'     => __( 'Disable Notifications for comment', 'notification' ),
+				'slug'     => 'disable_comment_notification',
+				'default'  => false,
+				'addons'   => array(
+					'label' => __( 'Allow to disable Notifications for specific comment', 'notification' )
+				),
+				'description' => __( 'This will be available to set on comment edit screen', 'notification' ),
+				'render'   => array( $corefields, 'checkbox' ),
+				'sanitize' => array( $corefields, 'sanitize_checkbox' ),
+			) )->add_field( array(
+				'name'     => __( 'Disable Notifications for user', 'notification' ),
+				'slug'     => 'disable_user_notification',
+				'default'  => false,
+				'addons'   => array(
+					'label' => __( 'Allow to disable Notifications for specific user', 'notification' )
+				),
+				'description' => __( 'This will be available to set on user edit screen', 'notification' ),
+				'render'   => array( $corefields, 'checkbox' ),
+				'sanitize' => array( $corefields, 'sanitize_checkbox' ),
+			) );
+
 
 		$general->add_group( __( 'Uninstallation', 'notification' ), 'uninstallation' )
 			->add_field( array(

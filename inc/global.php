@@ -25,7 +25,11 @@ function register_trigger( $trigger = null ) {
 		throw new \Exception( 'Specify required trigger parameters: slug and name' );
 	}
 
-	Triggers::get()->register( $trigger );
+	try {
+		Triggers::get()->register( $trigger );
+	} catch ( \Exception $e ) {
+		Notifications::get()->handle_error( $e );
+	}
 
 }
 
@@ -40,25 +44,37 @@ function deregister_trigger( $trigger_slug = null ) {
 		throw new \Exception( 'Trigger slug cannot be empty' );
 	}
 
-	Triggers::get()->deregister( $trigger_slug );
-
-	return true;
+	try {
+		Triggers::get()->deregister( $trigger_slug );
+		return true;
+	} catch ( \Exception $e ) {
+		Notifications::get()->handle_error( $e );
+		return false;
+	}
 
 }
 
 /**
  * Execute notification
- * @param  string $trigger trigger slug
- * @param  array  $tags    merge tags array
- * @return mixed           throws an Exception on error or returns true on success
+ * @param  string $trigger          trigger slug
+ * @param  array  $tags             merge tags array
+ * @param  array  $affected_objects objects IDs which affect this notification
+ *                                  should be array in format: object_type => object ID (array or integer)
+ * @return mixed                    throws an Exception on error or returns true on success
  */
-function notification( $trigger = null, $tags = array() ) {
+function notification( $trigger = null, $tags = array(), $affected_objects = array() ) {
 
 	if ( empty( $trigger ) ) {
 		throw new \Exception( 'Define trigger slug' );
 	}
 
-	Triggers::get()->notify( $trigger, $tags );
+	try {
+		Triggers::get()->notify( $trigger, $tags, $affected_objects );
+		return true;
+	} catch ( \Exception $e ) {
+		Notifications::get()->handle_error( $e );
+		return false;
+	}
 
 	return true;
 

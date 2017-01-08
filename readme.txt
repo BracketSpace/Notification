@@ -1,9 +1,10 @@
 === Notification ===
 Contributors: Kubitomakita
+Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, email, mail
 Requires at least: 3.6
 Tested up to: 4.7
-Stable tag: 2.2
+Stable tag: 2.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -15,9 +16,7 @@ This plugin allows you to send custom email notifications about various events i
 
 In messages you can use defined merge tags which will be later changed to content applicable for trigger.
 
-Please see Screenshots tab to get the overall idea about the plugin and see it in action.
-
-You may also want to check [Other Notes](https://wordpress.org/plugins/notification/other_notes/) to see how to use the plugin's API and include it in your own theme or plugin.
+> [See Notification homepage](https://notification.underdev.it) and check Developer docs
 
 https://www.youtube.com/watch?v=usdBMPjdiuw
 
@@ -57,6 +56,8 @@ More to come:
 
 = Useful links =
 
+* [Homepage](https://notification.underdev.it)
+* [Support plugin developement](https://www.paypal.me/underDEV/)
 * [GitHub repository](https://github.com/Kubitomakita/Notification)
 * [Report a bug](https://github.com/Kubitomakita/Notification/issues/new)
 
@@ -74,11 +75,29 @@ Download and install this plugin from Plugins -> Add New admin screen.
 
 Notification can be loaded also as a part of any plugin or theme. To do it just include plugins's `load.php` file. It will figure out if it's loaded from theme or from plugin.
 
+[See the detailed guide](https://notification.underdev.it/including-notification-plugin-theme/)
+
 == Frequently Asked Questions ==
 
-= How to change notification email headers =
+= How to change notification email headers? =
 
 There's no such option at the moment. Please use some other plugin to adjust wp_mail() headers.
+
+= How to register my triggers? =
+
+With `register_trigger()` function. [See the detailed guide](https://notification.underdev.it/registering-new-triggers/)
+
+= How do I fire my trigger to send an email? =
+
+With `notification()` function. [See the detailed guide](https://notification.underdev.it/sending-notifications/)
+
+= Can I deregister trigger I don't want to use? =
+
+Yes, with `deregister_trigger()` function. [See the detailed guide](https://notification.underdev.it/deregistering-triggers/)
+
+= Can I bundle the plugin with my plugin or theme? =
+
+Yes, you can. [See the detailed guide](https://notification.underdev.it/including-notification-plugin-theme/)
 
 == Screenshots ==
 
@@ -87,6 +106,14 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 3. Settings
 
 == Changelog ==
+
+= 2.3 =
+* [Changed] Removed unused default post controls
+* [Changed] Better error handling, plugin will not die now unless WP_DEBUG is active
+* [Changed] Role class parse_value() method now must define 3rd parameter $human_readable
+* [Added] Role recipient
+* [Added] Option to disable notification for specific post (and in future for user or comment), thanks to Jeff Lehman
+* [Changed] string, integer and float merge tags used in the message subject are now rendered
 
 = 2.2 =
 * [Added] `notification/metabox/trigger/tags/before` and `notification/metabox/trigger/tags/after` actions to merge tags metabox
@@ -161,71 +188,3 @@ There's no such option at the moment. Please use some other plugin to adjust wp_
 
 = 1.0 =
 * Release
-
-== API ==
-
-All below functions are available as early as `init` action with priority 5.
-
-= Registering new triggers =
-
-You can use `register_trigger()` function to register new notification trigger. Sample usage:
-
-`
-register_trigger( array(
-	'slug'     => 'my_plugin/action',
-	'name'     => __( 'Custom action', 'textdomain' ),
-	'group'    => __( 'My Plugin', 'textdomain' ),
-	'template' => 'This is default template using {merge_tag}. It can accept <strong>HTML</strong>',
-	'tags'     => array(
-		'page_ID'    => 'integer',
-		'page_url'   => 'url',
-		'user_email' => 'email'
-	)
-) );
-`
-
-Possible merge_tags types:
-
-* integer
-* float
-* string
-* url
-* email
-* boolean
-* ip
-
-Group, tags and template are optional. You don't have to register them.
-
-= Executing triggers =
-
-To actualy trigger new notification call `notification()` function with 2 parameters: trigger slug and merge tags array.
-
-It's a good practice to first check if notification should be send to not pull all the data for nothing.
-
-Sample usage:
-
-`
-if ( is_notification_defined( 'my_plugin/action' ) ) {
-	notification( 'my_plugin/action', array(
-		'page_ID'    => $ID,
-		'page_url'   => get_permalink( $ID ),
-		'user_email' => $user_email,
-	) );
-}
-`
-
-= Deregistering triggers =
-
-You can deregister any trigger with `deregister_trigger()` function. Just pass the trigger slug as an argument. Sample usage:
-
-`
-deregister_trigger( 'my_plugin/action' );
-`
-
-= Include Notification in other plugin or theme =
-
-Including it in another plugin or theme requires *just one thing*. Take a look at that:
-
-`require_once( 'path/to/plugin/notification/load.php' );`
-
-Notification will figure out from where it's loaded and will set all paths and URIs automatically.

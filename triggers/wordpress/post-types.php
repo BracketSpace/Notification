@@ -97,6 +97,7 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 				'name'     => sprintf( __( '%s published', 'notification' ), $post_type_name ),
 				'group'    => ucfirst( $post_type ),
 				'template' => call_user_func( __NAMESPACE__ . '\\published_template', $post_type ),
+				'disable'  => array( 'post' ),
 				'tags'     => array(
 					'ID'                    => 'integer',
 					'permalink'             => 'url',
@@ -140,6 +141,8 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 						'author_name'           => get_the_author_meta( 'display_name', $post->post_author ),
 						'author_email'          => get_the_author_meta( 'user_email', $post->post_author ),
 						'author_login'          => get_the_author_meta( 'user_login', $post->post_author )
+					), array(
+						'post' => $post->ID
 					) );
 
 				}, 10, 3 );
@@ -157,6 +160,7 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 				'name'     => sprintf( __( '%s updated', 'notification' ), $post_type_name ),
 				'group'    => ucfirst( $post_type ),
 				'template' => call_user_func( __NAMESPACE__ . '\\updated_template', $post_type ),
+				'disable'  => array( 'post' ),
 				'tags'     => array(
 					'ID'                    => 'integer',
 					'permalink'             => 'url',
@@ -192,6 +196,8 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 						'author_name'           => get_the_author_meta( 'display_name', $post->post_author ),
 						'author_email'          => get_the_author_meta( 'user_email', $post->post_author ),
 						'author_login'          => get_the_author_meta( 'user_login', $post->post_author )
+					), array(
+						'post' => $post->ID
 					) );
 
 				}, 10, 2 );
@@ -209,6 +215,7 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 				'name'     => sprintf( __( '%s sent for review', 'notification' ), $post_type_name ),
 				'group'    => ucfirst( $post_type ),
 				'template' => call_user_func( __NAMESPACE__ . '\\pending_review_template', $post_type ),
+				'disable'  => array( 'post' ),
 				'tags'     => array(
 					'ID'                    => 'integer',
 					'permalink'             => 'url',
@@ -233,17 +240,19 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 					}
 
 					notification( 'wordpress/' . $post_type . '/pending_review', array(
-						'ID'                                 => $post->ID,
-						'permalink'                          => get_permalink( $post->ID ),
+						'ID'                    => $post->ID,
+						'permalink'             => get_permalink( $post->ID ),
 						$post_type . '_title'   => $post->post_title,
 						$post_type . '_name'    => $post->post_name,
 						$post_type . '_date'    => $post->post_date,
 						$post_type . '_content' => $post->post_content,
 						$post_type . '_excerpt' => $post->post_excerpt,
-						'author_ID'                          => $post->post_author,
-						'author_name'                        => get_the_author_meta( 'display_name', $post->post_author ),
-						'author_email'                       => get_the_author_meta( 'user_email', $post->post_author ),
-						'author_login'                       => get_the_author_meta( 'user_login', $post->post_author )
+						'author_ID'             => $post->post_author,
+						'author_name'           => get_the_author_meta( 'display_name', $post->post_author ),
+						'author_email'          => get_the_author_meta( 'user_email', $post->post_author ),
+						'author_login'          => get_the_author_meta( 'user_login', $post->post_author )
+					), array(
+						'post' => $post->ID
 					) );
 
 				}, 10, 2 );
@@ -261,6 +270,7 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 				'name'     => sprintf( __( '%s moved to trash', 'notification' ), $post_type_name ),
 				'group'    => ucfirst( $post_type ),
 				'template' => call_user_func( __NAMESPACE__ . '\\trashed_template', $post_type ),
+				'disable'  => array( 'post' ),
 				'tags'     => array(
 					'ID'                    => 'integer',
 					'permalink'             => 'url',
@@ -285,17 +295,19 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 					}
 
 					notification( 'wordpress/' . $post_type . '/trashed', array(
-						'ID'                                 => $post->ID,
-						'permalink'                          => get_permalink( $post->ID ),
+						'ID'                    => $post->ID,
+						'permalink'             => get_permalink( $post->ID ),
 						$post_type . '_title'   => $post->post_title,
 						$post_type . '_name'    => $post->post_name,
 						$post_type . '_date'    => $post->post_date,
 						$post_type . '_content' => $post->post_content,
 						$post_type . '_excerpt' => $post->post_excerpt,
-						'author_ID'                          => $post->post_author,
-						'author_name'                        => get_the_author_meta( 'display_name', $post->post_author ),
-						'author_email'                       => get_the_author_meta( 'user_email', $post->post_author ),
-						'author_login'                       => get_the_author_meta( 'user_login', $post->post_author )
+						'author_ID'             => $post->post_author,
+						'author_name'           => get_the_author_meta( 'display_name', $post->post_author ),
+						'author_email'          => get_the_author_meta( 'user_email', $post->post_author ),
+						'author_login'          => get_the_author_meta( 'user_login', $post->post_author )
+					), array(
+						'post' => $post->ID
 					) );
 
 				}, 10, 2 );
