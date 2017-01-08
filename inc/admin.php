@@ -6,8 +6,9 @@
 namespace Notification;
 
 use Notification\Singleton;
-use \Notification\Notification\Triggers;
-use \Notification\Notification\Recipients;
+use Notification\Settings;
+use Notification\Notification\Triggers;
+use Notification\Notification\Recipients;
 
 class Admin extends Singleton {
 
@@ -28,8 +29,16 @@ class Admin extends Singleton {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10, 1 );
 
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ), 10, 1 );
+		add_action( 'add_meta_boxes', array( $this, 'add_post_settings_meta_box' ), 10, 1 );
 		add_action( 'add_meta_boxes', array( $this, 'meta_box_cleanup' ), 999999999, 1 );
 		add_action( 'edit_form_after_title', array( $this, 'move_metaboxes_under_subject' ), 10, 1 );
+		add_action( 'show_user_profile', array( $this, 'add_user_settings' ) );
+		add_action( 'edit_user_profile', array( $this, 'add_user_settings' ) );
+
+		add_action( 'save_post', array( $this, 'save_post_settings' ) );
+		add_filter( 'comment_save_pre', array( $this, 'save_comment_settings' ) );
+		add_action( 'personal_options_update', array( $this, 'save_user_settings' ) );
+		add_action( 'edit_user_profile_update', array( $this, 'save_user_settings' ) );
 
 		add_filter( 'post_row_actions', array( $this, 'remove_quick_edit' ), 10, 2 );
 
@@ -85,6 +94,40 @@ class Admin extends Singleton {
         );
 
         $this->meta_boxes[] = 'notification_recipients';
+
+	}
+
+	/**
+	 * Add metabox for post settings
+	 * @return void
+	 */
+	public function add_post_settings_meta_box() {
+
+		$settings = Settings::get()->get_settings();
+
+		if ( $settings['general']['additional']['disable_post_notification'] == 'true' ) :
+
+			add_meta_box(
+	            'notification_post_settings',
+	            __( 'Notification', 'notification' ),
+	            array( $this, 'post_settings_metabox' ),
+	            $settings['general']['post_types_triggers']['post_types'],
+	            'side'
+	        );
+
+		endif;
+
+		if ( $settings['general']['additional']['disable_comment_notification'] == 'true' ) :
+
+			add_meta_box(
+	            'notification_post_settings',
+	            __( 'Notification', 'notification' ),
+	            array( $this, 'post_settings_metabox' ),
+	            $settings['general']['post_types_triggers']['comment_types'],
+	            'normal'
+	        );
+
+		endif;
 
 	}
 
@@ -190,29 +233,7 @@ class Admin extends Singleton {
 
 		do_action( 'notification/metabox/trigger/before', $triggers, $selected, $post );
 
-		echo '<select id="notification_trigger_select" name="notification_trigger" class="chosen-select">';
-
-			echo '<option value=""></option>';
-
-			foreach ( $triggers as $group => $subtriggers ) {
-
-				if ( ! is_array( $subtriggers ) ) {
-					echo '<option value="' . $group . '" ' . selected( $selected, $group, false ) . '>' . $subtriggers . '</option>';
-				} else {
-
-					echo '<optgroup label="' . $group . '">';
-
-					foreach ( $subtriggers as $slug => $name ) {
-						echo '<option value="' . $slug . '" ' . selected( $selected, $slug, false ) . '>' . $name . '</option>';
-					}
-
-					echo '</optgroup>';
-
-				}
-
-			}
-
-		echo '</select>';
+		Triggers::get()->render_triggers_select( $selected );
 
 		do_action( 'notification/metabox/trigger/after', $triggers, $selected, $post );
 
@@ -320,6 +341,128 @@ class Admin extends Singleton {
 	}
 
 	/**
+	 * Post settings metabox content
+	 * @param  object $post current WP_Post
+	 * @return void
+	 */
+	public function post_settings_metabox( $post ) {
+
+		wp_nonce_field( 'notification_post_settings', 'notification_nonce' );
+
+		do_action( 'notification/metabox/post_settings/before', $post );
+
+		if ( is_a( $post, 'WP_Comment' ) ) {
+			$post_type_name = strtolower( __( 'Comment', 'notification' ) );
+			$disable_type   = 'comment';
+			$disabled_notifications = (array) get_comment_meta( $post->comment_ID, '_notification_disable', true );
+		} else {
+			$post_type_name = get_post_type_object( $post->post_type )->labels->singular_name;
+			$disable_type   = 'post';
+			$disabled_notifications = (array) get_post_meta( $post->ID, '_notification_disable', true );
+		}
+
+		echo '<p>' . sprintf( __( 'Select Notifications you don\'t wish to send for this %s', 'notification' ), $post_type_name ) . '</p>';
+
+		Triggers::get()->render_triggers_select( $disabled_notifications, 'notification_disable[]', true, $disable_type );
+
+		do_action( 'notification/metabox/post_settings/after', $post );
+
+	}
+
+	/**
+	 * User settings
+	 * @param  object $user current User
+	 * @return void
+	 */
+	public function add_user_settings( $user ) {
+
+		$settings = Settings::get()->get_settings();
+
+		if ( $settings['general']['additional']['disable_user_notification'] != 'true' ) {
+			return;
+		}
+
+		wp_nonce_field( 'notification_post_settings', 'notification_nonce' );
+
+		$disabled_notifications = (array) get_user_meta( $user->ID, '_notification_disable', true );
+
+		echo '<h3>' . __( 'Notification', 'notification' ) . '</h3>';
+
+		do_action( 'notification/metabox/user_settings/before', $user );
+
+		echo '<table class="form-table">';
+			echo '<tr>';
+				echo '<th>' . __( 'Disable notifications', 'notification' ) . '</th>';
+				echo '<td>';
+					Triggers::get()->render_triggers_select( $disabled_notifications, 'notification_disable[]', true, 'user' );
+					echo '<p class="description">' .  __( 'Select Notifications which triggered by this user will not be sent', 'notification' ) . '</p>';
+				echo '</td>';
+			echo '</tr>';
+		echo '</table>';
+
+		do_action( 'notification/metabox/user_settings/after', $user );
+
+	}
+
+	/**
+	 * Save the post setting
+	 * @param  integer $post_id current post ID
+	 * @return void
+	 */
+	public function save_post_settings( $post_id ) {
+
+        if ( ! isset( $_POST['notification_nonce'] ) || ! wp_verify_nonce( $_POST['notification_nonce'], 'notification_post_settings' ) ) {
+            return;
+        }
+
+        if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+            return;
+        }
+
+        update_post_meta( $post_id, '_notification_disable', $_POST['notification_disable'] );
+
+
+	}
+
+	/**
+	 * Save the comment setting
+	 * @param  string $comment_content saved comment content
+	 * @return void
+	 */
+	public function save_comment_settings( $comment_content ) {
+
+        if ( ! isset( $_POST['notification_nonce'] ) || ! wp_verify_nonce( $_POST['notification_nonce'], 'notification_post_settings' ) ) {
+            return;
+        }
+
+        if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+            return;
+        }
+
+        update_comment_meta( $_POST['comment_ID'], '_notification_disable', $_POST['notification_disable'] );
+
+	}
+
+	/**
+	 * Save the user setting
+	 * @param  integer $user_id saved user ID
+	 * @return void
+	 */
+	public function save_user_settings( $user_id ) {
+
+        if ( ! isset( $_POST['notification_nonce'] ) || ! wp_verify_nonce( $_POST['notification_nonce'], 'notification_post_settings' ) ) {
+            return;
+        }
+
+        if ( ! current_user_can( 'edit_user', $user_id ) ) {
+			return;
+		}
+
+        update_user_meta( $user_id, '_notification_disable', $_POST['notification_disable'] );
+
+	}
+
+	/**
 	 * Dismiss beg message
 	 * @return object       json encoded response
 	 */
@@ -340,7 +483,16 @@ class Admin extends Singleton {
 	 */
 	public function enqueue_scripts( $page_hook ) {
 
-		if ( get_post_type() != 'notification' && $page_hook != 'notification_page_settings' && $page_hook != 'plugins.php' ) {
+		$allowed_hooks = array(
+			'notification_page_settings',
+			'plugins.php',
+			'post-new.php',
+			'post.php',
+			'comment.php',
+			'profile.php'
+		);
+
+		if ( get_post_type() != 'notification' && ! in_array( $page_hook, $allowed_hooks )  ) {
 			return false;
 		}
 

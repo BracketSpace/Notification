@@ -56,18 +56,20 @@ function deregister_trigger( $trigger_slug = null ) {
 
 /**
  * Execute notification
- * @param  string $trigger trigger slug
- * @param  array  $tags    merge tags array
- * @return mixed           throws an Exception on error or returns true on success
+ * @param  string $trigger          trigger slug
+ * @param  array  $tags             merge tags array
+ * @param  array  $affected_objects objects IDs which affect this notification
+ *                                  should be array in format: object_type => object ID (array or integer)
+ * @return mixed                    throws an Exception on error or returns true on success
  */
-function notification( $trigger = null, $tags = array() ) {
+function notification( $trigger = null, $tags = array(), $affected_objects = array() ) {
 
 	if ( empty( $trigger ) ) {
 		throw new \Exception( 'Define trigger slug' );
 	}
 
 	try {
-		Triggers::get()->notify( $trigger, $tags );
+		Triggers::get()->notify( $trigger, $tags, $affected_objects );
 		return true;
 	} catch ( \Exception $e ) {
 		Notifications::get()->handle_error( $e );

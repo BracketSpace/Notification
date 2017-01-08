@@ -9,6 +9,7 @@ namespace Notification\Notification;
 
 use \Notification\Singleton;
 use \Notification\Notification;
+use \Notification\Notifications;
 use \Notification\Notification\Trigger;
 
 class Triggers extends Singleton {
@@ -44,7 +45,8 @@ class Triggers extends Singleton {
 		$defaults = array(
 			'tags'     => array(),
 			'group'    => __( 'Other', 'notification' ),
-			'template' => ''
+			'template' => '',
+			'disable'  => array()
 		);
 
 		$trigger_args = wp_parse_args( $trigger, $defaults );
@@ -81,10 +83,12 @@ class Triggers extends Singleton {
 
 	/**
 	 * Send notification for defined trigger with populated tags
-	 * @param  array $trigger trigger slug
+	 * @param  string $trigger          trigger slug
+	 * @param  array  $tags             merge tags array
+	 * @param  array  $affected_objects objects IDs which affect this notification
 	 * @return $this
 	 */
-	public function notify( $trigger, $tags ) {
+	public function notify( $trigger, $tags, $affected_objects ) {
 
 		if ( isset( $this->triggers[ $trigger ] ) ) {
 
@@ -95,6 +99,11 @@ class Triggers extends Singleton {
 				throw new \Exception( 'You must pass all defined merge tags to the trigger' );
 
 			} else {
+
+				// Check if trigger has been disabled
+				if ( Notifications::get()->is_trigger_disabled( $trigger, $affected_objects ) ) {
+					return $this;
+				}
 
 				$validation = $this->triggers[ $trigger ]->validate_tags( $tags );
 
@@ -206,6 +215,85 @@ class Triggers extends Singleton {
 		}
 
 		return $this->triggers[ $trigger ]->get_template();
+
+	}
+
+	/**
+	 * Get trigger disable objects
+	 * @param  string $trigger trigger slug
+	 * @return mixed           throws an Exception on error or string template on success
+	 */
+	public function get_trigger_disable_objects( $trigger ) {
+
+		if ( ! isset( $this->triggers[ $trigger ] ) ) {
+			throw new \Exception( sprintf( __( 'No "%s" trigger defined', 'notification' ), $trigger ) );
+		}
+
+		return $this->triggers[ $trigger ]->get_disable_objects();
+
+	}
+
+	/**
+	 * Render Chosen select with all triggers listed
+	 * @param  mixed   $val          select current value
+	 * @param  string  $name         select name
+	 * @param  boolean $multiple     determine if select should be multiple, default false
+	 * @param  string  $disable_type type of object which allows trigger to be disabled, default all triggers are listed
+	 * @return void
+	 */
+	public function render_triggers_select( $val = '', $name = 'notification_trigger', $multiple = false, $disable_type = '' ) {
+
+		if ( $multiple ) {
+			$multiple = 'multiple="multiple"';
+		}
+
+		echo '<select id="' . $name . '_select" name="' . $name . '" class="chosen-select" data-placeholder="' . __( 'Select trigger', 'notification' ) . '" ' . $multiple . '>';
+
+			echo '<option value=""></option>';
+
+			foreach ( $this->get_array() as $group => $subtriggers ) {
+
+				if ( ! is_array( $subtriggers ) ) {
+
+					if ( ! empty( $disable_type ) && ! in_array( $disable_type, $this->get_trigger_disable_objects( $group ) ) ) {
+						continue;
+					}
+
+					if ( is_array( $val ) ) {
+						$selected = in_array( $group, $val ) ? 'selected="selected"' : '';
+					} else {
+						$selected = selected( $val, $group, false );
+					}
+
+					echo '<option value="' . $group . '" ' . $selected . '>' . $subtriggers . '</option>';
+
+				} else {
+
+					echo '<optgroup label="' . $group . '">';
+
+					foreach ( $subtriggers as $slug => $name ) {
+
+						if ( ! empty( $disable_type ) && ! in_array( $disable_type, $this->get_trigger_disable_objects( $slug ) ) ) {
+							continue;
+						}
+
+						if ( is_array( $val ) ) {
+							$selected = in_array( $slug, $val ) ? 'selected="selected"' : '';
+						} else {
+							$selected = selected( $val, $slug, false );
+						}
+
+						echo '<option value="' . $slug . '" ' . $selected . '>' . $name . '</option>';
+
+					}
+
+					echo '</optgroup>';
+
+				}
+
+			}
+
+		echo '</select>';
 
 	}
 

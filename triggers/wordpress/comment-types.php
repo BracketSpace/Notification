@@ -108,6 +108,7 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 				'name'     => sprintf( __( '%s added', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
 				'group'    => sprintf( __( 'WordPress : %s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
 				'template' => call_user_func( __NAMESPACE__ . '\\added_template', $comment_type ),
+				'disable'  => array( 'post', 'comment', 'user' ),
 				'tags'     => array(
 					'ID'               => 'integer',
 					'post_ID'          => 'integer',
@@ -150,6 +151,10 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 						'comment_content'  => $comment->comment_content,
 						'comment_approved' => $comment->comment_approved,
 						'comment_type'     => $comment->comment_type,
+					), array(
+						'post'    => $post->ID,
+						'comment' => $ID,
+						'user'    => $comment->user_id
 					) );
 
 				}, 10, 2 );
@@ -167,6 +172,7 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 				'name'     => sprintf( __( '%s approved', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
 				'group'    => sprintf( __( 'WordPress : %s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
 				'template' => call_user_func( __NAMESPACE__ . '\\approved_template', $comment_type ),
+				'disable'  => array( 'post', 'comment', 'user' ),
 				'tags'     => array(
 					'ID'               => 'integer',
 					'post_ID'          => 'integer',
@@ -186,7 +192,9 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 
 			if ( is_notification_defined( 'wordpress/' . $comment_type . '/approved' ) ) {
 
-				add_action( 'comment_approved_' . $comment_type, function( $ID, $comment ) use ( $comment_type ) {
+				$action_type = $comment_type == 'comment' ? '' : $comment_type;
+
+				add_action( 'comment_approved_' . $action_type, function( $ID, $comment ) use ( $comment_type ) {
 
 					notification( 'wordpress/' . $comment_type . '/approved', array(
 						'ID'               => $ID,
@@ -202,6 +210,10 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 						'comment_content'  => $comment->comment_content,
 						'comment_approved' => $comment->comment_approved,
 						'comment_type'     => $comment->comment_type,
+					), array(
+						'post'    => $post->ID,
+						'comment' => $ID,
+						'user'    => $comment->user_id
 					) );
 
 				}, 10, 2 );
@@ -219,6 +231,7 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 				'name'     => sprintf( __( '%s unapproved', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
 				'group'    => sprintf( __( 'WordPress : %s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
 				'template' => call_user_func( __NAMESPACE__ . '\\unapproved_template', $comment_type ),
+				'disable'  => array( 'post', 'comment', 'user' ),
 				'tags'     => array(
 					'ID'               => 'integer',
 					'post_ID'          => 'integer',
@@ -238,7 +251,9 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 
 			if ( is_notification_defined( 'wordpress/' . $comment_type . '/unapproved' ) ) {
 
-				add_action( 'comment_unapproved_' . $comment_type, function( $ID, $comment ) use ( $comment_type ) {
+				$action_type = $comment_type == 'comment' ? '' : $comment_type;
+
+				add_action( 'comment_unapproved_' . $action_type, function( $ID, $comment ) use ( $comment_type ) {
 
 					notification( 'wordpress/' . $comment_type . '/unapproved', array(
 						'ID'               => $ID,
@@ -254,6 +269,10 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 						'comment_content'  => $comment->comment_content,
 						'comment_approved' => $comment->comment_approved,
 						'comment_type'     => $comment->comment_type,
+					), array(
+						'post'    => $post->ID,
+						'comment' => $ID,
+						'user'    => $comment->user_id
 					) );
 
 				}, 10, 2 );
@@ -271,6 +290,7 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 				'name'     => sprintf( __( '%s trashed', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
 				'group'    => sprintf( __( 'WordPress : %s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
 				'template' => call_user_func( __NAMESPACE__ . '\\trashed_template', $comment_type ),
+				'disable'  => array( 'post', 'comment', 'user' ),
 				'tags'     => array(
 					'ID'               => 'integer',
 					'post_ID'          => 'integer',
@@ -290,7 +310,9 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 
 			if ( is_notification_defined( 'wordpress/' . $comment_type . '/trashed' ) ) {
 
-				add_action( 'comment_trashed_' . $comment_type, function( $ID, $comment ) use ( $comment_type ) {
+				$action_type = $comment_type == 'comment' ? '' : $comment_type;
+
+				add_action( 'comment_trashed_' . $action_type, function( $ID, $comment ) use ( $comment_type ) {
 
 					notification( 'wordpress/' . $comment_type . '/trashed', array(
 						'ID'               => $ID,
@@ -306,6 +328,10 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 						'comment_content'  => $comment->comment_content,
 						'comment_approved' => $comment->comment_approved,
 						'comment_type'     => $comment->comment_type,
+					), array(
+						'post'    => $post->ID,
+						'comment' => $ID,
+						'user'    => $comment->user_id
 					) );
 
 				}, 10, 2 );
@@ -323,6 +349,7 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 				'name'     => sprintf( __( '%s marked as spam', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
 				'group'    => sprintf( __( 'WordPress : %s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ),
 				'template' => call_user_func( __NAMESPACE__ . '\\spam_template', $comment_type ),
+				'disable'  => array( 'post', 'comment', 'user' ),
 				'tags'     => array(
 					'ID'               => 'integer',
 					'post_ID'          => 'integer',
@@ -342,7 +369,9 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 
 			if ( is_notification_defined( 'wordpress/' . $comment_type . '/spam' ) ) {
 
-				add_action( 'comment_spam_' . function( $ID, $comment ) use ( $comment_type ) {
+				$action_type = $comment_type == 'comment' ? '' : $comment_type;
+
+				add_action( 'comment_spam_' . $action_type, function( $ID, $comment ) use ( $comment_type ) {
 
 					notification( 'wordpress/' . $comment_type . '/spam', array(
 						'ID'               => $ID,
@@ -358,6 +387,10 @@ if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! 
 						'comment_content'  => $comment->comment_content,
 						'comment_approved' => $comment->comment_approved,
 						'comment_type'     => $comment->comment_type,
+					), array(
+						'post'    => $post->ID,
+						'comment' => $ID,
+						'user'    => $comment->user_id
 					) );
 
 				}, 10, 2 );

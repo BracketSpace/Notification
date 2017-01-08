@@ -41,17 +41,25 @@ class Trigger {
 	private $template;
 
 	/**
+	 * Slug of objects which can disable trigger
+	 * Either post, user or comment
+	 * @var array
+	 */
+	private $disable_objects;
+
+	/**
 	 * Class constructor
 	 * @param  array $trigger trigger parameters
 	 * @return void
 	 */
 	public function __construct( $trigger ) {
 
-		$this->slug     = $trigger['slug'];
-		$this->name     = $trigger['name'];
-		$this->tags     = $trigger['tags'];
-		$this->group    = $trigger['group'];
-		$this->template = $trigger['template'];
+		$this->slug            = $trigger['slug'];
+		$this->name            = $trigger['name'];
+		$this->tags            = $trigger['tags'];
+		$this->group           = $trigger['group'];
+		$this->template        = $trigger['template'];
+		$this->disable_objects = $trigger['disable'];
 
 	}
 
@@ -171,6 +179,16 @@ class Trigger {
 	public function get_template() {
 
 		return apply_filters( 'notification/trigger/template', $this->template, $this->slug , $this->tags );
+
+	}
+
+	/**
+	 * Return disable objects for trigger
+	 * @return array object slugs
+	 */
+	public function get_disable_objects() {
+
+		return apply_filters( 'notification/trigger/disable_objects', $this->disable_objects, $this->slug , $this->tags );
 
 	}
 

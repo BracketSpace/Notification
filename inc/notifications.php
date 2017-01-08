@@ -6,6 +6,7 @@
 namespace Notification;
 
 use Notification\Singleton;
+use Notification\Settings;
 use \Notification\Notification\Triggers;
 use \Notification\Notification\Recipients;
 
@@ -95,6 +96,7 @@ class Notifications extends Singleton {
 
 
 	}
+
 	/**
 	 * Save the recipients in post meta (key: _recipients)
 	 * @param  integer $post_id current post ID
@@ -442,6 +444,50 @@ class Notifications extends Singleton {
 			wp_die( $html );
 
 		}
+
+	}
+
+	/**
+	 * Check if specific trigger is disabled for provided objects
+	 * @param  string  $trigger trigger slug
+	 * @param  array   $objects array witch object types and corresponding IDs
+	 * @return boolean
+	 */
+	public function is_trigger_disabled( $trigger, $objects ) {
+
+		// Check if some Notifications should be excluded
+		$settings = Settings::get()->get_settings();
+
+		if ( ! $settings['general']['additional']['disable_post_notification'] == 'true' ) {
+			return false;
+		}
+
+		foreach ( $objects as $type => $ID ) {
+
+			if ( is_array( $ID ) ) {
+
+				foreach ( $ID as $object_id ) {
+					$disabled_triggers = (array) get_metadata( $type, $object_id, '_notification_disable', true );
+
+					if ( in_array( $trigger, $disabled_triggers ) ) {
+						return true;
+					}
+
+				}
+
+			} else {
+
+				$disabled_triggers = (array) get_metadata( $type, $ID, '_notification_disable', true );
+
+				if ( in_array( $trigger, $disabled_triggers ) ) {
+					return true;
+				}
+
+			}
+
+		}
+
+		return false;
 
 	}
 
