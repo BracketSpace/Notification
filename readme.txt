@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, email, mail
 Requires at least: 3.6
 Tested up to: 4.7
-Stable tag: 2.2
+Stable tag: 2.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -107,7 +107,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 
 == Changelog ==
 
-= Next release =
+= 2.3 =
 * [Changed] Removed unused default post controls
 * [Changed] Better error handling, plugin will not die now unless WP_DEBUG is active
 * [Changed] Role class parse_value() method now must define 3rd parameter $human_readable
