@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, email, mail
 Requires at least: 3.6
 Tested up to: 4.7
-Stable tag: 2.3
+Stable tag: 2.3.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -15,6 +15,8 @@ Customisable email notifications with developer friendly API for custom triggers
 This plugin allows you to send custom email notifications about various events in WordPress. It also comes with a simple API by which you can add literally **any** trigger action.
 
 In messages you can use defined merge tags which will be later changed to content applicable for trigger.
+
+There is also option to disable the notifications for specific post, comment or user in case you don't want to send notification for a secret article.
 
 > [See Notification homepage](https://notification.underdev.it) and check Developer docs
 
@@ -106,6 +108,9 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 3. Settings
 
 == Changelog ==
+
+= 2.3.1 =
+* [Fixed] Bug with not activated "Disable" option
 
 = 2.3 =
 * [Changed] Removed unused default post controls
