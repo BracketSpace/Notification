@@ -65,7 +65,9 @@ class Settings extends Singleton {
 
 			echo '<h1>' . __( 'Settings', 'notification' ) . '</h1>';
 
-			if ( empty( $this->get_sections() ) ) {
+			$sections = $this->get_sections();
+
+			if ( empty( $sections ) ) {
 				echo '<p>' . __( 'No Settings available at the moment', 'notification' ) . '</p>';
 				return;
 			}
@@ -105,8 +107,10 @@ class Settings extends Singleton {
 
 							echo '<h3>' . esc_attr( $group->name() ) . '</h3>';
 
-							if ( ! empty( $group->description() ) ) {
-								echo '<p class="description">' . $group->description() . '</p>';
+							$description = $group->description();
+
+							if ( ! empty( $description ) ) {
+								echo '<p class="description">' . $description . '</p>';
 							}
 
 							echo '<table class="form-table">';
@@ -117,8 +121,9 @@ class Settings extends Singleton {
 										echo '<th><label for="' . esc_attr( $field->input_id() ) . '">' . esc_attr( $field->name() ) . '</label></th>';
 										echo '<td>';
 											$field->render();
-											if ( ! empty( $field->description() ) ) {
-												echo '<p>' . $field->description() . '</p>';
+											$field_description = $field->description();
+											if ( ! empty( $field_description ) ) {
+												echo '<p>' . $field_description . '</p>';
 											}
 										echo '</td>';
 									echo '</tr>';

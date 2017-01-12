@@ -109,6 +109,9 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 
 == Changelog ==
 
+= Next release =
+* [Fixed] Bug with "Can't use method return value in write context" in Settings class, thanks to @rozv
+
 = 2.3.1 =
 * [Fixed] Bug with not activated "Disable" option
 
