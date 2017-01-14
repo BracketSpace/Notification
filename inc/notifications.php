@@ -32,6 +32,9 @@ class Notifications extends Singleton {
 		add_action( 'wp_ajax_notification_get_merge_tags', array( $this, 'ajax_get_merge_tags' ) );
 		add_action( 'wp_ajax_notification_get_template', array( $this, 'ajax_get_template' ) );
 
+		// Fix for double http(s):// in the rendered links (TinyMCE is adding protocol to everything what is not looking like a url)
+		add_filter( 'notification/notify/message', array( $this, 'fix_double_protocol' ) );
+
 	}
 
 	/**
@@ -527,6 +530,25 @@ class Notifications extends Singleton {
 		}
 
 		return $disabled;
+
+	}
+
+	/**
+	 * Check for double http(s) links and replace them
+	 * @param  string $message email message
+	 * @return string
+	 */
+	public function fix_double_protocol( $message ) {
+
+		/**
+		 * We have to filter both protocols because triggers can render external urls
+		 * which are SSL enabled, even though current host is loaded via HTTP
+		 */
+
+		$message = str_replace( 'https://https://', 'https://', $message );
+		$message = str_replace( 'http://http://', 'http://', $message );
+
+		return $message;
 
 	}
 
