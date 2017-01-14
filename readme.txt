@@ -111,6 +111,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 
 = Next release =
 * [Fixed] Bug with "Can't use method return value in write context" in Settings class, thanks to @rozv
+* [Fixed] Settings priorities, now every CPT registered not later than init 15 will be catched by the plugin, thanks to @rozv
 
 = 2.3.1 =
 * [Fixed] Bug with not activated "Disable" option

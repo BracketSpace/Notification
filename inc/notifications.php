@@ -20,7 +20,7 @@ class Notifications extends Singleton {
 
 	public function __construct() {
 
-		add_action( 'init', array( $this, 'register_cpt' ), 20 );
+		add_action( 'init', array( $this, 'register_cpt' ), 10 );
 
 		add_action( 'save_post', array( $this, 'save_trigger' ) );
 		add_action( 'save_post', array( $this, 'save_recipients' ) );
