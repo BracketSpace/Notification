@@ -182,9 +182,9 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 
 			if ( is_notification_defined( 'wordpress/' . $post_type . '/updated' ) ) {
 
-				add_action( 'publish_' . $post_type , function( $ID, $post ) use ( $post_type ) {
+				add_action( 'post_updated', function( $ID, $post, $post_before ) use ( $post_type ) {
 
-					if ( get_post_type( $post ) != $post_type ) {
+					if ( get_post_type( $post ) != $post_type || empty( $post->post_name ) || $post_before->post_status != 'publish' ) {
 						return;
 					}
 
@@ -208,7 +208,7 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 						)
 					) );
 
-				}, 10, 2 );
+				}, 10, 3 );
 
 			}
 

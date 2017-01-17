@@ -114,6 +114,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 * [Fixed] Settings priorities, now every CPT registered not later than init 15 will be catched by the plugin, thanks to @rozv
 * [Fixed] Double protocol in links added via TinyMCE insert link feature, thanks to Jozsef
 * [Added] Post type triggers can be disabled for an user
+* [Changed] Post updated notification is now triggered only if the post has been published before, suggested by nepali65
 
 = 2.3.1 =
 * [Fixed] Bug with not activated "Disable" option
