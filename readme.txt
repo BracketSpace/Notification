@@ -113,6 +113,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 * [Fixed] Bug with "Can't use method return value in write context" in Settings class, thanks to @rozv
 * [Fixed] Settings priorities, now every CPT registered not later than init 15 will be catched by the plugin, thanks to @rozv
 * [Fixed] Double protocol in links added via TinyMCE insert link feature, thanks to Jozsef
+* [Added] Post type triggers can be disabled for an user
 
 = 2.3.1 =
 * [Fixed] Bug with not activated "Disable" option

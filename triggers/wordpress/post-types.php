@@ -97,7 +97,7 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 				'name'     => sprintf( __( '%s published', 'notification' ), $post_type_name ),
 				'group'    => ucfirst( $post_type ),
 				'template' => call_user_func( __NAMESPACE__ . '\\published_template', $post_type ),
-				'disable'  => array( 'post' ),
+				'disable'  => array( 'post', 'user' ),
 				'tags'     => array(
 					'ID'                    => 'integer',
 					'permalink'             => 'url',
@@ -142,7 +142,11 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 						'author_email'          => get_the_author_meta( 'user_email', $post->post_author ),
 						'author_login'          => get_the_author_meta( 'user_login', $post->post_author )
 					), array(
-						'post' => $post->ID
+						'post' => $post->ID,
+						'user' => array(
+							$post->post_author,
+							get_current_user_id()
+						)
 					) );
 
 				}, 10, 3 );
@@ -160,7 +164,7 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 				'name'     => sprintf( __( '%s updated', 'notification' ), $post_type_name ),
 				'group'    => ucfirst( $post_type ),
 				'template' => call_user_func( __NAMESPACE__ . '\\updated_template', $post_type ),
-				'disable'  => array( 'post' ),
+				'disable'  => array( 'post', 'user' ),
 				'tags'     => array(
 					'ID'                    => 'integer',
 					'permalink'             => 'url',
@@ -197,7 +201,11 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 						'author_email'          => get_the_author_meta( 'user_email', $post->post_author ),
 						'author_login'          => get_the_author_meta( 'user_login', $post->post_author )
 					), array(
-						'post' => $post->ID
+						'post' => $post->ID,
+						'user' => array(
+							$post->post_author,
+							get_current_user_id()
+						)
 					) );
 
 				}, 10, 2 );
@@ -215,7 +223,7 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 				'name'     => sprintf( __( '%s sent for review', 'notification' ), $post_type_name ),
 				'group'    => ucfirst( $post_type ),
 				'template' => call_user_func( __NAMESPACE__ . '\\pending_review_template', $post_type ),
-				'disable'  => array( 'post' ),
+				'disable'  => array( 'post', 'user' ),
 				'tags'     => array(
 					'ID'                    => 'integer',
 					'permalink'             => 'url',
@@ -252,7 +260,11 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 						'author_email'          => get_the_author_meta( 'user_email', $post->post_author ),
 						'author_login'          => get_the_author_meta( 'user_login', $post->post_author )
 					), array(
-						'post' => $post->ID
+						'post' => $post->ID,
+						'user' => array(
+							$post->post_author,
+							get_current_user_id()
+						)
 					) );
 
 				}, 10, 2 );
@@ -270,7 +282,7 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 				'name'     => sprintf( __( '%s moved to trash', 'notification' ), $post_type_name ),
 				'group'    => ucfirst( $post_type ),
 				'template' => call_user_func( __NAMESPACE__ . '\\trashed_template', $post_type ),
-				'disable'  => array( 'post' ),
+				'disable'  => array( 'post', 'user' ),
 				'tags'     => array(
 					'ID'                    => 'integer',
 					'permalink'             => 'url',
@@ -307,7 +319,11 @@ if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! emp
 						'author_email'          => get_the_author_meta( 'user_email', $post->post_author ),
 						'author_login'          => get_the_author_meta( 'user_login', $post->post_author )
 					), array(
-						'post' => $post->ID
+						'post' => $post->ID,
+						'user' => array(
+							$post->post_author,
+							get_current_user_id()
+						)
 					) );
 
 				}, 10, 2 );
