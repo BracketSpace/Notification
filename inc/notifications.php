@@ -184,7 +184,7 @@ class Notifications extends Singleton {
 
 			$allowed_types = apply_filters( 'notification/notify/subject/allowed_tags_type', array(
 				'integer', 'float', 'string'
-			), $this->trigger, $this->tags );
+			), $used_trigger, $trigger_tag_types );
 
 			foreach ( $used_merge_tags as $id => $tag_slug ) {
 
@@ -224,6 +224,11 @@ class Notifications extends Singleton {
 
 				if ( ! isset( $dups[ $recipient['group'] ] ) ) {
 					$dups[ $recipient['group'] ] = array();
+				}
+
+				// fix for predefined recipients, like Administrator, where field has no value because is disabled
+				if ( ! isset( $recipient['value'] ) ) {
+					$recipient['value'] = $recipient['group'];
 				}
 
 				$dups[ $recipient['group'] ][] = $recipient['value'];
