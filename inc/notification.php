@@ -118,6 +118,11 @@ class Notification {
 
 			foreach ( $recipients as $recipient ) {
 
+				// fix for predefined recipients, like Administrator, where field has no value because is disabled
+				if ( ! isset( $recipient['value'] ) ) {
+					$recipient['value'] = null;
+				}
+
 				$recipient_emails = (array) Recipients::get()->get_recipient( $recipient['group'] )->parse_value( $recipient['value'], $this->tags );
 
 				foreach ( $recipient_emails as $email ) {
