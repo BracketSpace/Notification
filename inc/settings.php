@@ -248,6 +248,16 @@ class Settings extends Singleton {
 				'render'   => array( $corefields, 'checkbox' ),
 				'sanitize' => array( $corefields, 'sanitize_checkbox' ),
 			) )
+			->add_field( array(
+				'name'     => __( 'Media', 'notification' ),
+				'slug'     => 'media',
+				'default'  => 'true',
+				'addons'   => array(
+					'label' => __( 'Enable media triggers', 'notification' )
+				),
+				'render'   => array( $corefields, 'checkbox' ),
+				'sanitize' => array( $corefields, 'sanitize_checkbox' ),
+			) )
 			->description( __( 'This is where you can control all triggers you want to use', 'notification' ) );
 
 		$general->add_group( __( 'Comments', 'notification' ), 'comments' )

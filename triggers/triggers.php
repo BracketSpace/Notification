@@ -18,6 +18,10 @@ if ( apply_filters( 'notification/triggers/default/wordpress', true ) ) :
 		include_once( 'wordpress/comment-types.php' );
 	}
 
+	if ( apply_filters( 'notification/triggers/default/wordpress/media', true ) ) {
+		include_once( 'wordpress/media.php' );
+	}
+
 	if ( apply_filters( 'notification/triggers/default/wordpress/user', true ) ) {
 		include_once( 'wordpress/user.php' );
 	}
