@@ -115,6 +115,20 @@ function notification_admin_initialize() {
 add_action( 'init', 'notification_admin_initialize', 5 );
 
 /**
+ * Initialize plugin on admin side
+ * @return void
+ */
+function notification_upgrade() {
+
+	/**
+	 * Upgrade instance
+	 */
+	Notification\Upgrade::get();
+
+}
+add_action( 'admin_init', 'notification_upgrade', 5 );
+
+/**
  * Do some check on plugin activation
  * @return void
  */
