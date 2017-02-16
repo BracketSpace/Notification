@@ -124,6 +124,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 * [Added] Post type triggers can be disabled for an user
 * [Added] Database Upgrader
 * [Added] User triggers - registered, profile updated, logged in, deleted
+* [Added] Taxonomies merge tags for post types
 * [Changed] Post updated notification is now triggered only if the post has been published before, suggested by nepali65
 * [Changed] Content Type triggers setting has been changed to Enabled triggers
 
