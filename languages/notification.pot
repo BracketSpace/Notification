@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Notification\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2017-01-08 16:14+0100\n"
+"POT-Creation-Date: 2017-02-16 23:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jakub Mikita <jakub@underdev.it>\n"
 "Language-Team: underDEV <hello@underdev.it>\n"
@@ -35,7 +35,7 @@ msgid "Recipients"
 msgstr ""
 
 #: inc/admin.php:112 inc/admin.php:124 inc/admin.php:389
-#: inc/notifications.php:45
+#: inc/notifications.php:48
 msgid "Notification"
 msgstr ""
 
@@ -49,27 +49,27 @@ msgstr ""
 msgid "I already reviewed it"
 msgstr ""
 
-#: inc/admin.php:230 inc/notifications.php:309
+#: inc/admin.php:230 inc/notifications.php:317
 msgid "No Triggers defined yet"
 msgstr ""
 
-#: inc/admin.php:252 inc/notifications.php:349
+#: inc/admin.php:252 inc/notifications.php:357
 msgid "Please select trigger first"
 msgstr ""
 
-#: inc/admin.php:264 inc/notifications.php:361 inc/notifications.php:445
+#: inc/admin.php:264 inc/notifications.php:369 inc/notifications.php:453
 msgid "No merge tags defined for this trigger"
 msgstr ""
 
-#: inc/admin.php:292 inc/notifications.php:385
+#: inc/admin.php:292 inc/notifications.php:393
 msgid "No recipients available"
 msgstr ""
 
-#: inc/admin.php:335 inc/notifications.php:426
+#: inc/admin.php:335 inc/notifications.php:434
 msgid "Add recipient"
 msgstr ""
 
-#: inc/admin.php:355 inc/settings.php:228
+#: inc/admin.php:355 inc/settings.php:233
 msgid "Comment"
 msgstr ""
 
@@ -160,76 +160,76 @@ msgstr ""
 msgid "Select trigger"
 msgstr ""
 
-#: inc/notifications.php:44 inc/notifications.php:55 inc/settings.php:286
+#: inc/notifications.php:47 inc/notifications.php:58 inc/settings.php:311
 msgid "Notifications"
 msgstr ""
 
-#: inc/notifications.php:46
+#: inc/notifications.php:49
 msgctxt "notification"
 msgid "Add New Notification"
 msgstr ""
 
-#: inc/notifications.php:47
+#: inc/notifications.php:50
 msgid "Add New Notification"
 msgstr ""
 
-#: inc/notifications.php:48
+#: inc/notifications.php:51
 msgid "Edit Notification"
 msgstr ""
 
-#: inc/notifications.php:49
+#: inc/notifications.php:52
 msgid "New Notification"
 msgstr ""
 
-#: inc/notifications.php:50
+#: inc/notifications.php:53
 msgid "View Notification"
 msgstr ""
 
-#: inc/notifications.php:51
+#: inc/notifications.php:54
 msgid "Search Notifications"
 msgstr ""
 
-#: inc/notifications.php:52
+#: inc/notifications.php:55
 msgid "No Notifications found"
 msgstr ""
 
-#: inc/notifications.php:53
+#: inc/notifications.php:56
 msgid "No Notifications found in Trash"
 msgstr ""
 
-#: inc/notifications.php:54
+#: inc/notifications.php:57
 msgid "Parent Notification:"
 msgstr ""
 
-#: inc/notifications.php:159
+#: inc/notifications.php:162
 #, php-format
 msgid ""
 "You have some unavailable merge tags for selected trigger in the content: "
 "%s. These will be skipped during rendering."
 msgstr ""
 
-#: inc/notifications.php:196
+#: inc/notifications.php:199
 #, php-format
 msgid ""
 "You have used wrong tags in the message subject: %s. These will be skipped."
 msgstr ""
 
-#: inc/notifications.php:207
+#: inc/notifications.php:210
 msgid ""
 "You are using images in the message content. Please remember these will be "
 "probably filtered by most of the email clients"
 msgstr ""
 
-#: inc/notifications.php:235
+#: inc/notifications.php:243
 msgid "You have empty recipients defined, these will be skipped"
 msgstr ""
 
-#: inc/notifications.php:245
+#: inc/notifications.php:253
 #, php-format
 msgid "%d <code>%s</code> in recipients <code>%s</code> group"
 msgstr ""
 
-#: inc/notifications.php:253
+#: inc/notifications.php:261
 #, php-format
 msgid "You have some duplicated recipients:<br>%s"
 msgstr ""
@@ -238,128 +238,142 @@ msgstr ""
 msgid "Notification settings"
 msgstr ""
 
-#: inc/settings.php:50 inc/settings.php:66 inc/settings.php:296
+#: inc/settings.php:50 inc/settings.php:66 inc/settings.php:321
 msgid "Settings"
 msgstr ""
 
-#: inc/settings.php:69
+#: inc/settings.php:71
 msgid "No Settings available at the moment"
 msgstr ""
 
-#: inc/settings.php:134
+#: inc/settings.php:139
 msgid "Save Settings"
 msgstr ""
 
-#: inc/settings.php:194
+#: inc/settings.php:199
 msgid "General"
 msgstr ""
 
-#: inc/settings.php:206
-msgid "Content Types"
+#: inc/settings.php:211
+msgid "Triggers"
 msgstr ""
 
-#: inc/settings.php:208
+#: inc/settings.php:213
 msgid "Post Types"
 msgstr ""
 
-#: inc/settings.php:216
+#: inc/settings.php:221
 msgid ""
 "For these post types you will be able to define <i>published</i>, "
 "<i>updated</i>, <i>pending moderation</i> etc. notifications"
 msgstr ""
 
-#: inc/settings.php:221
+#: inc/settings.php:226
 msgid "Comment Types"
 msgstr ""
 
-#: inc/settings.php:229
+#: inc/settings.php:234
 msgid "Pingback"
 msgstr ""
 
-#: inc/settings.php:230
+#: inc/settings.php:235
 msgid "Trackback"
 msgstr ""
 
-#: inc/settings.php:236
-msgid ""
-"This is where you can control post types and comments triggers you want to "
-"use"
+#: inc/settings.php:242 recipients/core/user.php:32
+msgid "User"
 msgstr ""
 
-#: inc/settings.php:238
+#: inc/settings.php:246
+msgid "Enable user triggers"
+msgstr ""
+
+#: inc/settings.php:252
+msgid "Media"
+msgstr ""
+
+#: inc/settings.php:256
+msgid "Enable media triggers"
+msgstr ""
+
+#: inc/settings.php:261
+msgid "This is where you can control all triggers you want to use"
+msgstr ""
+
+#: inc/settings.php:263
 msgid "Comments"
 msgstr ""
 
-#: inc/settings.php:240
+#: inc/settings.php:265
 msgid "Akismet"
 msgstr ""
 
-#: inc/settings.php:244
+#: inc/settings.php:269
 msgid ""
 "Do not send notification if comment has been marked as a spam by Akismet"
 msgstr ""
 
-#: inc/settings.php:250
+#: inc/settings.php:275
 msgid "Additional options"
 msgstr ""
 
-#: inc/settings.php:252
+#: inc/settings.php:277
 msgid "Disable Notifications for post"
 msgstr ""
 
-#: inc/settings.php:256
+#: inc/settings.php:281
 msgid "Allow to disable Notifications for specific post"
 msgstr ""
 
-#: inc/settings.php:258
+#: inc/settings.php:283
 msgid "This will be available to set on post edit screen"
 msgstr ""
 
-#: inc/settings.php:262
+#: inc/settings.php:287
 msgid "Disable Notifications for comment"
 msgstr ""
 
-#: inc/settings.php:266
+#: inc/settings.php:291
 msgid "Allow to disable Notifications for specific comment"
 msgstr ""
 
-#: inc/settings.php:268
+#: inc/settings.php:293
 msgid "This will be available to set on comment edit screen"
 msgstr ""
 
-#: inc/settings.php:272
+#: inc/settings.php:297
 msgid "Disable Notifications for user"
 msgstr ""
 
-#: inc/settings.php:276
+#: inc/settings.php:301
 msgid "Allow to disable Notifications for specific user"
 msgstr ""
 
-#: inc/settings.php:278
+#: inc/settings.php:303
 msgid "This will be available to set on user edit screen"
 msgstr ""
 
-#: inc/settings.php:284
+#: inc/settings.php:309
 msgid "Uninstallation"
 msgstr ""
 
-#: inc/settings.php:290
+#: inc/settings.php:315
 msgid "Remove all added notifications"
 msgstr ""
 
-#: inc/settings.php:300
+#: inc/settings.php:325
 msgid "Remove plugin settings"
 msgstr ""
 
-#: inc/settings.php:305
+#: inc/settings.php:330
 msgid "Choose what to remove upon plugin removal"
 msgstr ""
 
-#: inc/settings.php:410
+#: inc/settings.php:435
 msgid "Settings saved"
 msgstr ""
 
-#: notification.php:127
+#: notification.php:141
 msgid ""
 "This plugin requires PHP in version at least 5.3. WordPress itself <a href="
 "\"https://wordpress.org/about/requirements/\" target=\"_blank\">requires at "
@@ -394,17 +408,16 @@ msgid_plural "%s users"
 msgstr[0] ""
 msgstr[1] ""
 
-#: recipients/core/user.php:32
-msgid "User"
-msgstr ""
-
 #: triggers/wordpress/comment-types.php:16
 #: triggers/wordpress/comment-types.php:30
 #: triggers/wordpress/comment-types.php:44
 #: triggers/wordpress/comment-types.php:57
-#: triggers/wordpress/comment-types.php:70 triggers/wordpress/post-types.php:16
-#: triggers/wordpress/post-types.php:30 triggers/wordpress/post-types.php:44
-#: triggers/wordpress/post-types.php:57
+#: triggers/wordpress/comment-types.php:70 triggers/wordpress/media.php:16
+#: triggers/wordpress/media.php:30 triggers/wordpress/media.php:44
+#: triggers/wordpress/post-types.php:26 triggers/wordpress/post-types.php:40
+#: triggers/wordpress/post-types.php:54 triggers/wordpress/post-types.php:67
+#: triggers/wordpress/user.php:16 triggers/wordpress/user.php:27
+#: triggers/wordpress/user.php:38 triggers/wordpress/user.php:49
 msgid "Howdy!"
 msgstr ""
 
@@ -460,54 +473,124 @@ msgstr ""
 msgid "%s marked as spam"
 msgstr ""
 
-#: triggers/wordpress/post-types.php:19
+#: triggers/wordpress/media.php:19
+msgid "{author_name} just added new attachment: {attachment_title}."
+msgstr ""
+
+#: triggers/wordpress/media.php:22 triggers/wordpress/media.php:36
+msgid "You can check it here: {attachment_direct_url}"
+msgstr ""
+
+#: triggers/wordpress/media.php:33
+msgid "{author_name} just updated an attachment: {attachment_title}."
+msgstr ""
+
+#: triggers/wordpress/media.php:47
+msgid "{author_name} just removed the {attachment_title} attachment."
+msgstr ""
+
+#: triggers/wordpress/media.php:80
+msgid "Attachment uploaded"
+msgstr ""
+
+#: triggers/wordpress/media.php:81 triggers/wordpress/media.php:133
+#: triggers/wordpress/media.php:193
+msgid "WordPress : Attachment"
+msgstr ""
+
+#: triggers/wordpress/media.php:132
+msgid "Attachment updated"
+msgstr ""
+
+#: triggers/wordpress/media.php:192
+msgid "Attachment deleted"
+msgstr ""
+
+#: triggers/wordpress/post-types.php:29
 #, php-format
 msgid "{author_name} just published new %1$s: {%1$s_title}"
 msgstr ""
 
-#: triggers/wordpress/post-types.php:22 triggers/wordpress/post-types.php:36
+#: triggers/wordpress/post-types.php:32 triggers/wordpress/post-types.php:46
 msgid "You can read it here: {permalink}"
 msgstr ""
 
-#: triggers/wordpress/post-types.php:33
+#: triggers/wordpress/post-types.php:43
 #, php-format
 msgid "{author_name} just updated %1$s: {%1$s_title}"
 msgstr ""
 
-#: triggers/wordpress/post-types.php:47
+#: triggers/wordpress/post-types.php:57
 #, php-format
 msgid "{author_name} just send his brand new %1$s for review: {%1$s_title}"
 msgstr ""
 
-#: triggers/wordpress/post-types.php:49
+#: triggers/wordpress/post-types.php:59
 msgid "Review now"
 msgstr ""
 
-#: triggers/wordpress/post-types.php:60
+#: triggers/wordpress/post-types.php:70
 #, php-format
 msgid "{author_name} just moved %1$s: {%1$s_title} to the trash."
 msgstr ""
 
-#: triggers/wordpress/post-types.php:62
+#: triggers/wordpress/post-types.php:72
 msgid "View trash"
 msgstr ""
 
-#: triggers/wordpress/post-types.php:97
+#: triggers/wordpress/post-types.php:127
 #, php-format
 msgid "%s published"
 msgstr ""
 
-#: triggers/wordpress/post-types.php:160
+#: triggers/wordpress/post-types.php:206
 #, php-format
 msgid "%s updated"
 msgstr ""
 
-#: triggers/wordpress/post-types.php:215
+#: triggers/wordpress/post-types.php:277
 #, php-format
 msgid "%s sent for review"
 msgstr ""
 
-#: triggers/wordpress/post-types.php:270
+#: triggers/wordpress/post-types.php:348
 #, php-format
 msgid "%s moved to trash"
+msgstr ""
+
+#: triggers/wordpress/user.php:19
+msgid "New user {user_login} <{user_email}> just registered on your site."
+msgstr ""
+
+#: triggers/wordpress/user.php:30
+msgid "User {user_login} <{user_email}> just updated his profile."
+msgstr ""
+
+#: triggers/wordpress/user.php:41
+msgid "User {user_login} <{user_email}> just logged in."
+msgstr ""
+
+#: triggers/wordpress/user.php:52
+msgid "User {user_login} <{user_email}> account has been deleted."
+msgstr ""
+
+#: triggers/wordpress/user.php:73
+msgid "User registered"
+msgstr ""
+
+#: triggers/wordpress/user.php:74 triggers/wordpress/user.php:114
+#: triggers/wordpress/user.php:162 triggers/wordpress/user.php:211
+msgid "WordPress : User"
+msgstr ""
+
+#: triggers/wordpress/user.php:113
+msgid "User profile updated"
+msgstr ""
+
+#: triggers/wordpress/user.php:161
+msgid "User logged in"
+msgstr ""
+
+#: triggers/wordpress/user.php:210
+msgid "User deleted"
 msgstr ""
