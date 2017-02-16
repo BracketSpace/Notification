@@ -5,7 +5,7 @@ Description: Send email notifications about various events in WordPress. You can
 Plugin URI: https://notification.underdev.it
 Author: underDEV
 Author URI: https://underdev.it
-Version: 2.3.1
+Version: 2.4
 License: GPL3
 Text Domain: notification
 Domain Path: /languages
@@ -113,6 +113,20 @@ function notification_admin_initialize() {
 
 }
 add_action( 'init', 'notification_admin_initialize', 5 );
+
+/**
+ * Initialize plugin on admin side
+ * @return void
+ */
+function notification_upgrade() {
+
+	/**
+	 * Upgrade instance
+	 */
+	Notification\Upgrade::get();
+
+}
+add_action( 'admin_init', 'notification_upgrade', 5 );
 
 /**
  * Do some check on plugin activation

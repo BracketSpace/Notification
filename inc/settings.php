@@ -27,10 +27,10 @@ class Settings extends Singleton {
 
 		add_action( 'admin_menu', array( $this, 'register_settings_page' ) );
 
-		add_action( 'init', array( $this, 'register_settings' ), 10 );
+		add_action( 'init', array( $this, 'register_settings' ), 15 );
 
 		// settings autoload on admin side
-		add_action( 'admin_init', array( $this, 'get_settings' ), 20 );
+		add_action( 'admin_init', array( $this, 'get_settings' ), 10 );
 
 		add_action( 'admin_post_save_notification_settings', array( $this, 'save_settings' ) );
 
@@ -65,7 +65,9 @@ class Settings extends Singleton {
 
 			echo '<h1>' . __( 'Settings', 'notification' ) . '</h1>';
 
-			if ( empty( $this->get_sections() ) ) {
+			$sections = $this->get_sections();
+
+			if ( empty( $sections ) ) {
 				echo '<p>' . __( 'No Settings available at the moment', 'notification' ) . '</p>';
 				return;
 			}
@@ -105,8 +107,10 @@ class Settings extends Singleton {
 
 							echo '<h3>' . esc_attr( $group->name() ) . '</h3>';
 
-							if ( ! empty( $group->description() ) ) {
-								echo '<p class="description">' . $group->description() . '</p>';
+							$description = $group->description();
+
+							if ( ! empty( $description ) ) {
+								echo '<p class="description">' . $description . '</p>';
 							}
 
 							echo '<table class="form-table">';
@@ -117,8 +121,9 @@ class Settings extends Singleton {
 										echo '<th><label for="' . esc_attr( $field->input_id() ) . '">' . esc_attr( $field->name() ) . '</label></th>';
 										echo '<td>';
 											$field->render();
-											if ( ! empty( $field->description() ) ) {
-												echo '<p>' . $field->description() . '</p>';
+											$field_description = $field->description();
+											if ( ! empty( $field_description ) ) {
+												echo '<p>' . $field_description . '</p>';
 											}
 										echo '</td>';
 									echo '</tr>';
@@ -203,7 +208,7 @@ class Settings extends Singleton {
 			$post_types[ $post_type->name ] = $post_type->labels->name;
 		}
 
-		$general->add_group( __( 'Content Types', 'notification' ), 'post_types_triggers' )
+		$general->add_group( __( 'Triggers', 'notification' ), 'enabled_triggers' )
 			->add_field( array(
 				'name'        => __( 'Post Types', 'notification' ),
 				'slug'        => 'post_types',
@@ -233,7 +238,27 @@ class Settings extends Singleton {
 				'render'      => array( $corefields, 'select' ),
 				'sanitize'    => array( $corefields, 'sanitize_select' ),
 			) )
-			->description( __( 'This is where you can control post types and comments triggers you want to use', 'notification' ) );
+			->add_field( array(
+				'name'     => __( 'User', 'notification' ),
+				'slug'     => 'user',
+				'default'  => 'true',
+				'addons'   => array(
+					'label' => __( 'Enable user triggers', 'notification' )
+				),
+				'render'   => array( $corefields, 'checkbox' ),
+				'sanitize' => array( $corefields, 'sanitize_checkbox' ),
+			) )
+			->add_field( array(
+				'name'     => __( 'Media', 'notification' ),
+				'slug'     => 'media',
+				'default'  => 'true',
+				'addons'   => array(
+					'label' => __( 'Enable media triggers', 'notification' )
+				),
+				'render'   => array( $corefields, 'checkbox' ),
+				'sanitize' => array( $corefields, 'sanitize_checkbox' ),
+			) )
+			->description( __( 'This is where you can control all triggers you want to use', 'notification' ) );
 
 		$general->add_group( __( 'Comments', 'notification' ), 'comments' )
 			->add_field( array(

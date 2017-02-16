@@ -20,7 +20,7 @@ class Notifications extends Singleton {
 
 	public function __construct() {
 
-		add_action( 'init', array( $this, 'register_cpt' ), 20 );
+		add_action( 'init', array( $this, 'register_cpt' ), 10 );
 
 		add_action( 'save_post', array( $this, 'save_trigger' ) );
 		add_action( 'save_post', array( $this, 'save_recipients' ) );
@@ -31,6 +31,9 @@ class Notifications extends Singleton {
 
 		add_action( 'wp_ajax_notification_get_merge_tags', array( $this, 'ajax_get_merge_tags' ) );
 		add_action( 'wp_ajax_notification_get_template', array( $this, 'ajax_get_template' ) );
+
+		// Fix for double http(s):// in the rendered links (TinyMCE is adding protocol to everything what is not looking like a url)
+		add_filter( 'notification/notify/message', array( $this, 'fix_double_protocol' ) );
 
 	}
 
@@ -181,7 +184,7 @@ class Notifications extends Singleton {
 
 			$allowed_types = apply_filters( 'notification/notify/subject/allowed_tags_type', array(
 				'integer', 'float', 'string'
-			), $this->trigger, $this->tags );
+			), $used_trigger, $trigger_tag_types );
 
 			foreach ( $used_merge_tags as $id => $tag_slug ) {
 
@@ -221,6 +224,11 @@ class Notifications extends Singleton {
 
 				if ( ! isset( $dups[ $recipient['group'] ] ) ) {
 					$dups[ $recipient['group'] ] = array();
+				}
+
+				// fix for predefined recipients, like Administrator, where field has no value because is disabled
+				if ( ! isset( $recipient['value'] ) ) {
+					$recipient['value'] = $recipient['group'];
 				}
 
 				$dups[ $recipient['group'] ][] = $recipient['value'];
@@ -527,6 +535,25 @@ class Notifications extends Singleton {
 		}
 
 		return $disabled;
+
+	}
+
+	/**
+	 * Check for double http(s) links and replace them
+	 * @param  string $message email message
+	 * @return string
+	 */
+	public function fix_double_protocol( $message ) {
+
+		/**
+		 * We have to filter both protocols because triggers can render external urls
+		 * which are SSL enabled, even though current host is loaded via HTTP
+		 */
+
+		$message = str_replace( 'https://https://', 'https://', $message );
+		$message = str_replace( 'http://http://', 'http://', $message );
+
+		return $message;
 
 	}
 

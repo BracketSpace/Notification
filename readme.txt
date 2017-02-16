@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, email, mail
 Requires at least: 3.6
 Tested up to: 4.7
-Stable tag: 2.3.1
+Stable tag: 2.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -50,11 +50,20 @@ Comment / Pingback / Trackback:
 * Comment marked as spam notification
 * Comment moved to trash notification
 
-More to come:
+User:
 
-* User triggers
-* Media triggers
-* Feel free to suggest new core triggers in support forum
+* User registered
+* User profile updated
+* User logged in
+* User deleted
+
+Media:
+
+* Media added
+* Media updated
+* Media deleted
+
+Feel free to suggest new core triggers in support forum
 
 = Useful links =
 
@@ -108,6 +117,20 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 3. Settings
 
 == Changelog ==
+
+= 2.4 =
+* [Fixed] Bug with "Can't use method return value in write context" in Settings class, thanks to @rozv
+* [Fixed] Settings priorities, now every CPT registered not later than init 15 will be catched by the plugin, thanks to @rozv
+* [Fixed] Double protocol in links added via TinyMCE insert link feature, thanks to Jozsef
+* [Fixed] Notices in Notification validation method
+* [Fixed] Empty Recipient value, ie. Administrator
+* [Added] Post type triggers can be disabled for an user
+* [Added] Database Upgrader
+* [Added] User triggers - registered, profile updated, logged in, deleted
+* [Added] Taxonomies merge tags for post types
+* [Added] Media triggers - added, updated, deleted
+* [Changed] Post updated notification is now triggered only if the post has been published before, suggested by nepali65
+* [Changed] Content Type triggers setting has been changed to Enabled triggers
 
 = 2.3.1 =
 * [Fixed] Bug with not activated "Disable" option
