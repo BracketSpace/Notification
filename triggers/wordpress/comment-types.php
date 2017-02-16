@@ -84,9 +84,9 @@ function spam_template( $comment_type = 'comment' ) {
 
 $settings = Settings::get()->get_settings();
 
-if ( isset( $settings['general']['post_types_triggers']['comment_types'] ) && ! empty( $settings['general']['post_types_triggers']['comment_types'] ) ) :
+if ( isset( $settings['general']['enabled_triggers']['comment_types'] ) && ! empty( $settings['general']['enabled_triggers']['comment_types'] ) ) :
 
-	foreach ( $settings['general']['post_types_triggers']['comment_types'] as $comment_type ) :
+	foreach ( $settings['general']['enabled_triggers']['comment_types'] as $comment_type ) :
 
 		/**
 		 * @deprecated 2.0 Do not use this filter

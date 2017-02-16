@@ -208,7 +208,7 @@ class Settings extends Singleton {
 			$post_types[ $post_type->name ] = $post_type->labels->name;
 		}
 
-		$general->add_group( __( 'Content Types', 'notification' ), 'post_types_triggers' )
+		$general->add_group( __( 'Triggers', 'notification' ), 'enabled_triggers' )
 			->add_field( array(
 				'name'        => __( 'Post Types', 'notification' ),
 				'slug'        => 'post_types',
@@ -238,7 +238,17 @@ class Settings extends Singleton {
 				'render'      => array( $corefields, 'select' ),
 				'sanitize'    => array( $corefields, 'sanitize_select' ),
 			) )
-			->description( __( 'This is where you can control post types and comments triggers you want to use', 'notification' ) );
+			->add_field( array(
+				'name'     => __( 'User', 'notification' ),
+				'slug'     => 'user',
+				'default'  => 'true',
+				'addons'   => array(
+					'label' => __( 'Enable user triggers', 'notification' )
+				),
+				'render'   => array( $corefields, 'checkbox' ),
+				'sanitize' => array( $corefields, 'sanitize_checkbox' ),
+			) )
+			->description( __( 'This is where you can control all triggers you want to use', 'notification' ) );
 
 		$general->add_group( __( 'Comments', 'notification' ), 'comments' )
 			->add_field( array(

@@ -71,9 +71,9 @@ function trashed_template( $post_type = 'post' ) {
 
 $settings = Settings::get()->get_settings();
 
-if ( isset( $settings['general']['post_types_triggers']['post_types'] ) && ! empty( $settings['general']['post_types_triggers']['post_types'] ) ) :
+if ( isset( $settings['general']['enabled_triggers']['post_types'] ) && ! empty( $settings['general']['enabled_triggers']['post_types'] ) ) :
 
-	foreach ( $settings['general']['post_types_triggers']['post_types'] as $post_type ) :
+	foreach ( $settings['general']['enabled_triggers']['post_types'] as $post_type ) :
 
 		/**
 		 * @deprecated 2.0 Do not use this filter
