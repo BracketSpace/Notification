@@ -57,10 +57,13 @@ User:
 * User logged in
 * User deleted
 
-More to come:
+Media:
 
-* Media triggers
-* Feel free to suggest new core triggers in support forum
+* Media added
+* Media updated
+* Media deleted
+
+Feel free to suggest new core triggers in support forum
 
 = Useful links =
 
@@ -125,6 +128,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 * [Added] Database Upgrader
 * [Added] User triggers - registered, profile updated, logged in, deleted
 * [Added] Taxonomies merge tags for post types
+* [Added] Media triggers - added, updated, deleted
 * [Changed] Post updated notification is now triggered only if the post has been published before, suggested by nepali65
 * [Changed] Content Type triggers setting has been changed to Enabled triggers
 
