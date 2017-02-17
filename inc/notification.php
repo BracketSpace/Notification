@@ -164,6 +164,11 @@ class Notification {
 
 		foreach ( $this->tags as $tag_slug => $tag_value ) {
 
+			// ignore tags which has been passed to `notification` but hasn't be registered in the trigger
+			if ( ! isset( $trigger_tags[ $tag_slug ] ) ) {
+				continue;
+			}
+
 			if ( in_array( $trigger_tags[ $tag_slug ], $allowed_types ) ) {
 				$subject = str_replace( '{' . $tag_slug . '}', $tag_value, $subject );
 			}

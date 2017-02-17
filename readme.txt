@@ -118,6 +118,9 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 
 == Changelog ==
 
+= Next release =
+* [Fixed] Ignore tags which has been passed to `notification` but hasn't be registered in the trigger
+
 = 2.4 =
 * [Fixed] Bug with "Can't use method return value in write context" in Settings class, thanks to @rozv
 * [Fixed] Settings priorities, now every CPT registered not later than init 15 will be catched by the plugin, thanks to @rozv
