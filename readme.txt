@@ -120,6 +120,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 
 = Next release =
 * [Fixed] Ignore tags which has been passed to `notification` but hasn't be registered in the trigger
+* [Added] Filters for post and comment types to output disbale metabox. `notification/disable/post_types_allowed` and `notification/disable/comment_types_allowed`, default to saved general settings
 
 = 2.4 =
 * [Fixed] Bug with "Can't use method return value in write context" in Settings class, thanks to @rozv

@@ -111,7 +111,7 @@ class Admin extends Singleton {
 	            'notification_post_settings',
 	            __( 'Notification', 'notification' ),
 	            array( $this, 'post_settings_metabox' ),
-	            $settings['general']['enabled_triggers']['post_types'],
+	            apply_filters( 'notification/disable/post_types_allowed', $settings['general']['enabled_triggers']['post_types'] ),
 	            'side'
 	        );
 
@@ -123,7 +123,7 @@ class Admin extends Singleton {
 	            'notification_post_settings',
 	            __( 'Notification', 'notification' ),
 	            array( $this, 'post_settings_metabox' ),
-	            $settings['general']['enabled_triggers']['comment_types'],
+	            apply_filters( 'notification/disable/comment_types_allowed', $settings['general']['enabled_triggers']['comment_types'] ),
 	            'normal'
 	        );
 
