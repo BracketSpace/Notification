@@ -202,6 +202,20 @@ class Settings extends Singleton {
 		$valid_post_types = get_post_types( array( 'public' => true ), 'objects' );
 		unset( $valid_post_types['attachment'] );
 
+		// bbPress post types removal
+		// These triggers are available in addon: https://github.com/Kubitomakita/notification-bbpress
+		if ( function_exists( 'bbp_get_forum_post_type' ) && isset( $valid_post_types[ bbp_get_forum_post_type() ] ) ) {
+			unset( $valid_post_types[ bbp_get_forum_post_type() ] );
+		}
+
+		if ( function_exists( 'bbp_get_topic_post_type' ) && isset( $valid_post_types[ bbp_get_topic_post_type() ] ) ) {
+			unset( $valid_post_types[ bbp_get_topic_post_type() ] );
+		}
+
+		if ( function_exists( 'bbp_get_reply_post_type' ) && isset( $valid_post_types[ bbp_get_reply_post_type() ] ) ) {
+			unset( $valid_post_types[ bbp_get_reply_post_type() ] );
+		}
+
 		$post_types = array();
 
 		foreach ( $valid_post_types as $post_type ) {
