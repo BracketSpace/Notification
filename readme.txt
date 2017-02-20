@@ -123,6 +123,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 * [Added] Filters for post and comment types to output disbale metabox. `notification/disable/post_types_allowed` and `notification/disable/comment_types_allowed`, default to saved general settings
 * [Added] Extensions screen
 * [Changed] bbPress post types are no longer available in the settings. Triggers for bbPress are provided by addon https://github.com/Kubitomakita/notification-bbpress
+* [Changed] Place where merge tags metabox actions are executed
 
 = 2.4 =
 * [Fixed] Bug with "Can't use method return value in write context" in Settings class, thanks to @rozv

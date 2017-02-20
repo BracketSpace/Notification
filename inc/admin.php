@@ -260,20 +260,23 @@ class Admin extends Singleton {
 			return;
 		}
 
-		if ( empty( $tags ) ) {
-			echo '<p>' . __( 'No merge tags defined for this trigger', 'notification' ) . '</p>';
-			return;
-		}
-
 		do_action( 'notification/metabox/trigger/tags/before', $trigger, $post );
 
-		echo '<ul>';
+		if ( empty( $tags ) ) {
 
-			foreach ( $tags as $tag ) {
-				echo '<li><code data-clipboard-text="{' . $tag . '}">{' . $tag . '}</code></li>';
-			}
+			echo '<p>' . __( 'No merge tags defined for this trigger', 'notification' ) . '</p>';
 
-		echo '</ul>';
+		} else {
+
+			echo '<ul>';
+
+				foreach ( $tags as $tag ) {
+					echo '<li><code data-clipboard-text="{' . $tag . '}">{' . $tag . '}</code></li>';
+				}
+
+			echo '</ul>';
+
+		}
 
 		do_action( 'notification/metabox/trigger/tags/after', $trigger, $post );
 
