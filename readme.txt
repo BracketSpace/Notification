@@ -121,6 +121,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 = Next release =
 * [Fixed] Ignore tags which has been passed to `notification` but hasn't be registered in the trigger
 * [Added] Filters for post and comment types to output disbale metabox. `notification/disable/post_types_allowed` and `notification/disable/comment_types_allowed`, default to saved general settings
+* [Added] Extensions screen
 * [Changed] bbPress post types are no longer available in the settings. Triggers for bbPress are provided by addon https://github.com/Kubitomakita/notification-bbpress
 
 = 2.4 =
