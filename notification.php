@@ -111,6 +111,11 @@ function notification_admin_initialize() {
 	 */
 	Notification\Admin::get();
 
+	/**
+	 * Extensions
+	 */
+	Notification\Extensions::get();
+
 }
 add_action( 'init', 'notification_admin_initialize', 5 );
 

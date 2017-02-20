@@ -485,6 +485,7 @@ class Admin extends Singleton {
 
 		$allowed_hooks = array(
 			'notification_page_settings',
+			'notification_page_extensions',
 			'plugins.php',
 			'post-new.php',
 			'post.php',

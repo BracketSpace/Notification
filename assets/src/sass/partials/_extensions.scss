@@ -1,0 +1,32 @@
+/**
+ * Extensions styles
+ */
+
+.notification-extensions {
+
+	h1 {
+		margin-bottom: 16px;
+	}
+
+	.plugin-card {
+
+		.action-links {
+
+			.official {
+				margin-top: 3px;
+				display: inline-block;
+				box-sizing: border-box;
+				text-align: center;
+				padding: 3px 10px;
+			    width: 100%;
+			    color: #fff;
+			    background: #0073aa;
+			    border-radius: 4px;
+			    text-transform: uppercase;
+			}
+
+		}
+
+	}
+
+}
