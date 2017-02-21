@@ -104,17 +104,19 @@
 
 	// Add recipient
 
-	$('#notification_recipients').on( 'click', '#notification_add_recipient', function( event ) {
+	var add_recipient = function( type, value ) {
 
-		event.preventDefault();
+		type  = typeof type !== 'undefined' ? type : '';
+		value = typeof value !== 'undefined' ? value : '';
 
-		var $button    = $(this),
-			$container = $button.prev('.recipients');
+		var $container = $('#notification_recipients .recipients');
 
 		$container.fadeTo(200, 0.5);
 
 		var data = {
-			'action': 'notification_add_recipient'
+			'action': 'notification_add_recipient',
+			'type':   type,
+			'value':  value
 		};
 
 	    $.post(ajaxurl, data, function(response) {
@@ -133,6 +135,14 @@
 	    	update_recipients();
 
 		});
+
+	};
+
+	$('#notification_recipients').on( 'click', '#notification_add_recipient', function( event ) {
+
+		event.preventDefault();
+
+		add_recipient();
 
 	});
 
@@ -266,14 +276,14 @@
 
 	} );
 
-	// Update notification content
+	// Update notification defaults: title, template and recipients
 
 	wp.hooks.addAction( 'notification.changed_trigger', function( trigger_slug, tags ) {
 
 		if ( tinymce.activeEditor.getContent() == '' ) {
 
 			var data = {
-				'action':  'notification_get_template',
+				'action':  'notification_get_defaults',
 				'trigger': trigger_slug
 			};
 
@@ -282,7 +292,27 @@
 		    	if ( response.success == false ) {
 		    		alert( response.data );
 		    	} else {
-		    		tinymce.activeEditor.setContent( response.data );
+
+		    		var defaults = response.data;
+
+		    		if ( defaults.title ) {
+		    			$( '#title' ).val( defaults.title ).focus();
+		    		}
+
+		    		if ( defaults.template ) {
+		    			tinymce.activeEditor.setContent( defaults.template );
+		    		}
+
+		    		if ( defaults.recipients ) {
+
+		    			$('#notification_recipients .recipients .recipient').first().remove();
+
+		    			$.each( defaults.recipients, function( type, value ) {
+							add_recipient( type, value );
+						} );
+
+		    		}
+
 		    	}
 
 			});

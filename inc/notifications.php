@@ -30,7 +30,7 @@ class Notifications extends Singleton {
 		add_action( 'admin_notices', array( $this, 'validation_errors' ) );
 
 		add_action( 'wp_ajax_notification_get_merge_tags', array( $this, 'ajax_get_merge_tags' ) );
-		add_action( 'wp_ajax_notification_get_template', array( $this, 'ajax_get_template' ) );
+		add_action( 'wp_ajax_notification_get_defaults', array( $this, 'ajax_get_defaults' ) );
 
 		// Fix for double http(s):// in the rendered links (TinyMCE is adding protocol to everything what is not looking like a url)
 		add_filter( 'notification/notify/message', array( $this, 'fix_double_protocol' ) );
@@ -458,18 +458,21 @@ class Notifications extends Singleton {
 	}
 
 	/**
-	 * Get template for trigger
+	 * Get defaults for trigger
 	 * @return object       json encoded response
 	 */
-	public function ajax_get_template() {
+	public function ajax_get_defaults() {
 
 		try {
-			$template = Triggers::get()->get_trigger_template( $_POST['trigger'] );
+			$trigger    = Triggers::get()->get_trigger( $_POST['trigger'] );
+			$title      = $trigger->get_default_title();
+			$template   = $trigger->get_template();
+			$recipients = $trigger->get_default_recipients();
 		} catch ( \Exception $e ) {
 			wp_send_json_error( $e->getMessage() );
 		}
 
-		wp_send_json_success( $template );
+		wp_send_json_success( compact( 'title', 'template', 'recipients' ) );
 
 	}
 

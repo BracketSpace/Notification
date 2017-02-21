@@ -67,7 +67,7 @@ class Recipients extends Singleton {
 	 * @return object recipient
 	 */
 	public function get_recipient( $name ) {
-		
+
 		if ( ! isset( $this->recipients[ $name ] ) ) {
 			throw new \Exception( sprintf( __( 'No "%s" recipient defined', 'notification' ), $name ) );
 		}
@@ -81,7 +81,7 @@ class Recipients extends Singleton {
 	 * @return json encoded json response
 	 */
 	public function ajax_get_input() {
-		
+
 		$name = $_POST['recipient_name'];
 
 		try {
@@ -100,8 +100,26 @@ class Recipients extends Singleton {
 	public function ajax_add_recipient() {
 
 		try {
-			$r = array_shift( $this->get_recipients() );
-			wp_send_json_success( $this->render_row( $r, $r->get_default_value(), '' ) );
+
+			if ( isset( $_POST['type'] ) && ! empty( $_POST['type'] ) ) {
+
+				$r = $this->get_recipient( $_POST['type'] );
+
+				if ( isset( $_POST['value'] ) && ! empty( $_POST['value'] ) ) {
+					$value = $_POST['value'];
+				} else {
+					$value = $r->get_default_value();
+				}
+
+			} else {
+
+				$r     = array_shift( $this->get_recipients() );
+				$value = $r->get_default_value();
+
+			}
+
+			wp_send_json_success( $this->render_row( $r, $value, '' ) );
+
 		} catch ( \Exception $e ) {
 			wp_send_json_error( $e->getMessage() );
 		}

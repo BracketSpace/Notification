@@ -35,10 +35,22 @@ class Trigger {
 	private $group;
 
 	/**
+	 * Trigger default tile
+	 * @var string
+	 */
+	private $title;
+
+	/**
 	 * Trigger template
 	 * @var string
 	 */
 	private $template;
+
+	/**
+	 * Trigger default recipients
+	 * @var string
+	 */
+	private $recipients;
 
 	/**
 	 * Slug of objects which can disable trigger
@@ -58,7 +70,9 @@ class Trigger {
 		$this->name            = $trigger['name'];
 		$this->tags            = $trigger['tags'];
 		$this->group           = $trigger['group'];
+		$this->title           = $trigger['title'];
 		$this->template        = $trigger['template'];
+		$this->recipients      = $trigger['recipients'];
 		$this->disable_objects = $trigger['disable'];
 
 	}
@@ -173,12 +187,32 @@ class Trigger {
 	}
 
 	/**
+	 * Return trigger default title
+	 * @return string title
+	 */
+	public function get_default_title() {
+
+		return apply_filters( 'notification/trigger/default_title', $this->title, $this->slug , $this->tags );
+
+	}
+
+	/**
 	 * Return trigger template
 	 * @return string template
 	 */
 	public function get_template() {
 
 		return apply_filters( 'notification/trigger/template', $this->template, $this->slug , $this->tags );
+
+	}
+
+	/**
+	 * Return trigger default recipients
+	 * @return string recipients
+	 */
+	public function get_default_recipients() {
+
+		return apply_filters( 'notification/trigger/default_recipients', $this->recipients, $this->slug , $this->tags );
 
 	}
 

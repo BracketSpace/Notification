@@ -43,10 +43,12 @@ class Triggers extends Singleton {
 		}
 
 		$defaults = array(
-			'tags'     => array(),
-			'group'    => __( 'Other', 'notification' ),
-			'template' => '',
-			'disable'  => array()
+			'tags'       => array(),
+			'group'      => __( 'Other', 'notification' ),
+			'title'      => '',
+			'template'   => '',
+			'recipients' => array(),
+			'disable'    => array()
 		);
 
 		$trigger_args = wp_parse_args( $trigger, $defaults );
@@ -215,6 +217,21 @@ class Triggers extends Singleton {
 		}
 
 		return $this->triggers[ $trigger ]->get_template();
+
+	}
+
+	/**
+	 * Get trigger object
+	 * @param  string $trigger trigger slug
+	 * @return mixed           throws an Exception on error or return Trigger instance on success
+	 */
+	public function get_trigger( $trigger ) {
+
+		if ( ! isset( $this->triggers[ $trigger ] ) ) {
+			throw new \Exception( sprintf( __( 'No "%s" trigger defined', 'notification' ), $trigger ) );
+		}
+
+		return $this->triggers[ $trigger ];
 
 	}
 
