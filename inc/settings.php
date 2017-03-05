@@ -229,7 +229,7 @@ class Settings extends Singleton {
 				'default'     => array( 'post', 'page' ),
 				'addons'      => array(
 					'multiple' => true,
-					'chosen'   => true,
+					'pretty'   => true,
 					'options'  => $post_types
 				),
 				'description' => __( 'For these post types you will be able to define <i>published</i>, <i>updated</i>, <i>pending moderation</i> etc. notifications', 'notification' ),
@@ -242,7 +242,7 @@ class Settings extends Singleton {
 				'default'     => array( 'comment', 'pingback', 'trackback' ),
 				'addons'      => array(
 					'multiple' => true,
-					'chosen'   => true,
+					'pretty'   => true,
 					'options'  => array(
 						'comment' => __( 'Comment', 'notification' ),
 						'pingback' => __( 'Pingback', 'notification' ),

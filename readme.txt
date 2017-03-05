@@ -125,6 +125,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 * [Added] While registering triggers you can now provide a default title and recipients
 * [Changed] bbPress post types are no longer available in the settings. Triggers for bbPress are provided by addon https://github.com/Kubitomakita/notification-bbpress
 * [Changed] Place where merge tags metabox actions are executed
+* [Changed] Chosen to Selectize.js
 
 = 2.4 =
 * [Fixed] Bug with "Can't use method return value in write context" in Settings class, thanks to @rozv

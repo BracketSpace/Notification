@@ -1,8 +1,6 @@
 (function($) {
 
-	$('.chosen-select').chosen({
-		width: '100%'
-	});
+	$('.pretty-select').selectize();
 
 	// Copy merge tag
 
@@ -23,7 +21,7 @@
 
 	// Get fresh merge tags for selected trigger
 
-	$('#notification_trigger_select').chosen().change(function() {
+	$('#notification_trigger_select').selectize().change(function() {
 
 		var $select    = $(this),
 			$container = $('#notification_merge_tags .inside'),

@@ -44,9 +44,9 @@ class CoreFields extends Singleton {
 
 		$multiple = $field->addon( 'multiple' ) ? 'multiple="multiple"' : '';
 		$name     = $field->addon( 'multiple' ) ? $field->input_name() . '[]' : $field->input_name();
-		$chosen   = $field->addon( 'chosen' ) ? 'chosen-select' : '';
+		$pretty   = $field->addon( 'pretty' ) ? 'pretty-select' : '';
 
-		echo '<select ' . $multiple . ' name="' . $name . '" id="' . $field->input_id() . '" class="' . $chosen . '">';
+		echo '<select ' . $multiple . ' name="' . $name . '" id="' . $field->input_id() . '" class="' . $pretty . '">';
 
 			foreach ( $field->addon( 'options' ) as $option_value => $option_label ) {
 

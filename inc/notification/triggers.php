@@ -264,7 +264,7 @@ class Triggers extends Singleton {
 			$multiple = 'multiple="multiple"';
 		}
 
-		echo '<select id="' . $name . '_select" name="' . $name . '" class="chosen-select" data-placeholder="' . __( 'Select trigger', 'notification' ) . '" ' . $multiple . '>';
+		echo '<select id="' . $name . '_select" name="' . $name . '" class="pretty-select" data-placeholder="' . __( 'Select trigger', 'notification' ) . '" ' . $multiple . '>';
 
 			echo '<option value=""></option>';
 

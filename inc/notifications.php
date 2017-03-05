@@ -318,7 +318,7 @@ class Notifications extends Singleton {
 			return;
 		}
 
-		echo '<select id="notification_trigger_select" name="notification_trigger" class="chosen-select">';
+		echo '<select id="notification_trigger_select" name="notification_trigger" class="pretty-select">';
 
 			echo '<option value=""></option>';
 
