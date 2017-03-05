@@ -27,6 +27,16 @@
 
 		}
 
+		&.promo {
+
+			.desc,
+			.name,
+			.action-links {
+				margin-left: 0;
+			}
+
+		}
+
 	}
 
 }

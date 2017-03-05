@@ -81,6 +81,8 @@ class Extensions extends Singleton {
 					$this->render_extension_box( $extension );
 				}
 
+				$this->render_promo_box();
+
 			echo '</div>';
 
 		echo '</div>';
@@ -168,6 +170,30 @@ class Extensions extends Singleton {
 				<div class="desc column-description">
 					<p><?php echo mb_strimwidth( $ext['desc'], 0, 117, '...' ); ?></p>
 					<p class="authors"><?php _e( 'Author', 'notification' ); ?>: <?php echo esc_html( $ext['author'] ); ?></p>
+				</div>
+			</div>
+		</div>
+
+	<?php
+
+	}
+
+	protected function render_promo_box() {
+
+	?>
+
+		<div class="plugin-card promo">
+			<div class="plugin-card-top">
+				<div class="name column-name">
+					<h3><?php _e( 'Your extension', 'notification' ); ?></h3>
+				</div>
+				<div class="action-links">
+					<ul class="plugin-action-buttons">
+						<li><a href="mailto:jakub@underdev.it?subject=Notification Extension" class="button"><?php _e( 'Send extension', 'notification' ); ?></a></li>
+					</ul>
+				</div>
+				<div class="desc column-description">
+					<p><?php _e( 'If you wrote a Notification extension or you have a plugin which complete Notification, let me know!', 'notification' ); ?></p>
 				</div>
 			</div>
 		</div>
