@@ -120,6 +120,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 
 = Next release =
 * [Fixed] Ignore tags which has been passed to `notification` but hasn't be registered in the trigger
+* [Fixed] Conflict with Advanced Custom Fields
 * [Added] Filters for post and comment types to output disbale metabox. `notification/disable/post_types_allowed` and `notification/disable/comment_types_allowed`, default to saved general settings
 * [Added] Extensions screen
 * [Added] While registering triggers you can now provide a default title and recipients

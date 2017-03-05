@@ -500,7 +500,7 @@ class Admin extends Singleton {
 			return false;
 		}
 
-		wp_enqueue_script( 'notification', NOTIFICATION_URL . 'assets/dist/js/scripts.min.js', array( 'jquery' ), null, true );
+		wp_enqueue_script( 'notification', NOTIFICATION_URL . 'assets/dist/js/scripts.min.js', array( 'jquery' ), null, false );
 
 		wp_enqueue_style( 'notification', NOTIFICATION_URL . 'assets/dist/css/style.css' );
 
