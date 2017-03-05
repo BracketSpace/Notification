@@ -43,10 +43,12 @@ class Triggers extends Singleton {
 		}
 
 		$defaults = array(
-			'tags'     => array(),
-			'group'    => __( 'Other', 'notification' ),
-			'template' => '',
-			'disable'  => array()
+			'tags'       => array(),
+			'group'      => __( 'Other', 'notification' ),
+			'title'      => '',
+			'template'   => '',
+			'recipients' => array(),
+			'disable'    => array()
 		);
 
 		$trigger_args = wp_parse_args( $trigger, $defaults );
@@ -219,6 +221,21 @@ class Triggers extends Singleton {
 	}
 
 	/**
+	 * Get trigger object
+	 * @param  string $trigger trigger slug
+	 * @return mixed           throws an Exception on error or return Trigger instance on success
+	 */
+	public function get_trigger( $trigger ) {
+
+		if ( ! isset( $this->triggers[ $trigger ] ) ) {
+			throw new \Exception( sprintf( __( 'No "%s" trigger defined', 'notification' ), $trigger ) );
+		}
+
+		return $this->triggers[ $trigger ];
+
+	}
+
+	/**
 	 * Get trigger disable objects
 	 * @param  string $trigger trigger slug
 	 * @return mixed           throws an Exception on error or string template on success
@@ -247,7 +264,7 @@ class Triggers extends Singleton {
 			$multiple = 'multiple="multiple"';
 		}
 
-		echo '<select id="' . $name . '_select" name="' . $name . '" class="chosen-select" data-placeholder="' . __( 'Select trigger', 'notification' ) . '" ' . $multiple . '>';
+		echo '<select id="' . $name . '_select" name="' . $name . '" class="pretty-select" data-placeholder="' . __( 'Select trigger', 'notification' ) . '" ' . $multiple . '>';
 
 			echo '<option value=""></option>';
 

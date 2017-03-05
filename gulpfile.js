@@ -17,7 +17,7 @@ var style_sources = 'assets/src/sass/**/*.scss',
 var script_sources = 'assets/src/js/**/*.js',
 	script_target  = 'assets/dist/js',
 	script_order   = [
-		'vendor/chosen.jquery.js',
+		'vendor/selectize.js',
         'vendor/clipboard.js',
 		'vendor/event-manager.js',
 		'admin.js'

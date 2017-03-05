@@ -111,7 +111,7 @@ class Admin extends Singleton {
 	            'notification_post_settings',
 	            __( 'Notification', 'notification' ),
 	            array( $this, 'post_settings_metabox' ),
-	            $settings['general']['enabled_triggers']['post_types'],
+	            apply_filters( 'notification/disable/post_types_allowed', $settings['general']['enabled_triggers']['post_types'] ),
 	            'side'
 	        );
 
@@ -123,7 +123,7 @@ class Admin extends Singleton {
 	            'notification_post_settings',
 	            __( 'Notification', 'notification' ),
 	            array( $this, 'post_settings_metabox' ),
-	            $settings['general']['enabled_triggers']['comment_types'],
+	            apply_filters( 'notification/disable/comment_types_allowed', $settings['general']['enabled_triggers']['comment_types'] ),
 	            'normal'
 	        );
 
@@ -260,20 +260,23 @@ class Admin extends Singleton {
 			return;
 		}
 
-		if ( empty( $tags ) ) {
-			echo '<p>' . __( 'No merge tags defined for this trigger', 'notification' ) . '</p>';
-			return;
-		}
-
 		do_action( 'notification/metabox/trigger/tags/before', $trigger, $post );
 
-		echo '<ul>';
+		if ( empty( $tags ) ) {
 
-			foreach ( $tags as $tag ) {
-				echo '<li><code data-clipboard-text="{' . $tag . '}">{' . $tag . '}</code></li>';
-			}
+			echo '<p>' . __( 'No merge tags defined for this trigger', 'notification' ) . '</p>';
 
-		echo '</ul>';
+		} else {
+
+			echo '<ul>';
+
+				foreach ( $tags as $tag ) {
+					echo '<li><code data-clipboard-text="{' . $tag . '}">{' . $tag . '}</code></li>';
+				}
+
+			echo '</ul>';
+
+		}
 
 		do_action( 'notification/metabox/trigger/tags/after', $trigger, $post );
 
@@ -485,6 +488,7 @@ class Admin extends Singleton {
 
 		$allowed_hooks = array(
 			'notification_page_settings',
+			'notification_page_extensions',
 			'plugins.php',
 			'post-new.php',
 			'post.php',
@@ -496,7 +500,7 @@ class Admin extends Singleton {
 			return false;
 		}
 
-		wp_enqueue_script( 'notification', NOTIFICATION_URL . 'assets/dist/js/scripts.min.js', array( 'jquery' ), null, true );
+		wp_enqueue_script( 'notification', NOTIFICATION_URL . 'assets/dist/js/scripts.min.js', array( 'jquery' ), null, false );
 
 		wp_enqueue_style( 'notification', NOTIFICATION_URL . 'assets/dist/css/style.css' );
 

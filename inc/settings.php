@@ -202,6 +202,20 @@ class Settings extends Singleton {
 		$valid_post_types = get_post_types( array( 'public' => true ), 'objects' );
 		unset( $valid_post_types['attachment'] );
 
+		// bbPress post types removal
+		// These triggers are available in addon: https://github.com/Kubitomakita/notification-bbpress
+		if ( function_exists( 'bbp_get_forum_post_type' ) && isset( $valid_post_types[ bbp_get_forum_post_type() ] ) ) {
+			unset( $valid_post_types[ bbp_get_forum_post_type() ] );
+		}
+
+		if ( function_exists( 'bbp_get_topic_post_type' ) && isset( $valid_post_types[ bbp_get_topic_post_type() ] ) ) {
+			unset( $valid_post_types[ bbp_get_topic_post_type() ] );
+		}
+
+		if ( function_exists( 'bbp_get_reply_post_type' ) && isset( $valid_post_types[ bbp_get_reply_post_type() ] ) ) {
+			unset( $valid_post_types[ bbp_get_reply_post_type() ] );
+		}
+
 		$post_types = array();
 
 		foreach ( $valid_post_types as $post_type ) {
@@ -215,7 +229,7 @@ class Settings extends Singleton {
 				'default'     => array( 'post', 'page' ),
 				'addons'      => array(
 					'multiple' => true,
-					'chosen'   => true,
+					'pretty'   => true,
 					'options'  => $post_types
 				),
 				'description' => __( 'For these post types you will be able to define <i>published</i>, <i>updated</i>, <i>pending moderation</i> etc. notifications', 'notification' ),
@@ -228,7 +242,7 @@ class Settings extends Singleton {
 				'default'     => array( 'comment', 'pingback', 'trackback' ),
 				'addons'      => array(
 					'multiple' => true,
-					'chosen'   => true,
+					'pretty'   => true,
 					'options'  => array(
 						'comment' => __( 'Comment', 'notification' ),
 						'pingback' => __( 'Pingback', 'notification' ),

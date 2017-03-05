@@ -1,0 +1,30 @@
+/**
+ * Global stylesheet
+ */
+
+.selectize-dropdown {
+	z-index: 999999;
+}
+
+.selectize-control.multi .selectize-input {
+
+	[data-value] {
+	    text-shadow: none;
+	    background-color: #eeeeee;
+	    background-image: linear-gradient(to bottom, #f4f4f4, #dfdfdf);
+
+	    &.active {
+	    	background-color: #dddddd;
+		    background-image: linear-gradient(to bottom, #eeeeee, #cfcfcf);
+		    color: #535353;
+		    border: 1px solid #c0c0c0;
+	    }
+
+	}
+
+	> div {
+	    color: #535353;
+	    border: 1px solid #c0c0c0;
+	}
+
+}

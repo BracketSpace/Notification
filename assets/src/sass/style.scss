@@ -6,12 +6,15 @@
 /**
  * Vendors
  */
-@import 'vendor/chosen';
+@import 'vendor/selectize';
+@import 'vendor/selectize.default';
 
 /**
  * Patrials
  */
+@import 'partials/global';
 @import 'partials/metabox';
 @import 'partials/messages';
 @import 'partials/settings';
+@import 'partials/extensions';
 @import 'partials/deactivation';
