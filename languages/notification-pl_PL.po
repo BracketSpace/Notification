@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Notification\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2017-02-16 23:24+0100\n"
-"PO-Revision-Date: 2017-02-16 23:28+0100\n"
+"POT-Creation-Date: 2017-03-05 11:23+0100\n"
+"PO-Revision-Date: 2017-03-05 11:28+0100\n"
 "Last-Translator: admin <admin@notification.dev>\n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -18,12 +18,12 @@ msgstr ""
 "esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
 "_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: .git\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
 
-#: inc/admin.php:67 inc/admin.php:538
+#: inc/admin.php:67 inc/admin.php:542
 msgid "Trigger"
 msgstr "Wyzwalacz"
 
@@ -31,11 +31,11 @@ msgstr "Wyzwalacz"
 msgid "Merge tags"
 msgstr "Znaczniki"
 
-#: inc/admin.php:89 inc/admin.php:539
+#: inc/admin.php:89 inc/admin.php:543
 msgid "Recipients"
 msgstr "Odbiorcy"
 
-#: inc/admin.php:112 inc/admin.php:124 inc/admin.php:389
+#: inc/admin.php:112 inc/admin.php:124 inc/admin.php:392
 #: inc/notifications.php:48
 msgid "Notification"
 msgstr "Powiadomienie"
@@ -59,66 +59,66 @@ msgstr "Nie ma jeszcze żadnych wyzwalaczy"
 msgid "Please select trigger first"
 msgstr "Wybierz najpierw wyzwalacz"
 
-#: inc/admin.php:264 inc/notifications.php:369 inc/notifications.php:453
+#: inc/admin.php:267 inc/notifications.php:369 inc/notifications.php:453
 msgid "No merge tags defined for this trigger"
 msgstr "Nie zdefiniowano żadnych znaczników dla tego wyzwalacza"
 
-#: inc/admin.php:292 inc/notifications.php:393
+#: inc/admin.php:295 inc/notifications.php:393
 msgid "No recipients available"
 msgstr "Brak obiorców"
 
-#: inc/admin.php:335 inc/notifications.php:434
+#: inc/admin.php:338 inc/notifications.php:434
 msgid "Add recipient"
 msgstr "Dodaj odbiorcę"
 
-#: inc/admin.php:355 inc/settings.php:233
+#: inc/admin.php:358 inc/settings.php:247
 msgid "Comment"
 msgstr "Komentarz"
 
-#: inc/admin.php:364
+#: inc/admin.php:367
 #, php-format
 msgid "Select Notifications you don't wish to send for this %s"
 msgstr "Wybierz powiadomienia, których %s nie powinien wysyłać"
 
-#: inc/admin.php:395
+#: inc/admin.php:398
 msgid "Disable notifications"
 msgstr "Wyłącz powiadomienia"
 
-#: inc/admin.php:398
+#: inc/admin.php:401
 msgid "Select Notifications which triggered by this user will not be sent"
 msgstr ""
 "Wybierz powiadomienia, które wyzwolone przez tego użytkownika nie będą "
 "wysłane"
 
-#: inc/admin.php:504
+#: inc/admin.php:508
 msgid "Copied"
 msgstr "Skopiowano"
 
-#: inc/admin.php:517
+#: inc/admin.php:521
 msgid "Enter Subject here"
 msgstr "Wpisz tutaj temat wiadomości"
 
-#: inc/admin.php:535
+#: inc/admin.php:539
 msgid "Subject"
 msgstr "Temat"
 
-#: inc/admin.php:562
+#: inc/admin.php:566
 msgid "No trigger selected"
 msgstr "Nie wybrano wyzwalacza"
 
-#: inc/admin.php:580
+#: inc/admin.php:584
 msgid "No recipients defined"
 msgstr "Nie zdefiniowano odbiorców"
 
-#: inc/admin.php:625 inc/admin.php:684
+#: inc/admin.php:629 inc/admin.php:688
 msgid "Deactivate"
 msgstr "Deaktywuj"
 
-#: inc/admin.php:665
+#: inc/admin.php:669
 msgid "Help improve Notification plugin"
 msgstr "Pomóż ulepszyć wtyczkę Powiadomienie"
 
-#: inc/admin.php:667
+#: inc/admin.php:671
 msgid ""
 "Please choose a reason why you want to deactivate the Notification. This "
 "will help me improve this plugin."
@@ -126,28 +126,112 @@ msgstr ""
 "Wybierz proszę powód, dla którego deaktywujesz wtyczkę Powiadomienie. "
 "Pozwoli mi ją ulepszyć."
 
-#: inc/admin.php:676
+#: inc/admin.php:680
 msgid "I just want to deactivate, don't bother me"
 msgstr "Chcę po prostu deaktywować, nie zawracaj mi głowy"
 
-#: inc/admin.php:677
+#: inc/admin.php:681
 msgid "I found better plugin"
 msgstr "Znalazłem lepszą wtyczkę"
 
-#: inc/admin.php:678
+#: inc/admin.php:682
 msgid "Plugin doesn't work"
 msgstr "Wtyczka nie działa"
 
-#: inc/admin.php:679
+#: inc/admin.php:683
 msgid "There's no trigger I was looking for"
 msgstr "Nie ma wyzwalacza, którego szukam"
+
+#: inc/extensions.php:32 inc/extensions.php:33 inc/extensions.php:76
+msgid "Extensions"
+msgstr "Rozszerzenia"
+
+#: inc/extensions.php:59
+msgid "Triggers for bbPress: Forums, Topics and Replies."
+msgstr "Wyzwalacze dla bbPress: fora, wątki, odpowiedzi."
+
+#: inc/extensions.php:103
+#, php-format
+msgid "Install %s now"
+msgstr "Zainstaluj %s teraz"
+
+#: inc/extensions.php:103
+msgid "Install Now"
+msgstr "Zainstaluj"
+
+#: inc/extensions.php:110
+#, php-format
+msgid "Update %s now"
+msgstr "Aktualizuj %s teraz"
+
+#: inc/extensions.php:110
+msgid "Update Now"
+msgstr "Aktualizuj"
+
+#: inc/extensions.php:117
+msgctxt "plugin"
+msgid "Active"
+msgstr "Aktywny"
+
+#: inc/extensions.php:119
+msgid "Activate"
+msgstr "Aktywuj"
+
+#: inc/extensions.php:121
+#, php-format
+msgctxt "plugin"
+msgid "Activate %s"
+msgstr "Aktywuj %s"
+
+#: inc/extensions.php:129
+msgid "Network Activate"
+msgstr "Aktywuj w sieci"
+
+#: inc/extensions.php:131
+#, php-format
+msgctxt "plugin"
+msgid "Network Activate %s"
+msgstr "Aktywuj %s w sieci"
+
+#: inc/extensions.php:142
+msgctxt "plugin"
+msgid "Installed"
+msgstr "Zainstalowany"
+
+#: inc/extensions.php:148
+msgid "More Details"
+msgstr "Szczegóły"
+
+#: inc/extensions.php:166
+msgid "Official"
+msgstr "Oficjalne"
+
+#: inc/extensions.php:172
+msgid "Author"
+msgstr "Autor"
+
+#: inc/extensions.php:188
+msgid "Your extension"
+msgstr "Twoje rozszerzenie"
+
+#: inc/extensions.php:192
+msgid "Send extension"
+msgstr "Wyślij rozszerzenie"
+
+#: inc/extensions.php:196
+msgid ""
+"If you wrote a Notification extension or you have a plugin which complete "
+"Notification, let me know!"
+msgstr ""
+"Jeśli napisałeś rozszerzenie dla Notification lub masz wtyczkę, która "
+"uzupełnia się z Notification, daj mi znać!"
 
 #: inc/notification/recipients.php:72
 #, php-format
 msgid "No \"%s\" recipient defined"
 msgstr "Odbiorca \"%s\" nie został zdefiniowany"
 
-#: inc/notification/recipients.php:125
+#: inc/notification/recipients.php:143
 msgid "Remove recipient"
 msgstr "Usuń odbiorcę"
 
@@ -155,18 +239,18 @@ msgstr "Usuń odbiorcę"
 msgid "Other"
 msgstr "Inne"
 
-#: inc/notification/triggers.php:169 inc/notification/triggers.php:184
-#: inc/notification/triggers.php:199 inc/notification/triggers.php:214
-#: inc/notification/triggers.php:229
+#: inc/notification/triggers.php:171 inc/notification/triggers.php:186
+#: inc/notification/triggers.php:201 inc/notification/triggers.php:216
+#: inc/notification/triggers.php:231 inc/notification/triggers.php:246
 #, php-format
 msgid "No \"%s\" trigger defined"
 msgstr "Wyzwalacz \"%s\" nie został zdefiniowany"
 
-#: inc/notification/triggers.php:250
+#: inc/notification/triggers.php:267
 msgid "Select trigger"
 msgstr "Wybierz wyzwalacz"
 
-#: inc/notifications.php:47 inc/notifications.php:58 inc/settings.php:311
+#: inc/notifications.php:47 inc/notifications.php:58 inc/settings.php:325
 msgid "Notifications"
 msgstr "Powiadomienia"
 
@@ -249,7 +333,7 @@ msgstr "Masz zduplikowanych odbiorców:<br>%s"
 msgid "Notification settings"
 msgstr "Ustawienia powiadomień"
 
-#: inc/settings.php:50 inc/settings.php:66 inc/settings.php:321
+#: inc/settings.php:50 inc/settings.php:66 inc/settings.php:335
 msgid "Settings"
 msgstr "Ustawienia"
 
@@ -265,15 +349,15 @@ msgstr "Zapisz ustawienia"
 msgid "General"
 msgstr "Ogólne"
 
-#: inc/settings.php:211
+#: inc/settings.php:225
 msgid "Triggers"
 msgstr "Wyzwalacze"
 
-#: inc/settings.php:213
+#: inc/settings.php:227
 msgid "Post Types"
 msgstr "Typy postów"
 
-#: inc/settings.php:221
+#: inc/settings.php:235
 msgid ""
 "For these post types you will be able to define <i>published</i>, "
 "<i>updated</i>, <i>pending moderation</i> etc. notifications"
@@ -281,117 +365,117 @@ msgstr ""
 "Dla tych typów postów będzie można definiować powiadomienia takie jak "
 "<i>opublikowano</i>, <i>zaktualizowano</i>, <i>oczekuje na moderację</i> itp."
 
-#: inc/settings.php:226
+#: inc/settings.php:240
 msgid "Comment Types"
 msgstr "Typy komentarzy"
 
-#: inc/settings.php:234
+#: inc/settings.php:248
 msgid "Pingback"
 msgstr "Pingback"
 
-#: inc/settings.php:235
+#: inc/settings.php:249
 msgid "Trackback"
 msgstr "Trackback"
 
-#: inc/settings.php:242 recipients/core/user.php:32
+#: inc/settings.php:256 recipients/core/user.php:32
 msgid "User"
 msgstr "Użytkownik"
 
-#: inc/settings.php:246
+#: inc/settings.php:260
 msgid "Enable user triggers"
 msgstr "Włącz wyzwalacze dla użytkowników"
 
-#: inc/settings.php:252
+#: inc/settings.php:266
 msgid "Media"
 msgstr "Media"
 
-#: inc/settings.php:256
+#: inc/settings.php:270
 msgid "Enable media triggers"
 msgstr "Włącz wyzwalacze dla mediów"
 
-#: inc/settings.php:261
+#: inc/settings.php:275
 msgid "This is where you can control all triggers you want to use"
 msgstr "W tym miejscu możesz kontrolować wyzwalacze, których chcesz użyć"
 
-#: inc/settings.php:263
+#: inc/settings.php:277
 msgid "Comments"
 msgstr "Komentarze"
 
-#: inc/settings.php:265
+#: inc/settings.php:279
 msgid "Akismet"
 msgstr "Akismet"
 
-#: inc/settings.php:269
+#: inc/settings.php:283
 msgid ""
 "Do not send notification if comment has been marked as a spam by Akismet"
 msgstr ""
 "Nie wysyłaj powiadomienia jeśli komentarz został oznaczony jako spam przez "
 "Akismet"
 
-#: inc/settings.php:275
+#: inc/settings.php:289
 msgid "Additional options"
 msgstr "Dodatkowe ustawienia"
 
-#: inc/settings.php:277
+#: inc/settings.php:291
 msgid "Disable Notifications for post"
 msgstr "Wyłącz powiadomienia dla postów"
 
-#: inc/settings.php:281
+#: inc/settings.php:295
 msgid "Allow to disable Notifications for specific post"
 msgstr "Pozwól na wyłączanie określonych powiadomień dla konkretnego posta"
 
-#: inc/settings.php:283
+#: inc/settings.php:297
 msgid "This will be available to set on post edit screen"
 msgstr "Powiadomienia będzie można wyłączyć na ekranie edycji posta"
 
-#: inc/settings.php:287
+#: inc/settings.php:301
 msgid "Disable Notifications for comment"
 msgstr "Wyłącz powiadomienia dla komentarzy"
 
-#: inc/settings.php:291
+#: inc/settings.php:305
 msgid "Allow to disable Notifications for specific comment"
 msgstr ""
 "Pozwól na wyłączanie określonych powiadomień dla konkretnego komentarza"
 
-#: inc/settings.php:293
+#: inc/settings.php:307
 msgid "This will be available to set on comment edit screen"
 msgstr "Powiadomienia będzie można wyłączyć na ekranie edycji komentarza"
 
-#: inc/settings.php:297
+#: inc/settings.php:311
 msgid "Disable Notifications for user"
 msgstr "Wyłącz powiadomienia dla użytkowników"
 
-#: inc/settings.php:301
+#: inc/settings.php:315
 msgid "Allow to disable Notifications for specific user"
 msgstr ""
 "Pozwól na wyłączanie określonych powiadomień dla konkretnego użytkownika"
 
-#: inc/settings.php:303
+#: inc/settings.php:317
 msgid "This will be available to set on user edit screen"
 msgstr ""
 "Powiadomienia będzie można wyłączyć na ekranie edycji profilu użytkownika"
 
-#: inc/settings.php:309
+#: inc/settings.php:323
 msgid "Uninstallation"
 msgstr "Odinstalowywanie"
 
-#: inc/settings.php:315
+#: inc/settings.php:329
 msgid "Remove all added notifications"
 msgstr "Usuń wszystkie dodane powiadomienia"
 
-#: inc/settings.php:325
+#: inc/settings.php:339
 msgid "Remove plugin settings"
 msgstr "Usuń ustawienia wtyczki"
 
-#: inc/settings.php:330
+#: inc/settings.php:344
 msgid "Choose what to remove upon plugin removal"
 msgstr "Wybierz co wyczyścić podczas usuwania wtyczki"
 
-#: inc/settings.php:435
+#: inc/settings.php:449
 msgid "Settings saved"
 msgstr "Ustawienia zapisane"
 
-#: notification.php:141
+#: notification.php:146
 msgid ""
 "This plugin requires PHP in version at least 5.3. WordPress itself <a href="
 "\"https://wordpress.org/about/requirements/\" target=\"_blank\">requires at "

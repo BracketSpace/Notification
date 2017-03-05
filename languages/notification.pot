@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Notification\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2017-02-16 23:24+0100\n"
+"POT-Creation-Date: 2017-03-05 11:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jakub Mikita <jakub@underdev.it>\n"
 "Language-Team: underDEV <hello@underdev.it>\n"
@@ -15,14 +15,15 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
-"_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
+"_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,"
+"_nc:4c,1,2\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 "X-Poedit-SearchPathExcluded-1: .git\n"
 
-#: inc/admin.php:67 inc/admin.php:538
+#: inc/admin.php:67 inc/admin.php:542
 msgid "Trigger"
 msgstr ""
 
@@ -30,11 +31,11 @@ msgstr ""
 msgid "Merge tags"
 msgstr ""
 
-#: inc/admin.php:89 inc/admin.php:539
+#: inc/admin.php:89 inc/admin.php:543
 msgid "Recipients"
 msgstr ""
 
-#: inc/admin.php:112 inc/admin.php:124 inc/admin.php:389
+#: inc/admin.php:112 inc/admin.php:124 inc/admin.php:392
 #: inc/notifications.php:48
 msgid "Notification"
 msgstr ""
@@ -57,83 +58,165 @@ msgstr ""
 msgid "Please select trigger first"
 msgstr ""
 
-#: inc/admin.php:264 inc/notifications.php:369 inc/notifications.php:453
+#: inc/admin.php:267 inc/notifications.php:369 inc/notifications.php:453
 msgid "No merge tags defined for this trigger"
 msgstr ""
 
-#: inc/admin.php:292 inc/notifications.php:393
+#: inc/admin.php:295 inc/notifications.php:393
 msgid "No recipients available"
 msgstr ""
 
-#: inc/admin.php:335 inc/notifications.php:434
+#: inc/admin.php:338 inc/notifications.php:434
 msgid "Add recipient"
 msgstr ""
 
-#: inc/admin.php:355 inc/settings.php:233
+#: inc/admin.php:358 inc/settings.php:247
 msgid "Comment"
 msgstr ""
 
-#: inc/admin.php:364
+#: inc/admin.php:367
 #, php-format
 msgid "Select Notifications you don't wish to send for this %s"
 msgstr ""
 
-#: inc/admin.php:395
+#: inc/admin.php:398
 msgid "Disable notifications"
 msgstr ""
 
-#: inc/admin.php:398
+#: inc/admin.php:401
 msgid "Select Notifications which triggered by this user will not be sent"
 msgstr ""
 
-#: inc/admin.php:504
+#: inc/admin.php:508
 msgid "Copied"
 msgstr ""
 
-#: inc/admin.php:517
+#: inc/admin.php:521
 msgid "Enter Subject here"
 msgstr ""
 
-#: inc/admin.php:535
+#: inc/admin.php:539
 msgid "Subject"
 msgstr ""
 
-#: inc/admin.php:562
+#: inc/admin.php:566
 msgid "No trigger selected"
 msgstr ""
 
-#: inc/admin.php:580
+#: inc/admin.php:584
 msgid "No recipients defined"
 msgstr ""
 
-#: inc/admin.php:625 inc/admin.php:684
+#: inc/admin.php:629 inc/admin.php:688
 msgid "Deactivate"
 msgstr ""
 
-#: inc/admin.php:665
+#: inc/admin.php:669
 msgid "Help improve Notification plugin"
 msgstr ""
 
-#: inc/admin.php:667
+#: inc/admin.php:671
 msgid ""
 "Please choose a reason why you want to deactivate the Notification. This "
 "will help me improve this plugin."
 msgstr ""
 
-#: inc/admin.php:676
+#: inc/admin.php:680
 msgid "I just want to deactivate, don't bother me"
 msgstr ""
 
-#: inc/admin.php:677
+#: inc/admin.php:681
 msgid "I found better plugin"
 msgstr ""
 
-#: inc/admin.php:678
+#: inc/admin.php:682
 msgid "Plugin doesn't work"
 msgstr ""
 
-#: inc/admin.php:679
+#: inc/admin.php:683
 msgid "There's no trigger I was looking for"
+msgstr ""
+
+#: inc/extensions.php:32 inc/extensions.php:33 inc/extensions.php:76
+msgid "Extensions"
+msgstr ""
+
+#: inc/extensions.php:59
+msgid "Triggers for bbPress: Forums, Topics and Replies."
+msgstr ""
+
+#: inc/extensions.php:103
+#, php-format
+msgid "Install %s now"
+msgstr ""
+
+#: inc/extensions.php:103
+msgid "Install Now"
+msgstr ""
+
+#: inc/extensions.php:110
+#, php-format
+msgid "Update %s now"
+msgstr ""
+
+#: inc/extensions.php:110
+msgid "Update Now"
+msgstr ""
+
+#: inc/extensions.php:117
+msgctxt "plugin"
+msgid "Active"
+msgstr ""
+
+#: inc/extensions.php:119
+msgid "Activate"
+msgstr ""
+
+#: inc/extensions.php:121
+#, php-format
+msgctxt "plugin"
+msgid "Activate %s"
+msgstr ""
+
+#: inc/extensions.php:129
+msgid "Network Activate"
+msgstr ""
+
+#: inc/extensions.php:131
+#, php-format
+msgctxt "plugin"
+msgid "Network Activate %s"
+msgstr ""
+
+#: inc/extensions.php:142
+msgctxt "plugin"
+msgid "Installed"
+msgstr ""
+
+#: inc/extensions.php:148
+msgid "More Details"
+msgstr ""
+
+#: inc/extensions.php:166
+msgid "Official"
+msgstr ""
+
+#: inc/extensions.php:172
+msgid "Author"
+msgstr ""
+
+#: inc/extensions.php:188
+msgid "Your extension"
+msgstr ""
+
+#: inc/extensions.php:192
+msgid "Send extension"
+msgstr ""
+
+#: inc/extensions.php:196
+msgid ""
+"If you wrote a Notification extension or you have a plugin which complete "
+"Notification, let me know!"
 msgstr ""
 
 #: inc/notification/recipients.php:72
@@ -141,7 +224,7 @@ msgstr ""
 msgid "No \"%s\" recipient defined"
 msgstr ""
 
-#: inc/notification/recipients.php:125
+#: inc/notification/recipients.php:143
 msgid "Remove recipient"
 msgstr ""
 
@@ -149,18 +232,18 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: inc/notification/triggers.php:169 inc/notification/triggers.php:184
-#: inc/notification/triggers.php:199 inc/notification/triggers.php:214
-#: inc/notification/triggers.php:229
+#: inc/notification/triggers.php:171 inc/notification/triggers.php:186
+#: inc/notification/triggers.php:201 inc/notification/triggers.php:216
+#: inc/notification/triggers.php:231 inc/notification/triggers.php:246
 #, php-format
 msgid "No \"%s\" trigger defined"
 msgstr ""
 
-#: inc/notification/triggers.php:250
+#: inc/notification/triggers.php:267
 msgid "Select trigger"
 msgstr ""
 
-#: inc/notifications.php:47 inc/notifications.php:58 inc/settings.php:311
+#: inc/notifications.php:47 inc/notifications.php:58 inc/settings.php:325
 msgid "Notifications"
 msgstr ""
 
@@ -238,7 +321,7 @@ msgstr ""
 msgid "Notification settings"
 msgstr ""
 
-#: inc/settings.php:50 inc/settings.php:66 inc/settings.php:321
+#: inc/settings.php:50 inc/settings.php:66 inc/settings.php:335
 msgid "Settings"
 msgstr ""
 
@@ -254,126 +337,126 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: inc/settings.php:211
+#: inc/settings.php:225
 msgid "Triggers"
 msgstr ""
 
-#: inc/settings.php:213
+#: inc/settings.php:227
 msgid "Post Types"
 msgstr ""
 
-#: inc/settings.php:221
+#: inc/settings.php:235
 msgid ""
 "For these post types you will be able to define <i>published</i>, "
 "<i>updated</i>, <i>pending moderation</i> etc. notifications"
 msgstr ""
 
-#: inc/settings.php:226
+#: inc/settings.php:240
 msgid "Comment Types"
 msgstr ""
 
-#: inc/settings.php:234
+#: inc/settings.php:248
 msgid "Pingback"
 msgstr ""
 
-#: inc/settings.php:235
+#: inc/settings.php:249
 msgid "Trackback"
 msgstr ""
 
-#: inc/settings.php:242 recipients/core/user.php:32
+#: inc/settings.php:256 recipients/core/user.php:32
 msgid "User"
 msgstr ""
 
-#: inc/settings.php:246
+#: inc/settings.php:260
 msgid "Enable user triggers"
 msgstr ""
 
-#: inc/settings.php:252
+#: inc/settings.php:266
 msgid "Media"
 msgstr ""
 
-#: inc/settings.php:256
+#: inc/settings.php:270
 msgid "Enable media triggers"
 msgstr ""
 
-#: inc/settings.php:261
+#: inc/settings.php:275
 msgid "This is where you can control all triggers you want to use"
 msgstr ""
 
-#: inc/settings.php:263
+#: inc/settings.php:277
 msgid "Comments"
 msgstr ""
 
-#: inc/settings.php:265
+#: inc/settings.php:279
 msgid "Akismet"
 msgstr ""
 
-#: inc/settings.php:269
+#: inc/settings.php:283
 msgid ""
 "Do not send notification if comment has been marked as a spam by Akismet"
 msgstr ""
 
-#: inc/settings.php:275
+#: inc/settings.php:289
 msgid "Additional options"
 msgstr ""
 
-#: inc/settings.php:277
+#: inc/settings.php:291
 msgid "Disable Notifications for post"
 msgstr ""
 
-#: inc/settings.php:281
+#: inc/settings.php:295
 msgid "Allow to disable Notifications for specific post"
 msgstr ""
 
-#: inc/settings.php:283
+#: inc/settings.php:297
 msgid "This will be available to set on post edit screen"
 msgstr ""
 
-#: inc/settings.php:287
+#: inc/settings.php:301
 msgid "Disable Notifications for comment"
 msgstr ""
 
-#: inc/settings.php:291
+#: inc/settings.php:305
 msgid "Allow to disable Notifications for specific comment"
 msgstr ""
 
-#: inc/settings.php:293
+#: inc/settings.php:307
 msgid "This will be available to set on comment edit screen"
 msgstr ""
 
-#: inc/settings.php:297
+#: inc/settings.php:311
 msgid "Disable Notifications for user"
 msgstr ""
 
-#: inc/settings.php:301
+#: inc/settings.php:315
 msgid "Allow to disable Notifications for specific user"
 msgstr ""
 
-#: inc/settings.php:303
+#: inc/settings.php:317
 msgid "This will be available to set on user edit screen"
 msgstr ""
 
-#: inc/settings.php:309
+#: inc/settings.php:323
 msgid "Uninstallation"
 msgstr ""
 
-#: inc/settings.php:315
+#: inc/settings.php:329
 msgid "Remove all added notifications"
 msgstr ""
 
-#: inc/settings.php:325
+#: inc/settings.php:339
 msgid "Remove plugin settings"
 msgstr ""
 
-#: inc/settings.php:330
+#: inc/settings.php:344
 msgid "Choose what to remove upon plugin removal"
 msgstr ""
 
-#: inc/settings.php:435
+#: inc/settings.php:449
 msgid "Settings saved"
 msgstr ""
 
-#: notification.php:141
+#: notification.php:146
 msgid ""
 "This plugin requires PHP in version at least 5.3. WordPress itself <a href="
 "\"https://wordpress.org/about/requirements/\" target=\"_blank\">requires at "
