@@ -118,6 +118,9 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 
 == Changelog ==
 
+= Next release =
+* [Added] `notification/notify` filter which control if notification should be sent or not
+
 = 3.0 =
 * [Fixed] Ignore tags which has been passed to `notification` but hasn't be registered in the trigger
 * [Fixed] Conflict with Advanced Custom Fields

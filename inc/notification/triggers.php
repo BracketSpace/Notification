@@ -114,7 +114,11 @@ class Triggers extends Singleton {
 					do_action( 'notification/trigger/notify', $tags );
 					do_action( 'notification/trigger/ ' . $trigger . '/notify', $tags );
 
-					new Notification( $trigger, $tags );
+					$notify = apply_filters( 'notification/notify', true, $trigger, $tags, $affected_objects );
+
+					if ( $notify ) {
+						new Notification( $trigger, $tags );
+					}
 
 				} else {
 					throw new \Exception( $validation );
