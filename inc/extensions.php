@@ -100,14 +100,14 @@ class Extensions extends Singleton {
 				case 'install':
 					if ( $status['url'] ) {
 						/* translators: 1: Plugin name and version. */
-						$action_button = '<a class="install-now button" data-slug="' . esc_attr( $plugin['slug'] ) . '" href="' . esc_url( $status['url'] ) . '" aria-label="' . esc_attr( sprintf( __( 'Install %s now' ), $name ) ) . '" data-name="' . esc_attr( $name ) . '">' . __( 'Install Now' ) . '</a>';
+						$action_button = '<a class="install-now button" data-slug="' . esc_attr( $ext['slug'] ) . '" href="' . esc_url( $status['url'] ) . '" aria-label="' . esc_attr( sprintf( __( 'Install %s now' ), $ext['name'] ) ) . '" data-name="' . esc_attr( $ext['name'] ) . '">' . __( 'Install Now' ) . '</a>';
 					}
 					break;
 
 				case 'update_available':
 					if ( $status['url'] ) {
 						/* translators: 1: Plugin name and version */
-						$action_button = '<a class="update-now button aria-button-if-js" data-plugin="' . esc_attr( $status['file'] ) . '" data-slug="' . esc_attr( $plugin['slug'] ) . '" href="' . esc_url( $status['url'] ) . '" aria-label="' . esc_attr( sprintf( __( 'Update %s now' ), $name ) ) . '" data-name="' . esc_attr( $name ) . '">' . __( 'Update Now' ) . '</a>';
+						$action_button = '<a class="update-now button aria-button-if-js" data-plugin="' . esc_attr( $status['file'] ) . '" data-slug="' . esc_attr( $ext['slug'] ) . '" href="' . esc_url( $status['url'] ) . '" aria-label="' . esc_attr( sprintf( __( 'Update %s now' ), $ext['name'] ) ) . '" data-name="' . esc_attr( $ext['name'] ) . '">' . __( 'Update Now' ) . '</a>';
 					}
 					break;
 
