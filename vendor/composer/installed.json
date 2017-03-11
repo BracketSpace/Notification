@@ -1,0 +1,66 @@
+[
+    {
+        "name": "underdev/singleton",
+        "version": "1.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Kubitomakita/singleton.git",
+            "reference": "d8da5daa1960fb9adf2687a9c332ec59ffe7acf4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Kubitomakita/singleton/zipball/d8da5daa1960fb9adf2687a9c332ec59ffe7acf4",
+            "reference": "d8da5daa1960fb9adf2687a9c332ec59ffe7acf4",
+            "shasum": ""
+        },
+        "time": "2017-03-11 10:26:02",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "underDEV\\Utils\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "authors": [
+            {
+                "name": "Kuba Mikita",
+                "email": "jakub@underdev.it"
+            }
+        ],
+        "description": "Singleton class"
+    },
+    {
+        "name": "underdev/settings",
+        "version": "1.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Kubitomakita/settings.git",
+            "reference": "12822399600853849b79a55eb822533ed8f7d039"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Kubitomakita/settings/zipball/12822399600853849b79a55eb822533ed8f7d039",
+            "reference": "12822399600853849b79a55eb822533ed8f7d039",
+            "shasum": ""
+        },
+        "time": "2017-03-11 10:13:48",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "underDEV\\Utils\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "authors": [
+            {
+                "name": "Kuba Mikita",
+                "email": "jakub@underdev.it"
+            }
+        ],
+        "description": "Settings library for WordPress plugins"
+    }
+]

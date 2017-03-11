@@ -2,8 +2,7 @@
 
 	$( document ).ready( function() {
 
-		$('.pretty-select').selectize();
-
+		$( '.pretty-select' ).selectize();
 
 		// Copy merge tag
 

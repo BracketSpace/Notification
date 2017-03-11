@@ -3,9 +3,9 @@
  * Comment types triggers
  */
 
-namespace Notification\Triggers\WordPress\CommentTypes;
+namespace underDEV\Notification\Triggers\WordPress\CommentTypes;
 
-use Notification\Settings;
+use underDEV\Notification\Settings;
 
 /**
  * Templates

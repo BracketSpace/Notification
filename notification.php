@@ -20,31 +20,9 @@ if ( ! defined( 'NOTIFICATION_DIR' ) ) {
 }
 
 /**
- * Plugin's autoload function
- * @param  string $class class name
- * @return mixed         false if not plugin's class or void
+ * Composer autoload
  */
-function notification_autoload( $class ) {
-
-	$parts = explode( '\\', $class );
-
-	if ( array_shift( $parts ) != 'Notification' ) {
-		return false;
-	}
-
-	// Recipients
-	if ( $parts[0] == 'Recipients' ) {
-		$file = NOTIFICATION_DIR . strtolower( implode( '/', $parts ) ) . '.php';
-	} else { // Other classes
-		$file = NOTIFICATION_DIR . trailingslashit( 'inc' ) . strtolower( implode( '/', $parts ) ) . '.php';
-	}
-
-	if ( file_exists( $file ) ) {
-		require_once( $file );
-	}
-
-}
-spl_autoload_register( 'notification_autoload' );
+require_once( 'vendor/autoload.php' );
 
 /**
  * Setup plugin
@@ -64,19 +42,14 @@ add_action( 'plugins_loaded', 'notification_plugin_setup' );
 function notification_initialize() {
 
 	/**
-	 * Global functions
-	 */
-	require_once( NOTIFICATION_DIR . trailingslashit( 'inc' ) . 'global.php' );
-
-	/**
 	 * Notifications instance
 	 */
-	Notification\Notifications::get();
+	underDEV\Notification\Notifications::get();
 
 	/**
 	 * Settings instance
 	 */
-	Notification\Settings::get();
+	underDEV\Notification\Settings::get();
 
 }
 add_action( 'init', 'notification_initialize', 5 );
@@ -109,18 +82,18 @@ function notification_admin_initialize() {
 	/**
 	 * Admin instance
 	 */
-	Notification\Admin::get();
+	underDEV\Notification\Admin::get();
 
 	/**
 	 * Extensions
 	 */
-	Notification\Extensions::get();
+	underDEV\Notification\Extensions::get();
 
 }
 add_action( 'init', 'notification_admin_initialize', 5 );
 
 /**
- * Initialize plugin on admin side
+ * Initialize Upgrader
  * @return void
  */
 function notification_upgrade() {
@@ -128,7 +101,7 @@ function notification_upgrade() {
 	/**
 	 * Upgrade instance
 	 */
-	Notification\Upgrade::get();
+	underDEV\Notification\Upgrade::get();
 
 }
 add_action( 'admin_init', 'notification_upgrade', 5 );

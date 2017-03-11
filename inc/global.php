@@ -3,8 +3,8 @@
  * Global functions
  */
 
-use \Notification\Notification\Triggers;
-use \Notification\Notifications;
+use underDEV\Notification\Notification\Triggers;
+use underDEV\Notification\Notifications;
 
 /**
  * Register new notification trigger
