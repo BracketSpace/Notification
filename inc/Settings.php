@@ -197,6 +197,8 @@ class Settings extends Singleton {
 			) )
 			->description( __( 'Choose what to remove upon plugin removal', 'notification' ) );
 
+		do_action( 'notification/settings', $this->settings_api );
+
 	}
 
 	/**
