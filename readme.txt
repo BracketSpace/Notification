@@ -123,6 +123,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 * [Added] `notification/settings` action which accepts Settings API class as a parameter
 * [Changed] Settings and Singleton are now loaded from Composer libraries
 * [Changed] Gulp default task to build, and added watch task which boots up BS
+* [Changed] Action priority when default recipients and triggers are registered from 50 to 9
 
 = 3.0 =
 * [Fixed] Ignore tags which has been passed to `notification` but hasn't be registered in the trigger

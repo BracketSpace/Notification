@@ -71,7 +71,7 @@ function notification_default_triggers_recipients_initialization() {
 	require_once( NOTIFICATION_DIR . trailingslashit( 'recipients' ) . 'recipients.php' );
 
 }
-add_action( 'init', 'notification_default_triggers_recipients_initialization', 50 );
+add_action( 'init', 'notification_default_triggers_recipients_initialization', 9 );
 
 /**
  * Initialize plugin on admin side
