@@ -121,6 +121,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 = Next release =
 * [Added] `notification/notify` filter which control if notification should be sent or not
 * [Added] `notification/settings` action which accepts Settings API class as a parameter
+* [Added] `post_author_email` merge tag for all comment types triggers, thanks to Wayne Davies
 * [Changed] Settings and Singleton are now loaded from Composer libraries
 * [Changed] Gulp default task to build, and added watch task which boots up BS
 * [Changed] Action priority when default recipients and triggers are registered from 50 to 9
