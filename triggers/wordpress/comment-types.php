@@ -13,7 +13,7 @@ use underDEV\Notification\Settings;
 
 function get_comment_post_author_email( $comment ) {
 
-	$post_data = wp_get_single_post( $comment->comment_post_ID );
+	$post_data = get_post( $comment->comment_post_ID );
 	$user_data = get_userdata( $post_data->post_author );
 
 	return $user_data->data->user_email;
@@ -167,7 +167,7 @@ if ( isset( $settings['general']['enabled_triggers']['comment_types'] ) && ! emp
 						'comment_approved'  => $comment->comment_approved,
 						'comment_type'      => $comment->comment_type,
 					), array(
-						'post'    => $post->ID,
+						'post'    => $comment->comment_post_ID,
 						'comment' => $ID,
 						'user'    => $comment->user_id
 					) );
@@ -228,7 +228,7 @@ if ( isset( $settings['general']['enabled_triggers']['comment_types'] ) && ! emp
 						'comment_approved'  => $comment->comment_approved,
 						'comment_type'      => $comment->comment_type,
 					), array(
-						'post'    => $post->ID,
+						'post'    => $comment->comment_post_ID,
 						'comment' => $ID,
 						'user'    => $comment->user_id
 					) );
@@ -289,7 +289,7 @@ if ( isset( $settings['general']['enabled_triggers']['comment_types'] ) && ! emp
 						'comment_approved'  => $comment->comment_approved,
 						'comment_type'      => $comment->comment_type,
 					), array(
-						'post'    => $post->ID,
+						'post'    => $comment->comment_post_ID,
 						'comment' => $ID,
 						'user'    => $comment->user_id
 					) );
@@ -350,7 +350,7 @@ if ( isset( $settings['general']['enabled_triggers']['comment_types'] ) && ! emp
 						'comment_approved'  => $comment->comment_approved,
 						'comment_type'      => $comment->comment_type,
 					), array(
-						'post'    => $post->ID,
+						'post'    => $comment->comment_post_ID,
 						'comment' => $ID,
 						'user'    => $comment->user_id
 					) );
@@ -411,7 +411,7 @@ if ( isset( $settings['general']['enabled_triggers']['comment_types'] ) && ! emp
 						'comment_approved'  => $comment->comment_approved,
 						'comment_type'      => $comment->comment_type,
 					), array(
-						'post'    => $post->ID,
+						'post'    => $comment->comment_post_ID,
 						'comment' => $ID,
 						'user'    => $comment->user_id
 					) );
