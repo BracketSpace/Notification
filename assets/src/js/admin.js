@@ -285,7 +285,7 @@
 
 		wp.hooks.addAction( 'notification.changed_trigger', function( trigger_slug, tags ) {
 
-			if ( tinymce.activeEditor === null ) {
+			if ( typeof tinymce.editors.content == 'undefined' ) {
 				var editor_content = $('#content').val();
 			} else {
 				var editor_content = tinymce.activeEditor.getContent();
@@ -312,10 +312,10 @@
 
 			    		if ( defaults.template ) {
 
-			    			if ( tinymce.activeEditor === null ) {
+			    			if ( typeof tinymce.editors.content == 'undefined' ) {
 								$('#content').val( defaults.template );
 							} else {
-								tinymce.activeEditor.setContent( defaults.template );
+								tinymce.editors.content.setContent( defaults.template );
 							}
 
 			    		}
