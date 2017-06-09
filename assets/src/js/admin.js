@@ -128,6 +128,11 @@
 		    		var $row = $(response.data);
 					$container.append($row);
 
+					// update inputs data when values are dynamic
+					$row.find('input, select').each( function() {
+						wp.hooks.doAction( 'notification.update_input', $(this), $(this).data('value'), $(this).data('update') );
+					} );
+
 		    	}
 
 		    	$container.fadeTo(200, 1);
