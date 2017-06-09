@@ -280,7 +280,13 @@
 
 		wp.hooks.addAction( 'notification.changed_trigger', function( trigger_slug, tags ) {
 
-			if ( tinymce.activeEditor.getContent() == '' ) {
+			if ( tinymce.activeEditor === null ) {
+				var editor_content = $('#content').val();
+			} else {
+				var editor_content = tinymce.activeEditor.getContent();
+			}
+
+			if ( editor_content == '' ) {
 
 				var data = {
 					'action':  'notification_get_defaults',
@@ -300,7 +306,13 @@
 			    		}
 
 			    		if ( defaults.template ) {
-			    			tinymce.activeEditor.setContent( defaults.template );
+
+			    			if ( tinymce.activeEditor === null ) {
+								$('#content').val( defaults.template );
+							} else {
+								tinymce.activeEditor.setContent( defaults.template );
+							}
+
 			    		}
 
 			    		if ( defaults.recipients ) {
