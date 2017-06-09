@@ -1,3 +1,5 @@
+[![Latest Stable Version](https://poser.pugx.org/underdev/settings/v/stable)](https://packagist.org/packages/underdev/settings) [![Total Downloads](https://poser.pugx.org/underdev/settings/downloads)](https://packagist.org/packages/underdev/settings) [![Latest Unstable Version](https://poser.pugx.org/underdev/settings/v/unstable)](https://packagist.org/packages/underdev/settings)
+
 This is a library which helps adding custom settings pages for WordPress plugins and themes.
 
 # Sample usage
