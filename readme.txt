@@ -128,6 +128,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 * [Changed] Action priority when settings are initialized from 15 to 8
 * [Changed] Updated Composer libraries
 * [Fixed] Bug when Text editor was active and the trigger was changed
+* [Fixed] Post Visibility setting on other post types than Notification
 
 = 3.0 =
 * [Fixed] Ignore tags which has been passed to `notification` but hasn't be registered in the trigger
