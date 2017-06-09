@@ -127,6 +127,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 * [Changed] Action priority when default recipients and triggers are registered from 50 to 9
 * [Changed] Action priority when settings are initialized from 15 to 8
 * [Changed] Updated Composer libraries
+* [Changed] Values for default trigger options from strings/arrays to null
 * [Fixed] Bug when Text editor was active and the trigger was changed
 * [Fixed] Post Visibility setting on other post types than Notification
 * [Fixed] Default recipient merge_tag value. All recipient inputs are now dynamically refreshed

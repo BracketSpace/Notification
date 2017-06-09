@@ -45,9 +45,9 @@ class Triggers extends Singleton {
 		$defaults = array(
 			'tags'       => array(),
 			'group'      => __( 'Other', 'notification' ),
-			'title'      => '',
-			'template'   => '',
-			'recipients' => array(),
+			'title'      => null,
+			'template'   => null,
+			'recipients' => null,
 			'disable'    => array()
 		);
 
