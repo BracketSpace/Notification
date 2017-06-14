@@ -33,20 +33,20 @@
     },
     {
         "name": "underdev/settings",
-        "version": "1.1.1",
-        "version_normalized": "1.1.1.0",
+        "version": "1.2",
+        "version_normalized": "1.2.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Kubitomakita/settings.git",
-            "reference": "7c9ee4d1986906fef941376ee83d4313006530e3"
+            "reference": "0e5cc67b2e37e84299b5d41c8ac7dab5d0818924"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Kubitomakita/settings/zipball/7c9ee4d1986906fef941376ee83d4313006530e3",
-            "reference": "7c9ee4d1986906fef941376ee83d4313006530e3",
+            "url": "https://api.github.com/repos/Kubitomakita/settings/zipball/0e5cc67b2e37e84299b5d41c8ac7dab5d0818924",
+            "reference": "0e5cc67b2e37e84299b5d41c8ac7dab5d0818924",
             "shasum": ""
         },
-        "time": "2017-06-08T12:36:58+00:00",
+        "time": "2017-06-14T10:23:24+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

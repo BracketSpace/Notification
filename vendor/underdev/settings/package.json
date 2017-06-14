@@ -1,6 +1,6 @@
 {
   "name": "settings",
-  "version": "1.1.1",
+  "version": "1.2",
   "description": "Settings library for WordPress plugins/themes",
   "main": "index.js",
   "scripts": {
