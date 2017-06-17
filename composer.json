@@ -3,7 +3,8 @@
     "description": "Notification WordPress plugin",
     "require": {
         "underdev/singleton": "^1.0",
-        "underdev/settings": "^1.0"
+        "underdev/settings": "^1.0",
+        "overclokk/minimum-requirements": "^1.0"
     },
     "license": "GPL3",
     "authors": [
@@ -18,6 +19,7 @@
             "underDEV\\Notification\\Recipients\\" : "recipients"
         },
 	    "files": [
+	    	"vendor/overclokk/minimum-requirements/minimum-requirements.php",
 	        "inc/global.php"
 	    ]
     }

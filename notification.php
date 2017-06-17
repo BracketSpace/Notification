@@ -25,6 +25,29 @@ if ( ! defined( 'NOTIFICATION_DIR' ) ) {
 require_once( 'vendor/autoload.php' );
 
 /**
+ * Check minimum requirements of the plugin
+ * @param string $php_ver The minimum PHP version.
+ * @param string $wp_ver  The minimum WP version.
+ * @param string $name    The name of the theme/plugin to check.
+ * @param array  $plugins Required plugins format plugin_path/plugin_name.
+ */
+$requirements = new Minimum_Requirements( '5.3', '3.6', __( 'Notification', 'notification' ), array() );
+
+/**
+ * Check compatibility on activation
+ */
+register_activation_hook( __FILE__, array( $requirements, 'check_compatibility_on_install' ) );
+
+/**
+ * If it is already installed and activated check if example new version is compatible,
+ * if is not don't load plugin code and print admin_notice
+ */
+if ( ! $requirements->is_compatible_version() ) {
+	add_action( 'admin_notices', array( $requirements, 'load_plugin_admin_notices' ) );
+	return;
+}
+
+/**
  * Setup plugin
  * @return void
  */
@@ -105,20 +128,3 @@ function notification_upgrade() {
 
 }
 add_action( 'admin_init', 'notification_upgrade', 5 );
-
-/**
- * Do some check on plugin activation
- * @return void
- */
-function notification_activation() {
-
-	if ( version_compare( PHP_VERSION, '5.3', '<' ) ) {
-
-		deactivate_plugins( plugin_basename( __FILE__ ) );
-
-		wp_die( __( 'This plugin requires PHP in version at least 5.3. WordPress itself <a href="https://wordpress.org/about/requirements/" target="_blank">requires at least PHP 5.6</a>. Please upgrade your PHP version or contact your Server administrator.', 'notification' ) );
-
-	}
-
-}
-register_activation_hook( __FILE__, 'notification_activation' );

@@ -7,6 +7,7 @@ namespace Composer\Autoload;
 class ComposerStaticInitc5edc1ce72bc8f106f20de499978919c
 {
     public static $files = array (
+        '75a01572132acce9c6e992f5f1b7d988' => __DIR__ . '/..' . '/overclokk/minimum-requirements/minimum-requirements.php',
         'a0f7c51d9b184e3953336b24a05a9f4b' => __DIR__ . '/../..' . '/inc/global.php',
     );
 

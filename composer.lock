@@ -4,8 +4,51 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "093b9d2c630294f86c3f5de0104b213a",
+    "content-hash": "2f3bc7c00709acb85c4df24f6fc7c26f",
     "packages": [
+        {
+            "name": "overclokk/minimum-requirements",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overclokk/minimum-requirements.git",
+                "reference": "5df55d4e70d7fa1ac1e474469007afa02a9478a7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overclokk/minimum-requirements/zipball/5df55d4e70d7fa1ac1e474469007afa02a9478a7",
+                "reference": "5df55d4e70d7fa1ac1e474469007afa02a9478a7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "require-dev": {
+                "lucatume/function-mocker": "^1.0",
+                "lucatume/wp-browser": "^1.10"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "overclokk",
+                    "email": "info@overclokk.net",
+                    "homepage": "http://www.overclokk.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Check the minimum requirements for your WordPress theme or plugin",
+            "homepage": "https://github.com/overclokk/minimum-requirements",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress plugin"
+            ],
+            "time": "2017-06-10T16:31:38+00:00"
+        },
         {
             "name": "underdev/settings",
             "version": "1.2",
