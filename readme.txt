@@ -132,6 +132,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 * [Fixed] Bug when Text editor was active and the trigger was changed
 * [Fixed] Post Visibility setting on other post types than Notification
 * [Fixed] Default recipient merge_tag value. All recipient inputs are now dynamically refreshed
+* [Fixed] Not cached exception in plugin's table when requiring this plugin from inside of another plugin or theme, thanks to Max (@max-kk)
 
 = 3.0 =
 * [Fixed] Ignore tags which has been passed to `notification` but hasn't be registered in the trigger

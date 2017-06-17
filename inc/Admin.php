@@ -622,10 +622,14 @@ class Admin extends Singleton {
 			return $actions;
 		}
 
-		$deactivate_link = new \SimpleXMLElement( $actions['deactivate'] );
-		$deactivate_url  = $deactivate_link['href'];
+		try {
+			$deactivate_link = new \SimpleXMLElement( $actions['deactivate'] );
+			$deactivate_url  = $deactivate_link['href'];
 
-		$actions['deactivate'] = '<a href="#TB_inline?width=500&height=400&inlineId=notification-deactivate" class="thickbox" data-deactivate="' . $deactivate_url . '">' . __( 'Deactivate', 'notification' ) . '</a>';
+			$actions['deactivate'] = '<a href="#TB_inline?width=500&height=400&inlineId=notification-deactivate" class="thickbox" data-deactivate="' . $deactivate_url . '">' . __( 'Deactivate', 'notification' ) . '</a>';
+		} catch( \Exception $e ) {
+			// don't care
+		}
 
 		return $actions;
 
