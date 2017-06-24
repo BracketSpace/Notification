@@ -61,6 +61,17 @@ class Extensions extends Singleton {
 			'icon'     => '//ps.w.org/notification-bbpress/assets/icon-256x256.png',
 		);
 
+		$this->extensions[] = array(
+			'wporg'    => plugins_api( 'plugin_information', array( 'slug' => 'signature-notification' ) ),
+			'url'      => self_admin_url( 'plugin-install.php?tab=plugin-information&amp;plugin=signature-notification&amp;TB_iframe=true&amp;width=600&amp;height=550' ),
+			'official' => true,
+			'slug'     => 'signature-notification',
+			'name'     => 'Signature',
+			'desc'     => __( 'Allows to add signature to all emails', 'notification' ),
+			'author'   => 'underDEV',
+			'icon'     => '//ps.w.org/signature-notification/assets/icon-256x256.png',
+		);
+
 	}
 
 	/**
