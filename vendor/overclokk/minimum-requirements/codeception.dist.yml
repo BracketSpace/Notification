@@ -1,0 +1,59 @@
+actor: Tester
+paths:
+    tests: tests
+    log: tests/_output
+    data: tests/_data
+    helpers: tests/_support
+settings:
+    bootstrap: _bootstrap.php
+    colors: true
+    memory_limit: 1024M
+modules:
+    config:
+        Db:
+            dsn: 'mysql:host=127.0.0.1;dbname=wp-tests'
+            user: root
+            password: root
+            dump: tests/_data/dump.sql
+        WPBrowser:
+            url: 'http://wp.dev'
+            adminUsername: admin
+            adminPassword: admin
+            adminUrl: /wp-admin
+        WPDb:
+            dsn: 'mysql:host=127.0.0.1;dbname=wp-tests'
+            user: root
+            password: root
+            dump: tests/_data/dump.sql
+            populate: true
+            cleanup: true
+            url: 'http://wp.dev'
+            tablePrefix: wp_
+        WPLoader:
+            wpRootFolder: /Users/Luca/Sites/wp
+            dbName: wp-tests
+            dbHost: 127.0.0.1
+            dbUser: root
+            dbPassword: root
+            wpDebug: true
+            dbCharset: utf8
+            dbCollate: ''
+            tablePrefix: wpmr_
+            domain: wp.dev
+            adminEmail: admin@wp.dev
+            title: 'WP Minimum Requirements Tests'
+            phpBinary: php
+            language: ''
+            plugins:
+                - minimum-requirements/minimum-requirements.php
+            activatePlugins: 
+                - minimum-requirements/minimum-requirements.php
+        WPWebDriver:
+            url: 'http://wp.dev'
+            browser: phantomjs
+            port: 4444
+            restart: true
+            wait: 2
+            adminUsername: admin
+            adminPassword: admin
+            adminUrl: /wp-admin

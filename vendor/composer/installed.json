@@ -1,0 +1,111 @@
+[
+    {
+        "name": "underdev/singleton",
+        "version": "1.1",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Kubitomakita/singleton.git",
+            "reference": "31a6625e118b94bd954a76a5d7395143a5d2a014"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Kubitomakita/singleton/zipball/31a6625e118b94bd954a76a5d7395143a5d2a014",
+            "reference": "31a6625e118b94bd954a76a5d7395143a5d2a014",
+            "shasum": ""
+        },
+        "time": "2017-06-08T12:20:37+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "underDEV\\Utils\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "authors": [
+            {
+                "name": "Kuba Mikita",
+                "email": "jakub@underdev.it"
+            }
+        ],
+        "description": "Singleton class"
+    },
+    {
+        "name": "underdev/settings",
+        "version": "1.2",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Kubitomakita/settings.git",
+            "reference": "0e5cc67b2e37e84299b5d41c8ac7dab5d0818924"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Kubitomakita/settings/zipball/0e5cc67b2e37e84299b5d41c8ac7dab5d0818924",
+            "reference": "0e5cc67b2e37e84299b5d41c8ac7dab5d0818924",
+            "shasum": ""
+        },
+        "time": "2017-06-14T10:23:24+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "underDEV\\Utils\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "authors": [
+            {
+                "name": "Kuba Mikita",
+                "email": "jakub@underdev.it"
+            }
+        ],
+        "description": "Settings library for WordPress plugins"
+    },
+    {
+        "name": "overclokk/minimum-requirements",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/overclokk/minimum-requirements.git",
+            "reference": "5df55d4e70d7fa1ac1e474469007afa02a9478a7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/overclokk/minimum-requirements/zipball/5df55d4e70d7fa1ac1e474469007afa02a9478a7",
+            "reference": "5df55d4e70d7fa1ac1e474469007afa02a9478a7",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2"
+        },
+        "require-dev": {
+            "lucatume/function-mocker": "^1.0",
+            "lucatume/wp-browser": "^1.10"
+        },
+        "time": "2017-06-10T16:31:38+00:00",
+        "type": "wordpress-plugin",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "overclokk",
+                "email": "info@overclokk.net",
+                "homepage": "http://www.overclokk.net",
+                "role": "Developer"
+            }
+        ],
+        "description": "Check the minimum requirements for your WordPress theme or plugin",
+        "homepage": "https://github.com/overclokk/minimum-requirements",
+        "keywords": [
+            "plugin",
+            "wordpress",
+            "wordpress plugin"
+        ]
+    }
+]

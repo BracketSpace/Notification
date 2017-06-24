@@ -3,7 +3,7 @@
  * Register default recipients
  */
 
-use Notification\Recipients\Core;
+use underDEV\Notification\Recipients\Core;
 
 /**
  * Custom email recipient

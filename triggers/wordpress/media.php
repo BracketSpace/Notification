@@ -3,9 +3,9 @@
  * Media triggers
  */
 
-namespace Notification\Triggers\WordPress\Media;
+namespace underDEV\Notification\Triggers\WordPress\Media;
 
-use Notification\Settings;
+use underDEV\Notification\Settings;
 
 /**
  * Templates

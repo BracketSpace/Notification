@@ -5,7 +5,7 @@ Description: Send email notifications about various events in WordPress. You can
 Plugin URI: https://notification.underdev.it
 Author: underDEV
 Author URI: https://underdev.it
-Version: 3.0
+Version: 3.1
 License: GPL3
 Text Domain: notification
 Domain Path: /languages
@@ -20,31 +20,32 @@ if ( ! defined( 'NOTIFICATION_DIR' ) ) {
 }
 
 /**
- * Plugin's autoload function
- * @param  string $class class name
- * @return mixed         false if not plugin's class or void
+ * Composer autoload
  */
-function notification_autoload( $class ) {
+require_once( 'vendor/autoload.php' );
 
-	$parts = explode( '\\', $class );
+/**
+ * Check minimum requirements of the plugin
+ * @param string $php_ver The minimum PHP version.
+ * @param string $wp_ver  The minimum WP version.
+ * @param string $name    The name of the theme/plugin to check.
+ * @param array  $plugins Required plugins format plugin_path/plugin_name.
+ */
+$requirements = new Minimum_Requirements( '5.3', '3.6', __( 'Notification', 'notification' ), array() );
 
-	if ( array_shift( $parts ) != 'Notification' ) {
-		return false;
-	}
+/**
+ * Check compatibility on activation
+ */
+register_activation_hook( __FILE__, array( $requirements, 'check_compatibility_on_install' ) );
 
-	// Recipients
-	if ( $parts[0] == 'Recipients' ) {
-		$file = NOTIFICATION_DIR . strtolower( implode( '/', $parts ) ) . '.php';
-	} else { // Other classes
-		$file = NOTIFICATION_DIR . trailingslashit( 'inc' ) . strtolower( implode( '/', $parts ) ) . '.php';
-	}
-
-	if ( file_exists( $file ) ) {
-		require_once( $file );
-	}
-
+/**
+ * If it is already installed and activated check if example new version is compatible,
+ * if is not don't load plugin code and print admin_notice
+ */
+if ( ! $requirements->is_compatible_version() ) {
+	add_action( 'admin_notices', array( $requirements, 'load_plugin_admin_notices' ) );
+	return;
 }
-spl_autoload_register( 'notification_autoload' );
 
 /**
  * Setup plugin
@@ -64,19 +65,14 @@ add_action( 'plugins_loaded', 'notification_plugin_setup' );
 function notification_initialize() {
 
 	/**
-	 * Global functions
-	 */
-	require_once( NOTIFICATION_DIR . trailingslashit( 'inc' ) . 'global.php' );
-
-	/**
 	 * Notifications instance
 	 */
-	Notification\Notifications::get();
+	underDEV\Notification\Notifications::get();
 
 	/**
 	 * Settings instance
 	 */
-	Notification\Settings::get();
+	underDEV\Notification\Settings::get();
 
 }
 add_action( 'init', 'notification_initialize', 5 );
@@ -98,7 +94,7 @@ function notification_default_triggers_recipients_initialization() {
 	require_once( NOTIFICATION_DIR . trailingslashit( 'recipients' ) . 'recipients.php' );
 
 }
-add_action( 'init', 'notification_default_triggers_recipients_initialization', 50 );
+add_action( 'init', 'notification_default_triggers_recipients_initialization', 9 );
 
 /**
  * Initialize plugin on admin side
@@ -109,18 +105,18 @@ function notification_admin_initialize() {
 	/**
 	 * Admin instance
 	 */
-	Notification\Admin::get();
+	underDEV\Notification\Admin::get();
 
 	/**
 	 * Extensions
 	 */
-	Notification\Extensions::get();
+	underDEV\Notification\Extensions::get();
 
 }
 add_action( 'init', 'notification_admin_initialize', 5 );
 
 /**
- * Initialize plugin on admin side
+ * Initialize Upgrader
  * @return void
  */
 function notification_upgrade() {
@@ -128,24 +124,7 @@ function notification_upgrade() {
 	/**
 	 * Upgrade instance
 	 */
-	Notification\Upgrade::get();
+	underDEV\Notification\Upgrade::get();
 
 }
 add_action( 'admin_init', 'notification_upgrade', 5 );
-
-/**
- * Do some check on plugin activation
- * @return void
- */
-function notification_activation() {
-
-	if ( version_compare( PHP_VERSION, '5.3', '<' ) ) {
-
-		deactivate_plugins( plugin_basename( __FILE__ ) );
-
-		wp_die( __( 'This plugin requires PHP in version at least 5.3. WordPress itself <a href="https://wordpress.org/about/requirements/" target="_blank">requires at least PHP 5.6</a>. Please upgrade your PHP version or contact your Server administrator.', 'notification' ) );
-
-	}
-
-}
-register_activation_hook( __FILE__, 'notification_activation' );

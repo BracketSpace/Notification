@@ -47,10 +47,15 @@ gulp.task( 'scripts', function() {
         .pipe( reload( { stream: true } ) );
 } );
 
-////////////////////////////////////
-// Default - Browser Sync & Watch //
-////////////////////////////////////
-gulp.task( 'default', function() {
+/////////////////////
+// Default - Build //
+/////////////////////
+gulp.task( 'default', [ 'styles', 'scripts' ] );
+
+//////////////////////////////////
+// Watch - Browser Sync & Watch //
+//////////////////////////////////
+gulp.task( 'watch', function() {
 
     browserSync({
         proxy: 'notification.dev'

@@ -3,8 +3,8 @@ Contributors: Kubitomakita
 Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, email, mail
 Requires at least: 3.6
-Tested up to: 4.7
-Stable tag: 3.0
+Tested up to: 4.8
+Stable tag: 3.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -117,6 +117,24 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 3. Settings
 
 == Changelog ==
+
+= 3.1 =
+* [Added] `notification/notify` filter which control if notification should be sent or not
+* [Added] `notification/settings` action which accepts Settings API class as a parameter
+* [Added] `post_author_email` merge tag for all comment types triggers, thanks to Wayne Davies
+* [Added] Ongoing check of PHP and WP version, thanks to Max (@max-kk)
+* [Added] Option to strip shortcodes from Notification subject and content, thanks to @Laracy
+* [Added] Notification : Signature extension to extension directory
+* [Changed] Settings and Singleton are now loaded from Composer libraries
+* [Changed] Gulp default task to build, and added watch task which boots up BS
+* [Changed] Action priority when default recipients and triggers are registered from 50 to 9
+* [Changed] Action priority when settings are initialized from 15 to 8
+* [Changed] Updated Composer libraries
+* [Changed] Values for default trigger options from strings/arrays to null
+* [Fixed] Bug when Text editor was active and the trigger was changed
+* [Fixed] Post Visibility setting on other post types than Notification
+* [Fixed] Default recipient merge_tag value. All recipient inputs are now dynamically refreshed
+* [Fixed] Not cached exception in plugin's table when requiring this plugin from inside of another plugin or theme, thanks to Max (@max-kk)
 
 = 3.0 =
 * [Fixed] Ignore tags which has been passed to `notification` but hasn't be registered in the trigger

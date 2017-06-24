@@ -3,9 +3,9 @@
  * Post Types triggers
  */
 
-namespace Notification\Triggers\WordPress\PostTypes;
+namespace underDEV\Notification\Triggers\WordPress\PostTypes;
 
-use Notification\Settings;
+use underDEV\Notification\Settings;
 
 /**
  * Custom functions

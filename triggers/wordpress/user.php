@@ -3,9 +3,9 @@
  * User triggers
  */
 
-namespace Notification\Triggers\WordPress\User;
+namespace underDEV\Notification\Triggers\WordPress\User;
 
-use Notification\Settings;
+use underDEV\Notification\Settings;
 
 /**
  * Templates

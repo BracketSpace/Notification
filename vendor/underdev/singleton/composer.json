@@ -1,0 +1,17 @@
+{
+    "name": "underdev/singleton",
+    "description": "Singleton class",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Kuba Mikita",
+            "email": "jakub@underdev.it"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4" : {
+            "underDEV\\Utils\\" : "src"
+        }
+    }
+}

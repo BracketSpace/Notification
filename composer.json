@@ -1,0 +1,26 @@
+{
+    "name": "underdev/notification",
+    "description": "Notification WordPress plugin",
+    "require": {
+        "underdev/singleton": "^1.0",
+        "underdev/settings": "^1.0",
+        "overclokk/minimum-requirements": "^1.0"
+    },
+    "license": "GPL3",
+    "authors": [
+        {
+            "name": "Kuba Mikita",
+            "email": "jakub@underdev.it"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "underDEV\\Notification\\" : "inc",
+            "underDEV\\Notification\\Recipients\\" : "recipients"
+        },
+	    "files": [
+	    	"vendor/overclokk/minimum-requirements/minimum-requirements.php",
+	        "inc/global.php"
+	    ]
+    }
+}

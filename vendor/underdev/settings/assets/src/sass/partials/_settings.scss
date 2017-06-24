@@ -1,0 +1,137 @@
+/**
+ * Settings styles
+ */
+
+.underdev-settings {
+
+	h1 {
+		margin-bottom: 16px;
+	}
+
+	.box {
+		box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	    border: 1px solid #e5e5e5;
+	    background: #fff;
+	    color: #555;
+	    padding: 15px;
+	    margin: 0;
+	    box-sizing: border-box;
+	}
+
+	.menu-col {
+		width: 280px;
+		margin-right: 40px;
+		float: left;
+		padding-left: 0;
+
+		@include mobile {
+			float: none;
+			margin: 0 0 40px 0;
+			width: 100%;
+		}
+
+		.menu-list {
+			margin: 0;
+
+		    li {
+		    	padding-left: 15px;
+		    	display: block;
+		    	margin: 12px 0;
+
+		    	a {
+		    		font-size: 18px;
+		    		text-decoration: none;
+		    		text-transform: uppercase;
+		    		color: #555;
+		    		display: block;
+		    		padding: 6px 0;
+		    	}
+
+		    	&.current {
+		    		border-left: 4px solid #666;
+		    		padding-left: 11px;
+
+		    		a {
+		    			color: #23282d;
+		    		}
+
+		    	}
+
+		    	&:first-child {
+		    		margin-top: 0;
+		    	}
+
+		    	&:last-child {
+		    		margin-bottom: 0;
+		    	}
+
+		    }
+
+		}
+
+	}
+
+	.setting-col {
+		margin-left: 320px;
+		font-size: 15px;
+
+		@include mobile {
+			margin-left: 0;
+			width: 100%;
+		}
+
+		.setting-group {
+			margin-bottom: 2em;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			h3 {
+				font-weight: normal;
+				margin: 4px 0;
+			    border-bottom: 1px solid #e4e4e4;
+			    padding-bottom: 16px;
+			}
+
+			.form-table {
+				clear: none;
+
+				th {
+					font-weight: normal;
+				}
+
+			}
+
+		}
+
+	}
+
+	.selectize-dropdown {
+		z-index: 999999;
+	}
+
+	.selectize-control.multi .selectize-input {
+
+		[data-value] {
+		    text-shadow: none;
+		    background-color: #eeeeee;
+		    background-image: linear-gradient(to bottom, #f4f4f4, #dfdfdf);
+
+		    &.active {
+		    	background-color: #dddddd;
+			    background-image: linear-gradient(to bottom, #eeeeee, #cfcfcf);
+			    color: #535353;
+			    border: 1px solid #c0c0c0;
+		    }
+
+		}
+
+		> div {
+		    color: #535353;
+		    border: 1px solid #c0c0c0;
+		}
+
+	}
+
+}
