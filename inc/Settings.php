@@ -171,6 +171,16 @@ class Settings extends Singleton {
 				'description' => __( 'This will be available to set on user edit screen', 'notification' ),
 				'render'   => array( new CoreFields\Checkbox(), 'input' ),
 				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+			) )->add_field( array(
+				'name'     => __( 'Strip shortcodes from Notification', 'notification' ),
+				'slug'     => 'strip_shortcodes',
+				'default'  => false,
+				'addons'   => array(
+					'label' => __( 'Strip all shortcodes', 'notification' )
+				),
+				'description' => __( 'This will affect both subject and content', 'notification' ),
+				'render'   => array( new CoreFields\Checkbox(), 'input' ),
+				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
 			) );
 
 

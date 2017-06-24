@@ -123,6 +123,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 * [Added] `notification/settings` action which accepts Settings API class as a parameter
 * [Added] `post_author_email` merge tag for all comment types triggers, thanks to Wayne Davies
 * [Added] Ongoing check of PHP and WP version, thanks to Max (@max-kk)
+* [Added] Option to strip shortcodes from Notification subject and content, thanks to @Laracy
 * [Changed] Settings and Singleton are now loaded from Composer libraries
 * [Changed] Gulp default task to build, and added watch task which boots up BS
 * [Changed] Action priority when default recipients and triggers are registered from 50 to 9

@@ -6,6 +6,7 @@
  */
 
 namespace underDEV\Notification;
+use underDEV\Notification\Settings;
 use underDEV\Notification\Notification\Recipients;
 use underDEV\Notification\Notification\Triggers;
 
@@ -179,6 +180,10 @@ class Notification {
 			$subject = preg_replace( $this->merge_tag_pattern, '', $subject );
 		}
 
+		if ( Settings::get()->get_setting( 'general/additional/strip_shortcodes' ) ) {
+			$subject = strip_shortcodes( $subject );
+		}
+
 		$subject = apply_filters( 'notification/notify/subject', $subject, $this->trigger, $this->tags );
 
 		$this->notification->subject = $subject;
@@ -204,6 +209,10 @@ class Notification {
 
 		if ( apply_filters( 'notification/notify/message/remove_empty_merge_tags', true, $this->trigger ) ) {
 			$message = preg_replace( $this->merge_tag_pattern, '', $message );
+		}
+
+		if ( Settings::get()->get_setting( 'general/additional/strip_shortcodes' ) ) {
+			$message = strip_shortcodes( $message );
 		}
 
 		$message = apply_filters( 'notification/notify/message', $message, $this->trigger, $this->tags );
