@@ -3,8 +3,8 @@ Contributors: Kubitomakita
 Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, email, mail
 Requires at least: 3.6
-Tested up to: 4.7
-Stable tag: 3.0
+Tested up to: 4.8
+Stable tag: 3.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -118,7 +118,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 
 == Changelog ==
 
-= Next release =
+= 3.1 =
 * [Added] `notification/notify` filter which control if notification should be sent or not
 * [Added] `notification/settings` action which accepts Settings API class as a parameter
 * [Added] `post_author_email` merge tag for all comment types triggers, thanks to Wayne Davies
