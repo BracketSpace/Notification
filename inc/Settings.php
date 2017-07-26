@@ -51,8 +51,8 @@ class Settings extends Singleton {
 	public function register_settings() {
 
 		// prepare post types for post types option select
-		$valid_post_types = get_post_types( array( 'public' => true ), 'objects' );
-		unset( $valid_post_types['attachment'] );
+		$valid_post_types = apply_filters( 'notification/admin/getcpts', get_post_types( array( 'public' => true ), 'objects' );
+		unset( $valid_post_types['attachment'] ) );
 
 		// bbPress post types removal
 		// These triggers are available in addon: https://github.com/Kubitomakita/notification-bbpress
