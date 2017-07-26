@@ -23,7 +23,7 @@ class Settings extends Singleton {
 
 		add_action( 'admin_menu', array( $this, 'register_settings_page' ) );
 
-		add_action( 'init', array( $this, 'register_settings' ), 8 );
+		add_action( 'wp_loaded', array( $this, 'register_settings' ), 8 );
 
 	}
 
