@@ -118,6 +118,9 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 
 == Changelog ==
 
+= Next release =
+* [Fixed] Composer autoload file thanks to @jclausen
+
 = 3.1.1 =
 * [Fixed] Bug with directories/files names, thanks to Gregory Rick
 
