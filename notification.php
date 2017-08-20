@@ -22,7 +22,7 @@ if ( ! defined( 'NOTIFICATION_DIR' ) ) {
 /**
  * Composer autoload
  */
-require_once( 'vendor/autoload.php' );
+require_once( NOTIFICATION_DIR . '/vendor/autoload.php' );
 
 /**
  * Check minimum requirements of the plugin
