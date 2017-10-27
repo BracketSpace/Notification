@@ -2,7 +2,7 @@
 Contributors: Kubitomakita
 Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, email, mail
-Requires at least: 3.6
+Requires at least: 4.6
 Tested up to: 4.8
 Stable tag: 3.1.1
 License: GPLv3
