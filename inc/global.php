@@ -83,14 +83,37 @@ function notification( $trigger = null, $tags = array(), $affected_objects = arr
 /**
  * Check if there are notifications defined
  * @param  string  $trigger trigger slug
+ * @param  bool	   $cached use posts cache? Can be used in system calls to avoid too many queries
  * @return boolean
  */
-function is_notification_defined( $trigger = null ) {
+function is_notification_defined( $trigger = null, $cached = false ) {
 
 	if ( empty( $trigger ) ) {
 		throw new \Exception( 'Define trigger slug' );
 	}
+	
+	// Use caching
+	if ( $cached ) {
+		static $triggers_cache;
+		static $triggers_cache_fetched;
+		if ( !$triggers_cache_fetched ) {
+			global $wpdb;
+			$triggers_cache = array_merge(
+				$triggers_cache,
+				$wpdb->get_results("SELECT postm.`meta_value` as trigger_slug, `ID`, `post_status`, `post_title` FROM `{$wpdb->posts}` post " .
+					"LEFT JOIN `{$wpdb->postmeta}` as postm ON post.ID = postm.post_id WHERE post.`post_type`='notification' AND postm.`meta_key`='_trigger';", OBJECT_K)
+			);
+			$triggers_cache_fetched = true;
+		}
 
+		if ( isset( $triggers_cache_fetched[$trigger] ) ) {
+			return true;
+		} else {
+			return false;
+		}	
+	}
+
+	// No cached
 	$notifications = get_posts( array(
 		'numberposts' => -1,
 		'post_type'	  => 'notification',
