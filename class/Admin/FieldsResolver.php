@@ -9,7 +9,13 @@ use underDEV\Notification\Abstracts\Notification;
 class FieldsResolver {
 
 	/**
-	 * Notification objecy
+	 * Regex pattern for merge tags
+	 * @var string
+	 */
+	private $merge_tag_pattern = "/\{([^\}]*)\}/";
+
+	/**
+	 * Notification object
 	 *
 	 * @var Notification
 	 */
@@ -60,6 +66,11 @@ class FieldsResolver {
 			}
 
 			$resolved = $this->resolve_value( $field->get_value() );
+
+			if ( apply_filters( 'notification/merge_tags/remove_empty', true ) ) {
+				$resolved = preg_replace( $this->merge_tag_pattern, '', $resolved );
+			}
+
 			$field->set_value( $resolved );
 
 		}
