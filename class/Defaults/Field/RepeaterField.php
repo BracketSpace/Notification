@@ -97,9 +97,13 @@ class RepeaterField extends Field {
 				}
 
 				$sub_field->section = $this->get_name() . '[' . $this->current_row . ']';
+				$description        = $sub_field->get_description();
 
 				$html .= '<td class="subfield ' . esc_attr( $sub_field->get_raw_name() ) . '">';
 					$html .= $sub_field->field();
+					if ( ! empty( $description ) ) {
+						$html .= '<p class="description">' . $description . '</p>';
+					}
 				$html .= '</td>';
 
 			}
