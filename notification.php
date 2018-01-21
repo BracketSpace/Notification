@@ -5,19 +5,11 @@ Description: Send notifications about various events in WordPress. You can also 
 Plugin URI: https://notification.underdev.it
 Author: underDEV
 Author URI: https://underdev.it
-Version: 4.0.0
+Version: 5.0.0
 License: GPL3
 Text Domain: notification
 Domain Path: /languages
 */
-
-if ( ! defined( 'NOTIFICATION_URL' ) ) {
-	define( 'NOTIFICATION_URL', plugin_dir_url( __FILE__ ) );
-}
-
-if ( ! defined( 'NOTIFICATION_DIR' ) ) {
-	define( 'NOTIFICATION_DIR', plugin_dir_path( __FILE__ ) );
-}
 
 /**
  * Plugin's autoload function
@@ -36,21 +28,40 @@ function notification_autoload( $class ) {
 		return false;
 	}
 
-	$file = NOTIFICATION_DIR . trailingslashit( 'inc' ) . implode( '/', $parts ) . '.php';
+	$file = trailingslashit( 'class' ) . implode( '/', $parts ) . '.php';
 
-	if ( file_exists( $file ) ) {
-		require_once( $file );
-	}
+	require_once( $file );
 
 }
 spl_autoload_register( 'notification_autoload' );
 
+/**
+ * Requirements check
+ */
+$requirements = new underDEV\Notification\Utils\Requirements( __( 'Notification', 'notification' ), array(
+	'php'                => '5.3',
+	'wp'                 => '4.6',
+	'function_collision' => array( 'register_trigger', 'register_notification' ),
+) );
+
+if ( ! $requirements->satisfied() ) {
+	add_action( 'admin_notices', array( $requirements, 'notice' ) );
+	return;
+}
 
 /**
- * Setup plugin
- * @return void
+ * Runtime
  */
-function notification_plugin_setup() {
-	load_plugin_textdomain( 'notification', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+function notification_runtime() {
+
+	global $notification_runtime;
+
+	if ( empty( $notification_runtime ) ) {
+		$notification_runtime = new underDEV\Notification\Runtime( __FILE__ );
+	}
+
+	return $notification_runtime;
+
 }
-add_action( 'plugins_loaded', 'notification_plugin_setup' );
+
+notification_runtime();
