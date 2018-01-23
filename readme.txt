@@ -121,6 +121,7 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 = Next release =
 * [Fixed] Composer autoload file thanks to @jclausen
 * [Added] WPML support for translated Notification thanks to @max-kk
+* [Added] v5 promo
 
 = 3.1.1 =
 * [Fixed] Bug with directories/files names, thanks to Gregory Rick
