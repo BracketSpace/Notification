@@ -5,7 +5,7 @@ Description: Send email notifications about various events in WordPress. You can
 Plugin URI: https://notification.underdev.it
 Author: underDEV
 Author URI: https://underdev.it
-Version: 3.1.1
+Version: 3.2.0
 License: GPL3
 Text Domain: notification
 Domain Path: /languages
