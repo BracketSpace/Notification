@@ -3,9 +3,18 @@
  */
 
 .notification-notice {
+	overflow: auto;
 
 	.dismiss-beg-message {
 		float: right;
+	}
+
+	.dismiss-beg-email-message {
+		float: right;
+	}
+
+	#mc_embed_signup {
+		float: left;
 	}
 
 }

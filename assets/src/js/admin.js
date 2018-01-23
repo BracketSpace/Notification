@@ -357,6 +357,25 @@
 
 		});
 
+		// Dismiss beg email message
+
+		$( '.notification-notice' ).on( 'click', '.dismiss-beg-email-message', function( event ) {
+
+			event.preventDefault();
+
+			var $button = $( this );
+
+			var data = {
+				'action':  'notification_dismiss_beg_email_message',
+				'nonce': $button.data( 'nonce' )
+			};
+
+			$.post( ajaxurl, data, function( response ) {
+		    	$button.parents( '.notification-notice' ).slideUp();
+			});
+
+		});
+
 		// Plugin removal
 
 		$( '#the-list tr[data-slug="notification"] .deactivate a' ).click( function( event ) {

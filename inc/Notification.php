@@ -68,13 +68,20 @@ class Notification {
 	 * @return void
 	 */
 	public function set_notifications() {
-
-		$this->notifications = get_posts( array(
+		
+		$post_args = array(
 			'numberposts' => -1,
 			'post_type'	  => 'notification',
 			'meta_key'	  => '_trigger',
-			'meta_value'  => $this->trigger
-		) );
+			'meta_value'  => $this->trigger,	
+		);
+
+		// Fix for WPML
+		if ( defined("ICL_LANGUAGE_CODE") ) {
+		    $post_arg['suppress_filters'] = 0;
+		}		
+		
+		$this->notifications = get_posts( $post_arg );
 
 	}
 

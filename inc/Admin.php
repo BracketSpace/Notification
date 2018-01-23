@@ -47,8 +47,10 @@ class Admin extends Singleton {
 		add_filter( 'notification/admin/allow_metabox/slugdiv', '__return_true' );
 
 		add_action( 'admin_notices', array( $this, 'beg_for_review' ) );
-
 		add_action( 'wp_ajax_notification_dismiss_beg_message', array( $this, 'dismiss_beg_message' ) );
+
+		add_action( 'admin_notices', array( $this, 'beg_for_email' ) );
+		add_action( 'wp_ajax_notification_dismiss_beg_email_message', array( $this, 'dismiss_beg_email_message' ) );
 
 		add_action( 'wp_ajax_notification_send_feedback', array( $this, 'send_feedback' ) );
 		add_filter( 'plugin_action_links', array( $this, 'plugins_table_link' ), 10, 5 );
@@ -207,6 +209,46 @@ class Admin extends Singleton {
 
 	        echo '<a href="#" class="dismiss-beg-message" data-nonce="' . wp_create_nonce( 'notification-beg-dismiss' ) . '">';
 		        _e( 'I already reviewed it', 'notification' );
+	        echo '</a>';
+
+        echo '</p></div>';
+
+	}
+
+	/**
+	 * Display notice with email beg
+	 * @return void
+	 */
+	public function beg_for_email() {
+
+        if ( get_option( 'notification_beg_email_messsage' ) == 'dismissed' ) {
+        	return;
+        }
+
+        echo '<div class="notice notice-info notification-notice"><p>';
+
+        	echo '<strong>';
+		        _e( 'New version of the Notification plugin is coming!', 'notification' );
+	        echo '</strong> ';
+
+	        printf( __( 'You can expect many new features like more notification types (webhook, push, sms) and awesome new developer API.', 'notification' ) );
+	        echo '<br>';
+	        printf( __( 'Leave your email address below to get discounts, latests informations and more (except spam!).', 'notification' ) );
+
+	        echo '<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+				<div id="mc_embed_signup">
+					<form action="https://underdev.us17.list-manage.com/subscribe/post?u=b51c74982847e3e833b370195&amp;id=605283d320" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+					    <div id="mc_embed_signup_scroll">
+						<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Email" required>
+					    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+					    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b51c74982847e3e833b370195_605283d320" tabindex="-1" value=""></div>
+					    <div class="clear"><input type="submit" value="I want to know first!" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+					    </div>
+					</form>
+				</div>';
+
+	        echo '<a href="#" class="dismiss-beg-email-message" data-nonce="' . wp_create_nonce( 'notification-beg-email-dismiss' ) . '">';
+		        _e( 'Already subscribed', 'notification' );
 	        echo '</a>';
 
         echo '</p></div>';
@@ -474,6 +516,20 @@ class Admin extends Singleton {
 		check_ajax_referer( 'notification-beg-dismiss', 'nonce' );
 
 		update_option( 'notification_beg_messsage', 'dismissed' );
+
+		wp_send_json_success();
+
+	}
+
+	/**
+	 * Dismiss beg email message
+	 * @return object       json encoded response
+	 */
+	public function dismiss_beg_email_message() {
+
+		check_ajax_referer( 'notification-beg-email-dismiss', 'nonce' );
+
+		update_option( 'notification_beg_email_messsage', 'dismissed' );
 
 		wp_send_json_success();
 

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, email, mail
 Requires at least: 3.6
 Tested up to: 4.8
-Stable tag: 3.1.1
+Stable tag: 3.2.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -117,6 +117,11 @@ Yes, you can. [See the detailed guide](https://notification.underdev.it/includin
 3. Settings
 
 == Changelog ==
+
+= 3.2.0 =
+* [Fixed] Composer autoload file thanks to @jclausen
+* [Added] WPML support for translated Notification thanks to @max-kk
+* [Added] v5 promo
 
 = 3.1.1 =
 * [Fixed] Bug with directories/files names, thanks to Gregory Rick
