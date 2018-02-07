@@ -27,14 +27,7 @@ class UserLogin extends Abstracts\Trigger {
 
 	public function merge_tags() {
 
-    	$this->add_merge_tag( new MergeTag\StringTag( array(
-			'slug'        => 'user_login',
-			'name'        => __( 'User login' ),
-			'description' => __( 'Will be resolved to a user login' ),
-			'resolver'    => function() {
-				return $this->user_object->user_login;
-			}
-        ) ) );
+    	$this->add_merge_tag( new MergeTag\User\UserLogin( $this ) );
         
         $this->add_merge_tag( new MergeTag\StringTag( array(
 			'slug'        => 'user_email',
