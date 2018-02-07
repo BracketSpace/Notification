@@ -28,41 +28,13 @@ class UserDeleted extends Abstracts\Trigger {
 
 	public function merge_tags() {
 
-    	$this->add_merge_tag( new MergeTag\StringTag( array(
-			'slug'        => 'user_login',
-			'name'        => __( 'User login' ),
-			'description' => __( 'Will be resolved to a user login' ),
-			'resolver'    => function() {
-				return $this->user_object->user_login;
-			}
-        ) ) );
+		$this->add_merge_tag( new MergeTag\User\UserLogin( $this ) );
         
-        $this->add_merge_tag( new MergeTag\StringTag( array(
-			'slug'        => 'user_email',
-			'name'        => __( 'User email' ),
-			'description' => __( 'Will be resolved to a user email' ),
-			'resolver'    => function() {
-				return $this->user_object->user_email;
-			}
-        ) ) );
+        $this->add_merge_tag( new MergeTag\User\UserEmail( $this ) );
         
-        $this->add_merge_tag( new MergeTag\StringTag( array(
-			'slug'        => 'user_nicename',
-			'name'        => __( 'User nicename' ),
-			'description' => __( 'Will be resolved to a user nicename' ),
-			'resolver'    => function() {
-				return $this->user_object->user_nicename;
-			}
-        ) ) );
+        $this->add_merge_tag( new MergeTag\User\UserNicename( $this ) );
         
-        $this->add_merge_tag( new MergeTag\StringTag( array(
-			'slug'        => 'user_registered',
-			'name'        => __( 'User registered' ),
-			'description' => __( 'Will be resolved to a user registration date' ),
-			'resolver'    => function() {
-				return $this->user_object->user_registered;
-			}
-    	) ) );
+        $this->add_merge_tag( new MergeTag\User\UserRegistered( $this ) );
 
     }
 

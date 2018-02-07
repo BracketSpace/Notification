@@ -3,7 +3,7 @@
 namespace underDEV\Notification\Defaults\MergeTag\User;
 use underDEV\Notification\Defaults\MergeTag\StringTag;
 
-class UserLogin extends StringTag {
+class UserNicename extends StringTag {
 
     private $trigger;
 
@@ -12,11 +12,11 @@ class UserLogin extends StringTag {
         $this->trigger = $trigger;
 
     	parent::__construct( array(
-			'slug'        => 'user_login',
-			'name'        => __( 'User login' ),
-			'description' => __( 'Will be resolved to a user login' ),
+			'slug'        => 'user_nicename',
+			'name'        => __( 'User nicename' ),
+			'description' => __( 'Will be resolved to a user nicename' ),
 			'resolver'    => function() {
-				return $this->trigger->user_object->user_login;
+				return $this->trigger->user_object->user_nicename;
 			}
         ) );
 
@@ -24,7 +24,7 @@ class UserLogin extends StringTag {
 
     public function check_requirements( ) {
 
-        if( isset( $this->trigger->user_object->user_login ) ) {
+        if( isset( $this->trigger->user_object->user_nicename ) ) {
             
             return true;
 
