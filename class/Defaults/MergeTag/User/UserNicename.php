@@ -23,16 +23,8 @@ class UserNicename extends StringTag {
     }
 
     public function check_requirements( ) {
-
-        if( isset( $this->trigger->user_object->user_nicename ) ) {
             
-            return true;
-
-        } else {
-            
-            return false;
-        
-        }
+        return isset( $this->trigger->user_object->user_email );
 
     }
 

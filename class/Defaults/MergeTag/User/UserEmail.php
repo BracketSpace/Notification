@@ -23,16 +23,8 @@ class UserEmail extends StringTag {
     }
 
     public function check_requirements( ) {
-
-        if( isset( $this->trigger->user_object->user_email ) ) {
             
-            return true;
-
-        } else {
-            
-            return false;
-        
-        }
+        return isset( $this->trigger->user_object->user_email );
 
     }
 

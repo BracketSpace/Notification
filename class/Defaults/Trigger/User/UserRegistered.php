@@ -15,7 +15,7 @@ class UserRegistered extends Abstracts\Trigger {
 
 		$this->add_action( 'user_register', 10, 2 );
 		$this->set_group( 'User' );
-		$this->set_description( 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' );
+		$this->set_description( 'Fires when user registers new account' );
 
 	}
 
