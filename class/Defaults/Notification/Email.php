@@ -30,7 +30,7 @@ class Email extends Abstracts\Notification {
 
 		$this->add_form_field( new Field\RepeaterField( array(
 			'label'            => 'Recipients',
-			'name'             => 'recipientes',
+			'name'             => 'recipients',
 			'add_button_label' => __( 'Add recipient', 'notification' ),
 			'fields'           => array(
 				new Field\SelectField( array(
