@@ -24,6 +24,7 @@ class Runtime {
 		require_once( $this->files->file_path( 'inc/global.php' ) );
 		require_once( $this->files->file_path( 'inc/default-triggers.php' ) );
 		require_once( $this->files->file_path( 'inc/default-notifications.php' ) );
+		require_once( $this->files->file_path( 'inc/default-recipients.php' ) );
 
 	}
 
