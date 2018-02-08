@@ -12,7 +12,7 @@ class UserRegistered extends StringTag {
         $this->trigger = $trigger;
 
     	parent::__construct( array(
-			'slug'        => 'user_registered',
+			'slug'        => 'user_registered_datetime',
 			'name'        => __( 'User registration date' ),
 			'description' => __( 'Will be resolved to a user registration date' ),
 			'resolver'    => function() {
@@ -23,8 +23,8 @@ class UserRegistered extends StringTag {
     }
 
     public function check_requirements( ) {
-            
-        return isset( $this->trigger->user_object->user_email );
+
+        return isset( $this->trigger->user_object->user_registered );
 
     }
 

@@ -1,27 +1,27 @@
 <?php
 /**
- * User login trigger
+ * User logout trigger
  */
 
 namespace underDEV\Notification\Defaults\Trigger\User;
 use underDEV\Notification\Defaults\MergeTag;
 use underDEV\Notification\Abstracts;
 
-class UserLogin extends Abstracts\Trigger {
+class UserLogout extends Abstracts\Trigger {
 
 	public function __construct() {
 
-		parent::__construct( 'wordpress/user_login', 'User login' );
+		parent::__construct( 'wordpress/user_logout', 'User logout' );
 
-		$this->add_action( 'wp_login', 10, 2 );
+		$this->add_action( 'wp_logout', 10, 2 );
 		$this->set_group( 'User' );
-		$this->set_description( 'Fires when user log into Wordpress' );
+		$this->set_description( 'Fires when user log out from Wordpress' );
 
 	}
 
 	public function action() {
 
-		$this->user_id = $this->callback_args[1]->ID;
+		$this->user_id = get_current_user_id();
 		$this->user_object = get_userdata( $this->user_id );
 		$this->user_meta = get_user_meta( $this->user_id );
 
@@ -47,14 +47,7 @@ class UserLogin extends Abstracts\Trigger {
 
 		$this->add_merge_tag( new MergeTag\User\UserBio( $this ) );
 
-		$this->add_merge_tag( new MergeTag\User\UserLoggedInDatetime( $this ) );
-
 		$this->add_merge_tag( new MergeTag\User\UserLogoutDatetime( $this ) );
-
-		$this->add_merge_tag( new MergeTag\User\UserProfileUpdatedDatetime( $this ) );
-
-		$this->add_merge_tag( new MergeTag\User\UserDeletedDatetime( $this ) );
-
 
     }
 

@@ -21,20 +21,24 @@ class UserRegistered extends Abstracts\Trigger {
 
 	public function action() {
 
-        $this->user_id = $this->callback_args[0];
-        $this->user_object = get_userdata( $this->user_id );
-        
+		$this->user_id = $this->callback_args[1]->ID;
+		$this->user_object = get_userdata( $this->user_id );
+		$this->user_meta = get_user_meta( $this->user_id );
+
 	}
 
 	public function merge_tags() {
 
-		$this->add_merge_tag( new MergeTag\User\UserLogin( $this ) );
-        
+		$this->add_merge_tag( new MergeTag\User\UserID( $this ) );
+
+    	$this->add_merge_tag( new MergeTag\User\UserLogin( $this ) );
+
         $this->add_merge_tag( new MergeTag\User\UserEmail( $this ) );
-        
-        $this->add_merge_tag( new MergeTag\User\UserNicename( $this ) );
-        
-        $this->add_merge_tag( new MergeTag\User\UserRegistered( $this ) );
+
+		$this->add_merge_tag( new MergeTag\User\UserRegistered( $this ) );
+
+		$this->add_merge_tag( new MergeTag\User\UserRole( $this ) );
+
 
     }
 
