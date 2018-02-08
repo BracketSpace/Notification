@@ -32,6 +32,11 @@ class Recipients {
 
 		echo $input->field();
 
+		$description = $input->get_description();
+		if ( ! empty( $description ) ) {
+			echo '<small class="description">' . $description . '</small>';
+		}
+
 		$this->ajax->success( ob_get_clean() );
 
 	}

@@ -12,7 +12,7 @@ class Email extends Abstracts\Recipient {
 	public function __construct() {
 		parent::__construct( array(
 			'slug'          => 'email',
-			'name'          => __( 'Email' ),
+			'name'          => __( 'Email / Merge tag' ),
 			'default_value' => '',
 		) );
 	}
@@ -43,7 +43,9 @@ class Email extends Abstracts\Recipient {
 			'label'       => 'Recipient',       // don't edit this!
 			'name'        => 'recipient',       // don't edit this!
 			'css_class'   => 'recipient-value', // don't edit this!
-			'placeholder' => __( 'email@domain.com', 'notification' ),
+			'placeholder' => __( 'email@domain.com or {email}', 'notification' ),
+			'description' => __( 'You can use any valid email merge tag.' ),
+			'resolvable'  => true
 		) );
 
 	}

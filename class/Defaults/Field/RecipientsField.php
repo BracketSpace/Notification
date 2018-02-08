@@ -132,7 +132,7 @@ class RecipientsField extends RepeaterField {
 						$html .= $sub_field->field();
 						$description = $sub_field->get_description();
 						if ( ! empty( $description ) ) {
-							$html .= '<p class="description">' . $description . '</p>';
+							$html .= '<small class="description">' . $description . '</small>';
 						}
 					$html .= '</td>';
 				}
