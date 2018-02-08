@@ -1,0 +1,12 @@
+{
+    "name": "underdev/notification",
+    "description": "Notification WordPress plugin",
+    "require": {},
+    "license": "GPL3",
+    "authors": [
+        {
+            "name": "Kuba Mikita",
+            "email": "jakub@underdev.it"
+        }
+    ]
+}
