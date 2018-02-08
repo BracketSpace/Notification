@@ -61,6 +61,10 @@ abstract class Field implements Interfaces\Fillable {
 			$this->resolvable = (bool) $params['resolvable'];
 		}
 
+		if ( isset( $params['value'] ) ) {
+			$this->set_value( $params['value'] );
+		}
+
     }
 
     /**
