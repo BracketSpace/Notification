@@ -40,14 +40,11 @@ class Email extends Abstracts\Recipient {
 	public function input() {
 
 		return new Field\InputField( array(
-			'label'       => 'Recipient',
-			'name'        => 'recipient',
+			'label'       => 'Recipient',       // don't edit this!
+			'name'        => 'recipient',       // don't edit this!
+			'css_class'   => 'recipient-value', // don't edit this!
 			'placeholder' => __( 'email@domain.com', 'notification' ),
 		) );
-
-		$html = '<input type="email" class="widefat" name="' . $input_name . '"  value="' . $value . '">';
-
-		return $html;
 
 	}
 

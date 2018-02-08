@@ -41,7 +41,8 @@ class Scripts {
 		wp_enqueue_style( 'notification', $this->files->asset_url( 'css', 'style.css' ) );
 
 		wp_localize_script( 'notification', 'notification', array(
-			'copied' => __( 'Copied', 'notification' )
+			'copied'  => __( 'Copied', 'notification' ),
+			'ajaxurl' => admin_url( 'admin-ajax.php' ),
 		) );
 
 	}

@@ -33,7 +33,7 @@ class Recipients {
 	 */
 	public function get_single( $notification, $recipient ) {
 		$recipients = $this->get();
-		return isset( $recipients[ $slug ][ $recipient ] ) ? $recipients[ $slug ][ $recipient ] : false;
+		return isset( $recipients[ $notification ][ $recipient ] ) ? $recipients[ $notification ][ $recipient ] : false;
 	}
 
 }

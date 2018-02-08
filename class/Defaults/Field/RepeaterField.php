@@ -23,6 +23,12 @@ class RepeaterField extends Field {
 	 */
 	protected $add_button_label = '';
 
+	/**
+	 * Data attributes
+	 * @var array
+	 */
+	protected $data_attr = array();
+
 	public function __construct( $params = array() ) {
 
 		if ( isset( $params['fields'] ) ) {
@@ -35,6 +41,12 @@ class RepeaterField extends Field {
     		$this->add_button_label = __( 'Add new', 'notification' );
     	}
 
+    	// additional data tags for repeater table. key => value array
+		// will be transformed to data-key="value"
+		if ( isset( $params['data_attr'] ) ) {
+    		$this->data_attr = $params['data_attr'];
+    	}
+
 		parent::__construct( $params );
 
 	}
@@ -45,7 +57,12 @@ class RepeaterField extends Field {
 	 */
 	public function field() {
 
-		$html = '<table class="fields-repeater  ' . $this->css_class() . '" id="' . $this->get_id() . '">';
+		$data_attr = '';
+		foreach ( $this->data_attr as $key => $value ) {
+			$data_attr .= 'data-' . $key . '="' . esc_attr( $value ) . '" ';
+		}
+
+		$html = '<table class="fields-repeater  ' . $this->css_class() . '" id="' . $this->get_id() . '" ' . $data_attr . '>';
 
 			$html .= '<tr class="row header">';
 

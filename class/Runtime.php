@@ -38,6 +38,8 @@ class Runtime {
 
 		$this->triggers = new Triggers();
 
+		$this->recipients = new Recipients();
+
 		$this->post_data = new Admin\PostData( $this->notifications, $this->triggers );
 
 		$this->admin_trigger = new Admin\Trigger( $this->view(), $this->triggers, $this->post_data );
@@ -51,6 +53,8 @@ class Runtime {
 		$this->admin_merge_tags = new Admin\MergeTags( $this->view(), $this->ajax(), $this->triggers );
 
 		$this->admin_scripts = new Admin\Scripts( $this->files );
+
+		$this->admin_recipients = new Admin\Recipients( $this->view(), $this->ajax(), $this->recipients );
 
 	}
 
@@ -76,6 +80,8 @@ class Runtime {
 		add_action( 'admin_enqueue_scripts', array( $this->admin_scripts, 'enqueue_scripts' ) );
 
 		add_action( 'wp_ajax_get_merge_tags_for_trigger', array( $this->admin_merge_tags, 'ajax_render' ) );
+
+		add_action( 'wp_ajax_get_recipient_input', array( $this->admin_recipients, 'ajax_get_recipient_input' ) );
 
 	}
 
