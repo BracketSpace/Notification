@@ -53,7 +53,7 @@ abstract class Field implements Interfaces\Fillable {
      * Additional css classes for field
      * @var string
      */
-    public $css_class = '';
+    public $css_class = 'widefat notification-field '; // space here on purpose.
 
     public function __construct( $params = array() ) {
 
@@ -82,7 +82,7 @@ abstract class Field implements Interfaces\Fillable {
 		}
 
 		if ( isset( $params['css_class'] ) ) {
-			$this->css_class = $params['css_class'];
+			$this->css_class .= $params['css_class'];
 		}
 
     }

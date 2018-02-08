@@ -110,12 +110,18 @@ class RecipientsField extends RepeaterField {
 						$sub_field->get_raw_name() === 'recipient' ) {
 
 						$recipient = $this->recipients_collection->get_single( $this->notification, $recipient_type );
+
+						if ( empty( $recipient ) ) {
+							return '';
+						}
+
 						$sub_field = $recipient->input();
 
-						// rewrite value.
+						// rewrite value and section.
 						if ( isset( $values[ $sub_field->get_raw_name() ] ) ) {
 							$sub_field->set_value( $values[ $sub_field->get_raw_name() ] );
 						}
+						$sub_field->section = $this->get_name() . '[' . $this->current_row . ']';
 
 						// reset value for another type
 						$recipient_type = false;

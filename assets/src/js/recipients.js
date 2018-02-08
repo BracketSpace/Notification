@@ -30,7 +30,11 @@
 			$.post( notification.ajaxurl, data, function( response ) {
 
 		    	if ( response.success == true ) {
-		    		$recipient.replaceWith( response.data );
+		    		var $replacement         = $( response.data ),
+		    			$recipient_container = $recipient.parent();
+		    		$recipient_container.html( '' );
+		    		$recipient_container.append( $replacement );
+		    		wp.hooks.doAction( 'notification.recipients.recipient.replaced', $replacement );
 		    	}
 
 			} );

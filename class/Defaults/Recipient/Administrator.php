@@ -1,6 +1,6 @@
 <?php
 /**
- * Email recipient
+ * Administrator recipient
  */
 
 namespace underDEV\Notification\Defaults\Recipient;
