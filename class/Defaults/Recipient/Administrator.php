@@ -5,6 +5,7 @@
 
 namespace underDEV\Notification\Defaults\Recipient;
 use underDEV\Notification\Abstracts;
+use underDEV\Notification\Defaults\Field;
 
 class Administrator extends Abstracts\Recipient {
 
@@ -33,11 +34,17 @@ class Administrator extends Abstracts\Recipient {
 	}
 
 	/**
-	 * Returns input HTML
+	 * Returns input object
 	 *
-	 * @return string input html
+	 * @return object
 	 */
-	public function input( $value = '', $input_name = '' ) {
+	public function input() {
+
+		return new Field\InputField( array(
+			'label'       => 'Recipient',
+			'name'        => 'recipient',
+			'placeholder' => __( 'admin', 'notification' ),
+		) );
 
 		$html = '<input type="email" class="widefat" name="' . $input_name . '" value="' . $value . '" disabled="disabled">';
 

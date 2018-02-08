@@ -43,6 +43,12 @@ abstract class Field implements Interfaces\Fillable {
      */
     public $section = '';
 
+    /**
+     * If field is disabled
+     * @var boolean
+     */
+    public $disabled = false;
+
     public function __construct( $params = array() ) {
 
     	if ( ! isset( $params['label'], $params['name'] ) ) {
@@ -63,6 +69,10 @@ abstract class Field implements Interfaces\Fillable {
 
 		if ( isset( $params['value'] ) ) {
 			$this->set_value( $params['value'] );
+		}
+
+		if ( isset( $params['disabled'] ) && $params['disabled'] ) {
+			$this->disabled = true;
 		}
 
     }
@@ -143,6 +153,22 @@ abstract class Field implements Interfaces\Fillable {
 	 */
 	public function is_resolvable() {
 		return $this->resolvable;
+	}
+
+	/**
+	 * Cheks if field is disabled
+	 * @return boolean
+	 */
+	public function is_disabled() {
+		return $this->disabled;
+	}
+
+	/**
+	 * Returns the disable HTML tag if field is disabled
+	 * @return string
+	 */
+	public function maybe_disable() {
+		return $this->is_disabled() ? 'disabled="disabled"' : '';
 	}
 
 }

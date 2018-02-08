@@ -28,27 +28,8 @@ class Email extends Abstracts\Notification {
 			)
 		) ) );
 
-		$this->add_form_field( new Field\RepeaterField( array(
-			'label'            => 'Recipients',
-			'name'             => 'recipientes',
-			'add_button_label' => __( 'Add recipient', 'notification' ),
-			'fields'           => array(
-				new Field\SelectField( array(
-					'label'   => 'Type',
-					'name'    => 'type',
-					'options' => array(
-						'email'         => __( 'Email', 'notification' ),
-						'administrator' => __( 'Administrator', 'notification' ),
-						'user'          => __( 'User', 'notification' ),
-						'role'          => __( 'Role', 'notification' ),
-						'merge_tag'     => __( 'Merge tag', 'notification' ),
-					)
-				) ),
-				new Field\InputField( array(
-					'label' => 'Recipient',
-					'name'  => 'recipient',
-				) )
-			)
+		$this->add_form_field( new Field\RecipientsField( array(
+			'notification' => $this->get_slug(),
 		) ) );
 
 	}

@@ -32,12 +32,12 @@ abstract class Recipient extends Common implements Interfaces\Receivable {
 	abstract public function parse_value( $value = '' );
 
 	/**
-	 * Returns input HTML for the metabox
+	 * Returns input object
 	 * Must be defined in the child class
 	 *
-	 * @return string HTML
+	 * @return object
 	 */
-	abstract public function input( $value = '', $input_name = '' );
+	abstract public function input();
 
     /**
      * Gets default value

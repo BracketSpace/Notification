@@ -14,12 +14,12 @@ interface Receivable extends Nameable {
     function parse_value( $value = ''  );
 
 	/**
-	 * Returns input HTML for the metabox
+	 * Returns input object
 	 * Must be defined in the child class
 	 *
-	 * @return string HTML
+	 * @return object
 	 */
-	function input( $value = '', $input_name = '' );
+	public function input();
 
 	/**
      * Gets default value

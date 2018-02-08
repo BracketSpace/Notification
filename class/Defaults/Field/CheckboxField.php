@@ -29,7 +29,7 @@ class CheckboxField extends Field {
 	 * @return string html
 	 */
 	public function field() {
-		return '<label><input type="checkbox" name="' . $this->get_name() . '" id="' . $this->get_id() . '" value="1" ' . checked( $this->get_value(), '1', false ) . ' class="widefat"> ' . esc_html( $this->checkbox_label ) . '</label>';
+		return '<label><input type="checkbox" name="' . $this->get_name() . '" id="' . $this->get_id() . '" value="1" ' . checked( $this->get_value(), '1', false ) . ' class="widefat" ' . $this->maybe_disable() . '> ' . esc_html( $this->checkbox_label ) . '</label>';
 	}
 
 	/**
