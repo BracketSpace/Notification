@@ -12,7 +12,11 @@ class RecipientsField extends RepeaterField {
 			'label'            => 'Recipients',
 			'name'             => 'recipients',
 			'add_button_label' => __( 'Add recipient', 'notification' ),
+			'css_class'        => '',
 		) );
+
+		// add our CSS class required by JS.
+		$params['css_class'] .= 'recipients-repeater';
 
 		$recipients_collection = new Recipients();
 		$recipients            = $recipients_collection->get_for_notification( $params['notification'] );
@@ -42,9 +46,10 @@ class RecipientsField extends RepeaterField {
 
 				$params['fields'] = array(
 					new SelectField( array(
-						'label'   => 'Type',
-						'name'    => 'type',
-						'options' => $recipient_types
+						'label'     => 'Type',
+						'name'      => 'type',
+						'css_class' => 'recipient-type',
+						'options'   => $recipient_types
 					) ),
 				);
 

@@ -39,7 +39,7 @@ class InputField extends Field {
 	 * @return string html
 	 */
 	public function field() {
-		return '<input type="' . $this->type . '" name="' . $this->get_name() . '" id="' . $this->get_id() . '" value="' . $this->get_value() . '" placeholder="' . $this->placeholder . '" class="widefat" ' . $this->maybe_disable() . '>';
+		return '<input type="' . $this->type . '" name="' . $this->get_name() . '" id="' . $this->get_id() . '" value="' . $this->get_value() . '" placeholder="' . $this->placeholder . '" class="widefat ' . $this->css_class() . '" ' . $this->maybe_disable() . '>';
 	}
 
 	/**

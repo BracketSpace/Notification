@@ -28,7 +28,7 @@ class SelectField extends Field {
 	 */
 	public function field() {
 
-		$html = '<select name="' . $this->get_name() . '" id="' . $this->get_id() . '" class="widefat" ' . $this->maybe_disable() . '>';
+		$html = '<select name="' . $this->get_name() . '" id="' . $this->get_id() . '" class="widefat ' . $this->css_class() . '" ' . $this->maybe_disable() . '>';
 
 			foreach ( $this->options as $option_value => $option_label ) {
 				$html .= '<option value="' . esc_attr( $option_value ) . '" ' . selected( $this->get_value(), $option_value, false ) . '>' . esc_html( $option_label ) . '</option>';

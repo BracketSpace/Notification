@@ -45,7 +45,7 @@ class RepeaterField extends Field {
 	 */
 	public function field() {
 
-		$html = '<table class="fields-repeater" id="' . $this->get_id() . '">';
+		$html = '<table class="fields-repeater  ' . $this->css_class() . '" id="' . $this->get_id() . '">';
 
 			$html .= '<tr class="row header">';
 

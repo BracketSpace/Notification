@@ -42,4 +42,10 @@ interface Fillable {
 	 */
 	public function get_description();
 
+	/**
+	 * Returns the additional field's css classes
+	 * @return string
+	 */
+	public function css_class();
+
 }

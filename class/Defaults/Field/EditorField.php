@@ -29,8 +29,9 @@ class EditorField extends Field {
 	public function field() {
 
 		$settings = wp_parse_args( $this->settings, array(
-			'textarea_name'       => $this->get_name(),
-			'textarea_rows'       => 20,
+			'textarea_name' => $this->get_name(),
+			'textarea_rows' => 20,
+			'editor_class'  => $this->css_class(),
 		) );
 
 		ob_start();

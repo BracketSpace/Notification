@@ -49,6 +49,12 @@ abstract class Field implements Interfaces\Fillable {
      */
     public $disabled = false;
 
+    /**
+     * Additional css classes for field
+     * @var string
+     */
+    public $css_class = '';
+
     public function __construct( $params = array() ) {
 
     	if ( ! isset( $params['label'], $params['name'] ) ) {
@@ -73,6 +79,10 @@ abstract class Field implements Interfaces\Fillable {
 
 		if ( isset( $params['disabled'] ) && $params['disabled'] ) {
 			$this->disabled = true;
+		}
+
+		if ( isset( $params['css_class'] ) ) {
+			$this->css_class = $params['css_class'];
 		}
 
     }
@@ -169,6 +179,14 @@ abstract class Field implements Interfaces\Fillable {
 	 */
 	public function maybe_disable() {
 		return $this->is_disabled() ? 'disabled="disabled"' : '';
+	}
+
+	/**
+	 * Returns the additional field's css classes
+	 * @return string
+	 */
+	public function css_class() {
+		return $this->css_class;
 	}
 
 }
