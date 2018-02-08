@@ -7,6 +7,10 @@ class RecipientsField extends RepeaterField {
 
 	public function __construct( $params = array() ) {
 
+		if ( ! isset( $params['notification'] ) ) {
+    		trigger_error( 'RecipientsField requires notification param', E_USER_ERROR );
+    	}
+
 		$params = wp_parse_args( $params, array(
 			'notification'     => '',
 			'label'            => 'Recipients',
