@@ -21,6 +21,8 @@ class UserLogout extends Abstracts\Trigger {
 
 	public function action() {
 
+		$this->date_format = get_option( 'date_format' );
+		$this->time_format = get_option( 'time_format' );
 		$this->user_id = get_current_user_id();
 		$this->user_object = get_userdata( $this->user_id );
 		$this->user_meta = get_user_meta( $this->user_id );

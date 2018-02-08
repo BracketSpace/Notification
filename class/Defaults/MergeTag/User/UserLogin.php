@@ -23,8 +23,8 @@ class UserLogin extends StringTag {
     }
 
     public function check_requirements( ) {
-            
-        return isset( $this->trigger->user_object->user_email );
+
+        return isset( $this->trigger->user_object->user_login );
 
     }
 

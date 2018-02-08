@@ -21,6 +21,8 @@ class UserLogin extends Abstracts\Trigger {
 
 	public function action() {
 
+		$this->date_format = get_option( 'date_format' );
+		$this->time_format = get_option( 'time_format' );
 		$this->user_id = $this->callback_args[1]->ID;
 		$this->user_object = get_userdata( $this->user_id );
 		$this->user_meta = get_user_meta( $this->user_id );
@@ -48,13 +50,6 @@ class UserLogin extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\User\UserBio( $this ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserLoggedInDatetime( $this ) );
-
-		$this->add_merge_tag( new MergeTag\User\UserLogoutDatetime( $this ) );
-
-		$this->add_merge_tag( new MergeTag\User\UserProfileUpdatedDatetime( $this ) );
-
-		$this->add_merge_tag( new MergeTag\User\UserDeletedDatetime( $this ) );
-
 
     }
 
