@@ -34,6 +34,14 @@ class PostUpdated extends Abstracts\Trigger {
 			}
     	) ) );
 
+    	$this->add_merge_tag( new MergeTag\EmailTag( array(
+			'slug'        => 'dummy_email',
+			'name'        => __( 'Dummy email' ),
+			'resolver'    => function() {
+				return 'dummy@email.localhost';
+			}
+    	) ) );
+
     }
 
 }

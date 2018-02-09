@@ -43,6 +43,18 @@ abstract class Field implements Interfaces\Fillable {
      */
     public $section = '';
 
+    /**
+     * If field is disabled
+     * @var boolean
+     */
+    public $disabled = false;
+
+    /**
+     * Additional css classes for field
+     * @var string
+     */
+    public $css_class = 'widefat notification-field '; // space here on purpose.
+
     public function __construct( $params = array() ) {
 
     	if ( ! isset( $params['label'], $params['name'] ) ) {
@@ -59,6 +71,18 @@ abstract class Field implements Interfaces\Fillable {
 
 		if ( isset( $params['resolvable'] ) ) {
 			$this->resolvable = (bool) $params['resolvable'];
+		}
+
+		if ( isset( $params['value'] ) ) {
+			$this->set_value( $params['value'] );
+		}
+
+		if ( isset( $params['disabled'] ) && $params['disabled'] ) {
+			$this->disabled = true;
+		}
+
+		if ( isset( $params['css_class'] ) ) {
+			$this->css_class .= $params['css_class'];
 		}
 
     }
@@ -139,6 +163,30 @@ abstract class Field implements Interfaces\Fillable {
 	 */
 	public function is_resolvable() {
 		return $this->resolvable;
+	}
+
+	/**
+	 * Cheks if field is disabled
+	 * @return boolean
+	 */
+	public function is_disabled() {
+		return $this->disabled;
+	}
+
+	/**
+	 * Returns the disable HTML tag if field is disabled
+	 * @return string
+	 */
+	public function maybe_disable() {
+		return $this->is_disabled() ? 'disabled="disabled"' : '';
+	}
+
+	/**
+	 * Returns the additional field's css classes
+	 * @return string
+	 */
+	public function css_class() {
+		return $this->css_class;
 	}
 
 }
