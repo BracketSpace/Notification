@@ -10,16 +10,39 @@ use underDEV\Notification\Defaults\Field;
 class Webhook extends Abstracts\Notification {
 
 	public function __construct() {
-		parent::__construct( 'webhook', 'Webhook' );
+		parent::__construct( 'webhook', __( 'Webhook' ) );
 	}
 
 	public function form_fields() {
 
-		$this->add_form_field( new Field\InputField( array(
-			'label' => 'URL',
-			'name'  => 'url',
-			'type'  => 'url',
+		$this->add_form_field( new Field\RecipientsField( array(
+			'notification'     => $this->get_slug(),
+			'label'            => __( 'URLs' ),
+			'name'             => 'urls',
+			'add_button_label' => __( 'Add URL', 'notification' ),
 		) ) );
+
+		$this->add_form_field( new Field\RepeaterField( array(
+			'label'            => __( 'Arguments' ),
+			'name'             => 'args',
+			'add_button_label' => __( 'Add argument', 'notification' ),
+			'fields'           => array(
+				new Field\InputField( array(
+					'label'      => __( 'Key' ),
+					'name'       => 'key',
+					'resolvable' => true,
+					'description' => __( 'You can use merge tags' ),
+				) ),
+				new Field\InputField( array(
+					'label'      => __( 'Value' ),
+					'name'       => 'value',
+					'resolvable' => true,
+					'description' => __( 'You can use merge tags' ),
+				) ),
+			),
+		) ) );
+
+
 
 	}
 

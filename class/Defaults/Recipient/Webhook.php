@@ -1,18 +1,18 @@
 <?php
 /**
- * Email recipient
+ * Webhook recipient
  */
 
 namespace underDEV\Notification\Defaults\Recipient;
 use underDEV\Notification\Abstracts;
 use underDEV\Notification\Defaults\Field;
 
-class Email extends Abstracts\Recipient {
+class Webhook extends Abstracts\Recipient {
 
-	public function __construct() {
+	public function __construct( $slug, $name ) {
 		parent::__construct( array(
-			'slug'          => 'email',
-			'name'          => __( 'Email / Merge tag' ),
+			'slug'          => $slug,
+			'name'          => $name,
 			'default_value' => '',
 		) );
 	}
@@ -40,12 +40,10 @@ class Email extends Abstracts\Recipient {
 	public function input() {
 
 		return new Field\InputField( array(
-			'label'       => 'Recipient',       // don't edit this!
+			'label'       => 'URL',             // don't edit this!
 			'name'        => 'recipient',       // don't edit this!
 			'css_class'   => 'recipient-value', // don't edit this!
-			'placeholder' => __( 'email@domain.com or {email}', 'notification' ),
-			'description' => __( 'You can use any valid email merge tag.' ),
-			'resolvable'  => true
+			'placeholder' => site_url(),
 		) );
 
 	}

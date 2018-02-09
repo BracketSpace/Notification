@@ -75,8 +75,13 @@ class RepeaterField extends Field {
 						continue;
 					}
 
+					$description = $sub_field->get_description();
+
 					$html .= '<th class="' . esc_attr( $sub_field->get_raw_name() ) . '">';
 						$html .= esc_html( $sub_field->get_label() );
+						if ( ! empty( $description ) ) {
+							$html .= '<small class="description">' . $description . '</small>';
+						}
 					$html .= '</th>';
 
 				}
@@ -121,7 +126,6 @@ class RepeaterField extends Field {
 				}
 
 				$sub_field->section = $this->get_name() . '[' . $this->current_row . ']';
-				$description        = $sub_field->get_description();
 
 				// don't print useless informations for hidden field.
 				if ( isset( $sub_field->type ) && $sub_field->type === 'hidden' ) {
@@ -129,9 +133,6 @@ class RepeaterField extends Field {
 				} else {
 					$html .= '<td class="subfield ' . esc_attr( $sub_field->get_raw_name() ) . '">';
 						$html .= $sub_field->field();
-						if ( ! empty( $description ) ) {
-							$html .= '<p class="description">' . $description . '</p>';
-						}
 					$html .= '</td>';
 				}
 
