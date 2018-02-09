@@ -32,7 +32,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 
 		$this->add_form_field( new Field\NonceField( array(
 			'label'      => '',
-			'name'       => 'nonce',
+			'name'       => '_nonce',
 			'nonce_key'  => $this->slug . '_notification_security',
 			'resolvable' => false,
 		) ) );
@@ -113,6 +113,11 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 			// Save recipients field for additional parsing.
 			if ( $field instanceof RecipientsField ) {
 				$recipients_field = $field;
+			}
+
+			// Skip internal nonce field
+			if ( $field->get_raw_name() == '_nonce' ) {
+				continue;
 			}
 
 			$this->data[ $field_slug ] = $this->get_field_value( $field_slug );

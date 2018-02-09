@@ -145,7 +145,7 @@ class PostData {
         	$ndata = $data[ 'notification_type_' . $notification->get_slug() ];
 
         	// nonce not set or false, ignoring this form
-        	if ( ! wp_verify_nonce( $ndata['nonce'], $notification->get_slug() . '_notification_security' ) ) {
+        	if ( ! wp_verify_nonce( $ndata['_nonce'], $notification->get_slug() . '_notification_security' ) ) {
 	            continue;
 	        }
 
