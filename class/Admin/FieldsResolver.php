@@ -66,11 +66,6 @@ class FieldsResolver {
 			}
 
 			$resolved = $this->resolve_value( $field->get_value() );
-
-			if ( apply_filters( 'notification/merge_tags/remove_empty', true ) ) {
-				$resolved = preg_replace( $this->merge_tag_pattern, '', $resolved );
-			}
-
 			$field->set_value( $resolved );
 
 		}
@@ -95,7 +90,13 @@ class FieldsResolver {
 			}
 
 		} else {
+
 			$resolved = str_replace( $this->tags, $this->replacements, $value );
+
+			if ( apply_filters( 'notification/merge_tags/remove_empty', true ) ) {
+				$resolved = preg_replace( $this->merge_tag_pattern, '', $resolved );
+			}
+
 		}
 
 		return $resolved;

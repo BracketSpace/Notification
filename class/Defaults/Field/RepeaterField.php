@@ -23,6 +23,12 @@ class RepeaterField extends Field {
 	 */
 	protected $add_button_label = '';
 
+	/**
+	 * Data attributes
+	 * @var array
+	 */
+	protected $data_attr = array();
+
 	public function __construct( $params = array() ) {
 
 		if ( isset( $params['fields'] ) ) {
@@ -35,6 +41,12 @@ class RepeaterField extends Field {
     		$this->add_button_label = __( 'Add new', 'notification' );
     	}
 
+    	// additional data tags for repeater table. key => value array
+		// will be transformed to data-key="value"
+		if ( isset( $params['data_attr'] ) ) {
+    		$this->data_attr = $params['data_attr'];
+    	}
+
 		parent::__construct( $params );
 
 	}
@@ -45,16 +57,28 @@ class RepeaterField extends Field {
 	 */
 	public function field() {
 
-		$html = '<table class="fields-repeater" id="' . $this->get_id() . '">';
+		$data_attr = '';
+		foreach ( $this->data_attr as $key => $value ) {
+			$data_attr .= 'data-' . $key . '="' . esc_attr( $value ) . '" ';
+		}
+
+		$html = '<table class="fields-repeater  ' . $this->css_class() . '" id="' . $this->get_id() . '" ' . $data_attr . '>';
 
 			$html .= '<tr class="row header">';
 
 				$html .= '<th class="handle"></th>';
 
 				foreach ( $this->fields as $sub_field ) {
+
+					// don't print header for hidden field.
+					if ( isset( $sub_field->type ) && $sub_field->type === 'hidden' ) {
+						continue;
+					}
+
 					$html .= '<th class="' . esc_attr( $sub_field->get_raw_name() ) . '">';
 						$html .= esc_html( $sub_field->get_label() );
 					$html .= '</th>';
+
 				}
 
 			$html .= '</tr>';
@@ -97,10 +121,19 @@ class RepeaterField extends Field {
 				}
 
 				$sub_field->section = $this->get_name() . '[' . $this->current_row . ']';
+				$description        = $sub_field->get_description();
 
-				$html .= '<td class="subfield ' . esc_attr( $sub_field->get_raw_name() ) . '">';
+				// don't print useless informations for hidden field.
+				if ( isset( $sub_field->type ) && $sub_field->type === 'hidden' ) {
 					$html .= $sub_field->field();
-				$html .= '</td>';
+				} else {
+					$html .= '<td class="subfield ' . esc_attr( $sub_field->get_raw_name() ) . '">';
+						$html .= $sub_field->field();
+						if ( ! empty( $description ) ) {
+							$html .= '<p class="description">' . $description . '</p>';
+						}
+					$html .= '</td>';
+				}
 
 			}
 

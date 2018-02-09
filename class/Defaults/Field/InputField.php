@@ -8,14 +8,26 @@ class InputField extends Field {
 	/**
 	 * Field type
 	 * possible values are valid HTML5 types except file or checkbox
+	 *
 	 * @var string
 	 */
-	protected $type = 'text';
+	public $type = 'text';
+
+	/**
+	 * Field placeholder
+	 *
+	 * @var string
+	 */
+	protected $placeholder = '';
 
 	public function __construct( $params = array() ) {
 
 		if ( isset( $params['type'] ) ) {
     		$this->type = $params['type'];
+    	}
+
+		if ( isset( $params['placeholder'] ) ) {
+    		$this->placeholder = $params['placeholder'];
     	}
 
 		parent::__construct( $params );
@@ -27,7 +39,7 @@ class InputField extends Field {
 	 * @return string html
 	 */
 	public function field() {
-		return '<input type="' . $this->type . '" name="' . $this->get_name() . '" id="' . $this->get_id() . '" value="' . $this->get_value() . '" class="widefat">';
+		return '<input type="' . $this->type . '" name="' . $this->get_name() . '" id="' . $this->get_id() . '" value="' . $this->get_value() . '" placeholder="' . $this->placeholder . '" class="widefat ' . $this->css_class() . '" ' . $this->maybe_disable() . '>';
 	}
 
 	/**
