@@ -2,7 +2,7 @@
     "name": "underdev/notification",
     "description": "Notification WordPress plugin",
     "require": {},
-    "license": "GPL3",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Kuba Mikita",
