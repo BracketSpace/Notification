@@ -42,6 +42,26 @@ class Webhook extends Abstracts\Notification {
 			),
 		) ) );
 
+		$this->add_form_field( new Field\RepeaterField( array(
+			'label'            => __( 'Headers' ),
+			'name'             => 'headers',
+			'add_button_label' => __( 'Add header', 'notification' ),
+			'fields'           => array(
+				new Field\InputField( array(
+					'label'      => __( 'Key' ),
+					'name'       => 'key',
+					'resolvable' => true,
+					'description' => __( 'You can use merge tags' ),
+				) ),
+				new Field\InputField( array(
+					'label'      => __( 'Value' ),
+					'name'       => 'value',
+					'resolvable' => true,
+					'description' => __( 'You can use merge tags' ),
+				) ),
+			),
+		) ) );
+
 	}
 
 	public function send( \underDEV\Notification\Abstracts\Trigger $trigger ) {
@@ -51,15 +71,17 @@ class Webhook extends Abstracts\Notification {
 		$args = $this->parse_args( $data['args'] );
 		$args = apply_filters( 'notification/webhook/args', $args, $this, $trigger );
 
+		$headers = $this->parse_args( $data['headers'] );
+
 		// Call each URL separately.
 		foreach ( $data['urls'] as $url ) {
 
 			$filtered_args = apply_filters( 'notification/webhook/args/' . $url['type'] , $args, $this, $trigger );
 
 			if ( $url['type'] === 'get' ) {
-				$this->send_get( $url['recipient'], $filtered_args );
+				$this->send_get( $url['recipient'], $filtered_args, $headers );
 			} elseif ( $url['type'] === 'post' ) {
-				$this->send_post( $url['recipient'], $filtered_args );
+				$this->send_post( $url['recipient'], $filtered_args, $headers );
 			}
 
 		}
@@ -71,13 +93,16 @@ class Webhook extends Abstracts\Notification {
      *
      * @since  [Unreleased]
      * @param  string $url  URL to call
-     * @param  array  $args arguments
+     * @param  array  $args    arguments
+     * @param  array  $headers headers
      * @return void
      */
-    public function send_get( $url, $args ) {
+    public function send_get( $url, $args = array(), $headers = array() ) {
 
     	$remote_url  = add_query_arg( $args, $url );
-    	$remote_args = apply_filters( 'notification/webhook/remote_args/get', array(), $url, $args, $this );
+    	$remote_args = apply_filters( 'notification/webhook/remote_args/get', array(
+    		'headers' => $headers,
+    	), $url, $args, $this );
 
     	$response = wp_remote_get( $remote_url, $remote_args );
 
@@ -90,13 +115,15 @@ class Webhook extends Abstracts\Notification {
      *
      * @since  [Unreleased]
      * @param  string $url  URL to call
-     * @param  array  $args arguments
+     * @param  array  $args    arguments
+     * @param  array  $headers headers
      * @return void
      */
-    public function send_post( $url, $args ) {
+    public function send_post( $url, $args = array(), $headers = array() ) {
 
     	$remote_args = apply_filters( 'notification/webhook/remote_args/get', array(
-    		'body' => $args,
+    		'body'    => $args,
+    		'headers' => $headers,
     	), $url, $args, $this );
 
     	$response = wp_remote_post( $url, $remote_args );
