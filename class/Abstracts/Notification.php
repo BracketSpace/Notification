@@ -115,7 +115,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 				$recipients_field = $field;
 			}
 
-			// Skip internal nonce field
+			// Skip internal nonce field.
 			if ( $field->get_raw_name() == '_nonce' ) {
 				continue;
 			}
