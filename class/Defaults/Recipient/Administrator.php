@@ -21,7 +21,7 @@ class Administrator extends Abstracts\Recipient {
 	 * Parses value
 	 *
 	 * @param string  $value saved value
-	 * @return string        parsed value
+	 * @return array         parsed value
 	 */
 	public function parse_value( $value = '' ) {
 
@@ -29,7 +29,7 @@ class Administrator extends Abstracts\Recipient {
 			$value = $this->get_default_value();
 		}
 
-		return sanitize_email( $value );
+		return array( sanitize_email( $value ) );
 
 	}
 

@@ -28,7 +28,7 @@ class Email extends Abstracts\Recipient {
 			$value = $this->get_default_value();
 		}
 
-		return sanitize_email( $value );
+		return array( sanitize_email( $value ) );
 
 	}
 

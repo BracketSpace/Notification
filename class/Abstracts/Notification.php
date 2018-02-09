@@ -3,6 +3,7 @@
 namespace underDEV\Notification\Abstracts;
 use underDEV\Notification\Interfaces;
 use underDEV\Notification\Defaults\Field;
+use underDEV\Notification\Defaults\Field\RecipientsField;
 
 abstract class Notification extends Common implements Interfaces\Sendable {
 
@@ -17,6 +18,12 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	 * @var array
 	 */
 	public $form_fields = array();
+
+	/**
+	 * Fields data for send method
+	 * @var array
+	 */
+	public $data = array();
 
 	public function __construct( $slug, $name ) {
 
@@ -87,6 +94,48 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 		}
 
 		return $this->form_fields[ $field_slug ]->get_value();
+
+	}
+
+	/**
+	 * Prepares saved data for easy use in send() methor
+	 * Saves all the values in $data property
+	 *
+	 * @since  [Unreleased]
+	 * @return void
+	 */
+	public function prepare_data() {
+
+		$recipients_field = false;
+
+		foreach ( $this->get_form_fields() as $field_slug => $field ) {
+
+			// Save recipients field for additional parsing.
+			if ( $field instanceof RecipientsField ) {
+				$recipients_field = $field;
+			}
+
+			$this->data[ $field_slug ] = $this->get_field_value( $field_slug );
+
+		}
+
+		// If there's set recipients field, parse them into a nice array.
+		// Parsed recipients are saved to key named `parsed_{recipients_field_slug}`
+		if ( $recipients_field ) {
+
+			$parsed_recipients = array();
+
+			$raw_recipients = $this->get_field_value( $recipients_field->get_raw_name() );
+
+			foreach ( $raw_recipients as $recipient ) {
+				$type_recipients   = notification_parse_recipient( $this->get_slug(), $recipient['type'], $recipient['recipient'] );
+				$parsed_recipients = array_merge( $parsed_recipients, (array) $type_recipients );
+			}
+
+			// Remove duplicates and save to data property.
+			$this->data[ 'parsed_' . $recipients_field->get_raw_name() ] = array_unique( $parsed_recipients );
+
+		}
 
 	}
 
