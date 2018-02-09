@@ -51,6 +51,8 @@ class Runtime {
 
 		$this->admin_scripts = new Admin\Scripts( $this->files );
 
+		$this->admin_extensions = new Admin\Extensions( $this->view() );
+
 	}
 
 	public function actions() {
@@ -75,6 +77,8 @@ class Runtime {
 		add_action( 'admin_enqueue_scripts', array( $this->admin_scripts, 'enqueue_scripts' ) );
 
 		add_action( 'wp_ajax_get_merge_tags_for_trigger', array( $this->admin_merge_tags, 'ajax_render' ) );
+
+		add_action( 'admin_menu', array( $this->admin_extensions, 'register_page' ) );
 
 	}
 
