@@ -65,10 +65,7 @@ function notification_get_triggers_grouped() {
 			$return[ $trigger->get_group() ] = array();
 		}
 
-		$return[ $trigger->get_group() ][ $trigger->get_slug() ] = array(
-			'name'        => $trigger->get_name(),
-			'description' => $trigger->get_description()
-		);
+		$return[ $trigger->get_group() ][ $trigger->get_slug() ] = $trigger;
 
 	}
 
