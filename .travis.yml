@@ -13,7 +13,7 @@ cache:
     - vendor
     - $HOME/.composer/cache
 
-before_install:
+install:
 	- if [[ "$SNIFF" == "1" ]]; then export PHPCS_DIR=/tmp/phpcs; fi
 	- if [[ "$SNIFF" == "1" ]]; then export SNIFFS_DIR=/tmp/sniffs; fi
 	# Install PHP_CodeSniffer.
