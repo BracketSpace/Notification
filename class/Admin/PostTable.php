@@ -7,12 +7,15 @@
 
 namespace underDEV\Notification\Admin;
 
+/**
+ * PostTable class
+ */
 class PostTable {
 
 	/**
 	 * Adds custom table columns
      *
-	 * @param  array $columns current columns
+	 * @param  array $columns current columns.
 	 * @return array          filtered columns
 	 */
 	public function table_columns( $columns ) {
@@ -20,7 +23,7 @@ class PostTable {
 		$date_column = $columns['date'];
 		unset( $columns['date'] );
 
-		// Custom columns
+		// Custom columns.
 		$columns['trigger'] = __( 'Trigger', 'notification' );
 		$columns['date']    = $date_column;
 
@@ -31,8 +34,8 @@ class PostTable {
 	/**
 	 * Content for custom columns
      *
-	 * @param  string  $column  column slug
-	 * @param  integer $post_id post ID
+	 * @param  string  $column  column slug.
+	 * @param  integer $post_id post ID.
 	 * @return void
 	 */
 	public function table_column_content( $column, $post_id ) {
@@ -58,8 +61,8 @@ class PostTable {
 	/**
 	 * Remove quick edit from post inline actions
      *
-	 * @param  array  $row_actions array with action links
-	 * @param  object $post        WP_Post object
+	 * @param  array  $row_actions array with action links.
+	 * @param  object $post        WP_Post object.
 	 * @return array               filtered actions
 	 */
 	public function remove_quick_edit( $row_actions, $post ) {

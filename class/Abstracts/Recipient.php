@@ -9,6 +9,9 @@ namespace underDEV\Notification\Abstracts;
 
 use underDEV\Notification\Interfaces;
 
+/**
+ * Recipient abstract class
+ */
 abstract class Recipient extends Common implements Interfaces\Receivable {
 
 	/**
@@ -18,6 +21,12 @@ abstract class Recipient extends Common implements Interfaces\Receivable {
 	 */
 	protected $default_value;
 
+	/**
+     * Recipient constructor
+     *
+     * @since [Next]
+     * @param array $params recipient configuration params.
+     */
     public function __construct( $params = array() ) {
 
     	if ( ! isset( $params['slug'], $params['name'], $params['default_value'] ) ) {
@@ -31,10 +40,11 @@ abstract class Recipient extends Common implements Interfaces\Receivable {
     }
 
     /**
-	 * Parses saved value to email
+	 * Parses saved value something understood by notification
 	 * Must be defined in the child class
 	 *
-	 * @return array array of emails
+	 * @param  string $value raw value saved by the user.
+	 * @return array         array of resolved values
 	 */
 	abstract public function parse_value( $value = '' );
 

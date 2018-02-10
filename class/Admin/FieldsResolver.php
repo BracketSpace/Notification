@@ -9,6 +9,9 @@ namespace underDEV\Notification\Admin;
 
 use underDEV\Notification\Abstracts\Notification;
 
+/**
+ * FieldsResolver class
+ */
 class FieldsResolver {
 
 	/**
@@ -42,10 +45,10 @@ class FieldsResolver {
 	protected $replacements;
 
 	/**
-	 * Contructor
+	 * FieldsResolver contructor
      *
-	 * @param Notification $notification Notification object
-	 * @param array        $merge_tags   resolved merge tags array
+	 * @param Notification $notification Notification object.
+	 * @param array        $merge_tags   resolved merge tags array.
 	 */
 	public function __construct( Notification $notification, $merge_tags ) {
 
@@ -81,7 +84,7 @@ class FieldsResolver {
 	/**
 	 * Resolves merge tags in a value
      *
-	 * @param  mixed $value string or array, field value
+	 * @param  mixed $value string or array, field value.
 	 * @return mixed
 	 */
 	public function resolve_value( $value ) {

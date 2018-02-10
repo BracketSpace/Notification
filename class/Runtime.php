@@ -10,8 +10,17 @@ namespace underDEV\Notification;
 use underDEV\Notification\Utils;
 use underDEV\Notification\Admin;
 
+/**
+ * Runtime class
+ */
 class Runtime {
 
+	/**
+	 * Class constructor
+	 *
+	 * @since [Next]
+	 * @param string $plugin_file plugin main file full path.
+	 */
 	public function __construct( $plugin_file ) {
 
 		$this->plugin_file = $plugin_file;
@@ -22,6 +31,12 @@ class Runtime {
 
 	}
 
+	/**
+	 * Loads needed files
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
 	public function boot() {
 
 		require_once $this->files->file_path( 'inc/global.php' ) ;
@@ -31,6 +46,13 @@ class Runtime {
 
 	}
 
+	/**
+	 * Creates needed classes
+	 * Singletons are used for a sake of performance
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
 	public function singletons() {
 
 		$this->files = new Utils\Files( $this->plugin_file );
@@ -63,6 +85,12 @@ class Runtime {
 
 	}
 
+	/**
+	 * All WordPress actions this plugin utilizes
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
 	public function actions() {
 
 		add_action( 'plugins_loaded', array( $this->internationaliation, 'load_textdomain' ) );
@@ -92,18 +120,42 @@ class Runtime {
 
 	}
 
+	/**
+	 * Returns new View object
+	 *
+	 * @since  [Next]
+	 * @return View view object
+	 */
 	public function view() {
 		return new Utils\View( $this->files );
 	}
 
+	/**
+	 * Returns new Ajax object
+	 *
+	 * @since  [Next]
+	 * @return Ajax ajax object
+	 */
 	public function ajax() {
 		return new Utils\Ajax();
 	}
 
+	/**
+	 * Returns new BoxRenderer object
+	 *
+	 * @since  [Next]
+	 * @return BoxRenderer BoxRenderer object
+	 */
 	public function boxrenderer() {
 		return new Admin\BoxRenderer( $this->view() );
 	}
 
+	/**
+	 * Returns new FormRenderer object
+	 *
+	 * @since  [Next]
+	 * @return FormRenderer FormRenderer object
+	 */
 	public function formrenderer() {
 		return new Admin\FormRenderer( $this->view() );
 	}

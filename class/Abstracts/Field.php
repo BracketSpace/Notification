@@ -9,6 +9,9 @@ namespace underDEV\Notification\Abstracts;
 
 use underDEV\Notification\Interfaces;
 
+/**
+ * Field abstract class
+ */
 abstract class Field implements Interfaces\Fillable {
 
     /**
@@ -69,6 +72,12 @@ abstract class Field implements Interfaces\Fillable {
      */
     public $css_class = 'widefat notification-field '; // space here on purpose.
 
+    /**
+     * Field constructor
+     *
+     * @since [Next]
+     * @param array $params field configuration params.
+     */
     public function __construct( $params = array() ) {
 
     	if ( ! isset( $params['label'], $params['name'] ) ) {
@@ -111,7 +120,7 @@ abstract class Field implements Interfaces\Fillable {
     /**
      * Sanitizes the value sent by user
      *
-     * @param  mixed $value value to sanitize
+     * @param  mixed $value value to sanitize.
      * @return mixed        sanitized value
      */
     abstract public function sanitize( $value );
@@ -137,7 +146,7 @@ abstract class Field implements Interfaces\Fillable {
     /**
 	 * Sets field value
      *
-	 * @param  mixed $value value from DB
+	 * @param  mixed $value value from DB.
 	 * @return void
 	 */
 	public function set_value( $value ) {

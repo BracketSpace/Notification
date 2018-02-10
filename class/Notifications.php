@@ -7,6 +7,9 @@
 
 namespace underDEV\Notification;
 
+/**
+ * Notifications class
+ */
 class Notifications {
 
 	/**
@@ -21,7 +24,7 @@ class Notifications {
 	/**
 	 * Gets single Notification by its slug
      *
-	 * @param  string $slug notification slug
+	 * @param  string $slug notification slug.
 	 * @return mixed        notification object or false
 	 */
 	public function get_single( $slug ) {

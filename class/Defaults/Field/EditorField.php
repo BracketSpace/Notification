@@ -9,6 +9,9 @@ namespace underDEV\Notification\Defaults\Field;
 
 use underDEV\Notification\Abstracts\Field;
 
+/**
+ * Editor field class
+ */
 class EditorField extends Field {
 
 	/**
@@ -19,6 +22,12 @@ class EditorField extends Field {
 	 */
 	protected $settings = 'text';
 
+	/**
+	 * Field constructor
+	 *
+	 * @since [Next]
+	 * @param array $params field configuration parameters.
+	 */
 	public function __construct( $params = array() ) {
 
 		if ( isset( $params['settings'] ) ) {
@@ -53,7 +62,7 @@ class EditorField extends Field {
 	/**
      * Sanitizes the value sent by user
      *
-     * @param  mixed $value value to sanitize
+     * @param  mixed $value value to sanitize.
      * @return mixed        sanitized value
      */
     public function sanitize( $value ) {

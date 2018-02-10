@@ -10,6 +10,9 @@
 
 namespace underDEV\Notification\Utils;
 
+/**
+ * Requirements class
+ */
 class Requirements {
 
 	/**
@@ -43,15 +46,15 @@ class Requirements {
 	/**
 	 * Class constructor
      *
-	 * @param string $plugin_name plugin display name
-	 * @param array  $to_check    checks to perform
+	 * @param string $plugin_name plugin display name.
+	 * @param array  $to_check    checks to perform.
 	 */
 	public function __construct( $plugin_name = '', $to_check = array() ) {
 
 		$this->checks      = $to_check;
 		$this->plugin_name = $plugin_name;
 
-		// Add default checks
+		// Add default checks.
 		$this->add_check( 'php', array( $this, 'check_php' ) );
 		$this->add_check( 'php_extensions', array( $this, 'check_php_extensions' ) );
 		$this->add_check( 'wp', array( $this, 'check_wp' ) );
@@ -65,8 +68,8 @@ class Requirements {
 	/**
 	 * Adds the new check
      *
-	 * @param  string $check_name name of the check
-	 * @param  mixed  $callback   callable string or array
+	 * @param  string $check_name name of the check.
+	 * @param  mixed  $callback   callable string or array.
 	 * @return $this
 	 */
 	public function add_check( $check_name, $callback ) {
@@ -100,6 +103,7 @@ class Requirements {
 	/**
 	 * Adds the error
      *
+     * @param string $error_message error message.
 	 * @return $this
 	 */
 	public function add_error( $error_message ) {
@@ -150,8 +154,8 @@ class Requirements {
 	/**
 	 * Check PHP version
      *
-	 * @param  string $version      version needed
-	 * @param  object $requirements requirements class
+	 * @param  string $version      version needed.
+	 * @param  object $requirements requirements class.
 	 * @return void
 	 */
 	public function check_php( $version, $requirements ) {
@@ -165,8 +169,8 @@ class Requirements {
 	/**
 	 * Check PHP extensions
      *
-	 * @param  string $extensions   array of extension names
-	 * @param  object $requirements requirements class
+	 * @param  string $extensions   array of extension names.
+	 * @param  object $requirements requirements class.
 	 * @return void
 	 */
 	public function check_php_extensions( $extensions, $requirements ) {
@@ -191,8 +195,8 @@ class Requirements {
 	/**
 	 * Check WordPress version
      *
-	 * @param  string $version      version needed
-	 * @param  object $requirements requirements class
+	 * @param  string $version      version needed.
+	 * @param  object $requirements requirements class.
 	 * @return void
 	 */
 	public function check_wp( $version, $requirements ) {
@@ -207,8 +211,8 @@ class Requirements {
 	 * Check if plugins are active and are in needed versions
      *
 	 * @param  array  $plugins       array with plugins,
-	 *                               where key is the plugin file and value is the version
-	 * @param  object $requirements requirements class
+	 *                               where key is the plugin file and value is the version.
+	 * @param  object $requirements requirements class.
 	 * @return void
 	 */
 	public function check_plugins( $plugins, $requirements ) {
@@ -239,8 +243,8 @@ class Requirements {
 	/**
 	 * Check if theme is active
      *
-	 * @param  array  $needed_theme theme data
-	 * @param  object $requirements requirements class
+	 * @param  array  $needed_theme theme data.
+	 * @param  object $requirements requirements class.
 	 * @return void
 	 */
 	public function check_theme( $needed_theme, $requirements ) {
@@ -256,8 +260,8 @@ class Requirements {
 	/**
 	 * Check function collision
      *
-	 * @param  array  $functions    function names
-	 * @param  object $requirements requirements class
+	 * @param  array  $functions    function names.
+	 * @param  object $requirements requirements class.
 	 * @return void
 	 */
 	public function check_function_collision( $functions, $requirements ) {
@@ -282,8 +286,8 @@ class Requirements {
 	/**
 	 * Check class collision
      *
-	 * @param  array  $classes      class names
-	 * @param  object $requirements requirements class
+	 * @param  array  $classes      class names.
+	 * @param  object $requirements requirements class.
 	 * @return void
 	 */
 	public function check_class_collision( $classes, $requirements ) {

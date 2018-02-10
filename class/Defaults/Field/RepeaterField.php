@@ -9,6 +9,9 @@ namespace underDEV\Notification\Defaults\Field;
 
 use underDEV\Notification\Abstracts\Field;
 
+/**
+ * Repeater field class
+ */
 class RepeaterField extends Field {
 
 	/**
@@ -39,6 +42,12 @@ class RepeaterField extends Field {
 	 */
 	protected $data_attr = array();
 
+	/**
+	 * Field constructor
+	 *
+	 * @since [Next]
+	 * @param array $params field configuration parameters.
+	 */
 	public function __construct( $params = array() ) {
 
 		if ( isset( $params['fields'] ) ) {
@@ -51,8 +60,8 @@ class RepeaterField extends Field {
     		$this->add_button_label = __( 'Add new', 'notification' );
     	}
 
-    	// additional data tags for repeater table. key => value array
-		// will be transformed to data-key="value"
+    	// additional data tags for repeater table. key => value array.
+		// will be transformed to data-key="value".
 		if ( isset( $params['data_attr'] ) ) {
     		$this->data_attr = $params['data_attr'];
     	}
@@ -118,6 +127,14 @@ class RepeaterField extends Field {
 
 	}
 
+	/**
+	 * Prints repeater row
+	 *
+	 * @since  [Next]
+	 * @param  array   $values row values.
+	 * @param  boolean $model  if this is a hidden model row.
+	 * @return string          row HTML
+	 */
 	public function row( $values = array(), $model = false ) {
 
 		$html = '';
@@ -158,7 +175,7 @@ class RepeaterField extends Field {
 	/**
      * Sanitizes the value sent by user
      *
-     * @param  mixed $value value to sanitize
+     * @param  mixed $value value to sanitize.
      * @return mixed        sanitized value
      */
     public function sanitize( $value ) {

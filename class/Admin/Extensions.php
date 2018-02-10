@@ -7,8 +7,11 @@
 
 namespace underDEV\Notification\Admin;
 
-use underDEV\Notification\Utils;
+use underDEV\Notification\Utils\View;
 
+/**
+ * Extensions class
+ */
 class Extensions {
 
 	/**
@@ -25,7 +28,13 @@ class Extensions {
 	 */
 	private $view;
 
-	public function __construct( Utils\View $view ) {
+	/**
+	 * Extensions constructor
+	 *
+	 * @since [Next]
+	 * @param View $view View class.
+	 */
+	public function __construct( View $view ) {
 		$this->view = $view;
 	}
 

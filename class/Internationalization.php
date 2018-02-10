@@ -12,6 +12,9 @@ namespace underDEV\Notification;
 
 use underDEV\Notification\Utils\Files;
 
+/**
+ * Internationalization class
+ */
 class Internationalization {
 
 	/**
@@ -31,8 +34,8 @@ class Internationalization {
 	/**
 	 * Class constructor
      *
-	 * @param object $files      instance of Files object
-	 * @param string $textdomain textdomain string
+	 * @param object $files      instance of Files object.
+	 * @param string $textdomain textdomain string.
 	 */
 	public function __construct( Files $files, $textdomain ) {
 		$this->files      = $files;

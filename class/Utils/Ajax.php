@@ -8,13 +8,16 @@
 
 namespace underDEV\Notification\Utils;
 
+/**
+ * Ajax class
+ */
 class Ajax {
 
 	/**
 	 * Verifies nonce string
      *
-	 * @param  string $action action name, as defined while creating nonce hash, required
-	 * @param  string $nonce  $_REQUEST array key where to search for nonce, default 'nonce'
+	 * @param  string $action action name, as defined while creating nonce hash, required.
+	 * @param  string $nonce  $_REQUEST array key where to search for nonce, default 'nonce'.
 	 * @return void           dies when nonce is wrong
 	 */
 	public function verify_nonce( $action = null, $nonce = 'nonce' ) {
@@ -32,7 +35,7 @@ class Ajax {
 	/**
 	 * Prints success for JS
      *
-	 * @param  mixed $data anything
+	 * @param  mixed $data anything.
 	 * @return void
 	 */
 	public function success( $data ) {
@@ -42,7 +45,7 @@ class Ajax {
 	/**
 	 * Prints error for JS
      *
-	 * @param  mixed $data anything
+	 * @param  mixed $data anything.
 	 * @return void
 	 */
 	public function error( $data ) {
@@ -52,8 +55,8 @@ class Ajax {
 	/**
 	 * Responds to JS with message
      *
-	 * @param  mixed $success if empty, nothing will be passed
-	 * @param  array $errors  if not empty, an error will be returned
+	 * @param  mixed $success if empty, nothing will be passed.
+	 * @param  array $errors  if not empty, an error will be returned.
 	 * @return void
 	 */
 	public function response( $success = null, $errors = array() ) {

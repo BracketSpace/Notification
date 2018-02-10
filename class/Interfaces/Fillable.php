@@ -9,6 +9,9 @@ namespace underDEV\Notification\Interfaces;
 
 use underDEV\Notification\Interfaces\Nameable;
 
+/**
+ * Fillable interface
+ */
 interface Fillable {
 
 	/**
@@ -21,7 +24,7 @@ interface Fillable {
 	/**
 	 * Sets field value
      *
-	 * @param  mixed $value value from DB
+	 * @param  mixed $value value from DB.
 	 * @return void
 	 */
 	public function set_value( $value );

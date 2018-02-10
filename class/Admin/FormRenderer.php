@@ -10,6 +10,9 @@ namespace underDEV\Notification\Admin;
 use underDEV\Notification\Utils\View;
 use underDEV\Notification\Interfaces\Fillable;
 
+/**
+ * FormRenderer class
+ */
 class FormRenderer {
 
 	/**
@@ -27,6 +30,12 @@ class FormRenderer {
 	 */
 	private $fields = array();
 
+	/**
+	 * FormRenderer constructor
+	 *
+	 * @since [Next]
+	 * @param View $view View class.
+	 */
 	public function __construct( View $view ) {
 		$this->view = $view;
 	}
@@ -34,7 +43,7 @@ class FormRenderer {
 	/**
 	 * Sets the form fields
      *
-	 * @param array $fields fields
+	 * @param array $fields fields.
 	 */
 	public function set_fields( $fields = array() ) {
 

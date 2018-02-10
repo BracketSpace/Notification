@@ -7,6 +7,9 @@
 
 namespace underDEV\Notification;
 
+/**
+ * Recipients class
+ */
 class Recipients {
 
 	/**
@@ -21,7 +24,7 @@ class Recipients {
 	/**
 	 * Gets all recipients for notification slug
      *
-	 * @param  string $slug notification slug
+	 * @param  string $slug notification slug.
 	 * @return mixed        array of recipient objects or false
 	 */
 	public function get_for_notification( $slug ) {
@@ -32,8 +35,8 @@ class Recipients {
 	/**
 	 * Gets single recipient
      *
-	 * @param  string $notification notification slug
-	 * @param  string $recipient    recipient slug
+	 * @param  string $notification notification slug.
+	 * @param  string $recipient    recipient slug.
 	 * @return mixed                recipient object or false
 	 */
 	public function get_single( $notification, $recipient ) {

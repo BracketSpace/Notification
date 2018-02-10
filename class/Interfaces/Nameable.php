@@ -7,6 +7,9 @@
 
 namespace underDEV\Notification\Interfaces;
 
+/**
+ * Nameable interface
+ */
 interface Nameable {
 
 	/**

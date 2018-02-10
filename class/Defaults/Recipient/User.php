@@ -10,8 +10,16 @@ namespace underDEV\Notification\Defaults\Recipient;
 use underDEV\Notification\Abstracts;
 use underDEV\Notification\Defaults\Field;
 
+/**
+ * User recipient
+ */
 class User extends Abstracts\Recipient {
 
+	/**
+	 * Recipient constructor
+	 *
+	 * @since [Next]
+	 */
 	public function __construct() {
 		parent::__construct( array(
 			'slug'          => 'user',
@@ -21,10 +29,11 @@ class User extends Abstracts\Recipient {
 	}
 
 	/**
-	 * Parses value
+	 * Parses saved value something understood by notification
+	 * Must be defined in the child class
 	 *
-	 * @param string $value saved value
-	 * @return string        parsed value
+	 * @param  string $value raw value saved by the user.
+	 * @return array         array of resolved values
 	 */
 	public function parse_value( $value = '' ) {
 

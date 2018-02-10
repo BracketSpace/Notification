@@ -9,10 +9,14 @@ namespace underDEV\Notification\Abstracts;
 
 use underDEV\Notification\Interfaces;
 
+/**
+ * Common class
+ * Forces usage of slug and name and provides helper methods
+ */
 abstract class Common implements Interfaces\Nameable {
 
 	/**
-     * Objecy slug
+     * Object slug
      *
      * @var string
      */

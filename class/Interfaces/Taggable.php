@@ -9,6 +9,9 @@ namespace underDEV\Notification\Interfaces;
 
 use underDEV\Notification\Interfaces\Nameable;
 
+/**
+ * Taggable interface
+ */
 interface Taggable extends Nameable {
 
 	/**

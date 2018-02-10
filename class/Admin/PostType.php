@@ -7,10 +7,17 @@
 
 namespace underDEV\Notification\Admin;
 
+/**
+ * PostType class
+ */
 class PostType {
 
 	/**
-	 * Class constructor
+	 * PostType constructor
+	 *
+	 * @since [Next]
+	 * @param Trigger       $trigger       Trigger class.
+	 * @param Notifications $notifications Notifications class.
 	 */
 	public function __construct( Trigger $trigger, Notifications $notifications ) {
 		$this->trigger       = $trigger;
@@ -65,7 +72,7 @@ class PostType {
 	/**
 	 * Moves the metaboxes under title in WordPress
      *
-	 * @param  object $post WP_Post
+	 * @param  object $post WP_Post.
 	 * @return void
 	 */
 	public function render_trigger_select( $post ) {
@@ -83,7 +90,7 @@ class PostType {
 	 * Adds Notifications section title on post edit screen,
 	 * just under the Trigger and prints Notifications metaboxes
      *
-	 * @param  object $post WP_Post
+	 * @param  object $post WP_Post.
 	 * @return void
 	 */
 	public function render_notification_metaboxes( $post ) {

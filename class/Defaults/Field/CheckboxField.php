@@ -9,6 +9,9 @@ namespace underDEV\Notification\Defaults\Field;
 
 use underDEV\Notification\Abstracts\Field;
 
+/**
+ * Checkbox field class
+ */
 class CheckboxField extends Field {
 
 	/**
@@ -19,6 +22,12 @@ class CheckboxField extends Field {
 	 */
 	protected $checkbox_label = '';
 
+	/**
+	 * Field constructor
+	 *
+	 * @since [Next]
+	 * @param array $params field configuration parameters.
+	 */
 	public function __construct( $params = array() ) {
 
 		if ( isset( $params['checkbox_label'] ) ) {
@@ -43,7 +52,7 @@ class CheckboxField extends Field {
 	/**
      * Sanitizes the value sent by user
      *
-     * @param  mixed $value value to sanitize
+     * @param  mixed $value value to sanitize.
      * @return mixed        sanitized value
      */
     public function sanitize( $value ) {

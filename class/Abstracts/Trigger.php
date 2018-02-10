@@ -8,8 +8,12 @@
 namespace underDEV\Notification\Abstracts;
 
 use underDEV\Notification\Interfaces;
+use underDEV\Notification\Interfaces\Sendable;
 use underDEV\Notification\Admin\FieldsResolver;
 
+/**
+ * Trigger abstract class
+ */
 abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
@@ -58,8 +62,8 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Trigger constructor
      *
-	 * @param string $slug        slug
-	 * @param string $name        nice name
+	 * @param string $slug slug.
+	 * @param string $name nice name.
 	 */
 	public function __construct( $slug, $name ) {
 
@@ -83,9 +87,9 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * This method just calls WordPress' add_action function,
 	 * but it hooks the class' action method
      *
-	 * @param string  $tag           action hook
-	 * @param integer $priority      action priority, default 10
-	 * @param integer $accepted_args how many args the action accepts, default 1
+	 * @param string  $tag           action hook.
+	 * @param integer $priority      action priority, default 10.
+	 * @param integer $accepted_args how many args the action accepts, default 1.
 	 */
 	public function add_action( $tag, $priority = 10, $accepted_args = 1 ) {
 
@@ -106,20 +110,20 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Attaches the Notification to the Trigger
      *
-	 * @param  underDEV\Notification\Abstracts\Notification $notification Notification class
+	 * @param  Sendable $notification Notification class.
 	 * @return void
 	 */
-	public function attach( Interfaces\Sendable $notification ) {
+	public function attach( Sendable $notification ) {
 		$this->notification_storage[ $notification->hash() ] = $notification;
 	}
 
 	/**
 	 * Detaches the Notification from the Trigger
      *
-	 * @param  underDEV\Notification\Abstracts\Notification $notification Notification class
+	 * @param  Sendable $notification Notification class.
 	 * @return void
 	 */
-	public function detach( Interfaces\Sendable $notification ) {
+	public function detach( Sendable $notification ) {
 		if ( isset( $this->notification_storage[ $notification->hash() ] ) ) {
 			unset( $this->notification_storage[ $notification->hash() ] );
 		}
@@ -147,8 +151,9 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Sets slug
+	 * Sets description
      *
+     * @param string $description description.
 	 * @return $this
 	 */
 	public function set_description( $description ) {
@@ -168,6 +173,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Sets group
      *
+     * @param string $group group.
 	 * @return $this
 	 */
 	public function set_group( $group ) {
@@ -178,7 +184,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Adds trigger's merge tag
      *
-	 * @param Interfaces\Taggable $merge_tag merge tag object
+	 * @param Interfaces\Taggable $merge_tag merge tag object.
 	 * @return $this
 	 */
 	public function add_merge_tag( Interfaces\Taggable $merge_tag ) {
@@ -239,15 +245,15 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		$runtime = notification_runtime();
 		$postdata = $runtime->post_data;
 
-		// Get all notification posts bound with this trigger
+		// Get all notification posts bound with this trigger.
 		$notification_posts = $postdata->get_trigger_posts( $this->get_slug() );
 
-		// Attach notifications for each post
+		// Attach notifications for each post.
 		foreach ( $notification_posts as $notification_post ) {
 
 			$notifications = $postdata->get_populated_notifications_for_post( $notification_post->ID );
 
-			// attach every enabled notification
+			// attach every enabled notification.
 			foreach ( $notifications as $notification ) {
 				$this->attach( $notification );
 			}

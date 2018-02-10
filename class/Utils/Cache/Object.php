@@ -27,8 +27,8 @@ class Object extends Cache implements Cacheable {
 	/**
 	 * Constructor
      *
-	 * @param string $key   cache unique key
-	 * @param string $group cache group, optional
+	 * @param string $key   cache unique key.
+	 * @param string $group cache group, optional.
 	 */
 	public function __construct( $key, $group = '' ) {
 
@@ -41,7 +41,7 @@ class Object extends Cache implements Cacheable {
 	/**
 	 * Sets cache value
      *
-	 * @param mixed $value value to store
+	 * @param mixed $value value to store.
 	 * @return object $this
 	 */
 	public function set( $value ) {
@@ -52,7 +52,7 @@ class Object extends Cache implements Cacheable {
 	/**
 	 * Adds cache if it's not already set
      *
-	 * @param mixed $value value to store
+	 * @param mixed $value value to store.
 	 * @return object $this
 	 */
 	public function add( $value ) {
@@ -63,7 +63,7 @@ class Object extends Cache implements Cacheable {
 	/**
 	 * Gets value from cache
      *
-	 * @param  boolean $force not used, transients are always get from storage
+	 * @param  boolean $force not used, transients are always get from storage.
 	 * @return mixed          cached value
 	 */
 	public function get( $force = false ) {

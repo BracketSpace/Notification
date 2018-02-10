@@ -7,6 +7,9 @@
 
 namespace underDEV\Notification\Utils\Cache;
 
+/**
+ * Cache class
+ */
 class Cache {
 
     /**
@@ -19,7 +22,7 @@ class Cache {
 	/**
 	 * Constructor
      *
-	 * @param string $key cache unique key
+	 * @param string $key cache unique key.
 	 */
 	public function __construct( $key ) {
 

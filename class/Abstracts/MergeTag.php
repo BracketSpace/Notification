@@ -9,6 +9,9 @@ namespace underDEV\Notification\Abstracts;
 
 use underDEV\Notification\Interfaces;
 
+/**
+ * MergeTag abstract class
+ */
 abstract class MergeTag extends Common implements Interfaces\Taggable {
 
     /**
@@ -40,6 +43,12 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
      */
     protected $resolved = false;
 
+    /**
+     * Merge tag constructor
+     *
+     * @since [Next]
+     * @param array $params merge tag configuration params.
+     */
     public function __construct( $params = array() ) {
 
     	if ( ! isset( $params['slug'], $params['name'], $params['resolver'] ) ) {
@@ -63,7 +72,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
     /**
      * Checks if the value is the correct type
      *
-     * @param  mixed $value tag value
+     * @param  mixed $value tag value.
      * @return boolean
      */
     abstract public function validate( $value );
@@ -71,7 +80,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
     /**
      * Sanitizes the merge tag value
      *
-     * @param  mixed $value tag value
+     * @param  mixed $value tag value.
      * @return mixed        sanitized value
      */
     abstract public function sanitize( $value );
@@ -100,7 +109,6 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 	 * It also check if the value is correct type
 	 * and sanitizes it
      *
-	 * @param  mixed $value value
 	 * @return void
 	 */
     public function resolve() {

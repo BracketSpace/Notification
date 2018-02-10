@@ -9,6 +9,9 @@ namespace underDEV\Notification\Admin;
 
 use underDEV\Notification\Utils\Files;
 
+/**
+ * Scripts class
+ */
 class Scripts {
 
 	/**
@@ -18,6 +21,12 @@ class Scripts {
 	 */
 	private $files;
 
+	/**
+	 * Scripts constructor
+	 *
+	 * @since [Next]
+	 * @param Files $files Files class.
+	 */
 	public function __construct( Files $files ) {
 		$this->files = $files;
 	}
@@ -25,7 +34,7 @@ class Scripts {
 	/**
 	 * Enqueue scripts and styles for admin
      *
-	 * @param  string $page_hook current page hook
+	 * @param  string $page_hook current page hook.
 	 * @return void
 	 */
 	public function enqueue_scripts( $page_hook ) {

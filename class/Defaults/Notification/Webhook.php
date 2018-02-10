@@ -7,15 +7,30 @@
 
 namespace underDEV\Notification\Defaults\Notification;
 
+use underDEV\Notification\Interfaces\Triggerable;
 use underDEV\Notification\Abstracts;
 use underDEV\Notification\Defaults\Field;
 
+/**
+ * Webhook notification
+ */
 class Webhook extends Abstracts\Notification {
 
+	/**
+	 * Notification constructor
+	 *
+	 * @since [Next]
+	 */
 	public function __construct() {
 		parent::__construct( 'webhook', __( 'Webhook' ) );
 	}
 
+	/**
+	 * Used to register notification form fields
+	 * Uses $this->add_form_field();
+     *
+	 * @return void
+	 */
 	public function form_fields() {
 
 		$this->add_form_field( new Field\RecipientsField( array(
@@ -67,7 +82,13 @@ class Webhook extends Abstracts\Notification {
 
 	}
 
-	public function send( \underDEV\Notification\Abstracts\Trigger $trigger ) {
+	/**
+	 * Sends the notification
+     *
+	 * @param  Triggerable $trigger trigger object.
+	 * @return void
+	 */
+	public function send( Triggerable $trigger ) {
 
 		$data = $this->data;
 
@@ -94,10 +115,10 @@ class Webhook extends Abstracts\Notification {
     /**
      * Sends GET request
      *
-     * @since  [Unreleased]
-     * @param  string $url  URL to call
-     * @param  array  $args    arguments
-     * @param  array  $headers headers
+     * @since  [Next]
+     * @param  string $url  URL to call.
+     * @param  array  $args    arguments.
+     * @param  array  $headers headers.
      * @return void
      */
     public function send_get( $url, $args = array(), $headers = array() ) {
@@ -116,10 +137,10 @@ class Webhook extends Abstracts\Notification {
     /**
      * Sends POST request
      *
-     * @since  [Unreleased]
-     * @param  string $url  URL to call
-     * @param  array  $args    arguments
-     * @param  array  $headers headers
+     * @since  [Next]
+     * @param  string $url  URL to call.
+     * @param  array  $args    arguments.
+     * @param  array  $headers headers.
      * @return void
      */
     public function send_post( $url, $args = array(), $headers = array() ) {
@@ -138,8 +159,8 @@ class Webhook extends Abstracts\Notification {
     /**
      * Parses args to be understand by the wp_remote_* functions
      *
-     * @since  [Unreleased]
-     * @param  array $args args from saved fields
+     * @since  [Next]
+     * @param  array $args args from saved fields.
      * @return array       parsed args as key => value array
      */
     private function parse_args( $args ) {
