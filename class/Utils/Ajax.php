@@ -2,6 +2,8 @@
 /**
  * Ajax class
  * Handles AJAX calls
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Utils;

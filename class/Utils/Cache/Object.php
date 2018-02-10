@@ -2,8 +2,9 @@
 /**
  * Object Cache
  *
- * @uses wp cache functions
- * @uses Cacheable Interface
+ * @uses    wp cache functions
+ * @uses    Cacheable Interface
+ * @package notification
  */
 
 namespace underDEV\Notification\Utils\Cache;

@@ -1,4 +1,12 @@
-<?php do_action( 'notification/metabox/trigger/tags/before', $this->get_var( 'trigger' ) ); ?>
+<?php
+/**
+ * Merge tag metabox template
+ *
+ * @package notification
+ */
+
+do_action( 'notification/metabox/trigger/tags/before', $this->get_var( 'trigger' ) );
+?>
 
 <ul>
 	<?php foreach ( $this->get_var( 'tags' ) as $tag ): ?>

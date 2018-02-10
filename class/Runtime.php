@@ -1,6 +1,8 @@
 <?php
 /**
  * Runtime
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification;

@@ -1,5 +1,7 @@
 <?php
-/*
+/**
+ * Dice container
+ *
  * @description Dice - A minimal Dependency Injection Container for PHP *
  * @author Tom Butler tom@r.je *
  * @copyright 2012-2015 Tom Butler <tom@r.je> | https:// r.je/dice.html *
@@ -11,6 +13,8 @@
  *
  * @author Kuba Mikita <jakub@underdev.it>
  *         Made a fork compatible with PHP 5.3
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Utils;

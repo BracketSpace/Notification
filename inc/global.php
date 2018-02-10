@@ -1,6 +1,8 @@
 <?php
 /**
  * Global functions
+ *
+ * @package notification
  */
 
 use underDEV\Notification\Interfaces;

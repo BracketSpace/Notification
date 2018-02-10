@@ -1,6 +1,8 @@
 <?php
 /**
  * Enqueues admin scripts
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Admin;

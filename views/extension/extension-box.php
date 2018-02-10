@@ -1,4 +1,9 @@
 <?php
+/**
+ * Extension box template
+ *
+ * @package notification
+ */
 
 $ext = $this->get_var( 'extension' );
 

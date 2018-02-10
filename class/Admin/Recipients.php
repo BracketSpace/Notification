@@ -1,6 +1,8 @@
 <?php
 /**
  * Handles Recipients in admin
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Admin;

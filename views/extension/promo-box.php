@@ -1,3 +1,12 @@
+<?php
+/**
+ * Extension promo box template
+ *
+ * @package notification
+ */
+
+?>
+
 <div class="plugin-card promo">
 	<div class="plugin-card-top">
 		<div class="name column-name">

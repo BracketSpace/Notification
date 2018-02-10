@@ -1,6 +1,8 @@
 <?php
 /**
  * Recipients
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification;

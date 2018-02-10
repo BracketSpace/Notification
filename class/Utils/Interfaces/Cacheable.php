@@ -2,6 +2,8 @@
 /**
  * Cacheable interface
  * Implemented by Cache classes
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Utils\Interfaces;

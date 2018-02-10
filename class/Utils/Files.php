@@ -2,6 +2,8 @@
 /**
  * Files class
  * Locates plugin's files
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Utils;

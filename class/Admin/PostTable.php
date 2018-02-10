@@ -1,6 +1,8 @@
 <?php
 /**
  * Handles Notification post table
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Admin;

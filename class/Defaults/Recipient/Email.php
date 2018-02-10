@@ -1,6 +1,8 @@
 <?php
 /**
  * Email recipient
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Defaults\Recipient;

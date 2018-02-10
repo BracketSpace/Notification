@@ -1,3 +1,12 @@
+<?php
+/**
+ * Extensions list template
+ *
+ * @package notification
+ */
+
+?>
+
 <div class="wrap notification-extensions">
 
 	<h1><?php esc_html_e( 'Extensions', 'notification' ); ?></h1>

@@ -1,6 +1,8 @@
 <?php
 /**
  * Render box very similar to metabox
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Admin;

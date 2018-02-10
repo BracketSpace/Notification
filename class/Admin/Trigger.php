@@ -1,6 +1,8 @@
 <?php
 /**
  * Handles Trigger metabox
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Admin;

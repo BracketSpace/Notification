@@ -1,4 +1,9 @@
 <?php
+/**
+ * Sendable interface class
+ *
+ * @package notification
+ */
 
 namespace underDEV\Notification\Interfaces;
 

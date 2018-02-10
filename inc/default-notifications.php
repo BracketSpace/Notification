@@ -1,6 +1,8 @@
 <?php
 /**
  * Default notifications
+ *
+ * @package notification
  */
 
 use underDEV\Notification\Defaults\Notification;

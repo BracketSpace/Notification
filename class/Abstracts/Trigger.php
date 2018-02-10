@@ -1,4 +1,9 @@
 <?php
+/**
+ * Trigger abstract class
+ *
+ * @package notification
+ */
 
 namespace underDEV\Notification\Abstracts;
 

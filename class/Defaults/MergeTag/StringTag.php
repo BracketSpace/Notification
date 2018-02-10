@@ -1,4 +1,9 @@
 <?php
+/**
+ * String merge tag class
+ *
+ * @package notification
+ */
 
 namespace underDEV\Notification\Defaults\MergeTag;
 

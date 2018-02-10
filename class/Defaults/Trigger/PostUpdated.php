@@ -1,6 +1,8 @@
 <?php
 /**
  * Post updated trigger
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Defaults\Trigger;

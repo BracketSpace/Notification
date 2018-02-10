@@ -4,6 +4,8 @@
  * Loads plugin textdomain
  *
  * Since WordPress 4.6 translations are loaded via repository
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification;

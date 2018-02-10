@@ -1,6 +1,8 @@
 <?php
 /**
  * Handles Merge Tags metabox
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Admin;

@@ -1,6 +1,8 @@
 <?php
 /**
  * Handles Notifications metaboxes
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Admin;

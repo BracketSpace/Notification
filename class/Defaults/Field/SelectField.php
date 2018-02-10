@@ -1,4 +1,9 @@
 <?php
+/**
+ * Select field class
+ *
+ * @package notification
+ */
 
 namespace underDEV\Notification\Defaults\Field;
 

@@ -1,4 +1,9 @@
 <?php
+/**
+ * Triggerable interface class
+ *
+ * @package notification
+ */
 
 namespace underDEV\Notification\Interfaces;
 

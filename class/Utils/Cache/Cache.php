@@ -1,6 +1,8 @@
 <?php
 /**
  * Cache object, which utilises key
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Utils\Cache;

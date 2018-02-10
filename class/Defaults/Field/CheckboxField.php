@@ -1,4 +1,9 @@
 <?php
+/**
+ * Checkbox field class
+ *
+ * @package notification
+ */
 
 namespace underDEV\Notification\Defaults\Field;
 

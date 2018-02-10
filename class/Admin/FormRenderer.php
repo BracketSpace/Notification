@@ -1,6 +1,8 @@
 <?php
 /**
  * Renders form table
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Admin;

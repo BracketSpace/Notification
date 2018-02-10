@@ -1,6 +1,8 @@
 <?php
 /**
  * Default triggers
+ *
+ * @package notification
  */
 
 use underDEV\Notification\Defaults\Trigger;

@@ -2,6 +2,8 @@
 /**
  * View class
  * Loads views
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Utils;

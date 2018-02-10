@@ -1,6 +1,8 @@
 <?php
 /**
  * Triggers
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification;

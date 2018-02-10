@@ -1,6 +1,8 @@
 <?php
 /**
  * Webhook notification
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Defaults\Notification;

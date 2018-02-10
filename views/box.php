@@ -1,3 +1,12 @@
+<?php
+/**
+ * Notification box template
+ *
+ * @package notification
+ */
+
+?>
+
 <div id="<?php $this->echo_var( 'id' ); ?>" class="postbox <?php if ( ! $this->get_var( 'open' ) ) echo 'closed'; ?>">
 	<div class="switch-container">
 		<label class="switch <?php if ( $this->get_var( 'open' ) ) echo 'active'; ?>">

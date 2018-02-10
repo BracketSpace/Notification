@@ -2,8 +2,9 @@
 /**
  * Transient Cache
  *
- * @uses wp transient functions
- * @uses Cacheable Interface
+ * @uses    wp transient functions
+ * @uses    Cacheable Interface
+ * @package notification
  */
 
 namespace underDEV\Notification\Utils\Cache;

@@ -1,6 +1,8 @@
 <?php
 /**
  * Resolves the Notification fields with Merge Tags
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Admin;

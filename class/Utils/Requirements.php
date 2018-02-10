@@ -5,6 +5,7 @@
  * @autor   Kuba Mikita (jakub@underdev.it)
  * @version 1.2.1
  * @usage   see https://github.com/Kubitomakita/Requirements
+ * @package notification
  */
 
 namespace underDEV\Notification\Utils;

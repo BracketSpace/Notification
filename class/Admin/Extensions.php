@@ -1,6 +1,8 @@
 <?php
 /**
  * Extensions class
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Admin;

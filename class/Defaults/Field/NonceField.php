@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nonce field class
+ *
+ * @package notification
+ */
 
 namespace underDEV\Notification\Defaults\Field;
 
