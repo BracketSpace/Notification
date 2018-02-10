@@ -103,8 +103,14 @@ class FieldsResolver {
 
 			$resolved = str_replace( $this->tags, $this->replacements, $value );
 
-			if ( apply_filters( 'notification/merge_tags/remove_empty', true ) ) {
+			$strip_metgetags = notification_get_setting( 'general/content/strip_empty_tags' );
+			if ( apply_filters( 'notification/value/strip_empty_mergetags', $strip_metgetags ) ) {
 				$resolved = preg_replace( $this->merge_tag_pattern, '', $resolved );
+			}
+
+			$string_shortcodes = notification_get_setting( 'general/content/strip_shortcodes' );
+			if ( apply_filters( 'notification/value/strip_shortcodes', $string_shortcodes ) ) {
+				$resolved = strip_shortcodes( $resolved );
 			}
 
 		}
