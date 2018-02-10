@@ -92,8 +92,6 @@ class Settings {
 
 		add_action( 'admin_post_save_' . $this->handle . '_settings', array( $this, 'save_settings' ) );
 
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10, 1 );
-
 	}
 
 	/**
@@ -276,28 +274,6 @@ class Settings {
 		$value = $settings[ $parts[0] ][ $parts[1] ][ $parts[2] ];
 
 		return apply_filters( $this->handle . '/settings/setting/' . $setting, $value, $this );
-
-	}
-
-	/**
-	 * Enqueue scripts and styles for Library
-     *
-	 * @param  string $page_hook current page hook.
-	 * @return mixed             false if not our page
-	 */
-	public function enqueue_scripts( $page_hook ) {
-
-		if ( ! empty( $this->page_hook ) && $page_hook != $this->page_hook ) {
-			return false;
-		}
-
-		if ( empty( $this->uri ) ) {
-			return false;
-		}
-
-		wp_enqueue_script( 'underdev/settings/' . $this->handle, $this->uri . 'assets/dist/js/scripts.min.js', array( 'jquery' ), null, false );
-
-		wp_enqueue_style( 'underdev/settings/' . $this->handle, $this->uri . 'assets/dist/css/style.css' );
 
 	}
 

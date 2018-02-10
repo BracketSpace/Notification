@@ -55,6 +55,7 @@ class Runtime {
 
 		$this->files               = new Utils\Files( $this->plugin_file );
 		$this->internationaliation = new Internationalization( $this->files, 'notification' );
+		$this->settings            = new Admin\Settings();
 		$this->post_data           = new Admin\PostData();
 		$this->admin_trigger       = new Admin\Trigger( $this->view(), $this->post_data );
 		$this->admin_notifications = new Admin\Notifications( $this->boxrenderer(), $this->formrenderer(), $this->post_data );
@@ -97,6 +98,9 @@ class Runtime {
 		add_action( 'wp_ajax_get_recipient_input', array( $this->admin_recipients, 'ajax_get_recipient_input' ) );
 
 		add_action( 'admin_menu', array( $this->admin_extensions, 'register_page' ) );
+		add_action( 'admin_menu', array( $this->settings, 'register_page' ), 20 );
+
+		add_action( 'init', array( $this->settings, 'register_settings' ), 20 );
 
 	}
 

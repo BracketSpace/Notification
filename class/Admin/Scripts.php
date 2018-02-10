@@ -41,6 +41,7 @@ class Scripts {
 
 		$allowed_hooks = array(
 			'notification_page_extensions',
+			'notification_page_settings',
 			'plugins.php',
 			'post-new.php',
 			'post.php'
