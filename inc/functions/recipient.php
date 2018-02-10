@@ -50,7 +50,7 @@ function notification_get_recipients() {
  * @return array                     recipients array
  */
 function notification_get_notification_recipients( $notification_type ) {
-	$recipients = apply_filters( 'notification/recipients', array() );
+	$recipients = notification_get_recipients();
 	return isset( $recipients[ $notification_type ] ) ? $recipients[ $notification_type ] : array();
 }
 
@@ -63,7 +63,7 @@ function notification_get_notification_recipients( $notification_type ) {
  * @return mixed                     recipient object or false
  */
 function notification_get_single_recipient( $notification_type, $recipient_slug ) {
-	$recipients = apply_filters( 'notification/recipients', array() );
+	$recipients = notification_get_recipients();
 	return isset( $recipients[ $notification_type ][ $recipient_slug ] ) ? $recipients[ $notification_type ][ $recipient_slug ] : false;
 }
 

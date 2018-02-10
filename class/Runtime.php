@@ -32,15 +32,13 @@ class Runtime {
 
 		$this->internationaliation = new Internationalization( $this->files, 'notification' );
 
-		$this->notifications = new Notifications();
-
 		$this->triggers = new Triggers();
 
-		$this->post_data = new Admin\PostData( $this->notifications, $this->triggers );
+		$this->post_data = new Admin\PostData( $this->triggers );
 
 		$this->admin_trigger = new Admin\Trigger( $this->view(), $this->triggers, $this->post_data );
 
-		$this->admin_notifications = new Admin\Notifications( $this->notifications, $this->boxrenderer(), $this->formrenderer(), $this->post_data );
+		$this->admin_notifications = new Admin\Notifications( $this->boxrenderer(), $this->formrenderer(), $this->post_data );
 
 		$this->admin_post_type = new Admin\PostType( $this->admin_trigger, $this->admin_notifications );
 

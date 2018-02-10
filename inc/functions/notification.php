@@ -8,6 +8,7 @@ use underDEV\Notification\Interfaces;
 /**
  * Registers notification
  * Uses notification/notifications filter
+ *
  * @param  Interfaces\Sendable $notification notification object
  * @return void
  */
@@ -25,4 +26,26 @@ function register_notification( Interfaces\Sendable $notification ) {
 
 	} );
 
+}
+
+/**
+ * Gets all registered notifications
+ *
+ * @since  [Unreleased]
+ * @return array notifications
+ */
+function notification_get_notifications() {
+	return apply_filters( 'notification/notifications', array() );
+}
+
+/**
+ * Gets single registered notification
+ *
+ * @since  [Unreleased]
+ * @param  string $notification_slug notification slug
+ * @return mixed                     notification object or false
+ */
+function notification_get_single_notification( $notification_slug ) {
+	$notifications = notification_get_notifications();
+	return isset( $notifications[ $notification_slug ] ) ? $notifications[ $notification_slug ] : false;
 }

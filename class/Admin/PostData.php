@@ -5,7 +5,6 @@
 
 namespace underDEV\Notification\Admin;
 use underDEV\Notification\Interfaces;
-use underDEV\Notification\Notifications as NotificationsSet;
 use underDEV\Notification\Triggers as TriggersSet;
 
 class PostData {
@@ -25,10 +24,9 @@ class PostData {
 	/**
 	 * Class constructor
 	 */
-	public function __construct( NotificationsSet $notifications, TriggersSet $triggers ) {
+	public function __construct(TriggersSet $triggers ) {
 
-		$this->notifications = $notifications;
-		$this->triggers      = $triggers;
+		$this->triggers = $triggers;
 
 		$this->notification_enabled_key = '_enabled_notification';
 		$this->notification_data_key    = '_notification_type_';
@@ -124,7 +122,7 @@ class PostData {
 
 		// enable all notifications one by one
 
-        foreach ( $this->notifications->get() as $notification ) {
+        foreach ( notification_get_notifications() as $notification ) {
 
 			if ( isset( $data['notification_' . $notification->get_slug() . '_enable'] ) ) {
 				add_post_meta( $this->get_post_id(), $this->notification_enabled_key, $notification->get_slug() );
@@ -136,7 +134,7 @@ class PostData {
 
         // save all notification settings one by one
 
-        foreach ( $this->notifications->get() as $notification ) {
+        foreach ( notification_get_notifications() as $notification ) {
 
         	if ( ! isset( $data[ 'notification_type_' . $notification->get_slug() ] ) ) {
         		continue;
@@ -182,7 +180,7 @@ class PostData {
 
 		// translate slug to the object
 		foreach ( $active_notification_slugs as $slug ) {
-			$notification = $this->notifications->get_single( $slug );
+			$notification = notification_get_single_notification( $slug );
 			if ( ! empty( $notification ) ) {
 				$active_notifications[] = clone $notification;
 			}
