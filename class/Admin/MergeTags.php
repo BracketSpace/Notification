@@ -9,7 +9,6 @@ namespace underDEV\Notification\Admin;
 
 use underDEV\Notification\Utils\View;
 use underDEV\Notification\Utils\Ajax;
-use underDEV\Notification\Triggers;
 use underDEV\Notification\Interfaces\Triggerable;
 
 /**
@@ -21,14 +20,12 @@ class MergeTags {
 	 * MergeTags constructor
 	 *
 	 * @since [Next]
-	 * @param View     $view     View class.
-	 * @param Ajax     $ajax     Ajax class.
-	 * @param Triggers $triggers Triggers class.
+	 * @param View $view View class.
+	 * @param Ajax $ajax Ajax class.
 	 */
-	public function __construct( View $view, Ajax $ajax, Triggers $triggers ) {
-		$this->view     = $view;
-		$this->ajax     = $ajax;
-		$this->triggers = $triggers;
+	public function __construct( View $view, Ajax $ajax ) {
+		$this->view = $view;
+		$this->ajax = $ajax;
 	}
 
 	/**
@@ -79,7 +76,7 @@ class MergeTags {
 	 */
 	public function trigger_merge_tags_list( $trigger_slug ) {
 
-		$trigger = $this->triggers->get_single( $trigger_slug );
+		$trigger = notification_get_single_trigger( $trigger_slug );
 
 		if ( empty( $trigger ) ) {
 			$this->view->get_view( 'mergetag/metabox-nomergetags' );

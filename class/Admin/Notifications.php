@@ -7,8 +7,6 @@
 
 namespace underDEV\Notification\Admin;
 
-use underDEV\Notification\Notifications as NotificationsSet;
-
 /**
  * Notifications class
  */
@@ -18,13 +16,11 @@ class Notifications {
 	 * Notifications constructor
 	 *
 	 * @since [Next]
-	 * @param NotificationsSet $notifications NotificationsSet.
-	 * @param BoxRenderer      $boxrenderer   BoxRenderer class.
-	 * @param FormRenderer     $formrenderer  FormRenderer class.
-	 * @param PostData         $postdata      PostData class.
+	 * @param BoxRenderer  $boxrenderer  BoxRenderer class.
+	 * @param FormRenderer $formrenderer FormRenderer class.
+	 * @param PostData     $postdata     PostData class.
 	 */
-	public function __construct( NotificationsSet $notifications, BoxRenderer $boxrenderer, FormRenderer $formrenderer, PostData $postdata ) {
-		$this->notifications = $notifications;
+	public function __construct( BoxRenderer $boxrenderer, FormRenderer $formrenderer, PostData $postdata ) {
 		$this->boxrenderer   = $boxrenderer;
 		$this->formrenderer  = $formrenderer;
 		$this->postdata      = $postdata;
@@ -38,7 +34,7 @@ class Notifications {
 	 */
 	public function render_notifications() {
 
-		foreach ( $this->notifications->get() as $notification ) {
+		foreach ( notification_get_notifications() as $notification ) {
 
 			$this->postdata->set_notification_data( $notification );
 

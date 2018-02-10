@@ -7,8 +7,6 @@
 
 namespace underDEV\Notification\Defaults\Field;
 
-use underDEV\Notification\Recipients;
-
 /**
  * Recipients field class
  */
@@ -44,8 +42,7 @@ class RecipientsField extends RepeaterField {
 			'notification' => $this->notification,
 		);
 
-		$this->recipients_collection = new Recipients();
-		$recipients                  = $this->recipients_collection->get_for_notification( $this->notification );
+		$recipients = notification_get_notification_recipients( $this->notification );
 
 		if ( ! empty( $recipients ) ) {
 
@@ -132,7 +129,7 @@ class RecipientsField extends RepeaterField {
 						$recipient_type &&
 						$sub_field->get_raw_name() === 'recipient' ) {
 
-						$recipient = $this->recipients_collection->get_single( $this->notification, $recipient_type );
+						$recipient = notification_get_single_recipient( $this->notification, $recipient_type );
 
 						if ( empty( $recipient ) ) {
 							return '';

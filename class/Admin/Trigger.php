@@ -8,7 +8,6 @@
 namespace underDEV\Notification\Admin;
 
 use underDEV\Notification\Utils\View;
-use underDEV\Notification\Triggers;
 
 /**
  * Trigger class
@@ -20,12 +19,10 @@ class Trigger {
 	 *
 	 * @since [Next]
 	 * @param View     $view     View class.
-	 * @param Triggers $triggers Triggers class.
 	 * @param PostData $postdata PostData class.
 	 */
-	public function __construct( View $view, Triggers $triggers, PostData $postdata ) {
+	public function __construct( View $view, PostData $postdata ) {
 		$this->view     = $view;
-		$this->triggers = $triggers;
 		$this->postdata = $postdata;
 	}
 
@@ -60,7 +57,7 @@ class Trigger {
 
 		$this->view->set_var( 'post', $post );
 		$this->view->set_var( 'selected', $this->postdata->get_active_trigger() );
-		$this->view->set_var( 'triggers', $this->triggers->get_grouped_array() );
+		$this->view->set_var( 'triggers', notification_get_triggers_grouped() );
 		$this->view->set_var( 'select_name', 'notification_trigger' );
 
 		$this->view->get_view( 'trigger/metabox' );
