@@ -1,6 +1,7 @@
 <?php
 
 namespace underDEV\Notification\Defaults\MergeTag;
+
 use underDEV\Notification\Abstracts\MergeTag;
 
 class UrlTag extends MergeTag {
@@ -13,7 +14,8 @@ class UrlTag extends MergeTag {
 
     /**
      * Check the merge tag value type
-     * @param  mixed   $value value
+     *
+     * @param  mixed $value value
      * @return boolean
      */
     public function validate( $value ) {
@@ -22,6 +24,7 @@ class UrlTag extends MergeTag {
 
     /**
      * Sanitizes the merge tag value
+     *
      * @param  mixed $value value
      * @return mixed
      */

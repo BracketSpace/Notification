@@ -6,6 +6,7 @@ interface Sendable extends Nameable {
 
 	/**
 	 * Sends the notification
+     *
 	 * @param  \underDEV\Notification\Abstracts\Trigger $trigger trigger objecy
 	 * @return void
 	 */
@@ -13,6 +14,7 @@ interface Sendable extends Nameable {
 
     /**
      * Generates an unique hash for notification instance
+     *
      * @return string
      */
     public function hash();

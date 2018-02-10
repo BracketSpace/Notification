@@ -1,12 +1,14 @@
 <?php
 
 namespace underDEV\Notification\Abstracts;
+
 use underDEV\Notification\Interfaces;
 
 abstract class MergeTag extends Common implements Interfaces\Taggable {
 
     /**
      * MergeTag resolved value
+     *
      * @var mixed
      */
     protected $value;
@@ -14,18 +16,21 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
     /**
      * Short description
      * No html tags allowed. Keep it tweet-short.
+     *
      * @var string
      */
     protected $description = '';
 
     /**
      * Function which resolve the merge tag value
+     *
      * @var callable
      */
     protected $resolver;
 
     /**
      * Resolving status
+     *
      * @var boolean
      */
     protected $resolved = false;
@@ -52,13 +57,15 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 
     /**
      * Checks if the value is the correct type
-     * @param  mixed   $value tag value
+     *
+     * @param  mixed $value tag value
      * @return boolean
      */
     abstract public function validate( $value );
 
     /**
      * Sanitizes the merge tag value
+     *
      * @param  mixed $value tag value
      * @return mixed        sanitized value
      */
@@ -67,6 +74,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
     /**
      * Checks the merge tag reqirements
      * ie. if there's a property set
+     *
      * @return boolean default always true
      */
     public function check_requirements() {
@@ -75,6 +83,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 
     /**
      * Gets description
+     *
      * @return string description
      */
     public function get_description() {
@@ -85,6 +94,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 	 * Resolves the merge tag value
 	 * It also check if the value is correct type
 	 * and sanitizes it
+     *
 	 * @param  mixed $value value
 	 * @return void
 	 */
@@ -102,6 +112,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 
     /**
 	 * Checks if merge tag is already resolved
+     *
 	 * @return boolean
 	 */
     public function is_resolved() {
@@ -110,6 +121,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 
     /**
 	 * Gets merge tag resolved value
+     *
 	 * @return mixed
 	 */
     public function get_value() {

@@ -18,6 +18,7 @@ class PostType {
 
 	/**
 	 * Registers Notification post type
+     *
 	 * @return void
 	 */
 	public function register() {
@@ -61,6 +62,7 @@ class PostType {
 
 	/**
 	 * Moves the metaboxes under title in WordPress
+     *
 	 * @param  object $post WP_Post
 	 * @return void
 	 */
@@ -78,6 +80,7 @@ class PostType {
 	/**
 	 * Adds Notifications section title on post edit screen,
 	 * just under the Trigger and prints Notifications metaboxes
+     *
 	 * @param  object $post WP_Post
 	 * @return void
 	 */
@@ -96,6 +99,7 @@ class PostType {
 
 	/**
 	 * Cleans up all metaboxes to keep the screen nice and clean
+     *
 	 * @return void
 	 */
 	public function metabox_cleanup() {

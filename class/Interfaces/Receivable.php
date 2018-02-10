@@ -1,6 +1,7 @@
 <?php
 
 namespace underDEV\Notification\Interfaces;
+
 use underDEV\Notification\Interfaces\Nameable;
 
 interface Receivable extends Nameable {

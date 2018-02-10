@@ -129,7 +129,7 @@ class Dice {
 		else {
 			$closure = function () use ( $class ) {
 				// No constructor arguments, just instantiate the class
-				return new $class->name;
+				return new $class->name();
 			};
 		}
 		// If there are shared instances, create them and merge them with shared instances higher up the object graph
@@ -234,7 +234,8 @@ class Dice {
 				if ( $class ) {
 					$parameters[] = $sub ? $this->expand( $rule['substitutions'][ $class ], $share, true ) : $this->create( $class, array(), $share );
 				} // End if().
-				/*elseif ( $param->isVariadic() ) {
+				/*
+				elseif ( $param->isVariadic() ) {
 					$parameters = array_merge( $parameters, $args );
 				}*/ // There is no type hint, take the next available value from $args (and remove it from $args to stop it being reused)
 				elseif ( $args ) {

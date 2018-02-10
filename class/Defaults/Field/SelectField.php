@@ -1,6 +1,7 @@
 <?php
 
 namespace underDEV\Notification\Defaults\Field;
+
 use underDEV\Notification\Abstracts\Field;
 
 class SelectField extends Field {
@@ -8,6 +9,7 @@ class SelectField extends Field {
 	/**
 	 * Field options
 	 * value => label array
+     *
 	 * @var string
 	 */
 	protected $options = array();
@@ -36,6 +38,7 @@ class SelectField extends Field {
 
 	/**
 	 * Returns field HTML
+     *
 	 * @return string html
 	 */
 	public function field() {
@@ -56,6 +59,7 @@ class SelectField extends Field {
 
 	/**
      * Sanitizes the value sent by user
+     *
      * @param  mixed $value value to sanitize
      * @return mixed        sanitized value
      */

@@ -9,6 +9,7 @@ class Notifications {
 
 	/**
 	 * Gets all registered notifications
+     *
 	 * @return array
 	 */
 	public function get() {
@@ -17,6 +18,7 @@ class Notifications {
 
 	/**
 	 * Gets single Notification by its slug
+     *
 	 * @param  string $slug notification slug
 	 * @return mixed        notification object or false
 	 */

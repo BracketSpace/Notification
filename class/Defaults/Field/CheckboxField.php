@@ -1,6 +1,7 @@
 <?php
 
 namespace underDEV\Notification\Defaults\Field;
+
 use underDEV\Notification\Abstracts\Field;
 
 class CheckboxField extends Field {
@@ -8,6 +9,7 @@ class CheckboxField extends Field {
 	/**
 	 * Checkbox label text
 	 * Default: Enable
+     *
 	 * @var string
 	 */
 	protected $checkbox_label = '';
@@ -26,6 +28,7 @@ class CheckboxField extends Field {
 
 	/**
 	 * Returns field HTML
+     *
 	 * @return string html
 	 */
 	public function field() {
@@ -34,6 +37,7 @@ class CheckboxField extends Field {
 
 	/**
      * Sanitizes the value sent by user
+     *
      * @param  mixed $value value to sanitize
      * @return mixed        sanitized value
      */

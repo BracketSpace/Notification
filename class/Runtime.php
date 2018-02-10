@@ -4,6 +4,7 @@
  */
 
 namespace underDEV\Notification;
+
 use underDEV\Notification\Utils;
 use underDEV\Notification\Admin;
 
@@ -21,10 +22,10 @@ class Runtime {
 
 	public function boot() {
 
-		require_once( $this->files->file_path( 'inc/global.php' ) );
-		require_once( $this->files->file_path( 'inc/default-recipients.php' ) );
-		require_once( $this->files->file_path( 'inc/default-triggers.php' ) );
-		require_once( $this->files->file_path( 'inc/default-notifications.php' ) );
+		require_once $this->files->file_path( 'inc/global.php' ) ;
+		require_once $this->files->file_path( 'inc/default-recipients.php' ) ;
+		require_once $this->files->file_path( 'inc/default-triggers.php' ) ;
+		require_once $this->files->file_path( 'inc/default-notifications.php' ) ;
 
 	}
 
@@ -48,7 +49,7 @@ class Runtime {
 
 		$this->admin_post_type = new Admin\PostType( $this->admin_trigger, $this->admin_notifications );
 
-		$this->admin_post_table = new Admin\PostTable;
+		$this->admin_post_table = new Admin\PostTable();
 
 		$this->admin_merge_tags = new Admin\MergeTags( $this->view(), $this->ajax(), $this->triggers );
 
@@ -94,7 +95,7 @@ class Runtime {
 	}
 
 	public function ajax() {
-		return new Utils\Ajax;
+		return new Utils\Ajax();
 	}
 
 	public function boxrenderer() {

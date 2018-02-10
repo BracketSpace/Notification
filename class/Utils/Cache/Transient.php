@@ -1,11 +1,13 @@
 <?php
 /**
  * Transient Cache
+ *
  * @uses wp transient functions
  * @uses Cacheable Interface
  */
 
 namespace underDEV\Notification\Utils\Cache;
+
 use underDEV\Notification\Utils\Cache\Cache;
 use underDEV\Notification\Utils\Interfaces\Cacheable;
 
@@ -16,12 +18,14 @@ class Transient extends Cache implements Cacheable {
 
 	/**
 	 * Cache expiration in seconds
+     *
 	 * @var integer
 	 */
 	protected $expiration;
 
 	/**
 	 * Constructor
+     *
 	 * @param string  $key        cache unique key
 	 * @param integer $expiration expiration in seconds
 	 */
@@ -35,7 +39,8 @@ class Transient extends Cache implements Cacheable {
 
 	/**
 	 * Sets cache value
-	 * @param mixed   $value value to store
+     *
+	 * @param mixed $value value to store
 	 * @return object $this
 	 */
 	public function set( $value ) {
@@ -45,7 +50,8 @@ class Transient extends Cache implements Cacheable {
 
 	/**
 	 * Adds cache if it's not already set
-	 * @param mixed   $value value to store
+     *
+	 * @param mixed $value value to store
 	 * @return object $this
 	 */
 	public function add( $value ) {
@@ -57,6 +63,7 @@ class Transient extends Cache implements Cacheable {
 
 	/**
 	 * Gets value from cache
+     *
 	 * @param  boolean $force not used, transients are always get from storage
 	 * @return mixed          cached value
 	 */
@@ -66,6 +73,7 @@ class Transient extends Cache implements Cacheable {
 
 	/**
 	 * Deletes value from cache
+     *
 	 * @return object $this
 	 */
 	public function delete() {

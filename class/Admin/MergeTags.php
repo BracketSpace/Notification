@@ -4,6 +4,7 @@
  */
 
 namespace underDEV\Notification\Admin;
+
 use underDEV\Notification\Utils;
 use underDEV\Notification\Triggers;
 use underDEV\Notification\Interfaces\Triggerable;
@@ -18,6 +19,7 @@ class MergeTags {
 
 	/**
 	 * Add metabox for trigger
+     *
 	 * @return void
 	 */
 	public function add_meta_box() {
@@ -38,6 +40,7 @@ class MergeTags {
 
 	/**
 	 * Merge tags metabox content
+     *
 	 * @param  object $post current WP_Post
 	 * @return void
 	 */
@@ -56,6 +59,7 @@ class MergeTags {
 
 	/**
 	 * Prints merge tags list for trigger
+     *
 	 * @param  string $trigger_slug trigger slug
 	 * @return void
 	 */
@@ -74,6 +78,7 @@ class MergeTags {
 
 	/**
 	 * Prints merge tags list
+     *
 	 * @param  object $trigger Trigger object
 	 * @return void
 	 */
@@ -95,6 +100,7 @@ class MergeTags {
 
 	/**
 	 * Renders metabox for AJAX
+     *
 	 * @return void
 	 */
 	public function ajax_render() {

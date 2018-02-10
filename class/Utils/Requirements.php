@@ -1,6 +1,7 @@
 <?php
 /**
  * Requirements checks for WordPress plugin
+ *
  * @autor   Kuba Mikita (jakub@underdev.it)
  * @version 1.2.1
  * @usage   see https://github.com/Kubitomakita/Requirements
@@ -12,30 +13,35 @@ class Requirements {
 
 	/**
 	 * Plugin display name
+     *
 	 * @var string
 	 */
 	protected $plugin_name;
 
 	/**
 	 * Array of checks
+     *
 	 * @var array
 	 */
 	protected $checks;
 
 	/**
 	 * Array of check methods
+     *
 	 * @var array
 	 */
 	private $check_methods;
 
 	/**
 	 * Array of errors
+     *
 	 * @var array
 	 */
 	protected $errors = array();
 
 	/**
 	 * Class constructor
+     *
 	 * @param string $plugin_name plugin display name
 	 * @param array  $to_check    checks to perform
 	 */
@@ -57,6 +63,7 @@ class Requirements {
 
 	/**
 	 * Adds the new check
+     *
 	 * @param  string $check_name name of the check
 	 * @param  mixed  $callback   callable string or array
 	 * @return $this
@@ -71,6 +78,7 @@ class Requirements {
 
 	/**
 	 * Runs checks
+     *
 	 * @return $this
 	 */
 	public function check() {
@@ -90,6 +98,7 @@ class Requirements {
 
 	/**
 	 * Adds the error
+     *
 	 * @return $this
 	 */
 	public function add_error( $error_message ) {
@@ -102,6 +111,7 @@ class Requirements {
 
 	/**
 	 * Check if requirements has been satisfied
+     *
 	 * @return boolean
 	 */
 	public function satisfied() {
@@ -111,6 +121,7 @@ class Requirements {
 
 	/**
 	 * Displays notice for user about the plugin requirements
+     *
 	 * @return void
 	 */
 	public function notice() {
@@ -137,6 +148,7 @@ class Requirements {
 
 	/**
 	 * Check PHP version
+     *
 	 * @param  string $version      version needed
 	 * @param  object $requirements requirements class
 	 * @return void
@@ -151,6 +163,7 @@ class Requirements {
 
 	/**
 	 * Check PHP extensions
+     *
 	 * @param  string $extensions   array of extension names
 	 * @param  object $requirements requirements class
 	 * @return void
@@ -176,6 +189,7 @@ class Requirements {
 
 	/**
 	 * Check WordPress version
+     *
 	 * @param  string $version      version needed
 	 * @param  object $requirements requirements class
 	 * @return void
@@ -190,8 +204,9 @@ class Requirements {
 
 	/**
 	 * Check if plugins are active and are in needed versions
-	 * @param  array $plugins       array with plugins,
-	 *                              where key is the plugin file and value is the version
+     *
+	 * @param  array  $plugins       array with plugins,
+	 *                               where key is the plugin file and value is the version
 	 * @param  object $requirements requirements class
 	 * @return void
 	 */
@@ -222,6 +237,7 @@ class Requirements {
 
 	/**
 	 * Check if theme is active
+     *
 	 * @param  array  $needed_theme theme data
 	 * @param  object $requirements requirements class
 	 * @return void
@@ -238,6 +254,7 @@ class Requirements {
 
 	/**
 	 * Check function collision
+     *
 	 * @param  array  $functions    function names
 	 * @param  object $requirements requirements class
 	 * @return void
@@ -263,6 +280,7 @@ class Requirements {
 
 	/**
 	 * Check class collision
+     *
 	 * @param  array  $classes      class names
 	 * @param  object $requirements requirements class
 	 * @return void

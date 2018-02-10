@@ -4,6 +4,7 @@
  */
 
 namespace underDEV\Notification\Admin;
+
 use underDEV\Notification\Utils\View;
 
 class BoxRenderer {

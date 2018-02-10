@@ -9,6 +9,7 @@ class PostTable {
 
 	/**
 	 * Adds custom table columns
+     *
 	 * @param  array $columns current columns
 	 * @return array          filtered columns
 	 */
@@ -27,6 +28,7 @@ class PostTable {
 
 	/**
 	 * Content for custom columns
+     *
 	 * @param  string  $column  column slug
 	 * @param  integer $post_id post ID
 	 * @return void
@@ -53,6 +55,7 @@ class PostTable {
 
 	/**
 	 * Remove quick edit from post inline actions
+     *
 	 * @param  array  $row_actions array with action links
 	 * @param  object $post        WP_Post object
 	 * @return array               filtered actions

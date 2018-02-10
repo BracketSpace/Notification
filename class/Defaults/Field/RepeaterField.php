@@ -1,30 +1,35 @@
 <?php
 
 namespace underDEV\Notification\Defaults\Field;
+
 use underDEV\Notification\Abstracts\Field;
 
 class RepeaterField extends Field {
 
 	/**
 	 * Current repeater row
+     *
 	 * @var integer
 	 */
 	protected $current_row = 0;
 
 	/**
 	 * Fields to repeat
+     *
 	 * @var string
 	 */
 	protected $fields = array();
 
 	/**
 	 * Add new button label
+     *
 	 * @var string
 	 */
 	protected $add_button_label = '';
 
 	/**
 	 * Data attributes
+     *
 	 * @var array
 	 */
 	protected $data_attr = array();
@@ -53,6 +58,7 @@ class RepeaterField extends Field {
 
 	/**
 	 * Returns field HTML
+     *
 	 * @return string html
 	 */
 	public function field() {
@@ -146,6 +152,7 @@ class RepeaterField extends Field {
 
 	/**
      * Sanitizes the value sent by user
+     *
      * @param  mixed $value value to sanitize
      * @return mixed        sanitized value
      */

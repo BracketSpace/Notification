@@ -4,12 +4,14 @@
  */
 
 namespace underDEV\Notification\Admin;
+
 use underDEV\Notification\Abstracts\Notification;
 
 class FieldsResolver {
 
 	/**
 	 * Regex pattern for merge tags
+     *
 	 * @var string
 	 */
 	private $merge_tag_pattern = "/\{([^\}]*)\}/";
@@ -39,6 +41,7 @@ class FieldsResolver {
 
 	/**
 	 * Contructor
+     *
 	 * @param Notification $notification Notification object
 	 * @param array        $merge_tags   resolved merge tags array
 	 */
@@ -55,6 +58,7 @@ class FieldsResolver {
 
 	/**
 	 * Resolves all notification fields
+     *
 	 * @return void
 	 */
 	public function resolve_fields() {
@@ -74,6 +78,7 @@ class FieldsResolver {
 
 	/**
 	 * Resolves merge tags in a value
+     *
 	 * @param  mixed $value string or array, field value
 	 * @return mixed
 	 */

@@ -4,6 +4,7 @@
  */
 
 namespace underDEV\Notification\Defaults\Recipient;
+
 use underDEV\Notification\Abstracts;
 use underDEV\Notification\Defaults\Field;
 
@@ -19,7 +20,8 @@ class Email extends Abstracts\Recipient {
 
 	/**
 	 * Parse value
-	 * @param string  $value       saved value
+     *
+	 * @param string $value       saved value
 	 * @return string              parsed value
 	 */
 	public function parse_value( $value = '' ) {

@@ -1,6 +1,7 @@
 <?php
 
 namespace underDEV\Notification\Abstracts;
+
 use underDEV\Notification\Interfaces;
 use underDEV\Notification\Admin\FieldsResolver;
 
@@ -8,12 +9,14 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Storage for trigger's notifications
+     *
 	 * @var array
 	 */
 	private $notification_storage = array();
 
 	/**
 	 * Group
+     *
 	 * @var string
 	 */
 	protected $group = '';
@@ -21,30 +24,35 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Short description of the Trigger
 	 * No html tags allowed. Keep it tweet-short.
+     *
 	 * @var string
 	 */
 	protected $description = '';
 
 	/**
 	 * Bound actions
+     *
 	 * @var array
 	 */
 	protected $actions = array();
 
 	/**
 	 * Merge tags
+     *
 	 * @var array
 	 */
 	protected $merge_tags = array();
 
 	/**
 	 * Action's callback args
+     *
 	 * @var array
 	 */
 	protected $callback_args = array();
 
 	/**
 	 * Trigger constructor
+     *
 	 * @param string $slug        slug
 	 * @param string $name        nice name
 	 */
@@ -60,6 +68,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Used to register trigger merge tags
 	 * Uses $this->add_merge_tag();
+     *
 	 * @return void
 	 */
 	abstract public function merge_tags();
@@ -68,6 +77,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * Listens to an action
 	 * This method just calls WordPress' add_action function,
 	 * but it hooks the class' action method
+     *
 	 * @param string  $tag           action hook
 	 * @param integer $priority      action priority, default 10
 	 * @param integer $accepted_args how many args the action accepts, default 1
@@ -90,6 +100,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Attaches the Notification to the Trigger
+     *
 	 * @param  underDEV\Notification\Abstracts\Notification $notification Notification class
 	 * @return void
 	 */
@@ -99,6 +110,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Detaches the Notification from the Trigger
+     *
 	 * @param  underDEV\Notification\Abstracts\Notification $notification Notification class
 	 * @return void
 	 */
@@ -110,6 +122,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Rolls out all the notifications
+     *
 	 * @return void
 	 */
 	public function roll_out() {
@@ -121,6 +134,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Gets description
+     *
 	 * @return string description
 	 */
 	public function get_description() {
@@ -129,6 +143,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Sets slug
+     *
 	 * @return $this
 	 */
 	public function set_description( $description ) {
@@ -138,6 +153,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Gets group
+     *
 	 * @return string group
 	 */
 	public function get_group() {
@@ -146,6 +162,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Sets group
+     *
 	 * @return $this
 	 */
 	public function set_group( $group ) {
@@ -155,6 +172,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Adds trigger's merge tag
+     *
 	 * @param Interfaces\Taggable $merge_tag merge tag object
 	 * @return $this
 	 */
@@ -165,6 +183,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Gets trigger's merge tags
+     *
 	 * @return $array merge tags
 	 */
 	public function get_merge_tags() {
@@ -173,6 +192,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Resolves all registered merge tags
+     *
 	 * @return void
 	 */
 	private function resolve_merge_tags() {
@@ -189,6 +209,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Resolves all notifications fields with merge tags
+     *
 	 * @return void
 	 */
 	private function resolve_fields() {
@@ -205,6 +226,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * Gets their enabled Notifications
 	 * Populates the Notification form data
 	 * Attaches the Notification to trigger
+     *
 	 * @return void
 	 */
 	public function set_notifications() {
@@ -234,12 +256,14 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * It's strongly recommended to add this function in a child class
 	 * and set all the class parameters you need or are required
 	 * by merge tags you are using
+     *
 	 * @return void
 	 */
 	public function action() {}
 
 	/**
 	 * Action callback
+     *
 	 * @return void
 	 */
 	public function _action() {

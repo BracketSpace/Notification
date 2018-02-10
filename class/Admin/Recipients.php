@@ -4,6 +4,7 @@
  */
 
 namespace underDEV\Notification\Admin;
+
 use underDEV\Notification\Utils;
 use underDEV\Notification\Recipients as RecipientsCollection;
 
@@ -17,6 +18,7 @@ class Recipients {
 
 	/**
 	 * Renders metabox for AJAX
+     *
 	 * @return void
 	 */
 	public function ajax_get_recipient_input() {

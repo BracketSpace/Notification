@@ -1,6 +1,7 @@
 <?php
 
 namespace underDEV\Notification\Defaults\Field;
+
 use underDEV\Notification\Abstracts\Field;
 
 class InputField extends Field {
@@ -36,6 +37,7 @@ class InputField extends Field {
 
 	/**
 	 * Returns field HTML
+     *
 	 * @return string html
 	 */
 	public function field() {
@@ -44,6 +46,7 @@ class InputField extends Field {
 
 	/**
      * Sanitizes the value sent by user
+     *
      * @param  mixed $value value to sanitize
      * @return mixed        sanitized value
      */

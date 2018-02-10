@@ -1,12 +1,14 @@
 <?php
 
 namespace underDEV\Notification\Defaults\Field;
+
 use underDEV\Notification\Abstracts\Field;
 
 class EditorField extends Field {
 
 	/**
 	 * Editor settings
+     *
 	 * @see https://codex.wordpress.org/Function_Reference/wp_editor#Arguments
 	 * @var string
 	 */
@@ -24,6 +26,7 @@ class EditorField extends Field {
 
 	/**
 	 * Returns field HTML
+     *
 	 * @return string html
 	 */
 	public function field() {
@@ -44,6 +47,7 @@ class EditorField extends Field {
 
 	/**
      * Sanitizes the value sent by user
+     *
      * @param  mixed $value value to sanitize
      * @return mixed        sanitized value
      */

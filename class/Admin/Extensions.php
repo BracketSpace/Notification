@@ -4,12 +4,14 @@
  */
 
 namespace underDEV\Notification\Admin;
+
 use underDEV\Notification\Utils;
 
 class Extensions {
 
 	/**
 	 * Extensions list
+     *
 	 * @var array
 	 */
 	private $extensions = array();
@@ -27,6 +29,7 @@ class Extensions {
 
 	/**
 	 * Register Extensions page under plugin's menu
+     *
 	 * @return void
 	 */
 	public function register_page() {
@@ -48,11 +51,12 @@ class Extensions {
 	 * Load extensions
 	 * If you want to get your extension listed please send a message via
 	 * https://notification.underdev.it/contact/ contact form
+     *
 	 * @return void
 	 */
 	public function load_extensions() {
 
-		include( ABSPATH . 'wp-admin/includes/plugin-install.php' );
+		include ABSPATH . 'wp-admin/includes/plugin-install.php' ;
 
 		$this->extensions[] = array(
 			'wporg'    => plugins_api( 'plugin_information', array( 'slug' => 'notification-bbpress' ) ),

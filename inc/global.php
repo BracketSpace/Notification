@@ -9,6 +9,7 @@ use underDEV\Notification\Recipients;
 /**
  * Registers trigger
  * Uses notification/triggers filter
+ *
  * @param  Interfaces\Triggerable $trigger trigger object
  * @return void
  */
@@ -31,6 +32,7 @@ function register_trigger( Interfaces\Triggerable $trigger ) {
 /**
  * Registers notification
  * Uses notification/notifications filter
+ *
  * @param  Interfaces\Sendable $notification notification object
  * @return void
  */
@@ -53,6 +55,7 @@ function register_notification( Interfaces\Sendable $notification ) {
 /**
  * Registers recipient
  * Uses notification/recipients filter
+ *
  * @param  string                $notification notification slug
  * @param  Interfaces\Receivable $recipient    recipient object
  * @return void

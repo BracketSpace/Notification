@@ -1,11 +1,13 @@
 <?php
 /**
  * Object Cache
+ *
  * @uses wp cache functions
  * @uses Cacheable Interface
  */
 
 namespace underDEV\Notification\Utils\Cache;
+
 use underDEV\Notification\Utils\Cache\Cache;
 use underDEV\Notification\Utils\Interfaces\Cacheable;
 
@@ -16,12 +18,14 @@ class Object extends Cache implements Cacheable {
 
 	/**
 	 * Cache group
+     *
 	 * @var string
 	 */
 	protected $group;
 
 	/**
 	 * Constructor
+     *
 	 * @param string $key   cache unique key
 	 * @param string $group cache group, optional
 	 */
@@ -35,7 +39,8 @@ class Object extends Cache implements Cacheable {
 
 	/**
 	 * Sets cache value
-	 * @param mixed   $value value to store
+     *
+	 * @param mixed $value value to store
 	 * @return object $this
 	 */
 	public function set( $value ) {
@@ -45,7 +50,8 @@ class Object extends Cache implements Cacheable {
 
 	/**
 	 * Adds cache if it's not already set
-	 * @param mixed   $value value to store
+     *
+	 * @param mixed $value value to store
 	 * @return object $this
 	 */
 	public function add( $value ) {
@@ -55,6 +61,7 @@ class Object extends Cache implements Cacheable {
 
 	/**
 	 * Gets value from cache
+     *
 	 * @param  boolean $force not used, transients are always get from storage
 	 * @return mixed          cached value
 	 */
@@ -64,6 +71,7 @@ class Object extends Cache implements Cacheable {
 
 	/**
 	 * Deletes value from cache
+     *
 	 * @return object $this
 	 */
 	public function delete() {

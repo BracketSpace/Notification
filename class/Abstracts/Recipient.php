@@ -1,12 +1,14 @@
 <?php
 
 namespace underDEV\Notification\Abstracts;
+
 use underDEV\Notification\Interfaces;
 
 abstract class Recipient extends Common implements Interfaces\Receivable {
 
 	/**
 	 * Recipient input default value
+     *
 	 * @var string
 	 */
 	protected $default_value;

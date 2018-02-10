@@ -4,6 +4,7 @@
  */
 
 namespace underDEV\Notification\Defaults\Notification;
+
 use underDEV\Notification\Abstracts;
 use underDEV\Notification\Defaults\Field;
 

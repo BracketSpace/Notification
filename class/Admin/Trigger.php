@@ -4,6 +4,7 @@
  */
 
 namespace underDEV\Notification\Admin;
+
 use underDEV\Notification\Utils\View;
 use underDEV\Notification\Triggers;
 
@@ -17,6 +18,7 @@ class Trigger {
 
 	/**
 	 * Add metabox for trigger
+     *
 	 * @return void
 	 */
 	public function add_meta_box() {
@@ -37,6 +39,7 @@ class Trigger {
 
 	/**
 	 * Prints trigger select
+     *
 	 * @param  object $post current WP_Post
 	 * @return void
 	 */
@@ -53,6 +56,7 @@ class Trigger {
 
 	/**
 	 * Save the trigger in post meta (key: _trigger)
+     *
 	 * @param  integer $post_id current post ID
 	 * @return void
 	 */

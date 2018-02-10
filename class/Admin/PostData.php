@@ -4,6 +4,7 @@
  */
 
 namespace underDEV\Notification\Admin;
+
 use underDEV\Notification\Interfaces;
 use underDEV\Notification\Notifications as NotificationsSet;
 use underDEV\Notification\Triggers as TriggersSet;
@@ -12,12 +13,14 @@ class PostData {
 
 	/**
 	 * Meta cache
+     *
 	 * @var array
 	 */
 	protected $meta_cache = array();
 
 	/**
 	 * Current post ID
+     *
 	 * @var integer
 	 */
 	protected $post_id = null;
@@ -38,6 +41,7 @@ class PostData {
 
 	/**
 	 * Gets current post ID
+     *
 	 * @return integer post ID
 	 */
 	public function get_post_id() {
@@ -53,6 +57,7 @@ class PostData {
 
 	/**
 	 * Sets current post ID
+     *
 	 * @param  integer $post_id post ID
 	 * @return $this
 	 */
@@ -63,6 +68,7 @@ class PostData {
 
 	/**
 	 * Clears previously set current post ID
+     *
 	 * @return $this
 	 */
 	public function clear_post_id() {
@@ -72,6 +78,7 @@ class PostData {
 
 	/**
 	 * Gets post meta for key using internal cache
+     *
 	 * @param  string  $key    meta key
 	 * @param  boolean $single if return only single val
 	 * @return mixed           meta value
@@ -88,13 +95,13 @@ class PostData {
 
 	/**
 	 * Sets notification data from post meta
-	 * @param Interfaces\Sendable  $notification notification object
+     *
+	 * @param Interfaces\Sendable $notification notification object
 	 * @return void
 	 */
 	public function set_notification_data( Interfaces\Sendable $notification ) {
 
 		// set enabled state
-
 		$enabled_notifications = (array) $this->get_meta( $this->notification_enabled_key, false );
 
 		if ( in_array( $notification->get_slug(), $enabled_notifications ) ) {
@@ -102,7 +109,6 @@ class PostData {
 		}
 
 		// set field values
-
 		$field_values = (array) $this->get_meta( $this->notification_data_key . $notification->get_slug() );
 
 		foreach ( $notification->get_form_fields() as $field ) {
@@ -117,13 +123,13 @@ class PostData {
 
 	/**
 	 * Saves notifications data
+     *
 	 * @param array $data user data to save
 	 * @return void
 	 */
 	public function save_notification_data( $data ) {
 
 		// enable all notifications one by one
-
         foreach ( $this->notifications->get() as $notification ) {
 
 			if ( isset( $data['notification_' . $notification->get_slug() . '_enable'] ) ) {
@@ -135,7 +141,6 @@ class PostData {
 		}
 
         // save all notification settings one by one
-
         foreach ( $this->notifications->get() as $notification ) {
 
         	if ( ! isset( $data[ 'notification_type_' . $notification->get_slug() ] ) ) {
@@ -172,6 +177,7 @@ class PostData {
 
 	/**
 	 * Gets active notifications
+     *
 	 * @return array
 	 */
 	public function get_active_notifications() {
@@ -194,6 +200,7 @@ class PostData {
 
 	/**
 	 * Gets active trigger
+     *
 	 * @return mixed
 	 */
 	public function get_active_trigger() {
@@ -202,6 +209,7 @@ class PostData {
 
 	/**
 	 * Saves active trigger
+     *
 	 * @return void
 	 */
 	public function save_active_trigger( $trigger ) {
@@ -210,6 +218,7 @@ class PostData {
 
 	/**
 	 * Gets CPT Notification for specific trigger
+     *
 	 * @param  string $trigger_slug trigger slug
 	 * @return array                WP_Post array
 	 */
@@ -233,6 +242,7 @@ class PostData {
 
 	/**
 	 * Gets array of notifications with populated data for notification post
+     *
 	 * @param  integer $post_id notification post ID
 	 * @return array            notification objects
 	 */

@@ -13,6 +13,7 @@ Domain Path: /languages
 
 /**
  * Plugin's autoload function
+ *
  * @param  string $class class name
  * @return mixed         false if not plugin's class or void
  */
@@ -30,7 +31,7 @@ function notification_autoload( $class ) {
 
 	$file = trailingslashit( 'class' ) . implode( '/', $parts ) . '.php';
 
-	require_once( $file );
+	require_once $file ;
 
 }
 spl_autoload_register( 'notification_autoload' );

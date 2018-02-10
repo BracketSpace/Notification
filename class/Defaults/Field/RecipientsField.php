@@ -1,6 +1,7 @@
 <?php
 
 namespace underDEV\Notification\Defaults\Field;
+
 use underDEV\Notification\Recipients;
 
 class RecipientsField extends RepeaterField {

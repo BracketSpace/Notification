@@ -4,6 +4,7 @@
  */
 
 namespace underDEV\Notification\Admin;
+
 use underDEV\Notification\Notifications as NotificationsSet;
 
 class Notifications {
@@ -39,6 +40,7 @@ class Notifications {
 
 	/**
 	 * Save the notifications in post meta
+     *
 	 * @param  integer $post_id current post ID
 	 * @return void
 	 */

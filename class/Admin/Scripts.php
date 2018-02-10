@@ -4,12 +4,14 @@
  */
 
 namespace underDEV\Notification\Admin;
+
 use underDEV\Notification\Utils\Files;
 
 class Scripts {
 
 	/**
 	 * Files class
+     *
 	 * @var object
 	 */
 	private $files;
@@ -20,6 +22,7 @@ class Scripts {
 
 	/**
 	 * Enqueue scripts and styles for admin
+     *
 	 * @param  string $page_hook current page hook
 	 * @return void
 	 */

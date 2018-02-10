@@ -4,6 +4,7 @@
  */
 
 namespace underDEV\Notification\Defaults\Recipient;
+
 use underDEV\Notification\Abstracts;
 use underDEV\Notification\Defaults\Field;
 
@@ -20,7 +21,7 @@ class Administrator extends Abstracts\Recipient {
 	/**
 	 * Parses value
 	 *
-	 * @param string  $value saved value
+	 * @param string $value saved value
 	 * @return array         parsed value
 	 */
 	public function parse_value( $value = '' ) {

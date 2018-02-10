@@ -4,6 +4,7 @@
  */
 
 namespace underDEV\Notification\Admin;
+
 use underDEV\Notification\Utils\View;
 use underDEV\Notification\Interfaces\Fillable;
 
@@ -11,6 +12,7 @@ class FormRenderer {
 
 	/**
 	 * View class
+     *
 	 * @var object
 	 */
 	private $view;
@@ -18,6 +20,7 @@ class FormRenderer {
 	/**
 	 * Array of fields
 	 * All fields must implement Fillable interface
+     *
 	 * @var array
 	 */
 	private $fields = array();
@@ -28,6 +31,7 @@ class FormRenderer {
 
 	/**
 	 * Sets the form fields
+     *
 	 * @param array $fields fields
 	 */
 	public function set_fields( $fields = array() ) {
@@ -48,6 +52,7 @@ class FormRenderer {
 
 	/**
 	 * Renders the form to a string
+     *
 	 * @return string view output
 	 */
 	public function render() {

@@ -1,6 +1,7 @@
 <?php
 
 namespace underDEV\Notification\Abstracts;
+
 use underDEV\Notification\Interfaces;
 use underDEV\Notification\Defaults\Field;
 use underDEV\Notification\Defaults\Field\RecipientsField;
@@ -9,18 +10,21 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 
 	/**
 	 * If Notification is enabled for current post
+     *
 	 * @var boolean
 	 */
 	public $enabled = false;
 
 	/**
 	 * Notification form fields
+     *
 	 * @var array
 	 */
 	public $form_fields = array();
 
 	/**
 	 * Fields data for send method
+     *
 	 * @var array
 	 */
 	public $data = array();
@@ -44,12 +48,14 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	/**
 	 * Used to register notification form fields
 	 * Uses $this->add_form_field();
+     *
 	 * @return void
 	 */
 	abstract public function form_fields();
 
 	/**
 	 * Sends the notification
+     *
 	 * @param  \underDEV\Notification\Abstracts\Trigger $trigger trigger objecy
 	 * @return void
 	 */
@@ -57,6 +63,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 
 	/**
 	 * Generates an unique hash for notification instance
+     *
 	 * @return string
 	 */
 	public function hash() {
@@ -65,6 +72,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 
 	/**
 	 * Adds form field to collection
+     *
 	 * @param  object $field Field object
 	 * @return $this
 	 */
@@ -76,6 +84,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 
 	/**
 	 * Gets form fields array
+     *
 	 * @return array fields
 	 */
 	public function get_form_fields() {
@@ -84,6 +93,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 
 	/**
 	 * Gets field value
+     *
 	 * @param  string $field_slug field slug
 	 * @return mixed              value or null if field not available
 	 */

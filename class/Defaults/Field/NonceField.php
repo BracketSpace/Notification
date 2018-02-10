@@ -1,12 +1,14 @@
 <?php
 
 namespace underDEV\Notification\Defaults\Field;
+
 use underDEV\Notification\Abstracts\Field;
 
 class NonceField extends Field {
 
 	/**
 	 * Nonce key
+     *
 	 * @var string
 	 */
 	protected $nonce_key = '';
@@ -25,6 +27,7 @@ class NonceField extends Field {
 
 	/**
 	 * Returns field HTML
+     *
 	 * @return string html
 	 */
 	public function field() {
@@ -33,6 +36,7 @@ class NonceField extends Field {
 
 	/**
      * Sanitizes the value sent by user
+     *
      * @param  mixed $value value to sanitize
      * @return mixed        sanitized value
      */

@@ -5,4 +5,4 @@
 
 use underDEV\Notification\Defaults\Trigger;
 
-register_trigger( new Trigger\PostUpdated );
+register_trigger( new Trigger\PostUpdated() );
