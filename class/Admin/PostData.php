@@ -5,7 +5,6 @@
 
 namespace underDEV\Notification\Admin;
 use underDEV\Notification\Interfaces;
-use underDEV\Notification\Triggers as TriggersSet;
 
 class PostData {
 
@@ -24,9 +23,7 @@ class PostData {
 	/**
 	 * Class constructor
 	 */
-	public function __construct(TriggersSet $triggers ) {
-
-		$this->triggers = $triggers;
+	public function __construct() {
 
 		$this->notification_enabled_key = '_enabled_notification';
 		$this->notification_data_key    = '_notification_type_';

@@ -5,15 +5,13 @@
 
 namespace underDEV\Notification\Admin;
 use underDEV\Notification\Utils;
-use underDEV\Notification\Triggers;
 use underDEV\Notification\Interfaces\Triggerable;
 
 class MergeTags {
 
-	public function __construct( Utils\View $view, Utils\Ajax $ajax, Triggers $triggers ) {
-		$this->view     = $view;
-		$this->ajax     = $ajax;
-		$this->triggers = $triggers;
+	public function __construct( Utils\View $view, Utils\Ajax $ajax ) {
+		$this->view = $view;
+		$this->ajax = $ajax;
 	}
 
 	/**
@@ -61,7 +59,7 @@ class MergeTags {
 	 */
 	public function trigger_merge_tags_list( $trigger_slug ) {
 
-		$trigger = $this->triggers->get_single( $trigger_slug );
+		$trigger = notification_get_single_trigger( $trigger_slug );
 
 		if ( empty( $trigger ) ) {
 			$this->view->get_view( 'mergetag/metabox-nomergetags' );
