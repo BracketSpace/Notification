@@ -2,6 +2,8 @@
 /**
  * Cacheable interface
  * Implemented by Cache classes
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Utils\Interfaces;
@@ -13,19 +15,22 @@ interface Cacheable {
 
 	/**
 	 * Sets cache value
-	 * @param mixed $value value to store
+     *
+	 * @param mixed $value value to store.
 	 */
 	public function set( $value );
 
 	/**
 	 * Adds cache if it's not already set
-	 * @param mixed $value value to store
+     *
+	 * @param mixed $value value to store.
 	 */
 	public function add( $value );
 
 	/**
 	 * Gets value from cache
-	 * @param  boolean $force true if cache will be forced to get from storage
+     *
+	 * @param  boolean $force true if cache will be forced to get from storage.
 	 * @return mixed          cached value
 	 */
 	public function get( $force );

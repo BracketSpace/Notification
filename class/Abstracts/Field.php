@@ -1,24 +1,36 @@
 <?php
+/**
+ * Field abstract class
+ *
+ * @package notification
+ */
 
 namespace underDEV\Notification\Abstracts;
+
 use underDEV\Notification\Interfaces;
 
+/**
+ * Field abstract class
+ */
 abstract class Field implements Interfaces\Fillable {
 
     /**
      * Field value
+     *
      * @var mixed
      */
     public $value;
 
     /**
      * Field label
+     *
      * @var mixed
      */
     protected $label;
 
     /**
      * Field name
+     *
      * @var mixed
      */
     protected $name;
@@ -26,6 +38,7 @@ abstract class Field implements Interfaces\Fillable {
     /**
      * Short description
      * Limited HTML support
+     *
      * @var string
      */
     protected $description = '';
@@ -33,28 +46,38 @@ abstract class Field implements Interfaces\Fillable {
     /**
      * If field is resolvable with merge tags
      * Default: true
+     *
      * @var boolean
      */
     protected $resolvable = true;
 
     /**
      * Field section name
+     *
      * @var string
      */
     public $section = '';
 
     /**
      * If field is disabled
+     *
      * @var boolean
      */
     public $disabled = false;
 
     /**
      * Additional css classes for field
+     *
      * @var string
      */
     public $css_class = 'widefat notification-field '; // space here on purpose.
 
+    /**
+     * Field constructor
+     *
+     * @since [Next]
+     * @param array $params field configuration params.
+     */
     public function __construct( $params = array() ) {
 
     	if ( ! isset( $params['label'], $params['name'] ) ) {
@@ -89,19 +112,22 @@ abstract class Field implements Interfaces\Fillable {
 
     /**
      * Returns field HTML
+     *
      * @return string html
      */
     abstract public function field();
 
     /**
      * Sanitizes the value sent by user
-     * @param  mixed $value value to sanitize
+     *
+     * @param  mixed $value value to sanitize.
      * @return mixed        sanitized value
      */
     abstract public function sanitize( $value );
 
     /**
      * Gets description
+     *
      * @return string description
      */
     public function get_description() {
@@ -110,6 +136,7 @@ abstract class Field implements Interfaces\Fillable {
 
     /**
 	 * Gets field value
+     *
 	 * @return mixed
 	 */
     public function get_value() {
@@ -118,7 +145,8 @@ abstract class Field implements Interfaces\Fillable {
 
     /**
 	 * Sets field value
-	 * @param  mixed $value value from DB
+     *
+	 * @param  mixed $value value from DB.
 	 * @return void
 	 */
 	public function set_value( $value ) {
@@ -127,6 +155,7 @@ abstract class Field implements Interfaces\Fillable {
 
     /**
 	 * Gets field name
+     *
 	 * @return string
 	 */
 	public function get_name() {
@@ -135,6 +164,7 @@ abstract class Field implements Interfaces\Fillable {
 
     /**
 	 * Gets field raw name
+     *
 	 * @return string
 	 */
 	public function get_raw_name() {
@@ -143,6 +173,7 @@ abstract class Field implements Interfaces\Fillable {
 
 	/**
 	 * Gets field label
+     *
 	 * @return string
 	 */
 	public function get_label() {
@@ -151,6 +182,7 @@ abstract class Field implements Interfaces\Fillable {
 
 	/**
 	 * Gets field ID
+     *
 	 * @return string
 	 */
 	public function get_id() {
@@ -159,6 +191,7 @@ abstract class Field implements Interfaces\Fillable {
 
 	/**
 	 * Cheks if field should be resolved with merge tags
+     *
 	 * @return boolean
 	 */
 	public function is_resolvable() {
@@ -167,6 +200,7 @@ abstract class Field implements Interfaces\Fillable {
 
 	/**
 	 * Cheks if field is disabled
+     *
 	 * @return boolean
 	 */
 	public function is_disabled() {
@@ -175,6 +209,7 @@ abstract class Field implements Interfaces\Fillable {
 
 	/**
 	 * Returns the disable HTML tag if field is disabled
+     *
 	 * @return string
 	 */
 	public function maybe_disable() {
@@ -183,6 +218,7 @@ abstract class Field implements Interfaces\Fillable {
 
 	/**
 	 * Returns the additional field's css classes
+     *
 	 * @return string
 	 */
 	public function css_class() {

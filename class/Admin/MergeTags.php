@@ -1,16 +1,31 @@
 <?php
 /**
  * Handles Merge Tags metabox
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Admin;
-use underDEV\Notification\Utils;
+
+use underDEV\Notification\Utils\View;
+use underDEV\Notification\Utils\Ajax;
 use underDEV\Notification\Triggers;
 use underDEV\Notification\Interfaces\Triggerable;
 
+/**
+ * MergeTags class
+ */
 class MergeTags {
 
-	public function __construct( Utils\View $view, Utils\Ajax $ajax, Triggers $triggers ) {
+	/**
+	 * MergeTags constructor
+	 *
+	 * @since [Next]
+	 * @param View     $view     View class.
+	 * @param Ajax     $ajax     Ajax class.
+	 * @param Triggers $triggers Triggers class.
+	 */
+	public function __construct( View $view, Ajax $ajax, Triggers $triggers ) {
 		$this->view     = $view;
 		$this->ajax     = $ajax;
 		$this->triggers = $triggers;
@@ -18,6 +33,7 @@ class MergeTags {
 
 	/**
 	 * Add metabox for trigger
+     *
 	 * @return void
 	 */
 	public function add_meta_box() {
@@ -31,14 +47,15 @@ class MergeTags {
             'default'
         );
 
-		// enable metabox
+		// enable metabox.
         add_filter( 'notification/admin/allow_metabox/notification_merge_tags', '__return_true' );
 
 	}
 
 	/**
 	 * Merge tags metabox content
-	 * @param  object $post current WP_Post
+     *
+	 * @param  object $post current WP_Post.
 	 * @return void
 	 */
 	public function merge_tags_metabox( $post ) {
@@ -56,7 +73,8 @@ class MergeTags {
 
 	/**
 	 * Prints merge tags list for trigger
-	 * @param  string $trigger_slug trigger slug
+     *
+	 * @param  string $trigger_slug trigger slug.
 	 * @return void
 	 */
 	public function trigger_merge_tags_list( $trigger_slug ) {
@@ -74,7 +92,8 @@ class MergeTags {
 
 	/**
 	 * Prints merge tags list
-	 * @param  object $trigger Trigger object
+     *
+	 * @param  object $trigger Trigger object.
 	 * @return void
 	 */
 	public function merge_tags_list( Triggerable $trigger ) {
@@ -95,6 +114,7 @@ class MergeTags {
 
 	/**
 	 * Renders metabox for AJAX
+     *
 	 * @return void
 	 */
 	public function ajax_render() {

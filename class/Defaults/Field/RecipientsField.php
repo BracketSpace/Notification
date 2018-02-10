@@ -1,10 +1,25 @@
 <?php
+/**
+ * Recipients field class
+ *
+ * @package notification
+ */
 
 namespace underDEV\Notification\Defaults\Field;
+
 use underDEV\Notification\Recipients;
 
+/**
+ * Recipients field class
+ */
 class RecipientsField extends RepeaterField {
 
+	/**
+	 * Field constructor
+	 *
+	 * @since [Next]
+	 * @param array $params field configuration parameters.
+	 */
 	public function __construct( $params = array() ) {
 
 		if ( ! isset( $params['notification'] ) ) {
@@ -24,7 +39,7 @@ class RecipientsField extends RepeaterField {
 		// add our CSS class required by JS.
 		$params['css_class'] .= 'recipients-repeater';
 
-		// add data attr for JS identification
+		// add data attr for JS identification.
 		$params['data_attr'] = array(
 			'notification' => $this->notification,
 		);
@@ -74,6 +89,14 @@ class RecipientsField extends RepeaterField {
 
 	}
 
+	/**
+	 * Prints repeater row
+	 *
+	 * @since  [Next]
+	 * @param  array   $values row values.
+	 * @param  boolean $model  if this is a hidden model row.
+	 * @return string          row HTML
+	 */
 	public function row( $values = array(), $model = false ) {
 
 		$html = '';
@@ -104,7 +127,7 @@ class RecipientsField extends RepeaterField {
 					$html .= $sub_field->field();
 				} else {
 
-					// swap the field to correct type
+					// swap the field to correct type.
 					if ( isset( $recipient_type ) &&
 						$recipient_type &&
 						$sub_field->get_raw_name() === 'recipient' ) {
@@ -123,7 +146,7 @@ class RecipientsField extends RepeaterField {
 						}
 						$sub_field->section = $this->get_name() . '[' . $this->current_row . ']';
 
-						// reset value for another type
+						// reset value for another type.
 						$recipient_type = false;
 
 					}

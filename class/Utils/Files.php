@@ -2,27 +2,35 @@
 /**
  * Files class
  * Locates plugin's files
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Utils;
 
+/**
+ * Files class
+ */
 class Files {
 
 	/**
 	 * Plugin file absolute path
+     *
 	 * @var string
 	 */
 	protected $plugin_file;
 
 	/**
 	 * Assets directory name with a slash at the end
+     *
 	 * @var string
 	 */
 	protected $assets_dir_name;
 
 	/**
 	 * Class constructor
-	 * @param string $plugin_file full path to main plugin file
+     *
+	 * @param string $plugin_file full path to main plugin file.
 	 */
 	public function __construct( $plugin_file = '' ) {
 		$this->plugin_file     = $plugin_file;
@@ -31,8 +39,9 @@ class Files {
 
 	/**
 	 * Builds the dir name from an array of parts
+     *
 	 * @uses   trainlingslashit()
-	 * @param  array  $parts parts of the path
+	 * @param  array $parts parts of the path.
 	 * @return string        dir name
 	 */
 	public function build_dir_from_array( $parts = array() ) {
@@ -50,7 +59,8 @@ class Files {
 	/**
 	 * Resolves file path
 	 * You can provide a file string or an array of dirs and file name at the end
-	 * @param  mixed  $file file structure
+     *
+	 * @param  mixed $file file structure.
 	 * @return string       full file path
 	 */
 	public function resolve_file_path( $file = '' ) {
@@ -66,6 +76,7 @@ class Files {
 
 	/**
 	 * Gets the plugin root dir absolute path
+     *
 	 * @return string path
 	 */
 	public function plugin_path() {
@@ -74,6 +85,7 @@ class Files {
 
 	/**
 	 * Gets the plugin root dir url
+     *
 	 * @return string url
 	 */
 	public function plugin_url() {
@@ -82,7 +94,8 @@ class Files {
 
 	/**
 	 * Gets file path which is relative to plugin root path
-	 * @param  mixed $file if it's an array, the dir structure will be built
+     *
+	 * @param  mixed $file if it's an array, the dir structure will be built.
 	 * @return string      file absolute path
 	 */
 	public function file_path( $file = '' ) {
@@ -91,7 +104,8 @@ class Files {
 
 	/**
 	 * Gets file url which is relative to plugin root
-	 * @param  mixed $file if it's an array, the dir structure will be built
+     *
+	 * @param  mixed $file if it's an array, the dir structure will be built.
 	 * @return string      file url
 	 */
 	public function file_url( $file = '' ) {
@@ -100,7 +114,8 @@ class Files {
 
 	/**
 	 * Gets dir path which is relative to plugin root path
-	 * @param  mixed $dir if it's an array, the dir structure will be built
+     *
+	 * @param  mixed $dir if it's an array, the dir structure will be built.
 	 * @return string     dir absolute path
 	 */
 	public function dir_path( $dir = '' ) {
@@ -109,7 +124,8 @@ class Files {
 
 	/**
 	 * Gets dir url which is relative to plugin root
-	 * @param  mixed $dir if it's an array, the dir structure will be built
+     *
+	 * @param  mixed $dir if it's an array, the dir structure will be built.
 	 * @return string     dir url
 	 */
 	public function dir_url( $dir = '' ) {
@@ -118,8 +134,9 @@ class Files {
 
 	/**
 	 * Gets url to an asset file
-	 * @param  string $type asset type - js | css | image
-	 * @param  string $file file name
+     *
+	 * @param  string $type asset type - js | css | image.
+	 * @param  string $file file name.
 	 * @return string       asset file url
 	 */
 	public function asset_url( $type = '', $file = '' ) {
@@ -131,8 +148,9 @@ class Files {
 
 	/**
 	 * Gets path to an asset file
-	 * @param  string $type asset type - js | css | images
-	 * @param  string $file file name
+     *
+	 * @param  string $type asset type - js | css | images.
+	 * @param  string $file file name.
 	 * @return string       asset file path
 	 */
 	public function asset_path( $type = '', $file = '' ) {
@@ -144,13 +162,14 @@ class Files {
 
 	/**
 	 * Encodes an image to base64
-	 * @param  string $file image file name
+     *
+	 * @param  string $file image file name.
 	 * @return string       base64 encoded image
 	 */
 	public function image_base64( $file = '' ) {
 		$path = $this->asset_path( 'images', $file );
 		$type = pathinfo( $path, PATHINFO_EXTENSION );
-		// SVG mime type fix
+		// SVG mime type fix.
 		if ( $type == 'svg' ) {
 			$type = 'svg+xml';
 		}
@@ -160,8 +179,9 @@ class Files {
 
 	/**
 	 * Gets url to a vendor asset file
-	 * @param  string $vendor asset vendor name (name of the vendor dir)
-	 * @param  string $file   file name
+     *
+	 * @param  string $vendor asset vendor name (name of the vendor dir).
+	 * @param  string $file   file name.
 	 * @return string         asset file url
 	 */
 	public function vendor_asset_url( $vendor = '', $file = '' ) {

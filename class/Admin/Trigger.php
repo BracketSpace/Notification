@@ -1,14 +1,28 @@
 <?php
 /**
  * Handles Trigger metabox
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Admin;
+
 use underDEV\Notification\Utils\View;
 use underDEV\Notification\Triggers;
 
+/**
+ * Trigger class
+ */
 class Trigger {
 
+	/**
+	 * MergeTags constructor
+	 *
+	 * @since [Next]
+	 * @param View     $view     View class.
+	 * @param Triggers $triggers Triggers class.
+	 * @param PostData $postdata PostData class.
+	 */
 	public function __construct( View $view, Triggers $triggers, PostData $postdata ) {
 		$this->view     = $view;
 		$this->triggers = $triggers;
@@ -17,6 +31,7 @@ class Trigger {
 
 	/**
 	 * Add metabox for trigger
+     *
 	 * @return void
 	 */
 	public function add_meta_box() {
@@ -30,14 +45,15 @@ class Trigger {
             'high'
         );
 
-		// enable metabox
+		// enable metabox.
         add_filter( 'notification/admin/allow_metabox/notification_trigger', '__return_true' );
 
 	}
 
 	/**
 	 * Prints trigger select
-	 * @param  object $post current WP_Post
+     *
+	 * @param  object $post current WP_Post.
 	 * @return void
 	 */
 	public function render_select( $post ) {
@@ -53,7 +69,8 @@ class Trigger {
 
 	/**
 	 * Save the trigger in post meta (key: _trigger)
-	 * @param  integer $post_id current post ID
+     *
+	 * @param  integer $post_id current post ID.
 	 * @return void
 	 */
 	public function save( $post_id ) {

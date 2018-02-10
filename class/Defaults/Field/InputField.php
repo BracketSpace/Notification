@@ -1,8 +1,17 @@
 <?php
+/**
+ * Input field class
+ *
+ * @package notification
+ */
 
 namespace underDEV\Notification\Defaults\Field;
+
 use underDEV\Notification\Abstracts\Field;
 
+/**
+ * Input field class
+ */
 class InputField extends Field {
 
 	/**
@@ -20,6 +29,12 @@ class InputField extends Field {
 	 */
 	protected $placeholder = '';
 
+	/**
+	 * Field constructor
+	 *
+	 * @since [Next]
+	 * @param array $params field configuration parameters.
+	 */
 	public function __construct( $params = array() ) {
 
 		if ( isset( $params['type'] ) ) {
@@ -36,6 +51,7 @@ class InputField extends Field {
 
 	/**
 	 * Returns field HTML
+     *
 	 * @return string html
 	 */
 	public function field() {
@@ -44,7 +60,8 @@ class InputField extends Field {
 
 	/**
      * Sanitizes the value sent by user
-     * @param  mixed $value value to sanitize
+     *
+     * @param  mixed $value value to sanitize.
      * @return mixed        sanitized value
      */
     public function sanitize( $value ) {

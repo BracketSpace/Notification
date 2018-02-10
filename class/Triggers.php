@@ -1,14 +1,20 @@
 <?php
 /**
  * Triggers
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification;
 
+/**
+ * Triggers class
+ */
 class Triggers {
 
 	/**
 	 * Gets all registered triggers
+     *
 	 * @return array
 	 */
 	public function get() {
@@ -17,7 +23,8 @@ class Triggers {
 
 	/**
 	 * Gets single trigger by its slug
-	 * @param  string $slug trigger slug
+     *
+	 * @param  string $slug trigger slug.
 	 * @return mixed        trigger object or false
 	 */
 	public function get_single( $slug ) {
@@ -28,6 +35,7 @@ class Triggers {
 	/**
 	 * Get formatted triggers array
 	 * where the top key is group
+     *
 	 * @return array triggers
 	 */
 	public function get_grouped_array() {

@@ -1,6 +1,8 @@
 <?php
 /**
  * Global functions
+ *
+ * @package notification
  */
 
 use underDEV\Notification\Interfaces;
@@ -9,7 +11,8 @@ use underDEV\Notification\Recipients;
 /**
  * Registers trigger
  * Uses notification/triggers filter
- * @param  Interfaces\Triggerable $trigger trigger object
+ *
+ * @param  Interfaces\Triggerable $trigger trigger object.
  * @return void
  */
 function register_trigger( Interfaces\Triggerable $trigger ) {
@@ -31,7 +34,8 @@ function register_trigger( Interfaces\Triggerable $trigger ) {
 /**
  * Registers notification
  * Uses notification/notifications filter
- * @param  Interfaces\Sendable $notification notification object
+ *
+ * @param  Interfaces\Sendable $notification notification object.
  * @return void
  */
 function register_notification( Interfaces\Sendable $notification ) {
@@ -53,8 +57,9 @@ function register_notification( Interfaces\Sendable $notification ) {
 /**
  * Registers recipient
  * Uses notification/recipients filter
- * @param  string                $notification notification slug
- * @param  Interfaces\Receivable $recipient    recipient object
+ *
+ * @param  string                $notification notification slug.
+ * @param  Interfaces\Receivable $recipient    recipient object.
  * @return void
  */
 function register_recipient( $notification, Interfaces\Receivable $recipient ) {
@@ -77,6 +82,16 @@ function register_recipient( $notification, Interfaces\Receivable $recipient ) {
 
 }
 
+/**
+ * Parses recipients
+ * Will be removed from here.
+ *
+ * @since  [Next]
+ * @param  [type] $notification_slug   [description].
+ * @param  [type] $recipient_type      [description].
+ * @param  [type] $recipient_raw_value [description].
+ * @return [type]                      [description]
+ */
 function notification_parse_recipient( $notification_slug, $recipient_type, $recipient_raw_value ) {
 
 	$recipients = new Recipients();

@@ -1,14 +1,27 @@
 <?php
 /**
  * Webhook recipient
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Defaults\Recipient;
+
 use underDEV\Notification\Abstracts;
 use underDEV\Notification\Defaults\Field;
 
+/**
+ * Webhook recipient
+ */
 class Webhook extends Abstracts\Recipient {
 
+	/**
+	 * Recipient constructor
+	 *
+	 * @since [Next]
+	 * @param string $slug webook type slug.
+	 * @param string $name webook type name.
+	 */
 	public function __construct( $slug, $name ) {
 		parent::__construct( array(
 			'slug'          => $slug,
@@ -18,9 +31,11 @@ class Webhook extends Abstracts\Recipient {
 	}
 
 	/**
-	 * Parse value
-	 * @param string  $value       saved value
-	 * @return string              parsed value
+	 * Parses saved value something understood by notification
+	 * Must be defined in the child class
+	 *
+	 * @param  string $value raw value saved by the user.
+	 * @return array         array of resolved values
 	 */
 	public function parse_value( $value = '' ) {
 

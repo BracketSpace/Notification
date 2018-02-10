@@ -1,9 +1,13 @@
 <?php
+/**
+ * Extension box template
+ *
+ * @package notification
+ */
 
 $ext = $this->get_var( 'extension' );
 
-// fragment forked from wp-admin/includes/class-wp-plugin-install-list-table.php
-
+// fragment forked from wp-admin/includes/class-wp-plugin-install-list-table.php.
 if ( isset( $ext['wporg'] ) && ! is_wp_error( $ext['wporg'] ) && ( current_user_can( 'install_plugins' ) || current_user_can( 'update_plugins' ) ) ) {
 	$status = install_plugin_install_status( $ext['wporg'] );
 

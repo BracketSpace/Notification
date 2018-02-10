@@ -1,18 +1,28 @@
 <?php
+/**
+ * Sendable interface class
+ *
+ * @package notification
+ */
 
 namespace underDEV\Notification\Interfaces;
 
+/**
+ * Sendable interface
+ */
 interface Sendable extends Nameable {
 
 	/**
 	 * Sends the notification
-	 * @param  \underDEV\Notification\Abstracts\Trigger $trigger trigger objecy
+     *
+	 * @param  Triggerable $trigger trigger object.
 	 * @return void
 	 */
-    public function send( \underDEV\Notification\Abstracts\Trigger $trigger );
+    public function send( Triggerable $trigger );
 
     /**
      * Generates an unique hash for notification instance
+     *
      * @return string
      */
     public function hash();
