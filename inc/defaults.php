@@ -1,6 +1,8 @@
 <?php
 /**
- * Notification Defaults
+ * Notification defaults
+ *
+ * @package notificaiton
  */
 
 $defaults = array(

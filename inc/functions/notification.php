@@ -1,6 +1,8 @@
 <?php
 /**
  * Notification functions
+ *
+ * @package notificaiton
  */
 
 use underDEV\Notification\Interfaces;
@@ -9,7 +11,7 @@ use underDEV\Notification\Interfaces;
  * Registers notification
  * Uses notification/notifications filter
  *
- * @param  Interfaces\Sendable $notification notification object
+ * @param  Interfaces\Sendable $notification notification object.
  * @return void
  */
 function register_notification( Interfaces\Sendable $notification ) {
@@ -31,7 +33,7 @@ function register_notification( Interfaces\Sendable $notification ) {
 /**
  * Gets all registered notifications
  *
- * @since  [Unreleased]
+ * @since  [Next]
  * @return array notifications
  */
 function notification_get_notifications() {
@@ -41,8 +43,8 @@ function notification_get_notifications() {
 /**
  * Gets single registered notification
  *
- * @since  [Unreleased]
- * @param  string $notification_slug notification slug
+ * @since  [Next]
+ * @param  string $notification_slug notification slug.
  * @return mixed                     notification object or false
  */
 function notification_get_single_notification( $notification_slug ) {

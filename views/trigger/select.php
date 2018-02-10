@@ -1,6 +1,8 @@
 <?php
 /**
- * Trigger select
+ * Trigger select template
+ *
+ * @package notification
  */
 
 ?>

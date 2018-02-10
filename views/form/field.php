@@ -1,4 +1,12 @@
-<?php $field = $this->get_var( 'current_field' ); ?>
+<?php
+/**
+ * Form table row template
+ *
+ * @package notification
+ */
+
+$field = $this->get_var( 'current_field' );
+?>
 
 <tr>
 	<th>

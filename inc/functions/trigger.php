@@ -1,6 +1,8 @@
 <?php
 /**
  * Trigger functions
+ *
+ * @package notificaiton
  */
 
 use underDEV\Notification\Interfaces;
@@ -8,7 +10,8 @@ use underDEV\Notification\Interfaces;
 /**
  * Registers trigger
  * Uses notification/triggers filter
- * @param  Interfaces\Triggerable $trigger trigger object
+ *
+ * @param  Interfaces\Triggerable $trigger trigger object.
  * @return void
  */
 function register_trigger( Interfaces\Triggerable $trigger ) {
@@ -30,7 +33,7 @@ function register_trigger( Interfaces\Triggerable $trigger ) {
 /**
  * Gets all registered triggers
  *
- * @since  [Unreleased]
+ * @since  [Next]
  * @return array triggers
  */
 function notification_get_triggers() {
@@ -40,8 +43,8 @@ function notification_get_triggers() {
 /**
  * Gets single registered trigger
  *
- * @since  [Unreleased]
- * @param  string $trigger_slug trigger slug
+ * @since  [Next]
+ * @param  string $trigger_slug trigger slug.
  * @return mixed                trigger object or false
  */
 function notification_get_single_trigger( $trigger_slug ) {
@@ -52,7 +55,7 @@ function notification_get_single_trigger( $trigger_slug ) {
 /**
  * Gets all registered triggers in a grouped array
  *
- * @since  [Unreleased]
+ * @since  [Next]
  * @return array grouped triggers
  */
 function notification_get_triggers_grouped() {

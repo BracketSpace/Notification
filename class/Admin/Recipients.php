@@ -1,20 +1,35 @@
 <?php
 /**
  * Handles Recipients in admin
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Admin;
-use underDEV\Notification\Utils;
 
+use underDEV\Notification\Utils\View;
+use underDEV\Notification\Utils\Ajax;
+
+/**
+ * Recipients class
+ */
 class Recipients {
 
-	public function __construct( Utils\View $view, Utils\Ajax $ajax ) {
-		$this->view       = $view;
-		$this->ajax       = $ajax;
+	/**
+	 * Recipients constructor
+	 *
+	 * @since [Next]
+	 * @param View $view View class.
+	 * @param Ajax $ajax Ajax class.
+	 */
+	public function __construct( View $view, Ajax $ajax ) {
+		$this->view = $view;
+		$this->ajax = $ajax;
 	}
 
 	/**
 	 * Renders metabox for AJAX
+     *
 	 * @return void
 	 */
 	public function ajax_get_recipient_input() {
@@ -25,7 +40,7 @@ class Recipients {
 		$input     = $recipient->input();
 
 		// A little trick to get rid of the last part of input name
-		// which will be added by the field itself
+		// which will be added by the field itself.
 		$input->section = str_replace( '[' . $input->get_raw_name() . ']', '', $_POST['input_name'] );
 
 		echo $input->field();

@@ -1,18 +1,37 @@
 <?php
 /**
  * Handles Notifications metaboxes
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Admin;
 
+/**
+ * Notifications class
+ */
 class Notifications {
 
+	/**
+	 * Notifications constructor
+	 *
+	 * @since [Next]
+	 * @param BoxRenderer  $boxrenderer  BoxRenderer class.
+	 * @param FormRenderer $formrenderer FormRenderer class.
+	 * @param PostData     $postdata     PostData class.
+	 */
 	public function __construct( BoxRenderer $boxrenderer, FormRenderer $formrenderer, PostData $postdata ) {
-		$this->boxrenderer  = $boxrenderer;
-		$this->formrenderer = $formrenderer;
-		$this->postdata     = $postdata;
+		$this->boxrenderer   = $boxrenderer;
+		$this->formrenderer  = $formrenderer;
+		$this->postdata      = $postdata;
 	}
 
+	/**
+	 * Renders notification boxes
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
 	public function render_notifications() {
 
 		foreach ( notification_get_notifications() as $notification ) {
@@ -37,7 +56,8 @@ class Notifications {
 
 	/**
 	 * Save the notifications in post meta
-	 * @param  integer $post_id current post ID
+     *
+	 * @param  integer $post_id current post ID.
 	 * @return void
 	 */
 	public function save( $post_id ) {

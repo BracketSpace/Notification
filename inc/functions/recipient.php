@@ -1,6 +1,8 @@
 <?php
 /**
  * Recipient functions
+ *
+ * @package notificaiton
  */
 
 use underDEV\Notification\Interfaces;
@@ -8,8 +10,9 @@ use underDEV\Notification\Interfaces;
 /**
  * Registers recipient
  * Uses notification/recipients filter
- * @param  string                $notification notification slug
- * @param  Interfaces\Receivable $recipient    recipient object
+ *
+ * @param  string                $notification notification slug.
+ * @param  Interfaces\Receivable $recipient    recipient object.
  * @return void
  */
 function register_recipient( $notification, Interfaces\Receivable $recipient ) {
@@ -35,7 +38,7 @@ function register_recipient( $notification, Interfaces\Receivable $recipient ) {
 /**
  * Gets all registered recipients
  *
- * @since  [Unreleased]
+ * @since  [Next]
  * @return array recipients
  */
 function notification_get_recipients() {
@@ -45,8 +48,8 @@ function notification_get_recipients() {
 /**
  * Gets register recipients for notification type
  *
- * @since  [Unreleased]
- * @param  string $notification_type notification slug
+ * @since  [Next]
+ * @param  string $notification_type notification slug.
  * @return array                     recipients array
  */
 function notification_get_notification_recipients( $notification_type ) {
@@ -57,9 +60,9 @@ function notification_get_notification_recipients( $notification_type ) {
 /**
  * Gets single registered recipient for notification type
  *
- * @since  [Unreleased]
- * @param  string $notification_type notification slug
- * @param  string $recipient_slug    recipient slug
+ * @since  [Next]
+ * @param  string $notification_type notification slug.
+ * @param  string $recipient_slug    recipient slug.
  * @return mixed                     recipient object or false
  */
 function notification_get_single_recipient( $notification_type, $recipient_slug ) {
@@ -70,10 +73,10 @@ function notification_get_single_recipient( $notification_type, $recipient_slug 
 /**
  * Parses recipient raw value to values which can be used by notifications
  *
- * @since  [Unreleased]
- * @param  string $notification_slug   slug of notification
- * @param  string $recipient_type      slug of recipient
- * @param  mixed  $recipient_raw_value raw value
+ * @since  [Next]
+ * @param  string $notification_slug   slug of notification.
+ * @param  string $recipient_type      slug of recipient.
+ * @param  mixed  $recipient_raw_value raw value.
  * @return mixed                       parsed value
  */
 function notification_parse_recipient( $notification_slug, $recipient_type, $recipient_raw_value ) {

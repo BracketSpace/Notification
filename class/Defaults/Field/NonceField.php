@@ -1,16 +1,32 @@
 <?php
+/**
+ * Nonce field class
+ *
+ * @package notification
+ */
 
 namespace underDEV\Notification\Defaults\Field;
+
 use underDEV\Notification\Abstracts\Field;
 
+/**
+ * Nonce field class
+ */
 class NonceField extends Field {
 
 	/**
 	 * Nonce key
+     *
 	 * @var string
 	 */
 	protected $nonce_key = '';
 
+	/**
+	 * Field constructor
+	 *
+	 * @since [Next]
+	 * @param array $params field configuration parameters.
+	 */
 	public function __construct( $params = array() ) {
 
 		if ( ! isset( $params['nonce_key'] ) ) {
@@ -25,6 +41,7 @@ class NonceField extends Field {
 
 	/**
 	 * Returns field HTML
+     *
 	 * @return string html
 	 */
 	public function field() {
@@ -33,7 +50,8 @@ class NonceField extends Field {
 
 	/**
      * Sanitizes the value sent by user
-     * @param  mixed $value value to sanitize
+     *
+     * @param  mixed $value value to sanitize.
      * @return mixed        sanitized value
      */
     public function sanitize( $value ) {

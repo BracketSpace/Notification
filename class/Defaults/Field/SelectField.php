@@ -1,13 +1,23 @@
 <?php
+/**
+ * Select field class
+ *
+ * @package notification
+ */
 
 namespace underDEV\Notification\Defaults\Field;
+
 use underDEV\Notification\Abstracts\Field;
 
+/**
+ * Select field class
+ */
 class SelectField extends Field {
 
 	/**
 	 * Field options
 	 * value => label array
+     *
 	 * @var string
 	 */
 	protected $options = array();
@@ -20,6 +30,12 @@ class SelectField extends Field {
 	 */
 	protected $pretty = '';
 
+	/**
+	 * Field constructor
+	 *
+	 * @since [Next]
+	 * @param array $params field configuration parameters.
+	 */
 	public function __construct( $params = array() ) {
 
 		if ( isset( $params['options'] ) ) {
@@ -36,6 +52,7 @@ class SelectField extends Field {
 
 	/**
 	 * Returns field HTML
+     *
 	 * @return string html
 	 */
 	public function field() {
@@ -56,7 +73,8 @@ class SelectField extends Field {
 
 	/**
      * Sanitizes the value sent by user
-     * @param  mixed $value value to sanitize
+     *
+     * @param  mixed $value value to sanitize.
      * @return mixed        sanitized value
      */
     public function sanitize( $value ) {

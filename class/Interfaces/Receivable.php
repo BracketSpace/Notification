@@ -1,17 +1,27 @@
 <?php
+/**
+ * Receivable interface class
+ *
+ * @package notification
+ */
 
 namespace underDEV\Notification\Interfaces;
+
 use underDEV\Notification\Interfaces\Nameable;
 
+/**
+ * Receivable interface
+ */
 interface Receivable extends Nameable {
 
 	/**
-	 * Parses saved value to email
+	 * Parses saved value something understood by notification
 	 * Must be defined in the child class
 	 *
-	 * @return array array of resolved values
+	 * @param  string $value raw value saved by the user.
+	 * @return array         array of resolved values
 	 */
-    function parse_value( $value = ''  );
+    public function parse_value( $value = ''  );
 
 	/**
 	 * Returns input object

@@ -2,33 +2,42 @@
 /**
  * View class
  * Loads views
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Utils;
 
+/**
+ * View class
+ */
 class View {
 
 	/**
 	 * Files class
+     *
 	 * @var object
 	 */
 	private $files;
 
 	/**
 	 * Views dir name
+     *
 	 * @var string
 	 */
 	private $views_dir;
 
 	/**
 	 * View vars
+     *
 	 * @var array
 	 */
 	private $vars = array();
 
 	/**
 	 * Class constructor
-	 * @param Files $files Utils\Files instance
+     *
+	 * @param Files $files Utils\Files instance.
 	 */
 	public function __construct( Files $files ) {
 
@@ -39,7 +48,8 @@ class View {
 
 	/**
 	 * Alters the views directory
-	 * @param string $dir directory name
+     *
+	 * @param string $dir directory name.
 	 * @return this
 	 */
 	public function set_views_dir( $dir ) {
@@ -52,9 +62,10 @@ class View {
 
 	/**
 	 * Sets var
-	 * @param  string $var_name  var slug
-	 * @param  mixed  $var_value var value
-	 * @param  bool   $override  override var if it already exists
+     *
+	 * @param  string $var_name  var slug.
+	 * @param  mixed  $var_value var value.
+	 * @param  bool   $override  override var if it already exists.
 	 * @return this
 	 */
 	public function set_var( $var_name = null, $var_value = null, $override = false ) {
@@ -76,7 +87,8 @@ class View {
 
 	/**
 	 * Sets many vars at once
-	 * @param array $vars array of vars in format: var name => var value
+     *
+	 * @param array $vars array of vars in format: var name => var value.
 	 * @return $this
 	 */
 	public function set_vars( $vars ) {
@@ -96,7 +108,8 @@ class View {
 
 	/**
 	 * Gets the var
-	 * @param  string $var_name var name
+     *
+	 * @param  string $var_name var name.
 	 * @return mixed            var value or null
 	 */
 	public function get_var( $var_name ) {
@@ -107,7 +120,8 @@ class View {
 
 	/**
 	 * Prints the var
-	 * @param  string $var_name var name
+     *
+	 * @param  string $var_name var name.
 	 * @return void
 	 */
 	public function echo_var( $var_name ) {
@@ -118,7 +132,8 @@ class View {
 
 	/**
 	 * Removes var
-	 * @param  string $var_name var name
+     *
+	 * @param  string $var_name var name.
 	 * @return this
 	 */
 	public function remove_var( $var_name ) {
@@ -133,6 +148,7 @@ class View {
 
 	/**
 	 * Removes all vars
+     *
 	 * @return this
 	 */
 	public function clear_vars() {
@@ -145,7 +161,8 @@ class View {
 
 	/**
 	 * Gets view file and includes it
-	 * @param  string $part file
+     *
+	 * @param  string $part file.
 	 * @return this
 	 */
 	public function get_view( $part ) {
@@ -155,7 +172,7 @@ class View {
 			$part . '.php'
 		) );
 
-		include( $file_path );
+		include $file_path ;
 
 		return $this;
 
@@ -163,7 +180,8 @@ class View {
 
 	/**
 	 * Gets view output as a string
-	 * @param  string $part file
+     *
+	 * @param  string $part file.
 	 * @return string       view output
 	 */
 	public function get_view_output( $part ) {

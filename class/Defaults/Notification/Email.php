@@ -1,18 +1,36 @@
 <?php
 /**
  * Email notification
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Defaults\Notification;
+
+use underDEV\Notification\Interfaces\Triggerable;
 use underDEV\Notification\Abstracts;
 use underDEV\Notification\Defaults\Field;
 
+/**
+ * Email notification
+ */
 class Email extends Abstracts\Notification {
 
+	/**
+	 * Notification constructor
+	 *
+	 * @since [Next]
+	 */
 	public function __construct() {
 		parent::__construct( 'email', 'Email' );
 	}
 
+	/**
+	 * Used to register notification form fields
+	 * Uses $this->add_form_field();
+     *
+	 * @return void
+	 */
 	public function form_fields() {
 
 		$this->add_form_field( new Field\InputField( array(
@@ -43,7 +61,13 @@ class Email extends Abstracts\Notification {
 	    return 'text/html';
 	}
 
-	public function send( \underDEV\Notification\Abstracts\Trigger $trigger ) {
+	/**
+	 * Sends the notification
+     *
+	 * @param  Triggerable $trigger trigger object.
+	 * @return void
+	 */
+	public function send( Triggerable $trigger ) {
 
 		$html_mime = apply_filters( 'notification/' . $this->get_slug() . '/use_html_mime', true, $this, $trigger );
 
