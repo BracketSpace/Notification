@@ -1,5 +1,12 @@
 language: php
 
+matrix:
+  include:
+    - php: 7.0
+      env: SNIFF=1
+    - php: 5.6
+      env: SNIFF=1
+
 notifications:
   email: false
 
@@ -7,13 +14,6 @@ cache:
   directories:
     - vendor
     - $HOME/.composer/cache
-
-matrix:
-  include:
-    - php: 7.0
-      env: SNIFF=1
-    - php: 5.6
-      env: SNIFF=1
 
 before_install:
 	- if [[ "$SNIFF" == "1" ]]; then export PHPCS_DIR=/tmp/phpcs; fi
