@@ -1,6 +1,7 @@
 <?php
 
 namespace underDEV\Notification\Defaults\MergeTag\User;
+
 use underDEV\Notification\Defaults\MergeTag\StringTag;
 
 class UserLogin extends StringTag {

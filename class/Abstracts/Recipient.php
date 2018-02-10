@@ -1,0 +1,68 @@
+<?php
+/**
+ * Recipient abstract class
+ *
+ * @package notification
+ */
+
+namespace underDEV\Notification\Abstracts;
+
+use underDEV\Notification\Interfaces;
+
+/**
+ * Recipient abstract class
+ */
+abstract class Recipient extends Common implements Interfaces\Receivable {
+
+	/**
+	 * Recipient input default value
+     *
+	 * @var string
+	 */
+	protected $default_value;
+
+	/**
+     * Recipient constructor
+     *
+     * @since [Next]
+     * @param array $params recipient configuration params.
+     */
+    public function __construct( $params = array() ) {
+
+    	if ( ! isset( $params['slug'], $params['name'], $params['default_value'] ) ) {
+    		trigger_error( 'Recipient requires slug, name and default_value', E_USER_ERROR );
+    	}
+
+		$this->slug          = $params['slug'];
+		$this->name          = $params['name'];
+		$this->default_value = $params['default_value'];
+
+    }
+
+    /**
+	 * Parses saved value something understood by notification
+	 * Must be defined in the child class
+	 *
+	 * @param  string $value raw value saved by the user.
+	 * @return array         array of resolved values
+	 */
+	abstract public function parse_value( $value = '' );
+
+	/**
+	 * Returns input object
+	 * Must be defined in the child class
+	 *
+	 * @return object
+	 */
+	abstract public function input();
+
+    /**
+     * Gets default value
+     *
+     * @return string
+     */
+    public function get_default_value() {
+    	return $this->default_value;
+    }
+
+}

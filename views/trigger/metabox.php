@@ -1,7 +1,10 @@
 <?php
 /**
- * Trigger metabox displayed on a Notification edit page
+ * Trigger metabox template
+ *
+ * @package notification
  */
+
 ?>
 
 <?php if ( empty( $this->get_var( 'triggers' ) ) ): ?>

@@ -9,7 +9,7 @@
 			$repeater.find( '.row:not(.header):not(.model)' ).each( function() {
 
 				var $row    = $( this ),
-					$inputs = $row.find( 'input, select, textarea' );
+					$inputs = $row.find( '.notification-field:not(.selectize-control):not(.selectize-dropdown)' );
 
 				$inputs.each( function() {
 

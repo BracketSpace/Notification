@@ -95,6 +95,15 @@ body.post-type-notification {
 
 					}
 
+					th {
+
+						small {
+							display: block;
+							font-weight: normal;
+						}
+
+					}
+
 					td {
 
 						&.handle::before {

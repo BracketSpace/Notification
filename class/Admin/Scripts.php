@@ -1,26 +1,40 @@
 <?php
 /**
  * Enqueues admin scripts
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Admin;
+
 use underDEV\Notification\Utils\Files;
 
+/**
+ * Scripts class
+ */
 class Scripts {
 
 	/**
 	 * Files class
+     *
 	 * @var object
 	 */
 	private $files;
 
+	/**
+	 * Scripts constructor
+	 *
+	 * @since [Next]
+	 * @param Files $files Files class.
+	 */
 	public function __construct( Files $files ) {
 		$this->files = $files;
 	}
 
 	/**
 	 * Enqueue scripts and styles for admin
-	 * @param  string $page_hook current page hook
+     *
+	 * @param  string $page_hook current page hook.
 	 * @return void
 	 */
 	public function enqueue_scripts( $page_hook ) {
@@ -41,7 +55,8 @@ class Scripts {
 		wp_enqueue_style( 'notification', $this->files->asset_url( 'css', 'style.css' ) );
 
 		wp_localize_script( 'notification', 'notification', array(
-			'copied' => __( 'Copied', 'notification' )
+			'copied'  => __( 'Copied', 'notification' ),
+			'ajaxurl' => admin_url( 'admin-ajax.php' ),
 		) );
 
 	}

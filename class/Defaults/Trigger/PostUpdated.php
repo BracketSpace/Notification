@@ -1,14 +1,23 @@
 <?php
 /**
  * Post updated trigger
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Defaults\Trigger;
+
 use underDEV\Notification\Defaults\MergeTag;
 use underDEV\Notification\Abstracts;
 
+/**
+ * Will be removed from here
+ */
 class PostUpdated extends Abstracts\Trigger {
 
+	/**
+	 * Will be removed from here
+	 */
 	public function __construct() {
 
 		parent::__construct( 'wordpress/post_updated', 'Post updated' );
@@ -19,10 +28,16 @@ class PostUpdated extends Abstracts\Trigger {
 
 	}
 
+	/**
+	 * Will be removed from here
+	 */
 	public function action() {
 		$this->post_id = $this->callback_args[0];
 	}
 
+	/**
+	 * Will be removed from here
+	 */
 	public function merge_tags() {
 
     	$this->add_merge_tag( new MergeTag\StringTag( array(
@@ -31,6 +46,14 @@ class PostUpdated extends Abstracts\Trigger {
 			'description' => __( 'Will be resolved to a full link with protocol etc.' ),
 			'resolver'    => function() {
 				return get_permalink( $this->post_id );
+			}
+    	) ) );
+
+    	$this->add_merge_tag( new MergeTag\EmailTag( array(
+			'slug'        => 'dummy_email',
+			'name'        => __( 'Dummy email' ),
+			'resolver'    => function() {
+				return 'dummy@email.localhost';
 			}
     	) ) );
 

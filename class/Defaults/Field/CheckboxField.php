@@ -1,17 +1,33 @@
 <?php
+/**
+ * Checkbox field class
+ *
+ * @package notification
+ */
 
 namespace underDEV\Notification\Defaults\Field;
+
 use underDEV\Notification\Abstracts\Field;
 
+/**
+ * Checkbox field class
+ */
 class CheckboxField extends Field {
 
 	/**
 	 * Checkbox label text
 	 * Default: Enable
+     *
 	 * @var string
 	 */
 	protected $checkbox_label = '';
 
+	/**
+	 * Field constructor
+	 *
+	 * @since [Next]
+	 * @param array $params field configuration parameters.
+	 */
 	public function __construct( $params = array() ) {
 
 		if ( isset( $params['checkbox_label'] ) ) {
@@ -26,15 +42,17 @@ class CheckboxField extends Field {
 
 	/**
 	 * Returns field HTML
+     *
 	 * @return string html
 	 */
 	public function field() {
-		return '<label><input type="checkbox" name="' . $this->get_name() . '" id="' . $this->get_id() . '" value="1" ' . checked( $this->get_value(), '1', false ) . ' class="widefat"> ' . esc_html( $this->checkbox_label ) . '</label>';
+		return '<label><input type="checkbox" name="' . $this->get_name() . '" id="' . $this->get_id() . '" value="1" ' . checked( $this->get_value(), '1', false ) . ' class="widefat ' . $this->css_class() . '" ' . $this->maybe_disable() . '> ' . esc_html( $this->checkbox_label ) . '</label>';
 	}
 
 	/**
      * Sanitizes the value sent by user
-     * @param  mixed $value value to sanitize
+     *
+     * @param  mixed $value value to sanitize.
      * @return mixed        sanitized value
      */
     public function sanitize( $value ) {

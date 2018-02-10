@@ -1,21 +1,28 @@
 <?php
 /**
  * Cache object, which utilises key
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Utils\Cache;
 
+/**
+ * Cache class
+ */
 class Cache {
 
     /**
 	 * Cache unique key
+     *
 	 * @var string
 	 */
 	protected $key;
 
 	/**
 	 * Constructor
-	 * @param string $key cache unique key
+     *
+	 * @param string $key cache unique key.
 	 */
 	public function __construct( $key ) {
 

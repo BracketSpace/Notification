@@ -1,3 +1,12 @@
+<?php
+/**
+ * Form table template
+ *
+ * @package notification
+ */
+
+?>
+
 <table class="form-table">
 
 	<?php foreach ( $this->get_var( 'fields' ) as $field ): ?>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress Coding Standards for Plugins">
+	<description>Sniffs for Notification WordPress plugin</description>
+
+	<rule ref="WordPress">
+		<exclude name="WordPress-VIP" />
+	</rule>
+	<rule ref="WordPress-Core">
+		<exclude name="Generic.Files.LowercasedFilename" />
+		<exclude name="WordPress.Files.FileName" />
+		<exclude name="WordPress.Files.FileName.UnderscoresNotAllowed" />
+	</rule>
+	<rule ref="Squiz.Commenting.FunctionComment">
+	    <exclude name="Squiz.Commenting.FunctionComment.InvalidTypeHint" />
+	</rule>
+	<rule ref="PSR2.Methods.MethodDeclaration">
+	    <exclude name="PSR2.Methods.MethodDeclaration.Underscore" />
+	</rule>
+
+	<!-- Check all PHP files in directory tree by default. -->
+	<arg name="extensions" value="php"/>
+	<file>.</file>
+
+	<!-- Show progress and sniff codes in all reports -->
+	<arg value="ps"/>
+
+	<exclude-pattern>*/assets/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+</ruleset>

@@ -4,6 +4,7 @@
  */
 
 namespace underDEV\Notification\Defaults\Trigger\User;
+
 use underDEV\Notification\Defaults\MergeTag;
 use underDEV\Notification\Abstracts;
 

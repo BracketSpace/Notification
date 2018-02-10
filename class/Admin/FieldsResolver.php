@@ -1,15 +1,22 @@
 <?php
 /**
  * Resolves the Notification fields with Merge Tags
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Admin;
+
 use underDEV\Notification\Abstracts\Notification;
 
+/**
+ * FieldsResolver class
+ */
 class FieldsResolver {
 
 	/**
 	 * Regex pattern for merge tags
+     *
 	 * @var string
 	 */
 	private $merge_tag_pattern = "/\{([^\}]*)\}/";
@@ -38,9 +45,10 @@ class FieldsResolver {
 	protected $replacements;
 
 	/**
-	 * Contructor
-	 * @param Notification $notification Notification object
-	 * @param array        $merge_tags   resolved merge tags array
+	 * FieldsResolver contructor
+     *
+	 * @param Notification $notification Notification object.
+	 * @param array        $merge_tags   resolved merge tags array.
 	 */
 	public function __construct( Notification $notification, $merge_tags ) {
 
@@ -55,6 +63,7 @@ class FieldsResolver {
 
 	/**
 	 * Resolves all notification fields
+     *
 	 * @return void
 	 */
 	public function resolve_fields() {
@@ -66,11 +75,6 @@ class FieldsResolver {
 			}
 
 			$resolved = $this->resolve_value( $field->get_value() );
-
-			if ( apply_filters( 'notification/merge_tags/remove_empty', true ) ) {
-				$resolved = preg_replace( $this->merge_tag_pattern, '', $resolved );
-			}
-
 			$field->set_value( $resolved );
 
 		}
@@ -79,7 +83,8 @@ class FieldsResolver {
 
 	/**
 	 * Resolves merge tags in a value
-	 * @param  mixed $value string or array, field value
+     *
+	 * @param  mixed $value string or array, field value.
 	 * @return mixed
 	 */
 	public function resolve_value( $value ) {
@@ -95,7 +100,13 @@ class FieldsResolver {
 			}
 
 		} else {
+
 			$resolved = str_replace( $this->tags, $this->replacements, $value );
+
+			if ( apply_filters( 'notification/merge_tags/remove_empty', true ) ) {
+				$resolved = preg_replace( $this->merge_tag_pattern, '', $resolved );
+			}
+
 		}
 
 		return $resolved;
