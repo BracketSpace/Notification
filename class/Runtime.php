@@ -58,13 +58,11 @@ class Runtime {
 		add_action( 'add_meta_boxes', array( $this->admin_merge_tags, 'add_meta_box' ) );
 
 		add_action( 'save_post_notification', array( $this->admin_trigger, 'save' ) );
-
 		add_action( 'save_post_notification', array( $this->admin_notifications, 'save' ) );
 
 		add_action( 'admin_enqueue_scripts', array( $this->admin_scripts, 'enqueue_scripts' ) );
 
 		add_action( 'wp_ajax_get_merge_tags_for_trigger', array( $this->admin_merge_tags, 'ajax_render' ) );
-
 		add_action( 'wp_ajax_get_recipient_input', array( $this->admin_recipients, 'ajax_get_recipient_input' ) );
 
 		add_action( 'admin_menu', array( $this->admin_extensions, 'register_page' ) );
