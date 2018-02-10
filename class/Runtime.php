@@ -36,8 +36,6 @@ class Runtime {
 
 		$this->triggers = new Triggers();
 
-		$this->recipients = new Recipients();
-
 		$this->post_data = new Admin\PostData( $this->notifications, $this->triggers );
 
 		$this->admin_trigger = new Admin\Trigger( $this->view(), $this->triggers, $this->post_data );
@@ -52,7 +50,7 @@ class Runtime {
 
 		$this->admin_scripts = new Admin\Scripts( $this->files );
 
-		$this->admin_recipients = new Admin\Recipients( $this->view(), $this->ajax(), $this->recipients );
+		$this->admin_recipients = new Admin\Recipients( $this->view(), $this->ajax() );
 
 		$this->admin_extensions = new Admin\Extensions( $this->view() );
 

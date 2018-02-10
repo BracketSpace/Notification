@@ -5,14 +5,12 @@
 
 namespace underDEV\Notification\Admin;
 use underDEV\Notification\Utils;
-use underDEV\Notification\Recipients as RecipientsCollection;
 
 class Recipients {
 
-	public function __construct( Utils\View $view, Utils\Ajax $ajax, RecipientsCollection $recipients ) {
+	public function __construct( Utils\View $view, Utils\Ajax $ajax ) {
 		$this->view       = $view;
 		$this->ajax       = $ajax;
-		$this->recipients = $recipients;
 	}
 
 	/**
@@ -23,7 +21,7 @@ class Recipients {
 
 		ob_start();
 
-		$recipient = $this->recipients->get_single( $_POST['notification'], $_POST['type'] );
+		$recipient = notification_get_single_recipient( $_POST['notification'], $_POST['type'] );
 		$input     = $recipient->input();
 
 		// A little trick to get rid of the last part of input name
