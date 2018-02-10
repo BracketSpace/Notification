@@ -102,6 +102,10 @@ class Runtime {
 
 		add_action( 'init', array( $this->settings, 'register_settings' ), 20 );
 
+		notification_register_settings( array( $this->settings, 'general_settings' ) );
+		notification_register_settings( array( $this->settings, 'triggers_settings' ), 20 );
+		notification_register_settings( array( $this->settings, 'notifications_settings' ), 30 );
+
 	}
 
 	/**

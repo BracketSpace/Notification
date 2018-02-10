@@ -52,6 +52,8 @@ if ( ! $requirements->satisfied() ) {
 	return;
 }
 
+global $notification_runtime;
+
 /**
  * Boots up the plugin
  *

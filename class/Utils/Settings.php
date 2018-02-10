@@ -116,18 +116,15 @@ class Settings {
 	/**
 	 * Add new section
      *
-     * @throws \Exception Exception.
 	 * @param string $name Section name.
 	 * @param string $slug Section slug.
 	 * @return Section
 	 */
 	public function add_section( $name, $slug ) {
 
-		if ( isset( $this->sections[ $slug ] ) ) {
-			throw new \Exception( 'Section with slug `' . $slug . '` already exists' );
+		if ( ! isset( $this->sections[ $slug ] ) ) {
+			$this->sections[ $slug ] = new Section( $this->handle, $name, $slug );
 		}
-
-		$this->sections[ $slug ] = new Section( $this->handle, $name, $slug );
 
 		return $this->sections[ $slug ];
 

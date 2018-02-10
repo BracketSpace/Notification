@@ -83,7 +83,7 @@
 										$field_description = $field->description();
 										?>
 										<?php if ( ! empty( $field_description ) ): ?>
-											<p><?php echo $field_description; ?></p>
+											<small class="description"><?php echo $field_description; ?></small>
 										<?php endif ?>
 									</td>
 								</tr>
