@@ -75,7 +75,8 @@ class Runtime {
 	 */
 	public function actions() {
 
-		add_action( 'plugins_loaded', array( $this->internationaliation, 'load_textdomain' ) );
+		add_action( 'plugins_loaded', array( $this->internationalization, 'load_textdomain' ) );
+		add_action( 'init', array( $this->internationalization, 'load_native_admin_textdomain' ) );
 
 		add_action( 'init', array( $this->admin_post_type, 'register' ) );
 		add_action( 'edit_form_after_title', array( $this->admin_post_type, 'render_trigger_select' ) );

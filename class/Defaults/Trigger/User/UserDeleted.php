@@ -16,12 +16,14 @@ class UserDeleted extends Abstracts\Trigger {
 
 		$this->add_action( 'delete_user', 10, 2 );
 		$this->set_group( 'User' );
-		$this->set_description( 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' );
+		$this->set_description( 'Fires when user account is deleted' );
 
 	}
 
 	public function action() {
 
+		$this->date_format = get_option( 'date_format' );
+		$this->time_format = get_option( 'time_format' );
 		$this->user_id = $this->callback_args[1]->ID;
 		$this->user_object = get_userdata( $this->user_id );
 		$this->user_meta = get_user_meta( $this->user_id );

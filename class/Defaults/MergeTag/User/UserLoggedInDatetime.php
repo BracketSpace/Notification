@@ -17,15 +17,9 @@ class UserLoggedInDatetime extends StringTag {
 			'name'        => __( 'User login time' ),
 			'description' => __( 'Will be resolved to a user login time' ),
 			'resolver'    => function() {
-				return date( 'Y-m-d H:i:s' );
+				return date_i18n( $this->trigger->date_format . ' ' . $this->trigger->time_format );
 			}
         ) );
-
-    }
-
-    public function check_requirements( ) {
-
-        return date( 'Y-m-d H:i:s' );
 
     }
 

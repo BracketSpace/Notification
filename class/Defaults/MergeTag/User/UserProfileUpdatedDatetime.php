@@ -17,15 +17,9 @@ class UserProfileUpdatedDatetime extends StringTag {
 			'name'        => __( 'User profile update time' ),
 			'description' => __( 'Will be resolved to a user profile update time' ),
 			'resolver'    => function() {
-				return date( 'Y-m-d H:i:s' );
+				return date( $this->trigger->date_format . ' ' . $this->trigger->time_format );
 			}
         ) );
-
-    }
-
-    public function check_requirements( ) {
-
-        return date( 'Y-m-d H:i:s' );
 
     }
 

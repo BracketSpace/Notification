@@ -17,7 +17,12 @@ class UserRole extends StringTag {
 			'name'        => __( 'User role' ),
 			'description' => __( 'Will be resolved to a user role (Administrator, Subscriber etc.) ' ),
 			'resolver'    => function() {
-				return ucfirst( $this->trigger->user_object->roles[0] );
+				$roles = array_map( function ( $role ) {
+					$role_object = get_role( $role );
+					return translate_user_role( ucfirst( $role_object->name ) ) ;
+				}, $this->trigger->user_object->roles );
+
+				return implode( ', ', $roles );
 			}
         ) );
 
