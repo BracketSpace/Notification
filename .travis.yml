@@ -5,5 +5,13 @@ matrix:
     - php: 7.1
       env: SNIFF=1
 
+notifications:
+  email: false
+
+cache:
+  directories:
+    - vendor
+    - $HOME/.composer/cache
+
 script:
   - echo "works!";
