@@ -53,17 +53,17 @@ class Runtime {
 	 */
 	public function singletons() {
 
-		$this->files               = new Utils\Files( $this->plugin_file );
-		$this->internationaliation = new Internationalization( $this->files, 'notification' );
-		$this->post_data           = new Admin\PostData();
-		$this->admin_trigger       = new Admin\Trigger( $this->view(), $this->post_data );
-		$this->admin_notifications = new Admin\Notifications( $this->boxrenderer(), $this->formrenderer(), $this->post_data );
-		$this->admin_post_type     = new Admin\PostType( $this->admin_trigger, $this->admin_notifications );
-		$this->admin_post_table    = new Admin\PostTable();
-		$this->admin_merge_tags    = new Admin\MergeTags( $this->view(), $this->ajax() );
-		$this->admin_scripts       = new Admin\Scripts( $this->files );
-		$this->admin_recipients    = new Admin\Recipients( $this->view(), $this->ajax() );
-		$this->admin_extensions    = new Admin\Extensions( $this->view() );
+		$this->files                = new Utils\Files( $this->plugin_file );
+		$this->internationalization = new Internationalization( $this->files, 'notification' );
+		$this->post_data            = new Admin\PostData();
+		$this->admin_trigger        = new Admin\Trigger( $this->view(), $this->post_data );
+		$this->admin_notifications  = new Admin\Notifications( $this->boxrenderer(), $this->formrenderer(), $this->post_data );
+		$this->admin_post_type      = new Admin\PostType( $this->admin_trigger, $this->admin_notifications );
+		$this->admin_post_table     = new Admin\PostTable();
+		$this->admin_merge_tags     = new Admin\MergeTags( $this->view(), $this->ajax() );
+		$this->admin_scripts        = new Admin\Scripts( $this->files );
+		$this->admin_recipients     = new Admin\Recipients( $this->view(), $this->ajax() );
+		$this->admin_extensions     = new Admin\Extensions( $this->view() );
 
 	}
 
