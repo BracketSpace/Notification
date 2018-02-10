@@ -79,16 +79,9 @@ class Email extends Abstracts\Notification {
 
 		$recipients = apply_filters( 'notification/' . $this->get_slug() . '/recipients', $data['parsed_recipients'], $this, $trigger );
 
-		$subject = apply_filters( 'notification/' . $this->get_slug() . '/subject/pre', $data['subject'], $this, $trigger );
-		if ( apply_filters( 'notification/' . $this->get_slug() . '/subject/strip_shortcodes', true, $this, $trigger ) ) {
-			$subject = strip_shortcodes( $subject );
-		}
 		$subject = apply_filters( 'notification/' . $this->get_slug() . '/subject', $subject, $this, $trigger );
 
 		$message = apply_filters( 'notification/' . $this->get_slug() . '/message/pre', $data['body'], $this, $trigger );
-		if ( apply_filters( 'notification/' . $this->get_slug() . '/message/strip_shortcodes', true, $this, $trigger ) ) {
-			$message = strip_shortcodes( $message );
-		}
 		if ( apply_filters( 'notification/' . $this->get_slug() . '/message/use_autop', true, $this, $trigger ) ) {
 			$message = wpautop( $message );
 		}
