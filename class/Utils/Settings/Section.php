@@ -116,13 +116,10 @@ class Section {
 			throw new \Exception( 'Group name and slug cannot be empty' );
 		}
 
-		if ( isset( $this->groups[ $slug ] ) ) {
-			throw new \Exception( 'Group slug `' . $slug . '` already exists' );
+		if ( ! isset( $this->groups[ $slug ] ) ) {
+			$this->groups[ $slug ] = new Group( $this->handle, $name, $slug, $this->slug() );
+			do_action( $this->handle . '/settings/group/added', $this->groups[ $slug ], $this );
 		}
-
-		$this->groups[ $slug ] = new Group( $this->handle, $name, $slug, $this->slug() );
-
-		do_action( $this->handle . '/settings/group/added', $this->groups[ $slug ], $this );
 
 		return $this->groups[ $slug ];
 

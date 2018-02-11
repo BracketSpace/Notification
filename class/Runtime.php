@@ -98,7 +98,7 @@ class Runtime {
 		add_action( 'admin_menu', array( $this->admin_extensions, 'register_page' ) );
 		add_action( 'admin_menu', array( $this->settings, 'register_page' ), 20 );
 
-		add_action( 'init', array( $this->settings, 'register_settings' ), 20 );
+		add_action( 'wp_loaded', array( $this->settings, 'register_settings' ) );
 
 		notification_register_settings( array( $this->settings, 'general_settings' ) );
 		notification_register_settings( array( $this->settings, 'triggers_settings' ), 20 );

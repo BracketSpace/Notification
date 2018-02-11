@@ -88,7 +88,10 @@ class Settings {
 		$this->set_variables();
 
 		// settings autoload on admin side.
-		add_action( 'admin_init', array( $this, 'get_settings' ), 10 );
+		add_action( 'admin_init', array( $this, 'setup_field_values' ), 10 );
+
+		// save the settings config for later easly-action uses.
+		add_action( 'admin_footer', array( $this, 'catch_config' ), 10 );
 
 		add_action( 'admin_post_save_' . $this->handle . '_settings', array( $this, 'save_settings' ) );
 
@@ -206,6 +209,7 @@ class Settings {
 
 	/**
 	 * Get all settings
+	 * Uses stored config
      *
 	 * @return array settings
 	 */
@@ -213,25 +217,26 @@ class Settings {
 
 		if ( empty( $this->settings ) ) {
 
-			foreach ( $this->get_sections() as $section_slug => $section ) {
+			$config = get_option( '_' . $this->handle . '_settings_config' );
+
+			foreach ( (array) $config as $section_slug => $groups ) {
 
 				$setting = get_option( $this->handle . '_' . $section_slug );
 
 				$this->settings[ $section_slug ] = array();
 
-				foreach ( $section->get_groups() as $group_slug => $group ) {
+				foreach ( $groups as $group_slug => $fields ) {
 
 					$this->settings[ $section_slug ][ $group_slug ] = array();
 
-					foreach ( $group->get_fields() as $field_slug => $field ) {
+					foreach ( $fields as $field_slug => $default_value ) {
 
 						if ( isset( $setting[ $group_slug ][ $field_slug ] ) ) {
 							$value = $setting[ $group_slug ][ $field_slug ];
 						} else {
-							$value = $field->default_value();
+							$value = $default_value;
 						}
 
-						$field->value( $value );
 						$this->settings[ $section_slug ][ $group_slug ][ $field_slug ] = $value;
 
 					}
@@ -243,6 +248,31 @@ class Settings {
 		}
 
 		return apply_filters( $this->handle . '/settings/saved_settings', $this->settings, $this );
+
+	}
+
+	/**
+	 * Sets up the field values for Settings form
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function setup_field_values() {
+
+		foreach ( $this->get_sections() as $section_slug => $section ) {
+
+			foreach ( $section->get_groups() as $group_slug => $group ) {
+
+				foreach ( $group->get_fields() as $field_slug => $field ) {
+
+					$setting_name = implode( '/', array( $section_slug, $group_slug, $field_slug ) );
+					$field->value( $this->get_setting( $setting_name ) );
+
+				}
+
+			}
+
+		}
 
 	}
 
@@ -297,6 +327,44 @@ class Settings {
 
 			$this->uri = trailingslashit( plugins_url( '', dirname( __FILE__ ) ) );
 
+		}
+
+	}
+
+	/**
+	 * Catches settings config and saves it for later use
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function catch_config() {
+
+		$config = array();
+
+		foreach ( $this->get_sections() as $section_slug => $section ) {
+
+			$config[ $section_slug ] = array();
+
+			foreach ( $section->get_groups() as $group_slug => $group ) {
+
+				$config[ $section_slug ][ $group_slug ] = array();
+
+				foreach ( $group->get_fields() as $field_slug => $field ) {
+
+					$config[ $section_slug ][ $group_slug ][ $field_slug ] = $field->default_value();
+
+				}
+
+			}
+
+		}
+
+		$config_hash = md5( serialize( $config ) );
+		$prev_hash   = get_option( '_' . $this->handle . '_settings_hash' );
+
+		if ( $config_hash !== $prev_hash ) {
+			update_option( '_' . $this->handle . '_settings_config', $config );
+			update_option( '_' . $this->handle . '_settings_hash', $config_hash );
 		}
 
 	}

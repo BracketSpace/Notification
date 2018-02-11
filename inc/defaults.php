@@ -5,6 +5,8 @@
  * @package notificaiton
  */
 
+// add_action( 'init', function() {
+
 $defaults = array(
 	'recipients',
 	'triggers',
@@ -18,3 +20,5 @@ foreach ( $defaults as $default ) {
 	}
 
 }
+
+// }, 30 );
