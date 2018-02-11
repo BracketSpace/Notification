@@ -137,7 +137,9 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	public function roll_out() {
 		foreach ( $this->notification_storage as $notification ) {
 			$notification->prepare_data();
+			do_action( 'notification/notification/pre-send', $notification, $this );
 			$notification->send( $this );
+			do_action( 'notification/notification/sent', $notification, $this );
 		}
 	}
 
