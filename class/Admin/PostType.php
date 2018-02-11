@@ -100,9 +100,14 @@ class PostType {
 		}
 
 		echo '<h3 class="notifications-section-title">' . __( 'Notifications', 'notification' ) . '</h3>';
+
+		do_action( 'notitication/admin/notifications/pre', $post );
+
 		echo '<div id="notification-boxes">';
 	    	$this->notifications->render_notifications();
     	echo '</div>';
+
+    	do_action( 'notitication/admin/notifications', $post );
 
 	}
 

@@ -113,6 +113,8 @@ class FieldsResolver {
 				$resolved = strip_shortcodes( $resolved );
 			}
 
+			$resolved = apply_filters( 'notificaiton/notification/field/resolved', $resolved, $this->tags, $this->replacements );
+
 		}
 
 		return $resolved;

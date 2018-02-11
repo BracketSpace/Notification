@@ -173,6 +173,8 @@ class PostData {
 
 	        update_post_meta( $this->get_post_id(), $this->notification_data_key . $notification->get_slug(), $notification_data );
 
+	        do_action( 'notification/notification/saved', $this->get_post_id(), $notification, $notification_data );
+
 		}
 
 	}

@@ -16,6 +16,8 @@
 	</div>
 	<h2 class="hndle"><span><?php $this->echo_var( 'title' ); ?></span></h2>
 	<div class="inside">
+		<?php do_action( 'notification/notification/box/pre', $this ); ?>
 		<?php $this->echo_var( 'content' ); ?>
+		<?php do_action( 'notification/notification/box/post', $this ); ?>
 	</div>
 </div>
