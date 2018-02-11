@@ -71,4 +71,5 @@ function notification_runtime() {
 
 }
 
-notification_runtime();
+$runtime = notification_runtime();
+$runtime->boot();

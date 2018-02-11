@@ -22,13 +22,7 @@ class Runtime {
 	 * @param string $plugin_file plugin main file full path.
 	 */
 	public function __construct( $plugin_file ) {
-
 		$this->plugin_file = $plugin_file;
-
-		$this->singletons();
-		$this->boot();
-		$this->actions();
-
 	}
 
 	/**
@@ -39,8 +33,12 @@ class Runtime {
 	 */
 	public function boot() {
 
+		$this->singletons();
+
 		require_once $this->files->file_path( 'inc/functions.php' );
 		require_once $this->files->file_path( 'inc/defaults.php' );
+
+		$this->actions();
 
 	}
 
