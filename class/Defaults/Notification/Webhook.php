@@ -60,25 +60,29 @@ class Webhook extends Abstracts\Notification {
 			),
 		) ) );
 
-		$this->add_form_field( new Field\RepeaterField( array(
-			'label'            => __( 'Headers' ),
-			'name'             => 'headers',
-			'add_button_label' => __( 'Add header', 'notification' ),
-			'fields'           => array(
-				new Field\InputField( array(
-					'label'      => __( 'Key' ),
-					'name'       => 'key',
-					'resolvable' => true,
-					'description' => __( 'You can use merge tags' ),
-				) ),
-				new Field\InputField( array(
-					'label'      => __( 'Value' ),
-					'name'       => 'value',
-					'resolvable' => true,
-					'description' => __( 'You can use merge tags' ),
-				) ),
-			),
-		) ) );
+		if ( notification_get_setting( 'notifications/webhook/headers' ) ) {
+
+			$this->add_form_field( new Field\RepeaterField( array(
+				'label'            => __( 'Headers' ),
+				'name'             => 'headers',
+				'add_button_label' => __( 'Add header', 'notification' ),
+				'fields'           => array(
+					new Field\InputField( array(
+						'label'      => __( 'Key' ),
+						'name'       => 'key',
+						'resolvable' => true,
+						'description' => __( 'You can use merge tags' ),
+					) ),
+					new Field\InputField( array(
+						'label'      => __( 'Value' ),
+						'name'       => 'value',
+						'resolvable' => true,
+						'description' => __( 'You can use merge tags' ),
+					) ),
+				),
+			) ) );
+
+		}
 
 	}
 
@@ -95,7 +99,11 @@ class Webhook extends Abstracts\Notification {
 		$args = $this->parse_args( $data['args'] );
 		$args = apply_filters( 'notification/webhook/args', $args, $this, $trigger );
 
-		$headers = $this->parse_args( $data['headers'] );
+		if ( notification_get_setting( 'notifications/webhook/headers' ) ) {
+			$headers = $this->parse_args( $data['headers'] );
+		} else {
+			$headers = array();
+		}
 
 		// Call each URL separately.
 		foreach ( $data['urls'] as $url ) {

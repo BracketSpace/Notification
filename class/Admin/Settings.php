@@ -228,6 +228,16 @@ class Settings extends SettingsAPI {
 				),
 				'render'   => array( new CoreFields\Checkbox(), 'input' ),
 				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+			) )
+			->add_field( array(
+				'name'     => __( 'Headers', 'notification' ),
+				'slug'     => 'headers',
+				'default'  => false,
+				'addons'   => array(
+					'label' => __( 'Allow to configure webhook headers', 'notification' )
+				),
+				'render'   => array( new CoreFields\Checkbox(), 'input' ),
+				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
 			) );
 
 	}
