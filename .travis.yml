@@ -4,6 +4,20 @@ matrix:
   include:
     - php: 7.1
       env: SNIFF=1
+    - php: 7.1
+      env: WP_VERSION=latest
+    - php: 7.0
+      env: WP_VERSION=latest
+    - php: 5.6
+      env: WP_VERSION=latest
+    - php: 5.4
+      env: WP_VERSION=latest
+    - php: 5.3
+      env: WP_VERSION=latest
+      dist: precise
+    - php: 5.3
+      env: WP_VERSION=4.6
+      dist: precise
 
 notifications:
   email: false
@@ -12,6 +26,9 @@ cache:
   directories:
     - vendor
     - $HOME/.composer/cache
+
+before_script:
+  - if [[ ! -z "$WP_VERSION" ]]; then bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION; fi
 
 install:
   - if [[ "$SNIFF" == "1" ]]; then export PHPCS_DIR=/tmp/phpcs; fi
@@ -32,3 +49,5 @@ script:
   # You can use any of the normal PHPCS command line arguments in the command:
   # https://github.com/squizlabs/PHP_CodeSniffer/wiki/Usage
   - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/bin/phpcs -p . --standard=phpcs.xml; fi
+  # Run PHPUnit
+  - if [[ ! -z "$WP_VERSION" ]]; then phpunit; fi

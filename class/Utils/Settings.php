@@ -225,6 +225,10 @@ class Settings {
 
 				$this->settings[ $section_slug ] = array();
 
+				if ( empty( $groups ) ) {
+					continue;
+				}
+
 				foreach ( $groups as $group_slug => $fields ) {
 
 					$this->settings[ $section_slug ][ $group_slug ] = array();
