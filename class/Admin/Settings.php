@@ -173,7 +173,7 @@ class Settings extends SettingsAPI {
 		$triggers->add_group( __( 'User', 'notification' ), 'user' )
 			->add_field( array(
 				'name'     => __( 'User', 'notification' ),
-				'slug'     => 'user',
+				'slug'     => 'enable',
 				'default'  => 'true',
 				'addons'   => array(
 					'label' => __( 'Enable user triggers', 'notification' )
@@ -185,7 +185,7 @@ class Settings extends SettingsAPI {
 		$triggers->add_group( __( 'Media', 'notification' ), 'media' )
 			->add_field( array(
 				'name'     => __( 'Media', 'notification' ),
-				'slug'     => 'media',
+				'slug'     => 'enable',
 				'default'  => 'true',
 				'addons'   => array(
 					'label' => __( 'Enable media triggers', 'notification' )

@@ -51,4 +51,15 @@ class Internationalization {
 		load_plugin_textdomain( $this->textdomain, false, $this->files->dir_path( 'languages' ) );
 	}
 
+	/**
+	 * Fixes admin strings returning
+     *
+	 * @return void
+	 */
+	public function load_native_admin_textdomain() {
+		if ( ! is_admin() ) {
+			load_textdomain( 'default', WP_LANG_DIR . '/admin-' . get_locale() . '.mo' );
+		}
+	}
+
 }
