@@ -22,7 +22,9 @@ class Runtime {
 	 * @param string $plugin_file plugin main file full path.
 	 */
 	public function __construct( $plugin_file ) {
-		$this->plugin_file = $plugin_file;
+		$this->plugin_file        = $plugin_file;
+		$this->plugin_custom_url  = defined( 'NOTIFICATION_URL' ) ? NOTIFICATION_URL : false;
+		$this->plugin_custom_path = defined( 'NOTIFICATION_DIR' ) ? NOTIFICATION_DIR : false;
 	}
 
 	/**
@@ -51,7 +53,7 @@ class Runtime {
 	 */
 	public function singletons() {
 
-		$this->files                = new Utils\Files( $this->plugin_file );
+		$this->files                = new Utils\Files( $this->plugin_file, $this->plugin_custom_url, $this->plugin_custom_path );
 		$this->internationalization = new Internationalization( $this->files, 'notification' );
 		$this->settings             = new Admin\Settings();
 		$this->post_data            = new Admin\PostData();
