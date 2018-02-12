@@ -21,6 +21,20 @@ class Files {
 	protected $plugin_file;
 
 	/**
+	 * Plugin custom URL
+     *
+	 * @var string
+	 */
+	protected $plugin_url = false;
+
+	/**
+	 * Plugin custom path
+     *
+	 * @var string
+	 */
+	protected $plugin_path = false;
+
+	/**
 	 * Assets directory name with a slash at the end
      *
 	 * @var string
@@ -31,9 +45,13 @@ class Files {
 	 * Class constructor
      *
 	 * @param string $plugin_file full path to main plugin file.
+	 * @param mixed  $plugin_url  plugin custom url.
+	 * @param mixed  $plugin_path plugin custom path.
 	 */
-	public function __construct( $plugin_file = '' ) {
+	public function __construct( $plugin_file = '', $plugin_url = false, $plugin_path = false ) {
 		$this->plugin_file     = $plugin_file;
+		$this->plugin_url      = $plugin_url;
+		$this->plugin_path     = $plugin_path;
 		$this->assets_dir_name = array( 'assets', 'dist' );
 	}
 
@@ -80,7 +98,7 @@ class Files {
 	 * @return string path
 	 */
 	public function plugin_path() {
-		return plugin_dir_path( $this->plugin_file );
+		return ! empty( $this->plugin_path ) ? $this->plugin_path : plugin_dir_path( $this->plugin_file );
 	}
 
 	/**
@@ -89,7 +107,7 @@ class Files {
 	 * @return string url
 	 */
 	public function plugin_url() {
-		return plugin_dir_url( $this->plugin_file );
+		return ! empty( $this->plugin_url ) ? $this->plugin_url : plugin_dir_url( $this->plugin_file );
 	}
 
 	/**
