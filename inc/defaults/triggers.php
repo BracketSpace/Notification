@@ -12,7 +12,7 @@ use underDEV\Notification\Defaults\Trigger;
 register_trigger( new Trigger\PostUpdated() );
 
 // User triggers.
-if( notification_get_setting( 'triggers/user/enable' ) ) {
+if ( notification_get_setting( 'triggers/user/enable' ) ) {
 
 	register_trigger( new Trigger\User\UserLogin() );
 	register_trigger( new Trigger\User\UserLogout() );
