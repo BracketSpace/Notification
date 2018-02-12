@@ -1,13 +1,31 @@
 <?php
+/**
+ * User role merge tag
+ *
+ * @package notification
+ */
 
 namespace underDEV\Notification\Defaults\MergeTag\User;
 
 use underDEV\Notification\Defaults\MergeTag\StringTag;
 
+/**
+ * User role merge tag class
+ */
 class UserRole extends StringTag {
 
+	/**
+	 * Receives Trigger object from Trigger class
+	 *
+	 * @var private object $trigger
+	 */
     private $trigger;
 
+    /**
+     * Constructor
+     *
+     * @param object $trigger Trigger object to access data from.
+     */
     public function __construct( $trigger ) {
 
         $this->trigger = $trigger;
@@ -28,6 +46,11 @@ class UserRole extends StringTag {
 
     }
 
+    /**
+     * Function for checking requirements
+     *
+     * @return boolean
+     */
     public function check_requirements( ) {
 
         return isset( $this->trigger->user_object->roles );

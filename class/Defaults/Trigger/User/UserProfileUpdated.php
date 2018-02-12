@@ -1,6 +1,8 @@
 <?php
 /**
  * User profile updated trigger
+ *
+ * @package notification
  */
 
 namespace underDEV\Notification\Defaults\Trigger\User;
@@ -8,8 +10,14 @@ namespace underDEV\Notification\Defaults\Trigger\User;
 use underDEV\Notification\Defaults\MergeTag;
 use underDEV\Notification\Abstracts;
 
+/**
+ * User profile updated trigger class
+ */
 class UserProfileUpdated extends Abstracts\Trigger {
 
+	/**
+	 * Constructor
+	 */
 	public function __construct() {
 
 		parent::__construct( 'wordpress/user_profile_updated', 'User profile updated' );
@@ -20,6 +28,11 @@ class UserProfileUpdated extends Abstracts\Trigger {
 
 	}
 
+	/**
+	 * Assigns action callback args to object
+	 *
+	 * @return void
+	 */
 	public function action() {
 
 		$this->date_format = get_option( 'date_format' );
@@ -30,6 +43,11 @@ class UserProfileUpdated extends Abstracts\Trigger {
 
 	}
 
+	/**
+	 * Registers attached merge tags
+	 *
+	 * @return void
+	 */
 	public function merge_tags() {
 
 		$this->add_merge_tag( new MergeTag\User\UserID( $this ) );
