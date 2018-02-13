@@ -22,3 +22,11 @@ if ( notification_get_setting( 'triggers/user/enable' ) ) {
 
 }
 
+// Media triggers.
+if ( notification_get_setting( 'triggers/media/enable' ) ) {
+
+	register_trigger( new Trigger\Media\MediaAdded() );
+	register_trigger( new Trigger\Media\MediaUpdated() );
+	register_trigger( new Trigger\Media\MediaTrashed() );
+
+}
