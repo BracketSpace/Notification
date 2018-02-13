@@ -13,7 +13,7 @@ use underDEV\Notification\Defaults\MergeTag\EmailTag;
 /**
  * Attachment author email merge tag class
  */
-class AttachmentAuthorName extends EmailTag {
+class AttachmentAuthorEmail extends EmailTag {
 
 	/**
 	 * Receives Trigger object from Trigger class
