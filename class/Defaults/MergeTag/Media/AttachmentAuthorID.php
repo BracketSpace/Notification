@@ -37,7 +37,7 @@ class AttachmentAuthorID extends IntegerTag {
 			'name'        => __( 'Attachment author ID' ),
 			'description' => __( 'Will be resolved to an attachment author ID' ),
 			'resolver'    => function() {
-				return $this->attachment->post_author;
+				return $this->trigger->attachment->post_author;
 			},
 		) );
 
@@ -50,7 +50,7 @@ class AttachmentAuthorID extends IntegerTag {
 	 */
 	public function check_requirements( ) {
 
-		return isset( $this->attachment->post_author );
+		return isset( $this->trigger->attachment->post_author );
 
 	}
 
