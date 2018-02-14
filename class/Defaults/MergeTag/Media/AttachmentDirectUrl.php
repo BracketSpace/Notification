@@ -31,7 +31,6 @@ class AttachmentDirectUrl extends UrlTag {
 
 		$this->trigger = $trigger;
 
-
 		parent::__construct( array(
 			'slug'        => 'attachment_direct_url',
 			'name'        => __( 'Attachment direct URL' ),
@@ -49,9 +48,7 @@ class AttachmentDirectUrl extends UrlTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-
 		return isset( $this->trigger->attachment->guid );
-
 	}
 
 }

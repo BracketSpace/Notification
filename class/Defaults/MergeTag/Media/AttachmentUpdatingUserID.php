@@ -31,7 +31,6 @@ class AttachmentUpdatingUserID extends IntegerTag {
 
 		$this->trigger = $trigger;
 
-
 		parent::__construct( array(
 			'slug'        => 'attachment_updating_user_ID',
 			'name'        => __( 'Attachment updating user ID' ),
@@ -49,9 +48,7 @@ class AttachmentUpdatingUserID extends IntegerTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-
 		return isset( $this->trigger->updating_user );
-
 	}
 
 }

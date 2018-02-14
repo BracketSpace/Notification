@@ -20,11 +20,11 @@ class MediaAdded extends Abstracts\Trigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/media_added', 'Media added' );
+		parent::__construct( 'wordpress/media_added',  __( 'Media added' ) );
 
 		$this->add_action( 'add_attachment', 10, 2 );
-		$this->set_group( 'Media' );
-		$this->set_description( 'Fires when new attachment is added' );
+		$this->set_group( __( 'Media' ) );
+		$this->set_description( __( 'Fires when new attachment is added' ) );
 
 	}
 
@@ -56,7 +56,6 @@ class MediaAdded extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorName( $this ) );
 		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorEmail( $this ) );
 		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorLogin( $this ) );
-
 
     }
 

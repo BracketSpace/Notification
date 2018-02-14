@@ -20,11 +20,11 @@ class MediaUpdated extends Abstracts\Trigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/media_updated', 'Media updated' );
+		parent::__construct( 'wordpress/media_updated',  __( 'Media updated' ) );
 
 		$this->add_action( 'attachment_updated', 10, 2 );
-		$this->set_group( 'Media' );
-		$this->set_description( 'Fires when attachment is updated' );
+		$this->set_group( __( 'Media' ) );
+		$this->set_description( __( 'Fires when attachment is updated' ) );
 
 	}
 
@@ -61,7 +61,6 @@ class MediaUpdated extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\Media\AttachmentUpdatingUserName( $this ) );
 		$this->add_merge_tag( new MergeTag\Media\AttachmentUpdatingUserEmail( $this ) );
 		$this->add_merge_tag( new MergeTag\Media\AttachmentUpdatingUserLogin( $this ) );
-
 
     }
 

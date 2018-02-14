@@ -31,7 +31,6 @@ class AttachmentAuthorEmail extends EmailTag {
 
 		$this->trigger = $trigger;
 
-
 		parent::__construct( array(
 			'slug'        => 'attachment_author_email',
 			'name'        => __( 'Attachment author email' ),
@@ -49,9 +48,7 @@ class AttachmentAuthorEmail extends EmailTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-
 		return isset( $this->trigger->attachment->post_author );
-
 	}
 
 }

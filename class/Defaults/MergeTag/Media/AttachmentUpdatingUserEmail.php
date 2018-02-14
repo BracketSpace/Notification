@@ -31,7 +31,6 @@ class AttachmentUpdatingUserEmail extends EmailTag {
 
 		$this->trigger = $trigger;
 
-
 		parent::__construct( array(
 			'slug'        => 'attachment_updating_user_email',
 			'name'        => __( 'Attachment updating user email' ),
@@ -49,9 +48,7 @@ class AttachmentUpdatingUserEmail extends EmailTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-
 		return isset( $this->trigger->updating_user );
-
 	}
 
 }

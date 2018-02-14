@@ -20,11 +20,11 @@ class MediaTrashed extends Abstracts\Trigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/media_trashed', 'Media trashed' );
+		parent::__construct( 'wordpress/media_trashed',  __( 'Media trashed' ) );
 
 		$this->add_action( 'delete_attachment', 10, 2 );
-		$this->set_group( 'Media' );
-		$this->set_description( 'Fires when attachment is removed' );
+		$this->set_group( __( 'Media' ) );
+		$this->set_description( __( 'Fires when attachment is removed' ) );
 
 	}
 

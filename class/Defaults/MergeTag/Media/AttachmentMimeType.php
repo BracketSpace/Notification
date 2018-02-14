@@ -31,7 +31,6 @@ class AttachmentMimeType extends StringTag {
 
 		$this->trigger = $trigger;
 
-
 		parent::__construct( array(
 			'slug'        => 'attachment_mime_type',
 			'name'        => __( 'Attachment MIME type' ),
@@ -49,9 +48,7 @@ class AttachmentMimeType extends StringTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-
 		return isset( $this->trigger->attachment->post_mime_type );
-
 	}
 
 }

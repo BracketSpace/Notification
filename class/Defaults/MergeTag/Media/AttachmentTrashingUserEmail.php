@@ -31,7 +31,6 @@ class AttachmentTrashingUserEmail extends EmailTag {
 
 		$this->trigger = $trigger;
 
-
 		parent::__construct( array(
 			'slug'        => 'attachment_trashing_user_name',
 			'name'        => __( 'Attachment trashing user email' ),
@@ -49,9 +48,7 @@ class AttachmentTrashingUserEmail extends EmailTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-
 		return isset( $this->trigger->trashing_user );
-
 	}
 
 }

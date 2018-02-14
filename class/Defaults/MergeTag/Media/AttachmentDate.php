@@ -31,7 +31,6 @@ class AttachmentDate extends StringTag {
 
 		$this->trigger = $trigger;
 
-
 		parent::__construct( array(
 			'slug'        => 'attachment_date',
 			'name'        => __( 'Attachment date' ),
@@ -49,9 +48,7 @@ class AttachmentDate extends StringTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-
 		return isset( $this->trigger->attachment->post_date );
-
 	}
 
 }

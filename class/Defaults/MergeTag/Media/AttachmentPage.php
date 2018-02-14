@@ -31,7 +31,6 @@ class AttachmentPage extends UrlTag {
 
 		$this->trigger = $trigger;
 
-
 		parent::__construct( array(
 			'slug'        => 'attachment_page_link',
 			'name'        => __( 'Attachment page link' ),
@@ -49,9 +48,7 @@ class AttachmentPage extends UrlTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-
 		return isset( $this->trigger->attachment->ID );
-
 	}
 
 }
