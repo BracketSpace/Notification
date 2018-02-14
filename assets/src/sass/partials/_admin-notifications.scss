@@ -91,6 +91,12 @@ body.post-type-notification {
 							text-align: center;
 							padding: 0;
 							color: #a5a5a5;
+
+							@media( max-width: 968px ) {
+								width: 100%;
+								height: 30px;
+								line-height: 30px;
+							}
 						}
 
 					}
@@ -119,6 +125,7 @@ body.post-type-notification {
 							&::before {
 								content: "\f182";
 								font: 400 20px/1 dashicons;
+								line-height: 30px;
 							}
 
 							&:hover {
