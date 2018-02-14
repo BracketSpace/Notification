@@ -24,7 +24,7 @@ class MediaUpdated extends Abstracts\Trigger {
 
 		$this->add_action( 'attachment_updated', 10, 2 );
 		$this->set_group( 'Media' );
-		$this->set_description( 'Fires when new attachment is updated' );
+		$this->set_description( 'Fires when attachment is updated' );
 
 	}
 

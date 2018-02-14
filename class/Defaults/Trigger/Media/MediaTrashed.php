@@ -24,7 +24,7 @@ class MediaTrashed extends Abstracts\Trigger {
 
 		$this->add_action( 'delete_attachment', 10, 2 );
 		$this->set_group( 'Media' );
-		$this->set_description( 'Fires when new attachment is removed' );
+		$this->set_description( 'Fires when attachment is removed' );
 
 	}
 
