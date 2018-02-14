@@ -43,6 +43,13 @@ class RepeaterField extends Field {
 	protected $data_attr = array();
 
 	/**
+	 * Row headers
+     *
+	 * @var array
+	 */
+	protected $headers = array();
+
+	/**
 	 * Field constructor
 	 *
 	 * @since [Next]
@@ -82,6 +89,8 @@ class RepeaterField extends Field {
 			$data_attr .= 'data-' . $key . '="' . esc_attr( $value ) . '" ';
 		}
 
+		$this->headers = array();
+
 		$html = '<table class="fields-repeater  ' . $this->css_class() . '" id="' . $this->get_id() . '" ' . $data_attr . '>';
 
 			$html .= '<tr class="row header">';
@@ -98,6 +107,7 @@ class RepeaterField extends Field {
 					$description = $sub_field->get_description();
 
 					$html .= '<th class="' . esc_attr( $sub_field->get_raw_name() ) . '">';
+						$this->headers[ $sub_field->get_raw_name() ] = $sub_field->get_label();
 						$html .= esc_html( $sub_field->get_label() );
 						if ( ! empty( $description ) ) {
 							$html .= '<small class="description">' . $description . '</small>';
@@ -160,7 +170,12 @@ class RepeaterField extends Field {
 					$html .= $sub_field->field();
 				} else {
 					$html .= '<td class="subfield ' . esc_attr( $sub_field->get_raw_name() ) . '">';
-						$html .= $sub_field->field();
+						if ( isset( $this->headers[ $sub_field->get_raw_name() ] ) ) {
+							$html .= '<div class="row-header">' . $this->headers[ $sub_field->get_raw_name() ] . '</div>';
+						}
+						$html .= '<div class="row-field">';
+							$html .= $sub_field->field();
+						$html .= '</div>';
 					$html .= '</td>';
 				}
 

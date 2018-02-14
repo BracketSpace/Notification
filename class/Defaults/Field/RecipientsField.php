@@ -149,11 +149,16 @@ class RecipientsField extends RepeaterField {
 					}
 
 					$html .= '<td class="subfield ' . esc_attr( $sub_field->get_raw_name() ) . '">';
-						$html .= $sub_field->field();
-						$description = $sub_field->get_description();
-						if ( ! empty( $description ) ) {
-							$html .= '<small class="description">' . $description . '</small>';
+						if ( isset( $this->headers[ $sub_field->get_raw_name() ] ) ) {
+							$html .= '<div class="row-header">' . $this->headers[ $sub_field->get_raw_name() ] . '</div>';
 						}
+						$html .= '<div class="row-field">';
+							$html .= $sub_field->field();
+							$description = $sub_field->get_description();
+							if ( ! empty( $description ) ) {
+								$html .= '<small class="description">' . $description . '</small>';
+							}
+						$html .= '</div>';
 					$html .= '</td>';
 				}
 
