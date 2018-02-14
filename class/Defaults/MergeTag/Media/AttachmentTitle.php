@@ -17,8 +17,6 @@ class AttachmentTitle extends StringTag {
 
 	/**
 	 * Constructor
-	 *
-	 * @param object $trigger Trigger object to access data from.
 	 */
 	public function __construct() {
 
