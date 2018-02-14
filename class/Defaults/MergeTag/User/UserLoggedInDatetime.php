@@ -19,7 +19,7 @@ class UserLoggedInDatetime extends StringTag {
 	 *
 	 * @var private object $trigger
 	 */
-    private $trigger;
+    protected $trigger;
 
     /**
      * Constructor

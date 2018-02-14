@@ -190,6 +190,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * @return $this
 	 */
 	public function add_merge_tag( Interfaces\Taggable $merge_tag ) {
+		$merge_tag->set_trigger( $this );
 		array_push( $this->merge_tags, $merge_tag );
 		return $this;
 	}

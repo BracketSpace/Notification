@@ -19,7 +19,7 @@ class UserID extends IntegerTag {
 	 *
 	 * @var private object $trigger
 	 */
-    private $trigger;
+    protected $trigger;
 
     /**
      * Constructor

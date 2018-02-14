@@ -19,37 +19,37 @@ class UserNicename extends StringTag {
 	 *
 	 * @var private object $trigger
 	 */
-    private $trigger;
+	protected $trigger;
 
-    /**
-     * Constructor
-     *
-     * @param object $trigger Trigger object to access data from.
-     */
-    public function __construct( $trigger ) {
+	/**
+	 * Constructor
+	 *
+	 * @param object $trigger Trigger object to access data from.
+	 */
+	public function __construct( $trigger ) {
 
-        $this->trigger = $trigger;
+		$this->trigger = $trigger;
 
-    	parent::__construct( array(
+		parent::__construct( array(
 			'slug'        => 'user_nicename',
 			'name'        => __( 'User nicename' ),
 			'description' => __( 'Will be resolved to a user nicename' ),
 			'resolver'    => function() {
 				return $this->trigger->user_object->user_nicename;
 			}
-        ) );
+		) );
 
-    }
+	}
 
-    /**
-     * Function for checking requirements
-     *
-     * @return boolean
-     */
-    public function check_requirements( ) {
+	/**
+	 * Function for checking requirements
+	 *
+	 * @return boolean
+	 */
+	public function check_requirements( ) {
 
-        return isset( $this->trigger->user_object->user_nicename );
+		return isset( $this->trigger->user_object->user_nicename );
 
-    }
+	}
 
 }

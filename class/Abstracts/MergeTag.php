@@ -44,6 +44,13 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
     protected $resolved = false;
 
     /**
+     * Trigger object, the Merge tag is assigned to
+     *
+     * @var object
+     */
+    protected $trigger;
+
+    /**
      * Merge tag constructor
      *
      * @since [Next]
@@ -139,6 +146,26 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 	 */
     public function get_value() {
     	return apply_filters( 'notification/merge_tag/' . $this->get_slug() . '/value', $this->value, $this );
+    }
+
+    /**
+     * Sets trigger object
+     *
+     * @since [Next]
+     * @param Interfaces\Triggerable $trigger Trigger object.
+     */
+    public function set_trigger( Interfaces\Triggerable $trigger ) {
+    	$this->trigger = $trigger;
+    }
+
+    /**
+     * Gets trigger object
+     *
+     * @since [Next]
+     * @return Trigger object.
+     */
+    public function get_trigger() {
+    	return $this->trigger;
     }
 
 }

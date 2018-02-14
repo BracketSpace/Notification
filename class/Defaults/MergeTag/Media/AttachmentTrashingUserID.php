@@ -16,20 +16,9 @@ use underDEV\Notification\Defaults\MergeTag\IntegerTag;
 class AttachmentTrashingUserID extends IntegerTag {
 
 	/**
-	 * Receives Trigger object from Trigger class
-	 *
-	 * @var private object $trigger
-	 */
-	private $trigger;
-
-	/**
 	 * Constructor
-	 *
-	 * @param object $trigger Trigger object to access data from.
 	 */
-	public function __construct( $trigger ) {
-
-		$this->trigger = $trigger;
+	public function __construct() {
 
 		parent::__construct( array(
 			'slug'        => 'attachment_trashing_user_ID',
