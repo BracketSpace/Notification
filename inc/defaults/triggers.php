@@ -7,10 +7,6 @@
 
 use underDEV\Notification\Defaults\Trigger;
 
-// Test trigger
-// @todo remove.
-register_trigger( new Trigger\PostUpdated() );
-
 // User triggers.
 if ( notification_get_setting( 'triggers/user/enable' ) ) {
 
