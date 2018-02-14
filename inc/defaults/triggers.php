@@ -30,3 +30,17 @@ if ( notification_get_setting( 'triggers/media/enable' ) ) {
 	register_trigger( new Trigger\Media\MediaTrashed() );
 
 }
+
+//Comment triggers.
+if ( notification_get_setting( 'triggers/comment/types' ) ) {
+
+	$comment_types = notification_get_setting( 'triggers/comment/types' );
+
+	foreach ( $comment_types as $comment_type ) {
+
+		register_trigger( new Trigger\Comment\CommentAdded( $comment_type ) );
+		register_trigger( new Trigger\Comment\CommentEdited( $comment_type ) );
+
+	}
+
+}
