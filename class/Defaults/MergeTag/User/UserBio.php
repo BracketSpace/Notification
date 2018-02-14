@@ -9,27 +9,15 @@ namespace underDEV\Notification\Defaults\MergeTag\User;
 
 use underDEV\Notification\Defaults\MergeTag\StringTag;
 
-
 /**
  * User Bio merge tag class
  */
 class UserBio extends StringTag {
 
-	/**
-	 * Receives Trigger object from Trigger class
-	 *
-	 * @var private object $trigger
-	 */
-    protected $trigger;
-
     /**
      * Constructor
-     *
-     * @param object $trigger Trigger object to access data from.
      */
-    public function __construct( $trigger ) {
-
-        $this->trigger = $trigger;
+    public function __construct() {
 
     	parent::__construct( array(
 			'slug'        => 'user_bio',
@@ -48,9 +36,7 @@ class UserBio extends StringTag {
      * @return boolean
      */
     public function check_requirements( ) {
-
         return isset( $this->trigger->user_object->description );
-
     }
 
 }

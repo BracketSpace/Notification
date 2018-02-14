@@ -46,16 +46,16 @@ class MediaAdded extends Abstracts\Trigger {
 	 */
 	public function merge_tags() {
 
-		$this->add_merge_tag( new MergeTag\Media\AttachmentID( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentPage( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentTitle( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentDate( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentMimeType( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentDirectUrl( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorID( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorName( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorEmail( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorLogin( $this ) );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentID() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentPage() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentTitle() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentDate() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentMimeType() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentDirectUrl() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorID() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorName() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorEmail() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorLogin() );
 
     }
 
