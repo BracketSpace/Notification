@@ -7,6 +7,8 @@
 
 namespace underDEV\Notification\Admin;
 
+use underDEV\Notification\Utils\View;
+
 /**
  * PostType class
  */
@@ -18,11 +20,12 @@ class PostType {
 	 * @since [Next]
 	 * @param Trigger       $trigger       Trigger class.
 	 * @param Notifications $notifications Notifications class.
+	 * @param View          $view          View class.
 	 */
-	public function __construct( Trigger $trigger, Notifications $notifications ) {
+	public function __construct( Trigger $trigger, Notifications $notifications, View $view ) {
 		$this->trigger       = $trigger;
 		$this->notifications = $notifications;
-		add_filter( 'notification/admin/allow_metabox/submitdiv', '__return_true' );
+		$this->view          = $view;
 	}
 
 	/**
@@ -108,6 +111,64 @@ class PostType {
     	echo '</div>';
 
     	do_action( 'notitication/admin/notifications', $post );
+
+	}
+
+	/**
+	 * Adds metabox with Save button
+     *
+	 * @return void
+	 */
+	public function add_save_meta_box() {
+
+		add_meta_box(
+            'notification_save',
+            __( 'Save', 'notification' ),
+            array( $this, 'save_metabox' ),
+            'notification',
+            'side',
+            'high'
+        );
+
+		// enable metabox.
+        add_filter( 'notification/admin/allow_metabox/notification_save', '__return_true' );
+
+	}
+
+	/**
+	 * Saves post status in relation to on/off switch
+	 *
+	 * @since  [Next]
+	 * @param  array $data    post data.
+	 * @param  array $postarr saved data.
+	 * @return array
+	 */
+	public function save_notification_status( $data, $postarr ) {
+
+		if ( $data['post_type'] != 'notification' ) {
+			return $data;
+		}
+
+		if ( isset( $postarr['onoffswitch'] ) && $postarr['onoffswitch'] == '1' ) {
+			$data['post_status'] = 'publish';
+		} else {
+			$data['post_status'] = 'draft';
+		}
+
+		return $data;
+
+	}
+
+	/**
+	 * Prints Save metabox
+     *
+     * @param  object $post current WP_Post.
+	 * @return void
+	 */
+	public function save_metabox( $post ) {
+
+		$this->view->set_var( 'enabled', $post->post_status !== 'draft' );
+		$this->view->get_view( 'save-metabox' );
 
 	}
 

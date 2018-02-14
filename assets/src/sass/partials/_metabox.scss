@@ -23,10 +23,27 @@
 
 body.post-type-notification {
 
-	#submitdiv {
+	#notification_save {
 
-		#visibility {
-			display: none;
+		.inside {
+		    margin: 0;
+		    padding: 0;
+
+		    .misc-pub-section {
+		    	padding: 10px;
+		    	overflow: auto;
+
+		    	.row-label {
+		    		float: left;
+		    		line-height: 34px;
+		    	}
+
+		    	.onoffswitch {
+		    		float: right;
+		    	}
+
+		    }
+
 		}
 
 	}
