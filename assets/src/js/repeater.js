@@ -34,15 +34,27 @@
 
 		// Remove row
 
-		$( '.fields-repeater' ).on( 'click', '.row:not(.header):not(.model) .handle', function() {
+		function remove_row( $remove_button ) {
 
-			var $repeater = $( this ).parents( '.fields-repeater' ).first();
+			var $repeater = $remove_button.parents( '.fields-repeater' ).first();
 
-			$( this ).parents( '.row' ).first().animate( { opacity: 0 }, 400, 'linear', function() {
-	            $( this ).remove();
+			$remove_button.parents( '.row' ).first().animate( { opacity: 0 }, 400, 'linear', function() {
+				$( this ).remove();
 	            recalculate_rows( $repeater );
 	            wp.hooks.doAction( 'notification.notification.repeater.row.removed', $repeater );
 	        } );
+
+		}
+
+		$( '.fields-repeater' ).on( 'click', '.row:not(.header):not(.model) .handle', function() {
+
+			var $remove_button = $( this );
+
+			if ( $( window ).width() > 768 ) {
+				remove_row( $remove_button );
+			} else if ( window.confirm( notification.i18n.remove_confirmation ) ) {
+				remove_row( $remove_button );
+			}
 
 		} );
 
