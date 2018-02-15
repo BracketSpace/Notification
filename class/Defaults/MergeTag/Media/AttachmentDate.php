@@ -16,16 +16,19 @@ use underDEV\Notification\Defaults\MergeTag\StringTag;
 class AttachmentDate extends StringTag {
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
+     * Constructor
+     *
+     * @param string $date_time_format format for date example.
+     */
+    public function __construct( $date_time_format = 'Y-m-d H:i:s' ) {
 
 		parent::__construct( array(
-			'slug'        => 'attachment_date',
-			'name'        => __( 'Attachment date' ),
-			'description' => __( '2018-02-14 15:36:00' ),
+			'slug'        => 'attachment_creation_date',
+			'name'        => __( 'Attachment creation date' ),
+			'description' => date_i18n( $date_time_format ),
+			'example'     => true,
 			'resolver'    => function() {
-				return $this->attachment->post_date;
+				return date_i18n( $this->trigger->date_time_format, strtotime( $this->attachment->post_date ) );
 			},
 		) );
 

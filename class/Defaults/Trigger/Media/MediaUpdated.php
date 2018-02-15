@@ -20,6 +20,10 @@ class MediaUpdated extends Abstracts\Trigger {
 	 */
 	public function __construct() {
 
+		$this->date_format      = get_option( 'date_format' );
+		$this->time_format      = get_option( 'time_format' );
+		$this->date_time_format = $this->date_format . ' ' . $this->time_format;
+
 		parent::__construct( 'wordpress/media_updated',  __( 'Media updated' ) );
 
 		$this->add_action( 'attachment_updated', 10, 2 );
@@ -51,7 +55,7 @@ class MediaUpdated extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\Media\AttachmentID() );
 		$this->add_merge_tag( new MergeTag\Media\AttachmentPage() );
 		$this->add_merge_tag( new MergeTag\Media\AttachmentTitle() );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentDate() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentDate( $this->date_time_format ) );
 		$this->add_merge_tag( new MergeTag\Media\AttachmentMimeType() );
 		$this->add_merge_tag( new MergeTag\Media\AttachmentDirectUrl() );
 

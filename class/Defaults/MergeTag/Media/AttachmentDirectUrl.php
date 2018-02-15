@@ -24,6 +24,7 @@ class AttachmentDirectUrl extends UrlTag {
 			'slug'        => 'attachment_direct_url',
 			'name'        => __( 'Attachment direct URL' ),
 			'description' => __( 'http://example.com/wp-content/uploads/2018/02/forest-landscape.jpg' ),
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->attachment->guid;
 			},

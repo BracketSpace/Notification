@@ -23,7 +23,8 @@ class AttachmentID extends IntegerTag {
 		parent::__construct( array(
 			'slug'        => 'attachment_ID',
 			'name'        => __( 'Attachment ID' ),
-			'description' => __( '35' ),
+			'description' => '35',
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->attachment->ID;
 			},

@@ -24,6 +24,7 @@ class AttachmentTitle extends StringTag {
 			'slug'        => 'attachment_title',
 			'name'        => __( 'Attachment title' ),
 			'description' => __( 'Forest landscape' ),
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->attachment->post_title;
 			},
