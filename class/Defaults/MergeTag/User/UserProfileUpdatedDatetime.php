@@ -16,15 +16,18 @@ class UserProfileUpdatedDatetime extends StringTag {
 
     /**
      * Constructor
+     *
+     * @param string $date_time_format format for date example.
      */
-    public function __construct() {
+    public function __construct( $date_time_format = 'Y-m-d H:i:s' ) {
 
     	parent::__construct( array(
 			'slug'        => 'user_profile_updated_datetime',
 			'name'        => __( 'User profile update time' ),
-			'description' => __( '2018-02-14 15:36:00' ),
+			'description' => date_i18n( $date_time_format ),
+			'example'     => true,
 			'resolver'    => function() {
-				return date( $this->trigger->date_format . ' ' . $this->trigger->time_format );
+				return date_i18n( $this->trigger->date_time_format );
 			},
         ) );
 

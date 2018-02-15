@@ -20,6 +20,10 @@ class UserLogout extends Abstracts\Trigger {
 	 */
 	public function __construct() {
 
+		$this->date_format      = get_option( 'date_format' );
+		$this->time_format      = get_option( 'time_format' );
+		$this->date_time_format = $this->date_format . ' ' . $this->time_format;
+
 		parent::__construct( 'wordpress/user_logout', __( 'User logout' ) );
 
 		$this->add_action( 'wp_logout', 10, 2 );
@@ -35,8 +39,6 @@ class UserLogout extends Abstracts\Trigger {
 	 */
 	public function action() {
 
-		$this->date_format = get_option( 'date_format' );
-		$this->time_format = get_option( 'time_format' );
 		$this->user_id     = get_current_user_id();
 		$this->user_object = get_userdata( $this->user_id );
 		$this->user_meta   = get_user_meta( $this->user_id );
@@ -56,10 +58,10 @@ class UserLogout extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\User\UserNicename() );
         $this->add_merge_tag( new MergeTag\User\UserFirstName() );
 		$this->add_merge_tag( new MergeTag\User\UserLastName() );
-		$this->add_merge_tag( new MergeTag\User\UserRegistered() );
+		$this->add_merge_tag( new MergeTag\User\UserRegistered( $this->date_time_format ) );
 		$this->add_merge_tag( new MergeTag\User\UserRole() );
 		$this->add_merge_tag( new MergeTag\User\UserBio() );
-		$this->add_merge_tag( new MergeTag\User\UserLogoutDatetime() );
+		$this->add_merge_tag( new MergeTag\User\UserLogoutDatetime( $this->date_time_format ) );
 
     }
 

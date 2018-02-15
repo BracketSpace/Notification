@@ -23,6 +23,7 @@ class UserNicename extends StringTag {
 			'slug'        => 'user_nicename',
 			'name'        => __( 'User nicename' ),
 			'description' => __( 'Johhnie' ),
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->user_object->user_nicename;
 			}

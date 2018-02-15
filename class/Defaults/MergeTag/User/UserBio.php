@@ -23,6 +23,7 @@ class UserBio extends StringTag {
 			'slug'        => 'user_bio',
 			'name'        => __( 'User bio' ),
 			'description' => __( 'Developer based in Ontario, Canada' ),
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->user_object->description;
 			},

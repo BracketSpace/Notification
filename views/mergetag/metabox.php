@@ -23,12 +23,17 @@ do_action( 'notification/metabox/trigger/tags/before', $this->get_var( 'trigger'
 				?
 				<div class="description">
 					<div class="description-container">
-						<label>
-							<?php _e( 'Example:' ); ?>
-						</label>
+						<?php if ( $tag->is_description_example() ): ?>
+							<label>
+								<?php _e( 'Example:' ); ?>
+							</label>
+						<?php endif ?>
 						<div class="description-content">
 							<?php echo $tag->get_description(); ?>
 						</div>
+						<?php if ( $tag->is_description_example() ): ?>
+							<i>(<?php echo $tag->get_value_type(); ?>)</i>
+						<?php endif ?>
 					</div>
 				</div>
 			</span>

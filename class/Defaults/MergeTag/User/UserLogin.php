@@ -23,6 +23,7 @@ class UserLogin extends StringTag {
 			'slug'        => 'user_login',
 			'name'        => __( 'User login' ),
 			'description' => __( 'johndoe' ),
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->user_object->user_login;
 			},

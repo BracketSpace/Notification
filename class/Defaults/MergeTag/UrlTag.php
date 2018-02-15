@@ -14,6 +14,13 @@ use underDEV\Notification\Abstracts\MergeTag;
  */
 class UrlTag extends MergeTag {
 
+	/**
+     * MergeTag value type
+     *
+     * @var string
+     */
+    protected $value_type = 'url';
+
     /**
      * Check the merge tag value type
      *

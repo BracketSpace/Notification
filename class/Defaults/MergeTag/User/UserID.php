@@ -23,6 +23,7 @@ class UserID extends IntegerTag {
 			'slug'        => 'user_ID',
 			'name'        => __( 'User ID' ),
 			'description' => __( '25' ),
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->user_object->ID;
 			}

@@ -49,8 +49,9 @@
 				.description {
 					position: absolute;
 					visibility: hidden;
-					right: 0;
-					top: 100%;
+					box-shadow: 0 0 8px #eaeaea;
+					right: -3px;
+				    top: 160%;
 					z-index: 15;
 					min-width: 200px;
 					text-align: left;
