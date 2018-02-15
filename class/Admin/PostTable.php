@@ -20,12 +20,17 @@ class PostTable {
 	 */
 	public function table_columns( $columns ) {
 
-		$date_column = $columns['date'];
+		$date_column  = $columns['date'];
+		$title_column = $columns['title'];
 		unset( $columns['date'] );
+		unset( $columns['title'] );
 
 		// Custom columns.
-		$columns['trigger'] = __( 'Trigger', 'notification' );
-		$columns['date']    = $date_column;
+		$columns['switch']        = __( 'Status', 'notification' );
+		$columns['title']         = $title_column;
+		$columns['trigger']       = __( 'Trigger', 'notification' );
+		$columns['notifications'] = __( 'Notifications', 'notification' );
+		$columns['date']          = $date_column;
 
 		return $columns;
 
@@ -43,14 +48,35 @@ class PostTable {
 		switch ( $column ) {
 			case 'trigger':
 				$trigger_slug = get_post_meta( $post_id, '_trigger', true );
+				$trigger      = notification_get_single_trigger( $trigger_slug );
 
-				if ( empty( $trigger_slug ) ) {
+				if ( $trigger === false ) {
 					_e( 'No trigger selected', 'notification' );
 				} else {
-					try {
-						echo $trigger_slug;
-					} catch ( \Exception $e ) {
-						echo $e->getMessage();
+					echo $trigger->get_name();
+				}
+				break;
+
+			case 'switch':
+				$checked = get_post_status( $post_id ) == 'draft' ? '0' : '1';
+
+				echo '<div class="onoffswitch" data-postid="' . $post_id . '" data-nonce="' . wp_create_nonce( 'change_notification_status_' . $post_id ) . '">';
+				    echo '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" value="1" id="onoffswitch-' . $post_id . '" ' . checked( $checked, '1', false ) . '>';
+				    echo '<label class="onoffswitch-label" for="onoffswitch-' . $post_id . '">';
+				        echo '<span class="onoffswitch-inner"></span>';
+				        echo '<span class="onoffswitch-switch"></span>';
+				    echo '</label>';
+				echo '</div>';
+				break;
+
+			case 'notifications':
+				$enabled_notifications = (array) get_post_meta( $post_id, '_enabled_notification', false );
+
+				foreach ( $enabled_notifications as $notification_slug ) {
+					$notification = notification_get_single_notification( $notification_slug );
+					if ( ! empty( $notification ) ) {
+						echo $notification->get_name();
+						echo '<br>';
 					}
 				}
 				break;

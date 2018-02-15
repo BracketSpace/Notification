@@ -145,7 +145,9 @@ class PostType {
 	 */
 	public function save_notification_status( $data, $postarr ) {
 
-		if ( $data['post_type'] != 'notification' || $postarr['post_status'] == 'trash' ) {
+		if ( $data['post_type'] != 'notification' ||
+			$postarr['post_status'] == 'trash' ||
+			( isset( $_POST['action'] ) && $_POST['action'] == 'change_notification_status' ) ) {
 			return $data;
 		}
 
