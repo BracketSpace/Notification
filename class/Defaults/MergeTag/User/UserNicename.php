@@ -15,13 +15,20 @@ use underDEV\Notification\Defaults\MergeTag\StringTag;
 class UserNicename extends StringTag {
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
+     * Constructor
+     *
+     * @param string $slug merge tag slug.
+     * @param string $name merge tag name.
+     */
+    public function __construct( $slug = 'user_nicename', $name = '' ) {
 
-		parent::__construct( array(
-			'slug'        => 'user_nicename',
-			'name'        => __( 'User nicename' ),
+    	if ( empty( $name ) ) {
+    		$name = __( 'User nicename' );
+    	}
+
+    	parent::__construct( array(
+			'slug'        => $slug,
+			'name'        => $name,
 			'description' => __( 'Johhnie' ),
 			'example'     => true,
 			'resolver'    => function() {
