@@ -22,7 +22,7 @@ class CommentSpammed extends Abstracts\Trigger {
 
 		parent::__construct( 'wordpress/comment_' . $comment_type . '_spammed', ucfirst( $comment_type ) . ' spammed' );
 
-		$this->add_action( 'comment_spam_' . $comment_type, 10, 2 );
+		$this->add_action( 'spammed_comment', 10, 2 );
 		$this->set_group( sprintf( __( '%s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
 		$this->set_description( 'Fires when new ' . $comment_type . ' is spammed' );
 
@@ -35,7 +35,8 @@ class CommentSpammed extends Abstracts\Trigger {
 	 */
 	public function action() {
 
-
+		$this->comment_status = $this->callback_args[0];
+		$this->comment = $this->callback_args[1];
 
 
 
