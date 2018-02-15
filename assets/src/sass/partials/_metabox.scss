@@ -8,9 +8,96 @@
 
 		li {
 
-			code {
+			position: relative;
+			width: 100%;
+			margin-bottom: 20px;
+
+			.intro {
+				width: calc(100% - 30px);
+				label {
+					display: block;
+					font-weight: bold;
+					margin-bottom: 5px;
+				}
+
+				code {
+					cursor: pointer;
+					word-wrap: nowrap;
+				}
+			}
+
+
+			.question-mark {
+				font-size: 15px;
+				position: absolute;
+				float: right;
+				right: 0;
+				top: 10px;
+				border-radius: 50%;
+				background-color: #666;
+				color: #ffffff;
+				width: 20px;
+				height: 20px;
+				text-align: center;
+				line-height: 20px;
 				cursor: pointer;
-				word-wrap: nowrap;
+
+				.description {
+					position: absolute;
+					visibility: hidden;
+					right: 0;
+					top: 100%;
+					z-index: 15;
+					min-width: 200px;
+					text-align: left;
+
+					.description-container {
+						border: 1px solid #e5e5e5;
+	    				background: #fff;
+	    				color: #333;
+						padding: 10px;
+						font-size: 12px;
+						line-height: 16px;
+						position: relative;
+
+						&:after, &:before {
+							bottom: 100%;
+							right: 0;
+							border: solid transparent;
+							content: " ";
+							height: 0;
+							width: 0;
+							position: absolute;
+							pointer-events: none;
+							z-index: 18;
+						}
+
+						&:after {
+							border-color: rgba(229, 229, 229, 0);
+							border-bottom-color: #ffffff;
+							border-width: 9px;
+							margin-left: -9px;
+							margin-right: 2px;
+						}
+						&:before {
+							border-color: rgba(229, 229, 229, 0);
+							border-bottom-color: #e5e5e5;
+							border-width: 11px;
+							margin-left: -11px;
+						}
+					}
+
+					label {
+						font-weight: bold;
+					}
+				}
+
+				&:hover {
+
+					.description {
+						visibility: visible;
+					}
+				}
 			}
 
 		}

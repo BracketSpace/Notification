@@ -23,7 +23,7 @@ class AttachmentUpdatingUserEmail extends EmailTag {
 		parent::__construct( array(
 			'slug'        => 'attachment_updating_user_email',
 			'name'        => __( 'Attachment updating user email' ),
-			'description' => __( 'Will be resolved to an attachment updating user email' ),
+			'description' => __( 'john.doe@example.com' ),
 			'resolver'    => function() {
 				return get_the_author_meta( 'user_email', $this->trigger->updating_user );
 			},

@@ -22,7 +22,7 @@ class UserLogoutDatetime extends StringTag {
     	parent::__construct( array(
 			'slug'        => 'user_logout_datetime',
 			'name'        => __( 'User logout time' ),
-			'description' => __( 'Will be resolved to a user logout time' ),
+			'description' => __( '2018-02-14 15:36:00' ),
 			'resolver'    => function() {
 				return date_i18n( $this->trigger->date_format . ' ' . $this->trigger->time_format );
 			},

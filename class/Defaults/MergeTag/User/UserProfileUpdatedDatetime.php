@@ -22,7 +22,7 @@ class UserProfileUpdatedDatetime extends StringTag {
     	parent::__construct( array(
 			'slug'        => 'user_profile_updated_datetime',
 			'name'        => __( 'User profile update time' ),
-			'description' => __( 'Will be resolved to a user profile update time' ),
+			'description' => __( '2018-02-14 15:36:00' ),
 			'resolver'    => function() {
 				return date( $this->trigger->date_format . ' ' . $this->trigger->time_format );
 			},

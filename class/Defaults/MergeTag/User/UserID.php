@@ -22,7 +22,7 @@ class UserID extends IntegerTag {
     	parent::__construct( array(
 			'slug'        => 'user_ID',
 			'name'        => __( 'User ID' ),
-			'description' => __( 'Will be resolved to a user ID' ),
+			'description' => __( '25' ),
 			'resolver'    => function() {
 				return $this->trigger->user_object->ID;
 			}

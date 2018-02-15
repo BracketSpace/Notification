@@ -22,7 +22,7 @@ class UserDeletedDatetime extends StringTag {
     	parent::__construct( array(
 			'slug'        => 'user_deleted_datetime',
 			'name'        => __( 'User deletion time' ),
-			'description' => __( 'Will be resolved to a user deletion time' ),
+			'description' => __( '2018-02-14 15:36:00' ),
 			'resolver'    => function() {
 				return date_i18n( $this->trigger->date_format . ' ' . $this->trigger->time_format );
 			},

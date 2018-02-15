@@ -22,7 +22,7 @@ class UserRole extends StringTag {
 		parent::__construct( array(
 			'slug'        => 'user_role',
 			'name'        => __( 'User role' ),
-			'description' => __( 'Will be resolved to a user role (Administrator, Subscriber etc.) ' ),
+			'description' => __( 'Subscriber' ),
 			'resolver'    => function() {
 				$roles = array_map( function ( $role ) {
 					$role_object = get_role( $role );

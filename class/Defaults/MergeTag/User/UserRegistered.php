@@ -22,7 +22,7 @@ class UserRegistered extends StringTag {
 		parent::__construct( array(
 			'slug'        => 'user_registered_datetime',
 			'name'        => __( 'User registration date' ),
-			'description' => __( 'Will be resolved to a user registration date' ),
+			'description' => __( '2018-02-14 15:36:00' ),
 			'resolver'    => function() {
 				return $this->trigger->user_object->user_registered;
 			}

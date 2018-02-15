@@ -22,7 +22,7 @@ class UserLastName extends StringTag {
 		parent::__construct( array(
 			'slug'        => 'user_last_name',
 			'name'        => __( 'User last name' ),
-			'description' => __( 'Will be resolved to a user last name.' ),
+			'description' => __( 'Doe' ),
 			'resolver'    => function() {
 				return $this->trigger->user_object->last_name;
 			},

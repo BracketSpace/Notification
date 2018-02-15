@@ -23,7 +23,7 @@ class AttachmentDirectUrl extends UrlTag {
 		parent::__construct( array(
 			'slug'        => 'attachment_direct_url',
 			'name'        => __( 'Attachment direct URL' ),
-			'description' => __( 'Will be resolved to an attachment direct URL' ),
+			'description' => __( 'http://example.com/wp-content/uploads/2018/02/forest-landscape.jpg' ),
 			'resolver'    => function() {
 				return $this->trigger->attachment->guid;
 			},

@@ -23,7 +23,7 @@ class AttachmentAuthorID extends IntegerTag {
 		parent::__construct( array(
 			'slug'        => 'attachment_author_ID',
 			'name'        => __( 'Attachment author ID' ),
-			'description' => __( 'Will be resolved to an attachment author ID' ),
+			'description' => __( '25' ),
 			'resolver'    => function() {
 				return $this->trigger->attachment->post_author;
 			},
