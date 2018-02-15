@@ -13,7 +13,7 @@
 
 			wp.hooks.doAction( 'notification.merge_tag.copied', tag, $code );
 
-			$code.text( notification.copied );
+			$code.text( notification.i18n.copied );
 
 			setTimeout(function() {
 				$code.text( tag );
