@@ -20,11 +20,11 @@ class MediaTrashed extends Abstracts\Trigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/media_trashed', 'Media trashed' );
+		parent::__construct( 'wordpress/media_trashed',  __( 'Media trashed' ) );
 
 		$this->add_action( 'delete_attachment', 10, 2 );
-		$this->set_group( 'Media' );
-		$this->set_description( 'Fires when new attachment is removed' );
+		$this->set_group( __( 'Media' ) );
+		$this->set_description( __( 'Fires when attachment is removed' ) );
 
 	}
 
@@ -47,20 +47,20 @@ class MediaTrashed extends Abstracts\Trigger {
 	 */
 	public function merge_tags() {
 
-		$this->add_merge_tag( new MergeTag\Media\AttachmentID( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentPage( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentTitle( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentDate( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentMimeType( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentDirectUrl( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorID( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorName( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorEmail( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorLogin( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentTrashingUserID( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentTrashingUserName( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentTrashingUserEmail( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentTrashingUserLogin( $this ) );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentID() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentPage() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentTitle() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentDate() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentMimeType() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentDirectUrl() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorID() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorName() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorEmail() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorLogin() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentTrashingUserID() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentTrashingUserName() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentTrashingUserEmail() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentTrashingUserLogin() );
 
     }
 

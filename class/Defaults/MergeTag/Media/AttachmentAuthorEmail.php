@@ -16,21 +16,9 @@ use underDEV\Notification\Defaults\MergeTag\EmailTag;
 class AttachmentAuthorEmail extends EmailTag {
 
 	/**
-	 * Receives Trigger object from Trigger class
-	 *
-	 * @var private object $trigger
-	 */
-	private $trigger;
-
-	/**
 	 * Constructor
-	 *
-	 * @param object $trigger Trigger object to access data from.
 	 */
-	public function __construct( $trigger ) {
-
-		$this->trigger = $trigger;
-
+	public function __construct() {
 
 		parent::__construct( array(
 			'slug'        => 'attachment_author_email',
@@ -49,9 +37,7 @@ class AttachmentAuthorEmail extends EmailTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-
 		return isset( $this->trigger->attachment->post_author );
-
 	}
 
 }

@@ -14,21 +14,10 @@ use underDEV\Notification\Defaults\MergeTag\StringTag;
  */
 class UserFirstName extends StringTag {
 
-	/**
-	 * Receives Trigger object from Trigger class
-	 *
-	 * @var private object $trigger
-	 */
-    private $trigger;
-
     /**
      * Constructor
-     *
-     * @param object $trigger Trigger object to access data from.
      */
-    public function __construct( $trigger ) {
-
-        $this->trigger = $trigger;
+    public function __construct() {
 
     	parent::__construct( array(
 			'slug'        => 'user_first_name',
@@ -47,9 +36,7 @@ class UserFirstName extends StringTag {
      * @return boolean
      */
     public function check_requirements( ) {
-
         return isset( $this->trigger->user_object->first_name );
-
     }
 
 }

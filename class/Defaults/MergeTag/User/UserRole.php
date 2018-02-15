@@ -15,22 +15,11 @@ use underDEV\Notification\Defaults\MergeTag\StringTag;
 class UserRole extends StringTag {
 
 	/**
-	 * Receives Trigger object from Trigger class
-	 *
-	 * @var private object $trigger
+	 * Constructor
 	 */
-    private $trigger;
+	public function __construct() {
 
-    /**
-     * Constructor
-     *
-     * @param object $trigger Trigger object to access data from.
-     */
-    public function __construct( $trigger ) {
-
-        $this->trigger = $trigger;
-
-    	parent::__construct( array(
+		parent::__construct( array(
 			'slug'        => 'user_role',
 			'name'        => __( 'User role' ),
 			'description' => __( 'Will be resolved to a user role (Administrator, Subscriber etc.) ' ),
@@ -42,19 +31,17 @@ class UserRole extends StringTag {
 
 				return implode( ', ', $roles );
 			}
-        ) );
+		) );
 
-    }
+	}
 
-    /**
-     * Function for checking requirements
-     *
-     * @return boolean
-     */
-    public function check_requirements( ) {
-
-        return isset( $this->trigger->user_object->roles );
-
-    }
+	/**
+	 * Function for checking requirements
+	 *
+	 * @return boolean
+	 */
+	public function check_requirements( ) {
+		return isset( $this->trigger->user_object->roles );
+	}
 
 }

@@ -16,21 +16,9 @@ use underDEV\Notification\Defaults\MergeTag\UrlTag;
 class AttachmentDirectUrl extends UrlTag {
 
 	/**
-	 * Receives Trigger object from Trigger class
-	 *
-	 * @var private object $trigger
-	 */
-	private $trigger;
-
-	/**
 	 * Constructor
-	 *
-	 * @param object $trigger Trigger object to access data from.
 	 */
-	public function __construct( $trigger ) {
-
-		$this->trigger = $trigger;
-
+	public function __construct() {
 
 		parent::__construct( array(
 			'slug'        => 'attachment_direct_url',
@@ -49,9 +37,7 @@ class AttachmentDirectUrl extends UrlTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-
 		return isset( $this->trigger->attachment->guid );
-
 	}
 
 }

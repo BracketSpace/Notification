@@ -16,21 +16,9 @@ use underDEV\Notification\Defaults\MergeTag\IntegerTag;
 class AttachmentUpdatingUserID extends IntegerTag {
 
 	/**
-	 * Receives Trigger object from Trigger class
-	 *
-	 * @var private object $trigger
-	 */
-	private $trigger;
-
-	/**
 	 * Constructor
-	 *
-	 * @param object $trigger Trigger object to access data from.
 	 */
-	public function __construct( $trigger ) {
-
-		$this->trigger = $trigger;
-
+	public function __construct() {
 
 		parent::__construct( array(
 			'slug'        => 'attachment_updating_user_ID',
@@ -49,9 +37,7 @@ class AttachmentUpdatingUserID extends IntegerTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-
 		return isset( $this->trigger->updating_user );
-
 	}
 
 }

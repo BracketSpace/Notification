@@ -20,11 +20,11 @@ class MediaUpdated extends Abstracts\Trigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/media_updated', 'Media updated' );
+		parent::__construct( 'wordpress/media_updated',  __( 'Media updated' ) );
 
 		$this->add_action( 'attachment_updated', 10, 2 );
-		$this->set_group( 'Media' );
-		$this->set_description( 'Fires when new attachment is updated' );
+		$this->set_group( __( 'Media' ) );
+		$this->set_description( __( 'Fires when attachment is updated' ) );
 
 	}
 
@@ -47,21 +47,20 @@ class MediaUpdated extends Abstracts\Trigger {
 	 */
 	public function merge_tags() {
 
-		$this->add_merge_tag( new MergeTag\Media\AttachmentID( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentPage( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentTitle( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentDate( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentMimeType( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentDirectUrl( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorID( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorName( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorEmail( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorLogin( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentUpdatingUserID( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentUpdatingUserName( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentUpdatingUserEmail( $this ) );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentUpdatingUserLogin( $this ) );
-
+		$this->add_merge_tag( new MergeTag\Media\AttachmentID() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentPage() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentTitle() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentDate() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentMimeType() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentDirectUrl() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorID() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorName() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorEmail() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorLogin() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentUpdatingUserID() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentUpdatingUserName() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentUpdatingUserEmail() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentUpdatingUserLogin() );
 
     }
 

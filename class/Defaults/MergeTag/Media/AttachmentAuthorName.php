@@ -16,21 +16,9 @@ use underDEV\Notification\Defaults\MergeTag\StringTag;
 class AttachmentAuthorName extends StringTag {
 
 	/**
-	 * Receives Trigger object from Trigger class
-	 *
-	 * @var private object $trigger
-	 */
-	private $trigger;
-
-	/**
 	 * Constructor
-	 *
-	 * @param object $trigger Trigger object to access data from.
 	 */
-	public function __construct( $trigger ) {
-
-		$this->trigger = $trigger;
-
+	public function __construct() {
 
 		parent::__construct( array(
 			'slug'        => 'attachment_author_name',
@@ -49,9 +37,7 @@ class AttachmentAuthorName extends StringTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-
 		return isset( $this->trigger->attachment->post_author );
-
 	}
 
 }
