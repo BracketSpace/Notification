@@ -145,7 +145,7 @@ class PostType {
 	 */
 	public function save_notification_status( $data, $postarr ) {
 
-		if ( $data['post_type'] != 'notification' ) {
+		if ( $data['post_type'] != 'notification' || $postarr['post_status'] == 'trash' ) {
 			return $data;
 		}
 
@@ -167,7 +167,16 @@ class PostType {
 	 */
 	public function save_metabox( $post ) {
 
+		if ( ! EMPTY_TRASH_DAYS ) {
+			$delete_text = __( 'Delete Permanently' );
+		} else {
+			$delete_text = __( 'Move to Trash' );
+		}
+
 		$this->view->set_var( 'enabled', $post->post_status !== 'draft' );
+		$this->view->set_var( 'post_id', $post->ID );
+		$this->view->set_var( 'delete_link_label', $delete_text );
+
 		$this->view->get_view( 'save-metabox' );
 
 	}
