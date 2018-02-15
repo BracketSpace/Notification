@@ -59,6 +59,23 @@ class PostTable {
 	}
 
 	/**
+	 * Remove all inline states to be displayed on notifications table
+     *
+	 * @param array   $post_states an array of post display states.
+	 * @param WP_Post $post        the current post object.
+	 * @return array               filtered states
+	 */
+	public function remove_status_display( $post_states, $post ) {
+
+		if ( $post->post_type == 'notification' ) {
+			return array();
+		}
+
+		return $post_states;
+
+	}
+
+	/**
 	 * Remove quick edit from post inline actions
      *
 	 * @param  array  $row_actions array with action links.

@@ -89,6 +89,7 @@ class Runtime {
 
 		add_filter( 'manage_notification_posts_columns', array( $this->admin_post_table, 'table_columns' ) );
 		add_action( 'manage_notification_posts_custom_column', array( $this->admin_post_table, 'table_column_content' ), 10, 2 );
+		add_filter( 'display_post_states', array( $this->admin_post_table, 'remove_status_display' ), 10, 2 );
 		add_filter( 'post_row_actions', array( $this->admin_post_table, 'remove_quick_edit' ), 10, 2 );
 
 		add_action( 'add_meta_boxes', array( $this->admin_merge_tags, 'add_meta_box' ) );
