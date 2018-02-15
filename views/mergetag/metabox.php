@@ -9,6 +9,10 @@ do_action( 'notification/metabox/trigger/tags/before', $this->get_var( 'trigger'
 ?>
 
 <ul>
+
+	<?php if ( count( $this->get_var( 'tags') ) > 2 ): ?>
+		<input type="text" name="notification-search-merge-tags" placeholder="Search merge tags" class="widefat notification-search-merge-tags" id="notification-search-merge-tags">
+	<?php endif; ?>
 	<?php foreach ( $this->get_var( 'tags' ) as $tag ): ?>
 		<li>
 			<div class="intro">
