@@ -23,7 +23,8 @@ class AttachmentPage extends UrlTag {
 		parent::__construct( array(
 			'slug'        => 'attachment_page_link',
 			'name'        => __( 'Attachment page link' ),
-			'description' => __( 'Will be resolved to an attachment page link' ),
+			'description' => __( 'http://example.com/forest-landscape/' ),
+			'example'     => true,
 			'resolver'    => function() {
 				return get_permalink( $this->trigger->attachment->ID );
 			},

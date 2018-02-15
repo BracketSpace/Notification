@@ -23,7 +23,8 @@ class AttachmentMimeType extends StringTag {
 		parent::__construct( array(
 			'slug'        => 'attachment_mime_type',
 			'name'        => __( 'Attachment MIME type' ),
-			'description' => __( 'Will be resolved to an attachment MIME type' ),
+			'description' => 'image/jpeg',
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->attachment->post_mime_type;
 			},

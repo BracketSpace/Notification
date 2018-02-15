@@ -23,7 +23,8 @@ class AttachmentTitle extends StringTag {
 		parent::__construct( array(
 			'slug'        => 'attachment_title',
 			'name'        => __( 'Attachment title' ),
-			'description' => __( 'Will be resolved to an attachment title' ),
+			'description' => __( 'Forest landscape' ),
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->attachment->post_title;
 			},

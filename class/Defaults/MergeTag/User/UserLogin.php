@@ -15,14 +15,22 @@ use underDEV\Notification\Defaults\MergeTag\StringTag;
 class UserLogin extends StringTag {
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
+     * Constructor
+     *
+     * @param string $slug merge tag slug.
+     * @param string $name merge tag name.
+     */
+    public function __construct( $slug = 'user_login', $name = '' ) {
 
-		parent::__construct( array(
-			'slug'        => 'user_login',
-			'name'        => __( 'User login' ),
-			'description' => __( 'Will be resolved to a user login' ),
+    	if ( empty( $name ) ) {
+    		$name = __( 'User login' );
+    	}
+
+    	parent::__construct( array(
+			'slug'        => $slug,
+			'name'        => $name,
+			'description' => __( 'johndoe' ),
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->user_object->user_login;
 			},

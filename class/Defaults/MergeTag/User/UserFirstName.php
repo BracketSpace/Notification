@@ -16,13 +16,21 @@ class UserFirstName extends StringTag {
 
     /**
      * Constructor
+     *
+     * @param string $slug merge tag slug.
+     * @param string $name merge tag name.
      */
-    public function __construct() {
+    public function __construct( $slug = 'user_first_name', $name = '' ) {
+
+    	if ( empty( $name ) ) {
+    		$name = __( 'User first name' );
+    	}
 
     	parent::__construct( array(
-			'slug'        => 'user_first_name',
-			'name'        => __( 'User first name' ),
-			'description' => __( 'Will be resolved to a user first name' ),
+			'slug'        => $slug,
+			'name'        => $name,
+			'description' => __( 'John' ),
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->user_object->first_name;
 			},

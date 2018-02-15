@@ -14,6 +14,13 @@ use underDEV\Notification\Abstracts\MergeTag;
  */
 class IntegerTag extends MergeTag {
 
+	/**
+     * MergeTag value type
+     *
+     * @var string
+     */
+    protected $value_type = 'integer';
+
     /**
      * Check the merge tag value type
      *

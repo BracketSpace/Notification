@@ -20,6 +20,10 @@ class MediaAdded extends Abstracts\Trigger {
 	 */
 	public function __construct() {
 
+		$this->date_format      = get_option( 'date_format' );
+		$this->time_format      = get_option( 'time_format' );
+		$this->date_time_format = $this->date_format . ' ' . $this->time_format;
+
 		parent::__construct( 'wordpress/media_added',  __( 'Media added' ) );
 
 		$this->add_action( 'add_attachment', 10, 2 );
@@ -35,7 +39,9 @@ class MediaAdded extends Abstracts\Trigger {
 	 */
 	public function action() {
 
-		$this->attachment = get_post( $this->callback_args[0] );
+		$this->attachment  = get_post( $this->callback_args[0] );
+		$this->user_id     = $this->attachment->post_author;
+		$this->user_object = get_userdata( $this->user_id );
 
 	}
 
@@ -49,13 +55,16 @@ class MediaAdded extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\Media\AttachmentID() );
 		$this->add_merge_tag( new MergeTag\Media\AttachmentPage() );
 		$this->add_merge_tag( new MergeTag\Media\AttachmentTitle() );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentDate() );
+		$this->add_merge_tag( new MergeTag\Media\AttachmentDate( $this->date_time_format ) );
 		$this->add_merge_tag( new MergeTag\Media\AttachmentMimeType() );
 		$this->add_merge_tag( new MergeTag\Media\AttachmentDirectUrl() );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorID() );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorName() );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorEmail() );
-		$this->add_merge_tag( new MergeTag\Media\AttachmentAuthorLogin() );
+
+		$this->add_merge_tag( new MergeTag\User\UserID( 'attachment_author_user_ID', __( 'Attachment author user ID' ) ) );
+    	$this->add_merge_tag( new MergeTag\User\UserLogin( 'attachment_author_user_login', __( 'Attachment author user login' ) ) );
+        $this->add_merge_tag( new MergeTag\User\UserEmail( 'attachment_author_user_email', __( 'Attachment author user email' ) ) );
+		$this->add_merge_tag( new MergeTag\User\UserNicename( 'attachment_author_user_nicename', __( 'Attachment author user nicename' ) ) );
+        $this->add_merge_tag( new MergeTag\User\UserFirstName( 'attachment_author_user_firstname', __( 'Attachment author user first name' ) ) );
+		$this->add_merge_tag( new MergeTag\User\UserLastName( 'attachment_author_user_lastname', __( 'Attachment author user last name' ) ) );
 
     }
 

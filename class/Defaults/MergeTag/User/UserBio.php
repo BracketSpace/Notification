@@ -22,7 +22,8 @@ class UserBio extends StringTag {
     	parent::__construct( array(
 			'slug'        => 'user_bio',
 			'name'        => __( 'User bio' ),
-			'description' => __( 'Will be resolved to a user profile description.' ),
+			'description' => __( 'Developer based in Ontario, Canada' ),
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->user_object->description;
 			},

@@ -7,6 +7,8 @@
 
 namespace underDEV\Notification\Admin;
 
+use underDEV\Notification\Utils\View;
+
 /**
  * PostType class
  */
@@ -18,11 +20,12 @@ class PostType {
 	 * @since [Next]
 	 * @param Trigger       $trigger       Trigger class.
 	 * @param Notifications $notifications Notifications class.
+	 * @param View          $view          View class.
 	 */
-	public function __construct( Trigger $trigger, Notifications $notifications ) {
+	public function __construct( Trigger $trigger, Notifications $notifications, View $view ) {
 		$this->trigger       = $trigger;
 		$this->notifications = $notifications;
-		add_filter( 'notification/admin/allow_metabox/submitdiv', '__return_true' );
+		$this->view          = $view;
 	}
 
 	/**
@@ -63,7 +66,16 @@ class PostType {
 			'query_var'           => false,
 			'can_export'          => true,
 			'rewrite'             => false,
-			'capability_type'     => apply_filters( 'notification/cpt/capability_type', 'post' ),
+			'capabilities'        => apply_filters( 'notification/post_type/capabilities', array(
+			    'edit_post'          => 'manage_options',
+			    'read_post'          => 'manage_options',
+			    'delete_post'        => 'manage_options',
+			    'edit_posts'         => 'manage_options',
+			    'edit_others_posts'  => 'manage_options',
+			    'delete_posts'       => 'manage_options',
+			    'publish_posts'      => 'manage_options',
+			    'read_private_posts' => 'manage_options'
+			) ),
 			'supports'            => array( 'title' )
 		) );
 
@@ -108,6 +120,75 @@ class PostType {
     	echo '</div>';
 
     	do_action( 'notitication/admin/notifications', $post );
+
+	}
+
+	/**
+	 * Adds metabox with Save button
+     *
+	 * @return void
+	 */
+	public function add_save_meta_box() {
+
+		add_meta_box(
+            'notification_save',
+            __( 'Save', 'notification' ),
+            array( $this, 'save_metabox' ),
+            'notification',
+            'side',
+            'high'
+        );
+
+		// enable metabox.
+        add_filter( 'notification/admin/allow_metabox/notification_save', '__return_true' );
+
+	}
+
+	/**
+	 * Saves post status in relation to on/off switch
+	 *
+	 * @since  [Next]
+	 * @param  array $data    post data.
+	 * @param  array $postarr saved data.
+	 * @return array
+	 */
+	public function save_notification_status( $data, $postarr ) {
+
+		if ( $data['post_type'] != 'notification' ||
+			$postarr['post_status'] == 'trash' ||
+			( isset( $_POST['action'] ) && $_POST['action'] == 'change_notification_status' ) ) {
+			return $data;
+		}
+
+		if ( isset( $postarr['onoffswitch'] ) && $postarr['onoffswitch'] == '1' ) {
+			$data['post_status'] = 'publish';
+		} else {
+			$data['post_status'] = 'draft';
+		}
+
+		return $data;
+
+	}
+
+	/**
+	 * Prints Save metabox
+     *
+     * @param  object $post current WP_Post.
+	 * @return void
+	 */
+	public function save_metabox( $post ) {
+
+		if ( ! EMPTY_TRASH_DAYS ) {
+			$delete_text = __( 'Delete Permanently' );
+		} else {
+			$delete_text = __( 'Move to Trash' );
+		}
+
+		$this->view->set_var( 'enabled', $post->post_status !== 'draft' );
+		$this->view->set_var( 'post_id', $post->ID );
+		$this->view->set_var( 'delete_link_label', $delete_text );
+
+		$this->view->get_view( 'save-metabox' );
 
 	}
 

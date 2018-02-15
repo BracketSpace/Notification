@@ -16,13 +16,21 @@ class UserEmail extends StringTag {
 
     /**
      * Constructor
+     *
+     * @param string $slug merge tag slug.
+     * @param string $name merge tag name.
      */
-    public function __construct() {
+    public function __construct( $slug = 'user_email', $name = '' ) {
+
+    	if ( empty( $name ) ) {
+    		$name = __( 'User email' );
+    	}
 
     	parent::__construct( array(
-			'slug'        => 'user_email',
-			'name'        => __( 'User email' ),
-			'description' => __( 'Will be resolved to a user email' ),
+			'slug'        => $slug,
+			'name'        => $name,
+			'description' => __( 'john.doe@example.com' ),
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->user_object->user_email;
 			},

@@ -14,6 +14,13 @@ use underDEV\Notification\Abstracts\MergeTag;
  */
 class FloatTag extends MergeTag {
 
+	/**
+     * MergeTag value type
+     *
+     * @var string
+     */
+    protected $value_type = 'float';
+
     /**
      * Check the merge tag value type
      *

@@ -20,6 +20,10 @@ class UserRegistered extends Abstracts\Trigger {
 	 */
 	public function __construct() {
 
+		$this->date_format      = get_option( 'date_format' );
+		$this->time_format      = get_option( 'time_format' );
+		$this->date_time_format = $this->date_format . ' ' . $this->time_format;
+
 		parent::__construct( 'wordpress/user_registered', __( 'User registration' ) );
 
 		$this->add_action( 'user_register', 10, 2 );
@@ -51,7 +55,7 @@ class UserRegistered extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\User\UserID() );
     	$this->add_merge_tag( new MergeTag\User\UserLogin() );
         $this->add_merge_tag( new MergeTag\User\UserEmail() );
-		$this->add_merge_tag( new MergeTag\User\UserRegistered() );
+		$this->add_merge_tag( new MergeTag\User\UserRegistered( $this->date_time_format ) );
 		$this->add_merge_tag( new MergeTag\User\UserRole() );
 
     }

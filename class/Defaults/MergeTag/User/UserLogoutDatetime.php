@@ -16,15 +16,18 @@ class UserLogoutDatetime extends StringTag {
 
     /**
      * Constructor
+     *
+     * @param string $date_time_format format for date example.
      */
-    public function __construct() {
+    public function __construct( $date_time_format = 'Y-m-d H:i:s' ) {
 
     	parent::__construct( array(
 			'slug'        => 'user_logout_datetime',
 			'name'        => __( 'User logout time' ),
-			'description' => __( 'Will be resolved to a user logout time' ),
+			'description' => date_i18n( $date_time_format ),
+			'example'     => true,
 			'resolver'    => function() {
-				return date_i18n( $this->trigger->date_format . ' ' . $this->trigger->time_format );
+				return date_i18n( $this->trigger->date_time_format );
 			},
         ) );
 

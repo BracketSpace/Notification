@@ -16,13 +16,21 @@ class UserID extends IntegerTag {
 
     /**
      * Constructor
+     *
+     * @param string $slug merge tag slug.
+     * @param string $name merge tag name.
      */
-    public function __construct() {
+    public function __construct( $slug = 'user_ID', $name = '' ) {
+
+    	if ( empty( $name ) ) {
+    		$name = __( 'User ID' );
+    	}
 
     	parent::__construct( array(
-			'slug'        => 'user_ID',
-			'name'        => __( 'User ID' ),
-			'description' => __( 'Will be resolved to a user ID' ),
+			'slug'        => $slug,
+			'name'        => $name,
+			'description' => '25',
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->user_object->ID;
 			}

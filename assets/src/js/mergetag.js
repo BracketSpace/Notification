@@ -13,7 +13,7 @@
 
 			wp.hooks.doAction( 'notification.merge_tag.copied', tag, $code );
 
-			$code.text( notification.copied );
+			$code.text( notification.i18n.copied );
 
 			setTimeout(function() {
 				$code.text( tag );
@@ -39,6 +39,25 @@
 		    	} else {
 		    		$( '#notification_merge_tags .inside' ).html( response.data );
 		    	}
+
+			} );
+
+		} );
+
+		// Search for merge tags
+
+		$( 'body' ).on( 'keyup', '#notification-search-merge-tags', function() {
+
+			var val = $( this ).val().toLowerCase();
+			$( '.inside ul li' ).hide();
+
+			$( '.inside ul li ').each( function() {
+
+				var text = $( this ).find( '.intro code' ).text().toLowerCase();
+
+				if ( text.indexOf(val) != -1 ) {
+					$(this).show();
+				}
 
 			} );
 
