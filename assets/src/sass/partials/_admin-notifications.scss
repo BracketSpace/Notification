@@ -92,10 +92,12 @@ body.post-type-notification {
 							padding: 0;
 							color: #a5a5a5;
 
-							@media( max-width: 968px ) {
-								width: 100%;
+							@media( max-width: 768px ) {
+								width: calc(100% - 22px);
 								height: 30px;
 								line-height: 30px;
+								padding: 0 10px;
+								text-align: right;
 							}
 						}
 
@@ -112,8 +114,28 @@ body.post-type-notification {
 
 					td {
 
+						&.subfield {
+
+							.row-header {
+								display:none;
+
+								@media( max-width: 768px ) {
+									display: block;
+									margin-bottom: 5px;								}
+							}
+						}
+
 						&.handle::before {
 							content: counter(rowNumber);
+						}
+
+						@media (max-width: 768px ) {
+
+							&.handle::before {
+								content: "\f182";
+								font: 400 20px/1 dashicons;
+								line-height: 30px;
+							}
 						}
 
 					}
