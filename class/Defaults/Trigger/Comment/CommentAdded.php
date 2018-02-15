@@ -30,18 +30,17 @@ class CommentAdded extends Abstracts\Trigger {
 
 	/**
 	 * Assigns action callback args to object
+	 * Return `false` if you want to abort the trigger execution
 	 *
-	 * @return void
+	 * @return mixed void or false if no notifications should be sent
 	 */
 	public function action() {
 
 		$this->comment_ID = $this->callback_args[0];
-		$this->comment = $this->callback_args[1];
+		$this->comment    = $this->callback_args[1];
 
 		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
-
-			$this->stop();
-
+			return false;
 		}
 
 	}
