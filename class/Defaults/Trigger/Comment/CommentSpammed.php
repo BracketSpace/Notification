@@ -1,6 +1,6 @@
 <?php
 /**
- * Comment added trigger
+ * Comment spammed trigger
  *
  * @package notification
  */
@@ -11,20 +11,20 @@ use underDEV\Notification\Defaults\MergeTag;
 use underDEV\Notification\Abstracts;
 
 /**
- * Comment added trigger class
+ * Comment spammed trigger class
  */
-class CommentAdded extends Abstracts\Trigger {
+class CommentSpammed extends Abstracts\Trigger {
 
 	/**
 	 * Constructor
 	 */
-	public function __construct( $comment_type ) {
+	public function __construct( $comment_type = 'comment' ) {
 
-		parent::__construct( 'wordpress/comment_' . $comment_type . '_added', ucfirst( $comment_type ) . ' added' );
+		parent::__construct( 'wordpress/comment_' . $comment_type . '_spammed', ucfirst( $comment_type ) . ' spammed' );
 
-		$this->add_action( 'wp_insert_comment', 10, 2 );
-		$this->set_group( 'Comments' );
-		$this->set_description( 'Fires when new ' . $comment_type . ' is added' );
+		$this->add_action( 'comment_spam_' . $comment_type, 10, 2 );
+		$this->set_group( sprintf( __( '%s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
+		$this->set_description( 'Fires when new ' . $comment_type . ' is spammed' );
 
 	}
 
@@ -35,14 +35,10 @@ class CommentAdded extends Abstracts\Trigger {
 	 */
 	public function action() {
 
-		$this->comment_ID = $this->callback_args[0];
-		$this->comment = $this->callback_args[1];
 
-		if ( $this->comment->status == 'spam' ) {
 
-			$this->stop();
 
-		}
+
 
 	}
 

@@ -11,20 +11,20 @@ use underDEV\Notification\Defaults\MergeTag;
 use underDEV\Notification\Abstracts;
 
 /**
- * Comment added trigger class
+ * Comment trashed trigger class
  */
-class CommentAdded extends Abstracts\Trigger {
+class CommentTrashed extends Abstracts\Trigger {
 
 	/**
 	 * Constructor
 	 */
 	public function __construct( $comment_type ) {
 
-		parent::__construct( 'wordpress/comment_' . $comment_type . '_added', ucfirst( $comment_type ) . ' added' );
+		parent::__construct( 'wordpress/comment_' . $comment_type . '_trashed', ucfirst( $comment_type ) . ' trashed' );
 
-		$this->add_action( 'wp_insert_comment', 10, 2 );
-		$this->set_group( 'Comments' );
-		$this->set_description( 'Fires when new ' . $comment_type . ' is added' );
+		$this->add_action( 'comment_trashed_' . $comment_type, 10, 2 );
+		$this->set_group( sprintf( __( '%s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
+		$this->set_description( 'Fires when new ' . $comment_type . ' is trashed' );
 
 	}
 

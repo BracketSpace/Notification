@@ -38,7 +38,7 @@ class CommentAdded extends Abstracts\Trigger {
 		$this->comment_ID = $this->callback_args[0];
 		$this->comment = $this->callback_args[1];
 
-		if ( $this->comment->status == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
+		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
 
 			$this->stop();
 
