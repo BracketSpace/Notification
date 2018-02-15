@@ -35,4 +35,11 @@ interface Taggable extends Nameable {
 	 */
     public function is_resolved();
 
+	/**
+	 * Gets value type
+     *
+	 * @return string
+	 */
+    public function get_value_type();
+
 }

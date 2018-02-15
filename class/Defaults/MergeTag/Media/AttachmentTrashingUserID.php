@@ -23,7 +23,7 @@ class AttachmentTrashingUserID extends IntegerTag {
 		parent::__construct( array(
 			'slug'        => 'attachment_trashing_user_ID',
 			'name'        => __( 'Attachment trashing user ID' ),
-			'description' => __( 'Will be resolved to an attachment trashing user ID' ),
+			'description' => __( '25' ),
 			'resolver'    => function() {
 				return $this->trigger->trashing_user;
 			},

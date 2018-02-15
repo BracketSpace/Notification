@@ -23,7 +23,7 @@ class AttachmentDate extends StringTag {
 		parent::__construct( array(
 			'slug'        => 'attachment_date',
 			'name'        => __( 'Attachment date' ),
-			'description' => __( 'Will be resolved to an attachment publication date' ),
+			'description' => __( '2018-02-14 15:36:00' ),
 			'resolver'    => function() {
 				return $this->attachment->post_date;
 			},

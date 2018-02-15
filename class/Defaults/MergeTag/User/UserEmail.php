@@ -22,7 +22,8 @@ class UserEmail extends StringTag {
     	parent::__construct( array(
 			'slug'        => 'user_email',
 			'name'        => __( 'User email' ),
-			'description' => __( 'Will be resolved to a user email' ),
+			'description' => __( 'john.doe@example.com' ),
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->user_object->user_email;
 			},

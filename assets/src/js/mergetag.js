@@ -44,6 +44,27 @@
 
 		} );
 
+		//search for merge tags
+
+		$( '#notification-search-merge-tags' ).keyup(function(){
+
+			var val = $( this ).val().toLowerCase();
+			$( '.inside ul li' ).hide();
+
+			$( '.inside ul li ').each(function(){
+
+				var text = $(this).find('.intro code').text().toLowerCase();
+
+				if(text.indexOf(val) != -1) {
+
+						$(this).show();
+
+				}
+
+			});
+
+		});
+
 	} );
 
 })(jQuery);

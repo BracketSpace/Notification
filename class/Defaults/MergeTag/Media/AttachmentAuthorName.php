@@ -23,7 +23,7 @@ class AttachmentAuthorName extends StringTag {
 		parent::__construct( array(
 			'slug'        => 'attachment_author_name',
 			'name'        => __( 'Attachment author name' ),
-			'description' => __( 'Will be resolved to an attachment author name' ),
+			'description' => __( 'John' ),
 			'resolver'    => function() {
 				return get_the_author_meta( 'display_name', $this->trigger->attachment->post_author );
 			},

@@ -22,7 +22,8 @@ class UserNicename extends StringTag {
 		parent::__construct( array(
 			'slug'        => 'user_nicename',
 			'name'        => __( 'User nicename' ),
-			'description' => __( 'Will be resolved to a user nicename' ),
+			'description' => __( 'Johhnie' ),
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->user_object->user_nicename;
 			}

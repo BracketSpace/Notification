@@ -23,7 +23,7 @@ class AttachmentAuthorLogin extends StringTag {
 		parent::__construct( array(
 			'slug'        => 'attachment_author_login',
 			'name'        => __( 'Attachment author login' ),
-			'description' => __( 'Will be resolved to an attachment author login' ),
+			'description' => __( 'johndoe' ),
 			'resolver'    => function() {
 				return get_the_author_meta( 'user_login', $this->trigger->attachment->post_author );
 			},

@@ -23,7 +23,7 @@ class AttachmentTrashingUserName extends StringTag {
 		parent::__construct( array(
 			'slug'        => 'attachment_trashing_user_name',
 			'name'        => __( 'Attachment trashing user name' ),
-			'description' => __( 'Will be resolved to an attachment trashing user name' ),
+			'description' => __( 'Johnnie' ),
 			'resolver'    => function() {
 				return get_the_author_meta( 'display_name', $this->trigger->trashing_user );
 			},

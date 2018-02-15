@@ -23,7 +23,7 @@ class AttachmentAuthorEmail extends EmailTag {
 		parent::__construct( array(
 			'slug'        => 'attachment_author_email',
 			'name'        => __( 'Attachment author email' ),
-			'description' => __( 'Will be resolved to an attachment author email' ),
+			'description' => __( 'john.doe@example.com' ),
 			'resolver'    => function() {
 				return get_the_author_meta( 'user_email', $this->trigger->attachment->post_author );
 			},

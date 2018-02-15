@@ -23,7 +23,7 @@ class AttachmentUpdatingUserLogin extends StringTag {
 		parent::__construct( array(
 			'slug'        => 'attachment_updating_user_login',
 			'name'        => __( 'Attachment author email' ),
-			'description' => __( 'Will be resolved to an attachment updating user login' ),
+			'description' => __( 'johndoe' ),
 			'resolver'    => function() {
 				return get_the_author_meta( 'user_login', $this->trigger->updating_user );
 			},

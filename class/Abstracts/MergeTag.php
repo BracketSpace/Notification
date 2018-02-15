@@ -22,6 +22,13 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
     protected $value;
 
     /**
+     * MergeTag value type
+     *
+     * @var string
+     */
+    protected $value_type;
+
+    /**
      * Short description
      * No html tags allowed. Keep it tweet-short.
      *
@@ -51,6 +58,13 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
     protected $trigger;
 
     /**
+     * If description is an example
+     *
+     * @var boolean
+     */
+    protected $description_example = false;
+
+    /**
      * Merge tag constructor
      *
      * @since [Next]
@@ -71,7 +85,8 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 		$this->resolver = $params['resolver'];
 
 		if ( isset( $params['description'] ) ) {
-			$this->description = sanitize_text_field( $params['description'] );
+			$this->description_example = isset( $params['example'] ) && isset( $params['example'] );
+			$this->description         = sanitize_text_field( $params['description'] );
 		}
 
     }
@@ -140,6 +155,16 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
     }
 
     /**
+	 * Checks if description is an example
+	 * If yes, there will be displayed additional label and type
+     *
+	 * @return boolean
+	 */
+    public function is_description_example() {
+    	return $this->description_example;
+    }
+
+    /**
 	 * Gets merge tag resolved value
      *
 	 * @return mixed
@@ -166,6 +191,16 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
      */
     public function get_trigger() {
     	return $this->trigger;
+    }
+
+    /**
+     * Gets value type
+     *
+     * @since [Next]
+     * @return string
+     */
+    public function get_value_type() {
+    	return $this->value_type;
     }
 
 }

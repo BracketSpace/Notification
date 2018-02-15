@@ -22,7 +22,8 @@ class UserLogin extends StringTag {
 		parent::__construct( array(
 			'slug'        => 'user_login',
 			'name'        => __( 'User login' ),
-			'description' => __( 'Will be resolved to a user login' ),
+			'description' => __( 'johndoe' ),
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->user_object->user_login;
 			},

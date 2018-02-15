@@ -23,7 +23,7 @@ class AttachmentTrashingUserEmail extends EmailTag {
 		parent::__construct( array(
 			'slug'        => 'attachment_trashing_user_name',
 			'name'        => __( 'Attachment trashing user email' ),
-			'description' => __( 'Will be resolved to an attachment trashing user email' ),
+			'description' => __( 'johndoe@example.com' ),
 			'resolver'    => function() {
 				return get_the_author_meta( 'user_email', $this->trigger->trashing_user );
 			},
