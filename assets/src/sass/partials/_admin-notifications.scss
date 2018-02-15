@@ -97,7 +97,7 @@ body.post-type-notification {
 								height: 30px;
 								line-height: 30px;
 								padding: 0 10px;
-								text-align: right;
+
 							}
 						}
 
@@ -125,13 +125,35 @@ body.post-type-notification {
 							}
 						}
 
+						&.handle {
+
+							@media( max-width: 768px ) {
+
+								position: relative;
+
+								&::before, &::after {
+									position: absolute;
+								}
+
+								&::before {
+									left: 5px;
+									top: -1px;
+								}
+
+								&::after {
+									right: 5px;
+									top: 0;
+								}
+							}
+						}
+
 						&.handle::before {
 							content: counter(rowNumber);
 						}
 
 						@media (max-width: 768px ) {
 
-							&.handle::before {
+							&.handle::after {
 								content: "\f182";
 								font: 400 20px/1 dashicons;
 								line-height: 30px;
@@ -148,6 +170,11 @@ body.post-type-notification {
 								content: "\f182";
 								font: 400 20px/1 dashicons;
 								line-height: 30px;
+
+								@media( max-width: 768px ) {
+									content: counter(rowNumber);
+									font: inherit;
+								}
 							}
 
 							&:hover {

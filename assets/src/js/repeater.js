@@ -38,11 +38,31 @@
 
 			var $repeater = $( this ).parents( '.fields-repeater' ).first();
 
-			$( this ).parents( '.row' ).first().animate( { opacity: 0 }, 400, 'linear', function() {
-	            $( this ).remove();
-	            recalculate_rows( $repeater );
-	            wp.hooks.doAction( 'notification.notification.repeater.row.removed', $repeater );
-	        } );
+			if ( $( window ).width() > 768 ) {
+
+				$( this ).parents( '.row' ).first().animate( { opacity: 0 }, 400, 'linear', function() {
+
+					$( this ).remove();
+		            recalculate_rows( $repeater );
+		            wp.hooks.doAction( 'notification.notification.repeater.row.removed', $repeater );
+
+		        } );
+
+			} else {
+
+				if( window.confirm( 'Do you really want to delete this?' ) ) {
+
+					$( this ).parents( '.row' ).first().animate( { opacity: 0 }, 400, 'linear', function() {
+
+						$( this ).remove();
+			            recalculate_rows( $repeater );
+			            wp.hooks.doAction( 'notification.notification.repeater.row.removed', $repeater );
+
+			        } );
+
+				}
+
+			}
 
 		} );
 
