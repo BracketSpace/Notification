@@ -59,7 +59,7 @@ class Runtime {
 		$this->post_data            = new Admin\PostData();
 		$this->admin_trigger        = new Admin\Trigger( $this->view(), $this->post_data );
 		$this->admin_notifications  = new Admin\Notifications( $this->boxrenderer(), $this->formrenderer(), $this->post_data );
-		$this->admin_post_type      = new Admin\PostType( $this->admin_trigger, $this->admin_notifications );
+		$this->admin_post_type      = new Admin\PostType( $this->admin_trigger, $this->admin_notifications, $this->view() );
 		$this->admin_post_table     = new Admin\PostTable();
 		$this->admin_merge_tags     = new Admin\MergeTags( $this->view(), $this->ajax() );
 		$this->admin_scripts        = new Admin\Scripts( $this->files );
@@ -82,7 +82,10 @@ class Runtime {
 		add_action( 'init', array( $this->admin_post_type, 'register' ) );
 		add_action( 'edit_form_after_title', array( $this->admin_post_type, 'render_trigger_select' ) );
 		add_action( 'edit_form_after_title', array( $this->admin_post_type, 'render_notification_metaboxes' ), 20 );
+		add_action( 'add_meta_boxes', array( $this->admin_post_type, 'add_save_meta_box' ) );
 		add_action( 'add_meta_boxes', array( $this->admin_post_type, 'metabox_cleanup' ), 999999999 );
+
+		add_filter( 'wp_insert_post_data', array( $this->admin_post_type, 'save_notification_status' ), 100, 2 );
 
 		add_filter( 'manage_notification_posts_columns', array( $this->admin_post_table, 'table_columns' ) );
 		add_action( 'manage_notification_posts_custom_column', array( $this->admin_post_table, 'table_column_content' ), 10, 2 );
