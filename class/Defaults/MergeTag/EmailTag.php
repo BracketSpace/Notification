@@ -14,6 +14,13 @@ use underDEV\Notification\Abstracts\MergeTag;
  */
 class EmailTag extends MergeTag {
 
+	/**
+     * MergeTag value type
+     *
+     * @var string
+     */
+    protected $value_type = 'string';
+
     /**
      * Check the merge tag value type
      *

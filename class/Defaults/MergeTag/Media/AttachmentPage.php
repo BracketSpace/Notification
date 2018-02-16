@@ -16,18 +16,24 @@ use underDEV\Notification\Defaults\MergeTag\UrlTag;
 class AttachmentPage extends UrlTag {
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
+     * Merge tag constructor
+     *
+     * @since [Next]
+     * @param array $params merge tag configuration params.
+     */
+    public function __construct( $params = array() ) {
 
-		parent::__construct( array(
+    	$args = wp_parse_args( $params, array(
 			'slug'        => 'attachment_page_link',
 			'name'        => __( 'Attachment page link' ),
-			'description' => __( 'Will be resolved to an attachment page link' ),
+			'description' => __( 'http://example.com/forest-landscape/' ),
+			'example'     => true,
 			'resolver'    => function() {
 				return get_permalink( $this->trigger->attachment->ID );
 			},
 		) );
+
+    	parent::__construct( $args );
 
 	}
 

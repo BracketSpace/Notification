@@ -8,6 +8,7 @@
 namespace underDEV\Notification\Admin;
 
 use underDEV\Notification\Interfaces;
+use underDEV\Notification\Utils\Ajax;
 
 /**
  * PostData class
@@ -32,8 +33,11 @@ class PostData {
 	 * PostData constructor
 	 *
 	 * @since [Next]
+	 * @param Ajax $ajax Ajax class.
 	 */
-	public function __construct() {
+	public function __construct( Ajax $ajax ) {
+
+		$this->ajax = $ajax;
 
 		$this->notification_enabled_key = '_enabled_notification';
 		$this->notification_data_key    = '_notification_type_';
@@ -265,6 +269,33 @@ class PostData {
 		$this->clear_post_id();
 
 		return $notifications;
+
+	}
+
+	/**
+	 * Changes notification status from AJAX call
+     *
+	 * @return void
+	 */
+	public function ajax_change_notification_status() {
+
+		$data  = $_POST;
+		$error = false;
+
+		$this->ajax->verify_nonce( 'change_notification_status_' . $data['post_id'] );
+
+		$status = $data['status'] == 'true' ? 'publish' : 'draft';
+
+		$result = wp_update_post( array(
+			'ID'          => $data['post_id'],
+			'post_status' => $status,
+		) );
+
+		if ( $result == 0 ) {
+			$error = __( 'Notification status couldn\'t be changed.' );
+ 		}
+
+		$this->ajax->response( true, $error );
 
 	}
 

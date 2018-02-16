@@ -14,21 +14,27 @@ use underDEV\Notification\Defaults\MergeTag\StringTag;
  */
 class UserEmail extends StringTag {
 
-    /**
-     * Constructor
+	/**
+     * Merge tag constructor
+     *
+     * @since [Next]
+     * @param array $params merge tag configuration params.
      */
-    public function __construct() {
+    public function __construct( $params = array() ) {
 
-    	parent::__construct( array(
+    	$args = wp_parse_args( $params, array(
 			'slug'        => 'user_email',
 			'name'        => __( 'User email' ),
-			'description' => __( 'Will be resolved to a user email' ),
+			'description' => __( 'john.doe@example.com' ),
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->user_object->user_email;
 			},
         ) );
 
-    }
+    	parent::__construct( $args );
+
+	}
 
     /**
      * Function for checking requirements

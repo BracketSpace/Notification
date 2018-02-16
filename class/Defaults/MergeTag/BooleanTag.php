@@ -14,6 +14,13 @@ use underDEV\Notification\Abstracts\MergeTag;
  */
 class BooleanTag extends MergeTag {
 
+	/**
+     * MergeTag value type
+     *
+     * @var string
+     */
+    protected $value_type = 'boolean';
+
     /**
      * Check the merge tag value type
      *

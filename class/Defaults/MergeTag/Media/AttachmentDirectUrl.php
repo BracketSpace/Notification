@@ -16,18 +16,24 @@ use underDEV\Notification\Defaults\MergeTag\UrlTag;
 class AttachmentDirectUrl extends UrlTag {
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
+     * Merge tag constructor
+     *
+     * @since [Next]
+     * @param array $params merge tag configuration params.
+     */
+    public function __construct( $params = array() ) {
 
-		parent::__construct( array(
+    	$args = wp_parse_args( $params, array(
 			'slug'        => 'attachment_direct_url',
 			'name'        => __( 'Attachment direct URL' ),
-			'description' => __( 'Will be resolved to an attachment direct URL' ),
+			'description' => __( 'http://example.com/wp-content/uploads/2018/02/forest-landscape.jpg' ),
+			'example'     => true,
 			'resolver'    => function() {
-				return $this->trigger->attachment->guid;
+				return wp_get_attachment_url( $this->trigger->attachment->ID );
 			},
 		) );
+
+    	parent::__construct( $args );
 
 	}
 
@@ -37,7 +43,7 @@ class AttachmentDirectUrl extends UrlTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-		return isset( $this->trigger->attachment->guid );
+		return isset( $this->trigger->attachment->ID );
 	}
 
 }

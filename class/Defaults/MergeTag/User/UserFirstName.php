@@ -14,21 +14,27 @@ use underDEV\Notification\Defaults\MergeTag\StringTag;
  */
 class UserFirstName extends StringTag {
 
-    /**
-     * Constructor
+	/**
+     * Merge tag constructor
+     *
+     * @since [Next]
+     * @param array $params merge tag configuration params.
      */
-    public function __construct() {
+    public function __construct( $params = array() ) {
 
-    	parent::__construct( array(
+    	$args = wp_parse_args( $params, array(
 			'slug'        => 'user_first_name',
 			'name'        => __( 'User first name' ),
-			'description' => __( 'Will be resolved to a user first name' ),
+			'description' => __( 'John' ),
+			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->user_object->first_name;
 			},
         ) );
 
-    }
+    	parent::__construct( $args );
+
+	}
 
     /**
      * Function for checking requirements

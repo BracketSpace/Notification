@@ -7,7 +7,7 @@
 		// Changed recipient type
 		$( 'body' ).on( 'change', recipient_type_select, function() {
 			var $select    = $( this ),
-				$recipient = $select.parent().next().find( '.recipient-value' ).first(),
+				$recipient = $select.parent().parent().next().find( '.recipient-value' ).first(),
 				type       = $select.val(),
 				$table     = $select.parents( '.recipients-repeater' ).first();
 

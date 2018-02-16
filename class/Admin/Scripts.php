@@ -56,8 +56,11 @@ class Scripts {
 		wp_enqueue_style( 'notification', $this->files->asset_url( 'css', 'style.css' ) );
 
 		wp_localize_script( 'notification', 'notification', array(
-			'copied'  => __( 'Copied', 'notification' ),
-			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'ajaxurl'  => admin_url( 'admin-ajax.php' ),
+			'i18n'     => array(
+				'copied'              => __( 'Copied', 'notification' ),
+				'remove_confirmation' => __( 'Do you really want to delete this?', 'notification' ),
+			),
 		) );
 
 	}
