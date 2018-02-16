@@ -16,11 +16,14 @@ use underDEV\Notification\Defaults\MergeTag\UrlTag;
 class CommentPostPermalink extends UrlTag {
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
+     * Merge tag constructor
+     *
+     * @since [Next]
+     * @param array $params merge tag configuration params.
+     */
+    public function __construct( $params = array() ) {
 
-		parent::__construct( array(
+		$args = wp_parse_args( $params, array(
 			'slug'        => 'comment_post_permalink',
 			'name'        => __( 'Comment post permalink' ),
 			'description' => __( 'https://example.com/hello-world/' ),
@@ -29,6 +32,8 @@ class CommentPostPermalink extends UrlTag {
 				return get_permalink( $this->trigger->comment->comment_post_ID );
 			},
 		) );
+
+    	parent::__construct( $args );
 
 	}
 

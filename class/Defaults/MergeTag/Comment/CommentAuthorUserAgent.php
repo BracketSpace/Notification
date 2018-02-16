@@ -16,11 +16,14 @@ use underDEV\Notification\Defaults\MergeTag\StringTag;
 class CommentAuthorUserAgent extends StringTag {
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
+     * Merge tag constructor
+     *
+     * @since [Next]
+     * @param array $params merge tag configuration params.
+     */
+    public function __construct( $params = array() ) {
 
-		parent::__construct( array(
+		$args = wp_parse_args( $params, array(
 			'slug'        => 'comment_author_user_agent',
 			'name'        => __( 'Comment author user agent' ),
 			'description' => __( 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0' ),
@@ -29,6 +32,8 @@ class CommentAuthorUserAgent extends StringTag {
 				return $this->trigger->comment->comment_agent;
 			},
 		) );
+
+    	parent::__construct( $args );
 
 	}
 

@@ -16,11 +16,14 @@ use underDEV\Notification\Defaults\MergeTag\IntegerTag;
 class CommentPostID extends IntegerTag {
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
+     * Merge tag constructor
+     *
+     * @since [Next]
+     * @param array $params merge tag configuration params.
+     */
+    public function __construct( $params = array() ) {
 
-		parent::__construct( array(
+		$args = wp_parse_args( $params, array(
 			'slug'        => 'comment_post_ID',
 			'name'        => __( 'Comment post ID' ),
 			'description' => '25',
@@ -29,6 +32,8 @@ class CommentPostID extends IntegerTag {
 				return $this->trigger->comment->comment_post_ID;
 			},
 		) );
+
+    	parent::__construct( $args );
 
 	}
 

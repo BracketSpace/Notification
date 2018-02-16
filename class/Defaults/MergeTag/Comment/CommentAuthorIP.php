@@ -16,11 +16,14 @@ use underDEV\Notification\Defaults\MergeTag\IPTag;
 class CommentAuthorIP extends IPTag {
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
+     * Merge tag constructor
+     *
+     * @since [Next]
+     * @param array $params merge tag configuration params.
+     */
+    public function __construct( $params = array() ) {
 
-		parent::__construct( array(
+		$args = wp_parse_args( $params, array(
 			'slug'        => 'comment_author_IP',
 			'name'        => __( 'Comment author IP' ),
 			'description' => '127.0.0.1',
@@ -29,6 +32,8 @@ class CommentAuthorIP extends IPTag {
 				return $this->trigger->comment->comment_author_IP;
 			},
 		) );
+
+    	parent::__construct( $args );
 
 	}
 

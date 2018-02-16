@@ -16,11 +16,14 @@ use underDEV\Notification\Defaults\MergeTag\StringTag;
 class CommentContent extends StringTag {
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
+     * Merge tag constructor
+     *
+     * @since [Next]
+     * @param array $params merge tag configuration params.
+     */
+    public function __construct( $params = array() ) {
 
-		parent::__construct( array(
+		$args = wp_parse_args( $params, array(
 			'slug'        => 'comment_content',
 			'name'        => __( 'Comment content' ),
 			'description' => __( 'Great post!' ),
@@ -29,6 +32,8 @@ class CommentContent extends StringTag {
 				return $this->trigger->comment->comment_content;
 			},
 		) );
+
+    	parent::__construct( $args );
 
 	}
 

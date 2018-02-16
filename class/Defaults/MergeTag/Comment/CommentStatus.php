@@ -16,11 +16,14 @@ use underDEV\Notification\Defaults\MergeTag\StringTag;
 class CommentStatus extends StringTag {
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
+     * Merge tag constructor
+     *
+     * @since [Next]
+     * @param array $params merge tag configuration params.
+     */
+    public function __construct( $params = array() ) {
 
-		parent::__construct( array(
+		$args = wp_parse_args( $params, array(
 			'slug'        => 'comment_status',
 			'name'        => __( 'Comment status' ),
 			'description' => __( 'Approved' ),
@@ -35,6 +38,8 @@ class CommentStatus extends StringTag {
 				}
  			},
 		) );
+
+    	parent::__construct( $args );
 
 	}
 

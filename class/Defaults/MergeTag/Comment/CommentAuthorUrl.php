@@ -16,11 +16,14 @@ use underDEV\Notification\Defaults\MergeTag\UrlTag;
 class CommentAuthorUrl extends UrlTag {
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
+     * Merge tag constructor
+     *
+     * @since [Next]
+     * @param array $params merge tag configuration params.
+     */
+    public function __construct( $params = array() ) {
 
-		parent::__construct( array(
+		$args = wp_parse_args( $params, array(
 			'slug'        => 'comment_author_url',
 			'name'        => __( 'Comment author URL' ),
 			'description' => __( 'http://mywebsite.com' ),
@@ -29,6 +32,8 @@ class CommentAuthorUrl extends UrlTag {
 				return $this->trigger->comment->comment_author_url;
 			},
 		) );
+
+    	parent::__construct( $args );
 
 	}
 
