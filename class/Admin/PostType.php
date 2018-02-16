@@ -184,7 +184,7 @@ class PostType {
 			$delete_text = __( 'Move to Trash' );
 		}
 
-		$this->view->set_var( 'enabled', $post->post_status !== 'draft' || $post->post_date_gmt == '0000-00-00 00:00:00' );
+		$this->view->set_var( 'enabled', notification_is_new_notification( $post ) );
 		$this->view->set_var( 'post_id', $post->ID );
 		$this->view->set_var( 'delete_link_label', $delete_text );
 

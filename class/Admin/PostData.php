@@ -110,6 +110,11 @@ class PostData {
 		// set enabled state.
 		$enabled_notifications = (array) $this->get_meta( $this->notification_enabled_key, false );
 
+		// if this is new post, mark email notifiation as active for better UX.
+		if ( notification_is_new_notification( get_post( $this->get_post_id() ) ) && $notification->get_slug() == 'email' ) {
+			$enabled_notifications[] = 'email';
+		}
+
 		if ( in_array( $notification->get_slug(), $enabled_notifications ) ) {
 			$notification->enabled = true;
 		}
