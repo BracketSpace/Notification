@@ -16,11 +16,14 @@ use underDEV\Notification\Defaults\MergeTag\StringTag;
 class AttachmentTitle extends StringTag {
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
+     * Merge tag constructor
+     *
+     * @since [Next]
+     * @param array $params merge tag configuration params.
+     */
+    public function __construct( $params = array() ) {
 
-		parent::__construct( array(
+    	$args = wp_parse_args( $params, array(
 			'slug'        => 'attachment_title',
 			'name'        => __( 'Attachment title' ),
 			'description' => __( 'Forest landscape' ),
@@ -29,6 +32,8 @@ class AttachmentTitle extends StringTag {
 				return $this->trigger->attachment->post_title;
 			},
 		) );
+
+    	parent::__construct( $args );
 
 	}
 

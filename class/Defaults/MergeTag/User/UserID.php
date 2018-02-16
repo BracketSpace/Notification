@@ -14,29 +14,27 @@ use underDEV\Notification\Defaults\MergeTag\IntegerTag;
  */
 class UserID extends IntegerTag {
 
-    /**
-     * Constructor
+	/**
+     * Merge tag constructor
      *
-     * @param string $slug merge tag slug.
-     * @param string $name merge tag name.
+     * @since [Next]
+     * @param array $params merge tag configuration params.
      */
-    public function __construct( $slug = 'user_ID', $name = '' ) {
+    public function __construct( $params = array() ) {
 
-    	if ( empty( $name ) ) {
-    		$name = __( 'User ID' );
-    	}
-
-    	parent::__construct( array(
-			'slug'        => $slug,
-			'name'        => $name,
+    	$args = wp_parse_args( $params, array(
+			'slug'        => 'user_ID',
+			'name'        => __( 'User ID' ),
 			'description' => '25',
 			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->user_object->ID;
-			}
+			},
         ) );
 
-    }
+    	parent::__construct( $args );
+
+	}
 
     /**
      * Function for checking requirements

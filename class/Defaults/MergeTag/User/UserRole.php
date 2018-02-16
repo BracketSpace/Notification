@@ -15,11 +15,14 @@ use underDEV\Notification\Defaults\MergeTag\StringTag;
 class UserRole extends StringTag {
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
+     * Merge tag constructor
+     *
+     * @since [Next]
+     * @param array $params merge tag configuration params.
+     */
+    public function __construct( $params = array() ) {
 
-		parent::__construct( array(
+    	$args = wp_parse_args( $params, array(
 			'slug'        => 'user_role',
 			'name'        => __( 'User role' ),
 			'description' => __( 'Subscriber' ),
@@ -31,8 +34,10 @@ class UserRole extends StringTag {
 				}, $this->trigger->user_object->roles );
 
 				return implode( ', ', $roles );
-			}
+			},
 		) );
+
+    	parent::__construct( $args );
 
 	}
 
