@@ -72,7 +72,7 @@ class PostTable {
 			case 'notifications':
 				$enabled_notifications = (array) get_post_meta( $post_id, '_enabled_notification', false );
 
-				foreach ( $enabled_notifications as $notification_slug ) {
+				foreach ( array_unique( $enabled_notifications ) as $notification_slug ) {
 					$notification = notification_get_single_notification( $notification_slug );
 					if ( ! empty( $notification ) ) {
 						echo $notification->get_name();
