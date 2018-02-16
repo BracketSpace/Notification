@@ -23,8 +23,10 @@ class CommentApproved extends Abstracts\Trigger {
 		parent::__construct( 'wordpress/comment_' . $comment_type . '_approved', ucfirst( $comment_type ) . ' approved' );
 
 		$this->add_action( 'transition_comment_status', 10, 3 );
-		$this->set_group( sprintf( __( '%s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
-		$this->set_description( 'Fires when new ' . $comment_type . ' is approved' );
+		$this->set_group( __( ucfirst( $comment_type ), 'notification' ) );
+
+		// translators: comment type.
+		$this->set_description( sprintf( __( 'Fires when %s is approved', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
 
 	}
 
@@ -44,23 +46,11 @@ class CommentApproved extends Abstracts\Trigger {
 		$this->user_object->user_email    = $this->comment->comment_author_email;
 
 		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
-
 			return false;
-
 		}
 
-		if ( $this->comment_new_status == $this->comment_old_status ) {
-
+		if ( $this->comment_new_status == $this->comment_old_status || $this->comment_new_status != 'approved' ) {
 			return false;
-
-		} else {
-
-			if ( $this->comment_new_status != 'approved' ) {
-
-				return false;
-
-			}
-
 		}
 
 	}

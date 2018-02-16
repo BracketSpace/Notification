@@ -23,8 +23,10 @@ class CommentTrashed extends Abstracts\Trigger {
 		parent::__construct( 'wordpress/comment_' . $comment_type . '_trashed', ucfirst( $comment_type ) . ' trashed' );
 
 		$this->add_action( 'trashed_comment', 10, 2 );
-		$this->set_group( sprintf( __( '%s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
-		$this->set_description( 'Fires when new ' . $comment_type . ' is trashed' );
+		$this->set_group( __( ucfirst( $comment_type ), 'notification' ) );
+
+		// translators: comment type.
+		$this->set_description( sprintf( __( 'Fires when %s is trashed', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
 
 	}
 
@@ -43,9 +45,7 @@ class CommentTrashed extends Abstracts\Trigger {
 		$this->user_object->user_email    = $this->comment->comment_author_email;
 
 		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
-
 			return false;
-
 		}
 
 	}

@@ -23,8 +23,10 @@ class CommentSpammed extends Abstracts\Trigger {
 		parent::__construct( 'wordpress/comment_' . $comment_type . '_spammed', ucfirst( $comment_type ) . ' spammed' );
 
 		$this->add_action( 'spammed_comment', 10, 2 );
-		$this->set_group( sprintf( __( '%s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
-		$this->set_description( 'Fires when new ' . $comment_type . ' is spammed' );
+		$this->set_group( __( ucfirst( $comment_type ), 'notification' ) );
+
+		// translators: comment type.
+		$this->set_description( sprintf( __( 'Fires when %s is marked as spam', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
 
 	}
 
@@ -42,9 +44,7 @@ class CommentSpammed extends Abstracts\Trigger {
 		$this->user_object->user_email    = $this->comment->comment_author_email;
 
 		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
-
 			return false;
-
 		}
 
 

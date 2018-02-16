@@ -23,8 +23,10 @@ class CommentAdded extends Abstracts\Trigger {
 		parent::__construct( 'wordpress/comment_' . $comment_type . '_added', ucfirst( $comment_type ) . ' added' );
 
 		$this->add_action( 'wp_insert_comment', 10, 2 );
-		$this->set_group( sprintf( __( '%s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
-		$this->set_description( 'Fires when new ' . $comment_type . ' is added' );
+		$this->set_group( __( ucfirst( $comment_type ), 'notification' ) );
+
+		// translators: comment type.
+		$this->set_description( sprintf( __( 'Fires when new %s is added', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
 
 	}
 
