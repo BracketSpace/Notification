@@ -16,11 +16,14 @@ use underDEV\Notification\Defaults\MergeTag\StringTag;
 class AttachmentMimeType extends StringTag {
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
+     * Merge tag constructor
+     *
+     * @since [Next]
+     * @param array $params merge tag configuration params.
+     */
+    public function __construct( $params = array() ) {
 
-		parent::__construct( array(
+    	$args = wp_parse_args( $params, array(
 			'slug'        => 'attachment_mime_type',
 			'name'        => __( 'Attachment MIME type' ),
 			'description' => 'image/jpeg',
@@ -29,6 +32,8 @@ class AttachmentMimeType extends StringTag {
 				return $this->trigger->attachment->post_mime_type;
 			},
 		) );
+
+    	parent::__construct( $args );
 
 	}
 

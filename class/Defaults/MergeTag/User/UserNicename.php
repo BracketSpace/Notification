@@ -15,26 +15,24 @@ use underDEV\Notification\Defaults\MergeTag\StringTag;
 class UserNicename extends StringTag {
 
 	/**
-     * Constructor
+     * Merge tag constructor
      *
-     * @param string $slug merge tag slug.
-     * @param string $name merge tag name.
+     * @since [Next]
+     * @param array $params merge tag configuration params.
      */
-    public function __construct( $slug = 'user_nicename', $name = '' ) {
+    public function __construct( $params = array() ) {
 
-    	if ( empty( $name ) ) {
-    		$name = __( 'User nicename' );
-    	}
-
-    	parent::__construct( array(
-			'slug'        => $slug,
-			'name'        => $name,
+    	$args = wp_parse_args( $params, array(
+			'slug'        => 'user_nicename',
+			'name'        => __( 'User nicename' ),
 			'description' => __( 'Johhnie' ),
 			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->user_object->user_nicename;
 			}
 		) );
+
+    	parent::__construct( $args );
 
 	}
 

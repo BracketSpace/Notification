@@ -14,12 +14,15 @@ use underDEV\Notification\Defaults\MergeTag\StringTag;
  */
 class UserBio extends StringTag {
 
-    /**
-     * Constructor
+	/**
+     * Merge tag constructor
+     *
+     * @since [Next]
+     * @param array $params merge tag configuration params.
      */
-    public function __construct() {
+    public function __construct( $params = array() ) {
 
-    	parent::__construct( array(
+    	$args = wp_parse_args( $params, array(
 			'slug'        => 'user_bio',
 			'name'        => __( 'User bio' ),
 			'description' => __( 'Developer based in Ontario, Canada' ),
@@ -29,7 +32,9 @@ class UserBio extends StringTag {
 			},
         ) );
 
-    }
+    	parent::__construct( $args );
+
+	}
 
     /**
      * Function for checking requirements
