@@ -19,7 +19,7 @@ class UrlTag extends MergeTag {
      *
      * @var string
      */
-    protected $value_type = 'url';
+    protected $value_type = 'string';
 
     /**
      * Check the merge tag value type
