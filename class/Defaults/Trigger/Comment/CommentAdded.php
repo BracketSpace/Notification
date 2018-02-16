@@ -36,11 +36,11 @@ class CommentAdded extends Abstracts\Trigger {
 	 */
 	public function action() {
 
-		$this->comment_ID = $this->callback_args[0];
-		$this->comment    = $this->callback_args[1];
-		$this->user_object->ID = ( $this->comment->user_id ) ? $this->comment->user_id : 1;
+		$this->comment_ID                 = $this->callback_args[0];
+		$this->comment                    = $this->callback_args[1];
+		$this->user_object->ID            = ( $this->comment->user_id ) ? $this->comment->user_id : 1;
 		$this->user_object->user_nicename = $this->comment->comment_author;
-		$this->user_object->user_email = $this->comment->comment_author_email;
+		$this->user_object->user_email    = $this->comment->comment_author_email;
 
 		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
 			return false;

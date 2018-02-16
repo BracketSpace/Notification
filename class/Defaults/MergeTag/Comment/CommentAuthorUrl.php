@@ -24,7 +24,7 @@ class CommentAuthorUrl extends StringTag {
 
 		parent::__construct( array(
 			'slug'        => 'comment_author_url',
-			'name'        => __( 'Comment author IP' ),
+			'name'        => __( 'Comment author URL' ),
 			'description' => __( 'http://mywebsite.com' ),
 			'example'     => true,
 			'resolver'    => function() {
