@@ -20,10 +20,6 @@ class UserDeleted extends Abstracts\Trigger {
 	 */
 	public function __construct() {
 
-		$this->date_format      = get_option( 'date_format' );
-		$this->time_format      = get_option( 'time_format' );
-		$this->date_time_format = $this->date_format . ' ' . $this->time_format;
-
 		parent::__construct( 'wordpress/user_deleted', __( 'User deleted' ) );
 
 		$this->add_action( 'delete_user', 10, 2 );
@@ -43,6 +39,9 @@ class UserDeleted extends Abstracts\Trigger {
 		$this->user_object = get_userdata( $this->user_id );
 		$this->user_meta   = get_user_meta( $this->user_id );
 
+		$this->user_registered_datetime = strtotime( $this->user_object->user_registered );
+		$this->user_deleted_datetime    = time();
+
 	}
 
 	/**
@@ -58,10 +57,19 @@ class UserDeleted extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\User\UserNicename() );
         $this->add_merge_tag( new MergeTag\User\UserFirstName() );
 		$this->add_merge_tag( new MergeTag\User\UserLastName() );
-		$this->add_merge_tag( new MergeTag\User\UserRegistered( $this->date_time_format ) );
+
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
+			'slug' => 'user_registered_datetime',
+			'name' => __( 'User registration date' ),
+		) ) );
+
 		$this->add_merge_tag( new MergeTag\User\UserRole() );
 		$this->add_merge_tag( new MergeTag\User\UserBio() );
-		$this->add_merge_tag( new MergeTag\User\UserDeletedDatetime( $this->date_time_format ) );
+
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
+			'slug' => 'user_deleted_datetime',
+			'name' => __( 'User deletion time' ),
+		) ) );
 
     }
 
