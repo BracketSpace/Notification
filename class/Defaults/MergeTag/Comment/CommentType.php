@@ -1,19 +1,19 @@
 <?php
 /**
- * Comment ID merge tag
+ * Comment type merge tag
  *
  * @package notification
  */
 
 namespace underDEV\Notification\Defaults\MergeTag\Comment;
 
-use underDEV\Notification\Defaults\MergeTag\IntegerTag;
+use underDEV\Notification\Defaults\MergeTag\StringTag;
 
 
 /**
- * Comment ID merge tag class
+ * Comment type merge tag class
  */
-class CommentID extends IntegerTag {
+class CommentType extends StringTag {
 
 	/**
 	 * Constructor
@@ -22,14 +22,13 @@ class CommentID extends IntegerTag {
 	 */
 	public function __construct() {
 
-
 		parent::__construct( array(
-			'slug'        => 'comment_ID',
-			'name'        => __( 'Comment ID' ),
-			'description' => __( '35' ),
+			'slug'        => 'comment_type',
+			'name'        => __( 'Comment type' ),
+			'description' => __( 'Comment. pingback, trackback' ),
 			'example'     => true,
 			'resolver'    => function() {
-				return $this->trigger->comment->comment_ID;
+				return ( $this->trigger->comment->comment_type === '' ) ? __( 'comment' ) : $this->trigger->comment->comment_type;
 			},
 		) );
 
@@ -42,7 +41,7 @@ class CommentID extends IntegerTag {
 	 */
 	public function check_requirements( ) {
 
-		return isset( $this->trigger->comment->comment_ID );
+		return isset( $this->trigger->comment->comment_type );
 
 	}
 

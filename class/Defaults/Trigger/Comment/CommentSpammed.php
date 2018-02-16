@@ -35,9 +35,17 @@ class CommentSpammed extends Abstracts\Trigger {
 	 */
 	public function action() {
 
-		$this->comment_status = $this->callback_args[0];
-		$this->comment = $this->callback_args[1];
+		$this->comment_status             = $this->callback_args[0];
+		$this->comment                    = $this->callback_args[1];
+		$this->user_object->ID            = $this->comment->user_id;
+		$this->user_object->user_nicename = $this->comment->comment_author;
+		$this->user_object->user_email    = $this->comment->comment_author_email;
 
+		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
+
+			return false;
+
+		}
 
 
 
@@ -50,7 +58,31 @@ class CommentSpammed extends Abstracts\Trigger {
 	 */
 	public function merge_tags() {
 
-		$this->add_merge_tag( new MergeTag\Comment\CommentID( $this ) );
+		$this->add_merge_tag( new MergeTag\Comment\CommentID() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentContent() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentApproved() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentType() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentPostID() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentPostPermalink() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorIP() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorUserAgent() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorUrl() );
+
+		// Author.
+		$this->add_merge_tag( new MergeTag\User\UserID( array(
+			'slug' => 'comment_author_user_ID',
+			'name' => __( 'Comment author user ID' ),
+		) ) );
+
+        $this->add_merge_tag( new MergeTag\User\UserEmail( array(
+			'slug' => 'comment_author_user_email',
+			'name' => __( 'Comment author user email' ),
+		) ) );
+
+		$this->add_merge_tag( new MergeTag\User\UserNicename( array(
+			'slug' => 'comment_author_user_nicename',
+			'name' => __( 'Comment author user nicename' ),
+		) ) );
 
 
     }

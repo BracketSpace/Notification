@@ -36,7 +36,7 @@ if ( notification_get_setting( 'triggers/comment/types' ) ) {
 
 		register_trigger( new Trigger\Comment\CommentAdded( $comment_type ) );
 		register_trigger( new Trigger\Comment\CommentApproved( $comment_type ) );
-		//register_trigger( new Trigger\Comment\CommentUnapproved( $comment_type ) );
+		register_trigger( new Trigger\Comment\CommentUnapproved( $comment_type ) );
 		register_trigger( new Trigger\Comment\CommentSpammed( $comment_type ) );
 		register_trigger( new Trigger\Comment\CommentTrashed( $comment_type ) );
 

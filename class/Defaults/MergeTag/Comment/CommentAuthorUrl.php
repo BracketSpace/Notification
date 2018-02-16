@@ -1,19 +1,19 @@
 <?php
 /**
- * Comment ID merge tag
+ * Comment author URL merge tag
  *
  * @package notification
  */
 
 namespace underDEV\Notification\Defaults\MergeTag\Comment;
 
-use underDEV\Notification\Defaults\MergeTag\IntegerTag;
+use underDEV\Notification\Defaults\MergeTag\StringTag;
 
 
 /**
- * Comment ID merge tag class
+ * Comment author URL merge tag class
  */
-class CommentID extends IntegerTag {
+class CommentAuthorUrl extends StringTag {
 
 	/**
 	 * Constructor
@@ -22,14 +22,13 @@ class CommentID extends IntegerTag {
 	 */
 	public function __construct() {
 
-
 		parent::__construct( array(
-			'slug'        => 'comment_ID',
-			'name'        => __( 'Comment ID' ),
-			'description' => __( '35' ),
+			'slug'        => 'comment_author_url',
+			'name'        => __( 'Comment author IP' ),
+			'description' => __( 'http://mywebsite.com' ),
 			'example'     => true,
 			'resolver'    => function() {
-				return $this->trigger->comment->comment_ID;
+				return $this->trigger->comment->comment_author_url;
 			},
 		) );
 
@@ -42,7 +41,7 @@ class CommentID extends IntegerTag {
 	 */
 	public function check_requirements( ) {
 
-		return isset( $this->trigger->comment->comment_ID );
+		return isset( $this->trigger->comment->comment_author_url );
 
 	}
 

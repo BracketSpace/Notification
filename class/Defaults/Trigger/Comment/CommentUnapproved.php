@@ -22,7 +22,7 @@ class CommentUnapproved extends Abstracts\Trigger {
 
 		parent::__construct( 'wordpress/comment_' . $comment_type . '_unapproved', ucfirst( $comment_type ) . ' unapproved' );
 
-		$this->add_action( 'comment_unapproved_' . $action_type, 10, 2 );
+		$this->add_action( 'transition_comment_status', 10, 3 );
 		$this->set_group( sprintf( __( '%s', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
 		$this->set_description( 'Fires when new ' . $comment_type . ' is unapproved' );
 
@@ -36,12 +36,31 @@ class CommentUnapproved extends Abstracts\Trigger {
 	 */
 	public function action() {
 
-		$this->comment_ID = $this->callback_args[0];
-		$this->comment    = $this->callback_args[1];
-		print_r( $this->callback_args);
+		$this->comment_new_status         = $this->callback_args[0];
+		$this->comment_old_status         = $this->callback_args[1];
+		$this->comment                    = $this->callback_args[2];
+		$this->user_object->ID            = $this->comment->user_id;
+		$this->user_object->user_nicename = $this->comment->comment_author;
+		$this->user_object->user_email    = $this->comment->comment_author_email;
 
-		if ( $this->comment->status == 'spam' ) {
+		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
+
 			return false;
+
+		}
+
+		if ( $this->comment_new_status == $this->comment_old_status ) {
+
+			return false;
+
+		} else {
+
+			if ( $this->comment_new_status != 'unapproved' ) {
+
+				return false;
+
+			}
+
 		}
 
 	}
@@ -53,7 +72,31 @@ class CommentUnapproved extends Abstracts\Trigger {
 	 */
 	public function merge_tags() {
 
-		$this->add_merge_tag( new MergeTag\Comment\CommentID( $this ) );
+		$this->add_merge_tag( new MergeTag\Comment\CommentID() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentContent() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentApproved() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentType() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentPostID() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentPostPermalink() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorIP() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorUserAgent() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorUrl() );
+
+		// Author.
+		$this->add_merge_tag( new MergeTag\User\UserID( array(
+			'slug' => 'comment_author_user_ID',
+			'name' => __( 'Comment author user ID' ),
+		) ) );
+
+        $this->add_merge_tag( new MergeTag\User\UserEmail( array(
+			'slug' => 'comment_author_user_email',
+			'name' => __( 'Comment author user email' ),
+		) ) );
+
+		$this->add_merge_tag( new MergeTag\User\UserNicename( array(
+			'slug' => 'comment_author_user_nicename',
+			'name' => __( 'Comment author user nicename' ),
+		) ) );
 
 
     }
