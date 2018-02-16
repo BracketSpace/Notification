@@ -17,8 +17,10 @@ class CommentApproved extends Abstracts\Trigger {
 
 	/**
 	 * Constructor
+	 *
+	 * @param string $comment_type optional, default: comment.
 	 */
-	public function __construct( $comment_type ) {
+	public function __construct( $comment_type = 'comment' ) {
 
 		parent::__construct( 'wordpress/comment_' . $comment_type . '_approved', ucfirst( $comment_type ) . ' approved' );
 

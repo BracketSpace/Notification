@@ -17,6 +17,8 @@ class CommentSpammed extends Abstracts\Trigger {
 
 	/**
 	 * Constructor
+	 *
+	 * @param string $comment_type optional, default: comment.
 	 */
 	public function __construct( $comment_type = 'comment' ) {
 
@@ -32,8 +34,9 @@ class CommentSpammed extends Abstracts\Trigger {
 
 	/**
 	 * Assigns action callback args to object
+	 * Return `false` if you want to abort the trigger execution
 	 *
-	 * @return void
+	 * @return mixed void or false if no notifications should be sent
 	 */
 	public function action() {
 

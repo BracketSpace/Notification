@@ -27,7 +27,7 @@ if ( notification_get_setting( 'triggers/media/enable' ) ) {
 
 }
 
-//Comment triggers.
+// Comment triggers.
 if ( notification_get_setting( 'triggers/comment/types' ) ) {
 
 	$comment_types = notification_get_setting( 'triggers/comment/types' );
