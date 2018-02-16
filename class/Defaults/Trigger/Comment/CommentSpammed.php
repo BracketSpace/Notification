@@ -63,7 +63,7 @@ class CommentSpammed extends Abstracts\Trigger {
 
 		$this->add_merge_tag( new MergeTag\Comment\CommentID() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentContent() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentApproved() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentStatus() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentType() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentPostID() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentPostPermalink() );

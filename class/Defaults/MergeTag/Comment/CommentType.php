@@ -17,18 +17,15 @@ class CommentType extends StringTag {
 
 	/**
 	 * Constructor
-	 *
-	 * @param object $trigger Trigger object to access data from.
 	 */
 	public function __construct() {
 
 		parent::__construct( array(
 			'slug'        => 'comment_type',
 			'name'        => __( 'Comment type' ),
-			'description' => __( 'Comment. pingback, trackback' ),
-			'example'     => true,
+			'description' => __( 'Comment or Pingback or Trackback' ),
 			'resolver'    => function() {
-				return ( $this->trigger->comment->comment_type === '' ) ? __( 'comment' ) : $this->trigger->comment->comment_type;
+				return ( $this->trigger->comment->comment_type === '' ) ? __( 'Comment' ) : $this->trigger->comment->comment_type;
 			},
 		) );
 
@@ -40,9 +37,7 @@ class CommentType extends StringTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-
 		return isset( $this->trigger->comment->comment_type );
-
 	}
 
 }

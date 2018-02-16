@@ -7,25 +7,23 @@
 
 namespace underDEV\Notification\Defaults\MergeTag\Comment;
 
-use underDEV\Notification\Defaults\MergeTag\StringTag;
+use underDEV\Notification\Defaults\MergeTag\IntegerTag;
 
 
 /**
  * Comment post ID merge tag class
  */
-class CommentPostID extends StringTag {
+class CommentPostID extends IntegerTag {
 
 	/**
 	 * Constructor
-	 *
-	 * @param object $trigger Trigger object to access data from.
 	 */
 	public function __construct() {
 
 		parent::__construct( array(
 			'slug'        => 'comment_post_ID',
 			'name'        => __( 'Comment post ID' ),
-			'description' => __( '25' ),
+			'description' => '25',
 			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->comment->comment_post_ID;
@@ -40,9 +38,7 @@ class CommentPostID extends StringTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-
 		return isset( $this->trigger->comment->comment_post_ID );
-
 	}
 
 }

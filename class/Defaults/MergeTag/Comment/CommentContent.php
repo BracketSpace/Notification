@@ -17,8 +17,6 @@ class CommentContent extends StringTag {
 
 	/**
 	 * Constructor
-	 *
-	 * @param object $trigger Trigger object to access data from.
 	 */
 	public function __construct() {
 
@@ -40,9 +38,7 @@ class CommentContent extends StringTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-
 		return isset( $this->trigger->comment->comment_content );
-
 	}
 
 }

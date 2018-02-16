@@ -7,18 +7,16 @@
 
 namespace underDEV\Notification\Defaults\MergeTag\Comment;
 
-use underDEV\Notification\Defaults\MergeTag\StringTag;
+use underDEV\Notification\Defaults\MergeTag\UrlTag;
 
 
 /**
  * Comment author URL merge tag class
  */
-class CommentAuthorUrl extends StringTag {
+class CommentAuthorUrl extends UrlTag {
 
 	/**
 	 * Constructor
-	 *
-	 * @param object $trigger Trigger object to access data from.
 	 */
 	public function __construct() {
 
@@ -40,9 +38,7 @@ class CommentAuthorUrl extends StringTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-
 		return isset( $this->trigger->comment->comment_author_url );
-
 	}
 
 }

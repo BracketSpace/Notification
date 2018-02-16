@@ -17,16 +17,13 @@ class CommentID extends IntegerTag {
 
 	/**
 	 * Constructor
-	 *
-	 * @param object $trigger Trigger object to access data from.
 	 */
 	public function __construct() {
-
 
 		parent::__construct( array(
 			'slug'        => 'comment_ID',
 			'name'        => __( 'Comment ID' ),
-			'description' => __( '35' ),
+			'description' => '35',
 			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->comment->comment_ID;
@@ -41,9 +38,7 @@ class CommentID extends IntegerTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-
 		return isset( $this->trigger->comment->comment_ID );
-
 	}
 
 }
