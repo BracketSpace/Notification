@@ -61,19 +61,67 @@ class MediaTrashed extends Abstracts\Trigger {
 			'name' => __( 'Attachment creation date' ),
 		) ) );
 
-		$this->add_merge_tag( new MergeTag\User\UserID( 'attachment_author_user_ID', __( 'Attachment author user ID' ) ) );
-    	$this->add_merge_tag( new MergeTag\User\UserLogin( 'attachment_author_user_login', __( 'Attachment author user login' ) ) );
-        $this->add_merge_tag( new MergeTag\User\UserEmail( 'attachment_author_user_email', __( 'Attachment author user email' ) ) );
-		$this->add_merge_tag( new MergeTag\User\UserNicename( 'attachment_author_user_nicename', __( 'Attachment author user nicename' ) ) );
-        $this->add_merge_tag( new MergeTag\User\UserFirstName( 'attachment_author_user_firstname', __( 'Attachment author user first name' ) ) );
-		$this->add_merge_tag( new MergeTag\User\UserLastName( 'attachment_author_user_lastname', __( 'Attachment author user last name' ) ) );
+		// Author.
+		$this->add_merge_tag( new MergeTag\User\UserID( array(
+			'slug' => 'attachment_author_user_ID',
+			'name' => __( 'Attachment author user ID' ),
+		) ) );
 
-		$this->add_merge_tag( new MergeTag\User\UserID( 'attachment_trashing_user_ID', __( 'Attachment trashing user ID' ) ) );
-    	$this->add_merge_tag( new MergeTag\User\UserLogin( 'attachment_trashing_user_login', __( 'Attachment trashing user login' ) ) );
-        $this->add_merge_tag( new MergeTag\User\UserEmail( 'attachment_trashing_user_email', __( 'Attachment trashing user email' ) ) );
-		$this->add_merge_tag( new MergeTag\User\UserNicename( 'attachment_trashing_user_nicename', __( 'Attachment trashing user nicename' ) ) );
-        $this->add_merge_tag( new MergeTag\User\UserFirstName( 'attachment_trashing_user_firstname', __( 'Attachment trashing user first name' ) ) );
-		$this->add_merge_tag( new MergeTag\User\UserLastName( 'attachment_trashing_user_lastname', __( 'Attachment trashing user last name' ) ) );
+    	$this->add_merge_tag( new MergeTag\User\UserLogin( array(
+			'slug' => 'attachment_author_user_login',
+			'name' => __( 'Attachment author user login'  ),
+		) ) );
+
+        $this->add_merge_tag( new MergeTag\User\UserEmail( array(
+			'slug' => 'attachment_author_user_email',
+			'name' => __( 'Attachment author user email' ),
+		) ) );
+
+		$this->add_merge_tag( new MergeTag\User\UserNicename( array(
+			'slug' => 'attachment_author_user_nicename',
+			'name' => __( 'Attachment author user nicename' ),
+		) ) );
+
+        $this->add_merge_tag( new MergeTag\User\UserFirstName( array(
+			'slug' => 'attachment_author_user_firstname',
+			'name' => __( 'Attachment author user first name' ),
+		) ) );
+
+		$this->add_merge_tag( new MergeTag\User\UserLastName( array(
+			'slug' => 'attachment_author_user_lastname',
+			'name' => __( 'Attachment author user last name' ),
+		) ) );
+
+		// Trashing user.
+		$this->add_merge_tag( new MergeTag\User\UserID( array(
+			'slug' => 'attachment_trashing_user_ID',
+			'name' => __( 'Attachment trashing user ID' ),
+		) ) );
+
+    	$this->add_merge_tag( new MergeTag\User\UserLogin( array(
+			'slug' => 'attachment_trashing_user_login',
+			'name' => __( 'Attachment trashing user login' ),
+		) ) );
+
+        $this->add_merge_tag( new MergeTag\User\UserEmail( array(
+			'slug' => 'attachment_trashing_user_email',
+			'name' => __( 'Attachment trashing user email' ),
+		) ) );
+
+		$this->add_merge_tag( new MergeTag\User\UserNicename( array(
+			'slug' => 'attachment_trashing_user_nicename',
+			'name' => __( 'Attachment trashing user nicename' ),
+		) ) );
+
+        $this->add_merge_tag( new MergeTag\User\UserFirstName( array(
+			'slug' => 'attachment_trashing_user_firstname',
+			'name' => __( 'Attachment trashing user first name' ),
+		) ) );
+
+		$this->add_merge_tag( new MergeTag\User\UserLastName( array(
+			'slug' => 'attachment_trashing_user_lastname',
+			'name' => __( 'Attachment trashing user last name' ),
+		) ) );
 
     }
 
