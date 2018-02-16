@@ -14,21 +14,17 @@ use underDEV\Notification\Defaults\MergeTag\StringTag;
  */
 class UserFirstName extends StringTag {
 
-    /**
-     * Constructor
+	/**
+     * Merge tag constructor
      *
-     * @param string $slug merge tag slug.
-     * @param string $name merge tag name.
+     * @since [Next]
+     * @param array $params merge tag configuration params.
      */
-    public function __construct( $slug = 'user_first_name', $name = '' ) {
+    public function __construct( $params = array() ) {
 
-    	if ( empty( $name ) ) {
-    		$name = __( 'User first name' );
-    	}
-
-    	parent::__construct( array(
-			'slug'        => $slug,
-			'name'        => $name,
+    	$args = wp_parse_args( $params, array(
+			'slug'        => 'user_first_name',
+			'name'        => __( 'User first name' ),
 			'description' => __( 'John' ),
 			'example'     => true,
 			'resolver'    => function() {
@@ -36,7 +32,9 @@ class UserFirstName extends StringTag {
 			},
         ) );
 
-    }
+    	parent::__construct( $args );
+
+	}
 
     /**
      * Function for checking requirements

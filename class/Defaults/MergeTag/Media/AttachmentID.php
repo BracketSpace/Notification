@@ -16,11 +16,14 @@ use underDEV\Notification\Defaults\MergeTag\IntegerTag;
 class AttachmentID extends IntegerTag {
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
+     * Merge tag constructor
+     *
+     * @since [Next]
+     * @param array $params merge tag configuration params.
+     */
+    public function __construct( $params = array() ) {
 
-		parent::__construct( array(
+    	$args = wp_parse_args( $params, array(
 			'slug'        => 'attachment_ID',
 			'name'        => __( 'Attachment ID' ),
 			'description' => '35',
@@ -29,6 +32,8 @@ class AttachmentID extends IntegerTag {
 				return $this->trigger->attachment->ID;
 			},
 		) );
+
+    	parent::__construct( $args );
 
 	}
 

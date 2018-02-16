@@ -214,7 +214,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		foreach ( $this->get_merge_tags() as $tag ) {
 			if ( $tag->check_requirements() ) {
 				$tag->resolve();
-			} else {
+			} elseif ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 				trigger_error( 'Requirements for the `' . $tag->get_slug() . '` merge tag hasn\'t been met', E_USER_ERROR );
 			}
 		}
