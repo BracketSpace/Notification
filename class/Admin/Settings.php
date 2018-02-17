@@ -242,4 +242,21 @@ class Settings extends SettingsAPI {
 
 	}
 
+	/**
+	 * Filters post types from supported posts
+	 *
+	 * @since  [Next]
+	 * @param  array $post_types post types.
+	 * @return array
+	 */
+	public function filter_post_types( $post_types ) {
+
+		if ( isset( $post_types['attachment'] ) ) {
+			unset( $post_types['attachment'] );
+		}
+
+		return $post_types;
+
+	}
+
 }

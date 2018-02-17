@@ -108,6 +108,8 @@ class Runtime {
 
 		add_action( 'wp_loaded', array( $this->settings, 'register_settings' ) );
 
+		add_filter( 'notification/settings/triggers/valid_post_types', array( $this->settings, 'filter_post_types' ) );
+
 		notification_register_settings( array( $this->settings, 'general_settings' ) );
 		notification_register_settings( array( $this->settings, 'triggers_settings' ), 20 );
 		notification_register_settings( array( $this->settings, 'notifications_settings' ), 30 );
