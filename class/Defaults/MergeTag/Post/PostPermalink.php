@@ -1,6 +1,6 @@
 <?php
 /**
- * Post ID merge tag
+ * Post permalink merge tag
  *
  * Requirements:
  * - Trigger property of the post type slug with WP_Post object
@@ -14,9 +14,9 @@ use underDEV\Notification\Defaults\MergeTag\IntegerTag;
 
 
 /**
- * Post ID merge tag class
+ * Post permalink merge tag class
  */
-class PostID extends IntegerTag {
+class PostPermalink extends IntegerTag {
 
 	/**
 	 * Post Type slug
@@ -40,13 +40,13 @@ class PostID extends IntegerTag {
     	}
 
     	$args = wp_parse_args( $params, array(
-			'slug'        => $this->post_type . '_ID',
+			'slug'        => $this->post_type . '_permalink',
 			// translators: singular post name.
-			'name'        => sprintf( __( '%s ID' ), $this->get_nicename() ),
-			'description' => '35',
+			'name'        => sprintf( __( '%s permalink' ), $this->get_nicename() ),
+			'description' => __( 'https://example.com/hello-world/' ),
 			'example'     => true,
 			'resolver'    => function() {
-				return $this->trigger->{ $this->post_type }->ID;
+				return get_permalink( $this->trigger->{ $this->post_type }->ID );
 			},
 		) );
 

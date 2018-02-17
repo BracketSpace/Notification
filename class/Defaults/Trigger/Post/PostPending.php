@@ -61,6 +61,7 @@ class PostPending extends PostTrigger {
 	public function merge_tags() {
 
 		$this->add_merge_tag( new MergeTag\Post\PostID() );
+		$this->add_merge_tag( new MergeTag\Post\PostPermalink() );
 
     }
 
