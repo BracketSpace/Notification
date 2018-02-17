@@ -137,7 +137,8 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
     	$value = call_user_func( $this->resolver );
 
     	if ( ! $this->validate( $value ) ) {
-    		trigger_error( 'Resolved value is a wrong type', E_USER_ERROR );
+    		$error_type = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? E_USER_ERROR : E_USER_NOTICE;
+    		trigger_error( 'Resolved value is a wrong type', $error_type );
     	}
 
     	$this->resolved = true;

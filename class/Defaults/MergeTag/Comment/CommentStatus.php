@@ -35,6 +35,8 @@ class CommentStatus extends StringTag {
 					return __( 'Unapproved' );
 				} elseif ( $this->trigger->comment->comment_approved  == 'spam' ) {
 					return __( 'Marked as spam' );
+				} elseif ( $this->trigger->comment->comment_approved  == 'trash' ) {
+					return __( 'Trashed' );
 				}
  			},
 		) );

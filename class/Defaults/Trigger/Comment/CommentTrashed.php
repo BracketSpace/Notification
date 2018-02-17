@@ -40,15 +40,20 @@ class CommentTrashed extends Abstracts\Trigger {
 	 */
 	public function action() {
 
-		$this->comment_ID                 = $this->callback_args[0];
-		$this->comment                    = $this->callback_args[1];
-		$this->user_object->ID            = $this->comment->user_id;
+		$this->comment_ID = $this->callback_args[0];
+		$this->comment    = $this->callback_args[1];
+
+		$this->user_object                = new \StdClass();
+		$this->user_object->ID            = ( $this->comment->user_id ) ? $this->comment->user_id : 0;
 		$this->user_object->user_nicename = $this->comment->comment_author;
 		$this->user_object->user_email    = $this->comment->comment_author_email;
 
 		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
 			return false;
 		}
+
+		// fix for action being called too early, before WP marks the comment as trashed.
+		$this->comment->comment_approved = 'trash';
 
 	}
 

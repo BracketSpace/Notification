@@ -24,7 +24,7 @@ class CommentSpammed extends Abstracts\Trigger {
 
 		parent::__construct( 'wordpress/comment_' . $comment_type . '_spammed', ucfirst( $comment_type ) . ' spammed' );
 
-		$this->add_action( 'spammed_comment', 10, 2 );
+		$this->add_action( 'spammed_comment', 100, 2 );
 		$this->set_group( __( ucfirst( $comment_type ), 'notification' ) );
 
 		// translators: comment type.
@@ -40,9 +40,11 @@ class CommentSpammed extends Abstracts\Trigger {
 	 */
 	public function action() {
 
-		$this->comment_status             = $this->callback_args[0];
-		$this->comment                    = $this->callback_args[1];
-		$this->user_object->ID            = $this->comment->user_id;
+		$this->comment_status = $this->callback_args[0];
+		$this->comment        = $this->callback_args[1];
+
+		$this->user_object                = new \StdClass();
+		$this->user_object->ID            = ( $this->comment->user_id ) ? $this->comment->user_id : 0;
 		$this->user_object->user_nicename = $this->comment->comment_author;
 		$this->user_object->user_email    = $this->comment->comment_author_email;
 
@@ -50,7 +52,8 @@ class CommentSpammed extends Abstracts\Trigger {
 			return false;
 		}
 
-
+		// fix for action being called too early, before WP marks the comment as spam.
+		$this->comment->comment_approved = 'spam';
 
 	}
 

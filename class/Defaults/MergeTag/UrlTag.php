@@ -28,7 +28,7 @@ class UrlTag extends MergeTag {
      * @return boolean
      */
     public function validate( $value ) {
-    	return filter_var( $value, FILTER_VALIDATE_URL ) !== false;
+    	return empty( $value ) || filter_var( $value, FILTER_VALIDATE_URL ) !== false;
     }
 
     /**
