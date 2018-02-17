@@ -15,6 +15,14 @@ use underDEV\Notification\Defaults\MergeTag;
 class PostUpdated extends PostTrigger {
 
 	/**
+	 * If the action has been postponed
+	 * This is part of ACF integration
+	 *
+	 * @var boolean
+	 */
+	protected $acf_postponed_action = false;
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $post_type optional, default: post.
@@ -43,6 +51,15 @@ class PostUpdated extends PostTrigger {
 	 */
 	public function action() {
 
+		/**
+		 * ACF integration
+		 * If the action has been postponed, then early return,
+		 * we've been here already and all props are set.
+		 */
+		if ( $this->acf_postponed_action ) {
+			return;
+		}
+
 		$post_id = $this->callback_args[0];
 		// WP_Post object.
 		$this->post = $this->callback_args[1];
@@ -53,7 +70,7 @@ class PostUpdated extends PostTrigger {
 			return false;
 		}
 
-		if ( empty( $this->post->post_name ) || $post_before->post_status != 'publish' ) {
+		if ( empty( $this->post->post_name ) || $post_before->post_status != 'publish'  || $this->post->post_status == 'trash' ) {
 			return false;
 		}
 
@@ -62,6 +79,18 @@ class PostUpdated extends PostTrigger {
 
 		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->post->post_date );
 		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->post->post_modified );
+
+		/**
+		 * ACF integration
+		 * If ACF is active and the action hasn't been postponed yet,
+		 * we are aborting this action and hook to the later one,
+		 * after ACF saves the fields.
+		 */
+		if ( function_exists( 'acf' ) && ! $this->acf_postponed_action ) {
+			$this->acf_postponed_action = true;
+			add_action( 'acf/save_post', array( $this, '_action' ), 1000 );
+			return false;
+		}
 
 	}
 

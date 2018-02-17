@@ -15,6 +15,14 @@ use underDEV\Notification\Defaults\MergeTag;
 class PostPublished extends PostTrigger {
 
 	/**
+	 * If the action has been postponed
+	 * This is part of ACF integration
+	 *
+	 * @var boolean
+	 */
+	protected $acf_postponed_action = false;
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $post_type optional, default: post.
@@ -28,7 +36,11 @@ class PostPublished extends PostTrigger {
 			'name'      => sprintf( __( '%s published' ), parent::get_post_type_name( $post_type ) ),
 		) );
 
-		$this->add_action( 'transition_post_status', 10, 3 );
+		$this->add_action( 'auto-draft_to_publish', 10 );
+		$this->add_action( 'draft_to_publish', 10 );
+		$this->add_action( 'pending_to_publish', 10 );
+		$this->add_action( 'private_to_publish', 10 );
+		$this->add_action( 'future_to_publish', 10 );
 
 		// translators: 1. singular post name, 2. post type slug.
 		$this->set_description( sprintf( __( 'Fires when %s (%s) is published' ), parent::get_post_type_name( $post_type ), $post_type ) );
@@ -43,20 +55,19 @@ class PostPublished extends PostTrigger {
 	 */
 	public function action() {
 
-		$new_status = $this->callback_args[0];
-		$old_status = $this->callback_args[1];
+		/**
+		 * ACF integration
+		 * If the action has been postponed, then early return,
+		 * we've been here already and all props are set.
+		 */
+		if ( $this->acf_postponed_action ) {
+			return;
+		}
+
 		// WP_Post object.
-		$this->post = $this->callback_args[2];
+		$this->post = $this->callback_args[0];
 
 		if ( $this->post->post_type != $this->post_type ) {
-			return false;
-		}
-
-		if ( $new_status == $old_status ) {
-			return false;
-		}
-
-		if ( $new_status != 'publish' ) {
 			return false;
 		}
 
@@ -65,6 +76,18 @@ class PostPublished extends PostTrigger {
 
 		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->post->post_date );
 		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->post->post_modified );
+
+		/**
+		 * ACF integration
+		 * If ACF is active and the action hasn't been postponed yet,
+		 * we are aborting this action and hook to the later one,
+		 * after ACF saves the fields.
+		 */
+		if ( function_exists( 'acf' ) && ! $this->acf_postponed_action ) {
+			$this->acf_postponed_action = true;
+			add_action( 'acf/save_post', array( $this, '_action' ), 1000 );
+			return false;
+		}
 
 	}
 
