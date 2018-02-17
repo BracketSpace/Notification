@@ -41,7 +41,7 @@ class Email extends Abstracts\Recipient {
 			$value = $this->get_default_value();
 		}
 
-		return array( esc_url( $value ) );
+		return array( sanitize_email( $value ) );
 
 	}
 

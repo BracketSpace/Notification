@@ -7,6 +7,24 @@
 
 use underDEV\Notification\Defaults\Trigger;
 
+// Post triggers.
+if ( notification_get_setting( 'triggers/post_types/types' ) ) {
+
+	// We are registering them on init to make sure all CPTs are registered.
+	add_action( 'init', function() {
+
+		$post_types = notification_get_setting( 'triggers/post_types/types' );
+
+		foreach ( $post_types as $post_type ) {
+
+			register_trigger( new Trigger\Post\PostPublished( $post_type ) );
+
+		}
+
+	}, 1000, 1 );
+
+}
+
 // User triggers.
 if ( notification_get_setting( 'triggers/user/enable' ) ) {
 
@@ -43,12 +61,3 @@ if ( notification_get_setting( 'triggers/comment/types' ) ) {
 	}
 
 }
-
-// Post triggers.
-// if ( notification_get_setting( 'triggers/media/enable' ) ) {
-
-	add_action( 'init', function() {
-		register_trigger( new Trigger\Post\PostPublished() );
-	}, 1000, 1 );
-
-// }
