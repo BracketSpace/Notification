@@ -47,6 +47,8 @@ if ( notification_get_setting( 'triggers/comment/types' ) ) {
 // Post triggers.
 // if ( notification_get_setting( 'triggers/media/enable' ) ) {
 
-	register_trigger( new Trigger\Post\PostPublished() );
+	add_action( 'init', function() {
+		register_trigger( new Trigger\Post\PostPublished() );
+	}, 1000, 1 );
 
 // }
