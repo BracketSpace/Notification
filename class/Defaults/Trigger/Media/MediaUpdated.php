@@ -35,9 +35,10 @@ class MediaUpdated extends Abstracts\Trigger {
 	 */
 	public function action() {
 
-		$this->attachment  = get_post( $this->callback_args[0] );
-		$this->user_id     = get_current_user_id();
-		$this->user_object = get_userdata( $this->user_id );
+		$this->attachment    = get_post( $this->callback_args[0] );
+		$this->user_id       = get_current_user_id();
+		$this->user_object   = get_userdata( $this->user_id );
+		$this->updating_user = get_userdata( get_current_user_id() );
 
 		$this->attachment_creation_date = strtotime( $this->attachment->post_date );
 
@@ -94,33 +95,39 @@ class MediaUpdated extends Abstracts\Trigger {
 
 		// Updating user.
 		$this->add_merge_tag( new MergeTag\User\UserID( array(
-			'slug' => 'attachment_updating_user_ID',
-			'name' => __( 'Attachment updating user ID' ),
+			'slug'          => 'attachment_updating_user_ID',
+			'name'          => __( 'Attachment updating user ID' ),
+			'property_name' => 'updating_user',
 		) ) );
 
     	$this->add_merge_tag( new MergeTag\User\UserLogin( array(
-			'slug' => 'attachment_updating_user_login',
-			'name' => __( 'Attachment updating user login' ),
+			'slug'          => 'attachment_updating_user_login',
+			'name'          => __( 'Attachment updating user login' ),
+			'property_name' => 'updating_user',
 		) ) );
 
         $this->add_merge_tag( new MergeTag\User\UserEmail( array(
-			'slug' => 'attachment_updating_user_email',
-			'name' => __( 'Attachment updating user email' ),
+			'slug'          => 'attachment_updating_user_email',
+			'name'          => __( 'Attachment updating user email' ),
+			'property_name' => 'updating_user',
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserNicename( array(
-			'slug' => 'attachment_updating_user_nicename',
-			'name' => __( 'Attachment updating user nicename' ),
+			'slug'          => 'attachment_updating_user_nicename',
+			'name'          => __( 'Attachment updating user nicename' ),
+			'property_name' => 'updating_user',
 		) ) );
 
         $this->add_merge_tag( new MergeTag\User\UserFirstName( array(
-			'slug' => 'attachment_updating_user_firstname',
-			'name' => __( 'Attachment updating user first name' ),
+			'slug'          => 'attachment_updating_user_firstname',
+			'name'          => __( 'Attachment updating user first name' ),
+			'property_name' => 'updating_user',
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserLastName( array(
-			'slug' => 'attachment_updating_user_lastname',
-			'name' => __( 'Attachment updating user last name' ),
+			'slug'          => 'attachment_updating_user_lastname',
+			'name'          => __( 'Attachment updating user last name' ),
+			'property_name' => 'updating_user',
 		) ) );
 
     }
