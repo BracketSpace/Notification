@@ -51,6 +51,11 @@ class PostPending extends PostTrigger {
 			return false;
 		}
 
+		$this->author = get_userdata( $this->post->post_author );
+
+		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->post->post_date );
+		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->post->post_modified );
+
 	}
 
 	/**
@@ -60,10 +65,9 @@ class PostPending extends PostTrigger {
 	 */
 	public function merge_tags() {
 
-		$this->add_merge_tag( new MergeTag\Post\PostID() );
-		$this->add_merge_tag( new MergeTag\Post\PostPermalink() );
-		$this->add_merge_tag( new MergeTag\Post\PostTitle() );
-		$this->add_merge_tag( new MergeTag\Post\PostSlug() );
+		$post_name = parent::get_post_type_name( $this->post_type );
+
+		parent::merge_tags();
 
     }
 
