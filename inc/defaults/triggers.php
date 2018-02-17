@@ -26,3 +26,10 @@ if ( notification_get_setting( 'triggers/media/enable' ) ) {
 	register_trigger( new Trigger\Media\MediaTrashed() );
 
 }
+
+// Post triggers.
+// if ( notification_get_setting( 'triggers/media/enable' ) ) {
+
+	register_trigger( new Trigger\Post\PostPublished() );
+
+// }
