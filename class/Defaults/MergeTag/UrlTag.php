@@ -19,7 +19,7 @@ class UrlTag extends MergeTag {
      *
      * @var string
      */
-    protected $value_type = 'url';
+    protected $value_type = 'string';
 
     /**
      * Check the merge tag value type
@@ -28,7 +28,7 @@ class UrlTag extends MergeTag {
      * @return boolean
      */
     public function validate( $value ) {
-    	return filter_var( $value, FILTER_VALIDATE_URL ) !== false;
+    	return empty( $value ) || filter_var( $value, FILTER_VALIDATE_URL ) !== false;
     }
 
     /**

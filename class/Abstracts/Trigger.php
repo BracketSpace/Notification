@@ -39,6 +39,14 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	protected $description = '';
 
 	/**
+	 * Flag indicating that trigger
+	 * has been stopped
+	 *
+	 * @var boolean
+	 */
+	protected $stopped = false;
+
+	/**
 	 * Bound actions
      *
 	 * @var array
@@ -266,6 +274,15 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
+	 * Checks if trigger has been stopped
+	 *
+	 * @return boolean
+	 */
+	public function is_stopped() {
+		return $this->stopped;
+	}
+
+	/**
 	 * Action callback
 	 * It's strongly recommended to add this function in a child class
 	 * and set all the class parameters you need or are required
@@ -281,12 +298,23 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * @return void
 	 */
 	public function _action() {
+
 		$this->callback_args = func_get_args();
-		$this->action();
+		$result = $this->action();
+
+		if ( $result === false ) {
+			$this->stopped = true;
+		}
+
+		if ( $this->is_stopped() ) {
+			return;
+		}
+
 		$this->resolve_merge_tags();
 		$this->set_notifications();
 		$this->resolve_fields();
 		$this->roll_out();
+
 	}
 
 }
