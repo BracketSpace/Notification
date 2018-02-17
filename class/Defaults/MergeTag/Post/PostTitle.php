@@ -1,6 +1,6 @@
 <?php
 /**
- * Post permalink merge tag
+ * Post title merge tag
  *
  * Requirements:
  * - Trigger property of the post type slug with WP_Post object
@@ -10,13 +10,13 @@
 
 namespace underDEV\Notification\Defaults\MergeTag\Post;
 
-use underDEV\Notification\Defaults\MergeTag\UrlTag;
+use underDEV\Notification\Defaults\MergeTag\StringTag;
 
 
 /**
- * Post permalink merge tag class
+ * Post title merge tag class
  */
-class PostPermalink extends UrlTag {
+class PostTitle extends StringTag {
 
 	/**
 	 * Post Type slug
@@ -40,13 +40,13 @@ class PostPermalink extends UrlTag {
     	}
 
     	$args = wp_parse_args( $params, array(
-			'slug'        => $this->post_type . '_permalink',
+			'slug'        => $this->post_type . '_title',
 			// translators: singular post name.
-			'name'        => sprintf( __( '%s permalink' ), $this->get_nicename() ),
-			'description' => __( 'https://example.com/hello-world/' ),
+			'name'        => sprintf( __( '%s title' ), $this->get_nicename() ),
+			'description' => __( 'Hello World' ),
 			'example'     => true,
 			'resolver'    => function() {
-				return get_permalink( $this->trigger->{ $this->post_type }->ID );
+				return get_the_title( $this->trigger->{ $this->post_type } );
 			},
 		) );
 
@@ -60,7 +60,7 @@ class PostPermalink extends UrlTag {
 	 * @return boolean
 	 */
 	public function check_requirements() {
-		return isset( $this->trigger->{ $this->post_type }->ID );
+		return isset( $this->trigger->{ $this->post_type } );
 	}
 
 	/**
