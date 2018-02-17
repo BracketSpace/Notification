@@ -2,6 +2,9 @@
 /**
  * Post ID merge tag
  *
+ * Requirements:
+ * - Trigger property of the merge tag slug with WP_Post object
+ *
  * @package notification
  */
 
