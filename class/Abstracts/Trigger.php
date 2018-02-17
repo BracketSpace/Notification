@@ -299,6 +299,9 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	public function _action() {
 
+		// reset the state.
+		$this->stopped = false;
+
 		$this->callback_args = func_get_args();
 		$result = $this->action();
 
