@@ -33,7 +33,9 @@ function notification_autoload( $class ) {
 
 	$file = trailingslashit( 'class' ) . implode( '/', $parts ) . '.php';
 
-	require_once $file ;
+	if ( file_exists( $file ) ) {
+		require_once $file;
+	}
 
 }
 spl_autoload_register( 'notification_autoload' );
