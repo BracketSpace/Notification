@@ -31,7 +31,7 @@ function notification_autoload( $class ) {
 		return false;
 	}
 
-	$file = trailingslashit( 'class' ) . implode( '/', $parts ) . '.php';
+	$file = trailingslashit( dirname( __FILE__ ) ) . trailingslashit( 'class' ) . implode( '/', $parts ) . '.php';
 
 	if ( file_exists( $file ) ) {
 		require_once $file;
