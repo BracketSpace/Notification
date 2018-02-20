@@ -50,12 +50,29 @@ abstract class PostTrigger extends Abstracts\Trigger {
 
 		$post_name = $this->get_current_post_type_name();
 
-		$this->add_merge_tag( new MergeTag\Post\PostID() );
-		$this->add_merge_tag( new MergeTag\Post\PostPermalink() );
-		$this->add_merge_tag( new MergeTag\Post\PostTitle() );
-		$this->add_merge_tag( new MergeTag\Post\PostSlug() );
-		$this->add_merge_tag( new MergeTag\Post\PostContent() );
-		$this->add_merge_tag( new MergeTag\Post\PostExcerpt() );
+		$this->add_merge_tag( new MergeTag\Post\PostID( array(
+			'post_type' => $this->post_type,
+		) ) );
+
+		$this->add_merge_tag( new MergeTag\Post\PostPermalink( array(
+			'post_type' => $this->post_type,
+		) ) );
+
+		$this->add_merge_tag( new MergeTag\Post\PostTitle( array(
+			'post_type' => $this->post_type,
+		) ) );
+
+		$this->add_merge_tag( new MergeTag\Post\PostSlug( array(
+			'post_type' => $this->post_type,
+		) ) );
+
+		$this->add_merge_tag( new MergeTag\Post\PostContent( array(
+			'post_type' => $this->post_type,
+		) ) );
+
+		$this->add_merge_tag( new MergeTag\Post\PostExcerpt( array(
+			'post_type' => $this->post_type,
+		) ) );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => $this->post_type . '_creation_datetime',
