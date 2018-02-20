@@ -47,6 +47,14 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	protected $stopped = false;
 
 	/**
+	 * Flag indicating that action
+	 * has been postponed
+	 *
+	 * @var boolean
+	 */
+	protected $postponed = false;
+
+	/**
 	 * Bound actions
      *
 	 * @var array
@@ -112,6 +120,27 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		) );
 
 		add_action( $tag, array( $this, '_action' ), $priority, $accepted_args );
+
+	}
+
+	/**
+	 * Postpones the action with later hook
+	 * It automatically stops the execution
+     *
+	 * @param string  $tag           action hook.
+	 * @param integer $priority      action priority, default 10.
+	 * @param integer $accepted_args how many args the action accepts, default 1.
+	 */
+	public function postpone_action( $tag, $priority = 10, $accepted_args = 1 ) {
+
+		if ( empty( $tag ) ) {
+			trigger_error( 'Action tag cannot be empty', E_USER_ERROR );
+		}
+
+		add_action( $tag, array( $this, '_action' ), $priority, $accepted_args );
+
+		$this->stopped   = true;
+		$this->postponed = true;
 
 	}
 
@@ -283,14 +312,34 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
+	 * Checks if action has been postponed
+	 *
+	 * @return boolean
+	 */
+	public function is_postponed() {
+		return $this->postponed;
+	}
+
+	/**
 	 * Action callback
 	 * It's strongly recommended to add this function in a child class
 	 * and set all the class parameters you need or are required
 	 * by merge tags you are using
-     *
-	 * @return void
+	 *
+	 * Return `false` if you want to abort the trigger execution
+	 *
+	 * @return mixed void or false if no notifications should be sent
 	 */
 	public function action() {}
+
+	/**
+	 * Postponed action callback
+	 *
+	 * Return `false` if you want to abort the trigger execution
+	 *
+	 * @return mixed void or false if no notifications should be sent
+	 */
+	public function postponed_action() {}
 
 	/**
 	 * Action callback
@@ -302,8 +351,15 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		// reset the state.
 		$this->stopped = false;
 
+		// setup the arguments.
 		$this->callback_args = func_get_args();
-		$result = $this->action();
+
+		// call the action.
+		if ( $this->is_postponed() ) {
+			$result = $this->postponed_action();
+		} else {
+			$result = $this->action();
+		}
 
 		if ( $result === false ) {
 			$this->stopped = true;
