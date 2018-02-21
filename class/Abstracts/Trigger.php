@@ -359,6 +359,10 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			$result = $this->postponed_action();
 		} else {
 			$result = $this->action();
+			// stop if action is postponed.
+			if ( $this->is_postponed() ) {
+				$this->stopped = true;
+			}
 		}
 
 		if ( $result === false ) {
