@@ -29,10 +29,28 @@ class Settings extends SettingsAPI {
 	 */
 	public function register_page() {
 
+		if ( ! apply_filters( 'notification/whitelabel/settings', true ) ) {
+			return;
+		}
+
+		$settings_access = apply_filters( 'notification/whitelabel/settings/access', false );
+		if ( false !== $settings_access && ! in_array( get_current_user_id(), $settings_access ) ) {
+			return;
+		}
+
+		// change settings position if white labelled.
+		if ( true !== apply_filters( 'notification/whitelabel/cpt/parent', true ) ) {
+			$parent_hook     = apply_filters( 'notification/whitelabel/cpt/parent', 'edit.php?post_type=notification' );
+			$page_menu_label =  __( 'Notification settings', 'notification' );
+		} else {
+			$parent_hook     = 'edit.php?post_type=notification';
+			$page_menu_label =  __( 'Settings', 'notification' );
+		}
+
 		$this->page_hook = add_submenu_page(
-			'edit.php?post_type=notification',
+			$parent_hook,
 	        __( 'Notification settings', 'notification' ),
-	        __( 'Settings', 'notification' ),
+	        $page_menu_label,
 	        'manage_options',
 	        'settings',
 	        array( $this, 'settings_page' )

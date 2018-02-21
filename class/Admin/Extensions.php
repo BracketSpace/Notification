@@ -45,10 +45,21 @@ class Extensions {
 	 */
 	public function register_page() {
 
+		if ( ! apply_filters( 'notification/whitelabel/extensions', true ) ) {
+			return;
+		}
+
+		// change settings position if white labelled.
+		if ( true !== apply_filters( 'notification/whitelabel/cpt/parent', true ) ) {
+			$page_menu_label =  __( 'Notification extensions', 'notification' );
+		} else {
+			$page_menu_label =  __( 'Extensions', 'notification' );
+		}
+
 		$this->page_hook = add_submenu_page(
-			'edit.php?post_type=notification',
+			apply_filters( 'notification/whitelabel/cpt/parent', 'edit.php?post_type=notification' ),
 	        __( 'Extensions', 'notification' ),
-	        __( 'Extensions', 'notification' ),
+	        $page_menu_label,
 	        'manage_options',
 	        'extensions',
 	        array( $this, 'extensions_page' )
