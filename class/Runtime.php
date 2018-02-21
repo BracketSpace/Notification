@@ -53,6 +53,7 @@ class Runtime {
 	 */
 	public function singletons() {
 
+		$this->whitelabel           = new Whitelabel();
 		$this->files                = new Utils\Files( $this->plugin_file, $this->plugin_custom_url, $this->plugin_custom_path );
 		$this->internationalization = new Internationalization( $this->files, 'notification' );
 		$this->settings             = new Admin\Settings();
@@ -62,9 +63,9 @@ class Runtime {
 		$this->admin_post_type      = new Admin\PostType( $this->admin_trigger, $this->admin_notifications, $this->view() );
 		$this->admin_post_table     = new Admin\PostTable();
 		$this->admin_merge_tags     = new Admin\MergeTags( $this->view(), $this->ajax() );
-		$this->admin_scripts        = new Admin\Scripts( $this->files );
 		$this->admin_recipients     = new Admin\Recipients( $this->view(), $this->ajax() );
 		$this->admin_extensions     = new Admin\Extensions( $this->view() );
+		$this->admin_scripts        = new Admin\Scripts( $this, $this->files );
 
 	}
 
@@ -75,6 +76,8 @@ class Runtime {
 	 * @return void
 	 */
 	public function actions() {
+
+		add_action( 'init', array( $this->whitelabel, 'remove_defaults' ), 50 );
 
 		add_action( 'plugins_loaded', array( $this->internationalization, 'load_textdomain' ) );
 		add_action( 'init', array( $this->internationalization, 'load_native_admin_textdomain' ) );

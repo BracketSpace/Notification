@@ -22,13 +22,22 @@ class Scripts {
 	private $files;
 
 	/**
+	 * Runtime class
+     *
+	 * @var object
+	 */
+	private $runtime;
+
+	/**
 	 * Scripts constructor
 	 *
 	 * @since [Next]
-	 * @param Files $files Files class.
+	 * @param Files  $files   Files class.
+	 * @param object $runtime Plugin Runtime class.
 	 */
-	public function __construct( Files $files ) {
-		$this->files = $files;
+	public function __construct( $runtime, Files $files ) {
+		$this->files   = $files;
+		$this->runtime = $runtime;
 	}
 
 	/**
@@ -40,8 +49,8 @@ class Scripts {
 	public function enqueue_scripts( $page_hook ) {
 
 		$allowed_hooks = array(
-			'notification_page_extensions',
-			'notification_page_settings',
+			$this->runtime->admin_extensions->page_hook,
+			$this->runtime->settings->page_hook,
 			'plugins.php',
 			'post-new.php',
 			'post.php'

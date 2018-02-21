@@ -51,11 +51,11 @@ class PostType {
 		);
 
 		register_post_type( 'notification', array(
-			'labels'              => $labels,
+			'labels'              => apply_filters( 'notification/whitelabel/cpt/labels', $labels ),
 			'hierarchical'        => false,
 			'public'              => true,
 			'show_ui'             => true,
-			'show_in_menu'        => true,
+			'show_in_menu'        => apply_filters( 'notification/whitelabel/cpt/parent', true ),
 			'show_in_admin_bar'   => true,
 			'menu_icon'           => 'dashicons-megaphone',
 			'menu_position'       => 103,

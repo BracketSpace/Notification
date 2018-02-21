@@ -5,6 +5,10 @@
  * @package notification
  */
 
+if ( notification_is_whitelabeled() ) {
+	return;
+}
+
 ?>
 
 <div class="plugin-card promo">
