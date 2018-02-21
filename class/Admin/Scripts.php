@@ -32,8 +32,8 @@ class Scripts {
 	 * Scripts constructor
 	 *
 	 * @since [Next]
-	 * @param Files  $files   Files class.
 	 * @param object $runtime Plugin Runtime class.
+	 * @param Files  $files   Files class.
 	 */
 	public function __construct( $runtime, Files $files ) {
 		$this->files   = $files;

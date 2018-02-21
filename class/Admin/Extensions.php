@@ -49,7 +49,7 @@ class Extensions {
 			return;
 		}
 
-		// change settings position if white labelled
+		// change settings position if white labelled.
 		if ( true !== apply_filters( 'notification/whitelabel/cpt/parent', true ) ) {
 			$page_menu_label =  __( 'Notification extensions', 'notification' );
 		} else {

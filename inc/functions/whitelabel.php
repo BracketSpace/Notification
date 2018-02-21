@@ -12,7 +12,7 @@
  * - 'page_hook' => 'edit.php?post_type=page' // to move the Notifications under specific admin page
  *
  * @since [Next]
- * @param array $args white label args
+ * @param array $args white label args.
  * @return void
  */
 function notification_whitelabel( $args = array() ) {

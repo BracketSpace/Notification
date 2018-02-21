@@ -38,7 +38,7 @@ class Settings extends SettingsAPI {
 			return;
 		}
 
-		// change settings position if white labelled
+		// change settings position if white labelled.
 		if ( true !== apply_filters( 'notification/whitelabel/cpt/parent', true ) ) {
 			$parent_hook     = apply_filters( 'notification/whitelabel/cpt/parent', 'edit.php?post_type=notification' );
 			$page_menu_label =  __( 'Notification settings', 'notification' );
