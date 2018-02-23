@@ -70,7 +70,11 @@ class PostExcerpt extends StringTag {
 	 * @return string post name
 	 */
 	public function get_nicename() {
-		return get_post_type_object( $this->post_type )->labels->singular_name;
+		$post_type = get_post_type_object( $this->post_type );
+		if ( empty( $post_type ) ) {
+			return '';
+		}
+		return $post_type->labels->singular_name;
 	}
 
 }
