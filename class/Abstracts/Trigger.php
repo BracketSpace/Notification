@@ -133,11 +133,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	public function postpone_action( $tag, $priority = 10, $accepted_args = 1 ) {
 
-		if ( empty( $tag ) ) {
-			trigger_error( 'Action tag cannot be empty', E_USER_ERROR );
-		}
-
-		add_action( $tag, array( $this, '_action' ), $priority, $accepted_args );
+		$this->add_action( $tag, $priority, $accepted_args );
 
 		$this->stopped   = true;
 		$this->postponed = true;
@@ -359,10 +355,6 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			$result = $this->postponed_action();
 		} else {
 			$result = $this->action();
-			// stop if action is postponed.
-			if ( $this->is_postponed() ) {
-				$this->stopped = true;
-			}
 		}
 
 		if ( $result === false ) {
