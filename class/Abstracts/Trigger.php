@@ -352,9 +352,9 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 		// call the action.
 		if ( $this->is_postponed() ) {
-			$result = $this->postponed_action();
+			$result = call_user_func_array( array( $this, 'postponed_action' ), $this->callback_args );
 		} else {
-			$result = $this->action();
+			$result = call_user_func_array( array( $this, 'action' ), $this->callback_args );
 		}
 
 		if ( $result === false ) {
