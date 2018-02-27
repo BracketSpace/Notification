@@ -5,10 +5,10 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\Recipient;
+namespace BracketSpace\Notification\Defaults\Recipient;
 
-use underDEV\Notification\Abstracts;
-use underDEV\Notification\Defaults\Field;
+use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Defaults\Field;
 
 /**
  * User recipient

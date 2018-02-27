@@ -5,10 +5,10 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Admin;
+namespace BracketSpace\Notification\Admin;
 
-use underDEV\Notification\Utils\View;
-use underDEV\Notification\Interfaces\Fillable;
+use BracketSpace\Notification\Utils\View;
+use BracketSpace\Notification\Interfaces\Fillable;
 
 /**
  * FormRenderer class

@@ -5,10 +5,10 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\Trigger\Comment;
+namespace BracketSpace\Notification\Defaults\Trigger\Comment;
 
-use underDEV\Notification\Defaults\MergeTag;
-use underDEV\Notification\Abstracts;
+use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Abstracts;
 
 /**
  * Comment trashed trigger class

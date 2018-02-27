@@ -5,10 +5,10 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\Trigger\Post;
+namespace BracketSpace\Notification\Defaults\Trigger\Post;
 
-use underDEV\Notification\Abstracts;
-use underDEV\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Defaults\MergeTag;
 
 /**
  * Post trigger class

@@ -5,7 +5,7 @@
  * @package notificaiton
  */
 
-use underDEV\Notification\Interfaces;
+use BracketSpace\Notification\Interfaces;
 
 /**
  * Registers trigger

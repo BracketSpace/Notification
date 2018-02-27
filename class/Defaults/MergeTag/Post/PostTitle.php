@@ -8,9 +8,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\MergeTag\Post;
+namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
-use underDEV\Notification\Defaults\MergeTag\StringTag;
+use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 
 
 /**

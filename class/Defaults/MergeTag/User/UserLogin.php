@@ -9,9 +9,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\MergeTag\User;
+namespace BracketSpace\Notification\Defaults\MergeTag\User;
 
-use underDEV\Notification\Defaults\MergeTag\StringTag;
+use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 
 /**
  * User login merge tag class

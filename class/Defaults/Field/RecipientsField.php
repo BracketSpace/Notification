@@ -5,7 +5,7 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\Field;
+namespace BracketSpace\Notification\Defaults\Field;
 
 /**
  * Recipients field class

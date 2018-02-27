@@ -5,11 +5,11 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Admin;
+namespace BracketSpace\Notification\Admin;
 
-use underDEV\Notification\Utils\View;
-use underDEV\Notification\Utils\Ajax;
-use underDEV\Notification\Interfaces\Triggerable;
+use BracketSpace\Notification\Utils\View;
+use BracketSpace\Notification\Utils\Ajax;
+use BracketSpace\Notification\Interfaces\Triggerable;
 
 /**
  * MergeTags class

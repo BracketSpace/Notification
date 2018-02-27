@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\MergeTag\Media;
+namespace BracketSpace\Notification\Defaults\MergeTag\Media;
 
-use underDEV\Notification\Defaults\MergeTag\StringTag;
+use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 
 
 /**

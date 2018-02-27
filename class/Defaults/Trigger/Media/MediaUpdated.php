@@ -5,10 +5,10 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\Trigger\Media;
+namespace BracketSpace\Notification\Defaults\Trigger\Media;
 
-use underDEV\Notification\Defaults\MergeTag;
-use underDEV\Notification\Abstracts;
+use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Abstracts;
 
 /**
  * Media added trigger class

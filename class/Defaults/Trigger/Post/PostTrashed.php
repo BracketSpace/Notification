@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\Trigger\Post;
+namespace BracketSpace\Notification\Defaults\Trigger\Post;
 
-use underDEV\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Defaults\MergeTag;
 
 /**
  * Post trashed trigger class

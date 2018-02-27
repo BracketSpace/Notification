@@ -5,7 +5,7 @@
  * @package notification
  */
 
-use underDEV\Notification\Defaults\Trigger;
+use BracketSpace\Notification\Defaults\Trigger;
 
 // Post triggers.
 if ( notification_get_setting( 'triggers/post_types/types' ) ) {

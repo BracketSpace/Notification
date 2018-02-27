@@ -5,11 +5,11 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\Notification;
+namespace BracketSpace\Notification\Defaults\Notification;
 
-use underDEV\Notification\Interfaces\Triggerable;
-use underDEV\Notification\Abstracts;
-use underDEV\Notification\Defaults\Field;
+use BracketSpace\Notification\Interfaces\Triggerable;
+use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Defaults\Field;
 
 /**
  * Email notification

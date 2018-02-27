@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\MergeTag\Comment;
+namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
-use underDEV\Notification\Defaults\MergeTag\IPTag;
+use BracketSpace\Notification\Defaults\MergeTag\IPTag;
 
 
 /**

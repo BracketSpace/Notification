@@ -8,7 +8,7 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Utils;
+namespace BracketSpace\Notification\Utils;
 
 /**
  * Requirements class

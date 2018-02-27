@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Admin;
+namespace BracketSpace\Notification\Admin;
 
-use underDEV\Notification\Utils\View;
+use BracketSpace\Notification\Utils\View;
 
 /**
  * Extensions class
@@ -87,7 +87,7 @@ class Extensions {
 			'slug'     => 'notification-bbpress',
 			'name'     => 'bbPress',
 			'desc'     => __( 'Triggers for bbPress: Forums, Topics and Replies.', 'notification' ),
-			'author'   => 'underDEV',
+			'author'   => 'BracketSpace',
 			'icon'     => '//ps.w.org/notification-bbpress/assets/icon-256x256.png',
 		);
 
@@ -98,7 +98,7 @@ class Extensions {
 			'slug'     => 'signature-notification',
 			'name'     => 'Signature',
 			'desc'     => __( 'Allows to add signature to all emails.', 'notification' ),
-			'author'   => 'underDEV',
+			'author'   => 'BracketSpace',
 			'icon'     => '//ps.w.org/signature-notification/assets/icon-256x256.png',
 		);
 

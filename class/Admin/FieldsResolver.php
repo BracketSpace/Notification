@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Admin;
+namespace BracketSpace\Notification\Admin;
 
-use underDEV\Notification\Abstracts\Notification;
+use BracketSpace\Notification\Abstracts\Notification;
 
 /**
  * FieldsResolver class

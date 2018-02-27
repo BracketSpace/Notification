@@ -8,9 +8,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\MergeTag\DateTime;
+namespace BracketSpace\Notification\Defaults\MergeTag\DateTime;
 
-use underDEV\Notification\Defaults\MergeTag\StringTag;
+use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 
 /**
  * Time merge tag class

@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\Field;
+namespace BracketSpace\Notification\Defaults\Field;
 
-use underDEV\Notification\Abstracts\Field;
+use BracketSpace\Notification\Abstracts\Field;
 
 /**
  * Input field class

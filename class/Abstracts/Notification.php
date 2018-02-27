@@ -5,12 +5,12 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Abstracts;
+namespace BracketSpace\Notification\Abstracts;
 
-use underDEV\Notification\Interfaces;
-use underDEV\Notification\Interfaces\Triggerable;
-use underDEV\Notification\Defaults\Field;
-use underDEV\Notification\Defaults\Field\RecipientsField;
+use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Interfaces\Triggerable;
+use BracketSpace\Notification\Defaults\Field;
+use BracketSpace\Notification\Defaults\Field\RecipientsField;
 
 /**
  * Notification abstract class

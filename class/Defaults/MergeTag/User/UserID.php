@@ -9,9 +9,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\MergeTag\User;
+namespace BracketSpace\Notification\Defaults\MergeTag\User;
 
-use underDEV\Notification\Defaults\MergeTag\IntegerTag;
+use BracketSpace\Notification\Defaults\MergeTag\IntegerTag;
 
 /**
  * User ID merge tag class

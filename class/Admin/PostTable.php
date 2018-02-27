@@ -5,7 +5,7 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Admin;
+namespace BracketSpace\Notification\Admin;
 
 /**
  * PostTable class

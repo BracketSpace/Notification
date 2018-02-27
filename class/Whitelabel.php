@@ -6,7 +6,7 @@
  * @package notification
  */
 
-namespace underDEV\Notification;
+namespace BracketSpace\Notification;
 
 /**
  * Whitelabel class

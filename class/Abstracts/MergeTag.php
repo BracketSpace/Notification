@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Abstracts;
+namespace BracketSpace\Notification\Abstracts;
 
-use underDEV\Notification\Interfaces;
+use BracketSpace\Notification\Interfaces;
 
 /**
  * MergeTag abstract class

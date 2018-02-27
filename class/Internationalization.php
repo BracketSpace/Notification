@@ -8,9 +8,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification;
+namespace BracketSpace\Notification;
 
-use underDEV\Notification\Utils\Files;
+use BracketSpace\Notification\Utils\Files;
 
 /**
  * Internationalization class

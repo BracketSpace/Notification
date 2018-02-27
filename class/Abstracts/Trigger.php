@@ -5,11 +5,11 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Abstracts;
+namespace BracketSpace\Notification\Abstracts;
 
-use underDEV\Notification\Interfaces;
-use underDEV\Notification\Interfaces\Sendable;
-use underDEV\Notification\Admin\FieldsResolver;
+use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Interfaces\Sendable;
+use BracketSpace\Notification\Admin\FieldsResolver;
 
 /**
  * Trigger abstract class

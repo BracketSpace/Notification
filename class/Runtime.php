@@ -5,10 +5,10 @@
  * @package notification
  */
 
-namespace underDEV\Notification;
+namespace BracketSpace\Notification;
 
-use underDEV\Notification\Utils;
-use underDEV\Notification\Admin;
+use BracketSpace\Notification\Utils;
+use BracketSpace\Notification\Admin;
 
 /**
  * Runtime class

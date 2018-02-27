@@ -5,10 +5,10 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\Trigger\User;
+namespace BracketSpace\Notification\Defaults\Trigger\User;
 
-use underDEV\Notification\Defaults\MergeTag;
-use underDEV\Notification\Abstracts;
+use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Abstracts;
 
 /**
  * User profile updated trigger class

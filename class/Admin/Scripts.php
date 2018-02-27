@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Admin;
+namespace BracketSpace\Notification\Admin;
 
-use underDEV\Notification\Utils\Files;
+use BracketSpace\Notification\Utils\Files;
 
 /**
  * Scripts class

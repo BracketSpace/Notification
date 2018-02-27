@@ -5,10 +5,10 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Admin;
+namespace BracketSpace\Notification\Admin;
 
-use underDEV\Notification\Utils\Settings as SettingsAPI;
-use underDEV\Notification\Utils\Settings\CoreFields;
+use BracketSpace\Notification\Utils\Settings as SettingsAPI;
+use BracketSpace\Notification\Utils\Settings\CoreFields;
 
 /**
  * Settings class

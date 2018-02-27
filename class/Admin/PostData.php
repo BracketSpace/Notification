@@ -5,10 +5,10 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Admin;
+namespace BracketSpace\Notification\Admin;
 
-use underDEV\Notification\Interfaces;
-use underDEV\Notification\Utils\Ajax;
+use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Utils\Ajax;
 
 /**
  * PostData class

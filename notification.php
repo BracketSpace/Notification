@@ -22,7 +22,7 @@ function notification_autoload( $class ) {
 
 	$parts = explode( '\\', $class );
 
-	if ( array_shift( $parts ) != 'underDEV' ) {
+	if ( array_shift( $parts ) != 'BracketSpace' ) {
 		return false;
 	}
 
@@ -42,7 +42,7 @@ spl_autoload_register( 'notification_autoload' );
 /**
  * Requirements check
  */
-$requirements = new underDEV\Notification\Utils\Requirements( __( 'Notification', 'notification' ), array(
+$requirements = new BracketSpace\Notification\Utils\Requirements( __( 'Notification', 'notification' ), array(
 	'php'                => '5.3',
 	'wp'                 => '4.6',
 	'function_collision' => array( 'register_trigger', 'register_notification' ),
@@ -65,7 +65,7 @@ function notification_runtime() {
 	global $notification_runtime;
 
 	if ( empty( $notification_runtime ) ) {
-		$notification_runtime = new underDEV\Notification\Runtime( __FILE__ );
+		$notification_runtime = new BracketSpace\Notification\Runtime( __FILE__ );
 	}
 
 	return $notification_runtime;
