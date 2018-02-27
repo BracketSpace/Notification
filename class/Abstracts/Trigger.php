@@ -318,27 +318,6 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Action callback
-	 * It's strongly recommended to add this function in a child class
-	 * and set all the class parameters you need or are required
-	 * by merge tags you are using
-	 *
-	 * Return `false` if you want to abort the trigger execution
-	 *
-	 * @return mixed void or false if no notifications should be sent
-	 */
-	public function action() {}
-
-	/**
-	 * Postponed action callback
-	 *
-	 * Return `false` if you want to abort the trigger execution
-	 *
-	 * @return mixed void or false if no notifications should be sent
-	 */
-	public function postponed_action() {}
-
-	/**
-	 * Action callback
      *
 	 * @return void
 	 */
@@ -351,9 +330,9 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		$this->callback_args = func_get_args();
 
 		// call the action.
-		if ( $this->is_postponed() ) {
+		if ( $this->is_postponed() && method_exists( $this, 'postponed_action' ) ) {
 			$result = call_user_func_array( array( $this, 'postponed_action' ), $this->callback_args );
-		} else {
+		} else if ( method_exists( $this, 'action' ) ) {
 			$result = call_user_func_array( array( $this, 'action' ), $this->callback_args );
 		}
 
