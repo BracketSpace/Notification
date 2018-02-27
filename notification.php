@@ -2,9 +2,8 @@
 /**
  * Plugin Name: Notification
  * Description: Send notifications about various events in WordPress. You can also create your custom triggers for any action.
- * Plugin URI: https://notification.underdev.it
- * Author: underDEV
- * Author URI: https://underdev.it
+ * Author: BracketSpace
+ * Author URI: https://bracketspace.com
  * Version: 5.0.0
  * License: GPL3
  * Text Domain: notification
