@@ -1,6 +1,6 @@
 {
   "name": "notification",
-  "version": "1.0.0",
+  "version": "5.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -16,5 +16,11 @@
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^2.0.0"
+  },
+  "dependencies": {
+    "grunt": "^1.0.2",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-compress": "^1.4.3",
+    "grunt-wp-i18n": "^1.0.1"
   }
 }

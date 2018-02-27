@@ -1,9 +1,12 @@
 <?php
 /**
  * This file should be used only for loading Notification plugin in other plugin or theme
- *
  * Just include this file to get it work, it will figure out if it's loaded from theme or from plugin
+ *
+ * @package notification
  */
+
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Directory
@@ -20,7 +23,7 @@ if ( ! defined( 'NOTIFICATION_DIR' ) ) {
 $theme_url = parse_url( get_stylesheet_directory_uri() );
 $theme_pos = strpos( NOTIFICATION_DIR, $theme_url['path'] );
 
-// Notification loaded from theme
+// Notification loaded from theme.
 if ( $theme_pos !== false ) {
 
 	$plugin_relative_dir = str_replace( $theme_url['path'], '', substr( NOTIFICATION_DIR, $theme_pos ) );
@@ -30,7 +33,7 @@ if ( $theme_pos !== false ) {
 		define( 'NOTIFICATION_URL', $url );
 	}
 
-} else { // Notification loaded from plugin
+} else { // Notification loaded from plugin.
 
 	$plugin_url = trailingslashit( plugins_url( '', __FILE__ ) );
 
@@ -44,6 +47,14 @@ if ( $theme_pos !== false ) {
  * Load
  */
 
-if ( defined( 'NOTIFICATION_URL' ) ) {
-	require_once( NOTIFICATION_DIR . 'notification.php' );
+if ( defined( 'NOTIFICATION_URL' ) && ! function_exists( 'notification_runtime' ) ) {
+
+	if ( ! defined( 'NOTIFICATION_AS_BUNDLE' ) ) {
+		define( 'NOTIFICATION_AS_BUNDLE', true );
+	}
+
+	require_once NOTIFICATION_DIR . 'notification.php';
+
+} else {
+	trigger_error( 'Notification plugin tried to load itself as a bundled package but it couldn\'t. Make sure the Notification plugin is not active.', E_USER_WARNING );
 }

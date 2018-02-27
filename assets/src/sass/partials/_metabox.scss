@@ -4,125 +4,140 @@
 
 #notification_merge_tags .inside {
 
+	.notification-search-merge-tags {
+		margin-bottom: 20px;
+	}
+
 	ul {
 
 		li {
 
-			code {
-				cursor: pointer;
-			}
-
-		}
-
-	}
-
-}
-
-#notification_recipients .inside {
-
-	.recipients {
-		margin-bottom: 12px;
-		margin-top: 12px;
-
-		.recipient {
-			border: 1px solid #eee;
 			position: relative;
-			margin-bottom: 5px;
-			overflow: auto;
+			width: 100%;
+			margin-bottom: 20px;
 
-			&:last-child {
-				border-bottom: 1px solid #eee;
+			.intro {
+				width: calc(100% - 30px);
+				label {
+					display: block;
+					font-weight: bold;
+					margin-bottom: 5px;
+				}
+
+				code {
+					cursor: pointer;
+					word-wrap: nowrap;
+				}
 			}
 
-			.field {
-				padding: 5px;
 
-				&.actions {
-					width: 20px;
-					float: left;
-					background: #ddd;
+			.question-mark {
+				font-size: 14px;
+				position: absolute;
+				float: right;
+				right: 0;
+				top: 10px;
+				border-radius: 50%;
+				background-color: #888;
+				color: #ffffff;
+				width: 20px;
+				height: 20px;
+				text-align: center;
+				line-height: 20px;
+				cursor: pointer;
 
-					@include mobile {
-						padding: 9px 12px;
-					}
+				.description {
+					position: absolute;
+					visibility: hidden;
+					box-shadow: 0 0 8px #eaeaea;
+					right: -3px;
+				    top: 160%;
+					z-index: 15;
+					min-width: 200px;
+					text-align: left;
 
-					span {
-						margin: 5px 5px 5px 0;
-						opacity: 0;
-						color: #a00;
-						cursor: pointer;
+					.description-container {
+						border: 1px solid #e5e5e5;
+	    				background: #fff;
+	    				color: #333;
+						padding: 10px;
+						font-size: 12px;
+						line-height: 16px;
+						position: relative;
 
-						&:hover{
-							color: red;
+						&:after, &:before {
+							bottom: 100%;
+							right: 0;
+							border: solid transparent;
+							content: " ";
+							height: 0;
+							width: 0;
+							position: absolute;
+							pointer-events: none;
+							z-index: 18;
 						}
 
-						&.disabled {
-							color: #b8b8b8;
-							cursor: not-allowed;
+						&:after {
+							border-color: rgba(229, 229, 229, 0);
+							border-bottom-color: #ffffff;
+							border-width: 9px;
+							margin-left: -9px;
+							margin-right: 2px;
 						}
-
+						&:before {
+							border-color: rgba(229, 229, 229, 0);
+							border-bottom-color: #e5e5e5;
+							border-width: 11px;
+							margin-left: -11px;
+						}
 					}
 
+					label {
+						font-weight: bold;
+					}
 				}
 
-				&.group {
-					width: 250px;
-					float: left;
-					background: #eee;
+				&:hover {
 
-					select {
-						box-sizing: border-box;
-						width: 100%;
+					.description {
+						visibility: visible;
 					}
-
-					@include mobile {
-						margin-left: 44px;
-						width: auto;
-						float: none;
-					}
-
 				}
-
-				&.value {
-					margin-left: 290px;
-
-					input,
-					select {
-						height: 28px;
-					}
-
-					@include mobile {
-						margin-left: 0;
-					}
-
-				}
-
-			}
-
-			&:hover .actions span {
-				opacity: 1;
 			}
 
 		}
 
 	}
 
-	#notification_add_recipient {
-		float: right;
-	}
-
-}
-
-#notification_trigger {
-	margin-top: 20px;
 }
 
 // Core submit metabox
 
-body.post-type-notification #submitdiv {
+body.post-type-notification {
 
-	#visibility {
-		display: none;
+	#notification_save {
+
+		.inside {
+		    margin: 0;
+		    padding: 0;
+
+		    .misc-pub-section {
+		    	padding: 10px;
+		    	overflow: auto;
+
+		    	.row-label {
+		    		float: left;
+		    		line-height: 34px;
+		    	}
+
+		    	.onoffswitch {
+		    		float: right;
+		    	}
+
+		    }
+
+		}
+
 	}
 
 }

@@ -1,37 +1,47 @@
 === Notification ===
-Contributors: Kubitomakita
+Contributors: notification, bracketspace, Kubitomakita, insejn
 Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, email, mail
-Requires at least: 3.6
-Tested up to: 4.8
-Stable tag: 3.2.0
+Requires at least: 4.6
+Tested up to: 5.0
+Stable tag: 5.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Customisable email notifications with developer friendly API for custom triggers
+Customisable email and webhook notifications with simple, yet powerful developer friendly API for custom triggers and notifications
 
 == Description ==
 
-This plugin allows you to send custom email notifications about various events in WordPress. It also comes with a simple API by which you can add literally **any** trigger action.
+This plugin allow you to send custom notifications about various events in WordPress. It also comes with simple yet powerful API by which you can add literally **any** trigger action.
 
-In messages you can use defined merge tags which will be later changed to content applicable for trigger.
+In messages you can use defined merge tags which will be later changed to content applicable for the trigger.
 
-There is also option to disable the notifications for specific post, comment or user in case you don't want to send notification for a secret article.
+= Version 5 has been released! =
 
-> [See Notification homepage](https://notification.underdev.it) and check Developer docs
+Completely new codebase with awesome improvements. Now, Notification plugin can send not only Emails but also Webhooks!
+With the brand new API you can create any notification type you want - SMS, Push, Slack... sky's the limit!
 
-https://www.youtube.com/watch?v=usdBMPjdiuw
+= New Triggers and Merge Tags =
 
-= Default recipients =
+We switched to truly objective code. Every trigger and merge tag is now an object. But don't worry, it's even simpler than it was before!
+
+Take a look at documentation to see how easy and intuitive it is to [register custom trigger](https://docs.bracketspace.com/docs/registering-custom-triggers/).
+
+= Default Notifications =
+
+* Email
+* Webhook
+
+= Default Recipients =
 
 Plugin comes with few registered by default recipient types:
 
-* Email address - free type email address
+* Email address or Merge tag - free type email address or a Merge Tag
 * Administrator - takes an email from General Settings page
 * User - takes an email from WordPress user profile
-* Merge tag - email rendered by merge tag
+* Role - notify all Users having selected role at once
 
-= Default triggers =
+= Default Triggers =
 
 These are already defined in plugin's core and are ready to use. You can enable or disable them on the Settings page.
 
@@ -55,6 +65,7 @@ User:
 * User registered
 * User profile updated
 * User logged in
+* User logged out
 * User deleted
 
 Media:
@@ -67,10 +78,10 @@ Feel free to suggest new core triggers in support forum
 
 = Useful links =
 
-* [Homepage](https://notification.underdev.it)
+* [Documentation](https://docs.bracketspace.com/docs-category/notification/)
 * [Support plugin developement](https://www.paypal.me/underDEV/)
-* [GitHub repository](https://github.com/Kubitomakita/Notification)
-* [Report a bug](https://github.com/Kubitomakita/Notification/issues/new)
+* [GitHub repository](https://github.com/BracketSpace/Notification)
+* [Report a bug](https://github.com/BracketSpace/Notification/issues/new)
 
 == Installation ==
 
@@ -86,42 +97,31 @@ Download and install this plugin from Plugins -> Add New admin screen.
 
 Notification can be loaded also as a part of any plugin or theme. To do it just include plugins's `load.php` file. It will figure out if it's loaded from theme or from plugin.
 
-[See the detailed guide](https://notification.underdev.it/including-notification-plugin-theme/)
+[See the detailed guide](https://docs.bracketspace.com/docs/including-notification-in-the-plugin-or-theme/)
 
 == Frequently Asked Questions ==
 
-= How to change notification email headers? =
+= How to register my own triggers? =
 
-There's no such option at the moment. Please use some other plugin to adjust wp_mail() headers.
-
-= How to register my triggers? =
-
-With `register_trigger()` function. [See the detailed guide](https://notification.underdev.it/registering-new-triggers/)
-
-= How do I fire my trigger to send an email? =
-
-With `notification()` function. [See the detailed guide](https://notification.underdev.it/sending-notifications/)
-
-= Can I deregister trigger I don't want to use? =
-
-Yes, with `deregister_trigger()` function. [See the detailed guide](https://notification.underdev.it/deregistering-triggers/)
+With `register_trigger()` function. [See the detailed guide](https://docs.bracketspace.com/docs/registering-custom-triggers/)
 
 = Can I bundle the plugin with my plugin or theme? =
 
-Yes, you can. [See the detailed guide](https://notification.underdev.it/including-notification-plugin-theme/)
+Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/including-notification-in-the-plugin-or-theme/)
 
 == Screenshots ==
 
 1. Trigger edit screen
 2. All triggers
 3. Settings
+4. Extensions
 
 == Changelog ==
 
-= 3.2.0 =
-* [Fixed] Composer autoload file thanks to @jclausen
-* [Added] WPML support for translated Notification thanks to @max-kk
-* [Added] v5 promo
+= 5.0.0 =
+* WARNING! This version is not compatible with previous version. No core notifications nor custom triggers will be transfered to the new version because of too many changes in the plugin. Consider updating the plugin in a safe, not-production environment.
+* Plugin has been redesigned from ground up
+* The only thing which is not available in new version is disabling the notifications
 
 = 3.1.1 =
 * [Fixed] Bug with directories/files names, thanks to Gregory Rick

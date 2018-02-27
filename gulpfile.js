@@ -19,8 +19,7 @@ var script_sources = 'assets/src/js/**/*.js',
 	script_order   = [
 		'vendor/selectize.js',
         'vendor/clipboard.js',
-		'vendor/event-manager.js',
-		'admin.js'
+		'vendor/event-manager.js'
 	];
 
 ///////////
@@ -52,17 +51,12 @@ gulp.task( 'scripts', function() {
 /////////////////////
 gulp.task( 'default', [ 'styles', 'scripts' ] );
 
-//////////////////////////////////
-// Watch - Browser Sync & Watch //
-//////////////////////////////////
-gulp.task( 'watch', function() {
-
-    browserSync({
-        proxy: 'notification.dev'
-    });
+///////////
+// Watch //
+///////////
+gulp.task( 'watch', [ 'default' ], function() {
 
     gulp.watch( style_sources, ['styles'] );
     gulp.watch( script_sources, ['scripts'] );
-    gulp.watch( ['./**/*.php', '!./node_modules'], reload );
 
 } );
