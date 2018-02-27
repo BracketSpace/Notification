@@ -3,8 +3,8 @@ Contributors: notification, bracketspace, Kubitomakita, insejn
 Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, email, mail
 Requires at least: 4.6
-Tested up to: 4.8
-Stable tag: 3.1.1
+Tested up to: 5.0
+Stable tag: 5.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -118,7 +118,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
-= Next release =
+= 5.0.0 =
 * WARNING! This version is not compatible with previous version. No core notifications nor custom triggers will be transfered to the new version because of too many changes in the plugin. Consider updating the plugin in a safe, not-production environment.
 * Plugin has been redesigned from ground up
 * The only thing which is not available in new version is disabling the notifications
