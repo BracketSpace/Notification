@@ -179,9 +179,9 @@ class PostType {
 	public function save_metabox( $post ) {
 
 		if ( ! EMPTY_TRASH_DAYS ) {
-			$delete_text = __( 'Delete Permanently' );
+			$delete_text = __( 'Delete Permanently', 'notification' );
 		} else {
-			$delete_text = __( 'Move to Trash' );
+			$delete_text = __( 'Move to Trash', 'notification' );
 		}
 
 		$this->view->set_var( 'enabled', notification_is_new_notification( $post ) );

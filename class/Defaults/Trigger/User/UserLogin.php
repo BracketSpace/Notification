@@ -20,11 +20,11 @@ class UserLogin extends Abstracts\Trigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/user_login', __( 'User login' ) );
+		parent::__construct( 'wordpress/user_login', __( 'User login', 'notification' ) );
 
 		$this->add_action( 'wp_login', 10, 2 );
-		$this->set_group( __( 'User' ) );
-		$this->set_description( __( 'Fires when user log into WordPress' ) );
+		$this->set_group( __( 'User', 'notification' ) );
+		$this->set_description( __( 'Fires when user log into WordPress', 'notification' ) );
 
 	}
 
@@ -60,7 +60,7 @@ class UserLogin extends Abstracts\Trigger {
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'user_registered_datetime',
-			'name' => __( 'User registration date' ),
+			'name' => __( 'User registration date', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserRole() );
@@ -68,7 +68,7 @@ class UserLogin extends Abstracts\Trigger {
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'user_logged_in_datetime',
-			'name' => __( 'User login time' ),
+			'name' => __( 'User login time', 'notification' ),
 		) ) );
 
     }

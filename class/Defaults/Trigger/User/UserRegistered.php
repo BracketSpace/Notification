@@ -20,11 +20,11 @@ class UserRegistered extends Abstracts\Trigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/user_registered', __( 'User registration' ) );
+		parent::__construct( 'wordpress/user_registered', __( 'User registration', 'notification' ) );
 
 		$this->add_action( 'user_register', 10, 2 );
-		$this->set_group( __( 'User' ) );
-		$this->set_description( __( 'Fires when user registers new account' ) );
+		$this->set_group( __( 'User', 'notification' ) );
+		$this->set_description( __( 'Fires when user registers new account', 'notification' ) );
 
 	}
 
@@ -57,7 +57,7 @@ class UserRegistered extends Abstracts\Trigger {
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'user_registered_datetime',
-			'name' => __( 'User registration date' ),
+			'name' => __( 'User registration date', 'notification' ),
 		) ) );
 
     }

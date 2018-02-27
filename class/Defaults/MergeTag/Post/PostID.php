@@ -42,7 +42,7 @@ class PostID extends IntegerTag {
     	$args = wp_parse_args( $params, array(
 			'slug'        => $this->post_type . '_ID',
 			// translators: singular post name.
-			'name'        => sprintf( __( '%s ID' ), $this->get_nicename() ),
+			'name'        => sprintf( __( '%s ID', 'notification' ), $this->get_nicename() ),
 			'description' => '35',
 			'example'     => true,
 			'resolver'    => function() {

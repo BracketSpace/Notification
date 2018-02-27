@@ -27,14 +27,14 @@ class Time extends StringTag {
 
     	$args = wp_parse_args( $params, array(
 			'slug'        => 'time',
-			'name'        => __( 'Time' ),
+			'name'        => __( 'Time', 'notification' ),
 			'time_format' => get_option( 'time_format' ),
 			'example'     => true,
 		) );
 
 		if ( ! isset( $args['description'] ) ) {
 			$args['description']  = date_i18n( $args['time_format'] ) . '. ';
-			$args['description'] .= __( 'You can change the format in General WordPress Settings.' );
+			$args['description'] .= __( 'You can change the format in General WordPress Settings.', 'notification' );
 		}
 
 		if ( ! isset( $args['resolver'] ) ) {

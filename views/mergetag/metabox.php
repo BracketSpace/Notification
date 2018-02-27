@@ -11,7 +11,7 @@ do_action( 'notification/metabox/trigger/tags/before', $this->get_var( 'trigger'
 <ul>
 
 	<?php if ( count( $this->get_var( 'tags') ) > 2 ): ?>
-		<input type="text" name="notification-search-merge-tags" placeholder="<?php esc_attr_e( 'Search merge tags' ); ?>" class="widefat notification-search-merge-tags" autocomplete="off" id="notification-search-merge-tags">
+		<input type="text" name="notification-search-merge-tags" placeholder="<?php esc_attr_e( 'Search merge tags', 'notification' ); ?>" class="widefat notification-search-merge-tags" autocomplete="off" id="notification-search-merge-tags">
 	<?php endif; ?>
 	<?php foreach ( $this->get_var( 'tags' ) as $tag ): ?>
 		<li>
@@ -27,7 +27,7 @@ do_action( 'notification/metabox/trigger/tags/before', $this->get_var( 'trigger'
 						<div class="description-container">
 							<?php if ( $tag->is_description_example() ): ?>
 								<label>
-									<?php _e( 'Example:' ); ?>
+									<?php _e( 'Example:', 'notification' ); ?>
 								</label>
 							<?php endif ?>
 							<div class="description-content">

@@ -25,10 +25,10 @@ class CommentType extends StringTag {
 
 		$args = wp_parse_args( $params, array(
 			'slug'        => 'comment_type',
-			'name'        => __( 'Comment type' ),
-			'description' => __( 'Comment or Pingback or Trackback' ),
+			'name'        => __( 'Comment type', 'notification' ),
+			'description' => __( 'Comment or Pingback or Trackback', 'notification' ),
 			'resolver'    => function() {
-				return ( $this->trigger->comment->comment_type === '' ) ? __( 'Comment' ) : $this->trigger->comment->comment_type;
+				return ( $this->trigger->comment->comment_type === '' ) ? __( 'Comment', 'notification' ) : $this->trigger->comment->comment_type;
 			},
 		) );
 

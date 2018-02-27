@@ -25,13 +25,13 @@ class PostTrashed extends PostTrigger {
 			'post_type' => $post_type,
 			'slug'      => 'wordpress/' . $post_type . '/trashed',
 			// translators: singular post name.
-			'name'      => sprintf( __( '%s trashed' ), parent::get_post_type_name( $post_type ) ),
+			'name'      => sprintf( __( '%s trashed', 'notification' ), parent::get_post_type_name( $post_type ) ),
 		) );
 
 		$this->add_action( 'trash_' . $post_type, 10, 2 );
 
 		// translators: 1. singular post name, 2. post type slug.
-		$this->set_description( sprintf( __( 'Fires when %s (%s) is moved to trash' ), parent::get_post_type_name( $post_type ), $post_type ) );
+		$this->set_description( sprintf( __( 'Fires when %s (%s) is moved to trash', 'notification' ), parent::get_post_type_name( $post_type ), $post_type ) );
 
 	}
 
@@ -74,42 +74,42 @@ class PostTrashed extends PostTrigger {
 		$this->add_merge_tag( new MergeTag\User\UserID( array(
 			'slug'          => $this->post_type . '_trashing_user_ID',
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s trashing user ID' ), $post_name ),
+			'name'          => sprintf( __( '%s trashing user ID', 'notification' ), $post_name ),
 			'property_name' => 'trashing_user',
 		) ) );
 
     	$this->add_merge_tag( new MergeTag\User\UserLogin( array(
 			'slug'          => $this->post_type . '_trashing_user_login',
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s trashing user login'  ), $post_name ),
+			'name'          => sprintf( __( '%s trashing user login', 'notification' ), $post_name ),
 			'property_name' => 'trashing_user',
 		) ) );
 
         $this->add_merge_tag( new MergeTag\User\UserEmail( array(
 			'slug'          => $this->post_type . '_trashing_user_email',
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s trashing user email' ), $post_name ),
+			'name'          => sprintf( __( '%s trashing user email', 'notification' ), $post_name ),
 			'property_name' => 'trashing_user',
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserNicename( array(
 			'slug'          => $this->post_type . '_trashing_user_nicename',
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s trashing user nicename' ), $post_name ),
+			'name'          => sprintf( __( '%s trashing user nicename', 'notification' ), $post_name ),
 			'property_name' => 'trashing_user',
 		) ) );
 
         $this->add_merge_tag( new MergeTag\User\UserFirstName( array(
 			'slug'          => $this->post_type . '_trashing_user_firstname',
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s trashing user first name' ), $post_name ),
+			'name'          => sprintf( __( '%s trashing user first name', 'notification' ), $post_name ),
 			'property_name' => 'trashing_user',
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserLastName( array(
 			'slug'          => $this->post_type . '_trashing_user_lastname',
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s trashing user last name' ), $post_name ),
+			'name'          => sprintf( __( '%s trashing user last name', 'notification' ), $post_name ),
 			'property_name' => 'trashing_user',
 		) ) );
 

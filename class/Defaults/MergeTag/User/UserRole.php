@@ -39,8 +39,8 @@ class UserRole extends StringTag {
 
     	$args = wp_parse_args( $params, array(
 			'slug'        => 'user_role',
-			'name'        => __( 'User role' ),
-			'description' => __( 'Subscriber' ),
+			'name'        => __( 'User role', 'notification' ),
+			'description' => __( 'Subscriber', 'notification' ),
 			'example'     => true,
 			'resolver'    => function() {
 				$roles = array_map( function ( $role ) {

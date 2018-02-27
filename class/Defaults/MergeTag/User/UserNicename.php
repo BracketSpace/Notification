@@ -39,8 +39,8 @@ class UserNicename extends StringTag {
 
     	$args = wp_parse_args( $params, array(
 			'slug'        => 'user_nicename',
-			'name'        => __( 'User nicename' ),
-			'description' => __( 'Johhnie' ),
+			'name'        => __( 'User nicename', 'notification' ),
+			'description' => __( 'Johhnie', 'notification' ),
 			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->{ $this->property_name }->user_nicename;

@@ -25,18 +25,18 @@ class CommentStatus extends StringTag {
 
 		$args = wp_parse_args( $params, array(
 			'slug'        => 'comment_status',
-			'name'        => __( 'Comment status' ),
-			'description' => __( 'Approved' ),
+			'name'        => __( 'Comment status', 'notification' ),
+			'description' => __( 'Approved', 'notification' ),
 			'example'     => true,
 			'resolver'    => function() {
 				if ( $this->trigger->comment->comment_approved  == 1 ) {
-					return __( 'Approved' );
+					return __( 'Approved', 'notification' );
 				} elseif ( $this->trigger->comment->comment_approved  == 0 ) {
-					return __( 'Unapproved' );
+					return __( 'Unapproved', 'notification' );
 				} elseif ( $this->trigger->comment->comment_approved  == 'spam' ) {
-					return __( 'Marked as spam' );
+					return __( 'Marked as spam', 'notification' );
 				} elseif ( $this->trigger->comment->comment_approved  == 'trash' ) {
-					return __( 'Trashed' );
+					return __( 'Trashed', 'notification' );
 				}
  			},
 		) );

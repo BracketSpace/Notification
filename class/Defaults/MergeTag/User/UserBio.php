@@ -39,8 +39,8 @@ class UserBio extends StringTag {
 
     	$args = wp_parse_args( $params, array(
 			'slug'        => 'user_bio',
-			'name'        => __( 'User bio' ),
-			'description' => __( 'Developer based in Ontario, Canada' ),
+			'name'        => __( 'User bio', 'notification' ),
+			'description' => __( 'Developer based in Ontario, Canada', 'notification' ),
 			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->{ $this->property_name }->description;

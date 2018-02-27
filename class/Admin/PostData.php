@@ -297,7 +297,7 @@ class PostData {
 		) );
 
 		if ( $result == 0 ) {
-			$error = __( 'Notification status couldn\'t be changed.' );
+			$error = __( 'Notification status couldn\'t be changed.', 'notification' );
  		}
 
 		$this->ajax->response( true, $error );

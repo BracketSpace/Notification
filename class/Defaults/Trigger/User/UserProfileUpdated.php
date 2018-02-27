@@ -20,11 +20,11 @@ class UserProfileUpdated extends Abstracts\Trigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/user_profile_updated', __( 'User profile updated' ) );
+		parent::__construct( 'wordpress/user_profile_updated', __( 'User profile updated', 'notification' ) );
 
 		$this->add_action( 'profile_update', 10, 2 );
-		$this->set_group( __( 'User' ) );
-		$this->set_description( __( 'Fires when user updates his profile' ) );
+		$this->set_group( __( 'User', 'notification' ) );
+		$this->set_description( __( 'Fires when user updates his profile', 'notification' ) );
 
 	}
 
@@ -60,7 +60,7 @@ class UserProfileUpdated extends Abstracts\Trigger {
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'user_registered_datetime',
-			'name' => __( 'User registration date' ),
+			'name' => __( 'User registration date', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserRole() );
@@ -68,7 +68,7 @@ class UserProfileUpdated extends Abstracts\Trigger {
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'user_profile_updated_datetime',
-			'name' => __( 'User profile update time' ),
+			'name' => __( 'User profile update time', 'notification' ),
 		) ) );
 
     }

@@ -25,7 +25,7 @@ class CommentAuthorIP extends IPTag {
 
 		$args = wp_parse_args( $params, array(
 			'slug'        => 'comment_author_IP',
-			'name'        => __( 'Comment author IP' ),
+			'name'        => __( 'Comment author IP', 'notification' ),
 			'description' => '127.0.0.1',
 			'example'     => true,
 			'resolver'    => function() {

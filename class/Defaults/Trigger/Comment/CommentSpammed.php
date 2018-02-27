@@ -77,17 +77,17 @@ class CommentSpammed extends Abstracts\Trigger {
 		// Author.
 		$this->add_merge_tag( new MergeTag\User\UserID( array(
 			'slug' => 'comment_author_user_ID',
-			'name' => __( 'Comment author user ID' ),
+			'name' => __( 'Comment author user ID', 'notification' ),
 		) ) );
 
         $this->add_merge_tag( new MergeTag\User\UserEmail( array(
 			'slug' => 'comment_author_user_email',
-			'name' => __( 'Comment author user email' ),
+			'name' => __( 'Comment author user email', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserNicename( array(
 			'slug' => 'comment_author_user_nicename',
-			'name' => __( 'Comment author user nicename' ),
+			'name' => __( 'Comment author user nicename', 'notification' ),
 		) ) );
 
 

@@ -23,7 +23,7 @@ class User extends Abstracts\Recipient {
 	public function __construct() {
 		parent::__construct( array(
 			'slug'          => 'user',
-			'name'          => __( 'User' ),
+			'name'          => __( 'User', 'notification' ),
 			'default_value' => get_current_user_id(),
 		) );
 	}

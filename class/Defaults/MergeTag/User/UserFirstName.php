@@ -39,8 +39,8 @@ class UserFirstName extends StringTag {
 
     	$args = wp_parse_args( $params, array(
 			'slug'        => 'user_first_name',
-			'name'        => __( 'User first name' ),
-			'description' => __( 'John' ),
+			'name'        => __( 'User first name', 'notification' ),
+			'description' => __( 'John', 'notification' ),
 			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->{ $this->property_name }->first_name;

@@ -25,7 +25,7 @@ class CommentPostID extends IntegerTag {
 
 		$args = wp_parse_args( $params, array(
 			'slug'        => 'comment_post_ID',
-			'name'        => __( 'Comment post ID' ),
+			'name'        => __( 'Comment post ID', 'notification' ),
 			'description' => '25',
 			'example'     => true,
 			'resolver'    => function() {

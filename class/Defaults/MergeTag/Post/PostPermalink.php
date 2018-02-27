@@ -42,8 +42,8 @@ class PostPermalink extends UrlTag {
     	$args = wp_parse_args( $params, array(
 			'slug'        => $this->post_type . '_permalink',
 			// translators: singular post name.
-			'name'        => sprintf( __( '%s permalink' ), $this->get_nicename() ),
-			'description' => __( 'https://example.com/hello-world/' ),
+			'name'        => sprintf( __( '%s permalink', 'notification' ), $this->get_nicename() ),
+			'description' => __( 'https://example.com/hello-world/', 'notification' ),
 			'example'     => true,
 			'resolver'    => function() {
 				return get_permalink( $this->trigger->{ $this->post_type }->ID );

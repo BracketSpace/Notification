@@ -23,7 +23,7 @@ class Administrator extends Abstracts\Recipient {
 	public function __construct() {
 		parent::__construct( array(
 			'slug'          => 'administrator',
-			'name'          => __( 'Administrator' ),
+			'name'          => __( 'Administrator', 'notification' ),
 			'default_value' => get_option( 'admin_email' ),
 		) );
 	}
@@ -58,7 +58,7 @@ class Administrator extends Abstracts\Recipient {
 			'css_class'   => 'recipient-value', // don't edit this!
 			'value'       => $this->get_default_value(),
 			'placeholder' => $this->get_default_value(),
-			'description' => sprintf( __( 'You can edit this email in <a href="%s">General Settings</a>' ), admin_url( 'options-general.php' ) ),
+			'description' => sprintf( __( 'You can edit this email in <a href="%s">General Settings</a>', 'notification' ), admin_url( 'options-general.php' ) ),
 			'disabled'    => true,
 		) );
 

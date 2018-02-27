@@ -23,7 +23,7 @@ class Role extends Abstracts\Recipient {
 	public function __construct() {
 		parent::__construct( array(
 			'slug'          => 'role',
-			'name'          => __( 'Role' ),
+			'name'          => __( 'Role', 'notification' ),
 			'default_value' => 'administrator',
 		) );
 	}

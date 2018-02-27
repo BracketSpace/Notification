@@ -39,7 +39,7 @@ class UserID extends IntegerTag {
 
     	$args = wp_parse_args( $params, array(
 			'slug'        => 'user_ID',
-			'name'        => __( 'User ID' ),
+			'name'        => __( 'User ID', 'notification' ),
 			'description' => '25',
 			'example'     => true,
 			'resolver'    => function() {

@@ -20,11 +20,11 @@ class UserDeleted extends Abstracts\Trigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/user_deleted', __( 'User deleted' ) );
+		parent::__construct( 'wordpress/user_deleted', __( 'User deleted', 'notification' ) );
 
 		$this->add_action( 'delete_user', 10, 2 );
-		$this->set_group( __( 'User' ) );
-		$this->set_description( __( 'Fires when user account is deleted' ) );
+		$this->set_group( __( 'User', 'notification' ) );
+		$this->set_description( __( 'Fires when user account is deleted', 'notification' ) );
 
 	}
 
@@ -60,7 +60,7 @@ class UserDeleted extends Abstracts\Trigger {
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'user_registered_datetime',
-			'name' => __( 'User registration date' ),
+			'name' => __( 'User registration date', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserRole() );
@@ -68,7 +68,7 @@ class UserDeleted extends Abstracts\Trigger {
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'user_deleted_datetime',
-			'name' => __( 'User deletion time' ),
+			'name' => __( 'User deletion time', 'notification' ),
 		) ) );
 
     }

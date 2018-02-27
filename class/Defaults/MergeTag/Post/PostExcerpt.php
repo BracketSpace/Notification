@@ -42,8 +42,8 @@ class PostExcerpt extends StringTag {
     	$args = wp_parse_args( $params, array(
 			'slug'        => $this->post_type . '_excerpt',
 			// translators: singular post name.
-			'name'        => sprintf( __( '%s excerpt' ), $this->get_nicename() ),
-			'description' => __( 'Welcome to WordPress...' ),
+			'name'        => sprintf( __( '%s excerpt', 'notification' ), $this->get_nicename() ),
+			'description' => __( 'Welcome to WordPress...', 'notification' ),
 			'example'     => true,
 			'resolver'    => function() {
 				return get_the_excerpt( $this->trigger->{ $this->post_type } );

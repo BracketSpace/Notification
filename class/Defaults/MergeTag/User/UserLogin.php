@@ -39,8 +39,8 @@ class UserLogin extends StringTag {
 
     	$args = wp_parse_args( $params, array(
 			'slug'        => 'user_login',
-			'name'        => __( 'User login' ),
-			'description' => __( 'johndoe' ),
+			'name'        => __( 'User login', 'notification' ),
+			'description' => __( 'johndoe', 'notification' ),
 			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->{ $this->property_name }->user_login;

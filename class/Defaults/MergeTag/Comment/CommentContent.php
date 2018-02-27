@@ -25,8 +25,8 @@ class CommentContent extends StringTag {
 
 		$args = wp_parse_args( $params, array(
 			'slug'        => 'comment_content',
-			'name'        => __( 'Comment content' ),
-			'description' => __( 'Great post!' ),
+			'name'        => __( 'Comment content', 'notification' ),
+			'description' => __( 'Great post!', 'notification' ),
 			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->comment->comment_content;

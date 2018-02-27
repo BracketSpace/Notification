@@ -25,8 +25,8 @@ class AttachmentTitle extends StringTag {
 
     	$args = wp_parse_args( $params, array(
 			'slug'        => 'attachment_title',
-			'name'        => __( 'Attachment title' ),
-			'description' => __( 'Forest landscape' ),
+			'name'        => __( 'Attachment title', 'notification' ),
+			'description' => __( 'Forest landscape', 'notification' ),
 			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->attachment->post_title;

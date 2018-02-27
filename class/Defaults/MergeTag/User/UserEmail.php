@@ -39,8 +39,8 @@ class UserEmail extends StringTag {
 
     	$args = wp_parse_args( $params, array(
 			'slug'        => 'user_email',
-			'name'        => __( 'User email' ),
-			'description' => __( 'john.doe@example.com' ),
+			'name'        => __( 'User email', 'notification' ),
+			'description' => __( 'john.doe@example.com', 'notification' ),
 			'example'     => true,
 			'resolver'    => function() {
 				return $this->trigger->{ $this->property_name }->user_email;

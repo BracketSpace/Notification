@@ -25,13 +25,13 @@ class PostPending extends PostTrigger {
 			'post_type' => $post_type,
 			'slug'      => 'wordpress/' . $post_type . '/pending',
 			// translators: singular post name.
-			'name'      => sprintf( __( '%s sent for review' ), parent::get_post_type_name( $post_type ) ),
+			'name'      => sprintf( __( '%s sent for review', 'notification' ), parent::get_post_type_name( $post_type ) ),
 		) );
 
 		$this->add_action( 'pending_' . $post_type, 10, 2 );
 
 		// translators: 1. singular post name, 2. post type slug.
-		$this->set_description( sprintf( __( 'Fires when %s (%s) is sent for review' ), parent::get_post_type_name( $post_type ), $post_type ) );
+		$this->set_description( sprintf( __( 'Fires when %s (%s) is sent for review', 'notification' ), parent::get_post_type_name( $post_type ), $post_type ) );
 
 	}
 

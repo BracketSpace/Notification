@@ -27,7 +27,7 @@ class DateTime extends StringTag {
 
     	$args = wp_parse_args( $params, array(
 			'slug'        => 'datetime',
-			'name'        => __( 'Date and Time' ),
+			'name'        => __( 'Date and Time', 'notification' ),
 			'time_format' => get_option( 'time_format' ),
 			'date_format' => get_option( 'date_format' ),
 			'example'     => true,
@@ -35,7 +35,7 @@ class DateTime extends StringTag {
 
 		if ( ! isset( $args['description'] ) ) {
 			$args['description']  = date_i18n( $args['date_format'] . ' ' . $args['time_format'] ) . '. ';
-			$args['description'] .= __( 'You can change the format in General WordPress Settings.' );
+			$args['description'] .= __( 'You can change the format in General WordPress Settings.', 'notification' );
 		}
 
 		if ( ! isset( $args['resolver'] ) ) {

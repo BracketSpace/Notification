@@ -25,7 +25,7 @@ class CommentAuthorUserAgent extends StringTag {
 
 		$args = wp_parse_args( $params, array(
 			'slug'        => 'comment_author_user_agent',
-			'name'        => __( 'Comment author user agent' ),
+			'name'        => __( 'Comment author user agent', 'notification' ),
 			'description' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
 			'example'     => true,
 			'resolver'    => function() {

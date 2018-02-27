@@ -25,8 +25,8 @@ class CommentPostPermalink extends UrlTag {
 
 		$args = wp_parse_args( $params, array(
 			'slug'        => 'comment_post_permalink',
-			'name'        => __( 'Comment post permalink' ),
-			'description' => __( 'https://example.com/hello-world/' ),
+			'name'        => __( 'Comment post permalink', 'notification' ),
+			'description' => __( 'https://example.com/hello-world/', 'notification' ),
 			'example'     => true,
 			'resolver'    => function() {
 				return get_permalink( $this->trigger->comment->comment_post_ID );

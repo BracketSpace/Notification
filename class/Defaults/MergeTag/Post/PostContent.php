@@ -42,8 +42,8 @@ class PostContent extends StringTag {
     	$args = wp_parse_args( $params, array(
 			'slug'        => $this->post_type . '_content',
 			// translators: singular post name.
-			'name'        => sprintf( __( '%s content' ), $this->get_nicename() ),
-			'description' => __( 'Welcome to WordPress. This is your first post. Edit or delete it, then start writing!' ),
+			'name'        => sprintf( __( '%s content', 'notification' ), $this->get_nicename() ),
+			'description' => __( 'Welcome to WordPress. This is your first post. Edit or delete it, then start writing!', 'notification' ),
 			'example'     => true,
 			'resolver'    => function() {
 				return apply_filters( 'the_content', $this->trigger->{ $this->post_type }->post_content );

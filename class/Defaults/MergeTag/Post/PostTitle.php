@@ -42,8 +42,8 @@ class PostTitle extends StringTag {
     	$args = wp_parse_args( $params, array(
 			'slug'        => $this->post_type . '_title',
 			// translators: singular post name.
-			'name'        => sprintf( __( '%s title' ), $this->get_nicename() ),
-			'description' => __( 'Hello World' ),
+			'name'        => sprintf( __( '%s title', 'notification' ), $this->get_nicename() ),
+			'description' => __( 'Hello World', 'notification' ),
 			'example'     => true,
 			'resolver'    => function() {
 				return get_the_title( $this->trigger->{ $this->post_type } );

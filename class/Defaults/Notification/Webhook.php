@@ -22,7 +22,7 @@ class Webhook extends Abstracts\Notification {
 	 * @since [Next]
 	 */
 	public function __construct() {
-		parent::__construct( 'webhook', __( 'Webhook' ) );
+		parent::__construct( 'webhook', __( 'Webhook', 'notification' ) );
 	}
 
 	/**
@@ -35,27 +35,27 @@ class Webhook extends Abstracts\Notification {
 
 		$this->add_form_field( new Field\RecipientsField( array(
 			'notification'     => $this->get_slug(),
-			'label'            => __( 'URLs' ),
+			'label'            => __( 'URLs', 'notification' ),
 			'name'             => 'urls',
 			'add_button_label' => __( 'Add URL', 'notification' ),
 		) ) );
 
 		$this->add_form_field( new Field\RepeaterField( array(
-			'label'            => __( 'Arguments' ),
+			'label'            => __( 'Arguments', 'notification' ),
 			'name'             => 'args',
 			'add_button_label' => __( 'Add argument', 'notification' ),
 			'fields'           => array(
 				new Field\InputField( array(
-					'label'      => __( 'Key' ),
+					'label'      => __( 'Key', 'notification' ),
 					'name'       => 'key',
 					'resolvable' => true,
-					'description' => __( 'You can use merge tags' ),
+					'description' => __( 'You can use merge tags', 'notification' ),
 				) ),
 				new Field\InputField( array(
-					'label'      => __( 'Value' ),
+					'label'      => __( 'Value', 'notification' ),
 					'name'       => 'value',
 					'resolvable' => true,
-					'description' => __( 'You can use merge tags' ),
+					'description' => __( 'You can use merge tags', 'notification' ),
 				) ),
 			),
 		) ) );
@@ -63,21 +63,21 @@ class Webhook extends Abstracts\Notification {
 		if ( notification_get_setting( 'notifications/webhook/headers' ) ) {
 
 			$this->add_form_field( new Field\RepeaterField( array(
-				'label'            => __( 'Headers' ),
+				'label'            => __( 'Headers', 'notification' ),
 				'name'             => 'headers',
 				'add_button_label' => __( 'Add header', 'notification' ),
 				'fields'           => array(
 					new Field\InputField( array(
-						'label'      => __( 'Key' ),
+						'label'      => __( 'Key', 'notification' ),
 						'name'       => 'key',
 						'resolvable' => true,
-						'description' => __( 'You can use merge tags' ),
+						'description' => __( 'You can use merge tags', 'notification' ),
 					) ),
 					new Field\InputField( array(
-						'label'      => __( 'Value' ),
+						'label'      => __( 'Value', 'notification' ),
 						'name'       => 'value',
 						'resolvable' => true,
-						'description' => __( 'You can use merge tags' ),
+						'description' => __( 'You can use merge tags', 'notification' ),
 					) ),
 				),
 			) ) );
