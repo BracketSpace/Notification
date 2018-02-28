@@ -64,7 +64,7 @@ class TextareaField extends Field {
      * @return mixed        sanitized value
      */
     public function sanitize( $value ) {
-    	return sanitize_text_field( $value );
+    	return sanitize_textarea_field( $value );
     }
 
 }
