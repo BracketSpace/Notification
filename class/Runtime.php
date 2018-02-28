@@ -18,7 +18,7 @@ class Runtime {
 	/**
 	 * Class constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param string $plugin_file plugin main file full path.
 	 */
 	public function __construct( $plugin_file ) {
@@ -30,7 +30,7 @@ class Runtime {
 	/**
 	 * Loads needed files
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return void
 	 */
 	public function boot() {
@@ -48,7 +48,7 @@ class Runtime {
 	 * Creates needed classes
 	 * Singletons are used for a sake of performance
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return void
 	 */
 	public function singletons() {
@@ -72,7 +72,7 @@ class Runtime {
 	/**
 	 * All WordPress actions this plugin utilizes
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return void
 	 */
 	public function actions() {
@@ -122,7 +122,7 @@ class Runtime {
 	/**
 	 * Returns new View object
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return View view object
 	 */
 	public function view() {
@@ -132,7 +132,7 @@ class Runtime {
 	/**
 	 * Returns new Ajax object
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return Ajax ajax object
 	 */
 	public function ajax() {
@@ -142,7 +142,7 @@ class Runtime {
 	/**
 	 * Returns new BoxRenderer object
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return BoxRenderer BoxRenderer object
 	 */
 	public function boxrenderer() {
@@ -152,7 +152,7 @@ class Runtime {
 	/**
 	 * Returns new FormRenderer object
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return FormRenderer FormRenderer object
 	 */
 	public function formrenderer() {

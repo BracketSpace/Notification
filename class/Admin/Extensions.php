@@ -31,7 +31,7 @@ class Extensions {
 	/**
 	 * Extensions constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param View $view View class.
 	 */
 	public function __construct( View $view ) {

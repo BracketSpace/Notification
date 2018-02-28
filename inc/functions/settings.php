@@ -8,7 +8,7 @@
 /**
  * Registers settings
  *
- * @since  [Next]
+ * @since  5.0.0
  * @param  mixed   $callback callback for settings registration, array of string.
  * @param  integer $priority action priority.
  * @return void
@@ -26,7 +26,7 @@ function notification_register_settings( $callback, $priority = 10 ) {
 /**
  * Gets setting values
  *
- * @since [Next]
+ * @since 5.0.0
  * @return mixed
  */
 function notification_get_settings() {
@@ -37,7 +37,7 @@ function notification_get_settings() {
 /**
  * Gets single setting value
  *
- * @since  [Next]
+ * @since  5.0.0
  * @param  string $setting setting name in `a/b/c` format.
  * @return mixed
  */

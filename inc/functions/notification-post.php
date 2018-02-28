@@ -8,7 +8,7 @@
 /**
  * Checks if notification post has been just started
  *
- * @since  [Next]
+ * @since  5.0.0
  * @param  object $post WP_Post object.
  * @return boolean      true if notification has been just started
  */

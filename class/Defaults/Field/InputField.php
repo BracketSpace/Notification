@@ -32,7 +32,7 @@ class InputField extends Field {
 	/**
 	 * Field constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
 	 */
 	public function __construct( $params = array() ) {

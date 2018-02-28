@@ -19,7 +19,7 @@ class MergeTags {
 	/**
 	 * MergeTags constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param View $view View class.
 	 * @param Ajax $ajax Ajax class.
 	 */

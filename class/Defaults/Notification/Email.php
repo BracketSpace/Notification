@@ -19,7 +19,7 @@ class Email extends Abstracts\Notification {
 	/**
 	 * Notification constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 */
 	public function __construct() {
 		parent::__construct( 'email', 'Email' );

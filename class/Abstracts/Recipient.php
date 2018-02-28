@@ -24,7 +24,7 @@ abstract class Recipient extends Common implements Interfaces\Receivable {
 	/**
      * Recipient constructor
      *
-     * @since [Next]
+     * @since 5.0.0
      * @param array $params recipient configuration params.
      */
     public function __construct( $params = array() ) {

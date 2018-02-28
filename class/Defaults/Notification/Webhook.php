@@ -19,7 +19,7 @@ class Webhook extends Abstracts\Notification {
 	/**
 	 * Notification constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 */
 	public function __construct() {
 		parent::__construct( 'webhook', __( 'Webhook', 'notification' ) );
@@ -123,7 +123,7 @@ class Webhook extends Abstracts\Notification {
     /**
      * Sends GET request
      *
-     * @since  [Next]
+     * @since  5.0.0
      * @param  string $url  URL to call.
      * @param  array  $args    arguments.
      * @param  array  $headers headers.
@@ -145,7 +145,7 @@ class Webhook extends Abstracts\Notification {
     /**
      * Sends POST request
      *
-     * @since  [Next]
+     * @since  5.0.0
      * @param  string $url  URL to call.
      * @param  array  $args    arguments.
      * @param  array  $headers headers.
@@ -167,7 +167,7 @@ class Webhook extends Abstracts\Notification {
     /**
      * Parses args to be understand by the wp_remote_* functions
      *
-     * @since  [Next]
+     * @since  5.0.0
      * @param  array $args args from saved fields.
      * @return array       parsed args as key => value array
      */

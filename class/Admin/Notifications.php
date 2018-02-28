@@ -15,7 +15,7 @@ class Notifications {
 	/**
 	 * Notifications constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param BoxRenderer  $boxrenderer  BoxRenderer class.
 	 * @param FormRenderer $formrenderer FormRenderer class.
 	 * @param PostData     $postdata     PostData class.
@@ -29,7 +29,7 @@ class Notifications {
 	/**
 	 * Renders notification boxes
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return void
 	 */
 	public function render_notifications() {

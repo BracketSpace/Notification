@@ -17,7 +17,7 @@ class PostType {
 	/**
 	 * PostType constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param Trigger       $trigger       Trigger class.
 	 * @param Notifications $notifications Notifications class.
 	 * @param View          $view          View class.
@@ -147,7 +147,7 @@ class PostType {
 	/**
 	 * Saves post status in relation to on/off switch
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @param  array $data    post data.
 	 * @param  array $postarr saved data.
 	 * @return array

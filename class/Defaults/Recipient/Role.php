@@ -18,7 +18,7 @@ class Role extends Abstracts\Recipient {
 	/**
 	 * Recipient constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 */
 	public function __construct() {
 		parent::__construct( array(

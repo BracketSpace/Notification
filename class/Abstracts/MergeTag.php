@@ -67,7 +67,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
     /**
      * Merge tag constructor
      *
-     * @since [Next]
+     * @since 5.0.0
      * @param array $params merge tag configuration params.
      */
     public function __construct( $params = array() ) {
@@ -177,7 +177,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
     /**
      * Sets trigger object
      *
-     * @since [Next]
+     * @since 5.0.0
      * @param Interfaces\Triggerable $trigger Trigger object.
      */
     public function set_trigger( Interfaces\Triggerable $trigger ) {
@@ -187,7 +187,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
     /**
      * Gets trigger object
      *
-     * @since [Next]
+     * @since 5.0.0
      * @return Trigger object.
      */
     public function get_trigger() {
@@ -197,7 +197,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
     /**
      * Gets value type
      *
-     * @since [Next]
+     * @since 5.0.0
      * @return string
      */
     public function get_value_type() {

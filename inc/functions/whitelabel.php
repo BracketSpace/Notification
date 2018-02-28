@@ -11,7 +11,7 @@
  * Args you can use:
  * - 'page_hook' => 'edit.php?post_type=page' // to move the Notifications under specific admin page
  *
- * @since [Next]
+ * @since 5.0.0
  * @param array $args white label args.
  * @return void
  */
@@ -48,7 +48,7 @@ function notification_whitelabel( $args = array() ) {
 /**
  * Checks if the plugin is in white label mode.
  *
- * @since [Next]
+ * @since 5.0.0
  * @return boolean
  */
 function notification_is_whitelabeled() {

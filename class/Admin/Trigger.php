@@ -17,7 +17,7 @@ class Trigger {
 	/**
 	 * MergeTags constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param View     $view     View class.
 	 * @param PostData $postdata PostData class.
 	 */

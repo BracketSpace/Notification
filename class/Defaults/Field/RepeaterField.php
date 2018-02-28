@@ -52,7 +52,7 @@ class RepeaterField extends Field {
 	/**
 	 * Field constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
 	 */
 	public function __construct( $params = array() ) {
@@ -140,7 +140,7 @@ class RepeaterField extends Field {
 	/**
 	 * Prints repeater row
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @param  array   $values row values.
 	 * @param  boolean $model  if this is a hidden model row.
 	 * @return string          row HTML

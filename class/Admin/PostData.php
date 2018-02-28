@@ -32,7 +32,7 @@ class PostData {
 	/**
 	 * PostData constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param Ajax $ajax Ajax class.
 	 */
 	public function __construct( Ajax $ajax ) {

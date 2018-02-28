@@ -263,7 +263,7 @@ class Settings extends SettingsAPI {
 	/**
 	 * Filters post types from supported posts
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @param  array $post_types post types.
 	 * @return array
 	 */

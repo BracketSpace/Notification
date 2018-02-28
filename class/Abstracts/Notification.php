@@ -126,7 +126,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	 * Prepares saved data for easy use in send() method
 	 * Saves all the values in $data property
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return void
 	 */
 	public function prepare_data() {
