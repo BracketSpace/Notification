@@ -118,6 +118,10 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
+= [Next] =
+* Documentation link in Own Extension promo link
+*
+
 = 5.0.0 =
 * WARNING! This version is not compatible with previous version. No core notifications nor custom triggers will be transfered to the new version because of too many changes in the plugin. Consider updating the plugin in a safe, not-production environment.
 * Plugin has been redesigned from ground up
