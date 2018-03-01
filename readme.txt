@@ -120,6 +120,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 = [Next] =
 * [Changed] Documentation link in Own Extension promo link
+* [Changed] Extensions in Extension directory are now loaded from remote API
 * [Added] TextareaField field
 
 = 5.0.0 =

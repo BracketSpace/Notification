@@ -15,6 +15,13 @@ use BracketSpace\Notification\Utils\View;
 class Extensions {
 
 	/**
+	 * Extensions API URL
+	 *
+	 * @var string
+	 */
+	private $api_url = 'https://bracketspace.com/extras/notification/extensions.php';
+
+	/**
 	 * Extensions list
      *
 	 * @var array
@@ -80,38 +87,30 @@ class Extensions {
 
 		include ABSPATH . 'wp-admin/includes/plugin-install.php' ;
 
-		$this->extensions[] = array(
-			'wporg'    => plugins_api( 'plugin_information', array( 'slug' => 'notification-bbpress' ) ),
-			'url'      => self_admin_url( 'plugin-install.php?tab=plugin-information&amp;plugin=notification-bbpress&amp;TB_iframe=true&amp;width=600&amp;height=550' ),
-			'official' => true,
-			'slug'     => 'notification-bbpress',
-			'name'     => 'bbPress',
-			'desc'     => __( 'Triggers for bbPress: Forums, Topics and Replies.', 'notification' ),
-			'author'   => 'BracketSpace',
-			'icon'     => '//ps.w.org/notification-bbpress/assets/icon-256x256.png',
-		);
+		$extensions = get_transient( 'notification_extensions' );
 
-		$this->extensions[] = array(
-			'wporg'    => plugins_api( 'plugin_information', array( 'slug' => 'signature-notification' ) ),
-			'url'      => self_admin_url( 'plugin-install.php?tab=plugin-information&amp;plugin=signature-notification&amp;TB_iframe=true&amp;width=600&amp;height=550' ),
-			'official' => true,
-			'slug'     => 'signature-notification',
-			'name'     => 'Signature',
-			'desc'     => __( 'Allows to add signature to all emails.', 'notification' ),
-			'author'   => 'BracketSpace',
-			'icon'     => '//ps.w.org/signature-notification/assets/icon-256x256.png',
-		);
+		if ( false === $extensions ) {
 
-		$this->extensions[] = array(
-			'wporg'    => plugins_api( 'plugin_information', array( 'slug' => 'lh-multipart-email' ) ),
-			'url'      => self_admin_url( 'plugin-install.php?tab=plugin-information&amp;plugin=lh-multipart-email&amp;TB_iframe=true&amp;width=600&amp;height=550' ),
-			'official' => false,
-			'slug'     => 'lh-multipart-email',
-			'name'     => 'LH Multipart Email',
-			'desc'     => __( 'Provides a text alternative for HTML emails (within the one email).', 'notification' ),
-			'author'   => 'Peter Shaw',
-			'icon'     => '//ps.w.org/lh-multipart-email/assets/icon-128x128.png',
-		);
+			$response   = wp_remote_get( $this->api_url );
+			$extensions = array();
+
+			if ( ! is_wp_error( $response ) && 200 == wp_remote_retrieve_response_code( $response ) ) {
+				$extensions = json_decode( wp_remote_retrieve_body( $response ), true );
+				set_transient( 'notification_extensions', $extensions, DAY_IN_SECONDS );
+			}
+
+		}
+
+		foreach ( $extensions as $extension ) {
+
+			if ( isset( $extension['wporg'] ) ) {
+				$extension['wporg'] = plugins_api( 'plugin_information', $extension['wporg'] );
+				$extension['url']   = self_admin_url( $extension['url'] );
+			}
+
+			$this->extensions[] = $extension;
+
+		}
 
 	}
 
