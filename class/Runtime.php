@@ -97,8 +97,8 @@ class Runtime {
 
 		add_action( 'add_meta_boxes', array( $this->admin_merge_tags, 'add_meta_box' ) );
 
-		add_action( 'save_post_notification', array( $this->admin_trigger, 'save' ) );
-		add_action( 'save_post_notification', array( $this->admin_notifications, 'save' ) );
+		add_action( 'save_post_notification', array( $this->admin_trigger, 'save' ), 10, 3 );
+		add_action( 'save_post_notification', array( $this->admin_notifications, 'save' ), 10, 3 );
 
 		add_action( 'admin_enqueue_scripts', array( $this->admin_scripts, 'enqueue_scripts' ) );
 

@@ -58,13 +58,19 @@ class Notifications {
 	 * Save the notifications in post meta
      *
 	 * @param  integer $post_id current post ID.
+	 * @param  object  $post    WP_Post object.
+	 * @param  boolean $update  if existing notification is updated.
 	 * @return void
 	 */
-	public function save( $post_id ) {
+	public function save( $post_id, $post, $update ) {
 
         if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
             return;
         }
+
+		if ( ! $update ) {
+			return;
+		}
 
         $this->postdata->set_post_id( $post_id );
         $this->postdata->save_notification_data( $_POST );

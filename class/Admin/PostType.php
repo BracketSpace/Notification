@@ -154,6 +154,11 @@ class PostType {
 	 */
 	public function save_notification_status( $data, $postarr ) {
 
+		// fix for brand new posts.
+		if ( $data['post_status'] == 'auto-draft' ) {
+			return $data;
+		}
+
 		if ( $data['post_type'] != 'notification' ||
 			$postarr['post_status'] == 'trash' ||
 			( isset( $_POST['action'] ) && $_POST['action'] == 'change_notification_status' ) ) {
