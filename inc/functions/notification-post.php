@@ -13,5 +13,5 @@
  * @return boolean      true if notification has been just started
  */
 function notification_is_new_notification( $post ) {
-	return $post->post_status !== 'draft' || $post->post_date_gmt == '0000-00-00 00:00:00';
+	return $post->post_date_gmt == '0000-00-00 00:00:00';
 }

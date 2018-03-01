@@ -154,6 +154,11 @@ class PostType {
 	 */
 	public function save_notification_status( $data, $postarr ) {
 
+		// fix for brand new posts.
+		if ( $data['post_status'] == 'auto-draft' ) {
+			return $data;
+		}
+
 		if ( $data['post_type'] != 'notification' ||
 			$postarr['post_status'] == 'trash' ||
 			( isset( $_POST['action'] ) && $_POST['action'] == 'change_notification_status' ) ) {
@@ -184,7 +189,9 @@ class PostType {
 			$delete_text = __( 'Move to Trash', 'notification' );
 		}
 
-		$this->view->set_var( 'enabled', notification_is_new_notification( $post ) );
+		$enabled = notification_is_new_notification( $post ) || get_post_status( $post->ID ) != 'draft';
+
+		$this->view->set_var( 'enabled', $enabled );
 		$this->view->set_var( 'post_id', $post->ID );
 		$this->view->set_var( 'delete_link_label', $delete_text );
 
