@@ -119,6 +119,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 == Changelog ==
 
 = [Next] =
+* [Fixed] The Email notification it not enabled anymore for already saved notifications
 * [Changed] Documentation link in Own Extension promo link
 * [Changed] Extensions in Extension directory are now loaded from remote API
 * [Added] TextareaField field
