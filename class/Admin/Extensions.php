@@ -262,7 +262,7 @@ class Extensions {
 		}
 
 		$license    = new License( $extension );
-		$activation = $license->deactivate( $data['license-key'] );
+		$activation = $license->deactivate();
 
 		if ( is_wp_error( $activation ) ) {
 			wp_redirect( add_query_arg( 'activation-status', $activation->get_error_message(), $data['_wp_http_referer'] ) );

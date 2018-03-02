@@ -123,6 +123,16 @@ class Settings extends SettingsAPI {
 				'render'   => array( new CoreFields\Checkbox(), 'input' ),
 				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
 			) )
+			->add_field( array(
+				'name'     => __( 'Licenses', 'notification' ),
+				'slug'     => 'licenses',
+				'default'  => 'true',
+				'addons'   => array(
+					'label' => __( 'Remove and deactivate extension licenses', 'notification' )
+				),
+				'render'   => array( new CoreFields\Checkbox(), 'input' ),
+				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+			) )
 			->description( __( 'Choose what to remove upon plugin removal', 'notification' ) );
 
 	}

@@ -59,7 +59,8 @@ class License {
 	public function get() {
 
 		$license_cache = new ObjectCache( $this->extension['slug'], 'notification_license' );
-		$license       = $license_cache->get();
+		// $license       = $license_cache->get();
+		$license       = false;
 
 		if ( empty( $license ) ) {
 
@@ -75,6 +76,17 @@ class License {
 
 		return $license;
 
+	}
+
+	/**
+	 * Checks if license is valid
+	 *
+	 * @since  [Next]
+	 * @return boolean
+	 */
+	public function is_valid() {
+		$license_data = $this->get();
+		return $livense->license == 'valid';
 	}
 
 	/**
@@ -161,20 +173,19 @@ class License {
 	 * Deactivates the license
 	 *
 	 * @since  [Next]
-	 * @param  string $license_key license key.
-	 * @return mixed               WP_Error or true
+	 * @return mixed WP_Error or true
 	 */
-	public function deactivate( $license_key = '' ) {
+	public function deactivate() {
 
-		$license_key = trim( $license_key );
-		$error       = false;
+		$license_data = $this->get();
+		$error        = false;
 
 		// call the custom API.
 		$response = wp_remote_post( $this->extension['edd']['store_url'], array(
 			'timeout' => 15,
 			'body'    => array(
 				'edd_action' => 'deactivate_license',
-				'license'    => $license_key,
+				'license'    => trim( $license_data->license_key ),
 				'item_name'  => urlencode( $this->extension['edd']['item_name'] ),
 				'url'        => home_url()
 			),
