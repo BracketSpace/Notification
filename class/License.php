@@ -10,6 +10,7 @@
 namespace BracketSpace\Notification;
 
 use BracketSpace\Notification\Utils\Cache\Object as ObjectCache;
+use BracketSpace\Notification\Utils\Cache\Transient as TransientCache;
 
 /**
  * License class
@@ -59,8 +60,7 @@ class License {
 	public function get() {
 
 		$license_cache = new ObjectCache( $this->extension['slug'], 'notification_license' );
-		// $license       = $license_cache->get();
-		$license       = false;
+		$license       = $license_cache->get();
 
 		if ( empty( $license ) ) {
 
@@ -85,8 +85,33 @@ class License {
 	 * @return boolean
 	 */
 	public function is_valid() {
+
 		$license_data = $this->get();
-		return $livense->license == 'valid';
+
+		if ( empty( $license_data ) ) {
+			return false;
+		}
+
+		$license_transient = new TransientCache( 'notification_checked_license' . $this->extension['slug'], DAY_IN_SECONDS );
+		$license           = $license_transient->get();
+
+		if ( empty( $license ) ) {
+
+			$license_check = $this->check( $license_data->license_key );
+
+			if ( is_wp_error( $license_check ) ) {
+				return $license_data->license == 'valid';
+			}
+
+			$license_check->license_key = $license_data->license_key;
+			$license_data               = $license_check;
+			$this->save( $license_data );
+			$license_transient->set( $license_data );
+
+		}
+
+		return $license_data->license == 'valid';
+
 	}
 
 	/**
@@ -205,6 +230,38 @@ class License {
 		$this->remove();
 
 		return true;
+
+	}
+
+	/**
+	 * Checks the license
+	 *
+	 * @since  [Next]
+	 * @param  string $license_key license key.
+	 * @return object              WP_Error or license object
+	 */
+	public function check( $license_key = '' ) {
+
+		$license_key = trim( $license_key );
+		$error       = false;
+
+		// call the custom API.
+		$response = wp_remote_post( $this->extension['edd']['store_url'], array(
+			'timeout' => 15,
+			'body'    => array(
+				'edd_action' => 'check_license',
+				'license'    => $license_key,
+				'item_name'  => urlencode( $this->extension['edd']['item_name'] ),
+				'url'        => home_url()
+			),
+		) );
+
+		// make sure the response came back okay.
+		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
+			return new \WP_Error( 'notification_license_error', 'http-error' );
+		}
+
+		return json_decode( wp_remote_retrieve_body( $response ) );
 
 	}
 

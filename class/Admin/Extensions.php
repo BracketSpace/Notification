@@ -10,6 +10,7 @@ namespace BracketSpace\Notification\Admin;
 use BracketSpace\Notification\License;
 use BracketSpace\Notification\Utils\View;
 use BracketSpace\Notification\Utils\EDDUpdater;
+use BracketSpace\Notification\Utils\Cache\Transient as TransientCache;
 
 /**
  * Extensions class
@@ -129,8 +130,8 @@ class Extensions {
 	 */
 	public function get_raw_extensions() {
 
-		$extensions = get_transient( 'notification_extensions' );
-		$extensions = false;
+		$extensions_cache = new TransientCache( 'notification_extensions', DAY_IN_SECONDS );
+		$extensions = $extensions_cache->get();
 
 		if ( false === $extensions ) {
 
@@ -139,7 +140,7 @@ class Extensions {
 
 			if ( ! is_wp_error( $response ) && 200 == wp_remote_retrieve_response_code( $response ) ) {
 				$extensions = json_decode( wp_remote_retrieve_body( $response ), true );
-				set_transient( 'notification_extensions', $extensions, DAY_IN_SECONDS );
+				$extensions_cache->set( $extensions );
 			}
 
 		}
@@ -189,6 +190,12 @@ class Extensions {
 		foreach ( $extensions as $extension ) {
 
 			if ( ! isset( $extension['edd'] ) || ! in_array( $extension['slug'], $plugin_slugs ) ) {
+				continue;
+			}
+
+			$license = new License( $extension );
+
+			if ( ! $license->is_valid() ) {
 				continue;
 			}
 
@@ -311,6 +318,7 @@ class Extensions {
 				break;
 
 			case 'revoked' :
+			case 'inactive' :
 				$view    = 'error';
 				$message = __( 'Your license key has been disabled.' );
 				break;

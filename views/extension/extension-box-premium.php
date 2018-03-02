@@ -22,8 +22,18 @@ $license = $ext['license']->get();
 			<?php if ( empty( $license ) ): ?>
 				<p><?php esc_html_e( 'To receive updates, please enter your valid license key.' ); ?></p>
 			<?php else: ?>
-				<?php // translators: 1. Expiration date. ?>
-				<p><?php printf( __( 'Your license key expires on %s.' ), date_i18n( get_option( 'date_format' ), strtotime( $license->expires, current_time( 'timestamp' ) ) ) ) ?></p>
+				<?php if ( $license->expires != 'lifetime' ): ?>
+					<?php // translators: 1. Expiration date. ?>
+					<p><?php printf( __( 'Your license expires on %s.' ), date_i18n( get_option( 'date_format' ), strtotime( $license->expires, current_time( 'timestamp' ) ) ) ); ?></p>
+				<?php else: ?>
+					<p><?php esc_html_e( 'Your license never expires.' ); ?></p>
+				<?php endif ?>
+				<?php if ( $license->license == 'inactive' ): ?>
+					<p style="color: red;"><?php esc_html_e( 'Your license is inactive.' ); ?></p>
+				<?php endif ?>
+				<?php if ( $license->license == 'expired' ): ?>
+					<p style="color: red;"><?php esc_html_e( 'Your license is expired.' ); ?></p>
+				<?php endif ?>
 			<?php endif ?>
 			<p><a href="<?php echo esc_url( $ext['url'] ) ?>" target="_blank"><?php esc_html_e( 'Visit the store' ); ?></a></p>
 		</div>
