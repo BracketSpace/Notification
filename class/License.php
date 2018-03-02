@@ -34,7 +34,7 @@ class License {
 	/**
 	 * Class constructor
 	 *
-	 * @since [Next]
+	 * @since 5.1.0
 	 * @param array $extension extension data.
 	 */
 	public function __construct( array $extension ) {
@@ -44,7 +44,7 @@ class License {
 	/**
 	 * Gets all licenses from database
 	 *
-	 * @since  [Next]
+	 * @since  5.1.0
 	 * @return array licenses
 	 */
 	public function get_licenses() {
@@ -54,7 +54,7 @@ class License {
 	/**
 	 * Gets single license info
 	 *
-	 * @since  [Next]
+	 * @since  5.1.0
 	 * @return mixed license data or false
 	 */
 	public function get() {
@@ -81,7 +81,7 @@ class License {
 	/**
 	 * Checks if license is valid
 	 *
-	 * @since  [Next]
+	 * @since  5.1.0
 	 * @return boolean
 	 */
 	public function is_valid() {
@@ -117,7 +117,7 @@ class License {
 	/**
 	 * Saves single license info
 	 *
-	 * @since  [Next]
+	 * @since  5.1.0
 	 * @param object $license_data license data from API.
 	 * @return void
 	 */
@@ -136,7 +136,7 @@ class License {
 	/**
 	 * Removes single license from database
 	 *
-	 * @since  [Next]
+	 * @since  5.1.0
 	 * @return void
 	 */
 	public function remove() {
@@ -156,7 +156,7 @@ class License {
 	/**
 	 * Activates the license
 	 *
-	 * @since  [Next]
+	 * @since  5.1.0
 	 * @param  string $license_key license key.
 	 * @return mixed               WP_Error or true
 	 */
@@ -197,7 +197,7 @@ class License {
 	/**
 	 * Deactivates the license
 	 *
-	 * @since  [Next]
+	 * @since  5.1.0
 	 * @return mixed WP_Error or true
 	 */
 	public function deactivate() {
@@ -236,7 +236,7 @@ class License {
 	/**
 	 * Checks the license
 	 *
-	 * @since  [Next]
+	 * @since  5.1.0
 	 * @param  string $license_key license key.
 	 * @return object              WP_Error or license object
 	 */
