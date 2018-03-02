@@ -109,6 +109,11 @@ class Runtime {
 		add_action( 'admin_menu', array( $this->admin_extensions, 'register_page' ) );
 		add_action( 'admin_menu', array( $this->settings, 'register_page' ), 20 );
 
+		add_action( 'admin_init', array( $this->admin_extensions, 'updater' ) );
+		add_action( 'admin_post_notification_activate_extension', array( $this->admin_extensions, 'activate' ) );
+		add_action( 'admin_post_notification_deactivate_extension', array( $this->admin_extensions, 'deactivate' ) );
+		add_action( 'admin_notices', array( $this->admin_extensions, 'activation_notices' ) );
+
 		add_action( 'wp_loaded', array( $this->settings, 'register_settings' ) );
 
 		add_filter( 'notification/settings/triggers/valid_post_types', array( $this->settings, 'filter_post_types' ) );

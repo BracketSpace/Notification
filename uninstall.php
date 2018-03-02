@@ -34,3 +34,25 @@ if ( isset( $un['settings'] ) && $un['settings'] == 'true' ) {
 	delete_option( '_notification_settings_hash' );
 
 }
+
+// remove licenses.
+if ( isset( $un['licenses'] ) && $un['licenses'] == 'true' ) {
+
+	$files = new BracketSpace\Notification\Utils\Files( '', '', '' );
+	$view  = new BracketSpace\Notification\Utils\View( $files );
+	$extensions_class = new BracketSpace\Notification\Admin\Extensions( $view );
+
+	$extensions_class->load_extensions();
+
+	$premium_extensions = $extensions_class->premium_extensions;
+
+	foreach ( $premium_extensions as $extension ) {
+		$license = $extension['license'];
+		if ( $license->is_valid() ) {
+			$license->deactivate();
+		}
+	}
+
+	delete_option( 'notification_licenses' );
+
+}
