@@ -356,4 +356,47 @@ class Extensions {
 
 	}
 
+	/**
+	 * Displays activation notice nag
+     *
+	 * @return void
+	 */
+	public function activation_nag() {
+
+		if ( notification_is_whitelabeled() ) {
+			return;
+		}
+
+		if ( get_current_screen()->id == $this->page_hook ) {
+			return;
+		}
+
+		$extensions = $this->get_raw_extensions();
+
+		foreach ( $extensions as $extension ) {
+
+			if ( isset( $extension['edd'] ) && is_plugin_active( $extension['slug'] ) ) {
+
+				$license = new License( $extension );
+
+				if ( ! $license->is_valid() ) {
+
+					// translators: 1. Plugin name, 2. Link.
+					$message = sprintf(
+						__( 'Please activate the %s plugin to get the updates. %s' ),
+						$extension['edd']['item_name'],
+						'<a href="' . admin_url( 'edit.php?post_type=notification&page=extensions' ) . '">' . __( 'Go to Extensions' ) . '</a>'
+					);
+
+					$this->view->set_var( 'message', $message, true );
+					$this->view->get_view( 'extension/activation-error' );
+
+				}
+
+			}
+
+		}
+
+	}
+
 }

@@ -113,6 +113,7 @@ class Runtime {
 		add_action( 'admin_post_notification_activate_extension', array( $this->admin_extensions, 'activate' ) );
 		add_action( 'admin_post_notification_deactivate_extension', array( $this->admin_extensions, 'deactivate' ) );
 		add_action( 'admin_notices', array( $this->admin_extensions, 'activation_notices' ) );
+		add_action( 'admin_notices', array( $this->admin_extensions, 'activation_nag' ) );
 
 		add_action( 'wp_loaded', array( $this->settings, 'register_settings' ) );
 
