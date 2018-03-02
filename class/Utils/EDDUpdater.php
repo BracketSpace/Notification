@@ -499,7 +499,7 @@ class EDDUpdater {
 	/**
 	 * Gets cached version information
 	 *
-	 * @since  [Next]
+	 * @since  5.1.0
 	 * @param  string $cache_key cache key.
 	 * @return mixed             false or object
 	 */
