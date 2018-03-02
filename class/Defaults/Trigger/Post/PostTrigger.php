@@ -134,7 +134,7 @@ abstract class PostTrigger extends Abstracts\Trigger {
 	/**
 	 * Gets nice, translated post name
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return string post name
 	 */
 	public function get_current_post_type_name() {
@@ -144,7 +144,7 @@ abstract class PostTrigger extends Abstracts\Trigger {
 	/**
 	 * Gets nice, translated post name for post type slug
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @param string $post_type post type slug.
 	 * @return string post name
 	 */

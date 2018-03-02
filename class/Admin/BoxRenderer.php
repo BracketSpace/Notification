@@ -17,7 +17,7 @@ class BoxRenderer {
 	/**
 	 * BoxRenderer constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param View $view View class.
 	 */
 	public function __construct( View $view ) {
@@ -27,7 +27,7 @@ class BoxRenderer {
 	/**
 	 * Sets vars for view
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param array $vars vars array.
 	 */
 	public function set_vars( $vars = array() ) {
@@ -38,7 +38,7 @@ class BoxRenderer {
 	/**
 	 * Renders box
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return void
 	 */
 	public function render() {

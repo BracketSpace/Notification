@@ -33,7 +33,7 @@ function register_notification( Interfaces\Sendable $notification ) {
 /**
  * Gets all registered notifications
  *
- * @since  [Next]
+ * @since  5.0.0
  * @return array notifications
  */
 function notification_get_notifications() {
@@ -43,7 +43,7 @@ function notification_get_notifications() {
 /**
  * Gets single registered notification
  *
- * @since  [Next]
+ * @since  5.0.0
  * @param  string $notification_slug notification slug.
  * @return mixed                     notification object or false
  */

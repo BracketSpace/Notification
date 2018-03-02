@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, email, mail
 Requires at least: 4.6
 Tested up to: 5.0
-Stable tag: 5.0.0
+Stable tag: 5.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -117,6 +117,15 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 4. Extensions
 
 == Changelog ==
+
+= 5.1.0 =
+* [Fixed] The Email notification it not enabled anymore for already saved notifications
+* [Fixed] New Notification post is not automatically saved as an Auto Draft anymore
+* [Fixed] Enabled switch state in Save metabox
+* [Changed] Documentation link in Own Extension promo link
+* [Changed] Extensions in Extension directory are now loaded from remote API
+* [Added] TextareaField field
+* [Added] License handler for premium extensions
 
 = 5.0.0 =
 * WARNING! This version is not compatible with previous version. No core notifications nor custom triggers will be transfered to the new version because of too many changes in the plugin. Consider updating the plugin in a safe, not-production environment.

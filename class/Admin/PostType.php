@@ -17,7 +17,7 @@ class PostType {
 	/**
 	 * PostType constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param Trigger       $trigger       Trigger class.
 	 * @param Notifications $notifications Notifications class.
 	 * @param View          $view          View class.
@@ -147,12 +147,17 @@ class PostType {
 	/**
 	 * Saves post status in relation to on/off switch
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @param  array $data    post data.
 	 * @param  array $postarr saved data.
 	 * @return array
 	 */
 	public function save_notification_status( $data, $postarr ) {
+
+		// fix for brand new posts.
+		if ( $data['post_status'] == 'auto-draft' ) {
+			return $data;
+		}
 
 		if ( $data['post_type'] != 'notification' ||
 			$postarr['post_status'] == 'trash' ||
@@ -184,7 +189,9 @@ class PostType {
 			$delete_text = __( 'Move to Trash', 'notification' );
 		}
 
-		$this->view->set_var( 'enabled', notification_is_new_notification( $post ) );
+		$enabled = notification_is_new_notification( $post ) || get_post_status( $post->ID ) != 'draft';
+
+		$this->view->set_var( 'enabled', $enabled );
 		$this->view->set_var( 'post_id', $post->ID );
 		$this->view->set_var( 'delete_link_label', $delete_text );
 

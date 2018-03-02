@@ -18,7 +18,7 @@ class Runtime {
 	/**
 	 * Class constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param string $plugin_file plugin main file full path.
 	 */
 	public function __construct( $plugin_file ) {
@@ -30,7 +30,7 @@ class Runtime {
 	/**
 	 * Loads needed files
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return void
 	 */
 	public function boot() {
@@ -48,7 +48,7 @@ class Runtime {
 	 * Creates needed classes
 	 * Singletons are used for a sake of performance
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return void
 	 */
 	public function singletons() {
@@ -72,7 +72,7 @@ class Runtime {
 	/**
 	 * All WordPress actions this plugin utilizes
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return void
 	 */
 	public function actions() {
@@ -97,8 +97,8 @@ class Runtime {
 
 		add_action( 'add_meta_boxes', array( $this->admin_merge_tags, 'add_meta_box' ) );
 
-		add_action( 'save_post_notification', array( $this->admin_trigger, 'save' ) );
-		add_action( 'save_post_notification', array( $this->admin_notifications, 'save' ) );
+		add_action( 'save_post_notification', array( $this->admin_trigger, 'save' ), 10, 3 );
+		add_action( 'save_post_notification', array( $this->admin_notifications, 'save' ), 10, 3 );
 
 		add_action( 'admin_enqueue_scripts', array( $this->admin_scripts, 'enqueue_scripts' ) );
 
@@ -108,6 +108,12 @@ class Runtime {
 
 		add_action( 'admin_menu', array( $this->admin_extensions, 'register_page' ) );
 		add_action( 'admin_menu', array( $this->settings, 'register_page' ), 20 );
+
+		add_action( 'admin_init', array( $this->admin_extensions, 'updater' ) );
+		add_action( 'admin_post_notification_activate_extension', array( $this->admin_extensions, 'activate' ) );
+		add_action( 'admin_post_notification_deactivate_extension', array( $this->admin_extensions, 'deactivate' ) );
+		add_action( 'admin_notices', array( $this->admin_extensions, 'activation_notices' ) );
+		add_action( 'admin_notices', array( $this->admin_extensions, 'activation_nag' ) );
 
 		add_action( 'wp_loaded', array( $this->settings, 'register_settings' ) );
 
@@ -122,7 +128,7 @@ class Runtime {
 	/**
 	 * Returns new View object
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return View view object
 	 */
 	public function view() {
@@ -132,7 +138,7 @@ class Runtime {
 	/**
 	 * Returns new Ajax object
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return Ajax ajax object
 	 */
 	public function ajax() {
@@ -142,7 +148,7 @@ class Runtime {
 	/**
 	 * Returns new BoxRenderer object
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return BoxRenderer BoxRenderer object
 	 */
 	public function boxrenderer() {
@@ -152,7 +158,7 @@ class Runtime {
 	/**
 	 * Returns new FormRenderer object
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return FormRenderer FormRenderer object
 	 */
 	public function formrenderer() {

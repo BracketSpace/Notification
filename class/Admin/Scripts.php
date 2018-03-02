@@ -31,7 +31,7 @@ class Scripts {
 	/**
 	 * Scripts constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param object $runtime Plugin Runtime class.
 	 * @param Files  $files   Files class.
 	 */

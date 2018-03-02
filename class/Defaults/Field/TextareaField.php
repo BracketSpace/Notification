@@ -1,6 +1,6 @@
 <?php
 /**
- * Input field class
+ * Textarea field class
  *
  * @package notification
  */
@@ -10,17 +10,9 @@ namespace BracketSpace\Notification\Defaults\Field;
 use BracketSpace\Notification\Abstracts\Field;
 
 /**
- * Input field class
+ * Textarea field class
  */
-class InputField extends Field {
-
-	/**
-	 * Field type
-	 * possible values are valid HTML5 types except file or checkbox
-	 *
-	 * @var string
-	 */
-	public $type = 'text';
+class TextareaField extends Field {
 
 	/**
 	 * Field placeholder
@@ -30,6 +22,13 @@ class InputField extends Field {
 	protected $placeholder = '';
 
 	/**
+	 * Textarea rows
+	 *
+	 * @var integer
+	 */
+	protected $rows = 10;
+
+	/**
 	 * Field constructor
 	 *
 	 * @since 5.0.0
@@ -37,12 +36,12 @@ class InputField extends Field {
 	 */
 	public function __construct( $params = array() ) {
 
-		if ( isset( $params['type'] ) ) {
-    		$this->type = $params['type'];
-    	}
-
 		if ( isset( $params['placeholder'] ) ) {
     		$this->placeholder = $params['placeholder'];
+    	}
+
+		if ( isset( $params['rows'] ) ) {
+    		$this->rows = $params['rows'];
     	}
 
 		parent::__construct( $params );
@@ -55,7 +54,7 @@ class InputField extends Field {
 	 * @return string html
 	 */
 	public function field() {
-		return '<input type="' . $this->type . '" name="' . $this->get_name() . '" id="' . $this->get_id() . '" value="' . $this->get_value() . '" placeholder="' . $this->placeholder . '" class="widefat ' . $this->css_class() . '" ' . $this->maybe_disable() . '>';
+		return '<textarea name="' . $this->get_name() . '" rows="' . $this->rows . '" id="' . $this->get_id() . '" placeholder="' . $this->placeholder . '" class="widefat ' . $this->css_class() . '" ' . $this->maybe_disable() . '>' . $this->get_value() . '</textarea>';
 	}
 
 	/**
@@ -65,7 +64,7 @@ class InputField extends Field {
      * @return mixed        sanitized value
      */
     public function sanitize( $value ) {
-    	return sanitize_text_field( $value );
+    	return sanitize_textarea_field( $value );
     }
 
 }

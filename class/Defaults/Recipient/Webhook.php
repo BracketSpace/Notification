@@ -18,7 +18,7 @@ class Webhook extends Abstracts\Recipient {
 	/**
 	 * Recipient constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param string $slug webook type slug.
 	 * @param string $name webook type name.
 	 */

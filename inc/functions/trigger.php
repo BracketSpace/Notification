@@ -33,7 +33,7 @@ function register_trigger( Interfaces\Triggerable $trigger ) {
 /**
  * Gets all registered triggers
  *
- * @since  [Next]
+ * @since  5.0.0
  * @return array triggers
  */
 function notification_get_triggers() {
@@ -43,7 +43,7 @@ function notification_get_triggers() {
 /**
  * Gets single registered trigger
  *
- * @since  [Next]
+ * @since  5.0.0
  * @param  string $trigger_slug trigger slug.
  * @return mixed                trigger object or false
  */
@@ -55,7 +55,7 @@ function notification_get_single_trigger( $trigger_slug ) {
 /**
  * Gets all registered triggers in a grouped array
  *
- * @since  [Next]
+ * @since  5.0.0
  * @return array grouped triggers
  */
 function notification_get_triggers_grouped() {

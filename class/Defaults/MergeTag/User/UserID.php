@@ -28,7 +28,7 @@ class UserID extends IntegerTag {
 	/**
      * Merge tag constructor
      *
-     * @since [Next]
+     * @since 5.0.0
      * @param array $params merge tag configuration params.
      */
     public function __construct( $params = array() ) {
