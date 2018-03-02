@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @author Easy Digital Downloads
  * @version 1.6.15
  */
-class EDD_SL_Plugin_Updater {
+class EDDUpdater {
 
 	/**
 	 * API url
@@ -73,18 +73,18 @@ class EDD_SL_Plugin_Updater {
 	 * @uses plugin_basename()
 	 * @uses hook()
 	 *
-	 * @param string $_api_url     The URL pointing to the custom API endpoint.
-	 * @param string $_plugin_file Path to the plugin file.
-	 * @param array  $_api_data    Optional data to send with API calls.
+	 * @param string $_api_url         The URL pointing to the custom API endpoint.
+	 * @param string $_plugin_basename Plugin basename.
+	 * @param array  $_api_data        Optional data to send with API calls.
 	 */
-	public function __construct( $_api_url, $_plugin_file, $_api_data = null ) {
+	public function __construct( $_api_url, $_plugin_basename, $_api_data = null ) {
 
 		global $edd_plugin_data;
 
 		$this->api_url     = trailingslashit( $_api_url );
 		$this->api_data    = $_api_data;
-		$this->name        = plugin_basename( $_plugin_file );
-		$this->slug        = basename( $_plugin_file, '.php' );
+		$this->name        = $_plugin_basename;
+		$this->slug        = basename( $_plugin_basename, '.php' );
 		$this->version     = $_api_data['version'];
 		$this->wp_override = isset( $_api_data['wp_override'] ) ? (bool) $_api_data['wp_override'] : false;
 		$this->beta        = ! empty( $this->api_data['beta'] ) ? true : false;
