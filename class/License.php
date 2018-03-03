@@ -60,7 +60,12 @@ class License {
 	public function get() {
 
 		$license_cache = new ObjectCache( $this->extension['slug'], 'notification_license' );
-		$license       = $license_cache->get();
+
+		if ( defined( 'NOTIFICATION_DEBUG' ) && NOTIFICATION_DEBUG ) {
+			$license = false;
+		} else {
+			$license = $license_cache->get();
+		}
 
 		if ( empty( $license ) ) {
 
@@ -93,7 +98,12 @@ class License {
 		}
 
 		$license_transient = new TransientCache( 'notification_checked_license' . $this->extension['slug'], DAY_IN_SECONDS );
-		$license           = $license_transient->get();
+
+		if ( defined( 'NOTIFICATION_DEBUG' ) && NOTIFICATION_DEBUG ) {
+			$license = false;
+		} else {
+			$license = $license_transient->get();
+		}
 
 		if ( empty( $license ) ) {
 

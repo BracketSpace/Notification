@@ -131,7 +131,12 @@ class Extensions {
 	public function get_raw_extensions() {
 
 		$extensions_cache = new TransientCache( 'notification_extensions', DAY_IN_SECONDS );
-		$extensions = $extensions_cache->get();
+
+		if ( defined( 'NOTIFICATION_DEBUG' ) && NOTIFICATION_DEBUG ) {
+			$extensions = false;
+		} else {
+			$extensions = $extensions_cache->get();
+		}
 
 		if ( false === $extensions ) {
 
