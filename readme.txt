@@ -118,6 +118,9 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
+= [Next] =
+* [Added] Ability to suppress the Notification just before it's send.
+
 = 5.1.1 =
 * [Fixed] Posponed action callback.
 * [Added] Support for NOTIFICATION_DEBUG constant. If it's defined the cache for extensions is not applied.
