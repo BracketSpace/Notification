@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, email, mail
 Requires at least: 4.6
 Tested up to: 5.0
-Stable tag: 5.1.0
+Stable tag: 5.1.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -118,7 +118,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
-= [Next] =
+= 5.1.1 =
 * [Fixed] Posponed action callback.
 * [Added] Support for NOTIFICATION_DEBUG constant. If it's defined the cache for extensions is not applied.
 * [Added] notificaiton/notification/field/resolving filter before any value is resolved with merge tags.
