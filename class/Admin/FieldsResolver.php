@@ -101,6 +101,8 @@ class FieldsResolver {
 
 		} else {
 
+			$value = apply_filters( 'notificaiton/notification/field/resolving', $value, $this->tags, $this->replacements );
+
 			$resolved = str_replace( $this->tags, $this->replacements, $value );
 
 			$strip_metgetags = notification_get_setting( 'general/content/strip_empty_tags' );

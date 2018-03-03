@@ -120,6 +120,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 = [Next] =
 * [Added] Support for NOTIFICATION_DEBUG constant. If it's defined the cache for extensions is not applied.
+* [Added] notificaiton/notification/field/resolving filter before any value is resolved with merge tags.
 
 = 5.1.0 =
 * [Fixed] The Email notification it not enabled anymore for already saved notifications
