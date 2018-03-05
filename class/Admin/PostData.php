@@ -119,6 +119,9 @@ class PostData {
 			$notification->enabled = true;
 		}
 
+		// set current notification post ID.
+		$notification->post_id = $this->get_post_id();
+
 		// set field values.
 		$field_values = (array) $this->get_meta( $this->notification_data_key . $notification->get_slug() );
 

@@ -46,6 +46,13 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	protected $suppressed = false;
 
 	/**
+	 * Current Notification post ID
+	 *
+	 * @var integer
+	 */
+	protected $post_id = 0;
+
+	/**
 	 * Notification constructor
      *
 	 * @param string $slug slug.

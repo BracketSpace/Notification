@@ -121,6 +121,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 = [Next] =
 * [Added] Ability to suppress the Notification just before it's send.
 * [Added] Freemius integration to better understand the users.
+* [Added] Current Notification post ID property for Notifiation object.
 
 = 5.1.1 =
 * [Fixed] Posponed action callback.
