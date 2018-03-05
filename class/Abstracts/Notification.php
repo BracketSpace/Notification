@@ -50,7 +50,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	 *
 	 * @var integer
 	 */
-	protected $post_id = 0;
+	public $post_id = 0;
 
 	/**
 	 * Notification constructor
