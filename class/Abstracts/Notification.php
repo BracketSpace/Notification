@@ -39,6 +39,20 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	public $data = array();
 
 	/**
+	 * If Notification is suppressed
+	 *
+	 * @var boolean
+	 */
+	protected $suppressed = false;
+
+	/**
+	 * Current Notification post ID
+	 *
+	 * @var integer
+	 */
+	public $post_id = 0;
+
+	/**
 	 * Notification constructor
      *
 	 * @param string $slug slug.
@@ -167,6 +181,26 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 
 		}
 
+	}
+
+	/**
+	 * Checks if Notification is suppressed
+	 *
+	 * @since  5.1.2
+	 * @return boolean
+	 */
+	public function is_suppressed() {
+		return $this->suppressed;
+	}
+
+	/**
+	 * Suppresses the Notification
+	 *
+	 * @since  5.1.2
+	 * @return void
+	 */
+	public function suppress() {
+		$this->suppressed = true;
 	}
 
 }

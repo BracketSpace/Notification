@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, email, mail
 Requires at least: 4.6
 Tested up to: 5.0
-Stable tag: 5.1.1
+Stable tag: 5.1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -117,6 +117,11 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 4. Extensions
 
 == Changelog ==
+
+= 5.1.2 =
+* [Added] Ability to suppress the Notification just before it's send.
+* [Added] Freemius integration to better understand the users.
+* [Added] Current Notification post ID property for Notifiation object.
 
 = 5.1.1 =
 * [Fixed] Posponed action callback.

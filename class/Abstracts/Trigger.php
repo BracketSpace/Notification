@@ -168,12 +168,20 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * @return void
 	 */
 	public function roll_out() {
+
 		foreach ( $this->notification_storage as $notification ) {
+
 			$notification->prepare_data();
+
 			do_action( 'notification/notification/pre-send', $notification, $this );
-			$notification->send( $this );
-			do_action( 'notification/notification/sent', $notification, $this );
+
+			if ( ! $notification->is_suppressed() ) {
+				$notification->send( $this );
+				do_action( 'notification/notification/sent', $notification, $this );
+			}
+
 		}
+
 	}
 
 	/**
