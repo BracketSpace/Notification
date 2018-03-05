@@ -74,3 +74,36 @@ function notification_runtime() {
 
 $runtime = notification_runtime();
 $runtime->boot();
+
+// Create a helper function for easy SDK access.
+function not_fs() {
+    global $not_fs;
+
+    if ( ! isset( $not_fs ) ) {
+        // Include Freemius SDK.
+        require_once dirname(__FILE__) . '/freemius/start.php';
+
+        $not_fs = fs_dynamic_init( array(
+            'id'                  => '1823',
+            'slug'                => 'notification',
+            'type'                => 'plugin',
+            'public_key'          => 'pk_bf7bb6cbc0cd51e14cd186e9620de',
+            'is_premium'          => false,
+            'has_addons'          => false,
+            'has_paid_plans'      => false,
+            'menu'                => array(
+                'first-path'     => 'plugins.php',
+                'account'        => false,
+                'contact'        => false,
+                'support'        => false,
+            ),
+        ) );
+    }
+
+    return $not_fs;
+}
+
+// Init Freemius.
+not_fs();
+// Signal that SDK was initiated.
+do_action( 'not_fs_loaded' );
