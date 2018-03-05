@@ -186,7 +186,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	/**
 	 * Checks if Notification is suppressed
 	 *
-	 * @since  [Next]
+	 * @since  5.1.2
 	 * @return boolean
 	 */
 	public function is_suppressed() {
@@ -196,7 +196,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	/**
 	 * Suppresses the Notification
 	 *
-	 * @since  [Next]
+	 * @since  5.1.2
 	 * @return void
 	 */
 	public function suppress() {
