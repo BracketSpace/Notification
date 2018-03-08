@@ -1,4 +1,4 @@
-=== Notification ===
+=== Notification - Custom Notifications for WordPress ===
 Contributors: notification, bracketspace, Kubitomakita, insejn
 Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, email, mail
