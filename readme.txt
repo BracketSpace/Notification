@@ -118,6 +118,9 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Pretty select in repeater is now rendered correctly while adding new row.
+
 = 5.1.2 =
 * [Added] Ability to suppress the Notification just before it's send.
 * [Added] Freemius integration to better understand the users.
