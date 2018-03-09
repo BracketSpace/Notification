@@ -65,6 +65,13 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
     protected $description_example = false;
 
     /**
+     * If merge tag is hidden
+     *
+     * @var boolean
+     */
+    protected $hidden = false;
+
+    /**
      * Merge tag constructor
      *
      * @since 5.0.0
@@ -87,6 +94,10 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 		if ( isset( $params['description'] ) ) {
 			$this->description_example = isset( $params['example'] ) && isset( $params['example'] );
 			$this->description         = sanitize_text_field( $params['description'] );
+		}
+
+		if ( isset( $params['hidden'] ) ) {
+			$this->hidden = (boolean) $params['hidden'];
 		}
 
     }
@@ -134,7 +145,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 	 * @return void
 	 */
     public function resolve() {
-    	$value = call_user_func( $this->resolver );
+    	$value = call_user_func( $this->resolver, $this->get_trigger() );
 
     	if ( ! $this->validate( $value ) ) {
     		$error_type = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? E_USER_ERROR : E_USER_NOTICE;
@@ -202,6 +213,16 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
      */
     public function get_value_type() {
     	return $this->value_type;
+    }
+
+    /**
+	 * Checks if merge tag is hidden
+     *
+     * @since [Next]
+	 * @return boolean
+	 */
+    public function is_hidden() {
+    	return $this->hidden;
     }
 
 }
