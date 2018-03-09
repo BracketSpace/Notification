@@ -75,3 +75,34 @@ function notification_get_triggers_grouped() {
 	return $return;
 
 }
+
+/**
+ * Adds global Merge Tags for all Triggers
+ *
+ * @since  [Next]
+ * @return void
+ */
+function notification_add_global_merge_tag( Interfaces\Taggable $merge_tag ) {
+
+	// Add to collection so we could use it later in the Screen Help.
+	add_filter( 'notification/global_merge_tags', function( $merge_tags ) use ( $merge_tag ) {
+		$merge_tags[] = $merge_tag;
+		return $merge_tags;
+	} );
+
+	// Register the Tag.
+	add_action( 'notification/trigger/merge_tags/global', function( $trigger ) use ( $merge_tag ) {
+		$trigger->add_merge_tag( $merge_tag );
+	} );
+
+}
+
+/**
+ * Gets all global Merge Tags
+ *
+ * @since  [Next]
+ * @return array Merge Tags
+ */
+function notification_get_global_merge_tags() {
+	return apply_filters( 'notification/global_merge_tags', array() );
+}

@@ -92,7 +92,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 		$this->resolver = $params['resolver'];
 
 		if ( isset( $params['description'] ) ) {
-			$this->description_example = isset( $params['example'] ) && isset( $params['example'] );
+			$this->description_example = isset( $params['example'] ) && $params['example'];
 			$this->description         = sanitize_text_field( $params['description'] );
 		}
 
