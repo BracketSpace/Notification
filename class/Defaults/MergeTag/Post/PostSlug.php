@@ -45,8 +45,8 @@ class PostSlug extends StringTag {
 			'name'        => sprintf( __( '%s slug', 'notification' ), $this->get_nicename() ),
 			'description' => __( 'hello-world', 'notification' ),
 			'example'     => true,
-			'resolver'    => function() {
-				return $this->trigger->{ $this->post_type }->post_name;
+			'resolver'    => function( $trigger ) {
+				return $trigger->{ $this->post_type }->post_name;
 			},
 		) );
 

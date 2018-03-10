@@ -28,8 +28,8 @@ class CommentAuthorIP extends IPTag {
 			'name'        => __( 'Comment author IP', 'notification' ),
 			'description' => '127.0.0.1',
 			'example'     => true,
-			'resolver'    => function() {
-				return $this->trigger->comment->comment_author_IP;
+			'resolver'    => function( $trigger ) {
+				return $trigger->comment->comment_author_IP;
 			},
 		) );
 

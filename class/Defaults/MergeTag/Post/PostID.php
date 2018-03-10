@@ -45,8 +45,8 @@ class PostID extends IntegerTag {
 			'name'        => sprintf( __( '%s ID', 'notification' ), $this->get_nicename() ),
 			'description' => '35',
 			'example'     => true,
-			'resolver'    => function() {
-				return $this->trigger->{ $this->post_type }->ID;
+			'resolver'    => function( $trigger ) {
+				return $trigger->{ $this->post_type }->ID;
 			},
 		) );
 

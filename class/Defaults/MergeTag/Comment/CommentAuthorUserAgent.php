@@ -28,8 +28,8 @@ class CommentAuthorUserAgent extends StringTag {
 			'name'        => __( 'Comment author user agent', 'notification' ),
 			'description' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
 			'example'     => true,
-			'resolver'    => function() {
-				return $this->trigger->comment->comment_agent;
+			'resolver'    => function( $trigger ) {
+				return $trigger->comment->comment_agent;
 			},
 		) );
 

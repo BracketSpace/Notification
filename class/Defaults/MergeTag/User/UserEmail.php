@@ -42,8 +42,8 @@ class UserEmail extends StringTag {
 			'name'        => __( 'User email', 'notification' ),
 			'description' => __( 'john.doe@example.com', 'notification' ),
 			'example'     => true,
-			'resolver'    => function() {
-				return $this->trigger->{ $this->property_name }->user_email;
+			'resolver'    => function( $trigger ) {
+				return $trigger->{ $this->property_name }->user_email;
 			},
         ) );
 

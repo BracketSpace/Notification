@@ -28,8 +28,8 @@ class CommentPostID extends IntegerTag {
 			'name'        => __( 'Comment post ID', 'notification' ),
 			'description' => '25',
 			'example'     => true,
-			'resolver'    => function() {
-				return $this->trigger->comment->comment_post_ID;
+			'resolver'    => function( $trigger ) {
+				return $trigger->comment->comment_post_ID;
 			},
 		) );
 

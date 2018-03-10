@@ -42,8 +42,8 @@ class UserLastName extends StringTag {
 			'name'        => __( 'User last name', 'notification' ),
 			'description' => __( 'Doe', 'notification' ),
 			'example'     => true,
-			'resolver'    => function() {
-				return $this->trigger->{ $this->property_name }->last_name;
+			'resolver'    => function( $trigger ) {
+				return $trigger->{ $this->property_name }->last_name;
 			},
 		) );
 

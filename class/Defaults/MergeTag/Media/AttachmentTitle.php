@@ -28,8 +28,8 @@ class AttachmentTitle extends StringTag {
 			'name'        => __( 'Attachment title', 'notification' ),
 			'description' => __( 'Forest landscape', 'notification' ),
 			'example'     => true,
-			'resolver'    => function() {
-				return $this->trigger->attachment->post_title;
+			'resolver'    => function( $trigger ) {
+				return $trigger->attachment->post_title;
 			},
 		) );
 
