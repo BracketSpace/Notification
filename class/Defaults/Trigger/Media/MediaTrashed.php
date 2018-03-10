@@ -83,6 +83,11 @@ class MediaTrashed extends Abstracts\Trigger {
 			'name' => __( 'Attachment author user nicename', 'notification' ),
 		) ) );
 
+		$this->add_merge_tag( new MergeTag\User\UserDisplayName( array(
+			'slug' => 'attachment_author_user_display_name',
+			'name' => __( 'Attachment author user display name', 'notification' ),
+		) ) );
+
         $this->add_merge_tag( new MergeTag\User\UserFirstName( array(
 			'slug' => 'attachment_author_user_firstname',
 			'name' => __( 'Attachment author user first name', 'notification' ),
@@ -115,6 +120,12 @@ class MediaTrashed extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\User\UserNicename( array(
 			'slug'          => 'attachment_trashing_user_nicename',
 			'name'          => __( 'Attachment trashing user nicename', 'notification' ),
+			'property_name' => 'trashing_user',
+		) ) );
+
+		$this->add_merge_tag( new MergeTag\User\UserDisplayName( array(
+			'slug'          => 'attachment_trashing_user_display_name',
+			'name'          => __( 'Attachment trashing user display name', 'notification' ),
 			'property_name' => 'trashing_user',
 		) ) );
 

@@ -99,6 +99,13 @@ class PostTrashed extends PostTrigger {
 			'property_name' => 'trashing_user',
 		) ) );
 
+		$this->add_merge_tag( new MergeTag\User\UserDisplayName( array(
+			'slug'          => $this->post_type . '_trashing_user_display_name',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s trashing user display name', 'notification' ), $post_name ),
+			'property_name' => 'trashing_user',
+		) ) );
+
         $this->add_merge_tag( new MergeTag\User\UserFirstName( array(
 			'slug'          => $this->post_type . '_trashing_user_firstname',
 			// translators: singular post name.

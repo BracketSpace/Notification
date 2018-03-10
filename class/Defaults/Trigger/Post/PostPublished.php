@@ -112,6 +112,14 @@ class PostPublished extends PostTrigger {
 			'property_name' => 'publishing_user',
 		) ) );
 
+
+		$this->add_merge_tag( new MergeTag\User\UserDisplayName( array(
+			'slug'          => $this->post_type . '_publishing_user_display_name',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s publishing user display name', 'notification' ), $post_name ),
+			'property_name' => 'publishing_user',
+		) ) );
+
         $this->add_merge_tag( new MergeTag\User\UserFirstName( array(
 			'slug'          => $this->post_type . '_publishing_user_firstname',
 			// translators: singular post name.

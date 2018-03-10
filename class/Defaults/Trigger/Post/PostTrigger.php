@@ -115,6 +115,13 @@ abstract class PostTrigger extends Abstracts\Trigger {
 			'property_name' => 'author',
 		) ) );
 
+		$this->add_merge_tag( new MergeTag\User\UserDisplayName( array(
+			'slug'          => $this->post_type . '_author_user_display_name',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s author user display name', 'notification' ), $post_name ),
+			'property_name' => 'author',
+		) ) );
+
         $this->add_merge_tag( new MergeTag\User\UserFirstName( array(
 			'slug'          => $this->post_type . '_author_user_firstname',
 			// translators: singular post name.

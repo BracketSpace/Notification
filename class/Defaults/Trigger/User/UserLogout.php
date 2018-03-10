@@ -55,6 +55,7 @@ class UserLogout extends Abstracts\Trigger {
     	$this->add_merge_tag( new MergeTag\User\UserLogin() );
         $this->add_merge_tag( new MergeTag\User\UserEmail() );
 		$this->add_merge_tag( new MergeTag\User\UserNicename() );
+		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
         $this->add_merge_tag( new MergeTag\User\UserFirstName() );
 		$this->add_merge_tag( new MergeTag\User\UserLastName() );
 
