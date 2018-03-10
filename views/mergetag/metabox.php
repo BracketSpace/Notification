@@ -17,7 +17,7 @@ do_action( 'notification/metabox/trigger/tags/before', $this->get_var( 'trigger'
 		<li>
 			<div class="intro">
 				<label><?php echo $tag->get_name(); ?></label>
-				<code data-clipboard-text="{<?php echo $tag->get_slug(); ?>}">{<?php echo $tag->get_slug(); ?>}</code>
+				<code class="notification-merge-tag" data-clipboard-text="{<?php echo $tag->get_slug(); ?>}">{<?php echo $tag->get_slug(); ?>}</code>
 			</div>
 			<?php $description = $tag->get_description(); ?>
 			<?php if ( ! empty( $description ) ): ?>

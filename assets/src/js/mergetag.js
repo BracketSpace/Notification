@@ -4,7 +4,7 @@
 
 		// Copy merge tag
 
-		var merge_tag_clipboard = new Clipboard('#notification_merge_tags .inside ul li code');
+		var merge_tag_clipboard = new Clipboard( 'code.notification-merge-tag' );
 
 		merge_tag_clipboard.on('success', function(e) {
 
