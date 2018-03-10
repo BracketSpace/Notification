@@ -88,8 +88,6 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 		$this->merge_tags();
 
-		do_action( 'notification/trigger/merge_tags/global', $this );
-
 	}
 
 	/**

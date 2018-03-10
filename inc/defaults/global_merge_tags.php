@@ -76,3 +76,25 @@ notification_add_global_merge_tag( new MergeTag\EmailTag( array(
 		return get_option( 'admin_email' );
 	},
 ) ) );
+
+notification_add_global_merge_tag( new MergeTag\StringTag( array(
+	'slug'        => 'trigger_name',
+	'name'        => __( 'Trigger name' ),
+	'description' => __( 'User login' ),
+	'example'     => true,
+	'hidden'      => true,
+	'resolver'    => function( $trigger ) {
+		return $trigger->get_name();
+	},
+) ) );
+
+notification_add_global_merge_tag( new MergeTag\StringTag( array(
+	'slug'        => 'trigger_slug',
+	'name'        => __( 'Trigger slug' ),
+	'description' => 'wordpress/user_login',
+	'example'     => true,
+	'hidden'      => true,
+	'resolver'    => function( $trigger ) {
+		return $trigger->get_slug();
+	},
+) ) );

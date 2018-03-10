@@ -28,6 +28,8 @@ function register_trigger( Interfaces\Triggerable $trigger ) {
 
 	} );
 
+	do_action( 'notification/trigger/registered', $trigger );
+
 }
 
 /**
@@ -91,8 +93,8 @@ function notification_add_global_merge_tag( Interfaces\Taggable $merge_tag ) {
 	} );
 
 	// Register the Tag.
-	add_action( 'notification/trigger/merge_tags/global', function( $trigger ) use ( $merge_tag ) {
-		$trigger->add_merge_tag( $merge_tag );
+	add_action( 'notification/trigger/registered', function( $trigger ) use ( $merge_tag ) {
+		$trigger->add_merge_tag( clone $merge_tag );
 	} );
 
 }
