@@ -82,6 +82,7 @@ function notification_get_triggers_grouped() {
  * Adds global Merge Tags for all Triggers
  *
  * @since  [Next]
+ * @param Interfaces\Taggable $merge_tag Merge Tag object.
  * @return void
  */
 function notification_add_global_merge_tag( Interfaces\Taggable $merge_tag ) {
