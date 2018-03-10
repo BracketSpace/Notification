@@ -95,7 +95,7 @@ class MergeTags {
 	 */
 	public function merge_tags_list( Triggerable $trigger ) {
 
-		$tags = $trigger->get_merge_tags();
+		$tags = $trigger->get_merge_tags( 'visible' );
 
 		if ( empty( $tags ) ) {
 			$this->view->get_view( 'mergetag/metabox-nomergetags' );

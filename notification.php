@@ -75,7 +75,12 @@ function notification_runtime() {
 $runtime = notification_runtime();
 $runtime->boot();
 
-// Create a helper function for easy SDK access.
+/**
+ * Create a helper function for easy SDK access.
+ *
+ * @since  [Next]
+ * @return object
+ */
 function not_fs() {
     global $not_fs;
 

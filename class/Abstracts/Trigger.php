@@ -239,10 +239,29 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Gets trigger's merge tags
      *
+     * @param string $type optional, all|visible|hidden, default: all.
 	 * @return $array merge tags
 	 */
-	public function get_merge_tags() {
-		return $this->merge_tags;
+	public function get_merge_tags( $type = 'all' ) {
+
+		if ( $type === 'all' ) {
+			return $this->merge_tags;
+		}
+
+		$tags = array();
+
+		foreach ( $this->merge_tags as $merge_tag ) {
+
+			if ( $type === 'visible' && ! $merge_tag->is_hidden() ) {
+				array_push( $tags, $merge_tag );
+			} else if ( $type === 'hidden' && $merge_tag->is_hidden() ) {
+				array_push( $tags, $merge_tag );
+			}
+
+		}
+
+		return $tags;
+
 	}
 
 	/**

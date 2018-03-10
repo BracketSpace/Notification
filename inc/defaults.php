@@ -8,6 +8,7 @@
 add_action( 'init', function() {
 
 	$defaults = array(
+		'global_merge_tags',
 		'recipients',
 		'triggers',
 		'notifications',
