@@ -1,18 +1,18 @@
-=== Notification - Custom Notifications for WordPress ===
+=== Notification - Custom Notifications and Alerts for WordPress ===
 Contributors: notification, bracketspace, Kubitomakita, insejn
 Donate link: https://www.paypal.me/underDEV/
-Tags: notification, notify, email, mail
+Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.6
 Tested up to: 5.0
 Stable tag: 5.1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Customisable email and webhook notifications with simple, yet powerful developer friendly API for custom triggers and notifications
+Customisable email and webhook notifications with powerful developer friendly API for custom triggers and notifications. Send alerts easily.
 
 == Description ==
 
-This plugin allow you to send custom notifications about various events in WordPress. It also comes with simple yet powerful API by which you can add literally **any** trigger action.
+This plugin allow you to send custom notifications or alerts about various events in WordPress. It also comes with simple yet powerful API by which you can add literally **any** trigger action.
 
 In messages you can use defined merge tags which will be later changed to content applicable for the trigger.
 
