@@ -124,6 +124,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Added] Global Merge Tags which can be used in any Trigger. This includes Site title, Trigger name etc.
 * [Added] Screen help.
 * [Added] User Display Name Merge Tag.
+* [Added] Post Terms Merge Tags.
 
 = 5.1.2 =
 * [Added] Ability to suppress the Notification just before it's send.
