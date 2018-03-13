@@ -55,7 +55,7 @@ class PostTerms extends StringTag {
     	$args = wp_parse_args( $params, array(
 			'slug'        => $this->post_type . '_' . $this->taxonomy->name,
 			// translators: 1. Post Type 2. Taxonomy name.
-			'name'        => sprintf( __( '%s %s' ), $this->get_nicename(), $this->taxonomy->label ),
+			'name'        => sprintf( __( '%s %s', 'notification' ), $this->get_nicename(), $this->taxonomy->label ),
 			'description' => __( 'General, Tech, Lifestyle', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
