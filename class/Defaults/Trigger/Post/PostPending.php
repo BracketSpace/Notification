@@ -62,7 +62,7 @@ class PostPending extends PostTrigger {
 		 * we are aborting this action and hook to the later one,
 		 * after ACF saves the fields.
 		 */
-		if ( function_exists( 'acf' ) ) {
+		if ( function_exists( 'acf' ) && ! empty( $_POST['acf'] ) ) {
 			$this->postpone_action( 'acf/save_post', 1000 );
 		}
 
