@@ -5,6 +5,7 @@ Tags: notification, notify, alert, email, mail, webhook, API, developer, framewo
 Requires at least: 4.6
 Tested up to: 5.0
 Stable tag: 5.1.2
+Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -12,45 +13,73 @@ Customisable email and webhook notifications with powerful developer friendly AP
 
 == Description ==
 
-This plugin allow you to send custom notifications or alerts about various events in WordPress. It also comes with simple yet powerful API by which you can add literally **any** trigger action.
+Custom Notifications and Alerts without a hassle. Notify anyone about any action in your WordPress. With powerful Merge Tags, you can endlessly customize your messages. Set unlimited Notifications in your WordPress Admin via the beautiful and intuitive interface within 5 minutes.
 
-In messages you can use defined merge tags which will be later changed to content applicable for the trigger.
+= HOW DOES IT WORK =
 
-= Version 5 has been released! =
+The Notification plugin is built with three main components:
 
-Completely new codebase with awesome improvements. Now, Notification plugin can send not only Emails but also Webhooks!
-With the brand new API you can create any notification type you want - SMS, Push, Slack... sky's the limit!
+* Trigger - a WordPress action, ie. User registration or Post publication
+* Notification - the thing which is being sent, ie. Email or Push
+* Merge Tag - dynamic content, ie. {user_email} or {post_permalink}
 
-= New Triggers and Merge Tags =
+You can use them in any combination, adding as many Notifications as you want. They can be sent to multiple Recipients with the content you write.
 
-We switched to truly objective code. Every trigger and merge tag is now an object. But don't worry, it's even simpler than it was before!
+The process is simple:
 
-Take a look at documentation to see how easy and intuitive it is to [register custom trigger](https://docs.bracketspace.com/docs/registering-custom-triggers/).
+* You select the Trigger
+* Compose your message with Merge Tags
+* Set Recipients
+* Save the Notification
 
-= Default Notifications =
+From now on the Notification is working. Test it out and add more!
+
+= PERFECT FOR DEVELOPERS =
+
+The Notification plugin is easy to set in the WordPress Admin, but it's even easier to extend with some sweet API.
+
+You can create your own Triggers with any WordPress action. If you do in your code `do_action( 'my_plugin_doing_awesome_thing' )` you can create a Trigger out of it.
+
+This allows you to use the Notification plugin as a notification system in your own plugin or theme. How? Well, because of two things:
+
+* You can easily load it copying the plugin files and including `load.php` file. A function known from Advanced Custom Fields plugin.
+* You can white label the plugin with just one function which is shipped in the plugin's core. For free.
+
+How easy extending the Notification plugin is? Let's see:
+
+* Adding another Merge Tag to existing trigger - 1 line of code
+* Creating custom Trigger - one intuitive class definition and registration with a single function call
+* Defining Global Merge Tag - 1 line of code
+* Creating new Extension - we have a [Boilerplate](https://github.com/BracketSpace/Notification-Extension-Boilerplate/) ready for you to start hacking
+
+[See the developer documentation](https://docs.bracketspace.com/docs-category/developer/) if you don't believe us.
+
+= DEFAULT NOTIFICATIONS =
 
 * Email
 * Webhook
 
-= Default Recipients =
+= DEFAULT RECIPIENTS =
 
-Plugin comes with few registered by default recipient types:
+The plugin comes with few registered by default recipient types:
 
-* Email address or Merge tag - free type email address or a Merge Tag
-* Administrator - takes an email from General Settings page
-* User - takes an email from WordPress user profile
-* Role - notify all Users having selected role at once
+* Email address or Merge Tag – free type email address or a Merge Tag
+* Administrator – takes an email from General Settings page
+* User – takes an email from WordPress user profile
+* Role – notify all Users having selected role at once
 
-= Default Triggers =
+= DEFAULT TRIGGERS =
 
-These are already defined in plugin's core and are ready to use. You can enable or disable them on the Settings page.
+These are already defined in plugin’s core and are ready to use. You can enable or disable them on the Settings page.
 
-Any Post Type:
+Post Type:
 
 * Published post notification
 * Updated post notification
 * Post send for review (pending post) notification
 * Post moved to trash notification
+
+The Notification plugin supports any Custom Post Type out of the box.
 
 Comment / Pingback / Trackback:
 
@@ -74,9 +103,39 @@ Media:
 * Media updated
 * Media deleted
 
-Feel free to suggest new core triggers in support forum
+Feel free to suggest new core triggers in the support forum.
 
-= Useful links =
+Each Trigger has own set of Merge Tags but you can use the Global Merge Tags anywhere.
+
+= GLOBAL MERGE TAGS =
+
+Along the Trigger specific Merge Tags, you can use the below anywhere:
+
+* Site homepage URL - {home_url}
+* Site title - {site_title}
+* Site tagline - {site_tagline}
+* Site theme name - {site_theme_name}
+* Site theme version - {site_theme_version}
+* Current WordPress version - {wordpress_version}
+* Admin email - {admin_email}
+* Trigger name - {trigger_name}
+* Trigger slug - {trigger_slug}
+
+= AWESOME EXTENSIONS =
+
+* [Conditionals](https://bracketspace.com/downloads/notification-conditionals/) - send Notifications in certain conditions
+* [Custom Fields](https://bracketspace.com/downloads/notification-custom-fields/) - use any meta value in your Notifications
+* [Pushbullet](https://bracketspace.com/downloads/notification-pushbullet/) - send Push and SMS Notifications via your phone
+* [File Log](https://bracketspace.com/downloads/notification-file-log/) - save Notifications as file logs on the server
+
+= POSSIBLE USE CASES =
+
+* Post publication notification to the post author
+* Custom comment approved notification to post author and administrator
+* User logged in notification to the administrator
+* Notification about removed user account
+
+= USEFUL LINKS =
 
 * [Documentation](https://docs.bracketspace.com/docs-category/notification/)
 * [Support plugin developement](https://www.paypal.me/underDEV/)
