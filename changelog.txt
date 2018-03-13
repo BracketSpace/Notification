@@ -1,0 +1,123 @@
+This file contains old changelogs and it's refreshed periodically.
+
+= 3.1.1 =
+* [Fixed] Bug with directories/files names, thanks to Gregory Rick
+
+= 3.1 =
+* [Added] `notification/notify` filter which control if notification should be sent or not
+* [Added] `notification/settings` action which accepts Settings API class as a parameter
+* [Added] `post_author_email` merge tag for all comment types triggers, thanks to Wayne Davies
+* [Added] Ongoing check of PHP and WP version, thanks to Max (@max-kk)
+* [Added] Option to strip shortcodes from Notification subject and content, thanks to @Laracy
+* [Added] Notification : Signature extension to extension directory
+* [Changed] Settings and Singleton are now loaded from Composer libraries
+* [Changed] Gulp default task to build, and added watch task which boots up BS
+* [Changed] Action priority when default recipients and triggers are registered from 50 to 9
+* [Changed] Action priority when settings are initialized from 15 to 8
+* [Changed] Updated Composer libraries
+* [Changed] Values for default trigger options from strings/arrays to null
+* [Fixed] Bug when Text editor was active and the trigger was changed
+* [Fixed] Post Visibility setting on other post types than Notification
+* [Fixed] Default recipient merge_tag value. All recipient inputs are now dynamically refreshed
+* [Fixed] Not cached exception in plugin's table when requiring this plugin from inside of another plugin or theme, thanks to Max (@max-kk)
+
+= 3.0 =
+* [Fixed] Ignore tags which has been passed to `notification` but hasn't be registered in the trigger
+* [Fixed] Conflict with Advanced Custom Fields
+* [Added] Filters for post and comment types to output disbale metabox. `notification/disable/post_types_allowed` and `notification/disable/comment_types_allowed`, default to saved general settings
+* [Added] Extensions screen
+* [Added] While registering triggers you can now provide a default title and recipients
+* [Changed] bbPress post types are no longer available in the settings. Triggers for bbPress are provided by addon https://github.com/Kubitomakita/notification-bbpress
+* [Changed] Place where merge tags metabox actions are executed
+* [Changed] Chosen to Selectize.js
+
+= 2.4 =
+* [Fixed] Bug with "Can't use method return value in write context" in Settings class, thanks to @rozv
+* [Fixed] Settings priorities, now every CPT registered not later than init 15 will be catched by the plugin, thanks to @rozv
+* [Fixed] Double protocol in links added via TinyMCE insert link feature, thanks to Jozsef
+* [Fixed] Notices in Notification validation method
+* [Fixed] Empty Recipient value, ie. Administrator
+* [Added] Post type triggers can be disabled for an user
+* [Added] Database Upgrader
+* [Added] User triggers - registered, profile updated, logged in, deleted
+* [Added] Taxonomies merge tags for post types
+* [Added] Media triggers - added, updated, deleted
+* [Changed] Post updated notification is now triggered only if the post has been published before, suggested by nepali65
+* [Changed] Content Type triggers setting has been changed to Enabled triggers
+
+= 2.3.1 =
+* [Fixed] Bug with not activated "Disable" option
+
+= 2.3 =
+* [Changed] Removed unused default post controls
+* [Changed] Better error handling, plugin will not die now unless WP_DEBUG is active
+* [Changed] Role class parse_value() method now must define 3rd parameter $human_readable
+* [Added] Role recipient
+* [Added] Option to disable notification for specific post (and in future for user or comment), thanks to Jeff Lehman
+* [Changed] string, integer and float merge tags used in the message subject are now rendered
+
+= 2.2 =
+* [Added] `notification/metabox/trigger/tags/before` and `notification/metabox/trigger/tags/after` actions to merge tags metabox
+* [Added] `notification/metabox/recipients/before` and `notification/metabox/recipients/after` actions to recipients metabox
+* [Added] `notification/metabox/trigger/before` and `notification/metabox/trigger/after` actions to trigger metabox
+* [Fixed] Settings register action priority
+* [Fixed] Post type trashed template
+* [Changed] Gulpfile to not include any browser
+* [Fixed] Comment type added template
+* [Changed] Comment added trigger now is Akismet compatibile, thanks to Nels Johnson
+* [Changed] Core triggers current type global to anonymous functions, thanks to Bartosz Romanowski @toszcze
+
+= 2.1 =
+* [Fixed] Warning when no post or comment type are selected in the settings. Thanks to JoeHana
+* [Fixed] post published trigger
+* [Changed] Post type name in trigger title is now singular
+* [Added] {author_login} merge tag to each post trigger
+* [Added] Promo video: https://www.youtube.com/watch?v=usdBMPjdiuw
+
+= 2.0.1 =
+* [Fixed] Issue with not sent emails because of wrong current post type while registering notification action. Thanks to Karl Camenzuli
+
+= 2.0 =
+* [Fixed]: Correct choice selected for WP User recipient after saving notification. Thanks to whitwye
+* [Added]: Settings API
+* [Added]: Setting - what to remove upon plugin removal
+* [Added]: Plugin cleanup procedure
+* [Added]: Plugin deactivation feedback popup
+* [Added]: Conditional tag `is_notification_defined()` to check if notification will be send
+* [Added]: Post permalink to comment triggers
+* [Changed]: Notifications class is now singleton and partialy moved to Admin class
+* [Changed]: Notification trigger metabox is now under the subject
+* [Changed]: On the single Notification edit screen there are only allowed metaboxes displayed
+* [Changed]: You can now controll what post types and comment types trigger use via plugin Settings
+
+= 1.4 =
+* [Fixed]: Missing 3rd argument on page publish
+* [Fixed]: Namespace issue for PHP < 5.3
+* [Fixed]: Constant notification on post edit. Thanks to @pehbeh
+* [Changed]: Allow for merge tags empty values. Thanks to kokoq
+* [Added]: Admin notice: beg for a review. It will display only if there's at least one notification set, on the Notification plugin screens and can be dismissed easly.
+
+= 1.3.1 =
+* [Fixed]: Error with "Can't use function return value in write context" in empty() function. Thanks to Błażej Zabłotny
+
+= 1.3 =
+* [Added]: PHP version check
+* [Changed]: Typos in readme.txt file thanks to justyn-clark (https://github.com/Kubitomakita/Notification/pull/1)
+
+= 1.2 =
+* [Added]: New User recipient (takes WordPress users)
+* [Added]: Post/Page updated trigger
+* [Added]: Template for triggers. You can now load default template for user
+* [Changed]: Default post published trigger for posts and pages - it was triggered every time post was updated
+* [Changed]: In Notifications table values are now parsed before displaying
+* [Changed]: Readme file
+
+= 1.1.2 =
+* Changed priority for main init action from 10 to 5
+* Added 'notification/cpt/capability_type' filter for capability mapping
+
+= 1.1 =
+* Added ability to distribute in any plugin or theme
+
+= 1.0 =
+* Release
