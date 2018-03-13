@@ -9,7 +9,7 @@ use BracketSpace\Notification\Defaults\MergeTag;
 
 notification_add_global_merge_tag( new MergeTag\UrlTag( array(
 	'slug'        => 'home_url',
-	'name'        => __( 'Site homepage URL' ),
+	'name'        => __( 'Site homepage URL', 'notification' ),
 	'description' => home_url(),
 	'hidden'      => true,
 	'resolver'    => function( $trigger ) {
@@ -19,7 +19,7 @@ notification_add_global_merge_tag( new MergeTag\UrlTag( array(
 
 notification_add_global_merge_tag( new MergeTag\StringTag( array(
 	'slug'        => 'site_title',
-	'name'        => __( 'Site title' ),
+	'name'        => __( 'Site title', 'notification' ),
 	'description' => get_bloginfo( 'name' ),
 	'hidden'      => true,
 	'resolver'    => function( $trigger ) {
@@ -29,7 +29,7 @@ notification_add_global_merge_tag( new MergeTag\StringTag( array(
 
 notification_add_global_merge_tag( new MergeTag\StringTag( array(
 	'slug'        => 'site_tagline',
-	'name'        => __( 'Site tagline' ),
+	'name'        => __( 'Site tagline', 'notification' ),
 	'description' => get_bloginfo( 'description' ),
 	'hidden'      => true,
 	'resolver'    => function( $trigger ) {
@@ -39,7 +39,7 @@ notification_add_global_merge_tag( new MergeTag\StringTag( array(
 
 notification_add_global_merge_tag( new MergeTag\StringTag( array(
 	'slug'        => 'site_theme_name',
-	'name'        => __( 'Site theme name' ),
+	'name'        => __( 'Site theme name', 'notification' ),
 	'description' => wp_get_theme()->name,
 	'hidden'      => true,
 	'resolver'    => function( $trigger ) {
@@ -49,7 +49,7 @@ notification_add_global_merge_tag( new MergeTag\StringTag( array(
 
 notification_add_global_merge_tag( new MergeTag\StringTag( array(
 	'slug'        => 'site_theme_version',
-	'name'        => __( 'Site theme version' ),
+	'name'        => __( 'Site theme version', 'notification' ),
 	'description' => wp_get_theme()->version,
 	'hidden'      => true,
 	'resolver'    => function( $trigger ) {
@@ -59,7 +59,7 @@ notification_add_global_merge_tag( new MergeTag\StringTag( array(
 
 notification_add_global_merge_tag( new MergeTag\StringTag( array(
 	'slug'        => 'wordpress_version',
-	'name'        => __( 'Current WordPress version' ),
+	'name'        => __( 'Current WordPress version', 'notification' ),
 	'description' => get_bloginfo( 'version' ),
 	'hidden'      => true,
 	'resolver'    => function( $trigger ) {
@@ -69,7 +69,7 @@ notification_add_global_merge_tag( new MergeTag\StringTag( array(
 
 notification_add_global_merge_tag( new MergeTag\EmailTag( array(
 	'slug'        => 'admin_email',
-	'name'        => __( 'Admin email' ),
+	'name'        => __( 'Admin email', 'notification' ),
 	'description' => get_option( 'admin_email' ),
 	'hidden'      => true,
 	'resolver'    => function( $trigger ) {
@@ -79,8 +79,8 @@ notification_add_global_merge_tag( new MergeTag\EmailTag( array(
 
 notification_add_global_merge_tag( new MergeTag\StringTag( array(
 	'slug'        => 'trigger_name',
-	'name'        => __( 'Trigger name' ),
-	'description' => __( 'User login' ),
+	'name'        => __( 'Trigger name', 'notification' ),
+	'description' => __( 'User login', 'notification' ),
 	'example'     => true,
 	'hidden'      => true,
 	'resolver'    => function( $trigger ) {
@@ -90,7 +90,7 @@ notification_add_global_merge_tag( new MergeTag\StringTag( array(
 
 notification_add_global_merge_tag( new MergeTag\StringTag( array(
 	'slug'        => 'trigger_slug',
-	'name'        => __( 'Trigger slug' ),
+	'name'        => __( 'Trigger slug', 'notification' ),
 	'description' => 'wordpress/user_login',
 	'example'     => true,
 	'hidden'      => true,

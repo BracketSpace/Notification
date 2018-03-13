@@ -24,7 +24,7 @@ if ( notification_is_whitelabeled() ) {
 		<div class="desc column-description">
 			<p><?php _e( 'If you wrote a Notification extension or you have a plugin which complete Notification, let us know!', 'notification' ); ?></p>
 			<?php // translators: 1. Link to documentation. ?>
-			<p><?php printf( __( 'See the %s for more information how to release an extension.', 'notification' ), '<a href="https://docs.bracketspace.com/docs/how-to-create-public-extension/" target="_blank">' . __( 'documentation' ) . '</a>' ); ?></p>
+			<p><?php printf( __( 'See the %s for more information how to release an extension.', 'notification' ), '<a href="https://docs.bracketspace.com/docs/how-to-create-public-extension/" target="_blank">' . __( 'documentation', 'notification' ) . '</a>' ); ?></p>
 		</div>
 	</div>
 </div>

@@ -15,7 +15,7 @@ $premium_extensions = (array) $this->get_var( 'premium_extensions' );
 
 	<?php if ( ! empty( $premium_extensions ) ): ?>
 
-		<h2><?php esc_html_e( 'Premium extensions' ); ?></h2>
+		<h2><?php esc_html_e( 'Premium extensions', 'notification' ); ?></h2>
 
 		<div id="the-list">
 			<?php foreach ( $premium_extensions as $extension ) : ?>
@@ -31,7 +31,7 @@ $premium_extensions = (array) $this->get_var( 'premium_extensions' );
 	<?php endif ?>
 
 	<?php if ( ! empty( $premium_extensions ) ): ?>
-		<h2><?php esc_html_e( 'Available extensions' ); ?></h2>
+		<h2><?php esc_html_e( 'Available extensions', 'notification' ); ?></h2>
 	<?php endif ?>
 
 	<div id="the-list">

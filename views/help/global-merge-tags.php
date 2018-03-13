@@ -7,7 +7,7 @@
 
 ?>
 
-<p><?php esc_html_e( 'You can use the below Merge Tags in any Trigger and any Notification.' ); ?></p>
+<p><?php esc_html_e( 'You can use the below Merge Tags in any Trigger and any Notification.', 'notification' ); ?></p>
 
 <table>
 	<?php foreach ( $this->get_var( 'tags' ) as $tag ): ?>

@@ -7,10 +7,10 @@
 
 ?>
 
-<h3><?php esc_html_e( 'Useful links' ); ?></h3>
+<h3><?php esc_html_e( 'Useful links', 'notification' ); ?></h3>
 
 <ul>
-	<li><a href="https://wordpress.org/support/plugin/notification" target="_blank"><?php esc_html_e( 'Support' ); ?></a></li>
-	<li><a href="https://docs.bracketspace.com/docs-category/notification/" target="_blank"><?php esc_html_e( 'Documentation' ); ?></a></li>
-	<li><a href="https://wordpress.org/support/plugin/notification/reviews/#new-post" target="_blank"><?php esc_html_e( 'Rate the plugin' ); ?></a></li>
+	<li><a href="https://wordpress.org/support/plugin/notification" target="_blank"><?php esc_html_e( 'Support', 'notification' ); ?></a></li>
+	<li><a href="https://docs.bracketspace.com/docs-category/notification/" target="_blank"><?php esc_html_e( 'Documentation', 'notification' ); ?></a></li>
+	<li><a href="https://wordpress.org/support/plugin/notification/reviews/#new-post" target="_blank"><?php esc_html_e( 'Rate the plugin', 'notification' ); ?></a></li>
 </ul>

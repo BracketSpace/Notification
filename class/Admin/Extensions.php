@@ -390,7 +390,7 @@ class Extensions {
 					$message = sprintf(
 						__( 'Please activate the %s plugin to get the updates. %s', 'notification' ),
 						$extension['edd']['item_name'],
-						'<a href="' . admin_url( 'edit.php?post_type=notification&page=extensions' ) . '">' . __( 'Go to Extensions' ) . '</a>'
+						'<a href="' . admin_url( 'edit.php?post_type=notification&page=extensions' ) . '">' . __( 'Go to Extensions', 'notification' ) . '</a>'
 					);
 
 					$this->view->set_var( 'message', $message, true );
