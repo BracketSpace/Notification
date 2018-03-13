@@ -111,15 +111,15 @@ Each Trigger has own set of Merge Tags but you can use the Global Merge Tags any
 
 Along the Trigger specific Merge Tags, you can use the below anywhere:
 
-* Site homepage URL - {home_url}
-* Site title - {site_title}
-* Site tagline - {site_tagline}
-* Site theme name - {site_theme_name}
-* Site theme version - {site_theme_version}
-* Current WordPress version - {wordpress_version}
-* Admin email - {admin_email}
-* Trigger name - {trigger_name}
-* Trigger slug - {trigger_slug}
+* Site homepage URL - `{home_url}`
+* Site title - `{site_title}`
+* Site tagline - `{site_tagline}`
+* Site theme name - `{site_theme_name}`
+* Site theme version - `{site_theme_version}`
+* Current WordPress version - `{wordpress_version}`
+* Admin email - `{admin_email}`
+* Trigger name - `{trigger_name}`
+* Trigger slug - `{trigger_slug}`
 
 = AWESOME EXTENSIONS =
 
@@ -159,6 +159,12 @@ Notification can be loaded also as a part of any plugin or theme. To do it just 
 [See the detailed guide](https://docs.bracketspace.com/docs/including-notification-in-the-plugin-or-theme/)
 
 == Frequently Asked Questions ==
+
+= Is this plugin for regular users? =
+
+Ofcourse it is! We are trying to make both parties happy - the Users and Developers. Users got their intuitive and beautiful panel in WordPress Admin and Developers got an awesome API by which they can extend the Notification plugin.
+
+So it doesn't matter if you don't have any coding skills, they are not required to setup the notifications with this plugin.
 
 = How to register my own triggers? =
 
