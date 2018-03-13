@@ -17,7 +17,7 @@ class ScreenHelp {
 	/**
 	 * ScreenHelp constructor
 	 *
-	 * @since [Next]
+	 * @since 5.1.3
 	 * @param View $view View class.
 	 */
 	public function __construct( View $view ) {
