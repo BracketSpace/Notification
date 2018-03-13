@@ -182,6 +182,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Fixed] Pretty select in repeater is now rendered correctly while adding new row.
 * [Fixed] User Registration Trigger action.
 * [Fixed] ACF Postponing when there's no data from ACF to save.
+* [Fixed] Post object property name for Custom Post Types.
 * [Added] Global Merge Tags which can be used in any Trigger. This includes Site title, Trigger name etc.
 * [Added] Screen help.
 * [Added] User Display Name Merge Tag.

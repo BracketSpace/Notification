@@ -45,23 +45,23 @@ class PostUpdated extends PostTrigger {
 
 		$post_id = $this->callback_args[0];
 		// WP_Post object.
-		$this->post = $this->callback_args[1];
+		$this->{ $this->post_type } = $this->callback_args[1];
 		// WP_Post object.
 		$post_before = $this->callback_args[2];
 
-		if ( $this->post->post_type != $this->post_type ) {
+		if ( $this->{ $this->post_type }->post_type != $this->post_type ) {
 			return false;
 		}
 
-		if ( empty( $this->post->post_name ) || $post_before->post_status != 'publish'  || $this->post->post_status == 'trash' ) {
+		if ( empty( $this->{ $this->post_type }->post_name ) || $post_before->post_status != 'publish'  || $this->{ $this->post_type }->post_status == 'trash' ) {
 			return false;
 		}
 
-		$this->author        = get_userdata( $this->post->post_author );
+		$this->author        = get_userdata( $this->{ $this->post_type }->post_author );
 		$this->updating_user = get_userdata( get_current_user_id() );
 
-		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->post->post_date );
-		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->post->post_modified );
+		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date );
+		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified );
 
 		/**
 		 * ACF integration

@@ -45,16 +45,16 @@ class PostPending extends PostTrigger {
 
 		$post_id = $this->callback_args[0];
 		// WP_Post object.
-		$this->post = $this->callback_args[1];
+		$this->{ $this->post_type } = $this->callback_args[1];
 
-		if ( $this->post->post_type != $this->post_type ) {
+		if ( $this->{ $this->post_type }->post_type != $this->post_type ) {
 			return false;
 		}
 
-		$this->author = get_userdata( $this->post->post_author );
+		$this->author = get_userdata( $this->{ $this->post_type }->post_author );
 
-		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->post->post_date );
-		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->post->post_modified );
+		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date );
+		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified );
 
 		/**
 		 * ACF integration
