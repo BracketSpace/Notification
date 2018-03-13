@@ -28,8 +28,8 @@ class CommentAuthorUrl extends UrlTag {
 			'name'        => __( 'Comment author URL', 'notification' ),
 			'description' => __( 'http://mywebsite.com', 'notification' ),
 			'example'     => true,
-			'resolver'    => function() {
-				return $this->trigger->comment->comment_author_url;
+			'resolver'    => function( $trigger ) {
+				return $trigger->comment->comment_author_url;
 			},
 		) );
 

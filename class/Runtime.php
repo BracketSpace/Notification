@@ -66,6 +66,7 @@ class Runtime {
 		$this->admin_recipients     = new Admin\Recipients( $this->view(), $this->ajax() );
 		$this->admin_extensions     = new Admin\Extensions( $this->view() );
 		$this->admin_scripts        = new Admin\Scripts( $this, $this->files );
+		$this->admin_screen         = new Admin\ScreenHelp( $this->view() );
 
 	}
 
@@ -114,6 +115,8 @@ class Runtime {
 		add_action( 'admin_post_notification_deactivate_extension', array( $this->admin_extensions, 'deactivate' ) );
 		add_action( 'admin_notices', array( $this->admin_extensions, 'activation_notices' ) );
 		add_action( 'admin_notices', array( $this->admin_extensions, 'activation_nag' ) );
+
+		add_action( 'current_screen', array( $this->admin_screen, 'add_help' ) );
 
 		add_action( 'wp_loaded', array( $this->settings, 'register_settings' ) );
 

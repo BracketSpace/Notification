@@ -26,4 +26,5 @@
 
 	<exclude-pattern>*/assets/*</exclude-pattern>
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/freemius/*</exclude-pattern>
 </ruleset>

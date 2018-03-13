@@ -83,6 +83,11 @@ class MediaUpdated extends Abstracts\Trigger {
 			'name' => __( 'Attachment author user nicename', 'notification' ),
 		) ) );
 
+		$this->add_merge_tag( new MergeTag\User\UserDisplayName( array(
+			'slug' => 'attachment_author_user_display_name',
+			'name' => __( 'Attachment author user display name', 'notification' ),
+		) ) );
+
         $this->add_merge_tag( new MergeTag\User\UserFirstName( array(
 			'slug' => 'attachment_author_user_firstname',
 			'name' => __( 'Attachment author user first name', 'notification' ),

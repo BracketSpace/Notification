@@ -28,8 +28,8 @@ class AttachmentID extends IntegerTag {
 			'name'        => __( 'Attachment ID', 'notification' ),
 			'description' => '35',
 			'example'     => true,
-			'resolver'    => function() {
-				return $this->trigger->attachment->ID;
+			'resolver'    => function( $trigger ) {
+				return $trigger->attachment->ID;
 			},
 		) );
 

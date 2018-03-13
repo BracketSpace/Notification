@@ -1,6 +1,6 @@
 <?php
 /**
- * Post ID merge tag
+ * Post terms merge tag
  *
  * Requirements:
  * - Trigger property of the post type slug with WP_Post object
@@ -10,13 +10,13 @@
 
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
-use BracketSpace\Notification\Defaults\MergeTag\IntegerTag;
+use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 
 
 /**
- * Post ID merge tag class
+ * Post terms merge tag class
  */
-class PostID extends IntegerTag {
+class PostTerms extends StringTag {
 
 	/**
 	 * Post Type slug
@@ -26,9 +26,16 @@ class PostID extends IntegerTag {
 	protected $post_type;
 
 	/**
+	 * Post Taxonomy Object
+	 *
+	 * @var object
+	 */
+	protected $taxonomy;
+
+	/**
      * Merge tag constructor
      *
-     * @since 5.0.0
+     * @since 5.1.3
      * @param array $params merge tag configuration params.
      */
     public function __construct( $params = array() ) {
@@ -39,14 +46,24 @@ class PostID extends IntegerTag {
     		$this->post_type = 'post';
     	}
 
+    	if ( isset( $params['taxonomy'] ) ) {
+    		$this->taxonomy = is_string( $params['taxonomy'] ) ? get_taxonomy( $params['taxonomy'] ) : $params['taxonomy'];
+    	} else {
+    		$this->taxonomy = false;
+    	}
+
     	$args = wp_parse_args( $params, array(
-			'slug'        => $this->post_type . '_ID',
-			// translators: singular post name.
-			'name'        => sprintf( __( '%s ID', 'notification' ), $this->get_nicename() ),
-			'description' => '35',
+			'slug'        => $this->post_type . '_' . $this->taxonomy->name,
+			// translators: 1. Post Type 2. Taxonomy name.
+			'name'        => sprintf( __( '%s %s', 'notification' ), $this->get_nicename(), $this->taxonomy->label ),
+			'description' => __( 'General, Tech, Lifestyle', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return $trigger->{ $this->post_type }->ID;
+				$terms = array();
+				foreach ( get_the_terms( $trigger->{ $this->post_type }, $this->taxonomy->name ) as $term ) {
+					$terms[] = $term->name;
+				}
+				return implode( ', ', $terms );
 			},
 		) );
 
@@ -60,7 +77,7 @@ class PostID extends IntegerTag {
 	 * @return boolean
 	 */
 	public function check_requirements() {
-		return isset( $this->trigger->{ $this->post_type }->ID );
+		return isset( $this->trigger->{ $this->post_type } );
 	}
 
 	/**

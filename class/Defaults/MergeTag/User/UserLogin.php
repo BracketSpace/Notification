@@ -42,8 +42,8 @@ class UserLogin extends StringTag {
 			'name'        => __( 'User login', 'notification' ),
 			'description' => __( 'johndoe', 'notification' ),
 			'example'     => true,
-			'resolver'    => function() {
-				return $this->trigger->{ $this->property_name }->user_login;
+			'resolver'    => function( $trigger ) {
+				return $trigger->{ $this->property_name }->user_login;
 			},
 		) );
 

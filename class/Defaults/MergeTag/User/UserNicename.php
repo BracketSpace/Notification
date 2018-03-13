@@ -42,8 +42,8 @@ class UserNicename extends StringTag {
 			'name'        => __( 'User nicename', 'notification' ),
 			'description' => __( 'Johhnie', 'notification' ),
 			'example'     => true,
-			'resolver'    => function() {
-				return $this->trigger->{ $this->property_name }->user_nicename;
+			'resolver'    => function( $trigger ) {
+				return $trigger->{ $this->property_name }->user_nicename;
 			}
 		) );
 

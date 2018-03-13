@@ -1,6 +1,6 @@
 <?php
 /**
- * User first name merge tag
+ * User Display name merge tag
  *
  * Requirements:
  * - Trigger property `user_object` or any other passed as
@@ -14,9 +14,9 @@ namespace BracketSpace\Notification\Defaults\MergeTag\User;
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 
 /**
- * User first name merge tag class
+ * User Display name merge tag class
  */
-class UserFirstName extends StringTag {
+class UserDisplayName extends StringTag {
 
 	/**
 	 * Trigger property to get the user data from
@@ -38,26 +38,26 @@ class UserFirstName extends StringTag {
     	}
 
     	$args = wp_parse_args( $params, array(
-			'slug'        => 'user_first_name',
-			'name'        => __( 'User first name', 'notification' ),
-			'description' => __( 'John', 'notification' ),
+			'slug'        => 'user_display_name',
+			'name'        => __( 'User display name', 'notification' ),
+			'description' => __( 'John - fast finegrs - Doe', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return $trigger->{ $this->property_name }->first_name;
-			},
-        ) );
+				return $trigger->{ $this->property_name }->display_name;
+			}
+		) );
 
     	parent::__construct( $args );
 
 	}
 
-    /**
-     * Function for checking requirements
-     *
-     * @return boolean
-     */
-    public function check_requirements( ) {
-        return isset( $this->trigger->{ $this->property_name }->first_name );
-    }
+	/**
+	 * Function for checking requirements
+	 *
+	 * @return boolean
+	 */
+	public function check_requirements( ) {
+		return isset( $this->trigger->{ $this->property_name }->display_name );
+	}
 
 }

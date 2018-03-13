@@ -87,6 +87,10 @@ class CommentAdded extends Abstracts\Trigger {
 			'name' => __( 'Comment author user nicename', 'notification' ),
 		) ) );
 
+		$this->add_merge_tag( new MergeTag\User\UserDisplayName( array(
+			'slug' => 'comment_author_user_display_name',
+			'name' => __( 'Comment author user display name', 'notification' ),
+		) ) );
 
     }
 

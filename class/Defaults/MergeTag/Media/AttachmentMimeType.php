@@ -28,8 +28,8 @@ class AttachmentMimeType extends StringTag {
 			'name'        => __( 'Attachment MIME type', 'notification' ),
 			'description' => 'image/jpeg',
 			'example'     => true,
-			'resolver'    => function() {
-				return $this->trigger->attachment->post_mime_type;
+			'resolver'    => function( $trigger ) {
+				return $trigger->attachment->post_mime_type;
 			},
 		) );
 

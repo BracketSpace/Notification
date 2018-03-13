@@ -73,7 +73,7 @@
 
 			recalculate_rows( $repeater );
 
-			wp.hooks.doAction( 'notification.notification.repeater.row.added', $repeater );
+			wp.hooks.doAction( 'notification.notification.repeater.row.added', $cloned, $repeater );
 
 		} );
 

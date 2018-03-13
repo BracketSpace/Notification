@@ -22,7 +22,7 @@ class UserRegistered extends Abstracts\Trigger {
 
 		parent::__construct( 'wordpress/user_registered', __( 'User registration', 'notification' ) );
 
-		$this->add_action( 'user_register', 10, 2 );
+		$this->add_action( 'user_register', 10, 1 );
 		$this->set_group( __( 'User', 'notification' ) );
 		$this->set_description( __( 'Fires when user registers new account', 'notification' ) );
 
@@ -35,7 +35,7 @@ class UserRegistered extends Abstracts\Trigger {
 	 */
 	public function action() {
 
-		$this->user_id     = $this->callback_args[1]->ID;
+		$this->user_id     = $this->callback_args[0];
 		$this->user_object = get_userdata( $this->user_id );
 		$this->user_meta   = get_user_meta( $this->user_id );
 

@@ -48,17 +48,17 @@ class PostPublished extends PostTrigger {
 	public function action() {
 
 		// WP_Post object.
-		$this->post = $this->callback_args[0];
+		$this->{ $this->post_type } = $this->callback_args[0];
 
-		if ( $this->post->post_type != $this->post_type ) {
+		if ( $this->{ $this->post_type }->post_type != $this->post_type ) {
 			return false;
 		}
 
-		$this->author          = get_userdata( $this->post->post_author );
+		$this->author          = get_userdata( $this->{ $this->post_type }->post_author );
 		$this->publishing_user = get_userdata( get_current_user_id() );
 
-		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->post->post_date );
-		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->post->post_modified );
+		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date );
+		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified );
 
 		/**
 		 * ACF integration
@@ -66,7 +66,7 @@ class PostPublished extends PostTrigger {
 		 * we are aborting this action and hook to the later one,
 		 * after ACF saves the fields.
 		 */
-		if ( function_exists( 'acf' ) ) {
+		if ( function_exists( 'acf' ) && ! empty( $_POST['acf'] ) ) {
 			$this->postpone_action( 'acf/save_post', 1000 );
 		}
 
@@ -109,6 +109,14 @@ class PostPublished extends PostTrigger {
 			'slug'          => $this->post_type . '_publishing_user_nicename',
 			// translators: singular post name.
 			'name'          => sprintf( __( '%s publishing user nicename', 'notification' ), $post_name ),
+			'property_name' => 'publishing_user',
+		) ) );
+
+
+		$this->add_merge_tag( new MergeTag\User\UserDisplayName( array(
+			'slug'          => $this->post_type . '_publishing_user_display_name',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s publishing user display name', 'notification' ), $post_name ),
 			'property_name' => 'publishing_user',
 		) ) );
 

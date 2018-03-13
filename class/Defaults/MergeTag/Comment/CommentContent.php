@@ -28,8 +28,8 @@ class CommentContent extends StringTag {
 			'name'        => __( 'Comment content', 'notification' ),
 			'description' => __( 'Great post!', 'notification' ),
 			'example'     => true,
-			'resolver'    => function() {
-				return $this->trigger->comment->comment_content;
+			'resolver'    => function( $trigger ) {
+				return $trigger->comment->comment_content;
 			},
 		) );
 
