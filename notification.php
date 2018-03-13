@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Notification
- * Description: Send notifications about various events in WordPress. You can also create your custom triggers for any action.
+ * Description: Customisable email and webhook notifications with powerful developer friendly API for custom triggers and notifications. Send alerts easily.
  * Author: BracketSpace
  * Author URI: https://bracketspace.com
  * Version: 5.1.3
