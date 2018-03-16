@@ -185,6 +185,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 == Changelog ==
 
 = [Next] =
+* [Fixed] Object class name error on PHP 7.2 when using paid extension.
 * [Added] User password setup link for User registered trigger.
 
 = 5.1.3 =

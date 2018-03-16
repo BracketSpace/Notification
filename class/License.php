@@ -9,7 +9,7 @@
 
 namespace BracketSpace\Notification;
 
-use BracketSpace\Notification\Utils\Cache\Object as ObjectCache;
+use BracketSpace\Notification\Utils\Cache\ObjectCache;
 use BracketSpace\Notification\Utils\Cache\Transient as TransientCache;
 
 /**
