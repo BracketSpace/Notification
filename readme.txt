@@ -184,6 +184,9 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
+= [Next] =
+* [Added] User password setup link for User registered trigger.
+
 = 5.1.3 =
 * [Fixed] Pretty select in repeater is now rendered correctly while adding new row.
 * [Fixed] User Registration Trigger action.
