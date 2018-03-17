@@ -41,7 +41,14 @@ class Email extends Abstracts\Recipient {
 			$value = $this->get_default_value();
 		}
 
-		return array( sanitize_email( $value ) );
+		$parsed_emails = array();
+		$emails        = explode( ',', $value );
+
+		foreach ( $emails as $email ) {
+			$parsed_emails[] = sanitize_email( $email );
+		}
+
+		return $parsed_emails;
 
 	}
 

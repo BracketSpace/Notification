@@ -187,6 +187,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 = [Next] =
 * [Fixed] Object class name error on PHP 7.2 when using paid extension.
 * [Added] User password setup link for User registered trigger.
+* [Changed] Recipient Free type email field now supports comma separated emails.
 
 = 5.1.3 =
 * [Fixed] Pretty select in repeater is now rendered correctly while adding new row.
