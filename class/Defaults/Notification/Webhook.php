@@ -153,7 +153,7 @@ class Webhook extends Abstracts\Notification {
      */
     public function send_post( $url, $args = array(), $headers = array() ) {
 
-    	$remote_args = apply_filters( 'notification/webhook/remote_args/get', array(
+    	$remote_args = apply_filters( 'notification/webhook/remote_args/post', array(
     		'body'    => $args,
     		'headers' => $headers,
     	), $url, $args, $this );
