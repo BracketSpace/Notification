@@ -60,6 +60,12 @@ class Webhook extends Abstracts\Notification {
 			),
 		) ) );
 
+		$this->add_form_field( new Field\CheckboxField( array(
+			'label'          => __( 'JSON', 'notification' ),
+			'name'           => 'json',
+			'checkbox_label' => __( 'Send the arguments in JSON format', 'notification' ),
+		) ) );
+
 		if ( notification_get_setting( 'notifications/webhook/headers' ) ) {
 
 			$this->add_form_field( new Field\RepeaterField( array(
@@ -98,6 +104,10 @@ class Webhook extends Abstracts\Notification {
 
 		$args = $this->parse_args( $data['args'] );
 		$args = apply_filters( 'notification/webhook/args', $args, $this, $trigger );
+
+		if ( $data['json'] ) {
+			$args = wp_json_encode( $args );
+		}
 
 		if ( notification_get_setting( 'notifications/webhook/headers' ) ) {
 			$headers = $this->parse_args( $data['headers'] );
