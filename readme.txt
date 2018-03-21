@@ -188,6 +188,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Fixed] Object class name error on PHP 7.2 when using paid extension.
 * [Added] User password setup link for User registered trigger.
 * [Added] Ability to encode Webhook args as a JSON
+* [Added] Post status merge tag for Post triggers.
 * [Changed] Recipient Free type email field now supports comma separated emails.
 * [Changed] ACF integration postponed action for Post triggers has been changed to `save_post` which makes it more universal.
 
