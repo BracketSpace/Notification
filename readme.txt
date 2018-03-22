@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.6
 Tested up to: 5.0
-Stable tag: 5.1.3
+Stable tag: 5.1.4
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -184,7 +184,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
-= [Next] =
+= 5.1.4 =
 * [Fixed] Object class name error on PHP 7.2 when using paid extension.
 * [Added] User password setup link for User registered trigger.
 * [Added] Ability to encode Webhook args as a JSON
