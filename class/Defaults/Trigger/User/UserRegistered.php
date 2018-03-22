@@ -66,7 +66,7 @@ class UserRegistered extends Abstracts\Trigger {
 			'slug'        => 'user_password_setup_link',
 			'name'        => __( 'User password setup link', 'notification' ),
 			'description' => network_site_url( 'wp-login.php?action=rp&key=37f62f1363b04df4370753037853fe88&login=userlogin', 'login' ) . "\n" .
-							__( 'After using this Merge Tag, no other password setup links will work.' ),
+							__( 'After using this Merge Tag, no other password setup links will work.', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
 				return network_site_url( 'wp-login.php?action=rp&key=' . $trigger->get_password_reset_key() . '&login=' . rawurlencode( $trigger->user_object->user_login ), 'login' );

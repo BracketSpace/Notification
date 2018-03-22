@@ -74,6 +74,10 @@ abstract class PostTrigger extends Abstracts\Trigger {
 			'post_type' => $this->post_type,
 		) ) );
 
+		$this->add_merge_tag( new MergeTag\Post\PostStatus( array(
+			'post_type' => $this->post_type,
+		) ) );
+
 		foreach ( get_object_taxonomies( $this->post_type, 'objects' ) as $taxonomy ) {
 			$this->add_merge_tag( new MergeTag\Post\PostTerms( array(
 				'post_type' => $this->post_type,

@@ -56,15 +56,8 @@ class PostPending extends PostTrigger {
 		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date );
 		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified );
 
-		/**
-		 * ACF integration
-		 * If ACF is active and the action hasn't been postponed yet,
-		 * we are aborting this action and hook to the later one,
-		 * after ACF saves the fields.
-		 */
-		if ( function_exists( 'acf' ) && ! empty( $_POST['acf'] ) ) {
-			$this->postpone_action( 'acf/save_post', 1000 );
-		}
+		// Postpone the action to make sure all the meta has been saved
+		$this->postpone_action( 'save_post', 1000 );
 
 	}
 
