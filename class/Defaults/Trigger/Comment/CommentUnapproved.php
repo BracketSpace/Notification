@@ -46,7 +46,7 @@ class CommentUnapproved extends Abstracts\Trigger {
 
 		$this->user_object                = new \StdClass();
 		$this->user_object->ID            = ( $this->comment->user_id ) ? $this->comment->user_id : 0;
-		$this->user_object->user_nicename = $this->comment->comment_author;
+		$this->user_object->display_name  = $this->comment->comment_author;
 		$this->user_object->user_email    = $this->comment->comment_author_email;
 
 		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
@@ -85,11 +85,6 @@ class CommentUnapproved extends Abstracts\Trigger {
         $this->add_merge_tag( new MergeTag\User\UserEmail( array(
 			'slug' => 'comment_author_user_email',
 			'name' => __( 'Comment author user email', 'notification' ),
-		) ) );
-
-		$this->add_merge_tag( new MergeTag\User\UserNicename( array(
-			'slug' => 'comment_author_user_nicename',
-			'name' => __( 'Comment author user nicename', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserDisplayName( array(
