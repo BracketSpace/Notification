@@ -7,7 +7,7 @@
 
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
-use BracketSpace\Notification\Defaults\MergeTag\IntegerTag;
+use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 
 
 /**
