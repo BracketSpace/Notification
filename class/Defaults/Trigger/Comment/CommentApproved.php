@@ -71,6 +71,7 @@ class CommentApproved extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\Comment\CommentStatus() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentType() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentPostID() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentPostType() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentPostPermalink() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorIP() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorUserAgent() );
