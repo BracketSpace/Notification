@@ -71,6 +71,10 @@ class CommentAdded extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorIP() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorUserAgent() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorUrl() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentActionApprove() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentActionTrash() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentActionDelete() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentActionSpam() );
 
 		// Author.
 		$this->add_merge_tag( new MergeTag\User\UserID( array(
