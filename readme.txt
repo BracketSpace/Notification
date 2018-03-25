@@ -186,6 +186,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 = [Next] =
 * [Fixed] Comment author display name bug, thanks to Aga Bury.
+* [Fixed] Post Published trigger fired twice.
 
 = 5.1.4 =
 * [Fixed] Object class name error on PHP 7.2 when using paid extension.
