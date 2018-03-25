@@ -60,7 +60,7 @@ class PostPublished extends PostTrigger {
 		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date );
 		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified );
 
-		// Postpone the action to make sure all the meta has been saved
+		// Postpone the action to make sure all the meta has been saved.
 		$this->postpone_action( 'save_post', 1000 );
 
 	}
@@ -73,7 +73,7 @@ class PostPublished extends PostTrigger {
 	 */
 	public function postponed_action() {
 
-		// fix for the action being called twice by WordPress
+		// fix for the action being called twice by WordPress.
 		if ( did_action( 'save_post' ) > 1 ) {
 			return false;
 		}

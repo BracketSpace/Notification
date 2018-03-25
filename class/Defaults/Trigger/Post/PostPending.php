@@ -56,7 +56,7 @@ class PostPending extends PostTrigger {
 		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date );
 		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified );
 
-		// Postpone the action to make sure all the meta has been saved
+		// Postpone the action to make sure all the meta has been saved.
 		$this->postpone_action( 'save_post', 1000 );
 
 	}
