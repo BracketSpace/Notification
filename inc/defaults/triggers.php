@@ -59,3 +59,6 @@ if ( notification_get_setting( 'triggers/comment/types' ) ) {
 	}
 
 }
+
+// WordPress triggers.
+register_trigger( new Trigger\WordPress\UpdatesAvailable() );
