@@ -189,6 +189,8 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Fixed] Post Published trigger fired twice.
 * [Added] Comment Post Type merge tag for Comment triggers.
 * [Added] Comment moderation links for Comment triggers.
+* [Added] HtmlTag merge tag type.
+* [Added] WordPress updates available trigger.
 
 = 5.1.4 =
 * [Fixed] Object class name error on PHP 7.2 when using paid extension.

@@ -222,6 +222,44 @@ class Settings extends SettingsAPI {
 				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
 			) );
 
+		$updates_cron_options = array();
+
+		foreach ( wp_get_schedules() as $schedule_name => $schedule ) {
+			$updates_cron_options[ $schedule_name ] = $schedule['display'];
+		}
+
+		$triggers->add_group( __( 'WordPress', 'notification' ), 'wordpress' )
+			->add_field( array(
+				'name'     => __( 'Updates', 'notification' ),
+				'slug'     => 'updates',
+				'default'  => false,
+				'addons'   => array(
+					'label' => __( 'Enable "Updates available" trigger', 'notification' )
+				),
+				'render'   => array( new CoreFields\Checkbox(), 'input' ),
+				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+			) )
+			->add_field( array(
+				'name'     => __( 'Send if no updates', 'notification' ),
+				'slug'     => 'updates_send_anyway',
+				'default'  => false,
+				'addons'   => array(
+					'label' => __( 'Send updates email even if no updates available', 'notification' )
+				),
+				'render'   => array( new CoreFields\Checkbox(), 'input' ),
+				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+			) )
+			->add_field( array(
+				'name'     => __( 'Updates check period', 'notification' ),
+				'slug'     => 'updates_cron_period',
+				'default'  => 'ntfn_week',
+				'addons'   => array(
+					'options' => $updates_cron_options,
+				),
+				'render'   => array( new CoreFields\Select(), 'input' ),
+				'sanitize' => array( new CoreFields\Select(), 'sanitize' ),
+			) );
+
 	}
 
 	/**
