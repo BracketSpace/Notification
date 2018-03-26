@@ -61,4 +61,6 @@ if ( notification_get_setting( 'triggers/comment/types' ) ) {
 }
 
 // WordPress triggers.
-register_trigger( new Trigger\WordPress\UpdatesAvailable() );
+if ( notification_get_setting( 'triggers/wordpress/updates' ) ) {
+	register_trigger( new Trigger\WordPress\UpdatesAvailable() );
+}

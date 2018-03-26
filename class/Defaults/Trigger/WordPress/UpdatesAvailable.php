@@ -31,7 +31,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 
 		parent::__construct( 'wordpress/updates_available', __( 'Available updates', 'notification' ) );
 
-		$this->add_action( 'wp', 1000 );
+		$this->add_action( 'notification_check_wordpress_updates' );
 
 		$this->set_group( __( 'WordPress', 'notification' ) );
 		$this->set_description( __( 'Fires periodically when new updates are available', 'notification' ) );
@@ -45,10 +45,6 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	 */
 	public function action() {
 
-		if ( ! isset( $_GET['updates'] ) ) {
-			return false;
-		}
-
 		require_once ABSPATH . '/wp-admin/includes/update.php';
 
 		// Check if any updates are available.
@@ -61,7 +57,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 		}
 
 		// Don't send any empty notifications unless the Setting is enabled.
-		if ( ! $has_updates ) {
+		if ( ! $has_updates && ! notification_get_setting( 'triggers/wordpress/updates_send_anyway' ) ) {
 			return false;
 		}
 
@@ -129,154 +125,169 @@ class UpdatesAvailable extends Abstracts\Trigger {
 			},
 		) ) );
 
-    }
+	}
 
-    /**
-     * Checks if specific updates are available
-     *
-     * @since  [Next]
-     * @param  string $update_type update type, core | plugin | theme.
-     * @return boolean
-     */
-    public function has_updates( $update_type ) {
-    	$updates = call_user_func( 'get_' . $update_type . '_updates' );
-    	return ! empty( $updates );
-    }
+	/**
+	 * Checks if specific updates are available
+	 *
+	 * @since  [Next]
+	 * @param  string $update_type update type, core | plugin | theme.
+	 * @return boolean
+	 */
+	public function has_updates( $update_type ) {
+		$updates = $this->get_updates_count( $update_type );
+		return $updates > 0;
+	}
 
-    /**
-     * Gets specific update type title
-     *
-     * @since  [Next]
-     * @param  string $update_type update type, core | plugin | theme.
-     * @return string
-     */
-    public function get_list_title( $update_type ) {
+	/**
+	 * Gets specific update type title
+	 *
+	 * @since  [Next]
+	 * @param  string $update_type update type, core | plugin | theme.
+	 * @return string
+	 */
+	public function get_list_title( $update_type ) {
 
-    	switch ( $update_type ) {
-    		case 'core':
-    			$title = __( 'Core updates' );
-    			break;
+		switch ( $update_type ) {
+			case 'core':
+				$title = __( 'Core updates' );
+				break;
 
-    		case 'plugin':
-    			$title = __( 'Plugin updates' );
-    			break;
+			case 'plugin':
+				$title = __( 'Plugin updates' );
+				break;
 
-    		case 'theme':
-    			$title = __( 'Theme updates' );
-    			break;
+			case 'theme':
+				$title = __( 'Theme updates' );
+				break;
 
-    		default:
-    			$title = __( 'Updates' );
-    			break;
-    	}
+			default:
+				$title = __( 'Updates' );
+				break;
+		}
 
-    	return $title;
+		return $title;
 
-    }
+	}
 
-    /**
-     * Gets core updates list
-     *
-     * @since  [Next]
-     * @return string
-     */
-    public function get_core_updates_list() {
+	/**
+	 * Gets core updates list
+	 *
+	 * @since  [Next]
+	 * @return string
+	 */
+	public function get_core_updates_list() {
 
-    	$updates = get_core_updates();
+		$updates = get_core_updates();
 
-    	if ( empty( $updates ) ) {
-    		return '';
-    	}
+		foreach ( $updates as $update_key => $update ) {
+			if ( $update->current == $update->version ) {
+				unset( $updates[ $update_key ] );
+			}
+		}
 
-    	$html = '<ul>';
+		if ( empty( $updates ) ) {
+			return '';
+		}
 
-    	foreach ( $updates as $update ) {
-    		// translators: 1. Update type, 2. Version.
-    		$html .= '<li>' . sprintf( __( '<strong>WordPress</strong> <i>(%s)</i>: %s' ), $update->response, $update->version ) . '</li>';
-    	}
+		$html = '<ul>';
 
-    	$html .= '</ul>';
+		foreach ( $updates as $update ) {
+			// translators: 1. Update type, 2. Version.
+			$html .= '<li>' . sprintf( __( '<strong>WordPress</strong> <i>(%s)</i>: %s' ), $update->response, $update->version ) . '</li>';
+		}
 
-    	return $html;
+		$html .= '</ul>';
 
-    }
+		return $html;
 
-    /**
-     * Gets plugin updates list
-     *
-     * @since  [Next]
-     * @return string
-     */
-    public function get_plugin_updates_list() {
+	}
 
-    	$updates = get_plugin_updates();
+	/**
+	 * Gets plugin updates list
+	 *
+	 * @since  [Next]
+	 * @return string
+	 */
+	public function get_plugin_updates_list() {
 
-    	if ( empty( $updates ) ) {
-    		return '';
-    	}
+		$updates = get_plugin_updates();
 
-    	$html = '<ul>';
+		if ( empty( $updates ) ) {
+			return '';
+		}
 
-    	foreach ( $updates as $update ) {
-    		// translators: 1. Plugin name, 2. Current version, 3. Update version.
-    		$html .= '<li>' . sprintf( __( '<strong>%s</strong> <i>(current version: %s)</i>: %s' ), $update->Name, $update->Version, $update->update->new_version ) . '</li>';
-    	}
+		$html = '<ul>';
 
-    	$html .= '</ul>';
+		foreach ( $updates as $update ) {
+			// translators: 1. Plugin name, 2. Current version, 3. Update version.
+			$html .= '<li>' . sprintf( __( '<strong>%s</strong> <i>(current version: %s)</i>: %s' ), $update->Name, $update->Version, $update->update->new_version ) . '</li>';
+		}
 
-    	return $html;
+		$html .= '</ul>';
 
-    }
+		return $html;
 
-    /**
-     * Gets theme updates list
-     *
-     * @since  [Next]
-     * @return string
-     */
-    public function get_theme_updates_list() {
+	}
 
-    	$updates = get_theme_updates();
+	/**
+	 * Gets theme updates list
+	 *
+	 * @since  [Next]
+	 * @return string
+	 */
+	public function get_theme_updates_list() {
 
-    	if ( empty( $updates ) ) {
-    		return '';
-    	}
+		$updates = get_theme_updates();
 
-    	$html = '<ul>';
+		if ( empty( $updates ) ) {
+			return '';
+		}
 
-    	foreach ( $updates as $update ) {
-    		// translators: 1. Theme name, 2. Current version, 3. Update version.
-    		$html .= '<li>' . sprintf( __( '<strong>%s</strong> <i>(current version: %s)</i>: %s' ), $update->Name, $update->Version, $update->update['new_version'] ) . '</li>';
-    	}
+		$html = '<ul>';
 
-    	$html .= '</ul>';
+		foreach ( $updates as $update ) {
+			// translators: 1. Theme name, 2. Current version, 3. Update version.
+			$html .= '<li>' . sprintf( __( '<strong>%s</strong> <i>(current version: %s)</i>: %s' ), $update->Name, $update->Version, $update->update['new_version'] ) . '</li>';
+		}
 
-    	return $html;
+		$html .= '</ul>';
 
-    }
+		return $html;
 
-    /**
-     * Gets updates count
-     *
-     * @since  [Next]
-     * @param  string $update_type optional, update type, core | plugin | theme | all, default: all.
-     * @return integer
-     */
-    public function get_updates_count( $update_type = 'all' ) {
+	}
 
-    	if ( $update_type !== 'all' ) {
-    		$updates = call_user_func( 'get_' . $update_type . '_updates' );
-    		return count( $updates );
-    	}
+	/**
+	 * Gets updates count
+	 *
+	 * @since  [Next]
+	 * @param  string $update_type optional, update type, core | plugin | theme | all, default: all.
+	 * @return integer
+	 */
+	public function get_updates_count( $update_type = 'all' ) {
 
-    	$count = 0;
+		if ( $update_type !== 'all' ) {
+			$updates = call_user_func( 'get_' . $update_type . '_updates' );
 
-    	foreach ( $this->update_types as $update_type ) {
+			if ( $update_type == 'core'  ) {
+				foreach ( $updates as $update_key => $update ) {
+					if ( $update->current == $update->version ) {
+						unset( $updates[ $update_key ] );
+					}
+				}
+			}
+
+			return count( $updates );
+		}
+
+		$count = 0;
+
+		foreach ( $this->update_types as $update_type ) {
 			$count += $this->get_updates_count( $update_type );
 		}
 
-    	return $count;
+		return $count;
 
-    }
+	}
 
 }
