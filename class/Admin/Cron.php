@@ -18,7 +18,7 @@ class Cron {
 	 * Registers custom intervals for Cron
 	 *
 	 * @since  [Next]
-	 * @param  array $intervals intervals
+	 * @param  array $intervals intervals.
 	 * @return array
 	 */
 	public function register_intervals( $intervals ) {
@@ -52,6 +52,12 @@ class Cron {
 
 	}
 
+	/**
+	 * Registers and reschedules the check updates event
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
 	public function register_check_updates_event() {
 
 		$event    = wp_get_schedule( 'notification_check_wordpress_updates' );
@@ -73,8 +79,8 @@ class Cron {
 	 * Schedules the event
 	 *
 	 * @since  [Next]
-	 * @param  string $schedule   schedule name
-	 * @param  string $event_name event name
+	 * @param  string $schedule   schedule name.
+	 * @param  string $event_name event name.
 	 * @return void
 	 */
 	public function schedule( $schedule, $event_name ) {
@@ -85,7 +91,7 @@ class Cron {
 	 * Unschedules the event
 	 *
 	 * @since  [Next]
-	 * @param  string $event_name event name
+	 * @param  string $event_name event name.
 	 * @return void
 	 */
 	public function unschedule( $event_name ) {
