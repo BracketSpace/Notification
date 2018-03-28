@@ -15,6 +15,8 @@ Customisable email and webhook notifications with powerful developer friendly AP
 
 Custom Notifications and Alerts without a hassle. Notify anyone about any action in your WordPress. With powerful Merge Tags, you can endlessly customize your messages. Set unlimited Notifications in your WordPress Admin via the beautiful and intuitive interface within 5 minutes.
 
+[youtube https://www.youtube.com/watch?v=UPqVBhLGTek]
+
 = HOW DOES IT WORK =
 
 The Notification plugin is built with three main components:
@@ -186,7 +188,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 = [Next] =
 * [Fixed] Comment author display name bug, thanks to Aga Bury.
-* [Fixed] Post Published trigger fired twice.
+* [Fixed] Post Published and Post Pending trigger fired twice.
 * [Added] Comment Post Type merge tag for Comment triggers.
 * [Added] Comment moderation links for Comment triggers.
 * [Added] HtmlTag merge tag type.
