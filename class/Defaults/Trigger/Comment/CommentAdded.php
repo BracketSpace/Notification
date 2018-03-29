@@ -8,12 +8,11 @@
 namespace BracketSpace\Notification\Defaults\Trigger\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag;
-use BracketSpace\Notification\Abstracts;
 
 /**
  * Comment added trigger class
  */
-class CommentAdded extends Abstracts\Trigger {
+class CommentAdded extends CommentTrigger {
 
 	/**
 	 * Constructor
@@ -22,10 +21,13 @@ class CommentAdded extends Abstracts\Trigger {
 	 */
 	public function __construct( $comment_type = 'comment' ) {
 
-		parent::__construct( 'wordpress/comment_' . $comment_type . '_added', ucfirst( $comment_type ) . ' added' );
+		parent::__construct( array(
+			'slug'         => 'wordpress/comment_' . $comment_type . '_added',
+			'name'         => ucfirst( $comment_type ) . ' added',
+			'comment_type' => $comment_type,
+		) );
 
 		$this->add_action( 'wp_insert_comment', 10, 2 );
-		$this->set_group( __( ucfirst( $comment_type ), 'notification' ) );
 
 		// translators: comment type.
 		$this->set_description( sprintf( __( 'Fires when new %s is added', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
@@ -61,36 +63,12 @@ class CommentAdded extends Abstracts\Trigger {
 	 */
 	public function merge_tags() {
 
-		$this->add_merge_tag( new MergeTag\Comment\CommentID() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentContent() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentStatus() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentType() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentPostID() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentPostType() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentPostPermalink() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorIP() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorUserAgent() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorUrl() );
+		parent::merge_tags();
+
 		$this->add_merge_tag( new MergeTag\Comment\CommentActionApprove() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentActionTrash() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentActionDelete() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentActionSpam() );
-
-		// Author.
-		$this->add_merge_tag( new MergeTag\User\UserID( array(
-			'slug' => 'comment_author_user_ID',
-			'name' => __( 'Comment author user ID', 'notification' ),
-		) ) );
-
-        $this->add_merge_tag( new MergeTag\User\UserEmail( array(
-			'slug' => 'comment_author_user_email',
-			'name' => __( 'Comment author user email', 'notification' ),
-		) ) );
-
-		$this->add_merge_tag( new MergeTag\User\UserDisplayName( array(
-			'slug' => 'comment_author_user_display_name',
-			'name' => __( 'Comment author user display name', 'notification' ),
-		) ) );
 
     }
 
