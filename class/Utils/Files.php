@@ -179,6 +179,17 @@ class Files {
 	}
 
 	/**
+	 * Gets path to an asset file
+     *
+	 * @param  string $type asset type - js | css | images.
+	 * @param  string $file file name.
+	 * @return string       asset file path
+	 */
+	public function asset_mtime( $type = '', $file = '' ) {
+		return filemtime( $this->asset_path( $type, $file ) );
+	}
+
+	/**
 	 * Encodes an image to base64
      *
 	 * @param  string $file image file name.

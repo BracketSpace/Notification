@@ -189,6 +189,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 = [Next] =
 * [Fixed] Comment author display name bug, thanks to Aga Bury.
 * [Fixed] Post Published and Post Pending trigger fired twice.
+* [Fixed] Assets modification time as a cache buster.
 * [Added] Comment Post Type merge tag for Comment triggers.
 * [Added] Comment moderation links for Comment triggers.
 * [Added] HtmlTag merge tag type.

@@ -60,9 +60,9 @@ class Scripts {
 			return;
 		}
 
-		wp_enqueue_script( 'notification', $this->files->asset_url( 'js', 'scripts.min.js' ), array( 'jquery' ), null, false );
+		wp_enqueue_script( 'notification', $this->files->asset_url( 'js', 'scripts.min.js' ), array( 'jquery' ), $this->files->asset_mtime( 'js', 'scripts.min.js' ), false );
 
-		wp_enqueue_style( 'notification', $this->files->asset_url( 'css', 'style.css' ) );
+		wp_enqueue_style( 'notification', $this->files->asset_url( 'css', 'style.css' ), array(), $this->files->asset_mtime( 'css', 'style.css' ) );
 
 		wp_localize_script( 'notification', 'notification', array(
 			'ajaxurl'  => admin_url( 'admin-ajax.php' ),
