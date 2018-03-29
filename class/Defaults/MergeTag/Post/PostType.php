@@ -10,7 +10,7 @@
 
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
-use BracketSpace\Notification\Defaults\MergeTag\IntegerTag;
+use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 
 
 /**
@@ -51,15 +51,6 @@ class PostType extends StringTag {
 
     	parent::__construct( $args );
 
-	}
-
-	/**
-	 * Function for checking requirements
-	 *
-	 * @return boolean
-	 */
-	public function check_requirements() {
-		return isset( $this->trigger->{ $this->post_type }->ID );
 	}
 
 }

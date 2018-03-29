@@ -193,6 +193,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Added] Comment moderation links for Comment triggers.
 * [Added] HtmlTag merge tag type.
 * [Added] WordPress updates available trigger.
+* [Added] Post Type merge tag.
 
 = 5.1.4 =
 * [Fixed] Object class name error on PHP 7.2 when using paid extension.
