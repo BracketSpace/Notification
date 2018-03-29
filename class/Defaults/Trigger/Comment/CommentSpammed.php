@@ -42,13 +42,7 @@ class CommentSpammed extends CommentTrigger {
 	 */
 	public function action() {
 
-		$this->comment_status = $this->callback_args[0];
-		$this->comment        = $this->callback_args[1];
-
-		$this->user_object                = new \StdClass();
-		$this->user_object->ID            = ( $this->comment->user_id ) ? $this->comment->user_id : 0;
-		$this->user_object->display_name  = $this->comment->comment_author;
-		$this->user_object->user_email    = $this->comment->comment_author_email;
+		$this->comment = $this->callback_args[1];
 
 		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
 			return false;
@@ -57,17 +51,8 @@ class CommentSpammed extends CommentTrigger {
 		// fix for action being called too early, before WP marks the comment as spam.
 		$this->comment->comment_approved = 'spam';
 
+		parent::action();
+
 	}
-
-	/**
-	 * Registers attached merge tags
-	 *
-	 * @return void
-	 */
-	public function merge_tags() {
-
-		parent::merge_tags();
-
-    }
 
 }

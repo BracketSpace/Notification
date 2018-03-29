@@ -42,34 +42,20 @@ class CommentUnapproved extends CommentTrigger {
 	 */
 	public function action() {
 
-		$this->comment_new_status = $this->callback_args[0];
-		$this->comment_old_status = $this->callback_args[1];
-		$this->comment            = $this->callback_args[2];
-
-		$this->user_object                = new \StdClass();
-		$this->user_object->ID            = ( $this->comment->user_id ) ? $this->comment->user_id : 0;
-		$this->user_object->display_name  = $this->comment->comment_author;
-		$this->user_object->user_email    = $this->comment->comment_author_email;
+		$comment_new_status = $this->callback_args[0];
+		$comment_old_status = $this->callback_args[1];
+		$this->comment      = $this->callback_args[2];
 
 		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
 			return false;
 		}
 
-		if ( $this->comment_new_status == $this->comment_old_status || $this->comment_new_status != 'unapproved' ) {
+		if ( $comment_new_status == $comment_old_status || $comment_new_status != 'unapproved' ) {
 			return false;
 		}
 
+		parent::action();
+
 	}
-
-	/**
-	 * Registers attached merge tags
-	 *
-	 * @return void
-	 */
-	public function merge_tags() {
-
-		parent::merge_tags();
-
-    }
 
 }
