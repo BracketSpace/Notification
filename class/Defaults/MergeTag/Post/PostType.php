@@ -3,7 +3,7 @@
  * Post type merge tag
  *
  * Requirements:
- * - Trigger property of the post type slug with WP_Post object
+ * - Trigger property `post_type` with the post type slug
  *
  * @package notification
  */
