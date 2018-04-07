@@ -103,6 +103,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\Post\PostContent() );
 		$this->add_merge_tag( new MergeTag\Post\PostExcerpt() );
 		$this->add_merge_tag( new MergeTag\Post\PostStatus() );
+		$this->add_merge_tag( new MergeTag\Post\PostType() );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'post_creation_datetime',
