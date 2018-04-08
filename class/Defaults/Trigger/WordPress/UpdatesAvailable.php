@@ -130,7 +130,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	/**
 	 * Checks if specific updates are available
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @param  string $update_type update type, core | plugin | theme.
 	 * @return boolean
 	 */
@@ -142,7 +142,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	/**
 	 * Gets specific update type title
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @param  string $update_type update type, core | plugin | theme.
 	 * @return string
 	 */
@@ -173,7 +173,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	/**
 	 * Gets core updates list
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @return string
 	 */
 	public function get_core_updates_list() {
@@ -206,7 +206,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	/**
 	 * Gets plugin updates list
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @return string
 	 */
 	public function get_plugin_updates_list() {
@@ -233,7 +233,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	/**
 	 * Gets theme updates list
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @return string
 	 */
 	public function get_theme_updates_list() {
@@ -260,7 +260,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	/**
 	 * Gets updates count
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @param  string $update_type optional, update type, core | plugin | theme | all, default: all.
 	 * @return integer
 	 */

@@ -17,7 +17,7 @@ class Cron {
 	/**
 	 * Registers custom intervals for Cron
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @param  array $intervals intervals.
 	 * @return array
 	 */
@@ -55,7 +55,7 @@ class Cron {
 	/**
 	 * Registers and reschedules the check updates event
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @return void
 	 */
 	public function register_check_updates_event() {
@@ -78,7 +78,7 @@ class Cron {
 	/**
 	 * Schedules the event
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @param  string $schedule   schedule name.
 	 * @param  string $event_name event name.
 	 * @return void
@@ -90,7 +90,7 @@ class Cron {
 	/**
 	 * Unschedules the event
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @param  string $event_name event name.
 	 * @return void
 	 */

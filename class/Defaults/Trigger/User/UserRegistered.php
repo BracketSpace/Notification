@@ -78,7 +78,7 @@ class UserRegistered extends Abstracts\Trigger {
     /**
      * Gets password reset key
      *
-     * @since  [Next]
+     * @since  5.1.5
      * @return string
      */
     public function get_password_reset_key() {
