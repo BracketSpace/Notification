@@ -23,7 +23,7 @@ class CommentApproved extends CommentTrigger {
 
 		parent::__construct( array(
 			'slug'         => 'wordpress/comment_' . $comment_type . '_approved',
-			'name'         => ucfirst( $comment_type ) . ' approved',
+			'name'         => sprintf( __( '%s approved', 'notification' ), ucfirst( $comment_type ) ),
 			'comment_type' => $comment_type,
 		) );
 

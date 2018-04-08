@@ -53,7 +53,7 @@ class Administrator extends Abstracts\Recipient {
 	public function input() {
 
 		return new Field\InputField( array(
-			'label'       => 'Recipient',       // don't edit this!
+			'label'       => __( 'Recipient' ),       // don't edit this!
 			'name'        => 'recipient',       // don't edit this!
 			'css_class'   => 'recipient-value', // don't edit this!
 			'value'       => $this->get_default_value(),

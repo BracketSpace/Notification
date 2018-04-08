@@ -22,7 +22,7 @@ class Email extends Abstracts\Notification {
 	 * @since 5.0.0
 	 */
 	public function __construct() {
-		parent::__construct( 'email', 'Email' );
+		parent::__construct( 'email', __( 'Email', 'notification' ) );
 	}
 
 	/**
@@ -34,12 +34,12 @@ class Email extends Abstracts\Notification {
 	public function form_fields() {
 
 		$this->add_form_field( new Field\InputField( array(
-			'label' => 'Subject',
+			'label' => __( 'Subject' ),
 			'name'  => 'subject',
 		) ) );
 
 		$this->add_form_field( new Field\EditorField( array(
-			'label'    => 'Body',
+			'label'    => __( 'Body' ),
 			'name'     => 'body',
 			'settings' => array(
 				'media_buttons' => false

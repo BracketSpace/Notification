@@ -23,7 +23,7 @@ class CommentAdded extends CommentTrigger {
 
 		parent::__construct( array(
 			'slug'         => 'wordpress/comment_' . $comment_type . '_added',
-			'name'         => ucfirst( $comment_type ) . ' added',
+			'name'         => sprintf( __( '%s added', 'notification' ), ucfirst( $comment_type ) ),
 			'comment_type' => $comment_type,
 		) );
 

@@ -23,7 +23,7 @@ class CommentUnapproved extends CommentTrigger {
 
 		parent::__construct( array(
 			'slug'         => 'wordpress/comment_' . $comment_type . '_unapproved',
-			'name'         => ucfirst( $comment_type ) . ' unapproved',
+			'name'         => sprintf( __( '%s unapproved', 'notification' ), ucfirst( $comment_type ) ),
 			'comment_type' => $comment_type,
 		) );
 

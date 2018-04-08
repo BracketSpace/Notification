@@ -23,7 +23,7 @@ class CommentTrashed extends CommentTrigger {
 
 		parent::__construct( array(
 			'slug'         => 'wordpress/comment_' . $comment_type . '_trashed',
-			'name'         => ucfirst( $comment_type ) . ' trashed',
+			'name'         => sprintf( __( '%s trashed', 'notification' ), ucfirst( $comment_type ) ),
 			'comment_type' => $comment_type,
 		) );
 

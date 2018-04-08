@@ -26,7 +26,7 @@ class RecipientsField extends RepeaterField {
 
 		$params = wp_parse_args( $params, array(
 			'notification'     => '',
-			'label'            => 'Recipients',
+			'label'            => __( 'Recipients' ),
 			'name'             => 'recipients',
 			'add_button_label' => __( 'Add recipient', 'notification' ),
 			'css_class'        => '',
@@ -52,7 +52,7 @@ class RecipientsField extends RepeaterField {
 
 				$params['fields'] = array(
 					new InputField( array(
-						'label'   => 'Type',
+						'label'   => __( 'Type' ),
 						'name'    => 'type',
 						'type'    => 'hidden',
 						'value'   => $first_recipient->get_slug(),
@@ -69,7 +69,7 @@ class RecipientsField extends RepeaterField {
 
 				$params['fields'] = array(
 					new SelectField( array(
-						'label'     => 'Type',
+						'label'     => __( 'Type' ),
 						'name'      => 'type',
 						'css_class' => 'recipient-type',
 						'options'   => $recipient_types

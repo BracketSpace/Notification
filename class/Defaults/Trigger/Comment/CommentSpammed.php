@@ -23,7 +23,7 @@ class CommentSpammed extends CommentTrigger {
 
 		parent::__construct( array(
 			'slug'         => 'wordpress/comment_' . $comment_type . '_spammed',
-			'name'         => ucfirst( $comment_type ) . ' spammed',
+			'name'         => sprintf( __( '%s spammed', 'notification' ), ucfirst( $comment_type ) ),
 			'comment_type' => $comment_type,
 		) );
 
