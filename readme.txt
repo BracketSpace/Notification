@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, insejn
 Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.6
-Tested up to: 5.0
+Tested up to: 4.9.5
 Stable tag: 5.1.4
 Requires PHP: 5.3
 License: GPLv3
