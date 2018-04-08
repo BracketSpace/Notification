@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.6
 Tested up to: 4.9.5
-Stable tag: 5.1.4
+Stable tag: 5.1.5
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -186,7 +186,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
-= [Next] =
+= 5.1.5 =
 * [Fixed] Comment author display name bug, thanks to Aga Bury.
 * [Fixed] Post Published and Post Pending trigger fired twice.
 * [Fixed] Assets modification time as a cache buster.

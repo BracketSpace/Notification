@@ -81,7 +81,7 @@ class Role extends Abstracts\Recipient {
 		}
 
 		return new Field\SelectField( array(
-			'label'     => __( 'Recipient' ),       // don't edit this!
+			'label'     => __( 'Recipient', 'notification' ),       // don't edit this!
 			'name'      => 'recipient',       // don't edit this!
 			'css_class' => 'recipient-value', // don't edit this!
 			'value'     => $this->get_default_value(),

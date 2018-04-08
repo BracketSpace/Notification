@@ -37,7 +37,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 
 		parent::__construct( $params['slug'], $params['name'] );
 
-		$this->set_group( __( ucfirst( $this->comment_type ), 'wordpress' ) );
+		$this->set_group( __( ucfirst( $this->comment_type ), 'wordpress', 'notification' ) );
 
 	}
 
@@ -109,62 +109,62 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'post_creation_datetime',
 			// translators: singular post name.
-			'name' => sprintf( __( '%s creation date and time', 'notification' ), __( 'Post' ) ),
+			'name' => sprintf( __( '%s creation date and time', 'notification' ), __( 'Post', 'notification' ) ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'post_modification_datetime',
 			// translators: singular post name.
-			'name' => sprintf( __( '%s modification date and time', 'notification' ), __( 'Post' ) ),
+			'name' => sprintf( __( '%s modification date and time', 'notification' ), __( 'Post', 'notification' ) ),
 		) ) );
 
 		// Post Author.
 		$this->add_merge_tag( new MergeTag\User\UserID( array(
 			'slug'          => 'post_author_user_ID',
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s author user ID', 'notification' ), __( 'Post' ) ),
+			'name'          => sprintf( __( '%s author user ID', 'notification' ), __( 'Post', 'notification' ) ),
 			'property_name' => 'post_author',
 		) ) );
 
     	$this->add_merge_tag( new MergeTag\User\UserLogin( array(
 			'slug'          => 'post_author_user_login',
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s author user login', 'notification' ), __( 'Post' ) ),
+			'name'          => sprintf( __( '%s author user login', 'notification' ), __( 'Post', 'notification' ) ),
 			'property_name' => 'post_author',
 		) ) );
 
         $this->add_merge_tag( new MergeTag\User\UserEmail( array(
 			'slug'          => 'post_author_user_email',
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s author user email', 'notification' ), __( 'Post' ) ),
+			'name'          => sprintf( __( '%s author user email', 'notification' ), __( 'Post', 'notification' ) ),
 			'property_name' => 'post_author',
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserNicename( array(
 			'slug'          => 'post_author_user_nicename',
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s author user nicename', 'notification' ), __( 'Post' ) ),
+			'name'          => sprintf( __( '%s author user nicename', 'notification' ), __( 'Post', 'notification' ) ),
 			'property_name' => 'post_author',
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserDisplayName( array(
 			'slug'          => 'post_author_user_display_name',
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s author user display name', 'notification' ), __( 'Post' ) ),
+			'name'          => sprintf( __( '%s author user display name', 'notification' ), __( 'Post', 'notification' ) ),
 			'property_name' => 'post_author',
 		) ) );
 
         $this->add_merge_tag( new MergeTag\User\UserFirstName( array(
 			'slug'          => 'post_author_user_firstname',
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s author user first name', 'notification' ), __( 'Post' ) ),
+			'name'          => sprintf( __( '%s author user first name', 'notification' ), __( 'Post', 'notification' ) ),
 			'property_name' => 'post_author',
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserLastName( array(
 			'slug'          => 'post_author_user_lastname',
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s author user last name', 'notification' ), __( 'Post' ) ),
+			'name'          => sprintf( __( '%s author user last name', 'notification' ), __( 'Post', 'notification' ) ),
 			'property_name' => 'post_author',
 		) ) );
 

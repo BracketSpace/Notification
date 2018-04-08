@@ -17,7 +17,7 @@ class Cron {
 	/**
 	 * Registers custom intervals for Cron
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @param  array $intervals intervals.
 	 * @return array
 	 */
@@ -25,27 +25,27 @@ class Cron {
 
 		$intervals['ntfn_2days'] = array(
 			'interval' => 2 * DAY_IN_SECONDS,
-			'display'  => __( 'Every two days' )
+			'display'  => __( 'Every two days', 'notification' )
 		);
 
 		$intervals['ntfn_3days'] = array(
 			'interval' => 3 * DAY_IN_SECONDS,
-			'display'  => __( 'Every three days' )
+			'display'  => __( 'Every three days', 'notification' )
 		);
 
 		$intervals['ntfn_week'] = array(
 			'interval' => WEEK_IN_SECONDS,
-			'display'  => __( 'Every week' )
+			'display'  => __( 'Every week', 'notification' )
 		);
 
 		$intervals['ntfn_2weeks'] = array(
 			'interval' => 2 * WEEK_IN_SECONDS,
-			'display'  => __( 'Every two weeks' )
+			'display'  => __( 'Every two weeks', 'notification' )
 		);
 
 		$intervals['ntfn_month'] = array(
 			'interval' => MONTH_IN_SECONDS,
-			'display'  => __( 'Every month' )
+			'display'  => __( 'Every month', 'notification' )
 		);
 
 		return $intervals;
@@ -55,7 +55,7 @@ class Cron {
 	/**
 	 * Registers and reschedules the check updates event
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @return void
 	 */
 	public function register_check_updates_event() {
@@ -78,7 +78,7 @@ class Cron {
 	/**
 	 * Schedules the event
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @param  string $schedule   schedule name.
 	 * @param  string $event_name event name.
 	 * @return void
@@ -90,7 +90,7 @@ class Cron {
 	/**
 	 * Unschedules the event
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @param  string $event_name event name.
 	 * @return void
 	 */

@@ -130,7 +130,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	/**
 	 * Checks if specific updates are available
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @param  string $update_type update type, core | plugin | theme.
 	 * @return boolean
 	 */
@@ -142,7 +142,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	/**
 	 * Gets specific update type title
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @param  string $update_type update type, core | plugin | theme.
 	 * @return string
 	 */
@@ -150,19 +150,19 @@ class UpdatesAvailable extends Abstracts\Trigger {
 
 		switch ( $update_type ) {
 			case 'core':
-				$title = __( 'Core updates' );
+				$title = __( 'Core updates', 'notification' );
 				break;
 
 			case 'plugin':
-				$title = __( 'Plugin updates' );
+				$title = __( 'Plugin updates', 'notification' );
 				break;
 
 			case 'theme':
-				$title = __( 'Theme updates' );
+				$title = __( 'Theme updates', 'notification' );
 				break;
 
 			default:
-				$title = __( 'Updates' );
+				$title = __( 'Updates', 'notification' );
 				break;
 		}
 
@@ -173,7 +173,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	/**
 	 * Gets core updates list
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @return string
 	 */
 	public function get_core_updates_list() {
@@ -194,7 +194,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 
 		foreach ( $updates as $update ) {
 			// translators: 1. Update type, 2. Version.
-			$html .= '<li>' . sprintf( __( '<strong>WordPress</strong> <i>(%s)</i>: %s' ), $update->response, $update->version ) . '</li>';
+			$html .= '<li>' . sprintf( __( '<strong>WordPress</strong> <i>(%s)</i>: %s', 'notification' ), $update->response, $update->version ) . '</li>';
 		}
 
 		$html .= '</ul>';
@@ -206,7 +206,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	/**
 	 * Gets plugin updates list
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @return string
 	 */
 	public function get_plugin_updates_list() {
@@ -221,7 +221,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 
 		foreach ( $updates as $update ) {
 			// translators: 1. Plugin name, 2. Current version, 3. Update version.
-			$html .= '<li>' . sprintf( __( '<strong>%s</strong> <i>(current version: %s)</i>: %s' ), $update->Name, $update->Version, $update->update->new_version ) . '</li>';
+			$html .= '<li>' . sprintf( __( '<strong>%s</strong> <i>(current version: %s)</i>: %s', 'notification' ), $update->Name, $update->Version, $update->update->new_version ) . '</li>';
 		}
 
 		$html .= '</ul>';
@@ -233,7 +233,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	/**
 	 * Gets theme updates list
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @return string
 	 */
 	public function get_theme_updates_list() {
@@ -248,7 +248,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 
 		foreach ( $updates as $update ) {
 			// translators: 1. Theme name, 2. Current version, 3. Update version.
-			$html .= '<li>' . sprintf( __( '<strong>%s</strong> <i>(current version: %s)</i>: %s' ), $update->Name, $update->Version, $update->update['new_version'] ) . '</li>';
+			$html .= '<li>' . sprintf( __( '<strong>%s</strong> <i>(current version: %s)</i>: %s', 'notification' ), $update->Name, $update->Version, $update->update['new_version'] ) . '</li>';
 		}
 
 		$html .= '</ul>';
@@ -260,7 +260,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	/**
 	 * Gets updates count
 	 *
-	 * @since  [Next]
+	 * @since  5.1.5
 	 * @param  string $update_type optional, update type, core | plugin | theme | all, default: all.
 	 * @return integer
 	 */

@@ -34,12 +34,12 @@ class Email extends Abstracts\Notification {
 	public function form_fields() {
 
 		$this->add_form_field( new Field\InputField( array(
-			'label' => __( 'Subject' ),
+			'label' => __( 'Subject', 'notification' ),
 			'name'  => 'subject',
 		) ) );
 
 		$this->add_form_field( new Field\EditorField( array(
-			'label'    => __( 'Body' ),
+			'label'    => __( 'Body', 'notification' ),
 			'name'     => 'body',
 			'settings' => array(
 				'media_buttons' => false
