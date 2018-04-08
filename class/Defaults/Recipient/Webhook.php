@@ -55,7 +55,7 @@ class Webhook extends Abstracts\Recipient {
 	public function input() {
 
 		return new Field\InputField( array(
-			'label'       => __( 'URL' ),             // don't edit this!
+			'label'       => __( 'URL', 'notification' ),             // don't edit this!
 			'name'        => 'recipient',       // don't edit this!
 			'css_class'   => 'recipient-value', // don't edit this!
 			'placeholder' => site_url(),
