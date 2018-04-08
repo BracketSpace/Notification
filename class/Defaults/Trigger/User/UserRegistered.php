@@ -75,6 +75,12 @@ class UserRegistered extends Abstracts\Trigger {
 
     }
 
+    /**
+     * Gets password reset key
+     *
+     * @since  5.1.5
+     * @return string
+     */
     public function get_password_reset_key() {
     	return get_password_reset_key( $this->user_object );
     }

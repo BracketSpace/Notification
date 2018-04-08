@@ -67,6 +67,7 @@ class Runtime {
 		$this->admin_extensions     = new Admin\Extensions( $this->view() );
 		$this->admin_scripts        = new Admin\Scripts( $this, $this->files );
 		$this->admin_screen         = new Admin\ScreenHelp( $this->view() );
+		$this->admin_cron           = new Admin\Cron();
 
 	}
 
@@ -82,6 +83,9 @@ class Runtime {
 
 		add_action( 'plugins_loaded', array( $this->internationalization, 'load_textdomain' ) );
 		add_action( 'init', array( $this->internationalization, 'load_native_admin_textdomain' ) );
+
+		add_filter( 'cron_schedules', array( $this->admin_cron, 'register_intervals' ) );
+		add_action( 'admin_init', array( $this->admin_cron, 'register_check_updates_event' ) );
 
 		add_action( 'init', array( $this->admin_post_type, 'register' ) );
 		add_action( 'edit_form_after_title', array( $this->admin_post_type, 'render_trigger_select' ) );

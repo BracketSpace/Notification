@@ -3,8 +3,8 @@ Contributors: notification, bracketspace, Kubitomakita, insejn
 Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.6
-Tested up to: 5.0
-Stable tag: 5.1.4
+Tested up to: 4.9.5
+Stable tag: 5.1.5
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -14,6 +14,8 @@ Customisable email and webhook notifications with powerful developer friendly AP
 == Description ==
 
 Custom Notifications and Alerts without a hassle. Notify anyone about any action in your WordPress. With powerful Merge Tags, you can endlessly customize your messages. Set unlimited Notifications in your WordPress Admin via the beautiful and intuitive interface within 5 minutes.
+
+[youtube https://www.youtube.com/watch?v=UPqVBhLGTek]
 
 = HOW DOES IT WORK =
 
@@ -183,6 +185,19 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 5. Help tab with global Merge Tags
 
 == Changelog ==
+
+= 5.1.5 =
+* [Fixed] Comment author display name bug, thanks to Aga Bury.
+* [Fixed] Post Published and Post Pending trigger fired twice.
+* [Fixed] Assets modification time as a cache buster.
+* [Fixed] Missing translations.
+* [Fixed] Notice thrown while saving email administrator recipient.
+* [Added] Comment Post Type merge tag for Comment triggers.
+* [Added] Comment moderation links for Comment triggers.
+* [Added] HtmlTag merge tag type.
+* [Added] WordPress updates available trigger.
+* [Added] Post Type merge tag.
+* [Added] More merge tags for comment triggers.
 
 = 5.1.4 =
 * [Fixed] Object class name error on PHP 7.2 when using paid extension.

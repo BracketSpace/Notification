@@ -1,6 +1,6 @@
 <?php
 /**
- * Comment post permalink merge tag
+ * Comment action delete URL merge tag
  *
  * @package notification
  */
@@ -11,9 +11,9 @@ use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
 
 
 /**
- * Comment post permalink merge tag class
+ * Comment action delete URL merge tag class
  */
-class CommentPostPermalink extends UrlTag {
+class CommentActionDelete extends UrlTag {
 
 	/**
      * Merge tag constructor
@@ -24,12 +24,10 @@ class CommentPostPermalink extends UrlTag {
     public function __construct( $params = array() ) {
 
 		$args = wp_parse_args( $params, array(
-			'slug'        => 'comment_post_permalink',
-			'name'        => __( 'Comment post permalink', 'notification' ),
-			'description' => __( 'https://example.com/hello-world/', 'notification' ),
-			'example'     => true,
-			'resolver'    => function() {
-				return get_permalink( $this->trigger->comment->comment_post_ID );
+			'slug'        => 'comment_delete_action_url',
+			'name'        => __( 'Comment delete URL', 'notification' ),
+			'resolver'    => function( $trigger ) {
+				return admin_url( "comment.php?action=delete&c={$trigger->comment->comment_ID}#wpbody-content" );
 			},
 		) );
 
@@ -43,7 +41,7 @@ class CommentPostPermalink extends UrlTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-		return isset( $this->trigger->comment->comment_post_ID );
+		return isset( $this->trigger->comment->comment_ID );
 	}
 
 }

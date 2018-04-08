@@ -8,12 +8,11 @@
 namespace BracketSpace\Notification\Defaults\Trigger\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag;
-use BracketSpace\Notification\Abstracts;
 
 /**
  * Comment unapproved trigger class
  */
-class CommentUnapproved extends Abstracts\Trigger {
+class CommentUnapproved extends CommentTrigger {
 
 	/**
 	 * Constructor
@@ -22,10 +21,13 @@ class CommentUnapproved extends Abstracts\Trigger {
 	 */
 	public function __construct( $comment_type = 'comment' ) {
 
-		parent::__construct( 'wordpress/comment_' . $comment_type . '_unapproved', ucfirst( $comment_type ) . ' unapproved' );
+		parent::__construct( array(
+			'slug'         => 'wordpress/comment_' . $comment_type . '_unapproved',
+			'name'         => sprintf( __( '%s unapproved', 'notification' ), ucfirst( $comment_type ) ),
+			'comment_type' => $comment_type,
+		) );
 
 		$this->add_action( 'transition_comment_status', 10, 3 );
-		$this->set_group( __( ucfirst( $comment_type ), 'notification' ) );
 
 		// translators: comment type.
 		$this->set_description( sprintf( __( 'Fires when %s is marked as unapproved', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
@@ -40,63 +42,20 @@ class CommentUnapproved extends Abstracts\Trigger {
 	 */
 	public function action() {
 
-		$this->comment_new_status = $this->callback_args[0];
-		$this->comment_old_status = $this->callback_args[1];
-		$this->comment            = $this->callback_args[2];
-
-		$this->user_object                = new \StdClass();
-		$this->user_object->ID            = ( $this->comment->user_id ) ? $this->comment->user_id : 0;
-		$this->user_object->user_nicename = $this->comment->comment_author;
-		$this->user_object->user_email    = $this->comment->comment_author_email;
+		$comment_new_status = $this->callback_args[0];
+		$comment_old_status = $this->callback_args[1];
+		$this->comment      = $this->callback_args[2];
 
 		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
 			return false;
 		}
 
-		if ( $this->comment_new_status == $this->comment_old_status || $this->comment_new_status != 'unapproved' ) {
+		if ( $comment_new_status == $comment_old_status || $comment_new_status != 'unapproved' ) {
 			return false;
 		}
 
+		parent::action();
+
 	}
-
-	/**
-	 * Registers attached merge tags
-	 *
-	 * @return void
-	 */
-	public function merge_tags() {
-
-		$this->add_merge_tag( new MergeTag\Comment\CommentID() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentContent() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentStatus() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentType() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentPostID() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentPostPermalink() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorIP() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorUserAgent() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorUrl() );
-
-		// Author.
-		$this->add_merge_tag( new MergeTag\User\UserID( array(
-			'slug' => 'comment_author_user_ID',
-			'name' => __( 'Comment author user ID', 'notification' ),
-		) ) );
-
-        $this->add_merge_tag( new MergeTag\User\UserEmail( array(
-			'slug' => 'comment_author_user_email',
-			'name' => __( 'Comment author user email', 'notification' ),
-		) ) );
-
-		$this->add_merge_tag( new MergeTag\User\UserNicename( array(
-			'slug' => 'comment_author_user_nicename',
-			'name' => __( 'Comment author user nicename', 'notification' ),
-		) ) );
-
-		$this->add_merge_tag( new MergeTag\User\UserDisplayName( array(
-			'slug' => 'comment_author_user_display_name',
-			'name' => __( 'Comment author user display name', 'notification' ),
-		) ) );
-
-    }
 
 }

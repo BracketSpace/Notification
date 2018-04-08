@@ -208,7 +208,14 @@ class RepeaterField extends Field {
     		foreach ( $this->fields as $sub_field ) {
 
     			$subkey = $sub_field->get_raw_name();
-    			$sanitized[ $row_id ][ $subkey ] = $sub_field->sanitize( $row[ $subkey ] );
+
+    			if ( isset( $row[ $subkey ] ) ) {
+    				$sanitized_value = $sub_field->sanitize( $row[ $subkey ] );
+    			} else {
+    				$sanitized_value = '';
+    			}
+
+    			$sanitized[ $row_id ][ $subkey ] = $sanitized_value;
 
     		}
 

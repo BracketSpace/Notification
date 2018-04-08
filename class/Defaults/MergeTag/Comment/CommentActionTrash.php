@@ -1,19 +1,19 @@
 <?php
 /**
- * Comment post ID merge tag
+ * Comment action trash URL merge tag
  *
  * @package notification
  */
 
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
-use BracketSpace\Notification\Defaults\MergeTag\IntegerTag;
+use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
 
 
 /**
- * Comment post ID merge tag class
+ * Comment action trash URL merge tag class
  */
-class CommentPostID extends IntegerTag {
+class CommentActionTrash extends UrlTag {
 
 	/**
      * Merge tag constructor
@@ -24,12 +24,10 @@ class CommentPostID extends IntegerTag {
     public function __construct( $params = array() ) {
 
 		$args = wp_parse_args( $params, array(
-			'slug'        => 'comment_post_ID',
-			'name'        => __( 'Comment post ID', 'notification' ),
-			'description' => '25',
-			'example'     => true,
+			'slug'        => 'comment_trash_action_url',
+			'name'        => __( 'Comment trash URL', 'notification' ),
 			'resolver'    => function( $trigger ) {
-				return $trigger->comment->comment_post_ID;
+				return admin_url( "comment.php?action=trash&c={$trigger->comment->comment_ID}#wpbody-content" );
 			},
 		) );
 
@@ -43,7 +41,7 @@ class CommentPostID extends IntegerTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-		return isset( $this->trigger->comment->comment_post_ID );
+		return isset( $this->trigger->comment->comment_ID );
 	}
 
 }
