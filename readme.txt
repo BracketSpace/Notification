@@ -191,6 +191,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Fixed] Post Published and Post Pending trigger fired twice.
 * [Fixed] Assets modification time as a cache buster.
 * [Fixed] Missing translations.
+* [Fixed] Notice thrown while saving email administrator recipient.
 * [Added] Comment Post Type merge tag for Comment triggers.
 * [Added] Comment moderation links for Comment triggers.
 * [Added] HtmlTag merge tag type.
