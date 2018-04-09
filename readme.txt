@@ -74,6 +74,10 @@ The plugin comes with few registered by default recipient types:
 
 These are already defined in plugin’s core and are ready to use. You can enable or disable them on the Settings page.
 
+WordPress:
+
+* Available updates - sent as often as you set them, ie. every week
+
 Post Type:
 
 * Published post notification
