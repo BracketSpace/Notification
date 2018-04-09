@@ -59,8 +59,13 @@ class PostTerms extends StringTag {
 			'description' => __( 'General, Tech, Lifestyle', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
+				$post_terms = get_the_terms( $trigger->{ $this->post_type }, $this->taxonomy->name );
+				if ( empty( $taxonomies ) ) {
+					return '';
+				}
+
 				$terms = array();
-				foreach ( get_the_terms( $trigger->{ $this->post_type }, $this->taxonomy->name ) as $term ) {
+				foreach ( $post_terms as $term ) {
 					$terms[] = $term->name;
 				}
 				return implode( ', ', $terms );

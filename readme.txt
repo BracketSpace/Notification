@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.6
 Tested up to: 4.9.5
-Stable tag: 5.1.5
+Stable tag: 5.1.6
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -73,6 +73,10 @@ The plugin comes with few registered by default recipient types:
 = DEFAULT TRIGGERS =
 
 These are already defined in plugin’s core and are ready to use. You can enable or disable them on the Settings page.
+
+WordPress:
+
+* Available updates - sent as often as you set them, ie. every week
 
 Post Type:
 
@@ -185,6 +189,10 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 5. Help tab with global Merge Tags
 
 == Changelog ==
+
+= 5.1.6 =
+* [Fixed] Notice from PostTerms merge tags and from empty result.
+* [Fixed] Cloning Notification object which used the same fields instances, thanks to @JohanHjalmarsson.
 
 = 5.1.5 =
 * [Fixed] Comment author display name bug, thanks to Aga Bury.
