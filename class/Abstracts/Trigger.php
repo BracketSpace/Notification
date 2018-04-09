@@ -147,7 +147,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * @return void
 	 */
 	public function attach( Sendable $notification ) {
-		$this->notification_storage[ $notification->hash() ] = $notification;
+		$this->notification_storage[ $notification->hash() ] = clone $notification;
 	}
 
 	/**

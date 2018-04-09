@@ -188,6 +188,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 = [Next] =
 * [Fixed] Notice from PostTerms merge tags and from empty result.
+* [Fixed] Cloning Notification object which used the same fields instances, thanks to @JohanHjalmarsson.
 
 = 5.1.5 =
 * [Fixed] Comment author display name bug, thanks to Aga Bury.

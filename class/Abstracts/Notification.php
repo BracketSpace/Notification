@@ -75,6 +75,25 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	}
 
 	/**
+	 * Clone method
+	 * Copies the fields to new Notification instance
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function __clone() {
+
+		$fields = array();
+
+		foreach ( $this->form_fields as $raw_name => $field ) {
+			$fields[ $raw_name ] = clone $field;
+		}
+
+		$this->form_fields = $fields;
+
+	}
+
+	/**
 	 * Used to register notification form fields
 	 * Uses $this->add_form_field();
      *
@@ -106,8 +125,9 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	 * @return $this
 	 */
 	public function add_form_field( Interfaces\Fillable $field ) {
-		$field->section = 'notification_type_' . $this->get_slug();
-		$this->form_fields[ $field->get_raw_name() ] = clone $field;
+		$adding_field = clone $field;
+		$adding_field->section = 'notification_type_' . $this->get_slug();
+		$this->form_fields[ $field->get_raw_name() ] = $adding_field;
 		return $this;
 	}
 
