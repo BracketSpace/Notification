@@ -78,7 +78,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	 * Clone method
 	 * Copies the fields to new Notification instance
 	 *
-	 * @since  [Next]
+	 * @since  5.1.6
 	 * @return void
 	 */
 	public function __clone() {
