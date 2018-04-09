@@ -187,7 +187,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 == Changelog ==
 
 = [Next] =
-* [Fixed] Notice from PostTerms merge tags.
+* [Fixed] Notice from PostTerms merge tags and from empty result.
 
 = 5.1.5 =
 * [Fixed] Comment author display name bug, thanks to Aga Bury.
