@@ -186,6 +186,9 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Notice from PostTerms merge tags.
+
 = 5.1.5 =
 * [Fixed] Comment author display name bug, thanks to Aga Bury.
 * [Fixed] Post Published and Post Pending trigger fired twice.
