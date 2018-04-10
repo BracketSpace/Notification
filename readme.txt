@@ -190,6 +190,9 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Post Terms merge tags not rendering the values, thanks to @stocker.
+
 = 5.1.6 =
 * [Fixed] Notice from PostTerms merge tags and from empty result.
 * [Fixed] Cloning Notification object which used the same fields instances, thanks to @JohanHjalmarsson.
