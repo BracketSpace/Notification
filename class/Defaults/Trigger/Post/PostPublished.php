@@ -28,6 +28,7 @@ class PostPublished extends PostTrigger {
 			'name'      => sprintf( __( '%s published', 'notification' ), parent::get_post_type_name( $post_type ) ),
 		) );
 
+		$this->add_action( 'new_to_publish', 10 );
 		$this->add_action( 'auto-draft_to_publish', 10 );
 		$this->add_action( 'draft_to_publish', 10 );
 		$this->add_action( 'pending_to_publish', 10 );
