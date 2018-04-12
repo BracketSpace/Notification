@@ -39,9 +39,9 @@ class PostAdded extends PostTrigger {
 	 * Assigns action callback args to object
 	 * Return `false` if you want to abort the trigger execution
 	 *
-	 * @param int     $post_ID Post ID.
-     * @param WP_Post $post    Post object.
-     * @param bool    $update  Whether this is an existing post being updated or not.
+	 * @param int     $postID Post ID.
+     * @param WP_Post $post   Post object.
+     * @param bool    $update Whether this is an existing post being updated or not.
 	 * @return mixed void or false if no notifications should be sent
 	 */
 	public function action( $postID, $post, $update ) {
