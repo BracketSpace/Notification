@@ -192,6 +192,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 = [Next] =
 * [Fixed] Post Terms merge tags not rendering the values, thanks to @stocker.
+* [Added] new_to_publish action for Post published trigger, thanks to @JBCSU.
 
 = 5.1.6 =
 * [Fixed] Notice from PostTerms merge tags and from empty result.
