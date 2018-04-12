@@ -14,6 +14,7 @@ if ( notification_get_setting( 'triggers/post_types/types' ) ) {
 
 	foreach ( $post_types as $post_type ) {
 
+		register_trigger( new Trigger\Post\PostAdded( $post_type ) );
 		register_trigger( new Trigger\Post\PostPublished( $post_type ) );
 		register_trigger( new Trigger\Post\PostUpdated( $post_type ) );
 		register_trigger( new Trigger\Post\PostPending( $post_type ) );
