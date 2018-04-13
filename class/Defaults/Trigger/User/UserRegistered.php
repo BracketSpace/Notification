@@ -22,8 +22,7 @@ class UserRegistered extends Abstracts\Trigger {
 
 		parent::__construct( 'wordpress/user_registered', __( 'User registration', 'notification' ) );
 
-		$this->add_action( 'register_new_user', 1000 );
-		$this->add_action( 'edit_user_created_user', 1000, 2 );
+		$this->add_action( 'user_register', 1000 );
 
 		$this->set_group( __( 'User', 'notification' ) );
 		$this->set_description( __( 'Fires when user registers new account', 'notification' ) );

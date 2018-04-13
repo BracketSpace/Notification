@@ -14,6 +14,7 @@ if ( notification_get_setting( 'triggers/post_types/types' ) ) {
 
 	foreach ( $post_types as $post_type ) {
 
+		register_trigger( new Trigger\Post\PostAdded( $post_type ) );
 		register_trigger( new Trigger\Post\PostPublished( $post_type ) );
 		register_trigger( new Trigger\Post\PostUpdated( $post_type ) );
 		register_trigger( new Trigger\Post\PostPending( $post_type ) );
@@ -51,6 +52,7 @@ if ( notification_get_setting( 'triggers/comment/types' ) ) {
 	foreach ( $comment_types as $comment_type ) {
 
 		register_trigger( new Trigger\Comment\CommentAdded( $comment_type ) );
+		register_trigger( new Trigger\Comment\CommentReplied( $comment_type ) );
 		register_trigger( new Trigger\Comment\CommentApproved( $comment_type ) );
 		register_trigger( new Trigger\Comment\CommentUnapproved( $comment_type ) );
 		register_trigger( new Trigger\Comment\CommentSpammed( $comment_type ) );

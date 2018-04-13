@@ -96,7 +96,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 			'name' => __( 'Comment author user display name', 'notification' ),
 		) ) );
 
-		// Post
+		// Post.
 		$this->add_merge_tag( new MergeTag\Post\PostID() );
 		$this->add_merge_tag( new MergeTag\Post\PostPermalink() );
 		$this->add_merge_tag( new MergeTag\Post\PostTitle() );

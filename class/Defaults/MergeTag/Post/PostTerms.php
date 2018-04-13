@@ -60,7 +60,7 @@ class PostTerms extends StringTag {
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
 				$post_terms = get_the_terms( $trigger->{ $this->post_type }, $this->taxonomy->name );
-				if ( empty( $taxonomies ) ) {
+				if ( empty( $post_terms ) ) {
 					return '';
 				}
 

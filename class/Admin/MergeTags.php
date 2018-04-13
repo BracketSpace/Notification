@@ -90,7 +90,7 @@ class MergeTags {
 	/**
 	 * Prints merge tags list
      *
-	 * @param  object $trigger Trigger object.
+	 * @param  Triggerable $trigger Trigger object.
 	 * @return void
 	 */
 	public function merge_tags_list( Triggerable $trigger ) {

@@ -16,6 +16,13 @@ use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
 class CommentAuthorUrl extends UrlTag {
 
 	/**
+	 * Trigger property to get the comment data from
+	 *
+	 * @var string
+	 */
+	protected $property_name = 'comment';
+
+	/**
      * Merge tag constructor
      *
      * @since 5.0.0
@@ -23,13 +30,17 @@ class CommentAuthorUrl extends UrlTag {
      */
     public function __construct( $params = array() ) {
 
+    	if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
+    		$this->property_name = $params['property_name'];
+    	}
+
 		$args = wp_parse_args( $params, array(
 			'slug'        => 'comment_author_url',
 			'name'        => __( 'Comment author URL', 'notification' ),
 			'description' => __( 'http://mywebsite.com', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return $trigger->comment->comment_author_url;
+				return $trigger->{ $this->property_name }->comment_author_url;
 			},
 		) );
 
@@ -43,7 +54,7 @@ class CommentAuthorUrl extends UrlTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-		return isset( $this->trigger->comment->comment_author_url );
+		return isset( $this->trigger->{ $this->property_name }->comment_author_url );
 	}
 
 }

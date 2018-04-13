@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.6
 Tested up to: 4.9.5
-Stable tag: 5.1.6
+Stable tag: 5.1.7
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -90,6 +90,7 @@ The Notification plugin supports any Custom Post Type out of the box.
 Comment / Pingback / Trackback:
 
 * New comment notification
+* Comment replied notification
 * Comment approved notification
 * Comment unapproved notification
 * Comment marked as spam notification
@@ -189,6 +190,13 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 5. Help tab with global Merge Tags
 
 == Changelog ==
+
+= 5.1.7 =
+* [Fixed] Post Terms merge tags not rendering the values, thanks to @stocker.
+* [Changed] register_new_user action for User registered trigger to user_register.
+* [Added] new_to_publish action for Post published trigger, thanks to @JBCSU.
+* [Added] Post Added trigger.
+* [Added] Comment replied trigger.
 
 = 5.1.6 =
 * [Fixed] Notice from PostTerms merge tags and from empty result.
