@@ -90,6 +90,7 @@ The Notification plugin supports any Custom Post Type out of the box.
 Comment / Pingback / Trackback:
 
 * New comment notification
+* Comment replied notification
 * Comment approved notification
 * Comment unapproved notification
 * Comment marked as spam notification
@@ -194,6 +195,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Fixed] Post Terms merge tags not rendering the values, thanks to @stocker.
 * [Added] new_to_publish action for Post published trigger, thanks to @JBCSU.
 * [Added] Post Added trigger.
+* [Added] Comment replied trigger.
 
 = 5.1.6 =
 * [Fixed] Notice from PostTerms merge tags and from empty result.
