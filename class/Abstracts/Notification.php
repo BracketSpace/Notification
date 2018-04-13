@@ -121,7 +121,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	/**
 	 * Adds form field to collection
      *
-	 * @param  object $field Field object.
+	 * @param  Interfaces\Fillable $field Field object.
 	 * @return $this
 	 */
 	public function add_form_field( Interfaces\Fillable $field ) {
