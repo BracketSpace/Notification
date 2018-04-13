@@ -34,7 +34,7 @@ class Internationalization {
 	/**
 	 * Class constructor
      *
-	 * @param object $files      instance of Files object.
+	 * @param Files  $files      instance of Files object.
 	 * @param string $textdomain textdomain string.
 	 */
 	public function __construct( Files $files, $textdomain ) {
