@@ -16,6 +16,13 @@ use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
 class CommentActionApprove extends UrlTag {
 
 	/**
+	 * Trigger property to get the comment data from
+	 *
+	 * @var string
+	 */
+	protected $property_name = 'comment';
+
+	/**
      * Merge tag constructor
      *
      * @since 5.0.0
@@ -23,11 +30,15 @@ class CommentActionApprove extends UrlTag {
      */
     public function __construct( $params = array() ) {
 
+    	if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
+    		$this->property_name = $params['property_name'];
+    	}
+
 		$args = wp_parse_args( $params, array(
 			'slug'        => 'comment_approve_action_url',
 			'name'        => __( 'Comment approve URL', 'notification' ),
 			'resolver'    => function( $trigger ) {
-				return admin_url( "comment.php?action=approve&c={$trigger->comment->comment_ID}#wpbody-content" );
+				return admin_url( "comment.php?action=approve&c={$trigger->{ $this->property_name }->comment_ID}#wpbody-content" );
 			},
 		) );
 
@@ -41,7 +52,7 @@ class CommentActionApprove extends UrlTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-		return isset( $this->trigger->comment->comment_ID );
+		return isset( $this->trigger->{ $this->property_name }->comment_ID );
 	}
 
 }

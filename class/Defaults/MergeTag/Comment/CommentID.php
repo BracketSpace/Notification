@@ -16,6 +16,13 @@ use BracketSpace\Notification\Defaults\MergeTag\IntegerTag;
 class CommentID extends IntegerTag {
 
 	/**
+	 * Trigger property to get the comment data from
+	 *
+	 * @var string
+	 */
+	protected $property_name = 'comment';
+
+	/**
      * Merge tag constructor
      *
      * @since 5.0.0
@@ -23,13 +30,17 @@ class CommentID extends IntegerTag {
      */
     public function __construct( $params = array() ) {
 
+    	if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
+    		$this->property_name = $params['property_name'];
+    	}
+
 		$args = wp_parse_args( $params,  array(
 			'slug'        => 'comment_ID',
 			'name'        => __( 'Comment ID', 'notification' ),
 			'description' => '35',
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return $trigger->comment->comment_ID;
+				return $trigger->{ $this->property_name }->comment_ID;
 			},
 		) );
 
@@ -43,7 +54,7 @@ class CommentID extends IntegerTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-		return isset( $this->trigger->comment->comment_ID );
+		return isset( $this->trigger->{ $this->property_name }->comment_ID );
 	}
 
 }
