@@ -16,6 +16,13 @@ use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 class CommentContent extends StringTag {
 
 	/**
+	 * Trigger property to get the comment data from
+	 *
+	 * @var string
+	 */
+	protected $property_name = 'comment';
+
+	/**
      * Merge tag constructor
      *
      * @since 5.0.0
@@ -23,13 +30,17 @@ class CommentContent extends StringTag {
      */
     public function __construct( $params = array() ) {
 
+    	if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
+    		$this->property_name = $params['property_name'];
+    	}
+
 		$args = wp_parse_args( $params, array(
 			'slug'        => 'comment_content',
 			'name'        => __( 'Comment content', 'notification' ),
 			'description' => __( 'Great post!', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return $trigger->comment->comment_content;
+				return $trigger->{ $this->property_name }->comment_content;
 			},
 		) );
 
@@ -43,7 +54,7 @@ class CommentContent extends StringTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-		return isset( $this->trigger->comment->comment_content );
+		return isset( $this->trigger->{ $this->property_name }->comment_content );
 	}
 
 }

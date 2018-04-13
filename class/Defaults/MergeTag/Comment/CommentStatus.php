@@ -16,6 +16,13 @@ use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 class CommentStatus extends StringTag {
 
 	/**
+	 * Trigger property to get the comment data from
+	 *
+	 * @var string
+	 */
+	protected $property_name = 'comment';
+
+	/**
      * Merge tag constructor
      *
      * @since 5.0.0
@@ -23,19 +30,23 @@ class CommentStatus extends StringTag {
      */
     public function __construct( $params = array() ) {
 
+    	if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
+    		$this->property_name = $params['property_name'];
+    	}
+
 		$args = wp_parse_args( $params, array(
 			'slug'        => 'comment_status',
 			'name'        => __( 'Comment status', 'notification' ),
 			'description' => __( 'Approved', 'notification' ),
 			'example'     => true,
 			'resolver'    => function() {
-				if ( $this->trigger->comment->comment_approved  == 1 ) {
+				if ( $this->trigger->{ $this->property_name }->comment_approved  == 1 ) {
 					return __( 'Approved', 'notification' );
-				} elseif ( $this->trigger->comment->comment_approved  == 0 ) {
+				} elseif ( $this->trigger->{ $this->property_name }->comment_approved  == 0 ) {
 					return __( 'Unapproved', 'notification' );
-				} elseif ( $this->trigger->comment->comment_approved  == 'spam' ) {
+				} elseif ( $this->trigger->{ $this->property_name }->comment_approved  == 'spam' ) {
 					return __( 'Marked as spam', 'notification' );
-				} elseif ( $this->trigger->comment->comment_approved  == 'trash' ) {
+				} elseif ( $this->trigger->{ $this->property_name }->comment_approved  == 'trash' ) {
 					return __( 'Trashed', 'notification' );
 				}
  			},
@@ -51,7 +62,7 @@ class CommentStatus extends StringTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-		return isset( $this->trigger->comment->comment_approved );
+		return isset( $this->trigger->{ $this->property_name }->comment_approved );
 	}
 
 }
