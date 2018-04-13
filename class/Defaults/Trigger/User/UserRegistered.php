@@ -36,8 +36,6 @@ class UserRegistered extends Abstracts\Trigger {
 	 */
 	public function action() {
 
-		file_put_contents( dirname( __FILE__ ) . '/current_action.log', print_r( current_action(), true ) . "\r\n\r\n", FILE_APPEND );
-
 		$this->user_id     = $this->callback_args[0];
 		$this->user_object = get_userdata( $this->user_id );
 		$this->user_meta   = get_user_meta( $this->user_id );
