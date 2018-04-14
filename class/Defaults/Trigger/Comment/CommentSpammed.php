@@ -52,7 +52,7 @@ class CommentSpammed extends CommentTrigger {
 		// fix for action being called too early, before WP marks the comment as spam.
 		$this->comment->comment_approved = 'spam';
 
-		parent::action();
+		parent::assign_properties();
 
 	}
 

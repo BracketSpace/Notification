@@ -54,7 +54,7 @@ class CommentApproved extends CommentTrigger {
 			return false;
 		}
 
-		parent::action();
+		parent::assign_properties();
 
 	}
 

@@ -66,7 +66,7 @@ class CommentReplied extends CommentTrigger {
 		$this->parent_comment_user_object->display_name  = $this->parent_comment->comment_author;
 		$this->parent_comment_user_object->user_email    = $this->parent_comment->comment_author_email;
 
-		parent::action();
+		parent::assign_properties();
 
 	}
 

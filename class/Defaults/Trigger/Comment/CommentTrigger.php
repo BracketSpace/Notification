@@ -46,7 +46,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 	 *
 	 * @return void
 	 */
-	public function action() {
+	public function assign_properties() {
 
 		$this->user_object                = new \StdClass();
 		$this->user_object->ID            = ( $this->comment->user_id ) ? $this->comment->user_id : 0;

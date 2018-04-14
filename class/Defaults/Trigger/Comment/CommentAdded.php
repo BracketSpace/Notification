@@ -49,7 +49,7 @@ class CommentAdded extends CommentTrigger {
 			return false;
 		}
 
-		parent::action();
+		parent::assign_properties();
 
 	}
 

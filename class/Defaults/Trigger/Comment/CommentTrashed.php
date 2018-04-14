@@ -52,7 +52,7 @@ class CommentTrashed extends CommentTrigger {
 		// fix for action being called too early, before WP marks the comment as trashed.
 		$this->comment->comment_approved = 'trash';
 
-		parent::action();
+		parent::assign_properties();
 
 	}
 
