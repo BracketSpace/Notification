@@ -22,7 +22,7 @@ class MediaAdded extends Abstracts\Trigger {
 
 		parent::__construct( 'wordpress/media_added',  __( 'Media added', 'notification' ) );
 
-		$this->add_action( 'add_attachment', 10, 2 );
+		$this->add_action( 'add_attachment', 10, 1 );
 		$this->set_group( __( 'Media', 'notification' ) );
 		$this->set_description( __( 'Fires when new attachment is added', 'notification' ) );
 
@@ -31,11 +31,12 @@ class MediaAdded extends Abstracts\Trigger {
 	/**
 	 * Assigns action callback args to object
 	 *
+	 * @param integer $attachment_id Attachment Post ID.
 	 * @return void
 	 */
-	public function action() {
+	public function action( $attachment_id ) {
 
-		$this->attachment  = get_post( $this->callback_args[0] );
+		$this->attachment    = get_post( $attachment_id );
 		$this->user_id     = $this->attachment->post_author;
 		$this->user_object = get_userdata( $this->user_id );
 
