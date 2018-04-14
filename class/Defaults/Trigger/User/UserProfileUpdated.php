@@ -31,11 +31,12 @@ class UserProfileUpdated extends Abstracts\Trigger {
 	/**
 	 * Assigns action callback args to object
 	 *
+	 * @param integer $user_id User ID.
 	 * @return void
 	 */
-	public function action() {
+	public function action( $user_id ) {
 
-		$this->user_id     = $this->callback_args[1]->ID;
+		$this->user_id     = $user_id;
 		$this->user_object = get_userdata( $this->user_id );
 		$this->user_meta   = get_user_meta( $this->user_id );
 

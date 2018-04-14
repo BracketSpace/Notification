@@ -22,7 +22,7 @@ class UserLogout extends Abstracts\Trigger {
 
 		parent::__construct( 'wordpress/user_logout', __( 'User logout', 'notification' ) );
 
-		$this->add_action( 'wp_logout', 10, 2 );
+		$this->add_action( 'wp_logout', 10, 0 );
 		$this->set_group( __( 'User', 'notification' ) );
 		$this->set_description( __( 'Fires when user log out from WordPress', 'notification' ) );
 
