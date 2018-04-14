@@ -194,6 +194,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 = [Next] =
 * [Fixed] User ID assignment in User deleted trigger, thanks to @Matthewnie.
 * [Changed] Trigger `action` methods has been unified with callback method parameters.
+* [Added] Dynamic property setting for Attachment merge tags.
 
 = 5.1.7 =
 * [Fixed] Post Terms merge tags not rendering the values, thanks to @stocker.
