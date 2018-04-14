@@ -191,6 +191,9 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] User ID assignment in User deleted trigger, thanks to @Matthewnie.
+
 = 5.1.7 =
 * [Fixed] Post Terms merge tags not rendering the values, thanks to @stocker.
 * [Changed] register_new_user action for User registered trigger to user_register.
