@@ -22,7 +22,7 @@ class UserDeleted extends Abstracts\Trigger {
 
 		parent::__construct( 'wordpress/user_deleted', __( 'User deleted', 'notification' ) );
 
-		$this->add_action( 'delete_user', 10, 2 );
+		$this->add_action( 'delete_user', 10, 1 );
 		$this->set_group( __( 'User', 'notification' ) );
 		$this->set_description( __( 'Fires when user account is deleted', 'notification' ) );
 
@@ -31,11 +31,12 @@ class UserDeleted extends Abstracts\Trigger {
 	/**
 	 * Assigns action callback args to object
 	 *
+	 * @param integer $user_id User ID.
 	 * @return void
 	 */
-	public function action() {
+	public function action( $user_id ) {
 
-		$this->user_id     = $this->callback_args[0];
+		$this->user_id     = $user_id;
 		$this->user_object = get_userdata( $this->user_id );
 		$this->user_meta   = get_user_meta( $this->user_id );
 

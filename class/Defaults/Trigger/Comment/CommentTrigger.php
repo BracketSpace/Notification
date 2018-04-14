@@ -43,9 +43,8 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 
 	/**
 	 * Assigns action callback args to object
-	 * Return `false` if you want to abort the trigger execution
 	 *
-	 * @return mixed void or false if no notifications should be sent
+	 * @return void
 	 */
 	public function action() {
 

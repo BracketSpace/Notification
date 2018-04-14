@@ -42,14 +42,13 @@ class PostPublished extends PostTrigger {
 
 	/**
 	 * Assigns action callback args to object
-	 * Return `false` if you want to abort the trigger execution
 	 *
+	 * @param object $post Post object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function action() {
+	public function action( $post ) {
 
-		// WP_Post object.
-		$this->{ $this->post_type } = $this->callback_args[0];
+		$this->{ $this->post_type } = $post;
 
 		if ( $this->{ $this->post_type }->post_type != $this->post_type ) {
 			return false;
