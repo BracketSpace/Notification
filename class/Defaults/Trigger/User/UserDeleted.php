@@ -35,7 +35,7 @@ class UserDeleted extends Abstracts\Trigger {
 	 */
 	public function action() {
 
-		$this->user_id     = $this->callback_args[1]->ID;
+		$this->user_id     = $this->callback_args[0];
 		$this->user_object = get_userdata( $this->user_id );
 		$this->user_meta   = get_user_meta( $this->user_id );
 
