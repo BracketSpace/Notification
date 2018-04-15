@@ -78,7 +78,8 @@ class Email extends Abstracts\Notification {
 	 */
 	public function send( Triggerable $trigger ) {
 
-		$html_mime = apply_filters( 'notification/' . $this->get_slug() . '/use_html_mime', true, $this, $trigger );
+		$default_html_mime = notification_get_setting( 'notifications/email/type' ) == 'html';
+		$html_mime         = apply_filters( 'notification/' . $this->get_slug() . '/use_html_mime', $default_html_mime, $this, $trigger );
 
 		if ( $html_mime ) {
 			add_filter( 'wp_mail_content_type', array( $this, 'set_mail_type' ) );
@@ -91,7 +92,7 @@ class Email extends Abstracts\Notification {
 		$subject = apply_filters( 'notification/' . $this->get_slug() . '/subject', $data['subject'], $this, $trigger );
 
 		$message = apply_filters( 'notification/' . $this->get_slug() . '/message/pre', $data['body'], $this, $trigger );
-		if ( apply_filters( 'notification/' . $this->get_slug() . '/message/use_autop', true, $this, $trigger ) ) {
+		if ( apply_filters( 'notification/' . $this->get_slug() . '/message/use_autop', $html_mime, $this, $trigger ) ) {
 			$message = wpautop( $message );
 		}
 		$message = apply_filters( 'notification/' . $this->get_slug() . '/message', $message, $this, $trigger );
