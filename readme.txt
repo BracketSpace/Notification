@@ -196,6 +196,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Changed] Trigger `action` methods has been unified with callback method parameters.
 * [Added] Dynamic property setting for Attachment merge tags.
 * [Added] Better post updated messages while saving the Notification.
+* [Added] Option to change Email MIME Type, now you can send HTML or Plain text.
 
 = 5.1.7 =
 * [Fixed] Post Terms merge tags not rendering the values, thanks to @stocker.
