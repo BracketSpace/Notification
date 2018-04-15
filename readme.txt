@@ -194,6 +194,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 = [Next] =
 * [Fixed] User ID assignment in User deleted trigger, thanks to @Matthewnie.
 * [Changed] Trigger `action` methods has been unified with callback method parameters.
+* [Changed] The Merge Tags are now resolved only while they are used.
 * [Added] Dynamic property setting for Attachment merge tags.
 * [Added] Better post updated messages while saving the Notification.
 * [Added] Option to change Email MIME Type, now you can send HTML or Plain text.
