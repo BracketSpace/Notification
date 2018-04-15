@@ -282,6 +282,19 @@ class Settings extends SettingsAPI {
 				),
 				'render'   => array( new CoreFields\Checkbox(), 'input' ),
 				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+			) )
+			->add_field( array(
+				'name'     => __( 'Message type', 'notification' ),
+				'slug'     => 'type',
+				'default'  => 'html',
+				'addons'   => array(
+					'options' => array(
+						'html'  => __( 'HTML', 'notification' ),
+						'plain' => __( 'Plain text', 'notification' ),
+					)
+				),
+				'render'   => array( new CoreFields\Select(), 'input' ),
+				'sanitize' => array( new CoreFields\Select(), 'sanitize' ),
 			) );
 
 		$notifications->add_group( __( 'Webhook', 'notification' ), 'webhook' )
