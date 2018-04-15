@@ -142,9 +142,14 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 	 * It also check if the value is correct type
 	 * and sanitizes it
 	 *
-	 * @return void
+	 * @return mixed the resolved value
 	 */
 	public function resolve() {
+
+		if ( $this->is_resolved() ) {
+			return $this->get_value();
+		}
+
 		$value = call_user_func( $this->resolver, $this->get_trigger() );
 
 		if ( ! $this->validate( $value ) ) {
@@ -155,6 +160,9 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 		$this->resolved = true;
 
 		$this->value = apply_filters( 'notification/merge_tag/value/resolve', $this->sanitize( $value ) );
+
+		return $this->get_value();
+
 	}
 
 	/**
