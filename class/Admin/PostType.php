@@ -88,7 +88,7 @@ class PostType {
 	 * @param  array $messages Messages.
 	 * @return array
 	 */
-	function post_updated_messages( $messages ) {
+	public function post_updated_messages( $messages ) {
 
 		$post = get_post();
 
