@@ -82,6 +82,35 @@ class PostType {
 	}
 
 	/**
+	 * Filters the posu updated messages
+	 *
+	 * @since  [Next]
+	 * @param  array $messages Messages.
+	 * @return array
+	 */
+	function post_updated_messages( $messages ) {
+
+		$post = get_post();
+
+		$messages['notification'] = array(
+			0  => '',
+			1  => __( 'Notification updated.' ),
+			2  => '',
+			3  => '',
+			4  => __( 'Notification updated.' ),
+			5  => '',
+			6  => __( 'Notification saved.' ),
+			7  => __( 'Notification saved.' ),
+			8  => '',
+			9  => '',
+			10 => '',
+		);
+
+		return $messages;
+
+	}
+
+	/**
 	 * Moves the metaboxes under title in WordPress
      *
 	 * @param  object $post WP_Post.

@@ -88,6 +88,7 @@ class Runtime {
 		add_action( 'admin_init', array( $this->admin_cron, 'register_check_updates_event' ) );
 
 		add_action( 'init', array( $this->admin_post_type, 'register' ) );
+		add_filter( 'post_updated_messages', array( $this->admin_post_type, 'post_updated_messages' ) );
 		add_action( 'edit_form_after_title', array( $this->admin_post_type, 'render_trigger_select' ) );
 		add_action( 'edit_form_after_title', array( $this->admin_post_type, 'render_notification_metaboxes' ), 20 );
 		add_action( 'add_meta_boxes', array( $this->admin_post_type, 'add_save_meta_box' ) );
