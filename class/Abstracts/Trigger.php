@@ -265,23 +265,6 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Resolves all registered merge tags
-     *
-	 * @return void
-	 */
-	private function resolve_merge_tags() {
-
-		foreach ( $this->get_merge_tags() as $tag ) {
-			if ( $tag->check_requirements() ) {
-				$tag->resolve();
-			} elseif ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				trigger_error( 'Requirements for the `' . $tag->get_slug() . '` merge tag hasn\'t been met', E_USER_ERROR );
-			}
-		}
-
-	}
-
-	/**
 	 * Resolves all notifications fields with merge tags
      *
 	 * @return void
@@ -373,7 +356,6 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			return;
 		}
 
-		$this->resolve_merge_tags();
 		$this->set_notifications();
 		$this->resolve_fields();
 		$this->roll_out();

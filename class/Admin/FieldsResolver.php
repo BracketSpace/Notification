@@ -29,20 +29,11 @@ class FieldsResolver {
 	protected $notification;
 
 	/**
-	 * Tags to replace
-	 * Numeric array with full tags including {}
+	 * Merge Tags
 	 *
 	 * @var array
 	 */
-	protected $tags;
-
-	/**
-	 * Replacements for tags
-	 * Numeric array with tags values
-	 *
-	 * @var array
-	 */
-	protected $replacements;
+	protected $merge_tags;
 
 	/**
 	 * FieldsResolver contructor
@@ -54,9 +45,9 @@ class FieldsResolver {
 
 		$this->notification = $notification;
 
+		// Sort merge tags.
 		foreach ( $merge_tags as $merge_tag ) {
-			$this->tags[]         = '{' . $merge_tag->get_slug() . '}';
-			$this->replacements[] = $merge_tag->get_value();
+			$this->merge_tags[ $merge_tag->get_slug() ] = $merge_tag;
 		}
 
 	}
@@ -103,15 +94,15 @@ class FieldsResolver {
 
 			$value = apply_filters( 'notificaiton/notification/field/resolving', $value, $this->tags, $this->replacements );
 
-			$resolved = str_replace( $this->tags, $this->replacements, $value );
+			$resolved = preg_replace_callback( $this->merge_tag_pattern, array( $this, 'resolve_match' ), $value );
 
 			$strip_metgetags = notification_get_setting( 'general/content/strip_empty_tags' );
 			if ( apply_filters( 'notification/value/strip_empty_mergetags', $strip_metgetags ) ) {
 				$resolved = preg_replace( $this->merge_tag_pattern, '', $resolved );
 			}
 
-			$string_shortcodes = notification_get_setting( 'general/content/strip_shortcodes' );
-			if ( apply_filters( 'notification/value/strip_shortcodes', $string_shortcodes ) ) {
+			$strip_shortcodes = notification_get_setting( 'general/content/strip_shortcodes' );
+			if ( apply_filters( 'notification/value/strip_shortcodes', $strip_shortcodes ) ) {
 				$resolved = strip_shortcodes( $resolved );
 			}
 
@@ -120,6 +111,25 @@ class FieldsResolver {
 		}
 
 		return $resolved;
+
+	}
+
+	/**
+	 * Resolves the Merge Tag with a real value
+	 *
+	 * @since  [Next]
+	 * @param  array $matches Matches from preg_replace.
+	 * @return string
+	 */
+	public function resolve_match( $matches ) {
+
+		$tag_slug = $matches[1];
+
+		if ( ! isset( $this->merge_tags[ $tag_slug ] ) ) {
+			return '';
+		}
+
+		return $this->merge_tags[ $tag_slug ]->resolve();
 
 	}
 
