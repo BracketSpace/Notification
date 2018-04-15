@@ -38,13 +38,22 @@ class Email extends Abstracts\Notification {
 			'name'  => 'subject',
 		) ) );
 
-		$this->add_form_field( new Field\EditorField( array(
-			'label'    => __( 'Body', 'notification' ),
-			'name'     => 'body',
-			'settings' => array(
-				'media_buttons' => false
-			)
-		) ) );
+		if ( notification_get_setting( 'notifications/email/type' ) == 'html' ) {
+			$body_field = new Field\EditorField( array(
+				'label'    => __( 'Body', 'notification' ),
+				'name'     => 'body',
+				'settings' => array(
+					'media_buttons' => false
+				),
+			) );
+		} else {
+			$body_field = new Field\TextareaField( array(
+				'label'    => __( 'Body', 'notification' ),
+				'name'     => 'body',
+			) );
+		}
+
+		$this->add_form_field( $body_field );
 
 		$this->add_form_field( new Field\RecipientsField( array(
 			'notification' => $this->get_slug(),
