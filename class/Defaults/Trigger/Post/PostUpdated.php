@@ -52,7 +52,10 @@ class PostUpdated extends PostTrigger {
 			return false;
 		}
 
-		if ( empty( $this->{ $this->post_type }->post_name ) || $post_before->post_status != 'publish'  || $this->{ $this->post_type }->post_status == 'trash' ) {
+		// Filter the post statuses for which the notification should be sent. By default it will be send only if you update already published post.
+		$updated_post_statuses = apply_filters( 'notifcation/trigger/wordpress/post/updated/statuses', array( 'publish' ), $this->post_type );
+
+		if ( empty( $this->{ $this->post_type }->post_name ) || ! in_array( $post_before->post_status, $updated_post_statuses )  || $this->{ $this->post_type }->post_status == 'trash' ) {
 			return false;
 		}
 
