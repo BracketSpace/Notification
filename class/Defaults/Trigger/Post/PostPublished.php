@@ -73,8 +73,14 @@ class PostPublished extends PostTrigger {
 	 */
 	public function postponed_action() {
 
+		if ( function_exists( 'acf' ) ) {
+			$action_to_check = 'acf/save_post';
+		} else {
+			$action_to_check = 'save_post';
+		}
+
 		// fix for the action being called twice by WordPress.
-		if ( did_action( 'save_post' ) > 1 ) {
+		if ( did_action( $action_to_check ) > 1 ) {
 			return false;
 		}
 
