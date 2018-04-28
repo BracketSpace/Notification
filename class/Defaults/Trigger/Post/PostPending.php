@@ -56,7 +56,12 @@ class PostPending extends PostTrigger {
 		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified );
 
 		// Postpone the action to make sure all the meta has been saved.
-		$this->postpone_action( 'save_post', 1000 );
+		if ( function_exists( 'acf' ) ) {
+			$postponed_action = 'acf/save_post';
+		} else {
+			$postponed_action = 'save_post';
+		}
+		$this->postpone_action( $postponed_action, 1000 );
 
 	}
 
@@ -69,13 +74,11 @@ class PostPending extends PostTrigger {
 	public function postponed_action() {
 
 		if ( function_exists( 'acf' ) ) {
-			$action_to_check = 'acf/save_post';
-		} else {
-			$action_to_check = 'save_post';
+			return;
 		}
 
 		// fix for the action being called twice by WordPress.
-		if ( did_action( $action_to_check ) > 1 ) {
+		if ( did_action( 'save_post' ) > 1 ) {
 			return false;
 		}
 
