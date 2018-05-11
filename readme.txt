@@ -201,6 +201,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Fixed] Field value filter name.
 * [Fixed] Notices.
 * [Fixed] Empty email body not being sent.
+* [Fixed] Notification form attributes escaping.
 * [Changed] Trigger `action` methods has been unified with callback method parameters.
 * [Changed] The Merge Tags are now resolved only while they are used.
 * [Added] Dynamic property setting for Attachment merge tags.
