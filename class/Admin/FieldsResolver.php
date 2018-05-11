@@ -92,7 +92,7 @@ class FieldsResolver {
 
 		} else {
 
-			$value = apply_filters( 'notificaiton/notification/field/resolving', $value, $this->tags, $this->replacements );
+			$value = apply_filters( 'notificaiton/notification/field/resolving', $value, $this->merge_tags );
 
 			$resolved = preg_replace_callback( $this->merge_tag_pattern, array( $this, 'resolve_match' ), $value );
 
@@ -106,7 +106,7 @@ class FieldsResolver {
 				$resolved = strip_shortcodes( $resolved );
 			}
 
-			$resolved = apply_filters( 'notificaiton/notification/field/resolved', $resolved, $this->tags, $this->replacements );
+			$resolved = apply_filters( 'notificaiton/notification/field/resolved', $resolved, $this->merge_tags );
 
 		}
 
