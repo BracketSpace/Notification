@@ -97,6 +97,11 @@ class Email extends Abstracts\Notification {
 		}
 		$message = apply_filters( 'notification/' . $this->get_slug() . '/message', $message, $this, $trigger );
 
+		// Fix for wp_mail not being processed with empty message.
+		if ( empty( $message ) ) {
+			$message = ' ';
+		}
+
 		$headers     = apply_filters( 'notification/' . $this->get_slug() . '/headers', array(), $this, $trigger );
 		$attachments = apply_filters( 'notification/' . $this->get_slug() . '/attachments', array(), $this, $trigger );
 
