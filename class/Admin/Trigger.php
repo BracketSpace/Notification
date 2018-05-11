@@ -27,27 +27,6 @@ class Trigger {
 	}
 
 	/**
-	 * Add metabox for trigger
-     *
-	 * @return void
-	 */
-	public function add_meta_box() {
-
-		add_meta_box(
-            'notification_trigger',
-            __( 'Trigger', 'notification' ),
-            array( $this, 'trigger_metabox' ),
-            'notification',
-            'after_subject',
-            'high'
-        );
-
-		// enable metabox.
-        add_filter( 'notification/admin/allow_metabox/notification_trigger', '__return_true' );
-
-	}
-
-	/**
 	 * Prints trigger select
      *
 	 * @param  object $post current WP_Post.
