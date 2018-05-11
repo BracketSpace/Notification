@@ -42,6 +42,8 @@ class Scripts {
 
 	/**
 	 * Enqueue scripts and styles for admin
+	 *
+	 * @action admin_enqueue_scripts
      *
 	 * @param  string $page_hook current page hook.
 	 * @return void

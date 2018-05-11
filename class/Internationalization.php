@@ -44,6 +44,8 @@ class Internationalization {
 
 	/**
 	 * Loads plugin textdomain
+	 *
+	 * @action plugins_loaded
      *
 	 * @return void
 	 */
@@ -53,6 +55,8 @@ class Internationalization {
 
 	/**
 	 * Fixes admin strings returning
+	 *
+	 * @action init
      *
 	 * @return void
 	 */

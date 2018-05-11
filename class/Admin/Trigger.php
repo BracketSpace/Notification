@@ -66,6 +66,8 @@ class Trigger {
 
 	/**
 	 * Save the trigger in post meta (key: _trigger)
+	 *
+	 * @action save_post_notification
      *
 	 * @param  integer $post_id current post ID.
 	 * @param  object  $post    WP_Post object.

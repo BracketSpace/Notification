@@ -26,6 +26,8 @@ class ScreenHelp {
 
 	/**
 	 * Adds help tabs and useful links
+	 *
+	 * @action current_screen
      *
      * @param  object $screen current WP_Screen.
 	 * @return void

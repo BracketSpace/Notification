@@ -283,6 +283,8 @@ class PostData {
 
 	/**
 	 * Changes notification status from AJAX call
+	 *
+	 * @action wp_ajax_change_notification_status
      *
 	 * @return void
 	 */

@@ -29,6 +29,8 @@ class Recipients {
 
 	/**
 	 * Renders metabox for AJAX
+	 *
+	 * @action wp_ajax_get_recipient_input
      *
 	 * @return void
 	 */

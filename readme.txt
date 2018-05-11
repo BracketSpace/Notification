@@ -207,6 +207,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Added] Filter for post statuses which controls when the "Updated" notification should be send.
 * [Added] Notification Form fields value filter.
 * [Added] Notification Form row class.
+* [Added] Doc Hooks class for better actions and filters definitions.
 
 = 5.1.7 =
 * [Fixed] Post Terms merge tags not rendering the values, thanks to @stocker.

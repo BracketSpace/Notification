@@ -25,6 +25,8 @@ class Settings extends SettingsAPI {
 	/**
 	 * Register Settings page under plugin's menu
 	 *
+	 * @action admin_menu 20
+	 *
 	 * @return void
 	 */
 	public function register_page() {
@@ -60,6 +62,8 @@ class Settings extends SettingsAPI {
 
 	/**
 	 * Registers Settings
+	 *
+	 * @action wp_loaded
 	 *
 	 * @return void
 	 */
@@ -323,6 +327,8 @@ class Settings extends SettingsAPI {
 
 	/**
 	 * Filters post types from supported posts
+	 *
+	 * @filter notification/settings/triggers/valid_post_types
 	 *
 	 * @since  5.0.0
 	 * @param  array $post_types post types.

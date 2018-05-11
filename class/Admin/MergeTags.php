@@ -30,6 +30,8 @@ class MergeTags {
 
 	/**
 	 * Add metabox for trigger
+	 *
+	 * @action add_meta_boxes
      *
 	 * @return void
 	 */
@@ -111,6 +113,8 @@ class MergeTags {
 
 	/**
 	 * Renders metabox for AJAX
+	 *
+	 * @action wp_ajax_get_merge_tags_for_trigger
      *
 	 * @return void
 	 */
