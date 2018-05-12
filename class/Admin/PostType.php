@@ -88,7 +88,7 @@ class PostType {
 	 *
 	 * @filter post_updated_messages
 	 *
-	 * @since  [Next]
+	 * @since  5.2.0
 	 * @param  array $messages Messages.
 	 * @return array
 	 */

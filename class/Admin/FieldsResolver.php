@@ -117,7 +117,7 @@ class FieldsResolver {
 	/**
 	 * Resolves the Merge Tag with a real value
 	 *
-	 * @since  [Next]
+	 * @since  5.2.0
 	 * @param  array $matches Matches from preg_replace.
 	 * @return string
 	 */

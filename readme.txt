@@ -195,7 +195,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
-= [Next] =
+= 5.2.0 =
 * [Fixed] User ID assignment in User deleted trigger, thanks to @Matthewnie.
 * [Fixed] ACF postponed action bail.
 * [Fixed] Field value filter name.
