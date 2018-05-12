@@ -22,7 +22,7 @@ class MediaUpdated extends Abstracts\Trigger {
 
 		parent::__construct( 'wordpress/media_updated',  __( 'Media updated', 'notification' ) );
 
-		$this->add_action( 'attachment_updated', 10, 2 );
+		$this->add_action( 'attachment_updated', 10, 1 );
 		$this->set_group( __( 'Media', 'notification' ) );
 		$this->set_description( __( 'Fires when attachment is updated', 'notification' ) );
 
@@ -31,11 +31,12 @@ class MediaUpdated extends Abstracts\Trigger {
 	/**
 	 * Assigns action callback args to object
 	 *
+	 * @param integer $attachment_id Attachment Post ID.
 	 * @return void
 	 */
-	public function action() {
+	public function action( $attachment_id ) {
 
-		$this->attachment    = get_post( $this->callback_args[0] );
+		$this->attachment    = get_post( $attachment_id );
 		$this->user_id       = get_current_user_id();
 		$this->user_object   = get_userdata( $this->user_id );
 		$this->updating_user = get_userdata( get_current_user_id() );

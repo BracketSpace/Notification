@@ -56,6 +56,8 @@ class Notifications {
 
 	/**
 	 * Save the notifications in post meta
+	 *
+	 * @action save_post_notification
      *
 	 * @param  integer $post_id current post ID.
 	 * @param  object  $post    WP_Post object.

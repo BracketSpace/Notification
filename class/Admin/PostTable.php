@@ -14,6 +14,8 @@ class PostTable {
 
 	/**
 	 * Adds custom table columns
+	 *
+	 * @filter manage_notification_posts_columns
      *
 	 * @param  array $columns current columns.
 	 * @return array          filtered columns
@@ -38,6 +40,8 @@ class PostTable {
 
 	/**
 	 * Content for custom columns
+	 *
+	 * @action manage_notification_posts_custom_column
      *
 	 * @param  string  $column  column slug.
 	 * @param  integer $post_id post ID.
@@ -86,6 +90,8 @@ class PostTable {
 
 	/**
 	 * Remove all inline states to be displayed on notifications table
+	 *
+	 * @filter display_post_states
      *
 	 * @param array   $post_states an array of post display states.
 	 * @param WP_Post $post        the current post object.
@@ -103,6 +109,8 @@ class PostTable {
 
 	/**
 	 * Remove quick edit from post inline actions
+	 *
+	 * @filter post_row_actions
      *
 	 * @param  array  $row_actions array with action links.
 	 * @param  object $post        WP_Post object.

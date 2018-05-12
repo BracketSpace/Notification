@@ -124,6 +124,7 @@ class PostData {
 
 		// set field values.
 		$field_values = (array) $this->get_meta( $this->notification_data_key . $notification->get_slug() );
+		$field_values = apply_filters( 'notification/notification/form_fields/values', $field_values, $notification );
 
 		foreach ( $notification->get_form_fields() as $field ) {
 
@@ -282,6 +283,8 @@ class PostData {
 
 	/**
 	 * Changes notification status from AJAX call
+	 *
+	 * @action wp_ajax_change_notification_status
      *
 	 * @return void
 	 */

@@ -43,11 +43,10 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 
 	/**
 	 * Assigns action callback args to object
-	 * Return `false` if you want to abort the trigger execution
 	 *
-	 * @return mixed void or false if no notifications should be sent
+	 * @return void
 	 */
-	public function action() {
+	public function assign_properties() {
 
 		$this->user_object                = new \StdClass();
 		$this->user_object->ID            = ( $this->comment->user_id ) ? $this->comment->user_id : 0;

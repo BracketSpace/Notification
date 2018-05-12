@@ -16,6 +16,13 @@ use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 class AttachmentTitle extends StringTag {
 
 	/**
+	 * Trigger property to get the attachment data from
+	 *
+	 * @var string
+	 */
+	protected $property_name = 'attachment';
+
+	/**
      * Merge tag constructor
      *
      * @since 5.0.0
@@ -23,13 +30,17 @@ class AttachmentTitle extends StringTag {
      */
     public function __construct( $params = array() ) {
 
+    	if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
+    		$this->property_name = $params['property_name'];
+    	}
+
     	$args = wp_parse_args( $params, array(
 			'slug'        => 'attachment_title',
 			'name'        => __( 'Attachment title', 'notification' ),
 			'description' => __( 'Forest landscape', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return $trigger->attachment->post_title;
+				return $trigger->{ $this->property_name }->post_title;
 			},
 		) );
 
@@ -43,7 +54,7 @@ class AttachmentTitle extends StringTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-		return isset( $this->trigger->attachment->post_title );
+		return isset( $this->trigger->{ $this->property_name }->post_title );
 	}
 
 }

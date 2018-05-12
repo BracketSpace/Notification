@@ -28,7 +28,7 @@ class PostPending extends PostTrigger {
 			'name'      => sprintf( __( '%s sent for review', 'notification' ), parent::get_post_type_name( $post_type ) ),
 		) );
 
-		$this->add_action( 'pending_' . $post_type, 10, 2 );
+		$this->add_action( 'transition_post_status', 10, 3 );
 
 		// translators: 1. singular post name, 2. post type slug.
 		$this->set_description( sprintf( __( 'Fires when %s (%s) is sent for review', 'notification' ), parent::get_post_type_name( $post_type ), $post_type ) );
@@ -37,17 +37,21 @@ class PostPending extends PostTrigger {
 
 	/**
 	 * Assigns action callback args to object
-	 * Return `false` if you want to abort the trigger execution
 	 *
+	 * @param string $new_status New post status.
+	 * @param string $old_status Old post status.
+	 * @param object $post       Post object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function action() {
+	public function action( $new_status, $old_status, $post ) {
 
-		$post_id = $this->callback_args[0];
-		// WP_Post object.
-		$this->{ $this->post_type } = $this->callback_args[1];
+		$this->{ $this->post_type } = $post;
 
 		if ( $this->{ $this->post_type }->post_type != $this->post_type ) {
+			return false;
+		}
+
+		if ( $old_status == 'pending' || $new_status != 'pending' ) {
 			return false;
 		}
 
@@ -57,7 +61,12 @@ class PostPending extends PostTrigger {
 		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified );
 
 		// Postpone the action to make sure all the meta has been saved.
-		$this->postpone_action( 'save_post', 1000 );
+		if ( function_exists( 'acf' ) ) {
+			$postponed_action = 'acf/save_post';
+		} else {
+			$postponed_action = 'save_post';
+		}
+		$this->postpone_action( $postponed_action, 1000 );
 
 	}
 
@@ -68,6 +77,10 @@ class PostPending extends PostTrigger {
 	 * @return mixed void or false if no notifications should be sent
 	 */
 	public function postponed_action() {
+
+		if ( function_exists( 'acf' ) ) {
+			return;
+		}
 
 		// fix for the action being called twice by WordPress.
 		if ( did_action( 'save_post' ) > 1 ) {

@@ -36,15 +36,15 @@ class CommentUnapproved extends CommentTrigger {
 
 	/**
 	 * Assigns action callback args to object
-	 * Return `false` if you want to abort the trigger execution
 	 *
+	 * @param string $comment_new_status New comment status.
+	 * @param string $comment_old_status Old comment status.
+	 * @param object $comment            Comment object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function action() {
+	public function action( $comment_new_status, $comment_old_status, $comment ) {
 
-		$comment_new_status = $this->callback_args[0];
-		$comment_old_status = $this->callback_args[1];
-		$this->comment      = $this->callback_args[2];
+		$this->comment = $comment;
 
 		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
 			return false;
@@ -54,7 +54,7 @@ class CommentUnapproved extends CommentTrigger {
 			return false;
 		}
 
-		parent::action();
+		parent::assign_properties();
 
 	}
 

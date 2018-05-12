@@ -30,6 +30,8 @@ class PostType {
 
 	/**
 	 * Registers Notification post type
+	 *
+	 * @action init
      *
 	 * @return void
 	 */
@@ -82,7 +84,40 @@ class PostType {
 	}
 
 	/**
+	 * Filters the posu updated messages
+	 *
+	 * @filter post_updated_messages
+	 *
+	 * @since  5.2.0
+	 * @param  array $messages Messages.
+	 * @return array
+	 */
+	public function post_updated_messages( $messages ) {
+
+		$post = get_post();
+
+		$messages['notification'] = array(
+			0  => '',
+			1  => __( 'Notification updated.', 'notification' ),
+			2  => '',
+			3  => '',
+			4  => __( 'Notification updated.', 'notification' ),
+			5  => '',
+			6  => __( 'Notification saved.', 'notification' ),
+			7  => __( 'Notification saved.', 'notification' ),
+			8  => '',
+			9  => '',
+			10 => '',
+		);
+
+		return $messages;
+
+	}
+
+	/**
 	 * Moves the metaboxes under title in WordPress
+	 *
+	 * @action edit_form_after_title
      *
 	 * @param  object $post WP_Post.
 	 * @return void
@@ -101,6 +136,8 @@ class PostType {
 	/**
 	 * Adds Notifications section title on post edit screen,
 	 * just under the Trigger and prints Notifications metaboxes
+	 *
+	 * @action edit_form_after_title 20
      *
 	 * @param  object $post WP_Post.
 	 * @return void
@@ -125,6 +162,8 @@ class PostType {
 
 	/**
 	 * Adds metabox with Save button
+	 *
+	 * @action add_meta_boxes
      *
 	 * @return void
 	 */
@@ -146,6 +185,8 @@ class PostType {
 
 	/**
 	 * Saves post status in relation to on/off switch
+	 *
+	 * @filter wp_insert_post_data 100
 	 *
 	 * @since  5.0.0
 	 * @param  array $data    post data.
@@ -201,6 +242,8 @@ class PostType {
 
 	/**
 	 * Cleans up all metaboxes to keep the screen nice and clean
+	 *
+	 * @action add_meta_boxes 999999999
      *
 	 * @return void
 	 */

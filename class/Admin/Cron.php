@@ -17,6 +17,8 @@ class Cron {
 	/**
 	 * Registers custom intervals for Cron
 	 *
+	 * @filter cron_schedules
+	 *
 	 * @since  5.1.5
 	 * @param  array $intervals intervals.
 	 * @return array
@@ -54,6 +56,8 @@ class Cron {
 
 	/**
 	 * Registers and reschedules the check updates event
+	 *
+	 * @action admin_init
 	 *
 	 * @since  5.1.5
 	 * @return void

@@ -36,15 +36,15 @@ class CommentReplied extends CommentTrigger {
 
 	/**
 	 * Assigns action callback args to object
-	 * Return `false` if you want to abort the trigger execution
 	 *
+	 * @param string $comment_new_status New comment status.
+	 * @param string $comment_old_status Old comment status.
+	 * @param object $comment            Comment object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function action() {
+	public function action( $comment_new_status, $comment_old_status, $comment ) {
 
-		$comment_new_status = $this->callback_args[0];
-		$comment_old_status = $this->callback_args[1];
-		$this->comment      = $this->callback_args[2];
+		$this->comment = $comment;
 
 		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
 			return false;
@@ -66,7 +66,7 @@ class CommentReplied extends CommentTrigger {
 		$this->parent_comment_user_object->display_name  = $this->parent_comment->comment_author;
 		$this->parent_comment_user_object->user_email    = $this->parent_comment->comment_author_email;
 
-		parent::action();
+		parent::assign_properties();
 
 	}
 

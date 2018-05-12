@@ -132,6 +132,7 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 
 * [Conditionals](https://bracketspace.com/downloads/notification-conditionals/) - send Notifications in certain conditions
 * [Custom Fields](https://bracketspace.com/downloads/notification-custom-fields/) - use any meta value in your Notifications
+* [Review Queue](https://bracketspace.com/downloads/notification-review-queue/) - catch your Notifications into queue for a manual review
 * [Pushbullet](https://bracketspace.com/downloads/notification-pushbullet/) - send Push and SMS Notifications via your phone
 * [File Log](https://bracketspace.com/downloads/notification-file-log/) - save Notifications as file logs on the server
 
@@ -167,6 +168,10 @@ Notification can be loaded also as a part of any plugin or theme. To do it just 
 
 == Frequently Asked Questions ==
 
+= How is this plugin different from Better Notifications for WordPress (BNFW)? =
+
+The Notification plugin works very similar to BNFW but it has better codebase and interface. You can read the full comparison in the [Notification vs Better Notifications for WordPress](https://bracketspace.com/notification-vs-better-notifications-for-wordpress/) article.
+
 = Is this plugin for regular users? =
 
 Ofcourse it is! We are trying to make both parties happy - the Users and Developers. Users got their intuitive and beautiful panel in WordPress Admin and Developers got an awesome API by which they can extend the Notification plugin.
@@ -190,6 +195,24 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 5. Help tab with global Merge Tags
 
 == Changelog ==
+
+= 5.2.0 =
+* [Fixed] User ID assignment in User deleted trigger, thanks to @Matthewnie.
+* [Fixed] ACF postponed action bail.
+* [Fixed] Field value filter name.
+* [Fixed] Notices.
+* [Fixed] Empty email body not being sent.
+* [Fixed] Notification form attributes escaping.
+* [Changed] Trigger `action` methods has been unified with callback method parameters.
+* [Changed] The Merge Tags are now resolved only while they are used.
+* [Changed] Post Pending trigger to not send multiple emails when pending post is updated, thanks to @jdaniel.
+* [Added] Dynamic property setting for Attachment merge tags.
+* [Added] Better post updated messages while saving the Notification.
+* [Added] Option to change Email MIME Type, now you can send HTML or Plain text.
+* [Added] Filter for post statuses which controls when the "Updated" notification should be send.
+* [Added] Notification Form fields value filter.
+* [Added] Notification Form row class.
+* [Added] Doc Hooks class for better actions and filters definitions.
 
 = 5.1.7 =
 * [Fixed] Post Terms merge tags not rendering the values, thanks to @stocker.

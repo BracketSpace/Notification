@@ -57,6 +57,8 @@ class Extensions {
 
 	/**
 	 * Register Extensions page under plugin's menu
+	 *
+	 * @action admin_menu
      *
 	 * @return void
 	 */
@@ -178,6 +180,8 @@ class Extensions {
 
 	/**
 	 * Initializes the Updater for all the premium plugins
+	 *
+	 * @action admin_init
      *
 	 * @return void
 	 */
@@ -220,6 +224,8 @@ class Extensions {
 
 	/**
 	 * Activates the premium extension.
+	 *
+	 * @action admin_post_notification_activate_extension
      *
 	 * @return void
 	 */
@@ -254,6 +260,8 @@ class Extensions {
 
 	/**
 	 * Deactivates the premium extension.
+	 *
+	 * @action admin_post_notification_deactivate_extension
      *
 	 * @return void
 	 */
@@ -288,6 +296,8 @@ class Extensions {
 
 	/**
 	 * Displays activation notices
+	 *
+	 * @action admin_notices
      *
 	 * @return void
 	 */
@@ -363,6 +373,8 @@ class Extensions {
 
 	/**
 	 * Displays activation notice nag
+	 *
+	 * @action admin_notices
      *
 	 * @return void
 	 */

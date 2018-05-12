@@ -37,23 +37,25 @@ class PostUpdated extends PostTrigger {
 
 	/**
 	 * Assigns action callback args to object
-	 * Return `false` if you want to abort the trigger execution
 	 *
+	 * @param integer $post_id     Post ID.
+	 * @param object  $post        Post object.
+	 * @param object  $post_before Post before object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function action() {
+	public function action( $post_id, $post, $post_before ) {
 
-		$post_id = $this->callback_args[0];
-		// WP_Post object.
-		$this->{ $this->post_type } = $this->callback_args[1];
-		// WP_Post object.
-		$post_before = $this->callback_args[2];
+		$this->{ $this->post_type } = $post;
+		$post_before = $post_before;
 
 		if ( $this->{ $this->post_type }->post_type != $this->post_type ) {
 			return false;
 		}
 
-		if ( empty( $this->{ $this->post_type }->post_name ) || $post_before->post_status != 'publish'  || $this->{ $this->post_type }->post_status == 'trash' ) {
+		// Filter the post statuses for which the notification should be sent. By default it will be send only if you update already published post.
+		$updated_post_statuses = apply_filters( 'notification/trigger/wordpress/post/updated/statuses', array( 'publish' ), $this->post_type );
+
+		if ( empty( $this->{ $this->post_type }->post_name ) || ! in_array( $post_before->post_status, $updated_post_statuses )  || $this->{ $this->post_type }->post_status == 'trash' ) {
 			return false;
 		}
 
@@ -64,7 +66,31 @@ class PostUpdated extends PostTrigger {
 		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified );
 
 		// Postpone the action to make sure all the meta has been saved.
-		$this->postpone_action( 'save_post', 1000 );
+		if ( function_exists( 'acf' ) ) {
+			$postponed_action = 'acf/save_post';
+		} else {
+			$postponed_action = 'save_post';
+		}
+		$this->postpone_action( $postponed_action, 1000 );
+
+	}
+
+	/**
+	 * Postponed action callback
+	 * Return `false` if you want to abort the trigger execution
+	 *
+	 * @return mixed void or false if no notifications should be sent
+	 */
+	public function postponed_action() {
+
+		if ( function_exists( 'acf' ) ) {
+			return;
+		}
+
+		// fix for the action being called twice by WordPress.
+		if ( did_action( 'save_post' ) > 1 ) {
+			return false;
+		}
 
 	}
 
