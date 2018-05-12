@@ -88,7 +88,7 @@ class PostType {
 	 *
 	 * @filter post_updated_messages
 	 *
-	 * @since  [Next]
+	 * @since  5.2.0
 	 * @param  array $messages Messages.
 	 * @return array
 	 */
@@ -98,13 +98,13 @@ class PostType {
 
 		$messages['notification'] = array(
 			0  => '',
-			1  => __( 'Notification updated.' ),
+			1  => __( 'Notification updated.', 'notification' ),
 			2  => '',
 			3  => '',
-			4  => __( 'Notification updated.' ),
+			4  => __( 'Notification updated.', 'notification' ),
 			5  => '',
-			6  => __( 'Notification saved.' ),
-			7  => __( 'Notification saved.' ),
+			6  => __( 'Notification saved.', 'notification' ),
+			7  => __( 'Notification saved.', 'notification' ),
 			8  => '',
 			9  => '',
 			10 => '',
