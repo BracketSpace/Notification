@@ -132,6 +132,7 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 
 * [Conditionals](https://bracketspace.com/downloads/notification-conditionals/) - send Notifications in certain conditions
 * [Custom Fields](https://bracketspace.com/downloads/notification-custom-fields/) - use any meta value in your Notifications
+* [Review Queue](https://bracketspace.com/downloads/notification-review-queue/) - catch your Notifications into queue for a manual review
 * [Pushbullet](https://bracketspace.com/downloads/notification-pushbullet/) - send Push and SMS Notifications via your phone
 * [File Log](https://bracketspace.com/downloads/notification-file-log/) - save Notifications as file logs on the server
 
