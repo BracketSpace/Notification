@@ -81,6 +81,8 @@ WordPress:
 Post Type:
 
 * Published post notification
+* Post added to database notification
+* Post drafted (saved as a draft) notification
 * Updated post notification
 * Post send for review (pending post) notification
 * Post moved to trash notification
@@ -195,6 +197,9 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 5. Help tab with global Merge Tags
 
 == Changelog ==
+
+= [Next] =
+* [Added] Post saved as a draft trigger.
 
 = 5.2.0 =
 * [Fixed] User ID assignment in User deleted trigger, thanks to @Matthewnie.
