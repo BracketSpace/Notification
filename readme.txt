@@ -201,6 +201,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 = [Next] =
 * [Added] Post saved as a draft trigger.
 * [Added] `notification_add_doc_hooks` function for creating doc hooks handlers.
+* [Added] Classes to Settings sections.
 
 = 5.2.0 =
 * [Fixed] User ID assignment in User deleted trigger, thanks to @Matthewnie.
