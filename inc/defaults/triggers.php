@@ -33,6 +33,7 @@ if ( notification_get_setting( 'triggers/user/enable' ) ) {
 	register_trigger( new Trigger\User\UserRegistered() );
 	register_trigger( new Trigger\User\UserProfileUpdated() );
 	register_trigger( new Trigger\User\UserDeleted() );
+	register_trigger( new Trigger\User\UserPasswordReset() );
 
 }
 
