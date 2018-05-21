@@ -31,7 +31,7 @@ class UserLoginFailed extends Abstracts\Trigger {
 	/**
 	 * Assigns action callback args to object
 	 *
-	 * @param object $user User object.
+	 * @param object $username string username.
 	 * @return void
 	 */
 	public function action( $username ) {
