@@ -1,6 +1,6 @@
 <?php
 /**
- * User password reset trigger
+ * User login failed trigger
  *
  * @package notification
  */
@@ -11,20 +11,20 @@ use BracketSpace\Notification\Defaults\MergeTag;
 use BracketSpace\Notification\Abstracts;
 
 /**
- * User password reset trigger class
+ * User login failed trigger class
  */
-class UserPasswordReset extends Abstracts\Trigger {
+class UserLoginFailed extends Abstracts\Trigger {
 
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/user_password_reset', __( 'User password reset', 'notification' ) );
+		parent::__construct( 'wordpress/user_login_failed', __( 'User login failed', 'notification' ) );
 
-		$this->add_action( 'password_reset', 10, 1 );
+		$this->add_action( 'wp_login_failed', 10, 1 );
 		$this->set_group( __( 'User', 'notification' ) );
-		$this->set_description( __( 'Fires when user reset his password', 'notification' ) );
+		$this->set_description( __( 'Fires when user login failed', 'notification' ) );
 
 	}
 
@@ -34,8 +34,9 @@ class UserPasswordReset extends Abstracts\Trigger {
 	 * @param object $user User object.
 	 * @return void
 	 */
-	public function action( $user ) {
+	public function action( $username ) {
 
+		$user = get_user_by( 'login', $username );
 		$this->user_id     = $user->ID;
 		$this->user_object = get_userdata( $this->user_id );
 		$this->user_meta   = get_user_meta( $this->user_id );
