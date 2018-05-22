@@ -40,9 +40,6 @@ class UserPasswordReset extends Abstracts\Trigger {
 		$this->user_object = get_userdata( $this->user_id );
 		$this->user_meta   = get_user_meta( $this->user_id );
 
-		$this->user_registered_datetime = strtotime( $this->user_object->user_registered );
-		$this->user_deleted_datetime    = time();
-
 	}
 
 	/**

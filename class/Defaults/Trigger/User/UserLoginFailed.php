@@ -31,7 +31,7 @@ class UserLoginFailed extends Abstracts\Trigger {
 	/**
 	 * Assigns action callback args to object
 	 *
-	 * @param object $username string username.
+	 * @param string $username username.
 	 * @return void
 	 */
 	public function action( $username ) {
@@ -39,10 +39,6 @@ class UserLoginFailed extends Abstracts\Trigger {
 		$user = get_user_by( 'login', $username );
 		$this->user_id     = $user->ID;
 		$this->user_object = get_userdata( $this->user_id );
-		$this->user_meta   = get_user_meta( $this->user_id );
-
-		$this->user_registered_datetime = strtotime( $this->user_object->user_registered );
-		$this->user_deleted_datetime    = time();
 
 	}
 
@@ -70,8 +66,8 @@ class UserLoginFailed extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\User\UserBio() );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
-			'slug' => 'user_password_reset_datetime',
-			'name' => __( 'User password reset time', 'notification' ),
+			'slug' => 'user_login_failed_datetime',
+			'name' => __( 'User login failed datetime', 'notification' ),
 		) ) );
 
     }
