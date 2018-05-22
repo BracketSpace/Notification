@@ -199,6 +199,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 == Changelog ==
 
 = [Next] =
+* [Fixed] Not existing post type.
 * [Added] Post saved as a draft trigger.
 * [Added] `notification_add_doc_hooks` function for creating doc hooks handlers.
 * [Added] Classes to Settings sections.
