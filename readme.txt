@@ -200,6 +200,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 = [Next] =
 * [Fixed] Not existing post type.
+* [Fixed] Merge tag values are cleaned when Trigger is executed second time in the same run.
 * [Added] Post saved as a draft trigger.
 * [Added] `notification_add_doc_hooks` function for creating doc hooks handlers.
 * [Added] Classes to Settings sections.
