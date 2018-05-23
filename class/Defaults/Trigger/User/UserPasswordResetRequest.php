@@ -1,6 +1,6 @@
 <?php
 /**
- * User password reset trigger
+ * User password changed trigger
  *
  * @package notification
  */
@@ -11,35 +11,35 @@ use BracketSpace\Notification\Defaults\MergeTag;
 use BracketSpace\Notification\Abstracts;
 
 /**
- * User password reset trigger class
+ * User password changed trigger class
  */
-class UserPasswordReset extends Abstracts\Trigger {
+class UserPasswordResetRequest extends Abstracts\Trigger {
 
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/user_password_reset', __( 'User password reset', 'notification' ) );
+		parent::__construct( 'wordpress/user_password_reset_request', __( 'User password reset request', 'notification' ) );
 
-		$this->add_action( 'password_reset', 10, 1 );
+		$this->add_action( 'retrieve_password', 10, 1 );
 		$this->set_group( __( 'User', 'notification' ) );
-		$this->set_description( __( 'Fires when user reset his password', 'notification' ) );
+		$this->set_description( __( 'Fires when user requests password change', 'notification' ) );
 
 	}
 
 	/**
 	 * Assigns action callback args to object
 	 *
-	 * @param object $user User object.
+	 * @param string $username username.
 	 * @return void
 	 */
-	public function action( $user ) {
+	public function action( $username ) {
 
-		$this->user_id     = $user->ID;
+		$user = get_user_by( 'login', $username );
+		$this->user_id    = $user->data->ID;
+		$this->user_login = $user->data->user_login;
 		$this->user_object = get_userdata( $this->user_id );
-		$this->user_meta   = get_user_meta( $this->user_id );
-
 	}
 
 	/**
@@ -56,6 +56,7 @@ class UserPasswordReset extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
         $this->add_merge_tag( new MergeTag\User\UserFirstName() );
 		$this->add_merge_tag( new MergeTag\User\UserLastName() );
+		$this->add_merge_tag( new MergeTag\User\UserPasswordResetLink( $this->user_login, $this->user_object ) );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'user_registered_datetime',
@@ -66,8 +67,8 @@ class UserPasswordReset extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\User\UserBio() );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
-			'slug' => 'user_password_reset_datetime',
-			'name' => __( 'User password reset time', 'notification' ),
+			'slug' => 'user_password_reset_request_datetime',
+			'name' => __( 'User password reset request time', 'notification' ),
 		) ) );
 
     }
