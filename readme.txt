@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.6
 Tested up to: 4.9.5
-Stable tag: 5.2.0
+Stable tag: 5.2.1
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -209,7 +209,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
-= [Next] =
+= 5.2.1 =
 * [Fixed] Not existing post type.
 * [Fixed] Merge tag values are cleaned when Trigger is executed second time in the same run.
 * [Added] Post saved as a draft trigger.
