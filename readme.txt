@@ -100,17 +100,20 @@ Comment / Pingback / Trackback:
 
 User:
 
-* User registered
-* User profile updated
-* User logged in
-* User logged out
-* User deleted
+* User registered notification
+* User profile updated notification
+* User logged in notification
+* User failed to log in notification
+* User logged out notification
+* User password reset request notification
+* User password changed notification
+* User deleted notification
 
 Media:
 
-* Media added
-* Media updated
-* Media deleted
+* Media added notification
+* Media updated notification
+* Media deleted notification
 
 Feel free to suggest new core triggers in the support forum.
 
@@ -204,6 +207,9 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Added] Post saved as a draft trigger.
 * [Added] `notification_add_doc_hooks` function for creating doc hooks handlers.
 * [Added] Classes to Settings sections.
+* [Added] User login failer trigger.
+* [Added] User password reset request trigger.
+* [Added] User password change trigger.
 
 = 5.2.0 =
 * [Fixed] User ID assignment in User deleted trigger, thanks to @Matthewnie.
