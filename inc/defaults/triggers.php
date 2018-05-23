@@ -14,6 +14,10 @@ if ( notification_get_setting( 'triggers/post_types/types' ) ) {
 
 	foreach ( $post_types as $post_type ) {
 
+		if ( ! post_type_exists( $post_type ) ) {
+			continue;
+		}
+
 		register_trigger( new Trigger\Post\PostAdded( $post_type ) );
 		register_trigger( new Trigger\Post\PostDrafted( $post_type ) );
 		register_trigger( new Trigger\Post\PostPublished( $post_type ) );
@@ -31,6 +35,10 @@ if ( notification_get_setting( 'triggers/taxonomies/types' ) ) {
 	$taxonomies = notification_get_setting( 'triggers/taxonomies/types' );
 
 	foreach ( $taxonomies as $taxonomy ) {
+
+		if ( ! taxonomy_exists( $taxonomy ) ) {
+			continue;
+		}
 
 		register_trigger( new Trigger\Taxonomy\TaxonomyAdded( $taxonomy ) );
 		register_trigger( new Trigger\Taxonomy\TaxonomyUpdated( $taxonomy ) );
