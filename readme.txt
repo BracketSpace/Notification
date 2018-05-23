@@ -89,6 +89,14 @@ Post Type:
 
 The Notification plugin supports any Custom Post Type out of the box.
 
+Taxonomy terms:
+
+* Taxonomy term created notification
+* Taxonomy term updated notification
+* Taxonomy term deleted notification
+
+The Notification plugin supports any Taxonomy out of the box.
+
 Comment / Pingback / Trackback:
 
 * New comment notification
@@ -207,7 +215,10 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Added] Post saved as a draft trigger.
 * [Added] `notification_add_doc_hooks` function for creating doc hooks handlers.
 * [Added] Classes to Settings sections.
-* [Added] User login failer trigger.
+* [Added] Taxonomy term created trigger
+* [Added] Taxonomy term updated trigger
+* [Added] Taxonomy term deleted trigger
+* [Added] User login failed trigger.
 * [Added] User password reset request trigger.
 * [Added] User password change trigger.
 

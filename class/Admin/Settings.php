@@ -174,6 +174,32 @@ class Settings extends SettingsAPI {
 			) )
 			->description( __( 'For these post types you will be able to define published, updated, pending moderation etc. notifications', 'notification' ) );
 
+		// prepare taxonomies for taxonomies option select.
+		$valid_taxonomies = apply_filters( 'notification/settings/triggers/valid_taxonomies', get_taxonomies( array( 'public' => true ), 'objects' ) );
+
+		$taxonomies = array();
+		foreach ( $valid_taxonomies as $taxonomy ) {
+			if ( $taxonomy->name == 'post_format' ) {
+				continue;
+			}
+			$taxonomies[ $taxonomy->name ] = $taxonomy->labels->name;
+		}
+
+		$triggers->add_group( __( 'Taxonomy', 'notification' ), 'taxonomies' )
+			->add_field( array(
+				'name'        => __( 'Taxonomies', 'notification' ),
+				'slug'        => 'types',
+				'default'     => array( 'category', 'post_tag' ),
+				'addons'      => array(
+					'multiple' => true,
+					'pretty'   => true,
+					'options'  => $taxonomies
+				),
+				'render'      => array( new CoreFields\Select(), 'input' ),
+				'sanitize'    => array( new CoreFields\Select(), 'sanitize' ),
+			) )
+			->description( __( 'For these taxonomies you will be able to define published, updated and deleted notifications', 'notification' ) );
+
 		$triggers->add_group( __( 'Comment', 'notification' ), 'comment' )
 			->add_field( array(
 				'name'        => __( 'Comment Types', 'notification' ),

@@ -29,6 +29,25 @@ if ( notification_get_setting( 'triggers/post_types/types' ) ) {
 
 }
 
+// Taxonomy triggers.
+if ( notification_get_setting( 'triggers/taxonomies/types' ) ) {
+
+	$taxonomies = notification_get_setting( 'triggers/taxonomies/types' );
+
+	foreach ( $taxonomies as $taxonomy ) {
+
+		if ( ! taxonomy_exists( $taxonomy ) ) {
+			continue;
+		}
+
+		register_trigger( new Trigger\Taxonomy\TermAdded( $taxonomy ) );
+		register_trigger( new Trigger\Taxonomy\TermUpdated( $taxonomy ) );
+		register_trigger( new Trigger\Taxonomy\TermDeleted( $taxonomy ) );
+
+	}
+
+}
+
 // User triggers.
 if ( notification_get_setting( 'triggers/user/enable' ) ) {
 
