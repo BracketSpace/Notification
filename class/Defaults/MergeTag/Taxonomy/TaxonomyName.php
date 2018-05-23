@@ -40,7 +40,7 @@ class TaxonomyName extends StringTag {
     	}
 
     	$args = wp_parse_args( $params, array(
-			'slug'        => $this->taxonomy . '_term_title',
+			'slug'        => $this->taxonomy . '_name',
 			// translators: singular post name.
 			'name'        => sprintf( __( '%s title', 'notification' ), $this->get_nicename() ),
 			'description' => __( 'Hello World', 'notification' ),

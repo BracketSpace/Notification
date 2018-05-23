@@ -1,6 +1,6 @@
 <?php
 /**
- * Taxonomy content merge tag
+ * Taxonomy term ID merge tag
  *
  * Requirements:
  * - Trigger property of the post type slug with WP_Taxonomy object
@@ -14,16 +14,16 @@ use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 
 
 /**
- * Taxonomy content merge tag class
+ * Taxonomy term ID merge tag class
  */
 class TermDescription extends StringTag {
 
 	/**
-	 * Taxonomy Type slug
+	 * Term object
 	 *
-	 * @var string
+	 * @var object
 	 */
-	protected $taxonomy;
+	protected $term;
 
 	/**
      * Merge tag constructor
@@ -31,22 +31,16 @@ class TermDescription extends StringTag {
      * @since 5.0.0
      * @param array $params merge tag configuration params.
      */
-    public function __construct( $params = array() ) {
+    public function __construct() {
 
-    	if ( isset( $params['taxonomy'] ) ) {
-    		$this->taxonomy = $params['taxonomy'];
-    	} else {
-    		$this->taxonomy = 'post';
-    	}
-
-    	$args = wp_parse_args( $params, array(
-			'slug'        => $this->taxonomy . '_term_description',
-			// translators: singular post name.
-			'name'        => sprintf( __( '%s term description', 'notification' ), $this->get_nicename() ),
-			'description' => __( 'Welcome to WordPress. This is your first post. Edit or delete it, then start writing!', 'notification' ),
+    	$args = wp_parse_args( array(
+			'slug'        => 'term_description',
+			// translators: singular taxonomy name.
+			'name'        => __( 'Term description', 'notification' ),
+			'description' => '35',
 			'example'     => true,
-			'resolver'    => function() {
-				return $this->trigger->{ $this->term }->description;
+			'resolver'    => function( $trigger ) {
+				return $trigger->term->description;
 			},
 		) );
 
@@ -60,21 +54,7 @@ class TermDescription extends StringTag {
 	 * @return boolean
 	 */
 	public function check_requirements() {
-		return isset( $this->trigger->{ $this->term }->description );
-	}
-
-	/**
-	 * Gets nice, translated post name
-	 *
-	 * @since  5.0.0
-	 * @return string post name
-	 */
-	public function get_nicename() {
-		$term = get_term( $this->term );
-		if ( empty( $term ) ) {
-			return '';
-		}
-		return $term->name;
+		return isset( $this->trigger->term->description );
 	}
 
 }

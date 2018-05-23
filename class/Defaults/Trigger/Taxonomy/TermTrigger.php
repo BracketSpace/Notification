@@ -13,7 +13,7 @@ use BracketSpace\Notification\Defaults\MergeTag;
 /**
  * Taxonomy trigger class
  */
-abstract class TaxonomyTrigger extends Abstracts\Trigger {
+abstract class TermTrigger extends Abstracts\Trigger {
 
 	/**
 	 * Taxonomy Type slug
@@ -48,35 +48,6 @@ abstract class TaxonomyTrigger extends Abstracts\Trigger {
 	 */
 	public function merge_tags() {
 
-		$taxonomy_name = $this->get_current_taxonomy_name();
-
-		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomyID( array(
-			'taxonomy' => $this->taxonomy,
-		) ) );
-
-		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomyPermalink( array(
-			'taxonomy' => $this->taxonomy,
-		) ) );
-
-		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomyName( array(
-			'taxonomy' => $this->taxonomy,
-		) ) );
-
-		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomySlug( array(
-			'taxonomy' => $this->taxonomy,
-		) ) );
-
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
-			'slug' => $this->taxonomy . '_creation_datetime',
-			// translators: singular post name.
-			'name' => sprintf( __( '%s creation date and time', 'notification' ), $taxonomy_name ),
-		) ) );
-
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
-			'slug' => $this->taxonomy . '_modification_datetime',
-			// translators: singular post name.
-			'name' => sprintf( __( '%s modification date and time', 'notification' ), $taxonomy_name ),
-		) ) );
 
     }
 

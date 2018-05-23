@@ -1,6 +1,6 @@
 <?php
 /**
- * Taxonomy term ID merge tag
+ * Taxonomy term permalink merge tag
  *
  * Requirements:
  * - Trigger property of the post type slug with WP_Taxonomy object
@@ -10,30 +10,29 @@
 
 namespace BracketSpace\Notification\Defaults\MergeTag\Taxonomy;
 
-use BracketSpace\Notification\Defaults\MergeTag\IntegerTag;
+use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
 
 
 /**
- * Taxonomy term ID merge tag class
+ * Taxonomy term permalink merge tag class
  */
-class TermID extends IntegerTag {
+class TermPermalink extends UrlTag {
 
 	/**
      * Merge tag constructor
      *
      * @since 5.0.0
-     * @param array $params merge tag configuration params.
      */
     public function __construct() {
 
     	$args = wp_parse_args( array(
-			'slug'        => 'term_ID',
-			// translators: taxonomy term ID.
-			'name'        => __( 'Term ID', 'notification' ),
-			'description' => '35',
+			'slug'        => 'term_link',
+			// translators: taxonomy term link.
+			'name'        => __( 'Term link', 'notification' ),
+			'description' => 'http://example.com/category/nature',
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return $trigger->term->term_id;
+				return $trigger->term_permalink;
 			},
 		) );
 
@@ -49,5 +48,4 @@ class TermID extends IntegerTag {
 	public function check_requirements() {
 		return isset( $this->trigger->term->term_id );
 	}
-
 }

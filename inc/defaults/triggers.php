@@ -40,9 +40,9 @@ if ( notification_get_setting( 'triggers/taxonomies/types' ) ) {
 			continue;
 		}
 
-		register_trigger( new Trigger\Taxonomy\TaxonomyAdded( $taxonomy ) );
-		register_trigger( new Trigger\Taxonomy\TaxonomyUpdated( $taxonomy ) );
-		register_trigger( new Trigger\Taxonomy\TaxonomyTrashed( $taxonomy ) );
+		register_trigger( new Trigger\Taxonomy\TermAdded( $taxonomy ) );
+		register_trigger( new Trigger\Taxonomy\TermUpdated( $taxonomy ) );
+		register_trigger( new Trigger\Taxonomy\TermTrashed( $taxonomy ) );
 
 	}
 

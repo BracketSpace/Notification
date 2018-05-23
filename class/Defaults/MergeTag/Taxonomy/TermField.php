@@ -10,13 +10,13 @@
 
 namespace BracketSpace\Notification\Defaults\MergeTag\Taxonomy;
 
-use BracketSpace\Notification\Defaults\MergeTag\IntegerTag;
+use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 
 
 /**
  * Taxonomy term ID merge tag class
  */
-class TermID extends IntegerTag {
+class TermField extends StringTag {
 
 	/**
      * Merge tag constructor
@@ -27,13 +27,13 @@ class TermID extends IntegerTag {
     public function __construct() {
 
     	$args = wp_parse_args( array(
-			'slug'        => 'term_ID',
+			'slug'        => 'term_field',
 			// translators: taxonomy term ID.
-			'name'        => __( 'Term ID', 'notification' ),
+			'name'        => __( 'Term field', 'notification' ),
 			'description' => '35',
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return $trigger->term->term_id;
+				return $trigger->field;
 			},
 		) );
 
