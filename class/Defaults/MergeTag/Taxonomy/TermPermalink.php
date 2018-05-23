@@ -27,7 +27,6 @@ class TermPermalink extends UrlTag {
 
     	$args = wp_parse_args( array(
 			'slug'        => 'term_link',
-			// translators: taxonomy term link.
 			'name'        => __( 'Term link', 'notification' ),
 			'description' => 'http://example.com/category/nature',
 			'example'     => true,

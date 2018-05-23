@@ -21,14 +21,12 @@ class TermID extends IntegerTag {
 	/**
      * Merge tag constructor
      *
-     * @since 5.0.0
-     * @param array $params merge tag configuration params.
+     * @since [Next]
      */
     public function __construct() {
 
     	$args = wp_parse_args( array(
 			'slug'        => 'term_ID',
-			// translators: taxonomy term ID.
 			'name'        => __( 'Term ID', 'notification' ),
 			'description' => '35',
 			'example'     => true,

@@ -41,12 +41,11 @@ class TaxonomyName extends StringTag {
 
     	$args = wp_parse_args( $params, array(
 			'slug'        => $this->taxonomy . '_name',
-			// translators: taxonomy name.
-			'name'        => sprintf( __( '%s title', 'notification' ), $this->get_nicename() ),
+			'name'        => __( 'Taxonomy name', 'notification' ),
 			'description' => __( 'Hello World', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return  $this->get_nicename();
+				return $this->get_nicename();
 			},
 		) );
 

@@ -21,14 +21,12 @@ class TermName extends StringTag {
 	/**
      * Merge tag constructor
      *
-     * @since 5.0.0
-     * @param array $params merge tag configuration params.
+     * @since [Next]
      */
     public function __construct() {
 
     	$args = wp_parse_args( array(
 			'slug'        => 'term_name',
-			// translators: singular taxonomy term name.
 			'name'        => __( 'Term name', 'notification' ),
 			'description' => 'Nature',
 			'example'     => true,

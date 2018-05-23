@@ -22,13 +22,11 @@ class TermSlug extends StringTag {
      * Merge tag constructor
      *
      * @since [Next]
-     * @param array $params merge tag configuration params.
      */
     public function __construct() {
 
     	$args = wp_parse_args( array(
 			'slug'        => 'term_slug',
-			// translators: taxonomy term slug.
 			'name'        => __( 'Term slug', 'notification' ),
 			'description' => 'nature',
 			'example'     => true,

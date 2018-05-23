@@ -28,7 +28,7 @@ class TaxonomySlug extends StringTag {
 	/**
      * Merge tag constructor
      *
-     * @since 5.0.0
+     * @since [Next]
      * @param array $params merge tag configuration params.
      */
     public function __construct( $params = array() ) {
@@ -41,8 +41,7 @@ class TaxonomySlug extends StringTag {
 
     	$args = wp_parse_args( $params, array(
 			'slug'        => $this->taxonomy . '_slug',
-			// translators: singular taxonomy slug.
-			'name'        => sprintf( __( '%s slug', 'notification' ), $this->get_nicename() ),
+			'name'        => __( 'Taxonomy slug', 'notification' ),
 			'description' => __( 'hello-world', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
@@ -61,20 +60,6 @@ class TaxonomySlug extends StringTag {
 	 */
 	public function check_requirements() {
 		return isset( $this->trigger->taxonomy );
-	}
-
-	/**
-	 * Gets nice, translated taxonomy name
-	 *
-	 * @since  [Next]
-	 * @return string post name
-	 */
-	public function get_nicename() {
-		$taxonomy = get_taxonomy( $this->trigger->taxonomy );
-		if ( empty( $taxonomy ) ) {
-			return '';
-		}
-		return $taxonomy->labels->singular_name;
 	}
 
 }

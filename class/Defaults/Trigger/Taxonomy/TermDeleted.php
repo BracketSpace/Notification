@@ -1,6 +1,6 @@
 <?php
 /**
- * Taxonomy term trashed trigger
+ * Taxonomy term deleted trigger
  *
  * @package notification
  */
@@ -10,9 +10,9 @@ namespace BracketSpace\Notification\Defaults\Trigger\Taxonomy;
 use BracketSpace\Notification\Defaults\MergeTag;
 
 /**
- * Taxonomy term trashed trigger class
+ * Taxonomy term deleted trigger class
  */
-class TermTrashed extends TermTrigger {
+class TermDeleted extends TermTrigger {
 
 	/**
 	 * Term object
@@ -39,23 +39,21 @@ class TermTrashed extends TermTrigger {
 
 		parent::__construct( array(
 			'taxonomy' => $taxonomy,
-			'slug'      => 'wordpress/' . $taxonomy . '/trashed',
-			'name'      => sprintf( __( '%s term trashed', 'notification' ), parent::get_taxonomy_name( $taxonomy ) ),
+			'slug'      => 'wordpress/' . $taxonomy . '/deleted',
+			'name'      => sprintf( __( '%s term deleted', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ) ),
 		) );
 
-		$this->add_action( 'pre_delete_term', 10, 4 );
+		$this->add_action( 'pre_delete_term', 100, 4 );
 
 		// translators: 1. taxonomy name, 2. taxonomy slug.
-		$this->set_description( sprintf( __( 'Fires when %s (%s) term is moved to trash', 'notification' ), parent::get_taxonomy_name( $taxonomy ), $taxonomy ) );
+		$this->set_description( sprintf( __( 'Fires when %s (%s) is deleted', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ), $taxonomy ) );
 
 	}
 
 	/**
 	 * Assigns action callback args to object
 	 *
-	 * @param int    $term_id  Term ID.
-	 * @param string $taxonomy Taxonomy slug.
-	 *
+	 * @param integer $term_id Term ID.
 	 * @return mixed void or false if no notifications should be sent
 	 */
 	public function action( $term_id ) {
@@ -67,10 +65,10 @@ class TermTrashed extends TermTrigger {
 			return false;
 		}
 
-		$this->taxonomy = $this->term->taxonomy;
+		$this->taxonomy       = $this->term->taxonomy;
 		$this->term_permalink = get_term_link( $this->term );
-		$this->field = get_field( 'tresc', $this->taxonomy . '_' . $term_id );
 
+		$this->term_deletion_datetime = time();
 
 	}
 
@@ -81,18 +79,12 @@ class TermTrashed extends TermTrigger {
 	 */
 	public function merge_tags() {
 
-		$this->add_merge_tag( new MergeTag\Taxonomy\TermID() );
-		$this->add_merge_tag( new MergeTag\Taxonomy\TermDescription() );
-		$this->add_merge_tag( new MergeTag\Taxonomy\TermName() );
-		$this->add_merge_tag( new MergeTag\Taxonomy\TermSlug() );
-		$this->add_merge_tag( new MergeTag\Taxonomy\TermPermalink() );
-		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomyName() );
-		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomySlug() );
+		parent::merge_tags();
+
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'term_deletion_datetime',
 			'name' => sprintf( __( 'Term deletion date and time', 'notification' ) ),
 		) ) );
-		parent::merge_tags();
 
     }
 

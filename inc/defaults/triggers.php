@@ -42,7 +42,7 @@ if ( notification_get_setting( 'triggers/taxonomies/types' ) ) {
 
 		register_trigger( new Trigger\Taxonomy\TermAdded( $taxonomy ) );
 		register_trigger( new Trigger\Taxonomy\TermUpdated( $taxonomy ) );
-		register_trigger( new Trigger\Taxonomy\TermTrashed( $taxonomy ) );
+		register_trigger( new Trigger\Taxonomy\TermDeleted( $taxonomy ) );
 
 	}
 

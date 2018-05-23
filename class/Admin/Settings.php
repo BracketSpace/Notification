@@ -179,10 +179,11 @@ class Settings extends SettingsAPI {
 
 		$taxonomies = array();
 		foreach ( $valid_taxonomies as $taxonomy ) {
+			if ( $taxonomy->name == 'post_format' ) {
+				continue;
+			}
 			$taxonomies[ $taxonomy->name ] = $taxonomy->labels->name;
 		}
-
-		$triggers = $settings->add_section( __( 'Triggers', 'notification' ), 'triggers' );
 
 		$triggers->add_group( __( 'Taxonomy', 'notification' ), 'taxonomies' )
 			->add_field( array(
