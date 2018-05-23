@@ -22,7 +22,7 @@ class UserPasswordResetRequest extends Abstracts\Trigger {
 
 		parent::__construct( 'wordpress/user_password_reset_request', __( 'User password reset request', 'notification' ) );
 
-		$this->add_action( 'retrieve_password', 10, 1 );
+		$this->add_action( 'retrieve_password_key', 10, 2 );
 		$this->set_group( __( 'User', 'notification' ) );
 		$this->set_description( __( 'Fires when user requests password change', 'notification' ) );
 
@@ -31,15 +31,23 @@ class UserPasswordResetRequest extends Abstracts\Trigger {
 	/**
 	 * Assigns action callback args to object
 	 *
-	 * @param string $username username.
+	 * @param string $username  username.
+	 * @param string $reset_key password reset key.
 	 * @return void
 	 */
-	public function action( $username ) {
+	public function action( $username, $reset_key ) {
 
 		$user = get_user_by( 'login', $username );
-		$this->user_id    = $user->data->ID;
-		$this->user_login = $user->data->user_login;
+
+		$this->user_id     = $user->data->ID;
+		$this->user_login  = $user->data->user_login;
 		$this->user_object = get_userdata( $this->user_id );
+
+		$this->password_reset_key = $reset_key;
+
+		$this->user_registered_datetime        = strtotime( $this->user_object->user_registered );
+		$this->password_reset_request_datetime = time();
+
 	}
 
 	/**
@@ -56,7 +64,7 @@ class UserPasswordResetRequest extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
         $this->add_merge_tag( new MergeTag\User\UserFirstName() );
 		$this->add_merge_tag( new MergeTag\User\UserLastName() );
-		$this->add_merge_tag( new MergeTag\User\UserPasswordResetLink( $this->user_login, $this->user_object ) );
+		$this->add_merge_tag( new MergeTag\User\UserPasswordResetLink() );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'user_registered_datetime',
@@ -67,8 +75,8 @@ class UserPasswordResetRequest extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\User\UserBio() );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
-			'slug' => 'user_password_reset_request_datetime',
-			'name' => __( 'User password reset request time', 'notification' ),
+			'slug' => 'password_reset_request_datetime',
+			'name' => __( 'Password reset request date', 'notification' ),
 		) ) );
 
     }

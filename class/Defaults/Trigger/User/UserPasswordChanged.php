@@ -40,6 +40,9 @@ class UserPasswordChanged extends Abstracts\Trigger {
 		$this->user_object = get_userdata( $this->user_id );
 		$this->user_meta   = get_user_meta( $this->user_id );
 
+		$this->user_registered_datetime = strtotime( $this->user_object->user_registered );
+		$this->password_change_datetime = time();
+
 	}
 
 	/**
@@ -66,8 +69,8 @@ class UserPasswordChanged extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\User\UserBio() );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
-			'slug' => 'user_password_change_datetime',
-			'name' => __( 'User password change time', 'notification' ),
+			'slug' => 'password_change_datetime',
+			'name' => __( 'Password change date', 'notification' ),
 		) ) );
 
     }
