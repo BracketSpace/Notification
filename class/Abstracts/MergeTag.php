@@ -233,4 +233,15 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 		return $this->hidden;
 	}
 
+	/**
+	 * Cleans the value
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function clean_value() {
+		$this->resolved = false;
+		$this->value    = '';
+	}
+
 }
