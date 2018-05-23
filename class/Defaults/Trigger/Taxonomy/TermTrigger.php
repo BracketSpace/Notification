@@ -16,7 +16,7 @@ use BracketSpace\Notification\Defaults\MergeTag;
 abstract class TermTrigger extends Abstracts\Trigger {
 
 	/**
-	 * Taxonomy Type slug
+	 * Taxonomy slug
 	 *
 	 * @var string
 	 */
@@ -48,25 +48,24 @@ abstract class TermTrigger extends Abstracts\Trigger {
 	 */
 	public function merge_tags() {
 
-
     }
 
 	/**
-	 * Gets nice, translated post name
+	 * Gets nice, translated taxonomy name
 	 *
-	 * @since  5.0.0
-	 * @return string post name
+	 * @since  [Next]
+	 * @return string taxonomy
 	 */
 	public function get_current_taxonomy_name() {
 		return self::get_taxonomy_name( $this->taxonomy );
 	}
 
 	/**
-	 * Gets nice, translated post name for post type slug
+	 * Gets nice, translated taxonomy name for taxonomy slug
 	 *
-	 * @since  5.0.0
-	 * @param string $taxonomy post type slug.
-	 * @return string post name
+	 * @since 	[Next]
+	 * @param string $taxonomy taxonomy slug.
+	 * @return string taxonomy
 	 */
 	public static function get_taxonomy_name( $taxonomy ) {
 		return get_taxonomy( $taxonomy )->labels->name;

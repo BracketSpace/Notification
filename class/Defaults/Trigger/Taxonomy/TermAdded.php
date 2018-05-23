@@ -1,6 +1,6 @@
 <?php
 /**
- * Taxonomy added trigger
+ * Taxonomy term added trigger
  *
  * @package notification
  */
@@ -10,17 +10,28 @@ namespace BracketSpace\Notification\Defaults\Trigger\Taxonomy;
 use BracketSpace\Notification\Defaults\MergeTag;
 
 /**
- * Taxonomy added trigger class
+ * Taxonomy term added trigger class
  */
 class TermAdded extends TermTrigger {
 
+	/**
+	 * Term object
+	 *
+	 * @var object
+	 */
 	public $term;
+
+	/**
+	 * Taxonomy slug
+	 *
+	 * @var string
+	 */
 	public $taxonomy;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $post_type optional, default: post.
+	 * @param string $taxonomy optional default category.
 	 */
 	public function __construct( $taxonomy = 'category' ) {
 
@@ -34,7 +45,7 @@ class TermAdded extends TermTrigger {
 
 		$this->add_action( 'created_' . $taxonomy, 10, 2 );
 
-		// translators: 1. singular post name, 2. post type slug.
+		// translators: 1. singular taxonomy name, 2. taxonomy slug.
 		$this->set_description( sprintf( __( 'Fires when %s (%s) term is added to database. Useful when adding terms programatically or for 3rd party integration', 'notification' ), parent::get_taxonomy_name( $taxonomy ), $taxonomy ) );
 
 	}
@@ -68,12 +79,12 @@ class TermAdded extends TermTrigger {
 	 * @return void
 	 */
 	public function merge_tags() {
+
 		$this->add_merge_tag( new MergeTag\Taxonomy\TermID() );
 		$this->add_merge_tag( new MergeTag\Taxonomy\TermDescription() );
 		$this->add_merge_tag( new MergeTag\Taxonomy\TermName() );
 		$this->add_merge_tag( new MergeTag\Taxonomy\TermSlug() );
 		$this->add_merge_tag( new MergeTag\Taxonomy\TermPermalink() );
-		$this->add_merge_tag( new MergeTag\Taxonomy\TermField() );
 		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomyName() );
 		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomySlug() );
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
@@ -81,6 +92,7 @@ class TermAdded extends TermTrigger {
 			'name' => sprintf( __( 'Term creation date and time', 'notification' ) ),
 		) ) );
 		parent::merge_tags();
+
 	}
 
 }

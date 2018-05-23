@@ -3,7 +3,7 @@
  * Taxonomy term permalink merge tag
  *
  * Requirements:
- * - Trigger property of the post type slug with WP_Taxonomy object
+ * - Trigger property of the WP_Taxonomy term object
  *
  * @package notification
  */

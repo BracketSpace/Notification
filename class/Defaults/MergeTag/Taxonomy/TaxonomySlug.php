@@ -3,7 +3,7 @@
  * Taxonomy slug merge tag
  *
  * Requirements:
- * - Trigger property of the post type slug with WP_Taxonomy object
+ * - Trigger property of the WP_Taxonomy term object
  *
  * @package notification
  */
@@ -19,7 +19,7 @@ use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 class TaxonomySlug extends StringTag {
 
 	/**
-	 * Taxonomy Type slug
+	 * Taxonomy slug
 	 *
 	 * @var string
 	 */
@@ -36,17 +36,17 @@ class TaxonomySlug extends StringTag {
     	if ( isset( $params['taxonomy'] ) ) {
     		$this->taxonomy = $params['taxonomy'];
     	} else {
-    		$this->taxonomy = 'post';
+    		$this->taxonomy = 'category';
     	}
 
     	$args = wp_parse_args( $params, array(
 			'slug'        => $this->taxonomy . '_slug',
-			// translators: singular post name.
+			// translators: singular taxonomy slug.
 			'name'        => sprintf( __( '%s slug', 'notification' ), $this->get_nicename() ),
 			'description' => __( 'hello-world', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return $trigger->{ $this->taxonomy }->post_name;
+				return $trigger->taxonomy;
 			},
 		) );
 
@@ -60,17 +60,17 @@ class TaxonomySlug extends StringTag {
 	 * @return boolean
 	 */
 	public function check_requirements() {
-		return isset( $this->trigger->{ $this->taxonomy } );
+		return isset( $this->trigger->taxonomy );
 	}
 
 	/**
 	 * Gets nice, translated taxonomy name
 	 *
-	 * @since  5.0.0
+	 * @since  [Next]
 	 * @return string post name
 	 */
 	public function get_nicename() {
-		$taxonomy = get_taxonomy( $this->taxonomy );
+		$taxonomy = get_taxonomy( $this->trigger->taxonomy );
 		if ( empty( $taxonomy ) ) {
 			return '';
 		}

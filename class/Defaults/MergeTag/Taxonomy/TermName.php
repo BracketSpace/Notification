@@ -3,7 +3,7 @@
  * Taxonomy term name merge tag
  *
  * Requirements:
- * - Trigger property of the post type slug with WP_Taxonomy object
+ * - Trigger property of the WP_Taxonomy term object
  *
  * @package notification
  */
@@ -28,7 +28,7 @@ class TermName extends StringTag {
 
     	$args = wp_parse_args( array(
 			'slug'        => 'term_name',
-			// translators: singular taxonomy name.
+			// translators: singular taxonomy term name.
 			'name'        => __( 'Term name', 'notification' ),
 			'description' => 'Nature',
 			'example'     => true,

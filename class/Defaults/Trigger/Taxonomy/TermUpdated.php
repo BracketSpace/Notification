@@ -14,12 +14,24 @@ use BracketSpace\Notification\Defaults\MergeTag;
  */
 class TermUpdated extends TermTrigger {
 
+	/**
+	 * Term object
+	 *
+	 * @var object
+	 */
 	public $term;
+
+	/**
+	 * Taxonomy slug
+	 *
+	 * @var string
+	 */
 	public $taxonomy;
+
 	/**
 	 * Constructor
 	 *
-	 * @param string $post_type optional, default: post.
+	 * @param string $taxonomy optional, default: category.
 	 */
 	public function __construct( $taxonomy = 'category' ) {
 
@@ -71,7 +83,6 @@ class TermUpdated extends TermTrigger {
 		$this->add_merge_tag( new MergeTag\Taxonomy\TermName() );
 		$this->add_merge_tag( new MergeTag\Taxonomy\TermSlug() );
 		$this->add_merge_tag( new MergeTag\Taxonomy\TermPermalink() );
-		$this->add_merge_tag( new MergeTag\Taxonomy\TermField() );
 		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomyName() );
 		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomySlug() );
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(

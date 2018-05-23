@@ -1,9 +1,9 @@
 <?php
 /**
- * Taxonomy term ID merge tag
+ * Taxonomy term slug merge tag
  *
  * Requirements:
- * - Trigger property of the post type slug with WP_Taxonomy object
+ * - Trigger property of the WP_Taxonomy term object
  *
  * @package notification
  */
@@ -14,21 +14,21 @@ use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 
 
 /**
- * Taxonomy term ID merge tag class
+ * Taxonomy term slug merge tag class
  */
 class TermSlug extends StringTag {
 
 	/**
      * Merge tag constructor
      *
-     * @since 5.0.0
+     * @since [Next]
      * @param array $params merge tag configuration params.
      */
     public function __construct() {
 
     	$args = wp_parse_args( array(
 			'slug'        => 'term_slug',
-			// translators: Taxonomy term slug.
+			// translators: taxonomy term slug.
 			'name'        => __( 'Term slug', 'notification' ),
 			'description' => 'nature',
 			'example'     => true,

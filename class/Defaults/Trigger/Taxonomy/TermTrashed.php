@@ -10,17 +10,28 @@ namespace BracketSpace\Notification\Defaults\Trigger\Taxonomy;
 use BracketSpace\Notification\Defaults\MergeTag;
 
 /**
- * Taxonomy trashed trigger class
+ * Taxonomy term trashed trigger class
  */
 class TermTrashed extends TermTrigger {
 
+	/**
+	 * Term object
+	 *
+	 * @var object
+	 */
 	public $term;
+
+	/**
+	 * Taxonomy slug
+	 *
+	 * @var string
+	 */
 	public $taxonomy;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $post_type optional, default: post.
+	 * @param string $taxonomy optional, default: category.
 	 */
 	public function __construct( $taxonomy = 'category' ) {
 
@@ -34,7 +45,7 @@ class TermTrashed extends TermTrigger {
 
 		$this->add_action( 'pre_delete_term', 10, 4 );
 
-		// translators: 1. singular post name, 2. post type slug.
+		// translators: 1. taxonomy name, 2. taxonomy slug.
 		$this->set_description( sprintf( __( 'Fires when %s (%s) term is moved to trash', 'notification' ), parent::get_taxonomy_name( $taxonomy ), $taxonomy ) );
 
 	}
@@ -77,7 +88,6 @@ class TermTrashed extends TermTrigger {
 		$this->add_merge_tag( new MergeTag\Taxonomy\TermPermalink() );
 		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomyName() );
 		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomySlug() );
-		$this->add_merge_tag( new MergeTag\Taxonomy\TermField() );
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'term_deletion_datetime',
 			'name' => sprintf( __( 'Term deletion date and time', 'notification' ) ),
