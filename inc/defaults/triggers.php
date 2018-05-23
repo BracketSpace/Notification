@@ -14,11 +14,35 @@ if ( notification_get_setting( 'triggers/post_types/types' ) ) {
 
 	foreach ( $post_types as $post_type ) {
 
+		if ( ! post_type_exists( $post_type ) ) {
+			continue;
+		}
+
 		register_trigger( new Trigger\Post\PostAdded( $post_type ) );
+		register_trigger( new Trigger\Post\PostDrafted( $post_type ) );
 		register_trigger( new Trigger\Post\PostPublished( $post_type ) );
 		register_trigger( new Trigger\Post\PostUpdated( $post_type ) );
 		register_trigger( new Trigger\Post\PostPending( $post_type ) );
 		register_trigger( new Trigger\Post\PostTrashed( $post_type ) );
+
+	}
+
+}
+
+// Taxonomy triggers.
+if ( notification_get_setting( 'triggers/taxonomies/types' ) ) {
+
+	$taxonomies = notification_get_setting( 'triggers/taxonomies/types' );
+
+	foreach ( $taxonomies as $taxonomy ) {
+
+		if ( ! taxonomy_exists( $taxonomy ) ) {
+			continue;
+		}
+
+		register_trigger( new Trigger\Taxonomy\TermAdded( $taxonomy ) );
+		register_trigger( new Trigger\Taxonomy\TermUpdated( $taxonomy ) );
+		register_trigger( new Trigger\Taxonomy\TermDeleted( $taxonomy ) );
 
 	}
 
@@ -32,6 +56,9 @@ if ( notification_get_setting( 'triggers/user/enable' ) ) {
 	register_trigger( new Trigger\User\UserRegistered() );
 	register_trigger( new Trigger\User\UserProfileUpdated() );
 	register_trigger( new Trigger\User\UserDeleted() );
+	register_trigger( new Trigger\User\UserPasswordChanged() );
+	register_trigger( new Trigger\User\UserPasswordResetRequest() );
+	register_trigger( new Trigger\User\UserLoginFailed() );
 
 }
 

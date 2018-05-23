@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.6
 Tested up to: 4.9.5
-Stable tag: 5.1.7
+Stable tag: 5.2.1
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -81,11 +81,21 @@ WordPress:
 Post Type:
 
 * Published post notification
+* Post added to database notification
+* Post drafted (saved as a draft) notification
 * Updated post notification
 * Post send for review (pending post) notification
 * Post moved to trash notification
 
 The Notification plugin supports any Custom Post Type out of the box.
+
+Taxonomy terms:
+
+* Taxonomy term created notification
+* Taxonomy term updated notification
+* Taxonomy term deleted notification
+
+The Notification plugin supports any Taxonomy out of the box.
 
 Comment / Pingback / Trackback:
 
@@ -98,17 +108,20 @@ Comment / Pingback / Trackback:
 
 User:
 
-* User registered
-* User profile updated
-* User logged in
-* User logged out
-* User deleted
+* User registered notification
+* User profile updated notification
+* User logged in notification
+* User failed to log in notification
+* User logged out notification
+* User password reset request notification
+* User password changed notification
+* User deleted notification
 
 Media:
 
-* Media added
-* Media updated
-* Media deleted
+* Media added notification
+* Media updated notification
+* Media deleted notification
 
 Feel free to suggest new core triggers in the support forum.
 
@@ -195,6 +208,19 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 5. Help tab with global Merge Tags
 
 == Changelog ==
+
+= 5.2.1 =
+* [Fixed] Not existing post type.
+* [Fixed] Merge tag values are cleaned when Trigger is executed second time in the same run.
+* [Added] Post saved as a draft trigger.
+* [Added] `notification_add_doc_hooks` function for creating doc hooks handlers.
+* [Added] Classes to Settings sections.
+* [Added] Taxonomy term created trigger
+* [Added] Taxonomy term updated trigger
+* [Added] Taxonomy term deleted trigger
+* [Added] User login failed trigger.
+* [Added] User password reset request trigger.
+* [Added] User password change trigger.
 
 = 5.2.0 =
 * [Fixed] User ID assignment in User deleted trigger, thanks to @Matthewnie.

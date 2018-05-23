@@ -279,6 +279,20 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
+	 * Cleans the merge tags.
+	 *
+	 * @since [Next]
+	 * @return void
+	 */
+	private function clean_merge_tags() {
+
+		foreach ( $this->get_merge_tags() as $merge_tag ) {
+			$merge_tag->clean_value();
+		}
+
+	}
+
+	/**
 	 * Gets CPT Notification from databse
 	 * Gets their enabled Notifications
 	 * Populates the Notification form data
@@ -359,6 +373,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		$this->set_notifications();
 		$this->resolve_fields();
 		$this->roll_out();
+		$this->clean_merge_tags();
 
 	}
 
