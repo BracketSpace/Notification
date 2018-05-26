@@ -209,6 +209,9 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
+= [Next] =
+* [Added] `notificaiton/merge_tag/value/resolved` filter.
+
 = 5.2.1 =
 * [Fixed] Not existing post type.
 * [Fixed] Merge tag values are cleaned when Trigger is executed second time in the same run.
