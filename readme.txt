@@ -211,6 +211,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 = [Next] =
 * [Added] `notificaiton/merge_tag/value/resolved` filter.
+* [Changed] Merge Tag resolver is now set via `set_resolver` method.
 
 = 5.2.1 =
 * [Fixed] Not existing post type.

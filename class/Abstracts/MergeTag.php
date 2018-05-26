@@ -83,13 +83,10 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 			trigger_error( 'Merge tag requires slug, name and resolver', E_USER_ERROR );
 		}
 
-		if ( ! is_callable( $params['resolver'] ) ) {
-			trigger_error( 'Merge tag resolver has to be callable', E_USER_ERROR );
-		}
+		$this->slug = $params['slug'];
+		$this->name = $params['name'];
 
-		$this->slug     = $params['slug'];
-		$this->name     = $params['name'];
-		$this->resolver = $params['resolver'];
+		$this->set_resolver( $params['resolver'] );
 
 		if ( isset( $params['description'] ) ) {
 			$this->description_example = isset( $params['example'] ) && $params['example'];
@@ -201,6 +198,22 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 	 */
 	public function set_trigger( Interfaces\Triggerable $trigger ) {
 		$this->trigger = $trigger;
+	}
+
+	/**
+	 * Sets resolver function
+	 *
+	 * @since [Next]
+	 * @param mixed $resolver Resolver, can be either a closure or array or string.
+	 */
+	public function set_resolver( $resolver ) {
+
+		if ( ! is_callable( $resolver ) ) {
+			trigger_error( 'Merge tag resolver has to be callable', E_USER_ERROR );
+		}
+
+		$this->resolver = $resolver;
+
 	}
 
 	/**
