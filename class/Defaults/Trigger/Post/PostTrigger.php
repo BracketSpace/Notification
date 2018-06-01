@@ -78,6 +78,21 @@ abstract class PostTrigger extends Abstracts\Trigger {
 			'post_type' => $this->post_type,
 		) ) );
 
+		if ( $this->post_type == 'post' ) {
+			$this->add_merge_tag( new MergeTag\StringTag( array(
+				'slug'     => $this->post_type . '_sticky',
+				// translators: singular post name.
+				'name'     => sprintf( __( '%s sticky status', 'notification' ), $post_name ),
+				'resolver' => function( $trigger ) {
+					if ( is_admin() ) {
+						return isset( $_POST['sticky'] ) && ! empty( $_POST['sticky'] ) ? __( 'Sticky', 'notification' ) : __( 'Not sticky', 'notification' );
+					} else {
+						return is_sticky( $trigger->{ $this->post_type }->ID ) ? __( 'Sticky', 'notification' ) : __( 'Not sticky', 'notification' );
+					}
+				},
+			) ) );
+		}
+
 		$taxonomies = get_object_taxonomies( $this->post_type, 'objects' );
 
 		if ( ! empty( $taxonomies ) ) {
