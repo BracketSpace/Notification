@@ -5,7 +5,7 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\Field;
+namespace BracketSpace\Notification\Defaults\Field;
 
 /**
  * Recipients field class
@@ -15,7 +15,7 @@ class RecipientsField extends RepeaterField {
 	/**
 	 * Field constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
 	 */
 	public function __construct( $params = array() ) {
@@ -26,7 +26,7 @@ class RecipientsField extends RepeaterField {
 
 		$params = wp_parse_args( $params, array(
 			'notification'     => '',
-			'label'            => 'Recipients',
+			'label'            => __( 'Recipients', 'notification' ),
 			'name'             => 'recipients',
 			'add_button_label' => __( 'Add recipient', 'notification' ),
 			'css_class'        => '',
@@ -52,7 +52,7 @@ class RecipientsField extends RepeaterField {
 
 				$params['fields'] = array(
 					new InputField( array(
-						'label'   => 'Type',
+						'label'   => __( 'Type', 'notification' ),
 						'name'    => 'type',
 						'type'    => 'hidden',
 						'value'   => $first_recipient->get_slug(),
@@ -69,7 +69,7 @@ class RecipientsField extends RepeaterField {
 
 				$params['fields'] = array(
 					new SelectField( array(
-						'label'     => 'Type',
+						'label'     => __( 'Type', 'notification' ),
 						'name'      => 'type',
 						'css_class' => 'recipient-type',
 						'options'   => $recipient_types
@@ -89,7 +89,7 @@ class RecipientsField extends RepeaterField {
 	/**
 	 * Prints repeater row
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @param  array   $values row values.
 	 * @param  boolean $model  if this is a hidden model row.
 	 * @return string          row HTML

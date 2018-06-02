@@ -5,10 +5,10 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\Trigger\User;
+namespace BracketSpace\Notification\Defaults\Trigger\User;
 
-use underDEV\Notification\Defaults\MergeTag;
-use underDEV\Notification\Abstracts;
+use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Abstracts;
 
 /**
  * User profile updated trigger class
@@ -20,22 +20,24 @@ class UserRegistered extends Abstracts\Trigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/user_registered', __( 'User registration' ) );
+		parent::__construct( 'wordpress/user_registered', __( 'User registration', 'notification' ) );
 
-		$this->add_action( 'user_register', 10, 2 );
-		$this->set_group( __( 'User' ) );
-		$this->set_description( __( 'Fires when user registers new account' ) );
+		$this->add_action( 'user_register', 1000 );
+
+		$this->set_group( __( 'User', 'notification' ) );
+		$this->set_description( __( 'Fires when user registers new account', 'notification' ) );
 
 	}
 
 	/**
 	 * Assigns action callback args to object
 	 *
+	 * @param integer $user_id User ID.
 	 * @return void
 	 */
-	public function action() {
+	public function action( $user_id ) {
 
-		$this->user_id     = $this->callback_args[1]->ID;
+		$this->user_id     = $user_id;
 		$this->user_object = get_userdata( $this->user_id );
 		$this->user_meta   = get_user_meta( $this->user_id );
 
@@ -57,9 +59,30 @@ class UserRegistered extends Abstracts\Trigger {
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'user_registered_datetime',
-			'name' => __( 'User registration date' ),
+			'name' => __( 'User registration date', 'notification' ),
 		) ) );
 
+		$this->add_merge_tag( new MergeTag\UrlTag( array(
+			'slug'        => 'user_password_setup_link',
+			'name'        => __( 'User password setup link', 'notification' ),
+			'description' => network_site_url( 'wp-login.php?action=rp&key=37f62f1363b04df4370753037853fe88&login=userlogin', 'login' ) . "\n" .
+							__( 'After using this Merge Tag, no other password setup links will work.', 'notification' ),
+			'example'     => true,
+			'resolver'    => function( $trigger ) {
+				return network_site_url( 'wp-login.php?action=rp&key=' . $trigger->get_password_reset_key() . '&login=' . rawurlencode( $trigger->user_object->user_login ), 'login' );
+			},
+		) ) );
+
+    }
+
+    /**
+     * Gets password reset key
+     *
+     * @since  5.1.5
+     * @return string
+     */
+    public function get_password_reset_key() {
+    	return get_password_reset_key( $this->user_object );
     }
 
 }

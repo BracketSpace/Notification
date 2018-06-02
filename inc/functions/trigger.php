@@ -5,7 +5,7 @@
  * @package notificaiton
  */
 
-use underDEV\Notification\Interfaces;
+use BracketSpace\Notification\Interfaces;
 
 /**
  * Registers trigger
@@ -28,12 +28,14 @@ function register_trigger( Interfaces\Triggerable $trigger ) {
 
 	} );
 
+	do_action( 'notification/trigger/registered', $trigger );
+
 }
 
 /**
  * Gets all registered triggers
  *
- * @since  [Next]
+ * @since  5.0.0
  * @return array triggers
  */
 function notification_get_triggers() {
@@ -43,7 +45,7 @@ function notification_get_triggers() {
 /**
  * Gets single registered trigger
  *
- * @since  [Next]
+ * @since  5.0.0
  * @param  string $trigger_slug trigger slug.
  * @return mixed                trigger object or false
  */
@@ -55,7 +57,7 @@ function notification_get_single_trigger( $trigger_slug ) {
 /**
  * Gets all registered triggers in a grouped array
  *
- * @since  [Next]
+ * @since  5.0.0
  * @return array grouped triggers
  */
 function notification_get_triggers_grouped() {
@@ -74,4 +76,36 @@ function notification_get_triggers_grouped() {
 
 	return $return;
 
+}
+
+/**
+ * Adds global Merge Tags for all Triggers
+ *
+ * @since  5.1.3
+ * @param Interfaces\Taggable $merge_tag Merge Tag object.
+ * @return void
+ */
+function notification_add_global_merge_tag( Interfaces\Taggable $merge_tag ) {
+
+	// Add to collection so we could use it later in the Screen Help.
+	add_filter( 'notification/global_merge_tags', function( $merge_tags ) use ( $merge_tag ) {
+		$merge_tags[] = $merge_tag;
+		return $merge_tags;
+	} );
+
+	// Register the Tag.
+	add_action( 'notification/trigger/registered', function( $trigger ) use ( $merge_tag ) {
+		$trigger->add_merge_tag( clone $merge_tag );
+	} );
+
+}
+
+/**
+ * Gets all global Merge Tags
+ *
+ * @since  5.1.3
+ * @return array Merge Tags
+ */
+function notification_get_global_merge_tags() {
+	return apply_filters( 'notification/global_merge_tags', array() );
 }

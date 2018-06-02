@@ -5,7 +5,7 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Interfaces;
+namespace BracketSpace\Notification\Interfaces;
 
 /**
  * Sendable interface

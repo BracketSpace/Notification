@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\Field;
+namespace BracketSpace\Notification\Defaults\Field;
 
-use underDEV\Notification\Abstracts\Field;
+use BracketSpace\Notification\Abstracts\Field;
 
 /**
  * Nonce field class
@@ -24,7 +24,7 @@ class NonceField extends Field {
 	/**
 	 * Field constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
 	 */
 	public function __construct( $params = array() ) {

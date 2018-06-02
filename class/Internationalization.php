@@ -8,9 +8,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification;
+namespace BracketSpace\Notification;
 
-use underDEV\Notification\Utils\Files;
+use BracketSpace\Notification\Utils\Files;
 
 /**
  * Internationalization class
@@ -34,7 +34,7 @@ class Internationalization {
 	/**
 	 * Class constructor
      *
-	 * @param object $files      instance of Files object.
+	 * @param Files  $files      instance of Files object.
 	 * @param string $textdomain textdomain string.
 	 */
 	public function __construct( Files $files, $textdomain ) {
@@ -44,6 +44,8 @@ class Internationalization {
 
 	/**
 	 * Loads plugin textdomain
+	 *
+	 * @action plugins_loaded
      *
 	 * @return void
 	 */
@@ -53,6 +55,8 @@ class Internationalization {
 
 	/**
 	 * Fixes admin strings returning
+	 *
+	 * @action init
      *
 	 * @return void
 	 */

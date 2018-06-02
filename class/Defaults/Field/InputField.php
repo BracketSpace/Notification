@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\Field;
+namespace BracketSpace\Notification\Defaults\Field;
 
-use underDEV\Notification\Abstracts\Field;
+use BracketSpace\Notification\Abstracts\Field;
 
 /**
  * Input field class
@@ -32,7 +32,7 @@ class InputField extends Field {
 	/**
 	 * Field constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
 	 */
 	public function __construct( $params = array() ) {
@@ -55,7 +55,7 @@ class InputField extends Field {
 	 * @return string html
 	 */
 	public function field() {
-		return '<input type="' . $this->type . '" name="' . $this->get_name() . '" id="' . $this->get_id() . '" value="' . $this->get_value() . '" placeholder="' . $this->placeholder . '" class="widefat ' . $this->css_class() . '" ' . $this->maybe_disable() . '>';
+		return '<input type="' . esc_attr( $this->type ) . '" name="' . esc_attr( $this->get_name() ) . '" id="' . esc_attr( $this->get_id() ) . '" value="' . esc_attr( $this->get_value() ) . '" placeholder="' . esc_attr( $this->placeholder ) . '" class="widefat ' . esc_attr( $this->css_class() ) . '" ' . $this->maybe_disable() . '>';
 	}
 
 	/**

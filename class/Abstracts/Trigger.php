@@ -5,11 +5,11 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Abstracts;
+namespace BracketSpace\Notification\Abstracts;
 
-use underDEV\Notification\Interfaces;
-use underDEV\Notification\Interfaces\Sendable;
-use underDEV\Notification\Admin\FieldsResolver;
+use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Interfaces\Sendable;
+use BracketSpace\Notification\Admin\FieldsResolver;
 
 /**
  * Trigger abstract class
@@ -37,6 +37,22 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * @var string
 	 */
 	protected $description = '';
+
+	/**
+	 * Flag indicating that trigger
+	 * has been stopped
+	 *
+	 * @var boolean
+	 */
+	protected $stopped = false;
+
+	/**
+	 * Flag indicating that action
+	 * has been postponed
+	 *
+	 * @var boolean
+	 */
+	protected $postponed = false;
 
 	/**
 	 * Bound actions
@@ -108,13 +124,30 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
+	 * Postpones the action with later hook
+	 * It automatically stops the execution
+     *
+	 * @param string  $tag           action hook.
+	 * @param integer $priority      action priority, default 10.
+	 * @param integer $accepted_args how many args the action accepts, default 1.
+	 */
+	public function postpone_action( $tag, $priority = 10, $accepted_args = 1 ) {
+
+		$this->add_action( $tag, $priority, $accepted_args );
+
+		$this->stopped   = true;
+		$this->postponed = true;
+
+	}
+
+	/**
 	 * Attaches the Notification to the Trigger
      *
 	 * @param  Sendable $notification Notification class.
 	 * @return void
 	 */
 	public function attach( Sendable $notification ) {
-		$this->notification_storage[ $notification->hash() ] = $notification;
+		$this->notification_storage[ $notification->hash() ] = clone $notification;
 	}
 
 	/**
@@ -135,12 +168,20 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * @return void
 	 */
 	public function roll_out() {
+
 		foreach ( $this->notification_storage as $notification ) {
+
 			$notification->prepare_data();
+
 			do_action( 'notification/notification/pre-send', $notification, $this );
-			$notification->send( $this );
-			do_action( 'notification/notification/sent', $notification, $this );
+
+			if ( ! $notification->is_suppressed() ) {
+				$notification->send( $this );
+				do_action( 'notification/notification/sent', $notification, $this );
+			}
+
 		}
+
 	}
 
 	/**
@@ -198,26 +239,28 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Gets trigger's merge tags
      *
+     * @param string $type optional, all|visible|hidden, default: all.
 	 * @return $array merge tags
 	 */
-	public function get_merge_tags() {
-		return $this->merge_tags;
-	}
+	public function get_merge_tags( $type = 'all' ) {
 
-	/**
-	 * Resolves all registered merge tags
-     *
-	 * @return void
-	 */
-	private function resolve_merge_tags() {
-
-		foreach ( $this->get_merge_tags() as $tag ) {
-			if ( $tag->check_requirements() ) {
-				$tag->resolve();
-			} elseif ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				trigger_error( 'Requirements for the `' . $tag->get_slug() . '` merge tag hasn\'t been met', E_USER_ERROR );
-			}
+		if ( $type === 'all' ) {
+			return $this->merge_tags;
 		}
+
+		$tags = array();
+
+		foreach ( $this->merge_tags as $merge_tag ) {
+
+			if ( $type === 'visible' && ! $merge_tag->is_hidden() ) {
+				array_push( $tags, $merge_tag );
+			} else if ( $type === 'hidden' && $merge_tag->is_hidden() ) {
+				array_push( $tags, $merge_tag );
+			}
+
+		}
+
+		return $tags;
 
 	}
 
@@ -231,6 +274,20 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		foreach ( $this->notification_storage as $notification ) {
 			$resolver = new FieldsResolver( $notification, $this->get_merge_tags() );
 			$resolver->resolve_fields();
+		}
+
+	}
+
+	/**
+	 * Cleans the merge tags.
+	 *
+	 * @since [Next]
+	 * @return void
+	 */
+	private function clean_merge_tags() {
+
+		foreach ( $this->get_merge_tags() as $merge_tag ) {
+			$merge_tag->clean_value();
 		}
 
 	}
@@ -266,14 +323,22 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Action callback
-	 * It's strongly recommended to add this function in a child class
-	 * and set all the class parameters you need or are required
-	 * by merge tags you are using
-     *
-	 * @return void
+	 * Checks if trigger has been stopped
+	 *
+	 * @return boolean
 	 */
-	public function action() {}
+	public function is_stopped() {
+		return $this->stopped;
+	}
+
+	/**
+	 * Checks if action has been postponed
+	 *
+	 * @return boolean
+	 */
+	public function is_postponed() {
+		return $this->postponed;
+	}
 
 	/**
 	 * Action callback
@@ -281,12 +346,35 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * @return void
 	 */
 	public function _action() {
+
+		// reset the state.
+		$this->stopped = false;
+
+		// setup the arguments.
 		$this->callback_args = func_get_args();
-		$this->action();
-		$this->resolve_merge_tags();
+
+		// call the action.
+		if ( $this->is_postponed() && method_exists( $this, 'postponed_action' ) ) {
+			$result = call_user_func_array( array( $this, 'postponed_action' ), $this->callback_args );
+		} else if ( ! $this->is_postponed() && method_exists( $this, 'action' ) ) {
+			$result = call_user_func_array( array( $this, 'action' ), $this->callback_args );
+		} else {
+			$result = true;
+		}
+
+		if ( $result === false ) {
+			$this->stopped = true;
+		}
+
+		if ( $this->is_stopped() ) {
+			return;
+		}
+
 		$this->set_notifications();
 		$this->resolve_fields();
 		$this->roll_out();
+		$this->clean_merge_tags();
+
 	}
 
 }

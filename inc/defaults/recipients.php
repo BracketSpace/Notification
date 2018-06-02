@@ -5,12 +5,12 @@
  * @package notification
  */
 
-use underDEV\Notification\Defaults\Recipient;
+use BracketSpace\Notification\Defaults\Recipient;
 
 register_recipient( 'email', new Recipient\Email() );
 register_recipient( 'email', new Recipient\Administrator() );
 register_recipient( 'email', new Recipient\User() );
 register_recipient( 'email', new Recipient\Role() );
 
-register_recipient( 'webhook', new Recipient\Webhook( 'post', __( 'POST' ) ) );
-register_recipient( 'webhook', new Recipient\Webhook( 'get', __( 'GET' ) ) );
+register_recipient( 'webhook', new Recipient\Webhook( 'post', __( 'POST', 'notification' ) ) );
+register_recipient( 'webhook', new Recipient\Webhook( 'get', __( 'GET', 'notification' ) ) );

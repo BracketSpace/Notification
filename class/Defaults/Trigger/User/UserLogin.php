@@ -5,10 +5,10 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\Trigger\User;
+namespace BracketSpace\Notification\Defaults\Trigger\User;
 
-use underDEV\Notification\Defaults\MergeTag;
-use underDEV\Notification\Abstracts;
+use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Abstracts;
 
 /**
  * User login trigger class
@@ -20,22 +20,24 @@ class UserLogin extends Abstracts\Trigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/user_login', __( 'User login' ) );
+		parent::__construct( 'wordpress/user_login', __( 'User login', 'notification' ) );
 
 		$this->add_action( 'wp_login', 10, 2 );
-		$this->set_group( __( 'User' ) );
-		$this->set_description( __( 'Fires when user log into WordPress' ) );
+		$this->set_group( __( 'User', 'notification' ) );
+		$this->set_description( __( 'Fires when user log into WordPress', 'notification' ) );
 
 	}
 
 	/**
 	 * Assigns action callback args to object
 	 *
+	 * @param string $user_login Logged in user login.
+	 * @param object $user       User object.
 	 * @return void
 	 */
-	public function action() {
+	public function action( $user_login, $user ) {
 
-		$this->user_id     = $this->callback_args[1]->ID;
+		$this->user_id     = $user->ID;
 		$this->user_object = get_userdata( $this->user_id );
 		$this->user_meta   = get_user_meta( $this->user_id );
 
@@ -55,12 +57,13 @@ class UserLogin extends Abstracts\Trigger {
     	$this->add_merge_tag( new MergeTag\User\UserLogin() );
         $this->add_merge_tag( new MergeTag\User\UserEmail() );
 		$this->add_merge_tag( new MergeTag\User\UserNicename() );
+		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
         $this->add_merge_tag( new MergeTag\User\UserFirstName() );
 		$this->add_merge_tag( new MergeTag\User\UserLastName() );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'user_registered_datetime',
-			'name' => __( 'User registration date' ),
+			'name' => __( 'User registration date', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserRole() );
@@ -68,7 +71,7 @@ class UserLogin extends Abstracts\Trigger {
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'user_logged_in_datetime',
-			'name' => __( 'User login time' ),
+			'name' => __( 'User login time', 'notification' ),
 		) ) );
 
     }

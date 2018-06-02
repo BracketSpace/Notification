@@ -9,10 +9,10 @@
 
 <div class="wrap underdev-settings <?php echo $this->handle; ?>-settings">
 
-	<h1><?php _e( 'Settings', $this->textdomain ) ?></h1>
+	<h1><?php _e( 'Settings', $this->textdomain, 'notification' ) ?></h1>
 
 	<?php if ( empty( $sections ) ): ?>
-		<p><?php _e( 'No Settings available at the moment', $this->textdomain ); ?></p>
+		<p><?php _e( 'No Settings available at the moment', $this->textdomain, 'notification' ); ?></p>
 	<?php else: ?>
 
 		<div class="menu-col box">
@@ -35,9 +35,9 @@
 
 		</div>
 
-		<div class="setting-col box">
+		<?php $section = $this->get_section( $current_section ); ?>
 
-			<?php $section = $this->get_section( $current_section ); ?>
+		<div class="setting-col box section-<?php echo esc_attr( $section->slug() ); ?>">
 
 			<?php do_action( $this->handle . '/settings/section/' . $section->slug() . '/before' ); ?>
 
@@ -59,7 +59,7 @@
 
 				<?php foreach ( $groups as $group ): ?>
 
-					<div class="setting-group">
+					<div class="setting-group group-<?php echo esc_attr( $group->slug() ); ?>">
 
 						<h3><?php echo esc_html( $group->name() ); ?></h3>
 
@@ -75,7 +75,7 @@
 
 							<?php foreach ( $group->get_fields() as $field ): ?>
 
-								<tr>
+								<tr class="field-<?php echo esc_attr( $field->slug() ); ?>">
 									<th><label for="<?php echo esc_attr( $field->input_id() ); ?>"><?php echo esc_html( $field->name() ); ?></label></th>
 									<td>
 										<?php

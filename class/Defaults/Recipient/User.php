@@ -5,10 +5,10 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\Recipient;
+namespace BracketSpace\Notification\Defaults\Recipient;
 
-use underDEV\Notification\Abstracts;
-use underDEV\Notification\Defaults\Field;
+use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Defaults\Field;
 
 /**
  * User recipient
@@ -18,12 +18,12 @@ class User extends Abstracts\Recipient {
 	/**
 	 * Recipient constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 */
 	public function __construct() {
 		parent::__construct( array(
 			'slug'          => 'user',
-			'name'          => __( 'User' ),
+			'name'          => __( 'User', 'notification' ),
 			'default_value' => get_current_user_id(),
 		) );
 	}
@@ -66,7 +66,7 @@ class User extends Abstracts\Recipient {
 		}
 
 		return new Field\SelectField( array(
-			'label'     => 'Recipient',       // don't edit this!
+			'label'     => __( 'Recipient', 'notification' ),       // don't edit this!
 			'name'      => 'recipient',       // don't edit this!
 			'css_class' => 'recipient-value', // don't edit this!
 			'value'     => $this->get_default_value(),

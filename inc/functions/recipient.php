@@ -5,7 +5,7 @@
  * @package notificaiton
  */
 
-use underDEV\Notification\Interfaces;
+use BracketSpace\Notification\Interfaces;
 
 /**
  * Registers recipient
@@ -38,7 +38,7 @@ function register_recipient( $notification, Interfaces\Receivable $recipient ) {
 /**
  * Gets all registered recipients
  *
- * @since  [Next]
+ * @since  5.0.0
  * @return array recipients
  */
 function notification_get_recipients() {
@@ -48,7 +48,7 @@ function notification_get_recipients() {
 /**
  * Gets register recipients for notification type
  *
- * @since  [Next]
+ * @since  5.0.0
  * @param  string $notification_type notification slug.
  * @return array                     recipients array
  */
@@ -60,7 +60,7 @@ function notification_get_notification_recipients( $notification_type ) {
 /**
  * Gets single registered recipient for notification type
  *
- * @since  [Next]
+ * @since  5.0.0
  * @param  string $notification_type notification slug.
  * @param  string $recipient_slug    recipient slug.
  * @return mixed                     recipient object or false
@@ -73,7 +73,7 @@ function notification_get_single_recipient( $notification_type, $recipient_slug 
 /**
  * Parses recipient raw value to values which can be used by notifications
  *
- * @since  [Next]
+ * @since  5.0.0
  * @param  string $notification_slug   slug of notification.
  * @param  string $recipient_type      slug of recipient.
  * @param  mixed  $recipient_raw_value raw value.

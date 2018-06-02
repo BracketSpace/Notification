@@ -1,11 +1,10 @@
 <?php
 /**
  * Plugin Name: Notification
- * Description: Send notifications about various events in WordPress. You can also create your custom triggers for any action.
- * Plugin URI: https://notification.underdev.it
- * Author: underDEV
- * Author URI: https://underdev.it
- * Version: 5.0.0
+ * Description: Customisable email and webhook notifications with powerful developer friendly API for custom triggers and notifications. Send alerts easily.
+ * Author: BracketSpace
+ * Author URI: https://bracketspace.com
+ * Version: 5.2.1
  * License: GPL3
  * Text Domain: notification
  * Domain Path: /languages
@@ -23,7 +22,7 @@ function notification_autoload( $class ) {
 
 	$parts = explode( '\\', $class );
 
-	if ( array_shift( $parts ) != 'underDEV' ) {
+	if ( array_shift( $parts ) != 'BracketSpace' ) {
 		return false;
 	}
 
@@ -31,9 +30,11 @@ function notification_autoload( $class ) {
 		return false;
 	}
 
-	$file = trailingslashit( 'class' ) . implode( '/', $parts ) . '.php';
+	$file = trailingslashit( dirname( __FILE__ ) ) . trailingslashit( 'class' ) . implode( '/', $parts ) . '.php';
 
-	require_once $file ;
+	if ( file_exists( $file ) ) {
+		require_once $file;
+	}
 
 }
 spl_autoload_register( 'notification_autoload' );
@@ -41,8 +42,8 @@ spl_autoload_register( 'notification_autoload' );
 /**
  * Requirements check
  */
-$requirements = new underDEV\Notification\Utils\Requirements( __( 'Notification', 'notification' ), array(
-	'php'                => '5.3',
+$requirements = new BracketSpace\Notification\Utils\Requirements( __( 'Notification', 'notification' ), array(
+	'php'                => '5.3.9',
 	'wp'                 => '4.6',
 	'function_collision' => array( 'register_trigger', 'register_notification' ),
 ) );
@@ -64,7 +65,7 @@ function notification_runtime() {
 	global $notification_runtime;
 
 	if ( empty( $notification_runtime ) ) {
-		$notification_runtime = new underDEV\Notification\Runtime( __FILE__ );
+		$notification_runtime = new BracketSpace\Notification\Runtime( __FILE__ );
 	}
 
 	return $notification_runtime;
@@ -73,3 +74,41 @@ function notification_runtime() {
 
 $runtime = notification_runtime();
 $runtime->boot();
+
+/**
+ * Create a helper function for easy SDK access.
+ *
+ * @since  [Next]
+ * @return object
+ */
+function not_fs() {
+    global $not_fs;
+
+    if ( ! isset( $not_fs ) ) {
+        // Include Freemius SDK.
+        require_once dirname(__FILE__) . '/freemius/start.php';
+
+        $not_fs = fs_dynamic_init( array(
+            'id'                  => '1823',
+            'slug'                => 'notification',
+            'type'                => 'plugin',
+            'public_key'          => 'pk_bf7bb6cbc0cd51e14cd186e9620de',
+            'is_premium'          => false,
+            'has_addons'          => false,
+            'has_paid_plans'      => false,
+            'menu'                => array(
+                'first-path'     => 'plugins.php',
+                'account'        => false,
+                'contact'        => false,
+                'support'        => false,
+            ),
+        ) );
+    }
+
+    return $not_fs;
+}
+
+// Init Freemius.
+not_fs();
+// Signal that SDK was initiated.
+do_action( 'not_fs_loaded' );

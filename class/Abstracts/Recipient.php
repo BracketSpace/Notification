@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Abstracts;
+namespace BracketSpace\Notification\Abstracts;
 
-use underDEV\Notification\Interfaces;
+use BracketSpace\Notification\Interfaces;
 
 /**
  * Recipient abstract class
@@ -24,7 +24,7 @@ abstract class Recipient extends Common implements Interfaces\Receivable {
 	/**
      * Recipient constructor
      *
-     * @since [Next]
+     * @since 5.0.0
      * @param array $params recipient configuration params.
      */
     public function __construct( $params = array() ) {

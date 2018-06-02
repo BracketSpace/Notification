@@ -1,50 +1,106 @@
-=== Notification ===
-Contributors: Kubitomakita
+=== Notification - Custom Notifications and Alerts for WordPress ===
+Contributors: notification, bracketspace, Kubitomakita, insejn
 Donate link: https://www.paypal.me/underDEV/
-Tags: notification, notify, email, mail
+Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.6
-Tested up to: 4.8
-Stable tag: 3.1.1
+Tested up to: 4.9.5
+Stable tag: 5.2.1
+Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Customisable email notifications with developer friendly API for custom triggers
+Customisable email and webhook notifications with powerful developer friendly API for custom triggers and notifications. Send alerts easily.
 
 == Description ==
 
-This plugin allows you to send custom email notifications about various events in WordPress. It also comes with a simple API by which you can add literally **any** trigger action.
+Custom Notifications and Alerts without a hassle. Notify anyone about any action in your WordPress. With powerful Merge Tags, you can endlessly customize your messages. Set unlimited Notifications in your WordPress Admin via the beautiful and intuitive interface within 5 minutes.
 
-In messages you can use defined merge tags which will be later changed to content applicable for trigger.
+[youtube https://www.youtube.com/watch?v=UPqVBhLGTek]
 
-There is also option to disable the notifications for specific post, comment or user in case you don't want to send notification for a secret article.
+= HOW DOES IT WORK =
 
-> [See Notification homepage](https://notification.underdev.it) and check Developer docs
+The Notification plugin is built with three main components:
 
-https://www.youtube.com/watch?v=usdBMPjdiuw
+* Trigger - a WordPress action, ie. User registration or Post publication
+* Notification - the thing which is being sent, ie. Email or Push
+* Merge Tag - dynamic content, ie. {user_email} or {post_permalink}
 
-= Default recipients =
+You can use them in any combination, adding as many Notifications as you want. They can be sent to multiple Recipients with the content you write.
 
-Plugin comes with few registered by default recipient types:
+The process is simple:
 
-* Email address - free type email address
-* Administrator - takes an email from General Settings page
-* User - takes an email from WordPress user profile
-* Merge tag - email rendered by merge tag
+* You select the Trigger
+* Compose your message with Merge Tags
+* Set Recipients
+* Save the Notification
 
-= Default triggers =
+From now on the Notification is working. Test it out and add more!
 
-These are already defined in plugin's core and are ready to use. You can enable or disable them on the Settings page.
+= PERFECT FOR DEVELOPERS =
 
-Any Post Type:
+The Notification plugin is easy to set in the WordPress Admin, but it's even easier to extend with some sweet API.
+
+You can create your own Triggers with any WordPress action. If you do in your code `do_action( 'my_plugin_doing_awesome_thing' )` you can create a Trigger out of it.
+
+This allows you to use the Notification plugin as a notification system in your own plugin or theme. How? Well, because of two things:
+
+* You can easily load it copying the plugin files and including `load.php` file. A function known from Advanced Custom Fields plugin.
+* You can white label the plugin with just one function which is shipped in the plugin's core. For free.
+
+How easy extending the Notification plugin is? Let's see:
+
+* Adding another Merge Tag to existing trigger - 1 line of code
+* Creating custom Trigger - one intuitive class definition and registration with a single function call
+* Defining Global Merge Tag - 1 line of code
+* Creating new Extension - we have a [Boilerplate](https://github.com/BracketSpace/Notification-Extension-Boilerplate/) ready for you to start hacking
+
+[See the developer documentation](https://docs.bracketspace.com/docs-category/developer/) if you don't believe us.
+
+= DEFAULT NOTIFICATIONS =
+
+* Email
+* Webhook
+
+= DEFAULT RECIPIENTS =
+
+The plugin comes with few registered by default recipient types:
+
+* Email address or Merge Tag – free type email address or a Merge Tag
+* Administrator – takes an email from General Settings page
+* User – takes an email from WordPress user profile
+* Role – notify all Users having selected role at once
+
+= DEFAULT TRIGGERS =
+
+These are already defined in plugin’s core and are ready to use. You can enable or disable them on the Settings page.
+
+WordPress:
+
+* Available updates - sent as often as you set them, ie. every week
+
+Post Type:
 
 * Published post notification
+* Post added to database notification
+* Post drafted (saved as a draft) notification
 * Updated post notification
 * Post send for review (pending post) notification
 * Post moved to trash notification
 
+The Notification plugin supports any Custom Post Type out of the box.
+
+Taxonomy terms:
+
+* Taxonomy term created notification
+* Taxonomy term updated notification
+* Taxonomy term deleted notification
+
+The Notification plugin supports any Taxonomy out of the box.
+
 Comment / Pingback / Trackback:
 
 * New comment notification
+* Comment replied notification
 * Comment approved notification
 * Comment unapproved notification
 * Comment marked as spam notification
@@ -52,25 +108,60 @@ Comment / Pingback / Trackback:
 
 User:
 
-* User registered
-* User profile updated
-* User logged in
-* User deleted
+* User registered notification
+* User profile updated notification
+* User logged in notification
+* User failed to log in notification
+* User logged out notification
+* User password reset request notification
+* User password changed notification
+* User deleted notification
 
 Media:
 
-* Media added
-* Media updated
-* Media deleted
+* Media added notification
+* Media updated notification
+* Media deleted notification
 
-Feel free to suggest new core triggers in support forum
+Feel free to suggest new core triggers in the support forum.
 
-= Useful links =
+Each Trigger has own set of Merge Tags but you can use the Global Merge Tags anywhere.
 
-* [Homepage](https://notification.underdev.it)
+= GLOBAL MERGE TAGS =
+
+Along the Trigger specific Merge Tags, you can use the below anywhere:
+
+* Site homepage URL - `{home_url}`
+* Site title - `{site_title}`
+* Site tagline - `{site_tagline}`
+* Site theme name - `{site_theme_name}`
+* Site theme version - `{site_theme_version}`
+* Current WordPress version - `{wordpress_version}`
+* Admin email - `{admin_email}`
+* Trigger name - `{trigger_name}`
+* Trigger slug - `{trigger_slug}`
+
+= AWESOME EXTENSIONS =
+
+* [Conditionals](https://bracketspace.com/downloads/notification-conditionals/) - send Notifications in certain conditions
+* [Custom Fields](https://bracketspace.com/downloads/notification-custom-fields/) - use any meta value in your Notifications
+* [Review Queue](https://bracketspace.com/downloads/notification-review-queue/) - catch your Notifications into queue for a manual review
+* [Pushbullet](https://bracketspace.com/downloads/notification-pushbullet/) - send Push and SMS Notifications via your phone
+* [File Log](https://bracketspace.com/downloads/notification-file-log/) - save Notifications as file logs on the server
+
+= POSSIBLE USE CASES =
+
+* Post publication notification to the post author
+* Custom comment approved notification to post author and administrator
+* User logged in notification to the administrator
+* Notification about removed user account
+
+= USEFUL LINKS =
+
+* [Documentation](https://docs.bracketspace.com/docs-category/notification/)
 * [Support plugin developement](https://www.paypal.me/underDEV/)
-* [GitHub repository](https://github.com/Kubitomakita/Notification)
-* [Report a bug](https://github.com/Kubitomakita/Notification/issues/new)
+* [GitHub repository](https://github.com/BracketSpace/Notification)
+* [Report a bug](https://github.com/BracketSpace/Notification/issues/new)
 
 == Installation ==
 
@@ -86,167 +177,140 @@ Download and install this plugin from Plugins -> Add New admin screen.
 
 Notification can be loaded also as a part of any plugin or theme. To do it just include plugins's `load.php` file. It will figure out if it's loaded from theme or from plugin.
 
-[See the detailed guide](https://notification.underdev.it/including-notification-plugin-theme/)
+[See the detailed guide](https://docs.bracketspace.com/docs/including-notification-in-the-plugin-or-theme/)
 
 == Frequently Asked Questions ==
 
-= How to change notification email headers? =
+= How is this plugin different from Better Notifications for WordPress (BNFW)? =
 
-There's no such option at the moment. Please use some other plugin to adjust wp_mail() headers.
+The Notification plugin works very similar to BNFW but it has better codebase and interface. You can read the full comparison in the [Notification vs Better Notifications for WordPress](https://bracketspace.com/notification-vs-better-notifications-for-wordpress/) article.
 
-= How to register my triggers? =
+= Is this plugin for regular users? =
 
-With `register_trigger()` function. [See the detailed guide](https://notification.underdev.it/registering-new-triggers/)
+Ofcourse it is! We are trying to make both parties happy - the Users and Developers. Users got their intuitive and beautiful panel in WordPress Admin and Developers got an awesome API by which they can extend the Notification plugin.
 
-= How do I fire my trigger to send an email? =
+So it doesn't matter if you don't have any coding skills, they are not required to setup the notifications with this plugin.
 
-With `notification()` function. [See the detailed guide](https://notification.underdev.it/sending-notifications/)
+= How to register my own triggers? =
 
-= Can I deregister trigger I don't want to use? =
-
-Yes, with `deregister_trigger()` function. [See the detailed guide](https://notification.underdev.it/deregistering-triggers/)
+With `register_trigger()` function. [See the detailed guide](https://docs.bracketspace.com/docs/registering-custom-triggers/)
 
 = Can I bundle the plugin with my plugin or theme? =
 
-Yes, you can. [See the detailed guide](https://notification.underdev.it/including-notification-plugin-theme/)
+Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/including-notification-in-the-plugin-or-theme/)
 
 == Screenshots ==
 
 1. Trigger edit screen
 2. All triggers
 3. Settings
+4. Extensions
+5. Help tab with global Merge Tags
 
 == Changelog ==
 
-= Next release =
-* [Fixed] Composer autoload file thanks to @jclausen
+= [Next] =
+* [Added] `notificaiton/merge_tag/value/resolved` filter.
+* [Added] `post_sticky` status Merge Tag only for Post.
+* [Added] Email From Name and From Email settings.
+* [Changed] Merge Tag resolver is now set via `set_resolver` method.
+* [Changed] PHP version requirement to 5.3.9.
 
-= 3.1.1 =
-* [Fixed] Bug with directories/files names, thanks to Gregory Rick
+= 5.2.1 =
+* [Fixed] Not existing post type.
+* [Fixed] Merge tag values are cleaned when Trigger is executed second time in the same run.
+* [Added] Post saved as a draft trigger.
+* [Added] `notification_add_doc_hooks` function for creating doc hooks handlers.
+* [Added] Classes to Settings sections.
+* [Added] Taxonomy term created trigger
+* [Added] Taxonomy term updated trigger
+* [Added] Taxonomy term deleted trigger
+* [Added] User login failed trigger.
+* [Added] User password reset request trigger.
+* [Added] User password change trigger.
 
-= 3.1 =
-* [Added] `notification/notify` filter which control if notification should be sent or not
-* [Added] `notification/settings` action which accepts Settings API class as a parameter
-* [Added] `post_author_email` merge tag for all comment types triggers, thanks to Wayne Davies
-* [Added] Ongoing check of PHP and WP version, thanks to Max (@max-kk)
-* [Added] Option to strip shortcodes from Notification subject and content, thanks to @Laracy
-* [Added] Notification : Signature extension to extension directory
-* [Changed] Settings and Singleton are now loaded from Composer libraries
-* [Changed] Gulp default task to build, and added watch task which boots up BS
-* [Changed] Action priority when default recipients and triggers are registered from 50 to 9
-* [Changed] Action priority when settings are initialized from 15 to 8
-* [Changed] Updated Composer libraries
-* [Changed] Values for default trigger options from strings/arrays to null
-* [Fixed] Bug when Text editor was active and the trigger was changed
-* [Fixed] Post Visibility setting on other post types than Notification
-* [Fixed] Default recipient merge_tag value. All recipient inputs are now dynamically refreshed
-* [Fixed] Not cached exception in plugin's table when requiring this plugin from inside of another plugin or theme, thanks to Max (@max-kk)
+= 5.2.0 =
+* [Fixed] User ID assignment in User deleted trigger, thanks to @Matthewnie.
+* [Fixed] ACF postponed action bail.
+* [Fixed] Field value filter name.
+* [Fixed] Notices.
+* [Fixed] Empty email body not being sent.
+* [Fixed] Notification form attributes escaping.
+* [Changed] Trigger `action` methods has been unified with callback method parameters.
+* [Changed] The Merge Tags are now resolved only while they are used.
+* [Changed] Post Pending trigger to not send multiple emails when pending post is updated, thanks to @jdaniel.
+* [Added] Dynamic property setting for Attachment merge tags.
+* [Added] Better post updated messages while saving the Notification.
+* [Added] Option to change Email MIME Type, now you can send HTML or Plain text.
+* [Added] Filter for post statuses which controls when the "Updated" notification should be send.
+* [Added] Notification Form fields value filter.
+* [Added] Notification Form row class.
+* [Added] Doc Hooks class for better actions and filters definitions.
 
-= 3.0 =
-* [Fixed] Ignore tags which has been passed to `notification` but hasn't be registered in the trigger
-* [Fixed] Conflict with Advanced Custom Fields
-* [Added] Filters for post and comment types to output disbale metabox. `notification/disable/post_types_allowed` and `notification/disable/comment_types_allowed`, default to saved general settings
-* [Added] Extensions screen
-* [Added] While registering triggers you can now provide a default title and recipients
-* [Changed] bbPress post types are no longer available in the settings. Triggers for bbPress are provided by addon https://github.com/Kubitomakita/notification-bbpress
-* [Changed] Place where merge tags metabox actions are executed
-* [Changed] Chosen to Selectize.js
+= 5.1.7 =
+* [Fixed] Post Terms merge tags not rendering the values, thanks to @stocker.
+* [Changed] register_new_user action for User registered trigger to user_register.
+* [Added] new_to_publish action for Post published trigger, thanks to @JBCSU.
+* [Added] Post Added trigger.
+* [Added] Comment replied trigger.
 
-= 2.4 =
-* [Fixed] Bug with "Can't use method return value in write context" in Settings class, thanks to @rozv
-* [Fixed] Settings priorities, now every CPT registered not later than init 15 will be catched by the plugin, thanks to @rozv
-* [Fixed] Double protocol in links added via TinyMCE insert link feature, thanks to Jozsef
-* [Fixed] Notices in Notification validation method
-* [Fixed] Empty Recipient value, ie. Administrator
-* [Added] Post type triggers can be disabled for an user
-* [Added] Database Upgrader
-* [Added] User triggers - registered, profile updated, logged in, deleted
-* [Added] Taxonomies merge tags for post types
-* [Added] Media triggers - added, updated, deleted
-* [Changed] Post updated notification is now triggered only if the post has been published before, suggested by nepali65
-* [Changed] Content Type triggers setting has been changed to Enabled triggers
+= 5.1.6 =
+* [Fixed] Notice from PostTerms merge tags and from empty result.
+* [Fixed] Cloning Notification object which used the same fields instances, thanks to @JohanHjalmarsson.
 
-= 2.3.1 =
-* [Fixed] Bug with not activated "Disable" option
+= 5.1.5 =
+* [Fixed] Comment author display name bug, thanks to Aga Bury.
+* [Fixed] Post Published and Post Pending trigger fired twice.
+* [Fixed] Assets modification time as a cache buster.
+* [Fixed] Missing translations.
+* [Fixed] Notice thrown while saving email administrator recipient.
+* [Added] Comment Post Type merge tag for Comment triggers.
+* [Added] Comment moderation links for Comment triggers.
+* [Added] HtmlTag merge tag type.
+* [Added] WordPress updates available trigger.
+* [Added] Post Type merge tag.
+* [Added] More merge tags for comment triggers.
 
-= 2.3 =
-* [Changed] Removed unused default post controls
-* [Changed] Better error handling, plugin will not die now unless WP_DEBUG is active
-* [Changed] Role class parse_value() method now must define 3rd parameter $human_readable
-* [Added] Role recipient
-* [Added] Option to disable notification for specific post (and in future for user or comment), thanks to Jeff Lehman
-* [Changed] string, integer and float merge tags used in the message subject are now rendered
+= 5.1.4 =
+* [Fixed] Object class name error on PHP 7.2 when using paid extension.
+* [Added] User password setup link for User registered trigger.
+* [Added] Ability to encode Webhook args as a JSON
+* [Added] Post status merge tag for Post triggers.
+* [Changed] Recipient Free type email field now supports comma separated emails.
+* [Changed] ACF integration postponed action for Post triggers has been changed to `save_post` which makes it more universal.
 
-= 2.2 =
-* [Added] `notification/metabox/trigger/tags/before` and `notification/metabox/trigger/tags/after` actions to merge tags metabox
-* [Added] `notification/metabox/recipients/before` and `notification/metabox/recipients/after` actions to recipients metabox
-* [Added] `notification/metabox/trigger/before` and `notification/metabox/trigger/after` actions to trigger metabox
-* [Fixed] Settings register action priority
-* [Fixed] Post type trashed template
-* [Changed] Gulpfile to not include any browser
-* [Fixed] Comment type added template
-* [Changed] Comment added trigger now is Akismet compatibile, thanks to Nels Johnson
-* [Changed] Core triggers current type global to anonymous functions, thanks to Bartosz Romanowski @toszcze
+= 5.1.3 =
+* [Fixed] Pretty select in repeater is now rendered correctly while adding new row.
+* [Fixed] User Registration Trigger action.
+* [Fixed] ACF Postponing when there's no data from ACF to save.
+* [Fixed] Post object property name for Custom Post Types.
+* [Added] Global Merge Tags which can be used in any Trigger. This includes Site title, Trigger name etc.
+* [Added] Screen help.
+* [Added] User Display Name Merge Tag.
+* [Added] Post Terms Merge Tags.
 
-= 2.1 =
-* [Fixed] Warning when no post or comment type are selected in the settings. Thanks to JoeHana
-* [Fixed] post published trigger
-* [Changed] Post type name in trigger title is now singular
-* [Added] {author_login} merge tag to each post trigger
-* [Added] Promo video: https://www.youtube.com/watch?v=usdBMPjdiuw
+= 5.1.2 =
+* [Added] Ability to suppress the Notification just before it's send.
+* [Added] Freemius integration to better understand the users.
+* [Added] Current Notification post ID property for Notifiation object.
 
-= 2.0.1 =
-* [Fixed] Issue with not sent emails because of wrong current post type while registering notification action. Thanks to Karl Camenzuli
+= 5.1.1 =
+* [Fixed] Posponed action callback.
+* [Added] Support for NOTIFICATION_DEBUG constant. If it's defined the cache for extensions is not applied.
+* [Added] notificaiton/notification/field/resolving filter before any value is resolved with merge tags.
 
-= 2.0 =
-* [Fixed]: Correct choice selected for WP User recipient after saving notification. Thanks to whitwye
-* [Added]: Settings API
-* [Added]: Setting - what to remove upon plugin removal
-* [Added]: Plugin cleanup procedure
-* [Added]: Plugin deactivation feedback popup
-* [Added]: Conditional tag `is_notification_defined()` to check if notification will be send
-* [Added]: Post permalink to comment triggers
-* [Changed]: Notifications class is now singleton and partialy moved to Admin class
-* [Changed]: Notification trigger metabox is now under the subject
-* [Changed]: On the single Notification edit screen there are only allowed metaboxes displayed
-* [Changed]: You can now controll what post types and comment types trigger use via plugin Settings
+= 5.1.0 =
+* [Fixed] The Email notification it not enabled anymore for already saved notifications
+* [Fixed] New Notification post is not automatically saved as an Auto Draft anymore
+* [Fixed] Enabled switch state in Save metabox
+* [Changed] Documentation link in Own Extension promo link
+* [Changed] Extensions in Extension directory are now loaded from remote API
+* [Added] TextareaField field
+* [Added] License handler for premium extensions
 
-= 1.4 =
-* [Fixed]: Missing 3rd argument on page publish
-* [Fixed]: Namespace issue for PHP < 5.3
-* [Fixed]: Constant notification on post edit. Thanks to @pehbeh
-* [Changed]: Allow for merge tags empty values. Thanks to kokoq
-* [Added]: Admin notice: beg for a review. It will display only if there's at least one notification set, on the Notification plugin screens and can be dismissed easly.
+= 5.0.0 =
+* WARNING! This version is not compatible with previous version. No core notifications nor custom triggers will be transfered to the new version because of too many changes in the plugin. Consider updating the plugin in a safe, not-production environment.
+* Plugin has been redesigned from ground up
+* The only thing which is not available in new version is disabling the notifications
 
-= 1.3.1 =
-* [Fixed]: Error with "Can't use function return value in write context" in empty() function. Thanks to Błażej Zabłotny
-
-= 1.3 =
-* [Added]: PHP version check
-* [Changed]: Typos in readme.txt file thanks to justyn-clark (https://github.com/Kubitomakita/Notification/pull/1)
-
-= 1.2 =
-* [Added]: New User recipient (takes WordPress users)
-* [Added]: Post/Page updated trigger
-* [Added]: Template for triggers. You can now load default template for user
-* [Changed]: Default post published trigger for posts and pages - it was triggered every time post was updated
-* [Changed]: In Notifications table values are now parsed before displaying
-* [Changed]: Readme file
-
-= 1.1.2 =
-* Changed priority for main init action from 10 to 5
-* Added 'notification/cpt/capability_type' filter for capability mapping
-
-= 1.1 =
-* Added ability to distribute in any plugin or theme
-
-= 1.0 =
-* Release
-
-== Upgrade Notice ==
-
-= 1.1 =
-* Added ability to distribute in any plugin or theme
-
-= 1.0 =
-* Release
+For more changelogs please refer to the [changelog.txt](https://github.com/BracketSpace/Notification/blob/master/changelog.txt) file.

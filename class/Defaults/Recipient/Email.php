@@ -5,10 +5,10 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\Recipient;
+namespace BracketSpace\Notification\Defaults\Recipient;
 
-use underDEV\Notification\Abstracts;
-use underDEV\Notification\Defaults\Field;
+use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Defaults\Field;
 
 /**
  * Email recipient
@@ -18,12 +18,12 @@ class Email extends Abstracts\Recipient {
 	/**
 	 * Recipient constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 */
 	public function __construct() {
 		parent::__construct( array(
 			'slug'          => 'email',
-			'name'          => __( 'Email / Merge tag' ),
+			'name'          => __( 'Email / Merge tag', 'notification' ),
 			'default_value' => '',
 		) );
 	}
@@ -41,7 +41,14 @@ class Email extends Abstracts\Recipient {
 			$value = $this->get_default_value();
 		}
 
-		return array( esc_url( $value ) );
+		$parsed_emails = array();
+		$emails        = explode( ',', $value );
+
+		foreach ( $emails as $email ) {
+			$parsed_emails[] = sanitize_email( $email );
+		}
+
+		return $parsed_emails;
 
 	}
 
@@ -53,11 +60,11 @@ class Email extends Abstracts\Recipient {
 	public function input() {
 
 		return new Field\InputField( array(
-			'label'       => 'Recipient',       // don't edit this!
+			'label'       => __( 'Recipient', 'notification' ),       // don't edit this!
 			'name'        => 'recipient',       // don't edit this!
 			'css_class'   => 'recipient-value', // don't edit this!
 			'placeholder' => __( 'email@domain.com or {email}', 'notification' ),
-			'description' => __( 'You can use any valid email merge tag.' ),
+			'description' => __( 'You can use any valid email merge tag.', 'notification' ),
 			'resolvable'  => true
 		) );
 

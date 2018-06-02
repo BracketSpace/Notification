@@ -5,10 +5,10 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Admin;
+namespace BracketSpace\Notification\Admin;
 
-use underDEV\Notification\Utils\View;
-use underDEV\Notification\Interfaces\Fillable;
+use BracketSpace\Notification\Utils\View;
+use BracketSpace\Notification\Interfaces\Fillable;
 
 /**
  * FormRenderer class
@@ -33,7 +33,7 @@ class FormRenderer {
 	/**
 	 * FormRenderer constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param View $view View class.
 	 */
 	public function __construct( View $view ) {

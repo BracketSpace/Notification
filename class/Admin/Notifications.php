@@ -5,7 +5,7 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Admin;
+namespace BracketSpace\Notification\Admin;
 
 /**
  * Notifications class
@@ -15,7 +15,7 @@ class Notifications {
 	/**
 	 * Notifications constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param BoxRenderer  $boxrenderer  BoxRenderer class.
 	 * @param FormRenderer $formrenderer FormRenderer class.
 	 * @param PostData     $postdata     PostData class.
@@ -29,7 +29,7 @@ class Notifications {
 	/**
 	 * Renders notification boxes
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return void
 	 */
 	public function render_notifications() {
@@ -56,15 +56,23 @@ class Notifications {
 
 	/**
 	 * Save the notifications in post meta
+	 *
+	 * @action save_post_notification
      *
 	 * @param  integer $post_id current post ID.
+	 * @param  object  $post    WP_Post object.
+	 * @param  boolean $update  if existing notification is updated.
 	 * @return void
 	 */
-	public function save( $post_id ) {
+	public function save( $post_id, $post, $update ) {
 
         if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
             return;
         }
+
+		if ( ! $update ) {
+			return;
+		}
 
         $this->postdata->set_post_id( $post_id );
         $this->postdata->save_notification_data( $_POST );

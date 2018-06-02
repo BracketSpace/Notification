@@ -5,12 +5,12 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Abstracts;
+namespace BracketSpace\Notification\Abstracts;
 
-use underDEV\Notification\Interfaces;
-use underDEV\Notification\Interfaces\Triggerable;
-use underDEV\Notification\Defaults\Field;
-use underDEV\Notification\Defaults\Field\RecipientsField;
+use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Interfaces\Triggerable;
+use BracketSpace\Notification\Defaults\Field;
+use BracketSpace\Notification\Defaults\Field\RecipientsField;
 
 /**
  * Notification abstract class
@@ -39,6 +39,20 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	public $data = array();
 
 	/**
+	 * If Notification is suppressed
+	 *
+	 * @var boolean
+	 */
+	protected $suppressed = false;
+
+	/**
+	 * Current Notification post ID
+	 *
+	 * @var integer
+	 */
+	public $post_id = 0;
+
+	/**
 	 * Notification constructor
      *
 	 * @param string $slug slug.
@@ -57,6 +71,25 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 		) ) );
 
 		$this->form_fields();
+
+	}
+
+	/**
+	 * Clone method
+	 * Copies the fields to new Notification instance
+	 *
+	 * @since  5.1.6
+	 * @return void
+	 */
+	public function __clone() {
+
+		$fields = array();
+
+		foreach ( $this->form_fields as $raw_name => $field ) {
+			$fields[ $raw_name ] = clone $field;
+		}
+
+		$this->form_fields = $fields;
 
 	}
 
@@ -88,12 +121,13 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	/**
 	 * Adds form field to collection
      *
-	 * @param  object $field Field object.
+	 * @param  Interfaces\Fillable $field Field object.
 	 * @return $this
 	 */
 	public function add_form_field( Interfaces\Fillable $field ) {
-		$field->section = 'notification_type_' . $this->get_slug();
-		$this->form_fields[ $field->get_raw_name() ] = clone $field;
+		$adding_field = clone $field;
+		$adding_field->section = 'notification_type_' . $this->get_slug();
+		$this->form_fields[ $field->get_raw_name() ] = $adding_field;
 		return $this;
 	}
 
@@ -126,7 +160,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	 * Prepares saved data for easy use in send() method
 	 * Saves all the values in $data property
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return void
 	 */
 	public function prepare_data() {
@@ -167,6 +201,26 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 
 		}
 
+	}
+
+	/**
+	 * Checks if Notification is suppressed
+	 *
+	 * @since  5.1.2
+	 * @return boolean
+	 */
+	public function is_suppressed() {
+		return $this->suppressed;
+	}
+
+	/**
+	 * Suppresses the Notification
+	 *
+	 * @since  5.1.2
+	 * @return void
+	 */
+	public function suppress() {
+		$this->suppressed = true;
 	}
 
 }

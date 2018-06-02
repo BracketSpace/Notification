@@ -5,10 +5,10 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Admin;
+namespace BracketSpace\Notification\Admin;
 
-use underDEV\Notification\Utils\Settings as SettingsAPI;
-use underDEV\Notification\Utils\Settings\CoreFields;
+use BracketSpace\Notification\Utils\Settings as SettingsAPI;
+use BracketSpace\Notification\Utils\Settings\CoreFields;
 
 /**
  * Settings class
@@ -25,14 +25,34 @@ class Settings extends SettingsAPI {
 	/**
 	 * Register Settings page under plugin's menu
 	 *
+	 * @action admin_menu 20
+	 *
 	 * @return void
 	 */
 	public function register_page() {
 
+		if ( ! apply_filters( 'notification/whitelabel/settings', true ) ) {
+			return;
+		}
+
+		$settings_access = apply_filters( 'notification/whitelabel/settings/access', false );
+		if ( false !== $settings_access && ! in_array( get_current_user_id(), $settings_access ) ) {
+			return;
+		}
+
+		// change settings position if white labelled.
+		if ( true !== apply_filters( 'notification/whitelabel/cpt/parent', true ) ) {
+			$parent_hook     = apply_filters( 'notification/whitelabel/cpt/parent', 'edit.php?post_type=notification' );
+			$page_menu_label =  __( 'Notification settings', 'notification' );
+		} else {
+			$parent_hook     = 'edit.php?post_type=notification';
+			$page_menu_label =  __( 'Settings', 'notification' );
+		}
+
 		$this->page_hook = add_submenu_page(
-			'edit.php?post_type=notification',
+			$parent_hook,
 	        __( 'Notification settings', 'notification' ),
-	        __( 'Settings', 'notification' ),
+	        $page_menu_label,
 	        'manage_options',
 	        'settings',
 	        array( $this, 'settings_page' )
@@ -42,6 +62,8 @@ class Settings extends SettingsAPI {
 
 	/**
 	 * Registers Settings
+	 *
+	 * @action wp_loaded
 	 *
 	 * @return void
 	 */
@@ -105,6 +127,16 @@ class Settings extends SettingsAPI {
 				'render'   => array( new CoreFields\Checkbox(), 'input' ),
 				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
 			) )
+			->add_field( array(
+				'name'     => __( 'Licenses', 'notification' ),
+				'slug'     => 'licenses',
+				'default'  => 'true',
+				'addons'   => array(
+					'label' => __( 'Remove and deactivate extension licenses', 'notification' )
+				),
+				'render'   => array( new CoreFields\Checkbox(), 'input' ),
+				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+			) )
 			->description( __( 'Choose what to remove upon plugin removal', 'notification' ) );
 
 	}
@@ -141,6 +173,32 @@ class Settings extends SettingsAPI {
 				'sanitize'    => array( new CoreFields\Select(), 'sanitize' ),
 			) )
 			->description( __( 'For these post types you will be able to define published, updated, pending moderation etc. notifications', 'notification' ) );
+
+		// prepare taxonomies for taxonomies option select.
+		$valid_taxonomies = apply_filters( 'notification/settings/triggers/valid_taxonomies', get_taxonomies( array( 'public' => true ), 'objects' ) );
+
+		$taxonomies = array();
+		foreach ( $valid_taxonomies as $taxonomy ) {
+			if ( $taxonomy->name == 'post_format' ) {
+				continue;
+			}
+			$taxonomies[ $taxonomy->name ] = $taxonomy->labels->name;
+		}
+
+		$triggers->add_group( __( 'Taxonomy', 'notification' ), 'taxonomies' )
+			->add_field( array(
+				'name'        => __( 'Taxonomies', 'notification' ),
+				'slug'        => 'types',
+				'default'     => array( 'category', 'post_tag' ),
+				'addons'      => array(
+					'multiple' => true,
+					'pretty'   => true,
+					'options'  => $taxonomies
+				),
+				'render'      => array( new CoreFields\Select(), 'input' ),
+				'sanitize'    => array( new CoreFields\Select(), 'sanitize' ),
+			) )
+			->description( __( 'For these taxonomies you will be able to define published, updated and deleted notifications', 'notification' ) );
 
 		$triggers->add_group( __( 'Comment', 'notification' ), 'comment' )
 			->add_field( array(
@@ -194,6 +252,44 @@ class Settings extends SettingsAPI {
 				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
 			) );
 
+		$updates_cron_options = array();
+
+		foreach ( wp_get_schedules() as $schedule_name => $schedule ) {
+			$updates_cron_options[ $schedule_name ] = $schedule['display'];
+		}
+
+		$triggers->add_group( __( 'WordPress', 'notification' ), 'wordpress' )
+			->add_field( array(
+				'name'     => __( 'Updates', 'notification' ),
+				'slug'     => 'updates',
+				'default'  => false,
+				'addons'   => array(
+					'label' => __( 'Enable "Updates available" trigger', 'notification' )
+				),
+				'render'   => array( new CoreFields\Checkbox(), 'input' ),
+				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+			) )
+			->add_field( array(
+				'name'     => __( 'Send if no updates', 'notification' ),
+				'slug'     => 'updates_send_anyway',
+				'default'  => false,
+				'addons'   => array(
+					'label' => __( 'Send updates email even if no updates available', 'notification' )
+				),
+				'render'   => array( new CoreFields\Checkbox(), 'input' ),
+				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+			) )
+			->add_field( array(
+				'name'     => __( 'Updates check period', 'notification' ),
+				'slug'     => 'updates_cron_period',
+				'default'  => 'ntfn_week',
+				'addons'   => array(
+					'options' => $updates_cron_options,
+				),
+				'render'   => array( new CoreFields\Select(), 'input' ),
+				'sanitize' => array( new CoreFields\Select(), 'sanitize' ),
+			) );
+
 	}
 
 	/**
@@ -203,6 +299,13 @@ class Settings extends SettingsAPI {
 	 * @return void
 	 */
 	public function notifications_settings( $settings ) {
+
+		$sitename = strtolower( $_SERVER['SERVER_NAME'] );
+        if ( substr( $sitename, 0, 4 ) == 'www.' ) {
+            $sitename = substr( $sitename, 4 );
+        }
+
+        $default_from_email = 'wordpress@' . $sitename;
 
 		$notifications = $settings->add_section( __( 'Notifications', 'notification' ), 'notifications' );
 
@@ -216,6 +319,35 @@ class Settings extends SettingsAPI {
 				),
 				'render'   => array( new CoreFields\Checkbox(), 'input' ),
 				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+			) )
+			->add_field( array(
+				'name'     => __( 'Message type', 'notification' ),
+				'slug'     => 'type',
+				'default'  => 'html',
+				'addons'   => array(
+					'options' => array(
+						'html'  => __( 'HTML', 'notification' ),
+						'plain' => __( 'Plain text', 'notification' ),
+					)
+				),
+				'render'   => array( new CoreFields\Select(), 'input' ),
+				'sanitize' => array( new CoreFields\Select(), 'sanitize' ),
+			) )
+			->add_field( array(
+				'name'        => __( 'From Name', 'notification' ),
+				'slug'        => 'from_name',
+				'default'     => '',
+				'render'      => array( new CoreFields\Text(), 'input' ),
+				'sanitize'    => array( new CoreFields\Text(), 'sanitize' ),
+				'description' => sprintf( __( 'Leave blank to use default value: %s' ), '<code>WordPress</code>' ),
+			) )
+			->add_field( array(
+				'name'        => __( 'From Email', 'notification' ),
+				'slug'        => 'from_email',
+				'default'     => '',
+				'render'      => array( new CoreFields\Text(), 'input' ),
+				'sanitize'    => array( new CoreFields\Text(), 'sanitize' ),
+				'description' => sprintf( __( 'Leave blank to use default value: %s' ), '<code>' . $default_from_email . '</code>' ),
 			) );
 
 		$notifications->add_group( __( 'Webhook', 'notification' ), 'webhook' )
@@ -239,6 +371,25 @@ class Settings extends SettingsAPI {
 				'render'   => array( new CoreFields\Checkbox(), 'input' ),
 				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
 			) );
+
+	}
+
+	/**
+	 * Filters post types from supported posts
+	 *
+	 * @filter notification/settings/triggers/valid_post_types
+	 *
+	 * @since  5.0.0
+	 * @param  array $post_types post types.
+	 * @return array
+	 */
+	public function filter_post_types( $post_types ) {
+
+		if ( isset( $post_types['attachment'] ) ) {
+			unset( $post_types['attachment'] );
+		}
+
+		return $post_types;
 
 	}
 

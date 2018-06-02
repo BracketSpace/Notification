@@ -5,16 +5,21 @@
  * @package notificaiton
  */
 
-$defaults = array(
-	'recipients',
-	'triggers',
-	'notifications',
-);
+add_action( 'init', function() {
 
-foreach ( $defaults as $default ) {
+	$defaults = array(
+		'global_merge_tags',
+		'recipients',
+		'triggers',
+		'notifications',
+	);
 
-	if ( apply_filters( 'notification/load/default/' . $default, true ) ) {
-		require_once 'defaults/' . $default . '.php';
+	foreach ( $defaults as $default ) {
+
+		if ( apply_filters( 'notification/load/default/' . $default, true ) ) {
+			require_once 'defaults/' . $default . '.php';
+		}
+
 	}
 
-}
+}, 1000, 1 );

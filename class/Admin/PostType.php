@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Admin;
+namespace BracketSpace\Notification\Admin;
 
-use underDEV\Notification\Utils\View;
+use BracketSpace\Notification\Utils\View;
 
 /**
  * PostType class
@@ -17,7 +17,7 @@ class PostType {
 	/**
 	 * PostType constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param Trigger       $trigger       Trigger class.
 	 * @param Notifications $notifications Notifications class.
 	 * @param View          $view          View class.
@@ -30,6 +30,8 @@ class PostType {
 
 	/**
 	 * Registers Notification post type
+	 *
+	 * @action init
      *
 	 * @return void
 	 */
@@ -51,11 +53,11 @@ class PostType {
 		);
 
 		register_post_type( 'notification', array(
-			'labels'              => $labels,
+			'labels'              => apply_filters( 'notification/whitelabel/cpt/labels', $labels ),
 			'hierarchical'        => false,
 			'public'              => true,
 			'show_ui'             => true,
-			'show_in_menu'        => true,
+			'show_in_menu'        => apply_filters( 'notification/whitelabel/cpt/parent', true ),
 			'show_in_admin_bar'   => true,
 			'menu_icon'           => 'dashicons-megaphone',
 			'menu_position'       => 103,
@@ -82,7 +84,40 @@ class PostType {
 	}
 
 	/**
+	 * Filters the posu updated messages
+	 *
+	 * @filter post_updated_messages
+	 *
+	 * @since  5.2.0
+	 * @param  array $messages Messages.
+	 * @return array
+	 */
+	public function post_updated_messages( $messages ) {
+
+		$post = get_post();
+
+		$messages['notification'] = array(
+			0  => '',
+			1  => __( 'Notification updated.', 'notification' ),
+			2  => '',
+			3  => '',
+			4  => __( 'Notification updated.', 'notification' ),
+			5  => '',
+			6  => __( 'Notification saved.', 'notification' ),
+			7  => __( 'Notification saved.', 'notification' ),
+			8  => '',
+			9  => '',
+			10 => '',
+		);
+
+		return $messages;
+
+	}
+
+	/**
 	 * Moves the metaboxes under title in WordPress
+	 *
+	 * @action edit_form_after_title
      *
 	 * @param  object $post WP_Post.
 	 * @return void
@@ -101,6 +136,8 @@ class PostType {
 	/**
 	 * Adds Notifications section title on post edit screen,
 	 * just under the Trigger and prints Notifications metaboxes
+	 *
+	 * @action edit_form_after_title 20
      *
 	 * @param  object $post WP_Post.
 	 * @return void
@@ -125,6 +162,8 @@ class PostType {
 
 	/**
 	 * Adds metabox with Save button
+	 *
+	 * @action add_meta_boxes
      *
 	 * @return void
 	 */
@@ -147,12 +186,19 @@ class PostType {
 	/**
 	 * Saves post status in relation to on/off switch
 	 *
-	 * @since  [Next]
+	 * @filter wp_insert_post_data 100
+	 *
+	 * @since  5.0.0
 	 * @param  array $data    post data.
 	 * @param  array $postarr saved data.
 	 * @return array
 	 */
 	public function save_notification_status( $data, $postarr ) {
+
+		// fix for brand new posts.
+		if ( $data['post_status'] == 'auto-draft' ) {
+			return $data;
+		}
 
 		if ( $data['post_type'] != 'notification' ||
 			$postarr['post_status'] == 'trash' ||
@@ -179,12 +225,14 @@ class PostType {
 	public function save_metabox( $post ) {
 
 		if ( ! EMPTY_TRASH_DAYS ) {
-			$delete_text = __( 'Delete Permanently' );
+			$delete_text = __( 'Delete Permanently', 'notification' );
 		} else {
-			$delete_text = __( 'Move to Trash' );
+			$delete_text = __( 'Move to Trash', 'notification' );
 		}
 
-		$this->view->set_var( 'enabled', notification_is_new_notification( $post ) );
+		$enabled = notification_is_new_notification( $post ) || get_post_status( $post->ID ) != 'draft';
+
+		$this->view->set_var( 'enabled', $enabled );
 		$this->view->set_var( 'post_id', $post->ID );
 		$this->view->set_var( 'delete_link_label', $delete_text );
 
@@ -194,6 +242,8 @@ class PostType {
 
 	/**
 	 * Cleans up all metaboxes to keep the screen nice and clean
+	 *
+	 * @action add_meta_boxes 999999999
      *
 	 * @return void
 	 */

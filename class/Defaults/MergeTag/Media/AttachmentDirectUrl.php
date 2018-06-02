@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\MergeTag\Media;
+namespace BracketSpace\Notification\Defaults\MergeTag\Media;
 
-use underDEV\Notification\Defaults\MergeTag\UrlTag;
+use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
 
 
 /**
@@ -16,20 +16,31 @@ use underDEV\Notification\Defaults\MergeTag\UrlTag;
 class AttachmentDirectUrl extends UrlTag {
 
 	/**
+	 * Trigger property to get the attachment data from
+	 *
+	 * @var string
+	 */
+	protected $property_name = 'attachment';
+
+	/**
      * Merge tag constructor
      *
-     * @since [Next]
+     * @since 5.0.0
      * @param array $params merge tag configuration params.
      */
     public function __construct( $params = array() ) {
 
+    	if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
+    		$this->property_name = $params['property_name'];
+    	}
+
     	$args = wp_parse_args( $params, array(
 			'slug'        => 'attachment_direct_url',
-			'name'        => __( 'Attachment direct URL' ),
-			'description' => __( 'http://example.com/wp-content/uploads/2018/02/forest-landscape.jpg' ),
+			'name'        => __( 'Attachment direct URL', 'notification' ),
+			'description' => __( 'http://example.com/wp-content/uploads/2018/02/forest-landscape.jpg', 'notification' ),
 			'example'     => true,
 			'resolver'    => function() {
-				return wp_get_attachment_url( $this->trigger->attachment->ID );
+				return wp_get_attachment_url( $this->trigger->{ $this->property_name }->ID );
 			},
 		) );
 
@@ -43,7 +54,7 @@ class AttachmentDirectUrl extends UrlTag {
 	 * @return boolean
 	 */
 	public function check_requirements( ) {
-		return isset( $this->trigger->attachment->ID );
+		return isset( $this->trigger->{ $this->property_name }->ID );
 	}
 
 }

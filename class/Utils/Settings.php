@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Utils;
+namespace BracketSpace\Notification\Utils;
 
-use underDEV\Notification\Utils\Settings\Section;
+use BracketSpace\Notification\Utils\Settings\Section;
 
 /**
  * Settings class
@@ -69,7 +69,7 @@ class Settings {
 	 * Settings constructor
 	 *
 	 * @throws \Exception Exception.
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param string $handle     settings handle.
 	 * @param string $textdomain textdomain.
 	 */
@@ -258,7 +258,7 @@ class Settings {
 	/**
 	 * Sets up the field values for Settings form
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return void
 	 */
 	public function setup_field_values() {
@@ -338,7 +338,7 @@ class Settings {
 	/**
 	 * Catches settings config and saves it for later use
 	 *
-	 * @since  [Next]
+	 * @since  5.0.0
 	 * @return void
 	 */
 	public function catch_config() {

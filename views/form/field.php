@@ -8,7 +8,7 @@
 $field = $this->get_var( 'current_field' );
 ?>
 
-<tr>
+<tr class="<?php echo $field->get_raw_name(); ?>">
 	<th>
 		<label for="<?php echo $field->get_id(); ?>"><?php echo $field->get_label(); ?></label>
 	</th>

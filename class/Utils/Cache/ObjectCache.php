@@ -7,15 +7,15 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Utils\Cache;
+namespace BracketSpace\Notification\Utils\Cache;
 
-use underDEV\Notification\Utils\Cache\Cache;
-use underDEV\Notification\Utils\Interfaces\Cacheable;
+use BracketSpace\Notification\Utils\Cache\Cache;
+use BracketSpace\Notification\Utils\Interfaces\Cacheable;
 
 /**
  * Object cache
  */
-class Object extends Cache implements Cacheable {
+class ObjectCache extends Cache implements Cacheable {
 
 	/**
 	 * Cache group

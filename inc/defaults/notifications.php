@@ -5,7 +5,7 @@
  * @package notification
  */
 
-use underDEV\Notification\Defaults\Notification;
+use BracketSpace\Notification\Defaults\Notification;
 
 if ( notification_get_setting( 'notifications/email/enable' ) ) {
 	register_notification( new Notification\Email() );

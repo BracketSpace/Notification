@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\MergeTag;
+namespace BracketSpace\Notification\Defaults\MergeTag;
 
-use underDEV\Notification\Abstracts\MergeTag;
+use BracketSpace\Notification\Abstracts\MergeTag;
 
 /**
  * Float merge tag class

@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Utils\Settings;
+namespace BracketSpace\Notification\Utils\Settings;
 
-use underDEV\Notification\Utils\Settings\Section;
+use BracketSpace\Notification\Utils\Settings\Section;
 
 /**
  * Group class

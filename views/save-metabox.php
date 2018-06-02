@@ -9,7 +9,7 @@
 <div class="submitbox" id="submitpost">
 	<div class="misc-pub-section">
 		<?php do_action( 'notification/admin/metabox/save/pre', $this ); ?>
-		<label class="row-label" for="onoffswitch"><strong><?php esc_html_e( 'Enable' ); ?></strong></label>
+		<label class="row-label" for="onoffswitch"><strong><?php esc_html_e( 'Enable', 'notification' ); ?></strong></label>
 		<div class="onoffswitch">
 		    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" value="1" id="onoffswitch" <?php checked( $this->get_var( 'enabled' ), true ); ?>>
 		    <label class="onoffswitch-label" for="onoffswitch">
@@ -29,7 +29,7 @@
 		</div>
 		<div id="publishing-action">
 			<span class="spinner"></span>
-			<input type="submit" value="<?php esc_attr_e( 'Save' ); ?>" class="button button-primary button-large" id="publish" name="publish">
+			<input type="submit" value="<?php esc_attr_e( 'Save', 'notification' ); ?>" class="button button-primary button-large" id="publish" name="publish">
 		</div>
 		<div class="clear"></div>
 	</div>

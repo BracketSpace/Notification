@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Admin;
+namespace BracketSpace\Notification\Admin;
 
-use underDEV\Notification\Utils\Files;
+use BracketSpace\Notification\Utils\Files;
 
 /**
  * Scripts class
@@ -22,17 +22,28 @@ class Scripts {
 	private $files;
 
 	/**
+	 * Runtime class
+     *
+	 * @var object
+	 */
+	private $runtime;
+
+	/**
 	 * Scripts constructor
 	 *
-	 * @since [Next]
-	 * @param Files $files Files class.
+	 * @since 5.0.0
+	 * @param object $runtime Plugin Runtime class.
+	 * @param Files  $files   Files class.
 	 */
-	public function __construct( Files $files ) {
-		$this->files = $files;
+	public function __construct( $runtime, Files $files ) {
+		$this->files   = $files;
+		$this->runtime = $runtime;
 	}
 
 	/**
 	 * Enqueue scripts and styles for admin
+	 *
+	 * @action admin_enqueue_scripts
      *
 	 * @param  string $page_hook current page hook.
 	 * @return void
@@ -40,8 +51,8 @@ class Scripts {
 	public function enqueue_scripts( $page_hook ) {
 
 		$allowed_hooks = array(
-			'notification_page_extensions',
-			'notification_page_settings',
+			$this->runtime->admin_extensions->page_hook,
+			$this->runtime->settings->page_hook,
 			'plugins.php',
 			'post-new.php',
 			'post.php'
@@ -51,9 +62,9 @@ class Scripts {
 			return;
 		}
 
-		wp_enqueue_script( 'notification', $this->files->asset_url( 'js', 'scripts.min.js' ), array( 'jquery' ), null, false );
+		wp_enqueue_script( 'notification', $this->files->asset_url( 'js', 'scripts.min.js' ), array( 'jquery' ), $this->files->asset_mtime( 'js', 'scripts.min.js' ), false );
 
-		wp_enqueue_style( 'notification', $this->files->asset_url( 'css', 'style.css' ) );
+		wp_enqueue_style( 'notification', $this->files->asset_url( 'css', 'style.css' ), array(), $this->files->asset_mtime( 'css', 'style.css' ) );
 
 		wp_localize_script( 'notification', 'notification', array(
 			'ajaxurl'  => admin_url( 'admin-ajax.php' ),

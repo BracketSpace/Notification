@@ -8,9 +8,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\MergeTag\DateTime;
+namespace BracketSpace\Notification\Defaults\MergeTag\DateTime;
 
-use underDEV\Notification\Defaults\MergeTag\StringTag;
+use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 
 /**
  * DateTime merge tag class
@@ -20,14 +20,14 @@ class DateTime extends StringTag {
 	/**
      * Merge tag constructor
      *
-     * @since [Next]
+     * @since 5.0.0
      * @param array $params merge tag configuration params.
      */
     public function __construct( $params = array() ) {
 
     	$args = wp_parse_args( $params, array(
 			'slug'        => 'datetime',
-			'name'        => __( 'Date and Time' ),
+			'name'        => __( 'Date and Time', 'notification' ),
 			'time_format' => get_option( 'time_format' ),
 			'date_format' => get_option( 'date_format' ),
 			'example'     => true,
@@ -35,7 +35,7 @@ class DateTime extends StringTag {
 
 		if ( ! isset( $args['description'] ) ) {
 			$args['description']  = date_i18n( $args['date_format'] . ' ' . $args['time_format'] ) . '. ';
-			$args['description'] .= __( 'You can change the format in General WordPress Settings.' );
+			$args['description'] .= __( 'You can change the format in General WordPress Settings.', 'notification' );
 		}
 
 		if ( ! isset( $args['resolver'] ) ) {

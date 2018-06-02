@@ -6,7 +6,7 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Utils;
+namespace BracketSpace\Notification\Utils;
 
 /**
  * Ajax class

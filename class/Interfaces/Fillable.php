@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Interfaces;
+namespace BracketSpace\Notification\Interfaces;
 
-use underDEV\Notification\Interfaces\Nameable;
+use BracketSpace\Notification\Interfaces\Nameable;
 
 /**
  * Fillable interface

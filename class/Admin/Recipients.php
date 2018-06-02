@@ -5,10 +5,10 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Admin;
+namespace BracketSpace\Notification\Admin;
 
-use underDEV\Notification\Utils\View;
-use underDEV\Notification\Utils\Ajax;
+use BracketSpace\Notification\Utils\View;
+use BracketSpace\Notification\Utils\Ajax;
 
 /**
  * Recipients class
@@ -18,7 +18,7 @@ class Recipients {
 	/**
 	 * Recipients constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param View $view View class.
 	 * @param Ajax $ajax Ajax class.
 	 */
@@ -29,6 +29,8 @@ class Recipients {
 
 	/**
 	 * Renders metabox for AJAX
+	 *
+	 * @action wp_ajax_get_recipient_input
      *
 	 * @return void
 	 */

@@ -5,9 +5,9 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Abstracts;
+namespace BracketSpace\Notification\Abstracts;
 
-use underDEV\Notification\Interfaces;
+use BracketSpace\Notification\Interfaces;
 
 /**
  * Field abstract class
@@ -75,7 +75,7 @@ abstract class Field implements Interfaces\Fillable {
     /**
      * Field constructor
      *
-     * @since [Next]
+     * @since 5.0.0
      * @param array $params field configuration params.
      */
     public function __construct( $params = array() ) {
@@ -140,7 +140,7 @@ abstract class Field implements Interfaces\Fillable {
 	 * @return mixed
 	 */
     public function get_value() {
-    	return apply_filters( 'notification/field/' . $this->get_name() . '/value', $this->value, $this );
+    	return apply_filters( 'notification/field/' . $this->get_raw_name() . '/value', $this->value, $this );
     }
 
     /**

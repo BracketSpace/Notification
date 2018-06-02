@@ -5,10 +5,10 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Admin;
+namespace BracketSpace\Notification\Admin;
 
-use underDEV\Notification\Interfaces;
-use underDEV\Notification\Utils\Ajax;
+use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Utils\Ajax;
 
 /**
  * PostData class
@@ -32,7 +32,7 @@ class PostData {
 	/**
 	 * PostData constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param Ajax $ajax Ajax class.
 	 */
 	public function __construct( Ajax $ajax ) {
@@ -119,8 +119,12 @@ class PostData {
 			$notification->enabled = true;
 		}
 
+		// set current notification post ID.
+		$notification->post_id = $this->get_post_id();
+
 		// set field values.
 		$field_values = (array) $this->get_meta( $this->notification_data_key . $notification->get_slug() );
+		$field_values = apply_filters( 'notification/notification/form_fields/values', $field_values, $notification );
 
 		foreach ( $notification->get_form_fields() as $field ) {
 
@@ -279,6 +283,8 @@ class PostData {
 
 	/**
 	 * Changes notification status from AJAX call
+	 *
+	 * @action wp_ajax_change_notification_status
      *
 	 * @return void
 	 */
@@ -297,7 +303,7 @@ class PostData {
 		) );
 
 		if ( $result == 0 ) {
-			$error = __( 'Notification status couldn\'t be changed.' );
+			$error = __( 'Notification status couldn\'t be changed.', 'notification' );
  		}
 
 		$this->ajax->response( true, $error );

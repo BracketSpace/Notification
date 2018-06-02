@@ -5,7 +5,7 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Utils\Settings\CoreFields;
+namespace BracketSpace\Notification\Utils\Settings\CoreFields;
 
 /**
  * Url class

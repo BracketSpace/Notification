@@ -5,11 +5,11 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Admin;
+namespace BracketSpace\Notification\Admin;
 
-use underDEV\Notification\Utils\View;
-use underDEV\Notification\Utils\Ajax;
-use underDEV\Notification\Interfaces\Triggerable;
+use BracketSpace\Notification\Utils\View;
+use BracketSpace\Notification\Utils\Ajax;
+use BracketSpace\Notification\Interfaces\Triggerable;
 
 /**
  * MergeTags class
@@ -19,7 +19,7 @@ class MergeTags {
 	/**
 	 * MergeTags constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param View $view View class.
 	 * @param Ajax $ajax Ajax class.
 	 */
@@ -30,6 +30,8 @@ class MergeTags {
 
 	/**
 	 * Add metabox for trigger
+	 *
+	 * @action add_meta_boxes
      *
 	 * @return void
 	 */
@@ -90,12 +92,12 @@ class MergeTags {
 	/**
 	 * Prints merge tags list
      *
-	 * @param  object $trigger Trigger object.
+	 * @param  Triggerable $trigger Trigger object.
 	 * @return void
 	 */
 	public function merge_tags_list( Triggerable $trigger ) {
 
-		$tags = $trigger->get_merge_tags();
+		$tags = $trigger->get_merge_tags( 'visible' );
 
 		if ( empty( $tags ) ) {
 			$this->view->get_view( 'mergetag/metabox-nomergetags' );
@@ -111,6 +113,8 @@ class MergeTags {
 
 	/**
 	 * Renders metabox for AJAX
+	 *
+	 * @action wp_ajax_get_merge_tags_for_trigger
      *
 	 * @return void
 	 */

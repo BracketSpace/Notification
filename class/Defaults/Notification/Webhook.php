@@ -5,11 +5,11 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\Notification;
+namespace BracketSpace\Notification\Defaults\Notification;
 
-use underDEV\Notification\Interfaces\Triggerable;
-use underDEV\Notification\Abstracts;
-use underDEV\Notification\Defaults\Field;
+use BracketSpace\Notification\Interfaces\Triggerable;
+use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Defaults\Field;
 
 /**
  * Webhook notification
@@ -19,10 +19,10 @@ class Webhook extends Abstracts\Notification {
 	/**
 	 * Notification constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 */
 	public function __construct() {
-		parent::__construct( 'webhook', __( 'Webhook' ) );
+		parent::__construct( 'webhook', __( 'Webhook', 'notification' ) );
 	}
 
 	/**
@@ -35,49 +35,55 @@ class Webhook extends Abstracts\Notification {
 
 		$this->add_form_field( new Field\RecipientsField( array(
 			'notification'     => $this->get_slug(),
-			'label'            => __( 'URLs' ),
+			'label'            => __( 'URLs', 'notification' ),
 			'name'             => 'urls',
 			'add_button_label' => __( 'Add URL', 'notification' ),
 		) ) );
 
 		$this->add_form_field( new Field\RepeaterField( array(
-			'label'            => __( 'Arguments' ),
+			'label'            => __( 'Arguments', 'notification' ),
 			'name'             => 'args',
 			'add_button_label' => __( 'Add argument', 'notification' ),
 			'fields'           => array(
 				new Field\InputField( array(
-					'label'      => __( 'Key' ),
+					'label'      => __( 'Key', 'notification' ),
 					'name'       => 'key',
 					'resolvable' => true,
-					'description' => __( 'You can use merge tags' ),
+					'description' => __( 'You can use merge tags', 'notification' ),
 				) ),
 				new Field\InputField( array(
-					'label'      => __( 'Value' ),
+					'label'      => __( 'Value', 'notification' ),
 					'name'       => 'value',
 					'resolvable' => true,
-					'description' => __( 'You can use merge tags' ),
+					'description' => __( 'You can use merge tags', 'notification' ),
 				) ),
 			),
+		) ) );
+
+		$this->add_form_field( new Field\CheckboxField( array(
+			'label'          => __( 'JSON', 'notification' ),
+			'name'           => 'json',
+			'checkbox_label' => __( 'Send the arguments in JSON format', 'notification' ),
 		) ) );
 
 		if ( notification_get_setting( 'notifications/webhook/headers' ) ) {
 
 			$this->add_form_field( new Field\RepeaterField( array(
-				'label'            => __( 'Headers' ),
+				'label'            => __( 'Headers', 'notification' ),
 				'name'             => 'headers',
 				'add_button_label' => __( 'Add header', 'notification' ),
 				'fields'           => array(
 					new Field\InputField( array(
-						'label'      => __( 'Key' ),
+						'label'      => __( 'Key', 'notification' ),
 						'name'       => 'key',
 						'resolvable' => true,
-						'description' => __( 'You can use merge tags' ),
+						'description' => __( 'You can use merge tags', 'notification' ),
 					) ),
 					new Field\InputField( array(
-						'label'      => __( 'Value' ),
+						'label'      => __( 'Value', 'notification' ),
 						'name'       => 'value',
 						'resolvable' => true,
-						'description' => __( 'You can use merge tags' ),
+						'description' => __( 'You can use merge tags', 'notification' ),
 					) ),
 				),
 			) ) );
@@ -98,6 +104,10 @@ class Webhook extends Abstracts\Notification {
 
 		$args = $this->parse_args( $data['args'] );
 		$args = apply_filters( 'notification/webhook/args', $args, $this, $trigger );
+
+		if ( $data['json'] ) {
+			$args = wp_json_encode( $args );
+		}
 
 		if ( notification_get_setting( 'notifications/webhook/headers' ) ) {
 			$headers = $this->parse_args( $data['headers'] );
@@ -123,7 +133,7 @@ class Webhook extends Abstracts\Notification {
     /**
      * Sends GET request
      *
-     * @since  [Next]
+     * @since  5.0.0
      * @param  string $url  URL to call.
      * @param  array  $args    arguments.
      * @param  array  $headers headers.
@@ -145,7 +155,7 @@ class Webhook extends Abstracts\Notification {
     /**
      * Sends POST request
      *
-     * @since  [Next]
+     * @since  5.0.0
      * @param  string $url  URL to call.
      * @param  array  $args    arguments.
      * @param  array  $headers headers.
@@ -153,7 +163,7 @@ class Webhook extends Abstracts\Notification {
      */
     public function send_post( $url, $args = array(), $headers = array() ) {
 
-    	$remote_args = apply_filters( 'notification/webhook/remote_args/get', array(
+    	$remote_args = apply_filters( 'notification/webhook/remote_args/post', array(
     		'body'    => $args,
     		'headers' => $headers,
     	), $url, $args, $this );
@@ -167,7 +177,7 @@ class Webhook extends Abstracts\Notification {
     /**
      * Parses args to be understand by the wp_remote_* functions
      *
-     * @since  [Next]
+     * @since  5.0.0
      * @param  array $args args from saved fields.
      * @return array       parsed args as key => value array
      */

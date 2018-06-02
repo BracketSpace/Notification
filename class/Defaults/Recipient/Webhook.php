@@ -5,10 +5,10 @@
  * @package notification
  */
 
-namespace underDEV\Notification\Defaults\Recipient;
+namespace BracketSpace\Notification\Defaults\Recipient;
 
-use underDEV\Notification\Abstracts;
-use underDEV\Notification\Defaults\Field;
+use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Defaults\Field;
 
 /**
  * Webhook recipient
@@ -18,7 +18,7 @@ class Webhook extends Abstracts\Recipient {
 	/**
 	 * Recipient constructor
 	 *
-	 * @since [Next]
+	 * @since 5.0.0
 	 * @param string $slug webook type slug.
 	 * @param string $name webook type name.
 	 */
@@ -55,7 +55,7 @@ class Webhook extends Abstracts\Recipient {
 	public function input() {
 
 		return new Field\InputField( array(
-			'label'       => 'URL',             // don't edit this!
+			'label'       => __( 'URL', 'notification' ),             // don't edit this!
 			'name'        => 'recipient',       // don't edit this!
 			'css_class'   => 'recipient-value', // don't edit this!
 			'placeholder' => site_url(),
