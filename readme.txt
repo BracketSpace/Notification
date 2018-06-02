@@ -210,6 +210,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 == Changelog ==
 
 = [Next] =
+* [Fixed] Post Updated Trigger postponing.
 * [Added] `notificaiton/merge_tag/value/resolved` filter.
 * [Added] `post_sticky` status Merge Tag only for Post.
 * [Added] Email From Name and From Email settings.

@@ -76,25 +76,6 @@ class PostUpdated extends PostTrigger {
 	}
 
 	/**
-	 * Postponed action callback
-	 * Return `false` if you want to abort the trigger execution
-	 *
-	 * @return mixed void or false if no notifications should be sent
-	 */
-	public function postponed_action() {
-
-		if ( function_exists( 'acf' ) ) {
-			return;
-		}
-
-		// fix for the action being called twice by WordPress.
-		if ( did_action( 'save_post' ) > 1 ) {
-			return false;
-		}
-
-	}
-
-	/**
 	 * Registers attached merge tags
 	 *
 	 * @return void
