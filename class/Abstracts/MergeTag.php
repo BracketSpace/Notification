@@ -203,7 +203,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 	/**
 	 * Sets resolver function
 	 *
-	 * @since [Next]
+	 * @since 5.2.2
 	 * @param mixed $resolver Resolver, can be either a closure or array or string.
 	 */
 	public function set_resolver( $resolver ) {
@@ -249,7 +249,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 	/**
 	 * Cleans the value
 	 *
-	 * @since  [Next]
+	 * @since  5.2.2
 	 * @return void
 	 */
 	public function clean_value() {

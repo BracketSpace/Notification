@@ -28,7 +28,7 @@ class TaxonomyName extends StringTag {
 	/**
      * Merge tag constructor
      *
-     * @since [Next]
+     * @since 5.2.2
      * @param array $params merge tag configuration params.
      */
     public function __construct( $params = array() ) {
@@ -65,7 +65,7 @@ class TaxonomyName extends StringTag {
 	/**
 	 * Gets nice, translated taxonomy name
 	 *
-	 * @since  [Next]
+	 * @since  5.2.2
 	 * @return string taxonomy nicename
 	 */
 	public function get_nicename() {

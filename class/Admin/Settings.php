@@ -339,7 +339,7 @@ class Settings extends SettingsAPI {
 				'default'     => '',
 				'render'      => array( new CoreFields\Text(), 'input' ),
 				'sanitize'    => array( new CoreFields\Text(), 'sanitize' ),
-				'description' => sprintf( __( 'Leave blank to use default value: %s' ), '<code>WordPress</code>' ),
+				'description' => sprintf( __( 'Leave blank to use default value: %s', 'notification' ), '<code>WordPress</code>' ),
 			) )
 			->add_field( array(
 				'name'        => __( 'From Email', 'notification' ),
@@ -347,7 +347,7 @@ class Settings extends SettingsAPI {
 				'default'     => '',
 				'render'      => array( new CoreFields\Text(), 'input' ),
 				'sanitize'    => array( new CoreFields\Text(), 'sanitize' ),
-				'description' => sprintf( __( 'Leave blank to use default value: %s' ), '<code>' . $default_from_email . '</code>' ),
+				'description' => sprintf( __( 'Leave blank to use default value: %s', 'notification' ), '<code>' . $default_from_email . '</code>' ),
 			) );
 
 		$notifications->add_group( __( 'Webhook', 'notification' ), 'webhook' )

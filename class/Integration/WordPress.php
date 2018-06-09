@@ -17,7 +17,7 @@ class WordPress {
 	 *
 	 * @filter wp_mail_from_name 1000
 	 *
-	 * @since  [Next]
+	 * @since  5.2.2
 	 * @param  string $from_name Default From Name.
 	 * @return string
 	 */
@@ -34,7 +34,7 @@ class WordPress {
 	 *
 	 * @filter wp_mail_from 1000
 	 *
-	 * @since  [Next]
+	 * @since  5.2.2
 	 * @param  string $from_email Default From Email.
 	 * @return string
 	 */

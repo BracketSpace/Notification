@@ -61,7 +61,7 @@ abstract class TermTrigger extends Abstracts\Trigger {
 	/**
 	 * Gets nice, translated taxonomy name
 	 *
-	 * @since  [Next]
+	 * @since  5.2.2
 	 * @return string taxonomy
 	 */
 	public function get_current_taxonomy_name() {
@@ -71,7 +71,7 @@ abstract class TermTrigger extends Abstracts\Trigger {
 	/**
 	 * Gets nice, translated taxonomy name for taxonomy slug
 	 *
-	 * @since [Next]
+	 * @since 5.2.2
 	 * @param string $taxonomy taxonomy slug.
 	 * @return string taxonomy
 	 */
@@ -82,7 +82,7 @@ abstract class TermTrigger extends Abstracts\Trigger {
 	/**
 	 * Gets nice, translated singular taxonomy name for taxonomy slug
 	 *
-	 * @since [Next]
+	 * @since 5.2.2
 	 * @param string $taxonomy taxonomy slug.
 	 * @return string taxonomy
 	 */
