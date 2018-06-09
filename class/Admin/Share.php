@@ -15,6 +15,13 @@ use BracketSpace\Notification\Utils\View;
 class Share {
 
 	/**
+	 * Story page hook.
+	 *
+	 * @var string
+	 */
+	public $page_hook = 'none';
+
+	/**
 	 * Share class constructor.
 	 *
 	 * @since [Next]
@@ -33,7 +40,7 @@ class Share {
 	 */
 	public function register_page() {
 
-		if ( notification_is_whitelabeled() ) {
+		if ( ! notification_display_story() || isset( $_GET['notification-story-skip'] ) ) {
 			return;
 		}
 
@@ -45,6 +52,43 @@ class Share {
 	        'the-story',
 	        array( $this, 'story_page' )
 	    );
+
+	}
+
+	/**
+	 * Redirects the user to story screen.
+	 *
+	 * @action current_screen
+	 *
+	 * @return void
+	 */
+	public function maybe_redirect() {
+
+		if ( ! notification_display_story() ) {
+			return;
+		}
+
+		$screen = get_current_screen();
+
+		if ( isset( $screen->post_type ) && $screen->post_type == 'notification' && $screen->id != 'notification_page_the-story' ) {
+			wp_safe_redirect( admin_url( 'edit.php?post_type=notification&page=the-story' ) );
+			exit;
+		}
+
+	}
+
+	/**
+	 * Saves the dismiss action in the options.
+	 *
+	 * @action admin_init
+	 *
+	 * @return void
+	 */
+	public function dismiss_story() {
+
+		if ( isset( $_GET['notification-story-skip'] ) ) {
+			update_option( 'notification_story_dismissed', true );
+		}
 
 	}
 

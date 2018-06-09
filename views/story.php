@@ -32,7 +32,7 @@
 	</div>
 
 	<div class="skip">
-		<a href="<?php echo admin_url( 'edit.php?post_type=notification&notification-share-skip=true' ); ?>"><?php esc_html_e( 'Skip this screen' ); ?></a>
+		<a href="<?php echo admin_url( 'edit.php?post_type=notification&notification-story-skip=true' ); ?>"><?php esc_html_e( 'Skip this screen' ); ?></a>
 	</div>
 
 </div>

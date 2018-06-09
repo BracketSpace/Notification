@@ -56,3 +56,6 @@ if ( isset( $un['licenses'] ) && $un['licenses'] == 'true' ) {
 	delete_option( 'notification_licenses' );
 
 }
+
+// remove other things.
+delete_option( 'notification_story_dismissed' );
