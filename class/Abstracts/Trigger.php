@@ -281,7 +281,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Cleans the merge tags.
 	 *
-	 * @since [Next]
+	 * @since 5.2.2
 	 * @return void
 	 */
 	private function clean_merge_tags() {

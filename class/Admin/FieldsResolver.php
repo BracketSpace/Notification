@@ -129,7 +129,9 @@ class FieldsResolver {
 			return '';
 		}
 
-		return $this->merge_tags[ $tag_slug ]->resolve();
+		$resolved = apply_filters( 'notificaiton/merge_tag/value/resolved', $this->merge_tags[ $tag_slug ]->resolve(), $this->merge_tags[ $tag_slug ] );
+
+		return $resolved;
 
 	}
 

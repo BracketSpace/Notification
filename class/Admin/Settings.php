@@ -300,6 +300,13 @@ class Settings extends SettingsAPI {
 	 */
 	public function notifications_settings( $settings ) {
 
+		$sitename = strtolower( $_SERVER['SERVER_NAME'] );
+        if ( substr( $sitename, 0, 4 ) == 'www.' ) {
+            $sitename = substr( $sitename, 4 );
+        }
+
+        $default_from_email = 'wordpress@' . $sitename;
+
 		$notifications = $settings->add_section( __( 'Notifications', 'notification' ), 'notifications' );
 
 		$notifications->add_group( __( 'Email', 'notification' ), 'email' )
@@ -325,6 +332,22 @@ class Settings extends SettingsAPI {
 				),
 				'render'   => array( new CoreFields\Select(), 'input' ),
 				'sanitize' => array( new CoreFields\Select(), 'sanitize' ),
+			) )
+			->add_field( array(
+				'name'        => __( 'From Name', 'notification' ),
+				'slug'        => 'from_name',
+				'default'     => '',
+				'render'      => array( new CoreFields\Text(), 'input' ),
+				'sanitize'    => array( new CoreFields\Text(), 'sanitize' ),
+				'description' => sprintf( __( 'Leave blank to use default value: %s', 'notification' ), '<code>WordPress</code>' ),
+			) )
+			->add_field( array(
+				'name'        => __( 'From Email', 'notification' ),
+				'slug'        => 'from_email',
+				'default'     => '',
+				'render'      => array( new CoreFields\Text(), 'input' ),
+				'sanitize'    => array( new CoreFields\Text(), 'sanitize' ),
+				'description' => sprintf( __( 'Leave blank to use default value: %s', 'notification' ), '<code>' . $default_from_email . '</code>' ),
 			) );
 
 		$notifications->add_group( __( 'Webhook', 'notification' ), 'webhook' )

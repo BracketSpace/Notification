@@ -53,6 +53,7 @@ class Scripts {
 		$allowed_hooks = array(
 			$this->runtime->admin_extensions->page_hook,
 			$this->runtime->settings->page_hook,
+			$this->runtime->admin_share->page_hook,
 			'plugins.php',
 			'post-new.php',
 			'post.php'
