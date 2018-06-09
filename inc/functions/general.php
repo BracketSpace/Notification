@@ -8,7 +8,7 @@
 /**
  * Adds handlers for doc hooks to an object
  *
- * @since  [Next]
+ * @since  5.2.2
  * @param  object $object Object to create the hooks.
  * @return object
  */
@@ -21,7 +21,7 @@ function notification_add_doc_hooks( $object ) {
 /**
  * Checks if the story should be displayed.
  *
- * @since  [Next]
+ * @since  5.2.2
  * @return boolean
  */
 function notification_display_story() {

@@ -35,7 +35,7 @@ class UserPasswordResetLink extends StringTag {
 	/**
      * Merge tag constructor
      *
-     * @since [Next]
+     * @since 5.2.2
      */
     public function __construct() {
 

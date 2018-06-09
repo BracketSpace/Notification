@@ -28,7 +28,7 @@ class TaxonomySlug extends StringTag {
 	/**
      * Merge tag constructor
      *
-     * @since [Next]
+     * @since 5.2.2
      * @param array $params merge tag configuration params.
      */
     public function __construct( $params = array() ) {

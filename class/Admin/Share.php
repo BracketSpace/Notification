@@ -24,7 +24,7 @@ class Share {
 	/**
 	 * Share class constructor.
 	 *
-	 * @since [Next]
+	 * @since 5.2.2
 	 * @param View $view View class.
 	 */
 	public function __construct( View $view ) {
