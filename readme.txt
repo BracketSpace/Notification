@@ -214,6 +214,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Added] `notificaiton/merge_tag/value/resolved` filter.
 * [Added] `post_sticky` status Merge Tag only for Post.
 * [Added] Email From Name and From Email settings.
+* [Added] The story screen.
 * [Changed] Merge Tag resolver is now set via `set_resolver` method.
 * [Changed] PHP version requirement to 5.3.9.
 
