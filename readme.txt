@@ -209,6 +209,9 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Duplicated meta for active notification type.
+
 = 5.2.2 =
 * [Fixed] Post Updated Trigger postponing.
 * [Added] `notificaiton/merge_tag/value/resolved` filter.
