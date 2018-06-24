@@ -212,6 +212,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 = [Next] =
 * [Fixed] Duplicated meta for active notification type.
 * [Fixed] Post Title merge tag HTML entities, thanks to @freshjustin.
+* [Fixed] Problem with disabling active notification types when switching notification status, thanks to @freshjustin.
 * [Added] Notification duplicator to easly duplicate notifications.
 
 = 5.2.2 =
