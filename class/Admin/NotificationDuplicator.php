@@ -38,7 +38,7 @@ class NotificationDuplicator {
 	 *
 	 * @action admin_post_notification_duplicate
 	 *
-	 * @since  [Next]
+	 * @since  5.2.3
 	 * @return void
 	 */
 	public function notification_duplicate() {

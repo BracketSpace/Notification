@@ -13,7 +13,7 @@ class MainTest extends WP_UnitTestCase {
 	/**
 	 * Setup test
 	 *
-	 * @since [Next]
+	 * @since 5.2.3
 	 */
 	public function setUp() {
 		parent::setUp();
@@ -23,7 +23,7 @@ class MainTest extends WP_UnitTestCase {
 	/**
 	 * Test Runtime instance
 	 *
-	 * @since [Next]
+	 * @since 5.2.3
 	 */
 	public function test_runtime() {
 		$this->assertInstanceOf( 'BracketSpace\Notification\Runtime', $this->notification );
@@ -32,7 +32,7 @@ class MainTest extends WP_UnitTestCase {
 	/**
 	 * Test boot method
 	 *
-	 * @since [Next]
+	 * @since 5.2.3
 	 */
 	public function test_boot() {
 

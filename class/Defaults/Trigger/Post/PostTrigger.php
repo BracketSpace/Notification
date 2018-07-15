@@ -194,7 +194,7 @@ abstract class PostTrigger extends Abstracts\Trigger {
 	/**
 	 * Gets post type slug
 	 *
-	 * @since  [Next]
+	 * @since  5.2.3
 	 * @return string post type slug
 	 */
 	public function get_post_type() {
