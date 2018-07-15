@@ -22,4 +22,4 @@ add_action( 'init', function() {
 
 	}
 
-}, 1000, 1 );
+}, apply_filters( 'notification/load/default/priority', 1000 ), 1 );
