@@ -191,4 +191,14 @@ abstract class PostTrigger extends Abstracts\Trigger {
 		return get_post_type_object( $post_type )->labels->singular_name;
 	}
 
+	/**
+	 * Gets post type slug
+	 *
+	 * @since  [Next]
+	 * @return string post type slug
+	 */
+	public function get_post_type() {
+		return $this->post_type;
+	}
+
 }
