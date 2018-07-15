@@ -60,6 +60,7 @@ class Runtime extends Utils\DocHooks {
 		$this->post_data            = new Admin\PostData( $this->ajax() );
 		$this->admin_trigger        = new Admin\Trigger( $this->view(), $this->post_data );
 		$this->admin_notifications  = new Admin\Notifications( $this->boxrenderer(), $this->formrenderer(), $this->post_data );
+		$this->admin_duplicator     = new Admin\NotificationDuplicator();
 		$this->admin_post_type      = new Admin\PostType( $this->admin_trigger, $this->admin_notifications, $this->view() );
 		$this->admin_post_table     = new Admin\PostTable();
 		$this->admin_merge_tags     = new Admin\MergeTags( $this->view(), $this->ajax() );
@@ -88,6 +89,7 @@ class Runtime extends Utils\DocHooks {
 		$this->add_hooks( $this->post_data );
 		$this->add_hooks( $this->admin_trigger );
 		$this->add_hooks( $this->admin_notifications );
+		$this->add_hooks( $this->admin_duplicator );
 		$this->add_hooks( $this->admin_post_type );
 		$this->add_hooks( $this->admin_post_table );
 		$this->add_hooks( $this->admin_merge_tags );

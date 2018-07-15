@@ -366,6 +366,8 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			$this->stopped = true;
 		}
 
+		do_action( 'notification/trigger/action/did', $this );
+
 		if ( $this->is_stopped() ) {
 			return;
 		}

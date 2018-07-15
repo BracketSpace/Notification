@@ -74,6 +74,11 @@ class Notifications {
 			return;
 		}
 
+		// Bail if we are saving just the status.
+		if ( isset( $_POST['action'] ) && $_POST['action'] == 'change_notification_status' ) {
+			return;
+		}
+
         $this->postdata->set_post_id( $post_id );
         $this->postdata->save_notification_data( $_POST );
 

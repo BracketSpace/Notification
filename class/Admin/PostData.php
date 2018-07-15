@@ -148,7 +148,9 @@ class PostData {
         foreach ( notification_get_notifications() as $notification ) {
 
 			if ( isset( $data['notification_' . $notification->get_slug() . '_enable'] ) ) {
-				add_post_meta( $this->get_post_id(), $this->notification_enabled_key, $notification->get_slug() );
+				if ( ! in_array( $notification->get_slug(), (array) get_post_meta( $this->get_post_id(), $this->notification_enabled_key ) ) ) {
+					add_post_meta( $this->get_post_id(), $this->notification_enabled_key, $notification->get_slug() );
+				}
 			} else {
 				delete_post_meta( $this->get_post_id(), $this->notification_enabled_key, $notification->get_slug(), $notification->get_slug() );
 			}

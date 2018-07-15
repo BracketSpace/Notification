@@ -74,6 +74,22 @@ class UserLogin extends Abstracts\Trigger {
 			'name' => __( 'User login time', 'notification' ),
 		) ) );
 
+		$this->add_merge_tag( new MergeTag\IPTag( array(
+			'slug'        => 'user_IP',
+			'name'        => __( 'User IP', 'notification' ),
+			'description' => '127.0.0.1',
+			'example'     => true,
+			'resolver'    => function( $trigger ) {
+				if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+					return $_SERVER['HTTP_CLIENT_IP'];
+				} elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+					return $_SERVER['HTTP_X_FORWARDED_FOR'];
+				} else {
+					return $_SERVER['REMOTE_ADDR'];
+				}
+			},
+		) ) );
+
     }
 
 }

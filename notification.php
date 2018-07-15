@@ -4,7 +4,7 @@
  * Description: Customisable email and webhook notifications with powerful developer friendly API for custom triggers and notifications. Send alerts easily.
  * Author: BracketSpace
  * Author URI: https://bracketspace.com
- * Version: 5.2.2
+ * Version: 5.2.3
  * License: GPL3
  * Text Domain: notification
  * Domain Path: /languages
@@ -78,7 +78,7 @@ $runtime->boot();
 /**
  * Create a helper function for easy SDK access.
  *
- * @since  [Next]
+ * @since  5.2.3
  * @return object
  */
 function not_fs() {

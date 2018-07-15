@@ -46,7 +46,7 @@ class PostTitle extends StringTag {
 			'description' => __( 'Hello World', 'notification' ),
 			'example'     => true,
 			'resolver'    => function() {
-				return get_the_title( $this->trigger->{ $this->post_type } );
+				return html_entity_decode( get_the_title( $this->trigger->{ $this->post_type } ) );
 			},
 		) );
 

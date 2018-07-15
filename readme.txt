@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.6
 Tested up to: 4.9.5
-Stable tag: 5.2.2
+Stable tag: 5.2.3
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -209,7 +209,18 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
-= [Next] =
+= 5.2.3 =
+* [Fixed] Duplicated meta for active notification type.
+* [Fixed] Post Title merge tag HTML entities, thanks to @freshjustin.
+* [Fixed] Problem with disabling active notification types when switching notification status, thanks to @freshjustin.
+* [Added] Notification duplicator to easly duplicate notifications.
+* [Added] `notification/trigger/action/did` action in Trigger class.
+* [Added] `get_post_type` method for PostTrigger.
+* [Added] `notification/load/default/priority` filter for registering default things.
+* [Added] `user_IP` Merge Tag for User loged in Trigger.
+* [Changed] Plugin initializes the default things on `plugins_loaded` action.
+
+= 5.2.2 =
 * [Fixed] Post Updated Trigger postponing.
 * [Added] `notificaiton/merge_tag/value/resolved` filter.
 * [Added] `post_sticky` status Merge Tag only for Post.
