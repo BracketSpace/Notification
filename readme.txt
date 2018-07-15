@@ -217,6 +217,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Added] `notification/trigger/action/did` action in Trigger class.
 * [Added] `get_post_type` method for PostTrigger.
 * [Added] `notification/load/default/priority` filter for registering default things.
+* [Changed] Plugin initializes the default things on `plugins_loaded` action.
 
 = 5.2.2 =
 * [Fixed] Post Updated Trigger postponing.
