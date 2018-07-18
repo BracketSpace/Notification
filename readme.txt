@@ -209,6 +209,9 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
+= [Next] =
+* [Added] `remove_action` metod in Trigger class.
+
 = 5.2.3 =
 * [Fixed] Duplicated meta for active notification type.
 * [Fixed] Post Title merge tag HTML entities, thanks to @freshjustin.
