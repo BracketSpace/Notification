@@ -38,7 +38,7 @@ class Email extends Abstracts\Notification {
 			'name'  => 'subject',
 		) ) );
 
-		if ( notification_get_setting( 'notifications/email/type' ) == 'html' ) {
+		if ( notification_get_setting( 'notifications/email/type' ) == 'html' && !notification_get_setting( 'notifications/email/unfiltered_html' ) ) {
 			$body_field = new Field\EditorField( array(
 				'label'    => __( 'Body', 'notification' ),
 				'name'     => 'body',

@@ -157,6 +157,8 @@ class PostData {
 
 		}
 
+		$unfiltered_html = notification_get_setting( 'notifications/email/unfiltered_html' );
+
         // save all notification settings one by one.
         foreach ( notification_get_notifications() as $notification ) {
 
@@ -171,7 +173,7 @@ class PostData {
 	            continue;
 	        }
 
-	        $notification_data = array();
+	    	$notification_data = array();
 
 	        // sanitize each field individually.
 	        foreach ( $notification->get_form_fields() as $field ) {
@@ -182,7 +184,11 @@ class PostData {
 	        		$user_data = null;
 	        	}
 
-	        	$notification_data[ $field->get_raw_name() ] = $field->sanitize( $user_data );
+	        	if ( $unfiltered_html && $field->get_raw_name() == 'body' ) {
+	        		$notification_data[ $field->get_raw_name() ] = $user_data;
+	        	} else {
+	        		$notification_data[ $field->get_raw_name() ] = $field->sanitize( $user_data );
+	        	}
 
 	        }
 
