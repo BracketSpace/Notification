@@ -116,4 +116,11 @@ class Email extends Abstracts\Notification {
 
     }
 
+    /**
+     * @filter notification/allow_unfiltered_body
+     **/
+    public function allow_unfiltered_body( $notification_data, $unfiltered_body ) {
+		$notification_data['body'] = $unfiltered_body;
+		return $notification_data;
+    }
 }
