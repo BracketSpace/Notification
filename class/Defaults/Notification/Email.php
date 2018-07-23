@@ -119,9 +119,9 @@ class Email extends Abstracts\Notification {
     /**
 	 * Replace the filtered body with the unfiltered one if the notifications/email/unfiltered_html setting is set to true.
 	 * 
-	 * @param  array $notification_data notification_data from PostData
-	 * @param  string $unfiltered_body the unfiltered message body
-	 * @return array $notification_data with the unfiltered body, if notifications/email/unfiltered_html setting is true
+	 * @param  array  $notification_data notification_data from PostData.
+	 * @param  string $unfiltered_body the unfiltered message body.
+	 * @return array $notification_data with the unfiltered body, if notifications/email/unfiltered_html setting is true.
      * @filter notification/allow_unfiltered_body
      **/
     public function allow_unfiltered_body( $notification_data, $unfiltered_body ) {
