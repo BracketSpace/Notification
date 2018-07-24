@@ -186,7 +186,7 @@ class PostData {
 
 	        }
 
-	        $notification_data = apply_filters( 'notification/allow_unfiltered_body', $notification_data, $ndata['body'] );
+	        $notification_data = apply_filters( 'notification/allow_unfiltered_body', $notification_data, $ndata );
 
 	        update_post_meta( $this->get_post_id(), $this->notification_data_key . $notification->get_slug(), $notification_data );
 
