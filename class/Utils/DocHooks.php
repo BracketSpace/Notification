@@ -65,6 +65,8 @@ class DocHooks {
 
 		}
 
+		return $object;
+
 	}
 
 	/**
