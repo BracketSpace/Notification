@@ -338,7 +338,7 @@ class Settings extends SettingsAPI {
 				'slug'     => 'unfiltered_html',
 				'default'  => 'false',
 				'addons'   => array(
-					'label' => __( 'Allows unfiltered HTML in email body', 'notification' )
+					'label' => __( 'Allow unfiltered HTML in email body', 'notification' )
 				),
 				'render'   => array( new CoreFields\Checkbox(), 'input' ),
 				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
