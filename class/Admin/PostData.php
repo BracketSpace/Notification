@@ -171,7 +171,7 @@ class PostData {
 	            continue;
 	        }
 
-	        $notification_data = array();
+	    	$notification_data = array();
 
 	        // sanitize each field individually.
 	        foreach ( $notification->get_form_fields() as $field ) {
@@ -185,6 +185,8 @@ class PostData {
 	        	$notification_data[ $field->get_raw_name() ] = $field->sanitize( $user_data );
 
 	        }
+
+	        $notification_data = apply_filters( 'notification/notification/form/data/values', $notification_data, $ndata );
 
 	        update_post_meta( $this->get_post_id(), $this->notification_data_key . $notification->get_slug(), $notification_data );
 
