@@ -334,6 +334,16 @@ class Settings extends SettingsAPI {
 				'sanitize' => array( new CoreFields\Select(), 'sanitize' ),
 			) )
 			->add_field( array(
+				'name'     => __( 'Unfiltered HTML', 'notification' ),
+				'slug'     => 'unfiltered_html',
+				'default'  => 'false',
+				'addons'   => array(
+					'label' => __( 'Allow unfiltered HTML in email body', 'notification' )
+				),
+				'render'   => array( new CoreFields\Checkbox(), 'input' ),
+				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+			) )
+			->add_field( array(
 				'name'        => __( 'From Name', 'notification' ),
 				'slug'        => 'from_name',
 				'default'     => '',
