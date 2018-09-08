@@ -30,9 +30,8 @@ class DeactivatedPlugin extends Abstracts\Trigger{
 	/**
 	 * Gets specific update type
 	 *
-	 * @since  5.1.5
 	 * @param  string $plugin
-	 * @return string
+	 * @return void
 	 */
 	public function action($plugin)
 	{

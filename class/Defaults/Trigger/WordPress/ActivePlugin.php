@@ -10,6 +10,9 @@ namespace BracketSpace\Notification\Defaults\Trigger\WordPress;
 use BracketSpace\Notification\Defaults\MergeTag;
 use BracketSpace\Notification\Abstracts;
 
+/**
+ * Active Plugin trigger class
+ */
 class ActivePlugin extends Abstracts\Trigger{
 
 	/**
@@ -28,9 +31,8 @@ class ActivePlugin extends Abstracts\Trigger{
 	/**
 	 * Gets specific update type
 	 *
-	 * @since  5.1.5
 	 * @param  string $plugin
-	 * @return string
+	 * @return void
 	 */
 	public function action($plugin)
 	{
