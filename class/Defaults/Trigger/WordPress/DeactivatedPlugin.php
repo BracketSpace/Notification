@@ -74,6 +74,7 @@ class DeactivatedPlugin extends Abstracts\Trigger{
 			},
 		) ) );
 
+		
 		$this->add_merge_tag( new MergeTag\StringTag( array(
 			'slug'        => 'plugin_url',
 			'name'        => __( 'Plugin adress url', 'notification' ),

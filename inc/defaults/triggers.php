@@ -86,7 +86,6 @@ if ( notification_get_setting( 'triggers/comment/types' ) ) {
 		register_trigger( new Trigger\Comment\CommentTrashed( $comment_type ) );
 
 	}
-
 }
 
 // WordPress triggers.
