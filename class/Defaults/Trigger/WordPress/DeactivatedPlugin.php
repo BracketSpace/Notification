@@ -88,6 +88,4 @@ class DeactivatedPlugin extends Abstracts\Trigger{
 		) ) );
 
 	}
-
-
 }
