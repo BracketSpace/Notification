@@ -38,8 +38,6 @@ class DeactivatedPlugin extends Abstracts\Trigger{
 	public function action($plugin, $network_activation)
 	{
 		$this->plugin = $plugin;
-		$this->plugin_path = $plugin;
-		$this->plugin_network = $network_activation;
 	}
 
 	/**
