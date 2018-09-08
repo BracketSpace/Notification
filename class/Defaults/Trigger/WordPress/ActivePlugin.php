@@ -31,7 +31,7 @@ class ActivePlugin extends Abstracts\Trigger{
 	/**
 	 * Gets specific update type
 	 *
-	 * @param  string $plugin
+	 * @param  string $plugin PluginPath
 	 * @return void
 	 */
 	public function action($plugin)
