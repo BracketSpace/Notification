@@ -85,6 +85,7 @@ class DeactivatedPlugin extends Abstracts\Trigger{
 				$plugin_data = get_plugin_data($plugin_dir);
 
 				return $plugin_data['PluginURI'];
+				
 			},
 		) ) );
 
