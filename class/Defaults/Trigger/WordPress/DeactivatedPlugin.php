@@ -1,5 +1,4 @@
 <?php
-
 /**
  * WordPress Deactivate Plugin trigger
  *
@@ -12,7 +11,7 @@ use BracketSpace\Notification\Defaults\MergeTag;
 use BracketSpace\Notification\Abstracts;
 
 /**
- * WordPressDeactivate Plugin trigger class
+ * Deactivate Plugin trigger class
  */
 class DeactivatedPlugin extends Abstracts\Trigger{
 
@@ -35,7 +34,7 @@ class DeactivatedPlugin extends Abstracts\Trigger{
 	 * @param  string $plugin
 	 * @return string
 	 */
-	public function action($plugin, $network_activation)
+	public function action($plugin)
 	{
 		$this->plugin = $plugin;
 	}

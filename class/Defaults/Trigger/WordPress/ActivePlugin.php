@@ -1,5 +1,4 @@
 <?php
-
 /**
  * WordPress Active Plugin trigger
  *
@@ -33,11 +32,10 @@ class ActivePlugin extends Abstracts\Trigger{
 	 * @param  string $plugin
 	 * @return string
 	 */
-	public function action($plugin, $network_activation)
+	public function action($plugin)
 	{
 		$this->plugin = $plugin;
 	}
-
 
 	/**
 	 * Registers attached merge tags
