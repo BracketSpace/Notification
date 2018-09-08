@@ -86,10 +86,12 @@ if ( notification_get_setting( 'triggers/comment/types' ) ) {
 		register_trigger( new Trigger\Comment\CommentTrashed( $comment_type ) );
 
 	}
-
 }
 
 // WordPress triggers.
 if ( notification_get_setting( 'triggers/wordpress/updates' ) ) {
 	register_trigger( new Trigger\WordPress\UpdatesAvailable() );
 }
+
+register_trigger( new Trigger\WordPress\ActivePlugin() );
+register_trigger( new Trigger\WordPress\DeactivatedPlugin() );

@@ -209,6 +209,11 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] When `Strip all shortcodes` setting is disabled, the shortcodes are rendered.
+* [Added] `remove_action` metod in Trigger class.
+* [Added] Option to allow unfiltered HTML in Email body, thanks to @martinellimarco.
+
 = 5.2.3 =
 * [Fixed] Duplicated meta for active notification type.
 * [Fixed] Post Title merge tag HTML entities, thanks to @freshjustin.

@@ -124,6 +124,32 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
+	 * Removes the action from the actions library.
+     *
+	 * @param string  $tag           action hook.
+	 * @param integer $priority      action priority, default 10.
+	 * @param integer $accepted_args how many args the action accepts, default 1.
+	 */
+	public function remove_action( $tag, $priority = 10, $accepted_args = 1 ) {
+
+		if ( empty( $tag ) ) {
+			trigger_error( 'Action tag cannot be empty', E_USER_ERROR );
+		}
+
+		foreach ( $this->actions as $action_index => $action ) {
+
+			if ( $action['tag'] == $tag && $action['priority'] == $priority && $action['accepted_args'] == $accepted_args ) {
+				unset( $this->actions[ $action_index ] );
+				break;
+			}
+
+		}
+
+		remove_action( $tag, array( $this, '_action' ), $priority, $accepted_args );
+
+	}
+
+	/**
 	 * Postpones the action with later hook
 	 * It automatically stops the execution
      *

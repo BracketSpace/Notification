@@ -104,6 +104,8 @@ class FieldsResolver {
 			$strip_shortcodes = notification_get_setting( 'general/content/strip_shortcodes' );
 			if ( apply_filters( 'notification/value/strip_shortcodes', $strip_shortcodes ) ) {
 				$resolved = strip_shortcodes( $resolved );
+			} else {
+				$resolved = do_shortcode( $resolved );
 			}
 
 			$resolved = apply_filters( 'notificaiton/notification/field/resolved', $resolved, $this->merge_tags );

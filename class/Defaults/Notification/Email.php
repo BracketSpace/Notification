@@ -38,7 +38,7 @@ class Email extends Abstracts\Notification {
 			'name'  => 'subject',
 		) ) );
 
-		if ( notification_get_setting( 'notifications/email/type' ) == 'html' ) {
+		if ( notification_get_setting( 'notifications/email/type' ) == 'html' && ! notification_get_setting( 'notifications/email/unfiltered_html' ) ) {
 			$body_field = new Field\EditorField( array(
 				'label'    => __( 'Body', 'notification' ),
 				'name'     => 'body',
@@ -113,6 +113,25 @@ class Email extends Abstracts\Notification {
 		if ( $html_mime ) {
 			remove_filter( 'wp_mail_content_type', array( $this, 'set_mail_type' ) );
 		}
+
+    }
+
+    /**
+	 * Replaces the filtered body with the unfiltered one if the notifications/email/unfiltered_html setting is set to true.
+	 *
+	 * @filter notification/notification/form/data/values
+	 *
+	 * @param  array $notification_data notification_data from PostData.
+	 * @param  array $ndata             ndata from PostData, it contains the unfiltered message body.
+	 * @return array $notification_data with the unfiltered body, if notifications/email/unfiltered_html setting is true.
+     **/
+    public function allow_unfiltered_html_body( $notification_data, $ndata ) {
+
+		if ( notification_get_setting( 'notifications/email/unfiltered_html' ) ) {
+			$notification_data['body'] = $ndata['body'];
+		}
+
+		return $notification_data;
 
     }
 
