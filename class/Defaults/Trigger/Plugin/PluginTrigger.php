@@ -55,7 +55,7 @@ abstract class PluginTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\StringTag( array(
 			'slug'        => 'plugin_url',
 			'name'        => __( 'Plugin adress URL', 'notification' ),
-			'description' => __( 'http://example.com', 'notification' ),
+			'description' => __( 'https://example.com', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
 				return $trigger->plugin['PluginURI'];

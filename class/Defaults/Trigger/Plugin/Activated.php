@@ -1,6 +1,6 @@
 <?php
 /**
- * WordPress Plugin activated trigger
+ * WordPress plugin activated trigger
  *
  * @package notification
  */
@@ -18,12 +18,12 @@ class Activated extends PluginTrigger {
     /**
      * Constructor
      */
-    public function __construct( ) {
+    public function __construct() {
 
-		parent::__construct( 'wordpress/active_plugin', __( 'Plugin activated', 'notification' ) );
+		parent::__construct( 'wordpress/plugin/activated', __( 'Plugin activated', 'notification' ) );
 
 		$this->add_action( 'activated_plugin', 10, 2 );
-		$this->set_group( __( 'WordPress', 'notification' ) );
+		$this->set_group( __( 'Plugin', 'notification' ) );
 		$this->set_description( __( 'Fires when plugin is activated', 'notification' ) );
 
 	}
@@ -51,8 +51,8 @@ class Activated extends PluginTrigger {
 	    parent::merge_tags( );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
-			'slug' => 'plugin_active_date_time',
-			'name' => __( 'Plugin activated date time', 'notification' ),
+			'slug' => 'plugin_activation_date_time',
+			'name' => __( 'Plugin activation date and time', 'notification' ),
 		) ) );
 	}
 }

@@ -1,8 +1,5 @@
 This file contains old changelogs and it's refreshed periodically.
 
-= 3.1.2 =
-* [Added] Plugin triggers - activated, deactivated
-
 = 3.1.1 =
 * [Fixed] Bug with directories/files names, thanks to Gregory Rick
 
