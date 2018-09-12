@@ -11,7 +11,7 @@ use BracketSpace\Notification\Defaults\MergeTag;
 use BracketSpace\Notification\Abstracts;
 
 /**
- * Active Plugin trigger class
+ * Activated Plugin trigger class
  */
 class Activated extends PluginTrigger {
 
