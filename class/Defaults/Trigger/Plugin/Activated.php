@@ -20,10 +20,7 @@ class Activated extends PluginTrigger {
      */
     public function __construct( ) {
 
-		parent::__construct( array(
-			'slug' => 'wordpress/active_plugin',
-			'name' => __( 'Plugin activated', 'notification' )
-		) );
+		parent::__construct( 'wordpress/active_plugin', __( 'Plugin activated', 'notification' ) );
 
 		$this->add_action( 'activated_plugin', 10, 2 );
 		$this->set_group( __( 'WordPress', 'notification' ) );

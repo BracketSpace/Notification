@@ -16,17 +16,6 @@ use BracketSpace\Notification\Defaults\MergeTag;
 abstract class PluginTrigger extends Abstracts\Trigger {
 
 	/**
-	 * Constructor
-	 *
-	 * @param array $params trigger configuration params.
-	 */
-	public function __construct( $params = array() ) {
-
-		parent::__construct( $params['slug'], $params['name'] );
-
-	}
-
-	/**
 	 * Registers attached merge tags
 	 *
 	 * @return void

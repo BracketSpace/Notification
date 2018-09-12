@@ -20,10 +20,7 @@ class Deactivated extends PluginTrigger {
      */
 	public function __construct( ){
 
-		parent::__construct( array(
-			'slug' => 'wordpress/deactived_plugin',
-			'name' => __( 'Plugin deactivated', 'notification' )
-		) );
+		parent::__construct( 'wordpress/deactived_plugin', __( 'Plugin deactivated', 'notification' ) );
 
 		$this->add_action( 'deactivated_plugin', 10, 2 );
 		$this->set_group( __( 'WordPress', 'notification' ) );
