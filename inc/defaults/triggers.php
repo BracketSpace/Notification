@@ -93,3 +93,7 @@ if ( notification_get_setting( 'triggers/comment/types' ) ) {
 if ( notification_get_setting( 'triggers/wordpress/updates' ) ) {
 	register_trigger( new Trigger\WordPress\UpdatesAvailable() );
 }
+
+// Plugin triggers.
+register_trigger( new Trigger\Plugin\Activated() );
+register_trigger( new Trigger\Plugin\Deactivated() );
