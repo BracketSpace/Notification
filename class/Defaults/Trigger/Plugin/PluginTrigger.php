@@ -20,7 +20,7 @@ abstract class PluginTrigger extends Abstracts\Trigger {
 	 *
 	 * @return void
 	 */
-	public function merge_tags() {
+	public function merge_tags( ) {
 
 		$this->add_merge_tag( new MergeTag\StringTag( array(
 			'slug'        => 'plugin_name',

@@ -35,9 +35,8 @@ class Deactivated extends PluginTrigger {
      */
 	public function action( $plugin_rel_path ) {
 
-		$plugin_dir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin_rel_path;
-		$plugin_data = get_plugin_data( $plugin_dir );
-		$this->plugin = $plugin_data;
+		$plugin_dir                    = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin_rel_path;
+		$this->plugin                  = get_plugin_data( $plugin_dir );
 		$this->plugin_active_date_time = strtotime( 'now' );
 
 	}
@@ -47,9 +46,9 @@ class Deactivated extends PluginTrigger {
      *
      * @return void
      */
-	public function merge_tags() {
+	public function merge_tags( ) {
 
-		parent::merge_tags();
+		parent::merge_tags( );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'plugin_deactive_date_time',
