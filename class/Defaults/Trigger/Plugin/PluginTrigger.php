@@ -11,7 +11,7 @@ use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\MergeTag;
 
 /**
- * Post trigger class
+ * Plugin trigger class
  */
 abstract class PluginTrigger extends Abstracts\Trigger {
 
@@ -36,7 +36,8 @@ abstract class PluginTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\StringTag( array(
 			'slug'        => 'plugin_name',
 			'name'        => __( 'Plugin name', 'notification' ),
-			'description' => __( 'Name deactivated plugin.', 'notification' ),
+			'description' => __( 'Akismet', 'notification' ),
+            'example'     => true,
 			'resolver'    => function( $trigger ) {
 				return $trigger->plugin['Name'];
 			},
@@ -45,8 +46,9 @@ abstract class PluginTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\StringTag( array(
 			'slug'        => 'plugin_author_name',
 			'name'        => __( 'Plugin author name', 'notification' ),
-			'description' => __( 'Author deactivated plugin.', 'notification' ),
-			'resolver'    => function( $trigger ) {
+			'description' => __( 'Automattic', 'notification' ),
+            'example'     => true,
+            'resolver'    => function( $trigger ) {
 				return $trigger->plugin['AuthorName'];
 			},
 		) ) );
@@ -55,7 +57,7 @@ abstract class PluginTrigger extends Abstracts\Trigger {
 			'slug'        => 'plugin_version',
 			'name'        => __( 'Plugin version', 'notification' ),
 			'description' => __( '1.0.0', 'notification' ),
-			'example' => true,
+			'example'     => true,
 			'resolver'    => function( $trigger ) {
 				return $trigger->plugin['Version'];
 			},
@@ -63,9 +65,9 @@ abstract class PluginTrigger extends Abstracts\Trigger {
 
 		$this->add_merge_tag( new MergeTag\StringTag( array(
 			'slug'        => 'plugin_url',
-			'name'        => __( 'Plugin adress url', 'notification' ),
+			'name'        => __( 'Plugin adress URL', 'notification' ),
 			'description' => __( 'http://example.com', 'notification' ),
-			'example' => true,
+			'example'     => true,
 			'resolver'    => function( $trigger ) {
 				return $trigger->plugin['PluginURI'];
 			},
