@@ -16,8 +16,8 @@ use BracketSpace\Notification\Abstracts;
 class Activated extends PluginTrigger {
 
     /**
-    * Constructor
-    */
+     * Constructor
+     */
     public function __construct( ) {
 
 		parent::__construct( array(
@@ -32,11 +32,11 @@ class Activated extends PluginTrigger {
 	}
 
 	/**
-	* Trigger action
-	*
-	* @param  string $plugin_rel_path Plugin path.
-	* @return void
-    */
+     * Trigger action
+     *
+     * @param  string $plugin_rel_path Plugin path.
+     * @return void
+     */
 	 public function action( $plugin_rel_path ) {
 		$plugin_dir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin_rel_path;
 		$plugin_data = get_plugin_data( $plugin_dir );
@@ -45,10 +45,10 @@ class Activated extends PluginTrigger {
 	 }
 
 	/**
-    * Registers attached merge tags
-    *
-	* @return void
-	*/
+     * Registers attached merge tags
+     *
+     * @return void
+     */
 	public function merge_tags()
 	{
 
