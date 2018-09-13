@@ -22,7 +22,7 @@ class Removed extends PluginTrigger {
 
 		parent::__construct( 'wordpress/plugin/removed', __( 'Plugin removed', 'notification' ) );
 
-		$this->add_action( 'removed_plugin', 10, 2 );
+		$this->add_action( 'delete_plugin', 10, 2 );
 		$this->set_group( __( 'Plugin', 'notification' ) );
 		$this->set_description( __( 'Fires when plugin is removed', 'notification' ) );
 
@@ -52,7 +52,7 @@ class Removed extends PluginTrigger {
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
 			'slug' => 'plugin_remove_date_time',
-			'name' => __( 'Plugin removed date and time', 'notification' ),
+			'name' => __( 'Plugin deletion date and time', 'notification' ),
 		) ) );
 	}
 }
