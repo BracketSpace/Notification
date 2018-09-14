@@ -45,7 +45,7 @@ abstract class PluginTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\StringTag( array(
 			'slug'        => 'plugin_version',
 			'name'        => __( 'Plugin version', 'notification' ),
-			'description' => __( '1.0.0', 'notification' ),
+			'description' => __( '1.0.8', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
 				return $trigger->plugin['Version'];
