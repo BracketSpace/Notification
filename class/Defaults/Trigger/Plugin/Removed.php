@@ -1,22 +1,21 @@
 <?php
 /**
- * WordPress plugin removed trigger
+ * WordPress plugin removed trigger.
  *
- * @package notification
+ * @package notification.
  */
 
 namespace BracketSpace\Notification\Defaults\Trigger\Plugin;
 
 use BracketSpace\Notification\Defaults\MergeTag;
-use BracketSpace\Notification\Abstracts;
 
 /**
- * Removed plugin trigger class
+ * Removed plugin trigger class.
  */
 class Removed extends PluginTrigger {
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 	public function __construct( ) {
 
@@ -29,21 +28,23 @@ class Removed extends PluginTrigger {
 	}
 
 	/**
-	 * Trigger action
+	 * Trigger action.
 	 *
 	 * @param  string $plugin_rel_path Plugin path.
-	 * @return void
+	 * @return mixed void or false if no notifications should be sent.
 	 */
 	public function action( $plugin_rel_path ) {
+
 		$plugin_dir                    = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin_rel_path;
 		$this->plugin                  = get_plugin_data( $plugin_dir );
 		$this->plugin_delete_date_time = strtotime( 'now' );
+
 	}
 
 	/**
-	 * Registers attached merge tags
+	 * Registers attached merge tags.
 	 *
-	 * @return void
+	 * @return void.
 	 */
 	public function merge_tags( )
 	{
