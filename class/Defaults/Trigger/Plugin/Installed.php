@@ -1,22 +1,21 @@
 <?php
 /**
- * WordPress plugin installed trigger
+ * WordPress plugin installed trigger.
  *
- * @package notification
+ * @package notification.
  */
 
 namespace BracketSpace\Notification\Defaults\Trigger\Plugin;
 
 use BracketSpace\Notification\Defaults\MergeTag;
-use BracketSpace\Notification\Abstracts;
 
 /**
- * Installed plugin trigger class
+ * Installed plugin trigger class.
  */
 class Installed extends PluginTrigger {
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 	public function __construct( ) {
 
@@ -29,33 +28,35 @@ class Installed extends PluginTrigger {
 	}
 
 	/**
-	 * Trigger action
+	 * Trigger action.
 	 *
 	 * @param  string $obj Plugin info.
 	 * @param  array  $type Plugin action and type information.
-	 * @return void
+	 * @return mixed void or false if no notifications should be sent.
 	 */
 	public function action( $obj, $type ) {
 
-		if ( !isset($type['type']) || $type['type'] !== 'plugin' )
-			return;
+		if ( !isset($type['type']) || $type['type'] !== 'plugin' ) {
+			return false;
+		}
 
 		if( $type['action'] === 'install' ) {
-			$path = $obj->plugin_info( );
 
-			if ( !$path )
-				return;
+			if ( !$obj->plugin_info( ) ) {
+				return false;
+			}
 
-			$plugin_dir                     = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $path;
+			$plugin_dir                     = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $obj->plugin_info( );
 			$this->plugin                   = get_plugin_data( $plugin_dir );
 			$this->plugin_install_date_time = strtotime( 'now' );
+
 		}
 	}
 
 	/**
-	 * Registers attached merge tags
+	 * Registers attached merge tags.
 	 *
-	 * @return void
+	 * @return void.
 	 */
 	public function merge_tags( )
 	{
