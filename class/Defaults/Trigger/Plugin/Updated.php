@@ -1,22 +1,21 @@
 <?php
 /**
- * WordPress plugin updated trigger
+ * WordPress plugin updated trigger.
  *
- * @package notification
+ * @package notification.
  */
 
 namespace BracketSpace\Notification\Defaults\Trigger\Plugin;
 
 use BracketSpace\Notification\Defaults\MergeTag;
-use BracketSpace\Notification\Abstracts;
 
 /**
- * Updated plugin trigger class
+ * Updated plugin trigger class.
  */
 class Updated extends PluginTrigger {
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 	public function __construct( ) {
 
@@ -29,29 +28,27 @@ class Updated extends PluginTrigger {
 	}
 
 	/**
-	 * Trigger action
+	 * Trigger action.
 	 *
 	 * @param  string $obj Plugin info.
 	 * @param  array  $type Plugin action and type information.
-	 * @return void
+	 * @return mixed void or false if no notifications should be sent.
 	 */
 	public function action( $obj, $type ) {
 
-		if ( !isset( $type['type'] ) || $type['type'] !== 'plugin' )
-			return;
+		if ( !isset( $type['type'] ) || $type['type'] !== 'plugin' ) {
+			return false;
+		}
 
 		if ( isset($type['bulk']) && $type['bulk'] == true ) {
 
 			if ( $type['action'] === 'update' ) {
-				$path = $obj->plugin_info( );
-
-				if ( !$path )
-					return;
 
 				$this->version_before          = $obj->skin->plugin_info['Version'];
-				$plugin_dir                    = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $path;
+				$plugin_dir                    = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $obj->plugin_info( );
 				$this->plugin                  = get_plugin_data( $plugin_dir );
 				$this->plugin_update_date_time = strtotime( 'now' );
+
 			}
 		}
 	}
