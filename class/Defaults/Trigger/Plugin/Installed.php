@@ -32,7 +32,7 @@ class Installed extends PluginTrigger {
 	 * Trigger action
 	 *
 	 * @param  string $obj Plugin info.
-	 * @param  array $type Plugin action and type information.
+	 * @param  object $type Plugin action and type information.
 	 * @return void
 	 */
 	public function action( $obj, $type ) {
