@@ -16,35 +16,35 @@ use BracketSpace\Notification\Interfaces;
 abstract class Common implements Interfaces\Nameable {
 
 	/**
-     * Object slug
-     *
-     * @var string
-     */
-    protected $slug;
+	 * Object slug
+	 *
+	 * @var string
+	 */
+	protected $slug;
 
-    /**
-     * Human readable, translated name
-     *
-     * @var string
-     */
-    protected $name;
+	/**
+	 * Human readable, translated name
+	 *
+	 * @var string
+	 */
+	protected $name;
 
-    /**
-     * Gets slug
-     *
-     * @return string slug
-     */
-    public function get_slug() {
-    	return $this->slug;
-    }
+	/**
+	 * Gets slug
+	 *
+	 * @return string slug
+	 */
+	public function get_slug() {
+		return $this->slug;
+	}
 
-    /**
-     * Gets name
-     *
-     * @return string name
-     */
-    public function get_name() {
-    	return $this->name;
-    }
+	/**
+	 * Gets name
+	 *
+	 * @return string name
+	 */
+	public function get_name() {
+		return $this->name;
+	}
 
 }

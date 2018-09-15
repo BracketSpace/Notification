@@ -16,7 +16,7 @@ $field = $this->get_var( 'current_field' );
 		<?php do_action( 'notification/notification/box/field/pre', $this ); ?>
 		<?php echo $field->field(); ?>
 		<?php $description = $field->get_description(); ?>
-		<?php if ( ! empty( $description ) ): ?>
+		<?php if ( ! empty( $description ) ) : ?>
 			<p class="description"><?php echo $description; ?></p>
 		<?php endif ?>
 		<?php do_action( 'notification/notification/box/field/post', $this ); ?>

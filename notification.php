@@ -42,11 +42,13 @@ spl_autoload_register( 'notification_autoload' );
 /**
  * Requirements check
  */
-$requirements = new BracketSpace\Notification\Utils\Requirements( __( 'Notification', 'notification' ), array(
-	'php'                => '5.3.9',
-	'wp'                 => '4.6',
-	'function_collision' => array( 'register_trigger', 'register_notification' ),
-) );
+$requirements = new BracketSpace\Notification\Utils\Requirements(
+	__( 'Notification', 'notification' ), array(
+		'php'                => '5.3.9',
+		'wp'                 => '4.6',
+		'function_collision' => array( 'register_trigger', 'register_notification' ),
+	)
+);
 
 if ( ! $requirements->satisfied() ) {
 	add_action( 'admin_notices', array( $requirements, 'notice' ) );
@@ -82,30 +84,32 @@ $runtime->boot();
  * @return object
  */
 function not_fs() {
-    global $not_fs;
+	global $not_fs;
 
-    if ( ! isset( $not_fs ) ) {
-        // Include Freemius SDK.
-        require_once dirname(__FILE__) . '/freemius/start.php';
+	if ( ! isset( $not_fs ) ) {
+		// Include Freemius SDK.
+		require_once dirname( __FILE__ ) . '/freemius/start.php';
 
-        $not_fs = fs_dynamic_init( array(
-            'id'                  => '1823',
-            'slug'                => 'notification',
-            'type'                => 'plugin',
-            'public_key'          => 'pk_bf7bb6cbc0cd51e14cd186e9620de',
-            'is_premium'          => false,
-            'has_addons'          => false,
-            'has_paid_plans'      => false,
-            'menu'                => array(
-                'first-path'     => 'plugins.php',
-                'account'        => false,
-                'contact'        => false,
-                'support'        => false,
-            ),
-        ) );
-    }
+		$not_fs = fs_dynamic_init(
+			array(
+				'id'             => '1823',
+				'slug'           => 'notification',
+				'type'           => 'plugin',
+				'public_key'     => 'pk_bf7bb6cbc0cd51e14cd186e9620de',
+				'is_premium'     => false,
+				'has_addons'     => false,
+				'has_paid_plans' => false,
+				'menu'           => array(
+					'first-path' => 'plugins.php',
+					'account'    => false,
+					'contact'    => false,
+					'support'    => false,
+				),
+			)
+		);
+	}
 
-    return $not_fs;
+	return $not_fs;
 }
 
 // Init Freemius.

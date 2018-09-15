@@ -56,7 +56,7 @@ abstract class TermTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomyName() );
 		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomySlug() );
 
-    }
+	}
 
 	/**
 	 * Gets nice, translated taxonomy name

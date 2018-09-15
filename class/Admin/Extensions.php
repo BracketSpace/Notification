@@ -26,14 +26,14 @@ class Extensions {
 
 	/**
 	 * Extensions list
-     *
+	 *
 	 * @var array
 	 */
 	private $extensions = array();
 
 	/**
 	 * Premium Extensions list
-     *
+	 *
 	 * @var array
 	 */
 	private $premium_extensions = array();
@@ -59,7 +59,7 @@ class Extensions {
 	 * Register Extensions page under plugin's menu
 	 *
 	 * @action admin_menu
-     *
+	 *
 	 * @return void
 	 */
 	public function register_page() {
@@ -70,21 +70,21 @@ class Extensions {
 
 		// change settings position if white labelled.
 		if ( true !== apply_filters( 'notification/whitelabel/cpt/parent', true ) ) {
-			$page_menu_label =  __( 'Notification extensions', 'notification' );
+			$page_menu_label = __( 'Notification extensions', 'notification' );
 		} else {
-			$page_menu_label =  __( 'Extensions', 'notification' );
+			$page_menu_label = __( 'Extensions', 'notification' );
 		}
 
 		$this->page_hook = add_submenu_page(
 			apply_filters( 'notification/whitelabel/cpt/parent', 'edit.php?post_type=notification' ),
-	        __( 'Extensions', 'notification' ),
-	        $page_menu_label,
-	        'manage_options',
-	        'extensions',
-	        array( $this, 'extensions_page' )
-	    );
+			__( 'Extensions', 'notification' ),
+			$page_menu_label,
+			'manage_options',
+			'extensions',
+			array( $this, 'extensions_page' )
+		);
 
-	    add_action( 'load-' . $this->page_hook, array( $this, 'load_extensions' ) );
+		add_action( 'load-' . $this->page_hook, array( $this, 'load_extensions' ) );
 
 	}
 
@@ -92,7 +92,7 @@ class Extensions {
 	 * Loads all extensions
 	 * If you want to get your extension listed please send a message via
 	 * https://bracketspace.com/contact/ contact form
-     *
+	 *
 	 * @return void
 	 */
 	public function load_extensions() {
@@ -120,14 +120,13 @@ class Extensions {
 			} else {
 				$this->extensions[] = $extension;
 			}
-
 		}
 
 	}
 
 	/**
 	 * Gets raw extensions data from API
-     *
+	 *
 	 * @return array
 	 */
 	public function get_raw_extensions() {
@@ -149,7 +148,6 @@ class Extensions {
 				$extensions = json_decode( wp_remote_retrieve_body( $response ), true );
 				$extensions_cache->set( $extensions );
 			}
-
 		}
 
 		return $extensions;
@@ -158,8 +156,8 @@ class Extensions {
 
 	/**
 	 * Gets single raw extension data
-     *
-     * @param string $slug extension slug.
+	 *
+	 * @param string $slug extension slug.
 	 * @return array
 	 */
 	public function get_raw_extension( $slug ) {
@@ -182,7 +180,7 @@ class Extensions {
 	 * Initializes the Updater for all the premium plugins
 	 *
 	 * @action admin_init
-     *
+	 *
 	 * @return void
 	 */
 	public function updater() {
@@ -210,13 +208,15 @@ class Extensions {
 
 			$wp_plugin = $wp_plugins[ $extension['slug'] ];
 
-			new EDDUpdater( $extension['edd']['store_url'], $extension['slug'], array(
-				'version' 	=> $wp_plugin['Version'],
-				'license' 	=> '',
-				'item_name' => $extension['edd']['item_name'],
-				'author' 	=> $extension['author'],
-				'beta'		=> false
-			) );
+			new EDDUpdater(
+				$extension['edd']['store_url'], $extension['slug'], array(
+					'version'   => $wp_plugin['Version'],
+					'license'   => '',
+					'item_name' => $extension['edd']['item_name'],
+					'author'    => $extension['author'],
+					'beta'      => false,
+				)
+			);
 
 		}
 
@@ -226,7 +226,7 @@ class Extensions {
 	 * Activates the premium extension.
 	 *
 	 * @action admin_post_notification_activate_extension
-     *
+	 *
 	 * @return void
 	 */
 	public function activate() {
@@ -262,7 +262,7 @@ class Extensions {
 	 * Deactivates the premium extension.
 	 *
 	 * @action admin_post_notification_deactivate_extension
-     *
+	 *
 	 * @return void
 	 */
 	public function deactivate() {
@@ -298,7 +298,7 @@ class Extensions {
 	 * Displays activation notices
 	 *
 	 * @action admin_notices
-     *
+	 *
 	 * @return void
 	 */
 	public function activation_notices() {
@@ -308,22 +308,22 @@ class Extensions {
 		}
 
 		switch ( $_GET['activation-status'] ) {
-			case 'success' :
+			case 'success':
 				$view    = 'success';
 				$message = __( 'Your license has been activated.', 'notification' );
 				break;
 
-			case 'deactivated' :
+			case 'deactivated':
 				$view    = 'success';
 				$message = __( 'Your license has been deactivated.', 'notification' );
 				break;
 
-			case 'wrong-nonce' :
+			case 'wrong-nonce':
 				$view    = 'error';
 				$message = __( 'Couldn\'t activate the license, please try again.', 'notification' );
 				break;
 
-			case 'expired' :
+			case 'expired':
 				$view    = 'error';
 				$message = sprintf(
 					// translators: 1. Date.
@@ -332,24 +332,24 @@ class Extensions {
 				);
 				break;
 
-			case 'revoked' :
-			case 'inactive' :
+			case 'revoked':
+			case 'inactive':
 				$view    = 'error';
 				$message = __( 'Your license key has been disabled.', 'notification' );
 				break;
 
-			case 'missing' :
+			case 'missing':
 				$view    = 'error';
 				$message = __( 'Invalid license key.', 'notification' );
 				break;
 
-			case 'invalid' :
-			case 'site_inactive' :
+			case 'invalid':
+			case 'site_inactive':
 				$view    = 'error';
 				$message = __( 'Your license is not active for this URL.', 'notification' );
 				break;
 
-			case 'item_name_mismatch' :
+			case 'item_name_mismatch':
 				$view = 'error';
 				// translators: 1. Extension name.
 				$message = sprintf( __( 'This appears to be an invalid license key for %s.', 'notification' ), $this->extension['edd']['item_name'] );
@@ -360,7 +360,7 @@ class Extensions {
 				$message = __( 'Your license key has reached its activation limit.', 'notification' );
 				break;
 
-			default :
+			default:
 				$view    = 'error';
 				$message = __( 'An error occurred, please try again.', 'notification' );
 				break;
@@ -375,7 +375,7 @@ class Extensions {
 	 * Displays activation notice nag
 	 *
 	 * @action admin_notices
-     *
+	 *
 	 * @return void
 	 */
 	public function activation_nag() {
@@ -400,7 +400,7 @@ class Extensions {
 
 					// translators: 1. Plugin name, 2. Link.
 					$message = sprintf(
-						__( 'Please activate the %s plugin to get the updates. %s', 'notification' ),
+						__( 'Please activate the %1$s plugin to get the updates. %2$s', 'notification' ),
 						$extension['edd']['item_name'],
 						'<a href="' . admin_url( 'edit.php?post_type=notification&page=extensions' ) . '">' . __( 'Go to Extensions', 'notification' ) . '</a>'
 					);
@@ -409,9 +409,7 @@ class Extensions {
 					$this->view->get_view( 'extension/activation-error' );
 
 				}
-
 			}
-
 		}
 
 	}

@@ -16,50 +16,50 @@ class Group {
 
 	/**
 	 * Settings handle
-     *
+	 *
 	 * @var string
 	 */
 	private $handle;
 
 	/**
 	 * Group name
-     *
+	 *
 	 * @var string
 	 */
 	private $name;
 
 	/**
 	 * Group slug
-     *
+	 *
 	 * @var string
 	 */
 	private $slug;
 
 	/**
 	 * Group fields
-     *
+	 *
 	 * @var array
 	 */
 	private $fields = array();
 
 	/**
 	 * Group description
-     *
+	 *
 	 * @var string
 	 */
 	private $description = '';
 
 	/**
 	 * Section slug
-     *
+	 *
 	 * @var string
 	 */
 	private $section;
 
 	/**
 	 * Group constructor
-     *
-     * @throws \Exception Exception.
+	 *
+	 * @throws \Exception Exception.
 	 * @param string $handle  Settings handle.
 	 * @param string $name    Group name.
 	 * @param string $slug    Group slug.
@@ -95,7 +95,7 @@ class Group {
 
 	/**
 	 * Get or set name
-     *
+	 *
 	 * @param  string $name Name. Do not pass anything to get current value.
 	 * @return string name
 	 */
@@ -111,7 +111,7 @@ class Group {
 
 	/**
 	 * Get or set slug
-     *
+	 *
 	 * @param  string $slug Slug. Do not pass anything to get current value.
 	 * @return string slug
 	 */
@@ -127,7 +127,7 @@ class Group {
 
 	/**
 	 * Get or set section
-     *
+	 *
 	 * @param  string $section Section. Do not pass anything to get current value.
 	 * @return string section
 	 */
@@ -143,7 +143,7 @@ class Group {
 
 	/**
 	 * Set or get description
-     *
+	 *
 	 * @param  mixed $description string to set description, null to get it.
 	 * @return string description
 	 */
@@ -159,8 +159,8 @@ class Group {
 
 	/**
 	 * Add Field to the Group
-     *
-     * @throws \Exception Exception.
+	 *
+	 * @throws \Exception Exception.
 	 * @param array $args field args.
 	 * @return Group $this
 	 */
@@ -200,7 +200,7 @@ class Group {
 
 	/**
 	 * Get all registered Fields
-     *
+	 *
 	 * @return array
 	 */
 	public function get_fields() {

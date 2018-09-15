@@ -15,7 +15,7 @@ class Number {
 	/**
 	 * Number field
 	 * Accepts addons: min, max, step
-     *
+	 *
 	 * @param  Field $field Field instance.
 	 * @return void
 	 */
@@ -27,7 +27,7 @@ class Number {
 
 	/**
 	 * Sanitize input value
-     *
+	 *
 	 * @param  string $value saved value.
 	 * @return string        sanitized number
 	 */

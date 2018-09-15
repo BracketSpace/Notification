@@ -16,8 +16,8 @@ use BracketSpace\Notification\Abstracts;
 class Deactivated extends PluginTrigger {
 
 	/**
-     * Constructor
-     */
+	 * Constructor
+	 */
 	public function __construct() {
 
 		parent::__construct( 'wordpress/plugin/deactivated', __( 'Plugin deactivated', 'notification' ) );
@@ -28,11 +28,11 @@ class Deactivated extends PluginTrigger {
 	}
 
 	/**
-     * Trigger action
-     *
-     * @param  string $plugin_rel_path Plugin path.
-     * @return void
-     */
+	 * Trigger action
+	 *
+	 * @param  string $plugin_rel_path Plugin path.
+	 * @return void
+	 */
 	public function action( $plugin_rel_path ) {
 
 		$plugin_dir                          = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin_rel_path;
@@ -42,18 +42,22 @@ class Deactivated extends PluginTrigger {
 	}
 
 	/**
-     * Registers attached merge tags
-     *
-     * @return void
-     */
-	public function merge_tags( ) {
+	 * Registers attached merge tags
+	 *
+	 * @return void
+	 */
+	public function merge_tags() {
 
-		parent::merge_tags( );
+		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
-			'slug' => 'plugin_deactivation_date_time',
-			'name' => __( 'Plugin deactivation date and time', 'notification' ),
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\DateTime\DateTime(
+				array(
+					'slug' => 'plugin_deactivation_date_time',
+					'name' => __( 'Plugin deactivation date and time', 'notification' ),
+				)
+			)
+		);
 	}
 
 

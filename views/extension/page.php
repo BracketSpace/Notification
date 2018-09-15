@@ -13,7 +13,7 @@ $premium_extensions = (array) $this->get_var( 'premium_extensions' );
 
 	<h1><?php esc_html_e( 'Extensions', 'notification' ); ?></h1>
 
-	<?php if ( ! empty( $premium_extensions ) ): ?>
+	<?php if ( ! empty( $premium_extensions ) ) : ?>
 
 		<h2><?php esc_html_e( 'Premium extensions', 'notification' ); ?></h2>
 
@@ -30,7 +30,7 @@ $premium_extensions = (array) $this->get_var( 'premium_extensions' );
 
 	<?php endif ?>
 
-	<?php if ( ! empty( $premium_extensions ) ): ?>
+	<?php if ( ! empty( $premium_extensions ) ) : ?>
 		<h2><?php esc_html_e( 'Available extensions', 'notification' ); ?></h2>
 	<?php endif ?>
 

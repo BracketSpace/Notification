@@ -28,36 +28,48 @@ class Email extends Abstracts\Notification {
 	/**
 	 * Used to register notification form fields
 	 * Uses $this->add_form_field();
-     *
+	 *
 	 * @return void
 	 */
 	public function form_fields() {
 
-		$this->add_form_field( new Field\InputField( array(
-			'label' => __( 'Subject', 'notification' ),
-			'name'  => 'subject',
-		) ) );
+		$this->add_form_field(
+			new Field\InputField(
+				array(
+					'label' => __( 'Subject', 'notification' ),
+					'name'  => 'subject',
+				)
+			)
+		);
 
 		if ( notification_get_setting( 'notifications/email/type' ) == 'html' && ! notification_get_setting( 'notifications/email/unfiltered_html' ) ) {
-			$body_field = new Field\EditorField( array(
-				'label'    => __( 'Body', 'notification' ),
-				'name'     => 'body',
-				'settings' => array(
-					'media_buttons' => false
-				),
-			) );
+			$body_field = new Field\EditorField(
+				array(
+					'label'    => __( 'Body', 'notification' ),
+					'name'     => 'body',
+					'settings' => array(
+						'media_buttons' => false,
+					),
+				)
+			);
 		} else {
-			$body_field = new Field\TextareaField( array(
-				'label'    => __( 'Body', 'notification' ),
-				'name'     => 'body',
-			) );
+			$body_field = new Field\TextareaField(
+				array(
+					'label' => __( 'Body', 'notification' ),
+					'name'  => 'body',
+				)
+			);
 		}
 
 		$this->add_form_field( $body_field );
 
-		$this->add_form_field( new Field\RecipientsField( array(
-			'notification' => $this->get_slug(),
-		) ) );
+		$this->add_form_field(
+			new Field\RecipientsField(
+				array(
+					'notification' => $this->get_slug(),
+				)
+			)
+		);
 
 	}
 
@@ -67,12 +79,12 @@ class Email extends Abstracts\Notification {
 	 * @return string mail type
 	 */
 	public function set_mail_type() {
-	    return 'text/html';
+		return 'text/html';
 	}
 
 	/**
 	 * Sends the notification
-     *
+	 *
 	 * @param  Triggerable $trigger trigger object.
 	 * @return void
 	 */
@@ -114,9 +126,9 @@ class Email extends Abstracts\Notification {
 			remove_filter( 'wp_mail_content_type', array( $this, 'set_mail_type' ) );
 		}
 
-    }
+	}
 
-    /**
+	/**
 	 * Replaces the filtered body with the unfiltered one if the notifications/email/unfiltered_html setting is set to true.
 	 *
 	 * @filter notification/notification/form/data/values
@@ -124,8 +136,8 @@ class Email extends Abstracts\Notification {
 	 * @param  array $notification_data notification_data from PostData.
 	 * @param  array $ndata             ndata from PostData, it contains the unfiltered message body.
 	 * @return array $notification_data with the unfiltered body, if notifications/email/unfiltered_html setting is true.
-     **/
-    public function allow_unfiltered_html_body( $notification_data, $ndata ) {
+	 **/
+	public function allow_unfiltered_html_body( $notification_data, $ndata ) {
 
 		if ( notification_get_setting( 'notifications/email/unfiltered_html' ) ) {
 			$notification_data['body'] = $ndata['body'];
@@ -133,6 +145,6 @@ class Email extends Abstracts\Notification {
 
 		return $notification_data;
 
-    }
+	}
 
 }

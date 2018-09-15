@@ -15,7 +15,7 @@ class Checkbox {
 	/**
 	 * Checkbox field
 	 * Requires 'label' addon
-     *
+	 *
 	 * @param  Field $field Field instance.
 	 * @return void
 	 */
@@ -28,7 +28,7 @@ class Checkbox {
 	/**
 	 * Sanitize checkbox value
 	 * Allows only for empty string and 'true'
-     *
+	 *
 	 * @param  string $value saved value.
 	 * @return string        empty string or 'true'
 	 */

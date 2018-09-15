@@ -19,21 +19,21 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 
 	/**
 	 * If Notification is enabled for current post
-     *
+	 *
 	 * @var boolean
 	 */
 	public $enabled = false;
 
 	/**
 	 * Notification form fields
-     *
+	 *
 	 * @var array
 	 */
 	public $form_fields = array();
 
 	/**
 	 * Fields data for send method
-     *
+	 *
 	 * @var array
 	 */
 	public $data = array();
@@ -54,7 +54,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 
 	/**
 	 * Notification constructor
-     *
+	 *
 	 * @param string $slug slug.
 	 * @param string $name nice name.
 	 */
@@ -63,12 +63,16 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 		$this->slug = $slug;
 		$this->name = $name;
 
-		$this->add_form_field( new Field\NonceField( array(
-			'label'      => '',
-			'name'       => '_nonce',
-			'nonce_key'  => $this->slug . '_notification_security',
-			'resolvable' => false,
-		) ) );
+		$this->add_form_field(
+			new Field\NonceField(
+				array(
+					'label'      => '',
+					'name'       => '_nonce',
+					'nonce_key'  => $this->slug . '_notification_security',
+					'resolvable' => false,
+				)
+			)
+		);
 
 		$this->form_fields();
 
@@ -96,14 +100,14 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	/**
 	 * Used to register notification form fields
 	 * Uses $this->add_form_field();
-     *
+	 *
 	 * @return void
 	 */
 	abstract public function form_fields();
 
 	/**
 	 * Sends the notification
-     *
+	 *
 	 * @param  Triggerable $trigger trigger object.
 	 * @return void
 	 */
@@ -111,7 +115,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 
 	/**
 	 * Generates an unique hash for notification instance
-     *
+	 *
 	 * @return string
 	 */
 	public function hash() {
@@ -120,20 +124,20 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 
 	/**
 	 * Adds form field to collection
-     *
+	 *
 	 * @param  Interfaces\Fillable $field Field object.
 	 * @return $this
 	 */
 	public function add_form_field( Interfaces\Fillable $field ) {
-		$adding_field = clone $field;
-		$adding_field->section = 'notification_type_' . $this->get_slug();
+		$adding_field                                = clone $field;
+		$adding_field->section                       = 'notification_type_' . $this->get_slug();
 		$this->form_fields[ $field->get_raw_name() ] = $adding_field;
 		return $this;
 	}
 
 	/**
 	 * Gets form fields array
-     *
+	 *
 	 * @return array fields
 	 */
 	public function get_form_fields() {
@@ -142,7 +146,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 
 	/**
 	 * Gets field value
-     *
+	 *
 	 * @param  string $field_slug field slug.
 	 * @return mixed              value or null if field not available
 	 */

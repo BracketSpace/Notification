@@ -9,25 +9,26 @@
 
 <div class="wrap underdev-settings <?php echo $this->handle; ?>-settings">
 
-	<h1><?php _e( 'Settings', $this->textdomain, 'notification' ) ?></h1>
+	<h1><?php _e( 'Settings', $this->textdomain, 'notification' ); ?></h1>
 
-	<?php if ( empty( $sections ) ): ?>
-		<p><?php _e( 'No Settings available at the moment', $this->textdomain, 'notification' ); ?></p>
-	<?php else: ?>
+	<?php if ( empty( $sections ) ) : ?>
+		<?php // PHPCS: OK. ?>
+		<p><?php esc_html_e( 'No Settings available at the moment', $this->textdomain ); ?></p>
+	<?php else : ?>
 
 		<div class="menu-col box">
 
 			<ul class="menu-list">
 
-				<?php foreach ( $this->get_sections() as $section_slug => $section ): ?>
+				<?php foreach ( $this->get_sections() as $section_slug => $section ) : ?>
 
 					<?php
-					$class = ( $section_slug == $current_section ) ? 'current' : '';
+					$class    = ( $section_slug == $current_section ) ? 'current' : '';
 					$page_url = remove_query_arg( 'updated' );
-					$url = add_query_arg( 'section', $section_slug, $page_url );
+					$url      = add_query_arg( 'section', $section_slug, $page_url );
 					?>
 
-					<li class="<?php echo esc_attr( $class ); ?>"><a href="<?php echo esc_attr( $url ); ?>"><?php echo esc_html( $section->name() ) ?></a></li>
+					<li class="<?php echo esc_attr( $class ); ?>"><a href="<?php echo esc_attr( $url ); ?>"><?php echo esc_html( $section->name() ); ?></a></li>
 
 				<?php endforeach ?>
 
@@ -53,11 +54,11 @@
 				 * for form handler so it could grab the section name and parse all defined fields
 				 */
 				?>
-				<input type="hidden" name="<?php echo $this->handle . '_settings[' . $section->slug() . ']' ?>" value="section_buster">
+				<input type="hidden" name="<?php echo $this->handle . '_settings[' . $section->slug() . ']'; ?>" value="section_buster">
 
-				<?php $groups  = $section->get_groups(); ?>
+				<?php $groups = $section->get_groups(); ?>
 
-				<?php foreach ( $groups as $group ): ?>
+				<?php foreach ( $groups as $group ) : ?>
 
 					<div class="setting-group group-<?php echo esc_attr( $group->slug() ); ?>">
 
@@ -65,7 +66,7 @@
 
 						<?php $description = $group->description(); ?>
 
-						<?php if ( ! empty( $description ) ): ?>
+						<?php if ( ! empty( $description ) ) : ?>
 							<p class="description"><?php echo esc_html( $description ); ?></p>
 						<?php endif ?>
 
@@ -73,7 +74,7 @@
 
 						<table class="form-table">
 
-							<?php foreach ( $group->get_fields() as $field ): ?>
+							<?php foreach ( $group->get_fields() as $field ) : ?>
 
 								<tr class="field-<?php echo esc_attr( $field->slug() ); ?>">
 									<th><label for="<?php echo esc_attr( $field->input_id() ); ?>"><?php echo esc_html( $field->name() ); ?></label></th>
@@ -82,7 +83,7 @@
 										$field->render();
 										$field_description = $field->description();
 										?>
-										<?php if ( ! empty( $field_description ) ): ?>
+										<?php if ( ! empty( $field_description ) ) : ?>
 											<small class="description"><?php echo $field_description; ?></small>
 										<?php endif ?>
 									</td>
@@ -98,7 +99,7 @@
 
 				<?php endforeach ?>
 
-				<?php if ( ! empty( $groups ) ): ?>
+				<?php if ( ! empty( $groups ) ) : ?>
 					<?php submit_button(); ?>
 				<?php endif ?>
 

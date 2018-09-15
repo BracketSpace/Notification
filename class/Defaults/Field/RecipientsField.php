@@ -21,16 +21,18 @@ class RecipientsField extends RepeaterField {
 	public function __construct( $params = array() ) {
 
 		if ( ! isset( $params['notification'] ) ) {
-    		trigger_error( 'RecipientsField requires notification param', E_USER_ERROR );
-    	}
+			trigger_error( 'RecipientsField requires notification param', E_USER_ERROR );
+		}
 
-		$params = wp_parse_args( $params, array(
-			'notification'     => '',
-			'label'            => __( 'Recipients', 'notification' ),
-			'name'             => 'recipients',
-			'add_button_label' => __( 'Add recipient', 'notification' ),
-			'css_class'        => '',
-		) );
+		$params = wp_parse_args(
+			$params, array(
+				'notification'     => '',
+				'label'            => __( 'Recipients', 'notification' ),
+				'name'             => 'recipients',
+				'add_button_label' => __( 'Add recipient', 'notification' ),
+				'css_class'        => '',
+			)
+		);
 
 		$this->notification = $params['notification'];
 
@@ -51,12 +53,14 @@ class RecipientsField extends RepeaterField {
 			if ( count( $recipients ) === 1 ) {
 
 				$params['fields'] = array(
-					new InputField( array(
-						'label'   => __( 'Type', 'notification' ),
-						'name'    => 'type',
-						'type'    => 'hidden',
-						'value'   => $first_recipient->get_slug(),
-					) ),
+					new InputField(
+						array(
+							'label' => __( 'Type', 'notification' ),
+							'name'  => 'type',
+							'type'  => 'hidden',
+							'value' => $first_recipient->get_slug(),
+						)
+					),
 				);
 
 			} else {
@@ -68,12 +72,14 @@ class RecipientsField extends RepeaterField {
 				}
 
 				$params['fields'] = array(
-					new SelectField( array(
-						'label'     => __( 'Type', 'notification' ),
-						'name'      => 'type',
-						'css_class' => 'recipient-type',
-						'options'   => $recipient_types
-					) ),
+					new SelectField(
+						array(
+							'label'     => __( 'Type', 'notification' ),
+							'name'      => 'type',
+							'css_class' => 'recipient-type',
+							'options'   => $recipient_types,
+						)
+					),
 				);
 
 			}
@@ -106,63 +112,62 @@ class RecipientsField extends RepeaterField {
 
 			$html .= '<td class="handle"></td>';
 
-			foreach ( $this->fields as $sub_field ) {
+		foreach ( $this->fields as $sub_field ) {
 
-				if ( isset( $values[ $sub_field->get_raw_name() ] ) ) {
-					$sub_field->set_value( $values[ $sub_field->get_raw_name() ] );
-				}
+			if ( isset( $values[ $sub_field->get_raw_name() ] ) ) {
+				$sub_field->set_value( $values[ $sub_field->get_raw_name() ] );
+			}
 
-				$sub_field->section = $this->get_name() . '[' . $this->current_row . ']';
+			$sub_field->section = $this->get_name() . '[' . $this->current_row . ']';
 
-				// extract the type of recipient for the second field.
-				if ( ! $model && $sub_field->get_raw_name() === 'type' ) {
-					$recipient_type = $sub_field->get_value();
-				}
+			// extract the type of recipient for the second field.
+			if ( ! $model && $sub_field->get_raw_name() === 'type' ) {
+				$recipient_type = $sub_field->get_value();
+			}
 
-				// don't print useless informations for hidden field.
-				if ( isset( $sub_field->type ) && $sub_field->type === 'hidden' ) {
-					$html .= $sub_field->field();
-				} else {
+			// don't print useless informations for hidden field.
+			if ( isset( $sub_field->type ) && $sub_field->type === 'hidden' ) {
+				$html .= $sub_field->field();
+			} else {
 
-					// swap the field to correct type.
-					if ( isset( $recipient_type ) &&
-						$recipient_type &&
-						$sub_field->get_raw_name() === 'recipient' ) {
+				// swap the field to correct type.
+				if ( isset( $recipient_type ) &&
+					$recipient_type &&
+					$sub_field->get_raw_name() === 'recipient' ) {
 
-						$recipient = notification_get_single_recipient( $this->notification, $recipient_type );
+					$recipient = notification_get_single_recipient( $this->notification, $recipient_type );
 
-						if ( empty( $recipient ) ) {
-							return '';
-						}
-
-						$sub_field = $recipient->input();
-
-						// rewrite value and section.
-						if ( isset( $values[ $sub_field->get_raw_name() ] ) ) {
-							$sub_field->set_value( $values[ $sub_field->get_raw_name() ] );
-						}
-						$sub_field->section = $this->get_name() . '[' . $this->current_row . ']';
-
-						// reset value for another type.
-						$recipient_type = false;
-
+					if ( empty( $recipient ) ) {
+						return '';
 					}
 
-					$html .= '<td class="subfield ' . esc_attr( $sub_field->get_raw_name() ) . '">';
-						if ( isset( $this->headers[ $sub_field->get_raw_name() ] ) ) {
-							$html .= '<div class="row-header">' . $this->headers[ $sub_field->get_raw_name() ] . '</div>';
-						}
-						$html .= '<div class="row-field">';
-							$html .= $sub_field->field();
-							$description = $sub_field->get_description();
-							if ( ! empty( $description ) ) {
-								$html .= '<small class="description">' . $description . '</small>';
-							}
-						$html .= '</div>';
-					$html .= '</td>';
+					$sub_field = $recipient->input();
+
+					// rewrite value and section.
+					if ( isset( $values[ $sub_field->get_raw_name() ] ) ) {
+						$sub_field->set_value( $values[ $sub_field->get_raw_name() ] );
+					}
+					$sub_field->section = $this->get_name() . '[' . $this->current_row . ']';
+
+					// reset value for another type.
+					$recipient_type = false;
+
 				}
 
+				$html .= '<td class="subfield ' . esc_attr( $sub_field->get_raw_name() ) . '">';
+				if ( isset( $this->headers[ $sub_field->get_raw_name() ] ) ) {
+					$html .= '<div class="row-header">' . $this->headers[ $sub_field->get_raw_name() ] . '</div>';
+				}
+					$html           .= '<div class="row-field">';
+						$html       .= $sub_field->field();
+						$description = $sub_field->get_description();
+				if ( ! empty( $description ) ) {
+					$html .= '<small class="description">' . $description . '</small>';
+				}
+						$html .= '</div>';
+						$html .= '</td>';
 			}
+		}
 
 		$html .= '</tr>';
 

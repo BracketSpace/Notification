@@ -37,12 +37,12 @@ class TextareaField extends Field {
 	public function __construct( $params = array() ) {
 
 		if ( isset( $params['placeholder'] ) ) {
-    		$this->placeholder = $params['placeholder'];
-    	}
+			$this->placeholder = $params['placeholder'];
+		}
 
 		if ( isset( $params['rows'] ) ) {
-    		$this->rows = $params['rows'];
-    	}
+			$this->rows = $params['rows'];
+		}
 
 		parent::__construct( $params );
 
@@ -50,21 +50,21 @@ class TextareaField extends Field {
 
 	/**
 	 * Returns field HTML
-     *
+	 *
 	 * @return string html
 	 */
 	public function field() {
-		return '<textarea name="' . esc_attr( $this->get_name() ) . '" rows="' . esc_attr( $this->rows ) . '" id="' . esc_attr( $this->get_id() ) . '" placeholder="' . esc_attr(  $this->placeholder ) . '" class="widefat ' . esc_attr( $this->css_class() ) . '" ' . $this->maybe_disable() . '>' . $this->get_value() . '</textarea>';
+		return '<textarea name="' . esc_attr( $this->get_name() ) . '" rows="' . esc_attr( $this->rows ) . '" id="' . esc_attr( $this->get_id() ) . '" placeholder="' . esc_attr( $this->placeholder ) . '" class="widefat ' . esc_attr( $this->css_class() ) . '" ' . $this->maybe_disable() . '>' . $this->get_value() . '</textarea>';
 	}
 
 	/**
-     * Sanitizes the value sent by user
-     *
-     * @param  mixed $value value to sanitize.
-     * @return mixed        sanitized value
-     */
-    public function sanitize( $value ) {
-    	return sanitize_textarea_field( $value );
-    }
+	 * Sanitizes the value sent by user
+	 *
+	 * @param  mixed $value value to sanitize.
+	 * @return mixed        sanitized value
+	 */
+	public function sanitize( $value ) {
+		return sanitize_textarea_field( $value );
+	}
 
 }

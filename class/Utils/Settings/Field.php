@@ -14,28 +14,28 @@ class Field {
 
 	/**
 	 * Settings handle
-     *
+	 *
 	 * @var string
 	 */
 	private $handle;
 
 	/**
 	 * Field name
-     *
+	 *
 	 * @var string
 	 */
 	private $name;
 
 	/**
 	 * Field slug
-     *
+	 *
 	 * @var string
 	 */
 	private $slug;
 
 	/**
 	 * Field description
-     *
+	 *
 	 * @var string
 	 */
 	private $description = '';
@@ -43,7 +43,7 @@ class Field {
 	/**
 	 * Field renderer method or function
 	 * Used to render field
-     *
+	 *
 	 * @var mixed
 	 */
 	private $renderer = false;
@@ -51,50 +51,50 @@ class Field {
 	/**
 	 * Field sanitizer method or function
 	 * Dynamically sanitize field value
-     *
+	 *
 	 * @var mixed
 	 */
 	private $sanitizer = false;
 
 	/**
 	 * Field value
-     *
+	 *
 	 * @var mixed
 	 */
 	private $value;
 
 	/**
 	 * Field default value
-     *
+	 *
 	 * @var mixed
 	 */
 	private $default_value = '';
 
 	/**
 	 * Section slug
-     *
+	 *
 	 * @var string
 	 */
 	private $section;
 
 	/**
 	 * Group slug
-     *
+	 *
 	 * @var string
 	 */
 	private $group;
 
 	/**
 	 * Addons
-     *
+	 *
 	 * @var string
 	 */
 	private $addons;
 
 	/**
 	 * Group constructor
-     *
-     * @throws \Exception Exception.
+	 *
+	 * @throws \Exception Exception.
 	 * @param string $handle  Settings handle.
 	 * @param string $name    Field name.
 	 * @param string $slug    Field slug.
@@ -121,7 +121,6 @@ class Field {
 
 		$this->slug( sanitize_title( $slug ) );
 
-
 		if ( empty( $section ) || empty( $group ) ) {
 			throw new \Exception( 'Field must belong to Section and Group' );
 		}
@@ -133,7 +132,7 @@ class Field {
 
 	/**
 	 * Get or set name
-     *
+	 *
 	 * @param  string $name Name. Do not pass anything to get current value.
 	 * @return string name
 	 */
@@ -149,7 +148,7 @@ class Field {
 
 	/**
 	 * Get or set slug
-     *
+	 *
 	 * @param  string $slug Slug. Do not pass anything to get current value.
 	 * @return string slug
 	 */
@@ -165,7 +164,7 @@ class Field {
 
 	/**
 	 * Get or set section
-     *
+	 *
 	 * @param  string $section Section. Do not pass anything to get current value.
 	 * @return string section
 	 */
@@ -181,7 +180,7 @@ class Field {
 
 	/**
 	 * Get or set group
-     *
+	 *
 	 * @param  string $group Group. Do not pass anything to get current value.
 	 * @return string group
 	 */
@@ -197,7 +196,7 @@ class Field {
 
 	/**
 	 * Set or get description
-     *
+	 *
 	 * @param  mixed $description string to set description, null to get it.
 	 * @return string description
 	 */
@@ -213,7 +212,7 @@ class Field {
 
 	/**
 	 * Get or set field value
-     *
+	 *
 	 * @param mixed $value field value or null to get current.
 	 * @return string value
 	 */
@@ -229,7 +228,7 @@ class Field {
 
 	/**
 	 * Set or get default value
-     *
+	 *
 	 * @param mixed $default_value field default value or null to get current.
 	 * @return string              default value
 	 */
@@ -245,7 +244,7 @@ class Field {
 
 	/**
 	 * Set or get addons
-     *
+	 *
 	 * @param mixed $addons field additional settings or null to get them.
 	 * @return array addons
 	 */
@@ -261,7 +260,7 @@ class Field {
 
 	/**
 	 * Get addon
-     *
+	 *
 	 * @param mixed $addon field additional settings or null to get them.
 	 * @return mixed addon value or null
 	 */
@@ -279,7 +278,7 @@ class Field {
 
 	/**
 	 * Get Field input name
-     *
+	 *
 	 * @return string name
 	 */
 	public function input_name() {
@@ -292,7 +291,7 @@ class Field {
 
 	/**
 	 * Get Field input id
-     *
+	 *
 	 * @return string id
 	 */
 	public function input_id() {
@@ -305,8 +304,8 @@ class Field {
 
 	/**
 	 * Set field renderer
-     *
-     * @throws \Exception Exception.
+	 *
+	 * @throws \Exception Exception.
 	 * @param mixed $renderer array or string.
 	 * @return Field
 	 */
@@ -324,8 +323,8 @@ class Field {
 
 	/**
 	 * Set field sanitizer
-     *
-     * @throws \Exception Exception.
+	 *
+	 * @throws \Exception Exception.
 	 * @param mixed $sanitizer array or string.
 	 * @return Field
 	 */
@@ -343,7 +342,7 @@ class Field {
 
 	/**
 	 * Render field
-     *
+	 *
 	 * @return void
 	 */
 	public function render() {
@@ -354,7 +353,7 @@ class Field {
 
 	/**
 	 * Sanitize field value
-     *
+	 *
 	 * @param  mixed $value    raw value for sanitization.
 	 * @return string sanitized value
 	 */

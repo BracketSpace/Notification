@@ -38,12 +38,12 @@ class InputField extends Field {
 	public function __construct( $params = array() ) {
 
 		if ( isset( $params['type'] ) ) {
-    		$this->type = $params['type'];
-    	}
+			$this->type = $params['type'];
+		}
 
 		if ( isset( $params['placeholder'] ) ) {
-    		$this->placeholder = $params['placeholder'];
-    	}
+			$this->placeholder = $params['placeholder'];
+		}
 
 		parent::__construct( $params );
 
@@ -51,7 +51,7 @@ class InputField extends Field {
 
 	/**
 	 * Returns field HTML
-     *
+	 *
 	 * @return string html
 	 */
 	public function field() {
@@ -59,13 +59,13 @@ class InputField extends Field {
 	}
 
 	/**
-     * Sanitizes the value sent by user
-     *
-     * @param  mixed $value value to sanitize.
-     * @return mixed        sanitized value
-     */
-    public function sanitize( $value ) {
-    	return sanitize_text_field( $value );
-    }
+	 * Sanitizes the value sent by user
+	 *
+	 * @param  mixed $value value to sanitize.
+	 * @return mixed        sanitized value
+	 */
+	public function sanitize( $value ) {
+		return sanitize_text_field( $value );
+	}
 
 }

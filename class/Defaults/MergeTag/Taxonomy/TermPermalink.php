@@ -19,23 +19,25 @@ use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
 class TermPermalink extends UrlTag {
 
 	/**
-     * Merge tag constructor
-     *
-     * @since 5.0.0
-     */
-    public function __construct() {
+	 * Merge tag constructor
+	 *
+	 * @since 5.0.0
+	 */
+	public function __construct() {
 
-    	$args = wp_parse_args( array(
-			'slug'        => 'term_link',
-			'name'        => __( 'Term link', 'notification' ),
-			'description' => 'http://example.com/category/nature',
-			'example'     => true,
-			'resolver'    => function( $trigger ) {
-				return $trigger->term_permalink;
-			},
-		) );
+		$args = wp_parse_args(
+			array(
+				'slug'        => 'term_link',
+				'name'        => __( 'Term link', 'notification' ),
+				'description' => 'http://example.com/category/nature',
+				'example'     => true,
+				'resolver'    => function( $trigger ) {
+					return $trigger->term_permalink;
+				},
+			)
+		);
 
-    	parent::__construct( $args );
+		parent::__construct( $args );
 
 	}
 
