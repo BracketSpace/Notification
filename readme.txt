@@ -215,7 +215,6 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Added] Option to allow unfiltered HTML in Email body, thanks to @martinellimarco.
 * [Added] Plugin activated trigger
 * [Added] Plugin deactivated trigger
-* [Added] Plugin removed trigger
 * [Added] Plugin installed trigger
 
 = 5.2.3 =
