@@ -28,7 +28,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 			'description' => __( 'Twenty Fifteen', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return $trigger->theme_old->get('Name');
+				return $trigger->theme_old->get( 'Name' );
 			},
 		) ) );
 
@@ -38,7 +38,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 			'description' => __( 'Twenty Seventeen', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return $trigger->theme_new->get('Name');
+				return $trigger->theme_new->get( 'Name' );
 			},
 		) ) );
 
@@ -48,7 +48,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 			'description' => __( 'the WordPress team', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return $trigger->theme_old->get('AuthorName');
+				return $trigger->theme_old->get( 'AuthorName' );
 			},
 		) ) );
 
@@ -58,7 +58,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 			'description' => __( 'the WordPress team', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return $trigger->theme_new->get('AuthorName');
+				return $trigger->theme_new->get( 'AuthorName' );
 			},
 		) ) );
 
@@ -68,7 +68,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 			'description' => __( '1.0.0', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return $trigger->theme_old->get('Version');
+				return $trigger->theme_old->get( 'Version' );
 			},
 		) ) );
 
@@ -78,7 +78,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 			'description' => __( '1.0.2', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return $trigger->theme_new->get('Version');
+				return $trigger->theme_new->get( 'Version' );
 			},
 		) ) );
 
@@ -88,7 +88,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 			'description' => __( 'https://example.com', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return $trigger->theme_old->get('ThemeURI');
+				return $trigger->theme_old->get( 'ThemeURI' );
 			},
 		) ) );
 
@@ -98,7 +98,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 			'description' => __( 'https://example.com', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return $trigger->theme_new->get('ThemeURI');
+				return $trigger->theme_new->get( 'ThemeURI' );
 			},
 		) ) );
 
