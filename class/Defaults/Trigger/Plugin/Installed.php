@@ -17,7 +17,7 @@ class Installed extends PluginTrigger {
 	/**
 	 * Constructor.
 	 */
-	public function __construct( ) {
+	public function __construct() {
 
 		parent::__construct( 'wordpress/plugin/install', __( 'Plugin installed', 'notification' ) );
 
@@ -36,17 +36,17 @@ class Installed extends PluginTrigger {
 	 */
 	public function action( $obj, $type ) {
 
-		if ( !isset($type['type']) || $type['type'] !== 'plugin' ) {
+		if ( ! isset( $type['type'] ) || 'plugin' !== $type['type'] ) {
 			return false;
 		}
 
-		if( $type['action'] === 'install' ) {
+		if ( 'install' === $type['action'] ) {
 
-			if ( !$obj->plugin_info( ) ) {
+			if ( ! $obj->plugin_info() ) {
 				return false;
 			}
 
-			$plugin_dir                     = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $obj->plugin_info( );
+			$plugin_dir                     = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $obj->plugin_info();
 			$this->plugin                   = get_plugin_data( $plugin_dir );
 			$this->plugin_install_date_time = strtotime( 'now' );
 
@@ -58,15 +58,17 @@ class Installed extends PluginTrigger {
 	 *
 	 * @return void.
 	 */
-	public function merge_tags( )
-	{
+	public function merge_tags() {
+		parent::merge_tags();
 
-		parent::merge_tags( );
+		$this->add_merge_tag(
+			new MergeTag\DateTime\DateTime(
+				array(
+					'slug' => 'plugin_install_date_time',
+					'name' => __( 'Plugin installed date and time', 'notification' ),
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
-			'slug' => 'plugin_install_date_time',
-			'name' => __( 'Plugin installed date and time', 'notification' ),
-
-		) ) );
+				)
+			)
+		);
 	}
 }
