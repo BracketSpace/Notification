@@ -38,8 +38,8 @@ class Changed extends ThemeTrigger {
 	public function action( $new_name, $new_theme, $old_theme ) {
 
 		$this->theme_changed_date_time = strtotime( 'now' );
-		$this->plugin_new              = $new_theme;
-		$this->plugin_old              = $old_theme;
+		$this->theme_new              = $new_theme;
+		$this->theme_old              = $old_theme;
 
 	}
 
