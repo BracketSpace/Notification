@@ -16,7 +16,7 @@ class PostTable {
 	 * Adds custom table columns
 	 *
 	 * @filter manage_notification_posts_columns
-     *
+	 *
 	 * @param  array $columns current columns.
 	 * @return array          filtered columns
 	 */
@@ -42,7 +42,7 @@ class PostTable {
 	 * Content for custom columns
 	 *
 	 * @action manage_notification_posts_custom_column
-     *
+	 *
 	 * @param  string  $column  column slug.
 	 * @param  integer $post_id post ID.
 	 * @return void
@@ -65,11 +65,11 @@ class PostTable {
 				$checked = get_post_status( $post_id ) == 'draft' ? '0' : '1';
 
 				echo '<div class="onoffswitch" data-postid="' . $post_id . '" data-nonce="' . wp_create_nonce( 'change_notification_status_' . $post_id ) . '">';
-				    echo '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" value="1" id="onoffswitch-' . $post_id . '" ' . checked( $checked, '1', false ) . '>';
-				    echo '<label class="onoffswitch-label" for="onoffswitch-' . $post_id . '">';
-				        echo '<span class="onoffswitch-inner"></span>';
-				        echo '<span class="onoffswitch-switch"></span>';
-				    echo '</label>';
+					echo '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" value="1" id="onoffswitch-' . $post_id . '" ' . checked( $checked, '1', false ) . '>';
+					echo '<label class="onoffswitch-label" for="onoffswitch-' . $post_id . '">';
+						echo '<span class="onoffswitch-inner"></span>';
+						echo '<span class="onoffswitch-switch"></span>';
+					echo '</label>';
 				echo '</div>';
 				break;
 
@@ -92,7 +92,7 @@ class PostTable {
 	 * Remove all inline states to be displayed on notifications table
 	 *
 	 * @filter display_post_states
-     *
+	 *
 	 * @param array   $post_states an array of post display states.
 	 * @param WP_Post $post        the current post object.
 	 * @return array               filtered states
@@ -111,7 +111,7 @@ class PostTable {
 	 * Remove quick edit from post inline actions
 	 *
 	 * @filter post_row_actions
-     *
+	 *
 	 * @param  array  $row_actions array with action links.
 	 * @param  object $post        WP_Post object.
 	 * @return array               filtered actions

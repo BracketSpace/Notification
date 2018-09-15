@@ -38,8 +38,8 @@ if ( isset( $un['settings'] ) && $un['settings'] == 'true' ) {
 // remove licenses.
 if ( isset( $un['licenses'] ) && $un['licenses'] == 'true' ) {
 
-	$files = new BracketSpace\Notification\Utils\Files( '', '', '' );
-	$view  = new BracketSpace\Notification\Utils\View( $files );
+	$files            = new BracketSpace\Notification\Utils\Files( '', '', '' );
+	$view             = new BracketSpace\Notification\Utils\View( $files );
 	$extensions_class = new BracketSpace\Notification\Admin\Extensions( $view );
 
 	$extensions_class->load_extensions();

@@ -15,10 +15,10 @@ use BracketSpace\Notification\Abstracts;
  */
 class Activated extends PluginTrigger {
 
-    /**
-     * Constructor
-     */
-    public function __construct() {
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
 
 		parent::__construct( 'wordpress/plugin/activated', __( 'Plugin activated', 'notification' ) );
 
@@ -29,30 +29,33 @@ class Activated extends PluginTrigger {
 	}
 
 	/**
-     * Trigger action
-     *
-     * @param  string $plugin_rel_path Plugin path.
-     * @return void
-     */
-	 public function action( $plugin_rel_path ) {
+	 * Trigger action
+	 *
+	 * @param  string $plugin_rel_path Plugin path.
+	 * @return void
+	 */
+	public function action( $plugin_rel_path ) {
 		$plugin_dir                    = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin_rel_path;
 		$this->plugin                  = get_plugin_data( $plugin_dir );
 		$this->plugin_active_date_time = strtotime( 'now' );
-	 }
+	}
 
 	/**
-     * Registers attached merge tags
-     *
-     * @return void
-     */
-	public function merge_tags( )
-	{
+	 * Registers attached merge tags
+	 *
+	 * @return void
+	 */
+	public function merge_tags() {
 
-	    parent::merge_tags( );
+		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
-			'slug' => 'plugin_activation_date_time',
-			'name' => __( 'Plugin activation date and time', 'notification' ),
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\DateTime\DateTime(
+				array(
+					'slug' => 'plugin_activation_date_time',
+					'name' => __( 'Plugin activation date and time', 'notification' ),
+				)
+			)
+		);
 	}
 }

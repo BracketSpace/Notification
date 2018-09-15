@@ -36,7 +36,7 @@ class UserLoginFailed extends Abstracts\Trigger {
 	 */
 	public function action( $username ) {
 
-		$user = get_user_by( 'login', $username );
+		$user              = get_user_by( 'login', $username );
 		$this->user_id     = $user->ID;
 		$this->user_object = get_userdata( $this->user_id );
 
@@ -50,26 +50,34 @@ class UserLoginFailed extends Abstracts\Trigger {
 	public function merge_tags() {
 
 		$this->add_merge_tag( new MergeTag\User\UserID() );
-    	$this->add_merge_tag( new MergeTag\User\UserLogin() );
-        $this->add_merge_tag( new MergeTag\User\UserEmail() );
+		$this->add_merge_tag( new MergeTag\User\UserLogin() );
+		$this->add_merge_tag( new MergeTag\User\UserEmail() );
 		$this->add_merge_tag( new MergeTag\User\UserNicename() );
 		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
-        $this->add_merge_tag( new MergeTag\User\UserFirstName() );
+		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
 		$this->add_merge_tag( new MergeTag\User\UserLastName() );
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
-			'slug' => 'user_registered_datetime',
-			'name' => __( 'User registration date', 'notification' ),
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\DateTime\DateTime(
+				array(
+					'slug' => 'user_registered_datetime',
+					'name' => __( 'User registration date', 'notification' ),
+				)
+			)
+		);
 
 		$this->add_merge_tag( new MergeTag\User\UserRole() );
 		$this->add_merge_tag( new MergeTag\User\UserBio() );
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
-			'slug' => 'user_login_failed_datetime',
-			'name' => __( 'User login failed datetime', 'notification' ),
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\DateTime\DateTime(
+				array(
+					'slug' => 'user_login_failed_datetime',
+					'name' => __( 'User login failed datetime', 'notification' ),
+				)
+			)
+		);
 
-    }
+	}
 
 }

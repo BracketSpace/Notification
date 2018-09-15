@@ -14,7 +14,7 @@ class Text {
 
 	/**
 	 * Text field
-     *
+	 *
 	 * @param  Field $field Field instance.
 	 * @return void
 	 */
@@ -26,7 +26,7 @@ class Text {
 
 	/**
 	 * Sanitize input value
-     *
+	 *
 	 * @param  string $value Saved value.
 	 * @return string        Sanitized text
 	 */

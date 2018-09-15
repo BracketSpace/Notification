@@ -14,75 +14,75 @@ use BracketSpace\Notification\Interfaces;
  */
 abstract class Field implements Interfaces\Fillable {
 
-    /**
-     * Field value
-     *
-     * @var mixed
-     */
-    public $value;
+	/**
+	 * Field value
+	 *
+	 * @var mixed
+	 */
+	public $value;
 
-    /**
-     * Field label
-     *
-     * @var mixed
-     */
-    protected $label;
+	/**
+	 * Field label
+	 *
+	 * @var mixed
+	 */
+	protected $label;
 
-    /**
-     * Field name
-     *
-     * @var mixed
-     */
-    protected $name;
+	/**
+	 * Field name
+	 *
+	 * @var mixed
+	 */
+	protected $name;
 
-    /**
-     * Short description
-     * Limited HTML support
-     *
-     * @var string
-     */
-    protected $description = '';
+	/**
+	 * Short description
+	 * Limited HTML support
+	 *
+	 * @var string
+	 */
+	protected $description = '';
 
-    /**
-     * If field is resolvable with merge tags
-     * Default: true
-     *
-     * @var boolean
-     */
-    protected $resolvable = true;
+	/**
+	 * If field is resolvable with merge tags
+	 * Default: true
+	 *
+	 * @var boolean
+	 */
+	protected $resolvable = true;
 
-    /**
-     * Field section name
-     *
-     * @var string
-     */
-    public $section = '';
+	/**
+	 * Field section name
+	 *
+	 * @var string
+	 */
+	public $section = '';
 
-    /**
-     * If field is disabled
-     *
-     * @var boolean
-     */
-    public $disabled = false;
+	/**
+	 * If field is disabled
+	 *
+	 * @var boolean
+	 */
+	public $disabled = false;
 
-    /**
-     * Additional css classes for field
-     *
-     * @var string
-     */
-    public $css_class = 'widefat notification-field '; // space here on purpose.
+	/**
+	 * Additional css classes for field
+	 *
+	 * @var string
+	 */
+	public $css_class = 'widefat notification-field '; // space here on purpose.
 
-    /**
-     * Field constructor
-     *
-     * @since 5.0.0
-     * @param array $params field configuration params.
-     */
-    public function __construct( $params = array() ) {
+	/**
+	 * Field constructor
+	 *
+	 * @since 5.0.0
+	 * @param array $params field configuration params.
+	 */
+	public function __construct( $params = array() ) {
 
-    	if ( ! isset( $params['label'], $params['name'] ) ) {
-    		trigger_error( 'Field requires label and name', E_USER_ERROR );
-    	}
+		if ( ! isset( $params['label'], $params['name'] ) ) {
+			trigger_error( 'Field requires label and name', E_USER_ERROR );
+		}
 
 		$this->label = $params['label'];
 		$this->name  = $params['name'];
@@ -108,44 +108,44 @@ abstract class Field implements Interfaces\Fillable {
 			$this->css_class .= $params['css_class'];
 		}
 
-    }
+	}
 
-    /**
-     * Returns field HTML
-     *
-     * @return string html
-     */
-    abstract public function field();
+	/**
+	 * Returns field HTML
+	 *
+	 * @return string html
+	 */
+	abstract public function field();
 
-    /**
-     * Sanitizes the value sent by user
-     *
-     * @param  mixed $value value to sanitize.
-     * @return mixed        sanitized value
-     */
-    abstract public function sanitize( $value );
+	/**
+	 * Sanitizes the value sent by user
+	 *
+	 * @param  mixed $value value to sanitize.
+	 * @return mixed        sanitized value
+	 */
+	abstract public function sanitize( $value );
 
-    /**
-     * Gets description
-     *
-     * @return string description
-     */
-    public function get_description() {
-    	return $this->description;
-    }
+	/**
+	 * Gets description
+	 *
+	 * @return string description
+	 */
+	public function get_description() {
+		return $this->description;
+	}
 
-    /**
+	/**
 	 * Gets field value
-     *
+	 *
 	 * @return mixed
 	 */
-    public function get_value() {
-    	return apply_filters( 'notification/field/' . $this->get_raw_name() . '/value', $this->value, $this );
-    }
+	public function get_value() {
+		return apply_filters( 'notification/field/' . $this->get_raw_name() . '/value', $this->value, $this );
+	}
 
-    /**
+	/**
 	 * Sets field value
-     *
+	 *
 	 * @param  mixed $value value from DB.
 	 * @return void
 	 */
@@ -153,18 +153,18 @@ abstract class Field implements Interfaces\Fillable {
 		$this->value = $value;
 	}
 
-    /**
+	/**
 	 * Gets field name
-     *
+	 *
 	 * @return string
 	 */
 	public function get_name() {
 		return $this->section . '[' . $this->name . ']';
 	}
 
-    /**
+	/**
 	 * Gets field raw name
-     *
+	 *
 	 * @return string
 	 */
 	public function get_raw_name() {
@@ -173,7 +173,7 @@ abstract class Field implements Interfaces\Fillable {
 
 	/**
 	 * Gets field label
-     *
+	 *
 	 * @return string
 	 */
 	public function get_label() {
@@ -182,7 +182,7 @@ abstract class Field implements Interfaces\Fillable {
 
 	/**
 	 * Gets field ID
-     *
+	 *
 	 * @return string
 	 */
 	public function get_id() {
@@ -191,7 +191,7 @@ abstract class Field implements Interfaces\Fillable {
 
 	/**
 	 * Cheks if field should be resolved with merge tags
-     *
+	 *
 	 * @return boolean
 	 */
 	public function is_resolvable() {
@@ -200,7 +200,7 @@ abstract class Field implements Interfaces\Fillable {
 
 	/**
 	 * Cheks if field is disabled
-     *
+	 *
 	 * @return boolean
 	 */
 	public function is_disabled() {
@@ -209,7 +209,7 @@ abstract class Field implements Interfaces\Fillable {
 
 	/**
 	 * Returns the disable HTML tag if field is disabled
-     *
+	 *
 	 * @return string
 	 */
 	public function maybe_disable() {
@@ -218,7 +218,7 @@ abstract class Field implements Interfaces\Fillable {
 
 	/**
 	 * Returns the additional field's css classes
-     *
+	 *
 	 * @return string
 	 */
 	public function css_class() {

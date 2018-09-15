@@ -17,7 +17,7 @@ class CheckboxField extends Field {
 	/**
 	 * Checkbox label text
 	 * Default: Enable
-     *
+	 *
 	 * @var string
 	 */
 	protected $checkbox_label = '';
@@ -31,10 +31,10 @@ class CheckboxField extends Field {
 	public function __construct( $params = array() ) {
 
 		if ( isset( $params['checkbox_label'] ) ) {
-    		$this->checkbox_label = $params['checkbox_label'];
-    	} else {
-    		$this->checkbox_label = __( 'Enable', 'notification' );
-    	}
+			$this->checkbox_label = $params['checkbox_label'];
+		} else {
+			$this->checkbox_label = __( 'Enable', 'notification' );
+		}
 
 		parent::__construct( $params );
 
@@ -42,7 +42,7 @@ class CheckboxField extends Field {
 
 	/**
 	 * Returns field HTML
-     *
+	 *
 	 * @return string html
 	 */
 	public function field() {
@@ -50,13 +50,13 @@ class CheckboxField extends Field {
 	}
 
 	/**
-     * Sanitizes the value sent by user
-     *
-     * @param  mixed $value value to sanitize.
-     * @return mixed        sanitized value
-     */
-    public function sanitize( $value ) {
-    	return $value ? 1 : 0;
-    }
+	 * Sanitizes the value sent by user
+	 *
+	 * @param  mixed $value value to sanitize.
+	 * @return mixed        sanitized value
+	 */
+	public function sanitize( $value ) {
+		return $value ? 1 : 0;
+	}
 
 }

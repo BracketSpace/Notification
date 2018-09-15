@@ -76,7 +76,6 @@ class License {
 				$license = $licenses[ $this->extension['slug'] ];
 				$license_cache->set( $license );
 			}
-
 		}
 
 		return $license;
@@ -136,7 +135,7 @@ class License {
 		$license_cache = new ObjectCache( $this->extension['slug'], 'notification_license' );
 		$license_cache->set( $license_data );
 
-		$licenses = $this->get_licenses();
+		$licenses                             = $this->get_licenses();
 		$licenses[ $this->extension['slug'] ] = $license_data;
 
 		update_option( $this->license_storage, $licenses );
@@ -176,15 +175,17 @@ class License {
 		$error       = false;
 
 		// call the custom API.
-		$response = wp_remote_post( $this->extension['edd']['store_url'], array(
-			'timeout' => 15,
-			'body'    => array(
-				'edd_action' => 'activate_license',
-				'license'    => $license_key,
-				'item_name'  => urlencode( $this->extension['edd']['item_name'] ),
-				'url'        => home_url()
-			),
-		) );
+		$response = wp_remote_post(
+			$this->extension['edd']['store_url'], array(
+				'timeout' => 15,
+				'body'    => array(
+					'edd_action' => 'activate_license',
+					'license'    => $license_key,
+					'item_name'  => urlencode( $this->extension['edd']['item_name'] ),
+					'url'        => home_url(),
+				),
+			)
+		);
 
 		// make sure the response came back okay.
 		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
@@ -216,15 +217,17 @@ class License {
 		$error        = false;
 
 		// call the custom API.
-		$response = wp_remote_post( $this->extension['edd']['store_url'], array(
-			'timeout' => 15,
-			'body'    => array(
-				'edd_action' => 'deactivate_license',
-				'license'    => trim( $license_data->license_key ),
-				'item_name'  => urlencode( $this->extension['edd']['item_name'] ),
-				'url'        => home_url()
-			),
-		) );
+		$response = wp_remote_post(
+			$this->extension['edd']['store_url'], array(
+				'timeout' => 15,
+				'body'    => array(
+					'edd_action' => 'deactivate_license',
+					'license'    => trim( $license_data->license_key ),
+					'item_name'  => urlencode( $this->extension['edd']['item_name'] ),
+					'url'        => home_url(),
+				),
+			)
+		);
 
 		// make sure the response came back okay.
 		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
@@ -256,15 +259,17 @@ class License {
 		$error       = false;
 
 		// call the custom API.
-		$response = wp_remote_post( $this->extension['edd']['store_url'], array(
-			'timeout' => 15,
-			'body'    => array(
-				'edd_action' => 'check_license',
-				'license'    => $license_key,
-				'item_name'  => urlencode( $this->extension['edd']['item_name'] ),
-				'url'        => home_url()
-			),
-		) );
+		$response = wp_remote_post(
+			$this->extension['edd']['store_url'], array(
+				'timeout' => 15,
+				'body'    => array(
+					'edd_action' => 'check_license',
+					'license'    => $license_key,
+					'item_name'  => urlencode( $this->extension['edd']['item_name'] ),
+					'url'        => home_url(),
+				),
+			)
+		);
 
 		// make sure the response came back okay.
 		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {

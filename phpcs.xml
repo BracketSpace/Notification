@@ -3,12 +3,14 @@
 	<description>Sniffs for Notification WordPress plugin</description>
 
 	<rule ref="WordPress">
-		<exclude name="WordPress-VIP" />
-	</rule>
-	<rule ref="WordPress-Core">
+		<!-- <exclude name="WordPress-VIP" /> -->
 		<exclude name="Generic.Files.LowercasedFilename" />
 		<exclude name="WordPress.Files.FileName" />
 		<exclude name="WordPress.Files.FileName.UnderscoresNotAllowed" />
+		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
+		<exclude name="WordPress.PHP.DevelopmentFunctions.error_log_trigger_error" />
+		<exclude name="WordPress.VIP.SuperGlobalInputUsage.AccessDetected" />
+		<exclude name="WordPress.VIP.ValidatedSanitizedInput" />
 	</rule>
 	<rule ref="Squiz.Commenting.FunctionComment">
 	    <exclude name="Squiz.Commenting.FunctionComment.InvalidTypeHint" />

@@ -21,11 +21,13 @@ class User extends Abstracts\Recipient {
 	 * @since 5.0.0
 	 */
 	public function __construct() {
-		parent::__construct( array(
-			'slug'          => 'user',
-			'name'          => __( 'User', 'notification' ),
-			'default_value' => get_current_user_id(),
-		) );
+		parent::__construct(
+			array(
+				'slug'          => 'user',
+				'name'          => __( 'User', 'notification' ),
+				'default_value' => get_current_user_id(),
+			)
+		);
 	}
 
 	/**
@@ -65,14 +67,16 @@ class User extends Abstracts\Recipient {
 			$opts[ $user->ID ] = esc_html( $user->display_name ) . ' (' . $user->user_email . ')';
 		}
 
-		return new Field\SelectField( array(
-			'label'     => __( 'Recipient', 'notification' ),       // don't edit this!
-			'name'      => 'recipient',       // don't edit this!
-			'css_class' => 'recipient-value', // don't edit this!
-			'value'     => $this->get_default_value(),
-			'pretty'    => true,
-			'options'   => $opts
-		) );
+		return new Field\SelectField(
+			array(
+				'label'     => __( 'Recipient', 'notification' ),       // don't edit this!
+				'name'      => 'recipient',       // don't edit this!
+				'css_class' => 'recipient-value', // don't edit this!
+				'value'     => $this->get_default_value(),
+				'pretty'    => true,
+				'options'   => $opts,
+			)
+		);
 
 	}
 

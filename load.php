@@ -6,7 +6,9 @@
  * @package notification
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Directory
@@ -27,12 +29,11 @@ $theme_pos = strpos( NOTIFICATION_DIR, $theme_url['path'] );
 if ( $theme_pos !== false ) {
 
 	$plugin_relative_dir = str_replace( $theme_url['path'], '', substr( NOTIFICATION_DIR, $theme_pos ) );
-	$url = $theme_url['scheme'] . '://' . $theme_url['host'] . $theme_url['path'] . $plugin_relative_dir;
+	$url                 = $theme_url['scheme'] . '://' . $theme_url['host'] . $theme_url['path'] . $plugin_relative_dir;
 
 	if ( ! defined( 'NOTIFICATION_URL' ) ) {
 		define( 'NOTIFICATION_URL', $url );
 	}
-
 } else { // Notification loaded from plugin.
 
 	$plugin_url = trailingslashit( plugins_url( '', __FILE__ ) );
@@ -40,7 +41,6 @@ if ( $theme_pos !== false ) {
 	if ( ! defined( 'NOTIFICATION_URL' ) ) {
 		define( 'NOTIFICATION_URL', $plugin_url );
 	}
-
 }
 
 /**

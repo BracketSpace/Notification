@@ -16,30 +16,30 @@ interface Taggable extends Nameable {
 
 	/**
 	 * Resolves the merge tag value
-     *
+	 *
 	 * @return void
 	 */
-    public function resolve();
+	public function resolve();
 
 	/**
 	 * Gets merge tag resolved value
-     *
+	 *
 	 * @return mixed
 	 */
-    public function get_value();
+	public function get_value();
 
 	/**
 	 * Checks if merge tag is already resolved
-     *
+	 *
 	 * @return boolean
 	 */
-    public function is_resolved();
+	public function is_resolved();
 
 	/**
 	 * Gets value type
-     *
+	 *
 	 * @return string
 	 */
-    public function get_value_type();
+	public function get_value_type();
 
 }

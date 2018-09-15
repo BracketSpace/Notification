@@ -26,30 +26,32 @@ class TaxonomyName extends StringTag {
 	protected $taxonomy;
 
 	/**
-     * Merge tag constructor
-     *
-     * @since 5.2.2
-     * @param array $params merge tag configuration params.
-     */
-    public function __construct( $params = array() ) {
+	 * Merge tag constructor
+	 *
+	 * @since 5.2.2
+	 * @param array $params merge tag configuration params.
+	 */
+	public function __construct( $params = array() ) {
 
-    	if ( isset( $params['taxonomy'] ) ) {
-    		$this->taxonomy = $params['taxonomy'];
-    	} else {
-    		$this->taxonomy = 'category';
-    	}
+		if ( isset( $params['taxonomy'] ) ) {
+			$this->taxonomy = $params['taxonomy'];
+		} else {
+			$this->taxonomy = 'category';
+		}
 
-    	$args = wp_parse_args( $params, array(
-			'slug'        => $this->taxonomy . '_name',
-			'name'        => __( 'Taxonomy name', 'notification' ),
-			'description' => __( 'Hello World', 'notification' ),
-			'example'     => true,
-			'resolver'    => function( $trigger ) {
-				return $this->get_nicename();
-			},
-		) );
+		$args = wp_parse_args(
+			$params, array(
+				'slug'        => $this->taxonomy . '_name',
+				'name'        => __( 'Taxonomy name', 'notification' ),
+				'description' => __( 'Hello World', 'notification' ),
+				'example'     => true,
+				'resolver'    => function( $trigger ) {
+					return $this->get_nicename();
+				},
+			)
+		);
 
-    	parent::__construct( $args );
+		parent::__construct( $args );
 
 	}
 

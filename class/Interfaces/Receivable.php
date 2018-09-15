@@ -21,7 +21,7 @@ interface Receivable extends Nameable {
 	 * @param  string $value raw value saved by the user.
 	 * @return array         array of resolved values
 	 */
-    public function parse_value( $value = ''  );
+	public function parse_value( $value = ''  );
 
 	/**
 	 * Returns input object
@@ -32,10 +32,10 @@ interface Receivable extends Nameable {
 	public function input();
 
 	/**
-     * Gets default value
-     *
-     * @return string
-     */
-    public function get_default_value();
+	 * Gets default value
+	 *
+	 * @return string
+	 */
+	public function get_default_value();
 
 }

@@ -33,32 +33,34 @@ class UserPasswordResetLink extends StringTag {
 	protected $user_property_name = 'user_object';
 
 	/**
-     * Merge tag constructor
-     *
-     * @since 5.2.2
-     */
-    public function __construct() {
+	 * Merge tag constructor
+	 *
+	 * @since 5.2.2
+	 */
+	public function __construct() {
 
-    	if ( isset( $params['key_property_name'] ) && ! empty( $params['key_property_name'] ) ) {
-    		$this->property_name = $params['key_property_name'];
-    	}
+		if ( isset( $params['key_property_name'] ) && ! empty( $params['key_property_name'] ) ) {
+			$this->property_name = $params['key_property_name'];
+		}
 
-    	if ( isset( $params['user_property_name'] ) && ! empty( $params['user_property_name'] ) ) {
-    		$this->property_name = $params['user_property_name'];
-    	}
+		if ( isset( $params['user_property_name'] ) && ! empty( $params['user_property_name'] ) ) {
+			$this->property_name = $params['user_property_name'];
+		}
 
-    	$args = wp_parse_args( array(
-			'slug'        => 'user_password_reset_link',
-			'name'        => __( 'Password reset link', 'notification' ),
-			'description' => __( 'http://example.com/wp-login.php?action=rp&key=mm2sAR8jmIyjSiMsCJRm&login=admin', 'notification' ),
-			'example'     => true,
-			'resolver'    => function( $trigger ) {
-				$login = $trigger->{ $this->user_property_name }->data->user_login;
-				return network_site_url( 'wp-login.php?action=rp&key=' . $trigger->{ $this->key_property_name } . '&login=' . $login );
-			},
-		) );
+		$args = wp_parse_args(
+			array(
+				'slug'        => 'user_password_reset_link',
+				'name'        => __( 'Password reset link', 'notification' ),
+				'description' => __( 'http://example.com/wp-login.php?action=rp&key=mm2sAR8jmIyjSiMsCJRm&login=admin', 'notification' ),
+				'example'     => true,
+				'resolver'    => function( $trigger ) {
+					$login = $trigger->{ $this->user_property_name }->data->user_login;
+					return network_site_url( 'wp-login.php?action=rp&key=' . $trigger->{ $this->key_property_name } . '&login=' . $login );
+				},
+			)
+		);
 
-    	parent::__construct( $args );
+		parent::__construct( $args );
 
 	}
 

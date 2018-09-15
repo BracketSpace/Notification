@@ -46,12 +46,12 @@ class Share {
 
 		$this->page_hook = add_submenu_page(
 			'edit.php?post_type=notification',
-	        '',
-	        __( 'The story', 'notification' ),
-	        'manage_options',
-	        'the-story',
-	        array( $this, 'story_page' )
-	    );
+			'',
+			__( 'The story', 'notification' ),
+			'manage_options',
+			'the-story',
+			array( $this, 'story_page' )
+		);
 
 	}
 

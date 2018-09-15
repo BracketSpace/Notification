@@ -21,11 +21,13 @@ class CommentApproved extends CommentTrigger {
 	 */
 	public function __construct( $comment_type = 'comment' ) {
 
-		parent::__construct( array(
-			'slug'         => 'wordpress/comment_' . $comment_type . '_approved',
-			'name'         => sprintf( __( '%s approved', 'notification' ), ucfirst( $comment_type ) ),
-			'comment_type' => $comment_type,
-		) );
+		parent::__construct(
+			array(
+				'slug'         => 'wordpress/comment_' . $comment_type . '_approved',
+				'name'         => sprintf( __( '%s approved', 'notification' ), ucfirst( $comment_type ) ),
+				'comment_type' => $comment_type,
+			)
+		);
 
 		$this->add_action( 'transition_comment_status', 10, 3 );
 

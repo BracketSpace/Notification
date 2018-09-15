@@ -40,7 +40,7 @@ class DocHooks {
 		$class_name = get_class( $object );
 
 		$this->_called_doc_hooks[ $class_name ] = true;
-		$reflector = new \ReflectionObject( $object );
+		$reflector                              = new \ReflectionObject( $object );
 
 		foreach ( $reflector->getMethods() as $method ) {
 
@@ -60,9 +60,7 @@ class DocHooks {
 					call_user_func( array( $this, "add_{$type}" ), $name, $callback, compact( 'priority', 'arg_count' ) );
 
 				}
-
 			}
-
 		}
 
 		return $object;
@@ -80,10 +78,12 @@ class DocHooks {
 	public function add_filter( $name, $callback, $args = array() ) {
 
 		// Merge defaults.
-		$args = array_merge( array(
-			'priority'  => 10,
-			'arg_count' => PHP_INT_MAX,
-		), $args );
+		$args = array_merge(
+			array(
+				'priority'  => 10,
+				'arg_count' => PHP_INT_MAX,
+			), $args
+		);
 
 		return $this->_add_hook( 'filter', $name, $callback, $args );
 
@@ -102,7 +102,7 @@ class DocHooks {
 		// Merge defaults.
 		$args = array_merge(
 			array(
-				'priority' => 10,
+				'priority'  => 10,
 				'arg_count' => PHP_INT_MAX,
 			), $args
 		);
