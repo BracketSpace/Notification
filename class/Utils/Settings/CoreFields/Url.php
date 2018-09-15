@@ -14,7 +14,7 @@ class Url {
 
 	/**
 	 * Url field
-     *
+	 *
 	 * @param  Field $field Field instance.
 	 * @return void
 	 */
@@ -26,7 +26,7 @@ class Url {
 
 	/**
 	 * Sanitize input value
-     *
+	 *
 	 * @param  string $value saved value.
 	 * @return string        sanitized url
 	 */

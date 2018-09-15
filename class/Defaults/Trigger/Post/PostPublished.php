@@ -21,12 +21,14 @@ class PostPublished extends PostTrigger {
 	 */
 	public function __construct( $post_type = 'post' ) {
 
-		parent::__construct( array(
-			'post_type' => $post_type,
-			'slug'      => 'wordpress/' . $post_type . '/published',
-			// translators: singular post name.
-			'name'      => sprintf( __( '%s published', 'notification' ), parent::get_post_type_name( $post_type ) ),
-		) );
+		parent::__construct(
+			array(
+				'post_type' => $post_type,
+				'slug'      => 'wordpress/' . $post_type . '/published',
+				// translators: singular post name.
+				'name'      => sprintf( __( '%s published', 'notification' ), parent::get_post_type_name( $post_type ) ),
+			)
+		);
 
 		$this->add_action( 'new_to_publish', 10 );
 		$this->add_action( 'auto-draft_to_publish', 10 );
@@ -36,7 +38,7 @@ class PostPublished extends PostTrigger {
 		$this->add_action( 'future_to_publish', 10 );
 
 		// translators: 1. singular post name, 2. post type slug.
-		$this->set_description( sprintf( __( 'Fires when %s (%s) is published', 'notification' ), parent::get_post_type_name( $post_type ), $post_type ) );
+		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is published', 'notification' ), parent::get_post_type_name( $post_type ), $post_type ) );
 
 	}
 
@@ -101,56 +103,83 @@ class PostPublished extends PostTrigger {
 		parent::merge_tags();
 
 		// Publishing user.
-		$this->add_merge_tag( new MergeTag\User\UserID( array(
-			'slug'          => $this->post_type . '_publishing_user_ID',
-			// translators: singular post name.
-			'name'          => sprintf( __( '%s publishing user ID', 'notification' ), $post_name ),
-			'property_name' => 'publishing_user',
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\User\UserID(
+				array(
+					'slug'          => $this->post_type . '_publishing_user_ID',
+					// translators: singular post name.
+					'name'          => sprintf( __( '%s publishing user ID', 'notification' ), $post_name ),
+					'property_name' => 'publishing_user',
+				)
+			)
+		);
 
-    	$this->add_merge_tag( new MergeTag\User\UserLogin( array(
-			'slug'          => $this->post_type . '_publishing_user_login',
-			// translators: singular post name.
-			'name'          => sprintf( __( '%s publishing user login', 'notification' ), $post_name ),
-			'property_name' => 'publishing_user',
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\User\UserLogin(
+				array(
+					'slug'          => $this->post_type . '_publishing_user_login',
+					// translators: singular post name.
+					'name'          => sprintf( __( '%s publishing user login', 'notification' ), $post_name ),
+					'property_name' => 'publishing_user',
+				)
+			)
+		);
 
-        $this->add_merge_tag( new MergeTag\User\UserEmail( array(
-			'slug'          => $this->post_type . '_publishing_user_email',
-			// translators: singular post name.
-			'name'          => sprintf( __( '%s publishing user email', 'notification' ), $post_name ),
-			'property_name' => 'publishing_user',
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\User\UserEmail(
+				array(
+					'slug'          => $this->post_type . '_publishing_user_email',
+					// translators: singular post name.
+					'name'          => sprintf( __( '%s publishing user email', 'notification' ), $post_name ),
+					'property_name' => 'publishing_user',
+				)
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\User\UserNicename( array(
-			'slug'          => $this->post_type . '_publishing_user_nicename',
-			// translators: singular post name.
-			'name'          => sprintf( __( '%s publishing user nicename', 'notification' ), $post_name ),
-			'property_name' => 'publishing_user',
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\User\UserNicename(
+				array(
+					'slug'          => $this->post_type . '_publishing_user_nicename',
+					// translators: singular post name.
+					'name'          => sprintf( __( '%s publishing user nicename', 'notification' ), $post_name ),
+					'property_name' => 'publishing_user',
+				)
+			)
+		);
 
+		$this->add_merge_tag(
+			new MergeTag\User\UserDisplayName(
+				array(
+					'slug'          => $this->post_type . '_publishing_user_display_name',
+					// translators: singular post name.
+					'name'          => sprintf( __( '%s publishing user display name', 'notification' ), $post_name ),
+					'property_name' => 'publishing_user',
+				)
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\User\UserDisplayName( array(
-			'slug'          => $this->post_type . '_publishing_user_display_name',
-			// translators: singular post name.
-			'name'          => sprintf( __( '%s publishing user display name', 'notification' ), $post_name ),
-			'property_name' => 'publishing_user',
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\User\UserFirstName(
+				array(
+					'slug'          => $this->post_type . '_publishing_user_firstname',
+					// translators: singular post name.
+					'name'          => sprintf( __( '%s publishing user first name', 'notification' ), $post_name ),
+					'property_name' => 'publishing_user',
+				)
+			)
+		);
 
-        $this->add_merge_tag( new MergeTag\User\UserFirstName( array(
-			'slug'          => $this->post_type . '_publishing_user_firstname',
-			// translators: singular post name.
-			'name'          => sprintf( __( '%s publishing user first name', 'notification' ), $post_name ),
-			'property_name' => 'publishing_user',
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\User\UserLastName(
+				array(
+					'slug'          => $this->post_type . '_publishing_user_lastname',
+					// translators: singular post name.
+					'name'          => sprintf( __( '%s publishing user last name', 'notification' ), $post_name ),
+					'property_name' => 'publishing_user',
+				)
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\User\UserLastName( array(
-			'slug'          => $this->post_type . '_publishing_user_lastname',
-			// translators: singular post name.
-			'name'          => sprintf( __( '%s publishing user last name', 'notification' ), $post_name ),
-			'property_name' => 'publishing_user',
-		) ) );
-
-    }
+	}
 
 }

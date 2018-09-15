@@ -32,28 +32,28 @@ class MergeTags {
 	 * Add metabox for trigger
 	 *
 	 * @action add_meta_boxes
-     *
+	 *
 	 * @return void
 	 */
 	public function add_meta_box() {
 
 		add_meta_box(
-            'notification_merge_tags',
-            __( 'Merge tags', 'notification' ),
-            array( $this, 'merge_tags_metabox' ),
-            'notification',
-            'side',
-            'default'
-        );
+			'notification_merge_tags',
+			__( 'Merge tags', 'notification' ),
+			array( $this, 'merge_tags_metabox' ),
+			'notification',
+			'side',
+			'default'
+		);
 
 		// enable metabox.
-        add_filter( 'notification/admin/allow_metabox/notification_merge_tags', '__return_true' );
+		add_filter( 'notification/admin/allow_metabox/notification_merge_tags', '__return_true' );
 
 	}
 
 	/**
 	 * Merge tags metabox content
-     *
+	 *
 	 * @param  object $post current WP_Post.
 	 * @return void
 	 */
@@ -72,7 +72,7 @@ class MergeTags {
 
 	/**
 	 * Prints merge tags list for trigger
-     *
+	 *
 	 * @param  string $trigger_slug trigger slug.
 	 * @return void
 	 */
@@ -91,7 +91,7 @@ class MergeTags {
 
 	/**
 	 * Prints merge tags list
-     *
+	 *
 	 * @param  Triggerable $trigger Trigger object.
 	 * @return void
 	 */
@@ -115,7 +115,7 @@ class MergeTags {
 	 * Renders metabox for AJAX
 	 *
 	 * @action wp_ajax_get_merge_tags_for_trigger
-     *
+	 *
 	 * @return void
 	 */
 	public function ajax_render() {

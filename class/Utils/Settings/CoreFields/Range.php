@@ -15,7 +15,7 @@ class Range {
 	/**
 	 * Range field
 	 * Accepts addons: min, max, step
-     *
+	 *
 	 * @param  Field $field Field instance.
 	 * @return void
 	 */
@@ -27,7 +27,7 @@ class Range {
 
 	/**
 	 * Sanitize input value
-     *
+	 *
 	 * @param  mixed $value Saved value.
 	 * @return float        Sanitized number
 	 */

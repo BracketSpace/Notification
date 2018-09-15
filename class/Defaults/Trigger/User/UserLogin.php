@@ -54,42 +54,54 @@ class UserLogin extends Abstracts\Trigger {
 	public function merge_tags() {
 
 		$this->add_merge_tag( new MergeTag\User\UserID() );
-    	$this->add_merge_tag( new MergeTag\User\UserLogin() );
-        $this->add_merge_tag( new MergeTag\User\UserEmail() );
+		$this->add_merge_tag( new MergeTag\User\UserLogin() );
+		$this->add_merge_tag( new MergeTag\User\UserEmail() );
 		$this->add_merge_tag( new MergeTag\User\UserNicename() );
 		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
-        $this->add_merge_tag( new MergeTag\User\UserFirstName() );
+		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
 		$this->add_merge_tag( new MergeTag\User\UserLastName() );
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
-			'slug' => 'user_registered_datetime',
-			'name' => __( 'User registration date', 'notification' ),
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\DateTime\DateTime(
+				array(
+					'slug' => 'user_registered_datetime',
+					'name' => __( 'User registration date', 'notification' ),
+				)
+			)
+		);
 
 		$this->add_merge_tag( new MergeTag\User\UserRole() );
 		$this->add_merge_tag( new MergeTag\User\UserBio() );
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
-			'slug' => 'user_logged_in_datetime',
-			'name' => __( 'User login time', 'notification' ),
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\DateTime\DateTime(
+				array(
+					'slug' => 'user_logged_in_datetime',
+					'name' => __( 'User login time', 'notification' ),
+				)
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\IPTag( array(
-			'slug'        => 'user_IP',
-			'name'        => __( 'User IP', 'notification' ),
-			'description' => '127.0.0.1',
-			'example'     => true,
-			'resolver'    => function( $trigger ) {
-				if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
-					return $_SERVER['HTTP_CLIENT_IP'];
-				} elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-					return $_SERVER['HTTP_X_FORWARDED_FOR'];
-				} else {
-					return $_SERVER['REMOTE_ADDR'];
-				}
-			},
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\IPTag(
+				array(
+					'slug'        => 'user_IP',
+					'name'        => __( 'User IP', 'notification' ),
+					'description' => '127.0.0.1',
+					'example'     => true,
+					'resolver'    => function( $trigger ) {
+						if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+							return $_SERVER['HTTP_CLIENT_IP'];
+						} elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+							return $_SERVER['HTTP_X_FORWARDED_FOR'];
+						} else {
+							return $_SERVER['REMOTE_ADDR'];
+						}
+					},
+				)
+			)
+		);
 
-    }
+	}
 
 }

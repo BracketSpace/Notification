@@ -26,7 +26,6 @@ if ( notification_get_setting( 'triggers/post_types/types' ) ) {
 		register_trigger( new Trigger\Post\PostTrashed( $post_type ) );
 
 	}
-
 }
 
 // Taxonomy triggers.
@@ -45,7 +44,6 @@ if ( notification_get_setting( 'triggers/taxonomies/types' ) ) {
 		register_trigger( new Trigger\Taxonomy\TermDeleted( $taxonomy ) );
 
 	}
-
 }
 
 // User triggers.
@@ -86,7 +84,6 @@ if ( notification_get_setting( 'triggers/comment/types' ) ) {
 		register_trigger( new Trigger\Comment\CommentTrashed( $comment_type ) );
 
 	}
-
 }
 
 // WordPress triggers.

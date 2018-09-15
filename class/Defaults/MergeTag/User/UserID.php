@@ -26,38 +26,40 @@ class UserID extends IntegerTag {
 	protected $property_name = 'user_object';
 
 	/**
-     * Merge tag constructor
-     *
-     * @since 5.0.0
-     * @param array $params merge tag configuration params.
-     */
-    public function __construct( $params = array() ) {
+	 * Merge tag constructor
+	 *
+	 * @since 5.0.0
+	 * @param array $params merge tag configuration params.
+	 */
+	public function __construct( $params = array() ) {
 
-    	if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
-    		$this->property_name = $params['property_name'];
-    	}
+		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
+			$this->property_name = $params['property_name'];
+		}
 
-    	$args = wp_parse_args( $params, array(
-			'slug'        => 'user_ID',
-			'name'        => __( 'User ID', 'notification' ),
-			'description' => '25',
-			'example'     => true,
-			'resolver'    => function( $trigger ) {
-				return $trigger->{ $this->property_name }->ID;
-			},
-        ) );
+		$args = wp_parse_args(
+			$params, array(
+				'slug'        => 'user_ID',
+				'name'        => __( 'User ID', 'notification' ),
+				'description' => '25',
+				'example'     => true,
+				'resolver'    => function( $trigger ) {
+					return $trigger->{ $this->property_name }->ID;
+				},
+			)
+		);
 
-    	parent::__construct( $args );
+		parent::__construct( $args );
 
 	}
 
-    /**
-     * Function for checking requirements
-     *
-     * @return boolean
-     */
-    public function check_requirements( ) {
-        return isset( $this->trigger->{ $this->property_name }->ID );
-    }
+	/**
+	 * Function for checking requirements
+	 *
+	 * @return boolean
+	 */
+	public function check_requirements() {
+		return isset( $this->trigger->{ $this->property_name }->ID );
+	}
 
 }

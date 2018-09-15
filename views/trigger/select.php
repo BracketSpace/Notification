@@ -22,7 +22,7 @@
 				<option value="<?php echo esc_attr( $slug ); ?>" <?php echo $selected; ?>>
 					<?php echo esc_html( $trigger->get_name() ); ?>
 					<?php $description = $trigger->get_description(); ?>
-					<?php if ( ! empty( $description ) ): ?>
+					<?php if ( ! empty( $description ) ) : ?>
 						[[<?php echo esc_html( $description ); ?>]]
 					<?php endif ?>
 				</option>

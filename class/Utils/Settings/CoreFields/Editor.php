@@ -14,7 +14,7 @@ class Editor {
 
 	/**
 	 * Editor field
-     *
+	 *
 	 * @param  Field $field Field instance.
 	 * @return void
 	 */
@@ -40,7 +40,7 @@ class Editor {
 
 	/**
 	 * Sanitize input value
-     *
+	 *
 	 * @param  string $value Saved value.
 	 * @return string        Sanitized content
 	 */

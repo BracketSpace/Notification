@@ -10,22 +10,22 @@ do_action( 'notification/metabox/trigger/tags/before', $this->get_var( 'trigger'
 
 <ul>
 
-	<?php if ( count( $this->get_var( 'tags') ) > 2 ): ?>
+	<?php if ( count( $this->get_var( 'tags' ) ) > 2 ) : ?>
 		<input type="text" name="notification-search-merge-tags" placeholder="<?php esc_attr_e( 'Search merge tags', 'notification' ); ?>" class="widefat notification-search-merge-tags" autocomplete="off" id="notification-search-merge-tags">
 	<?php endif; ?>
-	<?php foreach ( $this->get_var( 'tags' ) as $tag ): ?>
+	<?php foreach ( $this->get_var( 'tags' ) as $tag ) : ?>
 		<li>
 			<div class="intro">
 				<label><?php echo $tag->get_name(); ?></label>
 				<code class="notification-merge-tag" data-clipboard-text="{<?php echo $tag->get_slug(); ?>}">{<?php echo $tag->get_slug(); ?>}</code>
 			</div>
 			<?php $description = $tag->get_description(); ?>
-			<?php if ( ! empty( $description ) ): ?>
+			<?php if ( ! empty( $description ) ) : ?>
 				<span class="question-mark">
 					?
 					<div class="description">
 						<div class="description-container">
-							<?php if ( $tag->is_description_example() ): ?>
+							<?php if ( $tag->is_description_example() ) : ?>
 								<label>
 									<?php _e( 'Example:', 'notification' ); ?>
 								</label>
@@ -33,7 +33,7 @@ do_action( 'notification/metabox/trigger/tags/before', $this->get_var( 'trigger'
 							<div class="description-content">
 								<?php echo $description; ?>
 							</div>
-							<?php if ( $tag->is_description_example() ): ?>
+							<?php if ( $tag->is_description_example() ) : ?>
 								<i>(<?php echo $tag->get_value_type(); ?>)</i>
 							<?php endif ?>
 						</div>

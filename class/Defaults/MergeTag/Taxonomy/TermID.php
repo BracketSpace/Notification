@@ -19,23 +19,25 @@ use BracketSpace\Notification\Defaults\MergeTag\IntegerTag;
 class TermID extends IntegerTag {
 
 	/**
-     * Merge tag constructor
-     *
-     * @since 5.2.2
-     */
-    public function __construct() {
+	 * Merge tag constructor
+	 *
+	 * @since 5.2.2
+	 */
+	public function __construct() {
 
-    	$args = wp_parse_args( array(
-			'slug'        => 'term_ID',
-			'name'        => __( 'Term ID', 'notification' ),
-			'description' => '35',
-			'example'     => true,
-			'resolver'    => function( $trigger ) {
-				return $trigger->term->term_id;
-			},
-		) );
+		$args = wp_parse_args(
+			array(
+				'slug'        => 'term_ID',
+				'name'        => __( 'Term ID', 'notification' ),
+				'description' => '35',
+				'example'     => true,
+				'resolver'    => function( $trigger ) {
+					return $trigger->term->term_id;
+				},
+			)
+		);
 
-    	parent::__construct( $args );
+		parent::__construct( $args );
 
 	}
 

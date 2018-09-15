@@ -28,7 +28,7 @@ class Trigger {
 
 	/**
 	 * Prints trigger select
-     *
+	 *
 	 * @param  object $post current WP_Post.
 	 * @return void
 	 */
@@ -47,7 +47,7 @@ class Trigger {
 	 * Save the trigger in post meta (key: _trigger)
 	 *
 	 * @action save_post_notification
-     *
+	 *
 	 * @param  integer $post_id current post ID.
 	 * @param  object  $post    WP_Post object.
 	 * @param  boolean $update  if existing notification is updated.
@@ -55,20 +55,20 @@ class Trigger {
 	 */
 	public function save( $post_id, $post, $update ) {
 
-        if ( ! isset( $_POST['trigger_nonce'] ) || ! wp_verify_nonce( $_POST['trigger_nonce'], 'notification_trigger' ) ) {
-            return;
-        }
-
-        if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-            return;
-        }
-
-        if ( ! $update ) {
+		if ( ! isset( $_POST['trigger_nonce'] ) || ! wp_verify_nonce( $_POST['trigger_nonce'], 'notification_trigger' ) ) {
 			return;
 		}
 
-        $this->postdata->set_post_id( $post_id );
-        $this->postdata->save_active_trigger( $_POST['notification_trigger'] );
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+
+		if ( ! $update ) {
+			return;
+		}
+
+		$this->postdata->set_post_id( $post_id );
+		$this->postdata->save_active_trigger( $_POST['notification_trigger'] );
 
 	}
 

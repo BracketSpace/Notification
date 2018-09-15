@@ -11,11 +11,11 @@
 		<?php do_action( 'notification/admin/metabox/save/pre', $this ); ?>
 		<label class="row-label" for="onoffswitch"><strong><?php esc_html_e( 'Enable', 'notification' ); ?></strong></label>
 		<div class="onoffswitch">
-		    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" value="1" id="onoffswitch" <?php checked( $this->get_var( 'enabled' ), true ); ?>>
-		    <label class="onoffswitch-label" for="onoffswitch">
-		        <span class="onoffswitch-inner"></span>
-		        <span class="onoffswitch-switch"></span>
-		    </label>
+			<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" value="1" id="onoffswitch" <?php checked( $this->get_var( 'enabled' ), true ); ?>>
+			<label class="onoffswitch-label" for="onoffswitch">
+				<span class="onoffswitch-inner"></span>
+				<span class="onoffswitch-switch"></span>
+			</label>
 		</div>
 		<div class="clear"></div>
 		<?php do_action( 'notification/admin/metabox/save/post', $this ); ?>

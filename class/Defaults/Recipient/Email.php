@@ -21,11 +21,13 @@ class Email extends Abstracts\Recipient {
 	 * @since 5.0.0
 	 */
 	public function __construct() {
-		parent::__construct( array(
-			'slug'          => 'email',
-			'name'          => __( 'Email / Merge tag', 'notification' ),
-			'default_value' => '',
-		) );
+		parent::__construct(
+			array(
+				'slug'          => 'email',
+				'name'          => __( 'Email / Merge tag', 'notification' ),
+				'default_value' => '',
+			)
+		);
 	}
 
 	/**
@@ -59,14 +61,16 @@ class Email extends Abstracts\Recipient {
 	 */
 	public function input() {
 
-		return new Field\InputField( array(
-			'label'       => __( 'Recipient', 'notification' ),       // don't edit this!
-			'name'        => 'recipient',       // don't edit this!
-			'css_class'   => 'recipient-value', // don't edit this!
-			'placeholder' => __( 'email@domain.com or {email}', 'notification' ),
-			'description' => __( 'You can use any valid email merge tag.', 'notification' ),
-			'resolvable'  => true
-		) );
+		return new Field\InputField(
+			array(
+				'label'       => __( 'Recipient', 'notification' ),       // don't edit this!
+				'name'        => 'recipient',       // don't edit this!
+				'css_class'   => 'recipient-value', // don't edit this!
+				'placeholder' => __( 'email@domain.com or {email}', 'notification' ),
+				'description' => __( 'You can use any valid email merge tag.', 'notification' ),
+				'resolvable'  => true,
+			)
+		);
 
 	}
 

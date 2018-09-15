@@ -19,21 +19,21 @@ class Internationalization {
 
 	/**
 	 * Files class
-     *
+	 *
 	 * @var object
 	 */
 	protected $files;
 
 	/**
 	 * Textomain
-     *
+	 *
 	 * @var string
 	 */
 	protected $textdomain;
 
 	/**
 	 * Class constructor
-     *
+	 *
 	 * @param Files  $files      instance of Files object.
 	 * @param string $textdomain textdomain string.
 	 */
@@ -46,7 +46,7 @@ class Internationalization {
 	 * Loads plugin textdomain
 	 *
 	 * @action plugins_loaded
-     *
+	 *
 	 * @return void
 	 */
 	public function load_textdomain() {
@@ -57,7 +57,7 @@ class Internationalization {
 	 * Fixes admin strings returning
 	 *
 	 * @action init
-     *
+	 *
 	 * @return void
 	 */
 	public function load_native_admin_textdomain() {

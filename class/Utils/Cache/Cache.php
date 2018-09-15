@@ -12,16 +12,16 @@ namespace BracketSpace\Notification\Utils\Cache;
  */
 class Cache {
 
-    /**
+	/**
 	 * Cache unique key
-     *
+	 *
 	 * @var string
 	 */
 	protected $key;
 
 	/**
 	 * Constructor
-     *
+	 *
 	 * @param string $key cache unique key.
 	 */
 	public function __construct( $key ) {

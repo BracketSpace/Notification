@@ -14,7 +14,7 @@ class Message {
 
 	/**
 	 * Message field
-     *
+	 *
 	 * @param  Field $field Field instance.
 	 * @return void
 	 */
@@ -34,7 +34,7 @@ class Message {
 
 	/**
 	 * Sanitize input value
-     *
+	 *
 	 * @param  string $value Saved value.
 	 * @return string        Sanitized text
 	 */
