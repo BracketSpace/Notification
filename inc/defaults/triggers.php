@@ -97,3 +97,7 @@ if ( notification_get_setting( 'triggers/wordpress/updates' ) ) {
 // Plugin triggers.
 register_trigger( new Trigger\Plugin\Activated() );
 register_trigger( new Trigger\Plugin\Deactivated() );
+
+
+//Theme triggers.
+register_trigger( new Trigger\Theme\Activated() );
