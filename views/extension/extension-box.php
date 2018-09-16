@@ -79,8 +79,7 @@ if ( isset( $ext['wporg'] ) && ! is_wp_error( $ext['wporg'] ) && ( current_user_
 		</div>
 		<div class="action-links">
 			<ul class="plugin-action-buttons">
-				<?php // PHPCS: OK. ?>
-				<li><?php echo $action_button; ?></li>
+				<li><?php echo $action_button; // WPCS: XSS ok. ?></li>
 				<?php if ( $ext['official'] ) : ?>
 					<li><span class="official"><?php esc_html_e( 'Official', 'notification' ); ?></span></li>
 				<?php endif ?>

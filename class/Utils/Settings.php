@@ -107,7 +107,7 @@ class Settings {
 		$sections = $this->get_sections();
 
 		if ( isset( $_GET['section'] ) && ! empty( $_GET['section'] ) ) {
-			$current_section = $_GET['section'];
+			$current_section = sanitize_text_field( wp_unslash( $_GET['section'] ) );
 		} else {
 			$current_section = key( $this->get_sections() );
 		}

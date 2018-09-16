@@ -55,7 +55,7 @@ class Trigger {
 	 */
 	public function save( $post_id, $post, $update ) {
 
-		if ( ! isset( $_POST['trigger_nonce'] ) || ! wp_verify_nonce( $_POST['trigger_nonce'], 'notification_trigger' ) ) {
+		if ( ! isset( $_POST['trigger_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['trigger_nonce'] ) ), 'notification_trigger' ) ) {
 			return;
 		}
 
@@ -67,8 +67,10 @@ class Trigger {
 			return;
 		}
 
+		$notification_trigger = ! empty( $_POST['notification_trigger'] ) ? sanitize_text_field( wp_unslash( $_POST['notification_trigger'] ) ) : '';
+
 		$this->postdata->set_post_id( $post_id );
-		$this->postdata->save_active_trigger( $_POST['notification_trigger'] );
+		$this->postdata->save_active_trigger( $notification_trigger );
 
 	}
 

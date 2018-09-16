@@ -32,8 +32,7 @@
 	</div>
 
 	<div class="skip">
-		<?php // PHPCS: OK. ?>
-		<a href="<?php echo admin_url( 'edit.php?post_type=notification&notification-story-skip=true' ); ?>"><?php esc_html_e( 'Skip this screen', 'notification' ); ?></a>
+		<a href="<?php echo admin_url( 'edit.php?post_type=notification&notification-story-skip=true' ); // WPCS: XSS ok. ?>"><?php esc_html_e( 'Skip this screen', 'notification' ); ?></a>
 	</div>
 
 </div>

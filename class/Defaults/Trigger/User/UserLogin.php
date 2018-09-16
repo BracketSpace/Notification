@@ -91,12 +91,13 @@ class UserLogin extends Abstracts\Trigger {
 					'example'     => true,
 					'resolver'    => function( $trigger ) {
 						if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
-							return $_SERVER['HTTP_CLIENT_IP'];
+							return sanitize_text_field( wp_unslash( $_SERVER['HTTP_CLIENT_IP'] ) );
 						} elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-							return $_SERVER['HTTP_X_FORWARDED_FOR'];
-						} else {
-							return $_SERVER['REMOTE_ADDR'];
+							return sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_FORWARDED_FOR'] ) );
+						} elseif ( ! empty( $_SERVER['REMOTE_ADDR'] ) ) {
+							return sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) );
 						}
+						return '';
 					},
 				)
 			)

@@ -329,9 +329,13 @@ class Settings extends SettingsAPI {
 	 */
 	public function notifications_settings( $settings ) {
 
-		$sitename = strtolower( $_SERVER['SERVER_NAME'] );
-		if ( substr( $sitename, 0, 4 ) === 'www.' ) {
-			$sitename = substr( $sitename, 4 );
+		if ( ! empty( $_SERVER['SERVER_NAME'] ) ) {
+			$sitename = strtolower( sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) ) );
+			if ( substr( $sitename, 0, 4 ) === 'www.' ) {
+				$sitename = substr( $sitename, 4 );
+			}
+		} else {
+			$sitename = 'example.com';
 		}
 
 		$default_from_email = 'wordpress@' . $sitename;

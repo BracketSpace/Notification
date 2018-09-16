@@ -9,11 +9,9 @@
 
 <div class="wrap underdev-settings <?php echo esc_attr( $this->handle ); ?>-settings">
 
-	<?php // PHPCS: OK. ?>
 	<h1><?php esc_html_e( 'Settings', $this->textdomain ); ?></h1>
 
 	<?php if ( empty( $sections ) ) : ?>
-		<?php // PHPCS: OK. ?>
 		<p><?php esc_html_e( 'No Settings available at the moment', $this->textdomain ); ?></p>
 	<?php else : ?>
 
@@ -43,8 +41,7 @@
 
 			<?php do_action( $this->handle . '/settings/section/' . $section->slug() . '/before' ); ?>
 
-			<?php // PHPCS: OK. ?>
-			<form action="<?php echo admin_url( 'admin-post.php' ); ?>" method="post" enctype="multipart/form-data">
+			<form action="<?php echo admin_url( 'admin-post.php' ); // WPCS: XSS ok. ?>" method="post" enctype="multipart/form-data">
 
 				<?php wp_nonce_field( 'save_' . $this->handle . '_settings', 'nonce' ); ?>
 
@@ -86,8 +83,7 @@
 										$field_description = $field->description();
 										?>
 										<?php if ( ! empty( $field_description ) ) : ?>
-											<?php // PHPCS: OK. ?>
-											<small class="description"><?php echo $field_description; ?></small>
+											<small class="description"><?php echo $field_description; // WPCS: XSS ok. ?></small>
 										<?php endif ?>
 									</td>
 								</tr>

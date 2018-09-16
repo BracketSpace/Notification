@@ -238,12 +238,12 @@ class Extensions {
 		$extension = $this->get_raw_extension( $data['extension'] );
 
 		if ( false === $extension ) {
-			wp_redirect( add_query_arg( 'activation-status', 'wrong-extension', $data['_wp_http_referer'] ) );
+			wp_safe_redirect( add_query_arg( 'activation-status', 'wrong-extension', $data['_wp_http_referer'] ) );
 			exit();
 		}
 
 		if ( ! wp_verify_nonce( $data['_wpnonce'], 'activate_extension_' . $extension['slug'] ) ) {
-			wp_redirect( add_query_arg( 'activation-status', 'wrong-nonce', $data['_wp_http_referer'] ) );
+			wp_safe_redirect( add_query_arg( 'activation-status', 'wrong-nonce', $data['_wp_http_referer'] ) );
 			exit();
 		}
 
@@ -251,11 +251,11 @@ class Extensions {
 		$activation = $license->activate( $data['license-key'] );
 
 		if ( is_wp_error( $activation ) ) {
-			wp_redirect( add_query_arg( 'activation-status', $activation->get_error_message(), $data['_wp_http_referer'] ) );
+			wp_safe_redirect( add_query_arg( 'activation-status', $activation->get_error_message(), $data['_wp_http_referer'] ) );
 			exit();
 		}
 
-		wp_redirect( add_query_arg( 'activation-status', 'success', $data['_wp_http_referer'] ) );
+		wp_safe_redirect( add_query_arg( 'activation-status', 'success', $data['_wp_http_referer'] ) );
 		exit();
 
 	}
@@ -274,12 +274,12 @@ class Extensions {
 		$extension = $this->get_raw_extension( $data['extension'] );
 
 		if ( false === $extension ) {
-			wp_redirect( add_query_arg( 'activation-status', 'wrong-extension', $data['_wp_http_referer'] ) );
+			wp_safe_redirect( add_query_arg( 'activation-status', 'wrong-extension', $data['_wp_http_referer'] ) );
 			exit();
 		}
 
 		if ( ! wp_verify_nonce( $data['_wpnonce'], 'activate_extension_' . $extension['slug'] ) ) {
-			wp_redirect( add_query_arg( 'activation-status', 'wrong-nonce', $data['_wp_http_referer'] ) );
+			wp_safe_redirect( add_query_arg( 'activation-status', 'wrong-nonce', $data['_wp_http_referer'] ) );
 			exit();
 		}
 
@@ -287,11 +287,11 @@ class Extensions {
 		$activation = $license->deactivate();
 
 		if ( is_wp_error( $activation ) ) {
-			wp_redirect( add_query_arg( 'activation-status', $activation->get_error_message(), $data['_wp_http_referer'] ) );
+			wp_safe_redirect( add_query_arg( 'activation-status', $activation->get_error_message(), $data['_wp_http_referer'] ) );
 			exit();
 		}
 
-		wp_redirect( add_query_arg( 'activation-status', 'deactivated', $data['_wp_http_referer'] ) );
+		wp_safe_redirect( add_query_arg( 'activation-status', 'deactivated', $data['_wp_http_referer'] ) );
 		exit();
 
 	}

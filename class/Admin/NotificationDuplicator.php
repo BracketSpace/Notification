@@ -43,8 +43,12 @@ class NotificationDuplicator {
 	 */
 	public function notification_duplicate() {
 
+		if ( ! isset( $_GET['duplicate'] ) ) {
+			exit;
+		}
+
 		// Get the source notification post.
-		$source = get_post( $_GET['duplicate'] );
+		$source = get_post( sanitize_text_field( wp_unslash( $_GET['duplicate'] ) ) );
 
 		if ( get_post_type( $source ) !== 'notification' ) {
 			wp_die( 'You cannot duplicate post that\'s not Notification post' );

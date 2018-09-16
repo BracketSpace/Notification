@@ -13,11 +13,14 @@
 		<exclude name="WordPress.VIP.ValidatedSanitizedInput" />
 		<exclude name="WordPress.VIP.RestrictedFunctions" />
 		<exclude name="WordPress.CSRF.NonceVerification.NoNonceVerification" />
-		<exclude name="WordPress.VIP.SlowDBQuery" />
+		<exclude name="WordPress.Security.NonceVerification.NoNonceVerification" />
+		<exclude name="WordPress.DB.SlowDBQuery" />
 		<exclude name="WordPress.VIP.PostsPerPage" />
 		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralText" />
 		<exclude name="WordPress.VIP.RestrictedVariables.cache_constraints___SERVER__REMOTE_ADDR__" />
 		<exclude name="WordPress.WP.AlternativeFunctions.file_system_read_file_get_contents" />
+		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralDomain" />
+		<exclude name="WordPress.WP.GlobalVariablesOverride" />
 	</rule>
 	<rule ref="Squiz.Commenting.FunctionComment">
 	    <exclude name="Squiz.Commenting.FunctionComment.InvalidTypeHint" />

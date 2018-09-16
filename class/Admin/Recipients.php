@@ -38,12 +38,15 @@ class Recipients {
 
 		ob_start();
 
-		$recipient = notification_get_single_recipient( $_POST['notification'], $_POST['type'] );
-		$input     = $recipient->input();
+		$notification = sanitize_text_field( wp_unslash( $_POST['notification'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+		$type         = sanitize_text_field( wp_unslash( $_POST['type'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+		$input        = $recipient->input();
+		$recipient    = notification_get_single_recipient( $notification, $type );
 
 		// A little trick to get rid of the last part of input name
 		// which will be added by the field itself.
-		$input->section = str_replace( '[' . $input->get_raw_name() . ']', '', $_POST['input_name'] );
+		$input_name     = sanitize_text_field( wp_unslash( $_POST['input_name'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+		$input->section = str_replace( '[' . $input->get_raw_name() . ']', '', $input_name );
 
 		echo $input->field(); // WPCS: XSS ok.
 

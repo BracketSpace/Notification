@@ -120,9 +120,13 @@ class MergeTags {
 	 */
 	public function ajax_render() {
 
+		if ( ! isset( $_POST['trigger_slug'] ) ) {
+			$this->ajax->error();
+		}
+
 		ob_start();
 
-		$this->trigger_merge_tags_list( $_POST['trigger_slug'] );
+		$this->trigger_merge_tags_list( sanitize_text_field( wp_unslash( $_POST['trigger_slug'] ) ) );
 
 		$this->ajax->success( ob_get_clean() );
 

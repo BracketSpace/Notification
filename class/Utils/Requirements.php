@@ -226,7 +226,7 @@ class Requirements {
 		foreach ( $active_plugins_raw as $plugin_full_path ) {
 			$plugin_file                             = str_replace( WP_PLUGIN_DIR . '/', '', $plugin_full_path );
 			$active_plugins[]                        = $plugin_file;
-			$plugin_api_data                         = @get_file_data( $plugin_full_path, array( 'Version' ) ); // phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$plugin_api_data                         = @get_file_data( $plugin_full_path, array( 'Version' ) ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 			$active_plugins_versions[ $plugin_file ] = $plugin_api_data[0];
 		}
 
