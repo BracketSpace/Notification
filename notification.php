@@ -22,11 +22,11 @@ function notification_autoload( $class ) {
 
 	$parts = explode( '\\', $class );
 
-	if ( array_shift( $parts ) != 'BracketSpace' ) {
+	if ( array_shift( $parts ) !== 'BracketSpace' ) {
 		return false;
 	}
 
-	if ( array_shift( $parts ) != 'Notification' ) {
+	if ( array_shift( $parts ) !== 'Notification' ) {
 		return false;
 	}
 

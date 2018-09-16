@@ -61,6 +61,7 @@ class Administrator extends Abstracts\Recipient {
 				'css_class'   => 'recipient-value', // don't edit this!
 				'value'       => $this->get_default_value(),
 				'placeholder' => $this->get_default_value(),
+				// Translators: %s settings URL.
 				'description' => sprintf( __( 'You can edit this email in <a href="%s">General Settings</a>', 'notification' ), admin_url( 'options-general.php' ) ),
 				'disabled'    => true,
 			)

@@ -49,11 +49,11 @@ class PostPending extends PostTrigger {
 
 		$this->{ $this->post_type } = $post;
 
-		if ( $this->{ $this->post_type }->post_type != $this->post_type ) {
+		if ( $this->{ $this->post_type }->post_type !== $this->post_type ) {
 			return false;
 		}
 
-		if ( $old_status == 'pending' || $new_status != 'pending' ) {
+		if ( 'pending' === $old_status || 'pending' !== $new_status ) {
 			return false;
 		}
 

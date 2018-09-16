@@ -101,7 +101,7 @@ class Group {
 	 */
 	public function name( $name = null ) {
 
-		if ( $name !== null ) {
+		if ( null !== $name ) {
 			$this->name = $name;
 		}
 
@@ -117,7 +117,7 @@ class Group {
 	 */
 	public function slug( $slug = null ) {
 
-		if ( $slug !== null ) {
+		if ( null !== $slug ) {
 			$this->slug = $slug;
 		}
 
@@ -133,7 +133,7 @@ class Group {
 	 */
 	public function section( $section = null ) {
 
-		if ( $section !== null ) {
+		if ( null !== $section ) {
 			$this->section = $section;
 		}
 
@@ -149,7 +149,7 @@ class Group {
 	 */
 	public function description( $description = null ) {
 
-		if ( $description !== null ) {
+		if ( null !== $description ) {
 			$this->description = $description;
 		}
 

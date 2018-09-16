@@ -80,7 +80,8 @@ class Role extends Abstracts\Recipient {
 			);
 
 			$num_users = $users_query->get_total();
-			$label     = translate_user_role( $role['name'] ) . ' (' . sprintf( _n( '1 user', '%s users', $num_users, 'notification' ), $num_users ) . ')';
+			// Translators: %s numer of users.
+			$label = translate_user_role( $role['name'] ) . ' (' . sprintf( _n( '%s user', '%s users', $num_users, 'notification' ), $num_users ) . ')';
 
 			$opts[ $role_slug ] = esc_html( $label );
 

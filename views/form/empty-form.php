@@ -7,4 +7,4 @@
 
 ?>
 
-<p><?php _e( 'This Notification has no fields.', 'notification' ); ?></p>
+<p><?php esc_html_e( 'This Notification has no fields.', 'notification' ); ?></p>

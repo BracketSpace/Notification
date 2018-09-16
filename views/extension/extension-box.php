@@ -68,7 +68,7 @@ if ( isset( $ext['wporg'] ) && ! is_wp_error( $ext['wporg'] ) && ( current_user_
 
 ?>
 
-<div class="plugin-card plugin-card-<?php echo $ext['slug']; ?>">
+<div class="plugin-card plugin-card-<?php echo esc_attr( $ext['slug'] ); ?>">
 	<div class="plugin-card-top">
 		<div class="name column-name">
 			<h3>
@@ -78,14 +78,15 @@ if ( isset( $ext['wporg'] ) && ! is_wp_error( $ext['wporg'] ) && ( current_user_
 		</div>
 		<div class="action-links">
 			<ul class="plugin-action-buttons">
+				<?php // PHPCS: OK. ?>
 				<li><?php echo $action_button; ?></li>
 				<?php if ( $ext['official'] ) : ?>
-					<li><span class="official"><?php _e( 'Official', 'notification' ); ?></span></li>
+					<li><span class="official"><?php esc_html_e( 'Official', 'notification' ); ?></span></li>
 				<?php endif ?>
 			</ul>
 		</div>
 		<div class="desc column-description">
-			<p><?php echo mb_strimwidth( $ext['desc'], 0, 117, '...' ); ?></p>
+			<p><?php echo esc_html( mb_strimwidth( $ext['desc'], 0, 117, '...' ) ); ?></p>
 			<p class="authors"><?php esc_html_e( 'Author', 'notification' ); ?>: <?php echo esc_html( $ext['author'] ); ?></p>
 		</div>
 	</div>

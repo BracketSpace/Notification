@@ -23,7 +23,7 @@ class NotificationDuplicator {
 	 */
 	public function add_duplicate_row_action( $row_actions, $post ) {
 
-		if ( $post->post_type != 'notification' ) {
+		if ( 'notification' !== $post->post_type ) {
 			return $row_actions;
 		}
 
@@ -46,7 +46,7 @@ class NotificationDuplicator {
 		// Get the source notification post.
 		$source = get_post( $_GET['duplicate'] );
 
-		if ( get_post_type( $source ) != 'notification' ) {
+		if ( get_post_type( $source ) !== 'notification' ) {
 			wp_die( 'You cannot duplicate post that\'s not Notification post' );
 		}
 

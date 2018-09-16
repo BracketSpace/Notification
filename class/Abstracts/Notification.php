@@ -119,7 +119,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	 * @return string
 	 */
 	public function hash() {
-		return md5( json_encode( $this ) );
+		return md5( wp_json_encode( $this ) );
 	}
 
 	/**
@@ -179,7 +179,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 			}
 
 			// Skip internal nonce field.
-			if ( $field->get_raw_name() == '_nonce' ) {
+			if ( $field->get_raw_name() === '_nonce' ) {
 				continue;
 			}
 

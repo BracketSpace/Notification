@@ -140,7 +140,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 		foreach ( $this->actions as $action_index => $action ) {
 
-			if ( $action['tag'] == $tag && $action['priority'] == $priority && $action['accepted_args'] == $accepted_args ) {
+			if ( $action['tag'] === $tag && $action['priority'] === $priority && $action['accepted_args'] === $accepted_args ) {
 				unset( $this->actions[ $action_index ] );
 				break;
 			}
@@ -270,7 +270,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	public function get_merge_tags( $type = 'all' ) {
 
-		if ( $type === 'all' ) {
+		if ( 'all' === $type ) {
 			return $this->merge_tags;
 		}
 
@@ -278,9 +278,9 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 		foreach ( $this->merge_tags as $merge_tag ) {
 
-			if ( $type === 'visible' && ! $merge_tag->is_hidden() ) {
+			if ( 'visible' === $type && ! $merge_tag->is_hidden() ) {
 				array_push( $tags, $merge_tag );
-			} elseif ( $type === 'hidden' && $merge_tag->is_hidden() ) {
+			} elseif ( 'hidden' === $type && $merge_tag->is_hidden() ) {
 				array_push( $tags, $merge_tag );
 			}
 		}
@@ -386,7 +386,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			$result = true;
 		}
 
-		if ( $result === false ) {
+		if ( false === $result ) {
 			$this->stopped = true;
 		}
 

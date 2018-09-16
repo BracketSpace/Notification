@@ -7,19 +7,9 @@
 
 ?>
 
-<div id="<?php $this->echo_var( 'id' ); ?>" class="postbox 
-								<?php
-								if ( ! $this->get_var( 'open' ) ) {
-									echo 'closed';}
-?>
-">
+<div id="<?php $this->echo_var( 'id' ); ?>" class="postbox <?php echo ! $this->get_var( 'open' ) ? 'closed' : ''; ?>">
 	<div class="switch-container">
-		<label class="switch 
-		<?php
-		if ( $this->get_var( 'open' ) ) {
-			echo 'active';}
-?>
-">
+		<label class="switch <?php echo $this->get_var( 'open' ) ? 'active' : ''; ?>">
 			<input type="checkbox" name="<?php $this->echo_var( 'name' ); ?>" value="1" <?php checked( $this->get_var( 'open' ), true ); ?> />
 			<div></div>
 		</label>

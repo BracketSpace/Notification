@@ -10,7 +10,7 @@ $license = $ext['license']->get();
 
 ?>
 
-<div class="plugin-card plugin-card-premium plugin-card-<?php echo $ext['slug']; ?>">
+<div class="plugin-card plugin-card-premium plugin-card-<?php echo esc_attr( $ext['slug'] ); ?>">
 	<div class="plugin-card-top">
 		<div class="name column-name">
 			<h3>
@@ -22,16 +22,16 @@ $license = $ext['license']->get();
 			<?php if ( empty( $license ) ) : ?>
 				<p><?php esc_html_e( 'To receive updates, please enter your valid license key.', 'notification' ); ?></p>
 			<?php else : ?>
-				<?php if ( $license->expires != 'lifetime' ) : ?>
+				<?php if ( 'lifetime' !== $license->expires ) : ?>
 					<?php // translators: 1. Expiration date. ?>
-					<p><?php printf( __( 'Your license expires on %s.', 'notification' ), date_i18n( get_option( 'date_format' ), strtotime( $license->expires, current_time( 'timestamp' ) ) ) ); ?></p>
+					<p><?php printf( esc_html__( 'Your license expires on %s.', 'notification' ), esc_html( date_i18n( get_option( 'date_format' ) ), strtotime( $license->expires, current_time( 'timestamp' ) ) ) ); ?></p>
 				<?php else : ?>
 					<p><?php esc_html_e( 'Your license never expires.', 'notification' ); ?></p>
 				<?php endif ?>
-				<?php if ( $license->license == 'inactive' ) : ?>
+				<?php if ( 'inactive' === $license->license ) : ?>
 					<p style="color: red;"><?php esc_html_e( 'Your license is inactive.', 'notification' ); ?></p>
 				<?php endif ?>
-				<?php if ( $license->license == 'expired' ) : ?>
+				<?php if ( 'expired' === $license->license ) : ?>
 					<p style="color: red;"><?php esc_html_e( 'Your license is expired.', 'notification' ); ?></p>
 				<?php endif ?>
 			<?php endif ?>

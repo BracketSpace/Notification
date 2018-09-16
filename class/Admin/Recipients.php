@@ -45,11 +45,11 @@ class Recipients {
 		// which will be added by the field itself.
 		$input->section = str_replace( '[' . $input->get_raw_name() . ']', '', $_POST['input_name'] );
 
-		echo $input->field();
+		echo $input->field(); // WPCS: XSS ok.
 
 		$description = $input->get_description();
 		if ( ! empty( $description ) ) {
-			echo '<small class="description">' . $description . '</small>';
+			echo '<small class="description">' . esc_html( $description ) . '</small>';
 		}
 
 		$this->ajax->success( ob_get_clean() );

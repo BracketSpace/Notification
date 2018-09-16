@@ -70,12 +70,12 @@ class View {
 	 */
 	public function set_var( $var_name = null, $var_value = null, $override = false ) {
 
-		if ( $var_name === null ) {
+		if ( null === $var_name ) {
 			return $this;
 		}
 
 		if ( ! $override && $this->get_var( $var_name ) !== null ) {
-			trigger_error( 'Variable ' . $var_name . ' already exists, skipping', E_USER_NOTICE );
+			trigger_error( 'Variable ' . esc_html( $var_name ) . ' already exists, skipping', E_USER_NOTICE );
 			return $this;
 		}
 
@@ -125,9 +125,7 @@ class View {
 	 * @return void
 	 */
 	public function echo_var( $var_name ) {
-
-		echo $this->get_var( $var_name );
-
+		echo $this->get_var( $var_name ); // WPCS: XSS ok.
 	}
 
 	/**
@@ -152,11 +150,8 @@ class View {
 	 * @return this
 	 */
 	public function clear_vars() {
-
 		$this->vars = array();
-
 		return $this;
-
 	}
 
 	/**

@@ -41,6 +41,7 @@ class TermUpdated extends TermTrigger {
 			array(
 				'taxonomy' => $taxonomy,
 				'slug'     => 'wordpress/' . $taxonomy . '/updated',
+				// Translators: taxonomy name.
 				'name'     => sprintf( __( '%s term updated', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ) ),
 			)
 		);
@@ -63,7 +64,7 @@ class TermUpdated extends TermTrigger {
 		$term       = get_term( $term_id );
 		$this->term = $term;
 
-		if ( $this->taxonomy != $this->term->taxonomy ) {
+		if ( $this->taxonomy !== $this->term->taxonomy ) {
 			return false;
 		}
 

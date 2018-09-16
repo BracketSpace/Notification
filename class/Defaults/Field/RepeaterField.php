@@ -100,7 +100,7 @@ class RepeaterField extends Field {
 		foreach ( $this->fields as $sub_field ) {
 
 			// don't print header for hidden field.
-			if ( isset( $sub_field->type ) && $sub_field->type === 'hidden' ) {
+			if ( isset( $sub_field->type ) && 'hidden' === $sub_field->type ) {
 				continue;
 			}
 
@@ -165,7 +165,7 @@ class RepeaterField extends Field {
 			$sub_field->section = $this->get_name() . '[' . $this->current_row . ']';
 
 			// don't print useless informations for hidden field.
-			if ( isset( $sub_field->type ) && $sub_field->type === 'hidden' ) {
+			if ( isset( $sub_field->type ) && 'hidden' === $sub_field->type ) {
 				$html .= $sub_field->field();
 			} else {
 				$html .= '<td class="subfield ' . esc_attr( $sub_field->get_raw_name() ) . '">';

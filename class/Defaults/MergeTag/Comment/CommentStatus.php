@@ -41,13 +41,13 @@ class CommentStatus extends StringTag {
 				'description' => __( 'Approved', 'notification' ),
 				'example'     => true,
 				'resolver'    => function() {
-					if ( $this->trigger->{ $this->property_name }->comment_approved == 1 ) {
+					if ( 1 === $this->trigger->{ $this->property_name }->comment_approved ) {
 						return __( 'Approved', 'notification' );
-					} elseif ( $this->trigger->{ $this->property_name }->comment_approved == 0 ) {
+					} elseif ( 0 === $this->trigger->{ $this->property_name }->comment_approved ) {
 						return __( 'Unapproved', 'notification' );
-					} elseif ( $this->trigger->{ $this->property_name }->comment_approved == 'spam' ) {
+					} elseif ( 'spam' === $this->trigger->{ $this->property_name }->comment_approved ) {
 						return __( 'Marked as spam', 'notification' );
-					} elseif ( $this->trigger->{ $this->property_name }->comment_approved == 'trash' ) {
+					} elseif ( 'trash' === $this->trigger->{ $this->property_name }->comment_approved ) {
 						return __( 'Trashed', 'notification' );
 					}
 				},

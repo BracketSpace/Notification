@@ -138,7 +138,7 @@ class Field {
 	 */
 	public function name( $name = null ) {
 
-		if ( $name !== null ) {
+		if ( null !== $name ) {
 			$this->name = $name;
 		}
 
@@ -154,7 +154,7 @@ class Field {
 	 */
 	public function slug( $slug = null ) {
 
-		if ( $slug !== null ) {
+		if ( null !== $slug ) {
 			$this->slug = $slug;
 		}
 
@@ -170,7 +170,7 @@ class Field {
 	 */
 	public function section( $section = null ) {
 
-		if ( $section !== null ) {
+		if ( null !== $section ) {
 			$this->section = $section;
 		}
 
@@ -186,7 +186,7 @@ class Field {
 	 */
 	public function group( $group = null ) {
 
-		if ( $group !== null ) {
+		if ( null !== $group ) {
 			$this->group = $group;
 		}
 
@@ -202,7 +202,7 @@ class Field {
 	 */
 	public function description( $description = null ) {
 
-		if ( $description !== null ) {
+		if ( null !== $description ) {
 			$this->description = $description;
 		}
 
@@ -218,7 +218,7 @@ class Field {
 	 */
 	public function value( $value = null ) {
 
-		if ( $value !== null ) {
+		if ( null !== $value ) {
 			$this->value = $value;
 		}
 
@@ -234,7 +234,7 @@ class Field {
 	 */
 	public function default_value( $default_value = null ) {
 
-		if ( $default_value !== null ) {
+		if ( null !== $default_value ) {
 			$this->default_value = $default_value;
 		}
 
@@ -250,7 +250,7 @@ class Field {
 	 */
 	public function addons( $addons = null ) {
 
-		if ( $addons !== null ) {
+		if ( null !== $addons ) {
 			$this->addons = $addons;
 		}
 

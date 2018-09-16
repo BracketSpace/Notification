@@ -45,7 +45,7 @@ class NonceField extends Field {
 	 * @return string html
 	 */
 	public function field() {
-		return wp_nonce_field( $this->nonce_key, $this->get_name(), $referer = true, false );
+		return wp_nonce_field( $this->nonce_key, $this->get_name(), true, false );
 	}
 
 	/**

@@ -36,7 +36,7 @@ class Settings extends SettingsAPI {
 		}
 
 		$settings_access = apply_filters( 'notification/whitelabel/settings/access', false );
-		if ( false !== $settings_access && ! in_array( get_current_user_id(), $settings_access ) ) {
+		if ( false !== $settings_access && ! in_array( get_current_user_id(), $settings_access, true ) ) {
 			return;
 		}
 
@@ -191,7 +191,7 @@ class Settings extends SettingsAPI {
 
 		$taxonomies = array();
 		foreach ( $valid_taxonomies as $taxonomy ) {
-			if ( $taxonomy->name == 'post_format' ) {
+			if ( 'post_format' === $taxonomy->name ) {
 				continue;
 			}
 			$taxonomies[ $taxonomy->name ] = $taxonomy->labels->name;
@@ -330,7 +330,7 @@ class Settings extends SettingsAPI {
 	public function notifications_settings( $settings ) {
 
 		$sitename = strtolower( $_SERVER['SERVER_NAME'] );
-		if ( substr( $sitename, 0, 4 ) == 'www.' ) {
+		if ( substr( $sitename, 0, 4 ) === 'www.' ) {
 			$sitename = substr( $sitename, 4 );
 		}
 
@@ -385,6 +385,7 @@ class Settings extends SettingsAPI {
 					'default'     => '',
 					'render'      => array( new CoreFields\Text(), 'input' ),
 					'sanitize'    => array( new CoreFields\Text(), 'sanitize' ),
+					// Translators: %s default value.
 					'description' => sprintf( __( 'Leave blank to use default value: %s', 'notification' ), '<code>WordPress</code>' ),
 				)
 			)
@@ -395,6 +396,7 @@ class Settings extends SettingsAPI {
 					'default'     => '',
 					'render'      => array( new CoreFields\Text(), 'input' ),
 					'sanitize'    => array( new CoreFields\Text(), 'sanitize' ),
+					// Translators: %s default value.
 					'description' => sprintf( __( 'Leave blank to use default value: %s', 'notification' ), '<code>' . $default_from_email . '</code>' ),
 				)
 			);

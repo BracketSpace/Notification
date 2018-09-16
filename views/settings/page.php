@@ -7,9 +7,10 @@
 
 ?>
 
-<div class="wrap underdev-settings <?php echo $this->handle; ?>-settings">
+<div class="wrap underdev-settings <?php echo esc_attr( $this->handle ); ?>-settings">
 
-	<h1><?php _e( 'Settings', $this->textdomain, 'notification' ); ?></h1>
+	<?php // PHPCS: OK. ?>
+	<h1><?php esc_html_e( 'Settings', $this->textdomain ); ?></h1>
 
 	<?php if ( empty( $sections ) ) : ?>
 		<?php // PHPCS: OK. ?>
@@ -23,7 +24,7 @@
 				<?php foreach ( $this->get_sections() as $section_slug => $section ) : ?>
 
 					<?php
-					$class    = ( $section_slug == $current_section ) ? 'current' : '';
+					$class    = ( $section_slug === $current_section ) ? 'current' : '';
 					$page_url = remove_query_arg( 'updated' );
 					$url      = add_query_arg( 'section', $section_slug, $page_url );
 					?>
@@ -42,11 +43,12 @@
 
 			<?php do_action( $this->handle . '/settings/section/' . $section->slug() . '/before' ); ?>
 
+			<?php // PHPCS: OK. ?>
 			<form action="<?php echo admin_url( 'admin-post.php' ); ?>" method="post" enctype="multipart/form-data">
 
 				<?php wp_nonce_field( 'save_' . $this->handle . '_settings', 'nonce' ); ?>
 
-				<input type="hidden" name="action" value="save_<?php echo $this->handle; ?>_settings">
+				<input type="hidden" name="action" value="save_<?php echo esc_attr( $this->handle ); ?>_settings">
 
 				<?php
 				/**
@@ -54,7 +56,7 @@
 				 * for form handler so it could grab the section name and parse all defined fields
 				 */
 				?>
-				<input type="hidden" name="<?php echo $this->handle . '_settings[' . $section->slug() . ']'; ?>" value="section_buster">
+				<input type="hidden" name="<?php echo esc_attr( $this->handle ) . '_settings[' . esc_attr( $section->slug() ) . ']'; ?>" value="section_buster">
 
 				<?php $groups = $section->get_groups(); ?>
 
@@ -84,6 +86,7 @@
 										$field_description = $field->description();
 										?>
 										<?php if ( ! empty( $field_description ) ) : ?>
+											<?php // PHPCS: OK. ?>
 											<small class="description"><?php echo $field_description; ?></small>
 										<?php endif ?>
 									</td>

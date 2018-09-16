@@ -90,7 +90,8 @@ class EDDUpdater {
 		$this->version     = $_api_data['version'];
 		$this->wp_override = isset( $_api_data['wp_override'] ) ? (bool) $_api_data['wp_override'] : false;
 		$this->beta        = ! empty( $this->api_data['beta'] ) ? true : false;
-		$this->cache_key   = 'edd_sl_' . md5( serialize( $this->slug . $this->api_data['license'] . $this->beta ) );
+		// PHPCS: OK.
+		$this->cache_key = 'edd_sl_' . md5( serialize( $this->slug . $this->api_data['license'] . $this->beta ) );
 
 		$edd_plugin_data[ $this->slug ] = $this->api_data;
 
@@ -137,7 +138,7 @@ class EDDUpdater {
 			$_transient_data = new stdClass();
 		}
 
-		if ( 'plugins.php' == $pagenow && is_multisite() ) {
+		if ( 'plugins.php' === $pagenow && is_multisite() ) {
 			return $_transient_data;
 		}
 
@@ -195,7 +196,7 @@ class EDDUpdater {
 			return;
 		}
 
-		if ( $this->name != $file ) {
+		if ( $this->name !== $file ) {
 			return;
 		}
 
@@ -250,7 +251,7 @@ class EDDUpdater {
 			// build a plugin list row, with update notification.
 			$wp_list_table = _get_list_table( 'WP_Plugins_List_Table' );
 
-			echo '<tr class="plugin-update-tr" id="' . $this->slug . '-update" data-slug="' . $this->slug . '" data-plugin="' . $this->slug . '/' . $file . '">';
+			echo '<tr class="plugin-update-tr" id="' . esc_attr( $this->slug ) . '-update" data-slug="' . esc_attr( $this->slug ) . '" data-plugin="' . esc_attr( $this->slug ) . '/' . esc_attr( $file ) . '">';
 			echo '<td colspan="3" class="plugin-update colspanchange">';
 			echo '<div class="update-message notice inline notice-warning notice-alt">';
 
@@ -258,7 +259,7 @@ class EDDUpdater {
 
 			if ( empty( $version_info->download_link ) ) {
 				printf(
-					__( 'There is a new version of %1$s available. %2$sView version %3$s details%4$s.', 'easy-digital-downloads', 'notification' ),
+					esc_html__( 'There is a new version of %1$s available. %2$sView version %3$s details%4$s.', 'easy-digital-downloads' ),
 					esc_html( $version_info->name ),
 					'<a target="_blank" class="thickbox" href="' . esc_url( $changelog_link ) . '">',
 					esc_html( $version_info->new_version ),
@@ -266,7 +267,7 @@ class EDDUpdater {
 				);
 			} else {
 				printf(
-					__( 'There is a new version of %1$s available. %2$sView version %3$s details%4$s or %5$supdate now%6$s.', 'easy-digital-downloads', 'notification' ),
+					esc_html__( 'There is a new version of %1$s available. %2$sView version %3$s details%4$s or %5$supdate now%6$s.', 'easy-digital-downloads' ),
 					esc_html( $version_info->name ),
 					'<a target="_blank" class="thickbox" href="' . esc_url( $changelog_link ) . '">',
 					esc_html( $version_info->new_version ),

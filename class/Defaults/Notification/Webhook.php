@@ -144,9 +144,9 @@ class Webhook extends Abstracts\Notification {
 
 			$filtered_args = apply_filters( 'notification/webhook/args/' . $url['type'], $args, $this, $trigger );
 
-			if ( $url['type'] === 'get' ) {
+			if ( 'get' === $url['type'] ) {
 				$this->send_get( $url['recipient'], $filtered_args, $headers );
-			} elseif ( $url['type'] === 'post' ) {
+			} elseif ( 'post' === $url['type'] ) {
 				$this->send_post( $url['recipient'], $filtered_args, $headers );
 			}
 		}

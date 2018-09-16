@@ -199,10 +199,10 @@ class Files {
 		$path = $this->asset_path( 'images', $file );
 		$type = pathinfo( $path, PATHINFO_EXTENSION );
 		// SVG mime type fix.
-		if ( $type == 'svg' ) {
+		if ( 'svg' === $type ) {
 			$type = 'svg+xml';
 		}
-		$data = file_get_contents( $path );
+		$data = file_get_contents( $path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		return 'data:image/' . $type . ';base64,' . base64_encode( $data );
 	}
 

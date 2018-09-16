@@ -111,11 +111,11 @@ class PostData {
 		$enabled_notifications = (array) $this->get_meta( $this->notification_enabled_key, false );
 
 		// if this is new post, mark email notifiation as active for better UX.
-		if ( notification_is_new_notification( get_post( $this->get_post_id() ) ) && $notification->get_slug() == 'email' ) {
+		if ( notification_is_new_notification( get_post( $this->get_post_id() ) ) && $notification->get_slug() === 'email' ) {
 			$enabled_notifications[] = 'email';
 		}
 
-		if ( in_array( $notification->get_slug(), $enabled_notifications ) ) {
+		if ( in_array( $notification->get_slug(), $enabled_notifications, true ) ) {
 			$notification->enabled = true;
 		}
 
@@ -147,7 +147,7 @@ class PostData {
 		foreach ( notification_get_notifications() as $notification ) {
 
 			if ( isset( $data[ 'notification_' . $notification->get_slug() . '_enable' ] ) ) {
-				if ( ! in_array( $notification->get_slug(), (array) get_post_meta( $this->get_post_id(), $this->notification_enabled_key ) ) ) {
+				if ( ! in_array( $notification->get_slug(), (array) get_post_meta( $this->get_post_id(), $this->notification_enabled_key ), true ) ) {
 					add_post_meta( $this->get_post_id(), $this->notification_enabled_key, $notification->get_slug() );
 				}
 			} else {
@@ -297,7 +297,7 @@ class PostData {
 
 		$this->ajax->verify_nonce( 'change_notification_status_' . $data['post_id'] );
 
-		$status = $data['status'] == 'true' ? 'publish' : 'draft';
+		$status = 'true' === $data['status'] ? 'publish' : 'draft';
 
 		$result = wp_update_post(
 			array(
@@ -306,7 +306,7 @@ class PostData {
 			)
 		);
 
-		if ( $result == 0 ) {
+		if ( 0 === $result ) {
 			$error = __( 'Notification status couldn\'t be changed.', 'notification' );
 		}
 

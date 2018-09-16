@@ -37,7 +37,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 
 		parent::__construct( $params['slug'], $params['name'] );
 
-		$this->set_group( __( ucfirst( $this->comment_type ), 'WordPress', 'notification' ) );
+		$this->set_group( __( ucfirst( $this->comment_type ), 'notification' ) );
 
 	}
 

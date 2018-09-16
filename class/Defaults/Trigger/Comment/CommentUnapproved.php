@@ -24,6 +24,7 @@ class CommentUnapproved extends CommentTrigger {
 		parent::__construct(
 			array(
 				'slug'         => 'wordpress/comment_' . $comment_type . '_unapproved',
+				// Translators: %s comment type.
 				'name'         => sprintf( __( '%s unapproved', 'notification' ), ucfirst( $comment_type ) ),
 				'comment_type' => $comment_type,
 			)
@@ -48,11 +49,11 @@ class CommentUnapproved extends CommentTrigger {
 
 		$this->comment = $comment;
 
-		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
+		if ( 'spam' === $this->comment->comment_approved && notification_get_setting( 'triggers/comment/akismet' ) ) {
 			return false;
 		}
 
-		if ( $comment_new_status == $comment_old_status || $comment_new_status != 'unapproved' ) {
+		if ( $comment_new_status === $comment_old_status || 'unapproved' !== $comment_new_status ) {
 			return false;
 		}
 

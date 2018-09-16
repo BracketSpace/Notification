@@ -106,7 +106,7 @@ abstract class PostTrigger extends Abstracts\Trigger {
 			)
 		);
 
-		if ( $this->post_type == 'post' ) {
+		if ( 'post' === $this->post_type ) {
 			$this->add_merge_tag(
 				new MergeTag\StringTag(
 					array(

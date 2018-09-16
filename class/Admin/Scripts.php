@@ -59,7 +59,7 @@ class Scripts {
 			'post.php',
 		);
 
-		if ( get_post_type() != 'notification' && ! in_array( $page_hook, $allowed_hooks ) ) {
+		if ( 'notification' !== get_post_type() && ! in_array( $page_hook, $allowed_hooks, true ) ) {
 			return;
 		}
 
@@ -78,6 +78,5 @@ class Scripts {
 		);
 
 	}
-
 
 }

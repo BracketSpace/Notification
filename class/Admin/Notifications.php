@@ -77,7 +77,7 @@ class Notifications {
 		}
 
 		// Bail if we are saving just the status.
-		if ( isset( $_POST['action'] ) && $_POST['action'] == 'change_notification_status' ) {
+		if ( isset( $_POST['action'] ) && 'change_notification_status' === $_POST['action'] ) {
 			return;
 		}
 

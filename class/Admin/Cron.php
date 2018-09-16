@@ -72,7 +72,7 @@ class Cron {
 		}
 
 		// Reschedule to match new settings.
-		if ( $event != $schedule ) {
+		if ( $event !== $schedule ) {
 			$this->unschedule( 'notification_check_wordpress_updates' );
 			$this->schedule( $schedule, 'notification_check_wordpress_updates' );
 		}

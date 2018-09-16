@@ -16,8 +16,8 @@ do_action( 'notification/metabox/trigger/tags/before', $this->get_var( 'trigger'
 	<?php foreach ( $this->get_var( 'tags' ) as $tag ) : ?>
 		<li>
 			<div class="intro">
-				<label><?php echo $tag->get_name(); ?></label>
-				<code class="notification-merge-tag" data-clipboard-text="{<?php echo $tag->get_slug(); ?>}">{<?php echo $tag->get_slug(); ?>}</code>
+				<label><?php echo esc_html( $tag->get_name() ); ?></label>
+				<code class="notification-merge-tag" data-clipboard-text="{<?php echo esc_attr( $tag->get_slug() ); ?>}">{<?php echo esc_attr( $tag->get_slug() ); ?>}</code>
 			</div>
 			<?php $description = $tag->get_description(); ?>
 			<?php if ( ! empty( $description ) ) : ?>
@@ -26,15 +26,14 @@ do_action( 'notification/metabox/trigger/tags/before', $this->get_var( 'trigger'
 					<div class="description">
 						<div class="description-container">
 							<?php if ( $tag->is_description_example() ) : ?>
-								<label>
-									<?php _e( 'Example:', 'notification' ); ?>
-								</label>
+								<label><?php esc_html_e( 'Example:', 'notification' ); ?></label>
 							<?php endif ?>
 							<div class="description-content">
+								<?php // PHPCS: OK. ?>
 								<?php echo $description; ?>
 							</div>
 							<?php if ( $tag->is_description_example() ) : ?>
-								<i>(<?php echo $tag->get_value_type(); ?>)</i>
+								<i>(<?php echo esc_html( $tag->get_value_type() ); ?>)</i>
 							<?php endif ?>
 						</div>
 					</div>

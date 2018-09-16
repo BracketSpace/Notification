@@ -7,4 +7,4 @@
 
 ?>
 
-<p><?php _e( 'Please select trigger first', 'notification' ); ?></p>
+<p><?php esc_html_e( 'Please select trigger first', 'notification' ); ?></p>

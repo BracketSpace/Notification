@@ -137,7 +137,7 @@ class Requirements {
 			echo '<ul style="list-style: disc; padding-left: 20px;">';
 
 		foreach ( $this->errors as $error ) {
-			echo '<li>' . $error . '</li>';
+			echo '<li>' . esc_html( $error ) . '</li>';
 		}
 
 			echo '</ul>';
@@ -185,6 +185,7 @@ class Requirements {
 		if ( ! empty( $missing_extensions ) ) {
 			$requirements->add_error(
 				sprintf(
+					// Translators: %s number of extensions.
 					_n( 'PHP extension: %s', 'PHP extensions: %s', count( $missing_extensions ), 'notification' ),
 					implode( ', ', $missing_extensions )
 				)
@@ -225,13 +226,13 @@ class Requirements {
 		foreach ( $active_plugins_raw as $plugin_full_path ) {
 			$plugin_file                             = str_replace( WP_PLUGIN_DIR . '/', '', $plugin_full_path );
 			$active_plugins[]                        = $plugin_file;
-			$plugin_api_data                         = @get_file_data( $plugin_full_path, array( 'Version' ) );
+			$plugin_api_data                         = @get_file_data( $plugin_full_path, array( 'Version' ) ); // phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 			$active_plugins_versions[ $plugin_file ] = $plugin_api_data[0];
 		}
 
 		foreach ( $plugins as $plugin_file => $plugin_data ) {
 
-			if ( ! in_array( $plugin_file, $active_plugins ) ) {
+			if ( ! in_array( $plugin_file, $active_plugins, true ) ) {
 				$requirements->add_error( sprintf( '%s plugin active', $plugin_data['name'] ) );
 			} elseif ( version_compare( $active_plugins_versions[ $plugin_file ], $plugin_data['version'], '<' ) ) {
 				$requirements->add_error( sprintf( '%s plugin at least in version %s', $plugin_data['name'], $plugin_data['version'] ) );
@@ -251,7 +252,7 @@ class Requirements {
 
 		$theme = wp_get_theme();
 
-		if ( $theme->get_template() != $needed_theme['slug'] ) {
+		if ( $theme->get_template() !== $needed_theme['slug'] ) {
 			$requirements->add_error( sprintf( '%s theme active', $needed_theme['name'] ) );
 		}
 
@@ -277,6 +278,7 @@ class Requirements {
 		if ( ! empty( $collisions ) ) {
 			$requirements->add_error(
 				sprintf(
+					// Translators: 1: function name, 2: function names.
 					_n( 'register %s function but it\'s already taken', 'register %s functions but these are already taken', count( $collisions ), 'notification' ),
 					implode( ', ', $collisions )
 				)
@@ -305,6 +307,7 @@ class Requirements {
 		if ( ! empty( $collisions ) ) {
 			$requirements->add_error(
 				sprintf(
+					// Translators: 1: class name, 2: class names.
 					_n( 'register %s class but it\'s already defined', 'register %s classes but these are already defined', count( $collisions ), 'notification' ),
 					implode( ', ', $collisions )
 				)

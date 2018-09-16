@@ -285,7 +285,7 @@ class Settings {
 
 		$parts = explode( '/', $setting );
 
-		if ( count( $parts ) != 3 ) {
+		if ( count( $parts ) !== 3 ) {
 			throw new \Exception( 'You must provide exactly 3 parts as the setting name' );
 		}
 
@@ -312,10 +312,10 @@ class Settings {
 		$this->path = dirname( dirname( dirname( __FILE__ ) ) );
 
 		// URI.
-		$theme_url = parse_url( get_stylesheet_directory_uri() );
+		$theme_url = wp_parse_url( get_stylesheet_directory_uri() );
 		$theme_pos = strpos( $this->path, $theme_url['path'] );
 
-		if ( $theme_pos !== false ) { // loaded from theme.
+		if ( false !== $theme_pos ) { // loaded from theme.
 
 			$plugin_relative_dir = str_replace( $theme_url['path'], '', substr( $this->path, $theme_pos ) );
 			$this->uri           = $theme_url['scheme'] . '://' . $theme_url['host'] . $theme_url['path'] . $plugin_relative_dir;
@@ -354,7 +354,7 @@ class Settings {
 			}
 		}
 
-		$config_hash = md5( serialize( $config ) );
+		$config_hash = md5( wp_json_encode( $config ) );
 		$prev_hash   = get_option( '_' . $this->handle . '_settings_hash' );
 
 		if ( $config_hash !== $prev_hash ) {

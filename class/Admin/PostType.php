@@ -128,11 +128,11 @@ class PostType {
 	 */
 	public function render_trigger_select( $post ) {
 
-		if ( get_post_type( $post ) != 'notification' ) {
+		if ( 'notification' !== get_post_type( $post ) ) {
 			return;
 		}
 
-		echo '<h3 class="trigger-section-title">' . __( 'Trigger', 'notification' ) . '</h3>';
+		echo '<h3 class="trigger-section-title">' . esc_html__( 'Trigger', 'notification' ) . '</h3>';
 		$this->trigger->render_select( $post );
 
 	}
@@ -148,11 +148,11 @@ class PostType {
 	 */
 	public function render_notification_metaboxes( $post ) {
 
-		if ( get_post_type( $post ) != 'notification' ) {
+		if ( 'notification' !== get_post_type( $post ) ) {
 			return;
 		}
 
-		echo '<h3 class="notifications-section-title">' . __( 'Notifications', 'notification' ) . '</h3>';
+		echo '<h3 class="notifications-section-title">' . esc_html__( 'Notifications', 'notification' ) . '</h3>';
 
 		do_action( 'notitication/admin/notifications/pre', $post );
 
@@ -200,17 +200,17 @@ class PostType {
 	public function save_notification_status( $data, $postarr ) {
 
 		// fix for brand new posts.
-		if ( $data['post_status'] == 'auto-draft' ) {
+		if ( 'auto-draft' === $data['post_status'] ) {
 			return $data;
 		}
 
-		if ( $data['post_type'] != 'notification' ||
-			$postarr['post_status'] == 'trash' ||
-			( isset( $_POST['action'] ) && $_POST['action'] == 'change_notification_status' ) ) {
+		if ( 'notification' !== $data['post_type'] ||
+			'trash' === $postarr['post_status'] ||
+			( isset( $_POST['action'] ) && 'change_notification_status' === $_POST['action'] ) ) {
 			return $data;
 		}
 
-		if ( isset( $postarr['onoffswitch'] ) && $postarr['onoffswitch'] == '1' ) {
+		if ( isset( $postarr['onoffswitch'] ) && '1' === $postarr['onoffswitch'] ) {
 			$data['post_status'] = 'publish';
 		} else {
 			$data['post_status'] = 'draft';
@@ -234,7 +234,7 @@ class PostType {
 			$delete_text = __( 'Move to Trash', 'notification' );
 		}
 
-		$enabled = notification_is_new_notification( $post ) || get_post_status( $post->ID ) != 'draft';
+		$enabled = notification_is_new_notification( $post ) || 'draft' !== get_post_status( $post->ID );
 
 		$this->view->set_var( 'enabled', $enabled );
 		$this->view->set_var( 'post_id', $post->ID );

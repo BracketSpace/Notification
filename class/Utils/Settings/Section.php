@@ -78,7 +78,7 @@ class Section {
 	 */
 	public function name( $name = null ) {
 
-		if ( $name !== null ) {
+		if ( null !== $name ) {
 			$this->name = $name;
 		}
 
@@ -94,7 +94,7 @@ class Section {
 	 */
 	public function slug( $slug = null ) {
 
-		if ( $slug !== null ) {
+		if ( null !== $slug ) {
 			$this->slug = $slug;
 		}
 

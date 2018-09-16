@@ -126,7 +126,7 @@ class RecipientsField extends RepeaterField {
 			}
 
 			// don't print useless informations for hidden field.
-			if ( isset( $sub_field->type ) && $sub_field->type === 'hidden' ) {
+			if ( isset( $sub_field->type ) && 'hidden' === $sub_field->type ) {
 				$html .= $sub_field->field();
 			} else {
 

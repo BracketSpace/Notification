@@ -144,7 +144,7 @@ class Extensions {
 			$response   = wp_remote_get( $this->api_url );
 			$extensions = array();
 
-			if ( ! is_wp_error( $response ) && 200 == wp_remote_retrieve_response_code( $response ) ) {
+			if ( ! is_wp_error( $response ) && 200 === wp_remote_retrieve_response_code( $response ) ) {
 				$extensions = json_decode( wp_remote_retrieve_body( $response ), true );
 				$extensions_cache->set( $extensions );
 			}
@@ -196,7 +196,7 @@ class Extensions {
 
 		foreach ( $extensions as $extension ) {
 
-			if ( ! isset( $extension['edd'] ) || ! in_array( $extension['slug'], $plugin_slugs ) ) {
+			if ( ! isset( $extension['edd'] ) || ! in_array( $extension['slug'], $plugin_slugs, true ) ) {
 				continue;
 			}
 
@@ -384,7 +384,7 @@ class Extensions {
 			return;
 		}
 
-		if ( get_current_screen()->id == $this->page_hook ) {
+		if ( get_current_screen()->id === $this->page_hook ) {
 			return;
 		}
 
@@ -398,8 +398,8 @@ class Extensions {
 
 				if ( ! $license->is_valid() ) {
 
-					// translators: 1. Plugin name, 2. Link.
 					$message = sprintf(
+						// Translators: 1. Plugin name, 2. Link.
 						__( 'Please activate the %1$s plugin to get the updates. %2$s', 'notification' ),
 						$extension['edd']['item_name'],
 						'<a href="' . admin_url( 'edit.php?post_type=notification&page=extensions' ) . '">' . __( 'Go to Extensions', 'notification' ) . '</a>'

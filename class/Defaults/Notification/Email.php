@@ -42,7 +42,7 @@ class Email extends Abstracts\Notification {
 			)
 		);
 
-		if ( notification_get_setting( 'notifications/email/type' ) == 'html' && ! notification_get_setting( 'notifications/email/unfiltered_html' ) ) {
+		if ( notification_get_setting( 'notifications/email/type' ) === 'html' && ! notification_get_setting( 'notifications/email/unfiltered_html' ) ) {
 			$body_field = new Field\EditorField(
 				array(
 					'label'    => __( 'Body', 'notification' ),
@@ -90,7 +90,7 @@ class Email extends Abstracts\Notification {
 	 */
 	public function send( Triggerable $trigger ) {
 
-		$default_html_mime = notification_get_setting( 'notifications/email/type' ) == 'html';
+		$default_html_mime = notification_get_setting( 'notifications/email/type' ) === 'html';
 		$html_mime         = apply_filters( 'notification/' . $this->get_slug() . '/use_html_mime', $default_html_mime, $this, $trigger );
 
 		if ( $html_mime ) {

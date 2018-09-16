@@ -24,6 +24,7 @@ class CommentSpammed extends CommentTrigger {
 		parent::__construct(
 			array(
 				'slug'         => 'wordpress/comment_' . $comment_type . '_spammed',
+				// Translators: %s comment type.
 				'name'         => sprintf( __( '%s spammed', 'notification' ), ucfirst( $comment_type ) ),
 				'comment_type' => $comment_type,
 			)
@@ -47,7 +48,7 @@ class CommentSpammed extends CommentTrigger {
 
 		$this->comment = $comment;
 
-		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
+		if ( 'spam' === $this->comment->comment_approved && notification_get_setting( 'triggers/comment/akismet' ) ) {
 			return false;
 		}
 

@@ -22,11 +22,11 @@ class Ajax {
 	 */
 	public function verify_nonce( $action = null, $nonce = 'nonce' ) {
 
-		if ( $action === null ) {
+		if ( null === $action ) {
 			trigger_error( 'Action cannot be empty' );
 		}
 
-		if ( check_ajax_referer( $action, $nonce, false ) == false ) {
+		if ( check_ajax_referer( $action, $nonce, false ) === false ) {
 			$this->error( array( 'wrong_nonce' ) );
 		}
 

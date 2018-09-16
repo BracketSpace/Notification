@@ -49,7 +49,7 @@ class PostDrafted extends PostTrigger {
 
 		$this->{ $this->post_type } = $post;
 
-		if ( $this->{ $this->post_type }->post_type != $this->post_type ) {
+		if ( $this->{ $this->post_type }->post_type !== $this->post_type ) {
 			return false;
 		}
 
@@ -57,11 +57,11 @@ class PostDrafted extends PostTrigger {
 			return false;
 		}
 
-		if ( $new_status != 'draft' ) {
+		if ( 'draft' !== $new_status ) {
 			return false;
 		}
 
-		if ( $this->{ $this->post_type }->post_type != $this->post_type ) {
+		if ( $this->{ $this->post_type }->post_type !== $this->post_type ) {
 			return false;
 		}
 

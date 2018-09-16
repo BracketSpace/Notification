@@ -56,14 +56,14 @@ class PostAdded extends PostTrigger {
 		// Controls if notification should be aborted if post is added from the admin. If disabled, the notification will be
 		// executed every time someone click the "Add new" button in the WordPress admin.
 		$bail_auto_draft = apply_filters( 'notification/trigger/wordpress/' . $this->post_type . '/added/bail_auto_draft', true );
-		if ( $bail_auto_draft && $post->post_status == 'auto-draft' ) {
+		if ( $bail_auto_draft && 'auto-draft' === $post->post_status ) {
 			return false;
 		}
 
 		// WP_Post object.
 		$this->{ $this->post_type } = $post;
 
-		if ( $this->{ $this->post_type }->post_type != $this->post_type ) {
+		if ( $this->{ $this->post_type }->post_type !== $this->post_type ) {
 			return false;
 		}
 

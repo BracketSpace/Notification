@@ -52,7 +52,7 @@ class PostPublished extends PostTrigger {
 
 		$this->{ $this->post_type } = $post;
 
-		if ( $this->{ $this->post_type }->post_type != $this->post_type ) {
+		if ( $this->{ $this->post_type }->post_type !== $this->post_type ) {
 			return false;
 		}
 

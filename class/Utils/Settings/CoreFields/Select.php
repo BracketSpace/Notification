@@ -26,12 +26,12 @@ class Select {
 		$name     = $field->addon( 'multiple' ) ? $field->input_name() . '[]' : $field->input_name();
 		$pretty   = $field->addon( 'pretty' ) ? 'pretty-select' : '';
 
-		echo '<select ' . $multiple . ' name="' . $name . '" id="' . $field->input_id() . '" class="' . $pretty . '">';
+		echo '<select ' . esc_attr( $multiple ) . ' name="' . esc_attr( $name ) . '" id="' . $field->input_id() . '" class="' . esc_attr( $pretty ) . '">'; // WPCS: XSS ok.
 
 		foreach ( $field->addon( 'options' ) as $option_value => $option_label ) {
 
-			$selected = in_array( $option_value, (array) $field->value() ) ? 'selected="selected"' : '';
-			echo '<option value="' . $option_value . '" ' . $selected . '>' . $option_label . '</option>';
+			$selected = in_array( $option_value, (array) $field->value(), true ) ? 'selected="selected"' : '';
+			echo '<option value="' . esc_attr( $option_value ) . '" ' . $selected . '>' . esc_html( $option_label ) . '</option>'; // WPCS: XSS ok.
 
 		}
 
