@@ -38,7 +38,8 @@ class UserNicename extends StringTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => 'user_nicename',
 				'name'        => __( 'User nicename', 'notification' ),
 				'description' => __( 'Johhnie', 'notification' ),

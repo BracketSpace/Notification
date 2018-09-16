@@ -40,7 +40,8 @@ class PostPermalink extends UrlTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => $this->post_type . '_permalink',
 				// translators: singular post name.
 				'name'        => sprintf( __( '%s permalink', 'notification' ), $this->get_nicename() ),

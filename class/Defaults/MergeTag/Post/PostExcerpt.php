@@ -40,7 +40,8 @@ class PostExcerpt extends StringTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => $this->post_type . '_excerpt',
 				// translators: singular post name.
 				'name'        => sprintf( __( '%s excerpt', 'notification' ), $this->get_nicename() ),

@@ -82,7 +82,8 @@ class DocHooks {
 			array(
 				'priority'  => 10,
 				'arg_count' => PHP_INT_MAX,
-			), $args
+			),
+			$args
 		);
 
 		return $this->_add_hook( 'filter', $name, $callback, $args );
@@ -104,7 +105,8 @@ class DocHooks {
 			array(
 				'priority'  => 10,
 				'arg_count' => PHP_INT_MAX,
-			), $args
+			),
+			$args
 		);
 
 		return $this->_add_hook( 'action', $name, $callback, $args );

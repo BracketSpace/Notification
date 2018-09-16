@@ -40,7 +40,8 @@ class PostType extends StringTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => 'post_type',
 				'name'        => __( 'Post Type', 'notification' ),
 				'description' => 'post',

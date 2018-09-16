@@ -38,7 +38,8 @@ class UserFirstName extends StringTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => 'user_first_name',
 				'name'        => __( 'User first name', 'notification' ),
 				'description' => __( 'John', 'notification' ),

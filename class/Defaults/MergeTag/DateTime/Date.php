@@ -26,7 +26,8 @@ class Date extends StringTag {
 	public function __construct( $params = array() ) {
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => 'date',
 				'name'        => __( 'Date', 'notification' ),
 				'date_format' => get_option( 'date_format' ),

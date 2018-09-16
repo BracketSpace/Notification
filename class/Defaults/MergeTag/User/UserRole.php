@@ -38,7 +38,8 @@ class UserRole extends StringTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => 'user_role',
 				'name'        => __( 'User role', 'notification' ),
 				'description' => __( 'Subscriber', 'notification' ),
@@ -48,7 +49,8 @@ class UserRole extends StringTag {
 						function ( $role ) {
 							$role_object = get_role( $role );
 							return translate_user_role( ucfirst( $role_object->name ) );
-						}, $this->trigger->{ $this->property_name }->roles
+						},
+						$this->trigger->{ $this->property_name }->roles
 					);
 
 					return implode( ', ', $roles );

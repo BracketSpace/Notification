@@ -40,7 +40,8 @@ class PostStatus extends StringTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => $this->post_type . '_status',
 				// translators: singular post name.
 				'name'        => sprintf( __( '%s status', 'notification' ), $this->get_nicename() ),

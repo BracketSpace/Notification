@@ -166,9 +166,13 @@ class Webhook extends Abstracts\Notification {
 
 		$remote_url  = add_query_arg( $args, $url );
 		$remote_args = apply_filters(
-			'notification/webhook/remote_args/get', array(
+			'notification/webhook/remote_args/get',
+			array(
 				'headers' => $headers,
-			), $url, $args, $this
+			),
+			$url,
+			$args,
+			$this
 		);
 
 		$response = wp_remote_get( $remote_url, $remote_args );
@@ -189,10 +193,14 @@ class Webhook extends Abstracts\Notification {
 	public function send_post( $url, $args = array(), $headers = array() ) {
 
 		$remote_args = apply_filters(
-			'notification/webhook/remote_args/post', array(
+			'notification/webhook/remote_args/post',
+			array(
 				'body'    => $args,
 				'headers' => $headers,
-			), $url, $args, $this
+			),
+			$url,
+			$args,
+			$this
 		);
 
 		$response = wp_remote_post( $url, $remote_args );

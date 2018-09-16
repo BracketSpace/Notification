@@ -35,7 +35,8 @@ class AttachmentMimeType extends StringTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => 'attachment_mime_type',
 				'name'        => __( 'Attachment MIME type', 'notification' ),
 				'description' => 'image/jpeg',

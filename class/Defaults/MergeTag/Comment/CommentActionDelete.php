@@ -35,7 +35,8 @@ class CommentActionDelete extends UrlTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'     => 'comment_delete_action_url',
 				'name'     => __( 'Comment delete URL', 'notification' ),
 				'resolver' => function( $trigger ) {

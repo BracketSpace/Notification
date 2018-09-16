@@ -35,7 +35,8 @@ class CommentActionTrash extends UrlTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'     => 'comment_trash_action_url',
 				'name'     => __( 'Comment trash URL', 'notification' ),
 				'resolver' => function( $trigger ) {

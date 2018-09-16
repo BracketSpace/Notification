@@ -40,7 +40,8 @@ class PostSlug extends StringTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => $this->post_type . '_slug',
 				// translators: singular post name.
 				'name'        => sprintf( __( '%s slug', 'notification' ), $this->get_nicename() ),

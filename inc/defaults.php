@@ -6,10 +6,12 @@
  */
 
 add_action(
-	'plugins_loaded', function() {
+	'plugins_loaded',
+	function() {
 
 		add_action(
-			'init', function() {
+			'init',
+			function() {
 
 				$defaults = array(
 					'global_merge_tags',
@@ -25,7 +27,9 @@ add_action(
 					}
 				}
 
-			}, apply_filters( 'notification/load/default/priority', 1000 ), 1
+			},
+			apply_filters( 'notification/load/default/priority', 1000 ),
+			1
 		);
 
 	}

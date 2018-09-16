@@ -18,7 +18,8 @@ use BracketSpace\Notification\Interfaces;
 function register_recipient( $notification, Interfaces\Receivable $recipient ) {
 
 	add_filter(
-		'notification/recipients', function( $recipients ) use ( $notification, $recipient ) {
+		'notification/recipients',
+		function( $recipients ) use ( $notification, $recipient ) {
 
 			if ( ! isset( $recipients[ $notification ] ) ) {
 				$recipients[ $notification ] = array();

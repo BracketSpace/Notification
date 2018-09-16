@@ -209,7 +209,9 @@ class Extensions {
 			$wp_plugin = $wp_plugins[ $extension['slug'] ];
 
 			new EDDUpdater(
-				$extension['edd']['store_url'], $extension['slug'], array(
+				$extension['edd']['store_url'],
+				$extension['slug'],
+				array(
 					'version'   => $wp_plugin['Version'],
 					'license'   => '',
 					'item_name' => $extension['edd']['item_name'],

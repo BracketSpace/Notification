@@ -35,7 +35,8 @@ class AttachmentDirectUrl extends UrlTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => 'attachment_direct_url',
 				'name'        => __( 'Attachment direct URL', 'notification' ),
 				'description' => __( 'http://example.com/wp-content/uploads/2018/02/forest-landscape.jpg', 'notification' ),

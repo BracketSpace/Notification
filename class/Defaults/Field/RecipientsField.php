@@ -25,7 +25,8 @@ class RecipientsField extends RepeaterField {
 		}
 
 		$params = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'notification'     => '',
 				'label'            => __( 'Recipients', 'notification' ),
 				'name'             => 'recipients',

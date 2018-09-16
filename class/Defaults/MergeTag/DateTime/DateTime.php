@@ -26,7 +26,8 @@ class DateTime extends StringTag {
 	public function __construct( $params = array() ) {
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => 'datetime',
 				'name'        => __( 'Date and Time', 'notification' ),
 				'time_format' => get_option( 'time_format' ),

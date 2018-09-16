@@ -17,7 +17,8 @@ use BracketSpace\Notification\Interfaces;
 function register_notification( Interfaces\Sendable $notification ) {
 
 	add_filter(
-		'notification/notifications', function( $notifications ) use ( $notification ) {
+		'notification/notifications',
+		function( $notifications ) use ( $notification ) {
 
 			if ( isset( $notifications[ $notification->get_slug() ] ) ) {
 				throw new \Exception( 'Notification with that slug already exists' );

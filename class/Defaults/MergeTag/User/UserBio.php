@@ -38,7 +38,8 @@ class UserBio extends StringTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => 'user_bio',
 				'name'        => __( 'User bio', 'notification' ),
 				'description' => __( 'Developer based in Ontario, Canada', 'notification' ),

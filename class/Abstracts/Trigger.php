@@ -114,7 +114,8 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		}
 
 		array_push(
-			$this->actions, array(
+			$this->actions,
+			array(
 				'tag'           => $tag,
 				'priority'      => $priority,
 				'accepted_args' => $accepted_args,

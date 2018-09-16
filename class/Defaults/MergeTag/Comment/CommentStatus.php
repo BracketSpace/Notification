@@ -35,7 +35,8 @@ class CommentStatus extends StringTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => 'comment_status',
 				'name'        => __( 'Comment status', 'notification' ),
 				'description' => __( 'Approved', 'notification' ),

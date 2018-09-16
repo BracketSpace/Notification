@@ -53,7 +53,8 @@ class PostType {
 		);
 
 		register_post_type(
-			'notification', array(
+			'notification',
+			array(
 				'labels'              => apply_filters( 'notification/whitelabel/cpt/labels', $labels ),
 				'hierarchical'        => false,
 				'public'              => true,
@@ -70,7 +71,8 @@ class PostType {
 				'can_export'          => true,
 				'rewrite'             => false,
 				'capabilities'        => apply_filters(
-					'notification/post_type/capabilities', array(
+					'notification/post_type/capabilities',
+					array(
 						'edit_post'          => 'manage_options',
 						'read_post'          => 'manage_options',
 						'delete_post'        => 'manage_options',

@@ -39,7 +39,8 @@ if ( isset( $ext['wporg'] ) && ! is_wp_error( $ext['wporg'] ) && ( current_user_
 						'_wpnonce' => wp_create_nonce( 'activate-plugin_' . $status['file'] ),
 						'action'   => 'activate',
 						'plugin'   => $status['file'],
-					), network_admin_url( 'plugins.php' )
+					),
+					network_admin_url( 'plugins.php' )
 				);
 
 				if ( is_network_admin() ) {

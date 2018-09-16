@@ -35,7 +35,8 @@ class CommentType extends StringTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => 'comment_type',
 				'name'        => __( 'Comment type', 'notification' ),
 				'description' => __( 'Comment or Pingback or Trackback', 'notification' ),

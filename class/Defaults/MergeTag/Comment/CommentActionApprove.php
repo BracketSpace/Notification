@@ -35,7 +35,8 @@ class CommentActionApprove extends UrlTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'     => 'comment_approve_action_url',
 				'name'     => __( 'Comment approve URL', 'notification' ),
 				'resolver' => function( $trigger ) {

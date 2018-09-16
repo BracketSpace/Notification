@@ -38,7 +38,8 @@ class UserLogin extends StringTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => 'user_login',
 				'name'        => __( 'User login', 'notification' ),
 				'description' => __( 'johndoe', 'notification' ),

@@ -17,7 +17,8 @@ use BracketSpace\Notification\Interfaces;
 function register_trigger( Interfaces\Triggerable $trigger ) {
 
 	add_filter(
-		'notification/triggers', function( $triggers ) use ( $trigger ) {
+		'notification/triggers',
+		function( $triggers ) use ( $trigger ) {
 
 			if ( isset( $triggers[ $trigger->get_slug() ] ) ) {
 				throw new \Exception( 'Trigger with that slug already exists' );
@@ -91,7 +92,8 @@ function notification_add_global_merge_tag( Interfaces\Taggable $merge_tag ) {
 
 	// Add to collection so we could use it later in the Screen Help.
 	add_filter(
-		'notification/global_merge_tags', function( $merge_tags ) use ( $merge_tag ) {
+		'notification/global_merge_tags',
+		function( $merge_tags ) use ( $merge_tag ) {
 			$merge_tags[] = $merge_tag;
 			return $merge_tags;
 		}
@@ -99,7 +101,8 @@ function notification_add_global_merge_tag( Interfaces\Taggable $merge_tag ) {
 
 	// Register the Tag.
 	add_action(
-		'notification/trigger/registered', function( $trigger ) use ( $merge_tag ) {
+		'notification/trigger/registered',
+		function( $trigger ) use ( $merge_tag ) {
 			$trigger->add_merge_tag( clone $merge_tag );
 		}
 	);

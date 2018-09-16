@@ -68,7 +68,9 @@ class Scripts {
 		wp_enqueue_style( 'notification', $this->files->asset_url( 'css', 'style.css' ), array(), $this->files->asset_mtime( 'css', 'style.css' ) );
 
 		wp_localize_script(
-			'notification', 'notification', array(
+			'notification',
+			'notification',
+			array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
 				'i18n'    => array(
 					'copied'              => __( 'Copied', 'notification' ),

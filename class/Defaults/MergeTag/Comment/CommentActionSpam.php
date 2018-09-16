@@ -35,7 +35,8 @@ class CommentActionSpam extends UrlTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'     => 'comment_spam_action_url',
 				'name'     => __( 'Comment spam URL', 'notification' ),
 				'resolver' => function( $trigger ) {

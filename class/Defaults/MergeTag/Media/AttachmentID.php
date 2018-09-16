@@ -35,7 +35,8 @@ class AttachmentID extends IntegerTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => 'attachment_ID',
 				'name'        => __( 'Attachment ID', 'notification' ),
 				'description' => '35',

@@ -38,7 +38,8 @@ class UserEmail extends StringTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => 'user_email',
 				'name'        => __( 'User email', 'notification' ),
 				'description' => __( 'john.doe@example.com', 'notification' ),

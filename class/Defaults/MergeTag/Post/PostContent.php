@@ -40,7 +40,8 @@ class PostContent extends StringTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => $this->post_type . '_content',
 				// translators: singular post name.
 				'name'        => sprintf( __( '%s content', 'notification' ), $this->get_nicename() ),

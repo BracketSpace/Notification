@@ -35,7 +35,8 @@ class CommentAuthorUrl extends UrlTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => 'comment_author_url',
 				'name'        => __( 'Comment author URL', 'notification' ),
 				'description' => __( 'http://mywebsite.com', 'notification' ),

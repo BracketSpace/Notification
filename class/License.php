@@ -176,7 +176,8 @@ class License {
 
 		// call the custom API.
 		$response = wp_remote_post(
-			$this->extension['edd']['store_url'], array(
+			$this->extension['edd']['store_url'],
+			array(
 				'timeout' => 15,
 				'body'    => array(
 					'edd_action' => 'activate_license',
@@ -218,7 +219,8 @@ class License {
 
 		// call the custom API.
 		$response = wp_remote_post(
-			$this->extension['edd']['store_url'], array(
+			$this->extension['edd']['store_url'],
+			array(
 				'timeout' => 15,
 				'body'    => array(
 					'edd_action' => 'deactivate_license',
@@ -260,7 +262,8 @@ class License {
 
 		// call the custom API.
 		$response = wp_remote_post(
-			$this->extension['edd']['store_url'], array(
+			$this->extension['edd']['store_url'],
+			array(
 				'timeout' => 15,
 				'body'    => array(
 					'edd_action' => 'check_license',

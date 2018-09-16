@@ -35,7 +35,8 @@ class AttachmentPage extends UrlTag {
 		}
 
 		$args = wp_parse_args(
-			$params, array(
+			$params,
+			array(
 				'slug'        => 'attachment_page_link',
 				'name'        => __( 'Attachment page link', 'notification' ),
 				'description' => __( 'http://example.com/forest-landscape/', 'notification' ),
