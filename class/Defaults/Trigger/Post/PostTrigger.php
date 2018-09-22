@@ -91,6 +91,14 @@ abstract class PostTrigger extends Abstracts\Trigger {
 		);
 
 		$this->add_merge_tag(
+			new MergeTag\Post\PostContentHtml(
+				array(
+					'post_type' => $this->post_type,
+				)
+			)
+		);
+
+		$this->add_merge_tag(
 			new MergeTag\Post\PostExcerpt(
 				array(
 					'post_type' => $this->post_type,
