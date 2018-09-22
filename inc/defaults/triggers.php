@@ -95,3 +95,4 @@ if ( notification_get_setting( 'triggers/wordpress/updates' ) ) {
 register_trigger( new Trigger\Plugin\Activated() );
 register_trigger( new Trigger\Plugin\Deactivated() );
 register_trigger( new Trigger\Plugin\Installed() );
+register_trigger( new Trigger\Plugin\Removed() );
