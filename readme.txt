@@ -213,6 +213,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Fixed] When `Strip all shortcodes` setting is disabled, the shortcodes are rendered.
 * [Fixed] Coding Standards.
 * [Fixed] Gutenberg JS Hooks conflict.
+* [Fixed] Bug when recipient types has been changed.
 * [Added] `remove_action` metod in Trigger class.
 * [Added] Option to allow unfiltered HTML in Email body, thanks to @martinellimarco.
 * [Added] Post content HTML tag, for unfiltered output.
