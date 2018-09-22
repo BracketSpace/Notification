@@ -219,6 +219,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Added] Post content HTML tag, for unfiltered output.
 * [Added] Better JSON support for webhooks, if webhook is sent as JSON the default Content-Type header is added.
 * [Added] Support for merge tags and shortcodes in Webhook recipient field.
+* [Added] Disabled OP Cache requirement.
 * [Added] Plugin activated trigger
 * [Added] Plugin deactivated trigger
 
