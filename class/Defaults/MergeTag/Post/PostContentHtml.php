@@ -27,7 +27,7 @@ class PostContentHtml extends HtmlTag {
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since [Next]
+	 * @since 5.2.4
 	 * @param array $params merge tag configuration params.
 	 */
 	public function __construct( $params = array() ) {
