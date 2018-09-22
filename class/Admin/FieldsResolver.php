@@ -107,7 +107,7 @@ class FieldsResolver {
 				$resolved = do_shortcode( $resolved );
 			}
 
-					$resolved = apply_filters( 'notificaiton/notification/field/resolved', $resolved, $this->merge_tags );
+			$resolved = apply_filters( 'notificaiton/notification/field/resolved', $resolved, $this->merge_tags );
 
 		}
 
