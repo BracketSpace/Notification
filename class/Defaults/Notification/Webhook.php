@@ -133,10 +133,15 @@ class Webhook extends Abstracts\Notification {
 			$args = wp_json_encode( $args );
 		}
 
-		if ( notification_get_setting( 'notifications/webhook/headers' ) ) {
-			$headers = $this->parse_args( $data['headers'] );
+		// Headers.
+		if ( $data['json'] ) {
+			$headers = array( 'Content-Type' => 'application/json' );
 		} else {
 			$headers = array();
+		}
+
+		if ( notification_get_setting( 'notifications/webhook/headers' ) ) {
+			$headers = array_merge( $headers, $this->parse_args( $data['headers'] ) );
 		}
 
 		// Call each URL separately.

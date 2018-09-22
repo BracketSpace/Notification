@@ -215,6 +215,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Added] `remove_action` metod in Trigger class.
 * [Added] Option to allow unfiltered HTML in Email body, thanks to @martinellimarco.
 * [Added] Post content HTML tag, for unfiltered output.
+* [Added] Better JSON support for webhooks, if webhook is sent as JSON the default Content-Type header is added.
 * [Added] Plugin activated trigger
 * [Added] Plugin deactivated trigger
 
