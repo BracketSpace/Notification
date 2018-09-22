@@ -17,7 +17,7 @@ class Updated extends PluginTrigger {
 	/**
 	 * Constructor.
 	 */
-	public function __construct( ) {
+	public function __construct() {
 
 		parent::__construct( 'wordpress/plugin/update', __( 'Plugin updated', 'notification' ) );
 
@@ -36,16 +36,16 @@ class Updated extends PluginTrigger {
 	 */
 	public function action( $obj, $type ) {
 
-		if ( !isset( $type['type'] ) || $type['type'] !== 'plugin' ) {
+		if ( ! isset( $type['type'] ) || 'plugin' !== $type['type'] ) {
 			return false;
 		}
 
-		if ( isset($type['bulk']) && $type['bulk'] == true ) {
+		if ( isset( $type['bulk'] ) && true === $type['bulk'] ) {
 
-			if ( $type['action'] === 'update' ) {
+			if ( 'update' === $type['action'] ) {
 
 				$this->version_before          = $obj->skin->plugin_info['Version'];
-				$plugin_dir                    = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $obj->plugin_info( );
+				$plugin_dir                    = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $obj->plugin_info();
 				$this->plugin                  = get_plugin_data( $plugin_dir );
 				$this->plugin_update_date_time = strtotime( 'now' );
 
@@ -58,25 +58,31 @@ class Updated extends PluginTrigger {
 	 *
 	 * @return void
 	 */
-	public function merge_tags( )
-	{
+	public function merge_tags() {
+		parent::merge_tags();
 
-		parent::merge_tags( );
+		$this->add_merge_tag(
+			new MergeTag\DateTime\DateTime(
+				array(
+					'slug' => 'plugin_update_date_time',
+					'name' => __( 'Plugin updated date and time', 'notification' ),
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
-			'slug' => 'plugin_update_date_time',
-			'name' => __( 'Plugin updated date and time', 'notification' ),
+				)
+			)
+		);
 
-		) ) );
-
-		$this->add_merge_tag( new MergeTag\StringTag( array(
-			'slug'        => 'before_version',
-			'name'        => __( 'Plugin version before update', 'notification' ),
-			'description' => __( '1.0.0', 'notification' ),
-			'example'     => true,
-			'resolver'    => function( $trigger ) {
-				return $trigger->version_before;
-			},
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\StringTag(
+				array(
+					'slug'        => 'before_version',
+					'name'        => __( 'Plugin version before update', 'notification' ),
+					'description' => __( '1.0.0', 'notification' ),
+					'example'     => true,
+					'resolver'    => function( $trigger ) {
+						return $trigger->version_before;
+					},
+				)
+			)
+		);
 	}
 }
