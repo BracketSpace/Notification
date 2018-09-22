@@ -52,6 +52,10 @@ class CommentSpammed extends CommentTrigger {
 			return false;
 		}
 
+		if ( $this->comment->comment_type !== $this->comment_type ) {
+			return false;
+		}
+
 		// fix for action being called too early, before WP marks the comment as spam.
 		$this->comment->comment_approved = 'spam';
 

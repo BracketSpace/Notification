@@ -214,6 +214,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Fixed] Coding Standards.
 * [Fixed] Gutenberg JS Hooks conflict.
 * [Fixed] Bug when recipient types has been changed.
+* [Fixed] Every comment type being targeted in Comment trigger.
 * [Added] `remove_action` metod in Trigger class.
 * [Added] Option to allow unfiltered HTML in Email body, thanks to @martinellimarco.
 * [Added] Post content HTML tag, for unfiltered output.
