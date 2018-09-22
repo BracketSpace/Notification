@@ -46,12 +46,12 @@ class Share {
 
 		$this->page_hook = add_submenu_page(
 			'edit.php?post_type=notification',
-	        '',
-	        __( 'The story', 'notification' ),
-	        'manage_options',
-	        'the-story',
-	        array( $this, 'story_page' )
-	    );
+			'',
+			__( 'The story', 'notification' ),
+			'manage_options',
+			'the-story',
+			array( $this, 'story_page' )
+		);
 
 	}
 
@@ -70,7 +70,7 @@ class Share {
 
 		$screen = get_current_screen();
 
-		if ( isset( $screen->post_type ) && $screen->post_type == 'notification' && $screen->id != 'notification_page_the-story' ) {
+		if ( isset( $screen->post_type ) && 'notification' === $screen->post_type && 'notification_page_the-story' !== $screen->id ) {
 			wp_safe_redirect( admin_url( 'edit.php?post_type=notification&page=the-story' ) );
 			exit;
 		}

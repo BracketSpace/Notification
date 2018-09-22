@@ -19,23 +19,26 @@ use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 class TermName extends StringTag {
 
 	/**
-     * Merge tag constructor
-     *
-     * @since 5.2.2
-     */
-    public function __construct() {
+	 * Merge tag constructor
+	 *
+	 * @since 5.2.2
+	 */
+	public function __construct() {
 
-    	$args = wp_parse_args( array(
-			'slug'        => 'term_name',
-			'name'        => __( 'Term name', 'notification' ),
-			'description' => 'Nature',
-			'example'     => true,
-			'resolver'    => function( $trigger ) {
-				return $trigger->term->name;
+		$args = wp_parse_args(
+			array(
+				'slug'        => 'term_name',
+				'name'        => __( 'Term name', 'notification' ),
+				'description' => 'Nature',
+				'example'     => true,
+				'resolver'    => function( $trigger ) {
+					return $trigger->term->name;
 
-		} ) );
+				},
+			)
+		);
 
-    	parent::__construct( $args );
+		parent::__construct( $args );
 
 	}
 

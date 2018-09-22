@@ -1,6 +1,6 @@
 <?php
 /**
- * Post title merge tag
+ * Post content HTMl merge tag
  *
  * Requirements:
  * - Trigger property of the post type slug with WP_Post object
@@ -10,13 +10,12 @@
 
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
-use BracketSpace\Notification\Defaults\MergeTag\StringTag;
-
+use BracketSpace\Notification\Defaults\MergeTag\HtmlTag;
 
 /**
- * Post title merge tag class
+ * Post content HTML merge tag class
  */
-class PostTitle extends StringTag {
+class PostContentHtml extends HtmlTag {
 
 	/**
 	 * Post Type slug
@@ -28,7 +27,7 @@ class PostTitle extends StringTag {
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
+	 * @since 5.2.4
 	 * @param array $params merge tag configuration params.
 	 */
 	public function __construct( $params = array() ) {
@@ -42,13 +41,13 @@ class PostTitle extends StringTag {
 		$args = wp_parse_args(
 			$params,
 			array(
-				'slug'        => $this->post_type . '_title',
+				'slug'        => $this->post_type . '_content_html',
 				// translators: singular post name.
-				'name'        => sprintf( __( '%s title', 'notification' ), $this->get_nicename() ),
-				'description' => __( 'Hello World', 'notification' ),
+				'name'        => sprintf( __( '%s content HTML', 'notification' ), $this->get_nicename() ),
+				'description' => __( 'Welcome to WordPress. This is your first post. Edit or delete it, then start writing!', 'notification' ),
 				'example'     => true,
 				'resolver'    => function() {
-					return html_entity_decode( get_the_title( $this->trigger->{ $this->post_type } ) );
+					return apply_filters( 'the_content', $this->trigger->{ $this->post_type }->post_content );
 				},
 			)
 		);
@@ -63,7 +62,7 @@ class PostTitle extends StringTag {
 	 * @return boolean
 	 */
 	public function check_requirements() {
-		return isset( $this->trigger->{ $this->post_type } );
+		return isset( $this->trigger->{ $this->post_type }->post_content );
 	}
 
 	/**

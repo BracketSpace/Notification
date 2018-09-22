@@ -33,46 +33,49 @@ class PostTerms extends StringTag {
 	protected $taxonomy;
 
 	/**
-     * Merge tag constructor
-     *
-     * @since 5.1.3
-     * @param array $params merge tag configuration params.
-     */
-    public function __construct( $params = array() ) {
+	 * Merge tag constructor
+	 *
+	 * @since 5.1.3
+	 * @param array $params merge tag configuration params.
+	 */
+	public function __construct( $params = array() ) {
 
-    	if ( isset( $params['post_type'] ) ) {
-    		$this->post_type = $params['post_type'];
-    	} else {
-    		$this->post_type = 'post';
-    	}
+		if ( isset( $params['post_type'] ) ) {
+			$this->post_type = $params['post_type'];
+		} else {
+			$this->post_type = 'post';
+		}
 
-    	if ( isset( $params['taxonomy'] ) ) {
-    		$this->taxonomy = is_string( $params['taxonomy'] ) ? get_taxonomy( $params['taxonomy'] ) : $params['taxonomy'];
-    	} else {
-    		$this->taxonomy = false;
-    	}
+		if ( isset( $params['taxonomy'] ) ) {
+			$this->taxonomy = is_string( $params['taxonomy'] ) ? get_taxonomy( $params['taxonomy'] ) : $params['taxonomy'];
+		} else {
+			$this->taxonomy = false;
+		}
 
-    	$args = wp_parse_args( $params, array(
-			'slug'        => $this->post_type . '_' . $this->taxonomy->name,
-			// translators: 1. Post Type 2. Taxonomy name.
-			'name'        => sprintf( __( '%s %s', 'notification' ), $this->get_nicename(), $this->taxonomy->label ),
-			'description' => __( 'General, Tech, Lifestyle', 'notification' ),
-			'example'     => true,
-			'resolver'    => function( $trigger ) {
-				$post_terms = get_the_terms( $trigger->{ $this->post_type }, $this->taxonomy->name );
-				if ( empty( $post_terms ) ) {
-					return '';
-				}
+		$args = wp_parse_args(
+			$params,
+			array(
+				'slug'        => $this->post_type . '_' . $this->taxonomy->name,
+				// translators: 1. Post Type 2. Taxonomy name.
+				'name'        => sprintf( __( '%1$s %2$s', 'notification' ), $this->get_nicename(), $this->taxonomy->label ),
+				'description' => __( 'General, Tech, Lifestyle', 'notification' ),
+				'example'     => true,
+				'resolver'    => function( $trigger ) {
+					$post_terms = get_the_terms( $trigger->{ $this->post_type }, $this->taxonomy->name );
+					if ( empty( $post_terms ) ) {
+						return '';
+					}
 
-				$terms = array();
-				foreach ( $post_terms as $term ) {
-					$terms[] = $term->name;
-				}
-				return implode( ', ', $terms );
-			},
-		) );
+					$terms = array();
+					foreach ( $post_terms as $term ) {
+						$terms[] = $term->name;
+					}
+					return implode( ', ', $terms );
+				},
+			)
+		);
 
-    	parent::__construct( $args );
+		parent::__construct( $args );
 
 	}
 

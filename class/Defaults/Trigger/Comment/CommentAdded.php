@@ -21,15 +21,18 @@ class CommentAdded extends CommentTrigger {
 	 */
 	public function __construct( $comment_type = 'comment' ) {
 
-		parent::__construct( array(
-			'slug'         => 'wordpress/comment_' . $comment_type . '_added',
-			'name'         => sprintf( __( '%s added', 'notification' ), ucfirst( $comment_type ) ),
-			'comment_type' => $comment_type,
-		) );
+		parent::__construct(
+			array(
+				'slug'         => 'wordpress/comment_' . $comment_type . '_added',
+				// Translators: %s comment type.
+				'name'         => sprintf( __( '%s added', 'notification' ), ucfirst( $comment_type ) ),
+				'comment_type' => $comment_type,
+			)
+		);
 
 		$this->add_action( 'wp_insert_comment', 10, 2 );
 
-		// translators: comment type.
+		// Translators: comment type.
 		$this->set_description( sprintf( __( 'Fires when new %s is added', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
 
 	}
@@ -45,7 +48,11 @@ class CommentAdded extends CommentTrigger {
 
 		$this->comment = $comment;
 
-		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
+		if ( 'spam' === $this->comment->comment_approved && notification_get_setting( 'triggers/comment/akismet' ) ) {
+			return false;
+		}
+
+		if ( $this->comment->comment_type !== $this->comment_type ) {
 			return false;
 		}
 
@@ -67,6 +74,6 @@ class CommentAdded extends CommentTrigger {
 		$this->add_merge_tag( new MergeTag\Comment\CommentActionDelete() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentActionSpam() );
 
-    }
+	}
 
 }

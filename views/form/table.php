@@ -9,13 +9,13 @@
 
 <table class="form-table">
 
-	<?php foreach ( $this->get_var( 'fields' ) as $field ): ?>
+	<?php foreach ( $this->get_var( 'fields' ) as $field ) : ?>
 
 		<?php $this->set_var( 'current_field', $field, true ); ?>
 
-		<?php if ( $field->get_label() == '' ): ?>
+		<?php if ( empty( $field->get_label() ) ) : ?>
 			<?php $this->get_view( 'form/field-hidden' ); ?>
-		<?php else: ?>
+		<?php else : ?>
 			<?php $this->get_view( 'form/field' ); ?>
 		<?php endif ?>
 

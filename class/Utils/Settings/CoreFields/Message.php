@@ -14,7 +14,7 @@ class Message {
 
 	/**
 	 * Message field
-     *
+	 *
 	 * @param  Field $field Field instance.
 	 * @return void
 	 */
@@ -24,7 +24,7 @@ class Message {
 			echo '<pre><code>';
 		}
 
-		echo $field->addon( 'message' );
+		echo $field->addon( 'message' ); // WPCS: XSS ok.
 
 		if ( $field->addon( 'code' ) ) {
 			echo '</code></pre>';
@@ -34,7 +34,7 @@ class Message {
 
 	/**
 	 * Sanitize input value
-     *
+	 *
 	 * @param  string $value Saved value.
 	 * @return string        Sanitized text
 	 */

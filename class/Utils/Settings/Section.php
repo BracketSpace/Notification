@@ -14,36 +14,36 @@ class Section {
 
 	/**
 	 * Settings handle
-     *
+	 *
 	 * @var string
 	 */
 	private $handle;
 
 	/**
 	 * Section name
-     *
+	 *
 	 * @var string
 	 */
 	private $name;
 
 	/**
 	 * Section slug
-     *
+	 *
 	 * @var string
 	 */
 	private $slug;
 
 	/**
 	 * Section groups
-     *
+	 *
 	 * @var array
 	 */
 	private $groups = array();
 
 	/**
 	 * Section constructor
-     *
-     * @throws \Exception Exception.
+	 *
+	 * @throws \Exception Exception.
 	 * @param string $handle Settings handle.
 	 * @param string $name   Section name.
 	 * @param string $slug   Section slug.
@@ -72,13 +72,13 @@ class Section {
 
 	/**
 	 * Get or set name
-     *
+	 *
 	 * @param  string $name Name. Do not pass anything to get current value.
 	 * @return string name
 	 */
 	public function name( $name = null ) {
 
-		if ( $name !== null ) {
+		if ( null !== $name ) {
 			$this->name = $name;
 		}
 
@@ -88,13 +88,13 @@ class Section {
 
 	/**
 	 * Get or set slug
-     *
+	 *
 	 * @param  string $slug Slug. Do not pass anything to get current value.
 	 * @return string slug
 	 */
 	public function slug( $slug = null ) {
 
-		if ( $slug !== null ) {
+		if ( null !== $slug ) {
 			$this->slug = $slug;
 		}
 
@@ -104,8 +104,8 @@ class Section {
 
 	/**
 	 * Add Group to the section
-     *
-     * @throws \Exception Exception.
+	 *
+	 * @throws \Exception Exception.
 	 * @param string $name Group name.
 	 * @param string $slug Group slug.
 	 * @return Group
@@ -127,7 +127,7 @@ class Section {
 
 	/**
 	 * Get all registered Groups
-     *
+	 *
 	 * @return array
 	 */
 	public function get_groups() {
@@ -138,7 +138,7 @@ class Section {
 
 	/**
 	 * Get group by group slug
-     *
+	 *
 	 * @param  string $slug group slug.
 	 * @return mixed        group object or false if no group defined
 	 */

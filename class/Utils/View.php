@@ -15,40 +15,40 @@ class View {
 
 	/**
 	 * Files class
-     *
+	 *
 	 * @var object
 	 */
 	private $files;
 
 	/**
 	 * Views dir name
-     *
+	 *
 	 * @var string
 	 */
 	private $views_dir;
 
 	/**
 	 * View vars
-     *
+	 *
 	 * @var array
 	 */
 	private $vars = array();
 
 	/**
 	 * Class constructor
-     *
+	 *
 	 * @param Files $files Utils\Files instance.
 	 */
 	public function __construct( Files $files ) {
 
-		$this->files = $files;
+		$this->files     = $files;
 		$this->views_dir = 'views';
 
 	}
 
 	/**
 	 * Alters the views directory
-     *
+	 *
 	 * @param string $dir directory name.
 	 * @return this
 	 */
@@ -62,7 +62,7 @@ class View {
 
 	/**
 	 * Sets var
-     *
+	 *
 	 * @param  string $var_name  var slug.
 	 * @param  mixed  $var_value var value.
 	 * @param  bool   $override  override var if it already exists.
@@ -70,12 +70,12 @@ class View {
 	 */
 	public function set_var( $var_name = null, $var_value = null, $override = false ) {
 
-		if ( $var_name === null ) {
+		if ( null === $var_name ) {
 			return $this;
 		}
 
 		if ( ! $override && $this->get_var( $var_name ) !== null ) {
-			trigger_error( 'Variable ' . $var_name . ' already exists, skipping', E_USER_NOTICE );
+			trigger_error( 'Variable ' . esc_html( $var_name ) . ' already exists, skipping', E_USER_NOTICE );
 			return $this;
 		}
 
@@ -87,7 +87,7 @@ class View {
 
 	/**
 	 * Sets many vars at once
-     *
+	 *
 	 * @param array $vars array of vars in format: var name => var value.
 	 * @return $this
 	 */
@@ -108,7 +108,7 @@ class View {
 
 	/**
 	 * Gets the var
-     *
+	 *
 	 * @param  string $var_name var name.
 	 * @return mixed            var value or null
 	 */
@@ -120,19 +120,17 @@ class View {
 
 	/**
 	 * Prints the var
-     *
+	 *
 	 * @param  string $var_name var name.
 	 * @return void
 	 */
 	public function echo_var( $var_name ) {
-
-		echo $this->get_var( $var_name );
-
+		echo $this->get_var( $var_name ); // WPCS: XSS ok.
 	}
 
 	/**
 	 * Removes var
-     *
+	 *
 	 * @param  string $var_name var name.
 	 * @return this
 	 */
@@ -148,31 +146,30 @@ class View {
 
 	/**
 	 * Removes all vars
-     *
+	 *
 	 * @return this
 	 */
 	public function clear_vars() {
-
 		$this->vars = array();
-
 		return $this;
-
 	}
 
 	/**
 	 * Gets view file and includes it
-     *
+	 *
 	 * @param  string $part file.
 	 * @return this
 	 */
 	public function get_view( $part ) {
 
-		$file_path = $this->files->file_path( array(
-			$this->views_dir,
-			$part . '.php'
-		) );
+		$file_path = $this->files->file_path(
+			array(
+				$this->views_dir,
+				$part . '.php',
+			)
+		);
 
-		include $file_path ;
+		include $file_path;
 
 		return $this;
 
@@ -180,7 +177,7 @@ class View {
 
 	/**
 	 * Gets view output as a string
-     *
+	 *
 	 * @param  string $part file.
 	 * @return string       view output
 	 */

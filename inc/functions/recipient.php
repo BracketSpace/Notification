@@ -17,21 +17,24 @@ use BracketSpace\Notification\Interfaces;
  */
 function register_recipient( $notification, Interfaces\Receivable $recipient ) {
 
-	add_filter( 'notification/recipients', function( $recipients ) use ( $notification, $recipient ) {
+	add_filter(
+		'notification/recipients',
+		function( $recipients ) use ( $notification, $recipient ) {
 
-		if ( ! isset( $recipients[ $notification ] ) ) {
-			$recipients[ $notification ] = array();
+			if ( ! isset( $recipients[ $notification ] ) ) {
+				$recipients[ $notification ] = array();
+			}
+
+			if ( isset( $recipients[ $notification ][ $recipient->get_slug() ] ) ) {
+				throw new \Exception( 'Recipient with that slug already registered for ' . $notification . ' notification' );
+			} else {
+				$recipients[ $notification ][ $recipient->get_slug() ] = $recipient;
+			}
+
+			return $recipients;
+
 		}
-
-		if ( isset( $recipients[ $notification ][ $recipient->get_slug() ] ) ) {
-			throw new \Exception( 'Recipient with that slug already registered for ' . $notification . ' notification' );
-		} else {
-			$recipients[ $notification ][ $recipient->get_slug() ] = $recipient;
-		}
-
-		return $recipients;
-
-	} );
+	);
 
 }
 
@@ -81,7 +84,7 @@ function notification_get_single_recipient( $notification_type, $recipient_slug 
  */
 function notification_parse_recipient( $notification_slug, $recipient_type, $recipient_raw_value ) {
 
-	$recipient  = notification_get_single_recipient( $notification_slug, $recipient_type );
+	$recipient = notification_get_single_recipient( $notification_slug, $recipient_type );
 
 	if ( ! $recipient instanceof Interfaces\Receivable ) {
 		return array();

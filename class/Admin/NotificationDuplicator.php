@@ -16,14 +16,14 @@ class NotificationDuplicator {
 	 * Adds duplicate link to row actions
 	 *
 	 * @filter post_row_actions
-     *
+	 *
 	 * @param  array  $row_actions array with action links.
 	 * @param  object $post        WP_Post object.
 	 * @return array               filtered actions
 	 */
 	public function add_duplicate_row_action( $row_actions, $post ) {
 
-		if ( $post->post_type != 'notification' ) {
+		if ( 'notification' !== $post->post_type ) {
 			return $row_actions;
 		}
 
@@ -43,18 +43,24 @@ class NotificationDuplicator {
 	 */
 	public function notification_duplicate() {
 
-		// Get the source notification post.
-		$source = get_post( $_GET['duplicate'] );
+		if ( ! isset( $_GET['duplicate'] ) ) {
+			exit;
+		}
 
-		if ( get_post_type( $source ) != 'notification' ) {
+		// Get the source notification post.
+		$source = get_post( sanitize_text_field( wp_unslash( $_GET['duplicate'] ) ) );
+
+		if ( get_post_type( $source ) !== 'notification' ) {
 			wp_die( 'You cannot duplicate post that\'s not Notification post' );
 		}
 
-		$new_id = wp_insert_post( array(
-			'post_title'  => sprintf( '(%s) %s', __( 'Duplicate', 'notification' ), $source->post_title ),
-			'post_status' => 'draft',
-			'post_type'   => 'notification',
-		) );
+		$new_id = wp_insert_post(
+			array(
+				'post_title'  => sprintf( '(%s) %s', __( 'Duplicate', 'notification' ), $source->post_title ),
+				'post_status' => 'draft',
+				'post_type'   => 'notification',
+			)
+		);
 
 		// Copy all the meta data.
 		$meta_data = get_post_custom( $source->ID );

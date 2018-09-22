@@ -21,17 +21,19 @@ class PostPending extends PostTrigger {
 	 */
 	public function __construct( $post_type = 'post' ) {
 
-		parent::__construct( array(
-			'post_type' => $post_type,
-			'slug'      => 'wordpress/' . $post_type . '/pending',
-			// translators: singular post name.
-			'name'      => sprintf( __( '%s sent for review', 'notification' ), parent::get_post_type_name( $post_type ) ),
-		) );
+		parent::__construct(
+			array(
+				'post_type' => $post_type,
+				'slug'      => 'wordpress/' . $post_type . '/pending',
+				// translators: singular post name.
+				'name'      => sprintf( __( '%s sent for review', 'notification' ), parent::get_post_type_name( $post_type ) ),
+			)
+		);
 
 		$this->add_action( 'transition_post_status', 10, 3 );
 
 		// translators: 1. singular post name, 2. post type slug.
-		$this->set_description( sprintf( __( 'Fires when %s (%s) is sent for review', 'notification' ), parent::get_post_type_name( $post_type ), $post_type ) );
+		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is sent for review', 'notification' ), parent::get_post_type_name( $post_type ), $post_type ) );
 
 	}
 
@@ -47,11 +49,11 @@ class PostPending extends PostTrigger {
 
 		$this->{ $this->post_type } = $post;
 
-		if ( $this->{ $this->post_type }->post_type != $this->post_type ) {
+		if ( $this->{ $this->post_type }->post_type !== $this->post_type ) {
 			return false;
 		}
 
-		if ( $old_status == 'pending' || $new_status != 'pending' ) {
+		if ( 'pending' === $old_status || 'pending' !== $new_status ) {
 			return false;
 		}
 
@@ -100,6 +102,6 @@ class PostPending extends PostTrigger {
 
 		parent::merge_tags();
 
-    }
+	}
 
 }

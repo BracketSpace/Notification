@@ -37,16 +37,19 @@ class TermAdded extends TermTrigger {
 
 		$this->taxonomy = $taxonomy;
 
-		parent::__construct( array(
-			'taxonomy'  => $taxonomy,
-			'slug'      => 'wordpress/' . $taxonomy . '/created',
-			'name'      => sprintf( __( '%s term created', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ) ),
-		) );
+		parent::__construct(
+			array(
+				'taxonomy' => $taxonomy,
+				'slug'     => 'wordpress/' . $taxonomy . '/created',
+				// Translators: taxonomy name.
+				'name'     => sprintf( __( '%s term created', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ) ),
+			)
+		);
 
 		$this->add_action( 'created_' . $taxonomy, 100, 2 );
 
 		// translators: 1. taxonomy name, 2. taxonomy slug.
-		$this->set_description( sprintf( __( 'Fires when %s (%s) is created', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ), $taxonomy ) );
+		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is created', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ), $taxonomy ) );
 
 	}
 
@@ -54,15 +57,15 @@ class TermAdded extends TermTrigger {
 	 * Assigns action callback args to object
 	 * Return `false` if you want to abort the trigger execution
 	 *
-     * @param integer $term_id Term ID.
+	 * @param integer $term_id Term ID.
 	 * @return mixed void or false if no notifications should be sent
 	 */
 	public function action( $term_id ) {
 
-		$term = get_term( $term_id );
+		$term       = get_term( $term_id );
 		$this->term = $term;
 
-		if ( $this->taxonomy != $this->term->taxonomy ) {
+		if ( $this->taxonomy !== $this->term->taxonomy ) {
 			return false;
 		}
 
@@ -82,10 +85,14 @@ class TermAdded extends TermTrigger {
 
 		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
-			'slug' => 'term_creation_datetime',
-			'name' => sprintf( __( 'Term creation date and time', 'notification' ) ),
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\DateTime\DateTime(
+				array(
+					'slug' => 'term_creation_datetime',
+					'name' => sprintf( __( 'Term creation date and time', 'notification' ) ),
+				)
+			)
+		);
 
 	}
 

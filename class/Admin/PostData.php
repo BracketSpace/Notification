@@ -17,14 +17,14 @@ class PostData {
 
 	/**
 	 * Meta cache
-     *
+	 *
 	 * @var array
 	 */
 	protected $meta_cache = array();
 
 	/**
 	 * Current post ID
-     *
+	 *
 	 * @var integer
 	 */
 	protected $post_id = null;
@@ -47,7 +47,7 @@ class PostData {
 
 	/**
 	 * Gets current post ID
-     *
+	 *
 	 * @return integer post ID
 	 */
 	public function get_post_id() {
@@ -63,7 +63,7 @@ class PostData {
 
 	/**
 	 * Sets current post ID
-     *
+	 *
 	 * @param  integer $post_id post ID.
 	 * @return $this
 	 */
@@ -74,7 +74,7 @@ class PostData {
 
 	/**
 	 * Clears previously set current post ID
-     *
+	 *
 	 * @return $this
 	 */
 	public function clear_post_id() {
@@ -84,7 +84,7 @@ class PostData {
 
 	/**
 	 * Gets post meta for key using internal cache
-     *
+	 *
 	 * @param  string  $key    meta key.
 	 * @param  boolean $single if return only single val.
 	 * @return mixed           meta value
@@ -101,7 +101,7 @@ class PostData {
 
 	/**
 	 * Sets notification data from post meta
-     *
+	 *
 	 * @param Interfaces\Sendable $notification notification object.
 	 * @return void
 	 */
@@ -111,11 +111,11 @@ class PostData {
 		$enabled_notifications = (array) $this->get_meta( $this->notification_enabled_key, false );
 
 		// if this is new post, mark email notifiation as active for better UX.
-		if ( notification_is_new_notification( get_post( $this->get_post_id() ) ) && $notification->get_slug() == 'email' ) {
+		if ( notification_is_new_notification( get_post( $this->get_post_id() ) ) && $notification->get_slug() === 'email' ) {
 			$enabled_notifications[] = 'email';
 		}
 
-		if ( in_array( $notification->get_slug(), $enabled_notifications ) ) {
+		if ( in_array( $notification->get_slug(), $enabled_notifications, true ) ) {
 			$notification->enabled = true;
 		}
 
@@ -131,64 +131,64 @@ class PostData {
 			if ( isset( $field_values[ $field->get_raw_name() ] ) ) {
 				$field->set_value( $field_values[ $field->get_raw_name() ] );
 			}
-
 		}
 
 	}
 
 	/**
 	 * Saves notifications data
-     *
+	 *
 	 * @param array $data user data to save.
 	 * @return void
 	 */
 	public function save_notification_data( $data ) {
 
 		// enable all notifications one by one.
-        foreach ( notification_get_notifications() as $notification ) {
+		foreach ( notification_get_notifications() as $notification ) {
 
-			if ( isset( $data['notification_' . $notification->get_slug() . '_enable'] ) ) {
-				if ( ! in_array( $notification->get_slug(), (array) get_post_meta( $this->get_post_id(), $this->notification_enabled_key ) ) ) {
+			if ( isset( $data[ 'notification_' . $notification->get_slug() . '_enable' ] ) ) {
+				if ( ! in_array( $notification->get_slug(), (array) get_post_meta( $this->get_post_id(), $this->notification_enabled_key ), true ) ) {
 					add_post_meta( $this->get_post_id(), $this->notification_enabled_key, $notification->get_slug() );
 				}
 			} else {
 				delete_post_meta( $this->get_post_id(), $this->notification_enabled_key, $notification->get_slug(), $notification->get_slug() );
 			}
-
 		}
 
-        // save all notification settings one by one.
-        foreach ( notification_get_notifications() as $notification ) {
+		// save all notification settings one by one.
+		foreach ( notification_get_notifications() as $notification ) {
 
-        	if ( ! isset( $data[ 'notification_type_' . $notification->get_slug() ] ) ) {
-        		continue;
-        	}
+			if ( ! isset( $data[ 'notification_type_' . $notification->get_slug() ] ) ) {
+				continue;
+			}
 
-        	$ndata = $data[ 'notification_type_' . $notification->get_slug() ];
+			$ndata = $data[ 'notification_type_' . $notification->get_slug() ];
 
-        	// nonce not set or false, ignoring this form.
-        	if ( ! wp_verify_nonce( $ndata['_nonce'], $notification->get_slug() . '_notification_security' ) ) {
-	            continue;
-	        }
+			// nonce not set or false, ignoring this form.
+			if ( ! wp_verify_nonce( $ndata['_nonce'], $notification->get_slug() . '_notification_security' ) ) {
+				continue;
+			}
 
-	        $notification_data = array();
+			$notification_data = array();
 
-	        // sanitize each field individually.
-	        foreach ( $notification->get_form_fields() as $field ) {
+			// sanitize each field individually.
+			foreach ( $notification->get_form_fields() as $field ) {
 
-	        	if ( isset( $ndata[ $field->get_raw_name() ] ) ) {
-	        		$user_data = $ndata[ $field->get_raw_name() ];
-	        	} else {
-	        		$user_data = null;
-	        	}
+				if ( isset( $ndata[ $field->get_raw_name() ] ) ) {
+					$user_data = $ndata[ $field->get_raw_name() ];
+				} else {
+					$user_data = null;
+				}
 
-	        	$notification_data[ $field->get_raw_name() ] = $field->sanitize( $user_data );
+				$notification_data[ $field->get_raw_name() ] = $field->sanitize( $user_data );
 
-	        }
+			}
 
-	        update_post_meta( $this->get_post_id(), $this->notification_data_key . $notification->get_slug(), $notification_data );
+			$notification_data = apply_filters( 'notification/notification/form/data/values', $notification_data, $ndata );
 
-	        do_action( 'notification/notification/saved', $this->get_post_id(), $notification, $notification_data );
+			update_post_meta( $this->get_post_id(), $this->notification_data_key . $notification->get_slug(), $notification_data );
+
+			do_action( 'notification/notification/saved', $this->get_post_id(), $notification, $notification_data );
 
 		}
 
@@ -196,7 +196,7 @@ class PostData {
 
 	/**
 	 * Gets active notifications
-     *
+	 *
 	 * @return array
 	 */
 	public function get_active_notifications() {
@@ -219,7 +219,7 @@ class PostData {
 
 	/**
 	 * Gets active trigger
-     *
+	 *
 	 * @return mixed
 	 */
 	public function get_active_trigger() {
@@ -228,8 +228,8 @@ class PostData {
 
 	/**
 	 * Saves active trigger
-     *
-     * @param string $trigger trigger slug.
+	 *
+	 * @param string $trigger trigger slug.
 	 * @return void
 	 */
 	public function save_active_trigger( $trigger ) {
@@ -238,7 +238,7 @@ class PostData {
 
 	/**
 	 * Gets CPT Notification for specific trigger
-     *
+	 *
 	 * @param  string $trigger_slug trigger slug.
 	 * @return array                WP_Post array
 	 */
@@ -246,14 +246,14 @@ class PostData {
 
 		$query_args = array(
 			'numberposts' => -1,
-			'post_type'	  => 'notification',
-			'meta_key'	  => $this->active_trigger_key,
+			'post_type'   => 'notification',
+			'meta_key'    => $this->active_trigger_key,
 			'meta_value'  => $trigger_slug,
 		);
 
-    	// WPML compat.
+		// WPML compat.
 		if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
-		    $query_args['suppress_filters'] = 0;
+			$query_args['suppress_filters'] = 0;
 		}
 
 		return get_posts( $query_args );
@@ -262,7 +262,7 @@ class PostData {
 
 	/**
 	 * Gets array of notifications with populated data for notification post
-     *
+	 *
 	 * @param  integer $post_id notification post ID.
 	 * @return array            notification objects
 	 */
@@ -287,7 +287,7 @@ class PostData {
 	 * Changes notification status from AJAX call
 	 *
 	 * @action wp_ajax_change_notification_status
-     *
+	 *
 	 * @return void
 	 */
 	public function ajax_change_notification_status() {
@@ -297,16 +297,18 @@ class PostData {
 
 		$this->ajax->verify_nonce( 'change_notification_status_' . $data['post_id'] );
 
-		$status = $data['status'] == 'true' ? 'publish' : 'draft';
+		$status = 'true' === $data['status'] ? 'publish' : 'draft';
 
-		$result = wp_update_post( array(
-			'ID'          => $data['post_id'],
-			'post_status' => $status,
-		) );
+		$result = wp_update_post(
+			array(
+				'ID'          => $data['post_id'],
+				'post_status' => $status,
+			)
+		);
 
-		if ( $result == 0 ) {
+		if ( 0 === $result ) {
 			$error = __( 'Notification status couldn\'t be changed.', 'notification' );
- 		}
+		}
 
 		$this->ajax->response( true, $error );
 

@@ -6,7 +6,9 @@
  * @package notification
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Directory
@@ -20,19 +22,18 @@ if ( ! defined( 'NOTIFICATION_DIR' ) ) {
  * URL
  */
 
-$theme_url = parse_url( get_stylesheet_directory_uri() );
+$theme_url = wp_parse_url( get_stylesheet_directory_uri() );
 $theme_pos = strpos( NOTIFICATION_DIR, $theme_url['path'] );
 
 // Notification loaded from theme.
-if ( $theme_pos !== false ) {
+if ( false !== $theme_pos ) {
 
 	$plugin_relative_dir = str_replace( $theme_url['path'], '', substr( NOTIFICATION_DIR, $theme_pos ) );
-	$url = $theme_url['scheme'] . '://' . $theme_url['host'] . $theme_url['path'] . $plugin_relative_dir;
+	$url                 = $theme_url['scheme'] . '://' . $theme_url['host'] . $theme_url['path'] . $plugin_relative_dir;
 
 	if ( ! defined( 'NOTIFICATION_URL' ) ) {
 		define( 'NOTIFICATION_URL', $url );
 	}
-
 } else { // Notification loaded from plugin.
 
 	$plugin_url = trailingslashit( plugins_url( '', __FILE__ ) );
@@ -40,7 +41,6 @@ if ( $theme_pos !== false ) {
 	if ( ! defined( 'NOTIFICATION_URL' ) ) {
 		define( 'NOTIFICATION_URL', $plugin_url );
 	}
-
 }
 
 /**

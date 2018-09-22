@@ -36,27 +36,27 @@ class Settings extends SettingsAPI {
 		}
 
 		$settings_access = apply_filters( 'notification/whitelabel/settings/access', false );
-		if ( false !== $settings_access && ! in_array( get_current_user_id(), $settings_access ) ) {
+		if ( false !== $settings_access && ! in_array( get_current_user_id(), $settings_access, true ) ) {
 			return;
 		}
 
 		// change settings position if white labelled.
 		if ( true !== apply_filters( 'notification/whitelabel/cpt/parent', true ) ) {
 			$parent_hook     = apply_filters( 'notification/whitelabel/cpt/parent', 'edit.php?post_type=notification' );
-			$page_menu_label =  __( 'Notification settings', 'notification' );
+			$page_menu_label = __( 'Notification settings', 'notification' );
 		} else {
 			$parent_hook     = 'edit.php?post_type=notification';
-			$page_menu_label =  __( 'Settings', 'notification' );
+			$page_menu_label = __( 'Settings', 'notification' );
 		}
 
 		$this->page_hook = add_submenu_page(
 			$parent_hook,
-	        __( 'Notification settings', 'notification' ),
-	        $page_menu_label,
-	        'manage_options',
-	        'settings',
-	        array( $this, 'settings_page' )
-	    );
+			__( 'Notification settings', 'notification' ),
+			$page_menu_label,
+			'manage_options',
+			'settings',
+			array( $this, 'settings_page' )
+		);
 
 	}
 
@@ -82,61 +82,71 @@ class Settings extends SettingsAPI {
 		$general = $settings->add_section( __( 'General', 'notification' ), 'general' );
 
 		$general->add_group( __( 'Content', 'notification' ), 'content' )
-			->add_field( array(
-				'name'     => __( 'Empty merge tags', 'notification' ),
-				'slug'     => 'strip_empty_tags',
-				'default'  => 'true',
-				'addons'   => array(
-					'label' => __( 'Remove unused merge tags from sent values', 'notification' )
-				),
-				'description' => __( 'This will affect any notification fields', 'notification' ),
-				'render'   => array( new CoreFields\Checkbox(), 'input' ),
-				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
-			) )
-			->add_field( array(
-				'name'     => __( 'Shortcodes', 'notification' ),
-				'slug'     => 'strip_shortcodes',
-				'default'  => 'true',
-				'addons'   => array(
-					'label' => __( 'Strip all shortcodes', 'notification' )
-				),
-				'description' => __( 'This will affect any notification fields', 'notification' ),
-				'render'   => array( new CoreFields\Checkbox(), 'input' ),
-				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
-			) )
+			->add_field(
+				array(
+					'name'        => __( 'Empty merge tags', 'notification' ),
+					'slug'        => 'strip_empty_tags',
+					'default'     => 'true',
+					'addons'      => array(
+						'label' => __( 'Remove unused merge tags from sent values', 'notification' ),
+					),
+					'description' => __( 'This will affect any notification fields', 'notification' ),
+					'render'      => array( new CoreFields\Checkbox(), 'input' ),
+					'sanitize'    => array( new CoreFields\Checkbox(), 'sanitize' ),
+				)
+			)
+			->add_field(
+				array(
+					'name'        => __( 'Shortcodes', 'notification' ),
+					'slug'        => 'strip_shortcodes',
+					'default'     => 'true',
+					'addons'      => array(
+						'label' => __( 'Strip all shortcodes', 'notification' ),
+					),
+					'description' => __( 'This will affect any notification fields', 'notification' ),
+					'render'      => array( new CoreFields\Checkbox(), 'input' ),
+					'sanitize'    => array( new CoreFields\Checkbox(), 'sanitize' ),
+				)
+			)
 			->description( __( 'Notification content settings', 'notification' ) );
 
 		$general->add_group( __( 'Uninstallation', 'notification' ), 'uninstallation' )
-			->add_field( array(
-				'name'     => __( 'Notifications', 'notification' ),
-				'slug'     => 'notifications',
-				'default'  => 'true',
-				'addons'   => array(
-					'label' => __( 'Remove all added notifications', 'notification' )
-				),
-				'render'   => array( new CoreFields\Checkbox(), 'input' ),
-				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
-			) )
-			->add_field( array(
-				'name'     => __( 'Settings', 'notification' ),
-				'slug'     => 'settings',
-				'default'  => 'true',
-				'addons'   => array(
-					'label' => __( 'Remove plugin settings', 'notification' )
-				),
-				'render'   => array( new CoreFields\Checkbox(), 'input' ),
-				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
-			) )
-			->add_field( array(
-				'name'     => __( 'Licenses', 'notification' ),
-				'slug'     => 'licenses',
-				'default'  => 'true',
-				'addons'   => array(
-					'label' => __( 'Remove and deactivate extension licenses', 'notification' )
-				),
-				'render'   => array( new CoreFields\Checkbox(), 'input' ),
-				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
-			) )
+			->add_field(
+				array(
+					'name'     => __( 'Notifications', 'notification' ),
+					'slug'     => 'notifications',
+					'default'  => 'true',
+					'addons'   => array(
+						'label' => __( 'Remove all added notifications', 'notification' ),
+					),
+					'render'   => array( new CoreFields\Checkbox(), 'input' ),
+					'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+				)
+			)
+			->add_field(
+				array(
+					'name'     => __( 'Settings', 'notification' ),
+					'slug'     => 'settings',
+					'default'  => 'true',
+					'addons'   => array(
+						'label' => __( 'Remove plugin settings', 'notification' ),
+					),
+					'render'   => array( new CoreFields\Checkbox(), 'input' ),
+					'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+				)
+			)
+			->add_field(
+				array(
+					'name'     => __( 'Licenses', 'notification' ),
+					'slug'     => 'licenses',
+					'default'  => 'true',
+					'addons'   => array(
+						'label' => __( 'Remove and deactivate extension licenses', 'notification' ),
+					),
+					'render'   => array( new CoreFields\Checkbox(), 'input' ),
+					'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+				)
+			)
 			->description( __( 'Choose what to remove upon plugin removal', 'notification' ) );
 
 	}
@@ -160,18 +170,20 @@ class Settings extends SettingsAPI {
 		$triggers = $settings->add_section( __( 'Triggers', 'notification' ), 'triggers' );
 
 		$triggers->add_group( __( 'Post', 'notification' ), 'post_types' )
-			->add_field( array(
-				'name'        => __( 'Post Types', 'notification' ),
-				'slug'        => 'types',
-				'default'     => array( 'post', 'page' ),
-				'addons'      => array(
-					'multiple' => true,
-					'pretty'   => true,
-					'options'  => $post_types
-				),
-				'render'      => array( new CoreFields\Select(), 'input' ),
-				'sanitize'    => array( new CoreFields\Select(), 'sanitize' ),
-			) )
+			->add_field(
+				array(
+					'name'     => __( 'Post Types', 'notification' ),
+					'slug'     => 'types',
+					'default'  => array( 'post', 'page' ),
+					'addons'   => array(
+						'multiple' => true,
+						'pretty'   => true,
+						'options'  => $post_types,
+					),
+					'render'   => array( new CoreFields\Select(), 'input' ),
+					'sanitize' => array( new CoreFields\Select(), 'sanitize' ),
+				)
+			)
 			->description( __( 'For these post types you will be able to define published, updated, pending moderation etc. notifications', 'notification' ) );
 
 		// prepare taxonomies for taxonomies option select.
@@ -179,78 +191,88 @@ class Settings extends SettingsAPI {
 
 		$taxonomies = array();
 		foreach ( $valid_taxonomies as $taxonomy ) {
-			if ( $taxonomy->name == 'post_format' ) {
+			if ( 'post_format' === $taxonomy->name ) {
 				continue;
 			}
 			$taxonomies[ $taxonomy->name ] = $taxonomy->labels->name;
 		}
 
 		$triggers->add_group( __( 'Taxonomy', 'notification' ), 'taxonomies' )
-			->add_field( array(
-				'name'        => __( 'Taxonomies', 'notification' ),
-				'slug'        => 'types',
-				'default'     => array( 'category', 'post_tag' ),
-				'addons'      => array(
-					'multiple' => true,
-					'pretty'   => true,
-					'options'  => $taxonomies
-				),
-				'render'      => array( new CoreFields\Select(), 'input' ),
-				'sanitize'    => array( new CoreFields\Select(), 'sanitize' ),
-			) )
+			->add_field(
+				array(
+					'name'     => __( 'Taxonomies', 'notification' ),
+					'slug'     => 'types',
+					'default'  => array( 'category', 'post_tag' ),
+					'addons'   => array(
+						'multiple' => true,
+						'pretty'   => true,
+						'options'  => $taxonomies,
+					),
+					'render'   => array( new CoreFields\Select(), 'input' ),
+					'sanitize' => array( new CoreFields\Select(), 'sanitize' ),
+				)
+			)
 			->description( __( 'For these taxonomies you will be able to define published, updated and deleted notifications', 'notification' ) );
 
 		$triggers->add_group( __( 'Comment', 'notification' ), 'comment' )
-			->add_field( array(
-				'name'        => __( 'Comment Types', 'notification' ),
-				'slug'        => 'types',
-				'default'     => array( 'comment', 'pingback', 'trackback' ),
-				'addons'      => array(
-					'multiple' => true,
-					'pretty'   => true,
-					'options'  => array(
-						'comment'   => __( 'Comment', 'notification' ),
-						'pingback'  => __( 'Pingback', 'notification' ),
-						'trackback' => __( 'Trackback', 'notification' )
-					)
-				),
-				'render'      => array( new CoreFields\Select(), 'input' ),
-				'sanitize'    => array( new CoreFields\Select(), 'sanitize' ),
-			) )
-			->add_field( array(
-				'name'     => __( 'Akismet', 'notification' ),
-				'slug'     => 'akismet',
-				'default'  => 'true',
-				'addons'   => array(
-					'label' => __( 'Do not send notification if comment has been marked as a spam by Akismet', 'notification' )
-				),
-				'render'   => array( new CoreFields\Checkbox(), 'input' ),
-				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
-			) );
+			->add_field(
+				array(
+					'name'     => __( 'Comment Types', 'notification' ),
+					'slug'     => 'types',
+					'default'  => array( 'comment', 'pingback', 'trackback' ),
+					'addons'   => array(
+						'multiple' => true,
+						'pretty'   => true,
+						'options'  => array(
+							'comment'   => __( 'Comment', 'notification' ),
+							'pingback'  => __( 'Pingback', 'notification' ),
+							'trackback' => __( 'Trackback', 'notification' ),
+						),
+					),
+					'render'   => array( new CoreFields\Select(), 'input' ),
+					'sanitize' => array( new CoreFields\Select(), 'sanitize' ),
+				)
+			)
+			->add_field(
+				array(
+					'name'     => __( 'Akismet', 'notification' ),
+					'slug'     => 'akismet',
+					'default'  => 'true',
+					'addons'   => array(
+						'label' => __( 'Do not send notification if comment has been marked as a spam by Akismet', 'notification' ),
+					),
+					'render'   => array( new CoreFields\Checkbox(), 'input' ),
+					'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+				)
+			);
 
 		$triggers->add_group( __( 'User', 'notification' ), 'user' )
-			->add_field( array(
-				'name'     => __( 'User', 'notification' ),
-				'slug'     => 'enable',
-				'default'  => 'true',
-				'addons'   => array(
-					'label' => __( 'Enable user triggers', 'notification' )
-				),
-				'render'   => array( new CoreFields\Checkbox(), 'input' ),
-				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
-			) );
+			->add_field(
+				array(
+					'name'     => __( 'User', 'notification' ),
+					'slug'     => 'enable',
+					'default'  => 'true',
+					'addons'   => array(
+						'label' => __( 'Enable user triggers', 'notification' ),
+					),
+					'render'   => array( new CoreFields\Checkbox(), 'input' ),
+					'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+				)
+			);
 
 		$triggers->add_group( __( 'Media', 'notification' ), 'media' )
-			->add_field( array(
-				'name'     => __( 'Media', 'notification' ),
-				'slug'     => 'enable',
-				'default'  => 'true',
-				'addons'   => array(
-					'label' => __( 'Enable media triggers', 'notification' )
-				),
-				'render'   => array( new CoreFields\Checkbox(), 'input' ),
-				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
-			) );
+			->add_field(
+				array(
+					'name'     => __( 'Media', 'notification' ),
+					'slug'     => 'enable',
+					'default'  => 'true',
+					'addons'   => array(
+						'label' => __( 'Enable media triggers', 'notification' ),
+					),
+					'render'   => array( new CoreFields\Checkbox(), 'input' ),
+					'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+				)
+			);
 
 		$updates_cron_options = array();
 
@@ -258,37 +280,44 @@ class Settings extends SettingsAPI {
 			$updates_cron_options[ $schedule_name ] = $schedule['display'];
 		}
 
-		$triggers->add_group( __( 'WordPress', 'notification' ), 'wordpress' )
-			->add_field( array(
-				'name'     => __( 'Updates', 'notification' ),
-				'slug'     => 'updates',
-				'default'  => false,
-				'addons'   => array(
-					'label' => __( 'Enable "Updates available" trigger', 'notification' )
-				),
-				'render'   => array( new CoreFields\Checkbox(), 'input' ),
-				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
-			) )
-			->add_field( array(
-				'name'     => __( 'Send if no updates', 'notification' ),
-				'slug'     => 'updates_send_anyway',
-				'default'  => false,
-				'addons'   => array(
-					'label' => __( 'Send updates email even if no updates available', 'notification' )
-				),
-				'render'   => array( new CoreFields\Checkbox(), 'input' ),
-				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
-			) )
-			->add_field( array(
-				'name'     => __( 'Updates check period', 'notification' ),
-				'slug'     => 'updates_cron_period',
-				'default'  => 'ntfn_week',
-				'addons'   => array(
-					'options' => $updates_cron_options,
-				),
-				'render'   => array( new CoreFields\Select(), 'input' ),
-				'sanitize' => array( new CoreFields\Select(), 'sanitize' ),
-			) );
+		// PHPCS: OK.
+		$triggers->add_group( __( 'WordPress', 'notification' ), 'WordPress' )
+			->add_field(
+				array(
+					'name'     => __( 'Updates', 'notification' ),
+					'slug'     => 'updates',
+					'default'  => false,
+					'addons'   => array(
+						'label' => __( 'Enable "Updates available" trigger', 'notification' ),
+					),
+					'render'   => array( new CoreFields\Checkbox(), 'input' ),
+					'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+				)
+			)
+			->add_field(
+				array(
+					'name'     => __( 'Send if no updates', 'notification' ),
+					'slug'     => 'updates_send_anyway',
+					'default'  => false,
+					'addons'   => array(
+						'label' => __( 'Send updates email even if no updates available', 'notification' ),
+					),
+					'render'   => array( new CoreFields\Checkbox(), 'input' ),
+					'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+				)
+			)
+			->add_field(
+				array(
+					'name'     => __( 'Updates check period', 'notification' ),
+					'slug'     => 'updates_cron_period',
+					'default'  => 'ntfn_week',
+					'addons'   => array(
+						'options' => $updates_cron_options,
+					),
+					'render'   => array( new CoreFields\Select(), 'input' ),
+					'sanitize' => array( new CoreFields\Select(), 'sanitize' ),
+				)
+			);
 
 	}
 
@@ -300,77 +329,107 @@ class Settings extends SettingsAPI {
 	 */
 	public function notifications_settings( $settings ) {
 
-		$sitename = strtolower( $_SERVER['SERVER_NAME'] );
-        if ( substr( $sitename, 0, 4 ) == 'www.' ) {
-            $sitename = substr( $sitename, 4 );
-        }
+		if ( ! empty( $_SERVER['SERVER_NAME'] ) ) {
+			$sitename = strtolower( sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) ) );
+			if ( substr( $sitename, 0, 4 ) === 'www.' ) {
+				$sitename = substr( $sitename, 4 );
+			}
+		} else {
+			$sitename = 'example.com';
+		}
 
-        $default_from_email = 'wordpress@' . $sitename;
+		$default_from_email = 'wordpress@' . $sitename;
 
 		$notifications = $settings->add_section( __( 'Notifications', 'notification' ), 'notifications' );
 
 		$notifications->add_group( __( 'Email', 'notification' ), 'email' )
-			->add_field( array(
-				'name'     => __( 'Enable', 'notification' ),
-				'slug'     => 'enable',
-				'default'  => 'true',
-				'addons'   => array(
-					'label' => __( 'Enable email notification', 'notification' )
-				),
-				'render'   => array( new CoreFields\Checkbox(), 'input' ),
-				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
-			) )
-			->add_field( array(
-				'name'     => __( 'Message type', 'notification' ),
-				'slug'     => 'type',
-				'default'  => 'html',
-				'addons'   => array(
-					'options' => array(
-						'html'  => __( 'HTML', 'notification' ),
-						'plain' => __( 'Plain text', 'notification' ),
-					)
-				),
-				'render'   => array( new CoreFields\Select(), 'input' ),
-				'sanitize' => array( new CoreFields\Select(), 'sanitize' ),
-			) )
-			->add_field( array(
-				'name'        => __( 'From Name', 'notification' ),
-				'slug'        => 'from_name',
-				'default'     => '',
-				'render'      => array( new CoreFields\Text(), 'input' ),
-				'sanitize'    => array( new CoreFields\Text(), 'sanitize' ),
-				'description' => sprintf( __( 'Leave blank to use default value: %s', 'notification' ), '<code>WordPress</code>' ),
-			) )
-			->add_field( array(
-				'name'        => __( 'From Email', 'notification' ),
-				'slug'        => 'from_email',
-				'default'     => '',
-				'render'      => array( new CoreFields\Text(), 'input' ),
-				'sanitize'    => array( new CoreFields\Text(), 'sanitize' ),
-				'description' => sprintf( __( 'Leave blank to use default value: %s', 'notification' ), '<code>' . $default_from_email . '</code>' ),
-			) );
+			->add_field(
+				array(
+					'name'     => __( 'Enable', 'notification' ),
+					'slug'     => 'enable',
+					'default'  => 'true',
+					'addons'   => array(
+						'label' => __( 'Enable email notification', 'notification' ),
+					),
+					'render'   => array( new CoreFields\Checkbox(), 'input' ),
+					'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+				)
+			)
+			->add_field(
+				array(
+					'name'     => __( 'Message type', 'notification' ),
+					'slug'     => 'type',
+					'default'  => 'html',
+					'addons'   => array(
+						'options' => array(
+							'html'  => __( 'HTML', 'notification' ),
+							'plain' => __( 'Plain text', 'notification' ),
+						),
+					),
+					'render'   => array( new CoreFields\Select(), 'input' ),
+					'sanitize' => array( new CoreFields\Select(), 'sanitize' ),
+				)
+			)
+			->add_field(
+				array(
+					'name'     => __( 'Unfiltered HTML', 'notification' ),
+					'slug'     => 'unfiltered_html',
+					'default'  => 'false',
+					'addons'   => array(
+						'label' => __( 'Allow unfiltered HTML in email body', 'notification' ),
+					),
+					'render'   => array( new CoreFields\Checkbox(), 'input' ),
+					'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+				)
+			)
+			->add_field(
+				array(
+					'name'        => __( 'From Name', 'notification' ),
+					'slug'        => 'from_name',
+					'default'     => '',
+					'render'      => array( new CoreFields\Text(), 'input' ),
+					'sanitize'    => array( new CoreFields\Text(), 'sanitize' ),
+					// Translators: %s default value.
+					'description' => sprintf( __( 'Leave blank to use default value: %s', 'notification' ), '<code>WordPress</code>' ),
+				)
+			)
+			->add_field(
+				array(
+					'name'        => __( 'From Email', 'notification' ),
+					'slug'        => 'from_email',
+					'default'     => '',
+					'render'      => array( new CoreFields\Text(), 'input' ),
+					'sanitize'    => array( new CoreFields\Text(), 'sanitize' ),
+					// Translators: %s default value.
+					'description' => sprintf( __( 'Leave blank to use default value: %s', 'notification' ), '<code>' . $default_from_email . '</code>' ),
+				)
+			);
 
 		$notifications->add_group( __( 'Webhook', 'notification' ), 'webhook' )
-			->add_field( array(
-				'name'     => __( 'Enable', 'notification' ),
-				'slug'     => 'enable',
-				'default'  => 'true',
-				'addons'   => array(
-					'label' => __( 'Enable webhook notification', 'notification' )
-				),
-				'render'   => array( new CoreFields\Checkbox(), 'input' ),
-				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
-			) )
-			->add_field( array(
-				'name'     => __( 'Headers', 'notification' ),
-				'slug'     => 'headers',
-				'default'  => false,
-				'addons'   => array(
-					'label' => __( 'Allow to configure webhook headers', 'notification' )
-				),
-				'render'   => array( new CoreFields\Checkbox(), 'input' ),
-				'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
-			) );
+			->add_field(
+				array(
+					'name'     => __( 'Enable', 'notification' ),
+					'slug'     => 'enable',
+					'default'  => 'true',
+					'addons'   => array(
+						'label' => __( 'Enable webhook notification', 'notification' ),
+					),
+					'render'   => array( new CoreFields\Checkbox(), 'input' ),
+					'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+				)
+			)
+			->add_field(
+				array(
+					'name'     => __( 'Headers', 'notification' ),
+					'slug'     => 'headers',
+					'default'  => false,
+					'addons'   => array(
+						'label' => __( 'Allow to configure webhook headers', 'notification' ),
+					),
+					'render'   => array( new CoreFields\Checkbox(), 'input' ),
+					'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+				)
+			);
 
 	}
 

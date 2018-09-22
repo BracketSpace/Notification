@@ -15,26 +15,26 @@ class Ajax {
 
 	/**
 	 * Verifies nonce string
-     *
+	 *
 	 * @param  string $action action name, as defined while creating nonce hash, required.
 	 * @param  string $nonce  $_REQUEST array key where to search for nonce, default 'nonce'.
 	 * @return void           dies when nonce is wrong
 	 */
 	public function verify_nonce( $action = null, $nonce = 'nonce' ) {
 
-		if ( $action === null ) {
+		if ( null === $action ) {
 			trigger_error( 'Action cannot be empty' );
 		}
 
-		if ( check_ajax_referer( $action, $nonce, false ) == false ) {
-	        $this->error( array( 'wrong_nonce' ) );
-	    }
+		if ( check_ajax_referer( $action, $nonce, false ) === false ) {
+			$this->error( array( 'wrong_nonce' ) );
+		}
 
 	}
 
 	/**
 	 * Prints success for JS
-     *
+	 *
 	 * @param  mixed $data anything.
 	 * @return void
 	 */
@@ -44,7 +44,7 @@ class Ajax {
 
 	/**
 	 * Prints error for JS
-     *
+	 *
 	 * @param  mixed $data anything.
 	 * @return void
 	 */
@@ -54,7 +54,7 @@ class Ajax {
 
 	/**
 	 * Responds to JS with message
-     *
+	 *
 	 * @param  mixed $success if empty, nothing will be passed.
 	 * @param  array $errors  if not empty, an error will be returned.
 	 * @return void

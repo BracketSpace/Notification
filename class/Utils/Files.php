@@ -15,35 +15,35 @@ class Files {
 
 	/**
 	 * Plugin file absolute path
-     *
+	 *
 	 * @var string
 	 */
 	protected $plugin_file;
 
 	/**
 	 * Plugin custom URL
-     *
+	 *
 	 * @var string
 	 */
 	protected $plugin_url = false;
 
 	/**
 	 * Plugin custom path
-     *
+	 *
 	 * @var string
 	 */
 	protected $plugin_path = false;
 
 	/**
 	 * Assets directory name with a slash at the end
-     *
+	 *
 	 * @var string
 	 */
 	protected $assets_dir_name;
 
 	/**
 	 * Class constructor
-     *
+	 *
 	 * @param string $plugin_file full path to main plugin file.
 	 * @param mixed  $plugin_url  plugin custom url.
 	 * @param mixed  $plugin_path plugin custom path.
@@ -57,7 +57,7 @@ class Files {
 
 	/**
 	 * Builds the dir name from an array of parts
-     *
+	 *
 	 * @uses   trainlingslashit()
 	 * @param  array $parts parts of the path.
 	 * @return string        dir name
@@ -77,7 +77,7 @@ class Files {
 	/**
 	 * Resolves file path
 	 * You can provide a file string or an array of dirs and file name at the end
-     *
+	 *
 	 * @param  mixed $file file structure.
 	 * @return string       full file path
 	 */
@@ -94,7 +94,7 @@ class Files {
 
 	/**
 	 * Gets the plugin root dir absolute path
-     *
+	 *
 	 * @return string path
 	 */
 	public function plugin_path() {
@@ -103,7 +103,7 @@ class Files {
 
 	/**
 	 * Gets the plugin root dir url
-     *
+	 *
 	 * @return string url
 	 */
 	public function plugin_url() {
@@ -112,7 +112,7 @@ class Files {
 
 	/**
 	 * Gets file path which is relative to plugin root path
-     *
+	 *
 	 * @param  mixed $file if it's an array, the dir structure will be built.
 	 * @return string      file absolute path
 	 */
@@ -122,7 +122,7 @@ class Files {
 
 	/**
 	 * Gets file url which is relative to plugin root
-     *
+	 *
 	 * @param  mixed $file if it's an array, the dir structure will be built.
 	 * @return string      file url
 	 */
@@ -132,7 +132,7 @@ class Files {
 
 	/**
 	 * Gets dir path which is relative to plugin root path
-     *
+	 *
 	 * @param  mixed $dir if it's an array, the dir structure will be built.
 	 * @return string     dir absolute path
 	 */
@@ -142,7 +142,7 @@ class Files {
 
 	/**
 	 * Gets dir url which is relative to plugin root
-     *
+	 *
 	 * @param  mixed $dir if it's an array, the dir structure will be built.
 	 * @return string     dir url
 	 */
@@ -152,7 +152,7 @@ class Files {
 
 	/**
 	 * Gets url to an asset file
-     *
+	 *
 	 * @param  string $type asset type - js | css | image.
 	 * @param  string $file file name.
 	 * @return string       asset file url
@@ -166,7 +166,7 @@ class Files {
 
 	/**
 	 * Gets path to an asset file
-     *
+	 *
 	 * @param  string $type asset type - js | css | images.
 	 * @param  string $file file name.
 	 * @return string       asset file path
@@ -180,7 +180,7 @@ class Files {
 
 	/**
 	 * Gets path to an asset file
-     *
+	 *
 	 * @param  string $type asset type - js | css | images.
 	 * @param  string $file file name.
 	 * @return string       asset file path
@@ -191,7 +191,7 @@ class Files {
 
 	/**
 	 * Encodes an image to base64
-     *
+	 *
 	 * @param  string $file image file name.
 	 * @return string       base64 encoded image
 	 */
@@ -199,26 +199,26 @@ class Files {
 		$path = $this->asset_path( 'images', $file );
 		$type = pathinfo( $path, PATHINFO_EXTENSION );
 		// SVG mime type fix.
-		if ( $type == 'svg' ) {
+		if ( 'svg' === $type ) {
 			$type = 'svg+xml';
 		}
-		$data = file_get_contents( $path );
+		$data = file_get_contents( $path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		return 'data:image/' . $type . ';base64,' . base64_encode( $data );
 	}
 
 	/**
 	 * Gets url to a vendor asset file
-     *
+	 *
 	 * @param  string $vendor asset vendor name (name of the vendor dir).
 	 * @param  string $file   file name.
 	 * @return string         asset file url
 	 */
 	public function vendor_asset_url( $vendor = '', $file = '' ) {
-		$assets_dirs   = array(
+		$assets_dirs = array(
 			'assets',
 			'vendor',
 			$vendor,
-			$file
+			$file,
 		);
 		return $this->file_url( $assets_dirs );
 	}

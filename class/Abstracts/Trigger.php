@@ -18,14 +18,14 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Storage for trigger's notifications
-     *
+	 *
 	 * @var array
 	 */
 	private $notification_storage = array();
 
 	/**
 	 * Group
-     *
+	 *
 	 * @var string
 	 */
 	protected $group = '';
@@ -33,7 +33,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Short description of the Trigger
 	 * No html tags allowed. Keep it tweet-short.
-     *
+	 *
 	 * @var string
 	 */
 	protected $description = '';
@@ -56,28 +56,28 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Bound actions
-     *
+	 *
 	 * @var array
 	 */
 	protected $actions = array();
 
 	/**
 	 * Merge tags
-     *
+	 *
 	 * @var array
 	 */
 	protected $merge_tags = array();
 
 	/**
 	 * Action's callback args
-     *
+	 *
 	 * @var array
 	 */
 	protected $callback_args = array();
 
 	/**
 	 * Trigger constructor
-     *
+	 *
 	 * @param string $slug slug.
 	 * @param string $name nice name.
 	 */
@@ -93,7 +93,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Used to register trigger merge tags
 	 * Uses $this->add_merge_tag();
-     *
+	 *
 	 * @return void
 	 */
 	abstract public function merge_tags();
@@ -102,7 +102,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * Listens to an action
 	 * This method just calls WordPress' add_action function,
 	 * but it hooks the class' action method
-     *
+	 *
 	 * @param string  $tag           action hook.
 	 * @param integer $priority      action priority, default 10.
 	 * @param integer $accepted_args how many args the action accepts, default 1.
@@ -113,20 +113,48 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			trigger_error( 'Action tag cannot be empty', E_USER_ERROR );
 		}
 
-		array_push( $this->actions, array(
-			'tag'           => $tag,
-			'priority'      => $priority,
-			'accepted_args' => $accepted_args
-		) );
+		array_push(
+			$this->actions,
+			array(
+				'tag'           => $tag,
+				'priority'      => $priority,
+				'accepted_args' => $accepted_args,
+			)
+		);
 
 		add_action( $tag, array( $this, '_action' ), $priority, $accepted_args );
 
 	}
 
 	/**
+	 * Removes the action from the actions library.
+	 *
+	 * @param string  $tag           action hook.
+	 * @param integer $priority      action priority, default 10.
+	 * @param integer $accepted_args how many args the action accepts, default 1.
+	 */
+	public function remove_action( $tag, $priority = 10, $accepted_args = 1 ) {
+
+		if ( empty( $tag ) ) {
+			trigger_error( 'Action tag cannot be empty', E_USER_ERROR );
+		}
+
+		foreach ( $this->actions as $action_index => $action ) {
+
+			if ( $action['tag'] === $tag && $action['priority'] === $priority && $action['accepted_args'] === $accepted_args ) {
+				unset( $this->actions[ $action_index ] );
+				break;
+			}
+		}
+
+		remove_action( $tag, array( $this, '_action' ), $priority, $accepted_args );
+
+	}
+
+	/**
 	 * Postpones the action with later hook
 	 * It automatically stops the execution
-     *
+	 *
 	 * @param string  $tag           action hook.
 	 * @param integer $priority      action priority, default 10.
 	 * @param integer $accepted_args how many args the action accepts, default 1.
@@ -142,7 +170,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Attaches the Notification to the Trigger
-     *
+	 *
 	 * @param  Sendable $notification Notification class.
 	 * @return void
 	 */
@@ -152,7 +180,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Detaches the Notification from the Trigger
-     *
+	 *
 	 * @param  Sendable $notification Notification class.
 	 * @return void
 	 */
@@ -164,7 +192,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Rolls out all the notifications
-     *
+	 *
 	 * @return void
 	 */
 	public function roll_out() {
@@ -179,14 +207,13 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 				$notification->send( $this );
 				do_action( 'notification/notification/sent', $notification, $this );
 			}
-
 		}
 
 	}
 
 	/**
 	 * Gets description
-     *
+	 *
 	 * @return string description
 	 */
 	public function get_description() {
@@ -195,8 +222,8 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Sets description
-     *
-     * @param string $description description.
+	 *
+	 * @param string $description description.
 	 * @return $this
 	 */
 	public function set_description( $description ) {
@@ -206,7 +233,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Gets group
-     *
+	 *
 	 * @return string group
 	 */
 	public function get_group() {
@@ -215,8 +242,8 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Sets group
-     *
-     * @param string $group group.
+	 *
+	 * @param string $group group.
 	 * @return $this
 	 */
 	public function set_group( $group ) {
@@ -226,7 +253,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Adds trigger's merge tag
-     *
+	 *
 	 * @param Interfaces\Taggable $merge_tag merge tag object.
 	 * @return $this
 	 */
@@ -238,13 +265,13 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Gets trigger's merge tags
-     *
-     * @param string $type optional, all|visible|hidden, default: all.
+	 *
+	 * @param string $type optional, all|visible|hidden, default: all.
 	 * @return $array merge tags
 	 */
 	public function get_merge_tags( $type = 'all' ) {
 
-		if ( $type === 'all' ) {
+		if ( 'all' === $type ) {
 			return $this->merge_tags;
 		}
 
@@ -252,12 +279,11 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 		foreach ( $this->merge_tags as $merge_tag ) {
 
-			if ( $type === 'visible' && ! $merge_tag->is_hidden() ) {
+			if ( 'visible' === $type && ! $merge_tag->is_hidden() ) {
 				array_push( $tags, $merge_tag );
-			} else if ( $type === 'hidden' && $merge_tag->is_hidden() ) {
+			} elseif ( 'hidden' === $type && $merge_tag->is_hidden() ) {
 				array_push( $tags, $merge_tag );
 			}
-
 		}
 
 		return $tags;
@@ -266,7 +292,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Resolves all notifications fields with merge tags
-     *
+	 *
 	 * @return void
 	 */
 	private function resolve_fields() {
@@ -297,12 +323,12 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * Gets their enabled Notifications
 	 * Populates the Notification form data
 	 * Attaches the Notification to trigger
-     *
+	 *
 	 * @return void
 	 */
 	public function set_notifications() {
 
-		$runtime = notification_runtime();
+		$runtime  = notification_runtime();
 		$postdata = $runtime->post_data;
 
 		// Get all notification posts bound with this trigger.
@@ -317,7 +343,6 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			foreach ( $notifications as $notification ) {
 				$this->attach( $notification );
 			}
-
 		}
 
 	}
@@ -342,7 +367,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Action callback
-     *
+	 *
 	 * @return void
 	 */
 	public function _action() {
@@ -356,13 +381,13 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		// call the action.
 		if ( $this->is_postponed() && method_exists( $this, 'postponed_action' ) ) {
 			$result = call_user_func_array( array( $this, 'postponed_action' ), $this->callback_args );
-		} else if ( ! $this->is_postponed() && method_exists( $this, 'action' ) ) {
+		} elseif ( ! $this->is_postponed() && method_exists( $this, 'action' ) ) {
 			$result = call_user_func_array( array( $this, 'action' ), $this->callback_args );
 		} else {
 			$result = true;
 		}
 
-		if ( $result === false ) {
+		if ( false === $result ) {
 			$this->stopped = true;
 		}
 

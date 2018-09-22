@@ -17,35 +17,35 @@ class Requirements {
 
 	/**
 	 * Plugin display name
-     *
+	 *
 	 * @var string
 	 */
 	protected $plugin_name;
 
 	/**
 	 * Array of checks
-     *
+	 *
 	 * @var array
 	 */
 	protected $checks;
 
 	/**
 	 * Array of check methods
-     *
+	 *
 	 * @var array
 	 */
 	private $check_methods;
 
 	/**
 	 * Array of errors
-     *
+	 *
 	 * @var array
 	 */
 	protected $errors = array();
 
 	/**
 	 * Class constructor
-     *
+	 *
 	 * @param string $plugin_name plugin display name.
 	 * @param array  $to_check    checks to perform.
 	 */
@@ -67,7 +67,7 @@ class Requirements {
 
 	/**
 	 * Adds the new check
-     *
+	 *
 	 * @param  string $check_name name of the check.
 	 * @param  mixed  $callback   callable string or array.
 	 * @return $this
@@ -82,7 +82,7 @@ class Requirements {
 
 	/**
 	 * Runs checks
-     *
+	 *
 	 * @return $this
 	 */
 	public function check() {
@@ -92,7 +92,6 @@ class Requirements {
 			if ( isset( $this->check_methods[ $thing_to_check ] ) && is_callable( $this->check_methods[ $thing_to_check ] ) ) {
 				call_user_func( $this->check_methods[ $thing_to_check ], $comparsion, $this );
 			}
-
 		}
 
 		return $this;
@@ -102,8 +101,8 @@ class Requirements {
 
 	/**
 	 * Adds the error
-     *
-     * @param string $error_message error message.
+	 *
+	 * @param string $error_message error message.
 	 * @return $this
 	 */
 	public function add_error( $error_message ) {
@@ -116,7 +115,7 @@ class Requirements {
 
 	/**
 	 * Check if requirements has been satisfied
-     *
+	 *
 	 * @return boolean
 	 */
 	public function satisfied() {
@@ -126,7 +125,7 @@ class Requirements {
 
 	/**
 	 * Displays notice for user about the plugin requirements
-     *
+	 *
 	 * @return void
 	 */
 	public function notice() {
@@ -137,9 +136,9 @@ class Requirements {
 
 			echo '<ul style="list-style: disc; padding-left: 20px;">';
 
-				foreach ( $this->errors as $error ) {
-					echo '<li>' . $error . '</li>';
-				}
+		foreach ( $this->errors as $error ) {
+			echo '<li>' . esc_html( $error ) . '</li>';
+		}
 
 			echo '</ul>';
 
@@ -153,7 +152,7 @@ class Requirements {
 
 	/**
 	 * Check PHP version
-     *
+	 *
 	 * @param  string $version      version needed.
 	 * @param  object $requirements requirements class.
 	 * @return void
@@ -168,7 +167,7 @@ class Requirements {
 
 	/**
 	 * Check PHP extensions
-     *
+	 *
 	 * @param  string $extensions   array of extension names.
 	 * @param  object $requirements requirements class.
 	 * @return void
@@ -184,17 +183,20 @@ class Requirements {
 		}
 
 		if ( ! empty( $missing_extensions ) ) {
-			$requirements->add_error( sprintf(
-				_n( 'PHP extension: %s', 'PHP extensions: %s', count( $missing_extensions ), 'notification' ),
-				implode( ', ', $missing_extensions )
-			) );
+			$requirements->add_error(
+				sprintf(
+					// Translators: %s number of extensions.
+					_n( 'PHP extension: %s', 'PHP extensions: %s', count( $missing_extensions ), 'notification' ),
+					implode( ', ', $missing_extensions )
+				)
+			);
 		}
 
 	}
 
 	/**
 	 * Check WordPress version
-     *
+	 *
 	 * @param  string $version      version needed.
 	 * @param  object $requirements requirements class.
 	 * @return void
@@ -209,7 +211,7 @@ class Requirements {
 
 	/**
 	 * Check if plugins are active and are in needed versions
-     *
+	 *
 	 * @param  array  $plugins       array with plugins,
 	 *                               where key is the plugin file and value is the version.
 	 * @param  object $requirements requirements class.
@@ -224,25 +226,24 @@ class Requirements {
 		foreach ( $active_plugins_raw as $plugin_full_path ) {
 			$plugin_file                             = str_replace( WP_PLUGIN_DIR . '/', '', $plugin_full_path );
 			$active_plugins[]                        = $plugin_file;
-			$plugin_api_data                         = @get_file_data( $plugin_full_path, array( 'Version' ) );
+			$plugin_api_data                         = @get_file_data( $plugin_full_path, array( 'Version' ) ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 			$active_plugins_versions[ $plugin_file ] = $plugin_api_data[0];
 		}
 
 		foreach ( $plugins as $plugin_file => $plugin_data ) {
 
-			if ( ! in_array( $plugin_file, $active_plugins ) ) {
+			if ( ! in_array( $plugin_file, $active_plugins, true ) ) {
 				$requirements->add_error( sprintf( '%s plugin active', $plugin_data['name'] ) );
-			} else if ( version_compare( $active_plugins_versions[ $plugin_file ], $plugin_data['version'], '<' ) ) {
+			} elseif ( version_compare( $active_plugins_versions[ $plugin_file ], $plugin_data['version'], '<' ) ) {
 				$requirements->add_error( sprintf( '%s plugin at least in version %s', $plugin_data['name'], $plugin_data['version'] ) );
 			}
-
 		}
 
 	}
 
 	/**
 	 * Check if theme is active
-     *
+	 *
 	 * @param  array  $needed_theme theme data.
 	 * @param  object $requirements requirements class.
 	 * @return void
@@ -251,7 +252,7 @@ class Requirements {
 
 		$theme = wp_get_theme();
 
-		if ( $theme->get_template() != $needed_theme['slug'] ) {
+		if ( $theme->get_template() !== $needed_theme['slug'] ) {
 			$requirements->add_error( sprintf( '%s theme active', $needed_theme['name'] ) );
 		}
 
@@ -259,7 +260,7 @@ class Requirements {
 
 	/**
 	 * Check function collision
-     *
+	 *
 	 * @param  array  $functions    function names.
 	 * @param  object $requirements requirements class.
 	 * @return void
@@ -275,17 +276,20 @@ class Requirements {
 		}
 
 		if ( ! empty( $collisions ) ) {
-			$requirements->add_error( sprintf(
-				_n( 'register %s function but it\'s already taken', 'register %s functions but these are already taken', count( $collisions ), 'notification' ),
-				implode( ', ', $collisions )
-			) );
+			$requirements->add_error(
+				sprintf(
+					// Translators: 1: function name, 2: function names.
+					_n( 'register %s function but it\'s already taken', 'register %s functions but these are already taken', count( $collisions ), 'notification' ),
+					implode( ', ', $collisions )
+				)
+			);
 		}
 
 	}
 
 	/**
 	 * Check class collision
-     *
+	 *
 	 * @param  array  $classes      class names.
 	 * @param  object $requirements requirements class.
 	 * @return void
@@ -301,10 +305,13 @@ class Requirements {
 		}
 
 		if ( ! empty( $collisions ) ) {
-			$requirements->add_error( sprintf(
-				_n( 'register %s class but it\'s already defined', 'register %s classes but these are already defined', count( $collisions ), 'notification' ),
-				implode( ', ', $collisions )
-			) );
+			$requirements->add_error(
+				sprintf(
+					// Translators: 1: class name, 2: class names.
+					_n( 'register %s class but it\'s already defined', 'register %s classes but these are already defined', count( $collisions ), 'notification' ),
+					implode( ', ', $collisions )
+				)
+			);
 		}
 
 	}

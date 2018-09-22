@@ -16,7 +16,7 @@ class Select {
 	 * Select field
 	 * You can define `multiple` addon to make it multiple
 	 * If you want to use Selectize.js, set `pretty` addon to true
-     *
+	 *
 	 * @param  Field $field Field instance.
 	 * @return void
 	 */
@@ -26,14 +26,14 @@ class Select {
 		$name     = $field->addon( 'multiple' ) ? $field->input_name() . '[]' : $field->input_name();
 		$pretty   = $field->addon( 'pretty' ) ? 'pretty-select' : '';
 
-		echo '<select ' . $multiple . ' name="' . $name . '" id="' . $field->input_id() . '" class="' . $pretty . '">';
+		echo '<select ' . esc_attr( $multiple ) . ' name="' . esc_attr( $name ) . '" id="' . $field->input_id() . '" class="' . esc_attr( $pretty ) . '">'; // WPCS: XSS ok.
 
-			foreach ( $field->addon( 'options' ) as $option_value => $option_label ) {
+		foreach ( $field->addon( 'options' ) as $option_value => $option_label ) {
 
-				$selected = in_array( $option_value, (array) $field->value() ) ? 'selected="selected"' : '';
-				echo '<option value="' . $option_value . '" ' . $selected . '>' . $option_label . '</option>';
+			$selected = in_array( $option_value, (array) $field->value(), true ) ? 'selected="selected"' : '';
+			echo '<option value="' . esc_attr( $option_value ) . '" ' . $selected . '>' . esc_html( $option_label ) . '</option>'; // WPCS: XSS ok.
 
-			}
+		}
 
 		echo '</select>';
 
@@ -42,7 +42,7 @@ class Select {
 	/**
 	 * Sanitize select value
 	 * Uses sanitize_text_field()
-     *
+	 *
 	 * @param  mixed $value saved value.
 	 * @return mixed          sanitized value
 	 */
@@ -53,7 +53,6 @@ class Select {
 			foreach ( $value as $i => $v ) {
 				$value[ $i ] = sanitize_text_field( $v );
 			}
-
 		} else {
 			$value = sanitize_text_field( $value );
 		}

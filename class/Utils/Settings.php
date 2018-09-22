@@ -60,7 +60,7 @@ class Settings {
 	 * Settings page hook
 	 * Should be set outside the class
 	 * Typically result of add_menu_page function
-     *
+	 *
 	 * @var string
 	 */
 	public $page_hook = '';
@@ -99,7 +99,7 @@ class Settings {
 
 	/**
 	 * Settings page output
-     *
+	 *
 	 * @return void
 	 */
 	public function settings_page() {
@@ -107,18 +107,18 @@ class Settings {
 		$sections = $this->get_sections();
 
 		if ( isset( $_GET['section'] ) && ! empty( $_GET['section'] ) ) {
-			$current_section = $_GET['section'];
+			$current_section = sanitize_text_field( wp_unslash( $_GET['section'] ) );
 		} else {
 			$current_section = key( $this->get_sections() );
 		}
 
-		include $this->path . '/views/settings/page.php' ;
+		include $this->path . '/views/settings/page.php';
 
 	}
 
 	/**
 	 * Add new section
-     *
+	 *
 	 * @param string $name Section name.
 	 * @param string $slug Section slug.
 	 * @return Section
@@ -135,7 +135,7 @@ class Settings {
 
 	/**
 	 * Get all registered sections
-     *
+	 *
 	 * @return array
 	 */
 	public function get_sections() {
@@ -146,7 +146,7 @@ class Settings {
 
 	/**
 	 * Get section by section slug
-     *
+	 *
 	 * @param  string $slug section slug.
 	 * @return mixed        section object or false if no section defined
 	 */
@@ -164,7 +164,7 @@ class Settings {
 
 	/**
 	 * Save Settings
-     *
+	 *
 	 * @return void
 	 */
 	public function save_settings() {
@@ -194,9 +194,7 @@ class Settings {
 					$to_save[ $field->section() ][ $field->group() ][ $field->slug() ] = $value;
 
 				}
-
 			}
-
 		}
 
 		foreach ( $to_save as $section => $value ) {
@@ -210,7 +208,7 @@ class Settings {
 	/**
 	 * Get all settings
 	 * Uses stored config
-     *
+	 *
 	 * @return array settings
 	 */
 	public function get_settings() {
@@ -244,11 +242,8 @@ class Settings {
 						$this->settings[ $section_slug ][ $group_slug ][ $field_slug ] = $value;
 
 					}
-
 				}
-
 			}
-
 		}
 
 		return apply_filters( $this->handle . '/settings/saved_settings', $this->settings, $this );
@@ -273,9 +268,7 @@ class Settings {
 					$field->value( $this->get_setting( $setting_name ) );
 
 				}
-
 			}
-
 		}
 
 	}
@@ -283,8 +276,8 @@ class Settings {
 
 	/**
 	 * Get single setting value
-     *
-     * @throws \Exception Exception.
+	 *
+	 * @throws \Exception Exception.
 	 * @param  string $setting setting section/group/field separated with /.
 	 * @return mixed           field value or null if name not found
 	 */
@@ -292,7 +285,7 @@ class Settings {
 
 		$parts = explode( '/', $setting );
 
-		if ( count( $parts ) != 3 ) {
+		if ( count( $parts ) !== 3 ) {
 			throw new \Exception( 'You must provide exactly 3 parts as the setting name' );
 		}
 
@@ -310,7 +303,7 @@ class Settings {
 
 	/**
 	 * Set Library variables like path and URI
-     *
+	 *
 	 * @return void
 	 */
 	public function set_variables() {
@@ -319,13 +312,13 @@ class Settings {
 		$this->path = dirname( dirname( dirname( __FILE__ ) ) );
 
 		// URI.
-		$theme_url = parse_url( get_stylesheet_directory_uri() );
+		$theme_url = wp_parse_url( get_stylesheet_directory_uri() );
 		$theme_pos = strpos( $this->path, $theme_url['path'] );
 
-		if ( $theme_pos !== false ) { // loaded from theme.
+		if ( false !== $theme_pos ) { // loaded from theme.
 
 			$plugin_relative_dir = str_replace( $theme_url['path'], '', substr( $this->path, $theme_pos ) );
-			$this->uri = $theme_url['scheme'] . '://' . $theme_url['host'] . $theme_url['path'] . $plugin_relative_dir;
+			$this->uri           = $theme_url['scheme'] . '://' . $theme_url['host'] . $theme_url['path'] . $plugin_relative_dir;
 
 		} else { // loaded from plugin.
 
@@ -358,12 +351,10 @@ class Settings {
 					$config[ $section_slug ][ $group_slug ][ $field_slug ] = $field->default_value();
 
 				}
-
 			}
-
 		}
 
-		$config_hash = md5( serialize( $config ) );
+		$config_hash = md5( wp_json_encode( $config ) );
 		$prev_hash   = get_option( '_' . $this->handle . '_settings_hash' );
 
 		if ( $config_hash !== $prev_hash ) {

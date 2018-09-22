@@ -37,16 +37,19 @@ class TermUpdated extends TermTrigger {
 
 		$this->taxonomy = $taxonomy;
 
-		parent::__construct( array(
-			'taxonomy' => $taxonomy,
-			'slug'      => 'wordpress/' . $taxonomy . '/updated',
-			'name'      => sprintf( __( '%s term updated', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ) ),
-		) );
+		parent::__construct(
+			array(
+				'taxonomy' => $taxonomy,
+				'slug'     => 'wordpress/' . $taxonomy . '/updated',
+				// Translators: taxonomy name.
+				'name'     => sprintf( __( '%s term updated', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ) ),
+			)
+		);
 
 		$this->add_action( 'edited_term', 100, 2 );
 
 		// translators: 1. taxonomy name, 2. taxonomy slug.
-		$this->set_description( sprintf( __( 'Fires when %s (%s) is updated', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ), $taxonomy ) );
+		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is updated', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ), $taxonomy ) );
 
 	}
 
@@ -58,10 +61,10 @@ class TermUpdated extends TermTrigger {
 	 */
 	public function action( $term_id ) {
 
-		$term = get_term( $term_id );
+		$term       = get_term( $term_id );
 		$this->term = $term;
 
-		if ( $this->taxonomy != $this->term->taxonomy ) {
+		if ( $this->taxonomy !== $this->term->taxonomy ) {
 			return false;
 		}
 
@@ -81,11 +84,15 @@ class TermUpdated extends TermTrigger {
 
 		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
-			'slug' => 'term_modification_datetime',
-			'name' => sprintf( __( 'Term modification date and time', 'notification' ) ),
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\DateTime\DateTime(
+				array(
+					'slug' => 'term_modification_datetime',
+					'name' => sprintf( __( 'Term modification date and time', 'notification' ) ),
+				)
+			)
+		);
 
-    }
+	}
 
 }

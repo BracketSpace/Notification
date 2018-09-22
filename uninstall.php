@@ -16,12 +16,12 @@ $general_settings = get_option( 'notification_general' );
 $un = $general_settings['uninstallation'];
 
 // remove notifications.
-if ( isset( $un['notifications'] ) && $un['notifications'] == 'true' ) {
-	$wpdb->query( "DELETE FROM {$wpdb->posts} WHERE post_type = 'notification'" );
+if ( isset( $un['notifications'] ) && 'true' === $un['notifications'] ) {
+	$wpdb->query( "DELETE FROM {$wpdb->posts} WHERE post_type = 'notification'" ); // WPCS: db call ok.
 }
 
 // remove settings.
-if ( isset( $un['settings'] ) && $un['settings'] == 'true' ) {
+if ( isset( $un['settings'] ) && 'true' === $un['settings'] ) {
 
 	$settings_config = get_option( '_notification_settings_config' );
 
@@ -36,10 +36,10 @@ if ( isset( $un['settings'] ) && $un['settings'] == 'true' ) {
 }
 
 // remove licenses.
-if ( isset( $un['licenses'] ) && $un['licenses'] == 'true' ) {
+if ( isset( $un['licenses'] ) && 'true' === $un['licenses'] ) {
 
-	$files = new BracketSpace\Notification\Utils\Files( '', '', '' );
-	$view  = new BracketSpace\Notification\Utils\View( $files );
+	$files            = new BracketSpace\Notification\Utils\Files( '', '', '' );
+	$view             = new BracketSpace\Notification\Utils\View( $files );
 	$extensions_class = new BracketSpace\Notification\Admin\Extensions( $view );
 
 	$extensions_class->load_extensions();

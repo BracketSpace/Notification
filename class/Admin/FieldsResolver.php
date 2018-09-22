@@ -16,10 +16,10 @@ class FieldsResolver {
 
 	/**
 	 * Regex pattern for merge tags
-     *
+	 *
 	 * @var string
 	 */
-	private $merge_tag_pattern = "/\{([^\}]*)\}/";
+	private $merge_tag_pattern = '/\{([^\}]*)\}/';
 
 	/**
 	 * Notification object
@@ -37,7 +37,7 @@ class FieldsResolver {
 
 	/**
 	 * FieldsResolver contructor
-     *
+	 *
 	 * @param Notification $notification Notification object.
 	 * @param array        $merge_tags   resolved merge tags array.
 	 */
@@ -54,7 +54,7 @@ class FieldsResolver {
 
 	/**
 	 * Resolves all notification fields
-     *
+	 *
 	 * @return void
 	 */
 	public function resolve_fields() {
@@ -74,7 +74,7 @@ class FieldsResolver {
 
 	/**
 	 * Resolves merge tags in a value
-     *
+	 *
 	 * @param  mixed $value string or array, field value.
 	 * @return mixed
 	 */
@@ -85,11 +85,10 @@ class FieldsResolver {
 			$resolved = array();
 
 			foreach ( $value as $key => $val ) {
-				$key = $this->resolve_value( $key );
-				$val = $this->resolve_value( $val );
+				$key              = $this->resolve_value( $key );
+				$val              = $this->resolve_value( $val );
 				$resolved[ $key ] = $val;
 			}
-
 		} else {
 
 			$value = apply_filters( 'notificaiton/notification/field/resolving', $value, $this->merge_tags );
@@ -104,6 +103,8 @@ class FieldsResolver {
 			$strip_shortcodes = notification_get_setting( 'general/content/strip_shortcodes' );
 			if ( apply_filters( 'notification/value/strip_shortcodes', $strip_shortcodes ) ) {
 				$resolved = strip_shortcodes( $resolved );
+			} else {
+				$resolved = do_shortcode( $resolved );
 			}
 
 			$resolved = apply_filters( 'notificaiton/notification/field/resolved', $resolved, $this->merge_tags );

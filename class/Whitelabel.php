@@ -16,9 +16,9 @@ class Whitelabel {
 	/**
 	 * Removes defaults:
 	 * - triggers
-     *
-     * @action init 50
-     *
+	 *
+	 * @action init 50
+	 *
 	 * @return void
 	 */
 	public function remove_defaults() {

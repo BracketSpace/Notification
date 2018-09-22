@@ -21,11 +21,14 @@ class CommentSpammed extends CommentTrigger {
 	 */
 	public function __construct( $comment_type = 'comment' ) {
 
-		parent::__construct( array(
-			'slug'         => 'wordpress/comment_' . $comment_type . '_spammed',
-			'name'         => sprintf( __( '%s spammed', 'notification' ), ucfirst( $comment_type ) ),
-			'comment_type' => $comment_type,
-		) );
+		parent::__construct(
+			array(
+				'slug'         => 'wordpress/comment_' . $comment_type . '_spammed',
+				// Translators: %s comment type.
+				'name'         => sprintf( __( '%s spammed', 'notification' ), ucfirst( $comment_type ) ),
+				'comment_type' => $comment_type,
+			)
+		);
 
 		$this->add_action( 'spammed_comment', 100, 2 );
 
@@ -45,7 +48,11 @@ class CommentSpammed extends CommentTrigger {
 
 		$this->comment = $comment;
 
-		if ( $this->comment->comment_approved == 'spam' && notification_get_setting( 'triggers/comment/akismet' ) ) {
+		if ( 'spam' === $this->comment->comment_approved && notification_get_setting( 'triggers/comment/akismet' ) ) {
+			return false;
+		}
+
+		if ( $this->comment->comment_type !== $this->comment_type ) {
 			return false;
 		}
 

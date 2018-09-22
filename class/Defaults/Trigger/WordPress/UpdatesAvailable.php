@@ -70,60 +70,80 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	 */
 	public function merge_tags() {
 
-		$this->add_merge_tag( new MergeTag\HtmlTag( array(
-			'slug'        => 'updates_list',
-			'name'        => __( 'Updates list', 'notification' ),
-			'description' => __( 'The lists for core, plugins and themes updates.', 'notification' ),
-			'resolver'    => function( $trigger ) {
-				$lists = array();
+		$this->add_merge_tag(
+			new MergeTag\HtmlTag(
+				array(
+					'slug'        => 'updates_list',
+					'name'        => __( 'Updates list', 'notification' ),
+					'description' => __( 'The lists for core, plugins and themes updates.', 'notification' ),
+					'resolver'    => function( $trigger ) {
+						$lists = array();
 
-				foreach ( $this->update_types as $update_type ) {
-					if ( $this->has_updates( $update_type ) ) {
-						$html  = '<h3>' . $this->get_list_title( $update_type ) . '</h3>';
-						$html .= call_user_func( array( $this, 'get_' . $update_type . '_updates_list' ) );
-						$lists[] = $html;
-					}
-				}
+						foreach ( $this->update_types as $update_type ) {
+							if ( $this->has_updates( $update_type ) ) {
+								$html  = '<h3>' . $this->get_list_title( $update_type ) . '</h3>';
+								$html .= call_user_func( array( $this, 'get_' . $update_type . '_updates_list' ) );
+								$lists[] = $html;
+							}
+						}
 
-				if ( empty( $lists ) ) {
-					$lists[] = __( 'No updates available.', 'notification' );
-				}
+						if ( empty( $lists ) ) {
+							$lists[] = __( 'No updates available.', 'notification' );
+						}
 
-				return implode( '<br><br>', $lists );
-			},
-		) ) );
+						return implode( '<br><br>', $lists );
+					},
+				)
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\IntegerTag( array(
-			'slug'        => 'all_updates_count',
-			'name'        => __( 'Number of all updates', 'notification' ),
-			'resolver'    => function( $trigger ) {
-				return $trigger->get_updates_count( 'all' );
-			},
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\IntegerTag(
+				array(
+					'slug'     => 'all_updates_count',
+					'name'     => __( 'Number of all updates', 'notification' ),
+					'resolver' => function( $trigger ) {
+						return $trigger->get_updates_count( 'all' );
+					},
+				)
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\IntegerTag( array(
-			'slug'        => 'core_updates_count',
-			'name'        => __( 'Number of core updates', 'notification' ),
-			'resolver'    => function( $trigger ) {
-				return $trigger->get_updates_count( 'core' );
-			},
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\IntegerTag(
+				array(
+					'slug'     => 'core_updates_count',
+					'name'     => __( 'Number of core updates', 'notification' ),
+					'resolver' => function( $trigger ) {
+						return $trigger->get_updates_count( 'core' );
+					},
+				)
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\IntegerTag( array(
-			'slug'        => 'plugin_updates_count',
-			'name'        => __( 'Number of plugin updates', 'notification' ),
-			'resolver'    => function( $trigger ) {
-				return $trigger->get_updates_count( 'plugin' );
-			},
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\IntegerTag(
+				array(
+					'slug'     => 'plugin_updates_count',
+					'name'     => __( 'Number of plugin updates', 'notification' ),
+					'resolver' => function( $trigger ) {
+						return $trigger->get_updates_count( 'plugin' );
+					},
+				)
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\IntegerTag( array(
-			'slug'        => 'theme_updates_count',
-			'name'        => __( 'Number of theme updates', 'notification' ),
-			'resolver'    => function( $trigger ) {
-				return $trigger->get_updates_count( 'theme' );
-			},
-		) ) );
+		$this->add_merge_tag(
+			new MergeTag\IntegerTag(
+				array(
+					'slug'     => 'theme_updates_count',
+					'name'     => __( 'Number of theme updates', 'notification' ),
+					'resolver' => function( $trigger ) {
+						return $trigger->get_updates_count( 'theme' );
+					},
+				)
+			)
+		);
 
 	}
 
@@ -181,7 +201,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 		$updates = get_core_updates();
 
 		foreach ( $updates as $update_key => $update ) {
-			if ( $update->current == $update->version ) {
+			if ( $update->current === $update->version ) {
 				unset( $updates[ $update_key ] );
 			}
 		}
@@ -194,7 +214,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 
 		foreach ( $updates as $update ) {
 			// translators: 1. Update type, 2. Version.
-			$html .= '<li>' . sprintf( __( '<strong>WordPress</strong> <i>(%s)</i>: %s', 'notification' ), $update->response, $update->version ) . '</li>';
+			$html .= '<li>' . sprintf( __( '<strong>WordPress</strong> <i>(%1$s)</i>: %2$s', 'notification' ), $update->response, $update->version ) . '</li>';
 		}
 
 		$html .= '</ul>';
@@ -221,7 +241,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 
 		foreach ( $updates as $update ) {
 			// translators: 1. Plugin name, 2. Current version, 3. Update version.
-			$html .= '<li>' . sprintf( __( '<strong>%s</strong> <i>(current version: %s)</i>: %s', 'notification' ), $update->Name, $update->Version, $update->update->new_version ) . '</li>';
+			$html .= '<li>' . sprintf( __( '<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s', 'notification' ), $update->Name, $update->Version, $update->update->new_version ) . '</li>'; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar
 		}
 
 		$html .= '</ul>';
@@ -248,7 +268,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 
 		foreach ( $updates as $update ) {
 			// translators: 1. Theme name, 2. Current version, 3. Update version.
-			$html .= '<li>' . sprintf( __( '<strong>%s</strong> <i>(current version: %s)</i>: %s', 'notification' ), $update->Name, $update->Version, $update->update['new_version'] ) . '</li>';
+			$html .= '<li>' . sprintf( __( '<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s', 'notification' ), $update->Name, $update->Version, $update->update['new_version'] ) . '</li>'; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar
 		}
 
 		$html .= '</ul>';
@@ -266,12 +286,12 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	 */
 	public function get_updates_count( $update_type = 'all' ) {
 
-		if ( $update_type !== 'all' ) {
+		if ( 'all' !== $update_type ) {
 			$updates = call_user_func( 'get_' . $update_type . '_updates' );
 
-			if ( $update_type == 'core'  ) {
+			if ( 'core' === $update_type ) {
 				foreach ( $updates as $update_key => $update ) {
-					if ( $update->current == $update->version ) {
+					if ( $update->current === $update->version ) {
 						unset( $updates[ $update_key ] );
 					}
 				}
