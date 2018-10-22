@@ -42,7 +42,7 @@ class Time extends StringTag {
 
 		if ( ! isset( $args['resolver'] ) ) {
 			$args['resolver'] = function() use ( $args ) {
-				return date_i18n( $args['time_format'], $this->trigger->{ $this->get_slug() } );
+				return date_i18n( $args['time_format'], ( isset( $args['timestamp'] ) ) ? $args['timestamp'] : $this->trigger->{ $this->get_slug() } );
 			};
 		}
 
