@@ -9,10 +9,12 @@ namespace BracketSpace\Notification\Defaults\Trigger\Media;
 
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\MergeTag;
+
 /**
  * Post trigger class
  */
 abstract class MediaTrigger extends Abstracts\Trigger {
+
 	/**
 	 * Constructor
 	 *
@@ -23,6 +25,7 @@ abstract class MediaTrigger extends Abstracts\Trigger {
 		parent::__construct( $slug, $name );
 		$this->set_group( __( 'Media', 'notification' ) );
 	}
+
 	/**
 	 * Registers attached merge tags
 	 *
