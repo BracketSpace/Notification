@@ -13,7 +13,7 @@ use BracketSpace\Notification\Abstracts;
 /**
  * User password changed trigger class
  */
-class UserPasswordChanged extends Abstracts\Trigger {
+class UserPasswordChanged extends UserTrigger {
 
 	/**
 	 * Constructor
@@ -23,7 +23,7 @@ class UserPasswordChanged extends Abstracts\Trigger {
 		parent::__construct( 'wordpress/user_password_changed', __( 'User password changed', 'notification' ) );
 
 		$this->add_action( 'password_reset', 10, 1 );
-		$this->set_group( __( 'User', 'notification' ) );
+
 		$this->set_description( __( 'Fires when user changed his password', 'notification' ) );
 
 	}
@@ -52,24 +52,13 @@ class UserPasswordChanged extends Abstracts\Trigger {
 	 */
 	public function merge_tags() {
 
-		$this->add_merge_tag( new MergeTag\User\UserID() );
-		$this->add_merge_tag( new MergeTag\User\UserLogin() );
-		$this->add_merge_tag( new MergeTag\User\UserEmail() );
+		parent::merge_tags();
+
 		$this->add_merge_tag( new MergeTag\User\UserNicename() );
 		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
 		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
 		$this->add_merge_tag( new MergeTag\User\UserLastName() );
 
-		$this->add_merge_tag(
-			new MergeTag\DateTime\DateTime(
-				array(
-					'slug' => 'user_registered_datetime',
-					'name' => __( 'User registration date', 'notification' ),
-				)
-			)
-		);
-
-		$this->add_merge_tag( new MergeTag\User\UserRole() );
 		$this->add_merge_tag( new MergeTag\User\UserBio() );
 
 		$this->add_merge_tag(

@@ -13,7 +13,7 @@ use BracketSpace\Notification\Abstracts;
 /**
  * User profile updated trigger class
  */
-class UserRegistered extends Abstracts\Trigger {
+class UserRegistered extends UserTrigger {
 
 	/**
 	 * Constructor
@@ -24,7 +24,6 @@ class UserRegistered extends Abstracts\Trigger {
 
 		$this->add_action( 'user_register', 1000 );
 
-		$this->set_group( __( 'User', 'notification' ) );
 		$this->set_description( __( 'Fires when user registers new account', 'notification' ) );
 
 	}
@@ -52,19 +51,7 @@ class UserRegistered extends Abstracts\Trigger {
 	 */
 	public function merge_tags() {
 
-		$this->add_merge_tag( new MergeTag\User\UserID() );
-		$this->add_merge_tag( new MergeTag\User\UserLogin() );
-		$this->add_merge_tag( new MergeTag\User\UserEmail() );
-		$this->add_merge_tag( new MergeTag\User\UserRole() );
-
-		$this->add_merge_tag(
-			new MergeTag\DateTime\DateTime(
-				array(
-					'slug' => 'user_registered_datetime',
-					'name' => __( 'User registration date', 'notification' ),
-				)
-			)
-		);
+		parent::merge_tags();
 
 		$this->add_merge_tag(
 			new MergeTag\UrlTag(

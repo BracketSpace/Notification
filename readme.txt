@@ -210,6 +210,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 == Changelog ==
 
 = [Next] =
+* [Changed] Added parent class for user triggers
 * [Changed] Added parent class for media triggers
 
 = 5.2.4 =
