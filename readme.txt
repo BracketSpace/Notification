@@ -210,9 +210,9 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 == Changelog ==
 
 = [Next] = 
-* [Added] `date` merge tag for trigger execution date.
-* [Added] `date_time` merge tag for trigger execution date nad time.
-* [Added] `time` merge tag for trigger execution time.
+* [Added] Global date merge tag for trigger execution date.
+* [Added] Global date and time merge tag for trigger execution date nad time.
+* [Added] Global time merge tag for trigger execution time.
 
 = 5.2.4 =
 * [Fixed] When `Strip all shortcodes` setting is disabled, the shortcodes are rendered.
