@@ -209,6 +209,9 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
+= [Next] =
+* [Changed] Make media trigger
+
 = 5.2.4 =
 * [Fixed] When `Strip all shortcodes` setting is disabled, the shortcodes are rendered.
 * [Fixed] Coding Standards.
