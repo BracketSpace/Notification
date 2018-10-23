@@ -139,7 +139,7 @@ notification_add_global_merge_tag(
 	new MergeTag\DateTime\Date(
 		array(
 			'slug'      => 'date',
-			'name'      => __( 'Current date', 'notification' ),
+			'name'      => __( 'Trigger execution date', 'notification' ),
 			'hidden'    => true,
 			'timestamp' => time(),
 		)
@@ -150,7 +150,7 @@ notification_add_global_merge_tag(
 	new MergeTag\DateTime\DateTime(
 		array(
 			'slug'      => 'date_time',
-			'name'      => __( 'Current date and time', 'notification' ),
+			'name'      => __( 'Trigger execution date and time', 'notification' ),
 			'hidden'    => true,
 			'timestamp' => time(),
 		)
@@ -161,7 +161,7 @@ notification_add_global_merge_tag(
 	new MergeTag\DateTime\Time(
 		array(
 			'slug'      => 'time',
-			'name'      => __( 'Current time', 'notification' ),
+			'name'      => __( 'Trigger execution time', 'notification' ),
 			'hidden'    => true,
 			'timestamp' => time(),
 		)
