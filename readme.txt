@@ -210,8 +210,9 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 == Changelog ==
 
 = [Next] =
-* [Changed] Added parent class for user triggers
-* [Changed] Added parent class for media triggers
+* [Changed] Added parent class for user triggers.
+* [Changed] Added parent class for media triggers.
+* [Added] Global date, time and datetime merge tags for trigger execution date.
 
 = 5.2.4 =
 * [Fixed] When `Strip all shortcodes` setting is disabled, the shortcodes are rendered.
