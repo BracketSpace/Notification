@@ -8,7 +8,6 @@
 namespace BracketSpace\Notification\Defaults\Trigger\User;
 
 use BracketSpace\Notification\Defaults\MergeTag;
-use BracketSpace\Notification\Abstracts;
 
 /**
  * User profile updated trigger class

@@ -11,7 +11,7 @@ use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\MergeTag;
 
 /**
- * Post trigger class
+ * User trigger class
  */
 abstract class UserTrigger extends Abstracts\Trigger {
 
@@ -22,11 +22,8 @@ abstract class UserTrigger extends Abstracts\Trigger {
 	 * @param string $name $params trigger name.
 	 */
 	public function __construct( $slug, $name ) {
-
 		parent::__construct( $slug, $name );
-
 		$this->set_group( __( 'User', 'notification' ) );
-
 	}
 
 	/**

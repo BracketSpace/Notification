@@ -1,6 +1,6 @@
 <?php
 /**
- * User password changed trigger
+ * User password change requested trigger
  *
  * @package notification
  */
@@ -8,10 +8,9 @@
 namespace BracketSpace\Notification\Defaults\Trigger\User;
 
 use BracketSpace\Notification\Defaults\MergeTag;
-use BracketSpace\Notification\Abstracts;
 
 /**
- * User password changed trigger class
+ * User password change requested trigger class
  */
 class UserPasswordResetRequest extends UserTrigger {
 
