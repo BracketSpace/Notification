@@ -11,7 +11,7 @@ use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\MergeTag;
 
 /**
- * Post trigger class
+ * Media trigger class
  */
 abstract class MediaTrigger extends Abstracts\Trigger {
 
@@ -111,4 +111,5 @@ abstract class MediaTrigger extends Abstracts\Trigger {
 			)
 		);
 	}
+
 }

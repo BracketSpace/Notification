@@ -8,7 +8,6 @@
 namespace BracketSpace\Notification\Defaults\Trigger\Media;
 
 use BracketSpace\Notification\Defaults\MergeTag;
-use BracketSpace\Notification\Abstracts;
 
 /**
  * Media added trigger class
