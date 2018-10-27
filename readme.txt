@@ -209,10 +209,10 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 
 == Changelog ==
 
-= [Next] = 
-* [Added] Global date merge tag for trigger execution date.
-* [Added] Global date and time merge tag for trigger execution date nad time.
-* [Added] Global time merge tag for trigger execution time.
+= [Next] =
+* [Changed] Added parent class for user triggers.
+* [Changed] Added parent class for media triggers.
+* [Added] Global date, time and datetime merge tags for trigger execution date.
 
 = 5.2.4 =
 * [Fixed] When `Strip all shortcodes` setting is disabled, the shortcodes are rendered.
