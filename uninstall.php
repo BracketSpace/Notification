@@ -17,7 +17,7 @@ $un = $general_settings['uninstallation'];
 
 // remove notifications.
 if ( isset( $un['notifications'] ) && 'true' === $un['notifications'] ) {
-	$wpdb->query( "DELETE FROM {$wpdb->posts} WHERE post_type = 'notification'" ); // WPCS: db call ok.
+	$wpdb->query( "DELETE FROM {$wpdb->posts} WHERE post_type = 'notification'" ); // phpcs:ignore
 }
 
 // remove settings.
