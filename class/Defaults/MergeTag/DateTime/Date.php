@@ -4,6 +4,7 @@
  *
  * Requirements:
  * - Trigger property of the merge tag slug with timestamp
+ * - or 'timestamp' parameter in arguments with timestamp
  *
  * @package notification
  */
@@ -45,9 +46,17 @@ class Date extends StringTag {
 			$args['description'] .= __( 'You can change the format in General WordPress Settings.', 'notification' );
 		}
 
+		if ( isset( $args['timestamp'] ) ) {
+			$timestamp = $args['timestamp'];
+		} elseif ( isset( $this->trigger->{ $this->get_slug() } ) ) {
+			$timestamp = $this->trigger->{ $this->get_slug() };
+		} else {
+			$timestamp = 0;
+		}
+
 		if ( ! isset( $args['resolver'] ) ) {
 			$args['resolver'] = function() use ( $args ) {
-				return date_i18n( $args['date_format'], ( isset( $args['timestamp'] ) ) ? $args['timestamp'] : $this->trigger->{ $this->get_slug() } );
+				return date_i18n( $args['date_format'], $timestamp );
 			};
 		}
 
