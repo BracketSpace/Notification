@@ -5,10 +5,12 @@
  * @package notification
  */
 
+namespace BracketSpace\Notification\Tests\Core;
+
 /**
  * Main test case.
  */
-class MainTest extends WP_UnitTestCase {
+class TestMain extends \WP_UnitTestCase {
 
 	/**
 	 * Setup test

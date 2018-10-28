@@ -27,5 +27,31 @@ function _manually_load_plugin() {
 }
 tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
 
+/**
+ * Plugin's autoload function for test files
+ *
+ * @param  string $class class name.
+ * @return mixed         false if not plugin's class or void
+ */
+function notification_tests_autoload( $class ) {
+
+	$parts      = explode( '\\', $class );
+	$namespaces = array( 'BracketSpace', 'Notification', 'Tests' );
+
+	foreach ( $namespaces as $namespace ) {
+		if ( array_shift( $parts ) !== $namespace ) {
+			return false;
+		}
+	}
+
+	$file = trailingslashit( dirname( __FILE__ ) ) . implode( '/', $parts ) . '.php';
+
+	if ( file_exists( $file ) ) {
+		require_once $file;
+	}
+
+}
+spl_autoload_register( 'notification_tests_autoload' );
+
 // Start up the WP testing environment.
 require $_tests_dir . '/includes/bootstrap.php';
