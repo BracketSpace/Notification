@@ -63,6 +63,7 @@ class TestTrigger extends \WP_UnitTestCase {
 
 		$this->assertTrue( $trigger->is_stopped() );
 		$this->assertTrue( $trigger->is_postponed() );
+		$this->assertEquals( 0, did_action( 'notification/notification/pre-send' ) );
 
 		do_action( 'notification/test/postponed' );
 
