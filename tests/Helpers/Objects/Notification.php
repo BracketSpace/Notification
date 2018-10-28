@@ -16,6 +16,13 @@ use BracketSpace\Notification\Interfaces\Triggerable;
 class Notification extends AbstractNotification {
 
 	/**
+	 * Is sent flag
+	 *
+	 * @var boolean
+	 */
+	public $is_sent = false;
+
+	/**
 	 * Dummy notification constructor
 	 *
 	 * @since [Next]

@@ -45,4 +45,30 @@ class TestTrigger extends \WP_UnitTestCase {
 		}
 	}
 
+	/**
+	 * Test trigger postponed action
+	 *
+	 * @since [Next]
+	 */
+	public function test_trigger_postponed_action() {
+		$trigger = new Objects\PostponedTrigger();
+		register_trigger( $trigger );
+
+		$notification = new Objects\Notification();
+		register_notification( $notification );
+
+		NotificationPost::insert( $trigger, $notification );
+
+		do_action( 'notification/test' );
+
+		$this->assertTrue( $trigger->is_stopped() );
+		$this->assertTrue( $trigger->is_postponed() );
+
+		do_action( 'notification/test/postponed' );
+
+		foreach ( $trigger->get_attached_notifications() as $attached_notifcation ) {
+			$this->assertTrue( $attached_notifcation->is_sent );
+		}
+	}
+
 }
