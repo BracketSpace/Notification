@@ -7,6 +7,7 @@
 
 namespace BracketSpace\Notification\Tests\Triggers;
 use BracketSpace\Notification\Tests\Helpers\Objects;
+use BracketSpace\Notification\Tests\Helpers\NotificationPost;
 
 /**
  * Trigger test case.
@@ -35,16 +36,13 @@ class TestTrigger extends \WP_UnitTestCase {
 		$notification = new Objects\Notification();
 		register_notification( $notification );
 
-		$this->factory->post->create( array(
-			'post_type'  => 'notification',
-			'meta_input' => array(
-
-			),
-		) );
+		NotificationPost::insert( $trigger, $notification );
 
 		do_action( 'notification/test' );
 
-		$this->assertTrue( $notification->is_sent );
+		foreach ( $trigger->get_attached_notifications() as $attached_notifcation ) {
+			$this->assertTrue( $attached_notifcation->is_sent );
+		}
 	}
 
 }
