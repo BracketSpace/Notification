@@ -94,7 +94,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 		}
 
 		if ( isset( $params['hidden'] ) ) {
-			$this->hidden = (boolean) $params['hidden'];
+			$this->hidden = (bool) $params['hidden'];
 		}
 
 	}
