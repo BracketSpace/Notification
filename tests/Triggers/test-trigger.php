@@ -15,7 +15,7 @@ use BracketSpace\Notification\Tests\Helpers\NotificationPost;
 class TestTrigger extends \WP_UnitTestCase {
 
 	/**
-	 * Test trigger registration
+	 * Tests trigger registration
 	 *
 	 * @since [Next]
 	 */
@@ -25,7 +25,7 @@ class TestTrigger extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * Test trigger action
+	 * Tests trigger action
 	 *
 	 * @since [Next]
 	 */
@@ -46,7 +46,7 @@ class TestTrigger extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * Test trigger postponed action
+	 * Tests trigger postponed action
 	 *
 	 * @since [Next]
 	 */
