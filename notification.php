@@ -45,7 +45,7 @@ spl_autoload_register( 'notification_autoload' );
 $requirements = new BracketSpace\Notification\Utils\Requirements(
 	__( 'Notification', 'notification' ),
 	array(
-		'php'                => '5.3.9',
+		'php'                => '5.6',
 		'wp'                 => '4.6',
 		'function_collision' => array( 'register_trigger', 'register_notification' ),
 		'dochooks'           => true,

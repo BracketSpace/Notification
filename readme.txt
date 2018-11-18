@@ -5,7 +5,7 @@ Tags: notification, notify, alert, email, mail, webhook, API, developer, framewo
 Requires at least: 4.6
 Tested up to: 5.0
 Stable tag: 5.2.4
-Requires PHP: 5.3
+Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -167,7 +167,7 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 
 = Requirements =
 
-This plugin require at least PHP 5.3.0.
+This plugin require at least PHP 5.6.
 
 = Plugin install =
 
@@ -212,6 +212,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 = [Next] =
 * [Changed] Added parent class for user triggers.
 * [Changed] Added parent class for media triggers.
+* [Changed] PHP requirement to 5.6.
 * [Added] Global date, time and datetime merge tags for trigger execution date.
 
 = 5.2.4 =
