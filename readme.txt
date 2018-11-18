@@ -231,6 +231,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Changed] Added parent class for media triggers.
 * [Changed] PHP requirement to 5.6.
 * [Changed] Freemius updated to version 2.1.3.
+* [Changed] Uninstallation logic moved to the Freemius handler.
 * [Added] Global date, time and datetime merge tags for trigger execution date.
 
 = 5.2.4 =

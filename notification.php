@@ -152,3 +152,59 @@ function notification_freemius() {
 notification_freemius();
 // Signal that SDK was initiated.
 do_action( 'notification_freemius_loaded' );
+
+// Uninstallation.
+notification_freemius()->add_action( 'after_uninstall', function() {
+
+	global $wpdb;
+
+	$general_settings = get_option( 'notification_general' );
+
+	$un = $general_settings['uninstallation'];
+
+	// Remove notifications.
+	if ( isset( $un['notifications'] ) && 'true' === $un['notifications'] ) {
+		$wpdb->query( "DELETE FROM {$wpdb->posts} WHERE post_type = 'notification'" ); // phpcs:ignore
+	}
+
+	// Remove settings.
+	if ( isset( $un['settings'] ) && 'true' === $un['settings'] ) {
+
+		$settings_config = get_option( '_notification_settings_config' );
+
+		foreach ( $settings_config as $section_slug => $section ) {
+			delete_option( 'notification_' . $section_slug );
+			delete_site_option( 'notification_' . $section_slug );
+		}
+
+		delete_option( '_notification_settings_config' );
+		delete_option( '_notification_settings_hash' );
+
+	}
+
+	// Remove licenses.
+	if ( isset( $un['licenses'] ) && 'true' === $un['licenses'] ) {
+
+		$files            = new BracketSpace\Notification\Utils\Files( '', '', '' );
+		$view             = new BracketSpace\Notification\Utils\View( $files );
+		$extensions_class = new BracketSpace\Notification\Admin\Extensions( $view );
+
+		$extensions_class->load_extensions();
+
+		$premium_extensions = $extensions_class->premium_extensions;
+
+		foreach ( $premium_extensions as $extension ) {
+			$license = $extension['license'];
+			if ( $license->is_valid() ) {
+				$license->deactivate();
+			}
+		}
+
+		delete_option( 'notification_licenses' );
+
+	}
+
+	// Remove other things.
+	delete_option( 'notification_story_dismissed' );
+
+} );
