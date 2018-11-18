@@ -24,7 +24,7 @@ $license = $ext['license']->get();
 			<?php else : ?>
 				<?php if ( 'lifetime' !== $license->expires ) : ?>
 					<?php // translators: 1. Expiration date. ?>
-					<p><?php printf( esc_html__( 'Your license expires on %s.', 'notification' ), esc_html( date_i18n( get_option( 'date_format' ) ), strtotime( $license->expires, current_time( 'timestamp' ) ) ) ); ?></p>
+					<p><?php printf( esc_html__( 'Your license expires on %s.', 'notification' ), esc_html( date_i18n( get_option( 'date_format' ), strtotime( $license->expires, current_time( 'timestamp' ) ) ) ) ); ?></p>
 				<?php else : ?>
 					<p><?php esc_html_e( 'Your license never expires.', 'notification' ); ?></p>
 				<?php endif ?>
