@@ -121,36 +121,34 @@ $runtime->boot();
  * @since  5.2.3
  * @return object
  */
-function not_fs() {
-	global $not_fs;
+function notification_freemius() {
+	global $notification_freemius;
 
-	if ( ! isset( $not_fs ) ) {
+	if ( ! isset( $notification_freemius ) ) {
 		// Include Freemius SDK.
 		require_once dirname( __FILE__ ) . '/freemius/start.php';
 
-		$not_fs = fs_dynamic_init(
-			array(
-				'id'             => '1823',
-				'slug'           => 'notification',
-				'type'           => 'plugin',
-				'public_key'     => 'pk_bf7bb6cbc0cd51e14cd186e9620de',
-				'is_premium'     => false,
-				'has_addons'     => false,
-				'has_paid_plans' => false,
-				'menu'           => array(
-					'first-path' => 'plugins.php',
-					'account'    => false,
-					'contact'    => false,
-					'support'    => false,
-				),
-			)
-		);
+		$notification_freemius = fs_dynamic_init( array(
+			'id'             => '1823',
+			'slug'           => 'notification',
+			'type'           => 'plugin',
+			'public_key'     => 'pk_bf7bb6cbc0cd51e14cd186e9620de',
+			'is_premium'     => false,
+			'has_addons'     => false,
+			'has_paid_plans' => false,
+			'menu'           => array(
+				'slug'    => 'edit.php?post_type=notification',
+				'account' => false,
+				'contact' => false,
+				'support' => false,
+			),
+		) );
 	}
 
-	return $not_fs;
+	return $notification_freemius;
 }
 
 // Init Freemius.
-not_fs();
+notification_freemius();
 // Signal that SDK was initiated.
-do_action( 'not_fs_loaded' );
+do_action( 'notification_freemius_loaded' );
