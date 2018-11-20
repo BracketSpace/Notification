@@ -87,7 +87,7 @@
 		'license-single-site'           => _fs_text( 'Single Site License' ),
 		'license-unlimited'             => _fs_text( 'Unlimited Licenses' ),
 		'license-x-sites'               => _fs_text( 'Up to %s Sites' ),
-		'renew-license-now'             => _fs_text( '%sRenew your license now%s to access version %s features and support.' ),
+		'renew-license-now'             => _fs_text( '%sRenew your license now%s to access version %s security & feature updates, and support.' ),
 		'ask-for-upgrade-email-address' => _fs_text( "Enter the email address you've used for the upgrade below and we will resend you the license key." ),
 		'x-plan'                        => _fs_x( '%s Plan', 'e.g. Professional Plan' ),
 		'you-are-step-away'             => _fs_text( 'You are just one step away - %s' ),
@@ -309,6 +309,12 @@
 		'opt-out-message-appreciation'             => _fs_text( 'We appreciate your help in making the %s better by letting us track some usage data.' ),
 		'opt-out-message-usage-tracking'           => _fs_text( "Usage tracking is done in the name of making %s better. Making a better user experience, prioritizing new features, and more good things. We'd really appreciate if you'll reconsider letting us continue with the tracking." ),
 		'opt-out-message-clicking-opt-out'         => _fs_text( 'By clicking "Opt Out", we will no longer be sending any data from %s to %s.' ),
+		'apply-on-all-sites-in-the-network'        => _fs_text( 'Apply on all sites in the network.' ),
+		'delegate-to-site-admins'                  => _fs_text( 'Delegate to Site Admins' ),
+		'delegate-to-site-admins-and-continue'     => _fs_text( 'Delegate to Site Admins & Continue' ),
+		'continue'                                 => _fs_text( 'Continue' ),
+		'allow'                                    => _fs_text( 'allow' ),
+		'delegate'                                 => _fs_text( 'delegate' ),
 		#endregion Connect
 
 		#region Screenshots

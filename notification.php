@@ -45,7 +45,7 @@ spl_autoload_register( 'notification_autoload' );
 $requirements = new BracketSpace\Notification\Utils\Requirements(
 	__( 'Notification', 'notification' ),
 	array(
-		'php'                => '5.3.9',
+		'php'                => '5.6',
 		'wp'                 => '4.6',
 		'function_collision' => array( 'register_trigger', 'register_notification' ),
 		'dochooks'           => true,
@@ -121,36 +121,90 @@ $runtime->boot();
  * @since  5.2.3
  * @return object
  */
-function not_fs() {
-	global $not_fs;
+function notification_freemius() {
+	global $notification_freemius;
 
-	if ( ! isset( $not_fs ) ) {
+	if ( ! isset( $notification_freemius ) ) {
 		// Include Freemius SDK.
 		require_once dirname( __FILE__ ) . '/freemius/start.php';
 
-		$not_fs = fs_dynamic_init(
-			array(
-				'id'             => '1823',
-				'slug'           => 'notification',
-				'type'           => 'plugin',
-				'public_key'     => 'pk_bf7bb6cbc0cd51e14cd186e9620de',
-				'is_premium'     => false,
-				'has_addons'     => false,
-				'has_paid_plans' => false,
-				'menu'           => array(
-					'first-path' => 'plugins.php',
-					'account'    => false,
-					'contact'    => false,
-					'support'    => false,
-				),
-			)
-		);
+		$notification_freemius = fs_dynamic_init( array(
+			'id'             => '1823',
+			'slug'           => 'notification',
+			'type'           => 'plugin',
+			'public_key'     => 'pk_bf7bb6cbc0cd51e14cd186e9620de',
+			'is_premium'     => false,
+			'has_addons'     => false,
+			'has_paid_plans' => false,
+			'menu'           => array(
+				'slug'    => 'edit.php?post_type=notification',
+				'account' => false,
+				'contact' => false,
+				'support' => false,
+			),
+		) );
 	}
 
-	return $not_fs;
+	return $notification_freemius;
 }
 
 // Init Freemius.
-not_fs();
+notification_freemius();
 // Signal that SDK was initiated.
-do_action( 'not_fs_loaded' );
+do_action( 'notification_freemius_loaded' );
+
+// Uninstallation.
+notification_freemius()->add_action( 'after_uninstall', function() {
+
+	global $wpdb;
+
+	$general_settings = get_option( 'notification_general' );
+
+	$un = $general_settings['uninstallation'];
+
+	// Remove notifications.
+	if ( isset( $un['notifications'] ) && 'true' === $un['notifications'] ) {
+		$wpdb->query( "DELETE FROM {$wpdb->posts} WHERE post_type = 'notification'" ); // phpcs:ignore
+	}
+
+	// Remove settings.
+	if ( isset( $un['settings'] ) && 'true' === $un['settings'] ) {
+
+		$settings_config = get_option( '_notification_settings_config' );
+
+		foreach ( $settings_config as $section_slug => $section ) {
+			delete_option( 'notification_' . $section_slug );
+			delete_site_option( 'notification_' . $section_slug );
+		}
+
+		delete_option( '_notification_settings_config' );
+		delete_option( '_notification_settings_hash' );
+
+	}
+
+	// Remove licenses.
+	if ( isset( $un['licenses'] ) && 'true' === $un['licenses'] ) {
+
+		$files            = new BracketSpace\Notification\Utils\Files( '', '', '' );
+		$view             = new BracketSpace\Notification\Utils\View( $files );
+		$extensions_class = new BracketSpace\Notification\Admin\Extensions( $view );
+
+		$extensions_class->load_extensions();
+
+		$premium_extensions = $extensions_class->premium_extensions;
+
+		foreach ( $premium_extensions as $extension ) {
+			$license = $extension['license'];
+			if ( $license->is_valid() ) {
+				$license->deactivate();
+			}
+		}
+
+		delete_option( 'notification_licenses' );
+
+	}
+
+	// Remove other things.
+	delete_option( 'notification_story_dismissed' );
+
+} );

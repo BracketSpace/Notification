@@ -85,13 +85,37 @@
 		}
 	}
 
-	$fs_user                    = Freemius::_get_user_by_email( $current_user->user_email );
+	$is_network_level_activation = (
+		fs_is_network_admin() &&
+		$fs->is_network_active() &&
+		! $fs->is_network_delegated_connection()
+	);
+
+	$fs_user = Freemius::_get_user_by_email( $current_user->user_email );
+
 	$activate_with_current_user = (
-		is_object( $fs_user ) && 
+		is_object( $fs_user ) &&
 		! $is_pending_activation &&
 		// If requires a license for activation, use the user associated with the license for the opt-in.
-		! $require_license_key
+		! $require_license_key &&
+		! $is_network_level_activation
 	);
+
+    $optin_params = $fs->get_opt_in_params( array(), $is_network_level_activation );
+    $sites        = isset( $optin_params['sites'] ) ? $optin_params['sites'] : array();
+
+    $is_network_upgrade_mode = ( fs_is_network_admin() && $fs->is_network_upgrade_mode() );
+
+    /* translators: %s: name (e.g. Hey John,) */
+    $hey_x_text = esc_html( sprintf( fs_text_x_inline( 'Hey %s,', 'greeting', 'hey-x', $slug ), $first_name ) );
+
+    $is_gdpr_required = ( ! $is_pending_activation && ! $require_license_key ) ?
+	    FS_GDPR_Manager::instance()->is_required() :
+        false;
+
+    if ( is_null( $is_gdpr_required ) ) {
+        $is_gdpr_required = $fs->fetch_and_store_current_user_gdpr_anonymously();
+    }
 ?>
 <?php
 	if ( $is_optin_dialog ) { ?>
@@ -107,9 +131,9 @@
 		}
 	?>
 	<div id="fs_connect"
-	     class="wrap<?php if ( ! $fs->is_enable_anonymous() || $is_pending_activation || $require_license_key ) {
+	     class="wrap<?php if ( ! fs_is_network_admin() && ( ! $fs->is_enable_anonymous() || $is_pending_activation || $require_license_key ) ) {
 		     echo ' fs-anonymous-disabled';
-	     } ?>">
+	     } ?><?php echo $require_license_key ? ' require-license-key' : '' ?>">
 		<div class="fs-visual">
 			<b class="fs-site-icon"><i class="dashicons dashicons-wordpress"></i></b>
 			<i class="dashicons dashicons-plus fs-first"></i>
@@ -126,12 +150,13 @@
 			<?php endif ?>
 			<p><?php
 					$button_label = fs_text_inline( 'Allow & Continue', 'opt-in-connect', $slug );
+					$message = '';
 
 					if ( $is_pending_activation ) {
 						$button_label = fs_text_inline( 'Re-send activation email', 'resend-activation-email', $slug );
 
-						echo $fs->apply_filters( 'pending_activation_message', sprintf(
-							/* translators: %s: name (e.g. Thanks John!) */
+						$message = $fs->apply_filters( 'pending_activation_message', sprintf(
+						    /* translators: %s: name (e.g. Thanks John!) */
 							fs_text_inline( 'Thanks %s!', 'thanks-x', $slug ) . '<br>' .
 							fs_text_inline( 'You should receive an activation email for %s to your mailbox at %s. Please make sure you click the activation button in that email to %s.', 'pending-activation-message', $slug ),
 							$first_name,
@@ -140,23 +165,33 @@
 							fs_text_inline( 'complete the install', 'complete-the-install', $slug )
 						) );
 					} else if ( $require_license_key ) {
-						$button_label = fs_text_inline( 'Agree & Activate License', 'agree-activate-license', $slug );
+						$button_label = $is_network_upgrade_mode ?
+                            fs_text_inline( 'Activate License', 'agree-activate-license', $slug ) :
+                            fs_text_inline( 'Agree & Activate License', 'agree-activate-license', $slug );
 
-						echo $fs->apply_filters( 'connect-message_on-premium',
-							/* translators: %s: name (e.g. Hey John,) */
-							sprintf( fs_text_x_inline( 'Hey %s,', 'greeting', $slug ), $first_name ) . '<br>' .
+						$message = $fs->apply_filters(
+						    'connect-message_on-premium',
+                            ($is_network_upgrade_mode ?
+                                '' :
+                                /* translators: %s: name (e.g. Hey John,) */
+                                $hey_x_text . '<br>'
+                            ) .
 							sprintf( fs_text_inline( 'Thanks for purchasing %s! To get started, please enter your license key:', 'thanks-for-purchasing', $slug ), '<b>' . $fs->get_plugin_name() . '</b>' ),
 							$first_name,
 							$fs->get_plugin_name()
 						);
 					} else {
 						$filter                = 'connect_message';
-						$default_optin_message = fs_text_inline( 'Never miss an important update - opt in to our security and feature updates notifications, and non-sensitive diagnostic tracking with %4$s.', 'connect-message', $slug);;
+						$default_optin_message = $is_gdpr_required ?
+							fs_text_inline( 'Never miss an important update - opt in to our security & feature updates notifications, educational content, offers, and non-sensitive diagnostic tracking with %4$s.', 'connect-message', $slug) :
+							fs_text_inline( 'Never miss an important update - opt in to our security and feature updates notifications, and non-sensitive diagnostic tracking with %4$s.', 'connect-message', $slug);
 
 						if ( $fs->is_plugin_update() ) {
 							// If Freemius was added on a plugin update, set different
 							// opt-in message.
-							$default_optin_message = fs_text_inline( 'Please help us improve %1$s! If you opt in, some data about your usage of %1$s will be sent to %4$s. If you skip this, that\'s okay! %1$s will still work just fine.', 'connect-message_on-update', $slug );
+							$default_optin_message = $is_gdpr_required ?
+								fs_text_inline( 'Never miss an important update - opt in to our security & feature updates notifications, educational content, offers, and non-sensitive diagnostic tracking with %4$s. If you skip this, that\'s okay! %1$s will still work just fine.', 'connect-message_on-update', $slug ) :
+								fs_text_inline( 'Never miss an important update - opt in to our security & feature updates notifications, and non-sensitive diagnostic tracking with %4$s. If you skip this, that\'s okay! %1$s will still work just fine.', 'connect-message_on-update', $slug );
 
 							// If user customized the opt-in message on update, use
 							// that message. Otherwise, fallback to regular opt-in
@@ -166,8 +201,13 @@
 							}
 						}
 
-						echo $fs->apply_filters( $filter,
-							esc_html( sprintf( fs_text_x_inline( 'Hey %s,', 'greeting', 'hey-x', $slug ), $first_name ) ) . '<br>' .
+						$message = $fs->apply_filters(
+						    $filter,
+                            ($is_network_upgrade_mode ?
+                                '' :
+                                /* translators: %s: name (e.g. Hey John,) */
+                                $hey_x_text . '<br>'
+                            ) .
 							sprintf(
 								esc_html( $default_optin_message ),
 								'<b>' . esc_html( $fs->get_plugin_name() ) . '</b>',
@@ -179,26 +219,102 @@
 							$fs->get_plugin_name(),
 							$current_user->user_login,
 							'<a href="' . $site_url . '" target="_blank">' . $site_url . '</a>',
-							$freemius_link
+							$freemius_link,
+							$is_gdpr_required
 						);
 					}
+
+					if ( $is_network_upgrade_mode ) {
+                        $network_integration_text = esc_html( fs_text_inline( 'We\'re excited to introduce the Freemius network-level integration.', 'connect_message_network_upgrade', $slug ) );
+
+                        if ($is_premium_code){
+                            $message = $network_integration_text . ' ' . sprintf( fs_text_inline( 'During the update process we detected %d site(s) that are still pending license activation.', 'connect_message_network_upgrade-premium', $slug ), count( $sites ) );
+
+                            $message .= '<br><br>' . sprintf( fs_text_inline( 'If you\'d like to use the %s on those sites, please enter your license key below and click the activation button.', 'connect_message_network_upgrade-premium-activate-license', $slug ), $is_premium_only ? $fs->get_module_label( true ) : sprintf(
+                                /* translators: %s: module type (plugin, theme, or add-on) */
+                                    fs_text_inline( "%s's paid features", 'x-paid-features', $slug ),
+                                    $fs->get_module_label( true )
+                                ) );
+
+                            /* translators: %s: module type (plugin, theme, or add-on) */
+                            $message .= ' ' . sprintf( fs_text_inline( 'Alternatively, you can skip it for now and activate the license later, in your %s\'s network-level Account page.', 'connect_message_network_upgrade-premium-skip-license', $slug ), $fs->get_module_label( true ) );
+                        }else {
+                            $message = $network_integration_text . ' ' . sprintf( fs_text_inline( 'During the update process we detected %s site(s) in the network that are still pending your attention.', 'connect_message_network_upgrade-free', $slug ), count( $sites ) ) . '<br><br>' . ( fs_starts_with( $message, $hey_x_text . '<br>' ) ? substr( $message, strlen( $hey_x_text . '<br>' ) ) : $message );
+                        }
+                    }
+
+					echo $message;
 				?></p>
 			<?php if ( $require_license_key ) : ?>
 				<div class="fs-license-key-container">
-					<input id="fs_license_key" name="fs_key" type="text" required maxlength="32"
+					<input id="fs_license_key" name="fs_key" type="text" required maxlength="<?php echo $fs->apply_filters('license_key_maxlength', 32) ?>"
 					       placeholder="<?php fs_esc_attr_echo_inline( 'License key', 'license-key', $slug ) ?>" tabindex="1"/>
 					<i class="dashicons dashicons-admin-network"></i>
 					<a class="show-license-resend-modal show-license-resend-modal-<?php echo $fs->get_unique_affix() ?>"
 					   href="#"><?php fs_esc_html_echo_inline( "Can't find your license key?", 'cant-find-license-key', $slug ); ?></a>
 				</div>
+
+				<?php
+				/**
+				 * Allows developers to include custom HTML after the license input container.
+				 *
+				 * @author Vova Feldman
+				 * @since 2.1.2
+				 */
+				 $fs->do_action( 'connect/after_license_input' );
+				?>
+
+                <?php
+                    $send_updates_text = sprintf(
+                        '%s<span class="action-description"> - %s</span>',
+                        $fs->get_text_inline( 'Yes', 'yes' ),
+                        $fs->get_text_inline( 'send me security & feature updates, educational content and offers.', 'send-updates' )
+                    );
+
+                    $do_not_send_updates_text = sprintf(
+                        '%s<span class="action-description"> - %s</span>',
+                        $fs->get_text_inline( 'No', 'no' ),
+                        sprintf(
+                            $fs->get_text_inline( 'do %sNOT%s send me security & feature updates, educational content and offers.', 'do-not-send-updates' ),
+                            '<span class="underlined">',
+                            '</span>'
+                        )
+                    );
+                ?>
+                <div id="fs_marketing_optin">
+                    <span class="fs-message"><?php fs_echo_inline( "Please let us know if you'd like us to contact you for security & feature updates, educational content, and occasional offers:", 'contact-for-updates' ) ?></span>
+                    <div class="fs-input-container">
+                        <label>
+                            <input type="radio" name="allow-marketing" value="true" tabindex="1" />
+                            <span class="fs-input-label"><?php echo $send_updates_text ?></span>
+                        </label>
+                        <label>
+                            <input type="radio" name="allow-marketing" value="false" tabindex="1" />
+                            <span class="fs-input-label"><?php echo $do_not_send_updates_text ?></span>
+                        </label>
+                    </div>
+                </div>
+			<?php endif ?>
+			<?php if ( $is_network_level_activation ) : ?>
+            <?php
+                $vars = array(
+                    'id'                  => $fs->get_id(),
+                    'sites'               => $sites,
+                    'require_license_key' => $require_license_key
+                );
+
+                echo fs_get_template( 'partials/network-activation.php', $vars );
+            ?>
 			<?php endif ?>
 		</div>
 		<div class="fs-actions">
-			<?php if ( $fs->is_enable_anonymous() && ! $is_pending_activation && ! $require_license_key ) : ?>
-				<a href="<?php echo fs_nonce_url( $fs->_get_admin_page_url( '', array( 'fs_action' => $fs->get_unique_affix() . '_skip_activation' ) ), $fs->get_unique_affix() . '_skip_activation' ) ?>"
+			<?php if ( $fs->is_enable_anonymous() && ! $is_pending_activation && ( ! $require_license_key || $is_network_upgrade_mode ) ) : ?>
+				<a id="skip_activation" href="<?php echo fs_nonce_url( $fs->_get_admin_page_url( '', array( 'fs_action' => $fs->get_unique_affix() . '_skip_activation' ), $is_network_level_activation ), $fs->get_unique_affix() . '_skip_activation' ) ?>"
 				   class="button button-secondary" tabindex="2"><?php fs_esc_html_echo_x_inline( 'Skip', 'verb', 'skip', $slug ) ?></a>
 			<?php endif ?>
-
+			<?php if ( $is_network_level_activation ) : ?>
+				<a id="delegate_to_site_admins" class="fs-tooltip-trigger <?php echo is_rtl() ? ' rtl' : '' ?>" href="<?php echo fs_nonce_url( $fs->_get_admin_page_url( '', array( 'fs_action' => $fs->get_unique_affix() . '_delegate_activation' ) ), $fs->get_unique_affix() . '_delegate_activation' ) ?>"><?php fs_esc_html_echo_inline( 'Delegate to Site Admins', 'delegate-to-site-admins', $slug ) ?><span class="fs-tooltip"><?php fs_esc_html_echo_inline( 'If you click it, this decision will be delegated to the sites administrators.', 'delegate-sites-tooltip', $slug ) ?></span></a>
+			<?php endif ?>
 			<?php if ( $activate_with_current_user ) : ?>
 				<form action="" method="POST">
 					<input type="hidden" name="fs_action"
@@ -209,8 +325,8 @@
 				</form>
 			<?php else : ?>
 				<form method="post" action="<?php echo WP_FS__ADDRESS ?>/action/service/user/install/">
-					<?php $params = $fs->get_opt_in_params() ?>
-					<?php foreach ( $params as $name => $value ) : ?>
+					<?php unset( $optin_params['sites']); ?>
+					<?php foreach ( $optin_params as $name => $value ) : ?>
 						<input type="hidden" name="<?php echo $name ?>" value="<?php echo esc_attr( $value ) ?>">
 					<?php endforeach ?>
 					<button class="button button-primary" tabindex="1"
@@ -247,16 +363,10 @@
 					'desc'       => $fs->get_text_inline( 'Activation, deactivation and uninstall', 'permissions-events_desc' ),
 					'priority'   => 20,
 				),
-//			'plugins_themes' => array(
-//				'icon-class' => 'dashicons dashicons-admin-settings',
-//				'label'      => fs_text_inline( 'Plugins & Themes', 'permissions-plugins_themes' ),
-//				'desc'       => fs_text_inline( 'Titles, versions and state.', 'permissions-plugins_themes_desc' ),
-//				'priority'   => 30,
-//			),
 			);
 
 			// Add newsletter permissions if enabled.
-			if ( $fs->is_permission_requested( 'newsletter' ) ) {
+			if ( $is_gdpr_required || $fs->is_permission_requested( 'newsletter' ) ) {
 				$permissions['newsletter'] = array(
 					'icon-class' => 'dashicons dashicons-email-alt',
 					'label'      => $fs->get_text_inline( 'Newsletter', 'permissions-newsletter' ),
@@ -352,33 +462,255 @@
 		}
 		?>
 
-		var $primaryCta       = $('.fs-actions .button.button-primary'),
-		    $form             = $('.fs-actions form'),
-		    requireLicenseKey = <?php echo $require_license_key ? 'true' : 'false' ?>,
-		    hasContextUser    = <?php echo $activate_with_current_user ? 'true' : 'false' ?>,
+		var $primaryCta          = $('.fs-actions .button.button-primary'),
+            primaryCtaLabel      = $primaryCta.html(),
+		    $form                = $('.fs-actions form'),
+		    isNetworkActive      = <?php echo $is_network_level_activation ? 'true' : 'false' ?>,
+		    requireLicenseKey    = <?php echo $require_license_key ? 'true' : 'false' ?>,
+		    hasContextUser       = <?php echo $activate_with_current_user ? 'true' : 'false' ?>,
+		    isNetworkUpgradeMode = <?php echo $is_network_upgrade_mode ? 'true' : 'false' ?>,
 		    $licenseSecret,
-		    $licenseKeyInput  = $('#fs_license_key');
+		    $licenseKeyInput     = $('#fs_license_key'),
+            pauseCtaLabelUpdate  = false,
+            /**
+             * @author Leo Fajardo (@leorw)
+             * @since 2.1.0
+             */
+            resetLoadingMode = function() {
+                // Reset loading mode.
+                $primaryCta.html(primaryCtaLabel);
+                $primaryCta.prop('disabled', false);
+                $(document.body).css({'cursor': 'auto'});
+                $('.fs-loading').removeClass('fs-loading');
+
+                console.log('resetLoadingMode - Primary button was enabled');
+            },
+			setLoadingMode = function () {
+				$(document.body).css({'cursor': 'wait'});
+			};
 
 		$('.fs-actions .button').on('click', function () {
-			// Set loading mode.
-			$(document.body).css({'cursor': 'wait'});
+			setLoadingMode();
 
 			var $this = $(this);
-			$this.css({'cursor': 'wait'});
 
 			setTimeout(function () {
-				$this.attr('disabled', 'disabled');
+			    if ( ! requireLicenseKey || ! $marketingOptin.hasClass( 'error' ) ) {
+                    $this.attr('disabled', 'disabled');
+                }
 			}, 200);
 		});
+
+		if ( isNetworkActive ) {
+			var
+				$multisiteOptionsContainer  = $( '#multisite_options_container' ),
+				$allSitesOptions            = $( '#all_sites_options' ),
+				$applyOnAllSites            = $( '#apply_on_all_sites' ),
+				$sitesListContainer         = $( '#sites_list_container' ),
+				totalSites                  = <?php echo count( $sites ) ?>,
+				maxSitesListHeight          = null,
+				$skipActivationButton       = $( '#skip_activation' ),
+				$delegateToSiteAdminsButton = $( '#delegate_to_site_admins' );
+
+			$applyOnAllSites.click(function() {
+				var isChecked = $( this ).is( ':checked' );
+
+				if ( isChecked ) {
+					$multisiteOptionsContainer.find( '.action' ).removeClass( 'selected' );
+					updatePrimaryCtaText( 'allow' );
+				}
+
+				$multisiteOptionsContainer.find( '.action-allow' ).addClass( 'selected' );
+
+				$skipActivationButton.toggle();
+
+				$delegateToSiteAdminsButton.toggle();
+
+				$multisiteOptionsContainer.toggleClass( 'apply-on-all-sites', isChecked );
+
+				$sitesListContainer.toggle( ! isChecked );
+				if ( ! isChecked && null === maxSitesListHeight ) {
+					/**
+					 * Set the visible number of rows to 5 (5 * height of the first row).
+					 *
+					 * @author Leo Fajardo (@leorw)
+					 */
+					maxSitesListHeight = ( 5 * $sitesListContainer.find( 'tr:first' ).height() );
+					$sitesListContainer.css( 'max-height', maxSitesListHeight );
+				}
+			});
+
+			$allSitesOptions.find( '.action' ).click(function( evt ) {
+				var actionType = $( evt.target ).data( 'action-type' );
+
+				$multisiteOptionsContainer.find( '.action' ).removeClass( 'selected' );
+				$multisiteOptionsContainer.find( '.action-' + actionType ).toggleClass( 'selected' );
+
+				updatePrimaryCtaText( actionType );
+			});
+
+			$sitesListContainer.delegate( '.action', 'click', function( evt ) {
+				var $this = $( evt.target );
+				if ( $this.hasClass( 'selected' ) ) {
+					return false;
+				}
+
+				$this.parents( 'tr:first' ).find( '.action' ).removeClass( 'selected' );
+				$this.toggleClass( 'selected' );
+
+				var
+					singleSiteActionType = $this.data( 'action-type' ),
+					totalSelected        = $sitesListContainer.find( '.action-' + singleSiteActionType + '.selected' ).length;
+
+				$allSitesOptions.find( '.action.selected' ).removeClass( 'selected' );
+
+				if ( totalSelected === totalSites ) {
+					$allSitesOptions.find( '.action-' + singleSiteActionType ).addClass( 'selected' );
+
+					updatePrimaryCtaText( singleSiteActionType );
+				} else {
+					updatePrimaryCtaText( 'mixed' );
+				}
+			});
+
+            if (isNetworkUpgradeMode) {
+                $skipActivationButton.click(function(){
+                    $delegateToSiteAdminsButton.hide();
+
+                    $skipActivationButton.html('<?php fs_esc_js_echo_inline( 'Skipping, please wait', 'skipping-wait', $slug ) ?>...');
+
+                    pauseCtaLabelUpdate = true;
+
+                    // Check all sites to be skipped.
+                    $allSitesOptions.find('.action.action-skip').click();
+
+                    $form.submit();
+
+                    pauseCtaLabelUpdate = false;
+
+                    return false;
+                });
+
+                $delegateToSiteAdminsButton.click(function(){
+                    $delegateToSiteAdminsButton.html('<?php fs_esc_js_echo_inline( 'Delegating, please wait', 'delegating-wait', $slug ) ?>...');
+
+                    pauseCtaLabelUpdate = true;
+
+                    // Check all sites to be skipped.
+                    $allSitesOptions.find('.action.action-delegate').click();
+
+                    $form.submit();
+
+                    pauseCtaLabelUpdate = false;
+
+                    return false;
+                });
+            }
+		}
+
+		/**
+		 * @author Leo Fajardo (@leorw)
+		 */
+		function updatePrimaryCtaText( actionType ) {
+            if (pauseCtaLabelUpdate)
+                return;
+
+			var text = '<?php fs_esc_js_echo_inline( 'Continue', 'continue', $slug ) ?>';
+
+			switch ( actionType ) {
+				case 'allow':
+					text = '<?php fs_esc_js_echo_inline( 'Allow & Continue', 'opt-in-connect', $slug ) ?>';
+					break;
+				case 'delegate':
+					text = '<?php fs_esc_js_echo_inline( 'Delegate to Site Admins & Continue', 'delegate-to-site-admins-and-continue', $slug ) ?>';
+					break;
+				case 'skip':
+					text = '<?php fs_esc_js_echo_x_inline( 'Skip', 'verb', 'skip', $slug ) ?>';
+					break;
+			}
+
+			$primaryCta.html( text );
+		}
+
+		var ajaxOptin = ( requireLicenseKey || isNetworkActive );
 
 		$form.on('submit', function () {
 			/**
 			 * @author Vova Feldman (@svovaf)
 			 * @since 1.1.9
 			 */
-			if (requireLicenseKey) {
-				if (!hasContextUser) {
+			if ( ajaxOptin ) {
+				if (!hasContextUser || isNetworkUpgradeMode) {
+					<?php $action = $require_license_key ? 'activate_license' : 'network_activate' ?>
+
 					$('.fs-error').remove();
+
+					var
+                        licenseKey = $licenseKeyInput.val(),
+                        data       = {
+                            action     : '<?php echo $fs->get_ajax_action( $action ) ?>',
+                            security   : '<?php echo $fs->get_ajax_security( $action ) ?>',
+                            license_key: licenseKey,
+                            module_id  : '<?php echo $fs->get_id() ?>'
+                        };
+
+					if (requireLicenseKey &&
+                        isMarketingAllowedByLicense.hasOwnProperty(licenseKey)
+                    ) {
+                        var
+                            isMarketingAllowed = null,
+                            $isMarketingAllowed   = $marketingOptin.find( 'input[type="radio"][name="allow-marketing"]:checked');
+
+
+                        if ($isMarketingAllowed.length > 0)
+                            isMarketingAllowed = ('true' == $isMarketingAllowed.val());
+
+                        if ( null == isMarketingAllowedByLicense[ licenseKey ] &&
+                            null == isMarketingAllowed
+                        ) {
+                            $marketingOptin.addClass( 'error' ).show();
+                            resetLoadingMode();
+                            return false;
+                        } else if ( null == isMarketingAllowed ) {
+                            isMarketingAllowed = isMarketingAllowedByLicense[ licenseKey ];
+                        }
+
+                        data.is_marketing_allowed = isMarketingAllowed;
+                    }
+
+                    $marketingOptin.removeClass( 'error' );
+
+					if ( isNetworkActive ) {
+						var
+							sites           = [],
+							applyOnAllSites = $applyOnAllSites.is( ':checked' );
+
+						$sitesListContainer.find( 'tr' ).each(function() {
+							var
+								$this       = $( this ),
+								includeSite = ( ! requireLicenseKey || applyOnAllSites || $this.find( 'input' ).is( ':checked' ) );
+
+							if ( ! includeSite )
+								return;
+
+							var site = {
+								uid     : $this.find( '.uid' ).val(),
+								url     : $this.find( '.url' ).val(),
+								title   : $this.find( '.title' ).val(),
+								language: $this.find( '.language' ).val(),
+								charset : $this.find( '.charset' ).val(),
+								blog_id : $this.find( '.blog-id' ).find( 'span' ).text()
+							};
+
+							if ( ! requireLicenseKey) {
+                                site.action = $this.find('.action.selected').data('action-type');
+                            }
+
+							sites.push( site );
+						});
+
+						data.sites = sites;
+					}
 
 					/**
 					 * Use the AJAX opt-in when license key is required to potentially
@@ -390,27 +722,21 @@
 					$.ajax({
 						url    : ajaxurl,
 						method : 'POST',
-						data   : {
-							action     : '<?php echo $fs->get_ajax_action( 'activate_license' ) ?>',
-							security   : '<?php echo $fs->get_ajax_security( 'activate_license' ) ?>',
-							license_key: $licenseKeyInput.val(),
-							module_id  : '<?php echo $fs->get_id() ?>'
-						},
+						data   : data,
 						success: function (result) {
 							var resultObj = $.parseJSON(result);
 							if (resultObj.success) {
 								// Redirect to the "Account" page and sync the license.
 								window.location.href = resultObj.next_page;
 							} else {
+								resetLoadingMode();
+
 								// Show error.
 								$('.fs-content').prepend('<p class="fs-error">' + (resultObj.error.message ?  resultObj.error.message : resultObj.error) + '</p>');
-
-								// Reset loading mode.
-								$primaryCta.removeClass('fs-loading').css({'cursor': 'auto'});
-								$primaryCta.html('<?php echo esc_js( $button_label ) ?>');
-								$primaryCta.prop('disabled', false);
-								$(document.body).css({'cursor': 'auto'});
 							}
+						},
+						error: function () {
+							resetLoadingMode();
 						}
 					});
 
@@ -431,11 +757,13 @@
 		});
 
 		$primaryCta.on('click', function () {
+			console.log('Primary button was clicked');
+
 			$(this).addClass('fs-loading');
 			$(this).html('<?php echo esc_js( $is_pending_activation ?
 				fs_text_x_inline( 'Sending email', 'as in the process of sending an email', 'sending-email', $slug ) :
 				fs_text_x_inline( 'Activating', 'as activating plugin', 'activating', $slug )
-				) ?>...');
+			) ?>...');
 		});
 
 		$('.fs-permissions .fs-trigger').on('click', function () {
@@ -468,11 +796,26 @@
 			 */
 			$licenseKeyInput.on('keyup paste delete cut', function () {
 				setTimeout(function () {
-					if ('' === $licenseKeyInput.val()) {
+                    var key = $licenseKeyInput.val();
+
+                    if (key == previousLicenseKey){
+                        return;
+                    }
+
+					if ('' === key) {
 						$primaryCta.attr('disabled', 'disabled');
+                        $marketingOptin.hide();
 					} else {
-						$primaryCta.prop('disabled', false);
+                        $primaryCta.prop('disabled', false);
+
+                        if (32 <= key.length){
+                            fetchIsMarketingAllowedFlagAndToggleOptin();
+                        } else {
+                            $marketingOptin.hide();
+                        }
 					}
+
+                    previousLicenseKey = key;
 				}, 100);
 			}).focus();
 		}
@@ -499,5 +842,89 @@
 				href + 'require_license=' + $connectLicenseModeTrigger.attr('data-require-license')
 			);
 		}
+
+		//--------------------------------------------------------------------------------
+		//region GDPR
+		//--------------------------------------------------------------------------------
+        var isMarketingAllowedByLicense = {},
+            $marketingOptin = $('#fs_marketing_optin'),
+            previousLicenseKey = null;
+
+		if (requireLicenseKey) {
+
+			    var
+                    afterMarketingFlagLoaded = function () {
+                        var licenseKey = $licenseKeyInput.val();
+
+                        if (null == isMarketingAllowedByLicense[licenseKey]) {
+                            $marketingOptin.show();
+
+                            if ($marketingOptin.find('input[type=radio]:checked').length > 0){
+                                // Focus on button if GDPR opt-in already selected is already selected.
+                                $primaryCta.focus();
+                            } else {
+                                // Focus on the GDPR opt-in radio button.
+                                $($marketingOptin.find('input[type=radio]')[0]).focus();
+                            }
+                        } else {
+                            $marketingOptin.hide();
+                            $primaryCta.focus();
+                        }
+                    },
+                    /**
+                     * @author Leo Fajardo (@leorw)
+                     * @since 2.1.0
+                     */
+                    fetchIsMarketingAllowedFlagAndToggleOptin = function () {
+                        var licenseKey = $licenseKeyInput.val();
+
+                        if (licenseKey.length < 32) {
+                            $marketingOptin.hide();
+                            return;
+                        }
+
+                        if (isMarketingAllowedByLicense.hasOwnProperty(licenseKey)) {
+                            afterMarketingFlagLoaded();
+                            return;
+                        }
+
+                        $marketingOptin.hide();
+
+                        setLoadingMode();
+
+                        $primaryCta.addClass('fs-loading');
+                        $primaryCta.attr('disabled', 'disabled');
+                        $primaryCta.html('<?php fs_esc_js_echo_inline( 'Please wait', 'please-wait', $slug ) ?>...');
+
+                        $.ajax({
+                            url    : ajaxurl,
+                            method : 'POST',
+                            data   : {
+                                action     : '<?php echo $fs->get_ajax_action( 'fetch_is_marketing_required_flag_value' ) ?>',
+                                security   : '<?php echo $fs->get_ajax_security( 'fetch_is_marketing_required_flag_value' ) ?>',
+                                license_key: licenseKey,
+                                module_id  : '<?php echo $fs->get_id() ?>'
+                            },
+                            success: function (result) {
+                                resetLoadingMode();
+
+                                if (result.success) {
+                                    result = result.data;
+
+                                    // Cache result.
+                                    isMarketingAllowedByLicense[licenseKey] = result.is_marketing_allowed;
+                                }
+
+                                afterMarketingFlagLoaded();
+                            }
+                        });
+                    };
+
+			$marketingOptin.find( 'input' ).click(function() {
+				$marketingOptin.removeClass( 'error' );
+			});
+		}
+
+		//endregion
 	})(jQuery);
 </script>

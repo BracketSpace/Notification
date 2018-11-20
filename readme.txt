@@ -3,9 +3,9 @@ Contributors: notification, bracketspace, Kubitomakita, insejn
 Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.6
-Tested up to: 4.9.5
+Tested up to: 5.0
 Stable tag: 5.2.4
-Requires PHP: 5.3
+Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -146,8 +146,25 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 * [Conditionals](https://bracketspace.com/downloads/notification-conditionals/) - send Notifications in certain conditions
 * [Custom Fields](https://bracketspace.com/downloads/notification-custom-fields/) - use any meta value in your Notifications
 * [Review Queue](https://bracketspace.com/downloads/notification-review-queue/) - catch your Notifications into queue for a manual review
+* [Scheduled Triggers](https://bracketspace.com/downloads/notification-scheduled-triggers/) - schedule your notifications based on events time
+* [Discord](https://bracketspace.com/downloads/notification-discord/) - post messages on Discord channel
+* [Slack](https://bracketspace.com/downloads/notification-slack/) - post messages on Slack channel
 * [Pushbullet](https://bracketspace.com/downloads/notification-pushbullet/) - send Push and SMS Notifications via your phone
+* [SendGrid](https://bracketspace.com/downloads/notification-sendgid/) - send emails using SendGrid service
+* [Mailgun](https://bracketspace.com/downloads/notification-mailgun/) - send emails using Mailgun service
 * [File Log](https://bracketspace.com/downloads/notification-file-log/) - save Notifications as file logs on the server
+* [Signature](https://wordpress.org/plugins/signature-notification/) - add a signature to all your emails automatically
+
+*Coming soon* - vote for the extensions
+
+* [WooCommerce](https://bracketspace.com/downloads/notification-woocommerce/) - triggers specific to WooCommerce
+* [Email Templates](https://bracketspace.com/downloads/notification-email-templates/) - use beautiful templates for your emails
+* [Facebook](https://bracketspace.com/downloads/notification-facebook/) - post messages to Facebook
+* [Twitter](https://bracketspace.com/downloads/notification-twitter/) - post messages to Twitter
+* [Zapier](https://bracketspace.com/downloads/notification-zapier/) - connect any WordPress event with Zapier
+* [Pushover](https://bracketspace.com/downloads/notification-pushover/) - send push notifications using Pushover service
+* [Email Attachments](https://bracketspace.com/downloads/notification-email-attachments/) - attach files to your notification
+* [WordPress Poster](https://bracketspace.com/downloads/notification-wordpress-poster/) - create WordPress posts
 
 = POSSIBLE USE CASES =
 
@@ -167,7 +184,7 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 
 = Requirements =
 
-This plugin require at least PHP 5.3.0.
+This plugin require at least PHP 5.6.
 
 = Plugin install =
 
@@ -212,6 +229,9 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 = [Next] =
 * [Changed] Added parent class for user triggers.
 * [Changed] Added parent class for media triggers.
+* [Changed] PHP requirement to 5.6.
+* [Changed] Freemius updated to version 2.1.3.
+* [Changed] Uninstallation logic moved to the Freemius handler.
 * [Added] Global date, time and datetime merge tags for trigger execution date.
 
 = 5.2.4 =
