@@ -41,7 +41,7 @@ class CommentType extends StringTag {
 				'name'        => __( 'Comment type', 'notification' ),
 				'description' => __( 'Comment or Pingback or Trackback', 'notification' ),
 				'resolver'    => function() {
-					return empty( $this->trigger->{ $this->property_name }->comment_type ) ? __( 'Comment', 'notification' ) : $this->trigger->{ $this->property_name }->comment_type;
+					return get_comment_type( $this->trigger->{ $this->property_name } );
 				},
 			)
 		);

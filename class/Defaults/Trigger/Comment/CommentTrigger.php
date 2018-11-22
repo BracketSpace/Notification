@@ -64,6 +64,16 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 	}
 
 	/**
+	 * Check if comment is correct type
+	 *
+	 * @param mixed $comment Comment object or Comment ID.
+	 * @return boolean
+	 */
+	public function is_correct_type( $comment ) {
+		return get_comment_type( $comment ) === $this->comment_type;
+	}
+
+	/**
 	 * Registers attached merge tags
 	 *
 	 * @return void

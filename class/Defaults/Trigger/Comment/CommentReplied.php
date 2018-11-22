@@ -62,7 +62,7 @@ class CommentReplied extends CommentTrigger {
 			return false;
 		}
 
-		if ( $this->comment->comment_type !== $this->comment_type ) {
+		if ( ! $this->is_correct_type( $this->comment ) ) {
 			return false;
 		}
 
