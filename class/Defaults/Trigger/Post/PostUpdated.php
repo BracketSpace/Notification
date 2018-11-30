@@ -67,14 +67,6 @@ class PostUpdated extends PostTrigger {
 		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date );
 		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified );
 
-		// Postpone the action to make sure all the meta has been saved.
-		if ( function_exists( 'acf' ) ) {
-			$postponed_action = 'acf/save_post';
-		} else {
-			$postponed_action = 'save_post';
-		}
-		$this->postpone_action( $postponed_action, 1000 );
-
 	}
 
 	/**
