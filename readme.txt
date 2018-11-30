@@ -233,6 +233,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Changed] Freemius updated to version 2.1.3.
 * [Changed] Uninstallation logic moved to the Freemius handler.
 * [Changed] Merge Tag validation now accepts empty values.
+* [Changed] Post Trigger postponing to avoid looping.
 * [Added] Global date, time and datetime merge tags for trigger execution date.
 * [Fixed] Comment type check causing the comment triggers failing.
 
