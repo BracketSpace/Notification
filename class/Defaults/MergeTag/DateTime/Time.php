@@ -50,7 +50,7 @@ class Time extends StringTag {
 		}
 
 		if ( ! isset( $args['resolver'] ) ) {
-			$args['resolver'] = function() use ( $args ) {
+			$args['resolver'] = function() use ( $args, $timestamp ) {
 				return date_i18n( $args['time_format'], $timestamp );
 			};
 		}
