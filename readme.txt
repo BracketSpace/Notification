@@ -240,6 +240,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Fixed] Comment type check causing the comment triggers failing.
 * [Fixed] Postponing looping over itself.
 * [Fixed] Fatal error with Triggers select on certain conditions.
+* [Fixed] Date and Time merge tags giving values of 0.
 
 = 5.2.4 =
 * [Fixed] When `Strip all shortcodes` setting is disabled, the shortcodes are rendered.
