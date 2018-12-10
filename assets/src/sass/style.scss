@@ -10,7 +10,7 @@
 @import 'vendor/selectize.default';
 
 /**
- * Patrials
+ * Partials
  */
 @import 'partials/global';
 @import 'partials/metabox';
@@ -23,3 +23,8 @@
 @import 'partials/notifications-table';
 @import 'partials/help';
 @import 'partials/admin-story';
+
+/**
+ * Fields
+ */
+@import 'fields/repeater';
