@@ -212,9 +212,23 @@ So it doesn't matter if you don't have any coding skills, they are not required 
 
 With `register_trigger()` function. [See the detailed guide](https://docs.bracketspace.com/docs/registering-custom-triggers/)
 
+= How to include a custom field in the notification? =
+
+You can [write a merge tag](https://docs.bracketspace.com/docs/adding-merge-tags-to-existing-triggers/) by yourself or go with a no-brainer [Custom Fields extension](https://bracketspace.com/downloads/notification-custom-fields/).
+
+= How to target only specific post / category / user etc? =
+
+You can control when exactly the notification is sending with the [Conditionals extension](https://bracketspace.com/downloads/notification-conditionals/).
+
 = Can I bundle the plugin with my plugin or theme? =
 
 Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/including-notification-in-the-plugin-or-theme/)
+
+= Is this plugin capable of sending high volume emails? =
+
+The plugin is capable and it can send milions of emails, but probably your server is not. To send thousands of emails at once we'd suggest using [SendGrid](https://bracketspace.com/downloads/notification-sendgrid/) or [Mailgun](https://bracketspace.com/downloads/notification-mailgun/) extensions which were designed to support high volume emails in a single API call.
+
+When using SMTP it's nearly impossible to send more than a dozen emails at once due to timeouts.
 
 == Screenshots ==
 
