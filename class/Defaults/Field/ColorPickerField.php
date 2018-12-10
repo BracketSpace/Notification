@@ -20,7 +20,7 @@ class ColorPickerField extends Field {
 	 * @return string html
 	 */
 	public function field() {
-		return '<input type="text" name="' . esc_attr( $this->get_name() ) . '" id="' . esc_attr( $this->get_id() ) . '" value="' . esc_attr( $this->get_value() ) . '" placeholder="' . esc_attr( $this->placeholder ) . '" class="notification-color-picker ' . esc_attr( $this->css_class() ) . '" ' . $this->maybe_disable() . '>';
+		return '<input type="text" name="' . esc_attr( $this->get_name() ) . '" id="' . esc_attr( $this->get_id() ) . '" value="' . esc_attr( $this->get_value() ) . '" class="notification-color-picker ' . esc_attr( $this->css_class() ) . '" ' . $this->maybe_disable() . '>';
 	}
 
 	/**
