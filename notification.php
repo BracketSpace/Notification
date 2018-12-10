@@ -46,7 +46,7 @@ $requirements = new BracketSpace\Notification\Utils\Requirements(
 	__( 'Notification', 'notification' ),
 	array(
 		'php'                => '5.6',
-		'wp'                 => '4.6',
+		'wp'                 => '4.9',
 		'function_collision' => array( 'register_trigger', 'register_notification' ),
 		'dochooks'           => true,
 	)

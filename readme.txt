@@ -2,7 +2,7 @@
 Contributors: notification, bracketspace, Kubitomakita, insejn
 Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
-Requires at least: 4.6
+Requires at least: 4.9
 Tested up to: 5.0
 Stable tag: 5.2.4
 Requires PHP: 5.6
@@ -235,6 +235,7 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Changed] Merge Tag validation now accepts empty values.
 * [Changed] Post Trigger postponing to avoid looping.
 * [Changed] Custom Fields postponing causing the loops, now it's in a separate integration class.
+* [Changed] Minimum WordPress version to 4.9.
 * [Added] Global date, time and datetime merge tags for trigger execution date.
 * [Fixed] Comment type check causing the comment triggers failing.
 * [Fixed] Postponing looping over itself.
