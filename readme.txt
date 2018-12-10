@@ -234,8 +234,10 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 * [Changed] Uninstallation logic moved to the Freemius handler.
 * [Changed] Merge Tag validation now accepts empty values.
 * [Changed] Post Trigger postponing to avoid looping.
+* [Changed] Custom Fields postponing causing the loops, now it's in a separate integration class.
 * [Added] Global date, time and datetime merge tags for trigger execution date.
 * [Fixed] Comment type check causing the comment triggers failing.
+* [Fixed] Postponing looping over itself.
 
 = 5.2.4 =
 * [Fixed] When `Strip all shortcodes` setting is disabled, the shortcodes are rendered.

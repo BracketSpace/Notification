@@ -48,7 +48,6 @@ class PostUpdated extends PostTrigger {
 	public function action( $post_id, $post, $post_before ) {
 
 		$this->{ $this->post_type } = $post;
-		$post_before                = $post_before;
 
 		if ( $this->{ $this->post_type }->post_type !== $this->post_type ) {
 			return false;
