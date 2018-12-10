@@ -252,6 +252,7 @@ When using SMTP it's nearly impossible to send more than a dozen emails at once 
 * [Changed] Minimum WordPress version to 4.9.
 * [Added] Global date, time and datetime merge tags for trigger execution date.
 * [Added] `notification/scripts/allowed_hooks` filter to control where the scripts are loaded.
+* [Added] Color Picker field.
 * [Fixed] Comment type check causing the comment triggers failing.
 * [Fixed] Postponing looping over itself.
 * [Fixed] Fatal error with Triggers select on certain conditions.
