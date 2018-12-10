@@ -372,6 +372,13 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	public function _action() {
 
+		$before = array(
+			'action'    => current_filter(),
+			'actions'   => $this->actions,
+			'stopped'   => $this->is_stopped(),
+			'postponed' => $this->is_postponed(),
+		);
+
 		// reset the state.
 		$this->stopped = false;
 
