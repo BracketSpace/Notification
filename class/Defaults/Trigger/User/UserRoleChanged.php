@@ -33,9 +33,13 @@ class UserRoleChanged extends UserTrigger {
 	 * @param integer $user_id   User ID.
 	 * @param string  $role      User new role.
 	 * @param array   $old_roles User previous roles.
-	 * @return void
+	 * @return mixed
 	 */
 	public function action( $user_id, $role, $old_roles ) {
+
+		if ( empty( $old_roles ) ) {
+			return false;
+		}
 
 		$this->user_id     = $user_id;
 		$this->user_object = get_userdata( $this->user_id );
