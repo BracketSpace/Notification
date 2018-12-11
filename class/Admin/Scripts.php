@@ -75,6 +75,8 @@ class Scripts {
 				'i18n'    => array(
 					'copied'              => __( 'Copied', 'notification' ),
 					'remove_confirmation' => __( 'Do you really want to delete this?', 'notification' ),
+					'select_image'        => __( 'Select image', 'notification' ),
+					'use_selected_image'  => __( 'Use selected image', 'notification' ),
 				),
 			)
 		);
