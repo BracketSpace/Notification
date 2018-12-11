@@ -23,6 +23,7 @@ if ( notification_get_setting( 'triggers/post_types/types' ) ) {
 		register_trigger( new Trigger\Post\PostPublished( $post_type ) );
 		register_trigger( new Trigger\Post\PostUpdated( $post_type ) );
 		register_trigger( new Trigger\Post\PostPending( $post_type ) );
+		register_trigger( new Trigger\Post\PostScheduled( $post_type ) );
 		register_trigger( new Trigger\Post\PostTrashed( $post_type ) );
 
 	}
