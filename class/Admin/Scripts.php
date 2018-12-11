@@ -50,20 +50,20 @@ class Scripts {
 	 */
 	public function enqueue_scripts( $page_hook ) {
 
-		$allowed_hooks = array(
+		$allowed_hooks = apply_filters( 'notification/scripts/allowed_hooks', array(
 			$this->runtime->admin_extensions->page_hook,
 			$this->runtime->settings->page_hook,
 			$this->runtime->admin_share->page_hook,
 			'plugins.php',
 			'post-new.php',
 			'post.php',
-		);
+		) );
 
 		if ( 'notification' !== get_post_type() && ! in_array( $page_hook, $allowed_hooks, true ) ) {
 			return;
 		}
 
-		wp_enqueue_script( 'notification', $this->files->asset_url( 'js', 'scripts.min.js' ), array( 'jquery' ), $this->files->asset_mtime( 'js', 'scripts.min.js' ), false );
+		wp_enqueue_script( 'notification', $this->files->asset_url( 'js', 'scripts.min.js' ), array( 'jquery', 'wp-color-picker' ), $this->files->asset_mtime( 'js', 'scripts.min.js' ), false );
 
 		wp_enqueue_style( 'notification', $this->files->asset_url( 'css', 'style.css' ), array(), $this->files->asset_mtime( 'css', 'style.css' ) );
 
@@ -75,6 +75,8 @@ class Scripts {
 				'i18n'    => array(
 					'copied'              => __( 'Copied', 'notification' ),
 					'remove_confirmation' => __( 'Do you really want to delete this?', 'notification' ),
+					'select_image'        => __( 'Select image', 'notification' ),
+					'use_selected_image'  => __( 'Use selected image', 'notification' ),
 				),
 			)
 		);
