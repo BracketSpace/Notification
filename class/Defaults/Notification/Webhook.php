@@ -67,28 +67,10 @@ class Webhook extends Abstracts\Notification {
 								'description' => __( 'You can use merge tags', 'notification' ),
 							)
 						),
-						new Field\ColorPickerField( array(
-							'label' => __( 'Color', 'notification' ),
-							'name'  => 'color',
-						) ),
-						new Field\ImageField( array(
-							'label'    => __( 'Image', 'notification' ),
-							'name'     => 'image',
-						) ),
 					),
 				)
 			)
 		);
-
-		$this->add_form_field( new Field\ColorPickerField( array(
-			'label'    => __( 'Color', 'notification' ),
-			'name'     => 'color',
-		) ) );
-
-		$this->add_form_field( new Field\ImageField( array(
-			'label'    => __( 'Image', 'notification' ),
-			'name'     => 'image',
-		) ) );
 
 		$this->add_form_field(
 			new Field\CheckboxField(
