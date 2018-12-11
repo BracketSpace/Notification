@@ -254,6 +254,7 @@ When using SMTP it's nearly impossible to send more than a dozen emails at once 
 * [Added] `notification/scripts/allowed_hooks` filter to control where the scripts are loaded.
 * [Added] Color Picker field.
 * [Added] Image field.
+* [Added] User role changed trigger.
 * [Fixed] Comment type check causing the comment triggers failing.
 * [Fixed] Postponing looping over itself.
 * [Fixed] Fatal error with Triggers select on certain conditions.

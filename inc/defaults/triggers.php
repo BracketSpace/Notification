@@ -57,6 +57,7 @@ if ( notification_get_setting( 'triggers/user/enable' ) ) {
 	register_trigger( new Trigger\User\UserPasswordChanged() );
 	register_trigger( new Trigger\User\UserPasswordResetRequest() );
 	register_trigger( new Trigger\User\UserLoginFailed() );
+	register_trigger( new Trigger\User\UserRoleChanged() );
 
 }
 
