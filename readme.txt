@@ -258,6 +258,7 @@ When using SMTP it's nearly impossible to send more than a dozen emails at once 
 * [Added] User role changed trigger.
 * [Added] Post scheduled trigger.
 * [Added] `notification/scripts` action.
+* [Added] Comment datetime merge tag.
 * [Fixed] Comment type check causing the comment triggers failing.
 * [Fixed] Postponing looping over itself.
 * [Fixed] Fatal error with Triggers select on certain conditions.
