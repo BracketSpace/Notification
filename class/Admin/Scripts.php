@@ -81,6 +81,8 @@ class Scripts {
 			)
 		);
 
+		do_action( 'notification/scripts', $page_hook );
+
 	}
 
 }
