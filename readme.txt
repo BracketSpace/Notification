@@ -230,6 +230,10 @@ The plugin is capable and it can send milions of emails, but probably your serve
 
 When using SMTP it's nearly impossible to send more than a dozen emails at once due to timeouts.
 
+= Can I test my notifications before sending? =
+
+Yes, just activate the debug log in the DEBUGGING section of the plugin settings. All notifications will be catched into log visible only to you.
+
 == Screenshots ==
 
 1. Trigger edit screen
