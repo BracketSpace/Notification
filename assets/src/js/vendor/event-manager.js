@@ -7,7 +7,7 @@
 	 */
 	var EventManager = function() {
 		var slice = Array.prototype.slice;
-		
+
 		/**
 		 * Maintain a reference to the object scope so our public methods never get confusing.
 		 */
@@ -130,7 +130,7 @@
 		 */
 		function _removeHook( type, hook, callback, context ) {
 			var handlers, handler, i;
-			
+
 			if ( !STORAGE[ type ][ hook ] ) {
 				return;
 			}
@@ -218,7 +218,7 @@
 		 */
 		function _runHook( type, hook, args ) {
 			var handlers = STORAGE[ type ][ hook ], i, len;
-			
+
 			if ( !handlers ) {
 				return (type === 'filters') ? args[0] : false;
 			}
@@ -241,8 +241,8 @@
 		return MethodsAvailable;
 
 	};
-	
-	window.wp = window.wp || {};
-	window.wp.hooks = new EventManager();
+
+	window.notification = window.notification || {};
+	window.notification.hooks = new EventManager();
 
 } )( window );

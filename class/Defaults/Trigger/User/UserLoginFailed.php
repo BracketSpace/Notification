@@ -8,12 +8,11 @@
 namespace BracketSpace\Notification\Defaults\Trigger\User;
 
 use BracketSpace\Notification\Defaults\MergeTag;
-use BracketSpace\Notification\Abstracts;
 
 /**
  * User login failed trigger class
  */
-class UserLoginFailed extends Abstracts\Trigger {
+class UserLoginFailed extends UserTrigger {
 
 	/**
 	 * Constructor
@@ -23,7 +22,7 @@ class UserLoginFailed extends Abstracts\Trigger {
 		parent::__construct( 'wordpress/user_login_failed', __( 'User login failed', 'notification' ) );
 
 		$this->add_action( 'wp_login_failed', 10, 1 );
-		$this->set_group( __( 'User', 'notification' ) );
+
 		$this->set_description( __( 'Fires when user login failed', 'notification' ) );
 
 	}
@@ -40,6 +39,9 @@ class UserLoginFailed extends Abstracts\Trigger {
 		$this->user_id     = $user->ID;
 		$this->user_object = get_userdata( $this->user_id );
 
+		$this->user_registered_datetime   = strtotime( $this->user_object->user_registered );
+		$this->user_login_failed_datetime = time();
+
 	}
 
 	/**
@@ -49,24 +51,13 @@ class UserLoginFailed extends Abstracts\Trigger {
 	 */
 	public function merge_tags() {
 
-		$this->add_merge_tag( new MergeTag\User\UserID() );
-		$this->add_merge_tag( new MergeTag\User\UserLogin() );
-		$this->add_merge_tag( new MergeTag\User\UserEmail() );
+		parent::merge_tags();
+
 		$this->add_merge_tag( new MergeTag\User\UserNicename() );
 		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
 		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
 		$this->add_merge_tag( new MergeTag\User\UserLastName() );
 
-		$this->add_merge_tag(
-			new MergeTag\DateTime\DateTime(
-				array(
-					'slug' => 'user_registered_datetime',
-					'name' => __( 'User registration date', 'notification' ),
-				)
-			)
-		);
-
-		$this->add_merge_tag( new MergeTag\User\UserRole() );
 		$this->add_merge_tag( new MergeTag\User\UserBio() );
 
 		$this->add_merge_tag(

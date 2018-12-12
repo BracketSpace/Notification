@@ -52,6 +52,10 @@ class CommentAdded extends CommentTrigger {
 			return false;
 		}
 
+		if ( ! $this->is_correct_type( $this->comment ) ) {
+			return false;
+		}
+
 		parent::assign_properties();
 
 	}

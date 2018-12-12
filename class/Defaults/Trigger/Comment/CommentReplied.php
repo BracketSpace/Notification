@@ -62,6 +62,10 @@ class CommentReplied extends CommentTrigger {
 			return false;
 		}
 
+		if ( ! $this->is_correct_type( $this->comment ) ) {
+			return false;
+		}
+
 		$this->parent_comment = get_comment( $this->comment->comment_parent );
 
 		$this->parent_comment_user_object               = new \StdClass();

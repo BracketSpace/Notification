@@ -2,10 +2,10 @@
 Contributors: notification, bracketspace, Kubitomakita, insejn
 Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
-Requires at least: 4.6
-Tested up to: 4.9.5
-Stable tag: 5.2.3
-Requires PHP: 5.3
+Requires at least: 4.9
+Tested up to: 5.0
+Stable tag: 5.2.4
+Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -146,8 +146,25 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 * [Conditionals](https://bracketspace.com/downloads/notification-conditionals/) - send Notifications in certain conditions
 * [Custom Fields](https://bracketspace.com/downloads/notification-custom-fields/) - use any meta value in your Notifications
 * [Review Queue](https://bracketspace.com/downloads/notification-review-queue/) - catch your Notifications into queue for a manual review
+* [Scheduled Triggers](https://bracketspace.com/downloads/notification-scheduled-triggers/) - schedule your notifications based on events time
+* [Discord](https://bracketspace.com/downloads/notification-discord/) - post messages on Discord channel
+* [Slack](https://bracketspace.com/downloads/notification-slack/) - post messages on Slack channel
 * [Pushbullet](https://bracketspace.com/downloads/notification-pushbullet/) - send Push and SMS Notifications via your phone
+* [SendGrid](https://bracketspace.com/downloads/notification-sendgid/) - send emails using SendGrid service
+* [Mailgun](https://bracketspace.com/downloads/notification-mailgun/) - send emails using Mailgun service
 * [File Log](https://bracketspace.com/downloads/notification-file-log/) - save Notifications as file logs on the server
+* [Signature](https://wordpress.org/plugins/signature-notification/) - add a signature to all your emails automatically
+
+*Coming soon* - vote for the extensions
+
+* [WooCommerce](https://bracketspace.com/downloads/notification-woocommerce/) - triggers specific to WooCommerce
+* [Email Templates](https://bracketspace.com/downloads/notification-email-templates/) - use beautiful templates for your emails
+* [Facebook](https://bracketspace.com/downloads/notification-facebook/) - post messages to Facebook
+* [Twitter](https://bracketspace.com/downloads/notification-twitter/) - post messages to Twitter
+* [Zapier](https://bracketspace.com/downloads/notification-zapier/) - connect any WordPress event with Zapier
+* [Pushover](https://bracketspace.com/downloads/notification-pushover/) - send push notifications using Pushover service
+* [Email Attachments](https://bracketspace.com/downloads/notification-email-attachments/) - attach files to your notification
+* [WordPress Poster](https://bracketspace.com/downloads/notification-wordpress-poster/) - create WordPress posts
 
 = POSSIBLE USE CASES =
 
@@ -167,7 +184,7 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 
 = Requirements =
 
-This plugin require at least PHP 5.3.0.
+This plugin require at least PHP 5.6.
 
 = Plugin install =
 
@@ -185,6 +202,12 @@ Notification can be loaded also as a part of any plugin or theme. To do it just 
 
 The Notification plugin works very similar to BNFW but it has better codebase and interface. You can read the full comparison in the [Notification vs Better Notifications for WordPress](https://bracketspace.com/notification-vs-better-notifications-for-wordpress/) article.
 
+= Why I'm not receiving any emails? =
+
+Is your WordPress sending any emails at all? The best way to test it is to try to reset your password. If you don't get any email than there's something wrong with your server configuration. You could use any SMTP plugin to fix that.
+
+You can also try to activate the debug log in plugin settings to see if the email is triggered.
+
 = Is this plugin for regular users? =
 
 Ofcourse it is! We are trying to make both parties happy - the Users and Developers. Users got their intuitive and beautiful panel in WordPress Admin and Developers got an awesome API by which they can extend the Notification plugin.
@@ -195,9 +218,27 @@ So it doesn't matter if you don't have any coding skills, they are not required 
 
 With `register_trigger()` function. [See the detailed guide](https://docs.bracketspace.com/docs/registering-custom-triggers/)
 
+= How to include a custom field in the notification? =
+
+You can [write a merge tag](https://docs.bracketspace.com/docs/adding-merge-tags-to-existing-triggers/) by yourself or go with a no-brainer [Custom Fields extension](https://bracketspace.com/downloads/notification-custom-fields/).
+
+= How to target only specific post / category / user etc? =
+
+You can control when exactly the notification is sending with the [Conditionals extension](https://bracketspace.com/downloads/notification-conditionals/).
+
 = Can I bundle the plugin with my plugin or theme? =
 
 Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/including-notification-in-the-plugin-or-theme/)
+
+= Is this plugin capable of sending high volume emails? =
+
+The plugin is capable and it can send milions of emails, but probably your server is not. To send thousands of emails at once we'd suggest using [SendGrid](https://bracketspace.com/downloads/notification-sendgrid/) or [Mailgun](https://bracketspace.com/downloads/notification-mailgun/) extensions which were designed to support high volume emails in a single API call.
+
+When using SMTP it's nearly impossible to send more than a dozen emails at once due to timeouts.
+
+= Can I test my notifications before sending? =
+
+Yes, just activate the debug log in the DEBUGGING section of the plugin settings. All notifications will be catched into log visible only to you.
 
 == Screenshots ==
 
@@ -210,15 +251,45 @@ Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/includ
 == Changelog ==
 
 = [Next] =
+* [Changed] Added parent class for user triggers.
+* [Changed] Added parent class for media triggers.
+* [Changed] PHP requirement to 5.6.
+* [Changed] Freemius updated to version 2.1.3.
+* [Changed] Uninstallation logic moved to the Freemius handler.
+* [Changed] Merge Tag validation now accepts empty values.
+* [Changed] Post Trigger postponing to avoid looping.
+* [Changed] Custom Fields postponing causing the loops, now it's in a separate integration class.
+* [Changed] Minimum WordPress version to 4.9.
+* [Changed] Plugin autoload function.
+* [Added] Global date, time and datetime merge tags for trigger execution date.
+* [Added] `notification/scripts/allowed_hooks` filter to control where the scripts are loaded.
+* [Added] Color Picker field.
+* [Added] Image field.
+* [Added] User role changed trigger.
+* [Added] Post scheduled trigger.
+* [Added] `notification/scripts` action.
+* [Added] Comment datetime merge tag.
+* [Added] Debug log.
+* [Added] Plugin triggers.
+* [Fixed] Comment type check causing the comment triggers failing.
+* [Fixed] Postponing looping over itself.
+* [Fixed] Fatal error with Triggers select on certain conditions.
+* [Fixed] Date and Time merge tags giving values of 0.
+* [Fixed] User password reset request being called upon registration.
+
+= 5.2.4 =
 * [Fixed] When `Strip all shortcodes` setting is disabled, the shortcodes are rendered.
+* [Fixed] Coding Standards.
+* [Fixed] Gutenberg JS Hooks conflict.
+* [Fixed] Bug when recipient types has been changed.
+* [Fixed] Every comment type being targeted in Comment trigger.
+* [Fixed] Used failed login datetime merge tag.
 * [Added] `remove_action` metod in Trigger class.
 * [Added] Option to allow unfiltered HTML in Email body, thanks to @martinellimarco.
-* [Added] Plugin activated trigger
-* [Added] Plugin deactivated trigger
-* [Added] Plugin updated trigger
-* [Added] Plugin removed trigger
-* [Added] Plugin installed trigger
-* [Fixed] Coding Standards
+* [Added] Post content HTML tag, for unfiltered output.
+* [Added] Better JSON support for webhooks, if webhook is sent as JSON the default Content-Type header is added.
+* [Added] Support for merge tags and shortcodes in Webhook recipient field.
+* [Added] Disabled OP Cache requirement.
 
 = 5.2.3 =
 * [Fixed] Duplicated meta for active notification type.

@@ -52,6 +52,10 @@ class CommentTrashed extends CommentTrigger {
 			return false;
 		}
 
+		if ( ! $this->is_correct_type( $this->comment ) ) {
+			return false;
+		}
+
 		// fix for action being called too early, before WP marks the comment as trashed.
 		$this->comment->comment_approved = 'trash';
 

@@ -62,6 +62,8 @@ class Webhook extends Abstracts\Recipient {
 				'name'        => 'recipient',       // don't edit this!
 				'css_class'   => 'recipient-value', // don't edit this!
 				'placeholder' => site_url(),
+				'description' => __( 'You can use any valid email merge tag.', 'notification' ),
+				'resolvable'  => true,
 			)
 		);
 

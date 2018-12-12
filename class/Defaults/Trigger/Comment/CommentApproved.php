@@ -53,6 +53,10 @@ class CommentApproved extends CommentTrigger {
 			return false;
 		}
 
+		if ( ! $this->is_correct_type( $this->comment ) ) {
+			return false;
+		}
+
 		if ( $comment_new_status === $comment_old_status || 'approved' !== $comment_new_status ) {
 			return false;
 		}

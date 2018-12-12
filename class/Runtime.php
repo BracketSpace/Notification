@@ -9,6 +9,7 @@ namespace BracketSpace\Notification;
 
 use BracketSpace\Notification\Utils;
 use BracketSpace\Notification\Admin;
+use BracketSpace\Notification\Core;
 
 /**
  * Runtime class
@@ -71,6 +72,8 @@ class Runtime extends Utils\DocHooks {
 		$this->admin_cron           = new Admin\Cron();
 		$this->admin_share          = new Admin\Share( $this->view() );
 		$this->integration_wp       = new Integration\WordPress();
+		$this->integration_cf       = new Integration\CustomFields();
+		$this->core_debugging       = new Core\Debugging();
 
 	}
 
@@ -100,10 +103,13 @@ class Runtime extends Utils\DocHooks {
 		$this->add_hooks( $this->admin_cron );
 		$this->add_hooks( $this->admin_share );
 		$this->add_hooks( $this->integration_wp );
+		$this->add_hooks( $this->integration_cf );
+		$this->add_hooks( $this->core_debugging );
 
 		notification_register_settings( array( $this->settings, 'general_settings' ) );
 		notification_register_settings( array( $this->settings, 'triggers_settings' ), 20 );
 		notification_register_settings( array( $this->settings, 'notifications_settings' ), 30 );
+		notification_register_settings( array( $this->core_debugging, 'debugging_settings' ), 30 );
 
 	}
 

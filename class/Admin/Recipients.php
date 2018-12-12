@@ -40,8 +40,8 @@ class Recipients {
 
 		$notification = sanitize_text_field( wp_unslash( $_POST['notification'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 		$type         = sanitize_text_field( wp_unslash( $_POST['type'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
-		$input        = $recipient->input();
 		$recipient    = notification_get_single_recipient( $notification, $type );
+		$input        = $recipient->input();
 
 		// A little trick to get rid of the last part of input name
 		// which will be added by the field itself.

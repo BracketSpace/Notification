@@ -11,12 +11,12 @@
 				type       = $select.val(),
 				$table     = $select.parents( '.recipients-repeater' ).first();
 
-			wp.hooks.doAction( 'notification.recipients.type.changed', type, $select, $recipient, $table );
+			notification.hooks.doAction( 'notification.recipients.type.changed', type, $select, $recipient, $table );
  		} );
 
 		// Get recipient field according to type
 
-		wp.hooks.addAction( 'notification.recipients.type.changed', function( type, $select, $recipient, $table ) {
+		notification.hooks.addAction( 'notification.recipients.type.changed', function( type, $select, $recipient, $table ) {
 
 			data = {
 				action      : 'get_recipient_input',
@@ -34,7 +34,7 @@
 		    			$recipient_container = $recipient.parent();
 		    		$recipient_container.html( '' );
 		    		$recipient_container.append( $replacement );
-		    		wp.hooks.doAction( 'notification.recipients.recipient.replaced', $replacement );
+		    		notification.hooks.doAction( 'notification.recipients.recipient.replaced', $replacement );
 		    	}
 
 			} );
