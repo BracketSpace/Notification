@@ -19,9 +19,10 @@ class Installed extends PluginTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/plugin/install', __( 'Plugin installed', 'notification' ) );
+		parent::__construct( 'wordpress/plugin/installed', __( 'Plugin installed', 'notification' ) );
 
-		$this->add_action( 'upgrader_process_complete', 10, 2 );
+		$this->add_action( 'upgrader_process_complete', 1000, 2 );
+
 		$this->set_group( __( 'Plugin', 'notification' ) );
 		$this->set_description( __( 'Fires when plugin is installed', 'notification' ) );
 
@@ -30,27 +31,20 @@ class Installed extends PluginTrigger {
 	/**
 	 * Trigger action.
 	 *
-	 * @param  string $obj Plugin info.
-	 * @param  array  $type Plugin action and type information.
-	 * @return mixed void or false if no notifications should be sent.
+	 * @param  Plugin_Upgrader $upgrader Plugin_Upgrader class.
+	 * @param  array           $data     Update data information.
+	 * @return mixed                     Void or false if no notifications should be sent.
 	 */
-	public function action( $obj, $type ) {
+	public function action( $upgrader, $data ) {
 
-		if ( ! isset( $type['type'] ) || 'plugin' !== $type['type'] ) {
+		if ( ! isset( $data['type'], $data['action'] ) || 'plugin' !== $data['type'] || 'install' !== $data['action'] ) {
 			return false;
 		}
 
-		if ( 'install' === $type['action'] ) {
+		$plugin_dir                          = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $upgrader->plugin_info();
+		$this->plugin                        = get_plugin_data( $plugin_dir, false );
+		$this->plugin_installation_date_time = time();
 
-			if ( ! $obj->plugin_info() ) {
-				return false;
-			}
-
-			$plugin_dir                     = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $obj->plugin_info();
-			$this->plugin                   = get_plugin_data( $plugin_dir );
-			$this->plugin_install_date_time = strtotime( 'now' );
-
-		}
 	}
 
 	/**
@@ -59,16 +53,14 @@ class Installed extends PluginTrigger {
 	 * @return void.
 	 */
 	public function merge_tags() {
+
 		parent::merge_tags();
 
-		$this->add_merge_tag(
-			new MergeTag\DateTime\DateTime(
-				array(
-					'slug' => 'plugin_install_date_time',
-					'name' => __( 'Plugin installed date and time', 'notification' ),
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
+			'slug' => 'plugin_installation_date_time',
+			'name' => __( 'Plugin installation date and time', 'notification' ),
+		) ) );
 
-				)
-			)
-		);
 	}
+
 }

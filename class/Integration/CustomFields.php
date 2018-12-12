@@ -27,7 +27,7 @@ class CustomFields {
 			return;
 		}
 
-		if ( ! preg_match( '/wordpress\/(.*)\/(updated|published|drafted|added|pending)/', $trigger->get_slug() ) ) {
+		if ( ! preg_match( '/wordpress\/(?!.*(plugin|theme)).*\/(updated|published|drafted|added|pending)/', $trigger->get_slug() ) ) {
 			return;
 		}
 

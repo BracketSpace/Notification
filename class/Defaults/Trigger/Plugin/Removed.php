@@ -21,9 +21,10 @@ class Removed extends PluginTrigger {
 
 		parent::__construct( 'wordpress/plugin/removed', __( 'Plugin removed', 'notification' ) );
 
-		$this->add_action( 'delete_plugin', 10, 2 );
+		$this->add_action( 'delete_plugin', 1000 );
+
 		$this->set_group( __( 'Plugin', 'notification' ) );
-		$this->set_description( __( 'Fires when plugin is deletion', 'notification' ) );
+		$this->set_description( __( 'Fires when plugin is deleted', 'notification' ) );
 
 	}
 
@@ -35,9 +36,9 @@ class Removed extends PluginTrigger {
 	 */
 	public function action( $plugin_rel_path ) {
 
-		$plugin_dir                    = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin_rel_path;
-		$this->plugin                  = get_plugin_data( $plugin_dir );
-		$this->plugin_delete_date_time = strtotime( 'now' );
+		$plugin_dir                      = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin_rel_path;
+		$this->plugin                    = get_plugin_data( $plugin_dir, false );
+		$this->plugin_deletion_date_time = time();
 
 	}
 
@@ -47,15 +48,14 @@ class Removed extends PluginTrigger {
 	 * @return void.
 	 */
 	public function merge_tags() {
+
 		parent::merge_tags();
 
-		$this->add_merge_tag(
-			new MergeTag\DateTime\DateTime(
-				array(
-					'slug' => 'plugin_delete_date_time',
-					'name' => __( 'Plugin deletion date and time', 'notification' ),
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
+			'slug' => 'plugin_deletion_date_time',
+			'name' => __( 'Plugin deletion date and time', 'notification' ),
+		) ) );
+
 	}
+
 }
