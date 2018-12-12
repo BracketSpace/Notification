@@ -20,14 +20,13 @@
  */
 function notification_autoload( $class ) {
 
-	$parts = explode( '\\', $class );
+	$parts      = explode( '\\', $class );
+	$namespaces = array( 'BracketSpace', 'Notification' );
 
-	if ( array_shift( $parts ) !== 'BracketSpace' ) {
-		return false;
-	}
-
-	if ( array_shift( $parts ) !== 'Notification' ) {
-		return false;
+	foreach ( $namespaces as $namespace ) {
+		if ( array_shift( $parts ) !== $namespace ) {
+			return false;
+		}
 	}
 
 	$file = trailingslashit( dirname( __FILE__ ) ) . trailingslashit( 'class' ) . implode( '/', $parts ) . '.php';
