@@ -372,13 +372,6 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	public function _action() {
 
-		$before = array(
-			'action'    => current_filter(),
-			'actions'   => $this->actions,
-			'stopped'   => $this->is_stopped(),
-			'postponed' => $this->is_postponed(),
-		);
-
 		// reset the state.
 		$this->stopped = false;
 
@@ -399,6 +392,13 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		}
 
 		do_action( 'notification/trigger/action/did', $this );
+
+		file_put_contents( dirname( __FILE__ ) . '/log.log', print_r( array(
+			'action'    => current_filter(),
+			'actions'   => $this->actions,
+			'stopped'   => $this->is_stopped(),
+			'postponed' => $this->is_postponed(),
+		), true ) . "\r\n\r\n", FILE_APPEND );
 
 		if ( $this->is_stopped() ) {
 			return;

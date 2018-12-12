@@ -270,6 +270,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] `notification/scripts` action.
 * [Added] Comment datetime merge tag.
 * [Added] Debug log.
+* [Added] Plugin triggers.
 * [Fixed] Comment type check causing the comment triggers failing.
 * [Fixed] Postponing looping over itself.
 * [Fixed] Fatal error with Triggers select on certain conditions.
