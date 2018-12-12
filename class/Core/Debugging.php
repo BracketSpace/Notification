@@ -136,7 +136,6 @@ class Debugging {
 			return;
 		}
 
-		// update_option( $this->log_setting_key, array() );
 		$limit = apply_filters( 'notification/debugging/log/limit', 10 );
 		$logs  = get_option( $this->log_setting_key, array() );
 
