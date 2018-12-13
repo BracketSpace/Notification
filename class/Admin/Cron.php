@@ -83,11 +83,17 @@ class Cron {
 	 * Schedules the event
 	 *
 	 * @since  5.1.5
-	 * @param  string $schedule   schedule name.
-	 * @param  string $event_name event name.
+	 * @param  string  $schedule   schedule name.
+	 * @param  string  $event_name event name.
+	 * @param  boolean $once       if schedule only one.
 	 * @return void
 	 */
-	public function schedule( $schedule, $event_name ) {
+	public function schedule( $schedule, $event_name, $once = false ) {
+
+		if ( $once && false !== wp_get_schedule( $event_name ) ) {
+			return;
+		}
+
 		wp_schedule_event( current_time( 'timestamp' ) + DAY_IN_SECONDS, $schedule, $event_name );
 	}
 

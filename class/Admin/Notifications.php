@@ -84,6 +84,8 @@ class Notifications {
 		$this->postdata->set_post_id( $post_id );
 		$this->postdata->save_notification_data( $_POST );
 
+		do_action( 'notification/data/save', $this->postdata, $post_id );
+
 	}
 
 }

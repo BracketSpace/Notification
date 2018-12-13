@@ -272,6 +272,8 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] Debug log.
 * [Added] Plugin triggers.
 * [Added] Theme triggers.
+* [Added] `notification/data/save` action.
+* [Added] Usage tracking. No data is tracked unless allowed.
 * [Fixed] Comment type check causing the comment triggers failing.
 * [Fixed] Postponing looping over itself.
 * [Fixed] Fatal error with Triggers select on certain conditions.
