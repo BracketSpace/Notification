@@ -102,3 +102,5 @@ register_trigger( new Trigger\Plugin\Removed() );
 
 // Theme triggers.
 register_trigger( new Trigger\Theme\Switched() );
+register_trigger( new Trigger\Theme\Updated() );
+register_trigger( new Trigger\Theme\Installed() );

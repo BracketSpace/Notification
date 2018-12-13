@@ -82,6 +82,16 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 			},
 		) ) );
 
+		$this->add_merge_tag( new MergeTag\StringTag( array(
+			'slug'        => 'theme_textdomain',
+			'name'        => __( 'Theme textdomain', 'notification' ),
+			'description' => __( 'twentyseventeen', 'notification' ),
+			'example'     => true,
+			'resolver'    => function( $trigger ) {
+				return $trigger->theme->get( 'TextDomain' );
+			},
+		) ) );
+
 	}
 
 }
