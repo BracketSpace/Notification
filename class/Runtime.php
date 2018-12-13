@@ -74,6 +74,7 @@ class Runtime extends Utils\DocHooks {
 		$this->integration_wp       = new Integration\WordPress();
 		$this->integration_cf       = new Integration\CustomFields();
 		$this->core_debugging       = new Core\Debugging();
+		$this->tracking             = new Tracking( $this->admin_cron, $this->post_data );
 
 	}
 
@@ -105,6 +106,7 @@ class Runtime extends Utils\DocHooks {
 		$this->add_hooks( $this->integration_wp );
 		$this->add_hooks( $this->integration_cf );
 		$this->add_hooks( $this->core_debugging );
+		$this->add_hooks( $this->tracking );
 
 		notification_register_settings( array( $this->settings, 'general_settings' ) );
 		notification_register_settings( array( $this->settings, 'triggers_settings' ), 20 );
