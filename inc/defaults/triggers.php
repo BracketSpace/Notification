@@ -99,3 +99,8 @@ register_trigger( new Trigger\Plugin\Deactivated() );
 register_trigger( new Trigger\Plugin\Updated() );
 register_trigger( new Trigger\Plugin\Installed() );
 register_trigger( new Trigger\Plugin\Removed() );
+
+// Theme triggers.
+register_trigger( new Trigger\Theme\Switched() );
+register_trigger( new Trigger\Theme\Updated() );
+register_trigger( new Trigger\Theme\Installed() );
