@@ -17,7 +17,7 @@ class TestTrigger extends \WP_UnitTestCase {
 	/**
 	 * Tests trigger registration
 	 *
-	 * @since [Next]
+	 * @since 5.3.1
 	 */
 	public function test_trigger_registration() {
 		register_trigger( new Objects\SimpleTrigger() );
@@ -27,7 +27,7 @@ class TestTrigger extends \WP_UnitTestCase {
 	/**
 	 * Tests trigger action
 	 *
-	 * @since [Next]
+	 * @since 5.3.1
 	 */
 	public function test_trigger_action() {
 		$trigger = new Objects\SimpleTrigger();
@@ -48,7 +48,7 @@ class TestTrigger extends \WP_UnitTestCase {
 	/**
 	 * Tests trigger postponed action
 	 *
-	 * @since [Next]
+	 * @since 5.3.1
 	 */
 	public function test_trigger_postponed_action() {
 		$trigger = new Objects\PostponedTrigger();

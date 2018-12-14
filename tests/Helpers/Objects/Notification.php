@@ -25,7 +25,7 @@ class Notification extends AbstractNotification {
 	/**
 	 * Dummy notification constructor
 	 *
-	 * @since [Next]
+	 * @since 5.3.1
 	 */
 	public function __construct() {
 		parent::__construct( 'dummy', 'Dummy' );
@@ -34,7 +34,7 @@ class Notification extends AbstractNotification {
 	/**
 	 * Used to register notification form fields
 	 *
-	 * @since [Next]
+	 * @since 5.3.1
 	 * @return void
 	 */
 	public function form_fields() {
@@ -44,7 +44,7 @@ class Notification extends AbstractNotification {
 	/**
 	 * Sends the notification
 	 *
-	 * @since [Next]
+	 * @since 5.3.1
 	 * @param  Triggerable $trigger trigger object.
 	 * @return void
 	 */

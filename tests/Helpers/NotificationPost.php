@@ -18,7 +18,7 @@ class NotificationPost {
 	/**
 	 * Inserts notification post based on trigger and notifcation type
 	 *
-	 * @since  [Next]
+	 * @since  5.3.1
 	 * @param  mixed $trigger      Trigger class or slug.
 	 * @param  mixed $notification Notifcation class or slug.
 	 * @return integer             Notifcation Post ID.

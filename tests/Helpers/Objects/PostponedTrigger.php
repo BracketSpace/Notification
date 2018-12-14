@@ -25,7 +25,7 @@ class PostponedTrigger extends Trigger {
 	/**
 	 * Trigger action
 	 *
-	 * @since  [Next]
+	 * @since  5.3.1
 	 * @return void
 	 */
 	public function action() {
@@ -35,7 +35,7 @@ class PostponedTrigger extends Trigger {
 	/**
 	 * Registers merge tags
 	 *
-	 * @since  [Next]
+	 * @since  5.3.1
 	 * @return void
 	 */
 	public function merge_tags() {
