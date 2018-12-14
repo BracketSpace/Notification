@@ -274,6 +274,34 @@ class Settings extends SettingsAPI {
 				)
 			);
 
+		$triggers->add_group( __( 'Theme', 'notification' ), 'theme' )
+			->add_field(
+				array(
+					'name'     => __( 'Theme', 'notification' ),
+					'slug'     => 'enable',
+					'default'  => 'true',
+					'addons'   => array(
+						'label' => __( 'Enable theme triggers', 'notification' ),
+					),
+					'render'   => array( new CoreFields\Checkbox(), 'input' ),
+					'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+				)
+			);
+
+		$triggers->add_group( __( 'Plugin', 'notification' ), 'plugin' )
+			->add_field(
+				array(
+					'name'     => __( 'Plugin', 'notification' ),
+					'slug'     => 'enable',
+					'default'  => 'true',
+					'addons'   => array(
+						'label' => __( 'Enable plugin triggers', 'notification' ),
+					),
+					'render'   => array( new CoreFields\Checkbox(), 'input' ),
+					'sanitize' => array( new CoreFields\Checkbox(), 'sanitize' ),
+				)
+			);
+
 		$updates_cron_options = array();
 
 		foreach ( wp_get_schedules() as $schedule_name => $schedule ) {

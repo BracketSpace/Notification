@@ -58,9 +58,20 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 
 		$this->post_creation_datetime     = strtotime( $this->post->post_date );
 		$this->post_modification_datetime = strtotime( $this->post->post_modified );
+		$this->comment_datetime           = strtotime( $this->comment->date );
 
 		$this->post_author = get_userdata( $this->post->post_author );
 
+	}
+
+	/**
+	 * Check if comment is correct type
+	 *
+	 * @param mixed $comment Comment object or Comment ID.
+	 * @return boolean
+	 */
+	public function is_correct_type( $comment ) {
+		return get_comment_type( $comment ) === $this->comment_type;
 	}
 
 	/**
@@ -74,6 +85,15 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\Comment\CommentContent() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentStatus() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentType() );
+
+		$this->add_merge_tag(
+			new MergeTag\DateTime\DateTime(
+				array(
+					'slug' => 'comment_datetime',
+					'name' => __( 'Comment date and time', 'notification' ),
+				)
+			)
+		);
 
 		// Author.
 		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorIP() );

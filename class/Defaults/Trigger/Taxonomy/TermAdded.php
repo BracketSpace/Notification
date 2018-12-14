@@ -72,7 +72,7 @@ class TermAdded extends TermTrigger {
 		$this->taxonomy       = $this->term->taxonomy;
 		$this->term_permalink = get_term_link( $this->term );
 
-		$this->term_creation_datetime = time();
+		$this->term_creation_datetime = current_time( 'timestamp' );
 
 	}
 

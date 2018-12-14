@@ -1,0 +1,132 @@
+.notification-field.fields-repeater {
+	width: 100%;
+	margin-bottom: 10px;
+	border-collapse: collapse;
+	counter-reset: rowNumber;
+	table-layout: auto;
+
+	tr {
+
+		&.model {
+			display: none;
+		}
+
+		&:nth-child(n+3) {
+			counter-increment: rowNumber;
+		}
+
+		td, th {
+			padding: 12px;
+			border: 1px solid #e5e5e5;
+			// width: auto;
+
+
+			&.handle {
+				background: #f5f5f5;
+				white-space: nowrap;
+				width: 20px;
+				text-align: center;
+				padding: 0;
+				color: #a5a5a5;
+
+				@media( max-width: 768px ) {
+					width: calc(100% - 22px);
+					height: 30px;
+					line-height: 30px;
+					padding: 0 10px;
+
+				}
+			}
+
+		}
+
+		th {
+
+			small {
+				display: block;
+				font-weight: normal;
+			}
+
+		}
+
+		td {
+
+			&.subfield {
+
+				.row-header {
+					display:none;
+
+					@media( max-width: 768px ) {
+						display: block;
+						margin-bottom: 5px;								}
+				}
+			}
+
+			&.handle {
+
+				@media( max-width: 768px ) {
+
+					position: relative;
+
+					&::before, &::after {
+						position: absolute;
+					}
+
+					&::before {
+						left: 10px;
+						top: -1px;
+					}
+
+					&::after {
+						right: 10px;
+						top: 0;
+					}
+				}
+			}
+
+			&.handle::before {
+				content: counter(rowNumber);
+			}
+
+			@media (max-width: 768px ) {
+
+				&.handle::after {
+					content: "\f182";
+					font: 400 20px/1 dashicons;
+					line-height: 30px;
+				}
+			}
+
+		}
+
+		&:hover {
+
+			td.handle {
+
+				&::before {
+					content: "\f182";
+					font: 400 20px/1 dashicons;
+					line-height: 30px;
+
+					@media( max-width: 768px ) {
+						content: counter(rowNumber);
+						font: inherit;
+					}
+				}
+
+				&:hover {
+					color: #a00;
+					cursor: pointer;
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+.add-new-repeater-field {
+	float: right;
+}

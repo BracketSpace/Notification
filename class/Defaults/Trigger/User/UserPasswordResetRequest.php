@@ -32,11 +32,20 @@ class UserPasswordResetRequest extends UserTrigger {
 	 *
 	 * @param string $username  username.
 	 * @param string $reset_key password reset key.
-	 * @return void
+	 * @return mixed
 	 */
 	public function action( $username, $reset_key ) {
 
 		$user = get_user_by( 'login', $username );
+
+		/**
+		 * Bail if we are handling the registration.
+		 * Use the filter to integrate with 3rd party code.
+		 */
+		if ( ( isset( $_GET['action'] ) && 'register' === $_GET['action'] ) ||
+			apply_filters( 'notification/trigger/wordpress/user_password_reset_request/bail_for_registration', false, $user ) ) {
+			return false;
+		}
 
 		$this->user_id     = $user->data->ID;
 		$this->user_login  = $user->data->user_login;
@@ -45,7 +54,7 @@ class UserPasswordResetRequest extends UserTrigger {
 		$this->password_reset_key = $reset_key;
 
 		$this->user_registered_datetime        = strtotime( $this->user_object->user_registered );
-		$this->password_reset_request_datetime = time();
+		$this->password_reset_request_datetime = current_time( 'timestamp' );
 
 	}
 

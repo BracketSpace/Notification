@@ -23,6 +23,7 @@ if ( notification_get_setting( 'triggers/post_types/types' ) ) {
 		register_trigger( new Trigger\Post\PostPublished( $post_type ) );
 		register_trigger( new Trigger\Post\PostUpdated( $post_type ) );
 		register_trigger( new Trigger\Post\PostPending( $post_type ) );
+		register_trigger( new Trigger\Post\PostScheduled( $post_type ) );
 		register_trigger( new Trigger\Post\PostTrashed( $post_type ) );
 
 	}
@@ -57,6 +58,7 @@ if ( notification_get_setting( 'triggers/user/enable' ) ) {
 	register_trigger( new Trigger\User\UserPasswordChanged() );
 	register_trigger( new Trigger\User\UserPasswordResetRequest() );
 	register_trigger( new Trigger\User\UserLoginFailed() );
+	register_trigger( new Trigger\User\UserRoleChanged() );
 
 }
 
@@ -89,4 +91,20 @@ if ( notification_get_setting( 'triggers/comment/types' ) ) {
 // WordPress triggers.
 if ( notification_get_setting( 'triggers/wordpress/updates' ) ) {
 	register_trigger( new Trigger\WordPress\UpdatesAvailable() );
+}
+
+// Plugin triggers.
+if ( notification_get_setting( 'triggers/plugin/enable' ) ) {
+	register_trigger( new Trigger\Plugin\Activated() );
+	register_trigger( new Trigger\Plugin\Deactivated() );
+	register_trigger( new Trigger\Plugin\Updated() );
+	register_trigger( new Trigger\Plugin\Installed() );
+	register_trigger( new Trigger\Plugin\Removed() );
+}
+
+// Theme triggers.
+if ( notification_get_setting( 'triggers/theme/enable' ) ) {
+	register_trigger( new Trigger\Theme\Switched() );
+	register_trigger( new Trigger\Theme\Updated() );
+	register_trigger( new Trigger\Theme\Installed() );
 }

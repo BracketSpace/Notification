@@ -50,8 +50,18 @@ class Time extends StringTag {
 		}
 
 		if ( ! isset( $args['resolver'] ) ) {
-			$args['resolver'] = function() use ( $args ) {
+			$args['resolver'] = function( $trigger ) use ( $args ) {
+
+				if ( isset( $args['timestamp'] ) ) {
+					$timestamp = $args['timestamp'];
+				} elseif ( isset( $trigger->{ $this->get_slug() } ) ) {
+					$timestamp = $trigger->{ $this->get_slug() };
+				} else {
+					$timestamp = 0;
+				}
+
 				return date_i18n( $args['time_format'], $timestamp );
+
 			};
 		}
 
