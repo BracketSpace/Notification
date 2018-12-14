@@ -65,7 +65,7 @@ class Debugging {
 	/**
 	 * Gets formatted debug log
 	 *
-	 * @since  [Next]
+	 * @since  5.3.0
 	 * @return string
 	 */
 	public function get_debug_log() {
@@ -104,7 +104,7 @@ class Debugging {
 	 *
 	 * @action admin_notices
 	 *
-	 * @since  [Next]
+	 * @since  5.3.0
 	 * @return void
 	 */
 	public function debug_warning() {
@@ -125,7 +125,7 @@ class Debugging {
 	 *
 	 * @action notification/notification/pre-send 1000000
 	 *
-	 * @since  [Next]
+	 * @since  5.3.0
 	 * @param Notification $notification Notification object.
 	 * @param Trigger      $trigger      Trigger object.
 	 * @return void

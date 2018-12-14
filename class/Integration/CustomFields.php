@@ -17,7 +17,7 @@ class CustomFields {
 	 *
 	 * @action notification/trigger/action/did
 	 *
-	 * @since  [Next]
+	 * @since  5.3.0
 	 * @param  Trigger $trigger Trigger object.
 	 * @return void
 	 */

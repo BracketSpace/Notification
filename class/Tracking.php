@@ -48,7 +48,7 @@ class Tracking {
 	/**
 	 * Class constructor
 	 *
-	 * @since [Next]
+	 * @since 5.3.0
 	 * @param Cron     $cron     Cron object.
 	 * @param PostData $postdata PostData class.
 	 */
@@ -68,7 +68,7 @@ class Tracking {
 	 *
 	 * @action admin_init
 	 *
-	 * @since  [Next]
+	 * @since  5.3.0
 	 * @return void
 	 */
 	public function register_tracking_event() {
@@ -80,7 +80,7 @@ class Tracking {
 	 *
 	 * @action notification_track_usage
 	 *
-	 * @since  [Next]
+	 * @since  5.3.0
 	 * @return void
 	 */
 	public function track_triggers_usage() {
@@ -141,7 +141,7 @@ class Tracking {
 	/**
 	 * Sends usage to the API
 	 *
-	 * @since  [Next]
+	 * @since  5.3.0
 	 * @param  array $usage Usage array.
 	 * @return void
 	 */
