@@ -52,7 +52,7 @@ class WordPress {
 	 *
 	 * @action wp_insert_comment
 	 *
-	 * @since [Next]
+	 * @since 5.3.1
 	 * @param integer $comment_id Comment ID.
 	 * @param object  $comment    Comment object.
 	 * @return void
