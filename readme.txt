@@ -250,6 +250,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Double post notification called for post revisions.
+
 = 5.3.1 =
 * [Added] Initial unit tests.
 * [Fixed] Comment replied trigger not called from wp-admin.
