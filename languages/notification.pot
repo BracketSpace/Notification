@@ -2,9 +2,9 @@
 # This file is distributed under the GPL3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Notification 5.2.3\n"
+"Project-Id-Version: Notification 5.3.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/notification\n"
-"POT-Creation-Date: 2018-07-15 10:26:44+00:00\n"
+"POT-Creation-Date: 2018-12-14 09:13:36+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -53,54 +53,54 @@ msgstr ""
 msgid "Extensions"
 msgstr ""
 
-#: class/Admin/Extensions.php:313
+#: class/Admin/Extensions.php:315
 msgid "Your license has been activated."
 msgstr ""
 
-#: class/Admin/Extensions.php:318
+#: class/Admin/Extensions.php:320
 msgid "Your license has been deactivated."
 msgstr ""
 
-#: class/Admin/Extensions.php:323
+#: class/Admin/Extensions.php:325
 msgid "Couldn't activate the license, please try again."
 msgstr ""
 
-#: class/Admin/Extensions.php:330
+#: class/Admin/Extensions.php:332
 #. translators: 1. Date.
 msgid "Your license key expired on %s."
 msgstr ""
 
-#: class/Admin/Extensions.php:338
+#: class/Admin/Extensions.php:340
 msgid "Your license key has been disabled."
 msgstr ""
 
-#: class/Admin/Extensions.php:343
+#: class/Admin/Extensions.php:345
 msgid "Invalid license key."
 msgstr ""
 
-#: class/Admin/Extensions.php:349
+#: class/Admin/Extensions.php:351
 msgid "Your license is not active for this URL."
 msgstr ""
 
-#: class/Admin/Extensions.php:355
+#: class/Admin/Extensions.php:357
 #. translators: 1. Extension name.
 msgid "This appears to be an invalid license key for %s."
 msgstr ""
 
-#: class/Admin/Extensions.php:360
+#: class/Admin/Extensions.php:362
 msgid "Your license key has reached its activation limit."
 msgstr ""
 
-#: class/Admin/Extensions.php:365
+#: class/Admin/Extensions.php:367
 msgid "An error occurred, please try again."
 msgstr ""
 
-#: class/Admin/Extensions.php:403
-#. translators: 1. Plugin name, 2. Link.
-msgid "Please activate the %s plugin to get the updates. %s"
+#: class/Admin/Extensions.php:405
+#. Translators: 1. Plugin name, 2. Link.
+msgid "Please activate the %1$s plugin to get the updates. %2$s"
 msgstr ""
 
-#: class/Admin/Extensions.php:405
+#: class/Admin/Extensions.php:407
 msgid "Go to Extensions"
 msgstr ""
 
@@ -109,11 +109,11 @@ msgid "Merge tags"
 msgstr ""
 
 #: class/Admin/NotificationDuplicator.php:30
-#: class/Admin/NotificationDuplicator.php:54
+#: class/Admin/NotificationDuplicator.php:59
 msgid "Duplicate"
 msgstr ""
 
-#: class/Admin/PostData.php:308
+#: class/Admin/PostData.php:310
 msgid "Notification status couldn't be changed."
 msgstr ""
 
@@ -121,13 +121,14 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: class/Admin/PostTable.php:33 class/Admin/PostType.php:131
+#: class/Admin/PostTable.php:33 class/Admin/PostType.php:137
+#: class/Core/Debugging.php:91
 msgid "Trigger"
 msgstr ""
 
 #: class/Admin/PostTable.php:34 class/Admin/PostType.php:41
-#: class/Admin/PostType.php:52 class/Admin/PostType.php:151
-#: class/Admin/Settings.php:111 class/Admin/Settings.php:310
+#: class/Admin/PostType.php:52 class/Admin/PostType.php:157
+#: class/Admin/Settings.php:116 class/Admin/Settings.php:371
 msgid "Notifications"
 msgstr ""
 
@@ -171,44 +172,52 @@ msgstr ""
 msgid "Parent Notification:"
 msgstr ""
 
-#: class/Admin/PostType.php:101 class/Admin/PostType.php:104
+#: class/Admin/PostType.php:107 class/Admin/PostType.php:110
 msgid "Notification updated."
 msgstr ""
 
-#: class/Admin/PostType.php:106 class/Admin/PostType.php:107
+#: class/Admin/PostType.php:112 class/Admin/PostType.php:113
 msgid "Notification saved."
 msgstr ""
 
-#: class/Admin/PostType.php:174 views/save-metabox.php:32
+#: class/Admin/PostType.php:180 views/save-metabox.php:32
 msgid "Save"
 msgstr ""
 
-#: class/Admin/PostType.php:228
+#: class/Admin/PostType.php:234
 msgid "Delete Permanently"
 msgstr ""
 
-#: class/Admin/PostType.php:230
+#: class/Admin/PostType.php:236
 msgid "Move to Trash"
 msgstr ""
 
-#: class/Admin/ScreenHelp.php:45
+#: class/Admin/ScreenHelp.php:46
 msgid "Global Merge Tags"
 msgstr ""
 
-#: class/Admin/Scripts.php:73
+#: class/Admin/Scripts.php:76
 msgid "Copied"
 msgstr ""
 
-#: class/Admin/Scripts.php:74
+#: class/Admin/Scripts.php:77
 msgid "Do you really want to delete this?"
+msgstr ""
+
+#: class/Admin/Scripts.php:78
+msgid "Select image"
+msgstr ""
+
+#: class/Admin/Scripts.php:79
+msgid "Use selected image"
 msgstr ""
 
 #: class/Admin/Settings.php:46 class/Admin/Settings.php:54
 msgid "Notification settings"
 msgstr ""
 
-#: class/Admin/Settings.php:49 class/Admin/Settings.php:121
-#: views/settings/page.php:12
+#: class/Admin/Settings.php:49 class/Admin/Settings.php:128
+#: class/Core/Debugging.php:34 views/settings/page.php:12
 msgid "Settings"
 msgstr ""
 
@@ -220,224 +229,248 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: class/Admin/Settings.php:86
+#: class/Admin/Settings.php:87
 msgid "Empty merge tags"
 msgstr ""
 
-#: class/Admin/Settings.php:90
+#: class/Admin/Settings.php:91
 msgid "Remove unused merge tags from sent values"
 msgstr ""
 
-#: class/Admin/Settings.php:92 class/Admin/Settings.php:103
+#: class/Admin/Settings.php:93 class/Admin/Settings.php:106
 msgid "This will affect any notification fields"
 msgstr ""
 
-#: class/Admin/Settings.php:97
+#: class/Admin/Settings.php:100
 msgid "Shortcodes"
 msgstr ""
 
-#: class/Admin/Settings.php:101
+#: class/Admin/Settings.php:104
 msgid "Strip all shortcodes"
 msgstr ""
 
-#: class/Admin/Settings.php:107
+#: class/Admin/Settings.php:111
 msgid "Notification content settings"
 msgstr ""
 
-#: class/Admin/Settings.php:109
+#: class/Admin/Settings.php:113
 msgid "Uninstallation"
 msgstr ""
 
-#: class/Admin/Settings.php:115
+#: class/Admin/Settings.php:120
 msgid "Remove all added notifications"
 msgstr ""
 
-#: class/Admin/Settings.php:125
+#: class/Admin/Settings.php:132
 msgid "Remove plugin settings"
 msgstr ""
 
-#: class/Admin/Settings.php:131
+#: class/Admin/Settings.php:140
 msgid "Licenses"
 msgstr ""
 
-#: class/Admin/Settings.php:135
+#: class/Admin/Settings.php:144
 msgid "Remove and deactivate extension licenses"
 msgstr ""
 
-#: class/Admin/Settings.php:140
+#: class/Admin/Settings.php:150
 msgid "Choose what to remove upon plugin removal"
 msgstr ""
 
-#: class/Admin/Settings.php:160
+#: class/Admin/Settings.php:170
 msgid "Triggers"
 msgstr ""
 
-#: class/Admin/Settings.php:162
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:111
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:117
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:124
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:131
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:138
+#: class/Admin/Settings.php:172
 #: class/Defaults/Trigger/Comment/CommentTrigger.php:145
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:152
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:159
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:155
 #: class/Defaults/Trigger/Comment/CommentTrigger.php:166
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:177
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:188
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:199
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:210
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:221
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:232
 msgid "Post"
 msgstr ""
 
-#: class/Admin/Settings.php:164
+#: class/Admin/Settings.php:175
 msgid "Post Types"
 msgstr ""
 
-#: class/Admin/Settings.php:175
+#: class/Admin/Settings.php:187
 msgid ""
 "For these post types you will be able to define published, updated, pending "
 "moderation etc. notifications"
 msgstr ""
 
-#: class/Admin/Settings.php:188
+#: class/Admin/Settings.php:200
 msgid "Taxonomy"
 msgstr ""
 
-#: class/Admin/Settings.php:190
+#: class/Admin/Settings.php:203
 msgid "Taxonomies"
 msgstr ""
 
-#: class/Admin/Settings.php:201
+#: class/Admin/Settings.php:215
 msgid ""
 "For these taxonomies you will be able to define published, updated and "
 "deleted notifications"
 msgstr ""
 
-#: class/Admin/Settings.php:203 class/Admin/Settings.php:212
-#: class/Defaults/MergeTag/Comment/CommentType.php:42
+#: class/Admin/Settings.php:217 class/Admin/Settings.php:227
 msgid "Comment"
 msgstr ""
 
-#: class/Admin/Settings.php:205
+#: class/Admin/Settings.php:220
 msgid "Comment Types"
 msgstr ""
 
-#: class/Admin/Settings.php:213
+#: class/Admin/Settings.php:228
 msgid "Pingback"
 msgstr ""
 
-#: class/Admin/Settings.php:214
+#: class/Admin/Settings.php:229
 msgid "Trackback"
 msgstr ""
 
-#: class/Admin/Settings.php:221
+#: class/Admin/Settings.php:238
+#: class/Defaults/Trigger/Plugin/PluginTrigger.php:28
 msgid "Akismet"
 msgstr ""
 
-#: class/Admin/Settings.php:225
+#: class/Admin/Settings.php:242
 msgid "Do not send notification if comment has been marked as a spam by Akismet"
 msgstr ""
 
-#: class/Admin/Settings.php:231 class/Admin/Settings.php:233
-#: class/Defaults/Recipient/User.php:26
-#: class/Defaults/Trigger/User/UserDeleted.php:26
-#: class/Defaults/Trigger/User/UserLogin.php:26
-#: class/Defaults/Trigger/User/UserLoginFailed.php:26
-#: class/Defaults/Trigger/User/UserLogout.php:26
-#: class/Defaults/Trigger/User/UserPasswordChanged.php:26
-#: class/Defaults/Trigger/User/UserPasswordResetRequest.php:26
-#: class/Defaults/Trigger/User/UserProfileUpdated.php:26
-#: class/Defaults/Trigger/User/UserRegistered.php:27
+#: class/Admin/Settings.php:249 class/Admin/Settings.php:252
+#: class/Defaults/Recipient/User.php:27
+#: class/Defaults/Trigger/User/UserTrigger.php:26
 msgid "User"
 msgstr ""
 
-#: class/Admin/Settings.php:237
+#: class/Admin/Settings.php:256
 msgid "Enable user triggers"
 msgstr ""
 
-#: class/Admin/Settings.php:243 class/Admin/Settings.php:245
-#: class/Defaults/Trigger/Media/MediaAdded.php:26
-#: class/Defaults/Trigger/Media/MediaTrashed.php:26
-#: class/Defaults/Trigger/Media/MediaUpdated.php:26
+#: class/Admin/Settings.php:263 class/Admin/Settings.php:266
+#: class/Defaults/Trigger/Media/MediaTrigger.php:26
 msgid "Media"
 msgstr ""
 
-#: class/Admin/Settings.php:249
+#: class/Admin/Settings.php:270
 msgid "Enable media triggers"
 msgstr ""
 
-#: class/Admin/Settings.php:261
+#: class/Admin/Settings.php:277 class/Admin/Settings.php:280
+#: class/Defaults/Trigger/Theme/Installed.php:27
+#: class/Defaults/Trigger/Theme/Switched.php:27
+#: class/Defaults/Trigger/Theme/Updated.php:27
+msgid "Theme"
+msgstr ""
+
+#: class/Admin/Settings.php:284
+msgid "Enable theme triggers"
+msgstr ""
+
+#: class/Admin/Settings.php:291 class/Admin/Settings.php:294
+#: class/Defaults/Trigger/Plugin/Activated.php:27
+#: class/Defaults/Trigger/Plugin/Deactivated.php:27
+#: class/Defaults/Trigger/Plugin/Installed.php:26
+#: class/Defaults/Trigger/Plugin/Removed.php:26
+#: class/Defaults/Trigger/Plugin/Updated.php:26
+msgid "Plugin"
+msgstr ""
+
+#: class/Admin/Settings.php:298
+msgid "Enable plugin triggers"
+msgstr ""
+
+#: class/Admin/Settings.php:312
 #: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:36
 msgid "WordPress"
 msgstr ""
 
-#: class/Admin/Settings.php:263
-#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:165
+#: class/Admin/Settings.php:315
+#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:185
 msgid "Updates"
 msgstr ""
 
-#: class/Admin/Settings.php:267
+#: class/Admin/Settings.php:319
 msgid "Enable \"Updates available\" trigger"
 msgstr ""
 
-#: class/Admin/Settings.php:273
+#: class/Admin/Settings.php:327
 msgid "Send if no updates"
 msgstr ""
 
-#: class/Admin/Settings.php:277
+#: class/Admin/Settings.php:331
 msgid "Send updates email even if no updates available"
 msgstr ""
 
-#: class/Admin/Settings.php:283
+#: class/Admin/Settings.php:339
 msgid "Updates check period"
 msgstr ""
 
-#: class/Admin/Settings.php:312 class/Defaults/Notification/Email.php:25
+#: class/Admin/Settings.php:373 class/Defaults/Notification/Email.php:25
 msgid "Email"
 msgstr ""
 
-#: class/Admin/Settings.php:314 class/Admin/Settings.php:355
+#: class/Admin/Settings.php:376 class/Admin/Settings.php:439
 #: class/Defaults/Field/CheckboxField.php:36 views/save-metabox.php:12
 msgid "Enable"
 msgstr ""
 
-#: class/Admin/Settings.php:318
+#: class/Admin/Settings.php:380
 msgid "Enable email notification"
 msgstr ""
 
-#: class/Admin/Settings.php:324
+#: class/Admin/Settings.php:388
 msgid "Message type"
 msgstr ""
 
-#: class/Admin/Settings.php:329
+#: class/Admin/Settings.php:393
 msgid "HTML"
 msgstr ""
 
-#: class/Admin/Settings.php:330
+#: class/Admin/Settings.php:394
 msgid "Plain text"
 msgstr ""
 
-#: class/Admin/Settings.php:337
+#: class/Admin/Settings.php:403
+msgid "Unfiltered HTML"
+msgstr ""
+
+#: class/Admin/Settings.php:407
+msgid "Allow unfiltered HTML in email body"
+msgstr ""
+
+#: class/Admin/Settings.php:415
 msgid "From Name"
 msgstr ""
 
-#: class/Admin/Settings.php:342 class/Admin/Settings.php:350
+#: class/Admin/Settings.php:421 class/Admin/Settings.php:432
+#. Translators: %s default value.
 msgid "Leave blank to use default value: %s"
 msgstr ""
 
-#: class/Admin/Settings.php:345
+#: class/Admin/Settings.php:426
 msgid "From Email"
 msgstr ""
 
-#: class/Admin/Settings.php:353 class/Defaults/Notification/Webhook.php:25
+#: class/Admin/Settings.php:436 class/Defaults/Notification/Webhook.php:25
 msgid "Webhook"
 msgstr ""
 
-#: class/Admin/Settings.php:359
+#: class/Admin/Settings.php:443
 msgid "Enable webhook notification"
 msgstr ""
 
-#: class/Admin/Settings.php:365 class/Defaults/Notification/Webhook.php:72
+#: class/Admin/Settings.php:451 class/Defaults/Notification/Webhook.php:90
 msgid "Headers"
 msgstr ""
 
-#: class/Admin/Settings.php:369
+#: class/Admin/Settings.php:455
 msgid "Allow to configure webhook headers"
 msgstr ""
 
@@ -445,16 +478,52 @@ msgstr ""
 msgid "The story"
 msgstr ""
 
-#: class/Defaults/Field/RecipientsField.php:29
-msgid "Recipients"
+#: class/Core/Debugging.php:32
+msgid "Debugging"
+msgstr ""
+
+#: class/Core/Debugging.php:37
+msgid "Debug log"
+msgstr ""
+
+#: class/Core/Debugging.php:41
+msgid "Enable debug log"
+msgstr ""
+
+#: class/Core/Debugging.php:43
+msgid "While log is active, no notifications are sent"
+msgstr ""
+
+#: class/Core/Debugging.php:49 class/Core/Debugging.php:52
+msgid "Log"
+msgstr ""
+
+#: class/Core/Debugging.php:76
+msgid "Debug log is empty"
+msgstr ""
+
+#: class/Core/Debugging.php:93
+msgid "Data"
+msgstr ""
+
+#: class/Core/Debugging.php:116
+msgid "Debug log is active and no notifications will be sent."
+msgstr ""
+
+#: class/Core/Debugging.php:117
+msgid "See debug log"
 msgstr ""
 
 #: class/Defaults/Field/RecipientsField.php:31
+msgid "Recipients"
+msgstr ""
+
+#: class/Defaults/Field/RecipientsField.php:33
 msgid "Add recipient"
 msgstr ""
 
-#: class/Defaults/Field/RecipientsField.php:55
-#: class/Defaults/Field/RecipientsField.php:72
+#: class/Defaults/Field/RecipientsField.php:59
+#: class/Defaults/Field/RecipientsField.php:78
 msgid "Type"
 msgstr ""
 
@@ -462,754 +531,854 @@ msgstr ""
 msgid "Add new"
 msgstr ""
 
-#: class/Defaults/MergeTag/Comment/CommentActionApprove.php:39
+#: class/Defaults/MergeTag/Comment/CommentActionApprove.php:41
 msgid "Comment approve URL"
 msgstr ""
 
-#: class/Defaults/MergeTag/Comment/CommentActionDelete.php:39
+#: class/Defaults/MergeTag/Comment/CommentActionDelete.php:41
 msgid "Comment delete URL"
 msgstr ""
 
-#: class/Defaults/MergeTag/Comment/CommentActionSpam.php:39
+#: class/Defaults/MergeTag/Comment/CommentActionSpam.php:41
 msgid "Comment spam URL"
 msgstr ""
 
-#: class/Defaults/MergeTag/Comment/CommentActionTrash.php:39
+#: class/Defaults/MergeTag/Comment/CommentActionTrash.php:41
 msgid "Comment trash URL"
 msgstr ""
 
-#: class/Defaults/MergeTag/Comment/CommentAuthorIP.php:39
+#: class/Defaults/MergeTag/Comment/CommentAuthorIP.php:41
 msgid "Comment author IP"
 msgstr ""
 
-#: class/Defaults/MergeTag/Comment/CommentAuthorUrl.php:39
+#: class/Defaults/MergeTag/Comment/CommentAuthorUrl.php:41
 msgid "Comment author URL"
 msgstr ""
 
-#: class/Defaults/MergeTag/Comment/CommentAuthorUrl.php:40
+#: class/Defaults/MergeTag/Comment/CommentAuthorUrl.php:42
 msgid "http://mywebsite.com"
 msgstr ""
 
-#: class/Defaults/MergeTag/Comment/CommentAuthorUserAgent.php:39
+#: class/Defaults/MergeTag/Comment/CommentAuthorUserAgent.php:41
 msgid "Comment author user agent"
 msgstr ""
 
-#: class/Defaults/MergeTag/Comment/CommentContent.php:39
+#: class/Defaults/MergeTag/Comment/CommentContent.php:41
 msgid "Comment content"
 msgstr ""
 
-#: class/Defaults/MergeTag/Comment/CommentContent.php:40
+#: class/Defaults/MergeTag/Comment/CommentContent.php:42
 msgid "Great post!"
 msgstr ""
 
-#: class/Defaults/MergeTag/Comment/CommentID.php:39
+#: class/Defaults/MergeTag/Comment/CommentID.php:41
 msgid "Comment ID"
 msgstr ""
 
-#: class/Defaults/MergeTag/Comment/CommentStatus.php:39
+#: class/Defaults/MergeTag/Comment/CommentStatus.php:41
 msgid "Comment status"
 msgstr ""
 
-#: class/Defaults/MergeTag/Comment/CommentStatus.php:40
-#: class/Defaults/MergeTag/Comment/CommentStatus.php:44
+#: class/Defaults/MergeTag/Comment/CommentStatus.php:42
+#: class/Defaults/MergeTag/Comment/CommentStatus.php:46
 msgid "Approved"
 msgstr ""
 
-#: class/Defaults/MergeTag/Comment/CommentStatus.php:46
+#: class/Defaults/MergeTag/Comment/CommentStatus.php:48
 msgid "Unapproved"
 msgstr ""
 
-#: class/Defaults/MergeTag/Comment/CommentStatus.php:48
+#: class/Defaults/MergeTag/Comment/CommentStatus.php:50
 msgid "Marked as spam"
 msgstr ""
 
-#: class/Defaults/MergeTag/Comment/CommentStatus.php:50
+#: class/Defaults/MergeTag/Comment/CommentStatus.php:52
 msgid "Trashed"
 msgstr ""
 
-#: class/Defaults/MergeTag/Comment/CommentType.php:39
+#: class/Defaults/MergeTag/Comment/CommentType.php:41
 msgid "Comment type"
 msgstr ""
 
-#: class/Defaults/MergeTag/Comment/CommentType.php:40
+#: class/Defaults/MergeTag/Comment/CommentType.php:42
 msgid "Comment or Pingback or Trackback"
 msgstr ""
 
-#: class/Defaults/MergeTag/DateTime/Date.php:30
+#: class/Defaults/MergeTag/DateTime/Date.php:33
 msgid "Date"
 msgstr ""
 
-#: class/Defaults/MergeTag/DateTime/Date.php:37
-#: class/Defaults/MergeTag/DateTime/DateTime.php:38
-#: class/Defaults/MergeTag/DateTime/Time.php:37
+#: class/Defaults/MergeTag/DateTime/Date.php:41
+#: class/Defaults/MergeTag/DateTime/Date.php:46
+#: class/Defaults/MergeTag/DateTime/DateTime.php:42
+#: class/Defaults/MergeTag/DateTime/Time.php:41
 msgid "You can change the format in General WordPress Settings."
 msgstr ""
 
-#: class/Defaults/MergeTag/DateTime/DateTime.php:30
+#: class/Defaults/MergeTag/DateTime/DateTime.php:33
 msgid "Date and Time"
 msgstr ""
 
-#: class/Defaults/MergeTag/DateTime/Time.php:30
+#: class/Defaults/MergeTag/DateTime/Time.php:33
 msgid "Time"
 msgstr ""
 
-#: class/Defaults/MergeTag/Media/AttachmentDirectUrl.php:39
+#: class/Defaults/MergeTag/Media/AttachmentDirectUrl.php:41
 msgid "Attachment direct URL"
 msgstr ""
 
-#: class/Defaults/MergeTag/Media/AttachmentDirectUrl.php:40
+#: class/Defaults/MergeTag/Media/AttachmentDirectUrl.php:42
 msgid "http://example.com/wp-content/uploads/2018/02/forest-landscape.jpg"
 msgstr ""
 
-#: class/Defaults/MergeTag/Media/AttachmentID.php:39
+#: class/Defaults/MergeTag/Media/AttachmentID.php:41
 msgid "Attachment ID"
 msgstr ""
 
-#: class/Defaults/MergeTag/Media/AttachmentMimeType.php:39
+#: class/Defaults/MergeTag/Media/AttachmentMimeType.php:41
 msgid "Attachment MIME type"
 msgstr ""
 
-#: class/Defaults/MergeTag/Media/AttachmentPage.php:39
+#: class/Defaults/MergeTag/Media/AttachmentPage.php:41
 msgid "Attachment page link"
 msgstr ""
 
-#: class/Defaults/MergeTag/Media/AttachmentPage.php:40
+#: class/Defaults/MergeTag/Media/AttachmentPage.php:42
 msgid "http://example.com/forest-landscape/"
 msgstr ""
 
-#: class/Defaults/MergeTag/Media/AttachmentTitle.php:39
+#: class/Defaults/MergeTag/Media/AttachmentTitle.php:41
 msgid "Attachment title"
 msgstr ""
 
-#: class/Defaults/MergeTag/Media/AttachmentTitle.php:40
+#: class/Defaults/MergeTag/Media/AttachmentTitle.php:42
 msgid "Forest landscape"
 msgstr ""
 
-#: class/Defaults/MergeTag/Post/PostContent.php:45
+#: class/Defaults/MergeTag/Post/PostContent.php:47
 #. translators: singular post name.
 msgid "%s content"
 msgstr ""
 
-#: class/Defaults/MergeTag/Post/PostContent.php:46
+#: class/Defaults/MergeTag/Post/PostContent.php:48
+#: class/Defaults/MergeTag/Post/PostContentHtml.php:47
 msgid ""
 "Welcome to WordPress. This is your first post. Edit or delete it, then "
 "start writing!"
 msgstr ""
 
-#: class/Defaults/MergeTag/Post/PostExcerpt.php:45
+#: class/Defaults/MergeTag/Post/PostContentHtml.php:46
+#. translators: singular post name.
+msgid "%s content HTML"
+msgstr ""
+
+#: class/Defaults/MergeTag/Post/PostExcerpt.php:47
 #. translators: singular post name.
 msgid "%s excerpt"
 msgstr ""
 
-#: class/Defaults/MergeTag/Post/PostExcerpt.php:46
+#: class/Defaults/MergeTag/Post/PostExcerpt.php:48
 msgid "Welcome to WordPress..."
 msgstr ""
 
-#: class/Defaults/MergeTag/Post/PostID.php:45
+#: class/Defaults/MergeTag/Post/PostID.php:47
 #. translators: singular post name.
 msgid "%s ID"
 msgstr ""
 
-#: class/Defaults/MergeTag/Post/PostPermalink.php:45
+#: class/Defaults/MergeTag/Post/PostPermalink.php:47
 #. translators: singular post name.
 msgid "%s permalink"
 msgstr ""
 
-#: class/Defaults/MergeTag/Post/PostPermalink.php:46
+#: class/Defaults/MergeTag/Post/PostPermalink.php:48
 msgid "https://example.com/hello-world/"
 msgstr ""
 
-#: class/Defaults/MergeTag/Post/PostSlug.php:45
+#: class/Defaults/MergeTag/Post/PostSlug.php:47
 #. translators: singular post name.
 msgid "%s slug"
 msgstr ""
 
-#: class/Defaults/MergeTag/Post/PostSlug.php:46
-#: class/Defaults/MergeTag/Taxonomy/TaxonomySlug.php:45
+#: class/Defaults/MergeTag/Post/PostSlug.php:48
+#: class/Defaults/MergeTag/Taxonomy/TaxonomySlug.php:47
 msgid "hello-world"
 msgstr ""
 
-#: class/Defaults/MergeTag/Post/PostStatus.php:45
+#: class/Defaults/MergeTag/Post/PostStatus.php:47
 #. translators: singular post name.
 msgid "%s status"
 msgstr ""
 
-#: class/Defaults/MergeTag/Post/PostTerms.php:58
+#: class/Defaults/MergeTag/Post/PostTerms.php:60
 #. translators: 1. Post Type 2. Taxonomy name.
-msgid "%s %s"
+msgid "%1$s %2$s"
 msgstr ""
 
-#: class/Defaults/MergeTag/Post/PostTerms.php:59
+#: class/Defaults/MergeTag/Post/PostTerms.php:61
 msgid "General, Tech, Lifestyle"
 msgstr ""
 
-#: class/Defaults/MergeTag/Post/PostTitle.php:45
+#: class/Defaults/MergeTag/Post/PostTitle.php:47
 #. translators: singular post name.
 msgid "%s title"
 msgstr ""
 
-#: class/Defaults/MergeTag/Post/PostTitle.php:46
-#: class/Defaults/MergeTag/Taxonomy/TaxonomyName.php:45
+#: class/Defaults/MergeTag/Post/PostTitle.php:48
+#: class/Defaults/MergeTag/Taxonomy/TaxonomyName.php:47
 msgid "Hello World"
 msgstr ""
 
-#: class/Defaults/MergeTag/Post/PostType.php:44
+#: class/Defaults/MergeTag/Post/PostType.php:46
 msgid "Post Type"
 msgstr ""
 
-#: class/Defaults/MergeTag/Taxonomy/TaxonomyName.php:44
+#: class/Defaults/MergeTag/Taxonomy/TaxonomyName.php:46
 msgid "Taxonomy name"
 msgstr ""
 
-#: class/Defaults/MergeTag/Taxonomy/TaxonomySlug.php:44
+#: class/Defaults/MergeTag/Taxonomy/TaxonomySlug.php:46
 msgid "Taxonomy slug"
 msgstr ""
 
-#: class/Defaults/MergeTag/Taxonomy/TermDescription.php:30
+#: class/Defaults/MergeTag/Taxonomy/TermDescription.php:31
 msgid "Term description"
 msgstr ""
 
-#: class/Defaults/MergeTag/Taxonomy/TermID.php:30
+#: class/Defaults/MergeTag/Taxonomy/TermID.php:31
 msgid "Term ID"
 msgstr ""
 
-#: class/Defaults/MergeTag/Taxonomy/TermName.php:30
+#: class/Defaults/MergeTag/Taxonomy/TermName.php:31
 msgid "Term name"
 msgstr ""
 
-#: class/Defaults/MergeTag/Taxonomy/TermPermalink.php:30
+#: class/Defaults/MergeTag/Taxonomy/TermPermalink.php:31
 msgid "Term link"
 msgstr ""
 
-#: class/Defaults/MergeTag/Taxonomy/TermSlug.php:30
+#: class/Defaults/MergeTag/Taxonomy/TermSlug.php:31
 msgid "Term slug"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserBio.php:42
+#: class/Defaults/MergeTag/User/UserBio.php:44
 msgid "User bio"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserBio.php:43
+#: class/Defaults/MergeTag/User/UserBio.php:45
 msgid "Developer based in Ontario, Canada"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserDisplayName.php:42
+#: class/Defaults/MergeTag/User/UserDisplayName.php:44
 msgid "User display name"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserDisplayName.php:43
+#: class/Defaults/MergeTag/User/UserDisplayName.php:45
 msgid "John - fast finegrs - Doe"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserEmail.php:42
+#: class/Defaults/MergeTag/User/UserEmail.php:44
 msgid "User email"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserEmail.php:43
+#: class/Defaults/MergeTag/User/UserEmail.php:45
 msgid "john.doe@example.com"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserFirstName.php:42
+#: class/Defaults/MergeTag/User/UserFirstName.php:44
 msgid "User first name"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserFirstName.php:43
+#: class/Defaults/MergeTag/User/UserFirstName.php:45
 msgid "John"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserID.php:42
+#: class/Defaults/MergeTag/User/UserID.php:44
 msgid "User ID"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserLastName.php:42
+#: class/Defaults/MergeTag/User/UserLastName.php:44
 msgid "User last name"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserLastName.php:43
+#: class/Defaults/MergeTag/User/UserLastName.php:45
 msgid "Doe"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserLogin.php:42
+#: class/Defaults/MergeTag/User/UserLogin.php:44
 #: class/Defaults/Trigger/User/UserLogin.php:23
-#: inc/defaults/global_merge_tags.php:83
+#: inc/defaults/global_merge_tags.php:113
 msgid "User login"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserLogin.php:43
+#: class/Defaults/MergeTag/User/UserLogin.php:45
 msgid "johndoe"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserNicename.php:42
+#: class/Defaults/MergeTag/User/UserNicename.php:44
 msgid "User nicename"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserNicename.php:43
+#: class/Defaults/MergeTag/User/UserNicename.php:45
 msgid "Johhnie"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserPasswordResetLink.php:52
+#: class/Defaults/MergeTag/User/UserPasswordResetLink.php:53
 msgid "Password reset link"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserPasswordResetLink.php:53
+#: class/Defaults/MergeTag/User/UserPasswordResetLink.php:54
 msgid ""
 "http://example.com/wp-login.php?action=rp&key=mm2sAR8jmIyjSiMsCJRm&"
 "login=admin"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserRole.php:42
+#: class/Defaults/MergeTag/User/UserRole.php:44
 msgid "User role"
 msgstr ""
 
-#: class/Defaults/MergeTag/User/UserRole.php:43
+#: class/Defaults/MergeTag/User/UserRole.php:45
 msgid "Subscriber"
 msgstr ""
 
-#: class/Defaults/Notification/Email.php:37
+#: class/Defaults/Notification/Email.php:39
 msgid "Subject"
 msgstr ""
 
-#: class/Defaults/Notification/Email.php:43
-#: class/Defaults/Notification/Email.php:51
+#: class/Defaults/Notification/Email.php:48
+#: class/Defaults/Notification/Email.php:58
 msgid "Body"
 msgstr ""
 
-#: class/Defaults/Notification/Webhook.php:38
+#: class/Defaults/Notification/Webhook.php:40
 msgid "URLs"
 msgstr ""
 
-#: class/Defaults/Notification/Webhook.php:40
+#: class/Defaults/Notification/Webhook.php:42
 msgid "Add URL"
 msgstr ""
 
-#: class/Defaults/Notification/Webhook.php:44
+#: class/Defaults/Notification/Webhook.php:50
 msgid "Arguments"
 msgstr ""
 
-#: class/Defaults/Notification/Webhook.php:46
+#: class/Defaults/Notification/Webhook.php:52
 msgid "Add argument"
 msgstr ""
 
-#: class/Defaults/Notification/Webhook.php:49
-#: class/Defaults/Notification/Webhook.php:77
+#: class/Defaults/Notification/Webhook.php:56
+#: class/Defaults/Notification/Webhook.php:96
 msgid "Key"
 msgstr ""
 
-#: class/Defaults/Notification/Webhook.php:52
-#: class/Defaults/Notification/Webhook.php:58
-#: class/Defaults/Notification/Webhook.php:80
-#: class/Defaults/Notification/Webhook.php:86
+#: class/Defaults/Notification/Webhook.php:59
+#: class/Defaults/Notification/Webhook.php:67
+#: class/Defaults/Notification/Webhook.php:99
+#: class/Defaults/Notification/Webhook.php:107
 msgid "You can use merge tags"
 msgstr ""
 
-#: class/Defaults/Notification/Webhook.php:55
-#: class/Defaults/Notification/Webhook.php:83
+#: class/Defaults/Notification/Webhook.php:64
+#: class/Defaults/Notification/Webhook.php:104
 msgid "Value"
 msgstr ""
 
-#: class/Defaults/Notification/Webhook.php:64
+#: class/Defaults/Notification/Webhook.php:78
 msgid "JSON"
 msgstr ""
 
-#: class/Defaults/Notification/Webhook.php:66
+#: class/Defaults/Notification/Webhook.php:80
 msgid "Send the arguments in JSON format"
 msgstr ""
 
-#: class/Defaults/Notification/Webhook.php:74
+#: class/Defaults/Notification/Webhook.php:92
 msgid "Add header"
 msgstr ""
 
-#: class/Defaults/Recipient/Administrator.php:26
+#: class/Defaults/Recipient/Administrator.php:27
 msgid "Administrator"
 msgstr ""
 
-#: class/Defaults/Recipient/Administrator.php:56
-#: class/Defaults/Recipient/Email.php:63 class/Defaults/Recipient/Role.php:84
-#: class/Defaults/Recipient/User.php:69
+#: class/Defaults/Recipient/Administrator.php:59
+#: class/Defaults/Recipient/Email.php:66 class/Defaults/Recipient/Role.php:92
+#: class/Defaults/Recipient/User.php:72
 msgid "Recipient"
 msgstr ""
 
-#: class/Defaults/Recipient/Administrator.php:61
+#: class/Defaults/Recipient/Administrator.php:65
+#. Translators: %s settings URL.
 msgid "You can edit this email in <a href=\"%s\">General Settings</a>"
 msgstr ""
 
-#: class/Defaults/Recipient/Email.php:26
+#: class/Defaults/Recipient/Email.php:27
 msgid "Email / Merge tag"
 msgstr ""
 
-#: class/Defaults/Recipient/Email.php:66
+#: class/Defaults/Recipient/Email.php:69
 msgid "email@domain.com or {email}"
 msgstr ""
 
-#: class/Defaults/Recipient/Email.php:67
+#: class/Defaults/Recipient/Email.php:70
+#: class/Defaults/Recipient/Webhook.php:65
 msgid "You can use any valid email merge tag."
 msgstr ""
 
-#: class/Defaults/Recipient/Role.php:26
+#: class/Defaults/Recipient/Role.php:27
 msgid "Role"
 msgstr ""
 
-#: class/Defaults/Recipient/Role.php:77
-msgid "1 user"
+#: class/Defaults/Recipient/Role.php:84
+#. Translators: %s numer of users.
+msgid "%s user"
 msgid_plural "%s users"
 msgstr[0] ""
 msgstr[1] ""
 
-#: class/Defaults/Recipient/Webhook.php:58
+#: class/Defaults/Recipient/Webhook.php:61
 msgid "URL"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentAdded.php:26
-#: class/Defaults/Trigger/Post/PostAdded.php:28
+#: class/Defaults/Trigger/Comment/CommentAdded.php:28
+#: class/Defaults/Trigger/Post/PostAdded.php:29
+#. Translators: %s comment type.
 #. translators: singular post name.
 msgid "%s added"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentAdded.php:33
-#. translators: comment type.
+#: class/Defaults/Trigger/Comment/CommentAdded.php:36
+#. Translators: comment type.
 msgid "Fires when new %s is added"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentApproved.php:26
+#: class/Defaults/Trigger/Comment/CommentApproved.php:28
+#. Translators: %s comment type.
 msgid "%s approved"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentApproved.php:33
+#: class/Defaults/Trigger/Comment/CommentApproved.php:36
 #. translators: comment type.
 msgid "Fires when %s is approved"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentReplied.php:26
+#: class/Defaults/Trigger/Comment/CommentReplied.php:28
+#. Translators: %s comment type.
 msgid "%s replied"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentReplied.php:33
+#: class/Defaults/Trigger/Comment/CommentReplied.php:37
 #. translators: comment type.
 msgid "Fires when %s is replied and the reply is approved"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentReplied.php:90
+#: class/Defaults/Trigger/Comment/CommentReplied.php:100
 msgid "Parent comment ID"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentReplied.php:96
+#: class/Defaults/Trigger/Comment/CommentReplied.php:110
 msgid "Parent comment content"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentReplied.php:102
+#: class/Defaults/Trigger/Comment/CommentReplied.php:120
 msgid "Parent comment status"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentReplied.php:108
+#: class/Defaults/Trigger/Comment/CommentReplied.php:130
 msgid "Parent comment type"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentReplied.php:115
+#: class/Defaults/Trigger/Comment/CommentReplied.php:141
 msgid "Parent comment author IP"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentReplied.php:121
+#: class/Defaults/Trigger/Comment/CommentReplied.php:151
 msgid "Parent comment user agent"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentReplied.php:127
+#: class/Defaults/Trigger/Comment/CommentReplied.php:161
 msgid "Parent comment author URL"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentReplied.php:133
+#: class/Defaults/Trigger/Comment/CommentReplied.php:171
 msgid "Parent comment author user ID"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentReplied.php:139
+#: class/Defaults/Trigger/Comment/CommentReplied.php:181
 msgid "Parent comment author user email"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentReplied.php:145
+#: class/Defaults/Trigger/Comment/CommentReplied.php:191
 msgid "Parent comment author user display name"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentSpammed.php:26
+#: class/Defaults/Trigger/Comment/CommentSpammed.php:28
+#. Translators: %s comment type.
 msgid "%s spammed"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentSpammed.php:33
+#: class/Defaults/Trigger/Comment/CommentSpammed.php:36
 #. translators: comment type.
 msgid "Fires when %s is marked as spam"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentTrashed.php:26
-#: class/Defaults/Trigger/Post/PostTrashed.php:28
+#: class/Defaults/Trigger/Comment/CommentTrashed.php:28
+#: class/Defaults/Trigger/Post/PostTrashed.php:29
+#. Translators: %s comment type.
 #. translators: singular post name.
 msgid "%s trashed"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentTrashed.php:33
+#: class/Defaults/Trigger/Comment/CommentTrashed.php:36
 #. translators: comment type.
 msgid "Fires when %s is trashed"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:85
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:93
+msgid "Comment date and time"
+msgstr ""
+
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:107
 msgid "Comment author user ID"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:90
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:116
 msgid "Comment author user email"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:95
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:125
 msgid "Comment author user display name"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:111
-#: class/Defaults/Trigger/Post/PostTrigger.php:112
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:145
+#: class/Defaults/Trigger/Post/PostTrigger.php:173
 #. translators: singular post name.
 msgid "%s creation date and time"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:117
-#: class/Defaults/Trigger/Post/PostTrigger.php:118
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:155
+#: class/Defaults/Trigger/Post/PostTrigger.php:183
 #. translators: singular post name.
 msgid "%s modification date and time"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:124
-#: class/Defaults/Trigger/Post/PostTrigger.php:125
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:166
+#: class/Defaults/Trigger/Post/PostTrigger.php:194
 #. translators: singular post name.
 msgid "%s author user ID"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:131
-#: class/Defaults/Trigger/Post/PostTrigger.php:132
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:177
+#: class/Defaults/Trigger/Post/PostTrigger.php:205
 #. translators: singular post name.
 msgid "%s author user login"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:138
-#: class/Defaults/Trigger/Post/PostTrigger.php:139
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:188
+#: class/Defaults/Trigger/Post/PostTrigger.php:216
 #. translators: singular post name.
 msgid "%s author user email"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:145
-#: class/Defaults/Trigger/Post/PostTrigger.php:146
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:199
+#: class/Defaults/Trigger/Post/PostTrigger.php:227
 #. translators: singular post name.
 msgid "%s author user nicename"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:152
-#: class/Defaults/Trigger/Post/PostTrigger.php:153
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:210
+#: class/Defaults/Trigger/Post/PostTrigger.php:238
 #. translators: singular post name.
 msgid "%s author user display name"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:159
-#: class/Defaults/Trigger/Post/PostTrigger.php:160
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:221
+#: class/Defaults/Trigger/Post/PostTrigger.php:249
 #. translators: singular post name.
 msgid "%s author user first name"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentTrigger.php:166
-#: class/Defaults/Trigger/Post/PostTrigger.php:167
+#: class/Defaults/Trigger/Comment/CommentTrigger.php:232
+#: class/Defaults/Trigger/Post/PostTrigger.php:260
 #. translators: singular post name.
 msgid "%s author user last name"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentUnapproved.php:26
+#: class/Defaults/Trigger/Comment/CommentUnapproved.php:28
+#. Translators: %s comment type.
 msgid "%s unapproved"
 msgstr ""
 
-#: class/Defaults/Trigger/Comment/CommentUnapproved.php:33
+#: class/Defaults/Trigger/Comment/CommentUnapproved.php:36
 #. translators: comment type.
 msgid "Fires when %s is marked as unapproved"
 msgstr ""
 
-#: class/Defaults/Trigger/Media/MediaAdded.php:23
+#: class/Defaults/Trigger/Media/MediaAdded.php:22
 msgid "Media added"
 msgstr ""
 
-#: class/Defaults/Trigger/Media/MediaAdded.php:27
+#: class/Defaults/Trigger/Media/MediaAdded.php:25
 msgid "Fires when new attachment is added"
-msgstr ""
-
-#: class/Defaults/Trigger/Media/MediaAdded.php:62
-#: class/Defaults/Trigger/Media/MediaTrashed.php:63
-#: class/Defaults/Trigger/Media/MediaUpdated.php:63
-msgid "Attachment creation date"
-msgstr ""
-
-#: class/Defaults/Trigger/Media/MediaAdded.php:68
-#: class/Defaults/Trigger/Media/MediaTrashed.php:69
-#: class/Defaults/Trigger/Media/MediaUpdated.php:69
-msgid "Attachment author user ID"
-msgstr ""
-
-#: class/Defaults/Trigger/Media/MediaAdded.php:73
-#: class/Defaults/Trigger/Media/MediaTrashed.php:74
-#: class/Defaults/Trigger/Media/MediaUpdated.php:74
-msgid "Attachment author user login"
-msgstr ""
-
-#: class/Defaults/Trigger/Media/MediaAdded.php:78
-#: class/Defaults/Trigger/Media/MediaTrashed.php:79
-#: class/Defaults/Trigger/Media/MediaUpdated.php:79
-msgid "Attachment author user email"
-msgstr ""
-
-#: class/Defaults/Trigger/Media/MediaAdded.php:83
-#: class/Defaults/Trigger/Media/MediaTrashed.php:84
-#: class/Defaults/Trigger/Media/MediaUpdated.php:84
-msgid "Attachment author user nicename"
-msgstr ""
-
-#: class/Defaults/Trigger/Media/MediaAdded.php:88
-#: class/Defaults/Trigger/Media/MediaTrashed.php:89
-#: class/Defaults/Trigger/Media/MediaUpdated.php:89
-msgid "Attachment author user display name"
-msgstr ""
-
-#: class/Defaults/Trigger/Media/MediaAdded.php:93
-#: class/Defaults/Trigger/Media/MediaTrashed.php:94
-#: class/Defaults/Trigger/Media/MediaUpdated.php:94
-msgid "Attachment author user first name"
-msgstr ""
-
-#: class/Defaults/Trigger/Media/MediaAdded.php:98
-#: class/Defaults/Trigger/Media/MediaTrashed.php:99
-#: class/Defaults/Trigger/Media/MediaUpdated.php:99
-msgid "Attachment author user last name"
 msgstr ""
 
 #: class/Defaults/Trigger/Media/MediaTrashed.php:23
 msgid "Media trashed"
 msgstr ""
 
-#: class/Defaults/Trigger/Media/MediaTrashed.php:27
+#: class/Defaults/Trigger/Media/MediaTrashed.php:26
 msgid "Fires when attachment is removed"
 msgstr ""
 
-#: class/Defaults/Trigger/Media/MediaTrashed.php:105
+#: class/Defaults/Trigger/Media/MediaTrashed.php:61
 msgid "Attachment trashing user ID"
 msgstr ""
 
-#: class/Defaults/Trigger/Media/MediaTrashed.php:111
+#: class/Defaults/Trigger/Media/MediaTrashed.php:71
 msgid "Attachment trashing user login"
 msgstr ""
 
-#: class/Defaults/Trigger/Media/MediaTrashed.php:117
+#: class/Defaults/Trigger/Media/MediaTrashed.php:81
 msgid "Attachment trashing user email"
 msgstr ""
 
-#: class/Defaults/Trigger/Media/MediaTrashed.php:123
+#: class/Defaults/Trigger/Media/MediaTrashed.php:91
 msgid "Attachment trashing user nicename"
 msgstr ""
 
-#: class/Defaults/Trigger/Media/MediaTrashed.php:129
+#: class/Defaults/Trigger/Media/MediaTrashed.php:101
 msgid "Attachment trashing user display name"
 msgstr ""
 
-#: class/Defaults/Trigger/Media/MediaTrashed.php:135
+#: class/Defaults/Trigger/Media/MediaTrashed.php:111
 msgid "Attachment trashing user first name"
 msgstr ""
 
-#: class/Defaults/Trigger/Media/MediaTrashed.php:141
+#: class/Defaults/Trigger/Media/MediaTrashed.php:121
 msgid "Attachment trashing user last name"
 msgstr ""
 
-#: class/Defaults/Trigger/Media/MediaUpdated.php:23
+#: class/Defaults/Trigger/Media/MediaTrigger.php:45
+msgid "Attachment creation date"
+msgstr ""
+
+#: class/Defaults/Trigger/Media/MediaTrigger.php:55
+msgid "Attachment author user ID"
+msgstr ""
+
+#: class/Defaults/Trigger/Media/MediaTrigger.php:64
+msgid "Attachment author user login"
+msgstr ""
+
+#: class/Defaults/Trigger/Media/MediaTrigger.php:73
+msgid "Attachment author user email"
+msgstr ""
+
+#: class/Defaults/Trigger/Media/MediaTrigger.php:82
+msgid "Attachment author user nicename"
+msgstr ""
+
+#: class/Defaults/Trigger/Media/MediaTrigger.php:91
+msgid "Attachment author user display name"
+msgstr ""
+
+#: class/Defaults/Trigger/Media/MediaTrigger.php:100
+msgid "Attachment author user first name"
+msgstr ""
+
+#: class/Defaults/Trigger/Media/MediaTrigger.php:109
+msgid "Attachment author user last name"
+msgstr ""
+
+#: class/Defaults/Trigger/Media/MediaUpdated.php:22
 msgid "Media updated"
 msgstr ""
 
-#: class/Defaults/Trigger/Media/MediaUpdated.php:27
+#: class/Defaults/Trigger/Media/MediaUpdated.php:25
 msgid "Fires when attachment is updated"
 msgstr ""
 
-#: class/Defaults/Trigger/Media/MediaUpdated.php:105
+#: class/Defaults/Trigger/Media/MediaUpdated.php:60
 msgid "Attachment updating user ID"
 msgstr ""
 
-#: class/Defaults/Trigger/Media/MediaUpdated.php:111
+#: class/Defaults/Trigger/Media/MediaUpdated.php:70
 msgid "Attachment updating user login"
 msgstr ""
 
-#: class/Defaults/Trigger/Media/MediaUpdated.php:117
+#: class/Defaults/Trigger/Media/MediaUpdated.php:80
 msgid "Attachment updating user email"
 msgstr ""
 
-#: class/Defaults/Trigger/Media/MediaUpdated.php:123
+#: class/Defaults/Trigger/Media/MediaUpdated.php:90
 msgid "Attachment updating user nicename"
 msgstr ""
 
-#: class/Defaults/Trigger/Media/MediaUpdated.php:129
+#: class/Defaults/Trigger/Media/MediaUpdated.php:100
 msgid "Attachment updating user first name"
 msgstr ""
 
-#: class/Defaults/Trigger/Media/MediaUpdated.php:135
+#: class/Defaults/Trigger/Media/MediaUpdated.php:110
 msgid "Attachment updating user last name"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostAdded.php:34
+#: class/Defaults/Trigger/Plugin/Activated.php:23
+msgid "Plugin activated"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/Activated.php:28
+msgid "Fires when plugin is activated"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/Activated.php:57
+msgid "Plugin activation date and time"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/Deactivated.php:23
+msgid "Plugin deactivated"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/Deactivated.php:28
+msgid "Fires when plugin is deactivated"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/Deactivated.php:56
+msgid "Plugin deactivation date and time"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/Installed.php:22
+msgid "Plugin installed"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/Installed.php:27
+msgid "Fires when plugin is installed"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/Installed.php:61
+msgid "Plugin installation date and time"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/PluginTrigger.php:27
+msgid "Plugin name"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/PluginTrigger.php:37
+msgid "Plugin author name"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/PluginTrigger.php:38
+msgid "Automattic"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/PluginTrigger.php:47
+msgid "Plugin version"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/PluginTrigger.php:48
+#: class/Defaults/Trigger/Plugin/Updated.php:68
+#: class/Defaults/Trigger/Theme/Switched.php:78
+#: class/Defaults/Trigger/Theme/ThemeTrigger.php:48
+#: class/Defaults/Trigger/Theme/Updated.php:67
+msgid "1.0.0"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/PluginTrigger.php:57
+msgid "Plugin website address"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/PluginTrigger.php:58
+msgid "https://wordpress.org/plugins/example"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/Removed.php:22
+msgid "Plugin removed"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/Removed.php:27
+msgid "Fires when plugin is deleted"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/Removed.php:56
+msgid "Plugin deletion date and time"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/Updated.php:22
+msgid "Plugin updated"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/Updated.php:27
+msgid "Fires when plugin is updated"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/Updated.php:62
+msgid "Plugin update date and time"
+msgstr ""
+
+#: class/Defaults/Trigger/Plugin/Updated.php:67
+msgid "Plugin previous version"
+msgstr ""
+
+#: class/Defaults/Trigger/Post/PostAdded.php:36
 #. translators: 1. singular post name, 2. post type slug.
 msgid ""
-"Fires when %s (%s) is added to database. Useful when adding posts "
+"Fires when %1$s (%2$s) is added to database. Useful when adding posts "
 "programatically or for 3rd party integration"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostDrafted.php:28
+#: class/Defaults/Trigger/Post/PostDrafted.php:29
 #. translators: singular post name.
 msgid "%s saved as a draft"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostDrafted.php:34
+#: class/Defaults/Trigger/Post/PostDrafted.php:36
 #. translators: 1. singular post name, 2. post type slug.
-msgid "Fires when %s (%s) is saved as a draft"
+msgid "Fires when %1$s (%2$s) is saved as a draft"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostPending.php:28
+#: class/Defaults/Trigger/Post/PostPending.php:29
 #. translators: singular post name.
 msgid "%s sent for review"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostPending.php:34
+#: class/Defaults/Trigger/Post/PostPending.php:36
 #. translators: 1. singular post name, 2. post type slug.
-msgid "Fires when %s (%s) is sent for review"
+msgid "Fires when %1$s (%2$s) is sent for review"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostPublished.php:28
+#: class/Defaults/Trigger/Post/PostPublished.php:29
 #. translators: singular post name.
 msgid "%s published"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostPublished.php:39
+#: class/Defaults/Trigger/Post/PostPublished.php:41
 #. translators: 1. singular post name, 2. post type slug.
-msgid "Fires when %s (%s) is published"
+msgid "Fires when %1$s (%2$s) is published"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostPublished.php:107
+#: class/Defaults/Trigger/Post/PostPublished.php:84
 #. translators: singular post name.
 msgid "%s publishing user ID"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostPublished.php:114
+#: class/Defaults/Trigger/Post/PostPublished.php:95
 #. translators: singular post name.
 msgid "%s publishing user login"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostPublished.php:121
+#: class/Defaults/Trigger/Post/PostPublished.php:106
 #. translators: singular post name.
 msgid "%s publishing user email"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostPublished.php:128
+#: class/Defaults/Trigger/Post/PostPublished.php:117
 #. translators: singular post name.
 msgid "%s publishing user nicename"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostPublished.php:136
+#: class/Defaults/Trigger/Post/PostPublished.php:128
 #. translators: singular post name.
 msgid "%s publishing user display name"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostPublished.php:143
+#: class/Defaults/Trigger/Post/PostPublished.php:139
 #. translators: singular post name.
 msgid "%s publishing user first name"
 msgstr ""
@@ -1219,140 +1388,281 @@ msgstr ""
 msgid "%s publishing user last name"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostTrashed.php:34
-#. translators: 1. singular post name, 2. post type slug.
-msgid "Fires when %s (%s) is moved to trash"
+#: class/Defaults/Trigger/Post/PostScheduled.php:29
+#. translators: singular post name.
+msgid "%s scheduled"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostTrashed.php:76
+#: class/Defaults/Trigger/Post/PostScheduled.php:36
+#. translators: 1. singular post name, 2. post type slug.
+msgid "Fires when %1$s (%2$s) is scheduled"
+msgstr ""
+
+#: class/Defaults/Trigger/Post/PostScheduled.php:82
+#. translators: singular post name.
+msgid "%s publication date and time"
+msgstr ""
+
+#: class/Defaults/Trigger/Post/PostTrashed.php:36
+#. translators: 1. singular post name, 2. post type slug.
+msgid "Fires when %1$s (%2$s) is moved to trash"
+msgstr ""
+
+#: class/Defaults/Trigger/Post/PostTrashed.php:80
 #. translators: singular post name.
 msgid "%s trashing user ID"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostTrashed.php:83
+#: class/Defaults/Trigger/Post/PostTrashed.php:91
 #. translators: singular post name.
 msgid "%s trashing user login"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostTrashed.php:90
+#: class/Defaults/Trigger/Post/PostTrashed.php:102
 #. translators: singular post name.
 msgid "%s trashing user email"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostTrashed.php:97
+#: class/Defaults/Trigger/Post/PostTrashed.php:113
 #. translators: singular post name.
 msgid "%s trashing user nicename"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostTrashed.php:104
+#: class/Defaults/Trigger/Post/PostTrashed.php:124
 #. translators: singular post name.
 msgid "%s trashing user display name"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostTrashed.php:111
+#: class/Defaults/Trigger/Post/PostTrashed.php:135
 #. translators: singular post name.
 msgid "%s trashing user first name"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostTrashed.php:118
+#: class/Defaults/Trigger/Post/PostTrashed.php:146
 #. translators: singular post name.
 msgid "%s trashing user last name"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostTrigger.php:85
+#: class/Defaults/Trigger/Post/PostTrigger.php:139
 #. translators: singular post name.
 msgid "%s sticky status"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostTrigger.php:88
-#: class/Defaults/Trigger/Post/PostTrigger.php:90
+#: class/Defaults/Trigger/Post/PostTrigger.php:142
+#: class/Defaults/Trigger/Post/PostTrigger.php:144
 msgid "Sticky"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostTrigger.php:88
-#: class/Defaults/Trigger/Post/PostTrigger.php:90
+#: class/Defaults/Trigger/Post/PostTrigger.php:142
+#: class/Defaults/Trigger/Post/PostTrigger.php:144
 msgid "Not sticky"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostUpdated.php:28
+#: class/Defaults/Trigger/Post/PostUpdated.php:29
 #. translators: singular post name.
 msgid "%s updated"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostUpdated.php:34
-#: class/Defaults/Trigger/Taxonomy/TermUpdated.php:49
+#: class/Defaults/Trigger/Post/PostUpdated.php:36
+#: class/Defaults/Trigger/Taxonomy/TermUpdated.php:52
 #. translators: 1. singular post name, 2. post type slug.
 #. translators: 1. taxonomy name, 2. taxonomy slug.
-msgid "Fires when %s (%s) is updated"
+msgid "Fires when %1$s (%2$s) is updated"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostUpdated.php:93
+#: class/Defaults/Trigger/Post/PostUpdated.php:88
 #. translators: singular post name.
 msgid "%s updating user ID"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostUpdated.php:100
+#: class/Defaults/Trigger/Post/PostUpdated.php:99
 #. translators: singular post name.
 msgid "%s updating user login"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostUpdated.php:107
+#: class/Defaults/Trigger/Post/PostUpdated.php:110
 #. translators: singular post name.
 msgid "%s updating user email"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostUpdated.php:114
+#: class/Defaults/Trigger/Post/PostUpdated.php:121
 #. translators: singular post name.
 msgid "%s updating user nicename"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostUpdated.php:121
+#: class/Defaults/Trigger/Post/PostUpdated.php:132
 #. translators: singular post name.
 msgid "%s updating user display name"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostUpdated.php:128
+#: class/Defaults/Trigger/Post/PostUpdated.php:143
 #. translators: singular post name.
 msgid "%s updating user first name"
 msgstr ""
 
-#: class/Defaults/Trigger/Post/PostUpdated.php:135
+#: class/Defaults/Trigger/Post/PostUpdated.php:154
 #. translators: singular post name.
 msgid "%s updating user last name"
 msgstr ""
 
-#: class/Defaults/Trigger/Taxonomy/TermAdded.php:43
+#: class/Defaults/Trigger/Taxonomy/TermAdded.php:45
+#. Translators: taxonomy name.
 msgid "%s term created"
 msgstr ""
 
-#: class/Defaults/Trigger/Taxonomy/TermAdded.php:49
+#: class/Defaults/Trigger/Taxonomy/TermAdded.php:52
 #. translators: 1. taxonomy name, 2. taxonomy slug.
-msgid "Fires when %s (%s) is created"
+msgid "Fires when %1$s (%2$s) is created"
 msgstr ""
 
-#: class/Defaults/Trigger/Taxonomy/TermAdded.php:87
+#: class/Defaults/Trigger/Taxonomy/TermAdded.php:92
 msgid "Term creation date and time"
 msgstr ""
 
-#: class/Defaults/Trigger/Taxonomy/TermDeleted.php:43
+#: class/Defaults/Trigger/Taxonomy/TermDeleted.php:45
+#. Translators: taxonomy name.
 msgid "%s term deleted"
 msgstr ""
 
-#: class/Defaults/Trigger/Taxonomy/TermDeleted.php:49
+#: class/Defaults/Trigger/Taxonomy/TermDeleted.php:52
 #. translators: 1. taxonomy name, 2. taxonomy slug.
-msgid "Fires when %s (%s) is deleted"
+msgid "Fires when %1$s (%2$s) is deleted"
 msgstr ""
 
-#: class/Defaults/Trigger/Taxonomy/TermDeleted.php:86
+#: class/Defaults/Trigger/Taxonomy/TermDeleted.php:91
 msgid "Term deletion date and time"
 msgstr ""
 
-#: class/Defaults/Trigger/Taxonomy/TermUpdated.php:43
+#: class/Defaults/Trigger/Taxonomy/TermUpdated.php:45
+#. Translators: taxonomy name.
 msgid "%s term updated"
 msgstr ""
 
-#: class/Defaults/Trigger/Taxonomy/TermUpdated.php:86
+#: class/Defaults/Trigger/Taxonomy/TermUpdated.php:91
 msgid "Term modification date and time"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Installed.php:23
+msgid "Theme installed"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Installed.php:28
+msgid "Fires when theme is installed"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Installed.php:65
+msgid "Theme installation date and time"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Switched.php:23
+msgid "Theme switched"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Switched.php:28
+msgid "Fires when theme is switched"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Switched.php:57
+msgid "Old theme name"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Switched.php:58
+#: class/Defaults/Trigger/Theme/ThemeTrigger.php:28
+msgid "Twenty Seventeen"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Switched.php:67
+msgid "Old theme description"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Switched.php:68
+#: class/Defaults/Trigger/Theme/ThemeTrigger.php:38
+msgid ""
+"Twenty Seventeen brings your site to life with header video and immersive "
+"featured images"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Switched.php:77
+msgid "Old theme version"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Switched.php:87
+msgid "Old theme URI"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Switched.php:88
+#: class/Defaults/Trigger/Theme/ThemeTrigger.php:58
+msgid "https://wordpress.org/themes/twentyseventeen/"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Switched.php:97
+msgid "Old theme author"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Switched.php:98
+#: class/Defaults/Trigger/Theme/ThemeTrigger.php:68
+msgid "The WordPress team"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Switched.php:107
+msgid "Old theme author URI"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Switched.php:108
+#: class/Defaults/Trigger/Theme/ThemeTrigger.php:78
+msgid "https://wordpress.org/"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Switched.php:117
+msgid "Theme switch date and time"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/ThemeTrigger.php:27
+msgid "Theme name"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/ThemeTrigger.php:37
+msgid "Theme description"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/ThemeTrigger.php:47
+msgid "Theme version"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/ThemeTrigger.php:57
+msgid "Theme URI"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/ThemeTrigger.php:67
+msgid "Theme author"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/ThemeTrigger.php:77
+msgid "Theme author URI"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/ThemeTrigger.php:87
+msgid "Theme textdomain"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/ThemeTrigger.php:88
+msgid "twentyseventeen"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Updated.php:23
+msgid "Theme updated"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Updated.php:28
+msgid "Fires when theme is updated"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Updated.php:66
+msgid "Theme previous version"
+msgstr ""
+
+#: class/Defaults/Trigger/Theme/Updated.php:76
+msgid "Theme update date and time"
 msgstr ""
 
 #: class/Defaults/Trigger/User/UserDeleted.php:23
@@ -1363,18 +1673,7 @@ msgstr ""
 msgid "Fires when user account is deleted"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserDeleted.php:65
-#: class/Defaults/Trigger/User/UserLogin.php:66
-#: class/Defaults/Trigger/User/UserLoginFailed.php:62
-#: class/Defaults/Trigger/User/UserLogout.php:64
-#: class/Defaults/Trigger/User/UserPasswordChanged.php:65
-#: class/Defaults/Trigger/User/UserPasswordResetRequest.php:71
-#: class/Defaults/Trigger/User/UserProfileUpdated.php:65
-#: class/Defaults/Trigger/User/UserRegistered.php:62
-msgid "User registration date"
-msgstr ""
-
-#: class/Defaults/Trigger/User/UserDeleted.php:73
+#: class/Defaults/Trigger/User/UserDeleted.php:68
 msgid "User deletion time"
 msgstr ""
 
@@ -1382,88 +1681,112 @@ msgstr ""
 msgid "Fires when user log into WordPress"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserLogin.php:74
+#: class/Defaults/Trigger/User/UserLogin.php:69
 msgid "User login time"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserLogin.php:79
+#: class/Defaults/Trigger/User/UserLogin.php:78
 msgid "User IP"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserLoginFailed.php:23
+#: class/Defaults/Trigger/User/UserLoginFailed.php:22
 msgid "User login failed"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserLoginFailed.php:27
+#: class/Defaults/Trigger/User/UserLoginFailed.php:26
 msgid "Fires when user login failed"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserLoginFailed.php:70
+#: class/Defaults/Trigger/User/UserLoginFailed.php:67
 msgid "User login failed datetime"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserLogout.php:23
+#: class/Defaults/Trigger/User/UserLogout.php:22
 msgid "User logout"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserLogout.php:27
+#: class/Defaults/Trigger/User/UserLogout.php:26
 msgid "Fires when user log out from WordPress"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserLogout.php:72
+#: class/Defaults/Trigger/User/UserLogout.php:66
 msgid "User logout time"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserPasswordChanged.php:23
+#: class/Defaults/Trigger/User/UserPasswordChanged.php:22
 msgid "User password changed"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserPasswordChanged.php:27
+#: class/Defaults/Trigger/User/UserPasswordChanged.php:26
 msgid "Fires when user changed his password"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserPasswordChanged.php:73
+#: class/Defaults/Trigger/User/UserPasswordChanged.php:67
 msgid "Password change date"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserPasswordResetRequest.php:23
+#: class/Defaults/Trigger/User/UserPasswordResetRequest.php:22
 msgid "User password reset request"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserPasswordResetRequest.php:27
+#: class/Defaults/Trigger/User/UserPasswordResetRequest.php:26
 msgid "Fires when user requests password change"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserPasswordResetRequest.php:79
+#: class/Defaults/Trigger/User/UserPasswordResetRequest.php:82
 msgid "Password reset request date"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserProfileUpdated.php:23
+#: class/Defaults/Trigger/User/UserProfileUpdated.php:22
 msgid "User profile updated"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserProfileUpdated.php:27
+#: class/Defaults/Trigger/User/UserProfileUpdated.php:26
 msgid "Fires when user updates his profile"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserProfileUpdated.php:73
+#: class/Defaults/Trigger/User/UserProfileUpdated.php:67
 msgid "User profile update time"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserRegistered.php:23
+#: class/Defaults/Trigger/User/UserRegistered.php:22
 msgid "User registration"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserRegistered.php:28
+#: class/Defaults/Trigger/User/UserRegistered.php:26
 msgid "Fires when user registers new account"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserRegistered.php:67
+#: class/Defaults/Trigger/User/UserRegistered.php:59
 msgid "User password setup link"
 msgstr ""
 
-#: class/Defaults/Trigger/User/UserRegistered.php:69
+#: class/Defaults/Trigger/User/UserRegistered.php:61
 msgid "After using this Merge Tag, no other password setup links will work."
+msgstr ""
+
+#: class/Defaults/Trigger/User/UserRoleChanged.php:22
+msgid "User role changed"
+msgstr ""
+
+#: class/Defaults/Trigger/User/UserRoleChanged.php:26
+msgid "Fires when user role changes"
+msgstr ""
+
+#: class/Defaults/Trigger/User/UserRoleChanged.php:72
+msgid "New role"
+msgstr ""
+
+#: class/Defaults/Trigger/User/UserRoleChanged.php:80
+msgid "Old role"
+msgstr ""
+
+#: class/Defaults/Trigger/User/UserRoleChanged.php:88
+msgid "User role change datetime"
+msgstr ""
+
+#: class/Defaults/Trigger/User/UserTrigger.php:45
+msgid "User registration date"
 msgstr ""
 
 #: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:32
@@ -1474,128 +1797,143 @@ msgstr ""
 msgid "Fires periodically when new updates are available"
 msgstr ""
 
-#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:75
+#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:77
 msgid "Updates list"
 msgstr ""
 
-#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:76
+#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:78
 msgid "The lists for core, plugins and themes updates."
 msgstr ""
 
-#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:89
+#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:91
 msgid "No updates available."
 msgstr ""
 
-#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:98
+#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:104
 msgid "Number of all updates"
 msgstr ""
 
-#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:106
+#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:116
 msgid "Number of core updates"
 msgstr ""
 
-#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:114
+#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:128
 msgid "Number of plugin updates"
 msgstr ""
 
-#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:122
+#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:140
 msgid "Number of theme updates"
 msgstr ""
 
-#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:153
+#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:173
 msgid "Core updates"
 msgstr ""
 
-#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:157
+#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:177
 msgid "Plugin updates"
 msgstr ""
 
-#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:161
+#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:181
 msgid "Theme updates"
 msgstr ""
 
-#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:197
+#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:217
 #. translators: 1. Update type, 2. Version.
-msgid "<strong>WordPress</strong> <i>(%s)</i>: %s"
+msgid "<strong>WordPress</strong> <i>(%1$s)</i>: %2$s"
 msgstr ""
 
-#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:224
-#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:251
+#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:244
+#: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:271
 #. translators: 1. Plugin name, 2. Current version, 3. Update version.
 #. translators: 1. Theme name, 2. Current version, 3. Update version.
-msgid "<strong>%s</strong> <i>(current version: %s)</i>: %s"
+msgid "<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s"
 msgstr ""
 
-#: class/Utils/EDDUpdater.php:249
+#: class/Utils/EDDUpdater.php:262
 msgid "There is a new version of %1$s available. %2$sView version %3$s details%4$s."
 msgstr ""
 
-#: class/Utils/EDDUpdater.php:257
+#: class/Utils/EDDUpdater.php:270
 msgid ""
 "There is a new version of %1$s available. %2$sView version %3$s details%4$s "
 "or %5$supdate now%6$s."
 msgstr ""
 
-#: class/Utils/EDDUpdater.php:448
+#: class/Utils/EDDUpdater.php:466
 msgid "You do not have permission to install plugin updates"
 msgstr ""
 
-#: class/Utils/EDDUpdater.php:448
+#: class/Utils/EDDUpdater.php:466
 msgid "Error"
 msgstr ""
 
-#: class/Utils/Requirements.php:188
+#: class/Utils/Requirements.php:189
+#. Translators: %s number of extensions.
 msgid "PHP extension: %s"
 msgid_plural "PHP extensions: %s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: class/Utils/Requirements.php:279
+#: class/Utils/Requirements.php:282
+#. Translators: 1: function name, 2: function names.
 msgid "register %s function but it's already taken"
 msgid_plural "register %s functions but these are already taken"
 msgstr[0] ""
 msgstr[1] ""
 
-#: class/Utils/Requirements.php:305
+#: class/Utils/Requirements.php:311
+#. Translators: 1: class name, 2: class names.
 msgid "register %s class but it's already defined"
 msgid_plural "register %s classes but these are already defined"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/defaults/global_merge_tags.php:12
+#: inc/defaults/global_merge_tags.php:14
 msgid "Site homepage URL"
 msgstr ""
 
-#: inc/defaults/global_merge_tags.php:22
+#: inc/defaults/global_merge_tags.php:28
 msgid "Site title"
 msgstr ""
 
-#: inc/defaults/global_merge_tags.php:32
+#: inc/defaults/global_merge_tags.php:42
 msgid "Site tagline"
 msgstr ""
 
-#: inc/defaults/global_merge_tags.php:42
+#: inc/defaults/global_merge_tags.php:56
 msgid "Site theme name"
 msgstr ""
 
-#: inc/defaults/global_merge_tags.php:52
+#: inc/defaults/global_merge_tags.php:70
 msgid "Site theme version"
 msgstr ""
 
-#: inc/defaults/global_merge_tags.php:62
+#: inc/defaults/global_merge_tags.php:84
 msgid "Current WordPress version"
 msgstr ""
 
-#: inc/defaults/global_merge_tags.php:72
+#: inc/defaults/global_merge_tags.php:98
 msgid "Admin email"
 msgstr ""
 
-#: inc/defaults/global_merge_tags.php:82
+#: inc/defaults/global_merge_tags.php:112
 msgid "Trigger name"
 msgstr ""
 
-#: inc/defaults/global_merge_tags.php:93
+#: inc/defaults/global_merge_tags.php:127
 msgid "Trigger slug"
+msgstr ""
+
+#: inc/defaults/global_merge_tags.php:142
+msgid "Trigger execution date"
+msgstr ""
+
+#: inc/defaults/global_merge_tags.php:153
+msgid "Trigger execution date and time"
+msgstr ""
+
+#: inc/defaults/global_merge_tags.php:164
+msgid "Trigger execution time"
 msgstr ""
 
 #: inc/defaults/recipients.php:15
@@ -1604,6 +1942,10 @@ msgstr ""
 
 #: inc/defaults/recipients.php:16
 msgid "GET"
+msgstr ""
+
+#: notification.php:82
+msgid "PHP OP Cache to be disabled"
 msgstr ""
 
 #: views/extension/extension-box-premium.php:23
@@ -1665,19 +2007,19 @@ msgstr ""
 msgid "Activate"
 msgstr ""
 
-#: views/extension/extension-box.php:44
+#: views/extension/extension-box.php:47
 msgid "Network Activate"
 msgstr ""
 
-#: views/extension/extension-box.php:63
+#: views/extension/extension-box.php:66
 msgid "More Details"
 msgstr ""
 
-#: views/extension/extension-box.php:81
+#: views/extension/extension-box.php:84
 msgid "Official"
 msgstr ""
 
-#: views/extension/extension-box.php:87
+#: views/extension/extension-box.php:90
 msgid "Author"
 msgstr ""
 
@@ -1720,7 +2062,7 @@ msgstr ""
 msgid "You can use the below Merge Tags in any Trigger and any Notification."
 msgstr ""
 
-#: views/help/global-merge-tags.php:22 views/mergetag/metabox.php:30
+#: views/help/global-merge-tags.php:22 views/mergetag/metabox.php:29
 msgid "Example:"
 msgstr ""
 
@@ -1834,13 +2176,13 @@ msgctxt "plugin"
 msgid "Activate %s"
 msgstr ""
 
-#: views/extension/extension-box.php:46
+#: views/extension/extension-box.php:49
 #. translators: %s: Plugin name
 msgctxt "plugin"
 msgid "Network Activate %s"
 msgstr ""
 
-#: views/extension/extension-box.php:57
+#: views/extension/extension-box.php:60
 msgctxt "plugin"
 msgid "Installed"
 msgstr ""

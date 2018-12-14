@@ -58,5 +58,5 @@ function notification_whitelabel( $args = array() ) {
  * @return boolean
  */
 function notification_is_whitelabeled() {
-	return (boolean) apply_filters( 'notification/whitelabel', false );
+	return (bool) apply_filters( 'notification/whitelabel', false );
 }

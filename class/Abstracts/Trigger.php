@@ -179,6 +179,15 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
+	 * Gets attached notifications
+	 *
+	 * @return array
+	 */
+	public function get_attached_notifications() {
+		return $this->notification_storage;
+	}
+
+	/**
 	 * Detaches the Notification from the Trigger
 	 *
 	 * @param  Sendable $notification Notification class.
@@ -197,7 +206,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	public function roll_out() {
 
-		foreach ( $this->notification_storage as $notification ) {
+		foreach ( $this->get_attached_notifications() as $notification ) {
 
 			$notification->prepare_data();
 
@@ -297,7 +306,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	private function resolve_fields() {
 
-		foreach ( $this->notification_storage as $notification ) {
+		foreach ( $this->get_attached_notifications() as $notification ) {
 			$resolver = new FieldsResolver( $notification, $this->get_merge_tags() );
 			$resolver->resolve_fields();
 		}

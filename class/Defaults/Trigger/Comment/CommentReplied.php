@@ -31,6 +31,7 @@ class CommentReplied extends CommentTrigger {
 		);
 
 		$this->add_action( 'transition_comment_status', 10, 3 );
+		$this->add_action( 'notification_insert_comment_proxy', 10, 3 );
 
 		// translators: comment type.
 		$this->set_description( sprintf( __( 'Fires when %s is replied and the reply is approved', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
