@@ -44,7 +44,7 @@ abstract class PostTrigger extends Abstracts\Trigger {
 	/**
 	 * Postponed action
 	 *
-	 * @since  [Next]
+	 * @since  5.3.0
 	 * @param  mixed $post_id Post ID or string if is a revision.
 	 * @return mixed          void or false
 	 */
