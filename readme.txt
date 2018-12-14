@@ -252,6 +252,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Added] Initial unit tests.
+* [Fixed] Comment replied trigger not called from wp-admin.
 
 = 5.3.0 =
 * [Changed] Added parent class for user triggers.

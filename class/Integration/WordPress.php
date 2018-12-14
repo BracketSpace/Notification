@@ -46,4 +46,20 @@ class WordPress {
 
 	}
 
+	/**
+	 * Proxies the wp_insert_comment action to check
+	 * if comment is a reply.
+	 *
+	 * @action wp_insert_comment
+	 *
+	 * @since [Next]
+	 * @param integer $comment_id Comment ID.
+	 * @param object  $comment    Comment object.
+	 * @return void
+	 */
+	public function proxy_comment_reply( $comment_id, $comment ) {
+		$status = '1' === $comment->comment_approved ? 'approved' : 'unapproved';
+		do_action( 'notification_insert_comment_proxy', $status, 'insert', $comment );
+	}
+
 }
