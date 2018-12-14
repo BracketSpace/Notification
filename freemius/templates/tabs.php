@@ -20,11 +20,19 @@
 
     $menu_items = $fs->get_menu_items();
 
+    $is_free_wp_org_theme = $fs->is_free_wp_org_theme();
+
     $tabs = array();
     foreach ( $menu_items as $priority => $items ) {
         foreach ( $items as $item ) {
             if ( ! $item['show_submenu'] ) {
-                continue;
+                $submenu_name = ('wp-support-forum' === $item['menu_slug']) ?
+                    'support' :
+                    $item['menu_slug'];
+
+                if ( ! $is_free_wp_org_theme || ! $fs->is_submenu_item_visible( $submenu_name, true ) ) {
+                    continue;
+                }
             }
 
             $url   = $fs->_get_admin_page_url( $item['menu_slug'] );

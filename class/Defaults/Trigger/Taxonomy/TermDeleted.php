@@ -71,7 +71,7 @@ class TermDeleted extends TermTrigger {
 		$this->taxonomy       = $this->term->taxonomy;
 		$this->term_permalink = get_term_link( $this->term );
 
-		$this->term_deletion_datetime = time();
+		$this->term_deletion_datetime = current_time( 'timestamp' );
 
 	}
 

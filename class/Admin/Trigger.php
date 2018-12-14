@@ -34,9 +34,12 @@ class Trigger {
 	 */
 	public function render_select( $post ) {
 
+		$grouped_triggers = notification_get_triggers_grouped();
+
 		$this->view->set_var( 'post', $post );
 		$this->view->set_var( 'selected', $this->postdata->get_active_trigger() );
-		$this->view->set_var( 'triggers', notification_get_triggers_grouped() );
+		$this->view->set_var( 'triggers', $grouped_triggers );
+		$this->view->set_var( 'has_triggers', ! empty( $grouped_triggers ) );
 		$this->view->set_var( 'select_name', 'notification_trigger' );
 
 		$this->view->get_view( 'trigger/metabox' );

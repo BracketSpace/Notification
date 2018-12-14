@@ -134,3 +134,36 @@ notification_add_global_merge_tag(
 		)
 	)
 );
+
+notification_add_global_merge_tag(
+	new MergeTag\DateTime\Date(
+		array(
+			'slug'      => 'date',
+			'name'      => __( 'Trigger execution date', 'notification' ),
+			'hidden'    => true,
+			'timestamp' => current_time( 'timestamp' ),
+		)
+	)
+);
+
+notification_add_global_merge_tag(
+	new MergeTag\DateTime\DateTime(
+		array(
+			'slug'      => 'date_time',
+			'name'      => __( 'Trigger execution date and time', 'notification' ),
+			'hidden'    => true,
+			'timestamp' => current_time( 'timestamp' ),
+		)
+	)
+);
+
+notification_add_global_merge_tag(
+	new MergeTag\DateTime\Time(
+		array(
+			'slug'      => 'time',
+			'name'      => __( 'Trigger execution time', 'notification' ),
+			'hidden'    => true,
+			'timestamp' => current_time( 'timestamp' ),
+		)
+	)
+);

@@ -113,6 +113,25 @@
 
 			}
 
+			&.group-log {
+
+				th {
+					display: none;
+				}
+
+				.notification-data-log {
+					margin-left: 29px;
+					display: inline-block;
+				}
+
+				pre {
+					margin: 0;
+					max-height: 500px;
+					max-height: 80vh;
+					overflow: auto;
+				}
+			}
+
 		}
 
 	}

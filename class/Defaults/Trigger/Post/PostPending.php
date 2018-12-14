@@ -62,33 +62,6 @@ class PostPending extends PostTrigger {
 		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date );
 		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified );
 
-		// Postpone the action to make sure all the meta has been saved.
-		if ( function_exists( 'acf' ) ) {
-			$postponed_action = 'acf/save_post';
-		} else {
-			$postponed_action = 'save_post';
-		}
-		$this->postpone_action( $postponed_action, 1000 );
-
-	}
-
-	/**
-	 * Postponed action callback
-	 * Return `false` if you want to abort the trigger execution
-	 *
-	 * @return mixed void or false if no notifications should be sent
-	 */
-	public function postponed_action() {
-
-		if ( function_exists( 'acf' ) ) {
-			return;
-		}
-
-		// fix for the action being called twice by WordPress.
-		if ( did_action( 'save_post' ) > 1 ) {
-			return false;
-		}
-
 	}
 
 	/**

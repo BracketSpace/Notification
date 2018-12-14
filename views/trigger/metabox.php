@@ -7,7 +7,7 @@
 
 ?>
 
-<?php if ( empty( $this->get_var( 'triggers' ) ) ) : ?>
+<?php if ( ! $this->get_var( 'has_triggers' ) ) : ?>
 
 	<p><?php esc_html_e( 'No Triggers defined yet', 'notification' ); ?></p>
 
