@@ -251,7 +251,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
-* [Added] Unit tests
+* [Added] Initial unit tests.
 
 = 5.3.0 =
 * [Changed] Added parent class for user triggers.
