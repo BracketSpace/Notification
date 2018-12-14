@@ -12,6 +12,8 @@
  * @package notification
  */
 
+define( 'NOTIFICATION_VERSION', '5.3.1' );
+
 /**
  * Plugin's autoload function
  *
