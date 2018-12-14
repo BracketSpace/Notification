@@ -43,7 +43,7 @@ class Installed extends ThemeTrigger {
 		}
 
 		$this->theme                        = $upgrader->theme_info();
-		$this->theme_installation_date_time = time();
+		$this->theme_installation_date_time = current_time( 'timestamp' );
 
 		if ( false === $this->theme ) {
 			return false;

@@ -40,7 +40,7 @@ class Switched extends ThemeTrigger {
 	public function action( $name, $theme, $old_theme ) {
 		$this->theme                  = $theme;
 		$this->old_theme              = $old_theme;
-		$this->theme_switch_date_time = time();
+		$this->theme_switch_date_time = current_time( 'timestamp' );
 	}
 
 	/**

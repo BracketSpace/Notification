@@ -39,7 +39,7 @@ class UserLogout extends UserTrigger {
 		$this->user_meta   = get_user_meta( $this->user_id );
 
 		$this->user_registered_datetime = strtotime( $this->user_object->user_registered );
-		$this->user_logout_datetime     = time();
+		$this->user_logout_datetime     = current_time( 'timestamp' );
 
 	}
 

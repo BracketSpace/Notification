@@ -141,7 +141,7 @@ notification_add_global_merge_tag(
 			'slug'      => 'date',
 			'name'      => __( 'Trigger execution date', 'notification' ),
 			'hidden'    => true,
-			'timestamp' => time(),
+			'timestamp' => current_time( 'timestamp' ),
 		)
 	)
 );
@@ -152,7 +152,7 @@ notification_add_global_merge_tag(
 			'slug'      => 'date_time',
 			'name'      => __( 'Trigger execution date and time', 'notification' ),
 			'hidden'    => true,
-			'timestamp' => time(),
+			'timestamp' => current_time( 'timestamp' ),
 		)
 	)
 );
@@ -163,7 +163,7 @@ notification_add_global_merge_tag(
 			'slug'      => 'time',
 			'name'      => __( 'Trigger execution time', 'notification' ),
 			'hidden'    => true,
-			'timestamp' => time(),
+			'timestamp' => current_time( 'timestamp' ),
 		)
 	)
 );

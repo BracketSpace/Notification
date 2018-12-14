@@ -38,7 +38,7 @@ class Deactivated extends PluginTrigger {
 
 		$plugin_dir                          = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin_rel_path;
 		$this->plugin                        = get_plugin_data( $plugin_dir, false );
-		$this->plugin_deactivation_date_time = time();
+		$this->plugin_deactivation_date_time = current_time( 'timestamp' );
 
 	}
 

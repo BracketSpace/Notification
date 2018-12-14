@@ -48,7 +48,7 @@ class UserRoleChanged extends UserTrigger {
 		$this->old_role    = implode( ', ', $old_roles );
 
 		$this->user_registered_datetime  = strtotime( $this->user_object->user_registered );
-		$this->user_role_change_datetime = time();
+		$this->user_role_change_datetime = current_time( 'timestamp' );
 
 	}
 

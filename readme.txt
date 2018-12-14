@@ -279,6 +279,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Fixed] Fatal error with Triggers select on certain conditions.
 * [Fixed] Date and Time merge tags giving values of 0.
 * [Fixed] User password reset request being called upon registration.
+* [Fixed] Timezone being ignored in some merge tags.
 
 = 5.2.4 =
 * [Fixed] When `Strip all shortcodes` setting is disabled, the shortcodes are rendered.

@@ -44,7 +44,7 @@ class Updated extends ThemeTrigger {
 
 		$this->theme                  = $upgrader->theme_info();
 		$this->theme_previous_version = $upgrader->skin->theme_info->get( 'Version' );
-		$this->theme_update_date_time = time();
+		$this->theme_update_date_time = current_time( 'timestamp' );
 
 		if ( false === $this->theme ) {
 			return false;
