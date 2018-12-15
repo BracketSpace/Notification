@@ -273,6 +273,25 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
+	 * Removes trigger's merge tag
+	 *
+	 * @param string $merge_tag_slug Merge Tag slug.
+	 * @return $this
+	 */
+	public function remove_merge_tag( $merge_tag_slug ) {
+
+		foreach ( $this->merge_tags as $index => $merge_tag ) {
+			if ( $merge_tag->get_slug() === $merge_tag_slug ) {
+				unset( $this->merge_tags[ $index ] );
+				break;
+			}
+		}
+
+		return $this;
+
+	}
+
+	/**
 	 * Gets trigger's merge tags
 	 *
 	 * @param string $type optional, all|visible|hidden, default: all.

@@ -253,7 +253,8 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 = [Next] =
 * [Fixed] Double post notification called for post revisions.
 * [Fixed] Wrong `wordpress` setting slug caused the option to not be saved.
-* [Added] NOTIFICATION_VERSION constant.
+* [Added] `NOTIFICATION_VERSION` constant.
+* [Added] `remove_merge_tag` trigger method.
 
 = 5.3.1 =
 * [Added] Initial unit tests.
