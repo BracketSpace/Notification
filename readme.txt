@@ -252,6 +252,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Fixed] Double post notification called for post revisions.
+* [Fixed] Wrong `wordpress` setting slug caused the option to not be saved.
 * [Added] NOTIFICATION_VERSION constant.
 
 = 5.3.1 =
