@@ -308,8 +308,7 @@ class Settings extends SettingsAPI {
 			$updates_cron_options[ $schedule_name ] = $schedule['display'];
 		}
 
-		// PHPCS: OK.
-		$triggers->add_group( __( 'WordPress', 'notification' ), 'WordPress' )
+		$triggers->add_group( __( 'WordPress', 'notification' ), 'wordpress' ) // phpcs:ignore
 			->add_field(
 				array(
 					'name'     => __( 'Updates', 'notification' ),

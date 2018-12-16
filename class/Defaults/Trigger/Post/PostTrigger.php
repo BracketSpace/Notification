@@ -50,8 +50,8 @@ abstract class PostTrigger extends Abstracts\Trigger {
 	 */
 	public function postponed_action( $post_id ) {
 
-		// Bail if post revision.
-		if ( 'inherit' === $post_id ) {
+		// Bail if different post type, like post revision.
+		if ( get_post_type( $post_id ) !== $this->post_type ) {
 			return false;
 		}
 
