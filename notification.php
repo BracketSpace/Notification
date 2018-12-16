@@ -12,7 +12,7 @@
  * @package notification
  */
 
-define( 'NOTIFICATION_VERSION', '[Next]' );
+define( 'NOTIFICATION_VERSION', '5.3.2' );
 
 /**
  * Plugin's autoload function
