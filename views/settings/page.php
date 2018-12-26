@@ -9,10 +9,10 @@
 
 <div class="wrap underdev-settings <?php echo esc_attr( $this->handle ); ?>-settings">
 
-	<h1><?php esc_html_e( 'Settings', $this->textdomain, 'notification' ); ?></h1>
+	<h1><?php esc_html_e( 'Settings', $this->textdomain ); ?></h1>
 
 	<?php if ( empty( $sections ) ) : ?>
-		<p><?php esc_html_e( 'No Settings available at the moment', $this->textdomain, 'notification' ); ?></p>
+		<p><?php esc_html_e( 'No Settings available at the moment', $this->textdomain ); ?></p>
 	<?php else : ?>
 
 		<div class="menu-col box">
