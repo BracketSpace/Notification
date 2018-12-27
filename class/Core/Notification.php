@@ -24,21 +24,21 @@ class Notification {
 	 *
 	 * @var string
 	 */
-	protected $metakey_notification_enabled = '_enabled_notification';
+	public static $metakey_notification_enabled = '_enabled_notification';
 
 	/**
 	 * Meta key for notification data
 	 *
 	 * @var string
 	 */
-	protected $metakey_notification_data = '_notification_type_';
+	public static $metakey_notification_data = '_notification_type_';
 
 	/**
 	 * Meta key for active trigger
 	 *
 	 * @var string
 	 */
-	protected $metakey_trigger = '_trigger';
+	public static $metakey_trigger = '_trigger';
 
 	/**
 	 * Constructor
@@ -93,7 +93,7 @@ class Notification {
 	 * @param string $trigger_slug Trigger slug.
 	 */
 	public function set_trigger( $trigger_slug ) {
-		update_post_meta( $this->get_id(), $this->metakey_trigger, sanitize_text_field( $trigger_slug ) );
+		update_post_meta( $this->get_id(), self::$metakey_trigger, sanitize_text_field( $trigger_slug ) );
 	}
 
 	/**
@@ -103,7 +103,7 @@ class Notification {
 	 * @return mixed string or false
 	 */
 	public function get_trigger() {
-		return get_post_meta( $this->get_id(), $this->metakey_trigger, true );
+		return get_post_meta( $this->get_id(), self::$metakey_trigger, true );
 	}
 
 	/**
@@ -119,7 +119,7 @@ class Notification {
 		// Check if notification hasn't been enabled yet.
 		$active_notifications = $this->get_notifications( 'slugs' );
 		if ( ! in_array( $notification_slug, $active_notifications, true ) ) {
-			add_post_meta( $this->get_id(), $this->metakey_notification_enabled, $notification_slug );
+			add_post_meta( $this->get_id(), self::$metakey_notification_enabled, $notification_slug );
 		}
 
 		if ( $notification_data ) {
@@ -138,10 +138,10 @@ class Notification {
 	 */
 	public function disable_notification( $notification_slug, $delete_data = false ) {
 
-		delete_post_meta( $this->get_id(), $this->metakey_notification_enabled, $notification_slug );
+		delete_post_meta( $this->get_id(), self::$metakey_notification_enabled, $notification_slug );
 
 		if ( $delete_data ) {
-			delete_post_meta( $this->get_id(), $this->metakey_notification_data . $notification_slug );
+			delete_post_meta( $this->get_id(), self::$metakey_notification_data . $notification_slug );
 		}
 
 	}
@@ -179,7 +179,7 @@ class Notification {
 
 		$notification_data = apply_filters( 'notification/notification/form/data/values', $notification_data, $raw_notification_data );
 
-		update_post_meta( $this->get_id(), $this->metakey_notification_data . $notification_slug, $notification_data );
+		update_post_meta( $this->get_id(), self::$metakey_notification_data . $notification_slug, $notification_data );
 
 	}
 
@@ -191,7 +191,7 @@ class Notification {
 	 * @return array
 	 */
 	public function get_notification_data( $notification_slug ) {
-		$data = get_post_meta( $this->get_id(), $this->metakey_notification_data . $notification_slug, true );
+		$data = get_post_meta( $this->get_id(), self::$metakey_notification_data . $notification_slug, true );
 		return apply_filters( 'notification/notification/form_fields/values', $data, notification_get_single_notification( $notification_slug ) );
 	}
 
@@ -205,7 +205,7 @@ class Notification {
 	 */
 	public function get_notifications( $type = 'objects', $populate = false ) {
 
-		$slugs = (array) get_post_meta( $this->get_id(), $this->metakey_notification_enabled, false );
+		$slugs = (array) get_post_meta( $this->get_id(), self::$metakey_notification_enabled, false );
 
 		if ( 'slugs' === $type ) {
 			return $slugs;
