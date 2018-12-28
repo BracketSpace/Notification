@@ -61,7 +61,6 @@ class Runtime extends Utils\DocHooks {
 		$this->admin_duplicator     = new Admin\NotificationDuplicator();
 		$this->admin_post_type      = new Admin\PostType( $this->ajax(), $this->boxrenderer(), $this->formrenderer() );
 		$this->admin_post_table     = new Admin\PostTable();
-		$this->admin_recipients     = new Admin\Recipients( $this->view(), $this->ajax() );
 		$this->admin_extensions     = new Admin\Extensions( $this->view() );
 		$this->admin_scripts        = new Admin\Scripts( $this, $this->files );
 		$this->admin_screen         = new Admin\ScreenHelp( $this->view() );
@@ -89,7 +88,6 @@ class Runtime extends Utils\DocHooks {
 		$this->add_hooks( $this->admin_duplicator );
 		$this->add_hooks( $this->admin_post_type );
 		$this->add_hooks( $this->admin_post_table );
-		$this->add_hooks( $this->admin_recipients );
 		$this->add_hooks( $this->admin_extensions );
 		$this->add_hooks( $this->admin_scripts );
 		$this->add_hooks( $this->admin_screen );
