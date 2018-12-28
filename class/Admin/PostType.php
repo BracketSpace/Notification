@@ -244,7 +244,7 @@ class PostType {
 	}
 
 	/**
-	 * Prints Save metabox
+	 * Renders Save metabox
 	 *
 	 * @param  object $post current WP_Post.
 	 * @return void
@@ -266,6 +266,80 @@ class PostType {
 		$view->set_var( 'delete_link_label', $delete_text );
 
 		$view->get_view( 'save-metabox' );
+
+	}
+
+	/**
+	 * Adds metabox with Merge Tags.
+	 *
+	 * @action add_meta_boxes
+	 *
+	 * @return void
+	 */
+	public function add_merge_tags_meta_box() {
+
+		add_meta_box(
+			'notification_merge_tags',
+			__( 'Merge tags', 'notification' ),
+			array( $this, 'render_merge_tags_metabox' ),
+			'notification',
+			'side',
+			'default'
+		);
+
+		// enable metabox.
+		add_filter( 'notification/admin/allow_metabox/notification_merge_tags', '__return_true' );
+
+	}
+
+	/**
+	 * Renders Merge Tags metabox
+	 *
+	 * @param  object $post current WP_Post.
+	 * @return void
+	 */
+	public function render_merge_tags_metabox( $post ) {
+
+		$view              = notification_create_view();
+		$notification_post = notification_get_post( $post );
+		$trigger_slug      = $notification_post->get_trigger();
+
+		if ( ! $trigger_slug ) {
+			$view->get_view( 'mergetag/metabox-notrigger' );
+			return;
+		}
+
+		$this->render_merge_tags_list( $trigger_slug );
+
+	}
+
+	/**
+	 * Renders Merge Tags list
+	 *
+	 * @param  string $trigger_slug Trigger slug.
+	 * @return void
+	 */
+	public function render_merge_tags_list( $trigger_slug ) {
+
+		$view    = notification_create_view();
+		$trigger = notification_get_single_trigger( $trigger_slug );
+
+		if ( empty( $trigger ) ) {
+			$view->get_view( 'mergetag/metabox-nomergetags' );
+			return;
+		}
+
+		$tags = $trigger->get_merge_tags( 'visible' );
+
+		if ( empty( $tags ) ) {
+			$view->get_view( 'mergetag/metabox-nomergetags' );
+			return;
+		}
+
+		$view->set_var( 'trigger', $trigger );
+		$view->set_var( 'tags', $tags );
+
+		$view->get_view( 'mergetag/metabox' );
 
 	}
 
@@ -439,6 +513,27 @@ class PostType {
 		}
 
 		$this->ajax->response( true, $error );
+
+	}
+
+	/**
+	 * Renders Merge Tags metabox for AJAX call.
+	 *
+	 * @action wp_ajax_get_merge_tags_for_trigger
+	 *
+	 * @return void
+	 */
+	public function ajax_render() {
+
+		if ( ! isset( $_POST['trigger_slug'] ) ) {
+			$this->ajax->error();
+		}
+
+		ob_start();
+
+		$this->render_merge_tags_list( sanitize_text_field( wp_unslash( $_POST['trigger_slug'] ) ) );
+
+		$this->ajax->success( ob_get_clean() );
 
 	}
 
