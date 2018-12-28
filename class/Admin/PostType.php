@@ -19,12 +19,16 @@ class PostType {
 	 * PostType constructor
 	 *
 	 * @since 5.0.0
-	 * @param Notifications $notifications Notifications class.
-	 * @param Ajax          $ajax          Ajax class.
+	 * @since [Next] Simplified the parameters by including separate classes elements here.
+	 *
+	 * @param Ajax         $ajax          Ajax class.
+	 * @param BoxRenderer  $boxrenderer  BoxRenderer class.
+	 * @param FormRenderer $formrenderer FormRenderer class.
 	 */
-	public function __construct( Notifications $notifications, Ajax $ajax ) {
-		$this->notifications = $notifications;
-		$this->ajax          = $ajax;
+	public function __construct( Ajax $ajax, BoxRenderer $boxrenderer, FormRenderer $formrenderer ) {
+		$this->ajax         = $ajax;
+		$this->boxrenderer  = $boxrenderer;
+		$this->formrenderer = $formrenderer;
 	}
 
 	/**
@@ -175,21 +179,41 @@ class PostType {
 
 	/**
 	 * Adds Notifications section title on post edit screen,
-	 * just under the Trigger and prints Notifications metaboxes
+	 * just under the Trigger and prints Notification boxes
 	 *
 	 * @action notification/post/column/main 20
 	 *
 	 * @param  Notification $notification_post Notification Post object.
 	 * @return void
 	 */
-	public function render_notification_metaboxes( $notification_post ) {
+	public function render_notification_boxes( $notification_post ) {
 
 		echo '<h3 class="notifications-section-title">' . esc_html__( 'Notifications', 'notification' ) . '</h3>';
 
 		do_action( 'notitication/admin/notifications/pre', $notification_post );
 
 		echo '<div id="notification-boxes">';
-			$this->notifications->render_notifications();
+
+		foreach ( notification_get_notifications() as $notification ) {
+
+			notification_populate_notification( $notification );
+
+			$this->formrenderer->set_fields( $notification->get_form_fields() );
+
+			$this->boxrenderer->set_vars(
+				array(
+					'id'      => 'notification_type_' . $notification->get_slug(),
+					'name'    => 'notification_' . $notification->get_slug() . '_enable',
+					'title'   => $notification->get_name(),
+					'content' => $this->formrenderer->render(),
+					'open'    => $notification->enabled,
+				)
+			);
+
+			$this->boxrenderer->render();
+
+		}
+
 		echo '</div>';
 
 		do_action( 'notitication/admin/notifications', $notification_post );
@@ -340,14 +364,44 @@ class PostType {
 			return;
 		}
 
+		$data              = $_POST;
 		$notification_post = notification_get_post( $post );
 
 		// Trigger.
-		$trigger = ! empty( $_POST['notification_trigger'] ) ? sanitize_text_field( wp_unslash( $_POST['notification_trigger'] ) ) : '';
+		$trigger = ! empty( $data['notification_trigger'] ) ? sanitize_text_field( wp_unslash( $data['notification_trigger'] ) ) : '';
 		$notification_post->set_trigger( $trigger );
 
+		// Enable all notifications one by one.
+		foreach ( notification_get_notifications() as $notification ) {
+			if ( isset( $data[ 'notification_' . $notification->get_slug() . '_enable' ] ) ) {
+				$notification_post->enable_notification( $notification->get_slug() );
+			} else {
+				$notification_post->disable_notification( $notification->get_slug() );
+			}
+		}
+
+		// Save all notification settings one by one.
+		foreach ( notification_get_notifications() as $notification ) {
+
+			if ( ! isset( $data[ 'notification_type_' . $notification->get_slug() ] ) ) {
+				continue;
+			}
+
+			$ndata = $data[ 'notification_type_' . $notification->get_slug() ];
+
+			// nonce not set or false, ignoring this form.
+			if ( ! wp_verify_nonce( $ndata['_nonce'], $notification->get_slug() . '_notification_security' ) ) {
+				continue;
+			}
+
+			$notification_post->set_notification_data( $notification->get_slug(), $ndata );
+
+			do_action( 'notification/notification/saved', $notification_post->get_id(), $notification, $ndata );
+
+		}
+
 		// Hook into this action if you want to save any Notification Post data.
-		do_action( 'notification/post/save', $notification_post );
+		do_action( 'notification/data/save', $notification_post );
 
 	}
 

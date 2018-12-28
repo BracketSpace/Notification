@@ -46,7 +46,6 @@ class TestMain extends \WP_UnitTestCase {
 		$this->assertInstanceOf( 'BracketSpace\Notification\Utils\Files', $this->notification->files );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Internationalization', $this->notification->internationalization );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Settings', $this->notification->settings );
-		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Notifications', $this->notification->admin_notifications );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\PostType', $this->notification->admin_post_type );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\PostTable', $this->notification->admin_post_table );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\MergeTags', $this->notification->admin_merge_tags );
