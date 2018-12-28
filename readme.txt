@@ -252,6 +252,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Added] Notification object as a wrapper for Notification Post.
+* [Changed] PostData class has been removed in favor of Notification object and procedural functions.
 
 = 5.3.2 =
 * [Fixed] Double post notification called for post revisions.
