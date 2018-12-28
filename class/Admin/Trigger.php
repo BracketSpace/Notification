@@ -18,12 +18,10 @@ class Trigger {
 	 * MergeTags constructor
 	 *
 	 * @since 5.0.0
-	 * @param View     $view     View class.
-	 * @param PostData $postdata PostData class.
+	 * @param View $view View class.
 	 */
-	public function __construct( View $view, PostData $postdata ) {
-		$this->view     = $view;
-		$this->postdata = $postdata;
+	public function __construct( View $view ) {
+		$this->view = $view;
 	}
 
 	/**
@@ -35,9 +33,10 @@ class Trigger {
 	public function render_select( $post ) {
 
 		$grouped_triggers = notification_get_triggers_grouped();
+		$notification     = notification_get_post( $post );
 
 		$this->view->set_var( 'post', $post );
-		$this->view->set_var( 'selected', $this->postdata->get_active_trigger() );
+		$this->view->set_var( 'selected', $notification->get_trigger() );
 		$this->view->set_var( 'triggers', $grouped_triggers );
 		$this->view->set_var( 'has_triggers', ! empty( $grouped_triggers ) );
 		$this->view->set_var( 'select_name', 'notification_trigger' );
@@ -70,10 +69,10 @@ class Trigger {
 			return;
 		}
 
+		$notification_post    = notification_get_post( $post );
 		$notification_trigger = ! empty( $_POST['notification_trigger'] ) ? sanitize_text_field( wp_unslash( $_POST['notification_trigger'] ) ) : '';
 
-		$this->postdata->set_post_id( $post_id );
-		$this->postdata->save_active_trigger( $notification_trigger );
+		$notification_post->set_trigger( $notification_trigger );
 
 	}
 

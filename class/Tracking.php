@@ -10,7 +10,6 @@
 namespace BracketSpace\Notification;
 
 use BracketSpace\Notification\Admin\Cron;
-use BracketSpace\Notification\Admin\PostData;
 
 /**
  * Tracking class
@@ -23,13 +22,6 @@ class Tracking {
 	 * @var Cron
 	 */
 	protected $cron;
-
-	/**
-	 * PostData object
-	 *
-	 * @var PostData
-	 */
-	protected $postdata;
 
 	/**
 	 * If tracking is allowed
@@ -49,13 +41,11 @@ class Tracking {
 	 * Class constructor
 	 *
 	 * @since 5.3.0
-	 * @param Cron     $cron     Cron object.
-	 * @param PostData $postdata PostData class.
+	 * @param Cron $cron Cron object.
 	 */
-	public function __construct( Cron $cron, PostData $postdata ) {
+	public function __construct( Cron $cron ) {
 
-		$this->cron     = $cron;
-		$this->postdata = $postdata;
+		$this->cron = $cron;
 
 		if ( function_exists( 'notification_freemius' ) ) {
 			$this->is_allowed = notification_freemius()->is_tracking_allowed();
@@ -104,12 +94,12 @@ class Tracking {
 
 		foreach ( $notifications as $notification ) {
 
-			$active_notifications = $this->postdata->get_populated_notifications_for_post( $notification->ID );
-			$this->postdata->set_post_id( $notification->ID );
+			$notification_post    = notification_get_post( $notification->ID );
+			$active_notifications = $notification_post->get_notifications( 'objects', true );
 
 			$post_info = array(
 				'website' => get_site_url(),
-				'trigger' => $this->postdata->get_active_trigger(),
+				'trigger' => $notification_post->get_trigger(),
 			);
 
 			$post_info['notifications'] = array();
@@ -122,8 +112,6 @@ class Tracking {
 			}
 
 			$usage[] = $post_info;
-
-			$this->postdata->clear_post_id();
 
 			add_post_meta( $notification->ID, '_usage_tracked', true );
 

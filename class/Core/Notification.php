@@ -7,6 +7,8 @@
 
 namespace BracketSpace\Notification\Core;
 
+use BracketSpace\Notification\Interfaces;
+
 /**
  * Notification class
  */
@@ -251,7 +253,19 @@ class Notification {
 			throw new \Exception( 'Wrong notification slug' );
 		}
 
-		$field_values = get_notification_data( $notification->get_slug() );
+		// Set enabled state.
+		$enabled_notifications = (array) get_post_meta( $this->get_id(), self::$metakey_notification_enabled, false );
+
+		// If this is new post, mark email notifiation as active for better UX.
+		if ( $this->is_new() && $notification->get_slug() === 'email' ) {
+			$enabled_notifications[] = 'email';
+		}
+
+		if ( in_array( $notification->get_slug(), $enabled_notifications, true ) ) {
+			$notification->enabled = true;
+		}
+
+		$field_values = $this->get_notification_data( $notification->get_slug() );
 
 		foreach ( $notification->get_form_fields() as $field ) {
 			if ( isset( $field_values[ $field->get_raw_name() ] ) ) {

@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Utils\View;
+use BracketSpace\Notification\Utils\Ajax;
 
 /**
  * PostType class
@@ -21,11 +22,13 @@ class PostType {
 	 * @param Trigger       $trigger       Trigger class.
 	 * @param Notifications $notifications Notifications class.
 	 * @param View          $view          View class.
+	 * @param Ajax          $ajax          Ajax class.
 	 */
-	public function __construct( Trigger $trigger, Notifications $notifications, View $view ) {
+	public function __construct( Trigger $trigger, Notifications $notifications, View $view, Ajax $ajax ) {
 		$this->trigger       = $trigger;
 		$this->notifications = $notifications;
 		$this->view          = $view;
+		$this->ajax          = $ajax;
 	}
 
 	/**
@@ -275,6 +278,37 @@ class PostType {
 				}
 			}
 		}
+
+	}
+
+	/**
+	 * Changes notification status from AJAX call
+	 *
+	 * @action wp_ajax_change_notification_status
+	 *
+	 * @return void
+	 */
+	public function ajax_change_notification_status() {
+
+		$data  = $_POST;
+		$error = false;
+
+		$this->ajax->verify_nonce( 'change_notification_status_' . $data['post_id'] );
+
+		$status = 'true' === $data['status'] ? 'publish' : 'draft';
+
+		$result = wp_update_post(
+			array(
+				'ID'          => $data['post_id'],
+				'post_status' => $status,
+			)
+		);
+
+		if ( 0 === $result ) {
+			$error = __( 'Notification status couldn\'t be changed.', 'notification' );
+		}
+
+		$this->ajax->response( true, $error );
 
 	}
 

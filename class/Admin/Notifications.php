@@ -18,12 +18,10 @@ class Notifications {
 	 * @since 5.0.0
 	 * @param BoxRenderer  $boxrenderer  BoxRenderer class.
 	 * @param FormRenderer $formrenderer FormRenderer class.
-	 * @param PostData     $postdata     PostData class.
 	 */
-	public function __construct( BoxRenderer $boxrenderer, FormRenderer $formrenderer, PostData $postdata ) {
+	public function __construct( BoxRenderer $boxrenderer, FormRenderer $formrenderer ) {
 		$this->boxrenderer  = $boxrenderer;
 		$this->formrenderer = $formrenderer;
-		$this->postdata     = $postdata;
 	}
 
 	/**
@@ -36,7 +34,7 @@ class Notifications {
 
 		foreach ( notification_get_notifications() as $notification ) {
 
-			$this->postdata->set_notification_data( $notification );
+			notification_populate_notification( $notification );
 
 			$this->formrenderer->set_fields( $notification->get_form_fields() );
 
@@ -81,10 +79,39 @@ class Notifications {
 			return;
 		}
 
-		$this->postdata->set_post_id( $post_id );
-		$this->postdata->save_notification_data( $_POST );
+		$data              = $_POST;
+		$notification_post = notification_get_post( $post );
 
-		do_action( 'notification/data/save', $this->postdata, $post_id );
+		// Enable all notifications one by one.
+		foreach ( notification_get_notifications() as $notification ) {
+			if ( isset( $data[ 'notification_' . $notification->get_slug() . '_enable' ] ) ) {
+				$notification_post->enable_notification( $notification->get_slug() );
+			} else {
+				$notification_post->disable_notification( $notification->get_slug() );
+			}
+		}
+
+		// Save all notification settings one by one.
+		foreach ( notification_get_notifications() as $notification ) {
+
+			if ( ! isset( $data[ 'notification_type_' . $notification->get_slug() ] ) ) {
+				continue;
+			}
+
+			$ndata = $data[ 'notification_type_' . $notification->get_slug() ];
+
+			// nonce not set or false, ignoring this form.
+			if ( ! wp_verify_nonce( $ndata['_nonce'], $notification->get_slug() . '_notification_security' ) ) {
+				continue;
+			}
+
+			$notification_post->set_notification_data( $notification->get_slug(), $ndata );
+
+			do_action( 'notification/notification/saved', $notification_post->get_id(), $notification, $ndata );
+
+		}
+
+		do_action( 'notification/data/save', $notification_post );
 
 	}
 
