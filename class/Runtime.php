@@ -60,7 +60,7 @@ class Runtime extends Utils\DocHooks {
 		$this->settings             = new Admin\Settings();
 		$this->admin_notifications  = new Admin\Notifications( $this->boxrenderer(), $this->formrenderer() );
 		$this->admin_duplicator     = new Admin\NotificationDuplicator();
-		$this->admin_post_type      = new Admin\PostType( $this->admin_notifications, $this->view(), $this->ajax() );
+		$this->admin_post_type      = new Admin\PostType( $this->admin_notifications, $this->ajax() );
 		$this->admin_post_table     = new Admin\PostTable();
 		$this->admin_merge_tags     = new Admin\MergeTags( $this->view(), $this->ajax() );
 		$this->admin_recipients     = new Admin\Recipients( $this->view(), $this->ajax() );

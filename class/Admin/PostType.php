@@ -20,14 +20,18 @@ class PostType {
 	 *
 	 * @since 5.0.0
 	 * @param Notifications $notifications Notifications class.
-	 * @param View          $view          View class.
 	 * @param Ajax          $ajax          Ajax class.
 	 */
-	public function __construct( Notifications $notifications, View $view, Ajax $ajax ) {
+	public function __construct( Notifications $notifications, Ajax $ajax ) {
 		$this->notifications = $notifications;
-		$this->view          = $view;
 		$this->ajax          = $ajax;
 	}
+
+	/**
+	 * --------------------------------------------------
+	 * Post Type.
+	 * --------------------------------------------------
+	 */
 
 	/**
 	 * Registers Notification post type
@@ -122,6 +126,12 @@ class PostType {
 	}
 
 	/**
+	 * --------------------------------------------------
+	 * Display.
+	 * --------------------------------------------------
+	 */
+
+	/**
 	 * Renders main column on the Notification edit screen.
 	 *
 	 * @action edit_form_after_title 1
@@ -198,7 +208,7 @@ class PostType {
 		add_meta_box(
 			'notification_save',
 			__( 'Save', 'notification' ),
-			array( $this, 'save_metabox' ),
+			array( $this, 'render_save_metabox' ),
 			'notification',
 			'side',
 			'high'
@@ -210,45 +220,14 @@ class PostType {
 	}
 
 	/**
-	 * Saves post status in relation to on/off switch
-	 *
-	 * @filter wp_insert_post_data 100
-	 *
-	 * @since  5.0.0
-	 * @param  array $data    post data.
-	 * @param  array $postarr saved data.
-	 * @return array
-	 */
-	public function save_notification_status( $data, $postarr ) {
-
-		// fix for brand new posts.
-		if ( 'auto-draft' === $data['post_status'] ) {
-			return $data;
-		}
-
-		if ( 'notification' !== $data['post_type'] ||
-			'trash' === $postarr['post_status'] ||
-			( isset( $_POST['action'] ) && 'change_notification_status' === $_POST['action'] ) ) {
-			return $data;
-		}
-
-		if ( isset( $postarr['onoffswitch'] ) && '1' === $postarr['onoffswitch'] ) {
-			$data['post_status'] = 'publish';
-		} else {
-			$data['post_status'] = 'draft';
-		}
-
-		return $data;
-
-	}
-
-	/**
 	 * Prints Save metabox
 	 *
 	 * @param  object $post current WP_Post.
 	 * @return void
 	 */
-	public function save_metabox( $post ) {
+	public function render_save_metabox( $post ) {
+
+		$view = notification_create_view();
 
 		if ( ! EMPTY_TRASH_DAYS ) {
 			$delete_text = __( 'Delete Permanently', 'notification' );
@@ -258,11 +237,11 @@ class PostType {
 
 		$enabled = notification_is_new_notification( $post ) || 'draft' !== get_post_status( $post->ID );
 
-		$this->view->set_var( 'enabled', $enabled );
-		$this->view->set_var( 'post_id', $post->ID );
-		$this->view->set_var( 'delete_link_label', $delete_text );
+		$view->set_var( 'enabled', $enabled );
+		$view->set_var( 'post_id', $post->ID );
+		$view->set_var( 'delete_link_label', $delete_text );
 
-		$this->view->get_view( 'save-metabox' );
+		$view->get_view( 'save-metabox' );
 
 	}
 
@@ -299,13 +278,52 @@ class PostType {
 	}
 
 	/**
+	 * --------------------------------------------------
+	 * Save.
+	 * --------------------------------------------------
+	 */
+
+	/**
+	 * Saves post status in relation to on/off switch
+	 *
+	 * @filter wp_insert_post_data 100
+	 *
+	 * @since  5.0.0
+	 * @param  array $data    post data.
+	 * @param  array $postarr saved data.
+	 * @return array
+	 */
+	public function save_notification_status( $data, $postarr ) {
+
+		// fix for brand new posts.
+		if ( 'auto-draft' === $data['post_status'] ) {
+			return $data;
+		}
+
+		if ( 'notification' !== $data['post_type'] ||
+			'trash' === $postarr['post_status'] ||
+			( isset( $_POST['action'] ) && 'change_notification_status' === $_POST['action'] ) ) {
+			return $data;
+		}
+
+		if ( isset( $postarr['onoffswitch'] ) && '1' === $postarr['onoffswitch'] ) {
+			$data['post_status'] = 'publish';
+		} else {
+			$data['post_status'] = 'draft';
+		}
+
+		return $data;
+
+	}
+
+	/**
 	 * Saves the Notification data
 	 *
 	 * @action save_post_notification
 	 *
-	 * @param  integer $post_id current post ID.
+	 * @param  integer $post_id Current post ID.
 	 * @param  object  $post    WP_Post object.
-	 * @param  boolean $update  if existing notification is updated.
+	 * @param  boolean $update  If existing notification is updated.
 	 * @return void
 	 */
 	public function save( $post_id, $post, $update ) {
@@ -324,26 +342,20 @@ class PostType {
 
 		$notification_post = notification_get_post( $post );
 
+		// Trigger.
+		$trigger = ! empty( $_POST['notification_trigger'] ) ? sanitize_text_field( wp_unslash( $_POST['notification_trigger'] ) ) : '';
+		$notification_post->set_trigger( $trigger );
+
+		// Hook into this action if you want to save any Notification Post data.
 		do_action( 'notification/post/save', $notification_post );
 
 	}
 
 	/**
-	 * Saves the default Notification data
-	 *
-	 * @action notification/post/save
-	 *
-	 * @since [Next]
-	 * @param  Notification $notification_post Notification Post object.
-	 * @return void
+	 * --------------------------------------------------
+	 * Ajax.
+	 * --------------------------------------------------
 	 */
-	public function save_default_data( $notification_post ) {
-
-		// Trigger.
-		$trigger = ! empty( $_POST['notification_trigger'] ) ? sanitize_text_field( wp_unslash( $_POST['notification_trigger'] ) ) : '';
-		$notification_post->set_trigger( $trigger );
-
-	}
 
 	/**
 	 * Changes notification status from AJAX call
