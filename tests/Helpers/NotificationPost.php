@@ -19,12 +19,12 @@ class NotificationPost {
 	 * Inserts notification post based on trigger and notifcation type
 	 *
 	 * @since  5.3.1
+	 * @since  [Next] Changed the Post Data to Notification Post
 	 * @param  mixed $trigger      Trigger class or slug.
 	 * @param  mixed $notification Notifcation class or slug.
 	 * @return integer             Notifcation Post ID.
 	 */
 	public static function insert( $trigger, $notification ) {
-		$post_data    = notification_runtime( 'post_data' );
 		$post_factory = new \WP_UnitTest_Factory_For_Post();
 
 		$notification_post_id = $post_factory->create( array(
@@ -41,8 +41,9 @@ class NotificationPost {
 
 		wp_publish_post( $notification_post_id );
 
-		add_post_meta( $notification_post_id, $post_data->notification_enabled_key, $notification );
-		add_post_meta( $notification_post_id, $post_data->active_trigger_key, $trigger );
+		$notification_post = notification_get_post( $notification_post_id );
+		$notification_post->enable_notification( $notification );
+		$notification_post->set_trigger( $trigger );
 
 		return $notification_post_id;
 	}

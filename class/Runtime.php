@@ -58,11 +58,10 @@ class Runtime extends Utils\DocHooks {
 		$this->files                = new Utils\Files( $this->plugin_file, $this->plugin_custom_url, $this->plugin_custom_path );
 		$this->internationalization = new Internationalization( $this->files, 'notification' );
 		$this->settings             = new Admin\Settings();
-		$this->post_data            = new Admin\PostData( $this->ajax() );
-		$this->admin_trigger        = new Admin\Trigger( $this->view(), $this->post_data );
-		$this->admin_notifications  = new Admin\Notifications( $this->boxrenderer(), $this->formrenderer(), $this->post_data );
+		$this->admin_trigger        = new Admin\Trigger( $this->view() );
+		$this->admin_notifications  = new Admin\Notifications( $this->boxrenderer(), $this->formrenderer() );
 		$this->admin_duplicator     = new Admin\NotificationDuplicator();
-		$this->admin_post_type      = new Admin\PostType( $this->admin_trigger, $this->admin_notifications, $this->view() );
+		$this->admin_post_type      = new Admin\PostType( $this->admin_trigger, $this->admin_notifications, $this->view(), $this->ajax() );
 		$this->admin_post_table     = new Admin\PostTable();
 		$this->admin_merge_tags     = new Admin\MergeTags( $this->view(), $this->ajax() );
 		$this->admin_recipients     = new Admin\Recipients( $this->view(), $this->ajax() );
@@ -74,7 +73,7 @@ class Runtime extends Utils\DocHooks {
 		$this->integration_wp       = new Integration\WordPress();
 		$this->integration_cf       = new Integration\CustomFields();
 		$this->core_debugging       = new Core\Debugging();
-		$this->tracking             = new Tracking( $this->admin_cron, $this->post_data );
+		$this->tracking             = new Tracking( $this->admin_cron );
 
 	}
 
@@ -90,7 +89,6 @@ class Runtime extends Utils\DocHooks {
 		$this->add_hooks( $this->files );
 		$this->add_hooks( $this->internationalization );
 		$this->add_hooks( $this->settings );
-		$this->add_hooks( $this->post_data );
 		$this->add_hooks( $this->admin_trigger );
 		$this->add_hooks( $this->admin_notifications );
 		$this->add_hooks( $this->admin_duplicator );
