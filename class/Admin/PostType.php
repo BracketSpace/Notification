@@ -19,13 +19,11 @@ class PostType {
 	 * PostType constructor
 	 *
 	 * @since 5.0.0
-	 * @param Trigger       $trigger       Trigger class.
 	 * @param Notifications $notifications Notifications class.
 	 * @param View          $view          View class.
 	 * @param Ajax          $ajax          Ajax class.
 	 */
-	public function __construct( Trigger $trigger, Notifications $notifications, View $view, Ajax $ajax ) {
-		$this->trigger       = $trigger;
+	public function __construct( Notifications $notifications, View $view, Ajax $ajax ) {
 		$this->notifications = $notifications;
 		$this->view          = $view;
 		$this->ajax          = $ajax;
@@ -124,21 +122,44 @@ class PostType {
 	}
 
 	/**
-	 * Moves the metaboxes under title in WordPress
+	 * Renders main column on the Notification edit screen.
 	 *
-	 * @action edit_form_after_title
+	 * @action edit_form_after_title 1
 	 *
 	 * @param  object $post WP_Post.
 	 * @return void
 	 */
-	public function render_trigger_select( $post ) {
+	public function render_main_column( $post ) {
 
 		if ( 'notification' !== get_post_type( $post ) ) {
 			return;
 		}
 
-		echo '<h3 class="trigger-section-title">' . esc_html__( 'Trigger', 'notification' ) . '</h3>';
-		$this->trigger->render_select( $post );
+		$notification_post = notification_get_post( $post );
+
+		do_action( 'notification/post/column/main', $notification_post );
+
+	}
+
+	/**
+	 * Renders the trigger metabox
+	 *
+	 * @action notification/post/column/main
+	 *
+	 * @param  Notification $notification_post Notification Post object.
+	 * @return void
+	 */
+	public function render_trigger_select( $notification_post ) {
+
+		$view             = notification_create_view();
+		$grouped_triggers = notification_get_triggers_grouped();
+
+		$view->set_var( 'selected', $notification_post->get_trigger() );
+		$view->set_var( 'triggers', $grouped_triggers );
+		$view->set_var( 'has_triggers', ! empty( $grouped_triggers ) );
+		$view->set_var( 'select_name', 'notification_trigger' );
+
+		$view->get_view( 'trigger/metabox' );
 
 	}
 
@@ -146,26 +167,22 @@ class PostType {
 	 * Adds Notifications section title on post edit screen,
 	 * just under the Trigger and prints Notifications metaboxes
 	 *
-	 * @action edit_form_after_title 20
+	 * @action notification/post/column/main 20
 	 *
-	 * @param  object $post WP_Post.
+	 * @param  Notification $notification_post Notification Post object.
 	 * @return void
 	 */
-	public function render_notification_metaboxes( $post ) {
-
-		if ( 'notification' !== get_post_type( $post ) ) {
-			return;
-		}
+	public function render_notification_metaboxes( $notification_post ) {
 
 		echo '<h3 class="notifications-section-title">' . esc_html__( 'Notifications', 'notification' ) . '</h3>';
 
-		do_action( 'notitication/admin/notifications/pre', $post );
+		do_action( 'notitication/admin/notifications/pre', $notification_post );
 
 		echo '<div id="notification-boxes">';
 			$this->notifications->render_notifications();
 		echo '</div>';
 
-		do_action( 'notitication/admin/notifications', $post );
+		do_action( 'notitication/admin/notifications', $notification_post );
 
 	}
 
@@ -278,6 +295,53 @@ class PostType {
 				}
 			}
 		}
+
+	}
+
+	/**
+	 * Saves the Notification data
+	 *
+	 * @action save_post_notification
+	 *
+	 * @param  integer $post_id current post ID.
+	 * @param  object  $post    WP_Post object.
+	 * @param  boolean $update  if existing notification is updated.
+	 * @return void
+	 */
+	public function save( $post_id, $post, $update ) {
+
+		if ( ! isset( $_POST['notification_data_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['notification_data_nonce'] ) ), 'notification_post_data_save' ) ) {
+			return;
+		}
+
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+
+		if ( ! $update ) {
+			return;
+		}
+
+		$notification_post = notification_get_post( $post );
+
+		do_action( 'notification/post/save', $notification_post );
+
+	}
+
+	/**
+	 * Saves the default Notification data
+	 *
+	 * @action notification/post/save
+	 *
+	 * @since [Next]
+	 * @param  Notification $notification_post Notification Post object.
+	 * @return void
+	 */
+	public function save_default_data( $notification_post ) {
+
+		// Trigger.
+		$trigger = ! empty( $_POST['notification_trigger'] ) ? sanitize_text_field( wp_unslash( $_POST['notification_trigger'] ) ) : '';
+		$notification_post->set_trigger( $trigger );
 
 	}
 

@@ -58,10 +58,9 @@ class Runtime extends Utils\DocHooks {
 		$this->files                = new Utils\Files( $this->plugin_file, $this->plugin_custom_url, $this->plugin_custom_path );
 		$this->internationalization = new Internationalization( $this->files, 'notification' );
 		$this->settings             = new Admin\Settings();
-		$this->admin_trigger        = new Admin\Trigger( $this->view() );
 		$this->admin_notifications  = new Admin\Notifications( $this->boxrenderer(), $this->formrenderer() );
 		$this->admin_duplicator     = new Admin\NotificationDuplicator();
-		$this->admin_post_type      = new Admin\PostType( $this->admin_trigger, $this->admin_notifications, $this->view(), $this->ajax() );
+		$this->admin_post_type      = new Admin\PostType( $this->admin_notifications, $this->view(), $this->ajax() );
 		$this->admin_post_table     = new Admin\PostTable();
 		$this->admin_merge_tags     = new Admin\MergeTags( $this->view(), $this->ajax() );
 		$this->admin_recipients     = new Admin\Recipients( $this->view(), $this->ajax() );
@@ -89,7 +88,6 @@ class Runtime extends Utils\DocHooks {
 		$this->add_hooks( $this->files );
 		$this->add_hooks( $this->internationalization );
 		$this->add_hooks( $this->settings );
-		$this->add_hooks( $this->admin_trigger );
 		$this->add_hooks( $this->admin_notifications );
 		$this->add_hooks( $this->admin_duplicator );
 		$this->add_hooks( $this->admin_post_type );

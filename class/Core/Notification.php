@@ -56,7 +56,7 @@ class Notification {
 		} elseif ( is_integer( $post ) ) {
 			$this->post = get_post( $post );
 		} else {
-			throw new \Exception( 'You must provide an WP_Post or Post ID.' );
+			throw new \Exception( 'You must provide an WP_Post or Post ID' );
 		}
 
 	}

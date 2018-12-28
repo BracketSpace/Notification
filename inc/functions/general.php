@@ -34,3 +34,13 @@ function notification_display_story() {
 	return ! notification_is_whitelabeled() && ! get_option( 'notification_story_dismissed' ) && $count > 2;
 
 }
+
+/**
+ * Creates new View object.
+ *
+ * @since  [Next]
+ * @return View
+ */
+function notification_create_view() {
+	return notification_runtime()->view();
+}
