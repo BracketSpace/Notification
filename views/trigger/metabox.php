@@ -7,6 +7,8 @@
 
 ?>
 
+<h3 class="trigger-section-title"><?php esc_html_e( 'Trigger', 'notification' ); ?></h3>
+
 <?php if ( ! $this->get_var( 'has_triggers' ) ) : ?>
 
 	<p><?php esc_html_e( 'No Triggers defined yet', 'notification' ); ?></p>

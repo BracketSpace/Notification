@@ -7,6 +7,7 @@
 
 ?>
 <div class="submitbox" id="submitpost">
+	<?php wp_nonce_field( 'notification_post_data_save', 'notification_data_nonce' ); ?>
 	<div class="misc-pub-section">
 		<?php do_action( 'notification/admin/metabox/save/pre', $this ); ?>
 		<label class="row-label" for="onoffswitch"><strong><?php esc_html_e( 'Enable', 'notification' ); ?></strong></label>

@@ -19,17 +19,23 @@ class PostType {
 	 * PostType constructor
 	 *
 	 * @since 5.0.0
-	 * @param Trigger       $trigger       Trigger class.
-	 * @param Notifications $notifications Notifications class.
-	 * @param View          $view          View class.
-	 * @param Ajax          $ajax          Ajax class.
+	 * @since [Next] Simplified the parameters by including separate classes elements here.
+	 *
+	 * @param Ajax         $ajax          Ajax class.
+	 * @param BoxRenderer  $boxrenderer  BoxRenderer class.
+	 * @param FormRenderer $formrenderer FormRenderer class.
 	 */
-	public function __construct( Trigger $trigger, Notifications $notifications, View $view, Ajax $ajax ) {
-		$this->trigger       = $trigger;
-		$this->notifications = $notifications;
-		$this->view          = $view;
-		$this->ajax          = $ajax;
+	public function __construct( Ajax $ajax, BoxRenderer $boxrenderer, FormRenderer $formrenderer ) {
+		$this->ajax         = $ajax;
+		$this->boxrenderer  = $boxrenderer;
+		$this->formrenderer = $formrenderer;
 	}
+
+	/**
+	 * --------------------------------------------------
+	 * Post Type.
+	 * --------------------------------------------------
+	 */
 
 	/**
 	 * Registers Notification post type
@@ -124,48 +130,93 @@ class PostType {
 	}
 
 	/**
-	 * Moves the metaboxes under title in WordPress
+	 * --------------------------------------------------
+	 * Display.
+	 * --------------------------------------------------
+	 */
+
+	/**
+	 * Renders main column on the Notification edit screen.
 	 *
-	 * @action edit_form_after_title
+	 * @action edit_form_after_title 1
 	 *
 	 * @param  object $post WP_Post.
 	 * @return void
 	 */
-	public function render_trigger_select( $post ) {
+	public function render_main_column( $post ) {
 
 		if ( 'notification' !== get_post_type( $post ) ) {
 			return;
 		}
 
-		echo '<h3 class="trigger-section-title">' . esc_html__( 'Trigger', 'notification' ) . '</h3>';
-		$this->trigger->render_select( $post );
+		$notification_post = notification_get_post( $post );
+
+		do_action( 'notification/post/column/main', $notification_post );
+
+	}
+
+	/**
+	 * Renders the trigger metabox
+	 *
+	 * @action notification/post/column/main
+	 *
+	 * @param  Notification $notification_post Notification Post object.
+	 * @return void
+	 */
+	public function render_trigger_select( $notification_post ) {
+
+		$view             = notification_create_view();
+		$grouped_triggers = notification_get_triggers_grouped();
+
+		$view->set_var( 'selected', $notification_post->get_trigger() );
+		$view->set_var( 'triggers', $grouped_triggers );
+		$view->set_var( 'has_triggers', ! empty( $grouped_triggers ) );
+		$view->set_var( 'select_name', 'notification_trigger' );
+
+		$view->get_view( 'trigger/metabox' );
 
 	}
 
 	/**
 	 * Adds Notifications section title on post edit screen,
-	 * just under the Trigger and prints Notifications metaboxes
+	 * just under the Trigger and prints Notification boxes
 	 *
-	 * @action edit_form_after_title 20
+	 * @action notification/post/column/main 20
 	 *
-	 * @param  object $post WP_Post.
+	 * @param  Notification $notification_post Notification Post object.
 	 * @return void
 	 */
-	public function render_notification_metaboxes( $post ) {
-
-		if ( 'notification' !== get_post_type( $post ) ) {
-			return;
-		}
+	public function render_notification_boxes( $notification_post ) {
 
 		echo '<h3 class="notifications-section-title">' . esc_html__( 'Notifications', 'notification' ) . '</h3>';
 
-		do_action( 'notitication/admin/notifications/pre', $post );
+		do_action( 'notitication/admin/notifications/pre', $notification_post );
 
 		echo '<div id="notification-boxes">';
-			$this->notifications->render_notifications();
+
+		foreach ( notification_get_notifications() as $notification ) {
+
+			notification_populate_notification( $notification );
+
+			$this->formrenderer->set_fields( $notification->get_form_fields() );
+
+			$this->boxrenderer->set_vars(
+				array(
+					'id'      => 'notification_type_' . $notification->get_slug(),
+					'name'    => 'notification_' . $notification->get_slug() . '_enable',
+					'title'   => $notification->get_name(),
+					'content' => $this->formrenderer->render(),
+					'open'    => $notification->enabled,
+				)
+			);
+
+			$this->boxrenderer->render();
+
+		}
+
 		echo '</div>';
 
-		do_action( 'notitication/admin/notifications', $post );
+		do_action( 'notitication/admin/notifications', $notification_post );
 
 	}
 
@@ -181,7 +232,7 @@ class PostType {
 		add_meta_box(
 			'notification_save',
 			__( 'Save', 'notification' ),
-			array( $this, 'save_metabox' ),
+			array( $this, 'render_save_metabox' ),
 			'notification',
 			'side',
 			'high'
@@ -193,45 +244,14 @@ class PostType {
 	}
 
 	/**
-	 * Saves post status in relation to on/off switch
-	 *
-	 * @filter wp_insert_post_data 100
-	 *
-	 * @since  5.0.0
-	 * @param  array $data    post data.
-	 * @param  array $postarr saved data.
-	 * @return array
-	 */
-	public function save_notification_status( $data, $postarr ) {
-
-		// fix for brand new posts.
-		if ( 'auto-draft' === $data['post_status'] ) {
-			return $data;
-		}
-
-		if ( 'notification' !== $data['post_type'] ||
-			'trash' === $postarr['post_status'] ||
-			( isset( $_POST['action'] ) && 'change_notification_status' === $_POST['action'] ) ) {
-			return $data;
-		}
-
-		if ( isset( $postarr['onoffswitch'] ) && '1' === $postarr['onoffswitch'] ) {
-			$data['post_status'] = 'publish';
-		} else {
-			$data['post_status'] = 'draft';
-		}
-
-		return $data;
-
-	}
-
-	/**
-	 * Prints Save metabox
+	 * Renders Save metabox
 	 *
 	 * @param  object $post current WP_Post.
 	 * @return void
 	 */
-	public function save_metabox( $post ) {
+	public function render_save_metabox( $post ) {
+
+		$view = notification_create_view();
 
 		if ( ! EMPTY_TRASH_DAYS ) {
 			$delete_text = __( 'Delete Permanently', 'notification' );
@@ -241,11 +261,85 @@ class PostType {
 
 		$enabled = notification_is_new_notification( $post ) || 'draft' !== get_post_status( $post->ID );
 
-		$this->view->set_var( 'enabled', $enabled );
-		$this->view->set_var( 'post_id', $post->ID );
-		$this->view->set_var( 'delete_link_label', $delete_text );
+		$view->set_var( 'enabled', $enabled );
+		$view->set_var( 'post_id', $post->ID );
+		$view->set_var( 'delete_link_label', $delete_text );
 
-		$this->view->get_view( 'save-metabox' );
+		$view->get_view( 'save-metabox' );
+
+	}
+
+	/**
+	 * Adds metabox with Merge Tags.
+	 *
+	 * @action add_meta_boxes
+	 *
+	 * @return void
+	 */
+	public function add_merge_tags_meta_box() {
+
+		add_meta_box(
+			'notification_merge_tags',
+			__( 'Merge tags', 'notification' ),
+			array( $this, 'render_merge_tags_metabox' ),
+			'notification',
+			'side',
+			'default'
+		);
+
+		// enable metabox.
+		add_filter( 'notification/admin/allow_metabox/notification_merge_tags', '__return_true' );
+
+	}
+
+	/**
+	 * Renders Merge Tags metabox
+	 *
+	 * @param  object $post current WP_Post.
+	 * @return void
+	 */
+	public function render_merge_tags_metabox( $post ) {
+
+		$view              = notification_create_view();
+		$notification_post = notification_get_post( $post );
+		$trigger_slug      = $notification_post->get_trigger();
+
+		if ( ! $trigger_slug ) {
+			$view->get_view( 'mergetag/metabox-notrigger' );
+			return;
+		}
+
+		$this->render_merge_tags_list( $trigger_slug );
+
+	}
+
+	/**
+	 * Renders Merge Tags list
+	 *
+	 * @param  string $trigger_slug Trigger slug.
+	 * @return void
+	 */
+	public function render_merge_tags_list( $trigger_slug ) {
+
+		$view    = notification_create_view();
+		$trigger = notification_get_single_trigger( $trigger_slug );
+
+		if ( empty( $trigger ) ) {
+			$view->get_view( 'mergetag/metabox-nomergetags' );
+			return;
+		}
+
+		$tags = $trigger->get_merge_tags( 'visible' );
+
+		if ( empty( $tags ) ) {
+			$view->get_view( 'mergetag/metabox-nomergetags' );
+			return;
+		}
+
+		$view->set_var( 'trigger', $trigger );
+		$view->set_var( 'tags', $tags );
+
+		$view->get_view( 'mergetag/metabox' );
 
 	}
 
@@ -282,6 +376,116 @@ class PostType {
 	}
 
 	/**
+	 * --------------------------------------------------
+	 * Save.
+	 * --------------------------------------------------
+	 */
+
+	/**
+	 * Saves post status in relation to on/off switch
+	 *
+	 * @filter wp_insert_post_data 100
+	 *
+	 * @since  5.0.0
+	 * @param  array $data    post data.
+	 * @param  array $postarr saved data.
+	 * @return array
+	 */
+	public function save_notification_status( $data, $postarr ) {
+
+		// fix for brand new posts.
+		if ( 'auto-draft' === $data['post_status'] ) {
+			return $data;
+		}
+
+		if ( 'notification' !== $data['post_type'] ||
+			'trash' === $postarr['post_status'] ||
+			( isset( $_POST['action'] ) && 'change_notification_status' === $_POST['action'] ) ) {
+			return $data;
+		}
+
+		if ( isset( $postarr['onoffswitch'] ) && '1' === $postarr['onoffswitch'] ) {
+			$data['post_status'] = 'publish';
+		} else {
+			$data['post_status'] = 'draft';
+		}
+
+		return $data;
+
+	}
+
+	/**
+	 * Saves the Notification data
+	 *
+	 * @action save_post_notification
+	 *
+	 * @param  integer $post_id Current post ID.
+	 * @param  object  $post    WP_Post object.
+	 * @param  boolean $update  If existing notification is updated.
+	 * @return void
+	 */
+	public function save( $post_id, $post, $update ) {
+
+		if ( ! isset( $_POST['notification_data_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['notification_data_nonce'] ) ), 'notification_post_data_save' ) ) {
+			return;
+		}
+
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+
+		if ( ! $update ) {
+			return;
+		}
+
+		$data              = $_POST;
+		$notification_post = notification_get_post( $post );
+
+		// Trigger.
+		$trigger = ! empty( $data['notification_trigger'] ) ? sanitize_text_field( wp_unslash( $data['notification_trigger'] ) ) : '';
+		$notification_post->set_trigger( $trigger );
+
+		// Enable all notifications one by one.
+		foreach ( notification_get_notifications() as $notification ) {
+			if ( isset( $data[ 'notification_' . $notification->get_slug() . '_enable' ] ) ) {
+				$notification_post->enable_notification( $notification->get_slug() );
+			} else {
+				$notification_post->disable_notification( $notification->get_slug() );
+			}
+		}
+
+		// Save all notification settings one by one.
+		foreach ( notification_get_notifications() as $notification ) {
+
+			if ( ! isset( $data[ 'notification_type_' . $notification->get_slug() ] ) ) {
+				continue;
+			}
+
+			$ndata = $data[ 'notification_type_' . $notification->get_slug() ];
+
+			// nonce not set or false, ignoring this form.
+			if ( ! wp_verify_nonce( $ndata['_nonce'], $notification->get_slug() . '_notification_security' ) ) {
+				continue;
+			}
+
+			$notification_post->set_notification_data( $notification->get_slug(), $ndata );
+
+			do_action( 'notification/notification/saved', $notification_post->get_id(), $notification, $ndata );
+
+		}
+
+		// Hook into this action if you want to save any Notification Post data.
+		do_action( 'notification/data/save', $notification_post );
+
+	}
+
+	/**
+	 * --------------------------------------------------
+	 * Ajax.
+	 * --------------------------------------------------
+	 */
+
+	/**
 	 * Changes notification status from AJAX call
 	 *
 	 * @action wp_ajax_change_notification_status
@@ -309,6 +513,59 @@ class PostType {
 		}
 
 		$this->ajax->response( true, $error );
+
+	}
+
+	/**
+	 * Renders Merge Tags metabox for AJAX call.
+	 *
+	 * @action wp_ajax_get_merge_tags_for_trigger
+	 *
+	 * @return void
+	 */
+	public function ajax_render_merge_tags() {
+
+		if ( ! isset( $_POST['trigger_slug'] ) ) {
+			$this->ajax->error();
+		}
+
+		ob_start();
+
+		$this->render_merge_tags_list( sanitize_text_field( wp_unslash( $_POST['trigger_slug'] ) ) );
+
+		$this->ajax->success( ob_get_clean() );
+
+	}
+
+	/**
+	 * Renders recipient input for AJAX call.
+	 *
+	 * @action wp_ajax_get_recipient_input
+	 *
+	 * @return void
+	 */
+	public function ajax_get_recipient_input() {
+
+		ob_start();
+
+		$notification = sanitize_text_field( wp_unslash( $_POST['notification'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+		$type         = sanitize_text_field( wp_unslash( $_POST['type'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+		$recipient    = notification_get_single_recipient( $notification, $type );
+		$input        = $recipient->input();
+
+		// A little trick to get rid of the last part of input name
+		// which will be added by the field itself.
+		$input_name     = sanitize_text_field( wp_unslash( $_POST['input_name'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+		$input->section = str_replace( '[' . $input->get_raw_name() . ']', '', $input_name );
+
+		echo $input->field(); // WPCS: XSS ok.
+
+		$description = $input->get_description();
+		if ( ! empty( $description ) ) {
+			echo '<small class="description">' . $description . '</small>'; // WPCS: XSS ok.
+		}
+
+		$this->ajax->success( ob_get_clean() );
 
 	}
 
