@@ -8,7 +8,7 @@
  * @package notification
  */
 
-namespace BracketSpace\Notification;
+namespace BracketSpace\Notification\Utils;
 
 use BracketSpace\Notification\Utils\Files;
 

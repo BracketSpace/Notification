@@ -7,9 +7,7 @@
  * @package notification
  */
 
-namespace BracketSpace\Notification;
-
-use BracketSpace\Notification\Admin\Cron;
+namespace BracketSpace\Notification\Core;
 
 /**
  * Tracking class

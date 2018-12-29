@@ -7,7 +7,7 @@
  * @package notification
  */
 
-namespace BracketSpace\Notification;
+namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\Utils\Cache\ObjectCache;
 use BracketSpace\Notification\Utils\Cache\Transient as TransientCache;

@@ -54,22 +54,26 @@ class Runtime extends Utils\DocHooks {
 	 */
 	public function singletons() {
 
-		$this->whitelabel           = new Whitelabel();
 		$this->files                = new Utils\Files( $this->plugin_file, $this->plugin_custom_url, $this->plugin_custom_path );
-		$this->internationalization = new Internationalization( $this->files, 'notification' );
-		$this->settings             = new Admin\Settings();
-		$this->admin_duplicator     = new Admin\NotificationDuplicator();
-		$this->admin_post_type      = new Admin\PostType( $this->ajax(), $this->boxrenderer(), $this->formrenderer() );
-		$this->admin_post_table     = new Admin\PostTable();
-		$this->admin_extensions     = new Admin\Extensions( $this->view() );
-		$this->admin_scripts        = new Admin\Scripts( $this, $this->files );
-		$this->admin_screen         = new Admin\ScreenHelp( $this->view() );
-		$this->admin_cron           = new Admin\Cron();
-		$this->admin_share          = new Admin\Share( $this->view() );
-		$this->integration_wp       = new Integration\WordPress();
-		$this->integration_cf       = new Integration\CustomFields();
-		$this->core_debugging       = new Core\Debugging();
-		$this->tracking             = new Tracking( $this->admin_cron );
+		$this->internationalization = new Utils\Internationalization( $this->files, 'notification' );
+
+		$this->core_cron       = new Core\Cron();
+		$this->core_tracking   = new Core\Tracking( $this->core_cron );
+		$this->core_whitelabel = new Core\Whitelabel();
+		$this->core_debugging  = new Core\Debugging();
+		$this->core_settings   = new Core\Settings();
+
+		$this->admin_settings   = new Admin\Settings();
+		$this->admin_duplicator = new Admin\NotificationDuplicator();
+		$this->admin_post_type  = new Admin\PostType( $this->ajax(), $this->boxrenderer(), $this->formrenderer() );
+		$this->admin_post_table = new Admin\PostTable();
+		$this->admin_extensions = new Admin\Extensions( $this->view() );
+		$this->admin_scripts    = new Admin\Scripts( $this, $this->files );
+		$this->admin_screen     = new Admin\ScreenHelp( $this->view() );
+		$this->admin_share      = new Admin\Share( $this->view() );
+
+		$this->integration_wp = new Integration\WordPress();
+		$this->integration_cf = new Integration\CustomFields();
 
 	}
 
@@ -81,26 +85,30 @@ class Runtime extends Utils\DocHooks {
 	 */
 	public function actions() {
 
-		$this->add_hooks( $this->whitelabel );
 		$this->add_hooks( $this->files );
 		$this->add_hooks( $this->internationalization );
-		$this->add_hooks( $this->settings );
+
+		$this->add_hooks( $this->core_cron );
+		$this->add_hooks( $this->core_tracking );
+		$this->add_hooks( $this->core_whitelabel );
+		$this->add_hooks( $this->core_debugging );
+		$this->add_hooks( $this->core_settings );
+
+		$this->add_hooks( $this->admin_settings );
 		$this->add_hooks( $this->admin_duplicator );
 		$this->add_hooks( $this->admin_post_type );
 		$this->add_hooks( $this->admin_post_table );
 		$this->add_hooks( $this->admin_extensions );
 		$this->add_hooks( $this->admin_scripts );
 		$this->add_hooks( $this->admin_screen );
-		$this->add_hooks( $this->admin_cron );
 		$this->add_hooks( $this->admin_share );
+
 		$this->add_hooks( $this->integration_wp );
 		$this->add_hooks( $this->integration_cf );
-		$this->add_hooks( $this->core_debugging );
-		$this->add_hooks( $this->tracking );
 
-		notification_register_settings( array( $this->settings, 'general_settings' ) );
-		notification_register_settings( array( $this->settings, 'triggers_settings' ), 20 );
-		notification_register_settings( array( $this->settings, 'notifications_settings' ), 30 );
+		notification_register_settings( array( $this->admin_settings, 'general_settings' ) );
+		notification_register_settings( array( $this->admin_settings, 'triggers_settings' ), 20 );
+		notification_register_settings( array( $this->admin_settings, 'notifications_settings' ), 30 );
 		notification_register_settings( array( $this->core_debugging, 'debugging_settings' ), 30 );
 
 	}
