@@ -130,6 +130,29 @@ class PostType {
 	}
 
 	/**
+	 * Changes the notification post statuses above the post table
+	 *
+	 * @filter views_edit-notification
+	 *
+	 * @since  [Next]
+	 * @param  array $statuses Statuses array.
+	 * @return array
+	 */
+	public function change_post_statuses( $statuses ) {
+
+		if ( isset( $statuses['publish'] ) ) {
+			$statuses['publish'] = str_replace( __( 'Published', 'wordpress' ), __( 'Active', 'notification' ), $statuses['publish'] ); // phpcs:ignore
+		}
+
+		if ( isset( $statuses['draft'] ) ) {
+			$statuses['draft'] = str_replace( __( 'Draft', 'wordpress' ), __( 'Disabled', 'notification' ), $statuses['draft'] ); // phpcs:ignore
+		}
+
+		return $statuses;
+
+	}
+
+	/**
 	 * --------------------------------------------------
 	 * Display.
 	 * --------------------------------------------------
