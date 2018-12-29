@@ -31,7 +31,7 @@ function notification_register_settings( $callback, $priority = 10 ) {
  */
 function notification_get_settings() {
 	$runtime = notification_runtime();
-	return $runtime->settings->get_settings();
+	return $runtime->core_settings->get_settings();
 }
 
 /**
@@ -43,5 +43,5 @@ function notification_get_settings() {
  */
 function notification_get_setting( $setting ) {
 	$runtime = notification_runtime();
-	return $runtime->settings->get_setting( $setting );
+	return $runtime->core_settings->get_setting( $setting );
 }

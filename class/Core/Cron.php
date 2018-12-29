@@ -5,7 +5,7 @@
  * @package notification
  */
 
-namespace BracketSpace\Notification\Admin;
+namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\Utils\Files;
 

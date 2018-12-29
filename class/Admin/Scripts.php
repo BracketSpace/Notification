@@ -52,7 +52,7 @@ class Scripts {
 
 		$allowed_hooks = apply_filters( 'notification/scripts/allowed_hooks', array(
 			$this->runtime->admin_extensions->page_hook,
-			$this->runtime->settings->page_hook,
+			$this->runtime->core_settings->page_hook,
 			$this->runtime->admin_share->page_hook,
 			'plugins.php',
 			'post-new.php',

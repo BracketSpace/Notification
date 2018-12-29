@@ -7,7 +7,7 @@
 
 namespace BracketSpace\Notification\Admin;
 
-use BracketSpace\Notification\License;
+use BracketSpace\Notification\Core\License;
 use BracketSpace\Notification\Utils\View;
 use BracketSpace\Notification\Utils\EDDUpdater;
 use BracketSpace\Notification\Utils\Cache\Transient as TransientCache;
