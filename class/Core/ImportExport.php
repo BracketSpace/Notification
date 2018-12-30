@@ -114,35 +114,48 @@ class ImportExport {
 
 		foreach ( $posts as $wppost ) {
 
-			$notification  = notification_get_post( $wppost );
-			$notifications = array();
-
-			foreach ( $notification->get_notifications( 'objects', true ) as $notification_type ) {
-				$fields = array();
-				foreach ( $notification_type->get_form_fields() as $field ) {
-					if ( $field->get_raw_name() === '_nonce' ) {
-						continue;
-					}
-					$fields[ $field->get_raw_name() ] = $field->get_value();
-				}
-				$notifications[ $notification_type->get_slug() ] = $fields;
-			}
-
-			// Hook into this filter to add extra export data. Should add a unique key and export values.
-			$extras = apply_filters( 'notification/post/export/extras', array(), $notification );
-
-			$data[] = array(
-				'hash'          => $notification->get_hash(),
-				'title'         => $notification->get_title(),
-				'trigger'       => $notification->get_trigger(),
-				'notifications' => $notifications,
-				'enabled'       => $notification->is_enabled(),
-				'extras'        => $extras,
-			);
+			$notification = notification_get_post( $wppost );
+			$data[]       = $this->get_notification_data( $notification );
 
 		}
 
 		return $data;
+
+	}
+
+	/**
+	 * Gets single notification export data
+	 *
+	 * @since  [Next]
+	 * @param  Notification $notification Notification post object.
+	 * @return array
+	 */
+	public function get_notification_data( $notification ) {
+
+		$notifications = array();
+
+		foreach ( $notification->get_notifications( 'objects', true ) as $notification_type ) {
+			$fields = array();
+			foreach ( $notification_type->get_form_fields() as $field ) {
+				if ( $field->get_raw_name() === '_nonce' ) {
+					continue;
+				}
+				$fields[ $field->get_raw_name() ] = $field->get_value();
+			}
+			$notifications[ $notification_type->get_slug() ] = $fields;
+		}
+
+		// Hook into this filter to add extra export data. Should add a unique key and export values.
+		$extras = apply_filters( 'notification/post/export/extras', array(), $notification );
+
+		return array(
+			'hash'          => $notification->get_hash(),
+			'title'         => $notification->get_title(),
+			'trigger'       => $notification->get_trigger(),
+			'notifications' => $notifications,
+			'enabled'       => $notification->is_enabled(),
+			'extras'        => $extras,
+		);
 
 	}
 
