@@ -52,17 +52,20 @@ function notification_populate_notification( $notification, $post = false ) {
  * Gets all notification posts with enabled trigger.
  *
  * @since  [Next]
- * @param  string $trigger_slug Trigger slug.
+ * @param  mixed $trigger_slug Trigger slug or null if all posts should be returned.
  * @return array
  */
-function notification_get_trigger_notifications( $trigger_slug ) {
+function notification_get_posts( $trigger_slug = null ) {
 
 	$query_args = array(
 		'numberposts' => -1,
 		'post_type'   => 'notification',
-		'meta_key'    => Notification::$metakey_trigger,
-		'meta_value'  => $trigger_slug,
 	);
+
+	if ( ! empty( $trigger_slug ) ) {
+		$query_args['meta_key']   = Notification::$metakey_trigger;
+		$query_args['meta_value'] = $trigger_slug;
+	}
 
 	// WPML compat.
 	if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
