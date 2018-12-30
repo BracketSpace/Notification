@@ -140,8 +140,6 @@ function notification_create( $data, $update = false ) {
 		'post_status' => $data['enabled'] ? 'publish' : 'draft',
 	), true );
 
-	file_put_contents( dirname( __FILE__ ) . '/post.log', print_r( get_post( $post ), true ) . "\r\n\r\n", FILE_APPEND );
-
 	if ( is_wp_error( $post ) ) {
 		return $post;
 	}
