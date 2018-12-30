@@ -438,6 +438,30 @@ class PostType {
 	}
 
 	/**
+	 * Creates Notification unique hash
+	 *
+	 * @filter wp_insert_post_data 100
+	 *
+	 * @since  [Next]
+	 * @param  array $data    post data.
+	 * @param  array $postarr saved data.
+	 * @return array
+	 */
+	public function create_notification_hash( $data, $postarr ) {
+
+		if ( 'notification' !== $data['post_type'] ) {
+			return $data;
+		}
+
+		if ( ! preg_match( '/notification_[a-z0-9]{13}/', $data['post_name'] ) ) {
+			$data['post_name'] = uniqid( 'notification_' );
+		}
+
+		return $data;
+
+	}
+
+	/**
 	 * Saves the Notification data
 	 *
 	 * @action save_post_notification
