@@ -22,11 +22,22 @@ class ImportExport {
 	 */
 	public function settings( $settings ) {
 
-		$debugging = $settings->add_section( __( 'Import / Export', 'notification' ), 'import_export' );
+		$importexport = $settings->add_section( __( 'Import / Export', 'notification' ), 'import_export' );
 
-		$debugging->add_group( __( 'Import', 'notification' ), 'import' );
+		$importexport->add_group( __( 'Import', 'notification' ), 'import' )
+			->add_field(
+				array(
+					'name'     => __( 'Notifications', 'notification' ),
+					'slug'     => 'notifications',
+					'addons'   => array(
+						'message' => $this->notification_import_form(),
+					),
+					'render'   => array( new CoreFields\Message(), 'input' ),
+					'sanitize' => array( new CoreFields\Message(), 'sanitize' ),
+				)
+			);
 
-		$debugging->add_group( __( 'Export', 'notification' ), 'export' )
+		$importexport->add_group( __( 'Export', 'notification' ), 'export' )
 			->add_field(
 				array(
 					'name'     => __( 'Notifications', 'notification' ),
@@ -39,6 +50,17 @@ class ImportExport {
 				)
 			);
 
+	}
+
+	/**
+	 * Returns notifications import form
+	 *
+	 * @since  [Next]
+	 * @return string
+	 */
+	public function notification_import_form() {
+		$view = notification_create_view();
+		return $view->get_view_output( 'import/notifications' );
 	}
 
 	/**
@@ -155,7 +177,87 @@ class ImportExport {
 			'notifications' => $notifications,
 			'enabled'       => $notification->is_enabled(),
 			'extras'        => $extras,
+			'version'       => $notification->get_version(),
 		);
+
+	}
+
+	/**
+	 * Handles import request
+	 *
+	 * @action wp_ajax_notification_import_json
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function import_request() {
+
+		if ( false === check_ajax_referer( 'import-notifications', 'nonce', false ) ) {
+			wp_send_json_error( __( 'Security check failed. Please refresh the page and try again' ) );
+		}
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( __( 'You are not allowed to import notifications' ) );
+		}
+
+		if ( ! isset( $_POST['type'] ) ) {
+			wp_send_json_error( __( 'Wrong import type' ) );
+		}
+
+		if ( ! isset( $_FILES[0] ) ) {
+			wp_send_json_error( __( 'Please select file for import' ) );
+		}
+
+		// phpcs:disable
+		$file = fopen( $_FILES[0]['tmp_name'], 'rb' );
+		$json = fread( $file, filesize( $_FILES[0]['tmp_name'] ) );
+		fclose( $file );
+		unlink( $_FILES[0]['tmp_name'] );
+		// phpcs:enable
+
+		$data = json_decode( $json, true );
+		$type = sanitize_text_field( wp_unslash( $_POST['type'] ) );
+
+		try {
+			$result = call_user_func( array( $this, 'process_' . $type . '_import_request' ), $data );
+		} catch ( \Exception $e ) {
+			wp_send_json_error( $e->getMessage() );
+		}
+
+		wp_send_json_success( $result );
+
+	}
+
+	/**
+	 * Imports notifications
+	 *
+	 * @since  [Next]
+	 * @param  array $data Notifications data.
+	 * @return string
+	 */
+	public function process_notifications_import_request( $data ) {
+
+		$added   = 0;
+		$skipped = 0;
+		$updated = 0;
+
+		foreach ( $data as $notification_data ) {
+			$existing_notification = notification_get_post_by_hash( $notification_data['hash'] );
+			if ( empty( $existing_notification ) ) {
+				notification_create( $notification_data );
+				$added++;
+			} else {
+				if ( $existing_notification->get_version() >= $notification_data['version'] ) {
+					$skipped++;
+				} else {
+					notification_update( $notification_data );
+					$updated++;
+				}
+			}
+		}
+
+		// translators: number and number and number of notifications.
+		return sprintf( __( '%1$d notifications imported successfully. %2$d updated. %3$d skipped.' ), ( $added + $updated ), $updated, $skipped );
 
 	}
 

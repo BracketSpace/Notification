@@ -8,4 +8,16 @@
 		display: none;
 	}
 
+	.message {
+
+		&.error {
+			color: red;
+		}
+
+		&.success {
+			color: #00ad00;
+		}
+
+	}
+
 }

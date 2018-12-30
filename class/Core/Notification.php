@@ -107,6 +107,15 @@ class Notification {
 	}
 
 	/**
+	 * Gets notification version
+	 *
+	 * @return integer
+	 */
+	public function get_version() {
+		return strtotime( $this->post->post_modified_gmt );
+	}
+
+	/**
 	 * Sets trigger
 	 *
 	 * @since [Next]

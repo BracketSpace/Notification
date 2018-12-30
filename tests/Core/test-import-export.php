@@ -17,9 +17,9 @@ class TestImportExport extends \WP_UnitTestCase {
 	 *
 	 * @since [Next]
 	 */
-	public function test_notification_add_export_extra() {
+	public function test_notification_export_extra() {
 
-		notification_add_export_extra( 'key', function( $notused ) {
+		notification_export_extra( 'key', function( $notused ) {
 			return 'data';
 		} );
 
@@ -28,7 +28,7 @@ class TestImportExport extends \WP_UnitTestCase {
 		$this->assertArrayHasKey( 'key', $extras );
 		$this->assertEquals( 'data', $extras['key'] );
 
-		notification_add_export_extra( 'key', function( $notused ) {
+		notification_export_extra( 'key', function( $notused ) {
 			return 'new data';
 		} );
 

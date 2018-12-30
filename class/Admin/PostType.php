@@ -421,6 +421,11 @@ class PostType {
 			return $data;
 		}
 
+		// fix for AJAX calls.
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			return $data;
+		}
+
 		if ( 'notification' !== $data['post_type'] ||
 			'trash' === $postarr['post_status'] ||
 			( isset( $_POST['action'] ) && 'change_notification_status' === $_POST['action'] ) ) {
