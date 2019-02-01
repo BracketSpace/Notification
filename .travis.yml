@@ -3,9 +3,7 @@ language: php
 matrix:
   include:
     - php: 7.2
-      env:
-      	- SNIFF=1
-      	- WP_VERSION=latest
+      env: SNIFF=1
     - php: 5.6
       env: WP_VERSION=latest
 
