@@ -261,6 +261,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Admin Classes: MergeTags, Notifications, PostData, Recipients, Triggers has been removed and their content included in the Admin/PostType class.
 * [Changed] Notification data is now using single nonce field and additional data should be saved with `notification/data/save` action.
 * [Changed] Namespaces of Cron, Internationalization, License, Tracking and Whitelabel classes.
+* [Changed] Native class autoloader to Composer autoloader.
 
 = 5.3.2 =
 * [Fixed] Double post notification called for post revisions.
