@@ -29,7 +29,7 @@ do_action( 'notification/metabox/trigger/tags/before', $this->get_var( 'trigger'
 								<label><?php esc_html_e( 'Example:', 'notification' ); ?></label>
 							<?php endif ?>
 							<div class="description-content">
-								<?php echo $description; // WPCS: XSS ok. ?>
+								<?php echo $description; // phpcs:ignore ?>
 							</div>
 							<?php if ( $tag->is_description_example() ) : ?>
 								<i>(<?php echo esc_html( $tag->get_value_type() ); ?>)</i>

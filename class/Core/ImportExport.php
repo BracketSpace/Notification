@@ -122,12 +122,12 @@ class ImportExport {
 	 */
 	public function prepare_notifications_export_data() {
 
-		if ( ! isset( $_GET['items'] ) || empty( $_GET['items'] ) ) {
+		if ( ! isset( $_GET['items'] ) || empty( $_GET['items'] ) ) { // phpcs:ignore
 			throw new \Exception( __( 'No items selected for export' ) );
 		}
 
 		$data  = array();
-		$items = explode( ',', sanitize_text_field( wp_unslash( $_GET['items'] ) ) );
+		$items = explode( ',', sanitize_text_field( wp_unslash( $_GET['items'] ) ) ); // phpcs:ignore
 		$posts = get_posts( array(
 			'post_type'      => 'notification',
 			'posts_per_page' => -1,

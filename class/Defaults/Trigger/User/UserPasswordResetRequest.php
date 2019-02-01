@@ -42,7 +42,7 @@ class UserPasswordResetRequest extends UserTrigger {
 		 * Bail if we are handling the registration.
 		 * Use the filter to integrate with 3rd party code.
 		 */
-		if ( ( isset( $_GET['action'] ) && 'register' === $_GET['action'] ) ||
+		if ( ( isset( $_GET['action'] ) && 'register' === $_GET['action'] ) ||  // phpcs:ignore
 			apply_filters( 'notification/trigger/wordpress/user_password_reset_request/bail_for_registration', false, $user ) ) {
 			return false;
 		}

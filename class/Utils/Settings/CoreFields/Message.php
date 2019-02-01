@@ -24,7 +24,7 @@ class Message {
 			echo '<pre><code>';
 		}
 
-		echo $field->addon( 'message' ); // WPCS: XSS ok.
+		echo $field->addon( 'message' ); // phpcs:ignore
 
 		if ( $field->addon( 'code' ) ) {
 			echo '</code></pre>';

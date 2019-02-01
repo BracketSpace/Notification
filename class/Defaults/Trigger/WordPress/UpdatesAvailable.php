@@ -241,7 +241,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 
 		foreach ( $updates as $update ) {
 			// translators: 1. Plugin name, 2. Current version, 3. Update version.
-			$html .= '<li>' . sprintf( __( '<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s', 'notification' ), $update->Name, $update->Version, $update->update->new_version ) . '</li>'; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar
+			$html .= '<li>' . sprintf( __( '<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s', 'notification' ), $update->Name, $update->Version, $update->update->new_version ) . '</li>'; // phpcs:ignore
 		}
 
 		$html .= '</ul>';
@@ -268,7 +268,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 
 		foreach ( $updates as $update ) {
 			// translators: 1. Theme name, 2. Current version, 3. Update version.
-			$html .= '<li>' . sprintf( __( '<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s', 'notification' ), $update->Name, $update->Version, $update->update['new_version'] ) . '</li>'; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar
+			$html .= '<li>' . sprintf( __( '<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s', 'notification' ), $update->Name, $update->Version, $update->update['new_version'] ) . '</li>'; // phpcs:ignore
 		}
 
 		$html .= '</ul>';

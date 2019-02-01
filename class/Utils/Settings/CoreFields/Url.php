@@ -20,7 +20,7 @@ class Url {
 	 */
 	public function input( $field ) {
 
-		echo '<label><input type="url" id="' . $field->input_id() . '" name="' . $field->input_name() . '" value="' . $field->value() . '" class="widefat"></label>'; // WPCS: XSS ok.
+		echo '<label><input type="url" id="' . $field->input_id() . '" name="' . $field->input_name() . '" value="' . $field->value() . '" class="widefat"></label>'; // phpcs:ignore
 
 	}
 

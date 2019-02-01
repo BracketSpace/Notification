@@ -21,7 +21,7 @@
 						<?php if ( $tag->is_description_example() ) : ?>
 							<strong><?php esc_html_e( 'Example:', 'notification' ); ?></strong>
 						<?php endif ?>
-						<?php echo $description; // WPCS: XSS ok. ?>
+						<?php echo $description; // phpcs:ignore ?>
 					</p>
 				<?php endif ?>
 			</td>

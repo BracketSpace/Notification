@@ -116,7 +116,7 @@ class Debugging {
 		$message        = esc_html__( 'Debug log is active and no notifications will be sent.', 'notification' );
 		$debug_log_link = '<a href="' . admin_url( 'edit.php?post_type=notification&page=settings&section=debugging' ) . '">' . esc_html__( 'See debug log', 'notification' ) . '</a>';
 
-		echo '<div class="notice notice-warning"><p>' . $message . ' ' . $debug_log_link . '</p></div>'; // wpcs:xss ok.
+		echo '<div class="notice notice-warning"><p>' . $message . ' ' . $debug_log_link . '</p></div>'; // phpcs:ignore
 
 	}
 
