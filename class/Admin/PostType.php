@@ -421,6 +421,11 @@ class PostType {
 			return $data;
 		}
 
+		// fix for AJAX calls.
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			return $data;
+		}
+
 		if ( 'notification' !== $data['post_type'] ||
 			'trash' === $postarr['post_status'] ||
 			( isset( $_POST['action'] ) && 'change_notification_status' === $_POST['action'] ) ) {
@@ -431,6 +436,30 @@ class PostType {
 			$data['post_status'] = 'publish';
 		} else {
 			$data['post_status'] = 'draft';
+		}
+
+		return $data;
+
+	}
+
+	/**
+	 * Creates Notification unique hash
+	 *
+	 * @filter wp_insert_post_data 100
+	 *
+	 * @since  [Next]
+	 * @param  array $data    post data.
+	 * @param  array $postarr saved data.
+	 * @return array
+	 */
+	public function create_notification_hash( $data, $postarr ) {
+
+		if ( 'notification' !== $data['post_type'] ) {
+			return $data;
+		}
+
+		if ( ! preg_match( '/notification_[a-z0-9]{13}/', $data['post_name'] ) ) {
+			$data['post_name'] = uniqid( 'notification_' );
 		}
 
 		return $data;
