@@ -21,7 +21,7 @@ class Number {
 	 */
 	public function input( $field ) {
 
-		echo '<label><input type="number" id="' . $field->input_id() . '" name="' . $field->input_name() . '" value="' . $field->value() . '" min="' . $field->addon( 'min' ) . '" max="' . $field->addon( 'max' ) . '" step="' . $field->addon( 'step' ) . '" class="widefat"></label>'; // WPCS: XSS ok.
+		echo '<label><input type="number" id="' . $field->input_id() . '" name="' . $field->input_name() . '" value="' . $field->value() . '" min="' . $field->addon( 'min' ) . '" max="' . $field->addon( 'max' ) . '" step="' . $field->addon( 'step' ) . '" class="widefat"></label>'; // phpcs:ignore
 
 	}
 

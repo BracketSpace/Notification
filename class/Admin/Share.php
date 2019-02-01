@@ -40,7 +40,7 @@ class Share {
 	 */
 	public function register_page() {
 
-		if ( ! notification_display_story() || isset( $_GET['notification-story-skip'] ) ) {
+		if ( ! notification_display_story() || isset( $_GET['notification-story-skip'] ) ) { // phpcs:ignore
 			return;
 		}
 
@@ -86,7 +86,7 @@ class Share {
 	 */
 	public function dismiss_story() {
 
-		if ( isset( $_GET['notification-story-skip'] ) ) {
+		if ( isset( $_GET['notification-story-skip'] ) ) { // phpcs:ignore
 			update_option( 'notification_story_dismissed', true );
 		}
 
