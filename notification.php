@@ -19,50 +19,18 @@ require_once 'vendor/autoload.php';
 /**
  * Requirements check
  */
-$requirements = new BracketSpace\Notification\Utils\Requirements(
-	__( 'Notification', 'notification' ),
-	array(
-		'php'                => '5.6',
-		'wp'                 => '4.9',
-		'function_collision' => array( 'register_trigger', 'register_notification' ),
-		'dochooks'           => true,
-	)
-);
+$requirements = new BracketSpace\Notification\Utils\Requirements( __( 'Notification', 'notification' ), [
+	'php'                => '5.6',
+	'wp'                 => '4.9',
+	'function_collision' => array( 'register_trigger', 'register_notification' ),
+	'dochooks'           => true,
+] );
 
 /**
  * Check if ReflectionObject returns proper docblock comments for methods.
  */
 if ( method_exists( $requirements, 'add_check' ) ) {
-	$requirements->add_check(
-		'dochooks',
-		function( $comparsion, $r ) {
-			if ( true !== $comparsion ) {
-				return;
-			}
-
-			/**
-			 * NotificationDocHookTest class
-			 */
-			class NotificationDocHookTest {
-				/**
-				 * Test method
-				 *
-				 * @action test 10
-				 * @return void
-				 */
-				public function test_method() {}
-			}
-
-			$reflector = new \ReflectionObject( new NotificationDocHookTest() );
-			foreach ( $reflector->getMethods() as $method ) {
-				$doc = $method->getDocComment();
-				if ( false === strpos( $doc, '@action' ) ) {
-					$r->add_error( __( 'PHP OP Cache to be disabled', 'notification' ) );
-				}
-			}
-
-		}
-	);
+	$requirements->add_check( 'dochooks', require 'inc/requirements/dochooks.php' );
 }
 
 if ( ! $requirements->satisfied() ) {
