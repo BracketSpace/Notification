@@ -80,12 +80,39 @@ class Notification {
 	}
 
 	/**
+	 * Gets notification hash
+	 *
+	 * @return string hash
+	 */
+	public function get_hash() {
+		return $this->post->post_name;
+	}
+
+	/**
 	 * Checks if notification post has been just started
 	 *
 	 * @return boolean
 	 */
 	public function is_new() {
 		return '0000-00-00 00:00:00' === $this->post->post_date_gmt;
+	}
+
+	/**
+	 * Checks if notification is enabled
+	 *
+	 * @return boolean
+	 */
+	public function is_enabled() {
+		return 'publish' === $this->post->post_status;
+	}
+
+	/**
+	 * Gets notification version
+	 *
+	 * @return integer
+	 */
+	public function get_version() {
+		return strtotime( $this->post->post_modified_gmt );
 	}
 
 	/**
