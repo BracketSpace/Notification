@@ -9,6 +9,7 @@ namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Utils\View;
 use BracketSpace\Notification\Utils\Ajax;
+use BracketSpace\Notification\Core\Notification;
 
 /**
  * PostType class
@@ -459,7 +460,7 @@ class PostType {
 		}
 
 		if ( ! preg_match( '/notification_[a-z0-9]{13}/', $data['post_name'] ) ) {
-			$data['post_name'] = uniqid( 'notification_' );
+			$data['post_name'] = Notification::create_hash();
 		}
 
 		return $data;

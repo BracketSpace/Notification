@@ -11,297 +11,176 @@ use BracketSpace\Notification\Interfaces;
 
 /**
  * Notification class
+ * Valid keys are:
+ * - hash
+ * - title
+ * - trigger
+ * - notifications
+ * - enabled
+ * - extras
+ * - version
  */
 class Notification {
 
 	/**
-	 * Notification post
-	 *
-	 * @var WP_Post
-	 */
-	protected $post;
-
-	/**
-	 * Meta key for enabled notifications
+	 * Hash
 	 *
 	 * @var string
 	 */
-	public static $metakey_notification_enabled = '_enabled_notification';
+	protected $hash;
 
 	/**
-	 * Meta key for notification data
+	 * Title
 	 *
 	 * @var string
 	 */
-	public static $metakey_notification_data = '_notification_type_';
+	protected $title = '';
 
 	/**
-	 * Meta key for active trigger
+	 * Trigger
 	 *
-	 * @var string
+	 * @var Interfaces\Triggerable
 	 */
-	public static $metakey_trigger = '_trigger';
+	protected $trigger;
+
+	/**
+	 * Notifications
+	 *
+	 * @var array
+	 */
+	protected $notifications = [];
+
+	/**
+	 * Status
+	 *
+	 * @var bool
+	 */
+	protected $enabled = true;
+
+	/**
+	 * Extras
+	 *
+	 * @var array
+	 */
+	protected $extras = [];
+
+	/**
+	 * Version
+	 *
+	 * @var integer
+	 */
+	protected $version;
 
 	/**
 	 * Constructor
 	 *
 	 * @since [Next]
-	 * @throws \Exception If param is not int nor WP_Post.
-	 * @param mixed $post WP_Post || Post ID.
+	 * @throws \Exception If wrong arguments has been passed.
+	 * @param array $data Notification data.
 	 */
-	public function __construct( $post ) {
+	public function __construct( $data ) {
 
-		if ( $post instanceof \WP_Post ) {
-			$this->post = $post;
-		} elseif ( is_integer( $post ) ) {
-			$this->post = get_post( $post );
-		} else {
-			throw new \Exception( 'You must provide an WP_Post or Post ID' );
+		// Hash. If not provided will be generated automatically.
+		$hash = isset( $data['hash'] ) && ! empty( $data['hash'] ) ? $data['hash'] : self::create_hash();
+		$this->set_hash( $hash );
+
+		// Title.
+		if ( isset( $data['title'] ) ) {
+			$this->set_title( sanitize_text_field( $data['title'] ) );
+		}
+
+		// Trigger.
+		if ( isset( $data['trigger'] ) ) {
+			if ( $data['trigger'] instanceof Interfaces\Triggerable ) {
+				$this->set_trigger( $data['trigger'] );
+			} else {
+				throw new \Exception( 'Trigger must implement Triggerable interface' );
+			}
+		}
+
+		// Notifications.
+		if ( isset( $data['notifications'] ) ) {
+			$notifications = [];
+
+			foreach ( $data['notifications'] as $notification ) {
+				if ( $notification instanceof Interfaces\Sendable ) {
+					$notifications[] = $notification;
+				} else {
+					throw new \Exception( 'Each Notifiation object must implement Sendable interface' );
+				}
+			}
+
+			$this->set_notifications( $notifications );
+		}
+
+		// Status.
+		if ( isset( $data['enabled'] ) ) {
+			$this->set_enabled( (bool) $data['enabled'] );
+		}
+
+		// Extras.
+		if ( isset( $data['extras'] ) ) {
+			$extras = [];
+
+			foreach ( $data['extras'] as $extra ) {
+				if ( is_array( $extra ) || is_string( $extra ) || is_numeric( $extra ) ) {
+					$extras[] = $extra;
+				} else {
+					throw new \Exception( 'Each extra must be an array or string or number.' );
+				}
+			}
+
+			$this->set_extras( $extras );
+		}
+
+		// Version. If none provided, the current most recent version is used.
+		$version = isset( $data['version'] ) && ! empty( $data['version'] ) ? $data['version'] : time();
+		$this->set_version( $version );
+
+	}
+
+	/**
+	 * Getter method
+	 *
+	 * @since  [Next]
+	 * @throws \Exception If no property has been found.
+	 * @param  string $method_name Method name.
+	 * @param  array  $arguments   Arguments.
+	 * @return mixed
+	 */
+	public function __call( $method_name, $arguments ) {
+
+		// Getter.
+		if ( 0 === strpos( $method_name, 'get_' ) ) {
+			$property = str_replace( 'get_', '', $method_name );
+
+			if ( property_exists( $this, $property ) ) {
+				return $this->$property;
+			} else {
+				throw new \Exception( sprintf( 'Property %s doesn\'t exists.', $property ) );
+			}
+		}
+
+		// Setter.
+		if ( 0 === strpos( $method_name, 'set_' ) ) {
+			$property = str_replace( 'set_', '', $method_name );
+
+			if ( isset( $arguments[0] ) ) {
+				$this->$property = $arguments[0];
+			} else {
+				throw new \Exception( 'You must provide the property value' );
+			}
 		}
 
 	}
 
 	/**
-	 * Gets notification post ID
-	 *
-	 * @return integer post ID
-	 */
-	public function get_id() {
-		return $this->post->ID;
-	}
-
-	/**
-	 * Gets notification post title
-	 *
-	 * @return string post title
-	 */
-	public function get_title() {
-		return $this->post->post_title;
-	}
-
-	/**
-	 * Gets notification hash
+	 * Creates hash
 	 *
 	 * @return string hash
 	 */
-	public function get_hash() {
-		return $this->post->post_name;
-	}
-
-	/**
-	 * Checks if notification post has been just started
-	 *
-	 * @return boolean
-	 */
-	public function is_new() {
-		return '0000-00-00 00:00:00' === $this->post->post_date_gmt;
-	}
-
-	/**
-	 * Checks if notification is enabled
-	 *
-	 * @return boolean
-	 */
-	public function is_enabled() {
-		return 'publish' === $this->post->post_status;
-	}
-
-	/**
-	 * Gets notification version
-	 *
-	 * @return integer
-	 */
-	public function get_version() {
-		return strtotime( $this->post->post_modified_gmt );
-	}
-
-	/**
-	 * Sets trigger
-	 *
-	 * @since [Next]
-	 * @param string $trigger_slug Trigger slug.
-	 */
-	public function set_trigger( $trigger_slug ) {
-		update_post_meta( $this->get_id(), self::$metakey_trigger, sanitize_text_field( $trigger_slug ) );
-	}
-
-	/**
-	 * Gets trigger
-	 *
-	 * @since [Next]
-	 * @return mixed string or false
-	 */
-	public function get_trigger() {
-		return get_post_meta( $this->get_id(), self::$metakey_trigger, true );
-	}
-
-	/**
-	 * Enables notification and sets its data
-	 *
-	 * @since  [Next]
-	 * @param  string $notification_slug Notification slug.
-	 * @param  mixed  $notification_data Notification data or false if none.
-	 * @return void
-	 */
-	public function enable_notification( $notification_slug, $notification_data = false ) {
-
-		// Check if notification hasn't been enabled yet.
-		$active_notifications = $this->get_notifications( 'slugs' );
-		if ( ! in_array( $notification_slug, $active_notifications, true ) ) {
-			add_post_meta( $this->get_id(), self::$metakey_notification_enabled, $notification_slug );
-		}
-
-		if ( $notification_data ) {
-			$this->set_notification_data( $notification_slug, $notification_data );
-		}
-
-	}
-
-	/**
-	 * Disable notification
-	 *
-	 * @since  [Next]
-	 * @param  string  $notification_slug Notification slug.
-	 * @param  boolean $delete_data       If Notification data should be deleted.
-	 * @return void
-	 */
-	public function disable_notification( $notification_slug, $delete_data = false ) {
-
-		delete_post_meta( $this->get_id(), self::$metakey_notification_enabled, $notification_slug );
-
-		if ( $delete_data ) {
-			delete_post_meta( $this->get_id(), self::$metakey_notification_data . $notification_slug );
-		}
-
-	}
-
-	/**
-	 * Sets notification data
-	 *
-	 * @since  [Next]
-	 * @param  string $notification_slug     Notification slug.
-	 * @param  array  $raw_notification_data Notification raw data.
-	 * @return void
-	 */
-	public function set_notification_data( $notification_slug, $raw_notification_data ) {
-
-		$notification = notification_get_single_notification( $notification_slug );
-
-		if ( ! $notification ) {
-			return;
-		}
-
-		$notification_data = array();
-
-		// Sanitize each field individually.
-		foreach ( $notification->get_form_fields() as $field ) {
-
-			if ( isset( $raw_notification_data[ $field->get_raw_name() ] ) ) {
-				$user_data = $raw_notification_data[ $field->get_raw_name() ];
-			} else {
-				$user_data = null;
-			}
-
-			$notification_data[ $field->get_raw_name() ] = $field->sanitize( $user_data );
-
-		}
-
-		$notification_data = apply_filters( 'notification/notification/form/data/values', $notification_data, $raw_notification_data );
-
-		update_post_meta( $this->get_id(), self::$metakey_notification_data . $notification_slug, $notification_data );
-
-	}
-
-	/**
-	 * Gets notification data
-	 *
-	 * @since  [Next]
-	 * @param  string $notification_slug Notification slug.
-	 * @return array
-	 */
-	public function get_notification_data( $notification_slug ) {
-		$data = get_post_meta( $this->get_id(), self::$metakey_notification_data . $notification_slug, true );
-		return apply_filters( 'notification/notification/form_fields/values', $data, notification_get_single_notification( $notification_slug ) );
-	}
-
-	/**
-	 * Gets enabled notifications
-	 *
-	 * @since  [Next]
-	 * @param  string  $type     Type to return: objects || slugs.
-	 * @param  boolean $populate If Notification objects should be populated with data.
-	 * @return array
-	 */
-	public function get_notifications( $type = 'objects', $populate = false ) {
-
-		$slugs = (array) get_post_meta( $this->get_id(), self::$metakey_notification_enabled, false );
-
-		if ( 'slugs' === $type ) {
-			return $slugs;
-		}
-
-		$objects = array();
-
-		// Translate slug to the object.
-		foreach ( $slugs as $slug ) {
-			$notification = notification_get_single_notification( $slug );
-			if ( ! empty( $notification ) ) {
-
-				$cloned_notification = clone $notification;
-
-				if ( $populate ) {
-					$this->populate_notification( $cloned_notification );
-				}
-
-				$objects[] = $cloned_notification;
-
-			}
-		}
-
-		return $objects;
-
-	}
-
-	/**
-	 * Popupates Notification with field values
-	 *
-	 * @since  [Next]
-	 * @throws \Exception If notification hasn't been found.
-	 * @param  mixed $notification Sendable object or Notification slug.
-	 * @return Sendable
-	 */
-	public function populate_notification( $notification ) {
-
-		if ( ! $notification instanceof Interfaces\Sendable ) {
-			$notification = notification_get_single_notification( $notification );
-		}
-
-		if ( ! $notification ) {
-			throw new \Exception( 'Wrong notification slug' );
-		}
-
-		// Set enabled state.
-		$enabled_notifications = (array) get_post_meta( $this->get_id(), self::$metakey_notification_enabled, false );
-
-		// If this is new post, mark email notifiation as active for better UX.
-		if ( $this->is_new() && $notification->get_slug() === 'email' ) {
-			$enabled_notifications[] = 'email';
-		}
-
-		if ( in_array( $notification->get_slug(), $enabled_notifications, true ) ) {
-			$notification->enabled = true;
-		}
-
-		$field_values = $this->get_notification_data( $notification->get_slug() );
-
-		foreach ( $notification->get_form_fields() as $field ) {
-			if ( isset( $field_values[ $field->get_raw_name() ] ) ) {
-				$field->set_value( $field_values[ $field->get_raw_name() ] );
-			}
-		}
-
-		return $notification;
-
+	public static function create_hash() {
+		return uniqid( 'notification_' );
 	}
 
 }
