@@ -78,7 +78,7 @@ class Notification {
 	 * @throws \Exception If wrong arguments has been passed.
 	 * @param array $data Notification data.
 	 */
-	public function __construct( $data ) {
+	public function __construct( $data = [] ) {
 
 		// Hash. If not provided will be generated automatically.
 		$hash = isset( $data['hash'] ) && ! empty( $data['hash'] ) ? $data['hash'] : self::create_hash();
@@ -115,6 +115,7 @@ class Notification {
 
 		// Status.
 		if ( isset( $data['enabled'] ) ) {
+			file_put_contents( dirname( __FILE__ ) . '/enabled.log', print_r( $data, true ) . "\r\n\r\n", FILE_APPEND );
 			$this->set_enabled( (bool) $data['enabled'] );
 		}
 
@@ -122,9 +123,9 @@ class Notification {
 		if ( isset( $data['extras'] ) ) {
 			$extras = [];
 
-			foreach ( $data['extras'] as $extra ) {
+			foreach ( $data['extras'] as $key => $extra ) {
 				if ( is_array( $extra ) || is_string( $extra ) || is_numeric( $extra ) ) {
-					$extras[] = $extra;
+					$extras[ $key ] = $extra;
 				} else {
 					throw new \Exception( 'Each extra must be an array or string or number.' );
 				}
@@ -172,6 +173,16 @@ class Notification {
 			}
 		}
 
+	}
+
+	/**
+	 * Checks if enabled
+	 * Alias for `get_enabled()` method
+	 *
+	 * @return boolean
+	 */
+	public function is_enabled() {
+		return (bool) $this->get_enabled();
 	}
 
 	/**
