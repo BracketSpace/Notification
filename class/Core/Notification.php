@@ -115,7 +115,6 @@ class Notification {
 
 		// Status.
 		if ( isset( $data['enabled'] ) ) {
-			file_put_contents( dirname( __FILE__ ) . '/enabled.log', print_r( $data, true ) . "\r\n\r\n", FILE_APPEND );
 			$this->set_enabled( (bool) $data['enabled'] );
 		}
 
