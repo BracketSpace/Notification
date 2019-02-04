@@ -9,14 +9,14 @@ namespace BracketSpace\Notification\Defaults\Recipient;
 
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\Field;
-use BracketSpace\Notification\Traits\Database;
+use BracketSpace\Notification\Traits\Users;
 
 /**
  * Role recipient
  */
 class Role extends Abstracts\Recipient {
 
-	use Database;
+	use Users;
 
 	/**
 	 * Recipient constructor
@@ -46,9 +46,7 @@ class Role extends Abstracts\Recipient {
 			$value = $this->get_default_value();
 		}
 
-		$emails_cache = $this->get_users_by_role( $value );
-
-		$emails = $emails_cache->get();
+		$emails = $this->get_users_by_role( $value );
 
 		return $emails;
 
@@ -66,9 +64,7 @@ class Role extends Abstracts\Recipient {
 
 		foreach ( $roles as $role_slug => $role ) {
 
-			$users_cache = $this->get_users_by_role( $role_slug );
-
-			$users_query = $users_cache->get();
+			$users_query = $this->get_users_by_role( $role_slug );
 
 			$num_users = count( $users_query );
 

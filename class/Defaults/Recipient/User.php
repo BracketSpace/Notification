@@ -9,7 +9,7 @@ namespace BracketSpace\Notification\Defaults\Recipient;
 
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\Field;
-use BracketSpace\Notification\Traits\Database;
+use BracketSpace\Notification\Traits\Users;
 
 
 /**
@@ -17,7 +17,7 @@ use BracketSpace\Notification\Traits\Database;
  */
 class User extends Abstracts\Recipient {
 
-	use Database;
+	use Users;
 
 	/**
 	 * Recipient constructor
@@ -64,9 +64,7 @@ class User extends Abstracts\Recipient {
 	 */
 	public function input() {
 
-		$users_cache = $this->get_all_users_from_db();
-
-		$users = $users_cache->get();
+		$users = $this->get_all_users();
 
 		$opts = array();
 

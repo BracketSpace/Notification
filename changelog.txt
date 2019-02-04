@@ -5,6 +5,7 @@ This file contains old changelogs and it's refreshed periodically.
 * [Fixed] Wrong `wordpress` setting slug caused the option to not be saved.
 * [Added] `NOTIFICATION_VERSION` constant.
 * [Added] `remove_merge_tag` trigger method.
+* [Fixed] User recipient optimization by `Database` trait.
 
 = 5.3.1 =
 * [Added] Initial unit tests.
