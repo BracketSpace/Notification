@@ -10,7 +10,7 @@ namespace BracketSpace\Notification\Utils;
 use BracketSpace\Notification\Utils\Settings\Section;
 
 /**
- * Settings class
+ * Settings class``
  */
 class Settings {
 
@@ -106,8 +106,8 @@ class Settings {
 
 		$sections = $this->get_sections();
 
-		if ( isset( $_GET['section'] ) && ! empty( $_GET['section'] ) ) {
-			$current_section = sanitize_text_field( wp_unslash( $_GET['section'] ) );
+		if ( isset( $_GET['section'] ) && ! empty( $_GET['section'] ) ) { // phpcs:ignore
+			$current_section = sanitize_text_field( wp_unslash( $_GET['section'] ) ); // phpcs:ignore
 		} else {
 			$current_section = key( $this->get_sections() );
 		}
@@ -169,7 +169,7 @@ class Settings {
 	 */
 	public function save_settings() {
 
-		$data = $_POST;
+		$data = $_POST; // phpcs:ignore
 
 		if ( wp_verify_nonce( $data['nonce'], 'save_' . $this->handle . '_settings' ) === false ) {
 			wp_die( 'Can\'t touch this' );

@@ -357,7 +357,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	public function set_notifications() {
 
 		// Get all notification posts bound with this trigger.
-		$notification_posts = notification_get_trigger_notifications( $this->get_slug() );
+		$notification_posts = notification_get_posts( $this->get_slug() );
 
 		// Attach notifications for each post.
 		foreach ( $notification_posts as $notification_post ) {

@@ -41,7 +41,7 @@
 
 			<?php do_action( $this->handle . '/settings/section/' . $section->slug() . '/before' ); ?>
 
-			<form action="<?php echo admin_url( 'admin-post.php' ); // WPCS: XSS ok. ?>" method="post" enctype="multipart/form-data">
+			<form action="<?php echo admin_url( 'admin-post.php' ); // phpcs:ignore ?>" method="post" enctype="multipart/form-data">
 
 				<?php wp_nonce_field( 'save_' . $this->handle . '_settings', 'nonce' ); ?>
 
@@ -83,7 +83,7 @@
 										$field_description = $field->description();
 										?>
 										<?php if ( ! empty( $field_description ) ) : ?>
-											<small class="description"><?php echo $field_description; // WPCS: XSS ok. ?></small>
+											<small class="description"><?php echo $field_description; // phpcs:ignore ?></small>
 										<?php endif ?>
 									</td>
 								</tr>

@@ -14,10 +14,10 @@ $field = $this->get_var( 'current_field' );
 	</th>
 	<td>
 		<?php do_action( 'notification/notification/box/field/pre', $this ); ?>
-		<?php echo $field->field(); // WPCS: XSS ok. ?>
+		<?php echo $field->field(); // phpcs:ignore ?>
 		<?php $description = $field->get_description(); ?>
 		<?php if ( ! empty( $description ) ) : ?>
-			<p class="description"><?php echo $description; // WPCS: XSS ok. ?></p>
+			<p class="description"><?php echo $description; // phpcs:ignore ?></p>
 		<?php endif ?>
 		<?php do_action( 'notification/notification/box/field/post', $this ); ?>
 	</td>

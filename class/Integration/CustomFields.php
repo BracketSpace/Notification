@@ -31,7 +31,7 @@ class CustomFields {
 			return;
 		}
 
-		if ( ! empty( $_POST['acf'] ) && function_exists( 'acf' ) ) {
+		if ( ! empty( $_POST['acf'] ) && function_exists( 'acf' ) ) {  // phpcs:ignore
 			$trigger->postpone_action( 'acf/save_post', 10 );
 		} else {
 			$trigger->postpone_action( 'save_post', 1000 );

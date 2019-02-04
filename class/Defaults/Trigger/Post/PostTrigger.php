@@ -139,7 +139,7 @@ abstract class PostTrigger extends Abstracts\Trigger {
 						'name'     => sprintf( __( '%s sticky status', 'notification' ), $post_name ),
 						'resolver' => function( $trigger ) {
 							if ( is_admin() ) {
-								return isset( $_POST['sticky'] ) && ! empty( $_POST['sticky'] ) ? __( 'Sticky', 'notification' ) : __( 'Not sticky', 'notification' );
+								return isset( $_POST['sticky'] ) && ! empty( $_POST['sticky'] ) ? __( 'Sticky', 'notification' ) : __( 'Not sticky', 'notification' ); // phpcs:ignore
 							} else {
 								return is_sticky( $trigger->{ $this->post_type }->ID ) ? __( 'Sticky', 'notification' ) : __( 'Not sticky', 'notification' );
 							}

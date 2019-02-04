@@ -125,7 +125,7 @@ class View {
 	 * @return void
 	 */
 	public function echo_var( $var_name ) {
-		echo $this->get_var( $var_name ); // WPCS: XSS ok.
+		echo $this->get_var( $var_name ); // phpcs:ignore
 	}
 
 	/**

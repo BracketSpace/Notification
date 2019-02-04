@@ -421,9 +421,14 @@ class PostType {
 			return $data;
 		}
 
+		// fix for AJAX calls.
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			return $data;
+		}
+
 		if ( 'notification' !== $data['post_type'] ||
 			'trash' === $postarr['post_status'] ||
-			( isset( $_POST['action'] ) && 'change_notification_status' === $_POST['action'] ) ) {
+			( isset( $_POST['action'] ) && 'change_notification_status' === $_POST['action'] ) ) { // phpcs:ignore
 			return $data;
 		}
 
@@ -431,6 +436,30 @@ class PostType {
 			$data['post_status'] = 'publish';
 		} else {
 			$data['post_status'] = 'draft';
+		}
+
+		return $data;
+
+	}
+
+	/**
+	 * Creates Notification unique hash
+	 *
+	 * @filter wp_insert_post_data 100
+	 *
+	 * @since  [Next]
+	 * @param  array $data    post data.
+	 * @param  array $postarr saved data.
+	 * @return array
+	 */
+	public function create_notification_hash( $data, $postarr ) {
+
+		if ( 'notification' !== $data['post_type'] ) {
+			return $data;
+		}
+
+		if ( ! preg_match( '/notification_[a-z0-9]{13}/', $data['post_name'] ) ) {
+			$data['post_name'] = uniqid( 'notification_' );
 		}
 
 		return $data;
@@ -517,7 +546,7 @@ class PostType {
 	 */
 	public function ajax_change_notification_status() {
 
-		$data  = $_POST;
+		$data  = $_POST; // phpcs:ignore
 		$error = false;
 
 		$this->ajax->verify_nonce( 'change_notification_status_' . $data['post_id'] );
@@ -548,13 +577,13 @@ class PostType {
 	 */
 	public function ajax_render_merge_tags() {
 
-		if ( ! isset( $_POST['trigger_slug'] ) ) {
+		if ( ! isset( $_POST['trigger_slug'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$this->ajax->error();
 		}
 
 		ob_start();
 
-		$this->render_merge_tags_list( sanitize_text_field( wp_unslash( $_POST['trigger_slug'] ) ) );
+		$this->render_merge_tags_list( sanitize_text_field( wp_unslash( $_POST['trigger_slug'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 		$this->ajax->success( ob_get_clean() );
 
@@ -571,21 +600,21 @@ class PostType {
 
 		ob_start();
 
-		$notification = sanitize_text_field( wp_unslash( $_POST['notification'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
-		$type         = sanitize_text_field( wp_unslash( $_POST['type'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+		$notification = sanitize_text_field( wp_unslash( $_POST['notification'] ) ); // phpcs:ignore
+		$type         = sanitize_text_field( wp_unslash( $_POST['type'] ) ); // phpcs:ignore
 		$recipient    = notification_get_single_recipient( $notification, $type );
 		$input        = $recipient->input();
 
 		// A little trick to get rid of the last part of input name
 		// which will be added by the field itself.
-		$input_name     = sanitize_text_field( wp_unslash( $_POST['input_name'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+		$input_name     = sanitize_text_field( wp_unslash( $_POST['input_name'] ) ); // phpcs:ignore
 		$input->section = str_replace( '[' . $input->get_raw_name() . ']', '', $input_name );
 
-		echo $input->field(); // WPCS: XSS ok.
+		echo $input->field(); // phpcs:ignore
 
 		$description = $input->get_description();
 		if ( ! empty( $description ) ) {
-			echo '<small class="description">' . $description . '</small>'; // WPCS: XSS ok.
+			echo '<small class="description">' . $description . '</small>'; // phpcs:ignore
 		}
 
 		$this->ajax->success( ob_get_clean() );

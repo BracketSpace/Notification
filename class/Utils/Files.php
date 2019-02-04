@@ -203,7 +203,7 @@ class Files {
 			$type = 'svg+xml';
 		}
 		$data = file_get_contents( $path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-		return 'data:image/' . $type . ';base64,' . base64_encode( $data );
+		return 'data:image/' . $type . ';base64,' . base64_encode( $data );  // phpcs:ignore
 	}
 
 	/**

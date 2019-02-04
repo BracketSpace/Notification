@@ -233,17 +233,17 @@ class Extensions {
 	 */
 	public function activate() {
 
+		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'activate_extension_' . $extension['slug'] ) ) { // phpcs:ignore
+			wp_safe_redirect( add_query_arg( 'activation-status', 'wrong-nonce', $_POST['_wp_http_referer'] ) ); // phpcs:ignore
+			exit();
+		}
+
 		$data = $_POST;
 
 		$extension = $this->get_raw_extension( $data['extension'] );
 
 		if ( false === $extension ) {
 			wp_safe_redirect( add_query_arg( 'activation-status', 'wrong-extension', $data['_wp_http_referer'] ) );
-			exit();
-		}
-
-		if ( ! wp_verify_nonce( $data['_wpnonce'], 'activate_extension_' . $extension['slug'] ) ) {
-			wp_safe_redirect( add_query_arg( 'activation-status', 'wrong-nonce', $data['_wp_http_referer'] ) );
 			exit();
 		}
 
@@ -269,17 +269,17 @@ class Extensions {
 	 */
 	public function deactivate() {
 
+		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'activate_extension_' . $extension['slug'] ) ) {  // phpcs:ignore
+			wp_safe_redirect( add_query_arg( 'activation-status', 'wrong-nonce', $_POST['_wp_http_referer'] ) );  // phpcs:ignore
+			exit();
+		}
+
 		$data = $_POST;
 
 		$extension = $this->get_raw_extension( $data['extension'] );
 
 		if ( false === $extension ) {
 			wp_safe_redirect( add_query_arg( 'activation-status', 'wrong-extension', $data['_wp_http_referer'] ) );
-			exit();
-		}
-
-		if ( ! wp_verify_nonce( $data['_wpnonce'], 'activate_extension_' . $extension['slug'] ) ) {
-			wp_safe_redirect( add_query_arg( 'activation-status', 'wrong-nonce', $data['_wp_http_referer'] ) );
 			exit();
 		}
 
@@ -305,11 +305,11 @@ class Extensions {
 	 */
 	public function activation_notices() {
 
-		if ( ! isset( $_GET['activation-status'] ) ) {
+		if ( ! isset( $_GET['activation-status'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			return;
 		}
 
-		switch ( $_GET['activation-status'] ) {
+		switch ( $_GET['activation-status'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			case 'success':
 				$view    = 'success';
 				$message = __( 'Your license has been activated.', 'notification' );
