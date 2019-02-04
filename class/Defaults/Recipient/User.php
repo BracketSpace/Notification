@@ -9,11 +9,15 @@ namespace BracketSpace\Notification\Defaults\Recipient;
 
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\Field;
+use BracketSpace\Notification\Traits\Database;
+
 
 /**
  * User recipient
  */
 class User extends Abstracts\Recipient {
+
+	use Database;
 
 	/**
 	 * Recipient constructor
@@ -60,8 +64,11 @@ class User extends Abstracts\Recipient {
 	 */
 	public function input() {
 
-		$users = get_users();
-		$opts  = array();
+		$users_cache = $this->get_all_users_from_db();
+
+		$users = $users_cache->get();
+
+		$opts = array();
 
 		foreach ( $users as $user ) {
 			$opts[ $user->ID ] = esc_html( $user->display_name ) . ' (' . $user->user_email . ')';
