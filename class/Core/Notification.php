@@ -175,6 +175,32 @@ class Notification {
 	}
 
 	/**
+	 * Dumps the object to array
+	 *
+	 * @since  [Next]
+	 * @return array
+	 */
+	public function to_array() {
+
+		$notifications = [];
+
+		foreach ( $this->get_notifications as $key => $notification ) {
+			$notifications[ $key ] = $notification->get_data();
+		}
+
+		return [
+			'hash'          => $this->get_hash(),
+			'title'         => $this->get_title(),
+			'trigger'       => $this->get_trigger()->get_slug(),
+			'notifications' => $notifications,
+			'enabled'       => $this->is_enabled(),
+			'extras'        => $this->get_extras(),
+			'version'       => $this->get_version(),
+		];
+
+	}
+
+	/**
 	 * Checks if enabled
 	 * Alias for `get_enabled()` method
 	 *
