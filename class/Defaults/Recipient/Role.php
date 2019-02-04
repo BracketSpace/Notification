@@ -72,7 +72,7 @@ class Role extends Abstracts\Recipient {
 
 			$num_users = count( $users_query );
 
-			if( $num_users > 0 ) {
+			if ( $num_users > 0 ) {
 				// Translators: %s numer of users.
 				$label = translate_user_role( $role['name'] ) . ' (' . sprintf( _n( '%s user', '%s users', $num_users, 'notification' ), $num_users ) . ')';
 
