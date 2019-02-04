@@ -32,6 +32,18 @@ abstract class Adapter implements Interfaces\Adaptable {
 	}
 
 	/**
+	 * Pass the method calls to Notification object
+	 *
+	 * @since  [Next]
+	 * @param  string $method_name Method name.
+	 * @param  array  $arguments   Arguments.
+	 * @return mixed
+	 */
+	public function __call( $method_name, $arguments ) {
+		return call_user_func_array( [ $this->get_notification(), $method_name ], $arguments );
+	}
+
+	/**
 	 * Gets Notification object
 	 *
 	 * @since  [Next]
@@ -39,6 +51,16 @@ abstract class Adapter implements Interfaces\Adaptable {
 	 */
 	public function get_notification() {
 		return $this->notification;
+	}
+
+	/**
+	 * Checks if enabled
+	 *
+	 * @since  [Next]
+	 * @return boolean
+	 */
+	public function is_enabled() {
+		return $this->get_notification()->is_enabled();
 	}
 
 }

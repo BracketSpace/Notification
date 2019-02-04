@@ -168,6 +168,7 @@ class ImportExport {
 		}
 
 		// Hook into this filter to add extra export data. Should add a unique key and export values.
+		// @todo Extras API #h1k0k.
 		$extras = apply_filters( 'notification/post/export/extras', array(), $notification );
 
 		return array(

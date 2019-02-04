@@ -104,7 +104,7 @@ class Notification {
 
 			foreach ( $data['notifications'] as $notification ) {
 				if ( $notification instanceof Interfaces\Sendable ) {
-					$notifications[] = $notification;
+					$notifications[ $notification->get_slug() ] = $notification;
 				} else {
 					throw new \Exception( 'Each Notifiation object must implement Sendable interface' );
 				}
@@ -140,7 +140,7 @@ class Notification {
 	}
 
 	/**
-	 * Getter method
+	 * Getter and Setter methods
 	 *
 	 * @since  [Next]
 	 * @throws \Exception If no property has been found.
@@ -178,6 +178,7 @@ class Notification {
 	 * Checks if enabled
 	 * Alias for `get_enabled()` method
 	 *
+	 * @since  [Next]
 	 * @return boolean
 	 */
 	public function is_enabled() {
@@ -187,10 +188,112 @@ class Notification {
 	/**
 	 * Creates hash
 	 *
+	 * @since  [Next]
 	 * @return string hash
 	 */
 	public static function create_hash() {
 		return uniqid( 'notification_' );
+	}
+
+	/**
+	 * Gets single Notification object
+	 *
+	 * @since  [Next]
+	 * @param  string $notification_slug Notification slug.
+	 * @return mixed                     Notification object or null.
+	 */
+	public function get_notification( $notification_slug ) {
+		$notifications = $this->get_notifications();
+		return isset( $notifications[ $notification_slug ] ) ? $notifications[ $notification_slug ] : null;
+	}
+
+	/**
+	 * Add Notification to the set
+	 *
+	 * @since  [Next]
+	 * @throws \Exception If you try to add already added notification.
+	 * @param  mixed $notification Notification object or slug.
+	 * @return Notification
+	 */
+	public function add_notification( $notification ) {
+
+		if ( ! $notification instanceof Interfaces\Sendable ) {
+			$notification = notification_get_single_notification( $notification );
+		}
+
+		$notifications = $this->get_notifications();
+
+		if ( isset( $notifications[ $notifiction->get_slug() ] ) ) {
+			throw new \Exception( sprintf( 'Notification %s already exists', $notification->get_name() ) );
+		}
+
+		$notifications[ $notifiction->get_slug() ] = $notification;
+		$this->set_notifications( $notifications );
+
+		return $notification;
+
+	}
+
+	/**
+	 * Enables notification
+	 *
+	 * @since  [Next]
+	 * @param  string $notification_slug Notification slug.
+	 * @return void
+	 */
+	public function enable_notification( $notification_slug ) {
+
+		$notification = $this->get_notification( $notification_slug );
+
+		if ( null === $notification ) {
+			$notification = $this->add_notification( $notification_slug );
+		}
+
+		$notification->enabled = true;
+
+	}
+
+	/**
+	 * Disables notification
+	 *
+	 * @since  [Next]
+	 * @param  string $notification_slug Notification slug.
+	 * @return void
+	 */
+	public function disable_notification( $notification_slug ) {
+		$notification = $this->get_notification( $notification_slug );
+		if ( null !== $notification ) {
+			$notification->enabled = false;
+		}
+	}
+
+	/**
+	 * Sets notification data
+	 *
+	 * @since  [Next]
+	 * @param  string $notification_slug Notification slug.
+	 * @param  array  $data              Notification data.
+	 * @return void
+	 */
+	public function set_notification_data( $notification_slug, $data ) {
+		$notification = $this->get_notification( $notification_slug );
+		if ( null !== $notification ) {
+			$notification->set_data( $data );
+		}
+	}
+
+	/**
+	 * Gets notification data
+	 *
+	 * @since  [Next]
+	 * @param  string $notification_slug Notification slug.
+	 * @return void
+	 */
+	public function get_notification_data( $notification_slug ) {
+		$notification = $this->get_notification( $notification_slug );
+		if ( null !== $notification ) {
+			$notification->get_data( $data );
+		}
 	}
 
 }

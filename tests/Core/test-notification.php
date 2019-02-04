@@ -134,7 +134,7 @@ class TestNotification extends \WP_UnitTestCase {
 			'notifications' => [ $ntfn ],
 		] );
 
-		$this->assertSame( [ $ntfn ], $notification->get_notifications() );
+		$this->assertSame( [ 'email' => $ntfn ], $notification->get_notifications() );
 
 	}
 

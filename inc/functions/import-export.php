@@ -15,6 +15,7 @@
  */
 function notification_export_extra( $key, callable $exporter ) {
 
+	// @todo Extras API #h1k0k.
 	add_filter( 'notification/post/export/extras', function( $extras, $notification ) use ( $key, $exporter ) {
 
 		if ( ! isset( $extras[ $key ] ) ) {
@@ -36,6 +37,7 @@ function notification_export_extra( $key, callable $exporter ) {
  * @return void
  */
 function notification_import_extra( $key, callable $importer ) {
+	// @todo Extras API #h1k0k.
 	add_action( 'notification/post/import/extras/' . $key, function( $data, $notification ) use ( $importer ) {
 		call_user_func( $importer, $data, $notification );
 	}, 10, 2 );
