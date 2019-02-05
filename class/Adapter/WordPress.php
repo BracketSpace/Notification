@@ -109,6 +109,34 @@ class WordPress extends Abstracts\Adapter {
 	 */
 	public function save() {
 
+		$data = $this->get_notification()->to_array();
+
+		// WordPress post related: Title, Hash, Status, Version.
+		wp_update_post( [
+			'ID'          => $this->get_id(),
+			'post_title'  => $data['title'],
+			'post_name'   => $data['hash'],
+			'post_status' => $data['enabled'] ? 'publish' : 'draft',
+		], true );
+
+		// Update version as WordPress automatically does this while updating the post.
+		$this->set_version( time() );
+
+		// Trigger.
+		update_post_meta( $this->get_id(), self::$metakey_trigger, $data['trigger'] );
+
+		// Notifications.
+		delete_post_meta( $this->get_id(), self::$metakey_notification_enabled );
+
+		foreach ( $data['notifications'] as $key => $notification_data ) {
+			add_post_meta( $this->get_id(), self::$metakey_notification_enabled, $key );
+			update_post_meta( $this->get_id(), self::$metakey_notification_data . $key, $notification_data );
+		}
+
+		// Extras.
+		// @todo Extras API #h1k0k. Presumabely the best to move to abstract adapter.
+		$extras = false;
+
 	}
 
 	/**

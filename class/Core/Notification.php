@@ -185,7 +185,9 @@ class Notification {
 		$notifications = [];
 
 		foreach ( $this->get_notifications as $key => $notification ) {
-			$notifications[ $key ] = $notification->get_data();
+			if ( $notification->enabled ) {
+				$notifications[ $key ] = $notification->get_data();
+			}
 		}
 
 		return [
