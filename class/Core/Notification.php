@@ -75,10 +75,56 @@ class Notification {
 	 * Constructor
 	 *
 	 * @since [Next]
-	 * @throws \Exception If wrong arguments has been passed.
 	 * @param array $data Notification data.
 	 */
 	public function __construct( $data = [] ) {
+		$this->setup( $data );
+	}
+
+	/**
+	 * Getter and Setter methods
+	 *
+	 * @since  [Next]
+	 * @throws \Exception If no property has been found.
+	 * @param  string $method_name Method name.
+	 * @param  array  $arguments   Arguments.
+	 * @return mixed
+	 */
+	public function __call( $method_name, $arguments ) {
+
+		// Getter.
+		if ( 0 === strpos( $method_name, 'get_' ) ) {
+			$property = str_replace( 'get_', '', $method_name );
+
+			if ( property_exists( $this, $property ) ) {
+				return $this->$property;
+			} else {
+				throw new \Exception( sprintf( 'Property %s doesn\'t exists.', $property ) );
+			}
+		}
+
+		// Setter.
+		if ( 0 === strpos( $method_name, 'set_' ) ) {
+			$property = str_replace( 'set_', '', $method_name );
+
+			if ( isset( $arguments[0] ) ) {
+				$this->$property = $arguments[0];
+			} else {
+				throw new \Exception( 'You must provide the property value' );
+			}
+		}
+
+	}
+
+	/**
+	 * Sets up Notification data from array.
+	 *
+	 * @since  [Next]
+	 * @throws \Exception If wrong arguments has been passed.
+	 * @param  array $data Data array.
+	 * @return $this
+	 */
+	public function setup( $data = [] ) {
 
 		// Hash. If not provided will be generated automatically.
 		$hash = isset( $data['hash'] ) && ! empty( $data['hash'] ) ? $data['hash'] : self::create_hash();
@@ -137,40 +183,7 @@ class Notification {
 		$version = isset( $data['version'] ) && ! empty( $data['version'] ) ? $data['version'] : time();
 		$this->set_version( $version );
 
-	}
-
-	/**
-	 * Getter and Setter methods
-	 *
-	 * @since  [Next]
-	 * @throws \Exception If no property has been found.
-	 * @param  string $method_name Method name.
-	 * @param  array  $arguments   Arguments.
-	 * @return mixed
-	 */
-	public function __call( $method_name, $arguments ) {
-
-		// Getter.
-		if ( 0 === strpos( $method_name, 'get_' ) ) {
-			$property = str_replace( 'get_', '', $method_name );
-
-			if ( property_exists( $this, $property ) ) {
-				return $this->$property;
-			} else {
-				throw new \Exception( sprintf( 'Property %s doesn\'t exists.', $property ) );
-			}
-		}
-
-		// Setter.
-		if ( 0 === strpos( $method_name, 'set_' ) ) {
-			$property = str_replace( 'set_', '', $method_name );
-
-			if ( isset( $arguments[0] ) ) {
-				$this->$property = $arguments[0];
-			} else {
-				throw new \Exception( 'You must provide the property value' );
-			}
-		}
+		return $this;
 
 	}
 

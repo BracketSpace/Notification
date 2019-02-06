@@ -54,6 +54,17 @@ abstract class Adapter implements Interfaces\Adaptable {
 	}
 
 	/**
+	 * Sets up Notification object with data.
+	 *
+	 * @since  [Next]
+	 * @param  array $data Data array.
+	 * @return Notification
+	 */
+	public function setup_notification( $data = [] ) {
+		return $this->get_notification()->setup( $data );
+	}
+
+	/**
 	 * Checks if enabled
 	 *
 	 * @since  [Next]
