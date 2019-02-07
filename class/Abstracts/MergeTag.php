@@ -29,6 +29,13 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 	protected $value_type;
 
 	/**
+	 * Group
+	 *
+	 * @var string
+	 */
+	protected $group = '';
+
+	/**
 	 * Short description
 	 * No html tags allowed. Keep it tweet-short.
 	 *
@@ -83,10 +90,16 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 			trigger_error( 'Merge tag requires slug, name and resolver', E_USER_ERROR );
 		}
 
-		$this->slug = $params['slug'];
-		$this->name = $params['name'];
+		$this->slug       = $params['slug'];
+		$this->name       = $params['name'];
+		$this->group = ( isset( $params['group'] ) ) ? $params['group'] : '';
 
 		$this->set_resolver( $params['resolver'] );
+
+		// if ( isset( $params['group_slug'] ) ) {
+		// 	$this->group_slug = isset( $params['group_slug'] ) && $params['group_slug'];
+		// 	$this->group_name = isset( $params['group_name'] ) && $params['group_name'];
+		// }
 
 		if ( isset( $params['description'] ) ) {
 			$this->description_example = isset( $params['example'] ) && $params['example'];
@@ -132,6 +145,15 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 	 */
 	public function get_description() {
 		return $this->description;
+	}
+
+	/**
+	 * Gets group
+	 *
+	 * @return string group
+	 */
+	public function get_group() {
+		return $this->group;
 	}
 
 	/**

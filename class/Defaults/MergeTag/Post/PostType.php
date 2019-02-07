@@ -49,6 +49,7 @@ class PostType extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->post_type;
 				},
+				'group' => sprintf( __( 'Post data', 'notification' ) ),
 			)
 		);
 

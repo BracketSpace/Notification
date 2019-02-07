@@ -44,6 +44,7 @@ class CommentAuthorIP extends IPTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->comment_author_IP;
 				},
+				'group' => sprintf( __( 'Comment author', 'notification' ) ),
 			)
 		);
 

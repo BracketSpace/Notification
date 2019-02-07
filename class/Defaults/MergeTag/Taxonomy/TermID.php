@@ -34,6 +34,7 @@ class TermID extends IntegerTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->term->term_id;
 				},
+				'group' => sprintf( __( 'Term', 'notification' ) ),
 			)
 		);
 

@@ -44,6 +44,7 @@ class CommentContent extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->comment_content;
 				},
+				'group' => sprintf( __( 'Comment data', 'notification' ) ),
 			)
 		);
 

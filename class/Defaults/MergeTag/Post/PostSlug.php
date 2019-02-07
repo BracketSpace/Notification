@@ -50,6 +50,7 @@ class PostSlug extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->post_type }->post_name;
 				},
+				'group' => sprintf( __( 'Post data', 'notification' ) ),
 			)
 		);
 

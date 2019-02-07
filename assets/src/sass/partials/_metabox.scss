@@ -8,6 +8,35 @@
 		margin-bottom: 20px;
 	}
 
+	h2 {
+		padding: 0;
+
+		a {
+			position: relative;
+			display: block;
+			padding: 12px 0;
+			border-bottom: 1px solid rgba(229, 229, 229, 0.6);
+			position: relative;
+			font-weight: bold;
+			text-transform: uppercase;
+			color: #444;
+			text-decoration: none;
+
+			&::after {
+				content: '';
+				position: absolute;
+				top: 20px;
+				right: 10px;
+				width: 0;
+				height: 0;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+
+				border-top: 5px solid #444;
+			}
+		}
+	}
+
 	ul {
 
 		li {
