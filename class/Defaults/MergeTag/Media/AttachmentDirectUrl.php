@@ -44,6 +44,7 @@ class AttachmentDirectUrl extends UrlTag {
 				'resolver'    => function() {
 					return wp_get_attachment_url( $this->trigger->{ $this->property_name }->ID );
 				},
+				'group'       => __( 'Attachment', 'notification' ),
 			)
 		);
 

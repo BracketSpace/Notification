@@ -47,6 +47,7 @@ class UserLogin extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->user_login;
 				},
+				'group'       => __( 'User', 'notification' ),
 			)
 		);
 

@@ -68,16 +68,16 @@
 					var text = $(this).find('.intro code').text().toLowerCase();
 
 					if (text.indexOf(val) != -1) {
+						$(this).show();
 						var parentClass = $(this).parents('ul').data("group");
 						$('[data-group=' + parentClass +']').show();
-						$(this).show();
 					}
 
 				});
 
 			} else {
 
-				$('.notification_merge_tags_accordion h2, .notification_merge_tags_accordion li').show();
+				$('.notification_merge_tags_accordion h2, .inside li').show();
 				collapse.trigger('close');
 
 			}
