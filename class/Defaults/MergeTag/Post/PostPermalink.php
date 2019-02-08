@@ -50,7 +50,7 @@ class PostPermalink extends UrlTag {
 				'resolver'    => function() {
 					return get_permalink( $this->trigger->{ $this->post_type }->ID );
 				},
-				'group' => sprintf( __( 'Post data', 'notification' ) ),
+				'group' => sprintf( __( 'Post', 'notification' ) ),
 			)
 		);
 
