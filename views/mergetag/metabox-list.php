@@ -8,6 +8,7 @@
 do_action( 'notification/metabox/trigger/tags/before', $this->get_var( 'trigger' ) );
 
 $groups = $this->get_var( 'tag_groups' );
+
 ?>
 <input type="text" name="notification-search-merge-tags" placeholder="<?php esc_attr_e( 'Search merge tags', 'notification' ); ?>" class="widefat notification-search-merge-tags" autocomplete="off" id="notification-search-merge-tags">
 <?php foreach ( $groups as $key => $tags ) : ?>
