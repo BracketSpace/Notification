@@ -52,7 +52,7 @@ class CommentStatus extends StringTag {
 						return __( 'Trashed', 'notification' );
 					}
 				},
-				'group' => sprintf( __( 'Comment', 'notification' ) ),
+				'group'       => sprintf( __( 'Comment', 'notification' ) ),
 			)
 		);
 

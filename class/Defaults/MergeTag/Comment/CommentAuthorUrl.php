@@ -44,7 +44,7 @@ class CommentAuthorUrl extends UrlTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->comment_author_url;
 				},
-				'group' => sprintf( __( 'Comment author', 'notification' ) ),
+				'group'       => sprintf( __( 'Comment author', 'notification' ) ),
 			)
 		);
 

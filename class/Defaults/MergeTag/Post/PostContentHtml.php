@@ -49,7 +49,7 @@ class PostContentHtml extends HtmlTag {
 				'resolver'    => function() {
 					return apply_filters( 'the_content', $this->trigger->{ $this->post_type }->post_content );
 				},
-				'group' => sprintf( __( 'Post', 'notification' ) ),
+				'group'       => sprintf( __( 'Post', 'notification' ) ),
 			)
 		);
 

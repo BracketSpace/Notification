@@ -34,7 +34,7 @@ class TermPermalink extends UrlTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->term_permalink;
 				},
-				'group' => sprintf( __( 'Term', 'notification' ) ),
+				'group'       => sprintf( __( 'Term', 'notification' ) ),
 			)
 		);
 

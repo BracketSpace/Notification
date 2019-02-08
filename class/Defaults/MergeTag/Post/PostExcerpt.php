@@ -50,7 +50,7 @@ class PostExcerpt extends StringTag {
 				'resolver'    => function() {
 					return get_the_excerpt( $this->trigger->{ $this->post_type } );
 				},
-				'group' => sprintf( __( 'Post', 'notification' ) ),
+				'group'       => sprintf( __( 'Post', 'notification' ) ),
 			)
 		);
 

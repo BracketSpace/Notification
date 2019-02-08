@@ -89,8 +89,8 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag(
 			new MergeTag\DateTime\DateTime(
 				array(
-					'slug' => 'comment_datetime',
-					'name' => __( 'Comment date and time', 'notification' ),
+					'slug'  => 'comment_datetime',
+					'name'  => __( 'Comment date and time', 'notification' ),
 					'group' => __( 'Comment date' ),
 				)
 			)
@@ -104,8 +104,8 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag(
 			new MergeTag\User\UserID(
 				array(
-					'slug' => 'comment_author_user_ID',
-					'name' => __( 'Comment author user ID', 'notification' ),
+					'slug'  => 'comment_author_user_ID',
+					'name'  => __( 'Comment author user ID', 'notification' ),
 					'group' => __( 'Comment author' ),
 				)
 			)
@@ -114,8 +114,8 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag(
 			new MergeTag\User\UserEmail(
 				array(
-					'slug' => 'comment_author_user_email',
-					'name' => __( 'Comment author user email', 'notification' ),
+					'slug'  => 'comment_author_user_email',
+					'name'  => __( 'Comment author user email', 'notification' ),
 					'group' => __( 'Comment author' ),
 				)
 			)
@@ -124,8 +124,8 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag(
 			new MergeTag\User\UserDisplayName(
 				array(
-					'slug' => 'comment_author_user_display_name',
-					'name' => __( 'Comment author user display name', 'notification' ),
+					'slug'  => 'comment_author_user_display_name',
+					'name'  => __( 'Comment author user display name', 'notification' ),
 					'group' => __( 'Comment author' ),
 				)
 			)
@@ -144,9 +144,9 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag(
 			new MergeTag\DateTime\DateTime(
 				array(
-					'slug' => 'post_creation_datetime',
+					'slug'  => 'post_creation_datetime',
 					// translators: singular post name.
-					'name' => sprintf( __( '%s creation date and time', 'notification' ), __( 'Post', 'notification' ) ),
+					'name'  => sprintf( __( '%s creation date and time', 'notification' ), __( 'Post', 'notification' ) ),
 					'group' => __( 'Post dates' ),
 				)
 			)
@@ -155,9 +155,9 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag(
 			new MergeTag\DateTime\DateTime(
 				array(
-					'slug' => 'post_modification_datetime',
+					'slug'  => 'post_modification_datetime',
 					// translators: singular post name.
-					'name' => sprintf( __( '%s modification date and time', 'notification' ), __( 'Post', 'notification' ) ),
+					'name'  => sprintf( __( '%s modification date and time', 'notification' ), __( 'Post', 'notification' ) ),
 					'group' => __( 'Post dates' ),
 				)
 			)
@@ -171,7 +171,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s author user ID', 'notification' ), __( 'Post', 'notification' ) ),
 					'property_name' => 'post_author',
-					'group' => __( 'Post author' ),
+					'group'         => __( 'Post author' ),
 				)
 			)
 		);
@@ -183,7 +183,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s author user login', 'notification' ), __( 'Post', 'notification' ) ),
 					'property_name' => 'post_author',
-					'group' => __( 'Post author' ),
+					'group'         => __( 'Post author' ),
 				)
 			)
 		);
@@ -195,7 +195,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s author user email', 'notification' ), __( 'Post', 'notification' ) ),
 					'property_name' => 'post_author',
-					'group' => __( 'Post author' ),
+					'group'         => __( 'Post author' ),
 				)
 			)
 		);
@@ -207,7 +207,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s author user nicename', 'notification' ), __( 'Post', 'notification' ) ),
 					'property_name' => 'post_author',
-					'group' => __( 'Post author' ),
+					'group'         => __( 'Post author' ),
 				)
 			)
 		);
@@ -219,7 +219,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s author user display name', 'notification' ), __( 'Post', 'notification' ) ),
 					'property_name' => 'post_author',
-					'group' => __( 'Post author' ),
+					'group'         => __( 'Post author' ),
 				)
 			)
 		);
@@ -231,7 +231,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s author user first name', 'notification' ), __( 'Post', 'notification' ) ),
 					'property_name' => 'post_author',
-					'group' => __( 'Post author' ),
+					'group'         => __( 'Post author' ),
 				)
 			)
 		);
@@ -243,7 +243,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s author user last name', 'notification' ), __( 'Post', 'notification' ) ),
 					'property_name' => 'post_author',
-					'group' => __( 'Post author' ),
+					'group'         => __( 'Post author' ),
 				)
 			)
 		);
