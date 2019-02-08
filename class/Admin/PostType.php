@@ -352,18 +352,55 @@ class PostType {
 			return;
 		}
 
-		$tags = $trigger->get_merge_tags( 'visible' );
+		$tag_groups = $this->prepare_merge_tag_groups( $trigger );
 
-		if ( empty( $tags ) ) {
+		if ( empty( $tag_groups ) ) {
 			$view->get_view( 'mergetag/metabox-nomergetags' );
 			return;
 		}
 
 		$view->set_var( 'trigger', $trigger );
-		$view->set_var( 'tags', $tags );
+		$view->set_var( 'tag_groups', $tag_groups );
 
-		$view->get_view( 'mergetag/metabox' );
+		if ( count( $tag_groups ) > 1 ) {
+			$view->get_view( 'mergetag/metabox-accordion' );
+		} else {
+			$view->get_view( 'mergetag/metabox-list' );
+		}
+	}
 
+	/**
+	 * Renders Merge Tags list
+	 *
+	 * @param  object $trigger Trigger object.
+	 * @return array $groups Grouped tags.
+	 */
+	public function prepare_merge_tag_groups( $trigger ) {
+
+		$groups = array();
+		$tags   = $trigger->get_merge_tags( 'visible' );
+
+		if ( empty( $tags ) ) {
+			return $groups;
+		}
+
+		foreach ( $tags as $tag ) {
+			if ( $tag->get_group() ) {
+				$groups[ $tag->get_group() ][] = $tag;
+			} else {
+				$groups[ __( 'Other', 'notification' ) ][] = $tag;
+			}
+		}
+
+		ksort( $groups );
+
+		if ( $groups[ __( 'Other', 'notification' ) ] ) {
+			$others = $groups[ __( 'Other', 'notification' ) ];
+			unset( $groups[ __( 'Other', 'notification' ) ] );
+			$groups[ __( 'Other', 'notification' ) ] = $others;
+		}
+
+		return $groups;
 	}
 
 	/**

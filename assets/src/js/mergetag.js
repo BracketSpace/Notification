@@ -59,7 +59,7 @@
 
 				collapse.trigger('open');
 
-				$('.notification_merge_tags_accordion h2, .notification_merge_tags_accordion ul').hide();
+				$('.notification_merge_tags_accordion h2, .notification_merge_tags_accordion .tags-group').hide();
 
 				$('.inside li').each(function () {
 
@@ -68,8 +68,8 @@
 					var text = $(this).find('.intro code').text().toLowerCase();
 
 					if (text.indexOf(val) != -1) {
-						var parentClass = $(this).parents('ul').attr("class");
-						$('.' + parentClass).show();
+						var parentClass = $(this).parents('ul').data("group");
+						$('[data-group=' + parentClass +']').show();
 						$(this).show();
 					}
 

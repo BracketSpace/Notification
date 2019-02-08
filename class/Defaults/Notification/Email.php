@@ -139,7 +139,7 @@ class Email extends Abstracts\Notification {
 	 **/
 	public function allow_unfiltered_html_body( $notification_data, $ndata ) {
 
-		if ( notification_get_setting( 'notifications/email/unfiltered_html' ) && isset( $ndata['body'] ) ) {
+		if ( notification_get_setting( 'notifications/email/unfiltered_html' ) ) {
 			$notification_data['body'] = $ndata['body'];
 		}
 

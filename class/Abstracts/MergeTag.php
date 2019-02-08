@@ -90,16 +90,11 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 			trigger_error( 'Merge tag requires slug, name and resolver', E_USER_ERROR );
 		}
 
-		$this->slug       = $params['slug'];
-		$this->name       = $params['name'];
+		$this->slug  = $params['slug'];
+		$this->name  = $params['name'];
 		$this->group = ( isset( $params['group'] ) ) ? $params['group'] : '';
 
 		$this->set_resolver( $params['resolver'] );
-
-		// if ( isset( $params['group_slug'] ) ) {
-		// 	$this->group_slug = isset( $params['group_slug'] ) && $params['group_slug'];
-		// 	$this->group_name = isset( $params['group_name'] ) && $params['group_name'];
-		// }
 
 		if ( isset( $params['description'] ) ) {
 			$this->description_example = isset( $params['example'] ) && $params['example'];
