@@ -8,7 +8,6 @@
 namespace BracketSpace\Notification\Defaults\Adapter;
 
 use BracketSpace\Notification\Abstracts;
-use BracketSpace\Notification\Core\Notification;
 
 /**
  * JSON Adapter class

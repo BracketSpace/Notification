@@ -77,8 +77,6 @@ function notification_get_post_by_hash( $hash ) {
 /**
  * Creates new Notification post.
  *
- * @todo #gyakm Rewrite to use adapter properly.
- *
  * @since  [Next]
  * @param  array   $data   Notification data.
  * @param  boolean $update If existing Notification should be updated.
@@ -87,7 +85,12 @@ function notification_get_post_by_hash( $hash ) {
 function notification_post_create( $data, $update = false ) {
 
 	// Trigger.
-	$data['trigger'] = notification_get_single_trigger( $data['trigger'] );
+	$trigger = notification_get_single_trigger( $data['trigger'] );
+	if ( ! empty( $trigger ) ) {
+		$data['trigger'] = $trigger;
+	} else {
+		unset( $data['trigger'] );
+	}
 
 	// Carriers.
 	$carriers = [];

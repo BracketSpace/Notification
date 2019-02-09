@@ -470,8 +470,6 @@ class PostType {
 	/**
 	 * Saves the Notification data
 	 *
-	 * @todo #gyakm Use adapter properly.
-	 *
 	 * @action save_post_notification
 	 *
 	 * @param  integer $post_id Current post ID.
@@ -497,37 +495,39 @@ class PostType {
 		$notification_post = notification_adapt_from( 'WordPress', $post );
 
 		// Trigger.
-		$trigger = ! empty( $data['notification_trigger'] ) ? sanitize_text_field( wp_unslash( $data['notification_trigger'] ) ) : '';
-		$notification_post->set_trigger( $trigger );
-
-		// Enable all notifications one by one.
-		foreach ( notification_get_notifications() as $notification ) {
-			if ( isset( $data[ 'notification_' . $notification->get_slug() . '_enable' ] ) ) {
-				$notification_post->enable_notification( $notification->get_slug() );
-			} else {
-				$notification_post->disable_notification( $notification->get_slug() );
+		if ( ! empty( $data['notification_trigger'] ) ) {
+			$trigger = notification_get_single_trigger( $data['notification_trigger'] );
+			if ( ! empty( $trigger ) ) {
+				$notification_post->set_trigger( $trigger );
 			}
 		}
 
-		// Save all notification settings one by one.
-		foreach ( notification_get_notifications() as $notification ) {
+		// Prepare Carriers to save.
+		$carriers = [];
 
-			if ( ! isset( $data[ 'notification_type_' . $notification->get_slug() ] ) ) {
+		foreach ( notification_get_notifications() as $carrier ) {
+
+			if ( ! isset( $data[ 'notification_type_' . $carrier->get_slug() ] ) ) {
 				continue;
 			}
 
-			$ndata = $data[ 'notification_type_' . $notification->get_slug() ];
+			if ( isset( $data[ 'notification_' . $carrier->get_slug() . '_enable' ] ) ) {
+				$carrier->enable = true;
+			}
 
-			// nonce not set or false, ignoring this form.
-			if ( ! wp_verify_nonce( $ndata['_nonce'], $notification->get_slug() . '_notification_security' ) ) {
+			$carrier_data = $data[ 'notification_type_' . $carrier->get_slug() ];
+
+			// If nonce not set or false, ignore this form.
+			if ( ! wp_verify_nonce( $carrier_data['_nonce'], $carrier->get_slug() . '_notification_security' ) ) {
 				continue;
 			}
 
-			$notification_post->set_notification_data( $notification->get_slug(), $ndata );
-
-			do_action( 'notification/notification/saved', $notification_post->get_id(), $notification, $ndata );
+			$carrier->set_data( $carrier_data );
+			$carriers[] = $carrier;
 
 		}
+
+		$notification_post->set_notifications( $carriers );
 
 		// Hook into this action if you want to save any Notification Post data.
 		do_action( 'notification/data/save', $notification_post );
