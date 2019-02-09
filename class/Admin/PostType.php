@@ -192,7 +192,7 @@ class PostType {
 		$view             = notification_create_view();
 		$grouped_triggers = notification_get_triggers_grouped();
 
-		$view->set_var( 'selected', $notification_post->get_trigger() );
+		$view->set_var( 'selected', $notification_post->get_trigger()->get_slug() );
 		$view->set_var( 'triggers', $grouped_triggers );
 		$view->set_var( 'has_triggers', ! empty( $grouped_triggers ) );
 		$view->set_var( 'select_name', 'notification_trigger' );
@@ -326,7 +326,7 @@ class PostType {
 
 		$view         = notification_create_view();
 		$notification = notification_adapt_from( 'WordPress', $post );
-		$trigger_slug = $notification->get_trigger();
+		$trigger_slug = $notification->get_trigger()->get_slug();
 
 		if ( ! $trigger_slug ) {
 			$view->get_view( 'mergetag/metabox-notrigger' );

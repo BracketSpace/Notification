@@ -362,7 +362,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		// Attach notifications for each post.
 		foreach ( $notification_posts as $notification_post ) {
 
-			$notifications = $notification_post->get_notifications( 'objects', true );
+			$notifications = $notification_post->get_notifications();
 
 			// attach every enabled notification.
 			foreach ( $notifications as $notification ) {
