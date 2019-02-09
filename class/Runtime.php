@@ -58,7 +58,6 @@ class Runtime extends Utils\DocHooks {
 		$this->internationalization = new Utils\Internationalization( $this->files, 'notification' );
 
 		$this->core_cron       = new Core\Cron();
-		$this->core_tracking   = new Core\Tracking( $this->core_cron );
 		$this->core_whitelabel = new Core\Whitelabel();
 		$this->core_debugging  = new Core\Debugging();
 		$this->core_settings   = new Core\Settings();
@@ -90,7 +89,6 @@ class Runtime extends Utils\DocHooks {
 		$this->add_hooks( $this->internationalization );
 
 		$this->add_hooks( $this->core_cron );
-		$this->add_hooks( $this->core_tracking );
 		$this->add_hooks( $this->core_whitelabel );
 		$this->add_hooks( $this->core_debugging );
 		$this->add_hooks( $this->core_settings );
