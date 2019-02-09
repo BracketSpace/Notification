@@ -8,44 +8,16 @@
 use BracketSpace\Notification\Core\Notification;
 
 /**
- * Gets Notification Post object.
- *
- * @since  [Next]
- * @param  mixed $wppost Post ID or WP_Post or false if current post should be used.
- * @return Notification
- */
-function notification_get_post( $wppost = false ) {
-	if ( false === $wppost ) {
-		global $post;
-		$wppost = $post;
-	}
-	return new Notification( $wppost );
-}
-
-/**
  * Checks if notification post has been just started
  *
- * @since  5.0.0
+ * @since  [Next]
  * @since  [Next] We are using Notification Post object.
  * @param  mixed $post Post ID or WP_Post.
  * @return boolean     True if notification has been just started
  */
-function notification_is_new_notification( $post ) {
-	$notification = notification_get_post( $post );
+function notification_post_is_new( $post ) {
+	$notification = notification_adapt_from( 'WordPress', $post );
 	return $notification->is_new();
-}
-
-/**
- * Populates notification object data with notification post data
- *
- * @since  [Next]
- * @param  Notifiation $notification Notification object.
- * @param  mixed       $post         Post ID or WP_Post or false.
- * @return Notifiation               Populated notifiation
- */
-function notification_populate_notification( $notification, $post = false ) {
-	$notification_post = notification_get_post( $post );
-	return $notification_post->populate_notification( $notification );
 }
 
 /**
@@ -80,7 +52,7 @@ function notification_get_posts( $trigger_slug = null ) {
 	}
 
 	foreach ( $wpposts as $wppost ) {
-		$posts[] = notification_get_post( $wppost );
+		$posts[] = notification_adapt_from( 'WordPress', $wppost );
 	}
 
 	return $posts;
@@ -97,68 +69,57 @@ function notification_get_posts( $trigger_slug = null ) {
 function notification_get_post_by_hash( $hash ) {
 	$post = get_page_by_path( $hash, OBJECT, 'notification' );
 	if ( empty( $post ) ) {
-		return $post;
+		return null;
 	}
-	return notification_get_post( $post );
+	return notification_adapt_from( 'WordPress', $post );
 }
 
 /**
  * Creates new Notification post.
  *
+ * @todo #gyakm Rewrite to use adapter properly.
+ *
  * @since  [Next]
  * @param  array   $data   Notification data.
  * @param  boolean $update If existing Notification should be updated.
- * @return mixed           Notification object or WP_Error.
+ * @return mixed           Adapted Notification object or WP_Error.
  */
-function notification_create( $data, $update = false ) {
+function notification_post_create( $data, $update = false ) {
 
-	$data = wp_parse_args( $data, array(
-		'hash'          => md5( time() ), // temp hash.
-		'title'         => '',
-		'trigger'       => '',
-		'notifications' => array(),
-		'enabled'       => false,
-		'extras'        => array(),
-	) );
+	// Trigger.
+	$data['trigger'] = notification_get_single_trigger( $data['trigger'] );
 
+	// Carriers.
+	$carriers = [];
+
+	foreach ( $data['notification'] as $carrier_slug => $carrier_data ) {
+		$carrier = notification_get_single_notification( $carrier_slug );
+		if ( empty( $carrier ) ) {
+			continue;
+		}
+		$carriers[ $carrier_slug ] = $carrier->set_data( $carrier_data );
+	}
+
+	$data['notifications'] = $carriers;
+
+	// Extra.
+	// @todo Extras API #h1k0k.
+	$extras = false;
+
+	$notification      = new Notification( $data );
+	$notification_post = notification_adapt( 'WordPress', $notification );
+
+	// Try to update the post.
 	if ( $update ) {
 		$existing = notification_get_post_by_hash( $data['hash'] );
 		if ( ! empty( $existing ) ) {
-			$id = $existing->get_id();
-		} else {
-			$id = 0;
-		}
-	} else {
-		$id = 0;
-	}
-
-	$post = wp_insert_post( array(
-		'ID'          => $id,
-		'post_type'   => 'notification',
-		'post_title'  => $data['title'],
-		'post_name'   => $data['hash'],
-		'post_status' => $data['enabled'] ? 'publish' : 'draft',
-	), true );
-
-	if ( is_wp_error( $post ) ) {
-		return $post;
-	}
-
-	$notification = notification_get_post( $post );
-
-	$notification->set_trigger( $data['trigger'] );
-
-	foreach ( $data['notifications'] as $notification_type_slug => $notification_type_data ) {
-		$notification->enable_notification( $notification_type_slug, $notification_type_data );
-	}
-
-	if ( ! empty( $data['extras'] ) ) {
-		foreach ( $extras as $extra_key => $extra_data ) {
-			do_action( 'notification/post/import/extras/' . $extra_key, $extra_data, $notification );
+			$notification_post->set_post( $existing->get_post() );
 		}
 	}
 
-	return $notification;
+	$notification_post->save();
+
+	return $notification_post;
 
 }
 
@@ -169,6 +130,6 @@ function notification_create( $data, $update = false ) {
  * @param  array $data Notification data.
  * @return mixed       Notification object or WP_Error.
  */
-function notification_update( $data ) {
-	return notification_create( $data, true );
+function notification_post_update( $data ) {
+	return notification_post_create( $data, true );
 }

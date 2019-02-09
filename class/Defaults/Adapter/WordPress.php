@@ -52,11 +52,11 @@ class WordPress extends Abstracts\Adapter {
 	public function read( $input = null ) {
 
 		if ( $input instanceof \WP_Post ) {
-			$this->post = $input;
+			$this->set_post( $input );
 		} elseif ( is_integer( $input ) ) {
-			$this->post = get_post( $input );
+			$this->set_post( get_post( $input ) );
 		} else {
-			throw new \Exception( 'Read method of WordPress adapter expects the post ID or object' );
+			throw new \Exception( 'Read method of WordPress adapter expects the post ID or WP_Post object' );
 		}
 
 		// Hash.
@@ -105,19 +105,28 @@ class WordPress extends Abstracts\Adapter {
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @return mixed
+	 * @return $this || WP_Error
 	 */
 	public function save() {
 
 		$data = $this->get_notification()->to_array();
 
 		// WordPress post related: Title, Hash, Status, Version.
-		wp_update_post( [
+		$post_id = wp_update_post( [
 			'ID'          => $this->get_id(),
+			'post_type'   => 'notification',
 			'post_title'  => $data['title'],
 			'post_name'   => $data['hash'],
 			'post_status' => $data['enabled'] ? 'publish' : 'draft',
 		], true );
+
+		if ( is_wp_error( $post_id ) ) {
+			return $post_id;
+		}
+
+		if ( ! $this->has_post() ) {
+			$this->set_post( get_post( $post_id ) );
+		}
 
 		// Update version as WordPress automatically does this while updating the post.
 		$this->set_version( time() );
@@ -137,24 +146,60 @@ class WordPress extends Abstracts\Adapter {
 		// @todo Extras API #h1k0k. Presumabely the best to move to abstract adapter.
 		$extras = false;
 
+		return $this;
+
 	}
 
 	/**
 	 * Checks if notification post has been just started
 	 *
+	 * @since [Next]
 	 * @return boolean
 	 */
 	public function is_new() {
-		return '0000-00-00 00:00:00' === $this->post->post_date_gmt;
+		return empty( $this->post ) || '0000-00-00 00:00:00' === $this->post->post_date_gmt;
 	}
 
 	/**
 	 * Gets notification post ID
 	 *
+	 * @since [Next]
 	 * @return integer post ID
 	 */
 	public function get_id() {
-		return $this->post->ID;
+		return ! empty( $this->post ) ? $this->post->ID : 0;
+	}
+
+	/**
+	 * Gets post
+	 *
+	 * @since [Next]
+	 * @return null || WP_Post
+	 */
+	public function get_post() {
+		return $this->post;
+	}
+
+	/**
+	 * Sets post
+	 *
+	 * @since [Next]
+	 * @param \WP_Post $post WP Post to set.
+	 * @return $this
+	 */
+	public function set_post( \WP_Post $post ) {
+		$this->post = $post;
+		return $this;
+	}
+
+	/**
+	 * Checks if adapter already have the post
+	 *
+	 * @since [Next]
+	 * @return bool
+	 */
+	public function has_post() {
+		return ! empty( $this->get_post() );
 	}
 
 	/**
@@ -177,11 +222,6 @@ class WordPress extends Abstracts\Adapter {
 
 		// Set enabled state.
 		$enabled_notifications = (array) get_post_meta( $this->get_id(), self::$metakey_notification_enabled, false );
-
-		// If this is new post, mark email notifiation as active for better UX.
-		if ( $this->is_new() && $notification->get_slug() === 'email' ) {
-			$enabled_notifications[] = 'email';
-		}
 
 		if ( in_array( $notification->get_slug(), $enabled_notifications, true ) ) {
 			$notification->enabled = true;

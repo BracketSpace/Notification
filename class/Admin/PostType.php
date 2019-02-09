@@ -173,7 +173,7 @@ class PostType {
 			return;
 		}
 
-		$notification_post = notification_get_post( $post );
+		$notification_post = notification_adapt_from( 'WordPress', $post );
 
 		do_action( 'notification/post/column/main', $notification_post );
 
@@ -220,7 +220,7 @@ class PostType {
 
 		foreach ( notification_get_notifications() as $notification ) {
 
-			notification_populate_notification( $notification );
+			$notification = $notification_post->populate_notification( $notification );
 
 			$this->formrenderer->set_fields( $notification->get_form_fields() );
 
@@ -283,7 +283,7 @@ class PostType {
 			$delete_text = __( 'Move to Trash', 'notification' );
 		}
 
-		$enabled = notification_is_new_notification( $post ) || 'draft' !== get_post_status( $post->ID );
+		$enabled = notification_post_is_new( $post ) || 'draft' !== get_post_status( $post->ID );
 
 		$view->set_var( 'enabled', $enabled );
 		$view->set_var( 'post_id', $post->ID );
@@ -324,9 +324,9 @@ class PostType {
 	 */
 	public function render_merge_tags_metabox( $post ) {
 
-		$view              = notification_create_view();
-		$notification_post = notification_get_post( $post );
-		$trigger_slug      = $notification_post->get_trigger();
+		$view         = notification_create_view();
+		$notification = notification_adapt_from( 'WordPress', $post );
+		$trigger_slug = $notification->get_trigger();
 
 		if ( ! $trigger_slug ) {
 			$view->get_view( 'mergetag/metabox-notrigger' );
@@ -470,6 +470,8 @@ class PostType {
 	/**
 	 * Saves the Notification data
 	 *
+	 * @todo #gyakm Use adapter properly.
+	 *
 	 * @action save_post_notification
 	 *
 	 * @param  integer $post_id Current post ID.
@@ -492,7 +494,7 @@ class PostType {
 		}
 
 		$data              = $_POST;
-		$notification_post = notification_get_post( $post );
+		$notification_post = notification_adapt_from( 'WordPress', $post );
 
 		// Trigger.
 		$trigger = ! empty( $data['notification_trigger'] ) ? sanitize_text_field( wp_unslash( $data['notification_trigger'] ) ) : '';

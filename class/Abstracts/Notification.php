@@ -223,7 +223,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	 *
 	 * @since  [Next]
 	 * @param  array $data Data with keys matched with Field names.
-	 * @return void
+	 * @return $this
 	 */
 	public function set_data( $data ) {
 
@@ -232,6 +232,8 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 				$field->set_value( $field->sanitize( $data[ $field->get_raw_name() ] ) );
 			}
 		}
+
+		return $this;
 
 	}
 

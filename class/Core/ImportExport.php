@@ -136,7 +136,7 @@ class ImportExport {
 
 		foreach ( $posts as $wppost ) {
 
-			$notification = notification_get_post( $wppost );
+			$notification = notification_adapt_from( 'WordPress', $wppost );
 			$data[]       = $this->get_notification_data( $notification );
 
 		}
@@ -245,13 +245,13 @@ class ImportExport {
 		foreach ( $data as $notification_data ) {
 			$existing_notification = notification_get_post_by_hash( $notification_data['hash'] );
 			if ( empty( $existing_notification ) ) {
-				notification_create( $notification_data );
+				notification_post_create( $notification_data );
 				$added++;
 			} else {
 				if ( $existing_notification->get_version() >= $notification_data['version'] ) {
 					$skipped++;
 				} else {
-					notification_update( $notification_data );
+					notification_post_update( $notification_data );
 					$updated++;
 				}
 			}
