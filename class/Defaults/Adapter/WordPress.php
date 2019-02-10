@@ -81,7 +81,9 @@ class WordPress extends Abstracts\Adapter {
 		foreach ( $notification_slugs as $notification_slug ) {
 			$notification = notification_get_single_notification( $notification_slug );
 			if ( ! empty( $notification ) ) {
-				$notification_objects[ $notification->get_slug() ] = $this->populate_notification( clone $notification );
+				$notification_copy                                 = clone $notification;
+				$notification_copy->post_id                        = $this->get_id();
+				$notification_objects[ $notification->get_slug() ] = $this->populate_notification( $notification_copy );
 			}
 		}
 
