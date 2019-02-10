@@ -7,9 +7,8 @@
 
 namespace BracketSpace\Notification\Tests\Core;
 
+use BracketSpace\Notification\Tests\Helpers;
 use BracketSpace\Notification\Core\Notification;
-use BracketSpace\Notification\Defaults\Trigger;
-use BracketSpace\Notification\Defaults\Notification as NotificationType;
 
 /**
  * Notification test case.
@@ -98,7 +97,7 @@ class TestNotification extends \WP_UnitTestCase {
 	 */
 	public function test_trigger() {
 
-		$trigger      = new Trigger\Post\PostPublished( 'post' );
+		$trigger      = Helpers\Registerer::register_trigger();
 		$notification = new Notification( [
 			'trigger' => $trigger,
 		] );
@@ -129,12 +128,12 @@ class TestNotification extends \WP_UnitTestCase {
 	 */
 	public function test_notifications() {
 
-		$ntfn         = new NotificationType\Email();
+		$carrier      = Helpers\Registerer::register_carrier();
 		$notification = new Notification( [
-			'notifications' => [ $ntfn ],
+			'notifications' => [ $carrier ],
 		] );
 
-		$this->assertSame( [ 'email' => $ntfn ], $notification->get_notifications() );
+		$this->assertSame( [ $carrier->get_slug() => $carrier ], $notification->get_notifications() );
 
 	}
 
@@ -231,6 +230,176 @@ class TestNotification extends \WP_UnitTestCase {
 
 		$notification = new Notification();
 		$this->assertGreaterThanOrEqual( time(), $notification->get_version() );
+
+	}
+
+	/**
+	 * Test to_array
+	 *
+	 * @since [Next]
+	 * @todo Extras API #h1k0k.
+	 */
+	public function test_to_array() {
+
+		$trigger = Helpers\Registerer::register_trigger();
+		$carrier = Helpers\Registerer::register_carrier();
+		$carrier->enabled = true;
+
+		$version = time() - 100;
+
+		$notification = new Notification( [
+			'hash'          => 'test-hash',
+			'title'         => 'Test Title',
+			'trigger'       => $trigger,
+			'notifications' => [ $carrier ],
+			'enabled'       => true,
+			'version'       => $version,
+		] );
+
+		$data = $notification->to_array();
+
+		$this->assertArrayHasKey( 'hash', $data );
+		$this->assertArrayHasKey( 'title', $data );
+		$this->assertArrayHasKey( 'trigger', $data );
+		$this->assertArrayHasKey( 'notifications', $data );
+		$this->assertArrayHasKey( 'enabled', $data );
+		$this->assertArrayHasKey( 'extras', $data );
+		$this->assertArrayHasKey( 'version', $data );
+
+		$this->assertEquals( 'test-hash', $data['hash'] );
+		$this->assertEquals( 'Test Title', $data['title'] );
+		$this->assertEquals( $trigger->get_slug(), $data['trigger'] );
+		$this->assertEquals( $trigger->get_slug(), $data['trigger'] );
+		$this->assertArrayHasKey( $carrier->get_slug(), $data['notifications'] );
+		$this->assertEquals( true, $data['enabled'] );
+		$this->assertEquals( $version, $data['version'] );
+
+	}
+
+	/**
+	 * Test create_hash
+	 *
+	 * @since [Next]
+	 */
+	public function test_create_hash() {
+		$this->assertRegExp( '/notification_[a-z0-9]{13}/', Notification::create_hash() );
+	}
+
+	/**
+	 * Test add_notification object
+	 *
+	 * @since [Next]
+	 */
+	public function test_add_notification_object() {
+
+		$notification = new Notification();
+		$carrier      = Helpers\Registerer::register_carrier();
+
+		$notification->add_notification( $carrier );
+
+		$this->assertSame( [ $carrier->get_slug() => $carrier ], $notification->get_notifications() );
+
+	}
+
+	/**
+	 * Test add_notification existing exception
+	 *
+	 * @since [Next]
+	 */
+	public function test_add_notification_existing_exception() {
+
+		$this->expectException( \Exception::class );
+
+		$carrier      = Helpers\Registerer::register_carrier();
+		$notification = new Notification();
+		$notification->add_notification( $carrier );
+		$notification->add_notification( $carrier );
+
+	}
+
+	/**
+	 * Test add_notification not-existing exception
+	 *
+	 * @since [Next]
+	 */
+	public function test_add_notification_not_existing_exception() {
+
+		$this->expectException( \Exception::class );
+
+		$notification = new Notification();
+		$notification->add_notification( 'this-is-not-a-carrier' );
+
+	}
+
+	/**
+	 * Test get_notification
+	 *
+	 * @since [Next]
+	 */
+	public function test_get_notification() {
+
+		$carrier      = Helpers\Registerer::register_carrier();
+		$notification = new Notification( [
+			'notifications' => [ $carrier ]
+		] );
+
+		$this->assertSame( $carrier, $notification->get_notification( $carrier->get_slug() ) );
+		$this->assertNull( $notification->get_notification( 'this-is-not-a-carrier' ) );
+
+	}
+
+	/**
+	 * Test enable_notification
+	 *
+	 * @since [Next]
+	 */
+	public function test_enable_notification() {
+
+		$carrier      = Helpers\Registerer::register_carrier();
+		$notification = new Notification( [
+			'notifications' => [ $carrier ]
+		] );
+
+		$notification->enable_notification( $carrier->get_slug() );
+
+		$this->assertSame( $carrier, $notification->get_notification( $carrier->get_slug() ) );
+		$this->assertTrue( $notification->get_notification( $carrier->get_slug() )->enabled );
+
+	}
+
+	/**
+	 * Test enable_notification and adding
+	 *
+	 * @since [Next]
+	 */
+	public function test_enable_notification_adding() {
+
+		$carrier      = Helpers\Registerer::register_carrier();
+		$notification = new Notification();
+		$notification->enable_notification( $carrier->get_slug() );
+
+		$this->assertTrue( $notification->get_notification( $carrier->get_slug() )->enabled );
+
+	}
+
+	/**
+	 * Test disable_notification
+	 *
+	 * @since [Next]
+	 */
+	public function test_disable_notification() {
+
+		$carrier          = Helpers\Registerer::register_carrier();
+		$carrier->enabled = true;
+		$notification     = new Notification( [
+			'notifications' => [ $carrier ]
+		] );
+
+		$this->assertTrue( $notification->get_notification( $carrier->get_slug() )->enabled );
+
+		$notification->disable_notification( $carrier->get_slug() );
+
+		$this->assertFalse( $notification->get_notification( $carrier->get_slug() )->enabled );
 
 	}
 

@@ -112,7 +112,7 @@ class WordPress extends Abstracts\Adapter {
 		$data = $this->get_notification()->to_array();
 
 		// WordPress post related: Title, Hash, Status, Version.
-		$post_id = wp_update_post( [
+		$post_id = wp_insert_post( [
 			'ID'          => $this->get_id(),
 			'post_type'   => 'notification',
 			'post_title'  => $data['title'],

@@ -6,6 +6,7 @@
  */
 
 use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Defaults\Adapter;
 
 /**
  * Checks if notification post has been just started
@@ -35,7 +36,7 @@ function notification_get_posts( $trigger_slug = null ) {
 	);
 
 	if ( ! empty( $trigger_slug ) ) {
-		$query_args['meta_key']   = Notification::$metakey_trigger;
+		$query_args['meta_key']   = Adapter\WordPress::$metakey_trigger;
 		$query_args['meta_value'] = $trigger_slug;
 	}
 

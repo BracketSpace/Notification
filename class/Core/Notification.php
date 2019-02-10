@@ -189,6 +189,7 @@ class Notification {
 
 	/**
 	 * Dumps the object to array
+	 * Note: The notifications array contains only enabled notifications.
 	 *
 	 * @since  [Next]
 	 * @return array
@@ -197,16 +198,19 @@ class Notification {
 
 		$notifications = [];
 
-		foreach ( $this->get_notifications as $key => $notification ) {
+		foreach ( $this->get_notifications() as $key => $notification ) {
+			// Filter active only.
 			if ( $notification->enabled ) {
 				$notifications[ $key ] = $notification->get_data();
 			}
 		}
 
+		$trigger = $this->get_trigger();
+
 		return [
 			'hash'          => $this->get_hash(),
 			'title'         => $this->get_title(),
-			'trigger'       => $this->get_trigger()->get_slug(),
+			'trigger'       => $trigger ? $trigger->get_slug() : '',
 			'notifications' => $notifications,
 			'enabled'       => $this->is_enabled(),
 			'extras'        => $this->get_extras(),
@@ -253,6 +257,7 @@ class Notification {
 	 *
 	 * @since  [Next]
 	 * @throws \Exception If you try to add already added notification.
+	 * @throws \Exception If you try to add non-existing notification.
 	 * @param  mixed $notification Notification object or slug.
 	 * @return Notification
 	 */
@@ -262,13 +267,17 @@ class Notification {
 			$notification = notification_get_single_notification( $notification );
 		}
 
+		if ( ! $notification instanceof Interfaces\Sendable ) {
+			throw new \Exception( 'Notification hasn\'t been found' );
+		}
+
 		$notifications = $this->get_notifications();
 
-		if ( isset( $notifications[ $notifiction->get_slug() ] ) ) {
+		if ( isset( $notifications[ $notification->get_slug() ] ) ) {
 			throw new \Exception( sprintf( 'Notification %s already exists', $notification->get_name() ) );
 		}
 
-		$notifications[ $notifiction->get_slug() ] = $notification;
+		$notifications[ $notification->get_slug() ] = $notification;
 		$this->set_notifications( $notifications );
 
 		return $notification;
