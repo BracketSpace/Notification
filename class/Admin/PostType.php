@@ -408,7 +408,8 @@ class PostType {
 	/**
 	 * Saves post status in relation to on/off switch
 	 *
-	 * @filter wp_insert_post_data 100
+	 * @todo #gyakm Move the status save to update method.
+	 * @//filter wp_insert_post_data 100
 	 *
 	 * @since  5.0.0
 	 * @param  array $data    post data.
