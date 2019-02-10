@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Defaults\Adapter;
 
 use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Interfaces;
 
 /**
  * WordPress Adapter class
@@ -227,7 +228,8 @@ class WordPress extends Abstracts\Adapter {
 			$notification->enabled = true;
 		}
 
-		$data         = get_post_meta( $this->get_id(), self::$metakey_notification_data . $notification_slug, true );
+		// Set data.
+		$data         = get_post_meta( $this->get_id(), self::$metakey_notification_data . $notification->get_slug(), true );
 		$field_values = apply_filters( 'notification/notification/form_fields/values', $data, $notification );
 
 		foreach ( $notification->get_form_fields() as $field ) {
