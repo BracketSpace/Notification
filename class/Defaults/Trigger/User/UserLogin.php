@@ -88,6 +88,7 @@ class UserLogin extends UserTrigger {
 						}
 						return '';
 					},
+					'group'       => __( 'User', 'notification' ),
 				)
 			)
 		);

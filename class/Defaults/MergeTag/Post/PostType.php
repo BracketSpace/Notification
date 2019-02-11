@@ -49,7 +49,8 @@ class PostType extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->post_type;
 				},
-				'group'       => sprintf( __( 'Post', 'notification' ) ),
+				// translators: current post type.
+				'group'       => __( $this->post_type, 'notification' ),
 			)
 		);
 

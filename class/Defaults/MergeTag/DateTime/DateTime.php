@@ -60,6 +60,8 @@ class DateTime extends StringTag {
 
 		parent::__construct( $args );
 
+		$this->set_group( __( 'Date', 'notification' ) );
+
 	}
 
 	/**

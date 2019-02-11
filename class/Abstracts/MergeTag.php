@@ -143,6 +143,17 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 	}
 
 	/**
+	 * Sets group
+	 *
+	 * @param string $group group name.
+	 *
+	 * @return void
+	 */
+	public function set_group( $group ) {
+		$this->group = $group;
+	}
+
+	/**
 	 * Gets group
 	 *
 	 * @return string group

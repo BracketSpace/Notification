@@ -49,7 +49,8 @@ class TaxonomySlug extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->taxonomy;
 				},
-				'group'       => sprintf( __( 'Taxonomy', 'notification' ) ),
+				// translators: current taxonomy.
+				'group'       => __( 'Taxonomy', 'notification' ),
 			)
 		);
 

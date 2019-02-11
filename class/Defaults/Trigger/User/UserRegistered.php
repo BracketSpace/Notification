@@ -63,6 +63,7 @@ class UserRegistered extends UserTrigger {
 					'resolver'    => function( $trigger ) {
 						return network_site_url( 'wp-login.php?action=rp&key=' . $trigger->get_password_reset_key() . '&login=' . rawurlencode( $trigger->user_object->user_login ), 'login' );
 					},
+					'group'       => __( 'User', 'notification' ),
 				)
 			)
 		);

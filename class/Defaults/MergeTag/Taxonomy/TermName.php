@@ -34,7 +34,7 @@ class TermName extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->term->name;
 				},
-				'group'       => sprintf( __( 'Term', 'notification' ) ),
+				'group'       => __( 'Term', 'notification' ),
 			)
 		);
 

@@ -72,7 +72,8 @@ class PostTerms extends StringTag {
 					}
 					return implode( ', ', $terms );
 				},
-				'group'       => sprintf( __( 'Post', 'notification' ) ),
+				// translators: current post type.
+				'group'       => __( $this->post_type, 'notification' ),
 			)
 		);
 

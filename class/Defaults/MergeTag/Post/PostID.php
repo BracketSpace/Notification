@@ -50,7 +50,8 @@ class PostID extends IntegerTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->post_type }->ID;
 				},
-				'group'       => sprintf( __( 'Post', 'notification' ) ),
+				// translators: current post type.
+				'group'       => __( $this->post_type, 'notification' ),
 			)
 		);
 

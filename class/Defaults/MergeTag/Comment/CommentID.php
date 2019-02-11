@@ -44,7 +44,8 @@ class CommentID extends IntegerTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->comment_ID;
 				},
-				'group'       => sprintf( __( 'Comment', 'notification' ) ),
+				// translators: comment type.
+				'group'       => __( ucfirst( $this->property_name ), 'notification' ),
 			)
 		);
 

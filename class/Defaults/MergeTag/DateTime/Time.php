@@ -36,6 +36,11 @@ class Time extends StringTag {
 			)
 		);
 
+		if ( ! isset( $args['group'] ) ) {
+			$args['group'] = $this->set_group( __( 'Date', 'notification' ) );
+
+		}
+
 		if ( ! isset( $args['description'] ) ) {
 			$args['description']  = date_i18n( $args['time_format'] ) . '. ';
 			$args['description'] .= __( 'You can change the format in General WordPress Settings.', 'notification' );
@@ -66,6 +71,8 @@ class Time extends StringTag {
 		}
 
 		parent::__construct( $args );
+
+		$this->set_group( __( 'Date', 'notification' ) );
 
 	}
 

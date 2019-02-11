@@ -79,7 +79,6 @@
 
 				$('.notification_merge_tags_accordion h2, .inside li').show();
 				collapse.trigger('close');
-
 			}
 
 

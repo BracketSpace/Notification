@@ -50,7 +50,8 @@ class PostTitle extends StringTag {
 				'resolver'    => function() {
 					return html_entity_decode( get_the_title( $this->trigger->{ $this->post_type } ) );
 				},
-				'group'       => sprintf( __( 'Post', 'notification' ) ),
+				// translators: current post type.
+				'group'       => __( $this->post_type, 'notification' ),
 			)
 		);
 

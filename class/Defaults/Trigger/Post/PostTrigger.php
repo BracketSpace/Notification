@@ -144,6 +144,7 @@ abstract class PostTrigger extends Abstracts\Trigger {
 								return is_sticky( $trigger->{ $this->post_type }->ID ) ? __( 'Sticky', 'notification' ) : __( 'Not sticky', 'notification' );
 							}
 						},
+						'group'    => __( $this->post_type, 'notification' ),
 					)
 				)
 			);
@@ -159,6 +160,7 @@ abstract class PostTrigger extends Abstracts\Trigger {
 						array(
 							'post_type' => $this->post_type,
 							'taxonomy'  => $taxonomy,
+							'group'     => __( $taxonomy->labels->name, 'notification' ),
 						)
 					)
 				);

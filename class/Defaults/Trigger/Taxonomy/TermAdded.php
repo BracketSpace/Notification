@@ -88,9 +88,8 @@ class TermAdded extends TermTrigger {
 		$this->add_merge_tag(
 			new MergeTag\DateTime\DateTime(
 				array(
-					'slug'  => 'term_creation_datetime',
-					'name'  => sprintf( __( 'Term creation date and time', 'notification' ) ),
-					'group' => sprintf( __( 'Term dates', 'notification' ) ),
+					'slug' => 'term_creation_datetime',
+					'name' => sprintf( __( 'Term creation date and time', 'notification' ) ),
 				)
 			)
 		);

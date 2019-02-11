@@ -50,7 +50,8 @@ class PostContent extends StringTag {
 				'resolver'    => function() {
 					return apply_filters( 'the_content', $this->trigger->{ $this->post_type }->post_content );
 				},
-				'group'       => sprintf( __( 'Post', 'notification' ) ),
+				// translators: current post type.
+				'group'       => __( $this->post_type, 'notification' ),
 			)
 		);
 

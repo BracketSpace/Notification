@@ -34,7 +34,7 @@ class TermSlug extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->term->slug;
 				},
-				'group'       => sprintf( __( 'Term', 'notification' ) ),
+				'group'       => __( 'Term', 'notification' ),
 			)
 		);
 

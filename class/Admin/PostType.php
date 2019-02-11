@@ -394,7 +394,7 @@ class PostType {
 
 		ksort( $groups );
 
-		if ( $groups[ __( 'Other', 'notification' ) ] ) {
+		if ( isset( $groups[ __( 'Other', 'notification' ) ] ) ) {
 			$others = $groups[ __( 'Other', 'notification' ) ];
 			unset( $groups[ __( 'Other', 'notification' ) ] );
 			$groups[ __( 'Other', 'notification' ) ] = $others;
