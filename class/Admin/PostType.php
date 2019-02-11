@@ -403,7 +403,7 @@ class PostType {
 			$groups[ $other_key ] = $others;
 		}
 
-		return $groups;
+		return apply_filters( 'notification/trigger/tags/groups', $groups, $trigger );
 	}
 
 	/**
