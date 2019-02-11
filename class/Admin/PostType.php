@@ -360,6 +360,7 @@ class PostType {
 		}
 
 		$view->set_var( 'trigger', $trigger );
+		$view->set_var( 'tags', $trigger->get_merge_tags( 'visible' ) );
 		$view->set_var( 'tag_groups', $tag_groups );
 
 		if ( count( $tag_groups ) > 1 ) {
@@ -370,34 +371,36 @@ class PostType {
 	}
 
 	/**
-	 * Renders Merge Tags list
+	 * Prepates merge tag groups for provided Trigger.
 	 *
 	 * @param  object $trigger Trigger object.
-	 * @return array $groups Grouped tags.
+	 * @return array  $groups  Grouped tags.
 	 */
 	public function prepare_merge_tag_groups( $trigger ) {
 
-		$groups = array();
+		$groups = [];
 		$tags   = $trigger->get_merge_tags( 'visible' );
 
 		if ( empty( $tags ) ) {
 			return $groups;
 		}
 
+		$other_key = __( 'Other', 'notification' );
+
 		foreach ( $tags as $tag ) {
 			if ( $tag->get_group() ) {
 				$groups[ $tag->get_group() ][] = $tag;
 			} else {
-				$groups[ __( 'Other', 'notification' ) ][] = $tag;
+				$groups[ $other_key ][] = $tag;
 			}
 		}
 
 		ksort( $groups );
 
-		if ( isset( $groups[ __( 'Other', 'notification' ) ] ) ) {
-			$others = $groups[ __( 'Other', 'notification' ) ];
-			unset( $groups[ __( 'Other', 'notification' ) ] );
-			$groups[ __( 'Other', 'notification' ) ] = $others;
+		if ( isset( $groups[ $other_key ] ) ) {
+			$others = $groups[ $other_key ];
+			unset( $groups[ $other_key ] );
+			$groups[ $other_key ] = $others;
 		}
 
 		return $groups;

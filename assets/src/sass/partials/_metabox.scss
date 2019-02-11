@@ -5,6 +5,7 @@
 #notification_merge_tags .inside {
 
 	.notification-search-merge-tags {
+		margin-top: 10px;
 		margin-bottom: 20px;
 	}
 
@@ -19,7 +20,7 @@
 			position: relative;
 			font-weight: bold;
 			text-transform: uppercase;
-			color: #444;
+			color: #636363;
 			text-decoration: none;
 
 			&::after {
@@ -31,8 +32,7 @@
 				height: 0;
 				border-left: 5px solid transparent;
 				border-right: 5px solid transparent;
-
-				border-top: 5px solid #444;
+				border-top: 5px solid #636363;
 			}
 		}
 	}

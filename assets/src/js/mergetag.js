@@ -20,9 +20,10 @@
 			}, 800);
 
 		});
-		// initialize accordion
 
-		var collapse = $('.notification_merge_tags_accordion').collapse();
+		// Initialize accordion
+
+		var collapse = $( '.notification_merge_tags_accordion' ).collapse();
 
 
 		// Swap merge tags list for new trigger
