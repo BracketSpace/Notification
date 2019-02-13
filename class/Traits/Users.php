@@ -22,13 +22,13 @@ trait Users {
 	public function get_all_users() {
 		global $wpdb;
 
-		$users_cache = new ObjectCache( 'cached_users_list', 'users' );
+		$cache = new ObjectCache( 'users', 'notification' );
 
-		$users = $users_cache->get();
+		$users = $cache->get();
 
 		if ( empty( $users ) ) {
-			$users     = $wpdb->get_results( "SELECT ID, user_email, display_name FROM $wpdb->users" ); //phpcs:ignore
-			$users_cache->set( $users );
+			$users = $wpdb->get_results( "SELECT ID, user_email, display_name FROM $wpdb->users" ); //phpcs:ignore
+			$cache->set( $users );
 		}
 
 		return $users;
@@ -44,13 +44,15 @@ trait Users {
 	public function get_users_by_role( $role ) {
 		global $wpdb;
 
-		$users_by_role_cache = new ObjectCache( 'cached_users_list_by_role_' . $role, 'users_by_role' );
+		$cache = new ObjectCache( $role . '_users', 'notification' );
 
-		$users = $users_by_role_cache->get();
+		$users = $cache->get();
 
 		if ( empty( $users ) ) {
-			$users = $wpdb->get_results( $wpdb->prepare( "SELECT u.ID, u.user_email, u.display_name FROM $wpdb->users AS u INNER JOIN $wpdb->usermeta AS m ON u.ID = m.user_id WHERE m.meta_key = 'wp_capabilities' AND m.meta_value LIKE %s", '%' . $wpdb->esc_like( $role ) . '%' ) ); //phpcs:ignore
-			$users_by_role_cache->set( $users );
+			$users = $wpdb->get_results( //phpcs:ignore
+				$wpdb->prepare( "SELECT u.ID, u.user_email, u.display_name FROM $wpdb->users AS u INNER JOIN $wpdb->usermeta AS m ON u.ID = m.user_id WHERE m.meta_key = 'wp_capabilities' AND m.meta_value LIKE %s", '%' . $wpdb->esc_like( $role ) . '%' )
+			);
+			$cache->set( $users );
 		}
 
 		return $users;

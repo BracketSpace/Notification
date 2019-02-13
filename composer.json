@@ -3,8 +3,7 @@
 	"type": "wordpress-plugin",
 	"scripts": {
 		"phpcs": "phpcs",
-		"phpcbf": "phpcbf",
-		"phpcsv": "phpcs --version"
+		"phpcbf": "phpcbf"
 	},
 	"require-dev": {
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",

@@ -63,7 +63,6 @@ class Role extends Abstracts\Recipient {
 		$opts  = array();
 
 		foreach ( $roles as $role_slug => $role ) {
-
 			$users_query = $this->get_users_by_role( $role_slug );
 
 			$num_users = count( $users_query );
