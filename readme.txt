@@ -262,3 +262,4 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Notification data is now using single nonce field and additional data should be saved with `notification/data/save` action.
 * [Changed] Namespaces of Cron, Internationalization, License, Tracking and Whitelabel classes.
 * [Changed] Native class autoloader to Composer autoloader.
+* [Changed] User recipients optimization with direct database calls.
