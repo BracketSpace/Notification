@@ -50,6 +50,7 @@ class PostID extends IntegerTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->post_type }->ID;
 				},
+				'group'       => $this->get_nicename(),
 			)
 		);
 

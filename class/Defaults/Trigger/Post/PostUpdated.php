@@ -87,6 +87,7 @@ class PostUpdated extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s updating user ID', 'notification' ), $post_name ),
 					'property_name' => 'updating_user',
+					'group'         => __( 'Updating user', 'notification' ),
 				)
 			)
 		);
@@ -98,6 +99,7 @@ class PostUpdated extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s updating user login', 'notification' ), $post_name ),
 					'property_name' => 'updating_user',
+					'group'         => __( 'Updating user', 'notification' ),
 				)
 			)
 		);
@@ -109,6 +111,7 @@ class PostUpdated extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s updating user email', 'notification' ), $post_name ),
 					'property_name' => 'updating_user',
+					'group'         => __( 'Updating user', 'notification' ),
 				)
 			)
 		);
@@ -120,6 +123,7 @@ class PostUpdated extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s updating user nicename', 'notification' ), $post_name ),
 					'property_name' => 'updating_user',
+					'group'         => __( 'Updating user', 'notification' ),
 				)
 			)
 		);
@@ -131,6 +135,7 @@ class PostUpdated extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s updating user display name', 'notification' ), $post_name ),
 					'property_name' => 'updating_user',
+					'group'         => __( 'Updating user', 'notification' ),
 				)
 			)
 		);
@@ -142,6 +147,7 @@ class PostUpdated extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s updating user first name', 'notification' ), $post_name ),
 					'property_name' => 'updating_user',
+					'group'         => __( 'Updating user', 'notification' ),
 				)
 			)
 		);
@@ -153,6 +159,7 @@ class PostUpdated extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s updating user last name', 'notification' ), $post_name ),
 					'property_name' => 'updating_user',
+					'group'         => __( 'Updating user', 'notification' ),
 				)
 			)
 		);

@@ -69,6 +69,7 @@ class Updated extends ThemeTrigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->theme_previous_version;
 			},
+			'group'       => __( 'Theme', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(

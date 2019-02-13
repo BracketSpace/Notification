@@ -47,6 +47,7 @@ class UserBio extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->description;
 				},
+				'group'       => __( 'User', 'notification' ),
 			)
 		);
 

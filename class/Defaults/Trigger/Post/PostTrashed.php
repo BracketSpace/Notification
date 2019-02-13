@@ -79,6 +79,7 @@ class PostTrashed extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s trashing user ID', 'notification' ), $post_name ),
 					'property_name' => 'trashing_user',
+					'group'         => __( 'Trashing user', 'notification' ),
 				)
 			)
 		);
@@ -90,6 +91,7 @@ class PostTrashed extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s trashing user login', 'notification' ), $post_name ),
 					'property_name' => 'trashing_user',
+					'group'         => __( 'Trashing user', 'notification' ),
 				)
 			)
 		);
@@ -101,6 +103,7 @@ class PostTrashed extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s trashing user email', 'notification' ), $post_name ),
 					'property_name' => 'trashing_user',
+					'group'         => __( 'Trashing user', 'notification' ),
 				)
 			)
 		);
@@ -112,6 +115,7 @@ class PostTrashed extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s trashing user nicename', 'notification' ), $post_name ),
 					'property_name' => 'trashing_user',
+					'group'         => __( 'Trashing user', 'notification' ),
 				)
 			)
 		);
@@ -123,6 +127,7 @@ class PostTrashed extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s trashing user display name', 'notification' ), $post_name ),
 					'property_name' => 'trashing_user',
+					'group'         => __( 'Trashing user', 'notification' ),
 				)
 			)
 		);
@@ -134,6 +139,7 @@ class PostTrashed extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s trashing user first name', 'notification' ), $post_name ),
 					'property_name' => 'trashing_user',
+					'group'         => __( 'Trashing user', 'notification' ),
 				)
 			)
 		);
@@ -145,6 +151,7 @@ class PostTrashed extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s trashing user last name', 'notification' ), $post_name ),
 					'property_name' => 'trashing_user',
+					'group'         => __( 'Trashing user', 'notification' ),
 				)
 			)
 		);

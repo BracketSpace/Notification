@@ -49,6 +49,7 @@ class TaxonomySlug extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->taxonomy;
 				},
+				'group'       => __( 'Taxonomy', 'notification' ),
 			)
 		);
 

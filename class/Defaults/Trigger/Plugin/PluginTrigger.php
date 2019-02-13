@@ -30,6 +30,7 @@ abstract class PluginTrigger extends Abstracts\Trigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->plugin['Name'];
 			},
+			'group'       => __( 'Plugin', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\StringTag( array(
@@ -40,6 +41,7 @@ abstract class PluginTrigger extends Abstracts\Trigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->plugin['AuthorName'];
 			},
+			'group'       => __( 'Plugin', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\StringTag( array(
@@ -50,6 +52,7 @@ abstract class PluginTrigger extends Abstracts\Trigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->plugin['Version'];
 			},
+			'group'       => __( 'Plugin', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\StringTag( array(
@@ -60,6 +63,7 @@ abstract class PluginTrigger extends Abstracts\Trigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->plugin['PluginURI'];
 			},
+			'group'       => __( 'Plugin', 'notification' ),
 		) ) );
 
 	}

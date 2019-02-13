@@ -50,6 +50,7 @@ class PostContent extends StringTag {
 				'resolver'    => function() {
 					return apply_filters( 'the_content', $this->trigger->{ $this->post_type }->post_content );
 				},
+				'group'       => $this->get_nicename(),
 			)
 		);
 

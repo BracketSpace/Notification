@@ -33,8 +33,14 @@ class Time extends StringTag {
 				'name'        => __( 'Time', 'notification' ),
 				'time_format' => get_option( 'time_format' ),
 				'example'     => true,
+				'group'       => __( 'Date', 'notification' ),
 			)
 		);
+
+		if ( ! isset( $args['group'] ) ) {
+			$args['group'] = $this->set_group( __( 'Date', 'notification' ) );
+
+		}
 
 		if ( ! isset( $args['description'] ) ) {
 			$args['description']  = date_i18n( $args['time_format'] ) . '. ';

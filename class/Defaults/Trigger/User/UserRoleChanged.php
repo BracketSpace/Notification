@@ -73,6 +73,7 @@ class UserRoleChanged extends UserTrigger {
 			'resolver' => function( $trigger ) {
 				return $trigger->new_role;
 			},
+			'group'    => __( 'Roles', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\StringTag( array(
@@ -81,6 +82,7 @@ class UserRoleChanged extends UserTrigger {
 			'resolver' => function( $trigger ) {
 				return $trigger->old_role;
 			},
+			'group'    => __( 'Roles', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(

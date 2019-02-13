@@ -34,6 +34,7 @@ class TermDescription extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->term->description;
 				},
+				'group'       => __( 'Term', 'notification' ),
 			)
 		);
 

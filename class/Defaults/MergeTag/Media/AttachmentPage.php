@@ -44,6 +44,7 @@ class AttachmentPage extends UrlTag {
 				'resolver'    => function() {
 					return get_permalink( $this->{ $this->property_name }->attachment->ID );
 				},
+				'group'       => __( 'Attachment', 'notification' ),
 			)
 		);
 

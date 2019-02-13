@@ -44,6 +44,8 @@ class CommentAuthorUserAgent extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->comment_agent;
 				},
+				// translators: comment type author.
+				'group'       => sprintf( __( '%s author', 'notification' ), ucfirst( $this->property_name ) ),
 			)
 		);
 

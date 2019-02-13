@@ -55,6 +55,7 @@ class UserRole extends StringTag {
 
 					return implode( ', ', $roles );
 				},
+				'group'       => __( 'User', 'notification' ),
 			)
 		);
 
