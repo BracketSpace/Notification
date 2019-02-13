@@ -99,6 +99,7 @@ class CommentReplied extends CommentTrigger {
 					'slug'          => 'parent_comment_ID',
 					'name'          => __( 'Parent comment ID', 'notification' ),
 					'property_name' => 'parent_comment',
+					'group'         => __( 'Parent comment', 'notification' ),
 				)
 			)
 		);
@@ -109,6 +110,7 @@ class CommentReplied extends CommentTrigger {
 					'slug'          => 'parent_comment_content',
 					'name'          => __( 'Parent comment content', 'notification' ),
 					'property_name' => 'parent_comment',
+					'group'         => __( 'Parent comment', 'notification' ),
 				)
 			)
 		);
@@ -119,6 +121,7 @@ class CommentReplied extends CommentTrigger {
 					'slug'          => 'parent_comment_status',
 					'name'          => __( 'Parent comment status', 'notification' ),
 					'property_name' => 'parent_comment',
+					'group'         => __( 'Parent comment', 'notification' ),
 				)
 			)
 		);
@@ -129,6 +132,7 @@ class CommentReplied extends CommentTrigger {
 					'slug'          => 'parent_comment_type',
 					'name'          => __( 'Parent comment type', 'notification' ),
 					'property_name' => 'parent_comment',
+					'group'         => __( 'Parent comment', 'notification' ),
 				)
 			)
 		);
@@ -140,6 +144,7 @@ class CommentReplied extends CommentTrigger {
 					'slug'          => 'parent_comment_author_IP',
 					'name'          => __( 'Parent comment author IP', 'notification' ),
 					'property_name' => 'parent_comment',
+					'group'         => __( 'Parent comment author', 'notification' ),
 				)
 			)
 		);
@@ -150,6 +155,7 @@ class CommentReplied extends CommentTrigger {
 					'slug'          => 'parent_comment_user_agent',
 					'name'          => __( 'Parent comment user agent', 'notification' ),
 					'property_name' => 'parent_comment',
+					'group'         => __( 'Parent comment author', 'notification' ),
 				)
 			)
 		);
@@ -160,6 +166,7 @@ class CommentReplied extends CommentTrigger {
 					'slug'          => 'parent_comment_author_url',
 					'name'          => __( 'Parent comment author URL', 'notification' ),
 					'property_name' => 'parent_comment',
+					'group'         => __( 'Parent comment author', 'notification' ),
 				)
 			)
 		);
@@ -170,6 +177,7 @@ class CommentReplied extends CommentTrigger {
 					'slug'          => 'parent_comment_author_user_ID',
 					'name'          => __( 'Parent comment author user ID', 'notification' ),
 					'property_name' => 'parent_comment_user_object',
+					'group'         => __( 'Parent comment author', 'notification' ),
 				)
 			)
 		);
@@ -180,6 +188,7 @@ class CommentReplied extends CommentTrigger {
 					'slug'          => 'parent_comment_author_user_email',
 					'name'          => __( 'Parent comment author user email', 'notification' ),
 					'property_name' => 'parent_comment_user_object',
+					'group'         => __( 'Parent comment author', 'notification' ),
 				)
 			)
 		);
@@ -190,6 +199,7 @@ class CommentReplied extends CommentTrigger {
 					'slug'          => 'parent_comment_author_user_display_name',
 					'name'          => __( 'Parent comment author user display name', 'notification' ),
 					'property_name' => 'parent_comment_user_object',
+					'group'         => __( 'Parent comment author', 'notification' ),
 				)
 			)
 		);

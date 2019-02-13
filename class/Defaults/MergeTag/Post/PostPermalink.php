@@ -50,8 +50,7 @@ class PostPermalink extends UrlTag {
 				'resolver'    => function() {
 					return get_permalink( $this->trigger->{ $this->post_type }->ID );
 				},
-				// translators: current post type.
-				'group'       => __( $this->post_type, 'notification' ),
+				'group'       => $this->get_nicename(),
 			)
 		);
 

@@ -52,7 +52,6 @@ class CommentStatus extends StringTag {
 						return __( 'Trashed', 'notification' );
 					}
 				},
-				// translators: comment type.
 				'group'       => __( ucfirst( $this->property_name ), 'notification' ),
 			)
 		);

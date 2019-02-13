@@ -57,7 +57,7 @@ class UserPasswordResetLink extends StringTag {
 					$login = $trigger->{ $this->user_property_name }->data->user_login;
 					return network_site_url( 'wp-login.php?action=rp&key=' . $trigger->{ $this->key_property_name } . '&login=' . $login );
 				},
-				'group'       => __( 'User', 'notification' ),
+				'group'       => __( 'User action', 'notification' ),
 			)
 		);
 

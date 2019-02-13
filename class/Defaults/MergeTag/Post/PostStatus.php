@@ -50,8 +50,7 @@ class PostStatus extends StringTag {
 				'resolver'    => function() {
 					return get_post_status( $this->trigger->{ $this->post_type }->ID );
 				},
-				// translators: current post type.
-				'group'       => __( $this->post_type, 'notification' ),
+				'group'       => $this->get_nicename(),
 			)
 		);
 

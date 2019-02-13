@@ -33,6 +33,7 @@ class Time extends StringTag {
 				'name'        => __( 'Time', 'notification' ),
 				'time_format' => get_option( 'time_format' ),
 				'example'     => true,
+				'group'       => __( 'Date', 'notification' ),
 			)
 		);
 
@@ -71,8 +72,6 @@ class Time extends StringTag {
 		}
 
 		parent::__construct( $args );
-
-		$this->set_group( __( 'Date', 'notification' ) );
 
 	}
 

@@ -50,8 +50,7 @@ class PostExcerpt extends StringTag {
 				'resolver'    => function() {
 					return get_the_excerpt( $this->trigger->{ $this->post_type } );
 				},
-				// translators: current post type.
-				'group'       => __( $this->post_type, 'notification' ),
+				'group'       => $this->get_nicename(),
 			)
 		);
 

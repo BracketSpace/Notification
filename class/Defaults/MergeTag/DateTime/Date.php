@@ -33,6 +33,7 @@ class Date extends StringTag {
 				'name'        => __( 'Date', 'notification' ),
 				'date_format' => get_option( 'date_format' ),
 				'example'     => true,
+				'group'       => __( 'Date', 'notification' ),
 			)
 		);
 
@@ -63,8 +64,6 @@ class Date extends StringTag {
 		}
 
 		parent::__construct( $args );
-
-		$this->set_group( __( 'Date', 'notification' ) );
 
 	}
 

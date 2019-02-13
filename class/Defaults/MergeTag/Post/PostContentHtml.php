@@ -49,8 +49,7 @@ class PostContentHtml extends HtmlTag {
 				'resolver'    => function() {
 					return apply_filters( 'the_content', $this->trigger->{ $this->post_type }->post_content );
 				},
-				// translators: current post type.
-				'group'       => __( $this->post_type, 'notification' ),
+				'group'       => $this->get_nicename(),
 			)
 		);
 

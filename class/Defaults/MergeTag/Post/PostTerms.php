@@ -72,8 +72,7 @@ class PostTerms extends StringTag {
 					}
 					return implode( ', ', $terms );
 				},
-				// translators: current post type.
-				'group'       => __( $this->post_type, 'notification' ),
+				'group'       => $this->get_nicename(),
 			)
 		);
 

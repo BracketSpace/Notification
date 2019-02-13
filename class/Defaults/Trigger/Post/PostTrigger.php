@@ -144,7 +144,7 @@ abstract class PostTrigger extends Abstracts\Trigger {
 								return is_sticky( $trigger->{ $this->post_type }->ID ) ? __( 'Sticky', 'notification' ) : __( 'Not sticky', 'notification' );
 							}
 						},
-						'group'    => __( $this->post_type, 'notification' ),
+						'group'    => $this->get_current_post_type_name(),
 					)
 				)
 			);
@@ -153,17 +153,21 @@ abstract class PostTrigger extends Abstracts\Trigger {
 		$taxonomies = get_object_taxonomies( $this->post_type, 'objects' );
 
 		if ( ! empty( $taxonomies ) ) {
-
 			foreach ( $taxonomies as $taxonomy ) {
-				$this->add_merge_tag(
-					new MergeTag\Post\PostTerms(
-						array(
-							'post_type' => $this->post_type,
-							'taxonomy'  => $taxonomy,
-							'group'     => __( $taxonomy->labels->name, 'notification' ),
-						)
-					)
-				);
+
+				// Post format special treatment.
+				if ( 'post_format' === $taxonomy->name ) {
+					$group = $this->get_current_post_type_name();
+				} else {
+					$group = __( 'Taxonomies', 'notification' );
+				}
+
+				$this->add_merge_tag( new MergeTag\Post\PostTerms( [
+					'post_type' => $this->post_type,
+					'taxonomy'  => $taxonomy,
+					'group'     => $group,
+				] ) );
+
 			}
 		}
 
@@ -195,6 +199,7 @@ abstract class PostTrigger extends Abstracts\Trigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s author user ID', 'notification' ), $post_name ),
 					'property_name' => 'author',
+					'group'         => __( 'Author', 'notification' ),
 				)
 			)
 		);
@@ -206,6 +211,7 @@ abstract class PostTrigger extends Abstracts\Trigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s author user login', 'notification' ), $post_name ),
 					'property_name' => 'author',
+					'group'         => __( 'Author', 'notification' ),
 				)
 			)
 		);
@@ -217,6 +223,7 @@ abstract class PostTrigger extends Abstracts\Trigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s author user email', 'notification' ), $post_name ),
 					'property_name' => 'author',
+					'group'         => __( 'Author', 'notification' ),
 				)
 			)
 		);
@@ -228,6 +235,7 @@ abstract class PostTrigger extends Abstracts\Trigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s author user nicename', 'notification' ), $post_name ),
 					'property_name' => 'author',
+					'group'         => __( 'Author', 'notification' ),
 				)
 			)
 		);
@@ -239,6 +247,7 @@ abstract class PostTrigger extends Abstracts\Trigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s author user display name', 'notification' ), $post_name ),
 					'property_name' => 'author',
+					'group'         => __( 'Author', 'notification' ),
 				)
 			)
 		);
@@ -250,6 +259,7 @@ abstract class PostTrigger extends Abstracts\Trigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s author user first name', 'notification' ), $post_name ),
 					'property_name' => 'author',
+					'group'         => __( 'Author', 'notification' ),
 				)
 			)
 		);
@@ -261,6 +271,7 @@ abstract class PostTrigger extends Abstracts\Trigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s author user last name', 'notification' ), $post_name ),
 					'property_name' => 'author',
+					'group'         => __( 'Author', 'notification' ),
 				)
 			)
 		);

@@ -70,6 +70,7 @@ class Updated extends PluginTrigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->previous_version;
 			},
+			'group'       => __( 'Plugin', 'notification' ),
 		) ) );
 
 	}
