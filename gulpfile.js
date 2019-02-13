@@ -18,6 +18,7 @@ var script_sources = 'assets/src/js/**/*.js',
 	script_target  = 'assets/dist/js',
 	script_order   = [
 		'vendor/selectize.js',
+		'vendor/collapse.js',
         'vendor/clipboard.js',
 		'vendor/event-manager.js'
 	];

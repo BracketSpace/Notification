@@ -43,6 +43,7 @@ class CommentType extends StringTag {
 				'resolver'    => function() {
 					return get_comment_type( $this->trigger->{ $this->property_name } );
 				},
+				'group'       => __( ucfirst( $this->property_name ), 'notification' ),
 			)
 		);
 

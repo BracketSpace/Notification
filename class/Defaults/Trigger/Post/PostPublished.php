@@ -83,6 +83,7 @@ class PostPublished extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s publishing user ID', 'notification' ), $post_name ),
 					'property_name' => 'publishing_user',
+					'group'         => __( 'Publishing user', 'notification' ),
 				)
 			)
 		);
@@ -94,6 +95,7 @@ class PostPublished extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s publishing user login', 'notification' ), $post_name ),
 					'property_name' => 'publishing_user',
+					'group'         => __( 'Publishing user', 'notification' ),
 				)
 			)
 		);
@@ -105,6 +107,7 @@ class PostPublished extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s publishing user email', 'notification' ), $post_name ),
 					'property_name' => 'publishing_user',
+					'group'         => __( 'Publishing user', 'notification' ),
 				)
 			)
 		);
@@ -116,6 +119,7 @@ class PostPublished extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s publishing user nicename', 'notification' ), $post_name ),
 					'property_name' => 'publishing_user',
+					'group'         => __( 'Publishing user', 'notification' ),
 				)
 			)
 		);
@@ -127,6 +131,7 @@ class PostPublished extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s publishing user display name', 'notification' ), $post_name ),
 					'property_name' => 'publishing_user',
+					'group'         => __( 'Publishing user', 'notification' ),
 				)
 			)
 		);
@@ -138,6 +143,7 @@ class PostPublished extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s publishing user first name', 'notification' ), $post_name ),
 					'property_name' => 'publishing_user',
+					'group'         => __( 'Publishing user', 'notification' ),
 				)
 			)
 		);
@@ -149,6 +155,7 @@ class PostPublished extends PostTrigger {
 					// translators: singular post name.
 					'name'          => sprintf( __( '%s publishing user last name', 'notification' ), $post_name ),
 					'property_name' => 'publishing_user',
+					'group'         => __( 'Publishing user', 'notification' ),
 				)
 			)
 		);

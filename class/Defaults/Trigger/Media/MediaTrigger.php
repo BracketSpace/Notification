@@ -41,8 +41,9 @@ abstract class MediaTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag(
 			new MergeTag\DateTime\DateTime(
 				array(
-					'slug' => 'attachment_creation_date',
-					'name' => __( 'Attachment creation date', 'notification' ),
+					'slug'  => 'attachment_creation_date',
+					'name'  => __( 'Attachment creation date', 'notification' ),
+					'group' => __( 'Author', 'notification' ),
 				)
 			)
 		);
@@ -51,8 +52,9 @@ abstract class MediaTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag(
 			new MergeTag\User\UserID(
 				array(
-					'slug' => 'attachment_author_user_ID',
-					'name' => __( 'Attachment author user ID', 'notification' ),
+					'slug'  => 'attachment_author_user_ID',
+					'name'  => __( 'Attachment author user ID', 'notification' ),
+					'group' => __( 'Author', 'notification' ),
 				)
 			)
 		);
@@ -60,8 +62,9 @@ abstract class MediaTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag(
 			new MergeTag\User\UserLogin(
 				array(
-					'slug' => 'attachment_author_user_login',
-					'name' => __( 'Attachment author user login', 'notification' ),
+					'slug'  => 'attachment_author_user_login',
+					'name'  => __( 'Attachment author user login', 'notification' ),
+					'group' => __( 'Author', 'notification' ),
 				)
 			)
 		);
@@ -69,8 +72,9 @@ abstract class MediaTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag(
 			new MergeTag\User\UserEmail(
 				array(
-					'slug' => 'attachment_author_user_email',
-					'name' => __( 'Attachment author user email', 'notification' ),
+					'slug'  => 'attachment_author_user_email',
+					'name'  => __( 'Attachment author user email', 'notification' ),
+					'group' => __( 'Author', 'notification' ),
 				)
 			)
 		);
@@ -78,8 +82,9 @@ abstract class MediaTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag(
 			new MergeTag\User\UserNicename(
 				array(
-					'slug' => 'attachment_author_user_nicename',
-					'name' => __( 'Attachment author user nicename', 'notification' ),
+					'slug'  => 'attachment_author_user_nicename',
+					'name'  => __( 'Attachment author user nicename', 'notification' ),
+					'group' => __( 'Author', 'notification' ),
 				)
 			)
 		);
@@ -87,8 +92,9 @@ abstract class MediaTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag(
 			new MergeTag\User\UserDisplayName(
 				array(
-					'slug' => 'attachment_author_user_display_name',
-					'name' => __( 'Attachment author user display name', 'notification' ),
+					'slug'  => 'attachment_author_user_display_name',
+					'name'  => __( 'Attachment author user display name', 'notification' ),
+					'group' => __( 'Author', 'notification' ),
 				)
 			)
 		);
@@ -96,8 +102,9 @@ abstract class MediaTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag(
 			new MergeTag\User\UserFirstName(
 				array(
-					'slug' => 'attachment_author_user_firstname',
-					'name' => __( 'Attachment author user first name', 'notification' ),
+					'slug'  => 'attachment_author_user_firstname',
+					'name'  => __( 'Attachment author user first name', 'notification' ),
+					'group' => __( 'Author', 'notification' ),
 				)
 			)
 		);
@@ -105,8 +112,9 @@ abstract class MediaTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag(
 			new MergeTag\User\UserLastName(
 				array(
-					'slug' => 'attachment_author_user_lastname',
-					'name' => __( 'Attachment author user last name', 'notification' ),
+					'slug'  => 'attachment_author_user_lastname',
+					'name'  => __( 'Attachment author user last name', 'notification' ),
+					'group' => __( 'Author', 'notification' ),
 				)
 			)
 		);

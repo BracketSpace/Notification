@@ -30,6 +30,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->theme->get( 'Name' );
 			},
+			'group'       => __( 'Theme', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\StringTag( array(
@@ -40,6 +41,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->theme->get( 'Description' );
 			},
+			'group'       => __( 'Theme', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\StringTag( array(
@@ -50,6 +52,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->theme->get( 'Version' );
 			},
+			'group'       => __( 'Theme', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\UrlTag( array(
@@ -60,6 +63,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->theme->get( 'ThemeURI' );
 			},
+			'group'       => __( 'Theme', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\StringTag( array(
@@ -70,6 +74,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->theme->get( 'Author' );
 			},
+			'group'       => __( 'Theme', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\UrlTag( array(
@@ -80,6 +85,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->theme->get( 'AuthorURI' );
 			},
+			'group'       => __( 'Theme', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\StringTag( array(
@@ -90,6 +96,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->theme->get( 'TextDomain' );
 			},
+			'group'       => __( 'Theme', 'notification' ),
 		) ) );
 
 	}

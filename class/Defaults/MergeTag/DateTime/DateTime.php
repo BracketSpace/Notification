@@ -34,6 +34,7 @@ class DateTime extends StringTag {
 				'time_format' => get_option( 'time_format' ),
 				'date_format' => get_option( 'date_format' ),
 				'example'     => true,
+				'group'       => __( 'Date', 'notification' ),
 			)
 		);
 

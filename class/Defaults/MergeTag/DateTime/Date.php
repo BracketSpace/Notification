@@ -33,6 +33,7 @@ class Date extends StringTag {
 				'name'        => __( 'Date', 'notification' ),
 				'date_format' => get_option( 'date_format' ),
 				'example'     => true,
+				'group'       => __( 'Date', 'notification' ),
 			)
 		);
 

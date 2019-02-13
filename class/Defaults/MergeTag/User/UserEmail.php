@@ -47,6 +47,7 @@ class UserEmail extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->user_email;
 				},
+				'group'       => __( 'User', 'notification' ),
 			)
 		);
 

@@ -44,6 +44,7 @@ class AttachmentMimeType extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->post_mime_type;
 				},
+				'group'       => __( 'Attachment', 'notification' ),
 			)
 		);
 

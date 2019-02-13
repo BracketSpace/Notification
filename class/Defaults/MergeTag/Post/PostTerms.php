@@ -72,6 +72,7 @@ class PostTerms extends StringTag {
 					}
 					return implode( ', ', $terms );
 				},
+				'group'       => $this->get_nicename(),
 			)
 		);
 

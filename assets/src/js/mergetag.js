@@ -21,6 +21,11 @@
 
 		});
 
+		// Initialize accordion
+
+		var collapse = $( '.notification_merge_tags_accordion' ).collapse();
+
+
 		// Swap merge tags list for new trigger
 
 		notification.hooks.addAction( 'notification.trigger.changed', function( $trigger ) {
@@ -37,7 +42,8 @@
 		    	if ( response.success == false ) {
 		    		alert( response.data );
 		    	} else {
-		    		$( '#notification_merge_tags .inside' ).html( response.data );
+					$( '#notification_merge_tags .inside' ).html( response.data );
+					collapse = $('.notification_merge_tags_accordion').collapse();
 		    	}
 
 			} );
@@ -49,17 +55,33 @@
 		$( 'body' ).on( 'keyup', '#notification-search-merge-tags', function() {
 
 			var val = $( this ).val().toLowerCase();
-			$( '.inside ul li' ).hide();
 
-			$( '.inside ul li ').each( function() {
+			if ( $(this).val().length > 0 ) {
 
-				var text = $( this ).find( '.intro code' ).text().toLowerCase();
+				collapse.trigger('open');
 
-				if ( text.indexOf(val) != -1 ) {
-					$(this).show();
-				}
+				$('.notification_merge_tags_accordion h2, .notification_merge_tags_accordion .tags-group').hide();
 
-			} );
+				$('.inside li').each(function () {
+
+					$(this).hide();
+
+					var text = $(this).find('.intro code').text().toLowerCase();
+
+					if (text.indexOf(val) != -1) {
+						$(this).show();
+						var parentClass = $(this).parents('ul').data("group");
+						$('[data-group=' + parentClass +']').show();
+					}
+
+				});
+
+			} else {
+
+				$('.notification_merge_tags_accordion h2, .inside li').show();
+				collapse.trigger('close');
+			}
+
 
 		} );
 

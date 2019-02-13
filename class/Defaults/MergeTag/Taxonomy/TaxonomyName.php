@@ -49,6 +49,7 @@ class TaxonomyName extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $this->get_nicename();
 				},
+				'group'       => __( 'Taxonomy', 'notification' ),
 			)
 		);
 

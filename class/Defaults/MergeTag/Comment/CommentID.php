@@ -44,6 +44,7 @@ class CommentID extends IntegerTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->comment_ID;
 				},
+				'group'       => __( ucfirst( $this->property_name ), 'notification' ),
 			)
 		);
 

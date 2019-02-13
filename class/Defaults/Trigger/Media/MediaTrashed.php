@@ -60,6 +60,7 @@ class MediaTrashed extends MediaTrigger {
 					'slug'          => 'attachment_trashing_user_ID',
 					'name'          => __( 'Attachment trashing user ID', 'notification' ),
 					'property_name' => 'trashing_user',
+					'group'         => __( 'Trashing user', 'notification' ),
 				)
 			)
 		);
@@ -70,6 +71,7 @@ class MediaTrashed extends MediaTrigger {
 					'slug'          => 'attachment_trashing_user_login',
 					'name'          => __( 'Attachment trashing user login', 'notification' ),
 					'property_name' => 'trashing_user',
+					'group'         => __( 'Trashing user', 'notification' ),
 				)
 			)
 		);
@@ -80,6 +82,7 @@ class MediaTrashed extends MediaTrigger {
 					'slug'          => 'attachment_trashing_user_email',
 					'name'          => __( 'Attachment trashing user email', 'notification' ),
 					'property_name' => 'trashing_user',
+					'group'         => __( 'Trashing user', 'notification' ),
 				)
 			)
 		);
@@ -90,6 +93,7 @@ class MediaTrashed extends MediaTrigger {
 					'slug'          => 'attachment_trashing_user_nicename',
 					'name'          => __( 'Attachment trashing user nicename', 'notification' ),
 					'property_name' => 'trashing_user',
+					'group'         => __( 'Trashing user', 'notification' ),
 				)
 			)
 		);
@@ -100,6 +104,7 @@ class MediaTrashed extends MediaTrigger {
 					'slug'          => 'attachment_trashing_user_display_name',
 					'name'          => __( 'Attachment trashing user display name', 'notification' ),
 					'property_name' => 'trashing_user',
+					'group'         => __( 'Trashing user', 'notification' ),
 				)
 			)
 		);
@@ -110,6 +115,7 @@ class MediaTrashed extends MediaTrigger {
 					'slug'          => 'attachment_trashing_user_firstname',
 					'name'          => __( 'Attachment trashing user first name', 'notification' ),
 					'property_name' => 'trashing_user',
+					'group'         => __( 'Trashing user', 'notification' ),
 				)
 			)
 		);
@@ -120,6 +126,7 @@ class MediaTrashed extends MediaTrigger {
 					'slug'          => 'attachment_trashing_user_lastname',
 					'name'          => __( 'Attachment trashing user last name', 'notification' ),
 					'property_name' => 'trashing_user',
+					'group'         => __( 'Trashing user', 'notification' ),
 				)
 			)
 		);

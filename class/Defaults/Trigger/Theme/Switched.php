@@ -60,6 +60,7 @@ class Switched extends ThemeTrigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->old_theme->get( 'Name' );
 			},
+			'group'       => __( 'Old theme', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\StringTag( array(
@@ -70,6 +71,7 @@ class Switched extends ThemeTrigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->old_theme->get( 'Description' );
 			},
+			'group'       => __( 'Old theme', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\StringTag( array(
@@ -80,6 +82,7 @@ class Switched extends ThemeTrigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->old_theme->get( 'Version' );
 			},
+			'group'       => __( 'Old theme', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\UrlTag( array(
@@ -90,6 +93,7 @@ class Switched extends ThemeTrigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->old_theme->get( 'ThemeURI' );
 			},
+			'group'       => __( 'Old theme', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\StringTag( array(
@@ -100,6 +104,7 @@ class Switched extends ThemeTrigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->old_theme->get( 'Author' );
 			},
+			'group'       => __( 'Old theme', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\UrlTag( array(
@@ -110,6 +115,7 @@ class Switched extends ThemeTrigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->old_theme->get( 'AuthorURI' );
 			},
+			'group'       => __( 'Old theme', 'notification' ),
 		) ) );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(

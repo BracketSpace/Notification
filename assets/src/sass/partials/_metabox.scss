@@ -5,7 +5,39 @@
 #notification_merge_tags .inside {
 
 	.notification-search-merge-tags {
+		margin-top: 10px;
 		margin-bottom: 20px;
+	}
+
+	h2 {
+		padding: 0;
+
+		a {
+			position: relative;
+			display: block;
+			padding: 12px 0;
+			border-bottom: 1px solid rgba(229, 229, 229, 0.6);
+			position: relative;
+			font-weight: bold;
+			text-transform: uppercase;
+			color: #636363;
+			text-decoration: none;
+			max-width: 100%;
+			text-overflow: ellipsis;
+			overflow: hidden;
+
+			&::after {
+				content: '';
+				position: absolute;
+				top: 20px;
+				right: 10px;
+				width: 0;
+				height: 0;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-top: 5px solid #636363;
+			}
+		}
 	}
 
 	ul {
@@ -22,11 +54,19 @@
 					display: block;
 					font-weight: bold;
 					margin-bottom: 5px;
+					max-width: 100%;
+					text-overflow: ellipsis;
+					overflow: hidden;
 				}
 
 				code {
+					display: inline-block;
 					cursor: pointer;
 					word-wrap: nowrap;
+					max-width: 100%;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					box-sizing: border-box;
 				}
 			}
 

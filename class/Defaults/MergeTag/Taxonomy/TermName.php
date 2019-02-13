@@ -33,8 +33,8 @@ class TermName extends StringTag {
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
 					return $trigger->term->name;
-
 				},
+				'group'       => __( 'Term', 'notification' ),
 			)
 		);
 

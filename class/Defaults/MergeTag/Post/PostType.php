@@ -49,11 +49,26 @@ class PostType extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->post_type;
 				},
+				'group'       => $this->get_nicename(),
 			)
 		);
 
 		parent::__construct( $args );
 
+	}
+
+	/**
+	 * Gets nice, translated post name
+	 *
+	 * @since  5.0.0
+	 * @return string post name
+	 */
+	public function get_nicename() {
+		$post_type = get_post_type_object( $this->post_type );
+		if ( empty( $post_type ) ) {
+			return '';
+		}
+		return $post_type->labels->singular_name;
 	}
 
 }

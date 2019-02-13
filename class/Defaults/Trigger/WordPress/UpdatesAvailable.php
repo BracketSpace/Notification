@@ -93,6 +93,8 @@ class UpdatesAvailable extends Abstracts\Trigger {
 
 						return implode( '<br><br>', $lists );
 					},
+					'group'       => __( 'WordPress', 'notification' ),
+
 				)
 			)
 		);

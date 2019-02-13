@@ -2,7 +2,7 @@
 ### Project ###
 *.log
 node_modules/
-vendor/
+/vendor/
 assets/dist/
 
 ### Windows ###
