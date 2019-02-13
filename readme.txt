@@ -257,6 +257,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] `notification_get_posts` function.
 * [Added] Import and Export feature using JSON files.
 * [Added] Composer support with unified testing.
+* [Added] Merge Tags groups.
 * [Changed] PostData class has been removed in favor of Notification object and procedural functions.
 * [Changed] Admin Classes: MergeTags, Notifications, PostData, Recipients, Triggers has been removed and their content included in the Admin/PostType class.
 * [Changed] Notification data is now using single nonce field and additional data should be saved with `notification/data/save` action.
