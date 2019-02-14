@@ -9,11 +9,14 @@ namespace BracketSpace\Notification\Defaults\Recipient;
 
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\Field;
+use BracketSpace\Notification\Traits\Users;
 
 /**
  * Role recipient
  */
 class Role extends Abstracts\Recipient {
+
+	use Users;
 
 	/**
 	 * Recipient constructor
@@ -43,18 +46,7 @@ class Role extends Abstracts\Recipient {
 			$value = $this->get_default_value();
 		}
 
-		$users_query = new \WP_User_Query(
-			array(
-				'count_total' => true,
-				'role'        => $value,
-			)
-		);
-
-		$emails = array();
-
-		foreach ( $users_query->get_results() as $user ) {
-			$emails[] = $user->data->user_email;
-		}
+		$emails = $this->get_users_by_role( $value );
 
 		return $emails;
 
@@ -71,20 +63,14 @@ class Role extends Abstracts\Recipient {
 		$opts  = array();
 
 		foreach ( $roles as $role_slug => $role ) {
+			$users_query = $this->get_users_by_role( $role_slug );
 
-			$users_query = new \WP_User_Query(
-				array(
-					'count_total' => true,
-					'role'        => $role_slug,
-				)
-			);
+			$num_users = count( $users_query );
 
-			$num_users = $users_query->get_total();
 			// Translators: %s numer of users.
 			$label = translate_user_role( $role['name'] ) . ' (' . sprintf( _n( '%s user', '%s users', $num_users, 'notification' ), $num_users ) . ')';
 
 			$opts[ $role_slug ] = esc_html( $label );
-
 		}
 
 		return new Field\SelectField(
