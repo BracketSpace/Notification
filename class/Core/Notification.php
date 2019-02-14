@@ -318,6 +318,26 @@ class Notification {
 	}
 
 	/**
+	 * Sets notifications
+	 * Makes sure that the Notification slug is used as key.
+	 *
+	 * @since  [Next]
+	 * @param  array $notifications Array of Notifications.
+	 * @return void
+	 */
+	public function set_notifications( $notifications = [] ) {
+
+		$saved_notifications = [];
+
+		foreach ( $notifications as $notification ) {
+			$saved_notifications[ $notification->get_slug() ] = $notification;
+		}
+
+		$this->notifications = $saved_notifications;
+
+	}
+
+	/**
 	 * Sets notification data
 	 *
 	 * @since  [Next]
