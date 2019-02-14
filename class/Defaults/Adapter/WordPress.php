@@ -137,12 +137,18 @@ class WordPress extends Abstracts\Adapter {
 		// Trigger.
 		update_post_meta( $this->get_id(), self::$metakey_trigger, $data['trigger'] );
 
-		// Notifications.
-		delete_post_meta( $this->get_id(), self::$metakey_notification_enabled );
+		// Carriers.
+		// Loop through all defined to save the data of deactivated Carriers too.
+		foreach ( $this->get_notification()->get_notifications() as $key => $carrier ) {
 
-		foreach ( $data['notifications'] as $key => $notification_data ) {
-			add_post_meta( $this->get_id(), self::$metakey_notification_enabled, $key );
-			update_post_meta( $this->get_id(), self::$metakey_notification_data . $key, $notification_data );
+			if ( $carrier->enabled ) {
+				add_post_meta( $this->get_id(), self::$metakey_notification_enabled, $key );
+			} else {
+				delete_post_meta( $this->get_id(), self::$metakey_notification_enabled, $key );
+			}
+
+			update_post_meta( $this->get_id(), self::$metakey_notification_data . $key, $carrier->get_data() );
+
 		}
 
 		// Extras.
