@@ -18,7 +18,7 @@ class PostponedTrigger extends Trigger {
 	 * Constructor
 	 */
 	public function __construct() {
-		parent::__construct( 'notification/tests/simple_trigger', 'Simple Test Trigger' );
+		parent::__construct( 'notification/tests/postponed_trigger', 'Postponed Test Trigger' );
 		$this->add_action( 'notification/test' );
 	}
 

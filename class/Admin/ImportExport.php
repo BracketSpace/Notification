@@ -5,7 +5,7 @@
  * @package notification
  */
 
-namespace BracketSpace\Notification\Core;
+namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Utils\Settings\CoreFields;
 
@@ -73,7 +73,7 @@ class ImportExport {
 
 		$view = notification_create_view();
 
-		$view->set_var( 'notifications', notification_get_posts() );
+		$view->set_var( 'notifications', notification_get_posts( null, true ) );
 		$view->set_var( 'download_link', admin_url( 'admin-post.php?action=notification_export&nonce=' . wp_create_nonce( 'notification-export' ) . '&type=notifications&items=' ) );
 
 		return $view->get_view_output( 'export/notifications' );
@@ -128,57 +128,25 @@ class ImportExport {
 
 		$data  = array();
 		$items = explode( ',', sanitize_text_field( wp_unslash( $_GET['items'] ) ) ); // phpcs:ignore
-		$posts = get_posts( array(
+		$posts = get_posts( [
 			'post_type'      => 'notification',
+			'post_status'    => [ 'publish', 'draft' ],
 			'posts_per_page' => -1,
 			'post__in'       => $items,
-		) );
+		] );
 
 		foreach ( $posts as $wppost ) {
 
-			$notification = notification_get_post( $wppost );
-			$data[]       = $this->get_notification_data( $notification );
+			$wp_adapter   = notification_adapt_from( 'WordPress', $wppost );
+			$json_adapter = notification_swap_adapter( 'JSON', $wp_adapter );
+			$json         = $json_adapter->save();
+
+			// Decode because it's encoded in the last step of export.
+			$data[] = json_decode( $json );
 
 		}
 
 		return $data;
-
-	}
-
-	/**
-	 * Gets single notification export data
-	 *
-	 * @since  [Next]
-	 * @param  Notification $notification Notification post object.
-	 * @return array
-	 */
-	public function get_notification_data( $notification ) {
-
-		$notifications = array();
-
-		foreach ( $notification->get_notifications( 'objects', true ) as $notification_type ) {
-			$fields = array();
-			foreach ( $notification_type->get_form_fields() as $field ) {
-				if ( $field->get_raw_name() === '_nonce' ) {
-					continue;
-				}
-				$fields[ $field->get_raw_name() ] = $field->get_value();
-			}
-			$notifications[ $notification_type->get_slug() ] = $fields;
-		}
-
-		// Hook into this filter to add extra export data. Should add a unique key and export values.
-		$extras = apply_filters( 'notification/post/export/extras', array(), $notification );
-
-		return array(
-			'hash'          => $notification->get_hash(),
-			'title'         => $notification->get_title(),
-			'trigger'       => $notification->get_trigger(),
-			'notifications' => $notifications,
-			'enabled'       => $notification->is_enabled(),
-			'extras'        => $extras,
-			'version'       => $notification->get_version(),
-		);
 
 	}
 
@@ -242,15 +210,19 @@ class ImportExport {
 		$updated = 0;
 
 		foreach ( $data as $notification_data ) {
-			$existing_notification = notification_get_post_by_hash( $notification_data['hash'] );
+			$json_adapter = notification_adapt_from( 'JSON', wp_json_encode( $notification_data ) );
+			$wp_adapter   = notification_swap_adapter( 'WordPress', $json_adapter );
+
+			$existing_notification = notification_get_post_by_hash( $wp_adapter->get_hash() );
+
 			if ( empty( $existing_notification ) ) {
-				notification_create( $notification_data );
+				$wp_adapter->save();
 				$added++;
 			} else {
-				if ( $existing_notification->get_version() >= $notification_data['version'] ) {
+				if ( $existing_notification->get_version() >= $wp_adapter->get_version() ) {
 					$skipped++;
 				} else {
-					notification_update( $notification_data );
+					$wp_adapter->set_post( $existing_notification->get_post() )->save();
 					$updated++;
 				}
 			}

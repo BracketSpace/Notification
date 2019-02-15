@@ -48,12 +48,11 @@ class TestMain extends \WP_UnitTestCase {
 		$this->assertInstanceOf( 'BracketSpace\Notification\Utils\Internationalization', $this->notification->internationalization );
 
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Cron', $this->notification->core_cron );
-		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Tracking', $this->notification->core_tracking );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Whitelabel', $this->notification->core_whitelabel );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Debugging', $this->notification->core_debugging );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Settings', $this->notification->core_settings );
-		$this->assertInstanceOf( 'BracketSpace\Notification\Core\ImportExport', $this->notification->core_impexp );
 
+		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\ImportExport', $this->notification->admin_impexp );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Settings', $this->notification->admin_settings );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\NotificationDuplicator', $this->notification->admin_duplicator );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\PostType', $this->notification->admin_post_type );

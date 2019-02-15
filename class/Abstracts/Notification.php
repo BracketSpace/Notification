@@ -145,6 +145,17 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	}
 
 	/**
+	 * Gets form fields array
+	 *
+	 * @since  [Next]
+	 * @param  string $field_name Field name.
+	 * @return mixed              Field object or null.
+	 */
+	public function get_form_field( $field_name ) {
+		return isset( $this->form_fields[ $field_name ] ) ? $this->form_fields[ $field_name ] : null;
+	}
+
+	/**
 	 * Gets field value
 	 *
 	 * @param  string $field_slug field slug.
@@ -204,6 +215,45 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 			$this->data[ 'parsed_' . $recipients_field->get_raw_name() ] = array_unique( $parsed_recipients );
 
 		}
+
+	}
+
+	/**
+	 * Sets data from array
+	 *
+	 * @since  [Next]
+	 * @param  array $data Data with keys matched with Field names.
+	 * @return $this
+	 */
+	public function set_data( $data ) {
+
+		foreach ( $this->get_form_fields() as $field ) {
+			if ( isset( $data[ $field->get_raw_name() ] ) ) {
+				$field->set_value( $field->sanitize( $data[ $field->get_raw_name() ] ) );
+			}
+		}
+
+		return $this;
+
+	}
+
+	/**
+	 * Gets data
+	 *
+	 * @since  [Next]
+	 * @return array
+	 */
+	public function get_data() {
+
+		$data = [];
+
+		foreach ( $this->get_form_fields() as $field ) {
+			if ( ! $field instanceof Field\NonceField ) {
+				$data[ $field->get_raw_name() ] = $field->get_value();
+			}
+		}
+
+		return $data;
 
 	}
 

@@ -6,7 +6,7 @@
  */
 
 namespace BracketSpace\Notification\Tests\Triggers;
-use BracketSpace\Notification\Tests\Helpers\Objects;
+use BracketSpace\Notification\Tests\Helpers\Registerer;
 use BracketSpace\Notification\Tests\Helpers\NotificationPost;
 
 /**
@@ -18,9 +18,10 @@ class TestTrigger extends \WP_UnitTestCase {
 	 * Tests trigger registration
 	 *
 	 * @since 5.3.1
+	 * @since [Next] Changed to Registerer class and used new naming convention.
 	 */
 	public function test_trigger_registration() {
-		register_trigger( new Objects\SimpleTrigger() );
+		Registerer::register_trigger();
 		$this->assertEquals( 1, did_action( 'notification/trigger/registered' ) );
 	}
 
@@ -28,20 +29,20 @@ class TestTrigger extends \WP_UnitTestCase {
 	 * Tests trigger action
 	 *
 	 * @since 5.3.1
+	 * @since [Next] Changed to Registerer class and used new naming convention.
 	 */
 	public function test_trigger_action() {
-		$trigger = new Objects\SimpleTrigger();
-		register_trigger( $trigger );
+		$trigger = Registerer::register_trigger();
+		$carrier = Registerer::register_carrier();
 
-		$notification = new Objects\Notification();
-		register_notification( $notification );
-
-		NotificationPost::insert( $trigger, $notification );
+		$notification = NotificationPost::insert( $trigger, $carrier );
 
 		do_action( 'notification/test' );
 
-		foreach ( $trigger->get_attached_notifications() as $attached_notifcation ) {
-			$this->assertTrue( $attached_notifcation->is_sent );
+		$this->assertNotEmpty( $notification->get_trigger()->get_attached_notifications() );
+
+		foreach ( $notification->get_trigger()->get_attached_notifications() as $attached_carrier ) {
+			$this->assertTrue( $attached_carrier->is_sent );
 		}
 	}
 
@@ -49,15 +50,13 @@ class TestTrigger extends \WP_UnitTestCase {
 	 * Tests trigger postponed action
 	 *
 	 * @since 5.3.1
+	 * @since [Next] Changed to Registerer class and used new naming convention.
 	 */
 	public function test_trigger_postponed_action() {
-		$trigger = new Objects\PostponedTrigger();
-		register_trigger( $trigger );
+		$trigger = Registerer::register_trigger( true );
+		$carrier = Registerer::register_carrier();
 
-		$notification = new Objects\Notification();
-		register_notification( $notification );
-
-		NotificationPost::insert( $trigger, $notification );
+		$notification = NotificationPost::insert( $trigger, $carrier );
 
 		do_action( 'notification/test' );
 
@@ -67,8 +66,10 @@ class TestTrigger extends \WP_UnitTestCase {
 
 		do_action( 'notification/test/postponed' );
 
-		foreach ( $trigger->get_attached_notifications() as $attached_notifcation ) {
-			$this->assertTrue( $attached_notifcation->is_sent );
+		$this->assertNotEmpty( $notification->get_trigger()->get_attached_notifications() );
+
+		foreach ( $notification->get_trigger()->get_attached_notifications() as $attached_carrier ) {
+			$this->assertTrue( $attached_carrier->is_sent );
 		}
 	}
 

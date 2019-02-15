@@ -9,6 +9,7 @@ namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Utils\View;
 use BracketSpace\Notification\Utils\Ajax;
+use BracketSpace\Notification\Core\Notification;
 
 /**
  * PostType class
@@ -172,7 +173,7 @@ class PostType {
 			return;
 		}
 
-		$notification_post = notification_get_post( $post );
+		$notification_post = notification_adapt_from( 'WordPress', $post );
 
 		do_action( 'notification/post/column/main', $notification_post );
 
@@ -190,8 +191,9 @@ class PostType {
 
 		$view             = notification_create_view();
 		$grouped_triggers = notification_get_triggers_grouped();
+		$trigger          = $notification_post->get_trigger();
 
-		$view->set_var( 'selected', $notification_post->get_trigger() );
+		$view->set_var( 'selected', $trigger ? $trigger->get_slug() : '' );
 		$view->set_var( 'triggers', $grouped_triggers );
 		$view->set_var( 'has_triggers', ! empty( $grouped_triggers ) );
 		$view->set_var( 'select_name', 'notification_trigger' );
@@ -219,7 +221,7 @@ class PostType {
 
 		foreach ( notification_get_notifications() as $notification ) {
 
-			notification_populate_notification( $notification );
+			$notification = $notification_post->populate_notification( $notification );
 
 			$this->formrenderer->set_fields( $notification->get_form_fields() );
 
@@ -282,7 +284,7 @@ class PostType {
 			$delete_text = __( 'Move to Trash', 'notification' );
 		}
 
-		$enabled = notification_is_new_notification( $post ) || 'draft' !== get_post_status( $post->ID );
+		$enabled = notification_post_is_new( $post ) || 'draft' !== get_post_status( $post->ID );
 
 		$view->set_var( 'enabled', $enabled );
 		$view->set_var( 'post_id', $post->ID );
@@ -323,9 +325,10 @@ class PostType {
 	 */
 	public function render_merge_tags_metabox( $post ) {
 
-		$view              = notification_create_view();
-		$notification_post = notification_get_post( $post );
-		$trigger_slug      = $notification_post->get_trigger();
+		$view         = notification_create_view();
+		$notification = notification_adapt_from( 'WordPress', $post );
+		$trigger      = $notification->get_trigger();
+		$trigger_slug = $trigger ? $trigger->get_slug() : false;
 
 		if ( ! $trigger_slug ) {
 			$view->get_view( 'mergetag/metabox-notrigger' );
@@ -445,44 +448,6 @@ class PostType {
 	 */
 
 	/**
-	 * Saves post status in relation to on/off switch
-	 *
-	 * @filter wp_insert_post_data 100
-	 *
-	 * @since  5.0.0
-	 * @param  array $data    post data.
-	 * @param  array $postarr saved data.
-	 * @return array
-	 */
-	public function save_notification_status( $data, $postarr ) {
-
-		// fix for brand new posts.
-		if ( 'auto-draft' === $data['post_status'] ) {
-			return $data;
-		}
-
-		// fix for AJAX calls.
-		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-			return $data;
-		}
-
-		if ( 'notification' !== $data['post_type'] ||
-			'trash' === $postarr['post_status'] ||
-			( isset( $_POST['action'] ) && 'change_notification_status' === $_POST['action'] ) ) { // phpcs:ignore
-			return $data;
-		}
-
-		if ( isset( $postarr['onoffswitch'] ) && '1' === $postarr['onoffswitch'] ) {
-			$data['post_status'] = 'publish';
-		} else {
-			$data['post_status'] = 'draft';
-		}
-
-		return $data;
-
-	}
-
-	/**
 	 * Creates Notification unique hash
 	 *
 	 * @filter wp_insert_post_data 100
@@ -494,12 +459,17 @@ class PostType {
 	 */
 	public function create_notification_hash( $data, $postarr ) {
 
+		// Another save process is in progress, abort.
+		if ( defined( 'DOING_NOTIFICATION_SAVE' ) && DOING_NOTIFICATION_SAVE ) {
+			return $data;
+		}
+
 		if ( 'notification' !== $data['post_type'] ) {
 			return $data;
 		}
 
 		if ( ! preg_match( '/notification_[a-z0-9]{13}/', $data['post_name'] ) ) {
-			$data['post_name'] = uniqid( 'notification_' );
+			$data['post_name'] = Notification::create_hash();
 		}
 
 		return $data;
@@ -518,6 +488,11 @@ class PostType {
 	 */
 	public function save( $post_id, $post, $update ) {
 
+		// Another save process is in progress, abort.
+		if ( defined( 'DOING_NOTIFICATION_SAVE' ) && DOING_NOTIFICATION_SAVE ) {
+			return;
+		}
+
 		if ( ! isset( $_POST['notification_data_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['notification_data_nonce'] ) ), 'notification_post_data_save' ) ) {
 			return;
 		}
@@ -530,44 +505,57 @@ class PostType {
 			return;
 		}
 
+		// Prevent infinite loops.
+		if ( ! defined( 'DOING_NOTIFICATION_SAVE' ) ) {
+			define( 'DOING_NOTIFICATION_SAVE', true );
+		}
+
 		$data              = $_POST;
-		$notification_post = notification_get_post( $post );
+		$notification_post = notification_adapt_from( 'WordPress', $post );
+
+		// Status.
+		$status = ( isset( $data['onoffswitch'] ) && '1' === $data['onoffswitch'] );
+		$notification_post->set_enabled( $status );
 
 		// Trigger.
-		$trigger = ! empty( $data['notification_trigger'] ) ? sanitize_text_field( wp_unslash( $data['notification_trigger'] ) ) : '';
-		$notification_post->set_trigger( $trigger );
-
-		// Enable all notifications one by one.
-		foreach ( notification_get_notifications() as $notification ) {
-			if ( isset( $data[ 'notification_' . $notification->get_slug() . '_enable' ] ) ) {
-				$notification_post->enable_notification( $notification->get_slug() );
-			} else {
-				$notification_post->disable_notification( $notification->get_slug() );
+		if ( ! empty( $data['notification_trigger'] ) ) {
+			$trigger = notification_get_single_trigger( $data['notification_trigger'] );
+			if ( ! empty( $trigger ) ) {
+				$notification_post->set_trigger( $trigger );
 			}
 		}
 
-		// Save all notification settings one by one.
-		foreach ( notification_get_notifications() as $notification ) {
+		// Prepare Carriers to save.
+		$carriers = [];
 
-			if ( ! isset( $data[ 'notification_type_' . $notification->get_slug() ] ) ) {
+		foreach ( notification_get_notifications() as $carrier ) {
+
+			if ( ! isset( $data[ 'notification_type_' . $carrier->get_slug() ] ) ) {
 				continue;
 			}
 
-			$ndata = $data[ 'notification_type_' . $notification->get_slug() ];
+			if ( isset( $data[ 'notification_' . $carrier->get_slug() . '_enable' ] ) ) {
+				$carrier->enabled = true;
+			}
 
-			// nonce not set or false, ignoring this form.
-			if ( ! wp_verify_nonce( $ndata['_nonce'], $notification->get_slug() . '_notification_security' ) ) {
+			$carrier_data = $data[ 'notification_type_' . $carrier->get_slug() ];
+
+			// If nonce not set or false, ignore this form.
+			if ( ! wp_verify_nonce( $carrier_data['_nonce'], $carrier->get_slug() . '_notification_security' ) ) {
 				continue;
 			}
 
-			$notification_post->set_notification_data( $notification->get_slug(), $ndata );
-
-			do_action( 'notification/notification/saved', $notification_post->get_id(), $notification, $ndata );
+			$carrier->set_data( $carrier_data );
+			$carriers[ $carrier->get_slug() ] = $carrier;
 
 		}
+
+		$notification_post->set_notifications( $carriers );
 
 		// Hook into this action if you want to save any Notification Post data.
 		do_action( 'notification/data/save', $notification_post );
+
+		$notification_post->save();
 
 	}
 
@@ -593,12 +581,10 @@ class PostType {
 
 		$status = 'true' === $data['status'] ? 'publish' : 'draft';
 
-		$result = wp_update_post(
-			array(
-				'ID'          => $data['post_id'],
-				'post_status' => $status,
-			)
-		);
+		$result = wp_update_post( [
+			'ID'          => $data['post_id'],
+			'post_status' => $status,
+		] );
 
 		if ( 0 === $result ) {
 			$error = __( 'Notification status couldn\'t be changed.', 'notification' );
