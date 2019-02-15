@@ -8,7 +8,7 @@
 namespace BracketSpace\Notification\Abstracts;
 
 use BracketSpace\Notification\Interfaces;
-use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Core\Notification as CoreNotification;
 
 /**
  * Adapter class
@@ -25,9 +25,9 @@ abstract class Adapter implements Interfaces\Adaptable {
 	/**
 	 * Class constructor
 	 *
-	 * @param Notification $notification Notification object.
+	 * @param CoreNotification $notification Notification object.
 	 */
-	public function __construct( Notification $notification ) {
+	public function __construct( CoreNotification $notification ) {
 		$this->notification = $notification;
 	}
 
@@ -58,7 +58,7 @@ abstract class Adapter implements Interfaces\Adaptable {
 	 *
 	 * @since  [Next]
 	 * @param  array $data Data array.
-	 * @return Notification
+	 * @return CoreNotification
 	 */
 	public function setup_notification( $data = [] ) {
 		return $this->get_notification()->setup( $data );
