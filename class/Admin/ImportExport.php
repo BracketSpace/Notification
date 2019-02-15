@@ -5,7 +5,7 @@
  * @package notification
  */
 
-namespace BracketSpace\Notification\Core;
+namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Utils\Settings\CoreFields;
 

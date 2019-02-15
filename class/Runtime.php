@@ -61,8 +61,8 @@ class Runtime extends Utils\DocHooks {
 		$this->core_whitelabel = new Core\Whitelabel();
 		$this->core_debugging  = new Core\Debugging();
 		$this->core_settings   = new Core\Settings();
-		// $this->core_impexp     = new Core\ImportExport();
 
+		$this->admin_impexp     = new Admin\ImportExport();
 		$this->admin_settings   = new Admin\Settings();
 		$this->admin_duplicator = new Admin\NotificationDuplicator();
 		$this->admin_post_type  = new Admin\PostType( $this->ajax(), $this->boxrenderer(), $this->formrenderer() );
@@ -92,8 +92,8 @@ class Runtime extends Utils\DocHooks {
 		$this->add_hooks( $this->core_whitelabel );
 		$this->add_hooks( $this->core_debugging );
 		$this->add_hooks( $this->core_settings );
-		// $this->add_hooks( $this->core_impexp );
 
+		$this->add_hooks( $this->admin_impexp );
 		$this->add_hooks( $this->admin_settings );
 		$this->add_hooks( $this->admin_duplicator );
 		$this->add_hooks( $this->admin_post_type );
@@ -109,7 +109,7 @@ class Runtime extends Utils\DocHooks {
 		notification_register_settings( array( $this->admin_settings, 'general_settings' ) );
 		notification_register_settings( array( $this->admin_settings, 'triggers_settings' ), 20 );
 		notification_register_settings( array( $this->admin_settings, 'notifications_settings' ), 30 );
-		// notification_register_settings( array( $this->core_impexp, 'settings' ), 40 );
+		notification_register_settings( array( $this->admin_impexp, 'settings' ), 40 );
 		notification_register_settings( array( $this->core_debugging, 'debugging_settings' ), 50 );
 
 	}
