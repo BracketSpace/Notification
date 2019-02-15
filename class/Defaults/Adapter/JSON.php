@@ -59,11 +59,12 @@ class JSON extends Abstracts\Adapter {
 	/**
 	 * {@inheritdoc}
 	 *
+	 * @param int $json_options JSON options.
 	 * @return mixed
 	 */
-	public function save() {
+	public function save( $json_options = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ) {
 		$data = $this->get_notification()->to_array();
-		return wp_json_encode( $data );
+		return wp_json_encode( $data, $json_options );
 	}
 
 }

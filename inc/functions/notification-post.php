@@ -26,14 +26,19 @@ function notification_post_is_new( $post ) {
  *
  * @since  [Next]
  * @param  mixed $trigger_slug Trigger slug or null if all posts should be returned.
+ * @param  bool  $all          If get all posts or just active.
  * @return array
  */
-function notification_get_posts( $trigger_slug = null ) {
+function notification_get_posts( $trigger_slug = null, $all = false ) {
 
-	$query_args = array(
+	$query_args = [
 		'numberposts' => -1,
 		'post_type'   => 'notification',
-	);
+	];
+
+	if ( $all ) {
+		$query_args['post_status'] = [ 'publish', 'draft' ];
+	}
 
 	if ( ! empty( $trigger_slug ) ) {
 		$query_args['meta_key']   = Adapter\WordPress::$metakey_trigger;
