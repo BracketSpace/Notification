@@ -6,6 +6,7 @@
  */
 
 use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Interfaces;
 
 /**
  * Adapts Notification object
@@ -37,7 +38,6 @@ function notification_adapt( $adapter_name, Notification $notification ) {
  * Default adapters are: WordPress || JSON
  *
  * @since  [Next]
- * @throws \Exception If adapter wasn't found.
  * @param  string $adapter_name Adapter class name.
  * @param  mixed  $data         Input data needed by adapter.
  * @return Adaptable            Adaptable class.
@@ -45,4 +45,16 @@ function notification_adapt( $adapter_name, Notification $notification ) {
 function notification_adapt_from( $adapter_name, $data ) {
 	$adapter = notification_adapt( $adapter_name, new Notification() );
 	return $adapter->read( $data );
+}
+
+/**
+ * Changes one adapter to another
+ *
+ * @since  [Next]
+ * @param  string               $new_adapter_name Adapter class name.
+ * @param  Interfaces\Adaptable $adapter          Adapter.
+ * @return Interfaces\Adaptable                   Adaptable class.
+ */
+function notification_swap_adapter( $new_adapter_name, Interfaces\Adaptable $adapter ) {
+	return notification_adapt( $new_adapter_name, $adapter->get_notification() );
 }
