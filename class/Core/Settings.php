@@ -22,7 +22,7 @@ class Settings extends SettingsAPI {
 	}
 
 	/**
-	 * Register Settings page under plugin's menu
+	 * Registers Settings page under plugin's menu
 	 *
 	 * @action admin_menu 20
 	 *
@@ -39,7 +39,7 @@ class Settings extends SettingsAPI {
 			return;
 		}
 
-		// change settings position if white labelled.
+		// Change settings position if white labelled.
 		if ( true !== apply_filters( 'notification/whitelabel/cpt/parent', true ) ) {
 			$parent_hook     = apply_filters( 'notification/whitelabel/cpt/parent', 'edit.php?post_type=notification' );
 			$page_menu_label = __( 'Notification settings', 'notification' );
@@ -54,7 +54,7 @@ class Settings extends SettingsAPI {
 			$page_menu_label,
 			'manage_options',
 			'settings',
-			array( $this, 'settings_page' )
+			[ $this, 'settings_page' ]
 		);
 
 	}

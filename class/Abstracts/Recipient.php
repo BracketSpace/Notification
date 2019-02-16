@@ -27,7 +27,7 @@ abstract class Recipient extends Common implements Interfaces\Receivable {
 	 * @since 5.0.0
 	 * @param array $params recipient configuration params.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( ! isset( $params['slug'], $params['name'], $params['default_value'] ) ) {
 			trigger_error( 'Recipient requires slug, name and default_value', E_USER_ERROR );

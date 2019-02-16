@@ -1,6 +1,6 @@
 <?php
 /**
- * Resolves the Notification fields with Merge Tags
+ * Resolves the Carrier fields with Merge Tags
  *
  * @package notification
  */
@@ -22,11 +22,11 @@ class FieldsResolver {
 	private $merge_tag_pattern = '/\{([^\}]*)\}/';
 
 	/**
-	 * Notification object
+	 * Carrier object
 	 *
 	 * @var Notification
 	 */
-	protected $notification;
+	protected $carrier;
 
 	/**
 	 * Merge Tags
@@ -36,14 +36,14 @@ class FieldsResolver {
 	protected $merge_tags;
 
 	/**
-	 * FieldsResolver contructor
+	 * Fields Resolver constructor
 	 *
-	 * @param Notification $notification Notification object.
-	 * @param array        $merge_tags   resolved merge tags array.
+	 * @param Notification $carrier    Carrier object.
+	 * @param array        $merge_tags Resolved Merge Tags array.
 	 */
-	public function __construct( Notification $notification, $merge_tags ) {
+	public function __construct( Notification $carrier, $merge_tags ) {
 
-		$this->notification = $notification;
+		$this->carrier = $carrier;
 
 		// Sort merge tags.
 		foreach ( $merge_tags as $merge_tag ) {
@@ -53,13 +53,13 @@ class FieldsResolver {
 	}
 
 	/**
-	 * Resolves all notification fields
+	 * Resolves all Carrier fields
 	 *
 	 * @return void
 	 */
 	public function resolve_fields() {
 
-		foreach ( $this->notification->get_form_fields() as $field ) {
+		foreach ( $this->carrier->get_form_fields() as $field ) {
 
 			if ( ! $field->is_resolvable() ) {
 				continue;
@@ -73,16 +73,15 @@ class FieldsResolver {
 	}
 
 	/**
-	 * Resolves merge tags in a value
+	 * Resolves Merge Tags in field value
 	 *
-	 * @param  mixed $value string or array, field value.
+	 * @param  mixed $value String or array, field value.
 	 * @return mixed
 	 */
 	public function resolve_value( $value ) {
 
 		if ( is_array( $value ) ) {
-
-			$resolved = array();
+			$resolved = [];
 
 			foreach ( $value as $key => $val ) {
 				$key              = $this->resolve_value( $key );
@@ -91,23 +90,39 @@ class FieldsResolver {
 			}
 		} else {
 
-			$value = apply_filters( 'notificaiton/notification/field/resolving', $value, $this->merge_tags );
+			$value = apply_filters_deprecated( 'notificaiton/notification/field/resolving', [
+				$value,
+				$this->merge_tags,
+			], '[Next]', 'notification/carrier/field/resolving' );
+			$value = apply_filters( 'notification/carrier/field/resolving', $value, $this->merge_tags );
 
-			$resolved = preg_replace_callback( $this->merge_tag_pattern, array( $this, 'resolve_match' ), $value );
+			$resolved = preg_replace_callback( $this->merge_tag_pattern, [ $this, 'resolve_match' ], $value );
 
-			$strip_metgetags = notification_get_setting( 'general/content/strip_empty_tags' );
-			if ( apply_filters( 'notification/value/strip_empty_mergetags', $strip_metgetags ) ) {
+			$strip_merge_tags = notification_get_setting( 'general/content/strip_empty_tags' );
+			$strip_merge_tags = apply_filters_deprecated( 'notification/value/strip_empty_mergetags', [
+				$strip_merge_tags,
+			], '[Next]', 'notification/carrier/field/value/strip_empty_mergetags' );
+
+			if ( apply_filters( 'notification/carrier/field/value/strip_empty_mergetags', $strip_merge_tags ) ) {
 				$resolved = preg_replace( $this->merge_tag_pattern, '', $resolved );
 			}
 
 			$strip_shortcodes = notification_get_setting( 'general/content/strip_shortcodes' );
-			if ( apply_filters( 'notification/value/strip_shortcodes', $strip_shortcodes ) ) {
+			$strip_shortcodes = apply_filters_deprecated( 'notification/value/strip_shortcodes', [
+				$strip_shortcodes,
+			], '[Next]', 'notification/carrier/field/value/strip_shortcodes' );
+
+			if ( apply_filters( 'notification/carrier/field/value/strip_shortcodes', $strip_shortcodes ) ) {
 				$resolved = strip_shortcodes( $resolved );
 			} else {
 				$resolved = do_shortcode( $resolved );
 			}
 
-			$resolved = apply_filters( 'notificaiton/notification/field/resolved', $resolved, $this->merge_tags );
+			$resolved = apply_filters_deprecated( 'notificaiton/notification/field/resolved', [
+				$resolved,
+				$this->merge_tags,
+			], '[Next]', 'notification/carrier/field/value/resolved' );
+			$resolved = apply_filters( 'notification/carrier/field/value/resolved', $resolved, $this->merge_tags );
 
 		}
 
@@ -130,7 +145,11 @@ class FieldsResolver {
 			return '';
 		}
 
-		$resolved = apply_filters( 'notificaiton/merge_tag/value/resolved', $this->merge_tags[ $tag_slug ]->resolve(), $this->merge_tags[ $tag_slug ] );
+		$resolved = apply_filters_deprecated( 'notificaiton/merge_tag/value/resolved', [
+			$this->merge_tags[ $tag_slug ]->resolve(),
+			$this->merge_tags[ $tag_slug ],
+		], '[Next]', 'notification/merge_tag/value/resolved' );
+		$resolved = apply_filters( 'notification/merge_tag/value/resolved', $this->merge_tags[ $tag_slug ]->resolve(), $this->merge_tags[ $tag_slug ] );
 
 		return $resolved;
 

@@ -40,13 +40,11 @@ class ScreenHelp {
 
 		$this->view->set_var( 'tags', notification_get_global_merge_tags() );
 
-		$screen->add_help_tab(
-			array(
-				'id'      => 'notification_global_merge_tags',
-				'title'   => __( 'Global Merge Tags', 'notification' ),
-				'content' => $this->view->get_view_output( 'help/global-merge-tags' ),
-			)
-		);
+		$screen->add_help_tab( [
+			'id'      => 'notification_global_merge_tags',
+			'title'   => __( 'Global Merge Tags', 'notification' ),
+			'content' => $this->view->get_view_output( 'help/global-merge-tags' ),
+		] );
 
 		$screen->set_help_sidebar( $this->view->get_view_output( 'help/sidebar' ) );
 

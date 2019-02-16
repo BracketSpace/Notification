@@ -57,17 +57,12 @@ class UserLoginFailed extends UserTrigger {
 		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
 		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
 		$this->add_merge_tag( new MergeTag\User\UserLastName() );
-
 		$this->add_merge_tag( new MergeTag\User\UserBio() );
 
-		$this->add_merge_tag(
-			new MergeTag\DateTime\DateTime(
-				array(
-					'slug' => 'user_login_failed_datetime',
-					'name' => __( 'User login failed datetime', 'notification' ),
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
+			'slug' => 'user_login_failed_datetime',
+			'name' => __( 'User login failed datetime', 'notification' ),
+		] ) );
 
 	}
 

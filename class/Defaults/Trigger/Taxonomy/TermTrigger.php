@@ -27,7 +27,7 @@ abstract class TermTrigger extends Abstracts\Trigger {
 	 *
 	 * @param array $params trigger configuration params.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( ! isset( $params['taxonomy'], $params['slug'], $params['name'] ) ) {
 			trigger_error( 'TaxonomyTrigger requires taxonomy slug, slug and name.', E_USER_ERROR );

@@ -83,7 +83,8 @@ class Email extends Abstracts\Notification {
 	public function send( Triggerable $trigger ) {
 
 		$default_html_mime = notification_get_setting( 'notifications/email/type' ) === 'html';
-		$html_mime         = apply_filters( 'notification/carrier/email/use_html_mime', $default_html_mime, $this, $trigger );
+		$html_mime         = apply_filters_deprecated( 'notification/email/use_html_mime', [ $default_html_mime, $this, $trigger ], '[Next]', 'notification/carrier/email/use_html_mime' );
+		$html_mime         = apply_filters( 'notification/carrier/email/use_html_mime', $html_mime, $this, $trigger );
 
 		if ( $html_mime ) {
 			add_filter( 'wp_mail_content_type', [ $this, 'set_mail_type' ] );
@@ -91,14 +92,22 @@ class Email extends Abstracts\Notification {
 
 		$data = $this->data;
 
-		$recipients = apply_filters( 'notification/carrier/email/recipients', $data['parsed_recipients'], $this, $trigger );
+		$recipients = apply_filters_deprecated( 'notification/email/recipients', [ $data['parsed_recipients'], $this, $trigger ], '[Next]', 'notification/carrier/email/recipients' );
+		$recipients = apply_filters( 'notification/carrier/email/recipients', $recipients, $this, $trigger );
 
-		$subject = apply_filters( 'notification/carrier/email/subject', $data['subject'], $this, $trigger );
+		$subject = apply_filters_deprecated( 'notification/email/subject', [ $data['subject'], $this, $trigger ], '[Next]', 'notification/carrier/email/subject' );
+		$subject = apply_filters( 'notification/carrier/email/subject', $subject, $this, $trigger );
 
-		$message = apply_filters( 'notification/carrier/email/message/pre', $data['body'], $this, $trigger );
-		if ( apply_filters( 'notification/carrier/email/message/use_autop', $html_mime, $this, $trigger ) ) {
+		$message = apply_filters_deprecated( 'notification/email/message/pre', [ $data['body'], $this, $trigger ], '[Next]', 'notification/carrier/email/message/pre' );
+		$message = apply_filters( 'notification/carrier/email/message/pre', $message, $this, $trigger );
+
+		$use_autop = apply_filters_deprecated( 'notification/email/message/use_autop', [ $html_mime, $this, $trigger ], '[Next]', 'notification/carrier/email/message/use_autop' );
+		$use_autop = apply_filters( 'notification/carrier/email/message/use_autop', $use_autop, $this, $trigger );
+		if ( $use_autop ) {
 			$message = wpautop( $message );
 		}
+
+		$message = apply_filters_deprecated( 'notification/email/message', [ $message, $this, $trigger ], '[Next]', 'notification/carrier/email/message' );
 		$message = apply_filters( 'notification/carrier/email/message', $message, $this, $trigger );
 
 		// Fix for wp_mail not being processed with empty message.
@@ -106,7 +115,10 @@ class Email extends Abstracts\Notification {
 			$message = ' ';
 		}
 
-		$headers     = apply_filters( 'notification/carrier/email/headers', [], $this, $trigger );
+		$headers = apply_filters_deprecated( 'notification/email/headers', [ [], $this, $trigger ], '[Next]', 'notification/carrier/email/headers' );
+		$headers = apply_filters( 'notification/carrier/email/headers', [], $this, $trigger );
+
+		$attachments = apply_filters_deprecated( 'notification/email/attachments', [ [], $this, $trigger ], '[Next]', 'notification/carrier/email/attachments' );
 		$attachments = apply_filters( 'notification/carrier/email/attachments', [], $this, $trigger );
 
 		// Fire an email one by one.

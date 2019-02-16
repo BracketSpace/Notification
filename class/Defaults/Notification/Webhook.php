@@ -103,6 +103,7 @@ class Webhook extends Abstracts\Notification {
 		$data = $this->data;
 
 		$args = $this->parse_args( $data['args'] );
+		$args = apply_filters_deprecated( 'notification/webhook/args', [ $args, $this, $trigger ], '[Next]', 'notification/carrier/webhook/args' );
 		$args = apply_filters( 'notification/carrier/webhook/args', $args, $this, $trigger );
 
 		if ( $data['json'] ) {
@@ -122,7 +123,8 @@ class Webhook extends Abstracts\Notification {
 
 		// Call each URL separately.
 		foreach ( $data['urls'] as $url ) {
-			$filtered_args = apply_filters( 'notification/carrier/webhook/args/' . $url['type'], $args, $this, $trigger );
+			$filtered_args = apply_filters_deprecated( 'notification/webhook/args/' . $url['type'], [ $args, $this, $trigger ], '[Next]', 'notification/carrier/webhook/args/' . $url['type'] );
+			$filtered_args = apply_filters( 'notification/carrier/webhook/args/' . $url['type'], $filtered_args, $this, $trigger );
 
 			if ( 'get' === $url['type'] ) {
 				$this->send_get( $url['recipient'], $filtered_args, $headers );
@@ -144,13 +146,28 @@ class Webhook extends Abstracts\Notification {
 	 */
 	public function send_get( $url, $args = [], $headers = [] ) {
 
-		$remote_url  = add_query_arg( $args, $url );
-		$remote_args = apply_filters( 'notification/carrier/webhook/remote_args/get', [
-			'headers' => $headers,
-		], $url, $args, $this );
+		$remote_url = add_query_arg( $args, $url );
+
+		$remote_args = apply_filters_deprecated( 'notification/webhook/remote_args/get', [
+			[
+				'headers' => $headers,
+			],
+			$url,
+			$args,
+			$this,
+		], '[Next]', 'notification/carrier/webhook/remote_args/get' );
+
+		$remote_args = apply_filters( 'notification/carrier/webhook/remote_args/get', $remote_args, $url, $args, $this );
 
 		$response = wp_remote_get( $remote_url, $remote_args );
 
+		do_action_deprecated( 'notification/webhook/called/get', [
+			$response,
+			$url,
+			$args,
+			$remote_args,
+			$this,
+		], '[Next]', 'notification/carrier/webhook/called/get' );
 		do_action( 'notification/carrier/webhook/called/get', $response, $url, $args, $remote_args, $this );
 
 	}
@@ -166,13 +183,27 @@ class Webhook extends Abstracts\Notification {
 	 */
 	public function send_post( $url, $args = [], $headers = [] ) {
 
-		$remote_args = apply_filters( 'notification/carrier/webhook/remote_args/post', [
-			'body'    => $args,
-			'headers' => $headers,
-		], $url, $args, $this );
+		$remote_args = apply_filters_deprecated( 'notification/webhook/remote_args/post', [
+			[
+				'body'    => $args,
+				'headers' => $headers,
+			],
+			$url,
+			$args,
+			$this,
+		], '[Next]', 'notification/carrier/webhook/remote_args/post' );
+
+		$remote_args = apply_filters( 'notification/carrier/webhook/remote_args/post', $remote_args, $url, $args, $this );
 
 		$response = wp_remote_post( $url, $remote_args );
 
+		do_action_deprecated( 'notification/webhook/called/post', [
+			$response,
+			$url,
+			$args,
+			$remote_args,
+			$this,
+		], '[Next]', 'notification/carrier/webhook/called/post' );
 		do_action( 'notification/carrier/webhook/called/post', $response, $url, $args, $remote_args, $this );
 
 	}

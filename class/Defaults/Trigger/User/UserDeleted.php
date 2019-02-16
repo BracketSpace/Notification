@@ -58,17 +58,12 @@ class UserDeleted extends UserTrigger {
 		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
 		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
 		$this->add_merge_tag( new MergeTag\User\UserLastName() );
-
 		$this->add_merge_tag( new MergeTag\User\UserBio() );
 
-		$this->add_merge_tag(
-			new MergeTag\DateTime\DateTime(
-				array(
-					'slug' => 'user_deleted_datetime',
-					'name' => __( 'User deletion time', 'notification' ),
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
+			'slug' => 'user_deleted_datetime',
+			'name' => __( 'User deletion time', 'notification' ),
+		] ) );
 
 	}
 

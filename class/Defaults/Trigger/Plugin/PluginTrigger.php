@@ -22,7 +22,7 @@ abstract class PluginTrigger extends Abstracts\Trigger {
 	 */
 	public function merge_tags() {
 
-		$this->add_merge_tag( new MergeTag\StringTag( array(
+		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'plugin_name',
 			'name'        => __( 'Plugin name', 'notification' ),
 			'description' => __( 'Akismet', 'notification' ),
@@ -31,9 +31,9 @@ abstract class PluginTrigger extends Abstracts\Trigger {
 				return $trigger->plugin['Name'];
 			},
 			'group'       => __( 'Plugin', 'notification' ),
-		) ) );
+		] ) );
 
-		$this->add_merge_tag( new MergeTag\StringTag( array(
+		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'plugin_author_name',
 			'name'        => __( 'Plugin author name', 'notification' ),
 			'description' => __( 'Automattic', 'notification' ),
@@ -42,9 +42,9 @@ abstract class PluginTrigger extends Abstracts\Trigger {
 				return $trigger->plugin['AuthorName'];
 			},
 			'group'       => __( 'Plugin', 'notification' ),
-		) ) );
+		] ) );
 
-		$this->add_merge_tag( new MergeTag\StringTag( array(
+		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'plugin_version',
 			'name'        => __( 'Plugin version', 'notification' ),
 			'description' => __( '1.0.0', 'notification' ),
@@ -53,9 +53,9 @@ abstract class PluginTrigger extends Abstracts\Trigger {
 				return $trigger->plugin['Version'];
 			},
 			'group'       => __( 'Plugin', 'notification' ),
-		) ) );
+		] ) );
 
-		$this->add_merge_tag( new MergeTag\StringTag( array(
+		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'plugin_url',
 			'name'        => __( 'Plugin website address', 'notification' ),
 			'description' => __( 'https://wordpress.org/plugins/example', 'notification' ),
@@ -64,7 +64,7 @@ abstract class PluginTrigger extends Abstracts\Trigger {
 				return $trigger->plugin['PluginURI'];
 			},
 			'group'       => __( 'Plugin', 'notification' ),
-		) ) );
+		] ) );
 
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  * Whitelabel class
- * Removed unused plugin things
+ * Removes unused plugin things
  *
  * @package notification
  */

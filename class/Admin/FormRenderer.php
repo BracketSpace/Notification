@@ -28,7 +28,7 @@ class FormRenderer {
 	 *
 	 * @var array
 	 */
-	private $fields = array();
+	private $fields = [];
 
 	/**
 	 * FormRenderer constructor
@@ -45,7 +45,7 @@ class FormRenderer {
 	 *
 	 * @param array $fields fields.
 	 */
-	public function set_fields( $fields = array() ) {
+	public function set_fields( $fields = [] ) {
 
 		foreach ( $fields as $field ) {
 			if ( ! $field instanceof Fillable ) {

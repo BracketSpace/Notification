@@ -21,14 +21,12 @@ class CommentAdded extends CommentTrigger {
 	 */
 	public function __construct( $comment_type = 'comment' ) {
 
-		parent::__construct(
-			array(
-				'slug'         => 'wordpress/comment_' . $comment_type . '_added',
-				// Translators: %s comment type.
-				'name'         => sprintf( __( '%s added', 'notification' ), ucfirst( $comment_type ) ),
-				'comment_type' => $comment_type,
-			)
-		);
+		parent::__construct( [
+			'slug'         => 'wordpress/comment_' . $comment_type . '_added',
+			// Translators: %s comment type.
+			'name'         => sprintf( __( '%s added', 'notification' ), ucfirst( $comment_type ) ),
+			'comment_type' => $comment_type,
+		] );
 
 		$this->add_action( 'wp_insert_comment', 10, 2 );
 

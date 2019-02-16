@@ -28,11 +28,11 @@ class PostTable {
 		unset( $columns['title'] );
 
 		// Custom columns.
-		$columns['switch']        = __( 'Status', 'notification' );
-		$columns['title']         = $title_column;
-		$columns['trigger']       = __( 'Trigger', 'notification' );
-		$columns['notifications'] = __( 'Notifications', 'notification' );
-		$columns['date']          = $date_column;
+		$columns['switch']   = __( 'Status', 'notification' );
+		$columns['title']    = $title_column;
+		$columns['trigger']  = __( 'Trigger', 'notification' );
+		$columns['carriers'] = __( 'Carriers', 'notification' );
+		$columns['date']     = $date_column;
 
 		return $columns;
 
@@ -73,13 +73,13 @@ class PostTable {
 				echo '</div>';
 				break;
 
-			case 'notifications':
-				$enabled_notifications = (array) get_post_meta( $post_id, '_enabled_notification', false );
+			case 'carriers':
+				$enabled_carriers = (array) get_post_meta( $post_id, '_enabled_notification', false );
 
-				foreach ( array_unique( $enabled_notifications ) as $notification_slug ) {
-					$notification = notification_get_single_notification( $notification_slug );
-					if ( ! empty( $notification ) ) {
-						echo esc_html( $notification->get_name() );
+				foreach ( array_unique( $enabled_carriers ) as $carrier_slug ) {
+					$carrier = notification_get_single_notification( $carrier_slug );
+					if ( ! empty( $carrier ) ) {
+						echo esc_html( $carrier->get_name() );
 						echo '<br>';
 					}
 				}
@@ -100,7 +100,7 @@ class PostTable {
 	public function remove_status_display( $post_states, $post ) {
 
 		if ( 'notification' === $post->post_type ) {
-			return array();
+			return [];
 		}
 
 		return $post_states;

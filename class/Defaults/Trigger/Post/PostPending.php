@@ -21,14 +21,12 @@ class PostPending extends PostTrigger {
 	 */
 	public function __construct( $post_type = 'post' ) {
 
-		parent::__construct(
-			array(
-				'post_type' => $post_type,
-				'slug'      => 'wordpress/' . $post_type . '/pending',
-				// translators: singular post name.
-				'name'      => sprintf( __( '%s sent for review', 'notification' ), parent::get_post_type_name( $post_type ) ),
-			)
-		);
+		parent::__construct( [
+			'post_type' => $post_type,
+			'slug'      => 'wordpress/' . $post_type . '/pending',
+			// translators: singular post name.
+			'name'      => sprintf( __( '%s sent for review', 'notification' ), parent::get_post_type_name( $post_type ) ),
+		] );
 
 		$this->add_action( 'transition_post_status', 10, 3 );
 
@@ -61,19 +59,6 @@ class PostPending extends PostTrigger {
 
 		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date );
 		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified );
-
-	}
-
-	/**
-	 * Registers attached merge tags
-	 *
-	 * @return void
-	 */
-	public function merge_tags() {
-
-		$post_name = parent::get_post_type_name( $this->post_type );
-
-		parent::merge_tags();
 
 	}
 

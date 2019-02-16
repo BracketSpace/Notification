@@ -48,7 +48,7 @@ class License {
 	 * @return array licenses
 	 */
 	public function get_licenses() {
-		return get_option( $this->license_storage, array() );
+		return get_option( $this->license_storage, [] );
 	}
 
 	/**
@@ -177,15 +177,15 @@ class License {
 		// call the custom API.
 		$response = wp_remote_post(
 			$this->extension['edd']['store_url'],
-			array(
+			[
 				'timeout' => 15,
-				'body'    => array(
+				'body'    => [
 					'edd_action' => 'activate_license',
 					'license'    => $license_key,
 					'item_name'  => rawurlencode( $this->extension['edd']['item_name'] ),
 					'url'        => home_url(),
-				),
-			)
+				],
+			]
 		);
 
 		// make sure the response came back okay.
@@ -220,15 +220,15 @@ class License {
 		// call the custom API.
 		$response = wp_remote_post(
 			$this->extension['edd']['store_url'],
-			array(
+			[
 				'timeout' => 15,
-				'body'    => array(
+				'body'    => [
 					'edd_action' => 'deactivate_license',
 					'license'    => trim( $license_data->license_key ),
 					'item_name'  => rawurlencode( $this->extension['edd']['item_name'] ),
 					'url'        => home_url(),
-				),
-			)
+				],
+			]
 		);
 
 		// make sure the response came back okay.
@@ -263,15 +263,15 @@ class License {
 		// call the custom API.
 		$response = wp_remote_post(
 			$this->extension['edd']['store_url'],
-			array(
+			[
 				'timeout' => 15,
-				'body'    => array(
+				'body'    => [
 					'edd_action' => 'check_license',
 					'license'    => $license_key,
 					'item_name'  => rawurlencode( $this->extension['edd']['item_name'] ),
 					'url'        => home_url(),
-				),
-			)
+				],
+			]
 		);
 
 		// make sure the response came back okay.

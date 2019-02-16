@@ -29,14 +29,14 @@ class Extensions {
 	 *
 	 * @var array
 	 */
-	private $extensions = array();
+	private $extensions = [];
 
 	/**
 	 * Premium Extensions list
 	 *
 	 * @var array
 	 */
-	private $premium_extensions = array();
+	private $premium_extensions = [];
 
 	/**
 	 * View object
@@ -81,10 +81,10 @@ class Extensions {
 			$page_menu_label,
 			'manage_options',
 			'extensions',
-			array( $this, 'extensions_page' )
+			[ $this, 'extensions_page' ]
 		);
 
-		add_action( 'load-' . $this->page_hook, array( $this, 'load_extensions' ) );
+		add_action( 'load-' . $this->page_hook, [ $this, 'load_extensions' ] );
 
 	}
 
@@ -142,7 +142,7 @@ class Extensions {
 		if ( false === $extensions ) {
 
 			$response   = wp_remote_get( $this->api_url );
-			$extensions = array();
+			$extensions = [];
 
 			if ( ! is_wp_error( $response ) && 200 === wp_remote_retrieve_response_code( $response ) ) {
 				$extensions = json_decode( wp_remote_retrieve_body( $response ), true );
@@ -190,7 +190,7 @@ class Extensions {
 		}
 
 		$extensions   = $this->get_raw_extensions();
-		$premium      = array();
+		$premium      = [];
 		$wp_plugins   = get_plugins();
 		$plugin_slugs = array_keys( $wp_plugins );
 
@@ -211,13 +211,13 @@ class Extensions {
 			new EDDUpdater(
 				$extension['edd']['store_url'],
 				$extension['slug'],
-				array(
+				[
 					'version'   => $wp_plugin['Version'],
 					'license'   => '',
 					'item_name' => $extension['edd']['item_name'],
 					'author'    => $extension['author'],
 					'beta'      => false,
-				)
+				]
 			);
 
 		}

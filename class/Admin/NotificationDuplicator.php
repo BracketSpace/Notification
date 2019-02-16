@@ -55,11 +55,11 @@ class NotificationDuplicator {
 		}
 
 		$new_id = wp_insert_post(
-			array(
+			[
 				'post_title'  => sprintf( '(%s) %s', __( 'Duplicate', 'notification' ), $source->post_title ),
 				'post_status' => 'draft',
 				'post_type'   => 'notification',
-			)
+			]
 		);
 
 		// Copy all the meta data.

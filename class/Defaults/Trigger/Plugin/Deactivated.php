@@ -51,10 +51,10 @@ class Deactivated extends PluginTrigger {
 
 		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
 			'slug' => 'plugin_deactivation_date_time',
 			'name' => __( 'Plugin deactivation date and time', 'notification' ),
-		) ) );
+		] ) );
 
 	}
 

@@ -17,11 +17,11 @@ use BracketSpace\Notification\Admin\FieldsResolver;
 abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
-	 * Storage for trigger's notifications
+	 * Storage for Trigger's Carriers
 	 *
 	 * @var array
 	 */
-	private $notification_storage = array();
+	private $carrier_storage = [];
 
 	/**
 	 * Group
@@ -59,21 +59,21 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 *
 	 * @var array
 	 */
-	protected $actions = array();
+	protected $actions = [];
 
 	/**
 	 * Merge tags
 	 *
 	 * @var array
 	 */
-	protected $merge_tags = array();
+	protected $merge_tags = [];
 
 	/**
 	 * Action's callback args
 	 *
 	 * @var array
 	 */
-	protected $callback_args = array();
+	protected $callback_args = [];
 
 	/**
 	 * Trigger constructor
@@ -115,14 +115,14 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 		array_push(
 			$this->actions,
-			array(
+			[
 				'tag'           => $tag,
 				'priority'      => $priority,
 				'accepted_args' => $accepted_args,
-			)
+			]
 		);
 
-		add_action( $tag, array( $this, '_action' ), $priority, $accepted_args );
+		add_action( $tag, [ $this, '_action' ], $priority, $accepted_args );
 
 	}
 
@@ -147,7 +147,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			}
 		}
 
-		remove_action( $tag, array( $this, '_action' ), $priority, $accepted_args );
+		remove_action( $tag, [ $this, '_action' ], $priority, $accepted_args );
 
 	}
 
@@ -169,52 +169,59 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Attaches the Notification to the Trigger
+	 * Attaches the Carrier
 	 *
-	 * @param  Sendable $notification Notification class.
+	 * @param  Sendable $carrier Carrier class.
 	 * @return void
 	 */
-	public function attach( Sendable $notification ) {
-		$this->notification_storage[ $notification->hash() ] = clone $notification;
+	public function attach( Sendable $carrier ) {
+		$this->carrier_storage[ $carrier->hash() ] = clone $carrier;
 	}
 
 	/**
-	 * Gets attached notifications
+	 * Gets attached Carriers
 	 *
 	 * @return array
 	 */
 	public function get_attached_notifications() {
-		return $this->notification_storage;
+		return $this->carrier_storage;
 	}
 
 	/**
-	 * Detaches the Notification from the Trigger
+	 * Detaches the Carrier
 	 *
-	 * @param  Sendable $notification Notification class.
+	 * @param  Sendable $carrier Carrier class.
 	 * @return void
 	 */
-	public function detach( Sendable $notification ) {
-		if ( isset( $this->notification_storage[ $notification->hash() ] ) ) {
-			unset( $this->notification_storage[ $notification->hash() ] );
+	public function detach( Sendable $carrier ) {
+		if ( isset( $this->carrier_storage[ $carrier->hash() ] ) ) {
+			unset( $this->carrier_storage[ $carrier->hash() ] );
 		}
 	}
 
 	/**
-	 * Rolls out all the notifications
+	 * Rolls out all the Carriers
 	 *
 	 * @return void
 	 */
 	public function roll_out() {
 
-		foreach ( $this->get_attached_notifications() as $notification ) {
+		foreach ( $this->get_attached_notifications() as $carrier ) {
+			$carrier->prepare_data();
 
-			$notification->prepare_data();
+			do_action_deprecated( 'notification/notification/pre-send', [
+				$carrier,
+				$this,
+			], '[Next]', 'notification/carrier/pre-send' );
+			do_action( 'notification/carrier/pre-send', $carrier, $this );
 
-			do_action( 'notification/notification/pre-send', $notification, $this );
-
-			if ( ! $notification->is_suppressed() ) {
-				$notification->send( $this );
-				do_action( 'notification/notification/sent', $notification, $this );
+			if ( ! $carrier->is_suppressed() ) {
+				$carrier->send( $this );
+				do_action_deprecated( 'notification/notification/sent', [
+					$carrier,
+					$this,
+				], '[Next]', 'notification/carrier/sent' );
+				do_action( 'notification/carrier/sent', $carrier, $this );
 			}
 		}
 
@@ -303,7 +310,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			return $this->merge_tags;
 		}
 
-		$tags = array();
+		$tags = [];
 
 		foreach ( $this->merge_tags as $merge_tag ) {
 
@@ -319,21 +326,21 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Resolves all notifications fields with merge tags
+	 * Resolves all Carrier fields with Merge Tags
 	 *
 	 * @return void
 	 */
 	private function resolve_fields() {
 
-		foreach ( $this->get_attached_notifications() as $notification ) {
-			$resolver = new FieldsResolver( $notification, $this->get_merge_tags() );
+		foreach ( $this->get_attached_notifications() as $carrier ) {
+			$resolver = new FieldsResolver( $carrier, $this->get_merge_tags() );
 			$resolver->resolve_fields();
 		}
 
 	}
 
 	/**
-	 * Cleans the merge tags.
+	 * Cleans the Merge Tags
 	 *
 	 * @since 5.2.2
 	 * @return void
@@ -349,24 +356,26 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Gets CPT Notification from databse
 	 * Gets their enabled Notifications
-	 * Populates the Notification form data
-	 * Attaches the Notification to trigger
+	 * Populates the Carrier form data
+	 * Attaches the Carrier to trigger
 	 *
 	 * @return void
 	 */
 	public function set_notifications() {
 
 		// Get all notification posts bound with this trigger.
-		$notification_posts = notification_get_posts( $this->get_slug() );
+		$adapters = notification_get_posts( $this->get_slug() );
 
 		// Attach notifications for each post.
-		foreach ( $notification_posts as $notification_post ) {
+		foreach ( $adapters as $adapter ) {
 
-			$notifications = $notification_post->get_notifications();
+			$carriers = $adapter->get_notifications();
 
-			// attach every enabled notification.
-			foreach ( $notifications as $notification ) {
-				$this->attach( $notification );
+			// Attach every enabled Carriers.
+			foreach ( $carriers as $carrier ) {
+				if ( $carrier->enabled ) {
+					$this->attach( $carrier );
+				}
 			}
 		}
 
@@ -405,9 +414,9 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 		// call the action.
 		if ( $this->is_postponed() && method_exists( $this, 'postponed_action' ) ) {
-			$result = call_user_func_array( array( $this, 'postponed_action' ), $this->callback_args );
+			$result = call_user_func_array( [ $this, 'postponed_action' ], $this->callback_args );
 		} elseif ( ! $this->is_postponed() && method_exists( $this, 'action' ) ) {
-			$result = call_user_func_array( array( $this, 'action' ), $this->callback_args );
+			$result = call_user_func_array( [ $this, 'action' ], $this->callback_args );
 		} else {
 			$result = true;
 		}

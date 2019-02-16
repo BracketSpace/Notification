@@ -26,28 +26,28 @@ class ImportExport {
 
 		$importexport->add_group( __( 'Import', 'notification' ), 'import' )
 			->add_field(
-				array(
+				[
 					'name'     => __( 'Notifications', 'notification' ),
 					'slug'     => 'notifications',
-					'addons'   => array(
+					'addons'   => [
 						'message' => $this->notification_import_form(),
-					),
-					'render'   => array( new CoreFields\Message(), 'input' ),
-					'sanitize' => array( new CoreFields\Message(), 'sanitize' ),
-				)
+					],
+					'render'   => [ new CoreFields\Message(), 'input' ],
+					'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
+				]
 			);
 
 		$importexport->add_group( __( 'Export', 'notification' ), 'export' )
 			->add_field(
-				array(
+				[
 					'name'     => __( 'Notifications', 'notification' ),
 					'slug'     => 'notifications',
-					'addons'   => array(
+					'addons'   => [
 						'message' => $this->notification_export_form(),
-					),
-					'render'   => array( new CoreFields\Message(), 'input' ),
-					'sanitize' => array( new CoreFields\Message(), 'sanitize' ),
-				)
+					],
+					'render'   => [ new CoreFields\Message(), 'input' ],
+					'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
+				]
 			);
 
 	}
@@ -99,9 +99,9 @@ class ImportExport {
 		$type = sanitize_text_field( wp_unslash( $_GET['type'] ) );
 
 		try {
-			$data = call_user_func( array( $this, 'prepare_' . $type . '_export_data' ) );
+			$data = call_user_func( [ $this, 'prepare_' . $type . '_export_data' ] );
 		} catch ( \Exception $e ) {
-			wp_die( esc_html( $e->getMessage() ), '', array( 'back_link' => true ) );
+			wp_die( esc_html( $e->getMessage() ), '', [ 'back_link' => true ] );
 		}
 
 		header( 'Content-Description: File Transfer' );
@@ -126,7 +126,7 @@ class ImportExport {
 			throw new \Exception( __( 'No items selected for export' ) );
 		}
 
-		$data  = array();
+		$data  = [];
 		$items = explode( ',', sanitize_text_field( wp_unslash( $_GET['items'] ) ) ); // phpcs:ignore
 		$posts = get_posts( [
 			'post_type'      => 'notification',
@@ -187,7 +187,7 @@ class ImportExport {
 		$type = sanitize_text_field( wp_unslash( $_POST['type'] ) );
 
 		try {
-			$result = call_user_func( array( $this, 'process_' . $type . '_import_request' ), $data );
+			$result = call_user_func( [ $this, 'process_' . $type . '_import_request' ], $data );
 		} catch ( \Exception $e ) {
 			wp_send_json_error( $e->getMessage() );
 		}

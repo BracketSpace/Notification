@@ -21,14 +21,12 @@ class PostScheduled extends PostTrigger {
 	 */
 	public function __construct( $post_type = 'post' ) {
 
-		parent::__construct(
-			array(
-				'post_type' => $post_type,
-				'slug'      => 'wordpress/' . $post_type . '/scheduled',
-				// translators: singular post name.
-				'name'      => sprintf( __( '%s scheduled', 'notification' ), parent::get_post_type_name( $post_type ) ),
-			)
-		);
+		parent::__construct( [
+			'post_type' => $post_type,
+			'slug'      => 'wordpress/' . $post_type . '/scheduled',
+			// translators: singular post name.
+			'name'      => sprintf( __( '%s scheduled', 'notification' ), parent::get_post_type_name( $post_type ) ),
+		] );
 
 		$this->add_action( 'transition_post_status', 10, 3 );
 
@@ -76,11 +74,11 @@ class PostScheduled extends PostTrigger {
 
 		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
 			'slug' => $this->post_type . '_publication_datetime',
 			// translators: singular post name.
 			'name' => sprintf( __( '%s publication date and time', 'notification' ), $post_name ),
-		) ) );
+		] ) );
 
 	}
 

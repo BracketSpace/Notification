@@ -258,6 +258,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] Import and Export feature using JSON files.
 * [Added] Composer support with unified testing.
 * [Added] Merge Tags groups.
+* [Added] Notification Adapters - WordPress and JSON.
 * [Changed] PostData class has been removed in favor of Notification object and procedural functions.
 * [Changed] Admin Classes: MergeTags, Notifications, PostData, Recipients, Triggers has been removed and their content included in the Admin/PostType class.
 * [Changed] Notification data is now using single nonce field and additional data should be saved with `notification/data/save` action.
@@ -265,3 +266,36 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Native class autoloader to Composer autoloader.
 * [Changed] User recipients optimization with direct database calls.
 * [Removed] Trigger usage tracking.
+
+= Compatibility breaking changes =
+
+*Hooks* - Some of the hooks names has been renamed for better consistency across the plugin. List of all changes:
+
+* notification/notification/pre-send -> notification/carrier/pre-send
+* notification/notification/sent -> notification/carrier/sent
+* notificaiton/notification/field/resolving -> notification/carrier/field/resolving
+* notification/value/strip_empty_mergetags -> notification/carrier/field/value/strip_empty_mergetags
+* notification/value/strip_shortcodes -> notification/carrier/field/value/strip_shortcodes
+* notificaiton/notification/field/resolved -> notification/carrier/field/value/resolved
+* notificaiton/merge_tag/value/resolved -> notification/merge_tag/value/resolved
+* notitication/admin/notifications/pre -> notification/admin/carriers/pre
+* notitication/admin/notifications -> notification/admin/carriers
+* notification/webhook/called/get -> notification/carrier/webhook/called/get
+* notification/webhook/called/post -> notification/carrier/webhook/called/post
+* notification/notification/box/pre -> notification/carrier/box/pre
+* notification/notification/box/post -> notification/carrier/box/post
+* notification/notification/box/field/pre -> notification/carrier/box/field/pre
+* notification/notification/box/field/post -> notification/carrier/box/field/post
+* notification/notification/form_fields/values -> notification/carrier/fields/values
+* notification/email/use_html_mime -> notification/carrier/email/use_html_mime
+* notification/email/recipients -> notification/carrier/email/recipients
+* notification/email/subject -> notification/carrier/email/subject
+* notification/email/message/pre -> notification/carrier/email/message/pre
+* notification/email/message/use_autop -> notification/carrier/email/message/use_autop
+* notification/email/message -> notification/carrier/email/message
+* notification/email/headers -> notification/carrier/email/headers
+* notification/email/attachments -> notification/carrier/email/attachments
+* notification/webhook/args -> notification/carrier/webhook/args
+* notification/webhook/args/$type -> notification/carrier/webhook/args/$type
+* notification/webhook/remote_args/get -> notification/carrier/webhook/remote_args/get
+* notification/webhook/remote_args/post -> notification/carrier/webhook/remote_args/post
