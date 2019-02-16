@@ -23,18 +23,18 @@ class WordPress extends Abstracts\Adapter {
 	protected $post;
 
 	/**
-	 * Meta key for enabled notifications
+	 * Meta key for enabled Carriers
 	 *
 	 * @var string
 	 */
-	public static $metakey_notification_enabled = '_enabled_notification';
+	public static $metakey_carrier_enabled = '_enabled_notification';
 
 	/**
-	 * Meta key for notification data
+	 * Meta key for Carrier data
 	 *
 	 * @var string
 	 */
-	public static $metakey_notification_data = '_notification_type_';
+	public static $metakey_carrier_data = '_notification_type_';
 
 	/**
 	 * Meta key for active trigger
@@ -74,21 +74,21 @@ class WordPress extends Abstracts\Adapter {
 			$this->set_trigger( $trigger );
 		}
 
-		// Notifications.
-		$notification_slugs   = (array) get_post_meta( $this->get_id(), self::$metakey_notification_enabled, false );
-		$notification_objects = [];
+		// Carriers.
+		$carrier_slug = (array) get_post_meta( $this->get_id(), self::$metakey_carrier_enabled, false );
+		$carriers     = [];
 
-		foreach ( $notification_slugs as $notification_slug ) {
-			$notification = notification_get_single_notification( $notification_slug );
-			if ( ! empty( $notification ) ) {
-				$notification_copy                                 = clone $notification;
-				$notification_copy->post_id                        = $this->get_id();
-				$notification_objects[ $notification->get_slug() ] = $this->populate_notification( $notification_copy );
+		foreach ( $carrier_slug as $carrier_slug ) {
+			$carrier = notification_get_single_notification( $carrier_slug );
+			if ( ! empty( $carrier ) ) {
+				$carrier_copy                     = clone $carrier;
+				$carrier_copy->post_id            = $this->get_id();
+				$carriers[ $carrier->get_slug() ] = $this->populate_notification( $carrier_copy );
 			}
 		}
 
-		if ( ! empty( $notification_objects ) ) {
-			$this->set_notifications( $notification_objects );
+		if ( ! empty( $carriers ) ) {
+			$this->set_notifications( $carriers );
 		}
 
 		// Status.
@@ -142,12 +142,12 @@ class WordPress extends Abstracts\Adapter {
 		foreach ( $this->get_notification()->get_notifications() as $key => $carrier ) {
 
 			if ( $carrier->enabled ) {
-				add_post_meta( $this->get_id(), self::$metakey_notification_enabled, $key );
+				add_post_meta( $this->get_id(), self::$metakey_carrier_enabled, $key );
 			} else {
-				delete_post_meta( $this->get_id(), self::$metakey_notification_enabled, $key );
+				delete_post_meta( $this->get_id(), self::$metakey_carrier_enabled, $key );
 			}
 
-			update_post_meta( $this->get_id(), self::$metakey_notification_data . $key, $carrier->get_data() );
+			update_post_meta( $this->get_id(), self::$metakey_carrier_data . $key, $carrier->get_data() );
 
 		}
 
@@ -216,37 +216,37 @@ class WordPress extends Abstracts\Adapter {
 	 *
 	 * @since  [Next]
 	 * @throws \Exception If notification hasn't been found.
-	 * @param  mixed $notification Sendable object or Notification slug.
+	 * @param  mixed $carrier Sendable object or Notification slug.
 	 * @return Sendable
 	 */
-	public function populate_notification( $notification ) {
+	public function populate_notification( $carrier ) {
 
-		if ( ! $notification instanceof Interfaces\Sendable ) {
-			$notification = notification_get_single_notification( $notification );
+		if ( ! $carrier instanceof Interfaces\Sendable ) {
+			$carrier = notification_get_single_notification( $carrier );
 		}
 
-		if ( ! $notification ) {
-			throw new \Exception( 'Wrong notification slug' );
+		if ( ! $carrier ) {
+			throw new \Exception( 'Wrong Carroer slug' );
 		}
 
 		// Set enabled state.
-		$enabled_notifications = (array) get_post_meta( $this->get_id(), self::$metakey_notification_enabled, false );
+		$enabled_carriers = (array) get_post_meta( $this->get_id(), self::$metakey_carrier_enabled, false );
 
-		if ( in_array( $notification->get_slug(), $enabled_notifications, true ) ) {
-			$notification->enabled = true;
+		if ( in_array( $carrier->get_slug(), $enabled_carriers, true ) ) {
+			$carrier->enabled = true;
 		}
 
 		// Set data.
-		$data         = get_post_meta( $this->get_id(), self::$metakey_notification_data . $notification->get_slug(), true );
-		$field_values = apply_filters( 'notification/notification/form_fields/values', $data, $notification );
+		$data         = get_post_meta( $this->get_id(), self::$metakey_carrier_data . $carrier->get_slug(), true );
+		$field_values = apply_filters( 'notification/carrier/form_fields/values', $data, $carrier );
 
-		foreach ( $notification->get_form_fields() as $field ) {
+		foreach ( $carrier->get_form_fields() as $field ) {
 			if ( isset( $field_values[ $field->get_raw_name() ] ) ) {
 				$field->set_value( $field_values[ $field->get_raw_name() ] );
 			}
 		}
 
-		return $notification;
+		return $carrier;
 
 	}
 

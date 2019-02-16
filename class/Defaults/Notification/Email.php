@@ -1,6 +1,6 @@
 <?php
 /**
- * Email notification
+ * Email Carrier
  *
  * @package notification
  */
@@ -12,12 +12,12 @@ use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\Field;
 
 /**
- * Email notification
+ * Email Carrier
  */
 class Email extends Abstracts\Notification {
 
 	/**
-	 * Notification constructor
+	 * Carrier constructor
 	 *
 	 * @since 5.0.0
 	 */
@@ -26,50 +26,42 @@ class Email extends Abstracts\Notification {
 	}
 
 	/**
-	 * Used to register notification form fields
+	 * Used to register Carrier form fields
 	 * Uses $this->add_form_field();
 	 *
 	 * @return void
 	 */
 	public function form_fields() {
 
-		$this->add_form_field(
-			new Field\InputField(
-				array(
-					'label' => __( 'Subject', 'notification' ),
-					'name'  => 'subject',
-				)
-			)
-		);
+		$this->add_form_field( new Field\InputField( [
+			'label' => __( 'Subject', 'notification' ),
+			'name'  => 'subject',
+		] ) );
 
 		if ( notification_get_setting( 'notifications/email/type' ) === 'html' && ! notification_get_setting( 'notifications/email/unfiltered_html' ) ) {
-			$body_field = new Field\EditorField(
-				array(
-					'label'    => __( 'Body', 'notification' ),
-					'name'     => 'body',
-					'settings' => array(
-						'media_buttons' => false,
-					),
-				)
-			);
+
+			$body_field = new Field\EditorField( [
+				'label'    => __( 'Body', 'notification' ),
+				'name'     => 'body',
+				'settings' => [
+					'media_buttons' => false,
+				],
+			] );
+
 		} else {
-			$body_field = new Field\TextareaField(
-				array(
-					'label' => __( 'Body', 'notification' ),
-					'name'  => 'body',
-				)
-			);
+
+			$body_field = new Field\TextareaField( [
+				'label' => __( 'Body', 'notification' ),
+				'name'  => 'body',
+			] );
+
 		}
 
 		$this->add_form_field( $body_field );
 
-		$this->add_form_field(
-			new Field\RecipientsField(
-				array(
-					'notification' => $this->get_slug(),
-				)
-			)
-		);
+		$this->add_form_field( new Field\RecipientsField( [
+			'carrier' => $this->get_slug(),
+		] ) );
 
 	}
 
@@ -91,31 +83,31 @@ class Email extends Abstracts\Notification {
 	public function send( Triggerable $trigger ) {
 
 		$default_html_mime = notification_get_setting( 'notifications/email/type' ) === 'html';
-		$html_mime         = apply_filters( 'notification/' . $this->get_slug() . '/use_html_mime', $default_html_mime, $this, $trigger );
+		$html_mime         = apply_filters( 'notification/carrier/email/use_html_mime', $default_html_mime, $this, $trigger );
 
 		if ( $html_mime ) {
-			add_filter( 'wp_mail_content_type', array( $this, 'set_mail_type' ) );
+			add_filter( 'wp_mail_content_type', [ $this, 'set_mail_type' ] );
 		}
 
 		$data = $this->data;
 
-		$recipients = apply_filters( 'notification/' . $this->get_slug() . '/recipients', $data['parsed_recipients'], $this, $trigger );
+		$recipients = apply_filters( 'notification/carrier/email/recipients', $data['parsed_recipients'], $this, $trigger );
 
-		$subject = apply_filters( 'notification/' . $this->get_slug() . '/subject', $data['subject'], $this, $trigger );
+		$subject = apply_filters( 'notification/carrier/email/subject', $data['subject'], $this, $trigger );
 
-		$message = apply_filters( 'notification/' . $this->get_slug() . '/message/pre', $data['body'], $this, $trigger );
-		if ( apply_filters( 'notification/' . $this->get_slug() . '/message/use_autop', $html_mime, $this, $trigger ) ) {
+		$message = apply_filters( 'notification/carrier/email/message/pre', $data['body'], $this, $trigger );
+		if ( apply_filters( 'notification/carrier/email/message/use_autop', $html_mime, $this, $trigger ) ) {
 			$message = wpautop( $message );
 		}
-		$message = apply_filters( 'notification/' . $this->get_slug() . '/message', $message, $this, $trigger );
+		$message = apply_filters( 'notification/carrier/email/message', $message, $this, $trigger );
 
 		// Fix for wp_mail not being processed with empty message.
 		if ( empty( $message ) ) {
 			$message = ' ';
 		}
 
-		$headers     = apply_filters( 'notification/' . $this->get_slug() . '/headers', array(), $this, $trigger );
-		$attachments = apply_filters( 'notification/' . $this->get_slug() . '/attachments', array(), $this, $trigger );
+		$headers     = apply_filters( 'notification/carrier/email/headers', [], $this, $trigger );
+		$attachments = apply_filters( 'notification/carrier/email/attachments', [], $this, $trigger );
 
 		// Fire an email one by one.
 		foreach ( $recipients as $to ) {
@@ -123,7 +115,7 @@ class Email extends Abstracts\Notification {
 		}
 
 		if ( $html_mime ) {
-			remove_filter( 'wp_mail_content_type', array( $this, 'set_mail_type' ) );
+			remove_filter( 'wp_mail_content_type', [ $this, 'set_mail_type' ] );
 		}
 
 	}
@@ -131,19 +123,19 @@ class Email extends Abstracts\Notification {
 	/**
 	 * Replaces the filtered body with the unfiltered one if the notifications/email/unfiltered_html setting is set to true.
 	 *
-	 * @filter notification/notification/form/data/values
+	 * @filter notification/carrier/form/data/values
 	 *
-	 * @param  array $notification_data notification_data from PostData.
-	 * @param  array $ndata             ndata from PostData, it contains the unfiltered message body.
-	 * @return array $notification_data with the unfiltered body, if notifications/email/unfiltered_html setting is true.
+	 * @param  array $carrier_data      Carrier data from PostData.
+	 * @param  array $raw_data          Raw data from PostData, it contains the unfiltered message body.
+	 * @return array                    Carrier data with the unfiltered body, if notifications/email/unfiltered_html setting is true.
 	 **/
-	public function allow_unfiltered_html_body( $notification_data, $ndata ) {
+	public function allow_unfiltered_html_body( $carrier_data, $raw_data ) {
 
 		if ( notification_get_setting( 'notifications/email/unfiltered_html' ) ) {
-			$notification_data['body'] = $ndata['body'];
+			$carrier_data['body'] = $raw_data['body'];
 		}
 
-		return $notification_data;
+		return $carrier_data;
 
 	}
 

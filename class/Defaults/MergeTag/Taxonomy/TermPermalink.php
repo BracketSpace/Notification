@@ -26,7 +26,7 @@ class TermPermalink extends UrlTag {
 	public function __construct() {
 
 		$args = wp_parse_args(
-			array(
+			[
 				'slug'        => 'term_link',
 				'name'        => __( 'Term link', 'notification' ),
 				'description' => 'http://example.com/category/nature',
@@ -35,7 +35,7 @@ class TermPermalink extends UrlTag {
 					return $trigger->term_permalink;
 				},
 				'group'       => __( 'Term', 'notification' ),
-			)
+			]
 		);
 
 		parent::__construct( $args );

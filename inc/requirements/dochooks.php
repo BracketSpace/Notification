@@ -32,7 +32,7 @@ return function( $comparsion, $r ) {
 		$doc = $method->getDocComment();
 
 		if ( false === strpos( $doc, '@action' ) ) {
-			$r->add_error( __( 'PHP OP Cache to be disabled', 'easy-watermark' ) );
+			$r->add_error( __( 'PHP OP Cache to be disabled', 'notification' ) );
 		}
 	}
 };

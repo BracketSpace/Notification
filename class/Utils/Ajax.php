@@ -27,7 +27,7 @@ class Ajax {
 		}
 
 		if ( check_ajax_referer( $action, $nonce, false ) === false ) {
-			$this->error( array( 'wrong_nonce' ) );
+			$this->error( [ 'wrong_nonce' ] );
 		}
 
 	}
@@ -59,7 +59,7 @@ class Ajax {
 	 * @param  array $errors  if not empty, an error will be returned.
 	 * @return void
 	 */
-	public function response( $success = null, $errors = array() ) {
+	public function response( $success = null, $errors = [] ) {
 
 		if ( ! empty( $errors ) ) {
 			$this->error( $errors );

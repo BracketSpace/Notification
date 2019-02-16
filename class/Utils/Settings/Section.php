@@ -38,7 +38,7 @@ class Section {
 	 *
 	 * @var array
 	 */
-	private $groups = array();
+	private $groups = [];
 
 	/**
 	 * Section constructor

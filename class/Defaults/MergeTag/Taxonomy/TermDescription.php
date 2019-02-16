@@ -26,7 +26,7 @@ class TermDescription extends StringTag {
 	public function __construct() {
 
 		$args = wp_parse_args(
-			array(
+			[
 				'slug'        => 'term_description',
 				'name'        => __( 'Term description', 'notification' ),
 				'description' => 'Lorem ipsum sit dolor amet',
@@ -35,7 +35,7 @@ class TermDescription extends StringTag {
 					return $trigger->term->description;
 				},
 				'group'       => __( 'Term', 'notification' ),
-			)
+			]
 		);
 
 		parent::__construct( $args );

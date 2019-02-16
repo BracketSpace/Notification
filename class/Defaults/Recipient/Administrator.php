@@ -21,18 +21,15 @@ class Administrator extends Abstracts\Recipient {
 	 * @since 5.0.0
 	 */
 	public function __construct() {
-		parent::__construct(
-			array(
-				'slug'          => 'administrator',
-				'name'          => __( 'Administrator', 'notification' ),
-				'default_value' => get_option( 'admin_email' ),
-			)
-		);
+		parent::__construct( [
+			'slug'          => 'administrator',
+			'name'          => __( 'Administrator', 'notification' ),
+			'default_value' => get_option( 'admin_email' ),
+		] );
 	}
 
 	/**
-	 * Parses saved value something understood by notification
-	 * Must be defined in the child class
+	 * {@inheritdoc}
 	 *
 	 * @param  string $value raw value saved by the user.
 	 * @return array         array of resolved values
@@ -43,29 +40,27 @@ class Administrator extends Abstracts\Recipient {
 			$value = $this->get_default_value();
 		}
 
-		return array( sanitize_email( $value ) );
+		return [ sanitize_email( $value ) ];
 
 	}
 
 	/**
-	 * Returns input object
+	 * {@inheritdoc}
 	 *
 	 * @return object
 	 */
 	public function input() {
 
-		return new Field\InputField(
-			array(
-				'label'       => __( 'Recipient', 'notification' ),       // don't edit this!
-				'name'        => 'recipient',       // don't edit this!
-				'css_class'   => 'recipient-value', // don't edit this!
-				'value'       => $this->get_default_value(),
-				'placeholder' => $this->get_default_value(),
-				// Translators: %s settings URL.
-				'description' => sprintf( __( 'You can edit this email in <a href="%s">General Settings</a>', 'notification' ), admin_url( 'options-general.php' ) ),
-				'disabled'    => true,
-			)
-		);
+		return new Field\InputField( [
+			'label'       => __( 'Recipient', 'notification' ), // don't edit this!
+			'name'        => 'recipient',                       // don't edit this!
+			'css_class'   => 'recipient-value',                 // don't edit this!
+			'value'       => $this->get_default_value(),
+			'placeholder' => $this->get_default_value(),
+			// Translators: %s settings URL.
+			'description' => sprintf( __( 'You can edit this email in <a href="%s">General Settings</a>', 'notification' ), admin_url( 'options-general.php' ) ),
+			'disabled'    => true,
+		] );
 
 	}
 

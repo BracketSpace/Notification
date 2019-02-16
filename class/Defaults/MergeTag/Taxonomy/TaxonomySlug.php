@@ -31,7 +31,7 @@ class TaxonomySlug extends StringTag {
 	 * @since 5.2.2
 	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( isset( $params['taxonomy'] ) ) {
 			$this->taxonomy = $params['taxonomy'];
@@ -41,7 +41,7 @@ class TaxonomySlug extends StringTag {
 
 		$args = wp_parse_args(
 			$params,
-			array(
+			[
 				'slug'        => $this->taxonomy . '_slug',
 				'name'        => __( 'Taxonomy slug', 'notification' ),
 				'description' => __( 'hello-world', 'notification' ),
@@ -50,7 +50,7 @@ class TaxonomySlug extends StringTag {
 					return $trigger->taxonomy;
 				},
 				'group'       => __( 'Taxonomy', 'notification' ),
-			)
+			]
 		);
 
 		parent::__construct( $args );

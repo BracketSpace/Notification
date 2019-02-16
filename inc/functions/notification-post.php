@@ -51,7 +51,7 @@ function notification_get_posts( $trigger_slug = null, $all = false ) {
 	}
 
 	$wpposts = get_posts( $query_args );
-	$posts   = array();
+	$posts   = [];
 
 	if ( empty( $wpposts ) ) {
 		return $posts;

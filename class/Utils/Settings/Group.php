@@ -40,7 +40,7 @@ class Group {
 	 *
 	 * @var array
 	 */
-	private $fields = array();
+	private $fields = [];
 
 	/**
 	 * Group description

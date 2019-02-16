@@ -1,6 +1,6 @@
 <?php
 /**
- * Webhook notification
+ * Webhook Carrier
  *
  * @package notification
  */
@@ -12,7 +12,7 @@ use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\Field;
 
 /**
- * Webhook notification
+ * Webhook Carrier
  */
 class Webhook extends Abstracts\Notification {
 
@@ -26,91 +26,67 @@ class Webhook extends Abstracts\Notification {
 	}
 
 	/**
-	 * Used to register notification form fields
+	 * Used to register Carrier form fields
 	 * Uses $this->add_form_field();
 	 *
 	 * @return void
 	 */
 	public function form_fields() {
 
-		$this->add_form_field(
-			new Field\RecipientsField(
-				array(
-					'notification'     => $this->get_slug(),
-					'label'            => __( 'URLs', 'notification' ),
-					'name'             => 'urls',
-					'add_button_label' => __( 'Add URL', 'notification' ),
-				)
-			)
-		);
+		$this->add_form_field( new Field\RecipientsField( [
+			'carrier'          => 'webhook',
+			'label'            => __( 'URLs', 'notification' ),
+			'name'             => 'urls',
+			'add_button_label' => __( 'Add URL', 'notification' ),
+		] ) );
 
-		$this->add_form_field(
-			new Field\RepeaterField(
-				array(
-					'label'            => __( 'Arguments', 'notification' ),
-					'name'             => 'args',
-					'add_button_label' => __( 'Add argument', 'notification' ),
-					'fields'           => array(
-						new Field\InputField(
-							array(
-								'label'       => __( 'Key', 'notification' ),
-								'name'        => 'key',
-								'resolvable'  => true,
-								'description' => __( 'You can use merge tags', 'notification' ),
-							)
-						),
-						new Field\InputField(
-							array(
-								'label'       => __( 'Value', 'notification' ),
-								'name'        => 'value',
-								'resolvable'  => true,
-								'description' => __( 'You can use merge tags', 'notification' ),
-							)
-						),
-					),
-				)
-			)
-		);
+		$this->add_form_field( new Field\RepeaterField( [
+			'label'            => __( 'Arguments', 'notification' ),
+			'name'             => 'args',
+			'add_button_label' => __( 'Add argument', 'notification' ),
+			'fields'           => [
+				new Field\InputField( [
+					'label'       => __( 'Key', 'notification' ),
+					'name'        => 'key',
+					'resolvable'  => true,
+					'description' => __( 'You can use merge tags', 'notification' ),
+				] ),
+				new Field\InputField( [
+					'label'       => __( 'Value', 'notification' ),
+					'name'        => 'value',
+					'resolvable'  => true,
+					'description' => __( 'You can use merge tags', 'notification' ),
+				] ),
+			],
+		] ) );
 
-		$this->add_form_field(
-			new Field\CheckboxField(
-				array(
-					'label'          => __( 'JSON', 'notification' ),
-					'name'           => 'json',
-					'checkbox_label' => __( 'Send the arguments in JSON format', 'notification' ),
-				)
-			)
-		);
+		$this->add_form_field( new Field\CheckboxField( [
+			'label'          => __( 'JSON', 'notification' ),
+			'name'           => 'json',
+			'checkbox_label' => __( 'Send the arguments in JSON format', 'notification' ),
+		] ) );
 
 		if ( notification_get_setting( 'notifications/webhook/headers' ) ) {
 
-			$this->add_form_field(
-				new Field\RepeaterField(
-					array(
-						'label'            => __( 'Headers', 'notification' ),
-						'name'             => 'headers',
-						'add_button_label' => __( 'Add header', 'notification' ),
-						'fields'           => array(
-							new Field\InputField(
-								array(
-									'label'       => __( 'Key', 'notification' ),
-									'name'        => 'key',
-									'resolvable'  => true,
-									'description' => __( 'You can use merge tags', 'notification' ),
-								)
-							),
-							new Field\InputField(
-								array(
-									'label'       => __( 'Value', 'notification' ),
-									'name'        => 'value',
-									'resolvable'  => true,
-									'description' => __( 'You can use merge tags', 'notification' ),
-								)
-							),
-						),
-					)
-				)
-			);
+			$this->add_form_field( new Field\RepeaterField( [
+				'label'            => __( 'Headers', 'notification' ),
+				'name'             => 'headers',
+				'add_button_label' => __( 'Add header', 'notification' ),
+				'fields'           => [
+					new Field\InputField( [
+						'label'       => __( 'Key', 'notification' ),
+						'name'        => 'key',
+						'resolvable'  => true,
+						'description' => __( 'You can use merge tags', 'notification' ),
+					] ),
+					new Field\InputField( [
+						'label'       => __( 'Value', 'notification' ),
+						'name'        => 'value',
+						'resolvable'  => true,
+						'description' => __( 'You can use merge tags', 'notification' ),
+					] ),
+				],
+			] ) );
 
 		}
 
@@ -127,7 +103,7 @@ class Webhook extends Abstracts\Notification {
 		$data = $this->data;
 
 		$args = $this->parse_args( $data['args'] );
-		$args = apply_filters( 'notification/webhook/args', $args, $this, $trigger );
+		$args = apply_filters( 'notification/carrier/webhook/args', $args, $this, $trigger );
 
 		if ( $data['json'] ) {
 			$args = wp_json_encode( $args );
@@ -135,19 +111,18 @@ class Webhook extends Abstracts\Notification {
 
 		// Headers.
 		if ( $data['json'] ) {
-			$headers = array( 'Content-Type' => 'application/json' );
+			$headers = [ 'Content-Type' => 'application/json' ];
 		} else {
-			$headers = array();
+			$headers = [];
 		}
 
-		if ( notification_get_setting( 'notifications/webhook/headers' ) ) {
+		if ( notification_get_setting( 'notifications/carrier/webhook/headers' ) ) {
 			$headers = array_merge( $headers, $this->parse_args( $data['headers'] ) );
 		}
 
 		// Call each URL separately.
 		foreach ( $data['urls'] as $url ) {
-
-			$filtered_args = apply_filters( 'notification/webhook/args/' . $url['type'], $args, $this, $trigger );
+			$filtered_args = apply_filters( 'notification/carrier/webhook/args/' . $url['type'], $args, $this, $trigger );
 
 			if ( 'get' === $url['type'] ) {
 				$this->send_get( $url['recipient'], $filtered_args, $headers );
@@ -167,22 +142,16 @@ class Webhook extends Abstracts\Notification {
 	 * @param  array  $headers headers.
 	 * @return void
 	 */
-	public function send_get( $url, $args = array(), $headers = array() ) {
+	public function send_get( $url, $args = [], $headers = [] ) {
 
 		$remote_url  = add_query_arg( $args, $url );
-		$remote_args = apply_filters(
-			'notification/webhook/remote_args/get',
-			array(
-				'headers' => $headers,
-			),
-			$url,
-			$args,
-			$this
-		);
+		$remote_args = apply_filters( 'notification/carrier/webhook/remote_args/get', [
+			'headers' => $headers,
+		], $url, $args, $this );
 
 		$response = wp_remote_get( $remote_url, $remote_args );
 
-		do_action( 'notification/webhook/called/get', $response, $url, $args, $remote_args, $this );
+		do_action( 'notification/carrier/webhook/called/get', $response, $url, $args, $remote_args, $this );
 
 	}
 
@@ -195,22 +164,16 @@ class Webhook extends Abstracts\Notification {
 	 * @param  array  $headers headers.
 	 * @return void
 	 */
-	public function send_post( $url, $args = array(), $headers = array() ) {
+	public function send_post( $url, $args = [], $headers = [] ) {
 
-		$remote_args = apply_filters(
-			'notification/webhook/remote_args/post',
-			array(
-				'body'    => $args,
-				'headers' => $headers,
-			),
-			$url,
-			$args,
-			$this
-		);
+		$remote_args = apply_filters( 'notification/carrier/webhook/remote_args/post', [
+			'body'    => $args,
+			'headers' => $headers,
+		], $url, $args, $this );
 
 		$response = wp_remote_post( $url, $remote_args );
 
-		do_action( 'notification/webhook/called/post', $response, $url, $args, $remote_args, $this );
+		do_action( 'notification/carrier/webhook/called/post', $response, $url, $args, $remote_args, $this );
 
 	}
 
@@ -223,7 +186,7 @@ class Webhook extends Abstracts\Notification {
 	 */
 	private function parse_args( $args ) {
 
-		$parsed_args = array();
+		$parsed_args = [];
 
 		foreach ( $args as $arg ) {
 			$parsed_args[ $arg['key'] ] = $arg['value'];
