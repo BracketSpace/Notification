@@ -15,7 +15,7 @@ use BracketSpace\Notification\Interfaces;
  * - hash
  * - title
  * - trigger
- * - notifications
+ * - carriers
  * - enabled
  * - extras
  * - version
@@ -44,11 +44,11 @@ class Notification {
 	protected $trigger;
 
 	/**
-	 * Notifications
+	 * Carriers
 	 *
 	 * @var array
 	 */
-	protected $notifications = [];
+	protected $carriers = [];
 
 	/**
 	 * Status
@@ -145,10 +145,10 @@ class Notification {
 		}
 
 		// Carriers.
-		if ( isset( $data['notifications'] ) ) {
+		if ( isset( $data['carriers'] ) ) {
 			$carriers = [];
 
-			foreach ( $data['notifications'] as $carrier ) {
+			foreach ( $data['carriers'] as $carrier ) {
 				if ( $carrier instanceof Interfaces\Sendable ) {
 					$carriers[ $carrier->get_slug() ] = $carrier;
 				} else {
@@ -156,7 +156,7 @@ class Notification {
 				}
 			}
 
-			$this->set_notifications( $carriers );
+			$this->set_carriers( $carriers );
 		}
 
 		// Status.
@@ -165,6 +165,7 @@ class Notification {
 		}
 
 		// Extras.
+		// @todo Extras API #h1k0k.
 		if ( isset( $data['extras'] ) ) {
 			$extras = [];
 
@@ -198,23 +199,23 @@ class Notification {
 
 		$carriers = [];
 
-		foreach ( $this->get_notifications() as $key => $carrier ) {
+		foreach ( $this->get_carriers() as $carrier_slug => $carrier ) {
 			// Filter active only.
 			if ( $carrier->enabled ) {
-				$carriers[ $key ] = $carrier->get_data();
+				$carriers[ $carrier_slug ] = $carrier->get_data();
 			}
 		}
 
 		$trigger = $this->get_trigger();
 
 		return [
-			'hash'          => $this->get_hash(),
-			'title'         => $this->get_title(),
-			'trigger'       => $trigger ? $trigger->get_slug() : '',
-			'notifications' => $carriers,
-			'enabled'       => $this->is_enabled(),
-			'extras'        => $this->get_extras(),
-			'version'       => $this->get_version(),
+			'hash'     => $this->get_hash(),
+			'title'    => $this->get_title(),
+			'trigger'  => $trigger ? $trigger->get_slug() : '',
+			'carriers' => $carriers,
+			'enabled'  => $this->is_enabled(),
+			'extras'   => $this->get_extras(),
+			'version'  => $this->get_version(),
 		];
 
 	}
@@ -247,8 +248,8 @@ class Notification {
 	 * @param  string $carrier_slug Carrier slug.
 	 * @return mixed                Carrier object or null.
 	 */
-	public function get_notification( $carrier_slug ) {
-		$carriers = $this->get_notifications();
+	public function get_carrier( $carrier_slug ) {
+		$carriers = $this->get_carriers();
 		return isset( $carriers[ $carrier_slug ] ) ? $carriers[ $carrier_slug ] : null;
 	}
 
@@ -261,24 +262,24 @@ class Notification {
 	 * @param  mixed $carrier Carrier object or slug.
 	 * @return Carrier
 	 */
-	public function add_notification( $carrier ) {
+	public function add_carrier( $carrier ) {
 
 		if ( ! $carrier instanceof Interfaces\Sendable ) {
-			$carrier = notification_get_single_notification( $carrier );
+			$carrier = notification_get_carrier( $carrier );
 		}
 
 		if ( ! $carrier instanceof Interfaces\Sendable ) {
 			throw new \Exception( 'Carrier hasn\'t been found' );
 		}
 
-		$carriers = $this->get_notifications();
+		$carriers = $this->get_carriers();
 
 		if ( isset( $carriers[ $carrier->get_slug() ] ) ) {
 			throw new \Exception( sprintf( 'Carrier %s already exists', $carrier->get_name() ) );
 		}
 
 		$carriers[ $carrier->get_slug() ] = $carrier;
-		$this->set_notifications( $carriers );
+		$this->set_carriers( $carriers );
 
 		return $carrier;
 
@@ -291,12 +292,12 @@ class Notification {
 	 * @param  string $carrier_slug Carrier slug.
 	 * @return void
 	 */
-	public function enable_notification( $carrier_slug ) {
+	public function enable_carrier( $carrier_slug ) {
 
-		$carrier = $this->get_notification( $carrier_slug );
+		$carrier = $this->get_carrier( $carrier_slug );
 
 		if ( null === $carrier ) {
-			$carrier = $this->add_notification( $carrier_slug );
+			$carrier = $this->add_carrier( $carrier_slug );
 		}
 
 		$carrier->enabled = true;
@@ -310,8 +311,8 @@ class Notification {
 	 * @param  string $carrier_slug Carrier slug.
 	 * @return void
 	 */
-	public function disable_notification( $carrier_slug ) {
-		$carrier = $this->get_notification( $carrier_slug );
+	public function disable_carrier( $carrier_slug ) {
+		$carrier = $this->get_carrier( $carrier_slug );
 		if ( null !== $carrier ) {
 			$carrier->enabled = false;
 		}
@@ -325,7 +326,7 @@ class Notification {
 	 * @param  array $carriers Array of Carriers.
 	 * @return void
 	 */
-	public function set_notifications( $carriers = [] ) {
+	public function set_carriers( $carriers = [] ) {
 
 		$saved_carriers = [];
 
@@ -333,7 +334,7 @@ class Notification {
 			$saved_carriers[ $carrier->get_slug() ] = $carrier;
 		}
 
-		$this->notifications = $saved_carriers;
+		$this->carriers = $saved_carriers;
 
 	}
 
@@ -345,8 +346,8 @@ class Notification {
 	 * @param  array  $data         Carrier data.
 	 * @return void
 	 */
-	public function set_notification_data( $carrier_slug, $data ) {
-		$carrier = $this->get_notification( $carrier_slug );
+	public function set_carrier_data( $carrier_slug, $data ) {
+		$carrier = $this->get_carrier( $carrier_slug );
 		if ( null !== $carrier ) {
 			$carrier->set_data( $data );
 		}
@@ -359,8 +360,8 @@ class Notification {
 	 * @param  string $carrier_slug Carrier slug.
 	 * @return void
 	 */
-	public function get_notification_data( $carrier_slug ) {
-		$carrier = $this->get_notification( $carrier_slug );
+	public function get_carrier_data( $carrier_slug ) {
+		$carrier = $this->get_carrier( $carrier_slug );
 		if ( null !== $carrier ) {
 			$carrier->get_data( $data );
 		}

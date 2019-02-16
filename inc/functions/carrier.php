@@ -8,14 +8,14 @@
 use BracketSpace\Notification\Interfaces;
 
 /**
- * Registers carrier
- * Uses notification/carriers filter
+ * Registers Carrier
  *
- * @since  [Next] Changed naming convention from Notification to Carrier.
+ * @uses notification/carriers filter
+ * @since  [Next]
  * @param  Interfaces\Sendable $carrier Carrier object.
  * @return void
  */
-function register_notification( Interfaces\Sendable $carrier ) {
+function notification_register_carrier( Interfaces\Sendable $carrier ) {
 
 	add_filter( 'notification/carriers', function( $carriers ) use ( $carrier ) {
 
@@ -34,25 +34,23 @@ function register_notification( Interfaces\Sendable $carrier ) {
 }
 
 /**
- * Gets all registered carriers
+ * Gets all registered Carriers
  *
- * @since  5.0.0
- * @since  [Next] Changed naming convention from Notification to Carrier.
+ * @since  [Next]
  * @return array carriers
  */
-function notification_get_notifications() {
+function notification_get_carriers() {
 	return apply_filters( 'notification/carriers', [] );
 }
 
 /**
- * Gets single registered carrier
+ * Gets single registered Carrier
  *
- * @since  5.0.0
- * @since  [Next] Changed naming convention from Notification to Carrier.
+ * @since  [Next]
  * @param  string $carrier_slug Carrier slug.
- * @return mixed                     Carrier object or false
+ * @return mixed                Carrier object or false
  */
-function notification_get_single_notification( $carrier_slug ) {
-	$carriers = notification_get_notifications();
+function notification_get_carrier( $carrier_slug ) {
+	$carriers = notification_get_carriers();
 	return isset( $carriers[ $carrier_slug ] ) ? $carriers[ $carrier_slug ] : false;
 }

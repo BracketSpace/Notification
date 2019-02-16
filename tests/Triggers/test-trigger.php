@@ -39,9 +39,9 @@ class TestTrigger extends \WP_UnitTestCase {
 
 		do_action( 'notification/test' );
 
-		$this->assertNotEmpty( $notification->get_trigger()->get_attached_notifications() );
+		$this->assertNotEmpty( $notification->get_trigger()->get_carriers() );
 
-		foreach ( $notification->get_trigger()->get_attached_notifications() as $attached_carrier ) {
+		foreach ( $notification->get_trigger()->get_carriers() as $attached_carrier ) {
 			$this->assertTrue( $attached_carrier->is_sent );
 		}
 	}
@@ -66,9 +66,9 @@ class TestTrigger extends \WP_UnitTestCase {
 
 		do_action( 'notification/test/postponed' );
 
-		$this->assertNotEmpty( $notification->get_trigger()->get_attached_notifications() );
+		$this->assertNotEmpty( $notification->get_trigger()->get_carriers() );
 
-		foreach ( $notification->get_trigger()->get_attached_notifications() as $attached_carrier ) {
+		foreach ( $notification->get_trigger()->get_carriers() as $attached_carrier ) {
 			$this->assertTrue( $attached_carrier->is_sent );
 		}
 	}

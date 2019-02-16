@@ -32,9 +32,9 @@ class NotificationPost {
 		$carrier->enabled = true;
 
 		$notification = new Notification( [
-			'enabled'       => true,
-			'trigger'       => $trigger,
-			'notifications' => [ $carrier ],
+			'enabled'  => true,
+			'trigger'  => $trigger,
+			'carriers' => [ $carrier ],
 		] );
 
 		$adapter = notification_adapt( 'WordPress', $notification );

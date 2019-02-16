@@ -79,16 +79,16 @@ class WordPress extends Abstracts\Adapter {
 		$carriers     = [];
 
 		foreach ( $carrier_slug as $carrier_slug ) {
-			$carrier = notification_get_single_notification( $carrier_slug );
+			$carrier = notification_get_carrier( $carrier_slug );
 			if ( ! empty( $carrier ) ) {
 				$carrier_copy                     = clone $carrier;
 				$carrier_copy->post_id            = $this->get_id();
-				$carriers[ $carrier->get_slug() ] = $this->populate_notification( $carrier_copy );
+				$carriers[ $carrier->get_slug() ] = $this->populate_carrier( $carrier_copy );
 			}
 		}
 
 		if ( ! empty( $carriers ) ) {
-			$this->set_notifications( $carriers );
+			$this->set_carriers( $carriers );
 		}
 
 		// Status.
@@ -139,15 +139,15 @@ class WordPress extends Abstracts\Adapter {
 
 		// Carriers.
 		// Loop through all defined to save the data of deactivated Carriers too.
-		foreach ( $this->get_notification()->get_notifications() as $key => $carrier ) {
+		foreach ( $this->get_notification()->get_carriers() as $carrier_slug => $carrier ) {
 
 			if ( $carrier->enabled ) {
-				add_post_meta( $this->get_id(), self::$metakey_carrier_enabled, $key );
+				add_post_meta( $this->get_id(), self::$metakey_carrier_enabled, $carrier_slug );
 			} else {
-				delete_post_meta( $this->get_id(), self::$metakey_carrier_enabled, $key );
+				delete_post_meta( $this->get_id(), self::$metakey_carrier_enabled, $carrier_slug );
 			}
 
-			update_post_meta( $this->get_id(), self::$metakey_carrier_data . $key, $carrier->get_data() );
+			update_post_meta( $this->get_id(), self::$metakey_carrier_data . $carrier_slug, $carrier->get_data() );
 
 		}
 
@@ -212,17 +212,17 @@ class WordPress extends Abstracts\Adapter {
 	}
 
 	/**
-	 * Populates Notification with field values
+	 * Populates Carrier with field values
 	 *
 	 * @since  [Next]
-	 * @throws \Exception If notification hasn't been found.
-	 * @param  mixed $carrier Sendable object or Notification slug.
+	 * @throws \Exception If Carrier hasn't been found.
+	 * @param  mixed $carrier Sendable object or Carrier slug.
 	 * @return Sendable
 	 */
-	public function populate_notification( $carrier ) {
+	public function populate_carrier( $carrier ) {
 
 		if ( ! $carrier instanceof Interfaces\Sendable ) {
-			$carrier = notification_get_single_notification( $carrier );
+			$carrier = notification_get_carrier( $carrier );
 		}
 
 		if ( ! $carrier ) {
@@ -239,7 +239,7 @@ class WordPress extends Abstracts\Adapter {
 		// Set data.
 		$data         = get_post_meta( $this->get_id(), self::$metakey_carrier_data . $carrier->get_slug(), true );
 		$field_values = apply_filters_deprecated( 'notification/notification/form_fields/values', [ $data, $carrier ], '[Next]', 'notification/carrier/fields/values' );
-		$field_values = apply_filters( 'notification/carrier/fields/values', $data, $carrier );
+		$field_values = apply_filters( 'notification/carrier/fields/values', $field_values, $carrier );
 
 		foreach ( $carrier->get_form_fields() as $field ) {
 			if ( isset( $field_values[ $field->get_raw_name() ] ) ) {

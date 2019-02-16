@@ -113,14 +113,11 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			trigger_error( 'Action tag cannot be empty', E_USER_ERROR );
 		}
 
-		array_push(
-			$this->actions,
-			[
-				'tag'           => $tag,
-				'priority'      => $priority,
-				'accepted_args' => $accepted_args,
-			]
-		);
+		array_push( $this->actions, [
+			'tag'           => $tag,
+			'priority'      => $priority,
+			'accepted_args' => $accepted_args,
+		] );
 
 		add_action( $tag, [ $this, '_action' ], $priority, $accepted_args );
 
@@ -140,7 +137,6 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		}
 
 		foreach ( $this->actions as $action_index => $action ) {
-
 			if ( $action['tag'] === $tag && $action['priority'] === $priority && $action['accepted_args'] === $accepted_args ) {
 				unset( $this->actions[ $action_index ] );
 				break;
@@ -183,7 +179,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 *
 	 * @return array
 	 */
-	public function get_attached_notifications() {
+	public function get_carriers() {
 		return $this->carrier_storage;
 	}
 
@@ -206,22 +202,27 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	public function roll_out() {
 
-		foreach ( $this->get_attached_notifications() as $carrier ) {
+		foreach ( $this->get_carriers() as $carrier ) {
 			$carrier->prepare_data();
 
 			do_action_deprecated( 'notification/notification/pre-send', [
 				$carrier,
 				$this,
 			], '[Next]', 'notification/carrier/pre-send' );
+
 			do_action( 'notification/carrier/pre-send', $carrier, $this );
 
 			if ( ! $carrier->is_suppressed() ) {
+
 				$carrier->send( $this );
+
 				do_action_deprecated( 'notification/notification/sent', [
 					$carrier,
 					$this,
 				], '[Next]', 'notification/carrier/sent' );
+
 				do_action( 'notification/carrier/sent', $carrier, $this );
+
 			}
 		}
 
@@ -268,7 +269,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Adds trigger's merge tag
+	 * Adds Trigger's merge tag
 	 *
 	 * @param Interfaces\Taggable $merge_tag merge tag object.
 	 * @return $this
@@ -280,7 +281,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Removes trigger's merge tag
+	 * Removes Trigger's merge tag
 	 *
 	 * @param string $merge_tag_slug Merge Tag slug.
 	 * @return $this
@@ -299,7 +300,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Gets trigger's merge tags
+	 * Gets Trigger's merge tags
 	 *
 	 * @param string $type optional, all|visible|hidden, default: all.
 	 * @return $array merge tags
@@ -313,7 +314,6 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		$tags = [];
 
 		foreach ( $this->merge_tags as $merge_tag ) {
-
 			if ( 'visible' === $type && ! $merge_tag->is_hidden() ) {
 				array_push( $tags, $merge_tag );
 			} elseif ( 'hidden' === $type && $merge_tag->is_hidden() ) {
@@ -332,7 +332,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	private function resolve_fields() {
 
-		foreach ( $this->get_attached_notifications() as $carrier ) {
+		foreach ( $this->get_carriers() as $carrier ) {
 			$resolver = new FieldsResolver( $carrier, $this->get_merge_tags() );
 			$resolver->resolve_fields();
 		}
@@ -355,13 +355,13 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
 	 * Gets CPT Notification from databse
-	 * Gets their enabled Notifications
+	 * Gets their enabled Carriers
 	 * Populates the Carrier form data
 	 * Attaches the Carrier to trigger
 	 *
 	 * @return void
 	 */
-	public function set_notifications() {
+	public function set_carriers() {
 
 		// Get all notification posts bound with this trigger.
 		$adapters = notification_get_posts( $this->get_slug() );
@@ -369,7 +369,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		// Attach notifications for each post.
 		foreach ( $adapters as $adapter ) {
 
-			$carriers = $adapter->get_notifications();
+			$carriers = $adapter->get_carriers();
 
 			// Attach every enabled Carriers.
 			foreach ( $carriers as $carrier ) {
@@ -431,7 +431,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			return;
 		}
 
-		$this->set_notifications();
+		$this->set_carriers();
 		$this->resolve_fields();
 		$this->roll_out();
 		$this->clean_merge_tags();

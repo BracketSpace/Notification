@@ -15,7 +15,7 @@ use BracketSpace\Notification\Defaults\Field\RecipientsField;
 /**
  * Carrier abstract class
  */
-abstract class Notification extends Common implements Interfaces\Sendable {
+abstract class Carrier extends Common implements Interfaces\Sendable {
 
 	/**
 	 * If Carrier is enabled
@@ -76,7 +76,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 
 	/**
 	 * Clone method
-	 * Copies the fields to new Notification instance
+	 * Copies the fields to new Carrier instance
 	 *
 	 * @since  5.1.6
 	 * @return void

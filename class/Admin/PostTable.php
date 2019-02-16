@@ -77,7 +77,7 @@ class PostTable {
 				$enabled_carriers = (array) get_post_meta( $post_id, '_enabled_notification', false );
 
 				foreach ( array_unique( $enabled_carriers ) as $carrier_slug ) {
-					$carrier = notification_get_single_notification( $carrier_slug );
+					$carrier = notification_get_carrier( $carrier_slug );
 					if ( ! empty( $carrier ) ) {
 						echo esc_html( $carrier->get_name() );
 						echo '<br>';

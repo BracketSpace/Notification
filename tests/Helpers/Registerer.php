@@ -39,11 +39,11 @@ class Registerer {
 	 * Registers Carrier
 	 *
 	 * @since  [Next]
-	 * @return Objects\Notification Registered Carrier.
+	 * @return Objects\Carrier Registered Carrier.
 	 */
 	public static function register_carrier() {
-		$carrier = new Objects\Notification();
-		register_notification( $carrier );
+		$carrier = new Objects\Carrier();
+		notification_register_carrier( $carrier );
 		return $carrier;
 	}
 

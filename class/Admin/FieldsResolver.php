@@ -7,7 +7,7 @@
 
 namespace BracketSpace\Notification\Admin;
 
-use BracketSpace\Notification\Abstracts\Notification;
+use BracketSpace\Notification\Interfaces;
 
 /**
  * FieldsResolver class
@@ -38,10 +38,10 @@ class FieldsResolver {
 	/**
 	 * Fields Resolver constructor
 	 *
-	 * @param Notification $carrier    Carrier object.
-	 * @param array        $merge_tags Resolved Merge Tags array.
+	 * @param Interfaces\Sendable $carrier    Carrier object.
+	 * @param array               $merge_tags Resolved Merge Tags array.
 	 */
-	public function __construct( Notification $carrier, $merge_tags ) {
+	public function __construct( Interfaces\Sendable $carrier, $merge_tags ) {
 
 		$this->carrier = $carrier;
 
@@ -149,7 +149,7 @@ class FieldsResolver {
 			$this->merge_tags[ $tag_slug ]->resolve(),
 			$this->merge_tags[ $tag_slug ],
 		], '[Next]', 'notification/merge_tag/value/resolved' );
-		$resolved = apply_filters( 'notification/merge_tag/value/resolved', $this->merge_tags[ $tag_slug ]->resolve(), $this->merge_tags[ $tag_slug ] );
+		$resolved = apply_filters( 'notification/merge_tag/value/resolved', $resolved, $this->merge_tags[ $tag_slug ] );
 
 		return $resolved;
 

@@ -1,19 +1,19 @@
 <?php
 /**
- * Notification class
+ * Carrier class
  *
  * @package notification
  */
 
 namespace BracketSpace\Notification\Tests\Helpers\Objects;
 
-use BracketSpace\Notification\Abstracts\Notification as AbstractNotification;
+use BracketSpace\Notification\Abstracts\Carrier as AbstractCarrier;
 use BracketSpace\Notification\Interfaces\Triggerable;
 
 /**
- * Notification class
+ * Carrier class
  */
-class Notification extends AbstractNotification {
+class Carrier extends AbstractCarrier {
 
 	/**
 	 * Is sent flag

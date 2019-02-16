@@ -5,7 +5,7 @@
  * @package notification
  */
 
-namespace BracketSpace\Notification\Defaults\Notification;
+namespace BracketSpace\Notification\Defaults\Carrier;
 
 use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Abstracts;
@@ -14,10 +14,10 @@ use BracketSpace\Notification\Defaults\Field;
 /**
  * Webhook Carrier
  */
-class Webhook extends Abstracts\Notification {
+class Webhook extends Abstracts\Carrier {
 
 	/**
-	 * Notification constructor
+	 * Carrier constructor
 	 *
 	 * @since 5.0.0
 	 */

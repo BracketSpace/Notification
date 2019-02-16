@@ -197,34 +197,35 @@ class PostType {
 	}
 
 	/**
-	 * Adds Notifications section title on post edit screen,
-	 * just under the Trigger and prints Notification boxes
+	 * Adds Carriers section title on post edit screen,
+	 * just under the Trigger and prints Carrier boxes
 	 *
 	 * @action notification/post/column/main 20
 	 *
 	 * @param  Notification $notification_post Notification Post object.
 	 * @return void
 	 */
-	public function render_notification_boxes( $notification_post ) {
+	public function render_carrier_boxes( $notification_post ) {
 
-		echo '<h3 class="notifications-section-title">' . esc_html__( 'Notifications', 'notification' ) . '</h3>';
+		echo '<h3 class="carriers-section-title">' . esc_html__( 'Carriers', 'notification' ) . '</h3>';
 
 		do_action_deprecated( 'notitication/admin/notifications/pre', [
 			$notification_post,
 		], '[Next]', 'notification/admin/carriers/pre' );
+
 		do_action( 'notification/admin/carriers/pre', $notification_post );
 
-		echo '<div id="notification-boxes">';
+		echo '<div id="carrier-boxes">';
 
-		foreach ( notification_get_notifications() as $carrier ) {
+		foreach ( notification_get_carriers() as $carrier ) {
 
-			$carrier = $notification_post->populate_notification( $carrier );
+			$carrier = $notification_post->populate_carrier( $carrier );
 
 			$this->formrenderer->set_fields( $carrier->get_form_fields() );
 
 			$this->boxrenderer->set_vars( [
-				'id'      => 'notification_type_' . $carrier->get_slug(),
-				'name'    => 'notification_' . $carrier->get_slug() . '_enable',
+				'id'      => 'carrier_' . $carrier->get_slug(),
+				'name'    => 'carrier_' . $carrier->get_slug() . '_enable',
 				'title'   => $carrier->get_name(),
 				'content' => $this->formrenderer->render(),
 				'open'    => $carrier->enabled,
@@ -239,6 +240,7 @@ class PostType {
 		do_action_deprecated( 'notitication/admin/notifications', [
 			$notification_post,
 		], '[Next]', 'notification/admin/carriers' );
+
 		do_action( 'notification/admin/carriers', $notification_post );
 
 	}
@@ -303,7 +305,7 @@ class PostType {
 
 		add_meta_box(
 			'notification_merge_tags',
-			__( 'Merge tags', 'notification' ),
+			__( 'Merge Tags', 'notification' ),
 			[ $this, 'render_merge_tags_metabox' ],
 			'notification',
 			'side',
@@ -424,11 +426,8 @@ class PostType {
 		}
 
 		foreach ( $wp_meta_boxes['notification'] as $context_name => $context ) {
-
 			foreach ( $context as $priority => $boxes ) {
-
 				foreach ( $boxes as $box_id => $box ) {
-
 					$allow_box = apply_filters( 'notification/admin/allow_metabox/' . $box_id, false );
 
 					if ( ! $allow_box ) {
@@ -527,17 +526,17 @@ class PostType {
 		// Prepare Carriers to save.
 		$carriers = [];
 
-		foreach ( notification_get_notifications() as $carrier ) {
+		foreach ( notification_get_carriers() as $carrier ) {
 
-			if ( ! isset( $data[ 'notification_type_' . $carrier->get_slug() ] ) ) {
+			if ( ! isset( $data[ 'carrier_' . $carrier->get_slug() ] ) ) {
 				continue;
 			}
 
-			if ( isset( $data[ 'notification_' . $carrier->get_slug() . '_enable' ] ) ) {
+			if ( isset( $data[ 'carrier_' . $carrier->get_slug() . '_enable' ] ) ) {
 				$carrier->enabled = true;
 			}
 
-			$carrier_data = $data[ 'notification_type_' . $carrier->get_slug() ];
+			$carrier_data = $data[ 'carrier_' . $carrier->get_slug() ];
 
 			// If nonce not set or false, ignore this form.
 			if ( ! wp_verify_nonce( $carrier_data['_nonce'], $carrier->get_slug() . '_notification_security' ) ) {

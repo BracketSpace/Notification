@@ -1,17 +1,17 @@
 <?php
 /**
- * Default carriers
+ * Default Carriers
  *
  * @package notification
  */
 
-use BracketSpace\Notification\Defaults\Notification;
+use BracketSpace\Notification\Defaults\Carrier;
 
 if ( notification_get_setting( 'notifications/email/enable' ) ) {
-	register_notification( notification_add_doc_hooks( new Notification\Email() ) );
+	notification_register_carrier( notification_add_doc_hooks( new Carrier\Email() ) );
 }
 
 if ( notification_get_setting( 'notifications/webhook/enable' ) ) {
-	register_notification( notification_add_doc_hooks( new Notification\Webhook() ) );
+	notification_register_carrier( notification_add_doc_hooks( new Carrier\Webhook() ) );
 }
 

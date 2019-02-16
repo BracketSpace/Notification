@@ -5,7 +5,7 @@
  * @package notification
  */
 
-namespace BracketSpace\Notification\Defaults\Notification;
+namespace BracketSpace\Notification\Defaults\Carrier;
 
 use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Abstracts;
@@ -14,7 +14,7 @@ use BracketSpace\Notification\Defaults\Field;
 /**
  * Email Carrier
  */
-class Email extends Abstracts\Notification {
+class Email extends Abstracts\Carrier {
 
 	/**
 	 * Carrier constructor
@@ -116,10 +116,10 @@ class Email extends Abstracts\Notification {
 		}
 
 		$headers = apply_filters_deprecated( 'notification/email/headers', [ [], $this, $trigger ], '[Next]', 'notification/carrier/email/headers' );
-		$headers = apply_filters( 'notification/carrier/email/headers', [], $this, $trigger );
+		$headers = apply_filters( 'notification/carrier/email/headers', $headers, $this, $trigger );
 
 		$attachments = apply_filters_deprecated( 'notification/email/attachments', [ [], $this, $trigger ], '[Next]', 'notification/carrier/email/attachments' );
-		$attachments = apply_filters( 'notification/carrier/email/attachments', [], $this, $trigger );
+		$attachments = apply_filters( 'notification/carrier/email/attachments', $attachments, $this, $trigger );
 
 		// Fire an email one by one.
 		foreach ( $recipients as $to ) {
