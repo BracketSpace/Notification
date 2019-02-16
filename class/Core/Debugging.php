@@ -123,7 +123,7 @@ class Debugging {
 	/**
 	 * Catches the notification into log.
 	 *
-	 * @action notification/notification/pre-send 1000000
+	 * @action notification/carrier/pre-send 1000000
 	 *
 	 * @since  5.3.0
 	 * @param Notification $notification Notification object.
