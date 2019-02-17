@@ -2,32 +2,29 @@
 
 	$( document ).ready( function() {
 
-		// Copy merge tag
-
+		// Copy Merge Tag.
 		var merge_tag_clipboard = new Clipboard( 'code.notification-merge-tag' );
 
-		merge_tag_clipboard.on('success', function(e) {
+		merge_tag_clipboard.on( 'success', function( e ) {
 
-		    var $code = $(e.trigger),
+		    var $code = $( e.trigger ),
 			    tag   = $code.text();
 
 			notification.hooks.doAction( 'notification.merge_tag.copied', tag, $code );
 
 			$code.text( notification.i18n.copied );
 
-			setTimeout(function() {
+			setTimeout( function() {
 				$code.text( tag );
-			}, 800);
+			}, 800 );
 
-		});
+		} );
 
-		// Initialize accordion
-
+		// Initialize accordion.
 		var collapse = $( '.notification_merge_tags_accordion' ).collapse();
 
 
-		// Swap merge tags list for new trigger
-
+		// Swap Merge Tags list for new Trigger.
 		notification.hooks.addAction( 'notification.trigger.changed', function( $trigger ) {
 
 			var trigger_slug = $trigger.val();
@@ -43,45 +40,42 @@
 		    		alert( response.data );
 		    	} else {
 					$( '#notification_merge_tags .inside' ).html( response.data );
-					collapse = $('.notification_merge_tags_accordion').collapse();
+					collapse = $( '.notification_merge_tags_accordion' ).collapse();
 		    	}
 
 			} );
 
 		} );
 
-		// Search for merge tags
-
+		// Search Merge Tags.
 		$( 'body' ).on( 'keyup', '#notification-search-merge-tags', function() {
 
 			var val = $( this ).val().toLowerCase();
 
-			if ( $(this).val().length > 0 ) {
+			if ( $( this ).val().length > 0 ) {
 
-				collapse.trigger('open');
+				collapse.trigger( 'open' );
 
-				$('.notification_merge_tags_accordion h2, .notification_merge_tags_accordion .tags-group').hide();
+				$( '.notification_merge_tags_accordion h2, .notification_merge_tags_accordion .tags-group' ).hide();
 
-				$('.inside li').each(function () {
+				$( '.inside li' ).each( function () {
 
-					$(this).hide();
+					$( this ).hide();
 
-					var text = $(this).find('.intro code').text().toLowerCase();
+					var text = $( this ).find( '.intro code' ).text().toLowerCase();
 
-					if (text.indexOf(val) != -1) {
-						$(this).show();
-						var parentClass = $(this).parents('ul').data("group");
-						$('[data-group=' + parentClass +']').show();
+					if ( -1 !== text.indexOf( val )) {
+						$( this ).show();
+						var parentClass = $( this ).parents( 'ul' ).data( 'group' );
+						$( '[data-group=' + parentClass + ']' ).show();
 					}
 
-				});
+				} );
 
 			} else {
-
-				$('.notification_merge_tags_accordion h2, .inside li').show();
-				collapse.trigger('close');
+				$( '.notification_merge_tags_accordion h2, .inside li' ).show();
+				collapse.trigger( 'close' );
 			}
-
 
 		} );
 

@@ -60,10 +60,10 @@ class Installed extends ThemeTrigger {
 
 		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
 			'slug' => 'theme_installation_date_time',
 			'name' => __( 'Theme installation date and time', 'notification' ),
-		) ) );
+		] ) );
 
 	}
 

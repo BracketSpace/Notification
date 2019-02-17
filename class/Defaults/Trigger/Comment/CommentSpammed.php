@@ -21,14 +21,12 @@ class CommentSpammed extends CommentTrigger {
 	 */
 	public function __construct( $comment_type = 'comment' ) {
 
-		parent::__construct(
-			array(
-				'slug'         => 'wordpress/comment_' . $comment_type . '_spammed',
-				// Translators: %s comment type.
-				'name'         => sprintf( __( '%s spammed', 'notification' ), ucfirst( $comment_type ) ),
-				'comment_type' => $comment_type,
-			)
-		);
+		parent::__construct( [
+			'slug'         => 'wordpress/comment_' . $comment_type . '_spammed',
+			// Translators: %s comment type.
+			'name'         => sprintf( __( '%s spammed', 'notification' ), ucfirst( $comment_type ) ),
+			'comment_type' => $comment_type,
+		] );
 
 		$this->add_action( 'spammed_comment', 100, 2 );
 

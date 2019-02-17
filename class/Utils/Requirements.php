@@ -41,7 +41,7 @@ class Requirements {
 	 *
 	 * @var array
 	 */
-	protected $errors = array();
+	protected $errors = [];
 
 	/**
 	 * Class constructor
@@ -49,19 +49,19 @@ class Requirements {
 	 * @param string $plugin_name plugin display name.
 	 * @param array  $to_check    checks to perform.
 	 */
-	public function __construct( $plugin_name = '', $to_check = array() ) {
+	public function __construct( $plugin_name = '', $to_check = [] ) {
 
 		$this->checks      = $to_check;
 		$this->plugin_name = $plugin_name;
 
 		// Add default checks.
-		$this->add_check( 'php', array( $this, 'check_php' ) );
-		$this->add_check( 'php_extensions', array( $this, 'check_php_extensions' ) );
-		$this->add_check( 'wp', array( $this, 'check_wp' ) );
-		$this->add_check( 'plugins', array( $this, 'check_plugins' ) );
-		$this->add_check( 'theme', array( $this, 'check_theme' ) );
-		$this->add_check( 'function_collision', array( $this, 'check_function_collision' ) );
-		$this->add_check( 'class_collision', array( $this, 'check_class_collision' ) );
+		$this->add_check( 'php', [ $this, 'check_php' ] );
+		$this->add_check( 'php_extensions', [ $this, 'check_php_extensions' ] );
+		$this->add_check( 'wp', [ $this, 'check_wp' ] );
+		$this->add_check( 'plugins', [ $this, 'check_plugins' ] );
+		$this->add_check( 'theme', [ $this, 'check_theme' ] );
+		$this->add_check( 'function_collision', [ $this, 'check_function_collision' ] );
+		$this->add_check( 'class_collision', [ $this, 'check_class_collision' ] );
 
 	}
 
@@ -174,7 +174,7 @@ class Requirements {
 	 */
 	public function check_php_extensions( $extensions, $requirements ) {
 
-		$missing_extensions = array();
+		$missing_extensions = [];
 
 		foreach ( $extensions as $extension ) {
 			if ( ! extension_loaded( $extension ) ) {
@@ -220,13 +220,13 @@ class Requirements {
 	public function check_plugins( $plugins, $requirements ) {
 
 		$active_plugins_raw      = wp_get_active_and_valid_plugins();
-		$active_plugins          = array();
-		$active_plugins_versions = array();
+		$active_plugins          = [];
+		$active_plugins_versions = [];
 
 		foreach ( $active_plugins_raw as $plugin_full_path ) {
 			$plugin_file                             = str_replace( WP_PLUGIN_DIR . '/', '', $plugin_full_path );
 			$active_plugins[]                        = $plugin_file;
-			$plugin_api_data                         = @get_file_data( $plugin_full_path, array( 'Version' ) ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+			$plugin_api_data                         = @get_file_data( $plugin_full_path, [ 'Version' ] ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 			$active_plugins_versions[ $plugin_file ] = $plugin_api_data[0];
 		}
 
@@ -267,7 +267,7 @@ class Requirements {
 	 */
 	public function check_function_collision( $functions, $requirements ) {
 
-		$collisions = array();
+		$collisions = [];
 
 		foreach ( $functions as $function ) {
 			if ( function_exists( $function ) ) {
@@ -296,7 +296,7 @@ class Requirements {
 	 */
 	public function check_class_collision( $classes, $requirements ) {
 
-		$collisions = array();
+		$collisions = [];
 
 		foreach ( $classes as $class ) {
 			if ( class_exists( $class ) ) {

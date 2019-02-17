@@ -24,18 +24,15 @@ class Role extends Abstracts\Recipient {
 	 * @since 5.0.0
 	 */
 	public function __construct() {
-		parent::__construct(
-			array(
-				'slug'          => 'role',
-				'name'          => __( 'Role', 'notification' ),
-				'default_value' => 'administrator',
-			)
-		);
+		parent::__construct( [
+			'slug'          => 'role',
+			'name'          => __( 'Role', 'notification' ),
+			'default_value' => 'administrator',
+		] );
 	}
 
 	/**
-	 * Parses saved value something understood by notification
-	 * Must be defined in the child class
+	 * {@inheritdoc}
 	 *
 	 * @param  string $value raw value saved by the user.
 	 * @return array         array of resolved values
@@ -53,14 +50,14 @@ class Role extends Abstracts\Recipient {
 	}
 
 	/**
-	 * Returns input object
+	 * {@inheritdoc}
 	 *
 	 * @return object
 	 */
 	public function input() {
 
 		$roles = get_editable_roles();
-		$opts  = array();
+		$opts  = [];
 
 		foreach ( $roles as $role_slug => $role ) {
 			$users_query = $this->get_users_by_role( $role_slug );
@@ -73,16 +70,14 @@ class Role extends Abstracts\Recipient {
 			$opts[ $role_slug ] = esc_html( $label );
 		}
 
-		return new Field\SelectField(
-			array(
-				'label'     => __( 'Recipient', 'notification' ),       // don't edit this!
-				'name'      => 'recipient',       // don't edit this!
-				'css_class' => 'recipient-value', // don't edit this!
-				'value'     => $this->get_default_value(),
-				'pretty'    => true,
-				'options'   => $opts,
-			)
-		);
+		return new Field\SelectField( [
+			'label'     => __( 'Recipient', 'notification' ), // don't edit this!
+			'name'      => 'recipient',                       // don't edit this!
+			'css_class' => 'recipient-value',                 // don't edit this!
+			'value'     => $this->get_default_value(),
+			'pretty'    => true,
+			'options'   => $opts,
+		] );
 
 	}
 

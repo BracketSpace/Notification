@@ -28,7 +28,7 @@ class EditorField extends Field {
 	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( isset( $params['settings'] ) ) {
 			$this->settings = $params['settings'];
@@ -47,11 +47,11 @@ class EditorField extends Field {
 
 		$settings = wp_parse_args(
 			$this->settings,
-			array(
+			[
 				'textarea_name' => $this->get_name(),
 				'textarea_rows' => 20,
 				'editor_class'  => $this->css_class(),
-			)
+			]
 		);
 
 		ob_start();

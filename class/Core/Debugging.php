@@ -33,31 +33,31 @@ class Debugging {
 
 		$debugging->add_group( __( 'Settings', 'notification' ), 'settings' )
 			->add_field(
-				array(
+				[
 					'name'        => __( 'Debug log', 'notification' ),
 					'slug'        => 'debug_log',
 					'default'     => false,
-					'addons'      => array(
+					'addons'      => [
 						'label' => __( 'Enable debug log', 'notification' ),
-					),
+					],
 					'description' => __( 'While log is active, no notifications are sent', 'notification' ),
-					'render'      => array( new CoreFields\Checkbox(), 'input' ),
-					'sanitize'    => array( new CoreFields\Checkbox(), 'sanitize' ),
-				)
+					'render'      => [ new CoreFields\Checkbox(), 'input' ],
+					'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+				]
 			);
 
 		$debugging->add_group( __( 'Log', 'notification' ), 'log' )
 			->add_field(
-				array(
+				[
 					'name'     => __( 'Log', 'notification' ),
 					'slug'     => 'log',
-					'addons'   => array(
+					'addons'   => [
 						'message' => $this->get_debug_log(),
 						'code'    => true,
-					),
-					'render'   => array( new CoreFields\Message(), 'input' ),
-					'sanitize' => array( new CoreFields\Message(), 'sanitize' ),
-				)
+					],
+					'render'   => [ new CoreFields\Message(), 'input' ],
+					'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
+				]
 			);
 
 	}
@@ -70,7 +70,7 @@ class Debugging {
 	 */
 	public function get_debug_log() {
 
-		$logs = get_option( $this->log_setting_key, array() );
+		$logs = get_option( $this->log_setting_key, [] );
 
 		if ( empty( $logs ) ) {
 			return __( 'Debug log is empty', 'notification' );
@@ -89,7 +89,7 @@ class Debugging {
 			$log_message .= $spacing . 'ID: ' . $log['notification']['post_id'];
 			$log_message .= $spacing . '<br>';
 			$log_message .= $spacing . __( 'Trigger', 'notification' ) . ': <strong>' . $log['trigger']['name'] . '</strong> (<i>' . $log['trigger']['slug'] . '</i>)<br>';
-			$log_message .= $spacing . __( 'Notification', 'notification' ) . ': <strong>' . $log['notification']['name'] . '</strong> (<i>' . $log['notification']['slug'] . '</i>)<br>';
+			$log_message .= $spacing . __( 'Carrier', 'notification' ) . ': <strong>' . $log['notification']['name'] . '</strong> (<i>' . $log['notification']['slug'] . '</i>)<br>';
 			$log_message .= $spacing . __( 'Data', 'notification' ) . ':<br>';
 			$log_message .= '<span class="notification-data-log">' . print_r( $log['notification']['data'], true ) . '</span>'; //phpcs:ignore
 			$log_message .= '<br><hr><br>';
@@ -123,7 +123,7 @@ class Debugging {
 	/**
 	 * Catches the notification into log.
 	 *
-	 * @action notification/notification/pre-send 1000000
+	 * @action notification/carrier/pre-send 1000000
 	 *
 	 * @since  5.3.0
 	 * @param Notification $notification Notification object.
@@ -137,27 +137,27 @@ class Debugging {
 		}
 
 		$limit = apply_filters( 'notification/debugging/log/limit', 10 );
-		$logs  = get_option( $this->log_setting_key, array() );
+		$logs  = get_option( $this->log_setting_key, [] );
 
 		// Clear the log.
 		if ( count( $logs ) >= $limit ) {
 			array_pop( $logs );
 		}
 
-		array_unshift( $logs, array(
+		array_unshift( $logs, [
 			'time'         => time(),
-			'notification' => array(
+			'notification' => [
 				'slug'       => $notification->get_slug(),
 				'name'       => $notification->get_name(),
 				'post_id'    => $notification->post_id,
 				'post_title' => get_the_title( $notification->post_id ),
 				'data'       => $notification->data,
-			),
-			'trigger'      => array(
+			],
+			'trigger'      => [
 				'slug' => $trigger->get_slug(),
 				'name' => $trigger->get_name(),
-			),
-		) );
+			],
+		] );
 
 		update_option( $this->log_setting_key, $logs );
 

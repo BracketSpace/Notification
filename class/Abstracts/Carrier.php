@@ -1,6 +1,6 @@
 <?php
 /**
- * Notification abstract class
+ * Carrier abstract class
  *
  * @package notification
  */
@@ -13,47 +13,47 @@ use BracketSpace\Notification\Defaults\Field;
 use BracketSpace\Notification\Defaults\Field\RecipientsField;
 
 /**
- * Notification abstract class
+ * Carrier abstract class
  */
-abstract class Notification extends Common implements Interfaces\Sendable {
+abstract class Carrier extends Common implements Interfaces\Sendable {
 
 	/**
-	 * If Notification is enabled for current post
+	 * If Carrier is enabled
 	 *
 	 * @var boolean
 	 */
 	public $enabled = false;
 
 	/**
-	 * Notification form fields
+	 * Carrier form fields
 	 *
 	 * @var array
 	 */
-	public $form_fields = array();
+	public $form_fields = [];
 
 	/**
 	 * Fields data for send method
 	 *
 	 * @var array
 	 */
-	public $data = array();
+	public $data = [];
 
 	/**
-	 * If Notification is suppressed
+	 * If is suppressed
 	 *
 	 * @var boolean
 	 */
 	protected $suppressed = false;
 
 	/**
-	 * Current Notification post ID
+	 * Current Carrier post ID
 	 *
 	 * @var integer
 	 */
 	public $post_id = 0;
 
 	/**
-	 * Notification constructor
+	 * Carrier constructor
 	 *
 	 * @param string $slug slug.
 	 * @param string $name nice name.
@@ -63,16 +63,12 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 		$this->slug = $slug;
 		$this->name = $name;
 
-		$this->add_form_field(
-			new Field\NonceField(
-				array(
-					'label'      => '',
-					'name'       => '_nonce',
-					'nonce_key'  => $this->slug . '_notification_security',
-					'resolvable' => false,
-				)
-			)
-		);
+		$this->add_form_field( new Field\NonceField( [
+			'label'      => '',
+			'name'       => '_nonce',
+			'nonce_key'  => $this->slug . '_carrier_security',
+			'resolvable' => false,
+		] ) );
 
 		$this->form_fields();
 
@@ -80,14 +76,14 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 
 	/**
 	 * Clone method
-	 * Copies the fields to new Notification instance
+	 * Copies the fields to new Carrier instance
 	 *
 	 * @since  5.1.6
 	 * @return void
 	 */
 	public function __clone() {
 
-		$fields = array();
+		$fields = [];
 
 		foreach ( $this->form_fields as $raw_name => $field ) {
 			$fields[ $raw_name ] = clone $field;
@@ -98,7 +94,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	}
 
 	/**
-	 * Used to register notification form fields
+	 * Used to register Carrier form fields
 	 * Uses $this->add_form_field();
 	 *
 	 * @return void
@@ -106,7 +102,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	abstract public function form_fields();
 
 	/**
-	 * Sends the notification
+	 * Sends the Carrier
 	 *
 	 * @param  Triggerable $trigger trigger object.
 	 * @return void
@@ -114,7 +110,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	abstract public function send( Triggerable $trigger );
 
 	/**
-	 * Generates an unique hash for notification instance
+	 * Generates an unique hash for Carrier instance
 	 *
 	 * @return string
 	 */
@@ -130,7 +126,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	 */
 	public function add_form_field( Interfaces\Fillable $field ) {
 		$adding_field                                = clone $field;
-		$adding_field->section                       = 'notification_type_' . $this->get_slug();
+		$adding_field->section                       = 'notification_carrier_' . $this->get_slug();
 		$this->form_fields[ $field->get_raw_name() ] = $adding_field;
 		return $this;
 	}
@@ -202,7 +198,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 		// Parsed recipients are saved to key named `parsed_{recipients_field_slug}`.
 		if ( $recipients_field ) {
 
-			$parsed_recipients = array();
+			$parsed_recipients = [];
 
 			$raw_recipients = $this->get_field_value( $recipients_field->get_raw_name() );
 
@@ -258,7 +254,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	}
 
 	/**
-	 * Checks if Notification is suppressed
+	 * Checks if Carrier is suppressed
 	 *
 	 * @since  5.1.2
 	 * @return boolean
@@ -268,7 +264,7 @@ abstract class Notification extends Common implements Interfaces\Sendable {
 	}
 
 	/**
-	 * Suppresses the Notification
+	 * Suppresses the Carrier
 	 *
 	 * @since  5.1.2
 	 * @return void

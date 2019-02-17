@@ -72,17 +72,12 @@ class UserPasswordResetRequest extends UserTrigger {
 		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
 		$this->add_merge_tag( new MergeTag\User\UserLastName() );
 		$this->add_merge_tag( new MergeTag\User\UserPasswordResetLink() );
-
 		$this->add_merge_tag( new MergeTag\User\UserBio() );
 
-		$this->add_merge_tag(
-			new MergeTag\DateTime\DateTime(
-				array(
-					'slug' => 'password_reset_request_datetime',
-					'name' => __( 'Password reset request date', 'notification' ),
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
+			'slug' => 'password_reset_request_datetime',
+			'name' => __( 'Password reset request date', 'notification' ),
+		] ) );
 
 	}
 

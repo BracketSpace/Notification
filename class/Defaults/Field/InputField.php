@@ -35,7 +35,7 @@ class InputField extends Field {
 	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( isset( $params['type'] ) ) {
 			$this->type = $params['type'];

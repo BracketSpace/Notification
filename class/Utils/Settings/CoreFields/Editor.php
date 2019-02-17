@@ -25,14 +25,14 @@ class Editor {
 		$textarea_rows = $field->addon( 'textarea_rows' ) ? $field->addon( 'textarea_rows' ) : 10;
 		$teeny         = $field->addon( 'teeny' ) ? $field->addon( 'teeny' ) : false;
 
-		$settings = array(
+		$settings = [
 			'textarea_name' => $field->input_name(),
 			'editor_css'    => null,
 			'wpautop'       => $wpautop,
 			'media_buttons' => $media_buttons,
 			'textarea_rows' => $textarea_rows,
 			'teeny'         => $teeny,
-		);
+		];
 
 		wp_editor( $field->value(), $field->input_id(), $settings );
 

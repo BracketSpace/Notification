@@ -52,7 +52,7 @@ class Switched extends ThemeTrigger {
 
 		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\StringTag( array(
+		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'old_theme_name',
 			'name'        => __( 'Old theme name', 'notification' ),
 			'description' => __( 'Twenty Seventeen', 'notification' ),
@@ -61,9 +61,9 @@ class Switched extends ThemeTrigger {
 				return $trigger->old_theme->get( 'Name' );
 			},
 			'group'       => __( 'Old theme', 'notification' ),
-		) ) );
+		] ) );
 
-		$this->add_merge_tag( new MergeTag\StringTag( array(
+		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'old_theme_description',
 			'name'        => __( 'Old theme description', 'notification' ),
 			'description' => __( 'Twenty Seventeen brings your site to life with header video and immersive featured images', 'notification' ),
@@ -72,9 +72,9 @@ class Switched extends ThemeTrigger {
 				return $trigger->old_theme->get( 'Description' );
 			},
 			'group'       => __( 'Old theme', 'notification' ),
-		) ) );
+		] ) );
 
-		$this->add_merge_tag( new MergeTag\StringTag( array(
+		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'old_theme_version',
 			'name'        => __( 'Old theme version', 'notification' ),
 			'description' => __( '1.0.0', 'notification' ),
@@ -83,9 +83,9 @@ class Switched extends ThemeTrigger {
 				return $trigger->old_theme->get( 'Version' );
 			},
 			'group'       => __( 'Old theme', 'notification' ),
-		) ) );
+		] ) );
 
-		$this->add_merge_tag( new MergeTag\UrlTag( array(
+		$this->add_merge_tag( new MergeTag\UrlTag( [
 			'slug'        => 'old_theme_uri',
 			'name'        => __( 'Old theme URI', 'notification' ),
 			'description' => __( 'https://wordpress.org/themes/twentyseventeen/', 'notification' ),
@@ -94,9 +94,9 @@ class Switched extends ThemeTrigger {
 				return $trigger->old_theme->get( 'ThemeURI' );
 			},
 			'group'       => __( 'Old theme', 'notification' ),
-		) ) );
+		] ) );
 
-		$this->add_merge_tag( new MergeTag\StringTag( array(
+		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'old_theme_author',
 			'name'        => __( 'Old theme author', 'notification' ),
 			'description' => __( 'The WordPress team', 'notification' ),
@@ -105,9 +105,9 @@ class Switched extends ThemeTrigger {
 				return $trigger->old_theme->get( 'Author' );
 			},
 			'group'       => __( 'Old theme', 'notification' ),
-		) ) );
+		] ) );
 
-		$this->add_merge_tag( new MergeTag\UrlTag( array(
+		$this->add_merge_tag( new MergeTag\UrlTag( [
 			'slug'        => 'old_theme_author_uri',
 			'name'        => __( 'Old theme author URI', 'notification' ),
 			'description' => __( 'https://wordpress.org/', 'notification' ),
@@ -116,12 +116,12 @@ class Switched extends ThemeTrigger {
 				return $trigger->old_theme->get( 'AuthorURI' );
 			},
 			'group'       => __( 'Old theme', 'notification' ),
-		) ) );
+		] ) );
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
 			'slug' => 'theme_switch_date_time',
 			'name' => __( 'Theme switch date and time', 'notification' ),
-		) ) );
+		] ) );
 
 	}
 

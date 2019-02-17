@@ -34,20 +34,21 @@ class JSON extends Abstracts\Adapter {
 			$data['trigger'] = notification_get_single_trigger( $data['trigger'] );
 		}
 
-		// Notifications translation.
-		if ( isset( $data['notifications'] ) ) {
-			$notification_objects = [];
+		// Carriers translation.
+		if ( isset( $data['carriers'] ) ) {
+			$carriers = [];
 
-			foreach ( $data['notifications'] as $notification_slug => $notification_data ) {
-				$notification = notification_get_single_notification( $notification_slug );
-				if ( ! empty( $notification ) ) {
-					$notification->set_data( $notification_data );
-					$notification->enabled                      = true;
-					$notification_objects[ $notification_slug ] = $notification;
+			foreach ( $data['carriers'] as $carrier_slug => $carrier_data ) {
+				$carrier = clone notification_get_carrier( $carrier_slug );
+
+				if ( ! empty( $carrier ) ) {
+					$carrier->set_data( $carrier_data );
+					$carrier->enabled          = true;
+					$carriers[ $carrier_slug ] = $carrier;
 				}
 			}
 
-			$data['notifications'] = $notification_objects;
+			$data['carriers'] = $carriers;
 		}
 
 		$this->setup_notification( $data );

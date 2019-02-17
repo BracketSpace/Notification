@@ -56,17 +56,12 @@ class UserLogout extends UserTrigger {
 		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
 		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
 		$this->add_merge_tag( new MergeTag\User\UserLastName() );
-
 		$this->add_merge_tag( new MergeTag\User\UserBio() );
 
-		$this->add_merge_tag(
-			new MergeTag\DateTime\DateTime(
-				array(
-					'slug' => 'user_logout_datetime',
-					'name' => __( 'User logout time', 'notification' ),
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
+			'slug' => 'user_logout_datetime',
+			'name' => __( 'User logout time', 'notification' ),
+		] ) );
 
 	}
 

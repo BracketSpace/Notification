@@ -27,7 +27,7 @@ abstract class Recipient extends Common implements Interfaces\Receivable {
 	 * @since 5.0.0
 	 * @param array $params recipient configuration params.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( ! isset( $params['slug'], $params['name'], $params['default_value'] ) ) {
 			trigger_error( 'Recipient requires slug, name and default_value', E_USER_ERROR );
@@ -40,8 +40,7 @@ abstract class Recipient extends Common implements Interfaces\Receivable {
 	}
 
 	/**
-	 * Parses saved value something understood by notification
-	 * Must be defined in the child class
+	 * Parses saved value something understood by the Carrier
 	 *
 	 * @param  string $value raw value saved by the user.
 	 * @return array         array of resolved values
@@ -50,7 +49,6 @@ abstract class Recipient extends Common implements Interfaces\Receivable {
 
 	/**
 	 * Returns input object
-	 * Must be defined in the child class
 	 *
 	 * @return object
 	 */

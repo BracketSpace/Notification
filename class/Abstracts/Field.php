@@ -78,7 +78,7 @@ abstract class Field implements Interfaces\Fillable {
 	 * @since 5.0.0
 	 * @param array $params field configuration params.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( ! isset( $params['label'], $params['name'] ) ) {
 			trigger_error( 'Field requires label and name', E_USER_ERROR );

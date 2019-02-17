@@ -52,10 +52,10 @@ class Activated extends PluginTrigger {
 
 		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
 			'slug' => 'plugin_activation_date_time',
 			'name' => __( 'Plugin activation date and time', 'notification' ),
-		) ) );
+		] ) );
 
 	}
 

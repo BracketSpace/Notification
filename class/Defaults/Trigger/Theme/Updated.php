@@ -61,7 +61,7 @@ class Updated extends ThemeTrigger {
 
 		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\StringTag( array(
+		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'theme_previous_version',
 			'name'        => __( 'Theme previous version', 'notification' ),
 			'description' => __( '1.0.0', 'notification' ),
@@ -70,12 +70,12 @@ class Updated extends ThemeTrigger {
 				return $trigger->theme_previous_version;
 			},
 			'group'       => __( 'Theme', 'notification' ),
-		) ) );
+		] ) );
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
 			'slug' => 'theme_update_date_time',
 			'name' => __( 'Theme update date and time', 'notification' ),
-		) ) );
+		] ) );
 
 	}
 

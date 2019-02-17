@@ -21,14 +21,12 @@ class PostAdded extends PostTrigger {
 	 */
 	public function __construct( $post_type = 'post' ) {
 
-		parent::__construct(
-			array(
-				'post_type' => $post_type,
-				'slug'      => 'wordpress/' . $post_type . '/added',
-				// translators: singular post name.
-				'name'      => sprintf( __( '%s added', 'notification' ), parent::get_post_type_name( $post_type ) ),
-			)
-		);
+		parent::__construct( [
+			'post_type' => $post_type,
+			'slug'      => 'wordpress/' . $post_type . '/added',
+			// translators: singular post name.
+			'name'      => sprintf( __( '%s added', 'notification' ), parent::get_post_type_name( $post_type ) ),
+		] );
 
 		$this->add_action( 'wp_insert_post', 10, 3 );
 

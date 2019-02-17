@@ -20,10 +20,9 @@ require_once 'vendor/autoload.php';
  * Requirements check
  */
 $requirements = new BracketSpace\Notification\Utils\Requirements( __( 'Notification', 'notification' ), [
-	'php'                => '5.6',
-	'wp'                 => '4.9',
-	'function_collision' => array( 'register_trigger', 'register_notification' ),
-	'dochooks'           => true,
+	'php'      => '5.6',
+	'wp'       => '4.9',
+	'dochooks' => true,
 ] );
 
 /**

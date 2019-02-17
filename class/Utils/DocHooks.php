@@ -55,9 +55,9 @@ class DocHooks {
 					$name = $match['name'];
 
 					$priority = empty( $match['priority'] ) ? 10 : intval( $match['priority'] );
-					$callback = array( $object, $method->getName() );
+					$callback = [ $object, $method->getName() ];
 
-					call_user_func( array( $this, "add_{$type}" ), $name, $callback, compact( 'priority', 'arg_count' ) );
+					call_user_func( [ $this, "add_{$type}" ], $name, $callback, compact( 'priority', 'arg_count' ) );
 
 				}
 			}
@@ -75,14 +75,14 @@ class DocHooks {
 	 * @param array  $args     An array with priority and arg_count.
 	 * @return mixed
 	 */
-	public function add_filter( $name, $callback, $args = array() ) {
+	public function add_filter( $name, $callback, $args = [] ) {
 
 		// Merge defaults.
 		$args = array_merge(
-			array(
+			[
 				'priority'  => 10,
 				'arg_count' => PHP_INT_MAX,
-			),
+			],
 			$args
 		);
 
@@ -98,14 +98,14 @@ class DocHooks {
 	 * @param array  $args     An array with priority and arg_count.
 	 * @return mixed
 	 */
-	public function add_action( $name, $callback, $args = array() ) {
+	public function add_action( $name, $callback, $args = [] ) {
 
 		// Merge defaults.
 		$args = array_merge(
-			array(
+			[
 				'priority'  => 10,
 				'arg_count' => PHP_INT_MAX,
-			),
+			],
 			$args
 		);
 
@@ -133,7 +133,7 @@ class DocHooks {
 	 * @param array  $args     An array with priority and arg_count.
 	 * @return mixed
 	 */
-	protected function _add_hook( $type, $name, $callback, $args = array() ) {
+	protected function _add_hook( $type, $name, $callback, $args = [] ) {
 
 		$priority  = isset( $args['priority'] ) ? $args['priority'] : 10;
 		$arg_count = isset( $args['arg_count'] ) ? $args['arg_count'] : PHP_INT_MAX;

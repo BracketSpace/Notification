@@ -84,7 +84,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( ! isset( $params['slug'], $params['name'], $params['resolver'] ) ) {
 			trigger_error( 'Merge tag requires slug, name and resolver', E_USER_ERROR );

@@ -50,7 +50,7 @@ class Share {
 			__( 'The story', 'notification' ),
 			'manage_options',
 			'the-story',
-			array( $this, 'story_page' )
+			[ $this, 'story_page' ]
 		);
 
 	}
@@ -98,9 +98,7 @@ class Share {
 	 * @return void
 	 */
 	public function story_page() {
-
 		$this->view->get_view( 'story' );
-
 	}
 
 }

@@ -258,10 +258,72 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] Import and Export feature using JSON files.
 * [Added] Composer support with unified testing.
 * [Added] Merge Tags groups.
+* [Added] Notification Adapters - WordPress and JSON.
 * [Changed] PostData class has been removed in favor of Notification object and procedural functions.
 * [Changed] Admin Classes: MergeTags, Notifications, PostData, Recipients, Triggers has been removed and their content included in the Admin/PostType class.
 * [Changed] Notification data is now using single nonce field and additional data should be saved with `notification/data/save` action.
-* [Changed] Namespaces of Cron, Internationalization, License, Tracking and Whitelabel classes.
+* [Changed] Namespaces of Cron, Internationalization, License and Whitelabel classes.
 * [Changed] Native class autoloader to Composer autoloader.
 * [Changed] User recipients optimization with direct database calls.
+* [Changed] Notification (in "type" context) has been renamed to Carrier.
 * [Removed] Trigger usage tracking.
+
+= Compatibility breaking changes =
+
+*Hooks* - Some of the hooks names has been renamed for better consistency across the plugin. List of all changes:
+
+* notification/notification/pre-send -> notification/carrier/pre-send
+* notification/notification/sent -> notification/carrier/sent
+* notificaiton/notification/field/resolving -> notification/carrier/field/resolving
+* notification/value/strip_empty_mergetags -> notification/carrier/field/value/strip_empty_mergetags
+* notification/value/strip_shortcodes -> notification/carrier/field/value/strip_shortcodes
+* notificaiton/notification/field/resolved -> notification/carrier/field/value/resolved
+* notificaiton/merge_tag/value/resolved -> notification/merge_tag/value/resolved
+* notitication/admin/notifications/pre -> notification/admin/carriers/pre
+* notitication/admin/notifications -> notification/admin/carriers
+* notification/webhook/called/get -> notification/carrier/webhook/called/get
+* notification/webhook/called/post -> notification/carrier/webhook/called/post
+* notification/notification/box/pre -> notification/carrier/box/pre
+* notification/notification/box/post -> notification/carrier/box/post
+* notification/notification/box/field/pre -> notification/carrier/box/field/pre
+* notification/notification/box/field/post -> notification/carrier/box/field/post
+* notification/notification/form_fields/values -> notification/carrier/fields/values
+* notification/email/use_html_mime -> notification/carrier/email/use_html_mime
+* notification/email/recipients -> notification/carrier/email/recipients
+* notification/email/subject -> notification/carrier/email/subject
+* notification/email/message/pre -> notification/carrier/email/message/pre
+* notification/email/message/use_autop -> notification/carrier/email/message/use_autop
+* notification/email/message -> notification/carrier/email/message
+* notification/email/headers -> notification/carrier/email/headers
+* notification/email/attachments -> notification/carrier/email/attachments
+* notification/webhook/args -> notification/carrier/webhook/args
+* notification/webhook/args/$type -> notification/carrier/webhook/args/$type
+* notification/webhook/remote_args/get -> notification/carrier/webhook/remote_args/get
+* notification/webhook/remote_args/post -> notification/carrier/webhook/remote_args/post
+
+*Classes* - Some of the classes has been renamed or removed. List of all changes:
+
+* BracketSpace\Notification\Admin\MergeTags - removed
+* BracketSpace\Notification\Admin\Notifications - removed
+* BracketSpace\Notification\Admin\PostData - removed
+* BracketSpace\Notification\Admin\Recipients - removed
+* BracketSpace\Notification\Admin\Triggers - removed
+* BracketSpace\Notification\Admin\PostData - removed
+* BracketSpace\Notification\Tracking - removed
+* BracketSpace\Notification\Abstracts\Notification -> BracketSpace\Notification\Abstracts\Carrier
+* BracketSpace\Notification\Defaults\Notification -> BracketSpace\Notification\Defaults\Carrier
+* BracketSpace\Notification\Admin\Cron -> BracketSpace\Notification\Core\Cron
+* BracketSpace\Notification\Internationalization -> BracketSpace\Notification\Core\Internationalization
+* BracketSpace\Notification\License -> BracketSpace\Notification\Core\License
+* BracketSpace\Notification\Whitelabel -> BracketSpace\Notification\Core\Whitelabel
+
+*Functions* - Some of the functions has been renamed for better consistency across the plugin. List of all changes:
+
+* notification_is_new_notification -> notification_post_is_new
+* register_notification -> notification_register_carrier
+* notification_get_notifications -> notification_get_carriers
+* notification_get_single_notification -> notification_get_carrier
+
+*Methods* - Some of the class methods has been renamed for better consistency across the plugin. List of all changes:
+
+*

@@ -30,7 +30,7 @@ class BoxRenderer {
 	 * @since 5.0.0
 	 * @param array $vars vars array.
 	 */
-	public function set_vars( $vars = array() ) {
+	public function set_vars( $vars = [] ) {
 		$this->view->clear_vars();
 		$this->view->set_vars( $vars );
 	}

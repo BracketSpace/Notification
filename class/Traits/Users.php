@@ -20,6 +20,7 @@ trait Users {
 	 * @return array $results user results.
 	 */
 	public function get_all_users() {
+
 		global $wpdb;
 
 		$cache = new ObjectCache( 'users', 'notification' );
@@ -32,6 +33,7 @@ trait Users {
 		}
 
 		return $users;
+
 	}
 
 	/**
@@ -42,6 +44,7 @@ trait Users {
 	 * @return array $results user results.
 	 */
 	public function get_users_by_role( $role ) {
+
 		global $wpdb;
 
 		$cache = new ObjectCache( $role . '_users', 'notification' );
@@ -58,4 +61,5 @@ trait Users {
 		return $users;
 
 	}
+
 }

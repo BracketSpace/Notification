@@ -40,6 +40,7 @@ class Runtime extends Utils\DocHooks {
 
 		require_once $this->files->file_path( 'inc/functions.php' );
 		require_once $this->files->file_path( 'inc/defaults.php' );
+		require_once $this->files->file_path( 'inc/deprecated.php' );
 
 		$this->actions();
 
