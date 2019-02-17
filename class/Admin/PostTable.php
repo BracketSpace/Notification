@@ -65,7 +65,7 @@ class PostTable {
 				$checked = 'draft' === get_post_status( $post_id ) ? '0' : '1';
 
 				echo '<div class="onoffswitch" data-postid="' . esc_attr( $post_id ) . '" data-nonce="' . esc_attr( wp_create_nonce( 'change_notification_status_' . $post_id ) ) . '">';
-					echo '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" value="1" id="onoffswitch-' . esc_attr( $post_id ) . '" ' . checked( $checked, '1', false ) . '>';
+					echo '<input type="checkbox" name="notification_onoff_switch" class="onoffswitch-checkbox" value="1" id="onoffswitch-' . esc_attr( $post_id ) . '" ' . checked( $checked, '1', false ) . '>';
 					echo '<label class="onoffswitch-label" for="onoffswitch-' . esc_attr( $post_id ) . '">';
 						echo '<span class="onoffswitch-inner"></span>';
 						echo '<span class="onoffswitch-switch"></span>';

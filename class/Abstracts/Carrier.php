@@ -66,7 +66,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 		$this->add_form_field( new Field\NonceField( [
 			'label'      => '',
 			'name'       => '_nonce',
-			'nonce_key'  => $this->slug . '_notification_security',
+			'nonce_key'  => $this->slug . '_carrier_security',
 			'resolvable' => false,
 		] ) );
 
@@ -126,7 +126,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	 */
 	public function add_form_field( Interfaces\Fillable $field ) {
 		$adding_field                                = clone $field;
-		$adding_field->section                       = 'notification_type_' . $this->get_slug();
+		$adding_field->section                       = 'notification_carrier_' . $this->get_slug();
 		$this->form_fields[ $field->get_raw_name() ] = $adding_field;
 		return $this;
 	}

@@ -224,8 +224,8 @@ class PostType {
 			$this->formrenderer->set_fields( $carrier->get_form_fields() );
 
 			$this->boxrenderer->set_vars( [
-				'id'      => 'carrier_' . $carrier->get_slug(),
-				'name'    => 'carrier_' . $carrier->get_slug() . '_enable',
+				'id'      => 'notification-carrier-' . $carrier->get_slug() . '-box',
+				'name'    => 'notification_carrier_' . $carrier->get_slug() . '_enable',
 				'title'   => $carrier->get_name(),
 				'content' => $this->formrenderer->render(),
 				'open'    => $carrier->enabled,
@@ -284,7 +284,8 @@ class PostType {
 			$delete_text = __( 'Move to Trash', 'notification' );
 		}
 
-		$enabled = notification_post_is_new( $post ) || 'draft' !== get_post_status( $post->ID );
+		// New posts has the status auto-draft and in this case the Notification should be enabled.
+		$enabled = 'draft' !== get_post_status( $post->ID );
 
 		$view->set_var( 'enabled', $enabled );
 		$view->set_var( 'post_id', $post->ID );
@@ -512,7 +513,7 @@ class PostType {
 		$notification_post = notification_adapt_from( 'WordPress', $post );
 
 		// Status.
-		$status = ( isset( $data['onoffswitch'] ) && '1' === $data['onoffswitch'] );
+		$status = ( isset( $data['notification_onoff_switch'] ) && '1' === $data['notification_onoff_switch'] );
 		$notification_post->set_enabled( $status );
 
 		// Trigger.
@@ -528,18 +529,18 @@ class PostType {
 
 		foreach ( notification_get_carriers() as $carrier ) {
 
-			if ( ! isset( $data[ 'carrier_' . $carrier->get_slug() ] ) ) {
+			if ( ! isset( $data[ 'notification_carrier_' . $carrier->get_slug() ] ) ) {
 				continue;
 			}
 
-			if ( isset( $data[ 'carrier_' . $carrier->get_slug() . '_enable' ] ) ) {
+			if ( isset( $data[ 'notification_carrier_' . $carrier->get_slug() . '_enable' ] ) ) {
 				$carrier->enabled = true;
 			}
 
-			$carrier_data = $data[ 'carrier_' . $carrier->get_slug() ];
+			$carrier_data = $data[ 'notification_carrier_' . $carrier->get_slug() ];
 
 			// If nonce not set or false, ignore this form.
-			if ( ! wp_verify_nonce( $carrier_data['_nonce'], $carrier->get_slug() . '_notification_security' ) ) {
+			if ( ! wp_verify_nonce( $carrier_data['_nonce'], $carrier->get_slug() . '_carrier_security' ) ) {
 				continue;
 			}
 
@@ -548,7 +549,7 @@ class PostType {
 
 		}
 
-		$notification_post->set_notifications( $carriers );
+		$notification_post->set_carriers( $carriers );
 
 		// Hook into this action if you want to save any Notification Post data.
 		do_action( 'notification/data/save', $notification_post );

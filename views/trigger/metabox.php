@@ -15,8 +15,6 @@
 
 <?php else : ?>
 
-	<?php wp_nonce_field( 'notification_trigger', 'trigger_nonce' ); ?>
-
 	<?php do_action( 'notification/metabox/trigger/before', $this->get_var( 'triggers' ), $this->get_var( 'selected' ), $this->get_var( 'post' ) ); ?>
 
 	<?php $this->get_view( 'trigger/select' ); ?>
