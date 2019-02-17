@@ -81,9 +81,7 @@ class WordPress extends Abstracts\Adapter {
 		foreach ( $carrier_slug as $carrier_slug ) {
 			$carrier = notification_get_carrier( $carrier_slug );
 			if ( ! empty( $carrier ) ) {
-				$carrier_copy                     = clone $carrier;
-				$carrier_copy->post_id            = $this->get_id();
-				$carriers[ $carrier->get_slug() ] = $this->populate_carrier( $carrier_copy );
+				$carriers[ $carrier->get_slug() ] = $this->populate_carrier( clone $carrier );
 			}
 		}
 

@@ -46,13 +46,6 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	protected $suppressed = false;
 
 	/**
-	 * Current Carrier post ID
-	 *
-	 * @var integer
-	 */
-	public $post_id = 0;
-
-	/**
 	 * Carrier constructor
 	 *
 	 * @param string $slug slug.
@@ -178,21 +171,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 
 		$recipients_field = false;
 
-		foreach ( $this->get_form_fields() as $field_slug => $field ) {
-
-			// Save recipients field for additional parsing.
-			if ( $field instanceof RecipientsField ) {
-				$recipients_field = $field;
-			}
-
-			// Skip internal nonce field.
-			if ( $field->get_raw_name() === '_nonce' ) {
-				continue;
-			}
-
-			$this->data[ $field_slug ] = $this->get_field_value( $field_slug );
-
-		}
+		$this->data = $this->get_data();
 
 		// If there's set recipients field, parse them into a nice array.
 		// Parsed recipients are saved to key named `parsed_{recipients_field_slug}`.
