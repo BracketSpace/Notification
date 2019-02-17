@@ -69,3 +69,17 @@ function register_trigger( Interfaces\Triggerable $trigger ) {
 	_deprecated_function( 'register_trigger', '[Next]', 'notification_register_trigger' );
 	notification_register_trigger( $notification_slug );
 }
+
+/**
+ * Gets single registered recipient for notification type
+ *
+ * @since  5.0.0
+ * @deprecated [Next] Changed name for consistency.
+ * @param  string $carrier_slug   Carrier slug.
+ * @param  string $recipient_slug Recipient slug.
+ * @return mixed                  Recipient object or false
+ */
+function notification_get_single_recipient( $carrier_slug, $recipient_slug ) {
+	_deprecated_function( 'notification_get_single_recipient', '[Next]', 'notification_get_recipient' );
+	return notification_get_recipient( $carrier_slug, $recipient_slug );
+}

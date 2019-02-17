@@ -128,7 +128,7 @@ class RecipientsField extends RepeaterField {
 					$recipient_type &&
 					$sub_field->get_raw_name() === 'recipient' ) {
 
-					$recipient = notification_get_single_recipient( $this->carrier, $recipient_type );
+					$recipient = notification_get_recipient( $this->carrier, $recipient_type );
 
 					if ( empty( $recipient ) ) {
 						return '';

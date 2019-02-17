@@ -627,7 +627,7 @@ class PostType {
 
 		$carrier   = sanitize_text_field( wp_unslash( $_POST['carrier'] ) ); // phpcs:ignore
 		$type      = sanitize_text_field( wp_unslash( $_POST['type'] ) ); // phpcs:ignore
-		$recipient = notification_get_single_recipient( $carrier, $type );
+		$recipient = notification_get_recipient( $carrier, $type );
 		$input     = $recipient->input();
 
 		// A little trick to get rid of the last part of input name

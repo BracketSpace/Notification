@@ -324,3 +324,4 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * notification_get_notifications -> notification_get_carriers
 * notification_get_single_notification -> notification_get_carrier
 * register_trigger -> notification_register_trigger
+* notification_get_single_recipient -> notification_get_recipient
