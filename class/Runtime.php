@@ -70,7 +70,7 @@ class Runtime extends Utils\DocHooks {
 		$this->admin_post_table = new Admin\PostTable();
 		$this->admin_extensions = new Admin\Extensions();
 		$this->admin_scripts    = new Admin\Scripts( $this, $this->files );
-		$this->admin_screen     = new Admin\ScreenHelp();
+		$this->admin_screen     = new Admin\Screen();
 		$this->admin_share      = new Admin\Share();
 
 		$this->integration_wp = new Integration\WordPress();

@@ -268,6 +268,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] User recipients optimization with direct database calls.
 * [Changed] Notification (in "type" context) has been renamed to Carrier.
 * [Changed] The View object is not injected anymore to any Class, all use the `notification_create_view` function.
+* [Changed] ScreenHelp class has been renamed to Screen and render methods from PostType class has been moved to this new class.
 * [Removed] Trigger usage tracking.
 
 = Compatibility breaking changes =
@@ -314,6 +315,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * BracketSpace\Notification\Tracking - removed
 * BracketSpace\Notification\Admin\BoxRenderer - removed
 * BracketSpace\Notification\Admin\FormRenderer - removed
+* BracketSpace\Notification\Admin\ScreenHelp - removed
 * BracketSpace\Notification\Abstracts\Notification -> BracketSpace\Notification\Abstracts\Carrier
 * BracketSpace\Notification\Defaults\Notification -> BracketSpace\Notification\Defaults\Carrier
 * BracketSpace\Notification\Admin\Cron -> BracketSpace\Notification\Core\Cron
