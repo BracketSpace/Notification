@@ -41,7 +41,6 @@ class TestMain extends \WP_UnitTestCase {
 		// Instances.
 		$this->assertInstanceOf( 'BracketSpace\Notification\Utils\View', $this->notification->view() );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Utils\Ajax', $this->notification->ajax() );
-		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\BoxRenderer', $this->notification->boxrenderer() );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\FormRenderer', $this->notification->formrenderer() );
 
 		$this->assertInstanceOf( 'BracketSpace\Notification\Utils\Files', $this->notification->files );

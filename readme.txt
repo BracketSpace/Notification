@@ -310,6 +310,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * BracketSpace\Notification\Admin\Triggers - removed
 * BracketSpace\Notification\Admin\PostData - removed
 * BracketSpace\Notification\Tracking - removed
+* BracketSpace\Notification\Admin\BoxRenderer - removed
 * BracketSpace\Notification\Abstracts\Notification -> BracketSpace\Notification\Abstracts\Carrier
 * BracketSpace\Notification\Defaults\Notification -> BracketSpace\Notification\Defaults\Carrier
 * BracketSpace\Notification\Admin\Cron -> BracketSpace\Notification\Core\Cron

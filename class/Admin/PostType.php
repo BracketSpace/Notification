@@ -23,12 +23,10 @@ class PostType {
 	 * @since [Next] Simplified the parameters by including separate classes elements here.
 	 *
 	 * @param Ajax         $ajax          Ajax class.
-	 * @param BoxRenderer  $boxrenderer  BoxRenderer class.
 	 * @param FormRenderer $formrenderer FormRenderer class.
 	 */
-	public function __construct( Ajax $ajax, BoxRenderer $boxrenderer, FormRenderer $formrenderer ) {
+	public function __construct( Ajax $ajax, FormRenderer $formrenderer ) {
 		$this->ajax         = $ajax;
-		$this->boxrenderer  = $boxrenderer;
 		$this->formrenderer = $formrenderer;
 	}
 
@@ -219,11 +217,12 @@ class PostType {
 
 		foreach ( notification_get_carriers() as $carrier ) {
 
-			$carrier = $notification_post->populate_carrier( $carrier );
+			$box_view = notification_create_view();
+			$carrier  = $notification_post->populate_carrier( $carrier );
 
 			$this->formrenderer->set_fields( $carrier->get_form_fields() );
 
-			$this->boxrenderer->set_vars( [
+			$box_view->set_vars( [
 				'id'      => 'notification-carrier-' . $carrier->get_slug() . '-box',
 				'name'    => 'notification_carrier_' . $carrier->get_slug() . '_enable',
 				'title'   => $carrier->get_name(),
@@ -231,7 +230,7 @@ class PostType {
 				'open'    => $carrier->enabled,
 			] );
 
-			$this->boxrenderer->render();
+			$box_view->get_view( 'box' );
 
 		}
 
