@@ -259,6 +259,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] Composer support with unified testing.
 * [Added] Merge Tags groups.
 * [Added] Notification Adapters - WordPress and JSON.
+* [Added] `notification_ajax_handler` function.
 * [Changed] PostData class has been removed in favor of Notification object and procedural functions.
 * [Changed] Admin Classes: MergeTags, Notifications, PostData, Recipients, Triggers has been removed and their content included in the Admin/PostType class.
 * [Changed] Notification data is now using single nonce field and additional data should be saved with `notification/data/save` action.
@@ -266,6 +267,8 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Native class autoloader to Composer autoloader.
 * [Changed] User recipients optimization with direct database calls.
 * [Changed] Notification (in "type" context) has been renamed to Carrier.
+* [Changed] The View object is not injected anymore to any Class, all use the `notification_create_view` function.
+* [Changed] ScreenHelp class has been renamed to Screen and render methods from PostType class has been moved to this new class.
 * [Removed] Trigger usage tracking.
 
 = Compatibility breaking changes =
@@ -301,7 +304,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * notification/webhook/remote_args/get -> notification/carrier/webhook/remote_args/get
 * notification/webhook/remote_args/post -> notification/carrier/webhook/remote_args/post
 
-*Classes* - Some of the classes has been renamed or removed. List of all changes:
+*Classes* - Some of the classes or namespaces has been renamed or removed. List of all changes:
 
 * BracketSpace\Notification\Admin\MergeTags - removed
 * BracketSpace\Notification\Admin\Notifications - removed
@@ -310,6 +313,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * BracketSpace\Notification\Admin\Triggers - removed
 * BracketSpace\Notification\Admin\PostData - removed
 * BracketSpace\Notification\Tracking - removed
+* BracketSpace\Notification\Admin\BoxRenderer - removed
+* BracketSpace\Notification\Admin\FormRenderer - removed
+* BracketSpace\Notification\Admin\ScreenHelp - removed
 * BracketSpace\Notification\Abstracts\Notification -> BracketSpace\Notification\Abstracts\Carrier
 * BracketSpace\Notification\Defaults\Notification -> BracketSpace\Notification\Defaults\Carrier
 * BracketSpace\Notification\Admin\Cron -> BracketSpace\Notification\Core\Cron
@@ -323,7 +329,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * register_notification -> notification_register_carrier
 * notification_get_notifications -> notification_get_carriers
 * notification_get_single_notification -> notification_get_carrier
-
-*Methods* - Some of the class methods has been renamed for better consistency across the plugin. List of all changes:
-
-*
+* register_trigger -> notification_register_trigger
+* notification_get_single_recipient -> notification_get_recipient
+* notification_get_notification_recipients -> notification_get_carrier_recipients
+* notification_get_single_trigger -> notification_get_trigger

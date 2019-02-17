@@ -43,29 +43,23 @@ class PostTable {
 	 *
 	 * @action manage_notification_posts_custom_column
 	 *
-	 * @param  string  $column  column slug.
-	 * @param  integer $post_id post ID.
+	 * @param  string  $column  Column slug.
+	 * @param  integer $post_id Post ID.
 	 * @return void
 	 */
 	public function table_column_content( $column, $post_id ) {
 
+		$notification = notification_adapt_from( 'WordPress', $post_id );
+
 		switch ( $column ) {
 			case 'trigger':
-				$trigger_slug = get_post_meta( $post_id, '_trigger', true );
-				$trigger      = notification_get_single_trigger( $trigger_slug );
-
-				if ( false === $trigger ) {
-					esc_html_e( 'No trigger selected', 'notification' );
-				} else {
-					echo esc_html( $trigger->get_name() );
-				}
+				$trigger = $notification->get_trigger();
+				echo $trigger ? esc_html( $trigger->get_name() ) : esc_html__( 'No trigger selected', 'notification' );
 				break;
 
 			case 'switch':
-				$checked = 'draft' === get_post_status( $post_id ) ? '0' : '1';
-
 				echo '<div class="onoffswitch" data-postid="' . esc_attr( $post_id ) . '" data-nonce="' . esc_attr( wp_create_nonce( 'change_notification_status_' . $post_id ) ) . '">';
-					echo '<input type="checkbox" name="notification_onoff_switch" class="onoffswitch-checkbox" value="1" id="onoffswitch-' . esc_attr( $post_id ) . '" ' . checked( $checked, '1', false ) . '>';
+					echo '<input type="checkbox" name="notification_onoff_switch" class="onoffswitch-checkbox" value="1" id="onoffswitch-' . esc_attr( $post_id ) . '" ' . checked( $notification->is_enabled(), true, false ) . '>';
 					echo '<label class="onoffswitch-label" for="onoffswitch-' . esc_attr( $post_id ) . '">';
 						echo '<span class="onoffswitch-inner"></span>';
 						echo '<span class="onoffswitch-switch"></span>';
@@ -74,14 +68,9 @@ class PostTable {
 				break;
 
 			case 'carriers':
-				$enabled_carriers = (array) get_post_meta( $post_id, '_enabled_notification', false );
-
-				foreach ( array_unique( $enabled_carriers ) as $carrier_slug ) {
-					$carrier = notification_get_carrier( $carrier_slug );
-					if ( ! empty( $carrier ) ) {
-						echo esc_html( $carrier->get_name() );
-						echo '<br>';
-					}
+				foreach ( $notification->get_enabled_carriers() as $carrier ) {
+					echo esc_html( $carrier->get_name() );
+					echo '<br>';
 				}
 				break;
 		}

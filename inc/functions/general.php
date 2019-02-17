@@ -46,6 +46,16 @@ function notification_create_view() {
 }
 
 /**
+ * Creates new AJAX Handler object.
+ *
+ * @since  [Next]
+ * @return BracketSpace\Notification\Utils\Ajax
+ */
+function notification_ajax_handler() {
+	return new BracketSpace\Notification\Utils\Ajax();
+}
+
+/**
  * Throws a deprecation notice from deprecated class
  *
  * @since  [Next]

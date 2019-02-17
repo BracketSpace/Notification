@@ -198,12 +198,8 @@ class Notification {
 	public function to_array() {
 
 		$carriers = [];
-
-		foreach ( $this->get_carriers() as $carrier_slug => $carrier ) {
-			// Filter active only.
-			if ( $carrier->enabled ) {
-				$carriers[ $carrier_slug ] = $carrier->get_data();
-			}
+		foreach ( $this->get_enabled_carriers() as $carrier_slug => $carrier ) {
+			$carriers[ $carrier_slug ] = $carrier->get_data();
 		}
 
 		$trigger = $this->get_trigger();
@@ -251,6 +247,18 @@ class Notification {
 	public function get_carrier( $carrier_slug ) {
 		$carriers = $this->get_carriers();
 		return isset( $carriers[ $carrier_slug ] ) ? $carriers[ $carrier_slug ] : null;
+	}
+
+	/**
+	 * Gets enabled Carriers
+	 *
+	 * @since  [Next]
+	 * @return array
+	 */
+	public function get_enabled_carriers() {
+		return array_filter( $this->get_carriers(), function( $carrier ) {
+			return $carrier->enabled;
+		} );
 	}
 
 	/**

@@ -47,28 +47,26 @@ function notification_get_recipients() {
 }
 
 /**
- * Gets register recipients for notification type
+ * Gets registered recipients for specific Carrier
  *
- * @since  5.0.0
- * @since  [Next] Changed naming convention from Notification to Carrier.
+ * @since  [Next]
  * @param  string $carrier_slug Carrier slug.
  * @return array                Recipients array
  */
-function notification_get_notification_recipients( $carrier_slug ) {
+function notification_get_carrier_recipients( $carrier_slug ) {
 	$recipients = notification_get_recipients();
 	return isset( $recipients[ $carrier_slug ] ) ? $recipients[ $carrier_slug ] : [];
 }
 
 /**
- * Gets single registered recipient for notification type
+ * Gets single registered recipient for specific Carrier
  *
- * @since  5.0.0
- * @since  [Next] Changed naming convention from Notification to Carrier.
+ * @since  [Next]
  * @param  string $carrier_slug   Carrier slug.
  * @param  string $recipient_slug Recipient slug.
  * @return mixed                  Recipient object or false
  */
-function notification_get_single_recipient( $carrier_slug, $recipient_slug ) {
+function notification_get_recipient( $carrier_slug, $recipient_slug ) {
 	$recipients = notification_get_recipients();
 	return isset( $recipients[ $carrier_slug ][ $recipient_slug ] ) ? $recipients[ $carrier_slug ][ $recipient_slug ] : false;
 }
@@ -85,7 +83,7 @@ function notification_get_single_recipient( $carrier_slug, $recipient_slug ) {
  */
 function notification_parse_recipient( $carrier_slug, $recipient_type, $recipient_raw_value ) {
 
-	$recipient = notification_get_single_recipient( $carrier_slug, $recipient_type );
+	$recipient = notification_get_recipient( $carrier_slug, $recipient_type );
 
 	if ( ! $recipient instanceof Interfaces\Receivable ) {
 		return [];
