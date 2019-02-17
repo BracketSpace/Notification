@@ -66,7 +66,7 @@ function notification_get_single_notification( $notification_slug ) {
  */
 function register_trigger( Interfaces\Triggerable $trigger ) {
 	_deprecated_function( 'register_trigger', '[Next]', 'notification_register_trigger' );
-	notification_register_trigger( $notification_slug );
+	notification_register_trigger( $trigger );
 }
 
 /**
