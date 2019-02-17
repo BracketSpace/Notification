@@ -66,7 +66,7 @@ class Runtime extends Utils\DocHooks {
 		$this->admin_impexp     = new Admin\ImportExport();
 		$this->admin_settings   = new Admin\Settings();
 		$this->admin_duplicator = new Admin\NotificationDuplicator();
-		$this->admin_post_type  = new Admin\PostType( $this->ajax() );
+		$this->admin_post_type  = new Admin\PostType();
 		$this->admin_post_table = new Admin\PostTable();
 		$this->admin_extensions = new Admin\Extensions( $this->view() );
 		$this->admin_scripts    = new Admin\Scripts( $this, $this->files );
@@ -123,16 +123,6 @@ class Runtime extends Utils\DocHooks {
 	 */
 	public function view() {
 		return new Utils\View( $this->files );
-	}
-
-	/**
-	 * Returns new Ajax object
-	 *
-	 * @since  5.0.0
-	 * @return Ajax ajax object
-	 */
-	public function ajax() {
-		return new Utils\Ajax();
 	}
 
 }

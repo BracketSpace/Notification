@@ -40,7 +40,6 @@ class TestMain extends \WP_UnitTestCase {
 
 		// Instances.
 		$this->assertInstanceOf( 'BracketSpace\Notification\Utils\View', $this->notification->view() );
-		$this->assertInstanceOf( 'BracketSpace\Notification\Utils\Ajax', $this->notification->ajax() );
 
 		$this->assertInstanceOf( 'BracketSpace\Notification\Utils\Files', $this->notification->files );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Utils\Internationalization', $this->notification->internationalization );

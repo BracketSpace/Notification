@@ -18,18 +18,6 @@ use BracketSpace\Notification\Interfaces;
 class PostType {
 
 	/**
-	 * PostType constructor
-	 *
-	 * @since 5.0.0
-	 * @since [Next] Simplified the parameters by including separate classes elements here.
-	 *
-	 * @param Ajax $ajax Ajax class.
-	 */
-	public function __construct( Ajax $ajax ) {
-		$this->ajax = $ajax;
-	}
-
-	/**
 	 * --------------------------------------------------
 	 * Post Type.
 	 * --------------------------------------------------
@@ -592,10 +580,11 @@ class PostType {
 	 */
 	public function ajax_change_notification_status() {
 
+		$ajax  = notification_ajax_handler();
 		$data  = $_POST; // phpcs:ignore
 		$error = false;
 
-		$this->ajax->verify_nonce( 'change_notification_status_' . $data['post_id'] );
+		$ajax->verify_nonce( 'change_notification_status_' . $data['post_id'] );
 
 		$status = 'true' === $data['status'] ? 'publish' : 'draft';
 
@@ -608,7 +597,7 @@ class PostType {
 			$error = __( 'Notification status couldn\'t be changed.', 'notification' );
 		}
 
-		$this->ajax->response( true, $error );
+		$ajax->response( true, $error );
 
 	}
 
@@ -621,15 +610,17 @@ class PostType {
 	 */
 	public function ajax_render_merge_tags() {
 
+		$ajax = notification_ajax_handler();
+
 		if ( ! isset( $_POST['trigger_slug'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-			$this->ajax->error();
+			$ajax->error();
 		}
 
 		ob_start();
 
 		$this->render_merge_tags_list( sanitize_text_field( wp_unslash( $_POST['trigger_slug'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
-		$this->ajax->success( ob_get_clean() );
+		$ajax->success( ob_get_clean() );
 
 	}
 
@@ -661,7 +652,7 @@ class PostType {
 			echo '<small class="description">' . $description . '</small>'; // phpcs:ignore
 		}
 
-		$this->ajax->success( ob_get_clean() );
+		notification_ajax_handler()->success( ob_get_clean() );
 
 	}
 
