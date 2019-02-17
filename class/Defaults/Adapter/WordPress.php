@@ -68,7 +68,7 @@ class WordPress extends Abstracts\Adapter {
 
 		// Trigger.
 		$trigger_slug = get_post_meta( $this->get_id(), self::$metakey_trigger, true );
-		$trigger      = notification_get_single_trigger( $trigger_slug );
+		$trigger      = notification_get_trigger( $trigger_slug );
 
 		if ( ! empty( $trigger ) ) {
 			$this->set_trigger( $trigger );

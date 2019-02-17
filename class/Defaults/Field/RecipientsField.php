@@ -42,7 +42,7 @@ class RecipientsField extends RepeaterField {
 			'carrier' => $this->carrier,
 		];
 
-		$recipients = notification_get_notification_recipients( $this->carrier );
+		$recipients = notification_get_carrier_recipients( $this->carrier );
 
 		if ( ! empty( $recipients ) ) {
 

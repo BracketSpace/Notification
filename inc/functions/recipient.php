@@ -47,14 +47,13 @@ function notification_get_recipients() {
 }
 
 /**
- * Gets register recipients for notification type
+ * Gets registered recipients for specific Carrier
  *
- * @since  5.0.0
- * @since  [Next] Changed naming convention from Notification to Carrier.
+ * @since  [Next]
  * @param  string $carrier_slug Carrier slug.
  * @return array                Recipients array
  */
-function notification_get_notification_recipients( $carrier_slug ) {
+function notification_get_carrier_recipients( $carrier_slug ) {
 	$recipients = notification_get_recipients();
 	return isset( $recipients[ $carrier_slug ] ) ? $recipients[ $carrier_slug ] : [];
 }

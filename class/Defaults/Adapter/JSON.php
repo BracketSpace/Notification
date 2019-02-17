@@ -31,7 +31,7 @@ class JSON extends Abstracts\Adapter {
 
 		// Trigger translation.
 		if ( isset( $data['trigger'] ) ) {
-			$data['trigger'] = notification_get_single_trigger( $data['trigger'] );
+			$data['trigger'] = notification_get_trigger( $data['trigger'] );
 		}
 
 		// Carriers translation.

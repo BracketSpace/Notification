@@ -349,7 +349,7 @@ class PostType {
 	public function render_merge_tags_list( $trigger_slug ) {
 
 		$view    = notification_create_view();
-		$trigger = notification_get_single_trigger( $trigger_slug );
+		$trigger = notification_get_trigger( $trigger_slug );
 
 		if ( empty( $trigger ) ) {
 			$view->get_view( 'mergetag/metabox-nomergetags' );
@@ -518,7 +518,7 @@ class PostType {
 
 		// Trigger.
 		if ( ! empty( $data['notification_trigger'] ) ) {
-			$trigger = notification_get_single_trigger( $data['notification_trigger'] );
+			$trigger = notification_get_trigger( $data['notification_trigger'] );
 			if ( ! empty( $trigger ) ) {
 				$notification_post->set_trigger( $trigger );
 			}

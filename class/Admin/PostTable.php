@@ -52,7 +52,7 @@ class PostTable {
 		switch ( $column ) {
 			case 'trigger':
 				$trigger_slug = get_post_meta( $post_id, '_trigger', true );
-				$trigger      = notification_get_single_trigger( $trigger_slug );
+				$trigger      = notification_get_trigger( $trigger_slug );
 
 				if ( false === $trigger ) {
 					esc_html_e( 'No trigger selected', 'notification' );

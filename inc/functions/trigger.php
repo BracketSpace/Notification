@@ -45,11 +45,11 @@ function notification_get_triggers() {
 /**
  * Gets single registered trigger
  *
- * @since  5.0.0
+ * @since  [Next]
  * @param  string $trigger_slug trigger slug.
  * @return mixed                trigger object or false
  */
-function notification_get_single_trigger( $trigger_slug ) {
+function notification_get_trigger( $trigger_slug ) {
 	$triggers = notification_get_triggers();
 	return isset( $triggers[ $trigger_slug ] ) ? $triggers[ $trigger_slug ] : false;
 }
