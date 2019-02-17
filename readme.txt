@@ -267,6 +267,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Native class autoloader to Composer autoloader.
 * [Changed] User recipients optimization with direct database calls.
 * [Changed] Notification (in "type" context) has been renamed to Carrier.
+* [Changed] The View object is not injected anymore to any Class, all use the `notification_create_view` function.
 * [Removed] Trigger usage tracking.
 
 = Compatibility breaking changes =

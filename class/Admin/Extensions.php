@@ -39,23 +39,6 @@ class Extensions {
 	private $premium_extensions = [];
 
 	/**
-	 * View object
-	 *
-	 * @var object
-	 */
-	private $view;
-
-	/**
-	 * Extensions constructor
-	 *
-	 * @since 5.0.0
-	 * @param View $view View class.
-	 */
-	public function __construct( View $view ) {
-		$this->view = $view;
-	}
-
-	/**
 	 * Register Extensions page under plugin's menu
 	 *
 	 * @action admin_menu
@@ -171,9 +154,10 @@ class Extensions {
 	 * @return void
 	 */
 	public function extensions_page() {
-		$this->view->set_var( 'premium_extensions', $this->premium_extensions );
-		$this->view->set_var( 'extensions', $this->extensions );
-		$this->view->get_view( 'extension/page' );
+		$view = notification_create_view();
+		$view->set_var( 'premium_extensions', $this->premium_extensions );
+		$view->set_var( 'extensions', $this->extensions );
+		$view->get_view( 'extension/page' );
 	}
 
 	/**
@@ -368,8 +352,9 @@ class Extensions {
 				break;
 		}
 
-		$this->view->set_var( 'message', $message );
-		$this->view->get_view( 'extension/activation-' . $view );
+		$view = notification_create_view();
+		$view->set_var( 'message', $message );
+		$view->get_view( 'extension/activation-' . $view );
 
 	}
 
@@ -393,9 +378,7 @@ class Extensions {
 		$extensions = $this->get_raw_extensions();
 
 		foreach ( $extensions as $extension ) {
-
 			if ( isset( $extension['edd'] ) && is_plugin_active( $extension['slug'] ) ) {
-
 				$license = new License( $extension );
 
 				if ( ! $license->is_valid() ) {
@@ -407,8 +390,9 @@ class Extensions {
 						'<a href="' . admin_url( 'edit.php?post_type=notification&page=extensions' ) . '">' . __( 'Go to Extensions', 'notification' ) . '</a>'
 					);
 
-					$this->view->set_var( 'message', $message, true );
-					$this->view->get_view( 'extension/activation-error' );
+					$view = notification_create_view();
+					$view->set_var( 'message', $message, true );
+					$view->get_view( 'extension/activation-error' );
 
 				}
 			}

@@ -15,16 +15,6 @@ use BracketSpace\Notification\Utils\View;
 class ScreenHelp {
 
 	/**
-	 * ScreenHelp constructor
-	 *
-	 * @since 5.1.3
-	 * @param View $view View class.
-	 */
-	public function __construct( View $view ) {
-		$this->view = $view;
-	}
-
-	/**
 	 * Adds help tabs and useful links
 	 *
 	 * @action current_screen
@@ -38,15 +28,17 @@ class ScreenHelp {
 			return;
 		}
 
-		$this->view->set_var( 'tags', notification_get_global_merge_tags() );
+		$view = notification_create_view();
+
+		$view->set_var( 'tags', notification_get_global_merge_tags() );
 
 		$screen->add_help_tab( [
 			'id'      => 'notification_global_merge_tags',
 			'title'   => __( 'Global Merge Tags', 'notification' ),
-			'content' => $this->view->get_view_output( 'help/global-merge-tags' ),
+			'content' => $view->get_view_output( 'help/global-merge-tags' ),
 		] );
 
-		$screen->set_help_sidebar( $this->view->get_view_output( 'help/sidebar' ) );
+		$screen->set_help_sidebar( $view->get_view_output( 'help/sidebar' ) );
 
 	}
 

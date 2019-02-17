@@ -22,16 +22,6 @@ class Share {
 	public $page_hook = 'none';
 
 	/**
-	 * Share class constructor.
-	 *
-	 * @since 5.2.2
-	 * @param View $view View class.
-	 */
-	public function __construct( View $view ) {
-		$this->view = $view;
-	}
-
-	/**
 	 * Register Share page under plugin's menu.
 	 *
 	 * @action admin_menu 30
@@ -98,7 +88,7 @@ class Share {
 	 * @return void
 	 */
 	public function story_page() {
-		$this->view->get_view( 'story' );
+		notification_create_view()->get_view( 'story' );
 	}
 
 }

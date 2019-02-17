@@ -68,10 +68,10 @@ class Runtime extends Utils\DocHooks {
 		$this->admin_duplicator = new Admin\NotificationDuplicator();
 		$this->admin_post_type  = new Admin\PostType();
 		$this->admin_post_table = new Admin\PostTable();
-		$this->admin_extensions = new Admin\Extensions( $this->view() );
+		$this->admin_extensions = new Admin\Extensions();
 		$this->admin_scripts    = new Admin\Scripts( $this, $this->files );
-		$this->admin_screen     = new Admin\ScreenHelp( $this->view() );
-		$this->admin_share      = new Admin\Share( $this->view() );
+		$this->admin_screen     = new Admin\ScreenHelp();
+		$this->admin_share      = new Admin\Share();
 
 		$this->integration_wp = new Integration\WordPress();
 		$this->integration_cf = new Integration\CustomFields();
