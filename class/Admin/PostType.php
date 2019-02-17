@@ -10,6 +10,7 @@ namespace BracketSpace\Notification\Admin;
 use BracketSpace\Notification\Utils\View;
 use BracketSpace\Notification\Utils\Ajax;
 use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Interfaces;
 
 /**
  * PostType class
@@ -22,12 +23,10 @@ class PostType {
 	 * @since 5.0.0
 	 * @since [Next] Simplified the parameters by including separate classes elements here.
 	 *
-	 * @param Ajax         $ajax          Ajax class.
-	 * @param FormRenderer $formrenderer FormRenderer class.
+	 * @param Ajax $ajax Ajax class.
 	 */
-	public function __construct( Ajax $ajax, FormRenderer $formrenderer ) {
-		$this->ajax         = $ajax;
-		$this->formrenderer = $formrenderer;
+	public function __construct( Ajax $ajax ) {
+		$this->ajax = $ajax;
 	}
 
 	/**
@@ -220,13 +219,11 @@ class PostType {
 			$box_view = notification_create_view();
 			$carrier  = $notification_post->populate_carrier( $carrier );
 
-			$this->formrenderer->set_fields( $carrier->get_form_fields() );
-
 			$box_view->set_vars( [
 				'id'      => 'notification-carrier-' . $carrier->get_slug() . '-box',
 				'name'    => 'notification_carrier_' . $carrier->get_slug() . '_enable',
 				'title'   => $carrier->get_name(),
-				'content' => $this->formrenderer->render(),
+				'content' => $this->get_carrier_form( $carrier ),
 				'open'    => $carrier->enabled,
 			] );
 
@@ -241,6 +238,29 @@ class PostType {
 		], '[Next]', 'notification/admin/carriers' );
 
 		do_action( 'notification/admin/carriers', $notification_post );
+
+	}
+
+	/**
+	 * Gets Carrier config form
+	 *
+	 * @since  [Next]
+	 * @param  Interfaces\Sendable $carrier Carrier object.
+	 * @return string                       Form HTML.
+	 */
+	public function get_carrier_form( Interfaces\Sendable $carrier ) {
+
+		$view   = notification_create_view();
+		$fields = $carrier->get_form_fields();
+
+		// No fields available so return the default view.
+		if ( empty( $fields ) ) {
+			return $view->get_view_output( 'form/empty-form' );
+		}
+
+		// Setup the fields and return form.
+		$view->set_var( 'fields', $fields );
+		return $view->get_view_output( 'form/table' );
 
 	}
 
