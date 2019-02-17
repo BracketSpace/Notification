@@ -29,7 +29,7 @@ class Registerer {
 			$trigger = new Objects\SimpleTrigger();
 		}
 
-		register_trigger( $trigger );
+		notification_register_trigger( $trigger );
 
 		return $trigger;
 

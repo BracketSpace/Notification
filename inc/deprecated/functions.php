@@ -56,3 +56,16 @@ function notification_get_single_notification( $notification_slug ) {
 	_deprecated_function( 'notification_get_single_notification', '[Next]', 'notification_get_carrier' );
 	return notification_get_carrier( $notification_slug );
 }
+
+/**
+ * Registers trigger
+ * Uses notification/triggers filter
+ *
+ * @deprecated [Next] Changed name for consistency.
+ * @param  Interfaces\Triggerable $trigger trigger object.
+ * @return void
+ */
+function register_trigger( Interfaces\Triggerable $trigger ) {
+	_deprecated_function( 'register_trigger', '[Next]', 'notification_register_trigger' );
+	notification_register_trigger( $notification_slug );
+}

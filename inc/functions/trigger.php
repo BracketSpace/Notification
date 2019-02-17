@@ -14,7 +14,7 @@ use BracketSpace\Notification\Interfaces;
  * @param  Interfaces\Triggerable $trigger trigger object.
  * @return void
  */
-function register_trigger( Interfaces\Triggerable $trigger ) {
+function notification_register_trigger( Interfaces\Triggerable $trigger ) {
 
 	add_filter( 'notification/triggers', function( $triggers ) use ( $trigger ) {
 

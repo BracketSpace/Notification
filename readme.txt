@@ -301,7 +301,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * notification/webhook/remote_args/get -> notification/carrier/webhook/remote_args/get
 * notification/webhook/remote_args/post -> notification/carrier/webhook/remote_args/post
 
-*Classes* - Some of the classes has been renamed or removed. List of all changes:
+*Classes* - Some of the classes or namespaces has been renamed or removed. List of all changes:
 
 * BracketSpace\Notification\Admin\MergeTags - removed
 * BracketSpace\Notification\Admin\Notifications - removed
@@ -323,7 +323,4 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * register_notification -> notification_register_carrier
 * notification_get_notifications -> notification_get_carriers
 * notification_get_single_notification -> notification_get_carrier
-
-*Methods* - Some of the class methods has been renamed for better consistency across the plugin. List of all changes:
-
-*
+* register_trigger -> notification_register_trigger
