@@ -35,7 +35,7 @@ abstract class Store implements Interfaces\Storable {
 	 * @return string
 	 */
 	public static function get_storage_key() {
-		return 'notification/store/' . static::storage_key;
+		return 'notification/store/' . static::STORAGE_KEY;
 	}
 
 	/**

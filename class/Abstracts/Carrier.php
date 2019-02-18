@@ -171,6 +171,14 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 
 		$recipients_field = false;
 
+		// Save recipients field for additional parsing.
+		foreach ( $this->get_form_fields() as $field ) {
+			if ( $field instanceof RecipientsField ) {
+				$recipients_field = $field;
+				continue;
+			}
+		}
+
 		$this->data = $this->get_data();
 
 		// If there's set recipients field, parse them into a nice array.
