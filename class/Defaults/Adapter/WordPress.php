@@ -110,18 +110,25 @@ class WordPress extends Abstracts\Adapter {
 	 */
 	public function save() {
 
+		// Update version as WordPress automatically does this while updating the post.
+		$version_backup = $this->get_version();
+		$this->set_version( time() );
+
 		$data = $this->get_notification()->to_array();
+		$json = notification_swap_adapter( 'JSON', $this )->save( JSON_UNESCAPED_UNICODE );
 
 		// WordPress post related: Title, Hash, Status, Version.
 		$post_id = wp_insert_post( [
-			'ID'          => $this->get_id(),
-			'post_type'   => 'notification',
-			'post_title'  => $data['title'],
-			'post_name'   => $data['hash'],
-			'post_status' => $data['enabled'] ? 'publish' : 'draft',
+			'ID'           => $this->get_id(),
+			'post_content' => $json, // cache.
+			'post_type'    => 'notification',
+			'post_title'   => $data['title'],
+			'post_name'    => $data['hash'],
+			'post_status'  => $data['enabled'] ? 'publish' : 'draft',
 		], true );
 
 		if ( is_wp_error( $post_id ) ) {
+			$this->set_version( $version_backup );
 			return $post_id;
 		}
 
@@ -129,8 +136,9 @@ class WordPress extends Abstracts\Adapter {
 			$this->set_post( get_post( $post_id ) );
 		}
 
-		// Update version as WordPress automatically does this while updating the post.
-		$this->set_version( time() );
+		/**
+		 * All the below code is for backward compatibilty, we don't need meta anymore since [Next].
+		 */
 
 		// Trigger.
 		update_post_meta( $this->get_id(), self::$metakey_trigger, $data['trigger'] );
