@@ -32,10 +32,7 @@ class TestTrigger extends \WP_UnitTestCase {
 	 * @since [Next] Changed to Registerer class and used new naming convention.
 	 */
 	public function test_trigger_action() {
-		$trigger = Registerer::register_trigger();
-		$carrier = Registerer::register_carrier();
-
-		$notification = NotificationPost::insert( $trigger, $carrier );
+		$notification = Registerer::register_default_notification();
 
 		do_action( 'notification/test' );
 
@@ -53,15 +50,12 @@ class TestTrigger extends \WP_UnitTestCase {
 	 * @since [Next] Changed to Registerer class and used new naming convention.
 	 */
 	public function test_trigger_postponed_action() {
-		$trigger = Registerer::register_trigger( true );
-		$carrier = Registerer::register_carrier();
-
-		$notification = NotificationPost::insert( $trigger, $carrier );
+		$notification = Registerer::register_default_notification( true );
 
 		do_action( 'notification/test' );
 
-		$this->assertTrue( $trigger->is_stopped() );
-		$this->assertTrue( $trigger->is_postponed() );
+		$this->assertTrue( $notification->get_trigger()->is_stopped() );
+		$this->assertTrue( $notification->get_trigger()->is_postponed() );
 		$this->assertEquals( 0, did_action( 'notification/carrier/pre-send' ) );
 
 		do_action( 'notification/test/postponed' );

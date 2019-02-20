@@ -116,7 +116,7 @@ class TestNotification extends \WP_UnitTestCase {
 		$this->expectException( \Exception::class );
 
 		$notification = new Notification( [
-			'trigger' => '',
+			'trigger' => 'no_trigger',
 		] );
 
 	}
