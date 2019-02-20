@@ -66,7 +66,7 @@ class Notification extends Abstracts\Store {
 	 */
 	public function with_trigger( $trigger_slug ) {
 		return array_filter( $this->get_items(), function( $notification ) use ( $trigger_slug ) {
-			return $notification->get_trigger()->get_slug() === $trigger_slug;
+			return ! empty( $notification->get_trigger() ) && $notification->get_trigger()->get_slug() === $trigger_slug;
 		} );
 	}
 
