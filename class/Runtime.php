@@ -62,6 +62,7 @@ class Runtime extends Utils\DocHooks {
 		$this->core_whitelabel = new Core\Whitelabel();
 		$this->core_debugging  = new Core\Debugging();
 		$this->core_settings   = new Core\Settings();
+		$this->core_upgrade    = new Core\Upgrade();
 
 		$this->admin_impexp     = new Admin\ImportExport();
 		$this->admin_settings   = new Admin\Settings();
@@ -93,6 +94,7 @@ class Runtime extends Utils\DocHooks {
 		$this->add_hooks( $this->core_whitelabel );
 		$this->add_hooks( $this->core_debugging );
 		$this->add_hooks( $this->core_settings );
+		$this->add_hooks( $this->core_upgrade );
 
 		$this->add_hooks( $this->admin_impexp );
 		$this->add_hooks( $this->admin_settings );

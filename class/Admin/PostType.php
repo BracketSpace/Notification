@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Utils\Cache\ObjectCache;
 
 /**
  * PostType class
@@ -19,6 +20,7 @@ class PostType {
 	 * - Post Type.
 	 * - Save.
 	 * - AJAX.
+	 * - Notifications.
 	 * --------------------------------------------------
 	 */
 
@@ -257,7 +259,7 @@ class PostType {
 
 	/**
 	 * --------------------------------------------------
-	 * Ajax.
+	 * AJAX.
 	 * --------------------------------------------------
 	 */
 
@@ -288,6 +290,50 @@ class PostType {
 		}
 
 		$ajax->response( true, $error );
+
+	}
+
+	/**
+	 * --------------------------------------------------
+	 * Notifications.
+	 * --------------------------------------------------
+	 */
+
+	/**
+	 * Sets up all the Notification from database
+	 * It's running on every single page load.
+	 * Uses direct database call for performance.
+	 *
+	 * @action init 2000
+	 *
+	 * @return void
+	 */
+	public function setup_notifications() {
+
+		global $wpdb;
+
+		$cache         = new ObjectCache( 'notifications', 'notification' );
+		$notifications = $cache->get();
+
+		if ( empty( $notifications ) ) {
+
+			$sql = "SELECT p.post_content
+				FROM {$wpdb->posts} p
+				WHERE p.post_type = 'notification' AND p.post_status = 'publish'
+				ORDER BY p.menu_order ASC, p.post_modified DESC";
+
+			$notifications = $wpdb->get_col( $sql ); // phpcs:ignore
+
+			$cache->set( $notifications );
+
+		}
+
+		foreach ( $notifications as $notification_json ) {
+			if ( ! empty( $notification_json ) ) {
+				$adapter = notification_adapt_from( 'JSON', $notification_json );
+				notification_add( $adapter->get_notification() );
+			}
+		}
 
 	}
 
