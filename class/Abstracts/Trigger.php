@@ -206,6 +206,16 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
+	 * Detaches all the Carriers
+	 *
+	 * @return $this
+	 */
+	public function detach_all() {
+		$this->carrier_storage = [];
+		return $this;
+	}
+
+	/**
 	 * Rolls out all the Carriers
 	 *
 	 * @return void
@@ -407,7 +417,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	public function _action() {
 
-		$this->set_carriers();
+		$this->detach_all()->set_carriers();
 
 		// If no Carriers use this Trigger, bail.
 		if ( ! $this->has_carriers() ) {

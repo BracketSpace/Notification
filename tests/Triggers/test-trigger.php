@@ -78,7 +78,10 @@ class TestTrigger extends \WP_UnitTestCase {
 		do_action( 'notification/test' );
 		$this->assertEquals( 0, did_action( 'notification/trigger/action/did' ) );
 
-		$trigger->attach( Registerer::register_carrier() );
+		$carrier          = Registerer::register_carrier();
+		$carrier->enabled = true;
+		Registerer::register_notification( $trigger, [ $carrier ] );
+
 		do_action( 'notification/test' );
 		$this->assertEquals( 1, did_action( 'notification/trigger/action/did' ) );
 	}
