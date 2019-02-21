@@ -67,4 +67,20 @@ class TestTrigger extends \WP_UnitTestCase {
 		}
 	}
 
+	/**
+	 * Tests trigger action if no Carriers
+	 *
+	 * @since [Next]
+	 */
+	public function test_trigger_no_carriers() {
+		$trigger = Registerer::register_trigger();
+
+		do_action( 'notification/test' );
+		$this->assertEquals( 0, did_action( 'notification/trigger/action/did' ) );
+
+		$trigger->attach( Registerer::register_carrier() );
+		do_action( 'notification/test' );
+		$this->assertEquals( 1, did_action( 'notification/trigger/action/did' ) );
+	}
+
 }

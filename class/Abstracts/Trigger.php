@@ -185,6 +185,15 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
+	 * Check if Trigger has attached Carriers
+	 *
+	 * @return array
+	 */
+	public function has_carriers() {
+		return ! empty( $this->get_carriers() );
+	}
+
+	/**
 	 * Detaches the Carrier
 	 *
 	 * @param  Sendable $carrier Carrier class.
@@ -398,6 +407,13 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	public function _action() {
 
+		$this->set_carriers();
+
+		// If no Carriers use this Trigger, bail.
+		if ( ! $this->has_carriers() ) {
+			return;
+		}
+
 		// reset the state.
 		$this->stopped = false;
 
@@ -423,7 +439,6 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			return;
 		}
 
-		$this->set_carriers();
 		$this->resolve_fields();
 		$this->roll_out();
 		$this->clean_merge_tags();
