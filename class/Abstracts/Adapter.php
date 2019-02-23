@@ -74,4 +74,14 @@ abstract class Adapter implements Interfaces\Adaptable {
 		return $this->get_notification()->is_enabled();
 	}
 
+	/**
+	 * Registers Notification
+	 *
+	 * @since  [Next]
+	 * @return mixed
+	 */
+	public function register_notification() {
+		return notification_add( $this->get_notification() );
+	}
+
 }

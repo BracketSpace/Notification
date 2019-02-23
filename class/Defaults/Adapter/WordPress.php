@@ -9,6 +9,7 @@ namespace BracketSpace\Notification\Defaults\Adapter;
 
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Core\Notification;
 
 /**
  * WordPress Adapter class
@@ -116,6 +117,11 @@ class WordPress extends Abstracts\Adapter {
 
 		$data = $this->get_notification()->to_array();
 		$json = notification_swap_adapter( 'JSON', $this )->save( JSON_UNESCAPED_UNICODE );
+
+		// Update the hash.
+		if ( ! preg_match( '/notification_[a-z0-9]{13}/', $data['hash'] ) ) {
+			$data['hash'] = Notification::create_hash();
+		}
 
 		// WordPress post related: Title, Hash, Status, Version.
 		$post_id = wp_insert_post( [

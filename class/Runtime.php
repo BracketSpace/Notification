@@ -63,6 +63,7 @@ class Runtime extends Utils\DocHooks {
 		$this->core_debugging  = new Core\Debugging();
 		$this->core_settings   = new Core\Settings();
 		$this->core_upgrade    = new Core\Upgrade();
+		$this->core_sync       = new Core\Sync();
 
 		$this->admin_impexp     = new Admin\ImportExport();
 		$this->admin_settings   = new Admin\Settings();
@@ -73,6 +74,7 @@ class Runtime extends Utils\DocHooks {
 		$this->admin_scripts    = new Admin\Scripts( $this, $this->files );
 		$this->admin_screen     = new Admin\Screen();
 		$this->admin_share      = new Admin\Share();
+		$this->admin_sync       = new Admin\Sync();
 
 		$this->integration_wp = new Integration\WordPress();
 		$this->integration_cf = new Integration\CustomFields();
@@ -95,6 +97,7 @@ class Runtime extends Utils\DocHooks {
 		$this->add_hooks( $this->core_debugging );
 		$this->add_hooks( $this->core_settings );
 		$this->add_hooks( $this->core_upgrade );
+		$this->add_hooks( $this->core_sync );
 
 		$this->add_hooks( $this->admin_impexp );
 		$this->add_hooks( $this->admin_settings );
@@ -105,6 +108,7 @@ class Runtime extends Utils\DocHooks {
 		$this->add_hooks( $this->admin_scripts );
 		$this->add_hooks( $this->admin_screen );
 		$this->add_hooks( $this->admin_share );
+		$this->add_hooks( $this->admin_sync );
 
 		$this->add_hooks( $this->integration_wp );
 		$this->add_hooks( $this->integration_cf );
@@ -112,6 +116,7 @@ class Runtime extends Utils\DocHooks {
 		notification_register_settings( array( $this->admin_settings, 'general_settings' ) );
 		notification_register_settings( array( $this->admin_settings, 'triggers_settings' ), 20 );
 		notification_register_settings( array( $this->admin_settings, 'notifications_settings' ), 30 );
+		notification_register_settings( array( $this->admin_sync, 'settings' ), 35 );
 		notification_register_settings( array( $this->admin_impexp, 'settings' ), 40 );
 		notification_register_settings( array( $this->core_debugging, 'debugging_settings' ), 50 );
 
