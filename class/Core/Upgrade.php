@@ -63,17 +63,28 @@ class Upgrade {
 
 	/**
 	 * Upgrades data to v1.
-	 * - Saves the Notification cache in post_content field.
+	 * - 1. Saves the Notification cache in post_content field.
+	 * - 2. Deletes trashed Notifications.
 	 *
 	 * @since  [Next]
 	 * @return void
 	 */
 	public function upgrade_to_v1() {
 
+		// 1. Save the Notification cache in post_content field.
 		$notifications = notification_get_posts( null, true );
-
 		foreach ( $notifications as $notification ) {
 			$notification->save();
+		}
+
+		// 2. Delete trashed Notifications.
+		$trashed_notifications = get_posts( [
+			'post_type'      => 'notification',
+			'posts_per_page' => -1,
+			'post_status'    => 'trash',
+		] );
+		foreach ( $trashed_notifications as $trashed_notification ) {
+			wp_delete_post( $trashed_notification->ID, true );
 		}
 
 	}
