@@ -32,17 +32,24 @@ class Runtime extends Utils\DocHooks {
 	 * Loads needed files
 	 *
 	 * @since  5.0.0
+	 * @since  [Next] Added boot action.
 	 * @return void
 	 */
 	public function boot() {
 
 		$this->singletons();
-
-		require_once $this->files->file_path( 'inc/functions.php' );
-		require_once $this->files->file_path( 'inc/defaults.php' );
-		require_once $this->files->file_path( 'inc/deprecated.php' );
-
+		$this->load_functions();
+		$this->load_deprecated();
 		$this->actions();
+
+		do_action( 'notification/boot/initial' );
+
+		/**
+		 * Subsequent boot actions:
+		 * - plugins_loaded 10 - Most of the defaults loaded.
+		 * - init 1000 - Rest of the defaults loaded.
+		 * - init 1010 - Proxy action for boot, `notification/boot` action called
+		 */
 
 	}
 
@@ -89,6 +96,8 @@ class Runtime extends Utils\DocHooks {
 	 */
 	public function actions() {
 
+		$this->add_hooks();
+
 		$this->add_hooks( $this->files );
 		$this->add_hooks( $this->internationalization );
 
@@ -113,12 +122,12 @@ class Runtime extends Utils\DocHooks {
 		$this->add_hooks( $this->integration_wp );
 		$this->add_hooks( $this->integration_cf );
 
-		notification_register_settings( array( $this->admin_settings, 'general_settings' ) );
-		notification_register_settings( array( $this->admin_settings, 'triggers_settings' ), 20 );
-		notification_register_settings( array( $this->admin_settings, 'notifications_settings' ), 30 );
-		notification_register_settings( array( $this->admin_sync, 'settings' ), 35 );
-		notification_register_settings( array( $this->admin_impexp, 'settings' ), 40 );
-		notification_register_settings( array( $this->core_debugging, 'debugging_settings' ), 50 );
+		notification_register_settings( [ $this->admin_settings, 'general_settings' ] );
+		notification_register_settings( [ $this->admin_settings, 'triggers_settings' ], 20 );
+		notification_register_settings( [ $this->admin_settings, 'notifications_settings' ], 30 );
+		notification_register_settings( [ $this->admin_sync, 'settings' ], 40 );
+		notification_register_settings( [ $this->admin_impexp, 'settings' ], 50 );
+		notification_register_settings( [ $this->core_debugging, 'debugging_settings' ], 60 );
 
 	}
 
@@ -130,6 +139,100 @@ class Runtime extends Utils\DocHooks {
 	 */
 	public function view() {
 		return new Utils\View( $this->files );
+	}
+
+	/**
+	 * Loads functions
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function load_functions() {
+
+		require_once $this->files->file_path( 'inc/functions/general.php' );
+		require_once $this->files->file_path( 'inc/functions/settings.php' );
+		require_once $this->files->file_path( 'inc/functions/carrier.php' );
+		require_once $this->files->file_path( 'inc/functions/trigger.php' );
+		require_once $this->files->file_path( 'inc/functions/recipient.php' );
+		require_once $this->files->file_path( 'inc/functions/notification.php' );
+		require_once $this->files->file_path( 'inc/functions/notification-post.php' );
+		require_once $this->files->file_path( 'inc/functions/whitelabel.php' );
+		require_once $this->files->file_path( 'inc/functions/import-export.php' );
+		require_once $this->files->file_path( 'inc/functions/adapter.php' );
+
+	}
+
+	/**
+	 * Loads deprecated functions and classes
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function load_deprecated() {
+
+		// Functions.
+		require_once $this->files->file_path( 'inc/deprecated/functions.php' );
+
+		// Classes.
+		require_once $this->files->file_path( 'inc/deprecated/class/Abstracts/Notification.php' );
+		require_once $this->files->file_path( 'inc/deprecated/class/Defaults/Notification/Email.php' );
+		require_once $this->files->file_path( 'inc/deprecated/class/Defaults/Notification/Webhook.php' );
+
+	}
+
+	/**
+	 * Loads early defaults
+	 *
+	 * @action plugins_loaded
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function load_early_defaults() {
+		array_map( [ $this, 'load_default' ], [
+			'global-merge-tags',
+			'recipients',
+			'carriers',
+		] );
+	}
+
+	/**
+	 * Loads late defaults
+	 *
+	 * @action init 1000
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function load_late_defaults() {
+		array_map( [ $this, 'load_default' ], [
+			'triggers',
+		] );
+	}
+
+	/**
+	 * Loads default
+	 *
+	 * @since  [Next]
+	 * @param  string $default Default file slug.
+	 * @return void
+	 */
+	public function load_default( $default ) {
+		if ( apply_filters( 'notification/load/default/' . $default, true ) ) {
+			$path = $this->files->file_path( 'inc/defaults/' . $default . '.php' );
+			if ( file_exists( $path ) ) {
+				require_once $path;
+			}
+		}
+	}
+
+	/**
+	 * Proxies the full boot action
+	 *
+	 * @action init 1010
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function fully_booted() {
+		do_action( 'notification/boot' );
 	}
 
 }
