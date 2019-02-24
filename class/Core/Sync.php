@@ -58,8 +58,7 @@ class Sync {
 	/**
 	 * Loads local JSON files
 	 *
-	 * @todo #jr4ca.
-	 * @action init 1001
+	 * @action notification/boot
 	 *
 	 * @since  [Next]
 	 * @return void
