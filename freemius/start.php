@@ -15,7 +15,7 @@
 	 *
 	 * @var string
 	 */
-	$this_sdk_version = '2.1.3';
+	$this_sdk_version = '2.2.4';
 
 	#region SDK Selection Logic --------------------------------------------------------------------
 
@@ -44,9 +44,16 @@
 	 * @author Vova Feldman (@svovaf)
 	 * @since  1.2.2.6
 	 */
-	$file_path                = fs_normalize_path( __FILE__ );
-	$fs_root_path             = dirname( $file_path );
-	$themes_directory         = get_theme_root();
+	$file_path    = fs_normalize_path( __FILE__ );
+	$fs_root_path = dirname( $file_path );
+    /**
+     * Get the themes directory where the active theme is located (not passing the stylesheet will make WordPress
+     * assume that the themes directory is inside `wp-content`.
+     *
+     * @author Leo Fajardo (@leorw)
+     * @since 2.2.3
+     */
+	$themes_directory         = get_theme_root( get_stylesheet() );
 	$themes_directory_name    = basename( $themes_directory );
 	$theme_candidate_basename = basename( dirname( $fs_root_path ) ) . '/' . basename( $fs_root_path );
 
@@ -99,8 +106,8 @@
 			 * @since  1.2.1.7
 			 */
 			$has_changes = false;
-			foreach ( $fs_active_plugins->plugins as $sdk_path => &$data ) {
-				if ( ! file_exists( WP_PLUGIN_DIR . '/' . $sdk_path ) ) {
+			foreach ( $fs_active_plugins->plugins as $sdk_path => $data ) {
+                if ( ! file_exists( ( isset( $data->type ) && 'theme' === $data->type ? $themes_directory : WP_PLUGIN_DIR ) . '/' . $sdk_path ) ) {
 					unset( $fs_active_plugins->plugins[ $sdk_path ] );
 					$has_changes = true;
 				}
@@ -118,6 +125,10 @@
 
 	if ( ! function_exists( 'fs_find_direct_caller_plugin_file' ) ) {
 		require_once dirname( __FILE__ ) . '/includes/supplements/fs-essential-functions-1.1.7.1.php';
+	}
+
+	if ( ! function_exists( 'fs_get_plugins' ) ) {
+		require_once dirname( __FILE__ ) . '/includes/supplements/fs-essential-functions-2.2.1.php';
 	}
 
 	// Update current SDK info based on the SDK path.
@@ -205,7 +216,7 @@
 			$sdk_starter_path = fs_normalize_path( WP_PLUGIN_DIR . '/' . $this_sdk_relative_path . '/start.php' );
 		} else {
 			$sdk_starter_path = fs_normalize_path(
-				get_theme_root()
+                $themes_directory
 				. '/'
 				. str_replace( "../{$themes_directory_name}/", '', $this_sdk_relative_path )
 				. '/start.php' );
@@ -267,7 +278,7 @@
 
 		$plugins_or_theme_dir_path = ( ! isset( $newest_sdk->type ) || 'theme' !== $newest_sdk->type ) ?
 			WP_PLUGIN_DIR :
-			get_theme_root();
+            $themes_directory;
 
 		$newest_sdk_starter = fs_normalize_path(
 			$plugins_or_theme_dir_path
@@ -375,7 +386,7 @@
 		}
 
 		$plugins_or_theme_dir_path = fs_normalize_path( trailingslashit( $is_theme ?
-			get_theme_root() :
+            $themes_directory :
 			WP_PLUGIN_DIR ) );
 
 		if ( 0 === strpos( $file_path, $plugins_or_theme_dir_path ) ) {
