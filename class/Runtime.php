@@ -73,8 +73,9 @@ class Runtime extends Utils\DocHooks {
 		$this->admin_screen     = new Admin\Screen();
 		$this->admin_share      = new Admin\Share();
 
-		$this->integration_wp = new Integration\WordPress();
-		$this->integration_cf = new Integration\CustomFields();
+		$this->integration_wp        = new Integration\WordPress();
+		$this->integration_wp_emails = new Integration\WordPressEmails();
+		$this->integration_cf        = new Integration\CustomFields();
 
 	}
 
@@ -105,11 +106,13 @@ class Runtime extends Utils\DocHooks {
 		$this->add_hooks( $this->admin_share );
 
 		$this->add_hooks( $this->integration_wp );
+		$this->add_hooks( $this->integration_wp_emails );
 		$this->add_hooks( $this->integration_cf );
 
 		notification_register_settings( array( $this->admin_settings, 'general_settings' ) );
 		notification_register_settings( array( $this->admin_settings, 'triggers_settings' ), 20 );
 		notification_register_settings( array( $this->admin_settings, 'notifications_settings' ), 30 );
+		notification_register_settings( array( $this->admin_settings, 'integration_settings' ) );
 		notification_register_settings( array( $this->admin_impexp, 'settings' ), 40 );
 		notification_register_settings( array( $this->core_debugging, 'debugging_settings' ), 50 );
 
