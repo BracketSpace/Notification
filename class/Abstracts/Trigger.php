@@ -289,7 +289,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Adds Trigger's merge tag
+	 * Adds Trigger's Merge Tag
 	 *
 	 * @param Interfaces\Taggable $merge_tag merge tag object.
 	 * @return $this
@@ -298,6 +298,25 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		$merge_tag->set_trigger( $this );
 		array_push( $this->merge_tags, $merge_tag );
 		return $this;
+	}
+
+	/**
+	 * Quickly adds new Merge Tag
+	 *
+	 * @since [Next]
+	 * @param string $property_name Trigger property name.
+	 * @param string $label         Nice, translatable Merge Tag label.
+	 * @param string $group         Optional, translatable group name.
+	 */
+	public function add_quick_merge_tag( $property_name, $label, $group = null ) {
+		return $this->add_merge_tag( new \BracketSpace\Notification\Defaults\MergeTag\StringTag( [
+			'slug'     => $property_name,
+			'name'     => $label,
+			'group'    => $group,
+			'resolver' => function( $trigger ) use ( $property_name ) {
+				return $trigger->{ $property_name };
+			},
+		] ) );
 	}
 
 	/**
