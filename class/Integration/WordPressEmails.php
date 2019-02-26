@@ -13,38 +13,6 @@ namespace BracketSpace\Notification\Integration;
 class WordPressEmails {
 
 	/**
-	 * Overwrite pluggable functions if options selected
-	 *
-	 * @action init
-	 *
-	 * @since 5.2.2
-	 * @return void
-	 */
-	public function init_global_functions() {
-
-		if ( ! function_exists( 'wp_notify_moderator' ) && notification_get_setting( 'integration/emails/comment_await' ) ) {
-			function wp_notify_moderator() {}
-		}
-
-		if ( ! function_exists( 'wp_notify_postauthor' ) && notification_get_setting( 'integration/emails/comment_published' ) ) {
-			function wp_notify_postauthor() {}
-		}
-
-		function wp_password_change_notification() { wp_die('test'); }
-
-		if ( ! function_exists( 'wp_new_user_notification' ) && notification_get_setting( 'integration/emails/new_user' ) ) {
-			function wp_new_user_notification() {}
-		}
-
-		if ( ! function_exists( 'wp_new_blog_notification' ) && notification_get_setting( 'integration/emails/new_blog' ) ) {
-			function wp_new_blog_notification() {}
-		}
-
-	}
-
-
-
-	/**
 	 * Disable default automatic core update notification email
 	 *
 	 * @filter auto_core_update_send_email
