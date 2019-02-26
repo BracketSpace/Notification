@@ -32,10 +32,7 @@ class TestTrigger extends \WP_UnitTestCase {
 	 * @since [Next] Changed to Registerer class and used new naming convention.
 	 */
 	public function test_trigger_action() {
-		$trigger = Registerer::register_trigger();
-		$carrier = Registerer::register_carrier();
-
-		$notification = NotificationPost::insert( $trigger, $carrier );
+		$notification = Registerer::register_default_notification();
 
 		do_action( 'notification/test' );
 
@@ -53,15 +50,12 @@ class TestTrigger extends \WP_UnitTestCase {
 	 * @since [Next] Changed to Registerer class and used new naming convention.
 	 */
 	public function test_trigger_postponed_action() {
-		$trigger = Registerer::register_trigger( true );
-		$carrier = Registerer::register_carrier();
-
-		$notification = NotificationPost::insert( $trigger, $carrier );
+		$notification = Registerer::register_default_notification( true );
 
 		do_action( 'notification/test' );
 
-		$this->assertTrue( $trigger->is_stopped() );
-		$this->assertTrue( $trigger->is_postponed() );
+		$this->assertTrue( $notification->get_trigger()->is_stopped() );
+		$this->assertTrue( $notification->get_trigger()->is_postponed() );
 		$this->assertEquals( 0, did_action( 'notification/carrier/pre-send' ) );
 
 		do_action( 'notification/test/postponed' );
@@ -71,6 +65,25 @@ class TestTrigger extends \WP_UnitTestCase {
 		foreach ( $notification->get_trigger()->get_carriers() as $attached_carrier ) {
 			$this->assertTrue( $attached_carrier->is_sent );
 		}
+	}
+
+	/**
+	 * Tests trigger action if no Carriers
+	 *
+	 * @since [Next]
+	 */
+	public function test_trigger_no_carriers() {
+		$trigger = Registerer::register_trigger();
+
+		do_action( 'notification/test' );
+		$this->assertEquals( 0, did_action( 'notification/trigger/action/did' ) );
+
+		$carrier          = Registerer::register_carrier();
+		$carrier->enabled = true;
+		Registerer::register_notification( $trigger, [ $carrier ] );
+
+		do_action( 'notification/test' );
+		$this->assertEquals( 1, did_action( 'notification/trigger/action/did' ) );
 	}
 
 }

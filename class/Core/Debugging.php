@@ -121,16 +121,16 @@ class Debugging {
 	}
 
 	/**
-	 * Catches the notification into log.
+	 * Catches the Carrier into log.
 	 *
 	 * @action notification/carrier/pre-send 1000000
 	 *
 	 * @since  5.3.0
-	 * @param Notification $notification Notification object.
-	 * @param Trigger      $trigger      Trigger object.
+	 * @param Carrier $carrier Carrier object.
+	 * @param Trigger $trigger Trigger object.
 	 * @return void
 	 */
-	public function catch_notification( $notification, $trigger ) {
+	public function catch_notification( $carrier, $trigger ) {
 
 		if ( ! notification_get_setting( 'debugging/settings/debug_log' ) ) {
 			return;
@@ -147,11 +147,11 @@ class Debugging {
 		array_unshift( $logs, [
 			'time'         => time(),
 			'notification' => [
-				'slug'       => $notification->get_slug(),
-				'name'       => $notification->get_name(),
-				'post_id'    => $notification->post_id,
-				'post_title' => get_the_title( $notification->post_id ),
-				'data'       => $notification->data,
+				'slug'       => $carrier->get_slug(),
+				'name'       => $carrier->get_name(),
+				'post_id'    => 0,
+				'post_title' => 'None',
+				'data'       => $carrier->data,
 			],
 			'trigger'      => [
 				'slug' => $trigger->get_slug(),

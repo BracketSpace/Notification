@@ -20,9 +20,10 @@ require_once 'vendor/autoload.php';
  * Requirements check
  */
 $requirements = new BracketSpace\Notification\Utils\Requirements( __( 'Notification', 'notification' ), [
-	'php'      => '5.6',
-	'wp'       => '4.9',
-	'dochooks' => true,
+	'php'                => '5.6',
+	'wp'                 => '4.9',
+	'dochooks'           => true,
+	'function_collision' => [ 'notification' ],
 ] );
 
 /**
@@ -33,7 +34,7 @@ if ( method_exists( $requirements, 'add_check' ) ) {
 }
 
 if ( ! $requirements->satisfied() ) {
-	add_action( 'admin_notices', array( $requirements, 'notice' ) );
+	add_action( 'admin_notices', [ $requirements, 'notice' ] );
 	return;
 }
 
@@ -77,7 +78,7 @@ function notification_freemius() {
 		// Include Freemius SDK.
 		require_once dirname( __FILE__ ) . '/freemius/start.php';
 
-		$notification_freemius = fs_dynamic_init( array(
+		$notification_freemius = fs_dynamic_init( [
 			'id'             => '1823',
 			'slug'           => 'notification',
 			'type'           => 'plugin',
@@ -85,13 +86,13 @@ function notification_freemius() {
 			'is_premium'     => false,
 			'has_addons'     => false,
 			'has_paid_plans' => false,
-			'menu'           => array(
+			'menu'           => [
 				'slug'    => 'edit.php?post_type=notification',
 				'account' => false,
 				'contact' => false,
 				'support' => false,
-			),
-		) );
+			],
+		] );
 	}
 
 	return $notification_freemius;

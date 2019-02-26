@@ -58,11 +58,9 @@ if ( notification_get_setting( 'triggers/user/enable' ) ) {
 
 // Media triggers.
 if ( notification_get_setting( 'triggers/media/enable' ) ) {
-
 	notification_register_trigger( new Trigger\Media\MediaAdded() );
 	notification_register_trigger( new Trigger\Media\MediaUpdated() );
 	notification_register_trigger( new Trigger\Media\MediaTrashed() );
-
 }
 
 // Comment triggers.

@@ -29,29 +29,7 @@ class JSON extends Abstracts\Adapter {
 			throw new \Exception( 'Read method of JSON adapter expects valid JSON string' );
 		}
 
-		// Trigger translation.
-		if ( isset( $data['trigger'] ) ) {
-			$data['trigger'] = notification_get_trigger( $data['trigger'] );
-		}
-
-		// Carriers translation.
-		if ( isset( $data['carriers'] ) ) {
-			$carriers = [];
-
-			foreach ( $data['carriers'] as $carrier_slug => $carrier_data ) {
-				$carrier = clone notification_get_carrier( $carrier_slug );
-
-				if ( ! empty( $carrier ) ) {
-					$carrier->set_data( $carrier_data );
-					$carrier->enabled          = true;
-					$carriers[ $carrier_slug ] = $carrier;
-				}
-			}
-
-			$data['carriers'] = $carriers;
-		}
-
-		$this->setup_notification( $data );
+		$this->setup_notification( notification_convert_data( $data ) );
 
 		return $this;
 

@@ -76,6 +76,8 @@ class Scripts {
 				'use_selected_image'  => __( 'Use selected image', 'notification' ),
 				'valid_json_only'     => __( 'Please upload only valid JSON files', 'notification' ),
 				'importing_data'      => __( 'Importing data...', 'notification' ),
+				'synchronizing'       => __( 'Synchronizing...', 'notification' ),
+				'synchronized'        => __( 'Synchronized', 'notification' ),
 			],
 		] );
 

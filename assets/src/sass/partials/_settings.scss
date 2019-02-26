@@ -111,6 +111,21 @@
 					margin-top: 10px;
 				}
 
+				.message-setting-table {
+					border-collapse: collapse;
+					width: 100%;
+
+					thead td {
+						font-weight: bold;
+						background: #f9f9f9;
+					}
+
+					td {
+						border: 1px solid #ccc;
+					}
+
+				}
+
 			}
 
 			&.group-log {

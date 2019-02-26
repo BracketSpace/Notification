@@ -10,6 +10,7 @@ namespace BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Interfaces\Sendable;
 use BracketSpace\Notification\Admin\FieldsResolver;
+use BracketSpace\Notification\Defaults\Store\Notification as NotificationStore;
 
 /**
  * Trigger abstract class
@@ -184,6 +185,15 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
+	 * Check if Trigger has attached Carriers
+	 *
+	 * @return array
+	 */
+	public function has_carriers() {
+		return ! empty( $this->get_carriers() );
+	}
+
+	/**
 	 * Detaches the Carrier
 	 *
 	 * @param  Sendable $carrier Carrier class.
@@ -193,6 +203,16 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		if ( isset( $this->carrier_storage[ $carrier->hash() ] ) ) {
 			unset( $this->carrier_storage[ $carrier->hash() ] );
 		}
+	}
+
+	/**
+	 * Detaches all the Carriers
+	 *
+	 * @return $this
+	 */
+	public function detach_all() {
+		$this->carrier_storage = [];
+		return $this;
 	}
 
 	/**
@@ -354,25 +374,16 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Gets CPT Notification from databse
-	 * Gets their enabled Carriers
-	 * Populates the Carrier form data
-	 * Attaches the Carrier to trigger
+	 * Attaches the Carriers to Trigger
 	 *
 	 * @return void
 	 */
 	public function set_carriers() {
 
-		// Get all notification posts bound with this trigger.
-		$adapters = notification_get_posts( $this->get_slug() );
+		$store = new NotificationStore();
 
-		// Attach notifications for each post.
-		foreach ( $adapters as $adapter ) {
-
-			$carriers = $adapter->get_carriers();
-
-			// Attach every enabled Carriers.
-			foreach ( $carriers as $carrier ) {
+		foreach ( $store->with_trigger( $this->get_slug() ) as $notification ) {
+			foreach ( $notification->get_carriers() as $carrier ) {
 				if ( $carrier->enabled ) {
 					$this->attach( $carrier );
 				}
@@ -406,6 +417,13 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	public function _action() {
 
+		$this->detach_all()->set_carriers();
+
+		// If no Carriers use this Trigger, bail.
+		if ( ! $this->has_carriers() ) {
+			return;
+		}
+
 		// reset the state.
 		$this->stopped = false;
 
@@ -431,7 +449,6 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			return;
 		}
 
-		$this->set_carriers();
 		$this->resolve_fields();
 		$this->roll_out();
 		$this->clean_merge_tags();

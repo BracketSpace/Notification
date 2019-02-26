@@ -48,6 +48,8 @@ class TestMain extends \WP_UnitTestCase {
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Whitelabel', $this->notification->core_whitelabel );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Debugging', $this->notification->core_debugging );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Settings', $this->notification->core_settings );
+		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Upgrade', $this->notification->core_upgrade );
+		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Sync', $this->notification->core_sync );
 
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\ImportExport', $this->notification->admin_impexp );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Settings', $this->notification->admin_settings );
@@ -58,6 +60,7 @@ class TestMain extends \WP_UnitTestCase {
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Scripts', $this->notification->admin_scripts );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Screen', $this->notification->admin_screen );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Share', $this->notification->admin_share );
+		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Sync', $this->notification->admin_sync );
 
 		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\WordPress', $this->notification->integration_wp );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\CustomFields', $this->notification->integration_cf );

@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Utils\Cache\ObjectCache;
 
 /**
  * PostType class
@@ -17,8 +18,10 @@ class PostType {
 	/**
 	 * TABLE OF CONTENTS: -------------------------------
 	 * - Post Type.
+	 * - Delete.
 	 * - Save.
 	 * - AJAX.
+	 * - Notifications.
 	 * --------------------------------------------------
 	 */
 
@@ -84,7 +87,7 @@ class PostType {
 	}
 
 	/**
-	 * Filters the posu updated messages
+	 * Filters the post updated messages
 	 *
 	 * @filter post_updated_messages
 	 *
@@ -93,8 +96,6 @@ class PostType {
 	 * @return array
 	 */
 	public function post_updated_messages( $messages ) {
-
-		$post = get_post();
 
 		$messages['notification'] = [
 			0  => '',
@@ -111,6 +112,27 @@ class PostType {
 		];
 
 		return $messages;
+
+	}
+
+	/**
+	 * Filters the bulk action messages
+	 *
+	 * @filter bulk_post_updated_messages
+	 *
+	 * @since  [Next]
+	 * @param  array $bulk_messages Messages.
+	 * @param  array $bulk_counts   Counters.
+	 * @return array
+	 */
+	public function bulk_action_messages( $bulk_messages, $bulk_counts ) {
+
+		$bulk_messages['notification'] = [
+			// translators: Number of Notifications.
+			'trashed' => _n( '%s notification removed.', '%s notifications removed.', $bulk_counts['trashed'] ),
+		];
+
+		return $bulk_messages;
 
 	}
 
@@ -134,6 +156,31 @@ class PostType {
 		}
 
 		return $statuses;
+
+	}
+
+	/**
+	 * --------------------------------------------------
+	 * Delete.
+	 * --------------------------------------------------
+	 */
+
+	/**
+	 * Deletes the post entirely bypassing the trash
+	 *
+	 * @action wp_trash_post 100
+	 *
+	 * @since  [Next]
+	 * @param  integer $post_id Post ID.
+	 * @return void
+	 */
+	public function bypass_trash( $post_id ) {
+
+		if ( 'notification' !== get_post_type( $post_id ) ) {
+			return;
+		}
+
+		wp_delete_post( $post_id, true );
 
 	}
 
@@ -253,11 +300,13 @@ class PostType {
 
 		$notification_post->save();
 
+		do_action( 'notification/data/save/after', $notification_post );
+
 	}
 
 	/**
 	 * --------------------------------------------------
-	 * Ajax.
+	 * AJAX.
 	 * --------------------------------------------------
 	 */
 
@@ -288,6 +337,65 @@ class PostType {
 		}
 
 		$ajax->response( true, $error );
+
+	}
+
+	/**
+	 * --------------------------------------------------
+	 * Notifications.
+	 * --------------------------------------------------
+	 */
+
+	/**
+	 * Gets all Notifications from database.
+	 * Uses direct database call for performance.
+	 *
+	 * @since  [Next]
+	 * @return array
+	 */
+	public static function get_all_notifications() {
+
+		global $wpdb;
+
+		$cache         = new ObjectCache( 'notifications', 'notification' );
+		$notifications = $cache->get();
+
+		if ( empty( $notifications ) ) {
+
+			$sql = "SELECT p.post_content
+				FROM {$wpdb->posts} p
+				WHERE p.post_type = 'notification' AND p.post_status = 'publish'
+				ORDER BY p.menu_order ASC, p.post_modified DESC";
+
+			$notifications = $wpdb->get_col( $sql ); // phpcs:ignore
+
+			$cache->set( $notifications );
+
+		}
+
+		return $notifications;
+
+	}
+
+	/**
+	 * Sets up all the Notification from database
+	 * It's running on every single page load.
+	 *
+	 * @action notification/boot
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function setup_notifications() {
+
+		$notifications = self::get_all_notifications();
+
+		foreach ( $notifications as $notification_json ) {
+			if ( ! empty( $notification_json ) ) {
+				$adapter = notification_adapt_from( 'JSON', $notification_json );
+				notification_add( $adapter->get_notification() );
+			}
+		}
 
 	}
 

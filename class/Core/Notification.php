@@ -131,12 +131,12 @@ class Notification {
 		$this->set_hash( $hash );
 
 		// Title.
-		if ( isset( $data['title'] ) ) {
+		if ( isset( $data['title'] ) && ! empty( $data['title'] ) ) {
 			$this->set_title( sanitize_text_field( $data['title'] ) );
 		}
 
 		// Trigger.
-		if ( isset( $data['trigger'] ) ) {
+		if ( isset( $data['trigger'] ) && ! empty( $data['trigger'] ) ) {
 			if ( $data['trigger'] instanceof Interfaces\Triggerable ) {
 				$this->set_trigger( $data['trigger'] );
 			} else {
@@ -145,7 +145,7 @@ class Notification {
 		}
 
 		// Carriers.
-		if ( isset( $data['carriers'] ) ) {
+		if ( isset( $data['carriers'] ) && ! empty( $data['carriers'] ) ) {
 			$carriers = [];
 
 			foreach ( $data['carriers'] as $carrier ) {

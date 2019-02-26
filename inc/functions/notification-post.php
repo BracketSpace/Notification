@@ -32,8 +32,8 @@ function notification_post_is_new( $post ) {
 function notification_get_posts( $trigger_slug = null, $all = false ) {
 
 	$query_args = [
-		'numberposts' => -1,
-		'post_type'   => 'notification',
+		'posts_per_page' => -1,
+		'post_type'      => 'notification',
 	];
 
 	if ( $all ) {
