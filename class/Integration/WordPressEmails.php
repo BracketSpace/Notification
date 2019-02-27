@@ -33,18 +33,23 @@ class WordPressEmails {
 	}
 
 	/**
-	 * Disable default user password change notification email
+	 * Disable default automatic core update notification email
 	 *
-	 * @filter send_password_change_email
+	 * @filter allow_password_reset 1 3
 	 *
 	 * @since  5.2.2
 	 * @param  bool $send Whether to send the email.
 	 * @return bool $send
 	 */
-	public function disable_send_password_change_email( $send ) {
+	public function dont_send_password_forgotten_email( $send = true, $user_id = 0 ) {
 
-		if ( empty( notification_get_setting( 'integration/emails/password_to_user' ) ) ) {
-			$send = false;
+		$is_administrator = $this->notification_user_is_administrator( $user_id );
+
+		if ( $is_administrator && ! notification_get_setting( 'integration/emails/password_forgotten_to_admin' ) ) {
+			return false;
+		}
+		if ( ! $is_administrator && ! notification_get_setting( 'integration/emails/password_forgotten_to_user' ) ) {
+			return false;
 		}
 
 		return $send;
@@ -52,22 +57,34 @@ class WordPressEmails {
 	}
 
 	/**
-	 * Disable default new user registration notification email
+	 * Disable default automatic core update notification email
 	 *
-	 * @action register_new_user
+	 * @filter send_email_change_email
 	 *
-	 * @since 5.2.2
-	 * @return void
+	 * @since  5.2.2
+	 * @param  bool $send Whether to send the email.
+	 * @return bool $send
 	 */
-	public function disable_new_user_registration_admin_email( $data ) {
+	public function dont_send_email_change_email( $send ) {
 
-		if ( empty( notification_get_setting( 'integration/emails/new_user_to_admin' ) ) ) {
-			remove_action( 'register_new_user', 'wp_send_user_notifications' );
-			remove_action( 'edit_user_created_user', 'wp_send_user_notifications' );
-			remove_action( 'network_site_new_created_user', 'wp_send_user_notifications' );
-			remove_action( 'network_site_users_created_user', 'wp_send_user_notifications' );
-			remove_action( 'network_user_new_created_user', 'wp_send_user_notifications' );
+		if ( empty( notification_get_setting( 'integration/emails/email_change_to_user' ) ) ) {
+			$send = false;
 		}
+
+		return $send;
+
 	}
 
+
+
+	public function notification_user_is_administrator( $user_id = 0 )
+	{
+			$user = new \WP_User( intval( $user_id ) );
+			$is_administrator = false;
+			if ( ! empty( $user->roles ) && is_array( $user->roles ) ) {
+					foreach ( $user->roles as $role )
+							if ( strtolower( $role ) == 'administrator') $is_administrator = true;
+			}
+			return $is_administrator;
+	}
 }

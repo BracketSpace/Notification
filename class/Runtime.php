@@ -127,6 +127,7 @@ class Runtime extends Utils\DocHooks {
 		notification_register_settings( [ $this->admin_settings, 'general_settings' ] );
 		notification_register_settings( [ $this->admin_settings, 'triggers_settings' ], 20 );
 		notification_register_settings( [ $this->admin_settings, 'notifications_settings' ], 30 );
+		notification_register_settings( [ $this->admin_settings, 'integration_settings' ], 30 );
 		notification_register_settings( [ $this->admin_sync, 'settings' ], 40 );
 		notification_register_settings( [ $this->admin_impexp, 'settings' ], 50 );
 		notification_register_settings( [ $this->core_debugging, 'debugging_settings' ], 60 );
@@ -154,6 +155,7 @@ class Runtime extends Utils\DocHooks {
 		require_once $this->files->file_path( 'inc/functions/general.php' );
 		require_once $this->files->file_path( 'inc/functions/settings.php' );
 		require_once $this->files->file_path( 'inc/functions/carrier.php' );
+		require_once $this->files->file_path( 'inc/functions/pluggable.php' );
 		require_once $this->files->file_path( 'inc/functions/trigger.php' );
 		require_once $this->files->file_path( 'inc/functions/recipient.php' );
 		require_once $this->files->file_path( 'inc/functions/notification.php' );

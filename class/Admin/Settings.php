@@ -414,23 +414,12 @@ class Settings {
 			] )
 			->add_field( [
 				'name'        => __( 'Password change notification to admin', 'notification' ),
-				'slug'        => 'password_to_admin',
+				'slug'        => 'password_change',
 				'default'     => 'true',
 				'addons'      => [
-					'label' => __( 'Enable password change notification to admin', 'notification' ),
+					'label' => __( 'Enable password change notification to admin and user', 'notification' ),
 				],
 				'description' => __( 'Send e-mail to the blog admin of a user changing his or her password.', 'notification' ),
-				'render'      => [ new CoreFields\Checkbox(), 'input' ],
-				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
-			] )
-			->add_field( [
-				'name'        => __( 'Password change notification to user', 'notification' ),
-				'slug'        => 'password_to_user',
-				'default'     => 'true',
-				'addons'      => [
-					'label' => __( 'Enable password change notification to user', 'notification' ),
-				],
-				'description' => __( 'Send e-mail to registered user about changing his or her password. Be careful with this option, because when unchecked, the forgotten password request e-mails will be blocked too.', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
 				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] )
