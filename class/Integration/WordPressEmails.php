@@ -35,7 +35,7 @@ class WordPressEmails {
 	/**
 	 * Disable default automatic core update notification email
 	 *
-	 * @filter allow_password_reset 1 3
+	 * @filter allow_password_reset 1
 	 *
 	 * @since  5.2.2
 	 * @param  bool $send Whether to send the email.

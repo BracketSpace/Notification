@@ -64,6 +64,7 @@ class TestMain extends \WP_UnitTestCase {
 
 		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\WordPress', $this->notification->integration_wp );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\CustomFields', $this->notification->integration_cf );
+		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\WordPressEmails', $this->notification->integration_wp_mail );
 
 	}
 
