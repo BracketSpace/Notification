@@ -87,6 +87,35 @@
 				margin-bottom: 0;
 			}
 
+			&-header {
+				position: relative;
+
+				a {
+					text-decoration: none;
+					cursor: pointer;
+				}
+
+				&::after {
+					content: '';
+					position: absolute;
+					top: 5px;
+					right: 20px;
+					border: solid black;
+					border-width: 0 1px 1px 0;
+					display: inline-block;
+					padding: 6px;
+					transform: rotate(45deg);
+					transform-origin: center;
+					transition: all .2s ease-in-out;
+				}
+
+				&.open {
+					&::after {
+						transform: rotate(-135deg);
+					}
+				}
+			}
+
 			h3 {
 				font-weight: normal;
 				margin: 4px 0;

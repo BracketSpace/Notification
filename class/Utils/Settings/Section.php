@@ -108,16 +108,17 @@ class Section {
 	 * @throws \Exception Exception.
 	 * @param string $name Group name.
 	 * @param string $slug Group slug.
+	 * @param bool   $collapsed Is group collapsed.
 	 * @return Group
 	 */
-	public function add_group( $name, $slug ) {
+	public function add_group( $name, $slug, $collapsed = false ) {
 
 		if ( empty( $name ) || empty( $slug ) ) {
 			throw new \Exception( 'Group name and slug cannot be empty' );
 		}
 
 		if ( ! isset( $this->groups[ $slug ] ) ) {
-			$this->groups[ $slug ] = new Group( $this->handle, $name, $slug, $this->slug() );
+			$this->groups[ $slug ] = new Group( $this->handle, $name, $slug, $this->slug(), $collapsed );
 			do_action( $this->handle . '/settings/group/added', $this->groups[ $slug ], $this );
 		}
 

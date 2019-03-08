@@ -60,17 +60,17 @@
 				<?php foreach ( $groups as $group ) : ?>
 
 					<div class="setting-group group-<?php echo esc_attr( $group->slug() ); ?>">
+						<div class="setting-group-header <?php echo esc_attr( ( $group->collapsed() ) ? '' : 'open' ); ?>">
+							<h3><?php echo esc_html( $group->name() ); ?></h3>
 
-						<h3><?php echo esc_html( $group->name() ); ?></h3>
+							<?php $description = $group->description(); ?>
 
-						<?php $description = $group->description(); ?>
-
-						<?php if ( ! empty( $description ) ) : ?>
-							<p class="description"><?php echo esc_html( $description ); ?></p>
-						<?php endif ?>
+							<?php if ( ! empty( $description ) ) : ?>
+								<p class="description"><?php echo esc_html( $description ); ?></p>
+							<?php endif ?>
+						</div>
 
 						<?php do_action( $this->handle . '/settings/group/' . $group->slug() . '/before' ); ?>
-
 						<table class="form-table">
 
 							<?php foreach ( $group->get_fields() as $field ) : ?>
@@ -90,8 +90,7 @@
 
 							<?php endforeach ?>
 
-						</table>
-
+							</table>
 						<?php do_action( $this->handle . '/settings/sections/after', $group->slug() ); ?>
 
 					</div>

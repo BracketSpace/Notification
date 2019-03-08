@@ -57,6 +57,13 @@ class Group {
 	private $section;
 
 	/**
+	 * Section collapsed
+	 *
+	 * @var string
+	 */
+	private $collapsed;
+
+	/**
 	 * Group constructor
 	 *
 	 * @throws \Exception Exception.
@@ -64,8 +71,9 @@ class Group {
 	 * @param string $name    Group name.
 	 * @param string $slug    Group slug.
 	 * @param string $section Section slug.
+	 * @param bool   $collapsed Group collapsed.
 	 */
-	public function __construct( $handle, $name, $slug, $section ) {
+	public function __construct( $handle, $name, $slug, $section, $collapsed = false ) {
 
 		if ( empty( $handle ) ) {
 			throw new \Exception( 'Setting handle in Section instance cannot be empty' );
@@ -90,6 +98,8 @@ class Group {
 		}
 
 		$this->section( $section );
+
+		$this->collapsed( $collapsed );
 
 	}
 
@@ -154,6 +164,22 @@ class Group {
 		}
 
 		return apply_filters( $this->handle . '/settings/group/description', $this->description, $this );
+
+	}
+
+	/**
+	 * Set or get collapsed
+	 *
+	 * @param  bool $collapsed bool to set collapsed, null to get it.
+	 * @return bool $collapsed
+	 */
+	public function collapsed( $collapsed = null ) {
+
+		if ( null !== $collapsed ) {
+			$this->collapsed = $collapsed;
+		}
+
+		return apply_filters( $this->handle . '/settings/group/collapsed', $this->collapsed, $this );
 
 	}
 

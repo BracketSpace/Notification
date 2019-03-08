@@ -24,7 +24,7 @@ class Settings {
 
 		$general = $settings->add_section( __( 'General', 'notification' ), 'general' );
 
-		$general->add_group( __( 'Content', 'notification' ), 'content' )
+		$general->add_group( __( 'Content', 'notification' ), 'content', true )
 			->add_field( [
 				'name'        => __( 'Empty merge tags', 'notification' ),
 				'slug'        => 'strip_empty_tags',
