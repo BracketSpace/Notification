@@ -8,8 +8,7 @@
 	"require-dev": {
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
 		"phpcompatibility/php-compatibility": "^9.1",
-		"wp-coding-standards/wpcs": "^2.0",
-		"phpunit/phpunit": "~7.0"
+		"wp-coding-standards/wpcs": "^2.0"
 	},
 	"autoload": {
 		"psr-4": {
