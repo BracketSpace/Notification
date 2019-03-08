@@ -219,11 +219,57 @@
                 return;
             }
 
+
+            $show_admin_notices = ( ! $this->is_gutenberg_page() );
+
             foreach ( $this->_notices as $id => $msg ) {
                 if ( isset( $msg['wp_user_id'] ) && is_numeric( $msg['wp_user_id'] ) ) {
                     if ( get_current_user_id() != $msg['wp_user_id'] ) {
                         continue;
                     }
+                }
+
+                /**
+                 * Added a filter to control the visibility of admin notices.
+                 *
+                 * Usage example:
+                 *
+                 *     /**
+                 *      * @param bool  $show
+                 *      * @param array $msg {
+                 *      *     @var string $message The actual message.
+                 *      *     @var string $title An optional message title.
+                 *      *     @var string $type The type of the message ('success', 'update', 'warning', 'promotion').
+                 *      *     @var string $id The unique identifier of the message.
+                 *      *     @var string $manager_id The unique identifier of the notices manager. For plugins it would be the plugin's slug, for themes - `<slug>-theme`.
+                 *      *     @var string $plugin The product's title.
+                 *      *     @var string $wp_user_id An optional WP user ID that this admin notice is for.
+                 *      * }
+                 *      *
+                 *      * @return bool
+                 *      *\/
+                 *      function my_custom_show_admin_notice( $show, $msg ) {
+                 *          if ('trial_promotion' != $msg['id']) {
+                 *              return false;
+                 *          }
+                 *
+                 *          return $show;
+                 *      }
+                 *
+                 *      my_fs()->add_filter( 'show_admin_notice', 'my_custom_show_admin_notice', 10, 2 );
+                 *
+                 * @author Vova Feldman
+                 * @since 2.2.0
+                 */
+                $show_notice = call_user_func_array( 'fs_apply_filter', array(
+                    $this->_module_unique_affix,
+                    'show_admin_notice',
+                    $show_admin_notices,
+                    $msg
+                ) );
+
+                if ( true !== $show_notice ) {
+                    continue;
                 }
 
                 fs_require_template( 'admin-notice.php', $msg );
@@ -242,6 +288,34 @@
          */
         function _enqueue_styles() {
             fs_enqueue_local_style( 'fs_common', '/admin/common.css' );
+        }
+
+        /**
+         * Check if the current page is the Gutenberg block editor.
+         *
+         * @author Vova Feldman (@svovaf)
+         * @since  2.2.3
+         *
+         * @return bool
+         */
+        function is_gutenberg_page() {
+            if ( function_exists( 'is_gutenberg_page' ) &&
+                 is_gutenberg_page()
+            ) {
+                // The Gutenberg plugin is on.
+                return true;
+            }
+
+            $current_screen = get_current_screen();
+
+            if ( method_exists( $current_screen, 'is_block_editor' ) &&
+                 $current_screen->is_block_editor()
+            ) {
+                // Gutenberg page on 5+.
+                return true;
+            }
+
+            return false;
         }
 
         /**

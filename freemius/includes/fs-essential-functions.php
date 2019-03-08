@@ -36,6 +36,8 @@
 		}
 	}
 
+    require_once dirname( __FILE__ ) . '/supplements/fs-essential-functions-2.2.1.php';
+
 	#region Core Redirect (copied from BuddyPress) -----------------------------------------
 
 	if ( ! function_exists( 'fs_redirect' ) ) {
@@ -273,11 +275,11 @@
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 
-		$all_plugins       = get_plugins();
+		$all_plugins       = fs_get_plugins( true );
 		$all_plugins_paths = array();
 
 		// Get active plugin's main files real full names (might be symlinks).
-		foreach ( $all_plugins as $relative_path => &$data ) {
+		foreach ( $all_plugins as $relative_path => $data ) {
 			$all_plugins_paths[] = fs_normalize_path( realpath( WP_PLUGIN_DIR . '/' . $relative_path ) );
 		}
 
