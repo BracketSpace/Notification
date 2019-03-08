@@ -2,12 +2,12 @@
 /**
  * Notification pluggable functions overrides
  *
- * @package notificaiton
+ * @package notification
  */
 
 if ( ! function_exists( 'wp_notify_moderator' ) && ! notification_get_setting( 'integration/emails/notify_moderator' ) ) {
 	/**
-	 * Override wp_notify_moderator
+	 * Overrides wp_notify_moderator
 	 *
 	 * @return void
 	 */
@@ -16,7 +16,7 @@ if ( ! function_exists( 'wp_notify_moderator' ) && ! notification_get_setting( '
 
 if ( ! function_exists( 'wp_notify_postauthor' ) && ! notification_get_setting( 'integration/emails/notify_post_author' ) ) {
 	/**
-	 * Override wp_notify_postauthor
+	 * Overrides wp_notify_postauthor
 	 *
 	 * @return void
 	 */
@@ -25,7 +25,7 @@ if ( ! function_exists( 'wp_notify_postauthor' ) && ! notification_get_setting( 
 
 if ( ! function_exists( 'wp_password_change_notification' ) && ! notification_get_setting( 'integration/emails/password_change' ) ) {
 	/**
-	 * Override wp_password_change_notification
+	 * Overrides wp_password_change_notification
 	 *
 	 * @return void
 	 */
@@ -34,7 +34,7 @@ if ( ! function_exists( 'wp_password_change_notification' ) && ! notification_ge
 
 if ( ! function_exists( 'wp_new_user_notification' ) ) {
 	/**
-	 * Override wp_new_user_notification
+	 * Overrides wp_new_user_notification
 	 *
 	 * @param int    $user_id User ID.
 	 * @param bool   $deprecated Deprecated.
@@ -52,35 +52,32 @@ if ( ! function_exists( 'wp_new_user_notification' ) ) {
 	}
 }
 
-if ( ( ! notification_get_setting( 'integration/emails/password_forgotten_to_admin' ) || ! notification_get_setting( 'integration/emails/password_forgotten_to_user' ) ) && ! function_exists( 'dont_send_password_forgotten_email' ) ) :
-	/**
-	 * Override wp_new_user_notification
-	 *
-	 * @param bool $send Whether to send.
-	 * @param int  $user_id User ID.
-	 * @return bool $send
-	 */
-	function dont_send_password_forgotten_email( $send = true, $user_id = 0 ) {
+/**
+ * Overrides wp_new_user_notification
+ *
+ * @param bool $send Whether to send.
+ * @param int  $user_id User ID.
+ * @return bool $send
+ */
+add_filter( 'allow_password_reset', function( $send = true, $user_id = 0 ) {
 
-		$is_administrator = notification_user_is_administrator( $user_id );
+	$is_administrator = notification_user_is_administrator( $user_id );
 
-		if ( $is_administrator && ! notification_get_setting( 'integration/emails/password_forgotten_to_admin' ) ) {
-			return false;
-		}
-		if ( ! $is_administrator && ! notification_get_setting( 'integration/emails/password_forgotten_to_user' ) ) {
-			return false;
-		}
-
-		return $send;
-
+	if ( $is_administrator && ! notification_get_setting( 'integration/emails/password_forgotten_to_admin' ) ) {
+		return false;
+	}
+	if ( ! $is_administrator && ! notification_get_setting( 'integration/emails/password_forgotten_to_user' ) ) {
+		return false;
 	}
 
-endif;
+	return $send;
 
-add_filter( ' allow_password_reset', 'dont_send_password_forgotten_email' );
+} );
+
+
 
 /**
- * Override wp_new_user_notification
+ * Overrides wp_new_user_notification
  *
  * @param int  $user_id User ID.
  * @param bool $notify  Notify.
@@ -115,7 +112,7 @@ function notification_new_user_notification_to_admin( $user_id, $notify = '' ) {
 }
 
 /**
- * Override wp_new_user_notification
+ * Overrides wp_new_user_notification
  *
  * @param int  $user_id User ID.
  * @param bool $deprecated Deprecated.

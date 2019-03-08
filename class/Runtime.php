@@ -154,8 +154,8 @@ class Runtime extends Utils\DocHooks {
 
 		require_once $this->files->file_path( 'inc/functions/general.php' );
 		require_once $this->files->file_path( 'inc/functions/settings.php' );
+		require_once $this->files->file_path( 'inc/functions/overrides.php' );
 		require_once $this->files->file_path( 'inc/functions/carrier.php' );
-		require_once $this->files->file_path( 'inc/functions/pluggable.php' );
 		require_once $this->files->file_path( 'inc/functions/trigger.php' );
 		require_once $this->files->file_path( 'inc/functions/recipient.php' );
 		require_once $this->files->file_path( 'inc/functions/notification.php' );

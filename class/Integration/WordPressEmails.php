@@ -13,12 +13,12 @@ namespace BracketSpace\Notification\Integration;
 class WordPressEmails {
 
 	/**
-	 * Disable default automatic core update notification email
+	 * Disables default automatic core update notification email
 	 *
 	 * @filter auto_core_update_send_email
 	 * @filter send_core_update_notification_email
 	 *
-	 * @since  5.2.2
+	 * @since  [Next]
 	 * @param  bool $send Whether to send the email.
 	 * @return bool $send
 	 */
@@ -33,36 +33,11 @@ class WordPressEmails {
 	}
 
 	/**
-	 * Disable default automatic core update notification email
-	 *
-	 * @filter allow_password_reset 1
-	 *
-	 * @since  5.2.2
-	 * @param  bool $send Whether to send the email.
-	 * @param  int  $user_id User ID.
-	 * @return bool $send
-	 */
-	public function dont_send_password_forgotten_email( $send = true, $user_id = 0 ) {
-
-		$is_administrator = $this->notification_user_is_administrator( $user_id );
-
-		if ( $is_administrator && ! notification_get_setting( 'integration/emails/password_forgotten_to_admin' ) ) {
-			return false;
-		}
-		if ( ! $is_administrator && ! notification_get_setting( 'integration/emails/password_forgotten_to_user' ) ) {
-			return false;
-		}
-
-		return $send;
-
-	}
-
-	/**
-	 * Disable default automatic core update notification email
+	 * Disables default automatic core update notification email
 	 *
 	 * @filter send_email_change_email 1
 	 *
-	 * @since  5.2.2
+	 * @since  [Next]
 	 * @param  bool $send Whether to send the email.
 	 * @return bool $send
 	 */
@@ -77,22 +52,28 @@ class WordPressEmails {
 	}
 
 	/**
-	 * Check if user is administrator
+	 * Checks if user is administrator
 	 *
-	 * @since  5.2.2
+	 * @since  [Next]
 	 * @param  bool $user_id ID of user to check.
 	 * @return bool $is_administrator
 	 */
 	public function notification_user_is_administrator( $user_id = 0 ) {
-			$user             = new \WP_User( intval( $user_id ) );
-			$is_administrator = false;
+
+		$user             = new \WP_User( intval( $user_id ) );
+		$is_administrator = false;
+
 		if ( ! empty( $user->roles ) && is_array( $user->roles ) ) {
 			foreach ( $user->roles as $role ) {
 				if ( strtolower( $role ) === 'administrator' ) {
 					$is_administrator = true;
+					break;
 				}
 			}
 		}
-			return $is_administrator;
+
+		return $is_administrator;
+
 	}
+
 }
