@@ -54,13 +54,23 @@ class Debugging {
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] );
 
-		$debugging->add_group( __( 'Log', 'notification' ), 'log' )
+		$debugging->add_group( __( 'Notification Log', 'notification' ), 'notification_log' )
 			->add_field( [
 				'name'     => __( 'Log', 'notification' ),
 				'slug'     => 'log',
 				'addons'   => [
-					'message' => $this->get_debug_log(),
-					'code'    => true,
+					'message' => $this->get_notification_log(),
+				],
+				'render'   => [ new CoreFields\Message(), 'input' ],
+				'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
+			] );
+
+		$debugging->add_group( __( 'Error Log', 'notification' ), 'error_log' )
+			->add_field( [
+				'name'     => __( 'Log', 'notification' ),
+				'slug'     => 'log',
+				'addons'   => [
+					'message' => $this->get_error_log(),
 				],
 				'render'   => [ new CoreFields\Message(), 'input' ],
 				'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
@@ -69,39 +79,56 @@ class Debugging {
 	}
 
 	/**
-	 * Gets formatted debug log
+	 * Gets Notification log output
 	 *
-	 * @since  5.3.0
+	 * @since  [Next]
 	 * @return string
 	 */
-	public function get_debug_log() {
+	public function get_notification_log() {
 
-		$logs = get_option( $this->log_setting_key, [] );
+		$view = notification_create_view();
 
-		if ( empty( $logs ) ) {
-			return __( 'Debug log is empty', 'notification' );
-		}
+		// Logs.
+		$view->set_var( 'datetime_format', get_option( 'date_format' ) . ' ' . get_option( 'time_format' ) );
 
-		$time_format = get_option( 'time_format' );
-		$date_format = get_option( 'date_format' );
-		$time_offset = get_option( 'gmt_offset' ) * HOUR_IN_SECONDS;
+		// Pagination.
+		$view->set_vars( [
+			'query_arg' => 'notification_log_page',
+			'total'     => 33,
+			'current'   => 5,
+		] );
 
-		$log_message = '';
-		$spacing     = '&nbsp;&nbsp;&nbsp;&nbsp;';
+		$html  = $view->get_view_output( 'debug/notification-log' );
+		$html .= $view->get_view_output( 'debug/pagination' );
 
-		foreach ( $logs as $log ) {
-			$log_message .= '[<i>' . date_i18n( $date_format . ' ' . $time_format, $log['time'] + $time_offset ) . '</i>] ';
-			$log_message .= $spacing . '<strong>' . $log['notification']['post_title'] . '</strong> - ';
-			$log_message .= $spacing . 'ID: ' . $log['notification']['post_id'];
-			$log_message .= $spacing . '<br>';
-			$log_message .= $spacing . __( 'Trigger', 'notification' ) . ': <strong>' . $log['trigger']['name'] . '</strong> (<i>' . $log['trigger']['slug'] . '</i>)<br>';
-			$log_message .= $spacing . __( 'Carrier', 'notification' ) . ': <strong>' . $log['notification']['name'] . '</strong> (<i>' . $log['notification']['slug'] . '</i>)<br>';
-			$log_message .= $spacing . __( 'Data', 'notification' ) . ':<br>';
-			$log_message .= '<span class="notification-data-log">' . print_r( $log['notification']['data'], true ) . '</span>'; //phpcs:ignore
-			$log_message .= '<br><hr><br>';
-		}
+		return $html;
 
-		return $log_message;
+	}
+
+	/**
+	 * Gets Error log output
+	 *
+	 * @since  [Next]
+	 * @return string
+	 */
+	public function get_error_log() {
+
+		$view = notification_create_view();
+
+		// Logs.
+		$view->set_var( 'datetime_format', get_option( 'date_format' ) . ' ' . get_option( 'time_format' ) );
+
+		// Pagination.
+		$view->set_vars( [
+			'query_arg' => 'notification_log_page',
+			'total'     => 33,
+			'current'   => 5,
+		] );
+
+		$html  = $view->get_view_output( 'debug/error-log' );
+		$html .= $view->get_view_output( 'debug/pagination' );
+
+		return $html;
 
 	}
 
