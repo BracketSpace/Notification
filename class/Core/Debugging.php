@@ -32,33 +32,39 @@ class Debugging {
 		$debugging = $settings->add_section( __( 'Debugging', 'notification' ), 'debugging' );
 
 		$debugging->add_group( __( 'Settings', 'notification' ), 'settings' )
-			->add_field(
-				[
-					'name'        => __( 'Debug log', 'notification' ),
-					'slug'        => 'debug_log',
-					'default'     => false,
-					'addons'      => [
-						'label' => __( 'Enable debug log', 'notification' ),
-					],
-					'description' => __( 'While log is active, no notifications are sent', 'notification' ),
-					'render'      => [ new CoreFields\Checkbox(), 'input' ],
-					'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
-				]
-			);
+			->add_field( [
+				'name'        => __( 'Notification debug', 'notification' ),
+				'slug'        => 'debug_log',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Enable Notification logging', 'notification' ),
+				],
+				'description' => __( 'While log is active, no notifications are sent', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'     => __( 'Error log', 'notification' ),
+				'slug'     => 'error_log',
+				'default'  => false,
+				'addons'   => [
+					'label' => __( 'Enable error logging', 'notification' ),
+				],
+				'render'   => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] );
 
 		$debugging->add_group( __( 'Log', 'notification' ), 'log' )
-			->add_field(
-				[
-					'name'     => __( 'Log', 'notification' ),
-					'slug'     => 'log',
-					'addons'   => [
-						'message' => $this->get_debug_log(),
-						'code'    => true,
-					],
-					'render'   => [ new CoreFields\Message(), 'input' ],
-					'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
-				]
-			);
+			->add_field( [
+				'name'     => __( 'Log', 'notification' ),
+				'slug'     => 'log',
+				'addons'   => [
+					'message' => $this->get_debug_log(),
+					'code'    => true,
+				],
+				'render'   => [ new CoreFields\Message(), 'input' ],
+				'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
+			] );
 
 	}
 
@@ -133,6 +139,10 @@ class Debugging {
 	public function catch_notification( $carrier, $trigger ) {
 
 		if ( ! notification_get_setting( 'debugging/settings/debug_log' ) ) {
+			return;
+		}
+
+		if ( $carrier->is_suppressed() ) {
 			return;
 		}
 
