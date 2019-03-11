@@ -154,8 +154,8 @@ class Group {
 	/**
 	 * Set or get description
 	 *
-	 * @param  mixed $description string to set description, null to get it.
-	 * @return string description
+	 * @param   mixed $description string to set description, null to get it.
+	 * @return  string|Group String when using getter and Group when using setter
 	 */
 	public function description( $description = null ) {
 
@@ -171,8 +171,8 @@ class Group {
 	/**
 	 * Set or get collapsed
 	 *
-	 * @param  bool $collapsed bool to set collapsed, null to get it.
-	 * @return bool $collapsed
+	 * @param   bool $collapsed bool to set collapsed, null to get it.
+	 * @return  string|Group String when using getter and Group when using setter
 	 */
 	public function collapsed( $collapsed = null ) {
 
@@ -188,7 +188,7 @@ class Group {
 	/**
 	 * Set collapsed alias
 	 *
-	 * @return void
+	 * @return Group $this
 	 */
 	public function collapse() {
 		return $this->collapsed( true );

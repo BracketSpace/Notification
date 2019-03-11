@@ -108,7 +108,6 @@ class Section {
 	 * @throws \Exception Exception.
 	 * @param string $name Group name.
 	 * @param string $slug Group slug.
-	 * @param bool   $collapsed Is group collapsed.
 	 * @return Group
 	 */
 	public function add_group( $name, $slug ) {
