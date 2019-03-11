@@ -24,7 +24,7 @@ class Settings {
 
 		$general = $settings->add_section( __( 'General', 'notification' ), 'general' );
 
-		$general->add_group( __( 'Content', 'notification' ), 'content', true )
+		$general->add_group( __( 'Content', 'notification' ), 'content' )
 			->add_field( [
 				'name'        => __( 'Empty merge tags', 'notification' ),
 				'slug'        => 'strip_empty_tags',
@@ -81,7 +81,6 @@ class Settings {
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] )
 			->description( __( 'Choose what to remove upon plugin removal', 'notification' ) );
-
 	}
 
 	/**

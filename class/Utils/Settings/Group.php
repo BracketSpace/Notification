@@ -161,6 +161,7 @@ class Group {
 
 		if ( null !== $description ) {
 			$this->description = $description;
+			return $this;
 		}
 
 		return apply_filters( $this->handle . '/settings/group/description', $this->description, $this );
@@ -177,10 +178,20 @@ class Group {
 
 		if ( null !== $collapsed ) {
 			$this->collapsed = $collapsed;
+			return $this;
 		}
 
 		return apply_filters( $this->handle . '/settings/group/collapsed', $this->collapsed, $this );
 
+	}
+
+	/**
+	 * Set collapsed alias
+	 *
+	 * @return void
+	 */
+	public function collapse() {
+		return $this->collapsed( true );
 	}
 
 	/**
