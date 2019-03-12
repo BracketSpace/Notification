@@ -93,22 +93,27 @@ class Screen {
 
 		echo '<div id="carrier-boxes">';
 
-		foreach ( notification_get_carriers() as $carrier ) {
+		$carrier_view = notification_create_view();
+		$carrier_view->get_view('carrier/add');
+		$carrier_view->get_view('carrier/wizard');
+		$carrier_view->get_view('carrier/abort');
 
-			$box_view = notification_create_view();
-			$carrier  = $notification_post->populate_carrier( $carrier );
+		// foreach ( notification_get_carriers() as $carrier ) {
 
-			$box_view->set_vars( [
-				'id'      => 'notification-carrier-' . $carrier->get_slug() . '-box',
-				'name'    => 'notification_carrier_' . $carrier->get_slug() . '_enable',
-				'title'   => $carrier->get_name(),
-				'content' => $this->get_carrier_form( $carrier ),
-				'open'    => $carrier->enabled,
-			] );
+		// 	$box_view = notification_create_view();
+		// 	$carrier  = $notification_post->populate_carrier( $carrier );
 
-			$box_view->get_view( 'box' );
+		// 	$box_view->set_vars( [
+		// 		'id'      => 'notification-carrier-' . $carrier->get_slug() . '-box',
+		// 		'name'    => 'notification_carrier_' . $carrier->get_slug() . '_enable',
+		// 		'title'   => $carrier->get_name(),
+		// 		'content' => $this->get_carrier_form( $carrier ),
+		// 		'open'    => $carrier->enabled,
+		// 	] );
 
-		}
+		// 	$box_view->get_view( 'box' );
+
+		// }
 
 		echo '</div>';
 

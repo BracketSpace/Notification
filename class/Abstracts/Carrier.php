@@ -11,6 +11,7 @@ use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Defaults\Field;
 use BracketSpace\Notification\Defaults\Field\RecipientsField;
+use BracketSpace\Notification\Utils\Files;
 
 /**
  * Carrier abstract class
@@ -39,6 +40,13 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	public $data = [];
 
 	/**
+	 * Files class
+	 *
+	 * @var object
+	 */
+	private $files;
+
+	/**
 	 * If is suppressed
 	 *
 	 * @var boolean
@@ -53,8 +61,9 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	 */
 	public function __construct( $slug, $name ) {
 
-		$this->slug = $slug;
-		$this->name = $name;
+		$this->slug  = $slug;
+		$this->name  = $name;
+		$this->files = new Files();
 
 		$this->add_form_field( new Field\NonceField( [
 			'label'      => '',
@@ -237,6 +246,26 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 		}
 
 		return $data;
+
+	}
+
+	/**
+	 * Sets image
+	 *
+	 * @since  [Next]
+	 * @return array
+	 */
+	public function set_image() {
+
+	}
+
+	/**
+	 * Gets image
+	 *
+	 * @since  [Next]
+	 * @return array
+	 */
+	public function get_image() {
 
 	}
 

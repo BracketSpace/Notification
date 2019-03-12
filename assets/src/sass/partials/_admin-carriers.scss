@@ -10,6 +10,98 @@ body.post-type-notification {
 
 	#carrier-boxes {
 
+		.carrier_button {
+			display: block;
+			width: 100%;
+			border: 2px solid dashed;
+			font-size: 20px;
+			color: #A5A5A5;
+			box-shadow: none;
+			border: 1px solid #E5E5E5;
+			padding: 26px;
+			background-color: transparent;
+			transition: all .2s linear;
+			cursor: pointer;
+
+			&:hover {
+				background-color: #0977AC;
+				color: #fff;
+				border-color: #0977AC;
+			}
+		}
+
+		.carrier_abort {
+			display: none;
+			font-size: 13px;
+			border: none;
+
+			&:hover {
+				color: #0977AC;
+				background: transparent;
+			}
+		}
+
+		.carrier-wizard {
+			display: none;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+		}
+
+		.carrier-tile {
+			width: 178px;
+			cursor: pointer;
+			position: relative;
+			border: 1px solid #e5e5e5;
+			box-shadow: 0 1px 1px rgba(0,0,0,.04);
+
+			.inside {
+				margin: 0;
+			}
+
+			&-hover {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				opacity: 0;
+				visibility: hidden;
+				background: rgba(0,0,0,0.8);
+				color: #fff;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+
+				span {
+					width: 65px;
+					height: 65px;
+
+					&::before {
+						font-size: 65px;
+					}
+				}
+			}
+
+			&:hover {
+				.carrier-tile-hover {
+					opacity: 1;
+					visibility: visible;
+				}
+			}
+
+			.tile-image {
+				border: 1px solid #e5e5e5;
+				box-shadow: 0px 1px 2px rgba(0,0,0,0.04);
+				background: #fff;
+				padding: 33px 40px;
+				svg {
+					max-width: 100%;
+					height: auto;
+				}
+			}
+		}
+
 		.postbox {
 
 			h2.hndle {
