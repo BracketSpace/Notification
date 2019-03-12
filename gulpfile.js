@@ -65,4 +65,8 @@ gulp.task( 'watch', [ 'default' ], function() {
     gulp.watch( style_sources, ['styles'] );
     gulp.watch( script_sources, ['scripts'] );
 
+    gulp.watch( 'inc/**/*.php', reload );
+    gulp.watch( 'class/**/*.php', reload );
+    gulp.watch( 'views/**/*.php', reload );
+
 } );

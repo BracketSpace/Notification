@@ -13,6 +13,29 @@
 
 		td {
 			padding: 15px 0;
+
+			table {
+
+				th {
+					display: table-cell;
+				}
+
+				td {
+					padding: 15px 10px;
+
+					ul {
+						margin: 0;
+					}
+
+				}
+
+				caption {
+					text-align: left;
+					font-weight: bold;
+				}
+
+			}
+
 		}
 
 	}
@@ -90,6 +113,7 @@
 			.log-body {
 				max-height: 0;
 				overflow: hidden;
+				overflow-y: scroll;
 				transition: max-height .3s;
 
 				.body-content {
@@ -102,7 +126,7 @@
 			&.expanded {
 
 				.log-body {
-					max-height: 500px;
+					max-height: 400px;
 				}
 
 			}

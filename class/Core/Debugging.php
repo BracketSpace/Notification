@@ -33,7 +33,7 @@ class Debugging {
 
 		$debugging->add_group( __( 'Settings', 'notification' ), 'settings' )
 			->add_field( [
-				'name'        => __( 'Notification debug', 'notification' ),
+				'name'        => __( 'Notification log', 'notification' ),
 				'slug'        => 'debug_log',
 				'default'     => false,
 				'addons'      => [
@@ -52,6 +52,19 @@ class Debugging {
 				],
 				'render'   => [ new CoreFields\Checkbox(), 'input' ],
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'     => __( 'Clear', 'notification' ),
+				'slug'     => 'clear',
+				'default'  => false,
+				'addons'   => [
+					'message' => '
+						<a href="#" class="button button-secondary notification-clear-log" data-type="notification">' . esc_html__( 'Clear Notification logs' ) . '</a>
+						<a href="#" class="button button-secondary notification-clear-log" data-type="error">' . esc_html__( 'Clear Error logs' ) . '</a>
+					',
+				],
+				'render'   => [ new CoreFields\Message(), 'input' ],
+				'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
 			] );
 
 		$debugging->add_group( __( 'Notification Log', 'notification' ), 'notification_log' )
