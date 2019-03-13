@@ -99,6 +99,10 @@ function notification_deprecated_class( $class, $version, $replacement = null ) 
  */
 function notification_log( $component, $type, $message ) {
 
+	if ( 'notification' !== $type && ! notification_get_settings( 'debugging/settings/error_log' ) ) {
+		return false;
+	}
+
 	$debugger = notification_runtime( 'core_debugging' );
 
 	$log_data = [
