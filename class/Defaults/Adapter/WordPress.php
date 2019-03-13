@@ -100,6 +100,10 @@ class WordPress extends Abstracts\Adapter {
 		// Version.
 		$this->set_version( strtotime( $this->post->post_modified_gmt ) );
 
+		// Source.
+		$this->set_source( 'WordPress' );
+		$this->set_source_post_id( $this->get_id() );
+
 		return $this;
 
 	}

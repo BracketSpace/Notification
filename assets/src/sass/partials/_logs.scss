@@ -7,25 +7,35 @@
 	.group-notification_log,
 	.group-error_log {
 
+		.form-table {
+			table-layout: fixed;
+		}
+
 		th {
 			display: none;
 		}
 
 		td {
 			padding: 15px 0;
+			word-wrap: break-word;
+			overflow-wrap: break-word;
 
 			table {
 				margin-bottom: 1rem;
 
 				th {
 					display: table-cell;
-					padding: 12px 6px 10px 0;
+					padding: 12px 6px 12px 0;
 				}
 
 				td {
-					padding: 8px 6px;
+					padding: 12px 6px 12px 0;
 
 					ul {
+						margin: 0;
+					}
+
+					pre {
 						margin: 0;
 					}
 
@@ -148,11 +158,25 @@
 				background: #ececec;
 				min-width: 90px;
 				font-weight: bold;
+				float: left;
 			}
 
 			.component {
 				padding: 10px;
 				display: inline-block;
+				float: left;
+			}
+
+			.excerpt {
+				padding: 10px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				max-width: 60%;
+				display: inline-block;
+				float: left;
+				color: #ccc;
+				transition: opacity .3s;
 			}
 
 		}
@@ -163,6 +187,10 @@
 
 		.warning-log .log-handle .message {
 			color: #ff880a;
+		}
+
+		.log-item.expanded .excerpt {
+			opacity: 0;
 		}
 
 	}

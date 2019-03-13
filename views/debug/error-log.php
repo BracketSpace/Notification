@@ -5,46 +5,45 @@
  * @package notification
  */
 
+$logs = $this->get_var( 'logs' );
+
 ?>
 
 <div class="error-logs log-container">
 
-	<div class="log-item error-log">
-		<div class="log-handle">
-			<span class="message">Error</span>
-			<span class="component">Custom Fields</span>
-			<span class="indicator dashicons dashicons-arrow-down"></span>
-			<span class="date">
-				<abbr title="<?php echo esc_html( date_i18n( $this->get_var( 'datetime_format' ), 1552197302 ) ); ?>">
-					<?php // translators: Time ago. ?>
-					<?php esc_html_e( sprintf( __( '%s ago' ), human_time_diff( 1552197302 ) ) ); ?>
-				</abbr>
-			</span>
-		</div>
-		<div class="log-body">
-			<div class="body-content">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>
-		</div>
-	</div>
+	<?php if ( ! empty( $logs ) ) : ?>
 
-	<div class="log-item warning-log">
-		<div class="log-handle">
-			<span class="message">Warning</span>
-			<span class="component">Scheduled Triggers</span>
-			<span class="indicator dashicons dashicons-arrow-down"></span>
-			<span class="date">
-				<abbr title="<?php echo esc_html( date_i18n( $this->get_var( 'datetime_format' ), 1552197302 ) ); ?>">
-					<?php // translators: Time ago. ?>
-					<?php esc_html_e( sprintf( __( '%s ago' ), human_time_diff( 1552197302 ) ) ); ?>
-				</abbr>
-			</span>
-		</div>
-		<div class="log-body">
-			<div class="body-content">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		<?php foreach ( $logs as $log ) : ?>
+			<div class="log-item <?php echo esc_attr( $log->type ); ?>-log">
+				<div class="log-handle">
+					<span class="message">
+						<?php if ( 'warning' === $log->type ) : ?>
+							<?php esc_html_e( 'Warning' ); ?>
+						<?php else : ?>
+							<?php esc_html_e( 'Error' ); ?>
+						<?php endif ?>
+					</span>
+					<span class="component"><?php echo esc_html( $log->component ); ?></span>
+					<span class="excerpt"><?php echo preg_replace( '/\s+/', ' ', strip_tags( $log->message ) ); ?></span>
+					<span class="indicator dashicons dashicons-arrow-down"></span>
+					<span class="date">
+						<abbr title="<?php echo esc_html( date_i18n( $this->get_var( 'datetime_format' ), strtotime( $log->time_logged ) ) ); ?>">
+							<?php // translators: Time ago. ?>
+							<?php esc_html_e( sprintf( __( '%s ago' ), human_time_diff( strtotime( $log->time_logged ) ) ) ); ?>
+						</abbr>
+					</span>
+				</div>
+				<div class="log-body">
+					<div class="body-content">
+						<?php echo $log->message; // phpcs:ignore ?>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
+		<?php endforeach ?>
+
+
+	<?php else : ?>
+		<p><?php esc_html_e( 'The Error log is empty.' ); ?></p>
+	<?php endif ?>
 
 </div>

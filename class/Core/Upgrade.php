@@ -107,10 +107,9 @@ class Upgrade {
 		CREATE TABLE {$logs_table} (
 			ID bigint(20) NOT NULL AUTO_INCREMENT,
 			type text NOT NULL,
-			time_logged bigint(20) NOT NULL,
+			time_logged timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 			message text NOT NULL,
-			trigger_slug text,
-			notification_hash text,
+			component text NOT NULL,
 			UNIQUE KEY ID (ID)
 		) $charset_collate;
 		";
