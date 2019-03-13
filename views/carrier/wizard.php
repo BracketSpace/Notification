@@ -5,7 +5,7 @@
 			$tile_view = notification_create_view();
 
 			$tile_view->set_vars( [
-				'id'      => 'notification-carrier-' . $carrier->get_slug() . '-tile',
+				'id'      => 'notification-carrier-' . $carrier->get_slug() . '-box',
 				'name'    => 'notification_carrier_' . $carrier->get_slug() . '_enable',
 				'title'   => $carrier->get_name(),
 				'content' => 'carrier description',
