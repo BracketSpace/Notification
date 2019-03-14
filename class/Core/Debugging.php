@@ -135,6 +135,27 @@ class Debugging {
 	}
 
 	/**
+	 * Removes logs
+	 *
+	 * @since  [Next]
+	 * @param  array $types Array of log types to remove, default: all.
+	 * @return void
+	 */
+	public function remove_logs( $types = null ) {
+
+		global $wpdb;
+
+		if ( empty( $types ) ) {
+			$types = [ 'notification', 'error', 'warning' ];
+		}
+
+		foreach ( $types as $type ) {
+			$wpdb->delete( $this->logs_table, [ 'type' => $type ], [ '%s' ] ); // phpcs:ignore
+		}
+
+	}
+
+	/**
 	 * Get logs count from previous query
 	 * You have to call `get_logs` method first
 	 *
@@ -192,8 +213,6 @@ class Debugging {
 				'name' => $trigger->get_name(),
 			],
 		] ) );
-
-		notification_log( 'Core', 'warning', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' );
 
 		// Always suppress when debug log is active.
 		$carrier->suppress();

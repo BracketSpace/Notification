@@ -52,8 +52,8 @@ class Debugging {
 				'default'  => false,
 				'addons'   => [
 					'message' => '
-						<a href="#" class="button button-secondary notification-clear-log" data-type="notification">' . esc_html__( 'Clear Notification logs' ) . '</a>
-						<a href="#" class="button button-secondary notification-clear-log" data-type="error">' . esc_html__( 'Clear Error logs' ) . '</a>
+						<a href="' . admin_url( 'admin-post.php?action=notification_clear_logs&log_type=notification&nonce=' . wp_create_nonce( 'notification_clear_log_notification' ) ) . '" class="button button-secondary">' . esc_html__( 'Clear Notification logs' ) . '</a>
+						<a href="' . admin_url( 'admin-post.php?action=notification_clear_logs&log_type=error&nonce=' . wp_create_nonce( 'notification_clear_log_error' ) ) . '" class="button button-secondary">' . esc_html__( 'Clear Error logs' ) . '</a>
 					',
 				],
 				'render'   => [ new CoreFields\Message(), 'input' ],
@@ -180,6 +180,39 @@ class Debugging {
 		$debug_log_link = '<a href="' . admin_url( 'edit.php?post_type=notification&page=settings&section=debugging' ) . '">' . esc_html__( 'See debug log', 'notification' ) . '</a>';
 
 		echo '<div class="notice notice-warning"><p>' . $message . ' ' . $debug_log_link . '</p></div>'; // phpcs:ignore
+
+	}
+
+	/**
+	 * Clears logs from database
+	 *
+	 * @action admin_post_notification_clear_logs
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function action_clear_logs() {
+
+		$data     = $_GET; // phpcs:ignore
+		$log_type = isset( $data['log_type'] ) ? $data['log_type'] : '';
+
+		check_admin_referer( 'notification_clear_log_' . $log_type, 'nonce' );
+
+		$debug = notification_runtime( 'core_debugging' );
+
+		$remove_types = [];
+
+		if ( 'notification' === $log_type ) {
+			$remove_types[] = 'notification';
+		} elseif ( 'error' === $log_type ) {
+			$remove_types[] = 'error';
+			$remove_types[] = 'warning';
+		}
+
+		$debug->remove_logs( $remove_types );
+
+		wp_safe_redirect( wp_get_referer() );
+		exit;
 
 	}
 
