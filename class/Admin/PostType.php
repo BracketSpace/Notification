@@ -392,8 +392,14 @@ class PostType {
 
 		foreach ( $notifications as $notification_json ) {
 			if ( ! empty( $notification_json ) ) {
+
 				$adapter = notification_adapt_from( 'JSON', $notification_json );
+
+				// Set source back to WordPress.
+				$adapter->set_source( 'WordPress' );
+
 				notification_add( $adapter->get_notification() );
+
 			}
 		}
 

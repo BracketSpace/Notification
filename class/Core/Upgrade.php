@@ -20,11 +20,25 @@ class Upgrade {
 	public static $data_version = 1;
 
 	/**
-	 * Setting key name
+	 * Version of database tables
+	 *
+	 * @var integer
+	 */
+	public static $db_version = 1;
+
+	/**
+	 * Data version setting key name
 	 *
 	 * @var string
 	 */
-	public static $setting_name = 'notification_data_version';
+	public static $data_setting_name = 'notification_data_version';
+
+	/**
+	 * Database version setting key name
+	 *
+	 * @var string
+	 */
+	public static $db_setting_name = 'notification_db_version';
 
 	/**
 	 * Checks if an upgrade is required
@@ -36,7 +50,7 @@ class Upgrade {
 	 */
 	public function check_upgrade() {
 
-		$data_version = get_option( static::$setting_name, 0 );
+		$data_version = get_option( static::$data_setting_name, 0 );
 
 		if ( $data_version >= static::$data_version ) {
 			return;
@@ -51,7 +65,60 @@ class Upgrade {
 			}
 		}
 
-		update_option( static::$setting_name, static::$data_version );
+		update_option( static::$data_setting_name, static::$data_version );
+
+	}
+
+	/**
+	 * --------------------------------------------------
+	 * Database.
+	 * --------------------------------------------------
+	 */
+
+	/**
+	 * Install database tables
+	 *
+	 * @action plugins_loaded 100
+	 * @return void
+	 */
+	public function upgrade_db() {
+
+		$current_version = get_option( static::$db_setting_name );
+
+		if ( $current_version > static::$db_version ) {
+			return;
+		}
+
+		global $wpdb;
+
+		$charset_collate = '';
+
+		if ( ! empty( $wpdb->charset ) ) {
+			$charset_collate = "DEFAULT CHARACTER SET {$wpdb->charset}";
+		}
+
+		if ( ! empty( $wpdb->collate ) ) {
+			$charset_collate .= " COLLATE {$wpdb->collate}";
+		}
+
+		$logs_table = $wpdb->prefix . 'notification_logs';
+
+		$sql = "
+		CREATE TABLE {$logs_table} (
+			ID bigint(20) NOT NULL AUTO_INCREMENT,
+			type text NOT NULL,
+			time_logged timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+			message text NOT NULL,
+			component text NOT NULL,
+			UNIQUE KEY ID (ID)
+		) $charset_collate;
+		";
+
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+
+		dbDelta( $sql );
+
+		update_option( static::$db_setting_name, static::$db_version );
 
 	}
 
@@ -65,6 +132,7 @@ class Upgrade {
 	 * Upgrades data to v1.
 	 * - 1. Saves the Notification cache in post_content field.
 	 * - 2. Deletes trashed Notifications.
+	 * - 3. Removes old debug log.
 	 *
 	 * @since  [Next]
 	 * @return void
@@ -86,6 +154,9 @@ class Upgrade {
 		foreach ( $trashed_notifications as $trashed_notification ) {
 			wp_delete_post( $trashed_notification->ID, true );
 		}
+
+		// 3. Remove old debug log
+		delete_option( 'notification_debug_log' );
 
 	}
 
