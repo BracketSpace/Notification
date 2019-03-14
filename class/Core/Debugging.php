@@ -20,6 +20,13 @@ class Debugging {
 	private $logs_table;
 
 	/**
+	 * How many logs per page
+	 *
+	 * @var integer
+	 */
+	private $logs_per_page = 10;
+
+	/**
 	 * Constructor
 	 *
 	 * @since [Next]
@@ -115,7 +122,13 @@ class Debugging {
 		$query .= ' ORDER BY time_logged DESC';
 
 		// Pagination.
-		$query .= ' LIMIT 2';
+		if ( $page > 1 ) {
+			$offset = 'OFFSET ' . ( $page - 1 ) * $this->logs_per_page;
+		} else {
+			$offset = '';
+		}
+
+		$query .= ' LIMIT ' . $this->logs_per_page . ' ' . $offset;
 
 		return $wpdb->get_results( $query ); // phpcs:ignore
 
@@ -135,7 +148,7 @@ class Debugging {
 		$total = $wpdb->get_var( 'SELECT FOUND_ROWS();' ); //phpcs:ignore
 
 		if ( 'pages' === $type ) {
-			return ceil( $total / 2 );
+			return ceil( $total / $this->logs_per_page );
 		}
 
 		return $total;
@@ -179,6 +192,8 @@ class Debugging {
 				'name' => $trigger->get_name(),
 			],
 		] ) );
+
+		notification_log( 'Core', 'warning', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' );
 
 		// Always suppress when debug log is active.
 		$carrier->suppress();
