@@ -13,7 +13,7 @@ $logs = $this->get_var( 'logs' );
 
 	<?php if ( ! empty( $logs ) ) : ?>
 
-		<?php foreach ( $logs as $log ): ?>
+		<?php foreach ( $logs as $log ) : ?>
 			<div class="log-item">
 				<div class="log-handle">
 					<span class="carrier-name"><?php echo esc_html( $log['carrier']['name'] ); ?></span>
