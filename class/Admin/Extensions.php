@@ -39,6 +39,13 @@ class Extensions {
 	private $premium_extensions = [];
 
 	/**
+	 * Extensions admin page hook
+	 *
+	 * @var string
+	 */
+	public $page_hook = 'none';
+
+	/**
 	 * Register Extensions page under plugin's menu
 	 *
 	 * @action admin_menu
