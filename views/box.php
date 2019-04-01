@@ -7,12 +7,12 @@
 
 ?>
 
-<div id="<?php $this->echo_var( 'id' ); ?>" class="postbox carrier-panel <?php echo ! $this->get_var( 'open' ) ? 'closed' : ''; ?>">
+<div id="<?php $this->echo_var( 'id' ); ?>" class="postbox carrier-panel <?php echo $this->get_var( 'shown' ) ? 'shown' : ''; ?>">
 	<div class="switch-container">
-		<label class="switch <?php echo $this->get_var( 'open' ) ? 'active' : ''; ?>">
-			<input type="checkbox" name="<?php $this->echo_var( 'name' ); ?>" value="1" <?php checked( $this->get_var( 'open' ), true ); ?> />
-			<div></div>
-		</label>
+			<button class="delete-carrier">
+				<?php _e( 'Delete Carrier', 'notification' ); ?>
+			</button>
+			<input type="hidden" name="<?php $this->echo_var( 'name' ); ?>" value="<?php echo $this->get_var( 'shown' ) ? 1 : 0; ?>"/>
 	</div>
 	<h2 class="hndle"><span><?php $this->echo_var( 'title' ); ?></span></h2>
 	<div class="inside">

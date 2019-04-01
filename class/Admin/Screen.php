@@ -95,7 +95,11 @@ class Screen {
 
 		$carrier_view = notification_create_view();
 
-		foreach ( notification_get_carriers() as $carrier ) {
+		$carriers = notification_get_carriers();
+
+		$carriers_count = count( $carriers );
+		print_r( $carriers );
+		foreach ( $carriers as $carrier ) {
 
 			$box_view = notification_create_view();
 			$carrier  = $notification_post->populate_carrier( $carrier );
@@ -105,7 +109,7 @@ class Screen {
 				'name'    => 'notification_carrier_' . $carrier->get_slug() . '_enable',
 				'title'   => $carrier->get_name(),
 				'content' => $this->get_carrier_form( $carrier ),
-				'open'    => $carrier->enabled,
+				'shown'    => $carrier->enabled,
 			] );
 
 			$box_view->get_view( 'box' );

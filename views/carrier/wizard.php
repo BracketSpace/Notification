@@ -67,7 +67,7 @@
 				</g>
 				</svg>
 				',
-				'open'    => $carrier->enabled,
+				'shown'    => $carrier->enabled,
 			] );
 
 			$tile_view->get_view( 'carrier/tile' );

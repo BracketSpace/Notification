@@ -16,6 +16,12 @@
 			}, 400);
 		} );
 
+		$('.delete-carrier').on('click', function(e) {
+			e.preventDefault();
+			$(this).parent().find('input[type=hidden]').val(0);
+			$(this).parents('.carrier-panel').removeClass('shown');
+		} );
+
 		$( '#notification_carrier_abort' ).on( 'click', function(e) {
 			e.preventDefault();
 			$(this).fadeOut(200);
@@ -31,7 +37,9 @@
 			$('#notification_carrier_wizard').fadeOut(200);
 			$('#notification_carrier_abort').fadeOut(200);
 			setTimeout( function() {
-				$( ".carrier-panel[id=" + data + "]").addClass('shown');
+				var carrier = $( ".carrier-panel[id=" + data + "]");
+				carrier.addClass('shown');
+				carrier.find('input[type=hidden]').val(1);
 				$('#notification_carrier_add').fadeIn().addClass('open');
 			}, 200 );
 		});

@@ -159,3 +159,7 @@ notification_freemius()->add_action( 'after_uninstall', function() {
 	delete_option( 'notification_debug_log' );
 
 } );
+
+// add_action('save_post', function() {
+// 	print_r( $_POST );
+// });

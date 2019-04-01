@@ -277,7 +277,7 @@ class PostType {
 				continue;
 			}
 
-			if ( isset( $data[ 'notification_carrier_' . $carrier->get_slug() . '_enable' ] ) ) {
+			if ( $data[ 'notification_carrier_' . $carrier->get_slug() . '_enable' ] == '1' ) {
 				$carrier->enabled = true;
 			}
 
