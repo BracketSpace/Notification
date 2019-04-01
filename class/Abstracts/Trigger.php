@@ -404,6 +404,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		foreach ( $store->with_trigger( $this->get_slug() ) as $notification ) {
 			foreach ( $notification->get_carriers() as $carrier ) {
 				if ( $carrier->enabled ) {
+					$carrier->notification = $notification;
 					$this->attach( $carrier );
 				}
 			}

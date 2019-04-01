@@ -87,3 +87,34 @@ function notification_deprecated_class( $class, $version, $replacement = null ) 
 	// phpcs:enable
 
 }
+
+/**
+ * Logs the message in database
+ *
+ * @since  [Next]
+ * @param  string $component Component nice name, like `Core` or `Any Plugin Name`.
+ * @param  string $type      Log type, values: notification|error|warning.
+ * @param  string $message   Log formatted message.
+ * @return bool|\WP_Error
+ */
+function notification_log( $component, $type, $message ) {
+
+	if ( 'notification' !== $type && ! notification_get_setting( 'debugging/settings/error_log' ) ) {
+		return false;
+	}
+
+	$debugger = notification_runtime( 'core_debugging' );
+
+	$log_data = [
+		'component' => $component,
+		'type'      => $type,
+		'message'   => $message,
+	];
+
+	try {
+		return $debugger->add_log( $log_data );
+	} catch ( \Exception $e ) {
+		return new \WP_Error( 'wrong_log_data', $e->getMessage() );
+	}
+
+}

@@ -100,6 +100,10 @@ class WordPress extends Abstracts\Adapter {
 		// Version.
 		$this->set_version( strtotime( $this->post->post_modified_gmt ) );
 
+		// Source.
+		$this->set_source( 'WordPress' );
+		$this->set_source_post_id( $this->get_id() );
+
 		return $this;
 
 	}
@@ -126,7 +130,7 @@ class WordPress extends Abstracts\Adapter {
 		// WordPress post related: Title, Hash, Status, Version.
 		$post_id = wp_insert_post( [
 			'ID'           => $this->get_id(),
-			'post_content' => $json, // cache.
+			'post_content' => wp_slash( $json ), // Cache.
 			'post_type'    => 'notification',
 			'post_title'   => $data['title'],
 			'post_name'    => $data['hash'],

@@ -30,6 +30,7 @@ class JSON extends Abstracts\Adapter {
 		}
 
 		$this->setup_notification( notification_convert_data( $data ) );
+		$this->set_source( 'JSON' );
 
 		return $this;
 

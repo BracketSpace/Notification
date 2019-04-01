@@ -381,7 +381,7 @@ class PostType {
 	 * Sets up all the Notification from database
 	 * It's running on every single page load.
 	 *
-	 * @action notification/boot
+	 * @action notification/boot 9999999
 	 *
 	 * @since  [Next]
 	 * @return void
@@ -392,8 +392,14 @@ class PostType {
 
 		foreach ( $notifications as $notification_json ) {
 			if ( ! empty( $notification_json ) ) {
+
 				$adapter = notification_adapt_from( 'JSON', $notification_json );
+
+				// Set source back to WordPress.
+				$adapter->set_source( 'WordPress' );
+
 				notification_add( $adapter->get_notification() );
+
 			}
 		}
 
