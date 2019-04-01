@@ -381,7 +381,7 @@ class PostType {
 	 * Sets up all the Notification from database
 	 * It's running on every single page load.
 	 *
-	 * @action notification/boot
+	 * @action notification/boot 9999999
 	 *
 	 * @since  [Next]
 	 * @return void
