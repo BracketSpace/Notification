@@ -250,26 +250,6 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	}
 
 	/**
-	 * Sets image
-	 *
-	 * @since  [Next]
-	 * @return array
-	 */
-	public function set_image() {
-
-	}
-
-	/**
-	 * Gets image
-	 *
-	 * @since  [Next]
-	 * @return array
-	 */
-	public function get_image() {
-
-	}
-
-	/**
 	 * Checks if Carrier is suppressed
 	 *
 	 * @since  5.1.2
