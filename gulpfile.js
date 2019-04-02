@@ -23,9 +23,6 @@ var script_sources = 'assets/src/js/**/*.js',
 		'vendor/event-manager.js'
 	];
 
-var image_sources = 'assets/src/images/*',
-	image_target  = 'assets/dist/images';
-
 ///////////
 // Tasks //
 ///////////
@@ -50,24 +47,10 @@ gulp.task( 'scripts', function() {
         .pipe( reload( { stream: true } ) );
 } );
 
-gulp.task( 'images', function() {
-    gulp.src( image_sources )
-        .pipe( sourcemaps.init() )
-        .pipe( sourcemaps.write() )
-        .pipe( gulp.dest( image_target ) )
-        .pipe( reload( { stream: true } ) );
-} );
-
-gulp.task('images', function() {
-	return gulp.src(image_sources)
-	  .pipe(gulp.dest(image_target))
-	  .pipe(reload( { stream: true } ));
-  });
-
 /////////////////////
 // Default - Build //
 /////////////////////
-gulp.task( 'default', [ 'styles', 'scripts', 'images' ] );
+gulp.task( 'default', [ 'styles', 'scripts' ] );
 
 ///////////
 // Watch //
@@ -81,7 +64,6 @@ gulp.task( 'watch', [ 'default' ], function() {
 
     gulp.watch( style_sources, ['styles'] );
     gulp.watch( script_sources, ['scripts'] );
-    gulp.watch( image_sources, ['images'] );
 
     gulp.watch( 'inc/**/*.php', reload );
     gulp.watch( 'class/**/*.php', reload );
