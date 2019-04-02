@@ -2,53 +2,49 @@
 
 	$( document ).ready( function() {
 
-		$( '#carrier-boxes .postbox .switch-container input' ).change( function( event ) {
-			$( this ).parents( '.switch' ).first().toggleClass( 'active' );
-			notification.hooks.doAction( 'notification.carrier.toggled', $( this ) );
-		} );
+		var wizard = $( '#notification_carrier_wizard' ),
+				addButton = $( '#notification_carrier_add' ),
+				deleteButton = $( '.delete-carrier' ),
+				abortButton = $( '#notification_carrier_abort' ),
+				carrierBoxesCount = $('#carrier-boxes').data('carriers-count');
+				carriersEnabledCount = $('#carrier-boxes').data('enabled-carriers-count');
 
-		$( '#notification_carrier_add' ).on( 'click', function(e) {
+		addButton.on( 'click', function( e ) {
 			e.preventDefault();
-			$(this).fadeOut(200);
-			setTimeout( function() {
-				$( '#notification_carrier_wizard' ).css("display", "flex").hide().fadeIn(400);
-				$( '#notification_carrier_abort' ).fadeIn(400);
-			}, 400);
-		} );
-
-		$('.delete-carrier').on('click', function(e) {
-			e.preventDefault();
-			$(this).parent().find('input[type=hidden]').val(0);
-			$(this).parents('.carrier-panel').removeClass('shown');
-		} );
-
-		$( '#notification_carrier_abort' ).on( 'click', function(e) {
-			e.preventDefault();
-			$(this).fadeOut(200);
-			$( '#notification_carrier_wizard' ).fadeOut(400);
+			$( this ).fadeOut(500);
 			setTimeout(function(){
-				$( '#notification_carrier_add' ).fadeIn(400);
-			}, 400);
+				wizard.css("display", "flex").hide().fadeIn(500);
+			}, 600);
 		} );
 
-		$( '.carrier-tile' ).on('click', function(e) {
-			e.preventDefault()
-			var data = $(this).data('carrier-id');
-			$('#notification_carrier_wizard').fadeOut(200);
-			$('#notification_carrier_abort').fadeOut(200);
-			setTimeout( function() {
-				var carrier = $( ".carrier-panel[id=" + data + "]");
-				carrier.addClass('shown');
-				carrier.find('input[type=hidden]').val(1);
-				$('#notification_carrier_add').fadeIn().addClass('open');
-			}, 200 );
-		});
-
-		$('.carrier-panel-delete').on('click', function(e) {
+		deleteButton.on('click', function(e) {
 			e.preventDefault();
-			$(this).removeClass('shown');
+			$(this).parent().find( '.active' ).val(0);
+			$(this).parents( '.carrier-panel' ).removeClass('shown');
+			addButton.fadeIn();
+		} );
+
+		abortButton.on( 'click', function(e) {
+			e.preventDefault();
+			wizard.fadeOut(500);
+			setTimeout(function(){
+				addButton.fadeIn(500);
+			}, 600);
+		} );
+
+		$( '.carrier-tile' ).on( 'click', function(e) {
+			e.preventDefault()
+			var data = $(this).data( 'carrier-id' );
+			wizard.fadeOut(500);
+			var carrier = $( ".carrier-panel[id=" + data + "]" );
+			carrier.addClass( 'shown' );
+			carrier.find( '.active' ).val(1);
+			carriersEnabledCount++;
+			setTimeout(function(){
+				if( carriersEnabledCount < carrierBoxesCount ) {
+					addButton.fadeIn(500);
+				}
+			}, 600);
 		});
-
 	} );
-
 })(jQuery);

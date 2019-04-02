@@ -60,14 +60,6 @@ gulp.task( 'images', function() {
 
 gulp.task('images', function() {
 	return gulp.src(image_sources)
-	  .pipe(imagemin([
-		imagemin.jpegtran({progressive: true}),
-		imagemin.gifsicle({interlaced: true}),
-		imagemin.svgo({plugins: [
-		  {removeUnknownsAndDefaults: false},
-		  {cleanupIDs: false}
-		]})
-	  ]))
 	  .pipe(gulp.dest(image_target))
 	  .pipe(reload( { stream: true } ));
   });

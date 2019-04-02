@@ -161,7 +161,3 @@ notification_freemius()->add_action( 'after_uninstall', function() {
 	delete_option( 'notification_db_version' );
 
 } );
-
-// add_action('save_post', function() {
-// 	print_r( $_POST );
-// });

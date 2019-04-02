@@ -91,14 +91,22 @@ class Screen {
 
 		do_action( 'notification/admin/carriers/pre', $notification_post );
 
-		echo '<div id="carrier-boxes">';
-
-		$carrier_view = notification_create_view();
-
 		$carriers = notification_get_carriers();
 
 		$carriers_count = count( $carriers );
-		print_r( $carriers );
+
+		$enabled_carriers_count = 0;
+		foreach( $carriers as $carrier ) {
+			if( $carrier->enabled === true ) {
+				$enabled_carriers_count++;
+			}
+		}
+
+		echo '<div id="carrier-boxes" data-carriers-count="'. $carriers_count .'" data-enabled-carriers-count="'. $enabled_carriers_count .'">';
+
+		$carrier_view = notification_create_view();
+
+
 		foreach ( $carriers as $carrier ) {
 
 			$box_view = notification_create_view();
@@ -116,7 +124,6 @@ class Screen {
 		}
 
 		$carrier_view->get_view('carrier/wizard');
-		$carrier_view->get_view('carrier/abort');
 		$carrier_view->get_view('carrier/add');
 
 		echo '</div>';
