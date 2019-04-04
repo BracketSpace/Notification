@@ -21,7 +21,7 @@ class RecipientsField extends RepeaterField {
 	public function __construct( $params = [] ) {
 
 		if ( ! isset( $params['carrier'] ) ) {
-			trigger_error( 'RecipientsField requires notification param', E_USER_ERROR );
+			trigger_error( 'RecipientsField requires carrier param', E_USER_ERROR );
 		}
 
 		$params = wp_parse_args( $params, [
