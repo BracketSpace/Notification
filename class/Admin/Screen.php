@@ -96,16 +96,15 @@ class Screen {
 		$carriers_count = count( $carriers );
 
 		$enabled_carriers_count = 0;
-		foreach( $carriers as $carrier ) {
-			if( $carrier->enabled === true ) {
+		foreach ( $carriers as $carrier ) {
+			if ( true === $carrier->enabled ) {
 				$enabled_carriers_count++;
 			}
 		}
 
-		echo '<div id="carrier-boxes" data-carriers-count="'. $carriers_count .'" data-enabled-carriers-count="'. $enabled_carriers_count .'">';
+		echo '<div id="carrier-boxes" data-carriers-count="' . esc_html( $carriers_count ) . '" data-enabled-carriers-count="' . esc_html( $enabled_carriers_count ) . '">';
 
 		$carrier_view = notification_create_view();
-
 
 		foreach ( $carriers as $carrier ) {
 
@@ -117,14 +116,14 @@ class Screen {
 				'name'    => 'notification_carrier_' . $carrier->get_slug() . '_enable',
 				'title'   => $carrier->get_name(),
 				'content' => $this->get_carrier_form( $carrier ),
-				'shown'    => $carrier->enabled,
+				'shown'   => $carrier->enabled,
 			] );
 
 			$box_view->get_view( 'box' );
 		}
 
-		$carrier_view->get_view('carrier/wizard');
-		$carrier_view->get_view('carrier/add');
+		$carrier_view->get_view( 'carrier/wizard' );
+		$carrier_view->get_view( 'carrier/add' );
 
 		echo '</div>';
 

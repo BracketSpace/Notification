@@ -1,3 +1,12 @@
+<?php
+/**
+ * Single carrier tile
+ *
+ * @package notification
+ */
+
+?>
+
 <div class="carrier-tile" id="<?php $this->echo_var( 'id' ); ?>" data-carrier-id="<?php $this->echo_var( 'id' ); ?>">
 	<div class="inside">
 		<?php do_action_deprecated( 'notification/notification/box/pre', [ $this ], '[Next]', 'notification/carrier/box/pre' ); ?>
@@ -11,6 +20,9 @@
 	</div>
 	<div class="carrier-tile-hover">
 		<span class="dashicons dashicons-plus"></span>
-		<?php _e( sprintf( 'Add %s', $this->get_var( 'title' ) ), 'notification' ); ?>
+		<?php
+			// translators: Add "notification name".
+			esc_html_e( sprintf( 'Add %s', $this->get_var( 'title' ) ), 'notification' );
+		?>
 	</div>
 </div>
