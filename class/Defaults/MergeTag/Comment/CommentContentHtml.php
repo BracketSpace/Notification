@@ -1,6 +1,6 @@
 <?php
 /**
- * Comment content merge tag
+ * Comment content html merge tag
  *
  * @package notification
  */
@@ -11,7 +11,7 @@ use BracketSpace\Notification\Defaults\MergeTag\HtmlTag;
 
 
 /**
- * Comment content merge tag class
+ * Comment content html merge tag class
  */
 class CommentContentHtml extends HtmlTag {
 
