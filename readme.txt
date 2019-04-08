@@ -276,7 +276,8 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Notifications are now loaded on every page load and the Trigger action is not executing at all if no Notification is using it.
 * [Changed] Notifications doesn't have the trash anymore, the items are removed right away.
 * [Removed] Trigger usage tracking.
-
+* [Removed] Trigger usage tracking.
+* [Fixed] Theme Update trigger errors on update.
 = Compatibility breaking changes =
 
 *Hooks* - Some of the hooks names has been renamed for better consistency across the plugin. List of all changes:
