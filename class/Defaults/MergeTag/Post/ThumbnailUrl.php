@@ -16,7 +16,7 @@ use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
 /**
  * Post thumbnail url merge tag class
  */
-class PostThumbnailUrl extends UrlTag {
+class ThumbnailUrl extends UrlTag {
 
 	/**
 	 * Post Type slug
@@ -28,7 +28,7 @@ class PostThumbnailUrl extends UrlTag {
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
+	 * @since [Next]
 	 * @param array $params merge tag configuration params.
 	 */
 	public function __construct( $params = [] ) {
@@ -70,7 +70,7 @@ class PostThumbnailUrl extends UrlTag {
 	/**
 	 * Gets nice, translated post name
 	 *
-	 * @since  5.0.0
+	 * @since  [Next]
 	 * @return string post name
 	 */
 	public function get_nicename() {

@@ -98,7 +98,7 @@ abstract class PostTrigger extends Abstracts\Trigger {
 			'post_type' => $this->post_type,
 		] ) );
 
-		$this->add_merge_tag( new MergeTag\Post\PostThumbnailUrl( [
+		$this->add_merge_tag( new MergeTag\Post\ThumbnailUrl( [
 			'post_type' => $this->post_type,
 		] ) );
 
