@@ -81,7 +81,7 @@ class Scripts {
 			],
 		] );
 
-		if( 'notification' === get_post_type() ) {
+		if ( 'notification' === get_post_type() ) {
 			remove_editor_styles();
 		}
 
