@@ -44,7 +44,7 @@ class FeaturedImageUrl extends UrlTag {
 			[
 				'slug'        => $this->post_type . '_featured_image_url',
 				// translators: singular post name.
-				'name'        => sprintf( __( '%s thumbnail url', 'notification' ), $this->get_nicename() ),
+				'name'        => sprintf( __( '%s featured image url', 'notification' ), $this->get_nicename() ),
 				'description' => __( 'https://example.com/wp-content/2019/01/image.jpg', 'notification' ),
 				'example'     => true,
 				'resolver'    => function() {
