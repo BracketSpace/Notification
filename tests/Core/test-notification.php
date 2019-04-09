@@ -237,7 +237,6 @@ class TestNotification extends \WP_UnitTestCase {
 	 * Test to_array
 	 *
 	 * @since [Next]
-	 * @todo Extras API #h1k0k.
 	 */
 	public function test_to_array() {
 
@@ -246,6 +245,11 @@ class TestNotification extends \WP_UnitTestCase {
 		$carrier->enabled = true;
 
 		$version = time() - 100;
+		$extras  = [
+			'extras1' => 'value1',
+			'extras2' => [ 'value2-1', 'value2-2' ],
+			'extras3' => 3,
+		];
 
 		$notification = new Notification( [
 			'hash'     => 'test-hash',
@@ -253,6 +257,7 @@ class TestNotification extends \WP_UnitTestCase {
 			'trigger'  => $trigger,
 			'carriers' => [ $carrier ],
 			'enabled'  => true,
+			'extras'   => $extras,
 			'version'  => $version,
 		] );
 
@@ -272,6 +277,7 @@ class TestNotification extends \WP_UnitTestCase {
 		$this->assertEquals( $trigger->get_slug(), $data['trigger'] );
 		$this->assertArrayHasKey( $carrier->get_slug(), $data['carriers'] );
 		$this->assertEquals( true, $data['enabled'] );
+		$this->assertEquals( $extras, $data['extras'] );
 		$this->assertEquals( $version, $data['version'] );
 
 	}
@@ -400,6 +406,23 @@ class TestNotification extends \WP_UnitTestCase {
 		$notification->disable_carrier( $carrier->get_slug() );
 
 		$this->assertFalse( $notification->get_carrier( $carrier->get_slug() )->enabled );
+
+	}
+
+	/**
+	 * Test get_extra
+	 *
+	 * @since [Next]
+	 */
+	public function test_get_extra() {
+
+		$notification = new Notification();
+		$value        = 'extra-data';
+
+		$notification->add_extra( 'extra_key', $value );
+
+		$this->assertEquals( $value, $notification->get_extra( 'extra_key' ) );
+		$this->assertNull( $notification->get_extra( 'undefined' ) );
 
 	}
 

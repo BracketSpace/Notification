@@ -165,7 +165,6 @@ class Notification {
 		}
 
 		// Extras.
-		// @todo Extras API #h1k0k.
 		if ( isset( $data['extras'] ) ) {
 			$extras = [];
 
@@ -373,6 +372,44 @@ class Notification {
 		if ( null !== $carrier ) {
 			$carrier->get_data( $data );
 		}
+	}
+
+	/**
+	 * Gets single extra data value.
+	 *
+	 * @since  [Next]
+	 * @param  string $key Extra data key.
+	 * @return mixed       Extra data value or null
+	 */
+	public function get_extra( $key ) {
+		$extras = $this->get_extras();
+		return isset( $extras[ $key ] ) ? $extras[ $key ] : null;
+	}
+
+	/**
+	 * Add extra data
+	 *
+	 * @since  [Next]
+	 * @throws \Exception If extra is not type of array, string or number.
+	 * @param  string $key   Extra data key.
+	 * @param  string $value Extra data value.
+	 * @return $this
+	 */
+	public function add_extra( $key, $value ) {
+
+		if ( ! is_array( $value ) && ! is_string( $value ) && ! is_numeric( $value ) ) {
+			throw new \Exception( 'Extra data must be an array or string or number.' );
+		}
+
+		$extras = $this->get_extras();
+
+		// Create or update key.
+		$extras[ $key ] = $value;
+
+		$this->set_extras( $extras );
+
+		return $this;
+
 	}
 
 }

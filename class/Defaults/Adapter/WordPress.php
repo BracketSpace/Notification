@@ -167,10 +167,6 @@ class WordPress extends Abstracts\Adapter {
 
 		}
 
-		// Extras.
-		// @todo Extras API #h1k0k. Presumabely the best to move to abstract adapter.
-		$extras = false;
-
 		return $this;
 
 	}
