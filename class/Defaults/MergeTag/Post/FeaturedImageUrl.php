@@ -42,7 +42,7 @@ class FeaturedImageUrl extends UrlTag {
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => $this->post_type . '_thumbnail_url',
+				'slug'        => $this->post_type . '_featured_image_url',
 				// translators: singular post name.
 				'name'        => sprintf( __( '%s thumbnail url', 'notification' ), $this->get_nicename() ),
 				'description' => __( 'https://example.com/wp-content/2019/01/image.jpg', 'notification' ),
