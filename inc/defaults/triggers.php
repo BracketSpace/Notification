@@ -77,6 +77,11 @@ if ( notification_get_setting( 'triggers/comment/types' ) ) {
 	}
 }
 
+// WordPress triggers.
+if ( notification_get_setting( 'triggers/wordpress/updates' ) ) {
+	notification_register_trigger( new Trigger\WordPress\UpdatesAvailable() );
+}
+
 // Plugin triggers.
 if ( notification_get_setting( 'triggers/plugin/enable' ) ) {
 	notification_register_trigger( new Trigger\Plugin\Activated() );
