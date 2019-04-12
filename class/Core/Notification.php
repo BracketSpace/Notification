@@ -189,15 +189,16 @@ class Notification {
 
 	/**
 	 * Dumps the object to array
-	 * Note: The notifications array contains only enabled notifications.
 	 *
 	 * @since  [Next]
+	 * @param  bool $only_enabled_carriers If only enabled Carriers should be saved.
 	 * @return array
 	 */
-	public function to_array() {
+	public function to_array( $only_enabled_carriers = false ) {
 
-		$carriers = [];
-		foreach ( $this->get_enabled_carriers() as $carrier_slug => $carrier ) {
+		$carriers  = [];
+		$_carriers = $only_enabled_carriers ? $this->get_enabled_carriers() : $this->get_carriers();
+		foreach ( $_carriers as $carrier_slug => $carrier ) {
 			$carriers[ $carrier_slug ] = $carrier->get_data();
 		}
 
@@ -256,7 +257,7 @@ class Notification {
 	 */
 	public function get_enabled_carriers() {
 		return array_filter( $this->get_carriers(), function( $carrier ) {
-			return $carrier->enabled;
+			return $carrier->is_enabled();
 		} );
 	}
 
@@ -307,7 +308,7 @@ class Notification {
 			$carrier = $this->add_carrier( $carrier_slug );
 		}
 
-		$carrier->enabled = true;
+		$carrier->enable();
 
 	}
 
@@ -321,7 +322,7 @@ class Notification {
 	public function disable_carrier( $carrier_slug ) {
 		$carrier = $this->get_carrier( $carrier_slug );
 		if ( null !== $carrier ) {
-			$carrier->enabled = false;
+			$carrier->disable();
 		}
 	}
 

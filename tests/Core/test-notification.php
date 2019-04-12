@@ -242,7 +242,7 @@ class TestNotification extends \WP_UnitTestCase {
 
 		$trigger = Helpers\Registerer::register_trigger();
 		$carrier = Helpers\Registerer::register_carrier();
-		$carrier->enabled = true;
+		$carrier->enable();
 
 		$version = time() - 100;
 		$extras  = [
@@ -369,7 +369,7 @@ class TestNotification extends \WP_UnitTestCase {
 		$notification->enable_carrier( $carrier->get_slug() );
 
 		$this->assertSame( $carrier, $notification->get_carrier( $carrier->get_slug() ) );
-		$this->assertTrue( $notification->get_carrier( $carrier->get_slug() )->enabled );
+		$this->assertTrue( $notification->get_carrier( $carrier->get_slug() )->is_enabled() );
 
 	}
 
@@ -384,7 +384,7 @@ class TestNotification extends \WP_UnitTestCase {
 		$notification = new Notification();
 		$notification->enable_carrier( $carrier->get_slug() );
 
-		$this->assertTrue( $notification->get_carrier( $carrier->get_slug() )->enabled );
+		$this->assertTrue( $notification->get_carrier( $carrier->get_slug() )->is_enabled() );
 
 	}
 
@@ -395,17 +395,16 @@ class TestNotification extends \WP_UnitTestCase {
 	 */
 	public function test_disable_carrier() {
 
-		$carrier          = Helpers\Registerer::register_carrier();
-		$carrier->enabled = true;
-		$notification     = new Notification( [
+		$carrier      = Helpers\Registerer::register_carrier()->enable();
+		$notification = new Notification( [
 			'carriers' => [ $carrier ]
 		] );
 
-		$this->assertTrue( $notification->get_carrier( $carrier->get_slug() )->enabled );
+		$this->assertTrue( $notification->get_carrier( $carrier->get_slug() )->is_enabled() );
 
 		$notification->disable_carrier( $carrier->get_slug() );
 
-		$this->assertFalse( $notification->get_carrier( $carrier->get_slug() )->enabled );
+		$this->assertFalse( $notification->get_carrier( $carrier->get_slug() )->is_enabled() );
 
 	}
 
