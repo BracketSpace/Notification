@@ -18,13 +18,6 @@ use BracketSpace\Notification\Defaults\Field\RecipientsField;
 abstract class Carrier extends Common implements Interfaces\Sendable {
 
 	/**
-	 * If Carrier is enabled
-	 *
-	 * @var boolean
-	 */
-	public $enabled = false;
-
-	/**
 	 * Carrier form fields
 	 *
 	 * @var array
@@ -37,6 +30,13 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	 * @var array
 	 */
 	public $data = [];
+
+	/**
+	 * Restricted form field keys
+	 *
+	 * @var array
+	 */
+	public $restricted_fields = [ '_nonce', 'enabled' ];
 
 	/**
 	 * If is suppressed
@@ -56,12 +56,30 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 		$this->slug = $slug;
 		$this->name = $name;
 
-		$this->add_form_field( new Field\NonceField( [
+		// Form nonce.
+		$nonce_field = new Field\NonceField( [
 			'label'      => '',
 			'name'       => '_nonce',
-			'nonce_key'  => $this->slug . '_carrier_security',
+			'nonce_key'  => $this->get_slug() . '_carrier_security',
 			'resolvable' => false,
-		] ) );
+		] );
+
+		$nonce_field->section = 'notification_carrier_' . $this->get_slug();
+
+		$this->form_fields[ $nonce_field->get_raw_name() ] = $nonce_field;
+
+		// Carrier status.
+		$enabled_field = new Field\InputField( [
+			'type'       => 'hidden',
+			'label'      => '',
+			'name'       => 'enabled',
+			'value'      => '0',
+			'resolvable' => false,
+		] );
+
+		$enabled_field->section = 'notification_carrier_' . $this->get_slug();
+
+		$this->form_fields[ $enabled_field->get_raw_name() ] = $enabled_field;
 
 		$this->form_fields();
 
@@ -114,14 +132,24 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	/**
 	 * Adds form field to collection
 	 *
+	 * @since  [Next] Added restricted field check.
+	 * @throws \Exception When restricted name is used.
 	 * @param  Interfaces\Fillable $field Field object.
 	 * @return $this
 	 */
 	public function add_form_field( Interfaces\Fillable $field ) {
-		$adding_field                                = clone $field;
-		$adding_field->section                       = 'notification_carrier_' . $this->get_slug();
+
+		if ( in_array( $field->get_raw_name(), $this->restricted_fields, true ) ) {
+			throw new \Exception( 'You cannot use restricted field name. Restricted names: ' . implode( ', ', $this->restricted_fields ) );
+		}
+
+		$adding_field          = clone $field;
+		$adding_field->section = 'notification_carrier_' . $this->get_slug();
+
 		$this->form_fields[ $field->get_raw_name() ] = $adding_field;
+
 		return $this;
+
 	}
 
 	/**
@@ -238,6 +266,38 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 
 		return $data;
 
+	}
+
+	/**
+	 * Checks if Carrier is enabled
+	 *
+	 * @since  [Next]
+	 * @return boolean
+	 */
+	public function is_enabled() {
+		return ! empty( $this->get_field_value( 'enabled' ) );
+	}
+
+	/**
+	 * Enables the Carrier
+	 *
+	 * @since  [Next]
+	 * @return $this
+	 */
+	public function enable() {
+		$this->get_form_field( 'enabled' )->set_value( true );
+		return $this;
+	}
+
+	/**
+	 * Disabled the Carrier
+	 *
+	 * @since  [Next]
+	 * @return $this
+	 */
+	public function disable() {
+		$this->get_form_field( 'enabled' )->set_value( false );
+		return $this;
 	}
 
 	/**
