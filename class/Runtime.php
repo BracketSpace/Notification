@@ -153,6 +153,7 @@ class Runtime extends Utils\DocHooks {
 
 		require_once $this->files->file_path( 'inc/functions/general.php' );
 		require_once $this->files->file_path( 'inc/functions/settings.php' );
+		require_once $this->files->file_path( 'inc/functions/resolver.php' );
 		require_once $this->files->file_path( 'inc/functions/carrier.php' );
 		require_once $this->files->file_path( 'inc/functions/trigger.php' );
 		require_once $this->files->file_path( 'inc/functions/recipient.php' );
@@ -192,6 +193,7 @@ class Runtime extends Utils\DocHooks {
 	public function load_early_defaults() {
 		array_map( [ $this, 'load_default' ], [
 			'global-merge-tags',
+			'resolvers',
 			'recipients',
 			'carriers',
 		] );
