@@ -189,6 +189,79 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	}
 
 	/**
+	 * Resolves all fields
+	 *
+	 * @since  [Next]
+	 * @param  Triggerable $trigger Trigger object.
+	 * @return void
+	 */
+	public function resolve_fields( Triggerable $trigger ) {
+
+		foreach ( $this->get_form_fields() as $field ) {
+
+			if ( ! $field->is_resolvable() ) {
+				continue;
+			}
+
+			$resolved = $this->resolve_value( $field->get_value(), $trigger );
+			$field->set_value( $resolved );
+
+		}
+
+	}
+
+	/**
+	 * Resolves Merge Tags in field value
+	 *
+	 * @since [Next]
+	 * @param  mixed       $value   String or array, field value.
+	 * @param  Triggerable $trigger Trigger object.
+	 * @return mixed
+	 */
+	protected function resolve_value( $value, Triggerable $trigger ) {
+
+		if ( is_array( $value ) ) {
+			$resolved = [];
+
+			foreach ( $value as $key => $val ) {
+				$key              = $this->resolve_value( $key, $trigger );
+				$val              = $this->resolve_value( $val, $trigger );
+				$resolved[ $key ] = $val;
+			}
+		} else {
+
+			$value = apply_filters_deprecated( 'notificaiton/notification/field/resolving', [
+				$value,
+				null,
+			], '[Next]', 'notification/carrier/field/resolving' );
+			$value = apply_filters( 'notification/carrier/field/resolving', $value, null );
+
+			$resolved = notification_resolve( $value, $trigger );
+
+			$strip_shortcodes = notification_get_setting( 'general/content/strip_shortcodes' );
+			$strip_shortcodes = apply_filters_deprecated( 'notification/value/strip_shortcodes', [
+				$strip_shortcodes,
+			], '[Next]', 'notification/carrier/field/value/strip_shortcodes' );
+
+			if ( apply_filters( 'notification/carrier/field/value/strip_shortcodes', $strip_shortcodes ) ) {
+				$resolved = strip_shortcodes( $resolved );
+			} else {
+				$resolved = do_shortcode( $resolved );
+			}
+
+			$resolved = apply_filters_deprecated( 'notificaiton/notification/field/resolved', [
+				$resolved,
+				null,
+			], '[Next]', 'notification/carrier/field/value/resolved' );
+			$resolved = apply_filters( 'notification/carrier/field/value/resolved', $resolved, null );
+
+		}
+
+		return $resolved;
+
+	}
+
+	/**
 	 * Prepares saved data for easy use in send() method
 	 * Saves all the values in $data property
 	 *
