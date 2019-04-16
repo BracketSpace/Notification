@@ -81,9 +81,8 @@ class Scripts {
 			],
 		] );
 
-		if ( 'notification' === get_post_type() ) {
-			remove_editor_styles();
-		}
+		// Remove TinyMCE styles as they are not applied to any frontend content.
+		remove_editor_styles();
 
 		do_action( 'notification/scripts', $page_hook );
 
