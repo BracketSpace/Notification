@@ -90,7 +90,7 @@
 
 							<?php endforeach ?>
 
-							</table>
+						</table>
 						<?php do_action( $this->handle . '/settings/sections/after', $group->slug() ); ?>
 
 					</div>

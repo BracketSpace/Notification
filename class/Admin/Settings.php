@@ -81,6 +81,7 @@ class Settings {
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] )
 			->description( __( 'Choose what to remove upon plugin removal', 'notification' ) );
+
 	}
 
 	/**

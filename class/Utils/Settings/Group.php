@@ -71,9 +71,8 @@ class Group {
 	 * @param string $name    Group name.
 	 * @param string $slug    Group slug.
 	 * @param string $section Section slug.
-	 * @param bool   $collapsed Group collapsed.
 	 */
-	public function __construct( $handle, $name, $slug, $section, $collapsed = false ) {
+	public function __construct( $handle, $name, $slug, $section ) {
 
 		if ( empty( $handle ) ) {
 			throw new \Exception( 'Setting handle in Section instance cannot be empty' );
@@ -98,8 +97,6 @@ class Group {
 		}
 
 		$this->section( $section );
-
-		$this->collapsed( $collapsed );
 
 	}
 
