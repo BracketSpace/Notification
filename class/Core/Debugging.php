@@ -201,7 +201,7 @@ class Debugging {
 				'title'  => $carrier->notification->get_title(),
 				'hash'   => $carrier->notification->get_hash(),
 				'source' => $carrier->notification->get_source(),
-				'extras' => [], // @todo #h1k0k Extras API.
+				'extras' => $carrier->notification->get_extras(),
 			],
 			'carrier'      => [
 				'slug' => $carrier->get_slug(),
