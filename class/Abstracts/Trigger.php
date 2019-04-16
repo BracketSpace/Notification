@@ -341,23 +341,35 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Gets Trigger's merge tags
 	 *
-	 * @param string $type optional, all|visible|hidden, default: all.
+	 * @since [Next] Added param $grouped which makes the array associative
+	 *               with merge tag slugs as keys.
+	 * @param string $type    Optional, all|visible|hidden, default: all.
+	 * @param bool   $grouped Optional, default: false.
 	 * @return $array merge tags
 	 */
-	public function get_merge_tags( $type = 'all' ) {
+	public function get_merge_tags( $type = 'all', $grouped = false ) {
 
 		if ( 'all' === $type ) {
-			return $this->merge_tags;
+			$tags = $this->merge_tags;
+		} else {
+			$tags = [];
+
+			foreach ( $this->merge_tags as $merge_tag ) {
+				if ( 'visible' === $type && ! $merge_tag->is_hidden() ) {
+					array_push( $tags, $merge_tag );
+				} elseif ( 'hidden' === $type && $merge_tag->is_hidden() ) {
+					array_push( $tags, $merge_tag );
+				}
+			}
 		}
 
-		$tags = [];
-
-		foreach ( $this->merge_tags as $merge_tag ) {
-			if ( 'visible' === $type && ! $merge_tag->is_hidden() ) {
-				array_push( $tags, $merge_tag );
-			} elseif ( 'hidden' === $type && $merge_tag->is_hidden() ) {
-				array_push( $tags, $merge_tag );
+		// Group the tags if needed.
+		if ( $grouped ) {
+			$grouped_tags = [];
+			foreach ( $tags as $merge_tag ) {
+				$grouped_tags[ $merge_tag->get_slug() ] = $merge_tag;
 			}
+			return $grouped_tags;
 		}
 
 		return $tags;
@@ -367,13 +379,14 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Resolves all Carrier fields with Merge Tags
 	 *
+	 * @since [Next] Fields resolving has been moved to additional API
+	 *               which is called by the Carrier itself
 	 * @return void
 	 */
 	private function resolve_fields() {
 
 		foreach ( $this->get_carriers() as $carrier ) {
-			$resolver = new FieldsResolver( $carrier, $this->get_merge_tags() );
-			$resolver->resolve_fields();
+			$carrier->resolve_fields( $this );
 		}
 
 	}
@@ -403,7 +416,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 		foreach ( $store->with_trigger( $this->get_slug() ) as $notification ) {
 			foreach ( $notification->get_carriers() as $carrier ) {
-				if ( $carrier->enabled ) {
+				if ( $carrier->is_enabled() ) {
 					$carrier->notification = $notification;
 					$this->attach( $carrier );
 				}

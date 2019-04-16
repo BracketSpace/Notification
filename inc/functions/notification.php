@@ -83,7 +83,6 @@ function notification_convert_data( $data = [] ) {
 			if ( ! empty( $registered_carrier ) ) {
 				$carrier = clone $registered_carrier;
 				$carrier->set_data( $carrier_data );
-				$carrier->enabled          = true;
 				$carriers[ $carrier_slug ] = $carrier;
 			}
 		}

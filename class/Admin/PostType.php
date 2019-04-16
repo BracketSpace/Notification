@@ -277,10 +277,6 @@ class PostType {
 				continue;
 			}
 
-			if ( isset( $data[ 'notification_carrier_' . $carrier->get_slug() . '_enable' ] ) ) {
-				$carrier->enabled = true;
-			}
-
 			$carrier_data = $data[ 'notification_carrier_' . $carrier->get_slug() ];
 
 			// If nonce not set or false, ignore this form.
@@ -288,7 +284,15 @@ class PostType {
 				continue;
 			}
 
+			// @todo #h1kf7 `enabled` key is overwritten below.
 			$carrier->set_data( $carrier_data );
+
+			if ( isset( $data[ 'notification_carrier_' . $carrier->get_slug() . '_enable' ] ) ) {
+				$carrier->enable();
+			} else {
+				$carrier->disable();
+			}
+
 			$carriers[ $carrier->get_slug() ] = $carrier;
 
 		}

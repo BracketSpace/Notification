@@ -93,17 +93,22 @@ class Screen {
 
 		echo '<div id="carrier-boxes">';
 
-		foreach ( notification_get_carriers() as $carrier ) {
+		foreach ( notification_get_carriers() as $_carrier ) {
 
 			$box_view = notification_create_view();
-			$carrier  = $notification_post->populate_carrier( $carrier );
+			$carrier  = $notification_post->get_carrier( $_carrier->get_slug() );
+
+			// If Carrier wasn't set before, use the blank one.
+			if ( ! $carrier ) {
+				$carrier = $_carrier;
+			}
 
 			$box_view->set_vars( [
 				'id'      => 'notification-carrier-' . $carrier->get_slug() . '-box',
 				'name'    => 'notification_carrier_' . $carrier->get_slug() . '_enable',
 				'title'   => $carrier->get_name(),
 				'content' => $this->get_carrier_form( $carrier ),
-				'open'    => $carrier->enabled,
+				'open'    => $carrier->is_enabled(),
 			] );
 
 			$box_view->get_view( 'box' );

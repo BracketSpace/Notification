@@ -29,7 +29,7 @@ class NotificationPost {
 	public static function insert( Triggerable $trigger, Sendable $carrier ) {
 
 		// Make sure the carrier is enabled.
-		$carrier->enabled = true;
+		$carrier->enable();
 
 		$notification = new Notification( [
 			'enabled'  => true,
