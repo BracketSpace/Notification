@@ -251,6 +251,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
+* [Fixed] Theme Update trigger errors on update.
 * [Added] Notification object as a wrapper for Notification Post.
 * [Added] `notification_create_view` function for seamless view creation.
 * [Added] `notification/post/column/main` action for notification edit screen addons.
@@ -278,6 +279,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Notifications are now loaded on every page load and the Trigger action is not executing at all if no Notification is using it.
 * [Changed] Notifications doesn't have the trash anymore, the items are removed right away.
 * [Changed] Carriers now have two step status - they can be either added to a Notification and be disabled at the same time.
+* [Removed] Trigger usage tracking.
 * [Removed] Trigger usage tracking.
 
 = Compatibility breaking changes =
