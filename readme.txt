@@ -283,7 +283,6 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] On notification edit screen the editor styles are no longer applied.
 * [Changed] Carriers now have two step status - they can be either added to a Notification and be disabled at the same time.
 * [Removed] Trigger usage tracking.
-* [Removed] Trigger usage tracking.
 
 = Compatibility breaking changes =
 
