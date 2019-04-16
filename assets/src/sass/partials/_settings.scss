@@ -96,22 +96,25 @@
 				}
 
 				&::after {
-					content: '';
+					content: "\f142";
+					display: inline-block;
+					font: normal 20px/1 dashicons;
+					speak: none;
+					-webkit-font-smoothing: antialiased;
+					-moz-osx-font-smoothing: grayscale;
 					position: absolute;
 					top: 5px;
-					right: 20px;
-					border: solid black;
-					border-width: 0 1px 1px 0;
-					display: inline-block;
-					padding: 6px;
-					transform: rotate(45deg);
-					transform-origin: center;
-					transition: all .2s ease-in-out;
+					right: 0px;
+					width: 20px;
+					border-radius: 50%;
+					text-indent: -1px;
+					transition: all 0.3s ease-in-out;
+					transform: rotate(180deg);
 				}
 
 				&.open {
 					&::after {
-						transform: rotate(-135deg);
+						transform: rotate(0);
 					}
 				}
 			}
