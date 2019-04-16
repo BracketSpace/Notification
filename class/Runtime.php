@@ -82,6 +82,7 @@ class Runtime extends Utils\DocHooks {
 		$this->admin_screen     = new Admin\Screen();
 		$this->admin_share      = new Admin\Share();
 		$this->admin_sync       = new Admin\Sync();
+		$this->admin_debugging  = new Admin\Debugging();
 
 		$this->integration_wp = new Integration\WordPress();
 		$this->integration_cf = new Integration\CustomFields();
@@ -118,6 +119,7 @@ class Runtime extends Utils\DocHooks {
 		$this->add_hooks( $this->admin_screen );
 		$this->add_hooks( $this->admin_share );
 		$this->add_hooks( $this->admin_sync );
+		$this->add_hooks( $this->admin_debugging );
 
 		$this->add_hooks( $this->integration_wp );
 		$this->add_hooks( $this->integration_cf );
@@ -127,7 +129,7 @@ class Runtime extends Utils\DocHooks {
 		notification_register_settings( [ $this->admin_settings, 'notifications_settings' ], 30 );
 		notification_register_settings( [ $this->admin_sync, 'settings' ], 40 );
 		notification_register_settings( [ $this->admin_impexp, 'settings' ], 50 );
-		notification_register_settings( [ $this->core_debugging, 'debugging_settings' ], 60 );
+		notification_register_settings( [ $this->admin_debugging, 'debugging_settings' ], 60 );
 
 	}
 
@@ -151,6 +153,7 @@ class Runtime extends Utils\DocHooks {
 
 		require_once $this->files->file_path( 'inc/functions/general.php' );
 		require_once $this->files->file_path( 'inc/functions/settings.php' );
+		require_once $this->files->file_path( 'inc/functions/resolver.php' );
 		require_once $this->files->file_path( 'inc/functions/carrier.php' );
 		require_once $this->files->file_path( 'inc/functions/trigger.php' );
 		require_once $this->files->file_path( 'inc/functions/recipient.php' );
@@ -190,6 +193,7 @@ class Runtime extends Utils\DocHooks {
 	public function load_early_defaults() {
 		array_map( [ $this, 'load_default' ], [
 			'global-merge-tags',
+			'resolvers',
 			'recipients',
 			'carriers',
 		] );

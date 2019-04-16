@@ -139,7 +139,7 @@ class ImportExport {
 
 			$wp_adapter   = notification_adapt_from( 'WordPress', $wppost );
 			$json_adapter = notification_swap_adapter( 'JSON', $wp_adapter );
-			$json         = $json_adapter->save();
+			$json         = $json_adapter->save( null, true );
 
 			// Decode because it's encoded in the last step of export.
 			$data[] = json_decode( $json );

@@ -55,7 +55,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 			'group'       => __( 'Theme', 'notification' ),
 		] ) );
 
-		$this->add_merge_tag( new MergeTag\UrlTag( [
+		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'theme_uri',
 			'name'        => __( 'Theme URI', 'notification' ),
 			'description' => __( 'https://wordpress.org/themes/twentyseventeen/', 'notification' ),
@@ -77,7 +77,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 			'group'       => __( 'Theme', 'notification' ),
 		] ) );
 
-		$this->add_merge_tag( new MergeTag\UrlTag( [
+		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'theme_author_uri',
 			'name'        => __( 'Theme author URI', 'notification' ),
 			'description' => __( 'https://wordpress.org/', 'notification' ),

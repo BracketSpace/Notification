@@ -277,10 +277,6 @@ class PostType {
 				continue;
 			}
 
-			if ( isset( $data[ 'notification_carrier_' . $carrier->get_slug() . '_enable' ] ) ) {
-				$carrier->enabled = true;
-			}
-
 			$carrier_data = $data[ 'notification_carrier_' . $carrier->get_slug() ];
 
 			// If nonce not set or false, ignore this form.
@@ -288,7 +284,15 @@ class PostType {
 				continue;
 			}
 
+			// @todo #h1kf7 `enabled` key is overwritten below.
 			$carrier->set_data( $carrier_data );
+
+			if ( isset( $data[ 'notification_carrier_' . $carrier->get_slug() . '_enable' ] ) ) {
+				$carrier->enable();
+			} else {
+				$carrier->disable();
+			}
+
 			$carriers[ $carrier->get_slug() ] = $carrier;
 
 		}
@@ -381,7 +385,7 @@ class PostType {
 	 * Sets up all the Notification from database
 	 * It's running on every single page load.
 	 *
-	 * @action notification/boot
+	 * @action notification/boot 9999999
 	 *
 	 * @since  [Next]
 	 * @return void
@@ -392,8 +396,14 @@ class PostType {
 
 		foreach ( $notifications as $notification_json ) {
 			if ( ! empty( $notification_json ) ) {
+
 				$adapter = notification_adapt_from( 'JSON', $notification_json );
+
+				// Set source back to WordPress.
+				$adapter->set_source( 'WordPress' );
+
 				notification_add( $adapter->get_notification() );
+
 			}
 		}
 

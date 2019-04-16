@@ -81,6 +81,9 @@ class Scripts {
 			],
 		] );
 
+		// Remove TinyMCE styles as they are not applied to any frontend content.
+		remove_editor_styles();
+
 		do_action( 'notification/scripts', $page_hook );
 
 	}

@@ -1,6 +1,6 @@
 <?php
 /**
- * Default triggers
+ * Default recipients
  *
  * @package notification
  */

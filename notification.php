@@ -157,5 +157,7 @@ notification_freemius()->add_action( 'after_uninstall', function() {
 	// Remove other things.
 	delete_option( 'notification_story_dismissed' );
 	delete_option( 'notification_debug_log' );
+	delete_option( 'notification_data_version' );
+	delete_option( 'notification_db_version' );
 
 } );

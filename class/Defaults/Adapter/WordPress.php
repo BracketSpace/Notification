@@ -24,27 +24,6 @@ class WordPress extends Abstracts\Adapter {
 	protected $post;
 
 	/**
-	 * Meta key for enabled Carriers
-	 *
-	 * @var string
-	 */
-	public static $metakey_carrier_enabled = '_enabled_notification';
-
-	/**
-	 * Meta key for Carrier data
-	 *
-	 * @var string
-	 */
-	public static $metakey_carrier_data = '_notification_type_';
-
-	/**
-	 * Meta key for active trigger
-	 *
-	 * @var string
-	 */
-	public static $metakey_trigger = '_trigger';
-
-	/**
 	 * {@inheritdoc}
 	 *
 	 * @throws \Exception If wrong input param provided.
@@ -61,44 +40,16 @@ class WordPress extends Abstracts\Adapter {
 			throw new \Exception( 'Read method of WordPress adapter expects the post ID or WP_Post object' );
 		}
 
-		// Hash.
-		$this->set_hash( $this->post->post_name );
-
-		// Title.
-		$this->set_title( $this->post->post_title );
-
-		// Trigger.
-		$trigger_slug = get_post_meta( $this->get_id(), self::$metakey_trigger, true );
-		$trigger      = notification_get_trigger( $trigger_slug );
-
-		if ( ! empty( $trigger ) ) {
-			$this->set_trigger( $trigger );
+		try {
+			$json_adapter = notification_adapt_from( 'JSON', $this->post->post_content );
+			$this->setup_notification( notification_convert_data( $json_adapter->get_notification()->to_array() ) );
+		} catch ( \Exception $e ) {
+			$do_nothing = true;
 		}
 
-		// Carriers.
-		$carrier_slug = (array) get_post_meta( $this->get_id(), self::$metakey_carrier_enabled, false );
-		$carriers     = [];
-
-		foreach ( $carrier_slug as $carrier_slug ) {
-			$carrier = notification_get_carrier( $carrier_slug );
-			if ( ! empty( $carrier ) ) {
-				$carriers[ $carrier->get_slug() ] = $this->populate_carrier( clone $carrier );
-			}
-		}
-
-		if ( ! empty( $carriers ) ) {
-			$this->set_carriers( $carriers );
-		}
-
-		// Status.
-		$this->set_enabled( 'publish' === $this->post->post_status );
-
-		// Extras.
-		// @todo Extras API #h1k0k. Presumabely the best to move to abstract adapter.
-		$extras = false;
-
-		// Version.
-		$this->set_version( strtotime( $this->post->post_modified_gmt ) );
+		// Source.
+		$this->set_source( 'WordPress' );
+		$this->set_source_post_id( $this->get_id() );
 
 		return $this;
 
@@ -126,7 +77,7 @@ class WordPress extends Abstracts\Adapter {
 		// WordPress post related: Title, Hash, Status, Version.
 		$post_id = wp_insert_post( [
 			'ID'           => $this->get_id(),
-			'post_content' => $json, // cache.
+			'post_content' => wp_slash( $json ), // Cache.
 			'post_type'    => 'notification',
 			'post_title'   => $data['title'],
 			'post_name'    => $data['hash'],
@@ -141,31 +92,6 @@ class WordPress extends Abstracts\Adapter {
 		if ( ! $this->has_post() ) {
 			$this->set_post( get_post( $post_id ) );
 		}
-
-		/**
-		 * All the below code is for backward compatibilty, we don't need meta anymore since [Next].
-		 */
-
-		// Trigger.
-		update_post_meta( $this->get_id(), self::$metakey_trigger, $data['trigger'] );
-
-		// Carriers.
-		// Loop through all defined to save the data of deactivated Carriers too.
-		foreach ( $this->get_notification()->get_carriers() as $carrier_slug => $carrier ) {
-
-			if ( $carrier->enabled ) {
-				add_post_meta( $this->get_id(), self::$metakey_carrier_enabled, $carrier_slug );
-			} else {
-				delete_post_meta( $this->get_id(), self::$metakey_carrier_enabled, $carrier_slug );
-			}
-
-			update_post_meta( $this->get_id(), self::$metakey_carrier_data . $carrier_slug, $carrier->get_data() );
-
-		}
-
-		// Extras.
-		// @todo Extras API #h1k0k. Presumabely the best to move to abstract adapter.
-		$extras = false;
 
 		return $this;
 
@@ -221,46 +147,6 @@ class WordPress extends Abstracts\Adapter {
 	 */
 	public function has_post() {
 		return ! empty( $this->get_post() );
-	}
-
-	/**
-	 * Populates Carrier with field values
-	 *
-	 * @since  [Next]
-	 * @throws \Exception If Carrier hasn't been found.
-	 * @param  mixed $carrier Sendable object or Carrier slug.
-	 * @return Sendable
-	 */
-	public function populate_carrier( $carrier ) {
-
-		if ( ! $carrier instanceof Interfaces\Sendable ) {
-			$carrier = notification_get_carrier( $carrier );
-		}
-
-		if ( ! $carrier ) {
-			throw new \Exception( 'Wrong Carroer slug' );
-		}
-
-		// Set enabled state.
-		$enabled_carriers = (array) get_post_meta( $this->get_id(), self::$metakey_carrier_enabled, false );
-
-		if ( in_array( $carrier->get_slug(), $enabled_carriers, true ) ) {
-			$carrier->enabled = true;
-		}
-
-		// Set data.
-		$data         = get_post_meta( $this->get_id(), self::$metakey_carrier_data . $carrier->get_slug(), true );
-		$field_values = apply_filters_deprecated( 'notification/notification/form_fields/values', [ $data, $carrier ], '[Next]', 'notification/carrier/fields/values' );
-		$field_values = apply_filters( 'notification/carrier/fields/values', $field_values, $carrier );
-
-		foreach ( $carrier->get_form_fields() as $field ) {
-			if ( isset( $field_values[ $field->get_raw_name() ] ) ) {
-				$field->set_value( $field_values[ $field->get_raw_name() ] );
-			}
-		}
-
-		return $carrier;
-
 	}
 
 }
