@@ -264,6 +264,8 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] JSON synchronization feature.
 * [Added] `add_quick_merge_tag` Trigger method.
 * [Added] Common error log for all extensions, you can use `notification_log` function.
+* [Added] Comment content HTML merge tag.
+* [Added] Resolver API which allows to register more Merge Tag resolvers.
 * [Changed] PostData class has been removed in favor of Notification object and procedural functions.
 * [Changed] Admin Classes: MergeTags, Notifications, PostData, Recipients, Triggers has been removed and their content included in the Admin/PostType class.
 * [Changed] Notification data is now using single nonce field and additional data should be saved with `notification/data/save` action.
@@ -275,6 +277,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] ScreenHelp class has been renamed to Screen and render methods from PostType class has been moved to this new class.
 * [Changed] Notifications are now loaded on every page load and the Trigger action is not executing at all if no Notification is using it.
 * [Changed] Notifications doesn't have the trash anymore, the items are removed right away.
+* [Changed] Carriers now have two step status - they can be either added to a Notification and be disabled at the same time.
 * [Removed] Trigger usage tracking.
 * [Removed] Trigger usage tracking.
 * [Fixed] Theme Update trigger errors on update.
@@ -285,7 +288,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * notification/notification/pre-send -> notification/carrier/pre-send
 * notification/notification/sent -> notification/carrier/sent
 * notificaiton/notification/field/resolving -> notification/carrier/field/resolving
-* notification/value/strip_empty_mergetags -> notification/carrier/field/value/strip_empty_mergetags
+* notification/value/strip_empty_mergetags -> notification/resolve/strip_empty_mergetags
 * notification/value/strip_shortcodes -> notification/carrier/field/value/strip_shortcodes
 * notificaiton/notification/field/resolved -> notification/carrier/field/value/resolved
 * notificaiton/merge_tag/value/resolved -> notification/merge_tag/value/resolved
@@ -323,6 +326,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * BracketSpace\Notification\Admin\BoxRenderer - removed
 * BracketSpace\Notification\Admin\FormRenderer - removed
 * BracketSpace\Notification\Admin\ScreenHelp - removed
+* BracketSpace\Notification\Admin\FieldsResolver - removed
 * BracketSpace\Notification\Abstracts\Notification -> BracketSpace\Notification\Abstracts\Carrier
 * BracketSpace\Notification\Defaults\Notification -> BracketSpace\Notification\Defaults\Carrier
 * BracketSpace\Notification\Admin\Cron -> BracketSpace\Notification\Core\Cron

@@ -165,7 +165,6 @@ class Notification {
 		}
 
 		// Extras.
-		// @todo Extras API #h1k0k.
 		if ( isset( $data['extras'] ) ) {
 			$extras = [];
 
@@ -190,15 +189,16 @@ class Notification {
 
 	/**
 	 * Dumps the object to array
-	 * Note: The notifications array contains only enabled notifications.
 	 *
 	 * @since  [Next]
+	 * @param  bool $only_enabled_carriers If only enabled Carriers should be saved.
 	 * @return array
 	 */
-	public function to_array() {
+	public function to_array( $only_enabled_carriers = false ) {
 
-		$carriers = [];
-		foreach ( $this->get_enabled_carriers() as $carrier_slug => $carrier ) {
+		$carriers  = [];
+		$_carriers = $only_enabled_carriers ? $this->get_enabled_carriers() : $this->get_carriers();
+		foreach ( $_carriers as $carrier_slug => $carrier ) {
 			$carriers[ $carrier_slug ] = $carrier->get_data();
 		}
 
@@ -257,7 +257,7 @@ class Notification {
 	 */
 	public function get_enabled_carriers() {
 		return array_filter( $this->get_carriers(), function( $carrier ) {
-			return $carrier->enabled;
+			return $carrier->is_enabled();
 		} );
 	}
 
@@ -308,7 +308,7 @@ class Notification {
 			$carrier = $this->add_carrier( $carrier_slug );
 		}
 
-		$carrier->enabled = true;
+		$carrier->enable();
 
 	}
 
@@ -322,7 +322,7 @@ class Notification {
 	public function disable_carrier( $carrier_slug ) {
 		$carrier = $this->get_carrier( $carrier_slug );
 		if ( null !== $carrier ) {
-			$carrier->enabled = false;
+			$carrier->disable();
 		}
 	}
 
@@ -373,6 +373,44 @@ class Notification {
 		if ( null !== $carrier ) {
 			$carrier->get_data( $data );
 		}
+	}
+
+	/**
+	 * Gets single extra data value.
+	 *
+	 * @since  [Next]
+	 * @param  string $key Extra data key.
+	 * @return mixed       Extra data value or null
+	 */
+	public function get_extra( $key ) {
+		$extras = $this->get_extras();
+		return isset( $extras[ $key ] ) ? $extras[ $key ] : null;
+	}
+
+	/**
+	 * Add extra data
+	 *
+	 * @since  [Next]
+	 * @throws \Exception If extra is not type of array, string or number.
+	 * @param  string $key   Extra data key.
+	 * @param  string $value Extra data value.
+	 * @return $this
+	 */
+	public function add_extra( $key, $value ) {
+
+		if ( ! is_array( $value ) && ! is_string( $value ) && ! is_numeric( $value ) ) {
+			throw new \Exception( 'Extra data must be an array or string or number.' );
+		}
+
+		$extras = $this->get_extras();
+
+		// Create or update key.
+		$extras[ $key ] = $value;
+
+		$this->set_extras( $extras );
+
+		return $this;
+
 	}
 
 }

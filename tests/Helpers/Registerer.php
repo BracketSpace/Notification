@@ -73,9 +73,8 @@ class Registerer {
 	 * @return Notifiation Registered Notification.
 	 */
 	public static function register_default_notification( $postponed = false ) {
-		$trigger          = static::register_trigger( $postponed );
-		$carrier          = static::register_carrier();
-		$carrier->enabled = true;
+		$trigger = static::register_trigger( $postponed );
+		$carrier = static::register_carrier()->enable();
 		return static::register_notification( $trigger, [ $carrier ] );
 	}
 
