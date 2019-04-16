@@ -265,6 +265,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] JSON synchronization feature.
 * [Added] `add_quick_merge_tag` Trigger method.
 * [Added] Common error log for all extensions, you can use `notification_log` function.
+* [Added] Post thumbnail URL and featured imager URL Merge Tags.
 * [Added] Comment content HTML merge tag.
 * [Added] Resolver API which allows to register more Merge Tag resolvers.
 * [Changed] PostData class has been removed in favor of Notification object and procedural functions.
