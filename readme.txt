@@ -276,6 +276,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] ScreenHelp class has been renamed to Screen and render methods from PostType class has been moved to this new class.
 * [Changed] Notifications are now loaded on every page load and the Trigger action is not executing at all if no Notification is using it.
 * [Changed] Notifications doesn't have the trash anymore, the items are removed right away.
+* [Changed] On notification edit screen the editor styles are no longer applied.
 * [Removed] Trigger usage tracking.
 
 = Compatibility breaking changes =
