@@ -124,6 +124,27 @@ class Upgrade {
 
 	/**
 	 * --------------------------------------------------
+	 * Helper functions.
+	 * --------------------------------------------------
+	 */
+
+	/**
+	 * Refreshed all the notifications saved in WP
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public static function refresh_notifications() {
+
+		$notifications = notification_get_posts( null, true );
+		foreach ( $notifications as $notification ) {
+			$notification->save();
+		}
+
+	}
+
+	/**
+	 * --------------------------------------------------
 	 * Upgrader methods.
 	 * --------------------------------------------------
 	 */
@@ -140,10 +161,7 @@ class Upgrade {
 	public function upgrade_to_v1() {
 
 		// 1. Save the Notification cache in post_content field.
-		$notifications = notification_get_posts( null, true );
-		foreach ( $notifications as $notification ) {
-			$notification->save();
-		}
+		self::refresh_notifications();
 
 		// 2. Delete trashed Notifications.
 		$trashed_notifications = get_posts( [
