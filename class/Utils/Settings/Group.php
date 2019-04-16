@@ -57,6 +57,13 @@ class Group {
 	private $section;
 
 	/**
+	 * Section collapsed
+	 *
+	 * @var string
+	 */
+	private $collapsed;
+
+	/**
 	 * Group constructor
 	 *
 	 * @throws \Exception Exception.
@@ -144,17 +151,44 @@ class Group {
 	/**
 	 * Set or get description
 	 *
-	 * @param  mixed $description string to set description, null to get it.
-	 * @return string description
+	 * @param   mixed $description string to set description, null to get it.
+	 * @return  string|Group String when using getter and Group when using setter
 	 */
 	public function description( $description = null ) {
 
 		if ( null !== $description ) {
 			$this->description = $description;
+			return $this;
 		}
 
 		return apply_filters( $this->handle . '/settings/group/description', $this->description, $this );
 
+	}
+
+	/**
+	 * Set or get collapsed
+	 *
+	 * @param   bool $collapsed bool to set collapsed, null to get it.
+	 * @return  string|Group String when using getter and Group when using setter
+	 */
+	public function collapsed( $collapsed = null ) {
+
+		if ( null !== $collapsed ) {
+			$this->collapsed = $collapsed;
+			return $this;
+		}
+
+		return apply_filters( $this->handle . '/settings/group/collapsed', $this->collapsed, $this );
+
+	}
+
+	/**
+	 * Set collapsed alias
+	 *
+	 * @return Group $this
+	 */
+	public function collapse() {
+		return $this->collapsed( true );
 	}
 
 	/**

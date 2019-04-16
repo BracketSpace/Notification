@@ -264,6 +264,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] Ability to define Notifications programmatically.
 * [Added] JSON synchronization feature.
 * [Added] `add_quick_merge_tag` Trigger method.
+* [Added] Collapse option for plugin settings groups.
 * [Added] Common error log for all extensions, you can use `notification_log` function.
 * [Added] Post thumbnail URL and featured imager URL Merge Tags.
 * [Added] Comment content HTML merge tag.
@@ -281,7 +282,6 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Notifications doesn't have the trash anymore, the items are removed right away.
 * [Changed] On notification edit screen the editor styles are no longer applied.
 * [Changed] Carriers now have two step status - they can be either added to a Notification and be disabled at the same time.
-* [Removed] Trigger usage tracking.
 * [Removed] Trigger usage tracking.
 
 = Compatibility breaking changes =
