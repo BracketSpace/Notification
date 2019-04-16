@@ -269,7 +269,6 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] Post thumbnail URL and featured imager URL Merge Tags.
 * [Added] Comment content HTML merge tag.
 * [Added] Resolver API which allows to register more Merge Tag resolvers.
->>>>>>> develop
 * [Changed] PostData class has been removed in favor of Notification object and procedural functions.
 * [Changed] Admin Classes: MergeTags, Notifications, PostData, Recipients, Triggers has been removed and their content included in the Admin/PostType class.
 * [Changed] Notification data is now using single nonce field and additional data should be saved with `notification/data/save` action.
