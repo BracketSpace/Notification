@@ -23,7 +23,9 @@ abstract class Resolver implements Interfaces\Resolvable {
 	 * @return string
 	 */
 	public function get_slug() {
-		return sanitize_title_with_dashes( __CLASS__ );
+		$prepared = str_replace( '\\', '-', get_class( $this ) );
+		$prepared = str_replace( 'BracketSpace-Notification-', '', $prepared );
+		return sanitize_title_with_dashes( $prepared );
 	}
 
 	/**
