@@ -6,6 +6,7 @@
  * - `{value}`
  * - `{another_value}`
  * - `{another-value}`
+ * - `{nested_this_is_not_captured {this_is_captured} tags}`
  *
  * @package notification
  */
@@ -29,7 +30,7 @@ class Basic extends Abstracts\Resolver {
 	/**
 	 * Resolver pattern
 	 */
-	const PATTERN = '/\{([^\}]*)\}/';
+	const PATTERN = '/\{(?:[^{}])*\}/';
 
 	/**
 	 * {@inheritdoc}
@@ -41,7 +42,7 @@ class Basic extends Abstracts\Resolver {
 	public function resolve_merge_tag( $match, Triggerable $trigger ) {
 
 		$merge_tags = $trigger->get_merge_tags( 'all', true );
-		$tag_slug   = $match[1];
+		$tag_slug   = trim( str_replace( [ '{', '}' ], '', $match[0] ) );
 
 		$strip_merge_tags = notification_get_setting( 'general/content/strip_empty_tags' );
 		$strip_merge_tags = apply_filters_deprecated( 'notification/value/strip_empty_mergetags', [
