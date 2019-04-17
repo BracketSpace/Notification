@@ -13,6 +13,7 @@ $this->get_view( 'mergetag/searchbox' );
 
 ?>
 
+<?php do_action( 'notification/metabox/trigger/tags/list/before', $this->get_var( 'trigger' ) ); ?>
 <ul>
 	<?php foreach ( $tags as $tag ) : ?>
 		<li>
@@ -23,4 +24,5 @@ $this->get_view( 'mergetag/searchbox' );
 		</li>
 	<?php endforeach ?>
 </ul>
+<?php do_action( 'notification/metabox/trigger/tags/list/after', $this->get_var( 'trigger' ) ); ?>
 <?php do_action( 'notification/metabox/trigger/tags/after', $this->get_var( 'trigger' ) ); ?>
