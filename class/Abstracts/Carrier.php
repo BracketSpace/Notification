@@ -247,6 +247,18 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 
 			$resolved = notification_resolve( $value, $trigger );
 
+			// Unused tags.
+			$strip_merge_tags = notification_get_setting( 'general/content/strip_empty_tags' );
+			$strip_merge_tags = apply_filters_deprecated( 'notification/value/strip_empty_mergetags', [
+				$strip_merge_tags,
+			], '[Next]', 'notification/resolve/strip_empty_mergetags' );
+			$strip_merge_tags = apply_filters( 'notification/resolve/strip_empty_mergetags', $strip_merge_tags );
+
+			if ( $strip_merge_tags ) {
+				$resolved = notification_clear_tags( $resolved );
+			}
+
+			// Shortcodes.
 			$strip_shortcodes = notification_get_setting( 'general/content/strip_shortcodes' );
 			$strip_shortcodes = apply_filters_deprecated( 'notification/value/strip_shortcodes', [
 				$strip_shortcodes,

@@ -42,3 +42,15 @@ function notification_resolve( $value, Interfaces\Triggerable $trigger ) {
 	$resolver = new Resolver();
 	return $resolver->resolve( $value, $trigger );
 }
+
+/**
+ * Clears all Merge Tags
+ *
+ * @since  [Next]
+ * @param  string $value Unresolved string with tags.
+ * @return string        Value without any tags
+ */
+function notification_clear_tags( $value ) {
+	$resolver = new Resolver();
+	return $resolver->clear( $value );
+}

@@ -44,14 +44,8 @@ class Basic extends Abstracts\Resolver {
 		$merge_tags = $trigger->get_merge_tags( 'all', true );
 		$tag_slug   = trim( str_replace( [ '{', '}' ], '', $match[0] ) );
 
-		$strip_merge_tags = notification_get_setting( 'general/content/strip_empty_tags' );
-		$strip_merge_tags = apply_filters_deprecated( 'notification/value/strip_empty_mergetags', [
-			$strip_merge_tags,
-		], '[Next]', 'notification/resolve/strip_empty_mergetags' );
-		$strip_merge_tags = apply_filters( 'notification/resolve/strip_empty_mergetags', $strip_merge_tags );
-
 		if ( ! isset( $merge_tags[ $tag_slug ] ) ) {
-			return $strip_merge_tags ? '' : $match[0];
+			return $match[0];
 		}
 
 		$resolved = apply_filters_deprecated( 'notificaiton/merge_tag/value/resolved', [

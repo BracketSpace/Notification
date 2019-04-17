@@ -62,4 +62,15 @@ class Resolver {
 
 	}
 
+	/**
+	 * Clears any Merge Tags
+	 *
+	 * @since  [Next]
+	 * @param  string $value Unresolved string with tags.
+	 * @return string
+	 */
+	public function clear( $value ) {
+		return preg_replace( '/\{(?:(.*))*\}/', '', $value );
+	}
+
 }
