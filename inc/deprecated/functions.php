@@ -108,3 +108,17 @@ function notification_get_single_trigger( $trigger_slug ) {
 	_deprecated_function( 'notification_get_single_trigger', '[Next]', 'notification_get_trigger' );
 	return notification_get_trigger( $trigger_slug );
 }
+
+/**
+ * Registers recipient
+ * Uses notification/recipients filter
+ *
+ * @deprecated [Next] Changed name for consistency.
+ * @param  string                $carrier_slug Carrier slug.
+ * @param  Interfaces\Receivable $recipient    Recipient object.
+ * @return void
+ */
+function register_recipient( $carrier_slug, Interfaces\Receivable $recipient ) {
+	_deprecated_function( 'register_recipient', '[Next]', 'notification_register_recipient' );
+	notification_register_recipient( $carrier_slug, $recipient );
+}

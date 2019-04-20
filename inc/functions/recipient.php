@@ -16,7 +16,7 @@ use BracketSpace\Notification\Interfaces;
  * @param  Interfaces\Receivable $recipient    Recipient object.
  * @return void
  */
-function register_recipient( $carrier_slug, Interfaces\Receivable $recipient ) {
+function notification_register_recipient( $carrier_slug, Interfaces\Receivable $recipient ) {
 
 	add_filter( 'notification/recipients', function( $recipients ) use ( $carrier_slug, $recipient ) {
 
