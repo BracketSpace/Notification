@@ -62,8 +62,10 @@ function notification_runtime( $property = null ) {
 
 }
 
-$runtime = notification_runtime();
-$runtime->boot();
+add_action( 'plugins_loaded', function() {
+	$runtime = notification_runtime();
+	$runtime->boot();
+}, 5 );
 
 /**
  * Create a helper function for easy SDK access.
