@@ -208,11 +208,10 @@ class Upgrade {
 			}
 
 			// Carriers.
-			$carrier_slug = (array) get_post_meta( $adapter->get_id(), '_enabled_notification', false );
+			$raw_carriers = (array) notification_get_carriers();
 			$carriers     = [];
 
-			foreach ( $carrier_slug as $carrier_slug ) {
-				$carrier = notification_get_carrier( $carrier_slug );
+			foreach ( $raw_carriers as $carrier ) {
 				if ( ! empty( $carrier ) ) {
 					$carriers[ $carrier->get_slug() ] = $this->populate_carrier( clone $carrier, $adapter->get_id() );
 				}
