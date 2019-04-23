@@ -15,10 +15,10 @@
 
 <?php else : ?>
 
-	<?php do_action( 'notification/metabox/trigger/before', $this->get_var( 'triggers' ), $this->get_var( 'selected' ), $this->get_var( 'post' ) ); ?>
+	<?php do_action( 'notification/metabox/trigger/before', $this->get_var( 'triggers' ), $this->get_var( 'selected' ), $this->get_var( 'notification' ) ); ?>
 
 	<?php $this->get_view( 'trigger/select' ); ?>
 
-	<?php do_action( 'notification/metabox/trigger/after', $this->get_var( 'triggers' ), $this->get_var( 'selected' ), $this->get_var( 'post' ) ); ?>
+	<?php do_action( 'notification/metabox/trigger/after', $this->get_var( 'triggers' ), $this->get_var( 'selected' ), $this->get_var( 'notification' ) ); ?>
 
 <?php endif ?>

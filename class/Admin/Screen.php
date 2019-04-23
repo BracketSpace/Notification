@@ -67,6 +67,7 @@ class Screen {
 		$view->set_var( 'triggers', $grouped_triggers );
 		$view->set_var( 'has_triggers', ! empty( $grouped_triggers ) );
 		$view->set_var( 'select_name', 'notification_trigger' );
+		$view->set_var( 'notification', $notification_post );
 
 		$view->get_view( 'trigger/metabox' );
 
