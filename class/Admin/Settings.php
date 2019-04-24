@@ -307,7 +307,7 @@ class Settings {
 			->add_field( [
 				'name'     => __( 'Unfiltered HTML', 'notification' ),
 				'slug'     => 'unfiltered_html',
-				'default'  => 'false',
+				'default'  => false,
 				'addons'   => [
 					'label' => __( 'Allow unfiltered HTML in email body', 'notification' ),
 				],
