@@ -59,7 +59,11 @@ class Scripts {
 			'post.php',
 		] );
 
-		if ( 'notification' !== get_post_type() && ! in_array( $page_hook, $allowed_hooks, true ) ) {
+		$allowed_post_types = apply_filters( 'notification/scripts/allowed_post_types', [
+			'notification',
+		] );
+
+		if ( ! in_array( get_post_type(), $allowed_post_types, true ) && ! in_array( $page_hook, $allowed_hooks, true ) ) {
 			return;
 		}
 
