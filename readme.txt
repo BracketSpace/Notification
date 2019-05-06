@@ -282,6 +282,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Notifications doesn't have the trash anymore, the items are removed right away.
 * [Changed] On notification edit screen the editor styles are no longer applied.
 * [Changed] Carriers now have two step status - they can be either added to a Notification and be disabled at the same time.
+* [Changed] strip_shortcodes function to custom preg_replace for better stripping.
 * [Removed] Trigger usage tracking.
 
 = Compatibility breaking changes =

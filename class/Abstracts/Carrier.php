@@ -265,7 +265,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 			], '[Next]', 'notification/carrier/field/value/strip_shortcodes' );
 
 			if ( apply_filters( 'notification/carrier/field/value/strip_shortcodes', $strip_shortcodes ) ) {
-				$resolved = strip_shortcodes( $resolved );
+				$resolved = preg_replace( '#\[[^\]]+\]#', '', $resolved );
 			} else {
 				$resolved = do_shortcode( $resolved );
 			}
