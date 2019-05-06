@@ -169,10 +169,10 @@ class Notification {
 			$extras = [];
 
 			foreach ( $data['extras'] as $key => $extra ) {
-				if ( is_array( $extra ) || is_string( $extra ) || is_numeric( $extra ) ) {
+				if ( is_array( $extra ) || is_string( $extra ) || is_numeric( $extra ) || is_bool( $extra ) ) {
 					$extras[ $key ] = $extra;
 				} else {
-					throw new \Exception( 'Each extra must be an array or string or number.' );
+					throw new \Exception( 'Each extra must be an array or string or number or bool.' );
 				}
 			}
 
@@ -388,17 +388,36 @@ class Notification {
 	}
 
 	/**
+	 * Removes single extra data.
+	 *
+	 * @since  [Next]
+	 * @param  string $key Extra data key.
+	 * @return void
+	 */
+	public function remove_extra( $key ) {
+
+		$extras = $this->get_extras();
+
+		if ( isset( $extras[ $key ] ) ) {
+			unset( $extras[ $key ] );
+		}
+
+		$this->set_extras( $extras );
+
+	}
+
+	/**
 	 * Add extra data
 	 *
 	 * @since  [Next]
-	 * @throws \Exception If extra is not type of array, string or number.
+	 * @throws \Exception If extra is not type of array, string or number or boolean.
 	 * @param  string $key   Extra data key.
 	 * @param  string $value Extra data value.
 	 * @return $this
 	 */
 	public function add_extra( $key, $value ) {
 
-		if ( ! is_array( $value ) && ! is_string( $value ) && ! is_numeric( $value ) ) {
+		if ( ! is_array( $value ) && ! is_string( $value ) && ! is_numeric( $value ) && ! is_bool( $value ) ) {
 			throw new \Exception( 'Extra data must be an array or string or number.' );
 		}
 
