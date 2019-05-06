@@ -256,6 +256,11 @@ class PostType {
 		$data              = $_POST;
 		$notification_post = notification_adapt_from( 'WordPress', $post );
 
+		// Title.
+		if ( isset( $data['post_title'] ) ) {
+			$notification_post->set_title( $data['post_title'] );
+		}
+
 		// Status.
 		$status = ( isset( $data['notification_onoff_switch'] ) && '1' === $data['notification_onoff_switch'] );
 		$notification_post->set_enabled( $status );
