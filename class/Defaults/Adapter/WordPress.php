@@ -41,7 +41,7 @@ class WordPress extends Abstracts\Adapter {
 		}
 
 		try {
-			$json_adapter = notification_adapt_from( 'JSON', $this->post->post_content );
+			$json_adapter = notification_adapt_from( 'JSON', wp_specialchars_decode( $this->post->post_content, ENT_COMPAT ) );
 			$this->setup_notification( notification_convert_data( $json_adapter->get_notification()->to_array() ) );
 		} catch ( \Exception $e ) {
 			$do_nothing = true;
