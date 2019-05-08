@@ -415,6 +415,10 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		$store = new NotificationStore();
 
 		foreach ( $store->with_trigger( $this->get_slug() ) as $notification ) {
+			if ( ! apply_filters( 'notification/should_send', true, $notification, $this ) ) {
+				continue;
+			}
+
 			foreach ( $notification->get_carriers() as $carrier ) {
 				if ( $carrier->is_enabled() ) {
 					$carrier->notification = $notification;
