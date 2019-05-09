@@ -30,7 +30,7 @@ class Basic extends Abstracts\Resolver {
 	/**
 	 * Resolver pattern
 	 */
-	const PATTERN = '/\{(?:[^{}])*\}/';
+	const PATTERN = '/(?<!\!)\{(?:[^{}])*\}/';
 
 	/**
 	 * {@inheritdoc}

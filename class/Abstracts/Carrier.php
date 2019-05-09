@@ -270,6 +270,9 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 				$resolved = do_shortcode( $resolved );
 			}
 
+			// Unescape escaped {.
+			$resolved = str_replace( '!{', '{', $resolved );
+
 			$resolved = apply_filters_deprecated( 'notificaiton/notification/field/resolved', [
 				$resolved,
 				null,

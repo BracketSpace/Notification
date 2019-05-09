@@ -117,7 +117,7 @@ class Webhook extends Abstracts\Carrier {
 			$headers = [];
 		}
 
-		if ( notification_get_setting( 'notifications/carrier/webhook/headers' ) ) {
+		if ( notification_get_setting( 'notifications/webhook/headers' ) ) {
 			$headers = array_merge( $headers, $this->parse_args( $data['headers'] ) );
 		}
 
