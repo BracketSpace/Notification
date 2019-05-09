@@ -24,6 +24,13 @@ class WordPress extends Abstracts\Adapter {
 	protected $post;
 
 	/**
+	 * Notification post type slug
+	 *
+	 * @var string
+	 */
+	protected $post_type;
+
+	/**
 	 * {@inheritdoc}
 	 *
 	 * @throws \Exception If wrong input param provided.
@@ -78,7 +85,7 @@ class WordPress extends Abstracts\Adapter {
 		$post_id = wp_insert_post( [
 			'ID'           => $this->get_id(),
 			'post_content' => wp_slash( $json ), // Cache.
-			'post_type'    => 'notification',
+			'post_type'    => $this->post_type,
 			'post_title'   => $data['title'],
 			'post_name'    => $data['hash'],
 			'post_status'  => $data['enabled'] ? 'publish' : 'draft',
@@ -136,6 +143,18 @@ class WordPress extends Abstracts\Adapter {
 	 */
 	public function set_post( \WP_Post $post ) {
 		$this->post = $post;
+		return $this;
+	}
+
+	/**
+	 * Sets post type
+	 *
+	 * @since [Next]
+	 * @param string $post_type WP Post Type.
+	 * @return $this
+	 */
+	public function set_post_type( $post_type ) {
+		$this->post_type = $post_type;
 		return $this;
 	}
 
