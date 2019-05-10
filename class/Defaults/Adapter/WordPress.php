@@ -28,7 +28,7 @@ class WordPress extends Abstracts\Adapter {
 	 *
 	 * @var string
 	 */
-	protected $post_type;
+	protected $post_type = 'notification';
 
 	/**
 	 * {@inheritdoc}
