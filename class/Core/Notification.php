@@ -117,6 +117,28 @@ class Notification {
 	}
 
 	/**
+	 * Clone method
+	 * Copies the Trigger and Carriers to new Carrier instance
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function __clone() {
+
+		$trigger = $this->get_trigger();
+		if ( ! empty( $trigger ) ) {
+			$this->set_trigger( clone $trigger );
+		}
+
+		$carriers = [];
+		foreach ( $this->get_carriers() as $key => $carrier ) {
+			$carriers[ $key ] = clone $carrier;
+		}
+		$this->set_carriers( $carriers );
+
+	}
+
+	/**
 	 * Sets up Notification data from array.
 	 *
 	 * @since  [Next]
