@@ -11,7 +11,6 @@ use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Defaults\Field;
 use BracketSpace\Notification\Defaults\Field\RecipientsField;
-use BracketSpace\Notification\Core\Notification;
 
 /**
  * Carrier abstract class
@@ -45,14 +44,6 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	 * @var boolean
 	 */
 	protected $suppressed = false;
-
-	/**
-	 * Notification object
-	 * It's set right before calling the send method
-	 *
-	 * @var Notification
-	 */
-	public $notification = false;
 
 	/**
 	 * Carrier constructor

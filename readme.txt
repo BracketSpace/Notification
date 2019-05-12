@@ -270,6 +270,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] Comment content HTML merge tag.
 * [Added] Resolver API which allows to register more Merge Tag resolvers.
 * [Added] `notification/should_send` filter to hold off the whole Notification.
+* [Removed] Trigger usage tracking.
 * [Changed] PostData class has been removed in favor of Notification object and procedural functions.
 * [Changed] Admin Classes: MergeTags, Notifications, PostData, Recipients, Triggers has been removed and their content included in the Admin/PostType class.
 * [Changed] Notification data is now using single nonce field and additional data should be saved with `notification/data/save` action.
@@ -284,7 +285,8 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] On notification edit screen the editor styles are no longer applied.
 * [Changed] Carriers now have two step status - they can be either added to a Notification and be disabled at the same time.
 * [Changed] strip_shortcodes function to custom preg_replace for better stripping.
-* [Removed] Trigger usage tracking.
+* [Changed] Trigger storage now contains whole Notifications instead of just Carriers.
+
 
 = Compatibility breaking changes =
 

@@ -11,6 +11,7 @@ use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Interfaces\Sendable;
 use BracketSpace\Notification\Admin\FieldsResolver;
 use BracketSpace\Notification\Defaults\Store\Notification as NotificationStore;
+use BracketSpace\Notification\Core\Notification;
 
 /**
  * Trigger abstract class
@@ -18,11 +19,11 @@ use BracketSpace\Notification\Defaults\Store\Notification as NotificationStore;
 abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
-	 * Storage for Trigger's Carriers
+	 * Storage for Trigger's Notifications
 	 *
 	 * @var array
 	 */
-	private $carrier_storage = [];
+	private $notification_storage = [];
 
 	/**
 	 * Group
@@ -166,83 +167,89 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Attaches the Carrier
+	 * Attaches the Notification
 	 *
-	 * @param  Sendable $carrier Carrier class.
+	 * @param  Notification $notification Notification class.
 	 * @return void
 	 */
-	public function attach( Sendable $carrier ) {
-		$this->carrier_storage[ $carrier->hash() ] = clone $carrier;
+	public function attach( Notification $notification ) {
+		$this->notification_storage[ $notification->get_hash() ] = clone $notification;
 	}
 
 	/**
-	 * Gets attached Carriers
+	 * Gets attached Notifications
 	 *
 	 * @return array
 	 */
-	public function get_carriers() {
-		return $this->carrier_storage;
+	public function get_notifications() {
+		return $this->notification_storage;
 	}
 
 	/**
-	 * Check if Trigger has attached Carriers
+	 * Check if Trigger has attached Notifications
 	 *
 	 * @return array
 	 */
-	public function has_carriers() {
-		return ! empty( $this->get_carriers() );
+	public function has_notifications() {
+		return ! empty( $this->get_notifications() );
 	}
 
 	/**
-	 * Detaches the Carrier
+	 * Detaches the Notification
 	 *
-	 * @param  Sendable $carrier Carrier class.
+	 * @param  Notification $notification Notification class.
 	 * @return void
 	 */
-	public function detach( Sendable $carrier ) {
-		if ( isset( $this->carrier_storage[ $carrier->hash() ] ) ) {
-			unset( $this->carrier_storage[ $carrier->hash() ] );
+	public function detach( Notification $notification ) {
+		if ( isset( $this->notification_storage[ $notification->get_hash() ] ) ) {
+			unset( $this->notification_storage[ $notification->get_hash() ] );
 		}
 	}
 
 	/**
-	 * Detaches all the Carriers
+	 * Detaches all the Notifications
 	 *
 	 * @return $this
 	 */
 	public function detach_all() {
-		$this->carrier_storage = [];
+		$this->notification_storage = [];
 		return $this;
 	}
 
 	/**
-	 * Rolls out all the Carriers
+	 * Rolls out all the Notifications
 	 *
 	 * @return void
 	 */
 	public function roll_out() {
 
-		foreach ( $this->get_carriers() as $carrier ) {
-			$carrier->prepare_data();
+		foreach ( $this->get_notifications() as $notification ) {
+			if ( ! apply_filters( 'notification/should_send', true, $notification, $this ) ) {
+				continue;
+			}
 
-			do_action_deprecated( 'notification/notification/pre-send', [
-				$carrier,
-				$this,
-			], '[Next]', 'notification/carrier/pre-send' );
+			foreach ( $notification->get_enabled_carriers() as $carrier ) {
+				$carrier->prepare_data();
 
-			do_action( 'notification/carrier/pre-send', $carrier, $this );
-
-			if ( ! $carrier->is_suppressed() ) {
-
-				$carrier->send( $this );
-
-				do_action_deprecated( 'notification/notification/sent', [
+				do_action_deprecated( 'notification/notification/pre-send', [
 					$carrier,
 					$this,
-				], '[Next]', 'notification/carrier/sent' );
+				], '[Next]', 'notification/carrier/pre-send' );
 
-				do_action( 'notification/carrier/sent', $carrier, $this );
+				do_action( 'notification/carrier/pre-send', $carrier, $this, $notification );
 
+				if ( ! $carrier->is_suppressed() ) {
+
+					$carrier->send( $this );
+
+					do_action_deprecated( 'notification/notification/sent', [
+						$carrier,
+						$this,
+					], '[Next]', 'notification/carrier/sent' );
+
+					do_action( 'notification/carrier/sent', $carrier, $this, $notification );
+
+				}
 			}
 		}
 
@@ -385,8 +392,10 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	private function resolve_fields() {
 
-		foreach ( $this->get_carriers() as $carrier ) {
-			$carrier->resolve_fields( $this );
+		foreach ( $this->get_notifications() as $notification ) {
+			foreach ( $notification->get_enabled_carriers() as $carrier ) {
+				$carrier->resolve_fields( $this );
+			}
 		}
 
 	}
@@ -406,25 +415,16 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Attaches the Carriers to Trigger
+	 * Attaches the Notifications to Trigger
 	 *
 	 * @return void
 	 */
-	public function set_carriers() {
+	public function set_notifications() {
 
 		$store = new NotificationStore();
 
 		foreach ( $store->with_trigger( $this->get_slug() ) as $notification ) {
-			if ( ! apply_filters( 'notification/should_send', true, $notification, $this ) ) {
-				continue;
-			}
-
-			foreach ( $notification->get_carriers() as $carrier ) {
-				if ( $carrier->is_enabled() ) {
-					$carrier->notification = $notification;
-					$this->attach( $carrier );
-				}
-			}
+			$this->attach( $notification );
 		}
 
 	}
@@ -454,10 +454,10 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	public function _action() {
 
-		$this->detach_all()->set_carriers();
+		$this->detach_all()->set_notifications();
 
-		// If no Carriers use this Trigger, bail.
-		if ( ! $this->has_carriers() ) {
+		// If no Notifications use this Trigger, bail.
+		if ( ! $this->has_notifications() ) {
 			return;
 		}
 
