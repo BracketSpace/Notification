@@ -1,6 +1,5 @@
 === Notification - Custom Notifications and Alerts for WordPress ===
 Contributors: notification, bracketspace, Kubitomakita, insejn
-Donate link: https://www.paypal.me/underDEV/
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.0
@@ -22,7 +21,7 @@ Custom Notifications and Alerts without a hassle. Notify anyone about any action
 The Notification plugin is built with three main components:
 
 * Trigger - a WordPress action, ie. User registration or Post publication
-* Notification - the thing which is being sent, ie. Email or Push
+* Carrier - the thing which is being sent, ie. Email or Push
 * Merge Tag - dynamic content, ie. {user_email} or {post_permalink}
 
 You can use them in any combination, adding as many Notifications as you want. They can be sent to multiple Recipients with the content you write.
@@ -44,7 +43,7 @@ You can create your own Triggers with any WordPress action. If you do in your co
 
 This allows you to use the Notification plugin as a notification system in your own plugin or theme. How? Well, because of two things:
 
-* You can easily load it copying the plugin files and including `load.php` file. A function known from Advanced Custom Fields plugin.
+* You can easily load it by copying the plugin files and including `load.php` file. A function known from Advanced Custom Fields plugin.
 * You can white label the plugin with just one function which is shipped in the plugin's core. For free.
 
 How easy extending the Notification plugin is? Let's see:
@@ -123,6 +122,24 @@ Media:
 * Media updated notification
 * Media deleted notification
 
+Plugin:
+
+* Plugin activated notification
+* Plugin deactivated notification
+* Plugin installed notification
+* Plugin removed notification
+* Plugin updated notification
+
+Theme:
+
+* Theme installed notification
+* Theme switched notification
+* Theme updated notification
+
+WordPress:
+
+* Available updates notification
+
 Feel free to suggest new core triggers in the support forum.
 
 Each Trigger has own set of Merge Tags but you can use the Global Merge Tags anywhere.
@@ -154,10 +171,10 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 * [Mailgun](https://bracketspace.com/downloads/notification-mailgun/) - send emails using Mailgun service
 * [File Log](https://bracketspace.com/downloads/notification-file-log/) - save Notifications as file logs on the server
 * [Signature](https://wordpress.org/plugins/signature-notification/) - add a signature to all your emails automatically
+* [WooCommerce](https://bracketspace.com/downloads/notification-woocommerce/) - triggers specific to WooCommerce
 
 *Coming soon* - vote for the extensions
 
-* [WooCommerce](https://bracketspace.com/downloads/notification-woocommerce/) - triggers specific to WooCommerce
 * [Email Templates](https://bracketspace.com/downloads/notification-email-templates/) - use beautiful templates for your emails
 * [Facebook](https://bracketspace.com/downloads/notification-facebook/) - post messages to Facebook
 * [Twitter](https://bracketspace.com/downloads/notification-twitter/) - post messages to Twitter
