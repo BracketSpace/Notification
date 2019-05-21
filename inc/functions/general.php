@@ -38,7 +38,7 @@ function notification_display_story() {
 /**
  * Creates new View object.
  *
- * @since  [Next]
+ * @since  6.0.0
  * @return View
  */
 function notification_create_view() {
@@ -48,7 +48,7 @@ function notification_create_view() {
 /**
  * Creates new AJAX Handler object.
  *
- * @since  [Next]
+ * @since  6.0.0
  * @return BracketSpace\Notification\Utils\Ajax
  */
 function notification_ajax_handler() {
@@ -58,7 +58,7 @@ function notification_ajax_handler() {
 /**
  * Throws a deprecation notice from deprecated class
  *
- * @since  [Next]
+ * @since  6.0.0
  * @param  string $class       Deprecated class name.
  * @param  string $version     Version since deprecated.
  * @param  string $replacement Replacement class.
@@ -91,7 +91,7 @@ function notification_deprecated_class( $class, $version, $replacement = null ) 
 /**
  * Logs the message in database
  *
- * @since  [Next]
+ * @since  6.0.0
  * @param  string $component Component nice name, like `Core` or `Any Plugin Name`.
  * @param  string $type      Log type, values: notification|error|warning.
  * @param  string $message   Log formatted message.

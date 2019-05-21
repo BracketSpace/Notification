@@ -11,7 +11,7 @@ use BracketSpace\Notification\Interfaces;
  * Registers Carrier
  *
  * @uses notification/carriers filter
- * @since  [Next]
+ * @since  6.0.0
  * @param  Interfaces\Sendable $carrier Carrier object.
  * @return void
  */
@@ -36,7 +36,7 @@ function notification_register_carrier( Interfaces\Sendable $carrier ) {
 /**
  * Gets all registered Carriers
  *
- * @since  [Next]
+ * @since  6.0.0
  * @return array carriers
  */
 function notification_get_carriers() {
@@ -46,7 +46,7 @@ function notification_get_carriers() {
 /**
  * Gets single registered Carrier
  *
- * @since  [Next]
+ * @since  6.0.0
  * @param  string $carrier_slug Carrier slug.
  * @return mixed                Carrier object or false
  */

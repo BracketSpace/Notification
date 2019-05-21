@@ -17,7 +17,7 @@ class Sync {
 	/**
 	 * Gets all Notifications from JSON files
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return array
 	 */
 	public static function get_all_json() {
@@ -60,7 +60,7 @@ class Sync {
 	 *
 	 * @action notification/boot
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function load_local_json() {
@@ -88,7 +88,7 @@ class Sync {
 	 *
 	 * @action notification/data/save/after
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param Adapter\WordPress $wp_adapter WordPress adapter.
 	 * @return void
 	 */
@@ -116,7 +116,7 @@ class Sync {
 	 *
 	 * @action delete_post
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  integer $post_id Deleted Post ID.
 	 * @return void
 	 */

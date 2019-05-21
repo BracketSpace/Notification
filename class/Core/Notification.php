@@ -74,7 +74,7 @@ class Notification {
 	/**
 	 * Constructor
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @param array $data Notification data.
 	 */
 	public function __construct( $data = [] ) {
@@ -84,7 +84,7 @@ class Notification {
 	/**
 	 * Getter and Setter methods
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @throws \Exception If no property has been found.
 	 * @param  string $method_name Method name.
 	 * @param  array  $arguments   Arguments.
@@ -120,7 +120,7 @@ class Notification {
 	 * Clone method
 	 * Copies the Trigger and Carriers to new Carrier instance
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function __clone() {
@@ -141,7 +141,7 @@ class Notification {
 	/**
 	 * Sets up Notification data from array.
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @throws \Exception If wrong arguments has been passed.
 	 * @param  array $data Data array.
 	 * @return $this
@@ -212,7 +212,7 @@ class Notification {
 	/**
 	 * Dumps the object to array
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  bool $only_enabled_carriers If only enabled Carriers should be saved.
 	 * @return array
 	 */
@@ -242,7 +242,7 @@ class Notification {
 	 * Checks if enabled
 	 * Alias for `get_enabled()` method
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return boolean
 	 */
 	public function is_enabled() {
@@ -252,7 +252,7 @@ class Notification {
 	/**
 	 * Creates hash
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return string hash
 	 */
 	public static function create_hash() {
@@ -262,7 +262,7 @@ class Notification {
 	/**
 	 * Gets single Carrier object
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $carrier_slug Carrier slug.
 	 * @return mixed                Carrier object or null.
 	 */
@@ -274,7 +274,7 @@ class Notification {
 	/**
 	 * Gets enabled Carriers
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return array
 	 */
 	public function get_enabled_carriers() {
@@ -286,7 +286,7 @@ class Notification {
 	/**
 	 * Add Carrier to the set
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @throws \Exception If you try to add already added Carrier.
 	 * @throws \Exception If you try to add non-existing Carrier.
 	 * @param  mixed $carrier Carrier object or slug.
@@ -318,7 +318,7 @@ class Notification {
 	/**
 	 * Enables Carrier
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $carrier_slug Carrier slug.
 	 * @return void
 	 */
@@ -337,7 +337,7 @@ class Notification {
 	/**
 	 * Disables Carrier
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $carrier_slug Carrier slug.
 	 * @return void
 	 */
@@ -352,7 +352,7 @@ class Notification {
 	 * Sets Carriers
 	 * Makes sure that the Notification slug is used as key.
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  array $carriers Array of Carriers.
 	 * @return void
 	 */
@@ -371,7 +371,7 @@ class Notification {
 	/**
 	 * Sets Carrier data
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $carrier_slug Carrier slug.
 	 * @param  array  $data         Carrier data.
 	 * @return void
@@ -386,7 +386,7 @@ class Notification {
 	/**
 	 * Gets Carrier data
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $carrier_slug Carrier slug.
 	 * @return void
 	 */
@@ -400,7 +400,7 @@ class Notification {
 	/**
 	 * Gets single extra data value.
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $key Extra data key.
 	 * @return mixed       Extra data value or null
 	 */
@@ -412,7 +412,7 @@ class Notification {
 	/**
 	 * Removes single extra data.
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $key Extra data key.
 	 * @return void
 	 */
@@ -431,7 +431,7 @@ class Notification {
 	/**
 	 * Add extra data
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @throws \Exception If extra is not type of array, string or number or boolean.
 	 * @param  string $key   Extra data key.
 	 * @param  string $value Extra data value.

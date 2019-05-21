@@ -107,7 +107,7 @@ class WordPress extends Abstracts\Adapter {
 	/**
 	 * Checks if notification post has been just started
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @return boolean
 	 */
 	public function is_new() {
@@ -117,7 +117,7 @@ class WordPress extends Abstracts\Adapter {
 	/**
 	 * Gets notification post ID
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @return integer post ID
 	 */
 	public function get_id() {
@@ -127,7 +127,7 @@ class WordPress extends Abstracts\Adapter {
 	/**
 	 * Gets post
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @return null || WP_Post
 	 */
 	public function get_post() {
@@ -137,7 +137,7 @@ class WordPress extends Abstracts\Adapter {
 	/**
 	 * Sets post
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @param \WP_Post $post WP Post to set.
 	 * @return $this
 	 */
@@ -149,7 +149,7 @@ class WordPress extends Abstracts\Adapter {
 	/**
 	 * Sets post type
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @param string $post_type WP Post Type.
 	 * @return $this
 	 */
@@ -161,7 +161,7 @@ class WordPress extends Abstracts\Adapter {
 	/**
 	 * Checks if adapter already have the post
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @return bool
 	 */
 	public function has_post() {

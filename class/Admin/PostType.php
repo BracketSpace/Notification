@@ -120,7 +120,7 @@ class PostType {
 	 *
 	 * @filter bulk_post_updated_messages
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  array $bulk_messages Messages.
 	 * @param  array $bulk_counts   Counters.
 	 * @return array
@@ -141,7 +141,7 @@ class PostType {
 	 *
 	 * @filter views_edit-notification
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  array $statuses Statuses array.
 	 * @return array
 	 */
@@ -170,7 +170,7 @@ class PostType {
 	 *
 	 * @action wp_trash_post 100
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  integer $post_id Post ID.
 	 * @return void
 	 */
@@ -195,7 +195,7 @@ class PostType {
 	 *
 	 * @filter wp_insert_post_data 100
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  array $data    post data.
 	 * @param  array $postarr saved data.
 	 * @return array
@@ -359,7 +359,7 @@ class PostType {
 	 * Gets all Notifications from database.
 	 * Uses direct database call for performance.
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return array
 	 */
 	public static function get_all_notifications() {
@@ -392,7 +392,7 @@ class PostType {
 	 *
 	 * @action notification/boot 9999999
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function setup_notifications() {

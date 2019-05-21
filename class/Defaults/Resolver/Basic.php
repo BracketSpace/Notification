@@ -51,7 +51,7 @@ class Basic extends Abstracts\Resolver {
 		$resolved = apply_filters_deprecated( 'notificaiton/merge_tag/value/resolved', [
 			$merge_tags[ $tag_slug ]->resolve(),
 			$merge_tags[ $tag_slug ],
-		], '[Next]', 'notification/merge_tag/value/resolved' );
+		], '6.0.0', 'notification/merge_tag/value/resolved' );
 		$resolved = apply_filters( 'notification/merge_tag/value/resolved', $resolved, $merge_tags[ $tag_slug ] );
 
 		return $resolved;

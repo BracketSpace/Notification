@@ -205,7 +205,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 	/**
 	 * Gets nice, translated post type name
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return string post name
 	 */
 	public function get_post_type_nicename() {

@@ -234,7 +234,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 				do_action_deprecated( 'notification/notification/pre-send', [
 					$carrier,
 					$this,
-				], '[Next]', 'notification/carrier/pre-send' );
+				], '6.0.0', 'notification/carrier/pre-send' );
 
 				do_action( 'notification/carrier/pre-send', $carrier, $this, $notification );
 
@@ -245,7 +245,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 					do_action_deprecated( 'notification/notification/sent', [
 						$carrier,
 						$this,
-					], '[Next]', 'notification/carrier/sent' );
+					], '6.0.0', 'notification/carrier/sent' );
 
 					do_action( 'notification/carrier/sent', $carrier, $this, $notification );
 
@@ -310,7 +310,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Quickly adds new Merge Tag
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @param string $property_name Trigger property name.
 	 * @param string $label         Nice, translatable Merge Tag label.
 	 * @param string $group         Optional, translatable group name.
@@ -348,7 +348,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Gets Trigger's merge tags
 	 *
-	 * @since [Next] Added param $grouped which makes the array associative
+	 * @since 6.0.0 Added param $grouped which makes the array associative
 	 *               with merge tag slugs as keys.
 	 * @param string $type    Optional, all|visible|hidden, default: all.
 	 * @param bool   $grouped Optional, default: false.
@@ -386,7 +386,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Resolves all Carrier fields with Merge Tags
 	 *
-	 * @since [Next] Fields resolving has been moved to additional API
+	 * @since 6.0.0 Fields resolving has been moved to additional API
 	 *               which is called by the Carrier itself
 	 * @return void
 	 */

@@ -88,7 +88,7 @@ class Screen {
 
 		do_action_deprecated( 'notitication/admin/notifications/pre', [
 			$notification_post,
-		], '[Next]', 'notification/admin/carriers/pre' );
+		], '6.0.0', 'notification/admin/carriers/pre' );
 
 		do_action( 'notification/admin/carriers/pre', $notification_post );
 
@@ -120,7 +120,7 @@ class Screen {
 
 		do_action_deprecated( 'notitication/admin/notifications', [
 			$notification_post,
-		], '[Next]', 'notification/admin/carriers' );
+		], '6.0.0', 'notification/admin/carriers' );
 
 		do_action( 'notification/admin/carriers', $notification_post );
 
@@ -129,7 +129,7 @@ class Screen {
 	/**
 	 * Gets Carrier config form
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  Interfaces\Sendable $carrier Carrier object.
 	 * @return string                       Form HTML.
 	 */
