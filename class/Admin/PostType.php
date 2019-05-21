@@ -402,6 +402,12 @@ class PostType {
 		foreach ( $notifications as $notification_json ) {
 			if ( ! empty( $notification_json ) ) {
 
+				// Check if Notification has valid JSON.
+				$json_check = json_decode( $notification_json, true );
+				if ( json_last_error() !== JSON_ERROR_NONE ) {
+					continue;
+				}
+
 				$adapter = notification_adapt_from( 'JSON', $notification_json );
 
 				// Set source back to WordPress.

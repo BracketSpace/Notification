@@ -267,6 +267,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Changed] Added soft-fail for not valid JSON configuration for Notifications. This is most likely caused by updating from a very old version.
+
 = 6.0.0 =
 * [Fixed] Theme Update trigger errors on update.
 * [Added] Notification object as a wrapper for Notification Post.
