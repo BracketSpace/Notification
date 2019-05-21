@@ -9,7 +9,7 @@
  * Enables the notification syncing
  * By default path used is current theme's `notifiations` dir.
  *
- * @since  [Next]
+ * @since  6.0.0
  * @throws \Exception If provided path is not a directory.
  * @param  mixed $path full json directory path or null to use default.
  * @return void
@@ -41,7 +41,7 @@ function notification_sync( $path = null ) {
 /**
  * Gets the synchronization path.
  *
- * @since [Next]
+ * @since 6.0.0
  * @return mixed Path or false.
  */
 function notification_get_sync_path() {
@@ -51,7 +51,7 @@ function notification_get_sync_path() {
 /**
  * Checks if synchronization is active.
  *
- * @since [Next]
+ * @since 6.0.0
  * @return boolean
  */
 function notification_is_syncing() {

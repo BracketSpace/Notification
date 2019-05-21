@@ -14,7 +14,7 @@ use BracketSpace\Notification\Interfaces;
  *
  * Accepts both array with Trigger and Carriers objects or static values.
  *
- * @since  [Next]
+ * @since  6.0.0
  * @param  array $data Notification data.
  * @return \WP_Error | true
  */
@@ -33,7 +33,7 @@ function notification( $data = [] ) {
 /**
  * Adds Notification to Store
  *
- * @since  [Next]
+ * @since  6.0.0
  * @param  Notification $notification Notification object.
  * @return \WP_Error | true
  */
@@ -57,7 +57,7 @@ function notification_add( Notification $notification ) {
  * If no `trigger` nor `carriers` keys are available it does nothing.
  * If the data is already in form of objects it does nothing.
  *
- * @since  [Next]
+ * @since  6.0.0
  * @param  array $data Notification static data.
  * @return array       Converted data.
  */

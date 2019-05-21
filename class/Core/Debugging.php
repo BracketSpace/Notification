@@ -29,7 +29,7 @@ class Debugging {
 	/**
 	 * Constructor
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function __construct() {
 
@@ -42,7 +42,7 @@ class Debugging {
 	/**
 	 * Adds log to the database
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @throws \Exception If any of the arguments is wrong.
 	 * @param array $log_data Log data, must contain keys: type, component and message.
 	 * @return bool
@@ -88,7 +88,7 @@ class Debugging {
 	/**
 	 * Gets logs from database
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  integer $page      Page number, default: 1.
 	 * @param  array   $types     Array of log types to get, default: all.
 	 * @param  string  $component Component name, default: all.
@@ -137,7 +137,7 @@ class Debugging {
 	/**
 	 * Removes logs
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  array $types Array of log types to remove, default: all.
 	 * @return void
 	 */
@@ -159,7 +159,7 @@ class Debugging {
 	 * Get logs count from previous query
 	 * You have to call `get_logs` method first
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $type Type of count, values: total|pages.
 	 * @return integer
 	 */

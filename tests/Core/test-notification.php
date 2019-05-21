@@ -18,7 +18,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test setter and getter
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_setter_getter() {
 
@@ -31,7 +31,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test getter exception
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_getter_exception() {
 
@@ -45,7 +45,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test setter exception
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_setter_exception() {
 
@@ -59,7 +59,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test hash creation
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_hash() {
 
@@ -76,7 +76,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test title
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_title() {
 
@@ -93,7 +93,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test trigger
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_trigger() {
 
@@ -109,7 +109,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test trigger exception
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_trigger_exception() {
 
@@ -124,7 +124,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test carriers
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_carriers() {
 
@@ -140,7 +140,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test carriers exception
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_carriers_exception() {
 
@@ -155,7 +155,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test enabled
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_enabled() {
 
@@ -177,7 +177,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test extras
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_extras() {
 
@@ -198,7 +198,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test extras exception
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_extras_exception() {
 
@@ -217,7 +217,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test version
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_version() {
 
@@ -236,7 +236,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test to_array
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_to_array() {
 
@@ -285,7 +285,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test create_hash
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_create_hash() {
 		$this->assertRegExp( '/notification_[a-z0-9]{13}/', Notification::create_hash() );
@@ -294,7 +294,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test add_carrier object
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_add_carrier_object() {
 
@@ -310,7 +310,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test add_carrier existing exception
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_add_notification_existing_exception() {
 
@@ -326,7 +326,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test add_carrier not-existing exception
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_add_carrier_not_existing_exception() {
 
@@ -340,7 +340,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test get_carrier
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_get_carrier() {
 
@@ -357,7 +357,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test enable_carrier
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_enable_carrier() {
 
@@ -376,7 +376,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test enable_carrier and adding
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_enable_carrier_adding() {
 
@@ -391,7 +391,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test disable_carrier
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_disable_carrier() {
 
@@ -411,7 +411,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test get_extra
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_get_extra() {
 

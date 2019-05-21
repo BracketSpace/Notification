@@ -19,7 +19,7 @@ abstract class Resolver implements Interfaces\Resolvable {
 	 * Gets resolver slug
 	 * Note: it's automatically generated from the class name.
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return string
 	 */
 	public function get_slug() {
@@ -31,7 +31,7 @@ abstract class Resolver implements Interfaces\Resolvable {
 	/**
 	 * Gets merge tag pattern
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return string
 	 */
 	public function get_pattern() {
@@ -41,7 +41,7 @@ abstract class Resolver implements Interfaces\Resolvable {
 	/**
 	 * Gets resolver priority
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return int
 	 */
 	public function get_priority() {

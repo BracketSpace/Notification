@@ -34,7 +34,7 @@ abstract class Adapter implements Interfaces\Adaptable {
 	/**
 	 * Pass the method calls to Notification object
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $method_name Method name.
 	 * @param  array  $arguments   Arguments.
 	 * @return mixed
@@ -46,7 +46,7 @@ abstract class Adapter implements Interfaces\Adaptable {
 	/**
 	 * Gets Notification object
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return Notification
 	 */
 	public function get_notification() {
@@ -56,7 +56,7 @@ abstract class Adapter implements Interfaces\Adaptable {
 	/**
 	 * Sets up Notification object with data.
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  array $data Data array.
 	 * @return CoreNotification
 	 */
@@ -67,7 +67,7 @@ abstract class Adapter implements Interfaces\Adaptable {
 	/**
 	 * Checks if enabled
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return boolean
 	 */
 	public function is_enabled() {
@@ -77,7 +77,7 @@ abstract class Adapter implements Interfaces\Adaptable {
 	/**
 	 * Registers Notification
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return mixed
 	 */
 	public function register_notification() {

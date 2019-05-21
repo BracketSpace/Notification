@@ -47,7 +47,7 @@ class Upgrade {
 	 *
 	 * @action admin_init
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function check_upgrade() {
@@ -133,7 +133,7 @@ class Upgrade {
 	/**
 	 * Populates Carrier with field values pulled from meta
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @throws \Exception If Carrier hasn't been found.
 	 * @param  mixed   $carrier Sendable object or Carrier slug.
 	 * @param  integer $post_id Notification post ID.
@@ -160,7 +160,7 @@ class Upgrade {
 
 		// Set data.
 		$data         = get_post_meta( $post_id, '_notification_type_' . $carrier->get_slug(), true );
-		$field_values = apply_filters_deprecated( 'notification/notification/form_fields/values', [ $data, $carrier ], '[Next]', 'notification/carrier/fields/values' );
+		$field_values = apply_filters_deprecated( 'notification/notification/form_fields/values', [ $data, $carrier ], '6.0.0', 'notification/carrier/fields/values' );
 		$field_values = apply_filters( 'notification/carrier/fields/values', $field_values, $carrier );
 
 		foreach ( $carrier->get_form_fields() as $field ) {
@@ -185,7 +185,7 @@ class Upgrade {
 	 * - 2. Deletes trashed Notifications.
 	 * - 3. Removes old debug log.
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function upgrade_to_v1() {

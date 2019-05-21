@@ -28,7 +28,7 @@ class FeaturedImageUrl extends UrlTag {
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @param array $params merge tag configuration params.
 	 */
 	public function __construct( $params = [] ) {
@@ -70,7 +70,7 @@ class FeaturedImageUrl extends UrlTag {
 	/**
 	 * Gets nice, translated post name
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return string post name
 	 */
 	public function get_nicename() {

@@ -11,8 +11,8 @@ use BracketSpace\Notification\Defaults\Adapter;
 /**
  * Checks if notification post has been just started
  *
- * @since  [Next]
- * @since  [Next] We are using Notification Post object.
+ * @since  6.0.0
+ * @since  6.0.0 We are using Notification Post object.
  * @param  mixed $post Post ID or WP_Post.
  * @return boolean     True if notification has been just started
  */
@@ -24,7 +24,7 @@ function notification_post_is_new( $post ) {
 /**
  * Gets all notification posts with enabled trigger.
  *
- * @since  [Next]
+ * @since  6.0.0
  * @param  mixed $trigger_slug Trigger slug or null if all posts should be returned.
  * @param  bool  $all          If get all posts or just active.
  * @return array
@@ -68,7 +68,7 @@ function notification_get_posts( $trigger_slug = null, $all = false ) {
 /**
  * Gets notification post by its hash.
  *
- * @since  [Next]
+ * @since  6.0.0
  * @param  string $hash Notification unique hash.
  * @return mixed        null or Notification object
  */
