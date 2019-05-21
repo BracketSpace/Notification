@@ -59,38 +59,30 @@ class UserLogin extends UserTrigger {
 		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
 		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
 		$this->add_merge_tag( new MergeTag\User\UserLastName() );
-
 		$this->add_merge_tag( new MergeTag\User\UserBio() );
 
-		$this->add_merge_tag(
-			new MergeTag\DateTime\DateTime(
-				array(
-					'slug' => 'user_logged_in_datetime',
-					'name' => __( 'User login time', 'notification' ),
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
+			'slug' => 'user_logged_in_datetime',
+			'name' => __( 'User login time', 'notification' ),
+		] ) );
 
-		$this->add_merge_tag(
-			new MergeTag\IPTag(
-				array(
-					'slug'        => 'user_IP',
-					'name'        => __( 'User IP', 'notification' ),
-					'description' => '127.0.0.1',
-					'example'     => true,
-					'resolver'    => function( $trigger ) {
-						if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
-							return sanitize_text_field( wp_unslash( $_SERVER['HTTP_CLIENT_IP'] ) );
-						} elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-							return sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_FORWARDED_FOR'] ) );
-						} elseif ( ! empty( $_SERVER['REMOTE_ADDR'] ) ) {
-							return sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) );
-						}
-						return '';
-					},
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\IPTag( [
+			'slug'        => 'user_IP',
+			'name'        => __( 'User IP', 'notification' ),
+			'description' => '127.0.0.1',
+			'example'     => true,
+			'resolver'    => function( $trigger ) {
+				if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+					return sanitize_text_field( wp_unslash( $_SERVER['HTTP_CLIENT_IP'] ) );
+				} elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+					return sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_FORWARDED_FOR'] ) );
+				} elseif ( ! empty( $_SERVER['REMOTE_ADDR'] ) ) {
+					return sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) );
+				}
+				return '';
+			},
+			'group'       => __( 'User', 'notification' ),
+		] ) );
 
 	}
 

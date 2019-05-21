@@ -21,14 +21,12 @@ class CommentReplied extends CommentTrigger {
 	 */
 	public function __construct( $comment_type = 'comment' ) {
 
-		parent::__construct(
-			array(
-				'slug'         => 'wordpress/comment_' . $comment_type . '_replied',
-				// Translators: %s comment type.
-				'name'         => sprintf( __( '%s replied', 'notification' ), ucfirst( $comment_type ) ),
-				'comment_type' => $comment_type,
-			)
-		);
+		parent::__construct( [
+			'slug'         => 'wordpress/comment_' . $comment_type . '_replied',
+			// Translators: %s comment type.
+			'name'         => sprintf( __( '%s replied', 'notification' ), ucfirst( $comment_type ) ),
+			'comment_type' => $comment_type,
+		] );
 
 		$this->add_action( 'transition_comment_status', 10, 3 );
 		$this->add_action( 'notification_insert_comment_proxy', 10, 3 );
@@ -93,106 +91,76 @@ class CommentReplied extends CommentTrigger {
 		$this->add_merge_tag( new MergeTag\Comment\CommentActionSpam() );
 
 		// Parent comment.
-		$this->add_merge_tag(
-			new MergeTag\Comment\CommentID(
-				array(
-					'slug'          => 'parent_comment_ID',
-					'name'          => __( 'Parent comment ID', 'notification' ),
-					'property_name' => 'parent_comment',
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\Comment\CommentID( [
+			'slug'          => 'parent_comment_ID',
+			'name'          => __( 'Parent comment ID', 'notification' ),
+			'property_name' => 'parent_comment',
+			'group'         => __( 'Parent comment', 'notification' ),
+		] ) );
 
-		$this->add_merge_tag(
-			new MergeTag\Comment\CommentContent(
-				array(
-					'slug'          => 'parent_comment_content',
-					'name'          => __( 'Parent comment content', 'notification' ),
-					'property_name' => 'parent_comment',
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\Comment\CommentContent( [
+			'slug'          => 'parent_comment_content',
+			'name'          => __( 'Parent comment content', 'notification' ),
+			'property_name' => 'parent_comment',
+			'group'         => __( 'Parent comment', 'notification' ),
+		] ) );
 
-		$this->add_merge_tag(
-			new MergeTag\Comment\CommentStatus(
-				array(
-					'slug'          => 'parent_comment_status',
-					'name'          => __( 'Parent comment status', 'notification' ),
-					'property_name' => 'parent_comment',
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\Comment\CommentStatus( [
+			'slug'          => 'parent_comment_status',
+			'name'          => __( 'Parent comment status', 'notification' ),
+			'property_name' => 'parent_comment',
+			'group'         => __( 'Parent comment', 'notification' ),
+		] ) );
 
-		$this->add_merge_tag(
-			new MergeTag\Comment\CommentType(
-				array(
-					'slug'          => 'parent_comment_type',
-					'name'          => __( 'Parent comment type', 'notification' ),
-					'property_name' => 'parent_comment',
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\Comment\CommentType( [
+			'slug'          => 'parent_comment_type',
+			'name'          => __( 'Parent comment type', 'notification' ),
+			'property_name' => 'parent_comment',
+			'group'         => __( 'Parent comment', 'notification' ),
+		] ) );
 
 		// Parent comment author.
-		$this->add_merge_tag(
-			new MergeTag\Comment\CommentAuthorIP(
-				array(
-					'slug'          => 'parent_comment_author_IP',
-					'name'          => __( 'Parent comment author IP', 'notification' ),
-					'property_name' => 'parent_comment',
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorIP( [
+			'slug'          => 'parent_comment_author_IP',
+			'name'          => __( 'Parent comment author IP', 'notification' ),
+			'property_name' => 'parent_comment',
+			'group'         => __( 'Parent comment author', 'notification' ),
+		] ) );
 
-		$this->add_merge_tag(
-			new MergeTag\Comment\CommentAuthorUserAgent(
-				array(
-					'slug'          => 'parent_comment_user_agent',
-					'name'          => __( 'Parent comment user agent', 'notification' ),
-					'property_name' => 'parent_comment',
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorUserAgent( [
+			'slug'          => 'parent_comment_user_agent',
+			'name'          => __( 'Parent comment user agent', 'notification' ),
+			'property_name' => 'parent_comment',
+			'group'         => __( 'Parent comment author', 'notification' ),
+		] ) );
 
-		$this->add_merge_tag(
-			new MergeTag\Comment\CommentAuthorUrl(
-				array(
-					'slug'          => 'parent_comment_author_url',
-					'name'          => __( 'Parent comment author URL', 'notification' ),
-					'property_name' => 'parent_comment',
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\Comment\CommentAuthorUrl( [
+			'slug'          => 'parent_comment_author_url',
+			'name'          => __( 'Parent comment author URL', 'notification' ),
+			'property_name' => 'parent_comment',
+			'group'         => __( 'Parent comment author', 'notification' ),
+		] ) );
 
-		$this->add_merge_tag(
-			new MergeTag\User\UserID(
-				array(
-					'slug'          => 'parent_comment_author_user_ID',
-					'name'          => __( 'Parent comment author user ID', 'notification' ),
-					'property_name' => 'parent_comment_user_object',
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\User\UserID( [
+			'slug'          => 'parent_comment_author_user_ID',
+			'name'          => __( 'Parent comment author user ID', 'notification' ),
+			'property_name' => 'parent_comment_user_object',
+			'group'         => __( 'Parent comment author', 'notification' ),
+		] ) );
 
-		$this->add_merge_tag(
-			new MergeTag\User\UserEmail(
-				array(
-					'slug'          => 'parent_comment_author_user_email',
-					'name'          => __( 'Parent comment author user email', 'notification' ),
-					'property_name' => 'parent_comment_user_object',
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\User\UserEmail( [
+			'slug'          => 'parent_comment_author_user_email',
+			'name'          => __( 'Parent comment author user email', 'notification' ),
+			'property_name' => 'parent_comment_user_object',
+			'group'         => __( 'Parent comment author', 'notification' ),
+		] ) );
 
-		$this->add_merge_tag(
-			new MergeTag\User\UserDisplayName(
-				array(
-					'slug'          => 'parent_comment_author_user_display_name',
-					'name'          => __( 'Parent comment author user display name', 'notification' ),
-					'property_name' => 'parent_comment_user_object',
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\User\UserDisplayName( [
+			'slug'          => 'parent_comment_author_user_display_name',
+			'name'          => __( 'Parent comment author user display name', 'notification' ),
+			'property_name' => 'parent_comment_user_object',
+			'group'         => __( 'Parent comment author', 'notification' ),
+		] ) );
 
 	}
 

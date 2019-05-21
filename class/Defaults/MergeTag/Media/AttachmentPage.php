@@ -28,7 +28,7 @@ class AttachmentPage extends UrlTag {
 	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
 			$this->property_name = $params['property_name'];
@@ -36,7 +36,7 @@ class AttachmentPage extends UrlTag {
 
 		$args = wp_parse_args(
 			$params,
-			array(
+			[
 				'slug'        => 'attachment_page_link',
 				'name'        => __( 'Attachment page link', 'notification' ),
 				'description' => __( 'http://example.com/forest-landscape/', 'notification' ),
@@ -44,7 +44,8 @@ class AttachmentPage extends UrlTag {
 				'resolver'    => function() {
 					return get_permalink( $this->{ $this->property_name }->attachment->ID );
 				},
-			)
+				'group'       => __( 'Attachment', 'notification' ),
+			]
 		);
 
 		parent::__construct( $args );

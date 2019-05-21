@@ -34,3 +34,87 @@ function notification_display_story() {
 	return ! notification_is_whitelabeled() && ! get_option( 'notification_story_dismissed' ) && $count > 2;
 
 }
+
+/**
+ * Creates new View object.
+ *
+ * @since  6.0.0
+ * @return View
+ */
+function notification_create_view() {
+	return notification_runtime()->view();
+}
+
+/**
+ * Creates new AJAX Handler object.
+ *
+ * @since  6.0.0
+ * @return BracketSpace\Notification\Utils\Ajax
+ */
+function notification_ajax_handler() {
+	return new BracketSpace\Notification\Utils\Ajax();
+}
+
+/**
+ * Throws a deprecation notice from deprecated class
+ *
+ * @since  6.0.0
+ * @param  string $class       Deprecated class name.
+ * @param  string $version     Version since deprecated.
+ * @param  string $replacement Replacement class.
+ * @return void
+ */
+function notification_deprecated_class( $class, $version, $replacement = null ) {
+
+	// phpcs:disable
+	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+		if ( function_exists( '__' ) ) {
+			if ( ! is_null( $replacement ) ) {
+				/* translators: 1: Class name, 2: version number, 3: alternative function name */
+				trigger_error( sprintf( __('Class %1$s is <strong>deprecated</strong> since version %2$s! Use %3$s instead.'), $class, $version, $replacement ) );
+			} else {
+				/* translators: 1: Class name, 2: version number */
+				trigger_error( sprintf( __('Class %1$s is <strong>deprecated</strong> since version %2$s with no alternative available.'), $class, $version ) );
+			}
+		} else {
+			if ( ! is_null( $replacement ) ) {
+				trigger_error( sprintf( 'Class %1$s is <strong>deprecated</strong> since version %2$s! Use %3$s instead.', $class, $version, $replacement ) );
+			} else {
+				trigger_error( sprintf( 'Class %1$s is <strong>deprecated</strong> since version %2$s with no alternative available.', $class, $version ) );
+			}
+		}
+	}
+	// phpcs:enable
+
+}
+
+/**
+ * Logs the message in database
+ *
+ * @since  6.0.0
+ * @param  string $component Component nice name, like `Core` or `Any Plugin Name`.
+ * @param  string $type      Log type, values: notification|error|warning.
+ * @param  string $message   Log formatted message.
+ * @return bool|\WP_Error
+ */
+function notification_log( $component, $type, $message ) {
+
+	if ( 'notification' !== $type && ! notification_get_setting( 'debugging/settings/error_log' ) ) {
+		return false;
+	}
+
+	$debugger = notification_runtime( 'core_debugging' );
+
+	$log_data = [
+		'component' => $component,
+		'type'      => $type,
+		'message'   => $message,
+	];
+
+	try {
+		return $debugger->add_log( $log_data );
+	} catch ( \Exception $e ) {
+		return new \WP_Error( 'wrong_log_data', $e->getMessage() );
+	}
+
+}

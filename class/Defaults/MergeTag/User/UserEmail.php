@@ -31,7 +31,7 @@ class UserEmail extends StringTag {
 	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
 			$this->property_name = $params['property_name'];
@@ -39,7 +39,7 @@ class UserEmail extends StringTag {
 
 		$args = wp_parse_args(
 			$params,
-			array(
+			[
 				'slug'        => 'user_email',
 				'name'        => __( 'User email', 'notification' ),
 				'description' => __( 'john.doe@example.com', 'notification' ),
@@ -47,7 +47,8 @@ class UserEmail extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->user_email;
 				},
-			)
+				'group'       => __( 'User', 'notification' ),
+			]
 		);
 
 		parent::__construct( $args );

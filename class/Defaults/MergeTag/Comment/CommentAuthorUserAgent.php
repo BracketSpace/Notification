@@ -28,7 +28,7 @@ class CommentAuthorUserAgent extends StringTag {
 	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
 			$this->property_name = $params['property_name'];
@@ -36,7 +36,7 @@ class CommentAuthorUserAgent extends StringTag {
 
 		$args = wp_parse_args(
 			$params,
-			array(
+			[
 				'slug'        => 'comment_author_user_agent',
 				'name'        => __( 'Comment author user agent', 'notification' ),
 				'description' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
@@ -44,7 +44,9 @@ class CommentAuthorUserAgent extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->comment_agent;
 				},
-			)
+				// translators: comment type author.
+				'group'       => sprintf( __( '%s author', 'notification' ), ucfirst( $this->property_name ) ),
+			]
 		);
 
 		parent::__construct( $args );

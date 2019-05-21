@@ -31,11 +31,17 @@ class UserLoginFailed extends UserTrigger {
 	 * Assigns action callback args to object
 	 *
 	 * @param string $username username.
-	 * @return void
+	 * @return mixed
 	 */
 	public function action( $username ) {
 
-		$user              = get_user_by( 'login', $username );
+		$user = get_user_by( 'login', $username );
+
+		// Bail if no user has been found to limit the spam login notifications.
+		if ( ! $user ) {
+			return false;
+		}
+
 		$this->user_id     = $user->ID;
 		$this->user_object = get_userdata( $this->user_id );
 
@@ -57,17 +63,12 @@ class UserLoginFailed extends UserTrigger {
 		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
 		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
 		$this->add_merge_tag( new MergeTag\User\UserLastName() );
-
 		$this->add_merge_tag( new MergeTag\User\UserBio() );
 
-		$this->add_merge_tag(
-			new MergeTag\DateTime\DateTime(
-				array(
-					'slug' => 'user_login_failed_datetime',
-					'name' => __( 'User login failed datetime', 'notification' ),
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
+			'slug' => 'user_login_failed_datetime',
+			'name' => __( 'User login failed datetime', 'notification' ),
+		] ) );
 
 	}
 

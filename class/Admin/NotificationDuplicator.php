@@ -43,24 +43,22 @@ class NotificationDuplicator {
 	 */
 	public function notification_duplicate() {
 
-		if ( ! isset( $_GET['duplicate'] ) ) {
+		if ( ! isset( $_GET['duplicate'] ) ) {  // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			exit;
 		}
 
 		// Get the source notification post.
-		$source = get_post( sanitize_text_field( wp_unslash( $_GET['duplicate'] ) ) );
+		$source = get_post( sanitize_text_field( wp_unslash( $_GET['duplicate'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		if ( get_post_type( $source ) !== 'notification' ) {
 			wp_die( 'You cannot duplicate post that\'s not Notification post' );
 		}
 
-		$new_id = wp_insert_post(
-			array(
-				'post_title'  => sprintf( '(%s) %s', __( 'Duplicate', 'notification' ), $source->post_title ),
-				'post_status' => 'draft',
-				'post_type'   => 'notification',
-			)
-		);
+		$new_id = wp_insert_post( [
+			'post_title'  => sprintf( '(%s) %s', __( 'Duplicate', 'notification' ), $source->post_title ),
+			'post_status' => 'draft',
+			'post_type'   => 'notification',
+		] );
 
 		// Copy all the meta data.
 		$meta_data = get_post_custom( $source->ID );

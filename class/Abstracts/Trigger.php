@@ -10,6 +10,8 @@ namespace BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Interfaces\Sendable;
 use BracketSpace\Notification\Admin\FieldsResolver;
+use BracketSpace\Notification\Defaults\Store\Notification as NotificationStore;
+use BracketSpace\Notification\Core\Notification;
 
 /**
  * Trigger abstract class
@@ -17,11 +19,11 @@ use BracketSpace\Notification\Admin\FieldsResolver;
 abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
-	 * Storage for trigger's notifications
+	 * Storage for Trigger's Notifications
 	 *
 	 * @var array
 	 */
-	private $notification_storage = array();
+	private $notification_storage = [];
 
 	/**
 	 * Group
@@ -59,21 +61,21 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 *
 	 * @var array
 	 */
-	protected $actions = array();
+	protected $actions = [];
 
 	/**
 	 * Merge tags
 	 *
 	 * @var array
 	 */
-	protected $merge_tags = array();
+	protected $merge_tags = [];
 
 	/**
 	 * Action's callback args
 	 *
 	 * @var array
 	 */
-	protected $callback_args = array();
+	protected $callback_args = [];
 
 	/**
 	 * Trigger constructor
@@ -113,16 +115,13 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			trigger_error( 'Action tag cannot be empty', E_USER_ERROR );
 		}
 
-		array_push(
-			$this->actions,
-			array(
-				'tag'           => $tag,
-				'priority'      => $priority,
-				'accepted_args' => $accepted_args,
-			)
-		);
+		array_push( $this->actions, [
+			'tag'           => $tag,
+			'priority'      => $priority,
+			'accepted_args' => $accepted_args,
+		] );
 
-		add_action( $tag, array( $this, '_action' ), $priority, $accepted_args );
+		add_action( $tag, [ $this, '_action' ], $priority, $accepted_args );
 
 	}
 
@@ -140,14 +139,13 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		}
 
 		foreach ( $this->actions as $action_index => $action ) {
-
 			if ( $action['tag'] === $tag && $action['priority'] === $priority && $action['accepted_args'] === $accepted_args ) {
 				unset( $this->actions[ $action_index ] );
 				break;
 			}
 		}
 
-		remove_action( $tag, array( $this, '_action' ), $priority, $accepted_args );
+		remove_action( $tag, [ $this, '_action' ], $priority, $accepted_args );
 
 	}
 
@@ -169,52 +167,89 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Attaches the Notification to the Trigger
+	 * Attaches the Notification
 	 *
-	 * @param  Sendable $notification Notification class.
+	 * @param  Notification $notification Notification class.
 	 * @return void
 	 */
-	public function attach( Sendable $notification ) {
-		$this->notification_storage[ $notification->hash() ] = clone $notification;
+	public function attach( Notification $notification ) {
+		$this->notification_storage[ $notification->get_hash() ] = clone $notification;
 	}
 
 	/**
-	 * Gets attached notifications
+	 * Gets attached Notifications
 	 *
 	 * @return array
 	 */
-	public function get_attached_notifications() {
+	public function get_notifications() {
 		return $this->notification_storage;
 	}
 
 	/**
-	 * Detaches the Notification from the Trigger
+	 * Check if Trigger has attached Notifications
 	 *
-	 * @param  Sendable $notification Notification class.
+	 * @return array
+	 */
+	public function has_notifications() {
+		return ! empty( $this->get_notifications() );
+	}
+
+	/**
+	 * Detaches the Notification
+	 *
+	 * @param  Notification $notification Notification class.
 	 * @return void
 	 */
-	public function detach( Sendable $notification ) {
-		if ( isset( $this->notification_storage[ $notification->hash() ] ) ) {
-			unset( $this->notification_storage[ $notification->hash() ] );
+	public function detach( Notification $notification ) {
+		if ( isset( $this->notification_storage[ $notification->get_hash() ] ) ) {
+			unset( $this->notification_storage[ $notification->get_hash() ] );
 		}
 	}
 
 	/**
-	 * Rolls out all the notifications
+	 * Detaches all the Notifications
+	 *
+	 * @return $this
+	 */
+	public function detach_all() {
+		$this->notification_storage = [];
+		return $this;
+	}
+
+	/**
+	 * Rolls out all the Notifications
 	 *
 	 * @return void
 	 */
 	public function roll_out() {
 
-		foreach ( $this->get_attached_notifications() as $notification ) {
+		foreach ( $this->get_notifications() as $notification ) {
+			if ( ! apply_filters( 'notification/should_send', true, $notification, $this ) ) {
+				continue;
+			}
 
-			$notification->prepare_data();
+			foreach ( $notification->get_enabled_carriers() as $carrier ) {
+				$carrier->prepare_data();
 
-			do_action( 'notification/notification/pre-send', $notification, $this );
+				do_action_deprecated( 'notification/notification/pre-send', [
+					$carrier,
+					$this,
+				], '6.0.0', 'notification/carrier/pre-send' );
 
-			if ( ! $notification->is_suppressed() ) {
-				$notification->send( $this );
-				do_action( 'notification/notification/sent', $notification, $this );
+				do_action( 'notification/carrier/pre-send', $carrier, $this, $notification );
+
+				if ( ! $carrier->is_suppressed() ) {
+
+					$carrier->send( $this );
+
+					do_action_deprecated( 'notification/notification/sent', [
+						$carrier,
+						$this,
+					], '6.0.0', 'notification/carrier/sent' );
+
+					do_action( 'notification/carrier/sent', $carrier, $this, $notification );
+
+				}
 			}
 		}
 
@@ -261,7 +296,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Adds trigger's merge tag
+	 * Adds Trigger's Merge Tag
 	 *
 	 * @param Interfaces\Taggable $merge_tag merge tag object.
 	 * @return $this
@@ -273,7 +308,26 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Removes trigger's merge tag
+	 * Quickly adds new Merge Tag
+	 *
+	 * @since 6.0.0
+	 * @param string $property_name Trigger property name.
+	 * @param string $label         Nice, translatable Merge Tag label.
+	 * @param string $group         Optional, translatable group name.
+	 */
+	public function add_quick_merge_tag( $property_name, $label, $group = null ) {
+		return $this->add_merge_tag( new \BracketSpace\Notification\Defaults\MergeTag\StringTag( [
+			'slug'     => $property_name,
+			'name'     => $label,
+			'group'    => $group,
+			'resolver' => function( $trigger ) use ( $property_name ) {
+				return $trigger->{ $property_name };
+			},
+		] ) );
+	}
+
+	/**
+	 * Removes Trigger's merge tag
 	 *
 	 * @param string $merge_tag_slug Merge Tag slug.
 	 * @return $this
@@ -292,26 +346,37 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Gets trigger's merge tags
+	 * Gets Trigger's merge tags
 	 *
-	 * @param string $type optional, all|visible|hidden, default: all.
+	 * @since 6.0.0 Added param $grouped which makes the array associative
+	 *               with merge tag slugs as keys.
+	 * @param string $type    Optional, all|visible|hidden, default: all.
+	 * @param bool   $grouped Optional, default: false.
 	 * @return $array merge tags
 	 */
-	public function get_merge_tags( $type = 'all' ) {
+	public function get_merge_tags( $type = 'all', $grouped = false ) {
 
 		if ( 'all' === $type ) {
-			return $this->merge_tags;
+			$tags = $this->merge_tags;
+		} else {
+			$tags = [];
+
+			foreach ( $this->merge_tags as $merge_tag ) {
+				if ( 'visible' === $type && ! $merge_tag->is_hidden() ) {
+					array_push( $tags, $merge_tag );
+				} elseif ( 'hidden' === $type && $merge_tag->is_hidden() ) {
+					array_push( $tags, $merge_tag );
+				}
+			}
 		}
 
-		$tags = array();
-
-		foreach ( $this->merge_tags as $merge_tag ) {
-
-			if ( 'visible' === $type && ! $merge_tag->is_hidden() ) {
-				array_push( $tags, $merge_tag );
-			} elseif ( 'hidden' === $type && $merge_tag->is_hidden() ) {
-				array_push( $tags, $merge_tag );
+		// Group the tags if needed.
+		if ( $grouped ) {
+			$grouped_tags = [];
+			foreach ( $tags as $merge_tag ) {
+				$grouped_tags[ $merge_tag->get_slug() ] = $merge_tag;
 			}
+			return $grouped_tags;
 		}
 
 		return $tags;
@@ -319,21 +384,24 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Resolves all notifications fields with merge tags
+	 * Resolves all Carrier fields with Merge Tags
 	 *
+	 * @since 6.0.0 Fields resolving has been moved to additional API
+	 *               which is called by the Carrier itself
 	 * @return void
 	 */
 	private function resolve_fields() {
 
-		foreach ( $this->get_attached_notifications() as $notification ) {
-			$resolver = new FieldsResolver( $notification, $this->get_merge_tags() );
-			$resolver->resolve_fields();
+		foreach ( $this->get_notifications() as $notification ) {
+			foreach ( $notification->get_enabled_carriers() as $carrier ) {
+				$carrier->resolve_fields( $this );
+			}
 		}
 
 	}
 
 	/**
-	 * Cleans the merge tags.
+	 * Cleans the Merge Tags
 	 *
 	 * @since 5.2.2
 	 * @return void
@@ -347,30 +415,16 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Gets CPT Notification from databse
-	 * Gets their enabled Notifications
-	 * Populates the Notification form data
-	 * Attaches the Notification to trigger
+	 * Attaches the Notifications to Trigger
 	 *
 	 * @return void
 	 */
 	public function set_notifications() {
 
-		$runtime  = notification_runtime();
-		$postdata = $runtime->post_data;
+		$store = new NotificationStore();
 
-		// Get all notification posts bound with this trigger.
-		$notification_posts = $postdata->get_trigger_posts( $this->get_slug() );
-
-		// Attach notifications for each post.
-		foreach ( $notification_posts as $notification_post ) {
-
-			$notifications = $postdata->get_populated_notifications_for_post( $notification_post->ID );
-
-			// attach every enabled notification.
-			foreach ( $notifications as $notification ) {
-				$this->attach( $notification );
-			}
+		foreach ( $store->with_trigger( $this->get_slug() ) as $notification ) {
+			$this->attach( $notification );
 		}
 
 	}
@@ -400,6 +454,13 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	public function _action() {
 
+		$this->detach_all()->set_notifications();
+
+		// If no Notifications use this Trigger, bail.
+		if ( ! $this->has_notifications() ) {
+			return;
+		}
+
 		// reset the state.
 		$this->stopped = false;
 
@@ -408,9 +469,9 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 		// call the action.
 		if ( $this->is_postponed() && method_exists( $this, 'postponed_action' ) ) {
-			$result = call_user_func_array( array( $this, 'postponed_action' ), $this->callback_args );
+			$result = call_user_func_array( [ $this, 'postponed_action' ], $this->callback_args );
 		} elseif ( ! $this->is_postponed() && method_exists( $this, 'action' ) ) {
-			$result = call_user_func_array( array( $this, 'action' ), $this->callback_args );
+			$result = call_user_func_array( [ $this, 'action' ], $this->callback_args );
 		} else {
 			$result = true;
 		}
@@ -425,7 +486,6 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			return;
 		}
 
-		$this->set_notifications();
 		$this->resolve_fields();
 		$this->roll_out();
 		$this->clean_merge_tags();

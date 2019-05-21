@@ -11,18 +11,18 @@
 				type       = $select.val(),
 				$table     = $select.parents( '.recipients-repeater' ).first();
 
-			notification.hooks.doAction( 'notification.recipients.type.changed', type, $select, $recipient, $table );
+			notification.hooks.doAction( 'notification.carrier.recipients.type.changed', type, $select, $recipient, $table );
  		} );
 
 		// Get recipient field according to type
 
-		notification.hooks.addAction( 'notification.recipients.type.changed', function( type, $select, $recipient, $table ) {
+		notification.hooks.addAction( 'notification.carrier.recipients.type.changed', function( type, $select, $recipient, $table ) {
 
 			data = {
-				action      : 'get_recipient_input',
-				type        : type,
-				notification: $table.data( 'notification' ),
-				input_name  : $recipient.attr( 'name' )
+				action     : 'get_recipient_input',
+				type       : type,
+				carrier    : $table.data( 'carrier' ),
+				input_name : $recipient.attr( 'name' )
 			}
 
 			$recipient.attr( 'disabled', true );
@@ -34,7 +34,7 @@
 		    			$recipient_container = $recipient.parent();
 		    		$recipient_container.html( '' );
 		    		$recipient_container.append( $replacement );
-		    		notification.hooks.doAction( 'notification.recipients.recipient.replaced', $replacement );
+		    		notification.hooks.doAction( 'notification.carrier.recipients.recipient.replaced', $replacement );
 		    	}
 
 			} );

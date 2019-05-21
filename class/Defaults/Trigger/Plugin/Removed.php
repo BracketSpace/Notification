@@ -51,10 +51,10 @@ class Removed extends PluginTrigger {
 
 		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
 			'slug' => 'plugin_deletion_date_time',
 			'name' => __( 'Plugin deletion date and time', 'notification' ),
-		) ) );
+		] ) );
 
 	}
 

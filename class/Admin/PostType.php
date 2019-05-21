@@ -7,7 +7,8 @@
 
 namespace BracketSpace\Notification\Admin;
 
-use BracketSpace\Notification\Utils\View;
+use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Utils\Cache\ObjectCache;
 
 /**
  * PostType class
@@ -15,18 +16,20 @@ use BracketSpace\Notification\Utils\View;
 class PostType {
 
 	/**
-	 * PostType constructor
-	 *
-	 * @since 5.0.0
-	 * @param Trigger       $trigger       Trigger class.
-	 * @param Notifications $notifications Notifications class.
-	 * @param View          $view          View class.
+	 * TABLE OF CONTENTS: -------------------------------
+	 * - Post Type.
+	 * - Delete.
+	 * - Save.
+	 * - AJAX.
+	 * - Notifications.
+	 * --------------------------------------------------
 	 */
-	public function __construct( Trigger $trigger, Notifications $notifications, View $view ) {
-		$this->trigger       = $trigger;
-		$this->notifications = $notifications;
-		$this->view          = $view;
-	}
+
+	/**
+	 * --------------------------------------------------
+	 * Post Type.
+	 * --------------------------------------------------
+	 */
 
 	/**
 	 * Registers Notification post type
@@ -37,7 +40,7 @@ class PostType {
 	 */
 	public function register() {
 
-		$labels = array(
+		$labels = [
 			'name'               => __( 'Notifications', 'notification' ),
 			'singular_name'      => __( 'Notification', 'notification' ),
 			'add_new'            => _x( 'Add New Notification', 'notification', 'notification' ),
@@ -50,47 +53,41 @@ class PostType {
 			'not_found_in_trash' => __( 'No Notifications found in Trash', 'notification' ),
 			'parent_item_colon'  => __( 'Parent Notification:', 'notification' ),
 			'menu_name'          => __( 'Notifications', 'notification' ),
-		);
+		];
 
-		register_post_type(
-			'notification',
-			array(
-				'labels'              => apply_filters( 'notification/whitelabel/cpt/labels', $labels ),
-				'hierarchical'        => false,
-				'public'              => true,
-				'show_ui'             => true,
-				'show_in_menu'        => apply_filters( 'notification/whitelabel/cpt/parent', true ),
-				'show_in_admin_bar'   => true,
-				'menu_icon'           => 'dashicons-megaphone',
-				'menu_position'       => 103,
-				'show_in_nav_menus'   => false,
-				'publicly_queryable'  => false,
-				'exclude_from_search' => true,
-				'has_archive'         => false,
-				'query_var'           => false,
-				'can_export'          => true,
-				'rewrite'             => false,
-				'capabilities'        => apply_filters(
-					'notification/post_type/capabilities',
-					array(
-						'edit_post'          => 'manage_options',
-						'read_post'          => 'manage_options',
-						'delete_post'        => 'manage_options',
-						'edit_posts'         => 'manage_options',
-						'edit_others_posts'  => 'manage_options',
-						'delete_posts'       => 'manage_options',
-						'publish_posts'      => 'manage_options',
-						'read_private_posts' => 'manage_options',
-					)
-				),
-				'supports'            => array( 'title' ),
-			)
-		);
+		register_post_type( 'notification', [
+			'labels'              => apply_filters( 'notification/whitelabel/cpt/labels', $labels ),
+			'hierarchical'        => false,
+			'public'              => true,
+			'show_ui'             => true,
+			'show_in_menu'        => apply_filters( 'notification/whitelabel/cpt/parent', true ),
+			'show_in_admin_bar'   => true,
+			'menu_icon'           => 'dashicons-megaphone',
+			'menu_position'       => 103,
+			'show_in_nav_menus'   => false,
+			'publicly_queryable'  => false,
+			'exclude_from_search' => true,
+			'has_archive'         => false,
+			'query_var'           => false,
+			'can_export'          => true,
+			'rewrite'             => false,
+			'capabilities'        => apply_filters( 'notification/post_type/capabilities', [
+				'edit_post'          => 'manage_options',
+				'read_post'          => 'manage_options',
+				'delete_post'        => 'manage_options',
+				'edit_posts'         => 'manage_options',
+				'edit_others_posts'  => 'manage_options',
+				'delete_posts'       => 'manage_options',
+				'publish_posts'      => 'manage_options',
+				'read_private_posts' => 'manage_options',
+			] ),
+			'supports'            => [ 'title' ],
+		] );
 
 	}
 
 	/**
-	 * Filters the posu updated messages
+	 * Filters the post updated messages
 	 *
 	 * @filter post_updated_messages
 	 *
@@ -100,9 +97,7 @@ class PostType {
 	 */
 	public function post_updated_messages( $messages ) {
 
-		$post = get_post();
-
-		$messages['notification'] = array(
+		$messages['notification'] = [
 			0  => '',
 			1  => __( 'Notification updated.', 'notification' ),
 			2  => '',
@@ -114,108 +109,110 @@ class PostType {
 			8  => '',
 			9  => '',
 			10 => '',
-		);
+		];
 
 		return $messages;
 
 	}
 
 	/**
-	 * Moves the metaboxes under title in WordPress
+	 * Filters the bulk action messages
 	 *
-	 * @action edit_form_after_title
+	 * @filter bulk_post_updated_messages
 	 *
-	 * @param  object $post WP_Post.
+	 * @since  6.0.0
+	 * @param  array $bulk_messages Messages.
+	 * @param  array $bulk_counts   Counters.
+	 * @return array
+	 */
+	public function bulk_action_messages( $bulk_messages, $bulk_counts ) {
+
+		$bulk_messages['notification'] = [
+			// translators: Number of Notifications.
+			'trashed' => _n( '%s notification removed.', '%s notifications removed.', $bulk_counts['trashed'] ),
+		];
+
+		return $bulk_messages;
+
+	}
+
+	/**
+	 * Changes the notification post statuses above the post table
+	 *
+	 * @filter views_edit-notification
+	 *
+	 * @since  6.0.0
+	 * @param  array $statuses Statuses array.
+	 * @return array
+	 */
+	public function change_post_statuses( $statuses ) {
+
+		if ( isset( $statuses['publish'] ) ) {
+			$statuses['publish'] = str_replace( __( 'Published', 'wordpress' ), __( 'Active', 'notification' ), $statuses['publish'] ); // phpcs:ignore
+		}
+
+		if ( isset( $statuses['draft'] ) ) {
+			$statuses['draft'] = str_replace( __( 'Draft', 'wordpress' ), __( 'Disabled', 'notification' ), $statuses['draft'] ); // phpcs:ignore
+		}
+
+		return $statuses;
+
+	}
+
+	/**
+	 * --------------------------------------------------
+	 * Delete.
+	 * --------------------------------------------------
+	 */
+
+	/**
+	 * Deletes the post entirely bypassing the trash
+	 *
+	 * @action wp_trash_post 100
+	 *
+	 * @since  6.0.0
+	 * @param  integer $post_id Post ID.
 	 * @return void
 	 */
-	public function render_trigger_select( $post ) {
+	public function bypass_trash( $post_id ) {
 
-		if ( 'notification' !== get_post_type( $post ) ) {
+		if ( 'notification' !== get_post_type( $post_id ) ) {
 			return;
 		}
 
-		echo '<h3 class="trigger-section-title">' . esc_html__( 'Trigger', 'notification' ) . '</h3>';
-		$this->trigger->render_select( $post );
+		wp_delete_post( $post_id, true );
 
 	}
 
 	/**
-	 * Adds Notifications section title on post edit screen,
-	 * just under the Trigger and prints Notifications metaboxes
-	 *
-	 * @action edit_form_after_title 20
-	 *
-	 * @param  object $post WP_Post.
-	 * @return void
+	 * --------------------------------------------------
+	 * Save.
+	 * --------------------------------------------------
 	 */
-	public function render_notification_metaboxes( $post ) {
-
-		if ( 'notification' !== get_post_type( $post ) ) {
-			return;
-		}
-
-		echo '<h3 class="notifications-section-title">' . esc_html__( 'Notifications', 'notification' ) . '</h3>';
-
-		do_action( 'notitication/admin/notifications/pre', $post );
-
-		echo '<div id="notification-boxes">';
-			$this->notifications->render_notifications();
-		echo '</div>';
-
-		do_action( 'notitication/admin/notifications', $post );
-
-	}
 
 	/**
-	 * Adds metabox with Save button
-	 *
-	 * @action add_meta_boxes
-	 *
-	 * @return void
-	 */
-	public function add_save_meta_box() {
-
-		add_meta_box(
-			'notification_save',
-			__( 'Save', 'notification' ),
-			array( $this, 'save_metabox' ),
-			'notification',
-			'side',
-			'high'
-		);
-
-		// enable metabox.
-		add_filter( 'notification/admin/allow_metabox/notification_save', '__return_true' );
-
-	}
-
-	/**
-	 * Saves post status in relation to on/off switch
+	 * Creates Notification unique hash
 	 *
 	 * @filter wp_insert_post_data 100
 	 *
-	 * @since  5.0.0
+	 * @since  6.0.0
 	 * @param  array $data    post data.
 	 * @param  array $postarr saved data.
 	 * @return array
 	 */
-	public function save_notification_status( $data, $postarr ) {
+	public function create_notification_hash( $data, $postarr ) {
 
-		// fix for brand new posts.
-		if ( 'auto-draft' === $data['post_status'] ) {
+		// Another save process is in progress, abort.
+		if ( defined( 'DOING_NOTIFICATION_SAVE' ) && DOING_NOTIFICATION_SAVE ) {
 			return $data;
 		}
 
-		if ( 'notification' !== $data['post_type'] ||
-			'trash' === $postarr['post_status'] ||
-			( isset( $_POST['action'] ) && 'change_notification_status' === $_POST['action'] ) ) {
+		if ( 'notification' !== $data['post_type'] ) {
 			return $data;
 		}
 
-		if ( isset( $postarr['onoffswitch'] ) && '1' === $postarr['onoffswitch'] ) {
-			$data['post_status'] = 'publish';
-		} else {
-			$data['post_status'] = 'draft';
+		if ( ! preg_match( '/notification_[a-z0-9]{13}/', $data['post_name'] ) ) {
+			$data['post_name'] = Notification::create_hash();
 		}
 
 		return $data;
@@ -223,56 +220,195 @@ class PostType {
 	}
 
 	/**
-	 * Prints Save metabox
+	 * Saves the Notification data
 	 *
-	 * @param  object $post current WP_Post.
+	 * @action save_post_notification
+	 *
+	 * @param  integer $post_id Current post ID.
+	 * @param  object  $post    WP_Post object.
+	 * @param  boolean $update  If existing notification is updated.
 	 * @return void
 	 */
-	public function save_metabox( $post ) {
+	public function save( $post_id, $post, $update ) {
 
-		if ( ! EMPTY_TRASH_DAYS ) {
-			$delete_text = __( 'Delete Permanently', 'notification' );
-		} else {
-			$delete_text = __( 'Move to Trash', 'notification' );
+		// Another save process is in progress, abort.
+		if ( defined( 'DOING_NOTIFICATION_SAVE' ) && DOING_NOTIFICATION_SAVE ) {
+			return;
 		}
 
-		$enabled = notification_is_new_notification( $post ) || 'draft' !== get_post_status( $post->ID );
+		if ( ! isset( $_POST['notification_data_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['notification_data_nonce'] ) ), 'notification_post_data_save' ) ) {
+			return;
+		}
 
-		$this->view->set_var( 'enabled', $enabled );
-		$this->view->set_var( 'post_id', $post->ID );
-		$this->view->set_var( 'delete_link_label', $delete_text );
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
 
-		$this->view->get_view( 'save-metabox' );
+		if ( ! $update ) {
+			return;
+		}
+
+		// Prevent infinite loops.
+		if ( ! defined( 'DOING_NOTIFICATION_SAVE' ) ) {
+			define( 'DOING_NOTIFICATION_SAVE', true );
+		}
+
+		$data              = $_POST;
+		$notification_post = notification_adapt_from( 'WordPress', $post );
+
+		// Title.
+		if ( isset( $data['post_title'] ) ) {
+			$notification_post->set_title( $data['post_title'] );
+		}
+
+		// Status.
+		$status = ( isset( $data['notification_onoff_switch'] ) && '1' === $data['notification_onoff_switch'] );
+		$notification_post->set_enabled( $status );
+
+		// Trigger.
+		if ( ! empty( $data['notification_trigger'] ) ) {
+			$trigger = notification_get_trigger( $data['notification_trigger'] );
+			if ( ! empty( $trigger ) ) {
+				$notification_post->set_trigger( $trigger );
+			}
+		}
+
+		// Prepare Carriers to save.
+		$carriers = [];
+
+		foreach ( notification_get_carriers() as $carrier ) {
+
+			if ( ! isset( $data[ 'notification_carrier_' . $carrier->get_slug() ] ) ) {
+				continue;
+			}
+
+			$carrier_data = $data[ 'notification_carrier_' . $carrier->get_slug() ];
+
+			// If nonce not set or false, ignore this form.
+			if ( ! wp_verify_nonce( $carrier_data['_nonce'], $carrier->get_slug() . '_carrier_security' ) ) {
+				continue;
+			}
+
+			// @todo #h1kf7 `enabled` key is overwritten below.
+			$carrier->set_data( $carrier_data );
+
+			if ( isset( $data[ 'notification_carrier_' . $carrier->get_slug() . '_enable' ] ) ) {
+				$carrier->enable();
+			} else {
+				$carrier->disable();
+			}
+
+			$carriers[ $carrier->get_slug() ] = $carrier;
+
+		}
+
+		$notification_post->set_carriers( $carriers );
+
+		// Hook into this action if you want to save any Notification Post data.
+		do_action( 'notification/data/save', $notification_post );
+
+		$notification_post->save();
+
+		do_action( 'notification/data/save/after', $notification_post );
 
 	}
 
 	/**
-	 * Cleans up all metaboxes to keep the screen nice and clean
+	 * --------------------------------------------------
+	 * AJAX.
+	 * --------------------------------------------------
+	 */
+
+	/**
+	 * Changes notification status from AJAX call
 	 *
-	 * @action add_meta_boxes 999999999
+	 * @action wp_ajax_change_notification_status
 	 *
 	 * @return void
 	 */
-	public function metabox_cleanup() {
+	public function ajax_change_notification_status() {
 
-		global $wp_meta_boxes;
+		$ajax  = notification_ajax_handler();
+		$data  = $_POST; // phpcs:ignore
+		$error = false;
 
-		if ( ! isset( $wp_meta_boxes['notification'] ) ) {
-			return;
+		$ajax->verify_nonce( 'change_notification_status_' . $data['post_id'] );
+
+		$status = 'true' === $data['status'] ? 'publish' : 'draft';
+
+		$result = wp_update_post( [
+			'ID'          => $data['post_id'],
+			'post_status' => $status,
+		] );
+
+		if ( 0 === $result ) {
+			$error = __( 'Notification status couldn\'t be changed.', 'notification' );
 		}
 
-		foreach ( $wp_meta_boxes['notification'] as $context_name => $context ) {
+		$ajax->response( true, $error );
 
-			foreach ( $context as $priority => $boxes ) {
+	}
 
-				foreach ( $boxes as $box_id => $box ) {
+	/**
+	 * --------------------------------------------------
+	 * Notifications.
+	 * --------------------------------------------------
+	 */
 
-					$allow_box = apply_filters( 'notification/admin/allow_metabox/' . $box_id, false );
+	/**
+	 * Gets all Notifications from database.
+	 * Uses direct database call for performance.
+	 *
+	 * @since  6.0.0
+	 * @return array
+	 */
+	public static function get_all_notifications() {
 
-					if ( ! $allow_box ) {
-						unset( $wp_meta_boxes['notification'][ $context_name ][ $priority ][ $box_id ] );
-					}
-				}
+		global $wpdb;
+
+		$cache         = new ObjectCache( 'notifications', 'notification' );
+		$notifications = $cache->get();
+
+		if ( empty( $notifications ) ) {
+
+			$sql = "SELECT p.post_content
+				FROM {$wpdb->posts} p
+				WHERE p.post_type = 'notification' AND p.post_status = 'publish'
+				ORDER BY p.menu_order ASC, p.post_modified DESC";
+
+			$notifications = $wpdb->get_col( $sql ); // phpcs:ignore
+
+			$cache->set( $notifications );
+
+		}
+
+		return $notifications;
+
+	}
+
+	/**
+	 * Sets up all the Notification from database
+	 * It's running on every single page load.
+	 *
+	 * @action notification/boot 9999999
+	 *
+	 * @since  6.0.0
+	 * @return void
+	 */
+	public function setup_notifications() {
+
+		$notifications = self::get_all_notifications();
+
+		foreach ( $notifications as $notification_json ) {
+			if ( ! empty( $notification_json ) ) {
+
+				$adapter = notification_adapt_from( 'JSON', $notification_json );
+
+				// Set source back to WordPress.
+				$adapter->set_source( 'WordPress' );
+
+				notification_add( $adapter->get_notification() );
+
 			}
 		}
 

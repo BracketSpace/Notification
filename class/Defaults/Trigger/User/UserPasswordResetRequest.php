@@ -42,7 +42,7 @@ class UserPasswordResetRequest extends UserTrigger {
 		 * Bail if we are handling the registration.
 		 * Use the filter to integrate with 3rd party code.
 		 */
-		if ( ( isset( $_GET['action'] ) && 'register' === $_GET['action'] ) ||
+		if ( ( isset( $_GET['action'] ) && 'register' === $_GET['action'] ) ||  // phpcs:ignore
 			apply_filters( 'notification/trigger/wordpress/user_password_reset_request/bail_for_registration', false, $user ) ) {
 			return false;
 		}
@@ -72,17 +72,12 @@ class UserPasswordResetRequest extends UserTrigger {
 		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
 		$this->add_merge_tag( new MergeTag\User\UserLastName() );
 		$this->add_merge_tag( new MergeTag\User\UserPasswordResetLink() );
-
 		$this->add_merge_tag( new MergeTag\User\UserBio() );
 
-		$this->add_merge_tag(
-			new MergeTag\DateTime\DateTime(
-				array(
-					'slug' => 'password_reset_request_datetime',
-					'name' => __( 'Password reset request date', 'notification' ),
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
+			'slug' => 'password_reset_request_datetime',
+			'name' => __( 'Password reset request date', 'notification' ),
+		] ) );
 
 	}
 

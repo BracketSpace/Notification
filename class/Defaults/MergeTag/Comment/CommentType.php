@@ -28,7 +28,7 @@ class CommentType extends StringTag {
 	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
 			$this->property_name = $params['property_name'];
@@ -36,14 +36,15 @@ class CommentType extends StringTag {
 
 		$args = wp_parse_args(
 			$params,
-			array(
+			[
 				'slug'        => 'comment_type',
 				'name'        => __( 'Comment type', 'notification' ),
 				'description' => __( 'Comment or Pingback or Trackback', 'notification' ),
 				'resolver'    => function() {
 					return get_comment_type( $this->trigger->{ $this->property_name } );
 				},
-			)
+				'group'       => __( ucfirst( $this->property_name ), 'notification' ),
+			]
 		);
 
 		parent::__construct( $args );

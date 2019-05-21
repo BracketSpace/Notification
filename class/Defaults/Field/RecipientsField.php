@@ -18,34 +18,31 @@ class RecipientsField extends RepeaterField {
 	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
-		if ( ! isset( $params['notification'] ) ) {
-			trigger_error( 'RecipientsField requires notification param', E_USER_ERROR );
+		if ( ! isset( $params['carrier'] ) ) {
+			trigger_error( 'RecipientsField requires carrier param', E_USER_ERROR );
 		}
 
-		$params = wp_parse_args(
-			$params,
-			array(
-				'notification'     => '',
-				'label'            => __( 'Recipients', 'notification' ),
-				'name'             => 'recipients',
-				'add_button_label' => __( 'Add recipient', 'notification' ),
-				'css_class'        => '',
-			)
-		);
+		$params = wp_parse_args( $params, [
+			'carrier'          => '',
+			'label'            => __( 'Recipients', 'notification' ),
+			'name'             => 'recipients',
+			'add_button_label' => __( 'Add recipient', 'notification' ),
+			'css_class'        => '',
+		] );
 
-		$this->notification = $params['notification'];
+		$this->carrier = $params['carrier'];
 
 		// add our CSS class required by JS.
 		$params['css_class'] .= 'recipients-repeater';
 
 		// add data attr for JS identification.
-		$params['data_attr'] = array(
-			'notification' => $this->notification,
-		);
+		$params['data_attr'] = [
+			'carrier' => $this->carrier,
+		];
 
-		$recipients = notification_get_notification_recipients( $this->notification );
+		$recipients = notification_get_carrier_recipients( $this->carrier );
 
 		if ( ! empty( $recipients ) ) {
 
@@ -53,35 +50,31 @@ class RecipientsField extends RepeaterField {
 
 			if ( count( $recipients ) === 1 ) {
 
-				$params['fields'] = array(
-					new InputField(
-						array(
-							'label' => __( 'Type', 'notification' ),
-							'name'  => 'type',
-							'type'  => 'hidden',
-							'value' => $first_recipient->get_slug(),
-						)
-					),
-				);
+				$params['fields'] = [
+					new InputField( [
+						'label' => __( 'Type', 'notification' ),
+						'name'  => 'type',
+						'type'  => 'hidden',
+						'value' => $first_recipient->get_slug(),
+					] ),
+				];
 
 			} else {
 
-				$recipient_types = array();
+				$recipient_types = [];
 
 				foreach ( $recipients as $recipient ) {
 					$recipient_types[ $recipient->get_slug() ] = $recipient->get_name();
 				}
 
-				$params['fields'] = array(
-					new SelectField(
-						array(
-							'label'     => __( 'Type', 'notification' ),
-							'name'      => 'type',
-							'css_class' => 'recipient-type',
-							'options'   => $recipient_types,
-						)
-					),
-				);
+				$params['fields'] = [
+					new SelectField( [
+						'label'     => __( 'Type', 'notification' ),
+						'name'      => 'type',
+						'css_class' => 'recipient-type',
+						'options'   => $recipient_types,
+					] ),
+				];
 
 			}
 
@@ -101,7 +94,7 @@ class RecipientsField extends RepeaterField {
 	 * @param  boolean $model  if this is a hidden model row.
 	 * @return string          row HTML
 	 */
-	public function row( $values = array(), $model = false ) {
+	public function row( $values = [], $model = false ) {
 
 		$html = '';
 
@@ -111,10 +104,9 @@ class RecipientsField extends RepeaterField {
 			$html .= '<tr class="row">';
 		}
 
-			$html .= '<td class="handle"></td>';
+		$html .= '<td class="handle"></td>';
 
 		foreach ( $this->fields as $sub_field ) {
-
 			if ( isset( $values[ $sub_field->get_raw_name() ] ) ) {
 				$sub_field->set_value( $values[ $sub_field->get_raw_name() ] );
 			}
@@ -136,7 +128,7 @@ class RecipientsField extends RepeaterField {
 					$recipient_type &&
 					$sub_field->get_raw_name() === 'recipient' ) {
 
-					$recipient = notification_get_single_recipient( $this->notification, $recipient_type );
+					$recipient = notification_get_recipient( $this->carrier, $recipient_type );
 
 					if ( empty( $recipient ) ) {
 						return '';
@@ -156,17 +148,22 @@ class RecipientsField extends RepeaterField {
 				}
 
 				$html .= '<td class="subfield ' . esc_attr( $sub_field->get_raw_name() ) . '">';
+
 				if ( isset( $this->headers[ $sub_field->get_raw_name() ] ) ) {
 					$html .= '<div class="row-header">' . $this->headers[ $sub_field->get_raw_name() ] . '</div>';
 				}
-					$html           .= '<div class="row-field">';
-						$html       .= $sub_field->field();
-						$description = $sub_field->get_description();
+
+				$html       .= '<div class="row-field">';
+				$html       .= $sub_field->field();
+				$description = $sub_field->get_description();
+
 				if ( ! empty( $description ) ) {
 					$html .= '<small class="description">' . $description . '</small>';
 				}
-						$html .= '</div>';
-						$html .= '</td>';
+
+				$html .= '</div>';
+				$html .= '</td>';
+
 			}
 		}
 

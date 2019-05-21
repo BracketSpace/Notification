@@ -67,26 +67,28 @@ class UserRoleChanged extends UserTrigger {
 		$this->add_merge_tag( new MergeTag\User\UserLastName() );
 		$this->add_merge_tag( new MergeTag\User\UserBio() );
 
-		$this->add_merge_tag( new MergeTag\StringTag( array(
+		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'     => 'new_role',
 			'name'     => __( 'New role', 'notification' ),
 			'resolver' => function( $trigger ) {
 				return $trigger->new_role;
 			},
-		) ) );
+			'group'    => __( 'Roles', 'notification' ),
+		] ) );
 
-		$this->add_merge_tag( new MergeTag\StringTag( array(
+		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'     => 'old_role',
 			'name'     => __( 'Old role', 'notification' ),
 			'resolver' => function( $trigger ) {
 				return $trigger->old_role;
 			},
-		) ) );
+			'group'    => __( 'Roles', 'notification' ),
+		] ) );
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
 			'slug' => 'user_role_change_datetime',
 			'name' => __( 'User role change datetime', 'notification' ),
-		) ) );
+		] ) );
 
 	}
 

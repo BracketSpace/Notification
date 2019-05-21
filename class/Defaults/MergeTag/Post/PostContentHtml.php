@@ -30,7 +30,7 @@ class PostContentHtml extends HtmlTag {
 	 * @since 5.2.4
 	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( isset( $params['post_type'] ) ) {
 			$this->post_type = $params['post_type'];
@@ -40,7 +40,7 @@ class PostContentHtml extends HtmlTag {
 
 		$args = wp_parse_args(
 			$params,
-			array(
+			[
 				'slug'        => $this->post_type . '_content_html',
 				// translators: singular post name.
 				'name'        => sprintf( __( '%s content HTML', 'notification' ), $this->get_nicename() ),
@@ -49,7 +49,8 @@ class PostContentHtml extends HtmlTag {
 				'resolver'    => function() {
 					return apply_filters( 'the_content', $this->trigger->{ $this->post_type }->post_content );
 				},
-			)
+				'group'       => $this->get_nicename(),
+			]
 		);
 
 		parent::__construct( $args );

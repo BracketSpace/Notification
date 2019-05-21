@@ -21,14 +21,12 @@ class CommentTrashed extends CommentTrigger {
 	 */
 	public function __construct( $comment_type = 'comment' ) {
 
-		parent::__construct(
-			array(
-				'slug'         => 'wordpress/comment_' . $comment_type . '_trashed',
-				// Translators: %s comment type.
-				'name'         => sprintf( __( '%s trashed', 'notification' ), ucfirst( $comment_type ) ),
-				'comment_type' => $comment_type,
-			)
-		);
+		parent::__construct( [
+			'slug'         => 'wordpress/comment_' . $comment_type . '_trashed',
+			// Translators: %s comment type.
+			'name'         => sprintf( __( '%s trashed', 'notification' ), ucfirst( $comment_type ) ),
+			'comment_type' => $comment_type,
+		] );
 
 		$this->add_action( 'trashed_comment', 10, 2 );
 

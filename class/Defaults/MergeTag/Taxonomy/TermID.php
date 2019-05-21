@@ -26,7 +26,7 @@ class TermID extends IntegerTag {
 	public function __construct() {
 
 		$args = wp_parse_args(
-			array(
+			[
 				'slug'        => 'term_ID',
 				'name'        => __( 'Term ID', 'notification' ),
 				'description' => '35',
@@ -34,7 +34,8 @@ class TermID extends IntegerTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->term->term_id;
 				},
-			)
+				'group'       => __( 'Term', 'notification' ),
+			]
 		);
 
 		parent::__construct( $args );

@@ -23,18 +23,15 @@ class Webhook extends Abstracts\Recipient {
 	 * @param string $name webook type name.
 	 */
 	public function __construct( $slug, $name ) {
-		parent::__construct(
-			array(
-				'slug'          => $slug,
-				'name'          => $name,
-				'default_value' => '',
-			)
-		);
+		parent::__construct( [
+			'slug'          => $slug,
+			'name'          => $name,
+			'default_value' => '',
+		] );
 	}
 
 	/**
-	 * Parses saved value something understood by notification
-	 * Must be defined in the child class
+	 * {@inheritdoc}
 	 *
 	 * @param  string $value raw value saved by the user.
 	 * @return array         array of resolved values
@@ -45,27 +42,25 @@ class Webhook extends Abstracts\Recipient {
 			$value = $this->get_default_value();
 		}
 
-		return array( esc_url( $value ) );
+		return [ esc_url( $value ) ];
 
 	}
 
 	/**
-	 * Returns input object
+	 * {@inheritdoc}
 	 *
 	 * @return object
 	 */
 	public function input() {
 
-		return new Field\InputField(
-			array(
-				'label'       => __( 'URL', 'notification' ),             // don't edit this!
-				'name'        => 'recipient',       // don't edit this!
-				'css_class'   => 'recipient-value', // don't edit this!
-				'placeholder' => site_url(),
-				'description' => __( 'You can use any valid email merge tag.', 'notification' ),
-				'resolvable'  => true,
-			)
-		);
+		return new Field\InputField( [
+			'label'       => __( 'URL', 'notification' ), // don't edit this!
+			'name'        => 'recipient',                 // don't edit this!
+			'css_class'   => 'recipient-value',           // don't edit this!
+			'placeholder' => site_url(),
+			'description' => __( 'You can use any valid email merge tag.', 'notification' ),
+			'resolvable'  => true,
+		] );
 
 	}
 

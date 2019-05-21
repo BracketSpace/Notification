@@ -37,14 +37,12 @@ class TermDeleted extends TermTrigger {
 
 		$this->taxonomy = $taxonomy;
 
-		parent::__construct(
-			array(
-				'taxonomy' => $taxonomy,
-				'slug'     => 'wordpress/' . $taxonomy . '/deleted',
-				// Translators: taxonomy name.
-				'name'     => sprintf( __( '%s term deleted', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ) ),
-			)
-		);
+		parent::__construct( [
+			'taxonomy' => $taxonomy,
+			'slug'     => 'wordpress/' . $taxonomy . '/deleted',
+			// Translators: taxonomy name.
+			'name'     => sprintf( __( '%s term deleted', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ) ),
+		] );
 
 		$this->add_action( 'pre_delete_term', 100, 4 );
 
@@ -84,14 +82,10 @@ class TermDeleted extends TermTrigger {
 
 		parent::merge_tags();
 
-		$this->add_merge_tag(
-			new MergeTag\DateTime\DateTime(
-				array(
-					'slug' => 'term_deletion_datetime',
-					'name' => sprintf( __( 'Term deletion date and time', 'notification' ) ),
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
+			'slug' => 'term_deletion_datetime',
+			'name' => __( 'Term deletion date and time', 'notification' ),
+		] ) );
 
 	}
 

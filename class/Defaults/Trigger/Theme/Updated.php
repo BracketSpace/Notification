@@ -43,8 +43,8 @@ class Updated extends ThemeTrigger {
 		}
 
 		$this->theme                  = $upgrader->theme_info();
-		$this->theme_previous_version = $upgrader->skin->theme_info->get( 'Version' );
 		$this->theme_update_date_time = current_time( 'timestamp' );
+		$this->theme_previous_version = ( ! property_exists( $upgrader->skin, 'theme_info' ) || null === $upgrader->skin->theme_info ) ? __( 'NA' ) : $upgrader->skin->theme_info->get( 'Version' );
 
 		if ( false === $this->theme ) {
 			return false;
@@ -61,7 +61,7 @@ class Updated extends ThemeTrigger {
 
 		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\StringTag( array(
+		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'theme_previous_version',
 			'name'        => __( 'Theme previous version', 'notification' ),
 			'description' => __( '1.0.0', 'notification' ),
@@ -69,12 +69,13 @@ class Updated extends ThemeTrigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->theme_previous_version;
 			},
-		) ) );
+			'group'       => __( 'Theme', 'notification' ),
+		] ) );
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
 			'slug' => 'theme_update_date_time',
 			'name' => __( 'Theme update date and time', 'notification' ),
-		) ) );
+		] ) );
 
 	}
 

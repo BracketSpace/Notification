@@ -13,7 +13,7 @@ namespace BracketSpace\Notification\Interfaces;
 interface Sendable extends Nameable {
 
 	/**
-	 * Sends the notification
+	 * Sends the carrier
 	 *
 	 * @param  Triggerable $trigger trigger object.
 	 * @return void
@@ -21,7 +21,7 @@ interface Sendable extends Nameable {
 	public function send( Triggerable $trigger );
 
 	/**
-	 * Generates an unique hash for notification instance
+	 * Generates an unique hash for carrier instance
 	 *
 	 * @return string
 	 */

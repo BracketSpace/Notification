@@ -37,14 +37,12 @@ class TermAdded extends TermTrigger {
 
 		$this->taxonomy = $taxonomy;
 
-		parent::__construct(
-			array(
-				'taxonomy' => $taxonomy,
-				'slug'     => 'wordpress/' . $taxonomy . '/created',
-				// Translators: taxonomy name.
-				'name'     => sprintf( __( '%s term created', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ) ),
-			)
-		);
+		parent::__construct( [
+			'taxonomy' => $taxonomy,
+			'slug'     => 'wordpress/' . $taxonomy . '/created',
+			// Translators: taxonomy name.
+			'name'     => sprintf( __( '%s term created', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ) ),
+		] );
 
 		$this->add_action( 'created_' . $taxonomy, 100, 2 );
 
@@ -85,14 +83,10 @@ class TermAdded extends TermTrigger {
 
 		parent::merge_tags();
 
-		$this->add_merge_tag(
-			new MergeTag\DateTime\DateTime(
-				array(
-					'slug' => 'term_creation_datetime',
-					'name' => sprintf( __( 'Term creation date and time', 'notification' ) ),
-				)
-			)
-		);
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
+			'slug' => 'term_creation_datetime',
+			'name' => __( 'Term creation date and time', 'notification' ),
+		] ) );
 
 	}
 

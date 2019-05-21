@@ -10,7 +10,7 @@ namespace BracketSpace\Notification\Utils;
 use BracketSpace\Notification\Utils\Settings\Section;
 
 /**
- * Settings class
+ * Settings class``
  */
 class Settings {
 
@@ -19,14 +19,14 @@ class Settings {
 	 *
 	 * @var array
 	 */
-	private $sections = array();
+	private $sections = [];
 
 	/**
 	 * All saved Settings
 	 *
 	 * @var array
 	 */
-	private $settings = array();
+	private $settings = [];
 
 	/**
 	 * Settings handle, used as a prefix for options
@@ -88,12 +88,12 @@ class Settings {
 		$this->set_variables();
 
 		// settings autoload on admin side.
-		add_action( 'admin_init', array( $this, 'setup_field_values' ), 10 );
+		add_action( 'admin_init', [ $this, 'setup_field_values' ], 10 );
 
 		// save the settings config for later easly-action uses.
-		add_action( 'admin_footer', array( $this, 'catch_config' ), 10 );
+		add_action( 'admin_footer', [ $this, 'catch_config' ], 10 );
 
-		add_action( 'admin_post_save_' . $this->handle . '_settings', array( $this, 'save_settings' ) );
+		add_action( 'admin_post_save_' . $this->handle . '_settings', [ $this, 'save_settings' ] );
 
 	}
 
@@ -106,8 +106,8 @@ class Settings {
 
 		$sections = $this->get_sections();
 
-		if ( isset( $_GET['section'] ) && ! empty( $_GET['section'] ) ) {
-			$current_section = sanitize_text_field( wp_unslash( $_GET['section'] ) );
+		if ( isset( $_GET['section'] ) && ! empty( $_GET['section'] ) ) { // phpcs:ignore
+			$current_section = sanitize_text_field( wp_unslash( $_GET['section'] ) ); // phpcs:ignore
 		} else {
 			$current_section = key( $this->get_sections() );
 		}
@@ -169,7 +169,7 @@ class Settings {
 	 */
 	public function save_settings() {
 
-		$data = $_POST;
+		$data = $_POST; // phpcs:ignore
 
 		if ( wp_verify_nonce( $data['nonce'], 'save_' . $this->handle . '_settings' ) === false ) {
 			wp_die( 'Can\'t touch this' );
@@ -177,7 +177,7 @@ class Settings {
 
 		$settings = $data[ $this->handle . '_settings' ];
 
-		$to_save = array();
+		$to_save = [];
 
 		foreach ( $settings as $section_slug => $groups_values ) {
 
@@ -221,7 +221,7 @@ class Settings {
 
 				$setting = get_option( $this->handle . '_' . $section_slug );
 
-				$this->settings[ $section_slug ] = array();
+				$this->settings[ $section_slug ] = [];
 
 				if ( empty( $groups ) ) {
 					continue;
@@ -229,7 +229,7 @@ class Settings {
 
 				foreach ( $groups as $group_slug => $fields ) {
 
-					$this->settings[ $section_slug ][ $group_slug ] = array();
+					$this->settings[ $section_slug ][ $group_slug ] = [];
 
 					foreach ( $fields as $field_slug => $default_value ) {
 
@@ -264,7 +264,7 @@ class Settings {
 
 				foreach ( $group->get_fields() as $field_slug => $field ) {
 
-					$setting_name = implode( '/', array( $section_slug, $group_slug, $field_slug ) );
+					$setting_name = implode( '/', [ $section_slug, $group_slug, $field_slug ] );
 					$field->value( $this->get_setting( $setting_name ) );
 
 				}
@@ -336,15 +336,15 @@ class Settings {
 	 */
 	public function catch_config() {
 
-		$config = array();
+		$config = [];
 
 		foreach ( $this->get_sections() as $section_slug => $section ) {
 
-			$config[ $section_slug ] = array();
+			$config[ $section_slug ] = [];
 
 			foreach ( $section->get_groups() as $group_slug => $group ) {
 
-				$config[ $section_slug ][ $group_slug ] = array();
+				$config[ $section_slug ][ $group_slug ] = [];
 
 				foreach ( $group->get_fields() as $field_slug => $field ) {
 

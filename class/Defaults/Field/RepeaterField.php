@@ -26,7 +26,7 @@ class RepeaterField extends Field {
 	 *
 	 * @var string
 	 */
-	protected $fields = array();
+	protected $fields = [];
 
 	/**
 	 * Add new button label
@@ -40,14 +40,14 @@ class RepeaterField extends Field {
 	 *
 	 * @var array
 	 */
-	protected $data_attr = array();
+	protected $data_attr = [];
 
 	/**
 	 * Row headers
 	 *
 	 * @var array
 	 */
-	protected $headers = array();
+	protected $headers = [];
 
 	/**
 	 * Field constructor
@@ -55,7 +55,7 @@ class RepeaterField extends Field {
 	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( isset( $params['fields'] ) ) {
 			$this->fields = $params['fields'];
@@ -89,13 +89,13 @@ class RepeaterField extends Field {
 			$data_attr .= 'data-' . $key . '="' . esc_attr( $value ) . '" ';
 		}
 
-		$this->headers = array();
+		$this->headers = [];
 
 		$html = '<table class="fields-repeater  ' . $this->css_class() . '" id="' . $this->get_id() . '" ' . $data_attr . '>';
 
-			$html .= '<tr class="row header">';
+		$html .= '<tr class="row header">';
 
-				$html .= '<th class="handle"></th>';
+		$html .= '<th class="handle"></th>';
 
 		foreach ( $this->fields as $sub_field ) {
 
@@ -107,21 +107,24 @@ class RepeaterField extends Field {
 			$description = $sub_field->get_description();
 
 			$html .= '<th class="' . esc_attr( $sub_field->get_raw_name() ) . '">';
-				$this->headers[ $sub_field->get_raw_name() ] = $sub_field->get_label();
-				$html                                       .= esc_html( $sub_field->get_label() );
+
+			$this->headers[ $sub_field->get_raw_name() ] = $sub_field->get_label();
+
+			$html .= esc_html( $sub_field->get_label() );
+
 			if ( ! empty( $description ) ) {
 				$html .= '<small class="description">' . $description . '</small>';
 			}
+
 			$html .= '</th>';
 
 		}
 
-			$html .= '</tr>';
+		$html .= '</tr>';
 
-			$html .= $this->row( array(), true );
+		$html .= $this->row( [], true );
 
 		if ( ! empty( $this->value ) ) {
-
 			foreach ( $this->value as $row_values ) {
 				$html .= $this->row( $row_values );
 				$this->current_row++;
@@ -144,7 +147,7 @@ class RepeaterField extends Field {
 	 * @param  boolean $model  if this is a hidden model row.
 	 * @return string          row HTML
 	 */
-	public function row( $values = array(), $model = false ) {
+	public function row( $values = [], $model = false ) {
 
 		$html = '';
 
@@ -154,10 +157,9 @@ class RepeaterField extends Field {
 			$html .= '<tr class="row">';
 		}
 
-			$html .= '<td class="handle"></td>';
+		$html .= '<td class="handle"></td>';
 
 		foreach ( $this->fields as $sub_field ) {
-
 			if ( isset( $values[ $sub_field->get_raw_name() ] ) ) {
 				$sub_field->set_value( $values[ $sub_field->get_raw_name() ] );
 			}
@@ -168,14 +170,18 @@ class RepeaterField extends Field {
 			if ( isset( $sub_field->type ) && 'hidden' === $sub_field->type ) {
 				$html .= $sub_field->field();
 			} else {
+
 				$html .= '<td class="subfield ' . esc_attr( $sub_field->get_raw_name() ) . '">';
+
 				if ( isset( $this->headers[ $sub_field->get_raw_name() ] ) ) {
 					$html .= '<div class="row-header">' . $this->headers[ $sub_field->get_raw_name() ] . '</div>';
 				}
-					$html     .= '<div class="row-field">';
-						$html .= $sub_field->field();
-					$html     .= '</div>';
-					$html     .= '</td>';
+
+				$html .= '<div class="row-field">';
+				$html .= $sub_field->field();
+				$html .= '</div>';
+				$html .= '</td>';
+
 			}
 		}
 
@@ -194,14 +200,14 @@ class RepeaterField extends Field {
 	public function sanitize( $value ) {
 
 		if ( empty( $value ) ) {
-			return array();
+			return [];
 		}
 
-		$sanitized = array();
+		$sanitized = [];
 
 		foreach ( $value as $row_id => $row ) {
 
-			$sanitized[ $row_id ] = array();
+			$sanitized[ $row_id ] = [];
 
 			foreach ( $this->fields as $sub_field ) {
 

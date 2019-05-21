@@ -31,7 +31,7 @@ class PostExcerpt extends StringTag {
 	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( isset( $params['post_type'] ) ) {
 			$this->post_type = $params['post_type'];
@@ -41,7 +41,7 @@ class PostExcerpt extends StringTag {
 
 		$args = wp_parse_args(
 			$params,
-			array(
+			[
 				'slug'        => $this->post_type . '_excerpt',
 				// translators: singular post name.
 				'name'        => sprintf( __( '%s excerpt', 'notification' ), $this->get_nicename() ),
@@ -50,7 +50,8 @@ class PostExcerpt extends StringTag {
 				'resolver'    => function() {
 					return get_the_excerpt( $this->trigger->{ $this->post_type } );
 				},
-			)
+				'group'       => $this->get_nicename(),
+			]
 		);
 
 		parent::__construct( $args );

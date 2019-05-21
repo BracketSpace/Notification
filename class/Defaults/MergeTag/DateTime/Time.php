@@ -24,17 +24,23 @@ class Time extends StringTag {
 	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		$args = wp_parse_args(
 			$params,
-			array(
+			[
 				'slug'        => 'time',
 				'name'        => __( 'Time', 'notification' ),
 				'time_format' => get_option( 'time_format' ),
 				'example'     => true,
-			)
+				'group'       => __( 'Date', 'notification' ),
+			]
 		);
+
+		if ( ! isset( $args['group'] ) ) {
+			$args['group'] = $this->set_group( __( 'Date', 'notification' ) );
+
+		}
 
 		if ( ! isset( $args['description'] ) ) {
 			$args['description']  = date_i18n( $args['time_format'] ) . '. ';

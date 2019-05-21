@@ -32,7 +32,7 @@ class View {
 	 *
 	 * @var array
 	 */
-	private $vars = array();
+	private $vars = [];
 
 	/**
 	 * Class constructor
@@ -125,7 +125,7 @@ class View {
 	 * @return void
 	 */
 	public function echo_var( $var_name ) {
-		echo $this->get_var( $var_name ); // WPCS: XSS ok.
+		echo $this->get_var( $var_name ); // phpcs:ignore
 	}
 
 	/**
@@ -150,7 +150,7 @@ class View {
 	 * @return this
 	 */
 	public function clear_vars() {
-		$this->vars = array();
+		$this->vars = [];
 		return $this;
 	}
 
@@ -163,10 +163,10 @@ class View {
 	public function get_view( $part ) {
 
 		$file_path = $this->files->file_path(
-			array(
+			[
 				$this->views_dir,
 				$part . '.php',
-			)
+			]
 		);
 
 		include $file_path;

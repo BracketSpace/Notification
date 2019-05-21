@@ -57,12 +57,12 @@ class Updated extends PluginTrigger {
 
 		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( array(
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
 			'slug' => 'plugin_update_date_time',
 			'name' => __( 'Plugin update date and time', 'notification' ),
-		) ) );
+		] ) );
 
-		$this->add_merge_tag( new MergeTag\StringTag( array(
+		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'plugin_previous_version',
 			'name'        => __( 'Plugin previous version', 'notification' ),
 			'description' => __( '1.0.0', 'notification' ),
@@ -70,7 +70,8 @@ class Updated extends PluginTrigger {
 			'resolver'    => function( $trigger ) {
 				return $trigger->previous_version;
 			},
-		) ) );
+			'group'       => __( 'Plugin', 'notification' ),
+		] ) );
 
 	}
 }

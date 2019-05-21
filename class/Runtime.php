@@ -32,16 +32,24 @@ class Runtime extends Utils\DocHooks {
 	 * Loads needed files
 	 *
 	 * @since  5.0.0
+	 * @since  6.0.0 Added boot action.
 	 * @return void
 	 */
 	public function boot() {
 
 		$this->singletons();
-
-		require_once $this->files->file_path( 'inc/functions.php' );
-		require_once $this->files->file_path( 'inc/defaults.php' );
-
+		$this->load_functions();
+		$this->load_deprecated();
 		$this->actions();
+
+		do_action( 'notification/boot/initial' );
+
+		/**
+		 * Subsequent boot actions:
+		 * - plugins_loaded 10 - Most of the defaults loaded.
+		 * - init 1000 - Rest of the defaults loaded.
+		 * - init 1010 - Proxy action for boot, `notification/boot` action called
+		 */
 
 	}
 
@@ -54,27 +62,30 @@ class Runtime extends Utils\DocHooks {
 	 */
 	public function singletons() {
 
-		$this->whitelabel           = new Whitelabel();
 		$this->files                = new Utils\Files( $this->plugin_file, $this->plugin_custom_url, $this->plugin_custom_path );
-		$this->internationalization = new Internationalization( $this->files, 'notification' );
-		$this->settings             = new Admin\Settings();
-		$this->post_data            = new Admin\PostData( $this->ajax() );
-		$this->admin_trigger        = new Admin\Trigger( $this->view(), $this->post_data );
-		$this->admin_notifications  = new Admin\Notifications( $this->boxrenderer(), $this->formrenderer(), $this->post_data );
-		$this->admin_duplicator     = new Admin\NotificationDuplicator();
-		$this->admin_post_type      = new Admin\PostType( $this->admin_trigger, $this->admin_notifications, $this->view() );
-		$this->admin_post_table     = new Admin\PostTable();
-		$this->admin_merge_tags     = new Admin\MergeTags( $this->view(), $this->ajax() );
-		$this->admin_recipients     = new Admin\Recipients( $this->view(), $this->ajax() );
-		$this->admin_extensions     = new Admin\Extensions( $this->view() );
-		$this->admin_scripts        = new Admin\Scripts( $this, $this->files );
-		$this->admin_screen         = new Admin\ScreenHelp( $this->view() );
-		$this->admin_cron           = new Admin\Cron();
-		$this->admin_share          = new Admin\Share( $this->view() );
-		$this->integration_wp       = new Integration\WordPress();
-		$this->integration_cf       = new Integration\CustomFields();
-		$this->core_debugging       = new Core\Debugging();
-		$this->tracking             = new Tracking( $this->admin_cron, $this->post_data );
+		$this->internationalization = new Utils\Internationalization( $this->files, 'notification' );
+
+		$this->core_cron       = new Core\Cron();
+		$this->core_whitelabel = new Core\Whitelabel();
+		$this->core_debugging  = new Core\Debugging();
+		$this->core_settings   = new Core\Settings();
+		$this->core_upgrade    = new Core\Upgrade();
+		$this->core_sync       = new Core\Sync();
+
+		$this->admin_impexp     = new Admin\ImportExport();
+		$this->admin_settings   = new Admin\Settings();
+		$this->admin_duplicator = new Admin\NotificationDuplicator();
+		$this->admin_post_type  = new Admin\PostType();
+		$this->admin_post_table = new Admin\PostTable();
+		$this->admin_extensions = new Admin\Extensions();
+		$this->admin_scripts    = new Admin\Scripts( $this, $this->files );
+		$this->admin_screen     = new Admin\Screen();
+		$this->admin_share      = new Admin\Share();
+		$this->admin_sync       = new Admin\Sync();
+		$this->admin_debugging  = new Admin\Debugging();
+
+		$this->integration_wp = new Integration\WordPress();
+		$this->integration_cf = new Integration\CustomFields();
 
 	}
 
@@ -86,32 +97,39 @@ class Runtime extends Utils\DocHooks {
 	 */
 	public function actions() {
 
-		$this->add_hooks( $this->whitelabel );
+		$this->add_hooks();
+
 		$this->add_hooks( $this->files );
 		$this->add_hooks( $this->internationalization );
-		$this->add_hooks( $this->settings );
-		$this->add_hooks( $this->post_data );
-		$this->add_hooks( $this->admin_trigger );
-		$this->add_hooks( $this->admin_notifications );
+
+		$this->add_hooks( $this->core_cron );
+		$this->add_hooks( $this->core_whitelabel );
+		$this->add_hooks( $this->core_debugging );
+		$this->add_hooks( $this->core_settings );
+		$this->add_hooks( $this->core_upgrade );
+		$this->add_hooks( $this->core_sync );
+
+		$this->add_hooks( $this->admin_impexp );
+		$this->add_hooks( $this->admin_settings );
 		$this->add_hooks( $this->admin_duplicator );
 		$this->add_hooks( $this->admin_post_type );
 		$this->add_hooks( $this->admin_post_table );
-		$this->add_hooks( $this->admin_merge_tags );
-		$this->add_hooks( $this->admin_recipients );
 		$this->add_hooks( $this->admin_extensions );
 		$this->add_hooks( $this->admin_scripts );
 		$this->add_hooks( $this->admin_screen );
-		$this->add_hooks( $this->admin_cron );
 		$this->add_hooks( $this->admin_share );
+		$this->add_hooks( $this->admin_sync );
+		$this->add_hooks( $this->admin_debugging );
+
 		$this->add_hooks( $this->integration_wp );
 		$this->add_hooks( $this->integration_cf );
-		$this->add_hooks( $this->core_debugging );
-		$this->add_hooks( $this->tracking );
 
-		notification_register_settings( array( $this->settings, 'general_settings' ) );
-		notification_register_settings( array( $this->settings, 'triggers_settings' ), 20 );
-		notification_register_settings( array( $this->settings, 'notifications_settings' ), 30 );
-		notification_register_settings( array( $this->core_debugging, 'debugging_settings' ), 30 );
+		notification_register_settings( [ $this->admin_settings, 'general_settings' ] );
+		notification_register_settings( [ $this->admin_settings, 'triggers_settings' ], 20 );
+		notification_register_settings( [ $this->admin_settings, 'notifications_settings' ], 30 );
+		notification_register_settings( [ $this->admin_sync, 'settings' ], 40 );
+		notification_register_settings( [ $this->admin_impexp, 'settings' ], 50 );
+		notification_register_settings( [ $this->admin_debugging, 'debugging_settings' ], 60 );
 
 	}
 
@@ -126,33 +144,99 @@ class Runtime extends Utils\DocHooks {
 	}
 
 	/**
-	 * Returns new Ajax object
+	 * Loads functions
 	 *
-	 * @since  5.0.0
-	 * @return Ajax ajax object
+	 * @since  6.0.0
+	 * @return void
 	 */
-	public function ajax() {
-		return new Utils\Ajax();
+	public function load_functions() {
+
+		require_once $this->files->file_path( 'inc/functions/general.php' );
+		require_once $this->files->file_path( 'inc/functions/settings.php' );
+		require_once $this->files->file_path( 'inc/functions/resolver.php' );
+		require_once $this->files->file_path( 'inc/functions/carrier.php' );
+		require_once $this->files->file_path( 'inc/functions/trigger.php' );
+		require_once $this->files->file_path( 'inc/functions/recipient.php' );
+		require_once $this->files->file_path( 'inc/functions/notification.php' );
+		require_once $this->files->file_path( 'inc/functions/notification-post.php' );
+		require_once $this->files->file_path( 'inc/functions/whitelabel.php' );
+		require_once $this->files->file_path( 'inc/functions/import-export.php' );
+		require_once $this->files->file_path( 'inc/functions/adapter.php' );
+
 	}
 
 	/**
-	 * Returns new BoxRenderer object
+	 * Loads deprecated functions and classes
 	 *
-	 * @since  5.0.0
-	 * @return BoxRenderer BoxRenderer object
+	 * @since  6.0.0
+	 * @return void
 	 */
-	public function boxrenderer() {
-		return new Admin\BoxRenderer( $this->view() );
+	public function load_deprecated() {
+
+		// Functions.
+		require_once $this->files->file_path( 'inc/deprecated/functions.php' );
+
+		// Classes.
+		require_once $this->files->file_path( 'inc/deprecated/class/Abstracts/Notification.php' );
+		require_once $this->files->file_path( 'inc/deprecated/class/Defaults/Notification/Email.php' );
+		require_once $this->files->file_path( 'inc/deprecated/class/Defaults/Notification/Webhook.php' );
+
 	}
 
 	/**
-	 * Returns new FormRenderer object
+	 * Loads early defaults
 	 *
-	 * @since  5.0.0
-	 * @return FormRenderer FormRenderer object
+	 * @action plugins_loaded
+	 * @since  6.0.0
+	 * @return void
 	 */
-	public function formrenderer() {
-		return new Admin\FormRenderer( $this->view() );
+	public function load_early_defaults() {
+		array_map( [ $this, 'load_default' ], [
+			'global-merge-tags',
+			'resolvers',
+			'recipients',
+			'carriers',
+		] );
+	}
+
+	/**
+	 * Loads late defaults
+	 *
+	 * @action init 1000
+	 * @since  6.0.0
+	 * @return void
+	 */
+	public function load_late_defaults() {
+		array_map( [ $this, 'load_default' ], [
+			'triggers',
+		] );
+	}
+
+	/**
+	 * Loads default
+	 *
+	 * @since  6.0.0
+	 * @param  string $default Default file slug.
+	 * @return void
+	 */
+	public function load_default( $default ) {
+		if ( apply_filters( 'notification/load/default/' . $default, true ) ) {
+			$path = $this->files->file_path( 'inc/defaults/' . $default . '.php' );
+			if ( file_exists( $path ) ) {
+				require_once $path;
+			}
+		}
+	}
+
+	/**
+	 * Proxies the full boot action
+	 *
+	 * @action init 1010
+	 * @since  6.0.0
+	 * @return void
+	 */
+	public function fully_booted() {
+		do_action( 'notification/boot' );
 	}
 
 }

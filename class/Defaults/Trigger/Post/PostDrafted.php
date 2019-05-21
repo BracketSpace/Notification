@@ -21,14 +21,12 @@ class PostDrafted extends PostTrigger {
 	 */
 	public function __construct( $post_type = 'post' ) {
 
-		parent::__construct(
-			array(
-				'post_type' => $post_type,
-				'slug'      => 'wordpress/' . $post_type . '/drafted',
-				// translators: singular post name.
-				'name'      => sprintf( __( '%s saved as a draft', 'notification' ), parent::get_post_type_name( $post_type ) ),
-			)
-		);
+		parent::__construct( [
+			'post_type' => $post_type,
+			'slug'      => 'wordpress/' . $post_type . '/drafted',
+			// translators: singular post name.
+			'name'      => sprintf( __( '%s saved as a draft', 'notification' ), parent::get_post_type_name( $post_type ) ),
+		] );
 
 		$this->add_action( 'transition_post_status', 10, 3 );
 

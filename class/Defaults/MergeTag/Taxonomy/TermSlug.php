@@ -26,7 +26,7 @@ class TermSlug extends StringTag {
 	public function __construct() {
 
 		$args = wp_parse_args(
-			array(
+			[
 				'slug'        => 'term_slug',
 				'name'        => __( 'Term slug', 'notification' ),
 				'description' => 'nature',
@@ -34,7 +34,8 @@ class TermSlug extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->term->slug;
 				},
-			)
+				'group'       => __( 'Term', 'notification' ),
+			]
 		);
 
 		parent::__construct( $args );

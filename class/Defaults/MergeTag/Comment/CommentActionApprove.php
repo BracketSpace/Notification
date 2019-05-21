@@ -28,7 +28,7 @@ class CommentActionApprove extends UrlTag {
 	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
 			$this->property_name = $params['property_name'];
@@ -36,13 +36,15 @@ class CommentActionApprove extends UrlTag {
 
 		$args = wp_parse_args(
 			$params,
-			array(
+			[
 				'slug'     => 'comment_approve_action_url',
 				'name'     => __( 'Comment approve URL', 'notification' ),
 				'resolver' => function( $trigger ) {
 					return admin_url( "comment.php?action=approve&c={$trigger->{ $this->property_name }->comment_ID}#wpbody-content" );
 				},
-			)
+				// translators: comment type actions text.
+				'group'    => sprintf( __( '%s actions', 'notification' ), ucfirst( $this->property_name ) ),
+			]
 		);
 
 		parent::__construct( $args );

@@ -48,7 +48,7 @@ class UserPasswordResetLink extends StringTag {
 		}
 
 		$args = wp_parse_args(
-			array(
+			[
 				'slug'        => 'user_password_reset_link',
 				'name'        => __( 'Password reset link', 'notification' ),
 				'description' => __( 'http://example.com/wp-login.php?action=rp&key=mm2sAR8jmIyjSiMsCJRm&login=admin', 'notification' ),
@@ -57,7 +57,8 @@ class UserPasswordResetLink extends StringTag {
 					$login = $trigger->{ $this->user_property_name }->data->user_login;
 					return network_site_url( 'wp-login.php?action=rp&key=' . $trigger->{ $this->key_property_name } . '&login=' . $login );
 				},
-			)
+				'group'       => __( 'User action', 'notification' ),
+			]
 		);
 
 		parent::__construct( $args );

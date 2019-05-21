@@ -24,16 +24,17 @@ class Date extends StringTag {
 	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		$args = wp_parse_args(
 			$params,
-			array(
+			[
 				'slug'        => 'date',
 				'name'        => __( 'Date', 'notification' ),
 				'date_format' => get_option( 'date_format' ),
 				'example'     => true,
-			)
+				'group'       => __( 'Date', 'notification' ),
+			]
 		);
 
 		if ( ! isset( $args['description'] ) ) {

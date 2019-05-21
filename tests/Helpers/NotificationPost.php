@@ -1,50 +1,47 @@
 <?php
 /**
- * Post class
+ * NotificationPost helper class
  *
  * @package notification
  */
 
 namespace BracketSpace\Notification\Tests\Helpers;
 
-use BracketSpace\Notification\Abstracts\Notification as AbstractNotification;
+use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Interfaces\Triggerable;
+use BracketSpace\Notification\Interfaces\Sendable;
+use BracketSpace\Notification\Interfaces\Adaptable;
 
 /**
- * NotificationPost class
+ * NotificationPost helper class
  */
 class NotificationPost {
 
 	/**
-	 * Inserts notification post based on trigger and notifcation type
+	 * Inserts notification post based on trigger and carrier
 	 *
 	 * @since  5.3.1
-	 * @param  mixed $trigger      Trigger class or slug.
-	 * @param  mixed $notification Notifcation class or slug.
-	 * @return integer             Notifcation Post ID.
+	 * @since  6.0.0 Changed to adapter implementation
+	 * @param  Triggerable $trigger Trigger class or slug.
+	 * @param  Sendable    $carrier Carrier class or slug.
+	 * @return Adaptable            Notifcation WordPress adapter.
 	 */
-	public static function insert( $trigger, $notification ) {
-		$post_data    = notification_runtime( 'post_data' );
-		$post_factory = new \WP_UnitTest_Factory_For_Post();
+	public static function insert( Triggerable $trigger, Sendable $carrier ) {
 
-		$notification_post_id = $post_factory->create( array(
-			'post_type'   => 'notification',
-		) );
+		// Make sure the carrier is enabled.
+		$carrier->enable();
 
-		if ( is_object( $trigger ) ) {
-			$trigger = $trigger->get_slug();
-		}
+		$notification = new Notification( [
+			'enabled'  => true,
+			'trigger'  => $trigger,
+			'carriers' => [ $carrier ],
+		] );
 
-		if ( is_object( $notification ) ) {
-			$notification = $notification->get_slug();
-		}
+		$adapter = notification_adapt( 'WordPress', $notification );
+		$adapter->save();
 
-		wp_publish_post( $notification_post_id );
+		return $adapter;
 
-		add_post_meta( $notification_post_id, $post_data->notification_enabled_key, $notification );
-		add_post_meta( $notification_post_id, $post_data->active_trigger_key, $trigger );
-
-		return $notification_post_id;
 	}
 
 }

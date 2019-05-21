@@ -28,7 +28,7 @@ class AttachmentID extends IntegerTag {
 	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
 			$this->property_name = $params['property_name'];
@@ -36,7 +36,7 @@ class AttachmentID extends IntegerTag {
 
 		$args = wp_parse_args(
 			$params,
-			array(
+			[
 				'slug'        => 'attachment_ID',
 				'name'        => __( 'Attachment ID', 'notification' ),
 				'description' => '35',
@@ -44,7 +44,8 @@ class AttachmentID extends IntegerTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->ID;
 				},
-			)
+				'group'       => __( 'Attachment', 'notification' ),
+			]
 		);
 
 		parent::__construct( $args );

@@ -8,7 +8,7 @@ var gulp         = require( 'gulp' ),
 	uglify       = require( 'gulp-uglify' ),
 	concat       = require( 'gulp-concat' ),
 	order        = require( 'gulp-order' ),
-    browserSync  = require( 'browser-sync' ),
+    browserSync  = require( 'browser-sync' ).create(),
     reload       = browserSync.reload;
 
 var style_sources = 'assets/src/sass/**/*.scss',
@@ -18,6 +18,7 @@ var script_sources = 'assets/src/js/**/*.js',
 	script_target  = 'assets/dist/js',
 	script_order   = [
 		'vendor/selectize.js',
+		'vendor/collapse.js',
         'vendor/clipboard.js',
 		'vendor/event-manager.js'
 	];
@@ -29,8 +30,8 @@ gulp.task( 'styles', function() {
     gulp.src( style_sources )
     	.pipe( sourcemaps.init() )
         .pipe( sass( { outputStyle: 'compressed' } ).on( 'error', sass.logError ) )
-        .pipe( sourcemaps.write() )
         .pipe( autoprefixer() )
+        .pipe( sourcemaps.write() )
         .pipe( gulp.dest( style_target ) )
         .pipe( reload( { stream: true } ) );
 } );
@@ -56,7 +57,16 @@ gulp.task( 'default', [ 'styles', 'scripts' ] );
 ///////////
 gulp.task( 'watch', [ 'default' ], function() {
 
+	browserSync.init( {
+		proxy: 'notification.localhost',
+		open : false
+	} );
+
     gulp.watch( style_sources, ['styles'] );
     gulp.watch( script_sources, ['scripts'] );
+
+    gulp.watch( 'inc/**/*.php', reload );
+    gulp.watch( 'class/**/*.php', reload );
+    gulp.watch( 'views/**/*.php', reload );
 
 } );

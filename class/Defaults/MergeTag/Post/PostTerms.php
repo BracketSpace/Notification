@@ -38,7 +38,7 @@ class PostTerms extends StringTag {
 	 * @since 5.1.3
 	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( isset( $params['post_type'] ) ) {
 			$this->post_type = $params['post_type'];
@@ -54,7 +54,7 @@ class PostTerms extends StringTag {
 
 		$args = wp_parse_args(
 			$params,
-			array(
+			[
 				'slug'        => $this->post_type . '_' . $this->taxonomy->name,
 				// translators: 1. Post Type 2. Taxonomy name.
 				'name'        => sprintf( __( '%1$s %2$s', 'notification' ), $this->get_nicename(), $this->taxonomy->label ),
@@ -66,13 +66,14 @@ class PostTerms extends StringTag {
 						return '';
 					}
 
-					$terms = array();
+					$terms = [];
 					foreach ( $post_terms as $term ) {
 						$terms[] = $term->name;
 					}
 					return implode( ', ', $terms );
 				},
-			)
+				'group'       => $this->get_nicename(),
+			]
 		);
 
 		parent::__construct( $args );

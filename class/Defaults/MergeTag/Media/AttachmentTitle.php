@@ -28,7 +28,7 @@ class AttachmentTitle extends StringTag {
 	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = array() ) {
+	public function __construct( $params = [] ) {
 
 		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
 			$this->property_name = $params['property_name'];
@@ -36,7 +36,7 @@ class AttachmentTitle extends StringTag {
 
 		$args = wp_parse_args(
 			$params,
-			array(
+			[
 				'slug'        => 'attachment_title',
 				'name'        => __( 'Attachment title', 'notification' ),
 				'description' => __( 'Forest landscape', 'notification' ),
@@ -44,7 +44,8 @@ class AttachmentTitle extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->post_title;
 				},
-			)
+				'group'       => __( 'Attachment', 'notification' ),
+			]
 		);
 
 		parent::__construct( $args );

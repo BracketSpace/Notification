@@ -22,16 +22,6 @@ class Share {
 	public $page_hook = 'none';
 
 	/**
-	 * Share class constructor.
-	 *
-	 * @since 5.2.2
-	 * @param View $view View class.
-	 */
-	public function __construct( View $view ) {
-		$this->view = $view;
-	}
-
-	/**
 	 * Register Share page under plugin's menu.
 	 *
 	 * @action admin_menu 30
@@ -40,7 +30,7 @@ class Share {
 	 */
 	public function register_page() {
 
-		if ( ! notification_display_story() || isset( $_GET['notification-story-skip'] ) ) {
+		if ( ! notification_display_story() || isset( $_GET['notification-story-skip'] ) ) { // phpcs:ignore
 			return;
 		}
 
@@ -50,7 +40,7 @@ class Share {
 			__( 'The story', 'notification' ),
 			'manage_options',
 			'the-story',
-			array( $this, 'story_page' )
+			[ $this, 'story_page' ]
 		);
 
 	}
@@ -86,7 +76,7 @@ class Share {
 	 */
 	public function dismiss_story() {
 
-		if ( isset( $_GET['notification-story-skip'] ) ) {
+		if ( isset( $_GET['notification-story-skip'] ) ) { // phpcs:ignore
 			update_option( 'notification_story_dismissed', true );
 		}
 
@@ -98,9 +88,7 @@ class Share {
 	 * @return void
 	 */
 	public function story_page() {
-
-		$this->view->get_view( 'story' );
-
+		notification_create_view()->get_view( 'story' );
 	}
 
 }
