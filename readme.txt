@@ -2,8 +2,8 @@
 Contributors: notification, bracketspace, Kubitomakita, insejn
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
-Tested up to: 5.0
-Stable tag: 6.0.0
+Tested up to: 5.2
+Stable tag: 6.0.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -266,6 +266,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 5. Help tab with global Merge Tags
 
 == Changelog ==
+
+= 6.0.1 =
+* [Changed] Added soft-fail for not valid JSON configuration for Notifications. This is most likely caused by updating from a very old version.
 
 = 6.0.0 =
 * [Fixed] Theme Update trigger errors on update.
