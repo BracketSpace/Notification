@@ -359,9 +359,9 @@ class Extensions {
 				break;
 		}
 
-		$view = notification_create_view();
-		$view->set_var( 'message', $message );
-		$view->get_view( 'extension/activation-' . $view );
+		$view_class = notification_create_view();
+		$view_class->set_var( 'message', $message );
+		$view_class->get_view( 'extension/activation-' . $view );
 
 	}
 
