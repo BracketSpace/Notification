@@ -4,7 +4,7 @@
  * Description: Customisable email and webhook notifications with powerful developer friendly API for custom triggers and notifications. Send alerts easily.
  * Author: BracketSpace
  * Author URI: https://bracketspace.com
- * Version: 6.0.1
+ * Version: 6.0.2
  * License: GPL3
  * Text Domain: notification
  * Domain Path: /languages
@@ -12,7 +12,7 @@
  * @package notification
  */
 
-define( 'NOTIFICATION_VERSION', '6.0.1' );
+define( 'NOTIFICATION_VERSION', '6.0.2' );
 
 require_once 'vendor/autoload.php';
 
@@ -20,8 +20,8 @@ require_once 'vendor/autoload.php';
  * Requirements check
  */
 $requirements = new BracketSpace\Notification\Utils\Requirements( __( 'Notification', 'notification' ), [
-	'php'                => '5.6',
-	'wp'                 => '4.9',
+	'php'                => '7.0',
+	'wp'                 => '5.2',
 	'dochooks'           => true,
 	'function_collision' => [ 'notification' ],
 ] );
