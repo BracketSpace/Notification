@@ -63,7 +63,12 @@ class Scripts {
 			'notification',
 		] );
 
-		if ( ! in_array( get_post_type(), $allowed_post_types, true ) && ! in_array( $page_hook, $allowed_hooks, true ) ) {
+		if ( ! in_array( $page_hook, $allowed_hooks, true ) ) {
+			return;
+		}
+
+		// Check if we are on a correct post type if we edit the post.
+		if ( in_array( $page_hook, [ 'post-new.php', 'post.php' ], true ) && ! in_array( get_post_type(), $allowed_post_types, true ) ) {
 			return;
 		}
 

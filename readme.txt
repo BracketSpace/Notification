@@ -269,6 +269,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Fixed] Error in admin notice while manipulating extension license.
+* [Fixed] Scripts and styles conditional loading.
 
 = 6.0.1 =
 * [Changed] Added soft-fail for not valid JSON configuration for Notifications. This is most likely caused by updating from a very old version.
