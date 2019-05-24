@@ -268,7 +268,8 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
-* [Fixed] On/off switch in notifications table
+* [Fixed] On/off switch in notifications table.
+* [Changed] Notification trash link wording.
 
 = 6.0.2 =
 * [Fixed] Error in admin notice while manipulating extension license.

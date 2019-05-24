@@ -15,7 +15,7 @@ class NotificationDuplicator {
 	/**
 	 * Adds duplicate link to row actions
 	 *
-	 * @filter post_row_actions
+	 * @filter post_row_actions 50
 	 *
 	 * @param  array  $row_actions array with action links.
 	 * @param  object $post        WP_Post object.
