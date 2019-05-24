@@ -269,6 +269,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Fixed] On/off switch in notifications table.
+* [Fixed] Duplicate feature.
 * [Changed] Notification trash link wording.
 
 = 6.0.2 =

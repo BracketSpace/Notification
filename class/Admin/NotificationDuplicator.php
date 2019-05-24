@@ -55,19 +55,11 @@ class NotificationDuplicator {
 		}
 
 		$new_id = wp_insert_post( [
-			'post_title'  => sprintf( '(%s) %s', __( 'Duplicate', 'notification' ), $source->post_title ),
-			'post_status' => 'draft',
-			'post_type'   => 'notification',
+			'post_title'   => sprintf( '(%s) %s', __( 'Duplicate', 'notification' ), $source->post_title ),
+			'post_content' => $source->post_content,
+			'post_status'  => 'draft',
+			'post_type'    => 'notification',
 		] );
-
-		// Copy all the meta data.
-		$meta_data = get_post_custom( $source->ID );
-
-		foreach ( $meta_data as $key => $values ) {
-			foreach ( $values as $value ) {
-				add_post_meta( $new_id, $key, maybe_unserialize( $value ) );
-			}
-		}
 
 		wp_safe_redirect( html_entity_decode( get_edit_post_link( $new_id ) ) );
 		exit;
