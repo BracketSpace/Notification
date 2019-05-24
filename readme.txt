@@ -267,6 +267,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] On/off switch in notifications table
+
 = 6.0.2 =
 * [Fixed] Error in admin notice while manipulating extension license.
 * [Fixed] Scripts and styles conditional loading.
