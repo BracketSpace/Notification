@@ -14,6 +14,7 @@ class Gutenberg {
 
 	/**
 	 * Postpones the action to after Gutenberg saved everything.
+	 * Used only in wp-admin.
 	 *
 	 * @action notification/trigger/action/did 5
 	 *
@@ -23,7 +24,7 @@ class Gutenberg {
 	 */
 	public function maybe_postpone_action( $trigger ) {
 
-		if ( $trigger->is_postponed() || $trigger->is_stopped() ) {
+		if ( $trigger->is_postponed() || $trigger->is_stopped() || ! is_admin() ) {
 			return;
 		}
 
