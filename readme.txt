@@ -267,6 +267,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Webhook waring using empty header values.
+
 = 6.0.3 =
 * [Fixed] On/off switch in notifications table.
 * [Fixed] Duplicate feature.

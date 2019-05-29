@@ -219,6 +219,10 @@ class Webhook extends Abstracts\Carrier {
 
 		$parsed_args = [];
 
+		if ( empty( $args ) ) {
+			return $parsed_args;
+		}
+
 		foreach ( $args as $arg ) {
 			$parsed_args[ $arg['key'] ] = $arg['value'];
 		}
