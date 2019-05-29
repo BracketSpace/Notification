@@ -334,14 +334,12 @@ class PostType {
 
 		$ajax->verify_nonce( 'change_notification_status_' . $data['post_id'] );
 
-		$status = 'true' === $data['status'] ? 'publish' : 'draft';
+		$adapter = notification_adapt_from( 'WordPress', (int) $data['post_id'] );
+		$adapter->set_enabled( 'true' === $data['status'] );
 
-		$result = wp_update_post( [
-			'ID'          => $data['post_id'],
-			'post_status' => $status,
-		] );
+		$result = $adapter->save();
 
-		if ( 0 === $result ) {
+		if ( is_wp_error( $result ) ) {
 			$error = __( 'Notification status couldn\'t be changed.', 'notification' );
 		}
 

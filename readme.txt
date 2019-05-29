@@ -269,6 +269,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Fixed] Webhook waring using empty header values.
+* [Fixed] Quick switch in Notifications table.
 * [Added] Basic Gutenberg compatibility, post triggers are now postponed to `rest_after_insert_{$post_type}` action.
 
 = 6.0.3 =
