@@ -181,12 +181,14 @@ class Debugging {
 	 *
 	 * @action notification/carrier/pre-send 1000000
 	 *
-	 * @since  5.3.0
-	 * @param Carrier $carrier Carrier object.
-	 * @param Trigger $trigger Trigger object.
+	 * @since 5.3.0
+	 * @since [Next] Using 3rd parameter for Notification object.
+	 * @param Carrier      $carrier      Carrier object.
+	 * @param Trigger      $trigger      Trigger object.
+	 * @param Notification $notification Notification object.
 	 * @return void
 	 */
-	public function catch_notification( $carrier, $trigger ) {
+	public function catch_notification( $carrier, $trigger, $notification ) {
 
 		if ( ! notification_get_setting( 'debugging/settings/debug_log' ) ) {
 			return;
@@ -198,10 +200,10 @@ class Debugging {
 
 		notification_log( 'Core', 'notification', wp_json_encode( [
 			'notification' => [
-				'title'  => $carrier->notification->get_title(),
-				'hash'   => $carrier->notification->get_hash(),
-				'source' => $carrier->notification->get_source(),
-				'extras' => $carrier->notification->get_extras(),
+				'title'  => $notification->get_title(),
+				'hash'   => $notification->get_hash(),
+				'source' => $notification->get_source(),
+				'extras' => $notification->get_extras(),
 			],
 			'carrier'      => [
 				'slug' => $carrier->get_slug(),
