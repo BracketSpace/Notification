@@ -182,7 +182,7 @@ class Debugging {
 	 * @action notification/carrier/pre-send 1000000
 	 *
 	 * @since 5.3.0
-	 * @since [Next] Using 3rd parameter for Notification object.
+	 * @since 6.0.4 Using 3rd parameter for Notification object.
 	 * @param Carrier      $carrier      Carrier object.
 	 * @param Trigger      $trigger      Trigger object.
 	 * @param Notification $notification Notification object.

@@ -43,7 +43,7 @@ class Gutenberg {
 	/**
 	 * Checks if Gutenberg is active
 	 *
-	 * @since  [Next]
+	 * @since  6.0.4
 	 * @return boolean
 	 */
 	public function is_gutenberg_active() {
