@@ -85,6 +85,7 @@ class Runtime extends Utils\DocHooks {
 		$this->admin_debugging  = new Admin\Debugging();
 
 		$this->integration_wp = new Integration\WordPress();
+		$this->integration_gb = new Integration\Gutenberg();
 		$this->integration_cf = new Integration\CustomFields();
 
 	}
@@ -123,6 +124,7 @@ class Runtime extends Utils\DocHooks {
 
 		$this->add_hooks( $this->integration_wp );
 		$this->add_hooks( $this->integration_cf );
+		$this->add_hooks( $this->integration_gb );
 
 		notification_register_settings( [ $this->admin_settings, 'general_settings' ] );
 		notification_register_settings( [ $this->admin_settings, 'triggers_settings' ], 20 );

@@ -390,7 +390,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 *               which is called by the Carrier itself
 	 * @return void
 	 */
-	private function resolve_fields() {
+	protected function resolve_fields() {
 
 		foreach ( $this->get_notifications() as $notification ) {
 			foreach ( $notification->get_enabled_carriers() as $carrier ) {
@@ -406,7 +406,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * @since 5.2.2
 	 * @return void
 	 */
-	private function clean_merge_tags() {
+	protected function clean_merge_tags() {
 
 		foreach ( $this->get_merge_tags() as $merge_tag ) {
 			$merge_tag->clean_value();
