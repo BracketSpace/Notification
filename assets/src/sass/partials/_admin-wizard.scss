@@ -1,19 +1,27 @@
 #notifications-wizard {
 	position: relative;
 	margin-top: 50px;
+	margin-left: 40px;
+
+	@media(max-width: 1100px) {
+		margin-left: 0;
+	}
 
 	h1 {
-		font-size: 28px;
-		line-height: 38px;
-		margin-bottom: 10px;
+		font-size: 35px;
+		margin-bottom: 0.8em;
 	}
 
 	h3 {
-		font-size: 16px;
-		line-height: 22px;
+		font-size: 18px;
+		line-height: 28px;
 		font-weight: 400;
 		color: #5F5F5F;
 		margin: 0 0 83px 0;
+
+		@media(max-width: 900px) {
+			margin-bottom: 40px;
+		}
 	}
 
 	.notifications-group {
@@ -26,12 +34,12 @@
 
 		&-title {
 			color: #000000;
-			font-size: 16px;
+			font-size: 18px;
 			margin: 0 0 20px 0;
 		}
 
 		&-subtitle {
-			font-size: 14px;
+			font-size: 15px;
 			line-height: 19px;
 			font-weight: 400;
 			color: #5F5F5F;
@@ -42,27 +50,38 @@
 		display: flex;
 		flex-wrap: wrap;
 		margin: 0 -10px;
+		max-width: 820px;
 	}
 
 	.notifications-tile {
 		margin: 10px;
-		width: 200px;
+		width: calc(33% - 44px);
+		min-width: 200px;
 		cursor: pointer;
 		position: relative;
 		border: 1px solid #cccccc;
 		box-shadow: 0 0 6px rgba(0,0,0,.16);
 
-		input {
-			display: none;
+		@media(max-width: 782px) {
+			width: calc(50% - 22px);
+		}
+
+		@media(max-width: 550px) {
+			width: 100%;
 		}
 
 		&.selected {
 			box-shadow: 0 0 6px rgba(0, 133, 186, 0.5);
+			border: 1px solid rgba(0, 133, 186, 1);
 
 			.inside {
 				.carrier-type {
 					background-color: rgba(0, 133, 186, 1);
 					color: #ffffff;
+				}
+
+				.carrier-type {
+					border-top: 1px solid rgba(0, 133, 186, 1);
 				}
 			}
 		}
@@ -80,7 +99,7 @@
 				}
 
 				p {
-					font-size: 12px;
+					font-size: 13px;
 					line-height: 17px;
 					color: #5F5F5F;
 					padding: 10px 0;
@@ -91,7 +110,7 @@
 				span {
 					color: #888888;
 					margin-right: 10px;
-					font-size: 16px;
+					font-size: 18px;
 				}
 			}
 
@@ -99,8 +118,7 @@
 				border-top: 1px solid #CCCCCC;
 				background-color: #fafafa;
 				color: #5F5F5F;
-				padding: 7px 20px 6px;
-				font-size: 12px;
+				padding: 10px 20px;
 				font-weight: 600;
 			}
 		}
@@ -120,6 +138,10 @@
 			justify-content: center;
 			align-items: center;
 			transition: all .2s linear;
+
+			@media(max-width: 900px) {
+				display: none;
+			}
 
 			span {
 				width: 65px;
@@ -177,8 +199,7 @@
 
 			a {
 				display: block;
-				font-size: 12px;
-				margin: 3px 0;
+				margin: 5px 0;
 
 				&.button {
 					text-align: center;
@@ -187,20 +208,20 @@
 		}
 
 		.skip-wizard {
-			transition: all .2s linear;
 
 			&.as-link {
+				margin-top: 0.8rem;
 				background: transparent;
 				color: #5F5F5F;
 				text-align: center;
-				font-size: 12px;
+				font-size: 13px;
 				border-color: transparent;
 				box-shadow: 0 1px 0 transparent;
 			}
 		}
 
 		.button:not(.hidden) {
-			margin-top: 20px;
+			margin-top: 40px;
 			font-size: 13px;
 			font-weight: 600;
 			padding: 7px 10px;
@@ -212,9 +233,7 @@
 		}
 
 		.hidden {
-			height: 0;
-			visibility: hidden;
-			opacity: 0;
+			display: none;
 		}
 	}
 }
