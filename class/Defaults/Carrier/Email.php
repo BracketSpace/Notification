@@ -63,6 +63,30 @@ class Email extends Abstracts\Carrier {
 			'carrier' => $this->get_slug(),
 		] ) );
 
+		if ( notification_get_setting( 'notifications/email/headers' ) ) {
+
+			$this->add_form_field( new Field\RepeaterField( [
+				'label'            => __( 'Headers', 'notification' ),
+				'name'             => 'headers',
+				'add_button_label' => __( 'Add header', 'notification' ),
+				'fields'           => [
+					new Field\InputField( [
+						'label'       => __( 'Key', 'notification' ),
+						'name'        => 'key',
+						'resolvable'  => true,
+						'description' => __( 'You can use merge tags', 'notification' ),
+					] ),
+					new Field\InputField( [
+						'label'       => __( 'Value', 'notification' ),
+						'name'        => 'value',
+						'resolvable'  => true,
+						'description' => __( 'You can use merge tags', 'notification' ),
+					] ),
+				],
+			] ) );
+
+		}
+
 	}
 
 	/**
@@ -115,7 +139,14 @@ class Email extends Abstracts\Carrier {
 			$message = ' ';
 		}
 
-		$headers = apply_filters_deprecated( 'notification/email/headers', [ [], $this, $trigger ], '6.0.0', 'notification/carrier/email/headers' );
+		$headers = [];
+		if ( notification_get_setting( 'notifications/email/headers' ) && ! empty( $data['headers'] ) ) {
+			foreach ( $data['headers'] as $header ) {
+				$headers[] = $header['key'] . ': ' . $header['value'];
+			}
+		}
+
+		$headers = apply_filters_deprecated( 'notification/email/headers', [ $headers, $this, $trigger ], '6.0.0', 'notification/carrier/email/headers' );
 		$headers = apply_filters( 'notification/carrier/email/headers', $headers, $this, $trigger );
 
 		$attachments = apply_filters_deprecated( 'notification/email/attachments', [ [], $this, $trigger ], '6.0.0', 'notification/carrier/email/attachments' );

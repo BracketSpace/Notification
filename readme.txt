@@ -267,6 +267,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Added] Ability to define email headers.
+
 = 6.0.4 =
 * [Fixed] Webhook waring using empty header values.
 * [Fixed] Quick switch in Notifications table.
