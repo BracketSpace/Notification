@@ -19,7 +19,7 @@ class Resolver {
 	/**
 	 * Resolves value with all the resolvers
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @param string      $value   Unresolved string with tags.
 	 * @param Triggerable $trigger Trigger object.
 	 * @return string              Resolved value
@@ -46,7 +46,7 @@ class Resolver {
 	/**
 	 * Gets resolvers from store and sort them by priority
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return array
 	 */
 	public function get_resolvers() {
@@ -65,12 +65,12 @@ class Resolver {
 	/**
 	 * Clears any Merge Tags
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $value Unresolved string with tags.
 	 * @return string
 	 */
 	public function clear( $value ) {
-		return preg_replace( '/\{(?:(.*))*\}/', '', $value );
+		return preg_replace( '/(?<!\!)\{(?:(.*))*\}/', '', $value );
 	}
 
 }

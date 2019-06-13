@@ -32,7 +32,7 @@ class Runtime extends Utils\DocHooks {
 	 * Loads needed files
 	 *
 	 * @since  5.0.0
-	 * @since  [Next] Added boot action.
+	 * @since  6.0.0 Added boot action.
 	 * @return void
 	 */
 	public function boot() {
@@ -86,6 +86,7 @@ class Runtime extends Utils\DocHooks {
 		$this->admin_debugging  = new Admin\Debugging();
 
 		$this->integration_wp = new Integration\WordPress();
+		$this->integration_gb = new Integration\Gutenberg();
 		$this->integration_cf = new Integration\CustomFields();
 
 	}
@@ -125,6 +126,7 @@ class Runtime extends Utils\DocHooks {
 
 		$this->add_hooks( $this->integration_wp );
 		$this->add_hooks( $this->integration_cf );
+		$this->add_hooks( $this->integration_gb );
 
 		notification_register_settings( [ $this->admin_settings, 'general_settings' ] );
 		notification_register_settings( [ $this->admin_settings, 'triggers_settings' ], 20 );
@@ -148,7 +150,7 @@ class Runtime extends Utils\DocHooks {
 	/**
 	 * Loads functions
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function load_functions() {
@@ -170,7 +172,7 @@ class Runtime extends Utils\DocHooks {
 	/**
 	 * Loads deprecated functions and classes
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function load_deprecated() {
@@ -189,7 +191,7 @@ class Runtime extends Utils\DocHooks {
 	 * Loads early defaults
 	 *
 	 * @action plugins_loaded
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function load_early_defaults() {
@@ -205,7 +207,7 @@ class Runtime extends Utils\DocHooks {
 	 * Loads late defaults
 	 *
 	 * @action init 1000
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function load_late_defaults() {
@@ -217,7 +219,7 @@ class Runtime extends Utils\DocHooks {
 	/**
 	 * Loads default
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $default Default file slug.
 	 * @return void
 	 */
@@ -234,7 +236,7 @@ class Runtime extends Utils\DocHooks {
 	 * Proxies the full boot action
 	 *
 	 * @action init 1010
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function fully_booted() {

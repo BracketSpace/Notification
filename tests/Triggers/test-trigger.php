@@ -18,7 +18,7 @@ class TestTrigger extends \WP_UnitTestCase {
 	 * Tests trigger registration
 	 *
 	 * @since 5.3.1
-	 * @since [Next] Changed to Registerer class and used new naming convention.
+	 * @since 6.0.0 Changed to Registerer class and used new naming convention.
 	 */
 	public function test_trigger_registration() {
 		Registerer::register_trigger();
@@ -29,7 +29,7 @@ class TestTrigger extends \WP_UnitTestCase {
 	 * Tests trigger action
 	 *
 	 * @since 5.3.1
-	 * @since [Next] Changed to Registerer class and used new naming convention.
+	 * @since 6.0.0 Changed to Registerer class and used new naming convention.
 	 */
 	public function test_trigger_action() {
 		$notification = Registerer::register_default_notification();
@@ -47,7 +47,7 @@ class TestTrigger extends \WP_UnitTestCase {
 	 * Tests trigger postponed action
 	 *
 	 * @since 5.3.1
-	 * @since [Next] Changed to Registerer class and used new naming convention.
+	 * @since 6.0.0 Changed to Registerer class and used new naming convention.
 	 */
 	public function test_trigger_postponed_action() {
 		$notification = Registerer::register_default_notification( true );
@@ -70,7 +70,7 @@ class TestTrigger extends \WP_UnitTestCase {
 	/**
 	 * Tests trigger action if no Carriers
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_trigger_no_carriers() {
 		$trigger = Registerer::register_trigger();

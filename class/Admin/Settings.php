@@ -331,6 +331,16 @@ class Settings {
 				'sanitize'    => [ new CoreFields\Text(), 'sanitize' ],
 				// Translators: %s default value.
 				'description' => sprintf( __( 'Leave blank to use default value: %s', 'notification' ), '<code>' . $default_from_email . '</code>' ),
+			] )
+			->add_field( [
+				'name'     => __( 'Headers', 'notification' ),
+				'slug'     => 'headers',
+				'default'  => false,
+				'addons'   => [
+					'label' => __( 'Allow to configure email headers', 'notification' ),
+				],
+				'render'   => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] );
 
 		$notifications->add_group( __( 'Webhook', 'notification' ), 'webhook' )

@@ -74,7 +74,7 @@ class Notification {
 	/**
 	 * Constructor
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @param array $data Notification data.
 	 */
 	public function __construct( $data = [] ) {
@@ -84,7 +84,7 @@ class Notification {
 	/**
 	 * Getter and Setter methods
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @throws \Exception If no property has been found.
 	 * @param  string $method_name Method name.
 	 * @param  array  $arguments   Arguments.
@@ -117,9 +117,31 @@ class Notification {
 	}
 
 	/**
+	 * Clone method
+	 * Copies the Trigger and Carriers to new Carrier instance
+	 *
+	 * @since  6.0.0
+	 * @return void
+	 */
+	public function __clone() {
+
+		$trigger = $this->get_trigger();
+		if ( ! empty( $trigger ) ) {
+			$this->set_trigger( clone $trigger );
+		}
+
+		$carriers = [];
+		foreach ( $this->get_carriers() as $key => $carrier ) {
+			$carriers[ $key ] = clone $carrier;
+		}
+		$this->set_carriers( $carriers );
+
+	}
+
+	/**
 	 * Sets up Notification data from array.
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @throws \Exception If wrong arguments has been passed.
 	 * @param  array $data Data array.
 	 * @return $this
@@ -169,10 +191,10 @@ class Notification {
 			$extras = [];
 
 			foreach ( $data['extras'] as $key => $extra ) {
-				if ( is_array( $extra ) || is_string( $extra ) || is_numeric( $extra ) ) {
+				if ( is_array( $extra ) || is_string( $extra ) || is_numeric( $extra ) || is_bool( $extra ) ) {
 					$extras[ $key ] = $extra;
 				} else {
-					throw new \Exception( 'Each extra must be an array or string or number.' );
+					throw new \Exception( 'Each extra must be an array or string or number or bool.' );
 				}
 			}
 
@@ -190,7 +212,7 @@ class Notification {
 	/**
 	 * Dumps the object to array
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  bool $only_enabled_carriers If only enabled Carriers should be saved.
 	 * @return array
 	 */
@@ -220,7 +242,7 @@ class Notification {
 	 * Checks if enabled
 	 * Alias for `get_enabled()` method
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return boolean
 	 */
 	public function is_enabled() {
@@ -230,7 +252,7 @@ class Notification {
 	/**
 	 * Creates hash
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return string hash
 	 */
 	public static function create_hash() {
@@ -240,7 +262,7 @@ class Notification {
 	/**
 	 * Gets single Carrier object
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $carrier_slug Carrier slug.
 	 * @return mixed                Carrier object or null.
 	 */
@@ -252,7 +274,7 @@ class Notification {
 	/**
 	 * Gets enabled Carriers
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return array
 	 */
 	public function get_enabled_carriers() {
@@ -264,7 +286,7 @@ class Notification {
 	/**
 	 * Add Carrier to the set
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @throws \Exception If you try to add already added Carrier.
 	 * @throws \Exception If you try to add non-existing Carrier.
 	 * @param  mixed $carrier Carrier object or slug.
@@ -296,7 +318,7 @@ class Notification {
 	/**
 	 * Enables Carrier
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $carrier_slug Carrier slug.
 	 * @return void
 	 */
@@ -315,7 +337,7 @@ class Notification {
 	/**
 	 * Disables Carrier
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $carrier_slug Carrier slug.
 	 * @return void
 	 */
@@ -330,7 +352,7 @@ class Notification {
 	 * Sets Carriers
 	 * Makes sure that the Notification slug is used as key.
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  array $carriers Array of Carriers.
 	 * @return void
 	 */
@@ -349,7 +371,7 @@ class Notification {
 	/**
 	 * Sets Carrier data
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $carrier_slug Carrier slug.
 	 * @param  array  $data         Carrier data.
 	 * @return void
@@ -364,7 +386,7 @@ class Notification {
 	/**
 	 * Gets Carrier data
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $carrier_slug Carrier slug.
 	 * @return void
 	 */
@@ -378,7 +400,7 @@ class Notification {
 	/**
 	 * Gets single extra data value.
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $key Extra data key.
 	 * @return mixed       Extra data value or null
 	 */
@@ -388,17 +410,36 @@ class Notification {
 	}
 
 	/**
+	 * Removes single extra data.
+	 *
+	 * @since  6.0.0
+	 * @param  string $key Extra data key.
+	 * @return void
+	 */
+	public function remove_extra( $key ) {
+
+		$extras = $this->get_extras();
+
+		if ( isset( $extras[ $key ] ) ) {
+			unset( $extras[ $key ] );
+		}
+
+		$this->set_extras( $extras );
+
+	}
+
+	/**
 	 * Add extra data
 	 *
-	 * @since  [Next]
-	 * @throws \Exception If extra is not type of array, string or number.
+	 * @since  6.0.0
+	 * @throws \Exception If extra is not type of array, string or number or boolean.
 	 * @param  string $key   Extra data key.
 	 * @param  string $value Extra data value.
 	 * @return $this
 	 */
 	public function add_extra( $key, $value ) {
 
-		if ( ! is_array( $value ) && ! is_string( $value ) && ! is_numeric( $value ) ) {
+		if ( ! is_array( $value ) && ! is_string( $value ) && ! is_numeric( $value ) && ! is_bool( $value ) ) {
 			throw new \Exception( 'Extra data must be an array or string or number.' );
 		}
 

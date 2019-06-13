@@ -87,7 +87,7 @@ class Debugging {
 	/**
 	 * Gets Notification log output
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return string
 	 */
 	public function get_notification_log() {
@@ -132,7 +132,7 @@ class Debugging {
 	/**
 	 * Gets Error log output
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return string
 	 */
 	public function get_error_log() {
@@ -188,7 +188,7 @@ class Debugging {
 	 *
 	 * @action admin_post_notification_clear_logs
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function action_clear_logs() {

@@ -30,33 +30,33 @@ $logs = $this->get_var( 'logs' );
 				<div class="log-body">
 					<div class="body-content">
 						<table class="form-table">
-							<caption><?php esc_html_e( 'Notification' ); ?></caption>
+							<caption><?php esc_html_e( 'Notification', 'notification' ); ?></caption>
 							<tr>
-								<th><?php esc_html_e( 'Source' ); ?></th>
+								<th><?php esc_html_e( 'Source', 'notification' ); ?></th>
 								<td><?php echo esc_html( $log['notification']['source'] ); ?></td>
 							</tr>
 							<tr>
-								<th><?php esc_html_e( 'Title' ); ?></th>
+								<th><?php esc_html_e( 'Title', 'notification' ); ?></th>
 								<td><?php echo esc_html( $log['notification']['title'] ); ?></td>
 							</tr>
 							<tr>
-								<th><?php esc_html_e( 'Hash' ); ?></th>
+								<th><?php esc_html_e( 'Hash', 'notification' ); ?></th>
 								<td><code><?php echo esc_html( $log['notification']['hash'] ); ?></code></td>
 							</tr>
 							<tr>
-								<th><?php esc_html_e( 'Trigger' ); ?></th>
+								<th><?php esc_html_e( 'Trigger', 'notification' ); ?></th>
 								<td><?php echo esc_html( $log['trigger']['name'] ); ?> - <code><?php echo esc_html( $log['trigger']['slug'] ); ?></code></td>
 							</tr>
 							<tr>
-								<th><?php esc_html_e( 'Carrier' ); ?></th>
+								<th><?php esc_html_e( 'Carrier', 'notification' ); ?></th>
 								<td><?php echo esc_html( $log['carrier']['name'] ); ?> - <code><?php echo esc_html( $log['carrier']['slug'] ); ?></code></td>
 							</tr>
 						</table>
 						<table class="form-table">
-							<caption><?php esc_html_e( 'Notification extras' ); ?></caption>
+							<caption><?php esc_html_e( 'Notification extras', 'notification' ); ?></caption>
 							<tr>
-								<th><code>meta_key</code></th>
-								<td><code>meta_value</code></td>
+								<th><?php esc_html_e( 'Key', 'notification' ); ?></th>
+								<td><?php esc_html_e( 'Value', 'notification' ); ?></td>
 							</tr>
 						</table>
 						<table class="form-table">
@@ -81,7 +81,7 @@ $logs = $this->get_var( 'logs' );
 
 
 	<?php else : ?>
-		<p><?php esc_html_e( 'The Notification log is empty.' ); ?></p>
+		<p><?php esc_html_e( 'The Notification log is empty.', 'notification' ); ?></p>
 	<?php endif ?>
 
 </div>

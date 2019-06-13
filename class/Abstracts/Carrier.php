@@ -11,7 +11,6 @@ use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Defaults\Field;
 use BracketSpace\Notification\Defaults\Field\RecipientsField;
-use BracketSpace\Notification\Core\Notification;
 
 /**
  * Carrier abstract class
@@ -45,14 +44,6 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	 * @var boolean
 	 */
 	protected $suppressed = false;
-
-	/**
-	 * Notification object
-	 * It's set right before calling the send method
-	 *
-	 * @var Notification
-	 */
-	public $notification = false;
 
 	/**
 	 * Carrier constructor
@@ -141,7 +132,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	/**
 	 * Adds form field to collection
 	 *
-	 * @since  [Next] Added restricted field check.
+	 * @since  6.0.0 Added restricted field check.
 	 * @throws \Exception When restricted name is used.
 	 * @param  Interfaces\Fillable $field Field object.
 	 * @return $this
@@ -173,7 +164,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	/**
 	 * Gets form fields array
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $field_name Field name.
 	 * @return mixed              Field object or null.
 	 */
@@ -200,7 +191,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	/**
 	 * Resolves all fields
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  Triggerable $trigger Trigger object.
 	 * @return void
 	 */
@@ -222,7 +213,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	/**
 	 * Resolves Merge Tags in field value
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @param  mixed       $value   String or array, field value.
 	 * @param  Triggerable $trigger Trigger object.
 	 * @return mixed
@@ -242,7 +233,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 			$value = apply_filters_deprecated( 'notificaiton/notification/field/resolving', [
 				$value,
 				null,
-			], '[Next]', 'notification/carrier/field/resolving' );
+			], '6.0.0', 'notification/carrier/field/resolving' );
 			$value = apply_filters( 'notification/carrier/field/resolving', $value, null );
 
 			$resolved = notification_resolve( $value, $trigger );
@@ -251,7 +242,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 			$strip_merge_tags = notification_get_setting( 'general/content/strip_empty_tags' );
 			$strip_merge_tags = apply_filters_deprecated( 'notification/value/strip_empty_mergetags', [
 				$strip_merge_tags,
-			], '[Next]', 'notification/resolve/strip_empty_mergetags' );
+			], '6.0.0', 'notification/resolve/strip_empty_mergetags' );
 			$strip_merge_tags = apply_filters( 'notification/resolve/strip_empty_mergetags', $strip_merge_tags );
 
 			if ( $strip_merge_tags ) {
@@ -262,18 +253,21 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 			$strip_shortcodes = notification_get_setting( 'general/content/strip_shortcodes' );
 			$strip_shortcodes = apply_filters_deprecated( 'notification/value/strip_shortcodes', [
 				$strip_shortcodes,
-			], '[Next]', 'notification/carrier/field/value/strip_shortcodes' );
+			], '6.0.0', 'notification/carrier/field/value/strip_shortcodes' );
 
 			if ( apply_filters( 'notification/carrier/field/value/strip_shortcodes', $strip_shortcodes ) ) {
-				$resolved = strip_shortcodes( $resolved );
+				$resolved = preg_replace( '#\[[^\]]+\]#', '', $resolved );
 			} else {
 				$resolved = do_shortcode( $resolved );
 			}
 
+			// Unescape escaped {.
+			$resolved = str_replace( '!{', '{', $resolved );
+
 			$resolved = apply_filters_deprecated( 'notificaiton/notification/field/resolved', [
 				$resolved,
 				null,
-			], '[Next]', 'notification/carrier/field/value/resolved' );
+			], '6.0.0', 'notification/carrier/field/value/resolved' );
 			$resolved = apply_filters( 'notification/carrier/field/value/resolved', $resolved, null );
 
 		}
@@ -326,7 +320,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	/**
 	 * Sets data from array
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  array $data Data with keys matched with Field names.
 	 * @return $this
 	 */
@@ -345,7 +339,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	/**
 	 * Gets data
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return array
 	 */
 	public function get_data() {
@@ -365,7 +359,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	/**
 	 * Checks if Carrier is enabled
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return boolean
 	 */
 	public function is_enabled() {
@@ -375,7 +369,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	/**
 	 * Enables the Carrier
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return $this
 	 */
 	public function enable() {
@@ -386,7 +380,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	/**
 	 * Disabled the Carrier
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return $this
 	 */
 	public function disable() {

@@ -58,7 +58,7 @@ class Sync {
 	/**
 	 * Gets the actions template
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return string
 	 */
 	public function template_actions() {
@@ -76,7 +76,7 @@ class Sync {
 	/**
 	 * Gets the notifications template
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return string
 	 */
 	public function template_notifications() {
@@ -186,7 +186,7 @@ class Sync {
 	/**
 	 * Loads the Notification to JSON
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $hash Notification hash.
 	 * @return mixxed
 	 */
@@ -197,7 +197,7 @@ class Sync {
 	/**
 	 * Loads the Notification to JSON
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $hash Notification hash.
 	 * @return mixed
 	 */

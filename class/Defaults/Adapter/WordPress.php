@@ -24,6 +24,13 @@ class WordPress extends Abstracts\Adapter {
 	protected $post;
 
 	/**
+	 * Notification post type slug
+	 *
+	 * @var string
+	 */
+	protected $post_type = 'notification';
+
+	/**
 	 * {@inheritdoc}
 	 *
 	 * @throws \Exception If wrong input param provided.
@@ -41,7 +48,7 @@ class WordPress extends Abstracts\Adapter {
 		}
 
 		try {
-			$json_adapter = notification_adapt_from( 'JSON', $this->post->post_content );
+			$json_adapter = notification_adapt_from( 'JSON', wp_specialchars_decode( $this->post->post_content, ENT_COMPAT ) );
 			$this->setup_notification( notification_convert_data( $json_adapter->get_notification()->to_array() ) );
 		} catch ( \Exception $e ) {
 			$do_nothing = true;
@@ -78,7 +85,7 @@ class WordPress extends Abstracts\Adapter {
 		$post_id = wp_insert_post( [
 			'ID'           => $this->get_id(),
 			'post_content' => wp_slash( $json ), // Cache.
-			'post_type'    => 'notification',
+			'post_type'    => $this->post_type,
 			'post_title'   => $data['title'],
 			'post_name'    => $data['hash'],
 			'post_status'  => $data['enabled'] ? 'publish' : 'draft',
@@ -100,7 +107,7 @@ class WordPress extends Abstracts\Adapter {
 	/**
 	 * Checks if notification post has been just started
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @return boolean
 	 */
 	public function is_new() {
@@ -110,7 +117,7 @@ class WordPress extends Abstracts\Adapter {
 	/**
 	 * Gets notification post ID
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @return integer post ID
 	 */
 	public function get_id() {
@@ -120,7 +127,7 @@ class WordPress extends Abstracts\Adapter {
 	/**
 	 * Gets post
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @return null || WP_Post
 	 */
 	public function get_post() {
@@ -130,7 +137,7 @@ class WordPress extends Abstracts\Adapter {
 	/**
 	 * Sets post
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @param \WP_Post $post WP Post to set.
 	 * @return $this
 	 */
@@ -140,9 +147,21 @@ class WordPress extends Abstracts\Adapter {
 	}
 
 	/**
+	 * Sets post type
+	 *
+	 * @since 6.0.0
+	 * @param string $post_type WP Post Type.
+	 * @return $this
+	 */
+	public function set_post_type( $post_type ) {
+		$this->post_type = $post_type;
+		return $this;
+	}
+
+	/**
 	 * Checks if adapter already have the post
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @return bool
 	 */
 	public function has_post() {

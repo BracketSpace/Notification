@@ -12,7 +12,7 @@ use BracketSpace\Notification\Interfaces;
 /**
  * Adds Resolver to Store
  *
- * @since  [Next]
+ * @since  6.0.0
  * @param  Interfaces\Resolvable $resolver Resolver object.
  * @return \WP_Error | true
  */
@@ -33,7 +33,7 @@ function notification_register_resolver( Interfaces\Resolvable $resolver ) {
 /**
  * Resolves the value
  *
- * @since [Next]
+ * @since 6.0.0
  * @param string                 $value   Unresolved string with tags.
  * @param Interfaces\Triggerable $trigger Trigger object.
  * @return string                         Resolved value
@@ -46,7 +46,7 @@ function notification_resolve( $value, Interfaces\Triggerable $trigger ) {
 /**
  * Clears all Merge Tags
  *
- * @since  [Next]
+ * @since  6.0.0
  * @param  string $value Unresolved string with tags.
  * @return string        Value without any tags
  */
