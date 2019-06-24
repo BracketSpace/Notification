@@ -14,7 +14,7 @@
 
 define( 'NOTIFICATION_VERSION', '6.0.4' );
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once dirname(__FILE__) . '/vendor/autoload.php';
 
 /**
  * Requirements check
