@@ -45,6 +45,13 @@ class Webhook extends Abstracts\Carrier {
 			'name'             => 'args',
 			'add_button_label' => __( 'Add argument', 'notification' ),
 			'fields'           => [
+				new Field\CheckboxField(
+					[
+						'label'          => __( 'Hide', 'notification-slack' ),
+						'name'           => 'hide',
+						'checkbox_label' => __( 'Hide if empty value', 'notification' ),
+					]
+				),
 				new Field\InputField( [
 					'label'       => __( 'Key', 'notification' ),
 					'name'        => 'key',
@@ -73,6 +80,13 @@ class Webhook extends Abstracts\Carrier {
 				'name'             => 'headers',
 				'add_button_label' => __( 'Add header', 'notification' ),
 				'fields'           => [
+					new Field\CheckboxField(
+						[
+							'label'          => __( 'Hide', 'notification-slack' ),
+							'name'           => 'hide',
+							'checkbox_label' => __( 'Hide if empty value', 'notification' ),
+						]
+					),
 					new Field\InputField( [
 						'label'       => __( 'Key', 'notification' ),
 						'name'        => 'key',
@@ -224,6 +238,10 @@ class Webhook extends Abstracts\Carrier {
 		}
 
 		foreach ( $args as $arg ) {
+			if ( isset( $arg['hide'] ) && $arg['hide'] ) {
+				continue;
+			}
+
 			$parsed_args[ $arg['key'] ] = $arg['value'];
 		}
 
