@@ -269,12 +269,14 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Added] Ability to define email headers.
+* [Added] `notification/debug/suppress` filter to disable suppression of notifications when debug log is activated.
 
 = 6.0.4 =
 * [Fixed] Webhook waring using empty header values.
 * [Fixed] Quick switch in Notifications table.
 * [Fixed] Catching Notifications.
 * [Added] Basic Gutenberg compatibility, post triggers are now postponed to `rest_after_insert_{$post_type}` action.
+
 
 = 6.0.3 =
 * [Fixed] On/off switch in notifications table.
