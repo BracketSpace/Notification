@@ -31,7 +31,7 @@ class Uninstall {
 	 * @since  6.0.5
 	 * @return void
 	 */
-	public function remove_plugin_data() {
+	public static function remove_plugin_data() {
 
 		global $wpdb;
 
