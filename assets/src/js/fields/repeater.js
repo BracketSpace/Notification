@@ -1,5 +1,7 @@
 (function($) {
 
+	var __ = wp.i18n.__;
+
 	$( document ).ready( function() {
 
 		var recalculate_rows = function( $repeater ) {
@@ -52,7 +54,7 @@
 
 			if ( $( window ).width() > 768 ) {
 				remove_row( $remove_button );
-			} else if ( window.confirm( notification.i18n.remove_confirmation ) ) {
+			} else if ( window.confirm( __( 'Do you really want to delete this?', 'notification' ) ) ) {
 				remove_row( $remove_button );
 			}
 

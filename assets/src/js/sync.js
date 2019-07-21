@@ -1,5 +1,7 @@
 ( function($) {
 
+	var __ = wp.i18n.__;
+
 	$( document ).ready( function() {
 
 		$( '.group-sync .field-actions .notification-sync-all' ).on( 'click', function( event ) {
@@ -43,7 +45,7 @@
  				label     = $button.text();
 
 			$button.attr( 'disabled', true );
-			$button.text( notification.i18n.synchronizing );
+			$button.text( __( 'Synchronizing...', 'notification' ) );
 
  			data = {
 				action : 'notification_sync',
@@ -67,7 +69,7 @@
 						$title_td.html( $link );
 					}
 
-					$notification_row.find( 'td.status' ).text( notification.i18n.synchronized );
+					$notification_row.find( 'td.status' ).text( __( 'Synchronized', 'notification' ) );
 					$button.remove();
 
 				} else {
