@@ -269,6 +269,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Added] Ability to define email headers.
+* [Added] Possibility of sorting for repeater field.
 
 = 6.0.4 =
 * [Fixed] Webhook waring using empty header values.
