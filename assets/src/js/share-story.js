@@ -1,5 +1,7 @@
 (function($) {
 
+	var __ = wp.i18n.__;
+
 	$( document ).ready( function() {
 
 		// Copy the url
@@ -11,7 +13,7 @@
 		    var $code     = $( e.trigger ),
 			    copy_text = $code.find( 'span' ).text();
 
-			$code.find( 'span' ).text( notification.i18n.copied );
+			$code.find( 'span' ).text( __( 'Copied', 'notification' ) );
 
 			setTimeout( function() {
 				$code.find( 'span' ).text( copy_text );
