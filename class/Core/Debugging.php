@@ -198,7 +198,7 @@ class Debugging {
 			return;
 		}
 
-		notification_log( 'Core', 'notification', wp_json_encode( [
+		$data = [
 			'notification' => [
 				'title'  => $notification->get_title(),
 				'hash'   => $notification->get_hash(),
@@ -214,10 +214,13 @@ class Debugging {
 				'slug' => $trigger->get_slug(),
 				'name' => $trigger->get_name(),
 			],
-		] ) );
+		];
+		notification_log( 'Core', 'notification', wp_json_encode( $data ) );
 
-		// Always suppress when debug log is active.
-		$carrier->suppress();
+		// Suppress when debug log is active.
+		if ( apply_filters( 'notification/debug/suppress', true, $data['notification'], $data['carrier'], $data['trigger'] ) === true ) {
+			$carrier->suppress();
+		}
 
 	}
 
