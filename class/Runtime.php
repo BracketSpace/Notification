@@ -69,7 +69,6 @@ class Runtime extends Utils\DocHooks {
 		$this->core_whitelabel = new Core\Whitelabel();
 		$this->core_debugging  = new Core\Debugging();
 		$this->core_settings   = new Core\Settings();
-		$this->core_uninstall  = new Core\Uninstall();
 		$this->core_upgrade    = new Core\Upgrade();
 		$this->core_sync       = new Core\Sync();
 
@@ -133,6 +132,8 @@ class Runtime extends Utils\DocHooks {
 		notification_register_settings( [ $this->admin_sync, 'settings' ], 40 );
 		notification_register_settings( [ $this->admin_impexp, 'settings' ], 50 );
 		notification_register_settings( [ $this->admin_debugging, 'debugging_settings' ], 60 );
+
+		register_uninstall_hook($this->plugin_file, [ 'BracketSpace\Notification\Core\Uninstall', 'remove_plugin_data' ]);
 
 	}
 

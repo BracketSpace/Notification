@@ -13,7 +13,6 @@
  */
 
 define( 'NOTIFICATION_VERSION', '6.0.4' );
-define( 'NOTIFICATION_FILE',    __FILE__ );
 
 require_once dirname( __FILE__ ) . '/vendor/autoload.php';
 

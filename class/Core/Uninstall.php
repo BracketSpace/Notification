@@ -17,15 +17,6 @@ use BracketSpace\Notification\Admin\Extensions;
 class Uninstall {
 
 	/**
-	 * Uninstall constructor
-	 */
-	public function __construct() {
-
-		register_uninstall_hook(NOTIFICATION_FILE, ['BracketSpace\Notification\Core\Uninstall', 'remove_plugin_data']);
-
-	}
-
-	/**
 	 * Removing plugin data
 	 *
 	 * @since  6.0.5
