@@ -269,6 +269,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Added] Ability to define email headers.
+* [Changed] Internationalization for JS files.
 * [Changed] Carrier textarea field now can be unfiltered, so no HTML will be stripped.
 
 = 6.0.4 =
