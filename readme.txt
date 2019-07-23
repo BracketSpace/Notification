@@ -268,8 +268,11 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
+* [Fixed] File mtime method now checks if file exists.
 * [Added] Ability to define email headers.
-* [Fixed] Version of JS loaded files.
+* [Added] `notification/debug/suppress` filter to disable suppression of notifications when debug log is activated.
+* [Changed] Internationalization for JS files.
+* [Changed] Carrier textarea field now can be unfiltered, so no HTML will be stripped.
 
 = 6.0.4 =
 * [Fixed] Webhook waring using empty header values.
