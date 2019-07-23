@@ -1,6 +1,7 @@
 .notification-field.fields-repeater {
 	width: 100%;
 	margin-bottom: 10px;
+	border: 0;
 	border-collapse: collapse;
 	counter-reset: rowNumber;
 	table-layout: auto;
@@ -11,17 +12,18 @@
 			display: none;
 		}
 
-		&:nth-child(n+3) {
+		&:nth-child(n+2) {
 			counter-increment: rowNumber;
 		}
 
 		td, th {
 			padding: 12px;
+			background-color: #ffffff;
 			border: 1px solid #e5e5e5;
 			// width: auto;
 
-
-			&.handle {
+			&.handle,
+			&.trash {
 				background: #f5f5f5;
 				white-space: nowrap;
 				width: 20px;
@@ -34,7 +36,6 @@
 					height: 30px;
 					line-height: 30px;
 					padding: 0 10px;
-
 				}
 			}
 
@@ -61,12 +62,23 @@
 						margin-bottom: 5px;
 					}
 				}
+
 			}
 
 			&.handle {
 
-				@media( max-width: 768px ) {
+				&::before {
+					content: counter(rowNumber);
+				}
 
+				&::after {
+					display: none;
+					content: "\f545";
+					font: 400 20px/1 dashicons;
+					line-height: 30px;
+				}
+
+				@media( max-width: 768px ) {
 					position: relative;
 
 					&::before, &::after {
@@ -85,39 +97,115 @@
 				}
 			}
 
-			&.handle::before {
-				content: counter(rowNumber);
-			}
+			&.trash {
 
-			@media (max-width: 768px ) {
+				@media( max-width: 768px ) {
+					position: relative;
+				}
 
-				&.handle::after {
+				&::after {
+					display: none;
 					content: "\f182";
 					font: 400 20px/1 dashicons;
 					line-height: 30px;
+
+					@media( max-width: 768px ) {
+						position: absolute;
+						display: block;
+						right: 10px;
+						top: 0;
+					}
 				}
+
 			}
 
 		}
 
 		&:hover {
 
-			td.handle {
+			td.trash {
+				cursor: pointer;
 
-				&::before {
-					content: "\f182";
-					font: 400 20px/1 dashicons;
-					line-height: 30px;
-
-					@media( max-width: 768px ) {
-						content: counter(rowNumber);
-						font: inherit;
-					}
+				&::after {
+					display: block;
 				}
 
 				&:hover {
-					color: #a00;
+
+					&::after {
+						color: #a00;
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+	&.fields-repeater-sortable {
+
+		tr {
+
+			&.ui-sortable-placeholder {
+				counter-increment: rowNumber 0;
+			}
+
+			&.ui-sortable-placeholder {
+
+				td {
+					padding: 0;
+					border: 0;
+				}
+
+			}
+
+			&.ui-sortable-helper {
+				display: table;
+
+				td {
+
+					&.handle,
+					&.trash {
+						padding: 11px;
+					}
+
+				}
+
+			}
+
+			td {
+
+				&.handle {
+
+					@media( max-width: 768px ) {
+						&::after {
+							display: block;
+						}
+					}
+
+				}
+
+			}
+
+			&:hover {
+
+				td.handle {
 					cursor: pointer;
+
+					&::before {
+
+						@media( min-width: 769px ) {
+							display: none;
+						}
+
+					}
+
+					&::after {
+						display: block;
+					}
+
 				}
 
 			}
