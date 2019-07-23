@@ -1,23 +1,23 @@
 language: php
 
 matrix:
-	include:
-		- php: 7.2
-			env: SNIFF=1
-		- php: 7.2
-			env: WP_VERSION=latest
+  include:
+    - php: 7.2
+      env: SNIFF=1
+    - php: 7.2
+      env: WP_VERSION=latest
 
 notifications:
-	email: false
+  email: false
 
 install:
-	- composer install
+  - composer install
 
 before_script:
-	- if [[ ! -z "$WP_VERSION" ]]; then bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION; fi
+  - if [[ ! -z "$WP_VERSION" ]]; then bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION; fi
 
 script:
-	# Run against WordPress Coding Standards.
-	- if [[ "$SNIFF" == "1" ]]; then composer phpcs; fi
-	# Run PHPUnit
-	- if [[ ! -z "$WP_VERSION" ]]; then phpunit; fi
+  # Run against WordPress Coding Standards.
+  - if [[ "$SNIFF" == "1" ]]; then composer phpcs; fi
+  # Run PHPUnit
+  - if [[ ! -z "$WP_VERSION" ]]; then phpunit; fi
