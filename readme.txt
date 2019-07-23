@@ -269,7 +269,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Added] Ability to define email headers.
-* [Added] Ability to unfiltered email body.
+* [Added] Webhook args and headers can be now not included if value is empty.
 
 = 6.0.4 =
 * [Fixed] Webhook waring using empty header values.
