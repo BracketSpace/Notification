@@ -7,6 +7,8 @@
 
 namespace BracketSpace\Notification\Admin;
 
+use BracketSpace\Notification\Core\Notification;
+
 /**
  * Notification duplicator class
  */
@@ -49,6 +51,9 @@ class NotificationDuplicator {
 
 		// Get the source notification post.
 		$source = get_post( sanitize_text_field( wp_unslash( $_GET['duplicate'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$json   = notification_adapt_from( 'JSON', $source );
+
+		$json->set_hash( Notification::create_hash() );
 
 		if ( get_post_type( $source ) !== 'notification' ) {
 			wp_die( 'You cannot duplicate post that\'s not Notification post' );
@@ -56,7 +61,7 @@ class NotificationDuplicator {
 
 		$new_id = wp_insert_post( [
 			'post_title'   => sprintf( '(%s) %s', __( 'Duplicate', 'notification' ), $source->post_title ),
-			'post_content' => $source->post_content,
+			'post_content' => wp_slash( $json->save( JSON_UNESCAPED_UNICODE ) ),
 			'post_status'  => 'draft',
 			'post_type'    => 'notification',
 		] );
