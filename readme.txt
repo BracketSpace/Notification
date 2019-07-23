@@ -269,6 +269,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Fixed] File mtime method now checks if file exists.
+* [Fixed] Cache is now cleared after saving the notification.
 * [Added] Ability to define email headers.
 * [Added] `notification/debug/suppress` filter to disable suppression of notifications when debug log is activated.
 * [Changed] Internationalization for JS files.
