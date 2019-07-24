@@ -22,24 +22,35 @@
 				Select the email to overwrite it
 			</h4> -->
 			<div class="notifications-list">
-				<?php for ( $i = 0; $i <= 10; $i++ ) : ?>
 				<div class="notifications-tile">
 					<div class="inside">
 						<div class="content">
-							<h2 class="hndle"><label><input type="checkbox" name="notification_name"> Post published and even more text here</label></h2>
-							<p>When post is accepted and published an email is sent to the post author.</p>
-							<div class="trigger-type"><span class="dashicons dashicons-admin-users"></span>Post author</div>
+							<h2 class="hndle"><label><input type="checkbox" name="notification_file" value="fullconfig-post-updated"> <?php esc_html_e( 'FULLCONFIG Post updated', 'notification' ); ?></label></h2>
+							<p><?php esc_html_e( 'Test of notification importing from JSON', 'notification' ); ?></p>
+							<div class="trigger-type"><span class="dashicons dashicons-admin-users"></span><?php esc_html_e( 'Example recipient', 'notification' ); ?></div>
 						</div>
-						<div class="carrier-type">Email</div>
+						<div class="carrier-type"><?php esc_html_e( 'Email', 'notification' ); ?></div>
 					</div>
 					<div class="notifications-tile-hover">
 						<span class="dashicons dashicons-plus"></span>
-						Add this notification
+						<?php esc_html_e( 'Add this notification', 'notification' ); ?>
 					</div>
 				</div>
-				<?php endfor ?>
+				<div class="notifications-tile">
+					<div class="inside">
+						<div class="content">
+							<h2 class="hndle"><label><input type="checkbox" name="notification_file" value="webhook-failed"> <?php esc_html_e( 'Webhook failed', 'notification' ); ?></label></h2>
+							<p><?php esc_html_e( 'Test of notification importing from JSON', 'notification' ); ?></p>
+							<div class="trigger-type"><span class="dashicons dashicons-admin-users"></span><?php esc_html_e( 'Example recipient', 'notification' ); ?></div>
+						</div>
+						<div class="carrier-type"><?php esc_html_e( 'Email', 'notification' ); ?></div>
+					</div>
+					<div class="notifications-tile-hover">
+						<span class="dashicons dashicons-plus"></span>
+						<?php esc_html_e( 'Add this notification', 'notification' ); ?>
+					</div>
+				</div>
 			</div>
-
 		</div>
 
 	</div>

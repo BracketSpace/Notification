@@ -1,0 +1,20 @@
+{
+    "hash": "notification_5c6d135bd4ef5",
+    "title": "Webhook failed",
+    "trigger": "",
+    "carriers": {
+        "email": {
+            "subject": "Webhook failed",
+            "body": "Response Code\r\n{response_code}\r\n\r\nError Message\r\n{error_message}\r\n\r\nResponse Body\r\n{response_body}",
+            "recipients": [
+                {
+                    "type": "administrator",
+                    "recipient": ""
+                }
+            ]
+        }
+    },
+    "enabled": true,
+    "extras": [],
+    "version": 1550936894
+}

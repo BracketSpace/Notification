@@ -88,10 +88,14 @@
 
 		.inside {
 			margin: 0;
+			position: relative;
+			height: 100%;
+			width: 100%;
+			background-color: #ffffff;
 
 			.content {
 				padding: 20px;
-				background-color: #ffffff;
+				margin-bottom: 40px;
 
 				h2 {
 					margin: 0;
@@ -120,6 +124,10 @@
 				color: #5F5F5F;
 				padding: 10px 20px;
 				font-weight: 600;
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				box-sizing: border-box;
 			}
 		}
 
