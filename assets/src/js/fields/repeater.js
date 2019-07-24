@@ -48,7 +48,7 @@
 
 		}
 
-		$( '.fields-repeater' ).on( 'click', '.row:not(.header):not(.model) .handle', function() {
+		$( '.fields-repeater' ).on( 'click', '.row:not(.header):not(.model) .trash', function() {
 
 			var $remove_button = $( this );
 
@@ -77,6 +77,16 @@
 
 			notification.hooks.doAction( 'notification.repeater.row.added', $cloned, $repeater );
 
+		} );
+
+		// Sortable
+
+		$( '.fields-repeater-sortable > tbody' ).sortable( {
+			handle: '.handle',
+			axis: 'y',
+	    start:  function( e, ui ) {
+	    	ui.placeholder.height( ui.helper[0].scrollHeight );
+	    },
 		} );
 
 	} );
