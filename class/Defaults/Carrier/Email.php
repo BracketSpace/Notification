@@ -51,8 +51,9 @@ class Email extends Abstracts\Carrier {
 		} else {
 
 			$body_field = new Field\TextareaField( [
-				'label' => __( 'Body', 'notification' ),
-				'name'  => 'body',
+				'label'              => __( 'Body', 'notification' ),
+				'name'               => 'body',
+				'allowed_unfiltered' => true,
 			] );
 
 		}

@@ -53,7 +53,7 @@ How easy extending the Notification plugin is? Let's see:
 * Defining Global Merge Tag - 1 line of code
 * Creating new Extension - we have a [Boilerplate](https://github.com/BracketSpace/Notification-Extension-Boilerplate/) ready for you to start hacking
 
-[See the developer documentation](https://docs.bracketspace.com/docs-category/developer/) if you don't believe us.
+[See the developer documentation](https://docs.bracketspace.com/notification/developer/general) if you don't believe us.
 
 = DEFAULT NOTIFICATIONS =
 
@@ -192,7 +192,7 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 
 = USEFUL LINKS =
 
-* [Documentation](https://docs.bracketspace.com/docs-category/notification/)
+* [Documentation](https://docs.bracketspace.com/notification/)
 * [Support plugin developement](https://www.paypal.me/underDEV/)
 * [GitHub repository](https://github.com/BracketSpace/Notification)
 * [Report a bug](https://github.com/BracketSpace/Notification/issues/new)
@@ -211,7 +211,7 @@ Download and install this plugin from Plugins -> Add New admin screen.
 
 Notification can be loaded also as a part of any plugin or theme. To do it just include plugins's `load.php` file. It will figure out if it's loaded from theme or from plugin.
 
-[See the detailed guide](https://docs.bracketspace.com/docs/including-notification-in-the-plugin-or-theme/)
+[See the detailed guide](https://docs.bracketspace.com/notification/developer/general/bundling)
 
 == Frequently Asked Questions ==
 
@@ -233,11 +233,11 @@ So it doesn't matter if you don't have any coding skills, they are not required 
 
 = How to register my own triggers? =
 
-With `register_trigger()` function. [See the detailed guide](https://docs.bracketspace.com/docs/registering-custom-triggers/)
+With `register_trigger()` function. [See the detailed guide](https://docs.bracketspace.com/notification/developer/triggers/custom-trigger)
 
 = How to include a custom field in the notification? =
 
-You can [write a merge tag](https://docs.bracketspace.com/docs/adding-merge-tags-to-existing-triggers/) by yourself or go with a no-brainer [Custom Fields extension](https://bracketspace.com/downloads/notification-custom-fields/).
+You can [write a merge tag](https://docs.bracketspace.com/notification/developer/triggers/adding-merge-tags-to-existing-triggers) by yourself or go with a no-brainer [Custom Fields extension](https://bracketspace.com/downloads/notification-custom-fields/).
 
 = How to target only specific post / category / user etc? =
 
@@ -245,7 +245,7 @@ You can control when exactly the notification is sending with the [Conditionals 
 
 = Can I bundle the plugin with my plugin or theme? =
 
-Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/including-notification-in-the-plugin-or-theme/)
+Yes, you can. [See the detailed guide](https://docs.bracketspace.com/notification/developer/general/bundling)
 
 = Is this plugin capable of sending high volume emails? =
 
@@ -268,7 +268,16 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
+* [Fixed] File mtime method now checks if file exists.
+* [Fixed] Cache is now cleared after saving the notification.
+* [Fixed] Uninstallation process.
 * [Added] Ability to define email headers.
+* [Added] Webhook args and headers can be now not included if value is empty.
+* [Added] `notification/debug/suppress` filter to disable suppression of notifications when debug log is activated.
+* [Changed] Internationalization for JS files.
+* [Changed] Notification repeater field is now by default sortable.
+* [Changed] Carrier textarea field now can be unfiltered, so no HTML will be stripped.
+* [Removed] Freemius.
 
 = 6.0.4 =
 * [Fixed] Webhook waring using empty header values.

@@ -167,6 +167,8 @@ class RecipientsField extends RepeaterField {
 			}
 		}
 
+		$html .= '<td class="trash"></td>';
+
 		$html .= '</tr>';
 
 		return $html;

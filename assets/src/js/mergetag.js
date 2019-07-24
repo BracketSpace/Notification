@@ -1,5 +1,7 @@
 (function($) {
 
+	var __ = wp.i18n.__;
+
 	$( document ).ready( function() {
 
 		// Copy Merge Tag.
@@ -12,7 +14,7 @@
 
 			notification.hooks.doAction( 'notification.merge_tag.copied', tag, $code );
 
-			$code.text( notification.i18n.copied );
+			$code.text( __( 'Copied', 'notification' ) );
 
 			setTimeout( function() {
 				$code.text( tag );

@@ -74,22 +74,13 @@ class Scripts {
 			return;
 		}
 
-		wp_enqueue_script( 'notification', $this->files->asset_url( 'js', 'scripts.min.js' ), [ 'jquery', 'wp-color-picker' ], $this->files->asset_mtime( 'js', 'scripts.min.js' ), false );
+		wp_enqueue_script( 'notification', $this->files->asset_url( 'js', 'scripts.min.js' ), [ 'jquery', 'wp-color-picker', 'wp-i18n' ], $this->files->asset_mtime( 'js', 'scripts.min.js' ), false );
 
 		wp_enqueue_style( 'notification', $this->files->asset_url( 'css', 'style.css' ), [], $this->files->asset_mtime( 'css', 'style.css' ) );
 
+		wp_set_script_translations( 'notification', 'notification' );
 		wp_localize_script( 'notification', 'notification', [
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
-			'i18n'    => [
-				'copied'              => __( 'Copied', 'notification' ),
-				'remove_confirmation' => __( 'Do you really want to delete this?', 'notification' ),
-				'select_image'        => __( 'Select image', 'notification' ),
-				'use_selected_image'  => __( 'Use selected image', 'notification' ),
-				'valid_json_only'     => __( 'Please upload only valid JSON files', 'notification' ),
-				'importing_data'      => __( 'Importing data...', 'notification' ),
-				'synchronizing'       => __( 'Synchronizing...', 'notification' ),
-				'synchronized'        => __( 'Synchronized', 'notification' ),
-			],
 		] );
 
 		// Remove TinyMCE styles as they are not applied to any frontend content.
