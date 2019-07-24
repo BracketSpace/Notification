@@ -81,6 +81,7 @@
 
 		$( '.fields-repeater-sortable > tbody' ).sortable( {
 			handle: '.handle',
+			axis: 'y',
 	    start:  function( e, ui ) {
 	    	ui.placeholder.height( ui.helper[0].scrollHeight );
 	    },

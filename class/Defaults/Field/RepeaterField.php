@@ -54,7 +54,7 @@ class RepeaterField extends Field {
 	 *
 	 * @var array
 	 */
-	protected $sortable = false;
+	protected $sortable = true;
 
 	/**
 	 * Field constructor
@@ -80,8 +80,8 @@ class RepeaterField extends Field {
 			$this->data_attr = $params['data_attr'];
 		}
 
-		if ( isset( $params['sortable'] ) && $params['sortable'] ) {
-			$this->sortable = true;
+		if ( isset( $params['sortable'] ) && ! $params['sortable'] ) {
+			$this->sortable = false;
 		}
 
 		parent::__construct( $params );
@@ -256,7 +256,7 @@ class RepeaterField extends Field {
 	public function css_class() {
 
 		$classes = '';
-		if ($this->sortable) {
+		if ( $this->sortable ) {
 			$classes .= 'fields-repeater-sortable ';
 		}
 

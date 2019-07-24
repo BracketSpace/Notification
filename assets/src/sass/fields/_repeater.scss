@@ -4,7 +4,7 @@
 	border: 0;
 	border-collapse: collapse;
 	counter-reset: rowNumber;
-	table-layout: auto;
+	table-layout: fixed;
 
 	tr {
 
@@ -17,6 +17,7 @@
 		}
 
 		td, th {
+			width: auto;
 			padding: 12px;
 			background-color: #ffffff;
 			border: 1px solid #e5e5e5;
@@ -26,12 +27,12 @@
 			&.trash {
 				background: #f5f5f5;
 				white-space: nowrap;
-				width: 20px;
+				width: 40px;
 				text-align: center;
 				padding: 0;
 				color: #a5a5a5;
 
-				@media( max-width: 768px ) {
+				@media( max-width: 782px ) {
 					width: calc(100% - 22px);
 					height: 30px;
 					line-height: 30px;
@@ -57,7 +58,7 @@
 				.row-header {
 					display:none;
 
-					@media( max-width: 768px ) {
+					@media( max-width: 782px ) {
 						display: block;
 						margin-bottom: 5px;
 					}
@@ -78,7 +79,7 @@
 					line-height: 30px;
 				}
 
-				@media( max-width: 768px ) {
+				@media( max-width: 782px ) {
 					position: relative;
 
 					&::before, &::after {
@@ -99,7 +100,7 @@
 
 			&.trash {
 
-				@media( max-width: 768px ) {
+				@media( max-width: 782px ) {
 					position: relative;
 				}
 
@@ -109,7 +110,7 @@
 					font: 400 20px/1 dashicons;
 					line-height: 30px;
 
-					@media( max-width: 768px ) {
+					@media( max-width: 782px ) {
 						position: absolute;
 						display: block;
 						right: 10px;
@@ -150,36 +151,52 @@
 
 			&.ui-sortable-placeholder {
 				counter-increment: rowNumber 0;
-			}
+				visibility: visible !important;
 
-			&.ui-sortable-placeholder {
-
-				td {
-					padding: 0;
-					border: 0;
+				@media( max-width: 782px ) {
+					height: auto !important;
 				}
 
+				td {
+					background-color: #f5f5f5;
+
+					@media( max-width: 782px ) {
+						border-top: 0;
+						border-bottom: 0;
+
+						&:first-child {
+							border-top: 1px solid #e5e5e5;
+						}
+
+						&:last-child {
+							border-bottom: 1px solid #e5e5e5;
+						}
+					}
+
+					@media( min-width: 783px ) {
+						border-left: 0;
+						border-right: 0;
+
+						&:first-child {
+							border-left: 1px solid #e5e5e5;
+						}
+
+						&:last-child {
+							border-right: 1px solid #e5e5e5;
+						}
+					}
+				}
 			}
 
 			&.ui-sortable-helper {
 				display: table;
-
-				td {
-
-					&.handle,
-					&.trash {
-						padding: 11px;
-					}
-
-				}
-
 			}
 
 			td {
 
 				&.handle {
 
-					@media( max-width: 768px ) {
+					@media( max-width: 782px ) {
 						&::after {
 							display: block;
 						}
@@ -192,11 +209,11 @@
 			&:hover {
 
 				td.handle {
-					cursor: pointer;
+					cursor: move;
 
 					&::before {
 
-						@media( min-width: 769px ) {
+						@media( min-width: 783px ) {
 							display: none;
 						}
 
