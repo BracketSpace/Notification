@@ -50,6 +50,13 @@ class RepeaterField extends Field {
 	protected $headers = [];
 
 	/**
+	 * If table is sortable
+	 *
+	 * @var array
+	 */
+	protected $sortable = true;
+
+	/**
 	 * Field constructor
 	 *
 	 * @since 5.0.0
@@ -73,6 +80,10 @@ class RepeaterField extends Field {
 			$this->data_attr = $params['data_attr'];
 		}
 
+		if ( isset( $params['sortable'] ) && ! $params['sortable'] ) {
+			$this->sortable = false;
+		}
+
 		parent::__construct( $params );
 
 	}
@@ -91,8 +102,9 @@ class RepeaterField extends Field {
 
 		$this->headers = [];
 
-		$html = '<table class="fields-repeater  ' . $this->css_class() . '" id="' . $this->get_id() . '" ' . $data_attr . '>';
+		$html = '<table class="fields-repeater ' . $this->css_class() . '" id="' . $this->get_id() . '" ' . $data_attr . '>';
 
+		$html .= '<thead>';
 		$html .= '<tr class="row header">';
 
 		$html .= '<th class="handle"></th>';
@@ -120,7 +132,12 @@ class RepeaterField extends Field {
 
 		}
 
+		$html .= '<th class="trash"></th>';
+
 		$html .= '</tr>';
+		$html .= '</thead>';
+
+		$html .= '<tbody>';
 
 		$html .= $this->row( [], true );
 
@@ -131,6 +148,7 @@ class RepeaterField extends Field {
 			}
 		}
 
+		$html .= '</tbody>';
 		$html .= '</table>';
 
 		$html .= '<a href="#" class="button button-secondary add-new-repeater-field">' . esc_html( $this->add_button_label ) . '</a>';
@@ -185,6 +203,8 @@ class RepeaterField extends Field {
 			}
 		}
 
+		$html .= '<td class="trash"></td>';
+
 		$html .= '</tr>';
 
 		return $html;
@@ -225,6 +245,22 @@ class RepeaterField extends Field {
 		}
 
 		return $sanitized;
+
+	}
+
+	/**
+	 * Returns the additional field's css classes
+	 *
+	 * @return string
+	 */
+	public function css_class() {
+
+		$classes = '';
+		if ( $this->sortable ) {
+			$classes .= 'fields-repeater-sortable ';
+		}
+
+		return $classes . parent::css_class();
 
 	}
 
