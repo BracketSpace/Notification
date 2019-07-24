@@ -271,6 +271,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Fixed] File mtime method now checks if file exists.
 * [Fixed] Cache is now cleared after saving the notification.
 * [Fixed] Uninstallation process.
+* [Fixed] License deactivation.
 * [Added] Ability to define email headers.
 * [Added] Webhook args and headers can be now not included if value is empty.
 * [Added] `notification/debug/suppress` filter to disable suppression of notifications when debug log is activated.
