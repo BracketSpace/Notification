@@ -1,5 +1,7 @@
 (function($) {
 
+	var __ = wp.i18n.__;
+
 	$( document ).ready( function() {
 
 		var $image_field   = $( '.notification-image-field' );
@@ -16,13 +18,13 @@
 			}
 
 			wp.media.frames.frame = wp.media( {
-				title: notification.i18n.select_image,
+				title: __( 'Select image', 'notification' ),
 				multiple: false,
 				library: {
 					type: 'image'
 				},
 				button: {
-					text: notification.i18n.use_selected_image
+					text: __( 'Use selected image', 'notification' )
 				}
 			} );
 
