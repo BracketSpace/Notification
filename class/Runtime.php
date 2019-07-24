@@ -133,6 +133,8 @@ class Runtime extends Utils\DocHooks {
 		notification_register_settings( [ $this->admin_impexp, 'settings' ], 50 );
 		notification_register_settings( [ $this->admin_debugging, 'debugging_settings' ], 60 );
 
+		register_uninstall_hook( $this->plugin_file, [ 'BracketSpace\Notification\Core\Uninstall', 'remove_plugin_data' ] );
+
 	}
 
 	/**
