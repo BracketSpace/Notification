@@ -275,6 +275,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] `notification/debug/suppress` filter to disable suppression of notifications when debug log is activated.
 * [Changed] Internationalization for JS files.
 * [Changed] Carrier textarea field now can be unfiltered, so no HTML will be stripped.
+* [Fixed] License deactivation.
 
 = 6.0.4 =
 * [Fixed] Webhook waring using empty header values.
