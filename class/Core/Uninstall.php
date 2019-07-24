@@ -7,8 +7,6 @@
 
 namespace BracketSpace\Notification\Core;
 
-use BracketSpace\Notification\Utils\Files;
-use BracketSpace\Notification\Utils\View;
 use BracketSpace\Notification\Admin\Extensions;
 
 /**
@@ -53,12 +51,9 @@ class Uninstall {
 		// Remove licenses.
 		if ( isset( $un['licenses'] ) && 'true' === $un['licenses'] ) {
 
-			$files            = new Files( '', '', '' );
-			$view             = new View( $files );
-			$extensions_class = new Extensions( $view );
+			$extensions_class = new Extensions();
 
 			$extensions_class->load_extensions();
-
 			$premium_extensions = $extensions_class->premium_extensions;
 
 			foreach ( $premium_extensions as $extension ) {
