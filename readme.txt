@@ -270,12 +270,14 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 = [Next] =
 * [Fixed] File mtime method now checks if file exists.
 * [Fixed] Cache is now cleared after saving the notification.
+* [Fixed] Uninstallation process.
 * [Added] Ability to define email headers.
 * [Added] Webhook args and headers can be now not included if value is empty.
 * [Added] `notification/debug/suppress` filter to disable suppression of notifications when debug log is activated.
 * [Changed] Internationalization for JS files.
+* [Changed] Notification repeater field is now by default sortable.
 * [Changed] Carrier textarea field now can be unfiltered, so no HTML will be stripped.
-* [Added] Possibility of sorting for repeater field.
+* [Removed] Freemius.
 
 = 6.0.4 =
 * [Fixed] Webhook waring using empty header values.

@@ -36,7 +36,7 @@ class Extensions {
 	 *
 	 * @var array
 	 */
-	private $premium_extensions = [];
+	public $premium_extensions = [];
 
 	/**
 	 * Extensions admin page hook
