@@ -19,7 +19,7 @@ abstract class Notification extends Carrier {
 	 * @param string $name nice name.
 	 */
 	public function __construct( $slug, $name ) {
-		notification_deprecated_class( __CLASS__, '[Next]', 'BracketSpace\\Notification\\Abstracts\\Carrier' );
+		notification_deprecated_class( __CLASS__, '6.0.0', 'BracketSpace\\Notification\\Abstracts\\Carrier' );
 		parent::__construct( $slug, $name );
 	}
 

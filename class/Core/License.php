@@ -167,14 +167,14 @@ class License {
 	 *
 	 * @since  5.1.0
 	 * @param  string $license_key license key.
-	 * @return mixed               WP_Error or true
+	 * @return mixed               WP_Error or License data
 	 */
 	public function activate( $license_key = '' ) {
 
 		$license_key = trim( $license_key );
 		$error       = false;
 
-		// call the custom API.
+		// Call the custom API.
 		$response = wp_remote_post(
 			$this->extension['edd']['store_url'],
 			[
@@ -188,7 +188,7 @@ class License {
 			]
 		);
 
-		// make sure the response came back okay.
+		// Make sure the response came back okay.
 		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
 			return new \WP_Error( 'notification_license_error', 'http-error' );
 		}
@@ -196,13 +196,13 @@ class License {
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
 		if ( false === $license_data->success ) {
-			return new \WP_Error( 'notification_license_error', $license_data->error );
+			return new \WP_Error( 'notification_license_error', $license_data->error, $license_data );
 		}
 
 		$license_data->license_key = $license_key;
 		$this->save( $license_data );
 
-		return true;
+		return $license_data;
 
 	}
 
@@ -210,14 +210,14 @@ class License {
 	 * Deactivates the license
 	 *
 	 * @since  5.1.0
-	 * @return mixed WP_Error or true
+	 * @return mixed WP_Error or License data
 	 */
 	public function deactivate() {
 
 		$license_data = $this->get();
 		$error        = false;
 
-		// call the custom API.
+		// Call the custom API.
 		$response = wp_remote_post(
 			$this->extension['edd']['store_url'],
 			[
@@ -231,20 +231,20 @@ class License {
 			]
 		);
 
-		// make sure the response came back okay.
+		// Make sure the response came back okay.
 		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
 			return new \WP_Error( 'notification_license_error', 'http-error' );
 		}
 
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
-		if ( 'deactivated' !== $license_data->license ) {
+		if ( ! in_array( $license_data->license, [ 'deactivated', 'failed' ], true ) ) {
 			return new \WP_Error( 'notification_license_error', 'deactivation-error' );
 		}
 
 		$this->remove();
 
-		return true;
+		return $license_data;
 
 	}
 
@@ -260,7 +260,7 @@ class License {
 		$license_key = trim( $license_key );
 		$error       = false;
 
-		// call the custom API.
+		// Call the custom API.
 		$response = wp_remote_post(
 			$this->extension['edd']['store_url'],
 			[
@@ -274,7 +274,7 @@ class License {
 			]
 		);
 
-		// make sure the response came back okay.
+		// Make sure the response came back okay.
 		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
 			return new \WP_Error( 'notification_license_error', 'http-error' );
 		}

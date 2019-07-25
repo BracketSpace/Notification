@@ -186,7 +186,8 @@ class Files {
 	 * @return string       asset file path
 	 */
 	public function asset_mtime( $type = '', $file = '' ) {
-		return filemtime( $this->asset_path( $type, $file ) );
+		$path = $this->asset_path( $type, $file );
+		return file_exists( $path ) ? filemtime( $path ) : time();
 	}
 
 	/**

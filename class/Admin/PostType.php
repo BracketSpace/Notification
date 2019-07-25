@@ -120,7 +120,7 @@ class PostType {
 	 *
 	 * @filter bulk_post_updated_messages
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  array $bulk_messages Messages.
 	 * @param  array $bulk_counts   Counters.
 	 * @return array
@@ -141,7 +141,7 @@ class PostType {
 	 *
 	 * @filter views_edit-notification
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  array $statuses Statuses array.
 	 * @return array
 	 */
@@ -170,7 +170,7 @@ class PostType {
 	 *
 	 * @action wp_trash_post 100
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  integer $post_id Post ID.
 	 * @return void
 	 */
@@ -195,7 +195,7 @@ class PostType {
 	 *
 	 * @filter wp_insert_post_data 100
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  array $data    post data.
 	 * @param  array $postarr saved data.
 	 * @return array
@@ -256,6 +256,11 @@ class PostType {
 		$data              = $_POST;
 		$notification_post = notification_adapt_from( 'WordPress', $post );
 
+		// Title.
+		if ( isset( $data['post_title'] ) ) {
+			$notification_post->set_title( $data['post_title'] );
+		}
+
 		// Status.
 		$status = ( isset( $data['notification_onoff_switch'] ) && '1' === $data['notification_onoff_switch'] );
 		$notification_post->set_enabled( $status );
@@ -277,10 +282,6 @@ class PostType {
 				continue;
 			}
 
-			if ( isset( $data[ 'notification_carrier_' . $carrier->get_slug() . '_enable' ] ) ) {
-				$carrier->enabled = true;
-			}
-
 			$carrier_data = $data[ 'notification_carrier_' . $carrier->get_slug() ];
 
 			// If nonce not set or false, ignore this form.
@@ -288,7 +289,15 @@ class PostType {
 				continue;
 			}
 
+			// @todo #h1kf7 `enabled` key is overwritten below.
 			$carrier->set_data( $carrier_data );
+
+			if ( isset( $data[ 'notification_carrier_' . $carrier->get_slug() . '_enable' ] ) ) {
+				$carrier->enable();
+			} else {
+				$carrier->disable();
+			}
+
 			$carriers[ $carrier->get_slug() ] = $carrier;
 
 		}
@@ -299,6 +308,9 @@ class PostType {
 		do_action( 'notification/data/save', $notification_post );
 
 		$notification_post->save();
+
+		$cache = new ObjectCache( 'notifications', 'notification' );
+		$cache->delete();
 
 		do_action( 'notification/data/save/after', $notification_post );
 
@@ -325,14 +337,12 @@ class PostType {
 
 		$ajax->verify_nonce( 'change_notification_status_' . $data['post_id'] );
 
-		$status = 'true' === $data['status'] ? 'publish' : 'draft';
+		$adapter = notification_adapt_from( 'WordPress', (int) $data['post_id'] );
+		$adapter->set_enabled( 'true' === $data['status'] );
 
-		$result = wp_update_post( [
-			'ID'          => $data['post_id'],
-			'post_status' => $status,
-		] );
+		$result = $adapter->save();
 
-		if ( 0 === $result ) {
+		if ( is_wp_error( $result ) ) {
 			$error = __( 'Notification status couldn\'t be changed.', 'notification' );
 		}
 
@@ -350,7 +360,7 @@ class PostType {
 	 * Gets all Notifications from database.
 	 * Uses direct database call for performance.
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return array
 	 */
 	public static function get_all_notifications() {
@@ -381,9 +391,9 @@ class PostType {
 	 * Sets up all the Notification from database
 	 * It's running on every single page load.
 	 *
-	 * @action notification/boot
+	 * @action notification/boot 9999999
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function setup_notifications() {
@@ -392,8 +402,20 @@ class PostType {
 
 		foreach ( $notifications as $notification_json ) {
 			if ( ! empty( $notification_json ) ) {
+
+				// Check if Notification has valid JSON.
+				$json_check = json_decode( $notification_json, true );
+				if ( json_last_error() !== JSON_ERROR_NONE ) {
+					continue;
+				}
+
 				$adapter = notification_adapt_from( 'JSON', $notification_json );
+
+				// Set source back to WordPress.
+				$adapter->set_source( 'WordPress' );
+
 				notification_add( $adapter->get_notification() );
+
 			}
 		}
 

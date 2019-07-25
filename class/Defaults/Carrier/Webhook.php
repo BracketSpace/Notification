@@ -45,6 +45,13 @@ class Webhook extends Abstracts\Carrier {
 			'name'             => 'args',
 			'add_button_label' => __( 'Add argument', 'notification' ),
 			'fields'           => [
+				new Field\CheckboxField(
+					[
+						'label'          => __( 'Hide', 'notification-slack' ),
+						'name'           => 'hide',
+						'checkbox_label' => __( 'Hide if empty value', 'notification' ),
+					]
+				),
 				new Field\InputField( [
 					'label'       => __( 'Key', 'notification' ),
 					'name'        => 'key',
@@ -73,6 +80,13 @@ class Webhook extends Abstracts\Carrier {
 				'name'             => 'headers',
 				'add_button_label' => __( 'Add header', 'notification' ),
 				'fields'           => [
+					new Field\CheckboxField(
+						[
+							'label'          => __( 'Hide', 'notification-slack' ),
+							'name'           => 'hide',
+							'checkbox_label' => __( 'Hide if empty value', 'notification' ),
+						]
+					),
 					new Field\InputField( [
 						'label'       => __( 'Key', 'notification' ),
 						'name'        => 'key',
@@ -103,7 +117,7 @@ class Webhook extends Abstracts\Carrier {
 		$data = $this->data;
 
 		$args = $this->parse_args( $data['args'] );
-		$args = apply_filters_deprecated( 'notification/webhook/args', [ $args, $this, $trigger ], '[Next]', 'notification/carrier/webhook/args' );
+		$args = apply_filters_deprecated( 'notification/webhook/args', [ $args, $this, $trigger ], '6.0.0', 'notification/carrier/webhook/args' );
 		$args = apply_filters( 'notification/carrier/webhook/args', $args, $this, $trigger );
 
 		if ( $data['json'] ) {
@@ -117,13 +131,13 @@ class Webhook extends Abstracts\Carrier {
 			$headers = [];
 		}
 
-		if ( notification_get_setting( 'notifications/carrier/webhook/headers' ) ) {
+		if ( notification_get_setting( 'notifications/webhook/headers' ) ) {
 			$headers = array_merge( $headers, $this->parse_args( $data['headers'] ) );
 		}
 
 		// Call each URL separately.
 		foreach ( $data['urls'] as $url ) {
-			$filtered_args = apply_filters_deprecated( 'notification/webhook/args/' . $url['type'], [ $args, $this, $trigger ], '[Next]', 'notification/carrier/webhook/args/' . $url['type'] );
+			$filtered_args = apply_filters_deprecated( 'notification/webhook/args/' . $url['type'], [ $args, $this, $trigger ], '6.0.0', 'notification/carrier/webhook/args/' . $url['type'] );
 			$filtered_args = apply_filters( 'notification/carrier/webhook/args/' . $url['type'], $filtered_args, $this, $trigger );
 
 			if ( 'get' === $url['type'] ) {
@@ -155,7 +169,7 @@ class Webhook extends Abstracts\Carrier {
 			$url,
 			$args,
 			$this,
-		], '[Next]', 'notification/carrier/webhook/remote_args/get' );
+		], '6.0.0', 'notification/carrier/webhook/remote_args/get' );
 
 		$remote_args = apply_filters( 'notification/carrier/webhook/remote_args/get', $remote_args, $url, $args, $this );
 
@@ -167,7 +181,7 @@ class Webhook extends Abstracts\Carrier {
 			$args,
 			$remote_args,
 			$this,
-		], '[Next]', 'notification/carrier/webhook/called/get' );
+		], '6.0.0', 'notification/carrier/webhook/called/get' );
 		do_action( 'notification/carrier/webhook/called/get', $response, $url, $args, $remote_args, $this );
 
 	}
@@ -191,7 +205,7 @@ class Webhook extends Abstracts\Carrier {
 			$url,
 			$args,
 			$this,
-		], '[Next]', 'notification/carrier/webhook/remote_args/post' );
+		], '6.0.0', 'notification/carrier/webhook/remote_args/post' );
 
 		$remote_args = apply_filters( 'notification/carrier/webhook/remote_args/post', $remote_args, $url, $args, $this );
 
@@ -203,7 +217,7 @@ class Webhook extends Abstracts\Carrier {
 			$args,
 			$remote_args,
 			$this,
-		], '[Next]', 'notification/carrier/webhook/called/post' );
+		], '6.0.0', 'notification/carrier/webhook/called/post' );
 		do_action( 'notification/carrier/webhook/called/post', $response, $url, $args, $remote_args, $this );
 
 	}
@@ -219,7 +233,15 @@ class Webhook extends Abstracts\Carrier {
 
 		$parsed_args = [];
 
+		if ( empty( $args ) ) {
+			return $parsed_args;
+		}
+
 		foreach ( $args as $arg ) {
+			if ( isset( $arg['hide'] ) && $arg['hide'] ) {
+				continue;
+			}
+
 			$parsed_args[ $arg['key'] ] = $arg['value'];
 		}
 

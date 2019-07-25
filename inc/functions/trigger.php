@@ -45,7 +45,7 @@ function notification_get_triggers() {
 /**
  * Gets single registered trigger
  *
- * @since  [Next]
+ * @since  6.0.0
  * @param  string $trigger_slug trigger slug.
  * @return mixed                trigger object or false
  */

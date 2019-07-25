@@ -83,6 +83,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 
 		$this->add_merge_tag( new MergeTag\Comment\CommentID() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentContent() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentContentHtml() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentStatus() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentType() );
 
@@ -204,7 +205,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 	/**
 	 * Gets nice, translated post type name
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return string post name
 	 */
 	public function get_post_type_nicename() {

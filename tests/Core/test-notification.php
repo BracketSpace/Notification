@@ -18,7 +18,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test setter and getter
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_setter_getter() {
 
@@ -31,7 +31,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test getter exception
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_getter_exception() {
 
@@ -45,7 +45,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test setter exception
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_setter_exception() {
 
@@ -59,7 +59,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test hash creation
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_hash() {
 
@@ -76,7 +76,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test title
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_title() {
 
@@ -93,7 +93,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test trigger
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_trigger() {
 
@@ -109,7 +109,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test trigger exception
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_trigger_exception() {
 
@@ -124,7 +124,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test carriers
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_carriers() {
 
@@ -140,7 +140,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test carriers exception
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_carriers_exception() {
 
@@ -155,7 +155,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test enabled
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_enabled() {
 
@@ -177,7 +177,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test extras
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_extras() {
 
@@ -198,7 +198,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test extras exception
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_extras_exception() {
 
@@ -217,7 +217,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test version
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_version() {
 
@@ -236,16 +236,20 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test to_array
 	 *
-	 * @since [Next]
-	 * @todo Extras API #h1k0k.
+	 * @since 6.0.0
 	 */
 	public function test_to_array() {
 
 		$trigger = Helpers\Registerer::register_trigger();
 		$carrier = Helpers\Registerer::register_carrier();
-		$carrier->enabled = true;
+		$carrier->enable();
 
 		$version = time() - 100;
+		$extras  = [
+			'extras1' => 'value1',
+			'extras2' => [ 'value2-1', 'value2-2' ],
+			'extras3' => 3,
+		];
 
 		$notification = new Notification( [
 			'hash'     => 'test-hash',
@@ -253,6 +257,7 @@ class TestNotification extends \WP_UnitTestCase {
 			'trigger'  => $trigger,
 			'carriers' => [ $carrier ],
 			'enabled'  => true,
+			'extras'   => $extras,
 			'version'  => $version,
 		] );
 
@@ -272,6 +277,7 @@ class TestNotification extends \WP_UnitTestCase {
 		$this->assertEquals( $trigger->get_slug(), $data['trigger'] );
 		$this->assertArrayHasKey( $carrier->get_slug(), $data['carriers'] );
 		$this->assertEquals( true, $data['enabled'] );
+		$this->assertEquals( $extras, $data['extras'] );
 		$this->assertEquals( $version, $data['version'] );
 
 	}
@@ -279,7 +285,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test create_hash
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_create_hash() {
 		$this->assertRegExp( '/notification_[a-z0-9]{13}/', Notification::create_hash() );
@@ -288,7 +294,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test add_carrier object
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_add_carrier_object() {
 
@@ -304,7 +310,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test add_carrier existing exception
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_add_notification_existing_exception() {
 
@@ -320,7 +326,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test add_carrier not-existing exception
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_add_carrier_not_existing_exception() {
 
@@ -334,7 +340,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test get_carrier
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_get_carrier() {
 
@@ -351,7 +357,7 @@ class TestNotification extends \WP_UnitTestCase {
 	/**
 	 * Test enable_carrier
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_enable_carrier() {
 
@@ -363,14 +369,14 @@ class TestNotification extends \WP_UnitTestCase {
 		$notification->enable_carrier( $carrier->get_slug() );
 
 		$this->assertSame( $carrier, $notification->get_carrier( $carrier->get_slug() ) );
-		$this->assertTrue( $notification->get_carrier( $carrier->get_slug() )->enabled );
+		$this->assertTrue( $notification->get_carrier( $carrier->get_slug() )->is_enabled() );
 
 	}
 
 	/**
 	 * Test enable_carrier and adding
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_enable_carrier_adding() {
 
@@ -378,28 +384,44 @@ class TestNotification extends \WP_UnitTestCase {
 		$notification = new Notification();
 		$notification->enable_carrier( $carrier->get_slug() );
 
-		$this->assertTrue( $notification->get_carrier( $carrier->get_slug() )->enabled );
+		$this->assertTrue( $notification->get_carrier( $carrier->get_slug() )->is_enabled() );
 
 	}
 
 	/**
 	 * Test disable_carrier
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function test_disable_carrier() {
 
-		$carrier          = Helpers\Registerer::register_carrier();
-		$carrier->enabled = true;
-		$notification     = new Notification( [
+		$carrier      = Helpers\Registerer::register_carrier()->enable();
+		$notification = new Notification( [
 			'carriers' => [ $carrier ]
 		] );
 
-		$this->assertTrue( $notification->get_carrier( $carrier->get_slug() )->enabled );
+		$this->assertTrue( $notification->get_carrier( $carrier->get_slug() )->is_enabled() );
 
 		$notification->disable_carrier( $carrier->get_slug() );
 
-		$this->assertFalse( $notification->get_carrier( $carrier->get_slug() )->enabled );
+		$this->assertFalse( $notification->get_carrier( $carrier->get_slug() )->is_enabled() );
+
+	}
+
+	/**
+	 * Test get_extra
+	 *
+	 * @since 6.0.0
+	 */
+	public function test_get_extra() {
+
+		$notification = new Notification();
+		$value        = 'extra-data';
+
+		$notification->add_extra( 'extra_key', $value );
+
+		$this->assertEquals( $value, $notification->get_extra( 'extra_key' ) );
+		$this->assertNull( $notification->get_extra( 'undefined' ) );
 
 	}
 

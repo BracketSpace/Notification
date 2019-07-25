@@ -87,6 +87,38 @@
 				margin-bottom: 0;
 			}
 
+			&-header {
+				position: relative;
+
+				a {
+					text-decoration: none;
+					cursor: pointer;
+				}
+
+				&::after {
+					content: "\f142";
+					display: inline-block;
+					font: normal 20px/1 dashicons;
+					speak: none;
+					-webkit-font-smoothing: antialiased;
+					-moz-osx-font-smoothing: grayscale;
+					position: absolute;
+					top: 5px;
+					right: 0px;
+					width: 20px;
+					border-radius: 50%;
+					text-indent: -1px;
+					transition: all 0.3s ease-in-out;
+					transform: rotate(180deg);
+				}
+
+				&.open {
+					&::after {
+						transform: rotate(0);
+					}
+				}
+			}
+
 			h3 {
 				font-weight: normal;
 				margin: 4px 0;
@@ -126,25 +158,6 @@
 
 				}
 
-			}
-
-			&.group-log {
-
-				th {
-					display: none;
-				}
-
-				.notification-data-log {
-					margin-left: 29px;
-					display: inline-block;
-				}
-
-				pre {
-					margin: 0;
-					max-height: 500px;
-					max-height: 80vh;
-					overflow: auto;
-				}
 			}
 
 		}

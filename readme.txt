@@ -1,11 +1,10 @@
 === Notification - Custom Notifications and Alerts for WordPress ===
-Contributors: notification, bracketspace, Kubitomakita, insejn
-Donate link: https://www.paypal.me/underDEV/
+Contributors: notification, bracketspace, Kubitomakita, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
-Tested up to: 5.0
-Stable tag: 5.3.2
-Requires PHP: 5.6
+Tested up to: 5.2
+Stable tag: 6.0.4
+Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -22,7 +21,7 @@ Custom Notifications and Alerts without a hassle. Notify anyone about any action
 The Notification plugin is built with three main components:
 
 * Trigger - a WordPress action, ie. User registration or Post publication
-* Notification - the thing which is being sent, ie. Email or Push
+* Carrier - the thing which is being sent, ie. Email or Push
 * Merge Tag - dynamic content, ie. {user_email} or {post_permalink}
 
 You can use them in any combination, adding as many Notifications as you want. They can be sent to multiple Recipients with the content you write.
@@ -44,7 +43,7 @@ You can create your own Triggers with any WordPress action. If you do in your co
 
 This allows you to use the Notification plugin as a notification system in your own plugin or theme. How? Well, because of two things:
 
-* You can easily load it copying the plugin files and including `load.php` file. A function known from Advanced Custom Fields plugin.
+* You can easily load it by copying the plugin files and including `load.php` file. A function known from Advanced Custom Fields plugin.
 * You can white label the plugin with just one function which is shipped in the plugin's core. For free.
 
 How easy extending the Notification plugin is? Let's see:
@@ -54,7 +53,7 @@ How easy extending the Notification plugin is? Let's see:
 * Defining Global Merge Tag - 1 line of code
 * Creating new Extension - we have a [Boilerplate](https://github.com/BracketSpace/Notification-Extension-Boilerplate/) ready for you to start hacking
 
-[See the developer documentation](https://docs.bracketspace.com/docs-category/developer/) if you don't believe us.
+[See the developer documentation](https://docs.bracketspace.com/notification/developer/general) if you don't believe us.
 
 = DEFAULT NOTIFICATIONS =
 
@@ -123,6 +122,24 @@ Media:
 * Media updated notification
 * Media deleted notification
 
+Plugin:
+
+* Plugin activated notification
+* Plugin deactivated notification
+* Plugin installed notification
+* Plugin removed notification
+* Plugin updated notification
+
+Theme:
+
+* Theme installed notification
+* Theme switched notification
+* Theme updated notification
+
+WordPress:
+
+* Available updates notification
+
 Feel free to suggest new core triggers in the support forum.
 
 Each Trigger has own set of Merge Tags but you can use the Global Merge Tags anywhere.
@@ -154,10 +171,10 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 * [Mailgun](https://bracketspace.com/downloads/notification-mailgun/) - send emails using Mailgun service
 * [File Log](https://bracketspace.com/downloads/notification-file-log/) - save Notifications as file logs on the server
 * [Signature](https://wordpress.org/plugins/signature-notification/) - add a signature to all your emails automatically
+* [WooCommerce](https://bracketspace.com/downloads/notification-woocommerce/) - triggers specific to WooCommerce
 
 *Coming soon* - vote for the extensions
 
-* [WooCommerce](https://bracketspace.com/downloads/notification-woocommerce/) - triggers specific to WooCommerce
 * [Email Templates](https://bracketspace.com/downloads/notification-email-templates/) - use beautiful templates for your emails
 * [Facebook](https://bracketspace.com/downloads/notification-facebook/) - post messages to Facebook
 * [Twitter](https://bracketspace.com/downloads/notification-twitter/) - post messages to Twitter
@@ -175,7 +192,7 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 
 = USEFUL LINKS =
 
-* [Documentation](https://docs.bracketspace.com/docs-category/notification/)
+* [Documentation](https://docs.bracketspace.com/notification/)
 * [Support plugin developement](https://www.paypal.me/underDEV/)
 * [GitHub repository](https://github.com/BracketSpace/Notification)
 * [Report a bug](https://github.com/BracketSpace/Notification/issues/new)
@@ -194,7 +211,7 @@ Download and install this plugin from Plugins -> Add New admin screen.
 
 Notification can be loaded also as a part of any plugin or theme. To do it just include plugins's `load.php` file. It will figure out if it's loaded from theme or from plugin.
 
-[See the detailed guide](https://docs.bracketspace.com/docs/including-notification-in-the-plugin-or-theme/)
+[See the detailed guide](https://docs.bracketspace.com/notification/developer/general/bundling)
 
 == Frequently Asked Questions ==
 
@@ -216,11 +233,11 @@ So it doesn't matter if you don't have any coding skills, they are not required 
 
 = How to register my own triggers? =
 
-With `register_trigger()` function. [See the detailed guide](https://docs.bracketspace.com/docs/registering-custom-triggers/)
+With `register_trigger()` function. [See the detailed guide](https://docs.bracketspace.com/notification/developer/triggers/custom-trigger)
 
 = How to include a custom field in the notification? =
 
-You can [write a merge tag](https://docs.bracketspace.com/docs/adding-merge-tags-to-existing-triggers/) by yourself or go with a no-brainer [Custom Fields extension](https://bracketspace.com/downloads/notification-custom-fields/).
+You can [write a merge tag](https://docs.bracketspace.com/notification/developer/triggers/adding-merge-tags-to-existing-triggers) by yourself or go with a no-brainer [Custom Fields extension](https://bracketspace.com/downloads/notification-custom-fields/).
 
 = How to target only specific post / category / user etc? =
 
@@ -228,7 +245,7 @@ You can control when exactly the notification is sending with the [Conditionals 
 
 = Can I bundle the plugin with my plugin or theme? =
 
-Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/including-notification-in-the-plugin-or-theme/)
+Yes, you can. [See the detailed guide](https://docs.bracketspace.com/notification/developer/general/bundling)
 
 = Is this plugin capable of sending high volume emails? =
 
@@ -251,6 +268,39 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
+* [Fixed] File mtime method now checks if file exists.
+* [Fixed] Cache is now cleared after saving the notification.
+* [Fixed] Uninstallation process.
+* [Fixed] License deactivation.
+* [Added] Ability to define email headers.
+* [Added] Webhook args and headers can be now not included if value is empty.
+* [Added] `notification/debug/suppress` filter to disable suppression of notifications when debug log is activated.
+* [Changed] Internationalization for JS files.
+* [Changed] Notification repeater field is now by default sortable.
+* [Changed] Carrier textarea field now can be unfiltered, so no HTML will be stripped.
+* [Removed] Freemius.
+
+= 6.0.4 =
+* [Fixed] Webhook waring using empty header values.
+* [Fixed] Quick switch in Notifications table.
+* [Fixed] Catching Notifications.
+* [Added] Basic Gutenberg compatibility, post triggers are now postponed to `rest_after_insert_{$post_type}` action.
+
+= 6.0.3 =
+* [Fixed] On/off switch in notifications table.
+* [Fixed] Duplicate feature.
+* [Fixed] Licensing.
+* [Changed] Notification trash link wording.
+
+= 6.0.2 =
+* [Fixed] Error in admin notice while manipulating extension license.
+* [Fixed] Scripts and styles conditional loading.
+
+= 6.0.1 =
+* [Changed] Added soft-fail for not valid JSON configuration for Notifications. This is most likely caused by updating from a very old version.
+
+= 6.0.0 =
+* [Fixed] Theme Update trigger errors on update.
 * [Added] Notification object as a wrapper for Notification Post.
 * [Added] `notification_create_view` function for seamless view creation.
 * [Added] `notification/post/column/main` action for notification edit screen addons.
@@ -264,6 +314,13 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] JSON synchronization feature.
 * [Added] Management for default WordPress notifications.
 * [Added] `add_quick_merge_tag` Trigger method.
+* [Added] Collapse option for plugin settings groups.
+* [Added] Common error log for all extensions, you can use `notification_log` function.
+* [Added] Post thumbnail URL and featured imager URL Merge Tags.
+* [Added] Comment content HTML merge tag.
+* [Added] Resolver API which allows to register more Merge Tag resolvers.
+* [Added] `notification/should_send` filter to hold off the whole Notification.
+* [Removed] Trigger usage tracking.
 * [Changed] PostData class has been removed in favor of Notification object and procedural functions.
 * [Changed] Admin Classes: MergeTags, Notifications, PostData, Recipients, Triggers has been removed and their content included in the Admin/PostType class.
 * [Changed] Notification data is now using single nonce field and additional data should be saved with `notification/data/save` action.
@@ -275,7 +332,11 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] ScreenHelp class has been renamed to Screen and render methods from PostType class has been moved to this new class.
 * [Changed] Notifications are now loaded on every page load and the Trigger action is not executing at all if no Notification is using it.
 * [Changed] Notifications doesn't have the trash anymore, the items are removed right away.
-* [Removed] Trigger usage tracking.
+* [Changed] On notification edit screen the editor styles are no longer applied.
+* [Changed] Carriers now have two step status - they can be either added to a Notification and be disabled at the same time.
+* [Changed] strip_shortcodes function to custom preg_replace for better stripping.
+* [Changed] Trigger storage now contains whole Notifications instead of just Carriers.
+
 
 = Compatibility breaking changes =
 
@@ -284,7 +345,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * notification/notification/pre-send -> notification/carrier/pre-send
 * notification/notification/sent -> notification/carrier/sent
 * notificaiton/notification/field/resolving -> notification/carrier/field/resolving
-* notification/value/strip_empty_mergetags -> notification/carrier/field/value/strip_empty_mergetags
+* notification/value/strip_empty_mergetags -> notification/resolve/strip_empty_mergetags
 * notification/value/strip_shortcodes -> notification/carrier/field/value/strip_shortcodes
 * notificaiton/notification/field/resolved -> notification/carrier/field/value/resolved
 * notificaiton/merge_tag/value/resolved -> notification/merge_tag/value/resolved
@@ -322,6 +383,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * BracketSpace\Notification\Admin\BoxRenderer - removed
 * BracketSpace\Notification\Admin\FormRenderer - removed
 * BracketSpace\Notification\Admin\ScreenHelp - removed
+* BracketSpace\Notification\Admin\FieldsResolver - removed
 * BracketSpace\Notification\Abstracts\Notification -> BracketSpace\Notification\Abstracts\Carrier
 * BracketSpace\Notification\Defaults\Notification -> BracketSpace\Notification\Defaults\Carrier
 * BracketSpace\Notification\Admin\Cron -> BracketSpace\Notification\Core\Cron
@@ -339,3 +401,4 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * notification_get_single_recipient -> notification_get_recipient
 * notification_get_notification_recipients -> notification_get_carrier_recipients
 * notification_get_single_trigger -> notification_get_trigger
+* register_recipient -> notification_register_recipient

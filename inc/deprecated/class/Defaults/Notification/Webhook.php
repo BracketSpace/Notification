@@ -18,10 +18,10 @@ class Webhook extends Carrier\Webhook {
 	 * Notification constructor
 	 *
 	 * @since 5.0.0
-	 * @deprecated [Next] Namespace changed to BracketSpace\Notification\Defaults\Carrier
+	 * @deprecated 6.0.0 Namespace changed to BracketSpace\Notification\Defaults\Carrier
 	 */
 	public function __construct() {
-		notification_deprecated_class( __CLASS__, '[Next]', 'BracketSpace\\Notification\\Defaults\\Carrier\\Webhook' );
+		notification_deprecated_class( __CLASS__, '6.0.0', 'BracketSpace\\Notification\\Defaults\\Carrier\\Webhook' );
 		parent::__construct();
 	}
 

@@ -11,6 +11,7 @@ use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Interfaces\Sendable;
 use BracketSpace\Notification\Admin\FieldsResolver;
 use BracketSpace\Notification\Defaults\Store\Notification as NotificationStore;
+use BracketSpace\Notification\Core\Notification;
 
 /**
  * Trigger abstract class
@@ -18,11 +19,11 @@ use BracketSpace\Notification\Defaults\Store\Notification as NotificationStore;
 abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 	/**
-	 * Storage for Trigger's Carriers
+	 * Storage for Trigger's Notifications
 	 *
 	 * @var array
 	 */
-	private $carrier_storage = [];
+	private $notification_storage = [];
 
 	/**
 	 * Group
@@ -166,83 +167,89 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Attaches the Carrier
+	 * Attaches the Notification
 	 *
-	 * @param  Sendable $carrier Carrier class.
+	 * @param  Notification $notification Notification class.
 	 * @return void
 	 */
-	public function attach( Sendable $carrier ) {
-		$this->carrier_storage[ $carrier->hash() ] = clone $carrier;
+	public function attach( Notification $notification ) {
+		$this->notification_storage[ $notification->get_hash() ] = clone $notification;
 	}
 
 	/**
-	 * Gets attached Carriers
+	 * Gets attached Notifications
 	 *
 	 * @return array
 	 */
-	public function get_carriers() {
-		return $this->carrier_storage;
+	public function get_notifications() {
+		return $this->notification_storage;
 	}
 
 	/**
-	 * Check if Trigger has attached Carriers
+	 * Check if Trigger has attached Notifications
 	 *
 	 * @return array
 	 */
-	public function has_carriers() {
-		return ! empty( $this->get_carriers() );
+	public function has_notifications() {
+		return ! empty( $this->get_notifications() );
 	}
 
 	/**
-	 * Detaches the Carrier
+	 * Detaches the Notification
 	 *
-	 * @param  Sendable $carrier Carrier class.
+	 * @param  Notification $notification Notification class.
 	 * @return void
 	 */
-	public function detach( Sendable $carrier ) {
-		if ( isset( $this->carrier_storage[ $carrier->hash() ] ) ) {
-			unset( $this->carrier_storage[ $carrier->hash() ] );
+	public function detach( Notification $notification ) {
+		if ( isset( $this->notification_storage[ $notification->get_hash() ] ) ) {
+			unset( $this->notification_storage[ $notification->get_hash() ] );
 		}
 	}
 
 	/**
-	 * Detaches all the Carriers
+	 * Detaches all the Notifications
 	 *
 	 * @return $this
 	 */
 	public function detach_all() {
-		$this->carrier_storage = [];
+		$this->notification_storage = [];
 		return $this;
 	}
 
 	/**
-	 * Rolls out all the Carriers
+	 * Rolls out all the Notifications
 	 *
 	 * @return void
 	 */
 	public function roll_out() {
 
-		foreach ( $this->get_carriers() as $carrier ) {
-			$carrier->prepare_data();
+		foreach ( $this->get_notifications() as $notification ) {
+			if ( ! apply_filters( 'notification/should_send', true, $notification, $this ) ) {
+				continue;
+			}
 
-			do_action_deprecated( 'notification/notification/pre-send', [
-				$carrier,
-				$this,
-			], '[Next]', 'notification/carrier/pre-send' );
+			foreach ( $notification->get_enabled_carriers() as $carrier ) {
+				$carrier->prepare_data();
 
-			do_action( 'notification/carrier/pre-send', $carrier, $this );
-
-			if ( ! $carrier->is_suppressed() ) {
-
-				$carrier->send( $this );
-
-				do_action_deprecated( 'notification/notification/sent', [
+				do_action_deprecated( 'notification/notification/pre-send', [
 					$carrier,
 					$this,
-				], '[Next]', 'notification/carrier/sent' );
+				], '6.0.0', 'notification/carrier/pre-send' );
 
-				do_action( 'notification/carrier/sent', $carrier, $this );
+				do_action( 'notification/carrier/pre-send', $carrier, $this, $notification );
 
+				if ( ! $carrier->is_suppressed() ) {
+
+					$carrier->send( $this );
+
+					do_action_deprecated( 'notification/notification/sent', [
+						$carrier,
+						$this,
+					], '6.0.0', 'notification/carrier/sent' );
+
+					do_action( 'notification/carrier/sent', $carrier, $this, $notification );
+
+				}
 			}
 		}
 
@@ -303,7 +310,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Quickly adds new Merge Tag
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @param string $property_name Trigger property name.
 	 * @param string $label         Nice, translatable Merge Tag label.
 	 * @param string $group         Optional, translatable group name.
@@ -341,23 +348,35 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Gets Trigger's merge tags
 	 *
-	 * @param string $type optional, all|visible|hidden, default: all.
+	 * @since 6.0.0 Added param $grouped which makes the array associative
+	 *               with merge tag slugs as keys.
+	 * @param string $type    Optional, all|visible|hidden, default: all.
+	 * @param bool   $grouped Optional, default: false.
 	 * @return $array merge tags
 	 */
-	public function get_merge_tags( $type = 'all' ) {
+	public function get_merge_tags( $type = 'all', $grouped = false ) {
 
 		if ( 'all' === $type ) {
-			return $this->merge_tags;
+			$tags = $this->merge_tags;
+		} else {
+			$tags = [];
+
+			foreach ( $this->merge_tags as $merge_tag ) {
+				if ( 'visible' === $type && ! $merge_tag->is_hidden() ) {
+					array_push( $tags, $merge_tag );
+				} elseif ( 'hidden' === $type && $merge_tag->is_hidden() ) {
+					array_push( $tags, $merge_tag );
+				}
+			}
 		}
 
-		$tags = [];
-
-		foreach ( $this->merge_tags as $merge_tag ) {
-			if ( 'visible' === $type && ! $merge_tag->is_hidden() ) {
-				array_push( $tags, $merge_tag );
-			} elseif ( 'hidden' === $type && $merge_tag->is_hidden() ) {
-				array_push( $tags, $merge_tag );
+		// Group the tags if needed.
+		if ( $grouped ) {
+			$grouped_tags = [];
+			foreach ( $tags as $merge_tag ) {
+				$grouped_tags[ $merge_tag->get_slug() ] = $merge_tag;
 			}
+			return $grouped_tags;
 		}
 
 		return $tags;
@@ -367,13 +386,16 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Resolves all Carrier fields with Merge Tags
 	 *
+	 * @since 6.0.0 Fields resolving has been moved to additional API
+	 *               which is called by the Carrier itself
 	 * @return void
 	 */
-	private function resolve_fields() {
+	protected function resolve_fields() {
 
-		foreach ( $this->get_carriers() as $carrier ) {
-			$resolver = new FieldsResolver( $carrier, $this->get_merge_tags() );
-			$resolver->resolve_fields();
+		foreach ( $this->get_notifications() as $notification ) {
+			foreach ( $notification->get_enabled_carriers() as $carrier ) {
+				$carrier->resolve_fields( $this );
+			}
 		}
 
 	}
@@ -384,7 +406,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * @since 5.2.2
 	 * @return void
 	 */
-	private function clean_merge_tags() {
+	protected function clean_merge_tags() {
 
 		foreach ( $this->get_merge_tags() as $merge_tag ) {
 			$merge_tag->clean_value();
@@ -393,20 +415,16 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
-	 * Attaches the Carriers to Trigger
+	 * Attaches the Notifications to Trigger
 	 *
 	 * @return void
 	 */
-	public function set_carriers() {
+	public function set_notifications() {
 
 		$store = new NotificationStore();
 
 		foreach ( $store->with_trigger( $this->get_slug() ) as $notification ) {
-			foreach ( $notification->get_carriers() as $carrier ) {
-				if ( $carrier->enabled ) {
-					$this->attach( $carrier );
-				}
-			}
+			$this->attach( $notification );
 		}
 
 	}
@@ -436,10 +454,10 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	public function _action() {
 
-		$this->detach_all()->set_carriers();
+		$this->detach_all()->set_notifications();
 
-		// If no Carriers use this Trigger, bail.
-		if ( ! $this->has_carriers() ) {
+		// If no Notifications use this Trigger, bail.
+		if ( ! $this->has_notifications() ) {
 			return;
 		}
 

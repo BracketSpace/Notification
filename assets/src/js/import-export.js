@@ -1,5 +1,7 @@
 ( function($) {
 
+	var __ = wp.i18n.__;
+
 	$( document ).ready( function() {
 
 		var $button = $( '#export-notifications .button' );
@@ -55,7 +57,7 @@
 			files = event.target.files;
 			$.each( files, function( key, value ) {
 				if ( 'application/json' !== value.type ) {
-					add_message( 'error', notification.i18n.valid_json_only );
+					add_message( 'error', __( 'Please upload only valid JSON files', 'notification' ) );
 					$file.val( '' );
 				} else {
 					clear_message();
@@ -80,7 +82,7 @@
 			data.append( 'type', 'notifications' );
 			data.append( 'nonce', $button.data( 'nonce' ) );
 
-			add_message( 'neutral', notification.i18n.importing_data );
+			add_message( 'neutral', __( 'Importing data...', 'notification' ) );
 			$button.data( 'processing', 'true' );
 
 			$.ajax( {

@@ -7,116 +7,172 @@
 
 namespace BracketSpace\Notification\Core;
 
-use BracketSpace\Notification\Utils\Settings\CoreFields;
-
 /**
  * Debugging class
  */
 class Debugging {
 
 	/**
-	 * Log setting key
+	 * Logs table name with prefix
 	 *
 	 * @var string
 	 */
-	protected $log_setting_key = 'notification_debug_log';
+	private $logs_table;
 
 	/**
-	 * Registers Debugging settings
+	 * How many logs per page
 	 *
-	 * @param object $settings Settings API object.
-	 * @return void
+	 * @var integer
 	 */
-	public function debugging_settings( $settings ) {
+	private $logs_per_page = 10;
 
-		$debugging = $settings->add_section( __( 'Debugging', 'notification' ), 'debugging' );
+	/**
+	 * Constructor
+	 *
+	 * @since 6.0.0
+	 */
+	public function __construct() {
 
-		$debugging->add_group( __( 'Settings', 'notification' ), 'settings' )
-			->add_field(
-				[
-					'name'        => __( 'Debug log', 'notification' ),
-					'slug'        => 'debug_log',
-					'default'     => false,
-					'addons'      => [
-						'label' => __( 'Enable debug log', 'notification' ),
-					],
-					'description' => __( 'While log is active, no notifications are sent', 'notification' ),
-					'render'      => [ new CoreFields\Checkbox(), 'input' ],
-					'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
-				]
-			);
+		global $wpdb;
 
-		$debugging->add_group( __( 'Log', 'notification' ), 'log' )
-			->add_field(
-				[
-					'name'     => __( 'Log', 'notification' ),
-					'slug'     => 'log',
-					'addons'   => [
-						'message' => $this->get_debug_log(),
-						'code'    => true,
-					],
-					'render'   => [ new CoreFields\Message(), 'input' ],
-					'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
-				]
-			);
+		$this->logs_table = $wpdb->prefix . 'notification_logs';
 
 	}
 
 	/**
-	 * Gets formatted debug log
+	 * Adds log to the database
 	 *
-	 * @since  5.3.0
-	 * @return string
+	 * @since 6.0.0
+	 * @throws \Exception If any of the arguments is wrong.
+	 * @param array $log_data Log data, must contain keys: type, component and message.
+	 * @return bool
 	 */
-	public function get_debug_log() {
+	public function add_log( $log_data = [] ) {
 
-		$logs = get_option( $this->log_setting_key, [] );
+		global $wpdb;
 
-		if ( empty( $logs ) ) {
-			return __( 'Debug log is empty', 'notification' );
+		$allowed_types = [
+			'notification',
+			'error',
+			'warning',
+		];
+
+		if ( ! isset( $log_data['type'] ) || ! in_array( $log_data['type'], $allowed_types, true ) ) {
+			throw new \Exception( 'Log type must be a one of the following types: ' . implode( ', ', $allowed_types ) );
 		}
 
-		$time_format = get_option( 'time_format' );
-		$date_format = get_option( 'date_format' );
-		$time_offset = get_option( 'gmt_offset' ) * HOUR_IN_SECONDS;
-
-		$log_message = '';
-		$spacing     = '&nbsp;&nbsp;&nbsp;&nbsp;';
-
-		foreach ( $logs as $log ) {
-			$log_message .= '[<i>' . date_i18n( $date_format . ' ' . $time_format, $log['time'] + $time_offset ) . '</i>] ';
-			$log_message .= $spacing . '<strong>' . $log['notification']['post_title'] . '</strong> - ';
-			$log_message .= $spacing . 'ID: ' . $log['notification']['post_id'];
-			$log_message .= $spacing . '<br>';
-			$log_message .= $spacing . __( 'Trigger', 'notification' ) . ': <strong>' . $log['trigger']['name'] . '</strong> (<i>' . $log['trigger']['slug'] . '</i>)<br>';
-			$log_message .= $spacing . __( 'Carrier', 'notification' ) . ': <strong>' . $log['notification']['name'] . '</strong> (<i>' . $log['notification']['slug'] . '</i>)<br>';
-			$log_message .= $spacing . __( 'Data', 'notification' ) . ':<br>';
-			$log_message .= '<span class="notification-data-log">' . print_r( $log['notification']['data'], true ) . '</span>'; //phpcs:ignore
-			$log_message .= '<br><hr><br>';
+		if ( ! isset( $log_data['component'] ) ) {
+			throw new \Exception( 'Log must belong to a component' );
 		}
 
-		return $log_message;
+		if ( ! isset( $log_data['message'] ) ) {
+			throw new \Exception( 'Log message cannot be empty' );
+		}
+
+		return (bool) $wpdb->insert( // phpcs:ignore
+			$this->logs_table,
+			[
+				'type'      => $log_data['type'],
+				'message'   => $log_data['message'],
+				'component' => $log_data['component'],
+			],
+			[
+				'%s',
+				'%s',
+				'%s',
+			]
+		);
 
 	}
 
 	/**
-	 * Displays debug log warning
+	 * Gets logs from database
 	 *
-	 * @action admin_notices
-	 *
-	 * @since  5.3.0
-	 * @return void
+	 * @since  6.0.0
+	 * @param  integer $page      Page number, default: 1.
+	 * @param  array   $types     Array of log types to get, default: all.
+	 * @param  string  $component Component name, default: all.
+	 * @return array
 	 */
-	public function debug_warning() {
+	public function get_logs( $page = 1, $types = null, $component = null ) {
 
-		if ( 'notification' !== get_post_type() || ! notification_get_setting( 'debugging/settings/debug_log' ) ) {
-			return;
+		global $wpdb;
+
+		if ( empty( $types ) ) {
+			$types = [ 'notification', 'error', 'warning' ];
 		}
 
-		$message        = esc_html__( 'Debug log is active and no notifications will be sent.', 'notification' );
-		$debug_log_link = '<a href="' . admin_url( 'edit.php?post_type=notification&page=settings&section=debugging' ) . '">' . esc_html__( 'See debug log', 'notification' ) . '</a>';
+		$esc_types = [];
 
-		echo '<div class="notice notice-warning"><p>' . $message . ' ' . $debug_log_link . '</p></div>'; // phpcs:ignore
+		foreach ( (array) $types as $type ) {
+			$esc_types[] = $wpdb->prepare( is_numeric( $type ) ? '%d' : '%s', $type ); // phpcs:ignore
+		}
+
+		$query = 'SELECT SQL_CALC_FOUND_ROWS * FROM ' . $this->logs_table . ' WHERE type IN(' . implode( ',', $esc_types ) . ')';
+
+		// Component.
+		if ( ! empty( $component ) ) {
+			$query .= $wpdb->prepare(
+				' AND component = %s',
+				$component
+			);
+		}
+
+		// Order.
+		$query .= ' ORDER BY time_logged DESC';
+
+		// Pagination.
+		if ( $page > 1 ) {
+			$offset = 'OFFSET ' . ( $page - 1 ) * $this->logs_per_page;
+		} else {
+			$offset = '';
+		}
+
+		$query .= ' LIMIT ' . $this->logs_per_page . ' ' . $offset;
+
+		return $wpdb->get_results( $query ); // phpcs:ignore
+
+	}
+
+	/**
+	 * Removes logs
+	 *
+	 * @since  6.0.0
+	 * @param  array $types Array of log types to remove, default: all.
+	 * @return void
+	 */
+	public function remove_logs( $types = null ) {
+
+		global $wpdb;
+
+		if ( empty( $types ) ) {
+			$types = [ 'notification', 'error', 'warning' ];
+		}
+
+		foreach ( $types as $type ) {
+			$wpdb->delete( $this->logs_table, [ 'type' => $type ], [ '%s' ] ); // phpcs:ignore
+		}
+
+	}
+
+	/**
+	 * Get logs count from previous query
+	 * You have to call `get_logs` method first
+	 *
+	 * @since  6.0.0
+	 * @param  string $type Type of count, values: total|pages.
+	 * @return integer
+	 */
+	public function get_logs_count( $type = 'total' ) {
+		global $wpdb;
+
+		$total = $wpdb->get_var( 'SELECT FOUND_ROWS();' ); //phpcs:ignore
+
+		if ( 'pages' === $type ) {
+			return ceil( $total / $this->logs_per_page );
+		}
+
+		return $total;
 
 	}
 
@@ -125,44 +181,46 @@ class Debugging {
 	 *
 	 * @action notification/carrier/pre-send 1000000
 	 *
-	 * @since  5.3.0
-	 * @param Carrier $carrier Carrier object.
-	 * @param Trigger $trigger Trigger object.
+	 * @since 5.3.0
+	 * @since 6.0.4 Using 3rd parameter for Notification object.
+	 * @param Carrier      $carrier      Carrier object.
+	 * @param Trigger      $trigger      Trigger object.
+	 * @param Notification $notification Notification object.
 	 * @return void
 	 */
-	public function catch_notification( $carrier, $trigger ) {
+	public function catch_notification( $carrier, $trigger, $notification ) {
 
 		if ( ! notification_get_setting( 'debugging/settings/debug_log' ) ) {
 			return;
 		}
 
-		$limit = apply_filters( 'notification/debugging/log/limit', 10 );
-		$logs  = get_option( $this->log_setting_key, [] );
-
-		// Clear the log.
-		if ( count( $logs ) >= $limit ) {
-			array_pop( $logs );
+		if ( $carrier->is_suppressed() ) {
+			return;
 		}
 
-		array_unshift( $logs, [
-			'time'         => time(),
+		$data = [
 			'notification' => [
-				'slug'       => $carrier->get_slug(),
-				'name'       => $carrier->get_name(),
-				'post_id'    => 0,
-				'post_title' => 'None',
-				'data'       => $carrier->data,
+				'title'  => $notification->get_title(),
+				'hash'   => $notification->get_hash(),
+				'source' => $notification->get_source(),
+				'extras' => $notification->get_extras(),
+			],
+			'carrier'      => [
+				'slug' => $carrier->get_slug(),
+				'name' => $carrier->get_name(),
+				'data' => $carrier->data,
 			],
 			'trigger'      => [
 				'slug' => $trigger->get_slug(),
 				'name' => $trigger->get_name(),
 			],
-		] );
+		];
+		notification_log( 'Core', 'notification', wp_json_encode( $data ) );
 
-		update_option( $this->log_setting_key, $logs );
-
-		// Always suppress when debug log is active.
-		$notification->suppress();
+		// Suppress when debug log is active.
+		if ( apply_filters( 'notification/debug/suppress', true, $data['notification'], $data['carrier'], $data['trigger'] ) === true ) {
+			$carrier->suppress();
+		}
 
 	}
 

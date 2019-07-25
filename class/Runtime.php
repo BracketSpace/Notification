@@ -32,7 +32,7 @@ class Runtime extends Utils\DocHooks {
 	 * Loads needed files
 	 *
 	 * @since  5.0.0
-	 * @since  [Next] Added boot action.
+	 * @since  6.0.0 Added boot action.
 	 * @return void
 	 */
 	public function boot() {
@@ -72,19 +72,20 @@ class Runtime extends Utils\DocHooks {
 		$this->core_upgrade    = new Core\Upgrade();
 		$this->core_sync       = new Core\Sync();
 
-		$this->admin_impexp     = new Admin\ImportExport();
-		$this->admin_settings   = new Admin\Settings();
-		$this->admin_duplicator = new Admin\NotificationDuplicator();
-		$this->admin_post_type  = new Admin\PostType();
-		$this->admin_post_table = new Admin\PostTable();
-		$this->admin_extensions = new Admin\Extensions();
-		$this->admin_scripts    = new Admin\Scripts( $this, $this->files );
-		$this->admin_screen     = new Admin\Screen();
-		$this->admin_share      = new Admin\Share();
-		$this->admin_sync       = new Admin\Sync();
-
+		$this->admin_impexp          = new Admin\ImportExport();
+		$this->admin_settings        = new Admin\Settings();
+		$this->admin_duplicator      = new Admin\NotificationDuplicator();
+		$this->admin_post_type       = new Admin\PostType();
+		$this->admin_post_table      = new Admin\PostTable();
+		$this->admin_extensions      = new Admin\Extensions();
+		$this->admin_scripts         = new Admin\Scripts( $this, $this->files );
+		$this->admin_screen          = new Admin\Screen();
+		$this->admin_share           = new Admin\Share();
+		$this->admin_sync            = new Admin\Sync();
+		$this->admin_debugging       = new Admin\Debugging();
 		$this->integration_wp        = new Integration\WordPress();
 		$this->integration_wp_emails = new Integration\WordPressEmails();
+		$this->integration_gb        = new Integration\Gutenberg();
 		$this->integration_cf        = new Integration\CustomFields();
 
 	}
@@ -119,10 +120,12 @@ class Runtime extends Utils\DocHooks {
 		$this->add_hooks( $this->admin_screen );
 		$this->add_hooks( $this->admin_share );
 		$this->add_hooks( $this->admin_sync );
+		$this->add_hooks( $this->admin_debugging );
 
 		$this->add_hooks( $this->integration_wp );
 		$this->add_hooks( $this->integration_wp_emails );
 		$this->add_hooks( $this->integration_cf );
+		$this->add_hooks( $this->integration_gb );
 
 		notification_register_settings( [ $this->admin_settings, 'general_settings' ] );
 		notification_register_settings( [ $this->admin_settings, 'triggers_settings' ], 20 );
@@ -130,7 +133,9 @@ class Runtime extends Utils\DocHooks {
 		notification_register_settings( [ $this->admin_settings, 'integration_settings' ], 30 );
 		notification_register_settings( [ $this->admin_sync, 'settings' ], 40 );
 		notification_register_settings( [ $this->admin_impexp, 'settings' ], 50 );
-		notification_register_settings( [ $this->core_debugging, 'debugging_settings' ], 60 );
+		notification_register_settings( [ $this->admin_debugging, 'debugging_settings' ], 60 );
+
+		register_uninstall_hook( $this->plugin_file, [ 'BracketSpace\Notification\Core\Uninstall', 'remove_plugin_data' ] );
 
 	}
 
@@ -147,7 +152,7 @@ class Runtime extends Utils\DocHooks {
 	/**
 	 * Loads functions
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function load_functions() {
@@ -155,6 +160,7 @@ class Runtime extends Utils\DocHooks {
 		require_once $this->files->file_path( 'inc/functions/general.php' );
 		require_once $this->files->file_path( 'inc/functions/settings.php' );
 		require_once $this->files->file_path( 'inc/functions/overrides.php' );
+		require_once $this->files->file_path( 'inc/functions/resolver.php' );
 		require_once $this->files->file_path( 'inc/functions/carrier.php' );
 		require_once $this->files->file_path( 'inc/functions/trigger.php' );
 		require_once $this->files->file_path( 'inc/functions/recipient.php' );
@@ -169,7 +175,7 @@ class Runtime extends Utils\DocHooks {
 	/**
 	 * Loads deprecated functions and classes
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function load_deprecated() {
@@ -188,12 +194,13 @@ class Runtime extends Utils\DocHooks {
 	 * Loads early defaults
 	 *
 	 * @action plugins_loaded
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function load_early_defaults() {
 		array_map( [ $this, 'load_default' ], [
 			'global-merge-tags',
+			'resolvers',
 			'recipients',
 			'carriers',
 		] );
@@ -203,7 +210,7 @@ class Runtime extends Utils\DocHooks {
 	 * Loads late defaults
 	 *
 	 * @action init 1000
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function load_late_defaults() {
@@ -215,7 +222,7 @@ class Runtime extends Utils\DocHooks {
 	/**
 	 * Loads default
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $default Default file slug.
 	 * @return void
 	 */
@@ -232,7 +239,7 @@ class Runtime extends Utils\DocHooks {
 	 * Proxies the full boot action
 	 *
 	 * @action init 1010
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function fully_booted() {
