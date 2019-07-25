@@ -24,7 +24,7 @@ class Notification extends Abstracts\Store {
 	 *
 	 * Compares the version of Notification object, and replace it if adding the newer.
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @throws \Exception If no offset has been provided and item doesn't implements Nameable.
 	 * @param  mixed $offset Offset.
 	 * @param  mixed $value  Value.
@@ -60,7 +60,7 @@ class Notification extends Abstracts\Store {
 	/**
 	 * Gets the Notifications with specific Trigger
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $trigger_slug Trigger slug.
 	 * @return array
 	 */

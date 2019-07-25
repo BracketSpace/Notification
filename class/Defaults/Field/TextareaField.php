@@ -29,6 +29,13 @@ class TextareaField extends Field {
 	protected $rows = 10;
 
 	/**
+	 * If unfiltered value is allowed
+	 *
+	 * @var boolean
+	 */
+	protected $allowed_unfiltered = false;
+
+	/**
 	 * Field constructor
 	 *
 	 * @since 5.0.0
@@ -42,6 +49,10 @@ class TextareaField extends Field {
 
 		if ( isset( $params['rows'] ) ) {
 			$this->rows = $params['rows'];
+		}
+
+		if ( isset( $params['allowed_unfiltered'] ) && $params['allowed_unfiltered'] ) {
+			$this->allowed_unfiltered = true;
 		}
 
 		parent::__construct( $params );
@@ -64,7 +75,7 @@ class TextareaField extends Field {
 	 * @return mixed        sanitized value
 	 */
 	public function sanitize( $value ) {
-		return sanitize_textarea_field( $value );
+		return ( $this->allowed_unfiltered ) ? $value : sanitize_textarea_field( $value );
 	}
 
 }

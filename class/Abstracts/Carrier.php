@@ -18,13 +18,6 @@ use BracketSpace\Notification\Defaults\Field\RecipientsField;
 abstract class Carrier extends Common implements Interfaces\Sendable {
 
 	/**
-	 * If Carrier is enabled
-	 *
-	 * @var boolean
-	 */
-	public $enabled = false;
-
-	/**
 	 * Carrier form fields
 	 *
 	 * @var array
@@ -37,6 +30,13 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	 * @var array
 	 */
 	public $data = [];
+
+	/**
+	 * Restricted form field keys
+	 *
+	 * @var array
+	 */
+	public $restricted_fields = [ '_nonce', 'enabled' ];
 
 	/**
 	 * If is suppressed
@@ -56,12 +56,30 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 		$this->slug = $slug;
 		$this->name = $name;
 
-		$this->add_form_field( new Field\NonceField( [
+		// Form nonce.
+		$nonce_field = new Field\NonceField( [
 			'label'      => '',
 			'name'       => '_nonce',
-			'nonce_key'  => $this->slug . '_carrier_security',
+			'nonce_key'  => $this->get_slug() . '_carrier_security',
 			'resolvable' => false,
-		] ) );
+		] );
+
+		$nonce_field->section = 'notification_carrier_' . $this->get_slug();
+
+		$this->form_fields[ $nonce_field->get_raw_name() ] = $nonce_field;
+
+		// Carrier status.
+		$enabled_field = new Field\InputField( [
+			'type'       => 'hidden',
+			'label'      => '',
+			'name'       => 'enabled',
+			'value'      => '0',
+			'resolvable' => false,
+		] );
+
+		$enabled_field->section = 'notification_carrier_' . $this->get_slug();
+
+		$this->form_fields[ $enabled_field->get_raw_name() ] = $enabled_field;
 
 		$this->form_fields();
 
@@ -114,14 +132,24 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	/**
 	 * Adds form field to collection
 	 *
+	 * @since  6.0.0 Added restricted field check.
+	 * @throws \Exception When restricted name is used.
 	 * @param  Interfaces\Fillable $field Field object.
 	 * @return $this
 	 */
 	public function add_form_field( Interfaces\Fillable $field ) {
-		$adding_field                                = clone $field;
-		$adding_field->section                       = 'notification_carrier_' . $this->get_slug();
+
+		if ( in_array( $field->get_raw_name(), $this->restricted_fields, true ) ) {
+			throw new \Exception( 'You cannot use restricted field name. Restricted names: ' . implode( ', ', $this->restricted_fields ) );
+		}
+
+		$adding_field          = clone $field;
+		$adding_field->section = 'notification_carrier_' . $this->get_slug();
+
 		$this->form_fields[ $field->get_raw_name() ] = $adding_field;
+
 		return $this;
+
 	}
 
 	/**
@@ -136,7 +164,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	/**
 	 * Gets form fields array
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $field_name Field name.
 	 * @return mixed              Field object or null.
 	 */
@@ -157,6 +185,94 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 		}
 
 		return $this->form_fields[ $field_slug ]->get_value();
+
+	}
+
+	/**
+	 * Resolves all fields
+	 *
+	 * @since  6.0.0
+	 * @param  Triggerable $trigger Trigger object.
+	 * @return void
+	 */
+	public function resolve_fields( Triggerable $trigger ) {
+
+		foreach ( $this->get_form_fields() as $field ) {
+
+			if ( ! $field->is_resolvable() ) {
+				continue;
+			}
+
+			$resolved = $this->resolve_value( $field->get_value(), $trigger );
+			$field->set_value( $resolved );
+
+		}
+
+	}
+
+	/**
+	 * Resolves Merge Tags in field value
+	 *
+	 * @since 6.0.0
+	 * @param  mixed       $value   String or array, field value.
+	 * @param  Triggerable $trigger Trigger object.
+	 * @return mixed
+	 */
+	protected function resolve_value( $value, Triggerable $trigger ) {
+
+		if ( is_array( $value ) ) {
+			$resolved = [];
+
+			foreach ( $value as $key => $val ) {
+				$key              = $this->resolve_value( $key, $trigger );
+				$val              = $this->resolve_value( $val, $trigger );
+				$resolved[ $key ] = $val;
+			}
+		} else {
+
+			$value = apply_filters_deprecated( 'notificaiton/notification/field/resolving', [
+				$value,
+				null,
+			], '6.0.0', 'notification/carrier/field/resolving' );
+			$value = apply_filters( 'notification/carrier/field/resolving', $value, null );
+
+			$resolved = notification_resolve( $value, $trigger );
+
+			// Unused tags.
+			$strip_merge_tags = notification_get_setting( 'general/content/strip_empty_tags' );
+			$strip_merge_tags = apply_filters_deprecated( 'notification/value/strip_empty_mergetags', [
+				$strip_merge_tags,
+			], '6.0.0', 'notification/resolve/strip_empty_mergetags' );
+			$strip_merge_tags = apply_filters( 'notification/resolve/strip_empty_mergetags', $strip_merge_tags );
+
+			if ( $strip_merge_tags ) {
+				$resolved = notification_clear_tags( $resolved );
+			}
+
+			// Shortcodes.
+			$strip_shortcodes = notification_get_setting( 'general/content/strip_shortcodes' );
+			$strip_shortcodes = apply_filters_deprecated( 'notification/value/strip_shortcodes', [
+				$strip_shortcodes,
+			], '6.0.0', 'notification/carrier/field/value/strip_shortcodes' );
+
+			if ( apply_filters( 'notification/carrier/field/value/strip_shortcodes', $strip_shortcodes ) ) {
+				$resolved = preg_replace( '#\[[^\]]+\]#', '', $resolved );
+			} else {
+				$resolved = do_shortcode( $resolved );
+			}
+
+			// Unescape escaped {.
+			$resolved = str_replace( '!{', '{', $resolved );
+
+			$resolved = apply_filters_deprecated( 'notificaiton/notification/field/resolved', [
+				$resolved,
+				null,
+			], '6.0.0', 'notification/carrier/field/value/resolved' );
+			$resolved = apply_filters( 'notification/carrier/field/value/resolved', $resolved, null );
+
+		}
+
+		return $resolved;
 
 	}
 
@@ -204,7 +320,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	/**
 	 * Sets data from array
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  array $data Data with keys matched with Field names.
 	 * @return $this
 	 */
@@ -223,7 +339,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	/**
 	 * Gets data
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return array
 	 */
 	public function get_data() {
@@ -238,6 +354,38 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 
 		return $data;
 
+	}
+
+	/**
+	 * Checks if Carrier is enabled
+	 *
+	 * @since  6.0.0
+	 * @return boolean
+	 */
+	public function is_enabled() {
+		return ! empty( $this->get_field_value( 'enabled' ) );
+	}
+
+	/**
+	 * Enables the Carrier
+	 *
+	 * @since  6.0.0
+	 * @return $this
+	 */
+	public function enable() {
+		$this->get_form_field( 'enabled' )->set_value( true );
+		return $this;
+	}
+
+	/**
+	 * Disabled the Carrier
+	 *
+	 * @since  6.0.0
+	 * @return $this
+	 */
+	public function disable() {
+		$this->get_form_field( 'enabled' )->set_value( false );
+		return $this;
 	}
 
 	/**

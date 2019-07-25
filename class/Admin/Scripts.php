@@ -57,29 +57,33 @@ class Scripts {
 			'plugins.php',
 			'post-new.php',
 			'post.php',
+			'edit.php',
 		] );
 
-		if ( 'notification' !== get_post_type() && ! in_array( $page_hook, $allowed_hooks, true ) ) {
+		$allowed_post_types = apply_filters( 'notification/scripts/allowed_post_types', [
+			'notification',
+		] );
+
+		if ( ! in_array( $page_hook, $allowed_hooks, true ) ) {
 			return;
 		}
 
-		wp_enqueue_script( 'notification', $this->files->asset_url( 'js', 'scripts.min.js' ), [ 'jquery', 'wp-color-picker' ], $this->files->asset_mtime( 'js', 'scripts.min.js' ), false );
+		// Check if we are on a correct post type if we edit the post.
+		if ( in_array( $page_hook, [ 'post-new.php', 'post.php', 'edit.php' ], true ) && ! in_array( get_post_type(), $allowed_post_types, true ) ) {
+			return;
+		}
+
+		wp_enqueue_script( 'notification', $this->files->asset_url( 'js', 'scripts.min.js' ), [ 'jquery', 'wp-color-picker', 'wp-i18n', 'jquery-ui-sortable' ], $this->files->asset_mtime( 'js', 'scripts.min.js' ), false );
 
 		wp_enqueue_style( 'notification', $this->files->asset_url( 'css', 'style.css' ), [], $this->files->asset_mtime( 'css', 'style.css' ) );
 
+		wp_set_script_translations( 'notification', 'notification' );
 		wp_localize_script( 'notification', 'notification', [
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
-			'i18n'    => [
-				'copied'              => __( 'Copied', 'notification' ),
-				'remove_confirmation' => __( 'Do you really want to delete this?', 'notification' ),
-				'select_image'        => __( 'Select image', 'notification' ),
-				'use_selected_image'  => __( 'Use selected image', 'notification' ),
-				'valid_json_only'     => __( 'Please upload only valid JSON files', 'notification' ),
-				'importing_data'      => __( 'Importing data...', 'notification' ),
-				'synchronizing'       => __( 'Synchronizing...', 'notification' ),
-				'synchronized'        => __( 'Synchronized', 'notification' ),
-			],
 		] );
+
+		// Remove TinyMCE styles as they are not applied to any frontend content.
+		remove_editor_styles();
 
 		do_action( 'notification/scripts', $page_hook );
 

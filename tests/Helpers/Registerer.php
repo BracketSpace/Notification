@@ -18,7 +18,7 @@ class Registerer {
 	/**
 	 * Registers Trigger
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  bool $postponed If Trigger should be Postponed Trigger.
 	 * @return Objects\Notification Registered Trigger.
 	 */
@@ -39,7 +39,7 @@ class Registerer {
 	/**
 	 * Registers Carrier
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return Objects\Carrier Registered Carrier.
 	 */
 	public static function register_carrier() {
@@ -51,7 +51,7 @@ class Registerer {
 	/**
 	 * Registers Notification
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  mixed $trigger  Trigger object or null
 	 * @param  array $carriers Array of Carrier objects
 	 * @return Notifiation     Registered Notification.
@@ -68,14 +68,13 @@ class Registerer {
 	/**
 	 * Registers Default Notification
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  bool $postponed If trigger should be postponed.
 	 * @return Notifiation Registered Notification.
 	 */
 	public static function register_default_notification( $postponed = false ) {
-		$trigger          = static::register_trigger( $postponed );
-		$carrier          = static::register_carrier();
-		$carrier->enabled = true;
+		$trigger = static::register_trigger( $postponed );
+		$carrier = static::register_carrier()->enable();
 		return static::register_notification( $trigger, [ $carrier ] );
 	}
 

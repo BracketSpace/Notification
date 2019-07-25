@@ -6,48 +6,10 @@
  */
 
 /**
- * Adds extra data to the notification JSON export
- *
- * @since  [Next]
- * @param  string   $key      String for export.
- * @param  callable $exporter Callable exporter.
- * @return void
- */
-function notification_export_extra( $key, callable $exporter ) {
-
-	// @todo Extras API #h1k0k.
-	add_filter( 'notification/post/export/extras', function( $extras, $notification ) use ( $key, $exporter ) {
-
-		if ( ! isset( $extras[ $key ] ) ) {
-			$extras[ $key ] = call_user_func( $exporter, $notification );
-		}
-
-		return $extras;
-
-	}, 10, 2 );
-
-}
-
-/**
- * Processes extra data for the notification JSON import
- *
- * @since  [Next]
- * @param  string   $key      String for export.
- * @param  callable $importer Callable importer.
- * @return void
- */
-function notification_import_extra( $key, callable $importer ) {
-	// @todo Extras API #h1k0k.
-	add_action( 'notification/post/import/extras/' . $key, function( $data, $notification ) use ( $importer ) {
-		call_user_func( $importer, $data, $notification );
-	}, 10, 2 );
-}
-
-/**
  * Enables the notification syncing
  * By default path used is current theme's `notifiations` dir.
  *
- * @since  [Next]
+ * @since  6.0.0
  * @throws \Exception If provided path is not a directory.
  * @param  mixed $path full json directory path or null to use default.
  * @return void
@@ -79,7 +41,7 @@ function notification_sync( $path = null ) {
 /**
  * Gets the synchronization path.
  *
- * @since [Next]
+ * @since 6.0.0
  * @return mixed Path or false.
  */
 function notification_get_sync_path() {
@@ -89,7 +51,7 @@ function notification_get_sync_path() {
 /**
  * Checks if synchronization is active.
  *
- * @since [Next]
+ * @since 6.0.0
  * @return boolean
  */
 function notification_is_syncing() {

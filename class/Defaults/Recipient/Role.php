@@ -43,7 +43,12 @@ class Role extends Abstracts\Recipient {
 			$value = $this->get_default_value();
 		}
 
-		$emails = $this->get_users_by_role( $value );
+		$users  = $this->get_users_by_role( $value );
+		$emails = [];
+
+		foreach ( $users as $user ) {
+			$emails[] = $user->user_email;
+		}
 
 		return $emails;
 

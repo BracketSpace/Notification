@@ -29,7 +29,7 @@ class Debugging {
 	/**
 	 * Constructor
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 */
 	public function __construct() {
 
@@ -42,7 +42,7 @@ class Debugging {
 	/**
 	 * Adds log to the database
 	 *
-	 * @since [Next]
+	 * @since 6.0.0
 	 * @throws \Exception If any of the arguments is wrong.
 	 * @param array $log_data Log data, must contain keys: type, component and message.
 	 * @return bool
@@ -88,7 +88,7 @@ class Debugging {
 	/**
 	 * Gets logs from database
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  integer $page      Page number, default: 1.
 	 * @param  array   $types     Array of log types to get, default: all.
 	 * @param  string  $component Component name, default: all.
@@ -137,7 +137,7 @@ class Debugging {
 	/**
 	 * Removes logs
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  array $types Array of log types to remove, default: all.
 	 * @return void
 	 */
@@ -159,7 +159,7 @@ class Debugging {
 	 * Get logs count from previous query
 	 * You have to call `get_logs` method first
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  string $type Type of count, values: total|pages.
 	 * @return integer
 	 */
@@ -181,12 +181,14 @@ class Debugging {
 	 *
 	 * @action notification/carrier/pre-send 1000000
 	 *
-	 * @since  5.3.0
-	 * @param Carrier $carrier Carrier object.
-	 * @param Trigger $trigger Trigger object.
+	 * @since 5.3.0
+	 * @since 6.0.4 Using 3rd parameter for Notification object.
+	 * @param Carrier      $carrier      Carrier object.
+	 * @param Trigger      $trigger      Trigger object.
+	 * @param Notification $notification Notification object.
 	 * @return void
 	 */
-	public function catch_notification( $carrier, $trigger ) {
+	public function catch_notification( $carrier, $trigger, $notification ) {
 
 		if ( ! notification_get_setting( 'debugging/settings/debug_log' ) ) {
 			return;
@@ -196,12 +198,12 @@ class Debugging {
 			return;
 		}
 
-		notification_log( 'Core', 'notification', wp_json_encode( [
+		$data = [
 			'notification' => [
-				'title'  => $carrier->notification->get_title(),
-				'hash'   => $carrier->notification->get_hash(),
-				'source' => $carrier->notification->get_source(),
-				'extras' => [], // @todo #h1k0k Extras API.
+				'title'  => $notification->get_title(),
+				'hash'   => $notification->get_hash(),
+				'source' => $notification->get_source(),
+				'extras' => $notification->get_extras(),
 			],
 			'carrier'      => [
 				'slug' => $carrier->get_slug(),
@@ -212,10 +214,13 @@ class Debugging {
 				'slug' => $trigger->get_slug(),
 				'name' => $trigger->get_name(),
 			],
-		] ) );
+		];
+		notification_log( 'Core', 'notification', wp_json_encode( $data ) );
 
-		// Always suppress when debug log is active.
-		$carrier->suppress();
+		// Suppress when debug log is active.
+		if ( apply_filters( 'notification/debug/suppress', true, $data['notification'], $data['carrier'], $data['trigger'] ) === true ) {
+			$carrier->suppress();
+		}
 
 	}
 

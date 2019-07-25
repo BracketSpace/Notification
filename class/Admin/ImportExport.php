@@ -55,7 +55,7 @@ class ImportExport {
 	/**
 	 * Returns notifications import form
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return string
 	 */
 	public function notification_import_form() {
@@ -66,7 +66,7 @@ class ImportExport {
 	/**
 	 * Returns notifications export form
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return string
 	 */
 	public function notification_export_form() {
@@ -85,7 +85,7 @@ class ImportExport {
 	 *
 	 * @action admin_post_notification_export
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function export_request() {
@@ -117,7 +117,7 @@ class ImportExport {
 	 * Prepares notifications data for export
 	 *
 	 * @throws \Exception When no items selected for export.
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return array
 	 */
 	public function prepare_notifications_export_data() {
@@ -139,7 +139,7 @@ class ImportExport {
 
 			$wp_adapter   = notification_adapt_from( 'WordPress', $wppost );
 			$json_adapter = notification_swap_adapter( 'JSON', $wp_adapter );
-			$json         = $json_adapter->save();
+			$json         = $json_adapter->save( null, true );
 
 			// Decode because it's encoded in the last step of export.
 			$data[] = json_decode( $json );
@@ -155,7 +155,7 @@ class ImportExport {
 	 *
 	 * @action wp_ajax_notification_import_json
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function import_request() {
@@ -199,7 +199,7 @@ class ImportExport {
 	/**
 	 * Imports notifications
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  array $data Notifications data.
 	 * @return string
 	 */

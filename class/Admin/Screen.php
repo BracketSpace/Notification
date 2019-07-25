@@ -67,6 +67,7 @@ class Screen {
 		$view->set_var( 'triggers', $grouped_triggers );
 		$view->set_var( 'has_triggers', ! empty( $grouped_triggers ) );
 		$view->set_var( 'select_name', 'notification_trigger' );
+		$view->set_var( 'notification', $notification_post );
 
 		$view->get_view( 'trigger/metabox' );
 
@@ -87,7 +88,7 @@ class Screen {
 
 		do_action_deprecated( 'notitication/admin/notifications/pre', [
 			$notification_post,
-		], '[Next]', 'notification/admin/carriers/pre' );
+		], '6.0.0', 'notification/admin/carriers/pre' );
 
 		do_action( 'notification/admin/carriers/pre', $notification_post );
 
@@ -109,14 +110,20 @@ class Screen {
 		foreach ( $carriers as $carrier ) {
 
 			$box_view = notification_create_view();
-			$carrier  = $notification_post->populate_carrier( $carrier );
+			$carrier  = $notification_post->get_carrier( $_carrier->get_slug() );
+
+			// If Carrier wasn't set before, use the blank one.
+			if ( ! $carrier ) {
+				$carrier = $_carrier;
+			}
 
 			$box_view->set_vars( [
 				'id'      => 'notification-carrier-' . $carrier->get_slug() . '-box',
 				'name'    => 'notification_carrier_' . $carrier->get_slug() . '_enable',
 				'title'   => $carrier->get_name(),
 				'content' => $this->get_carrier_form( $carrier ),
-				'shown'   => $carrier->enabled,
+				'shown'   => $carrier->is_enabled(),
+				'open'    => $carrier->is_enabled(),
 			] );
 
 			$box_view->get_view( 'box' );
@@ -129,7 +136,7 @@ class Screen {
 
 		do_action_deprecated( 'notitication/admin/notifications', [
 			$notification_post,
-		], '[Next]', 'notification/admin/carriers' );
+		], '6.0.0', 'notification/admin/carriers' );
 
 		do_action( 'notification/admin/carriers', $notification_post );
 
@@ -138,7 +145,7 @@ class Screen {
 	/**
 	 * Gets Carrier config form
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  Interfaces\Sendable $carrier Carrier object.
 	 * @return string                       Form HTML.
 	 */

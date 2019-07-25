@@ -36,7 +36,7 @@ class Extensions {
 	 *
 	 * @var array
 	 */
-	private $premium_extensions = [];
+	public $premium_extensions = [];
 
 	/**
 	 * Extensions admin page hook
@@ -224,12 +224,7 @@ class Extensions {
 	 */
 	public function activate() {
 
-		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'activate_extension_' . $extension['slug'] ) ) { // phpcs:ignore
-			wp_safe_redirect( add_query_arg( 'activation-status', 'wrong-nonce', $_POST['_wp_http_referer'] ) ); // phpcs:ignore
-			exit();
-		}
-
-		$data = $_POST;
+		$data = $_POST; // phpcs:ignore
 
 		$extension = $this->get_raw_extension( $data['extension'] );
 
@@ -238,11 +233,27 @@ class Extensions {
 			exit();
 		}
 
+		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'activate_extension_' . $extension['slug'] ) ) { // phpcs:ignore
+			wp_safe_redirect( add_query_arg( 'activation-status', 'wrong-nonce', $_POST['_wp_http_referer'] ) ); // phpcs:ignore
+			exit();
+		}
+
 		$license    = new License( $extension );
 		$activation = $license->activate( $data['license-key'] );
 
 		if ( is_wp_error( $activation ) ) {
-			wp_safe_redirect( add_query_arg( 'activation-status', $activation->get_error_message(), $data['_wp_http_referer'] ) );
+
+			$license_data = $activation->get_error_data();
+			$params       = [
+				'activation-status' => $activation->get_error_message(),
+				'extension'         => rawurlencode( $license_data->item_name ),
+			];
+
+			if ( 'expired' === $activation->get_error_message() ) {
+				$params['expiration'] = $license_data->expires;
+			}
+
+			wp_safe_redirect( add_query_arg( $params, $data['_wp_http_referer'] ) );
 			exit();
 		}
 
@@ -260,12 +271,7 @@ class Extensions {
 	 */
 	public function deactivate() {
 
-		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'activate_extension_' . $extension['slug'] ) ) {  // phpcs:ignore
-			wp_safe_redirect( add_query_arg( 'activation-status', 'wrong-nonce', $_POST['_wp_http_referer'] ) );  // phpcs:ignore
-			exit();
-		}
-
-		$data = $_POST;
+		$data = $_POST; // phpcs:ignore
 
 		$extension = $this->get_raw_extension( $data['extension'] );
 
@@ -274,12 +280,25 @@ class Extensions {
 			exit();
 		}
 
+		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'activate_extension_' . $extension['slug'] ) ) {  // phpcs:ignore
+			wp_safe_redirect( add_query_arg( 'activation-status', 'wrong-nonce', $_POST['_wp_http_referer'] ) );  // phpcs:ignore
+			exit();
+		}
+
 		$license    = new License( $extension );
 		$activation = $license->deactivate();
 
 		if ( is_wp_error( $activation ) ) {
-			wp_safe_redirect( add_query_arg( 'activation-status', $activation->get_error_message(), $data['_wp_http_referer'] ) );
+
+			$license_data = $activation->get_error_data();
+			$params       = [
+				'activation-status' => $activation->get_error_message(),
+				'extension'         => rawurlencode( $license_data->item_name ),
+			];
+
+			wp_safe_redirect( add_query_arg( $params, $data['_wp_http_referer'] ) );
 			exit();
+
 		}
 
 		wp_safe_redirect( add_query_arg( 'activation-status', 'deactivated', $data['_wp_http_referer'] ) );
@@ -321,7 +340,7 @@ class Extensions {
 				$message = sprintf(
 					// translators: 1. Date.
 					__( 'Your license key expired on %s.', 'notification' ),
-					date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
+					date_i18n( get_option( 'date_format' ), strtotime( $_GET['expiration'], current_time( 'timestamp' ) ) ) // phpcs:ignore
 				);
 				break;
 
@@ -333,7 +352,7 @@ class Extensions {
 
 			case 'missing':
 				$view    = 'error';
-				$message = __( 'Invalid license key.', 'notification' );
+				$message = sprintf( __( 'Invalid license key for %s.', 'notification' ), $_GET['extension'] ); // phpcs:ignore
 				break;
 
 			case 'invalid':
@@ -345,7 +364,7 @@ class Extensions {
 			case 'item_name_mismatch':
 				$view = 'error';
 				// translators: 1. Extension name.
-				$message = sprintf( __( 'This appears to be an invalid license key for %s.', 'notification' ), $this->extension['edd']['item_name'] );
+				$message = sprintf( __( 'This appears to be an invalid license key for %s.', 'notification' ), $_GET['extension'] ); // phpcs:ignore
 				break;
 
 			case 'no_activations_left':
@@ -359,9 +378,9 @@ class Extensions {
 				break;
 		}
 
-		$view = notification_create_view();
-		$view->set_var( 'message', $message );
-		$view->get_view( 'extension/activation-' . $view );
+		$view_class = notification_create_view();
+		$view_class->set_var( 'message', $message );
+		$view_class->get_view( 'extension/activation-' . $view );
 
 	}
 

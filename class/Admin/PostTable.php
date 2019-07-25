@@ -97,7 +97,7 @@ class PostTable {
 	}
 
 	/**
-	 * Remove quick edit from post inline actions
+	 * Removes quick edit from post inline actions
 	 *
 	 * @filter post_row_actions
 	 *
@@ -115,6 +115,28 @@ class PostTable {
 				unset( $row_actions['inline'] );
 			}
 		}
+
+		return $row_actions;
+
+	}
+
+	/**
+	 * Changes trash link to something more descriptive
+	 * Notifications cannot be trashed, it can be only removed
+	 *
+	 * @filter post_row_actions
+	 *
+	 * @param  array  $row_actions array with action links.
+	 * @param  object $post        WP_Post object.
+	 * @return array               filtered actions
+	 */
+	public function adjust_trash_link( $row_actions, $post ) {
+
+		if ( 'notification' !== $post->post_type ) {
+			return $row_actions;
+		}
+
+		$row_actions['trash'] = '<a href="' . esc_url( get_delete_post_link( $post->ID, '', true ) ) . '" class="submitdelete">' . esc_html__( 'Remove', 'notification' ) . '</a>';
 
 		return $row_actions;
 

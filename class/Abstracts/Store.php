@@ -31,7 +31,7 @@ abstract class Store implements Interfaces\Storable {
 	/**
 	 * Gets store key
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return string
 	 */
 	public static function get_storage_key() {
@@ -41,7 +41,7 @@ abstract class Store implements Interfaces\Storable {
 	/**
 	 * Gets stored items
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return array
 	 */
 	public function get_items() {
@@ -53,7 +53,7 @@ abstract class Store implements Interfaces\Storable {
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @throws \Exception If no offset has been provided and item doesn't implements Nameable.
 	 * @throws \Exception If item with the given key has been already added to Store.
 	 * @param  mixed $offset Offset.
@@ -89,7 +89,7 @@ abstract class Store implements Interfaces\Storable {
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  mixed $offset Offset.
 	 * @return bool
 	 */
@@ -100,7 +100,7 @@ abstract class Store implements Interfaces\Storable {
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  mixed $offset Offset.
 	 * @return void
 	 */
@@ -117,7 +117,7 @@ abstract class Store implements Interfaces\Storable {
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @param  mixed $offset Offset.
 	 * @return mixed         Value or null.
 	 */
@@ -129,7 +129,7 @@ abstract class Store implements Interfaces\Storable {
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function rewind() {
@@ -139,7 +139,7 @@ abstract class Store implements Interfaces\Storable {
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return mixed Value.
 	 */
 	public function current() {
@@ -149,7 +149,7 @@ abstract class Store implements Interfaces\Storable {
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return string Key.
 	 */
 	public function key() {
@@ -159,7 +159,7 @@ abstract class Store implements Interfaces\Storable {
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return void
 	 */
 	public function next() {
@@ -169,7 +169,7 @@ abstract class Store implements Interfaces\Storable {
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @since  [Next]
+	 * @since  6.0.0
 	 * @return bool
 	 */
 	public function valid() {

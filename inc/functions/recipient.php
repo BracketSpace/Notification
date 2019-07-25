@@ -11,12 +11,12 @@ use BracketSpace\Notification\Interfaces;
  * Registers recipient
  * Uses notification/recipients filter
  *
- * @since  [Next] Changed naming convention from Notification to Carrier.
+ * @since  6.0.0 Changed naming convention from Notification to Carrier.
  * @param  string                $carrier_slug Carrier slug.
  * @param  Interfaces\Receivable $recipient    Recipient object.
  * @return void
  */
-function register_recipient( $carrier_slug, Interfaces\Receivable $recipient ) {
+function notification_register_recipient( $carrier_slug, Interfaces\Receivable $recipient ) {
 
 	add_filter( 'notification/recipients', function( $recipients ) use ( $carrier_slug, $recipient ) {
 
@@ -49,7 +49,7 @@ function notification_get_recipients() {
 /**
  * Gets registered recipients for specific Carrier
  *
- * @since  [Next]
+ * @since  6.0.0
  * @param  string $carrier_slug Carrier slug.
  * @return array                Recipients array
  */
@@ -61,7 +61,7 @@ function notification_get_carrier_recipients( $carrier_slug ) {
 /**
  * Gets single registered recipient for specific Carrier
  *
- * @since  [Next]
+ * @since  6.0.0
  * @param  string $carrier_slug   Carrier slug.
  * @param  string $recipient_slug Recipient slug.
  * @return mixed                  Recipient object or false
@@ -75,7 +75,7 @@ function notification_get_recipient( $carrier_slug, $recipient_slug ) {
  * Parses recipient raw value to values which can be used by notifications
  *
  * @since  5.0.0
- * @since  [Next] Changed naming convention from Notification to Carrier.
+ * @since  6.0.0 Changed naming convention from Notification to Carrier.
  * @param  string $carrier_slug        Slug of the Carrier.
  * @param  string $recipient_type      Slug of the Recipient.
  * @param  mixed  $recipient_raw_value Raw value.

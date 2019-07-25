@@ -21,7 +21,7 @@ class NotificationPost {
 	 * Inserts notification post based on trigger and carrier
 	 *
 	 * @since  5.3.1
-	 * @since  [Next] Changed to adapter implementation
+	 * @since  6.0.0 Changed to adapter implementation
 	 * @param  Triggerable $trigger Trigger class or slug.
 	 * @param  Sendable    $carrier Carrier class or slug.
 	 * @return Adaptable            Notifcation WordPress adapter.
@@ -29,7 +29,7 @@ class NotificationPost {
 	public static function insert( Triggerable $trigger, Sendable $carrier ) {
 
 		// Make sure the carrier is enabled.
-		$carrier->enabled = true;
+		$carrier->enable();
 
 		$notification = new Notification( [
 			'enabled'  => true,

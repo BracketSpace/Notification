@@ -7,25 +7,27 @@
 
 namespace BracketSpace\Notification\Interfaces;
 
+use BracketSpace\Notification\Core\Notification;
+
 /**
  * Triggerable interface
  */
 interface Triggerable extends Nameable {
 
 	/**
-	 * Attaches the Carrier to the Trigger
+	 * Attaches the Notification to the Trigger
 	 *
-	 * @param  Sendable $carrier Carrier class.
+	 * @param  Notification $notification Notification class.
 	 * @return void
 	 */
-	public function attach( Sendable $carrier );
+	public function attach( Notification $notification );
 
 	/**
-	 * Detaches the Carrier from the Trigger
+	 * Detaches the Notification from the Trigger
 	 *
-	 * @param  Sendable $carrier Carrier class.
+	 * @param  Notification $notification Notification class.
 	 * @return void
 	 */
-	public function detach( Sendable $carrier );
+	public function detach( Notification $notification );
 
 }
