@@ -107,7 +107,7 @@ class Screen {
 
 		$carrier_view = notification_create_view();
 
-		foreach ( $carriers as $carrier ) {
+		foreach ( $carriers as $_carrier ) {
 
 			$box_view = notification_create_view();
 			$carrier  = $notification_post->get_carrier( $_carrier->get_slug() );
