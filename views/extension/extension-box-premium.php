@@ -28,7 +28,7 @@ $license = $ext['license']->get();
 				<?php else : ?>
 					<p><?php esc_html_e( 'Your license never expires.', 'notification' ); ?></p>
 				<?php endif ?>
-				<?php if ( 'inactive' === $license->license ) : ?>
+				<?php if ( in_array( $license->license, [ 'inactive', 'site_inactive' ], true ) ) : ?>
 					<p style="color: red;"><?php esc_html_e( 'Your license is inactive.', 'notification' ); ?></p>
 				<?php endif ?>
 				<?php if ( 'expired' === $license->license ) : ?>
