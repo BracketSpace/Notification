@@ -368,6 +368,131 @@ class Settings {
 	}
 
 	/**
+	 * Registers Emails settings
+	 *
+	 * @param object $settings Settings API object.
+	 * @return void
+	 */
+	public function emails_settings( $settings ) {
+
+		$general = $settings->add_section( __( 'Integration', 'notification' ), 'integration' );
+
+		$general->add_group( __( 'Default WordPress emails', 'notification' ), 'emails' )
+			->add_field( [
+				'name'        => __( 'New user notification to admin', 'notification' ),
+				'slug'        => 'new_user_to_admin',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable sending e-mail', 'notification' ),
+				],
+				'description' => __( 'Sends an e-mail to the site admin after a new user is registered.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'New user notification to user', 'notification' ),
+				'slug'        => 'new_user_to_user',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable sending e-mail', 'notification' ),
+				],
+				'description' => __( 'Send e-mail with login credentials to a newly-registered user.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Notify post author', 'notification' ),
+				'slug'        => 'post_author',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable sending e-mail', 'notification' ),
+				],
+				'description' => __( 'Send e-mail to an author (and/or others) of a comment/trackback/pingback on a post.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Notify comment moderator', 'notification' ),
+				'slug'        => 'comment_moderator',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable sending e-mail', 'notification' ),
+				],
+				'description' => __( 'Send e-mail to the moderator of the blog about a new comment that is awaiting approval.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Password change notification to admin', 'notification' ),
+				'slug'        => 'password_change_to_admin',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable sending e-mail', 'notification' ),
+				],
+				'description' => __( 'Send e-mail to the blog admin of a user changing his or her password.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Password change notification to user', 'notification' ),
+				'slug'        => 'password_change_to_user',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable sending e-mail', 'notification' ),
+				],
+				'description' => __( 'Send e-mail to registered user about changing his or her password.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'E-mail address change notification to user', 'notification' ),
+				'slug'        => 'email_change_to_user',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable sending e-mail', 'notification' ),
+				],
+				'description' => __( 'Send e-mail to registered user about changing his or her E-mail address.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Password forgotten e-mail to admin', 'notification' ),
+				'slug'        => 'password_forgotten_to_admin',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable sending e-mail', 'notification' ),
+				],
+				'description' => __( 'Send the forgotten password e-mail to administrators. Okay, this is a DANGEROUS OPTION! So be warned, because unchecking this option prevents sending out the forgotten password e-mail to all administrators. So hold on to your own password and uncheck this one at your own risk.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Password forgotten e-mail to user', 'notification' ),
+				'slug'        => 'password_forgotten_to_user',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable sending e-mail', 'notification' ),
+				],
+				'description' => __( 'Send the forgotten password e-mail to registered user.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Automatic Wordpress core update e-mail', 'notification' ),
+				'slug'        => 'automatic_wp_core_update',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable sending e-mail', 'notification' ),
+				],
+				'description' => __( 'Sends an e-mail after a successful automatic Wordpress core update to administrators. E-mails about failed updates will always be sent to the administrators and cannot be disabled.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->description( __( 'Disable each default emails by select the option.', 'notification' ) );
+
+	}
+
+	/**
 	 * Filters post types from supported posts
 	 *
 	 * @filter notification/settings/triggers/valid_post_types
