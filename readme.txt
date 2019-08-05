@@ -278,6 +278,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Internationalization for JS files.
 * [Changed] Notification repeater field is now by default sortable.
 * [Changed] Carrier textarea field now can be unfiltered, so no HTML will be stripped.
+* [Changed] OP Cache error message.
 * [Removed] Freemius.
 
 = 6.0.4 =
