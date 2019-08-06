@@ -103,11 +103,12 @@ class Requirements {
 	 * Adds the error
 	 *
 	 * @param string $error_message error message.
+	 * @param bool   $allow_html    whether to allow HTML.
 	 * @return $this
 	 */
-	public function add_error( $error_message ) {
+	public function add_error( $error_message, $allow_html = false ) {
 
-		$this->errors[] = $error_message;
+		$this->errors[] = $allow_html ? $error_message : esc_html( $error_message );
 
 		return $this;
 
@@ -137,7 +138,7 @@ class Requirements {
 			echo '<ul style="list-style: disc; padding-left: 20px;">';
 
 		foreach ( $this->errors as $error ) {
-			echo '<li>' . esc_html( $error ) . '</li>';
+			echo '<li>' . $error . '</li>'; // phpcs:ignore
 		}
 
 			echo '</ul>';
