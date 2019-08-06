@@ -10,6 +10,9 @@ matrix:
 notifications:
   email: false
 
+services:
+  - mysql
+
 install:
   - composer install
 
