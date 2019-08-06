@@ -24,4 +24,4 @@ script:
   # Run against WordPress Coding Standards.
   - if [[ "$SNIFF" == "1" ]]; then composer phpcs; fi
   # Run PHPUnit
-  - if [[ ! -z "$WP_VERSION" ]]; then phpunit; fi
+  - if [[ ! -z "$WP_VERSION" ]]; then vendor/bin/phpunit; fi
