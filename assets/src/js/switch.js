@@ -9,11 +9,11 @@
 
 			event.preventDefault();
 
-			notification.hooks.doAction( 'notification.status.changed', $switch, post_id );
+			wp.hooks.doAction( 'notification.status.changed', $switch, post_id );
 
  		} );
 
- 		notification.hooks.addAction( 'notification.status.changed', function( $switch, post_id ) {
+ 		wp.hooks.addAction( 'notification.status.changed', 'notification', function( $switch, post_id ) {
 
  			var status = ! $switch.find( 'input' ).attr( 'checked' );
 
