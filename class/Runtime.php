@@ -84,9 +84,10 @@ class Runtime extends Utils\DocHooks {
 		$this->admin_sync       = new Admin\Sync();
 		$this->admin_debugging  = new Admin\Debugging();
 
-		$this->integration_wp = new Integration\WordPress();
-		$this->integration_gb = new Integration\Gutenberg();
-		$this->integration_cf = new Integration\CustomFields();
+		$this->integration_wp        = new Integration\WordPress();
+		$this->integration_wp_emails = new Integration\WordPressEmails();
+		$this->integration_gb        = new Integration\Gutenberg();
+		$this->integration_cf        = new Integration\CustomFields();
 
 	}
 
@@ -123,15 +124,17 @@ class Runtime extends Utils\DocHooks {
 		$this->add_hooks( $this->admin_debugging );
 
 		$this->add_hooks( $this->integration_wp );
+		$this->add_hooks( $this->integration_wp_emails );
 		$this->add_hooks( $this->integration_cf );
 		$this->add_hooks( $this->integration_gb );
 
 		notification_register_settings( [ $this->admin_settings, 'general_settings' ] );
 		notification_register_settings( [ $this->admin_settings, 'triggers_settings' ], 20 );
 		notification_register_settings( [ $this->admin_settings, 'notifications_settings' ], 30 );
-		notification_register_settings( [ $this->admin_sync, 'settings' ], 40 );
-		notification_register_settings( [ $this->admin_impexp, 'settings' ], 50 );
-		notification_register_settings( [ $this->admin_debugging, 'debugging_settings' ], 60 );
+		notification_register_settings( [ $this->admin_settings, 'emails_settings' ], 40 );
+		notification_register_settings( [ $this->admin_sync, 'settings' ], 50 );
+		notification_register_settings( [ $this->admin_impexp, 'settings' ], 60 );
+		notification_register_settings( [ $this->admin_debugging, 'debugging_settings' ], 70 );
 
 		register_uninstall_hook( $this->plugin_file, [ 'BracketSpace\Notification\Core\Uninstall', 'remove_plugin_data' ] );
 
