@@ -276,9 +276,11 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] Webhook args and headers can be now not included if value is empty.
 * [Added] `notification/debug/suppress` filter to disable suppression of notifications when debug log is activated.
 * [Added] Default WordPress emails disabler.
+* [Added] `notification/integration/gutenberg` filter to disable Gutenberg support for specific post types. Useful when the post is in REST but no Gutenberg is used.
 * [Changed] Internationalization for JS files.
 * [Changed] Notification repeater field is now by default sortable.
 * [Changed] Carrier textarea field now can be unfiltered, so no HTML will be stripped.
+* [Changed] OP Cache error message.
 * [Removed] Freemius.
 
 = 6.0.4 =

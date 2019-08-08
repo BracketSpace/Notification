@@ -10,7 +10,11 @@ matrix:
 notifications:
   email: false
 
+services:
+  - mysql
+
 install:
+  - composer require --dev phpunit/phpunit 6.5
   - composer install
 
 before_script:
@@ -20,4 +24,4 @@ script:
   # Run against WordPress Coding Standards.
   - if [[ "$SNIFF" == "1" ]]; then composer phpcs; fi
   # Run PHPUnit
-  - if [[ ! -z "$WP_VERSION" ]]; then phpunit; fi
+  - if [[ ! -z "$WP_VERSION" ]]; then vendor/bin/phpunit; fi
