@@ -28,6 +28,10 @@ class Gutenberg {
 			return;
 		}
 
+		if ( false === apply_filters( 'notification/integration/gutenberg', true, $trigger->get_post_type(), $trigger ) ) {
+			return;
+		}
+
 		if ( ! preg_match( '/wordpress\/(?!.*(plugin|theme)).*\/(updated|published|drafted|added|pending)/', $trigger->get_slug() ) ) {
 			return;
 		}
