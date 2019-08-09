@@ -1,0 +1,45 @@
+{
+    "hash": "notification_5d3af2af40f08",
+    "title": "Post published - admin",
+    "trigger": "wordpress/post/published",
+    "carriers": {
+        "email": {
+            "enabled": true,
+            "subject": "{site_title} - Post \"{post_title}\" has been published",
+            "body": "The post \"{post_title}\" has been just published.\r\n\r\nView: {post_permalink}\r\nEdit: {home_url}/wp-admin/post.php?post={post_ID}&amp;action=edit",
+            "recipients": [
+                {
+                    "type": "administrator",
+                    "recipient": ""
+                }
+            ],
+            "headers": null
+        },
+        "webhook": {
+            "enabled": false,
+            "urls": null,
+            "args": null,
+            "json": null
+        },
+        "slack": {
+            "enabled": false,
+            "description": "",
+            "title": "",
+            "title_link": "",
+            "author_name": "",
+            "author_link": "",
+            "author_icon": "",
+            "text": "",
+            "thumb_url": "",
+            "image_url": "",
+            "color": "",
+            "fields": null,
+            "buttons": null,
+            "footer_text": "",
+            "footer_icon": ""
+        }
+    },
+    "enabled": true,
+    "extras": [],
+    "version": 1564144303
+}

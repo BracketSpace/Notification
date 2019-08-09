@@ -205,8 +205,10 @@
 				color: #5F5F5F;
 			}
 
-			a {
+			a,
+			button {
 				display: block;
+				width: 100%;
 				margin: 5px 0;
 
 				&.button {

@@ -1,0 +1,45 @@
+{
+    "hash": "notification_5d3af50b188af",
+    "title": "Comment reply - comment author",
+    "trigger": "wordpress/comment_comment_replied",
+    "carriers": {
+        "email": {
+            "enabled": true,
+            "subject": "{site_title} - a new reply to your comment on \"{post_title}\"",
+            "body": "A new reply to your comment on the post \"{post_title}\" has been just added.\r\n{post_permalink}\r\n\r\nAuthor: {comment_author_user_display_name}\r\nURL: {comment_author_url}\r\nComment: {comment_content}",
+            "recipients": [
+                {
+                    "type": "email",
+                    "recipient": "{parent_comment_author_user_email}"
+                }
+            ],
+            "headers": null
+        },
+        "webhook": {
+            "enabled": false,
+            "urls": null,
+            "args": null,
+            "json": null
+        },
+        "slack": {
+            "enabled": false,
+            "description": "",
+            "title": "",
+            "title_link": "",
+            "author_name": "",
+            "author_link": "",
+            "author_icon": "",
+            "text": "",
+            "thumb_url": "",
+            "image_url": "",
+            "color": "",
+            "fields": null,
+            "buttons": null,
+            "footer_text": "",
+            "footer_icon": ""
+        }
+    },
+    "enabled": true,
+    "extras": [],
+    "version": 1564144907
+}
