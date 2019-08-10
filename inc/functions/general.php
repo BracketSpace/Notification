@@ -36,6 +36,23 @@ function notification_display_story() {
 }
 
 /**
+ * Checks if the story should be displayed.
+ *
+ * @since  [next]
+ * @return boolean
+ */
+function notification_display_wizard() {
+
+	$counter = wp_count_posts( 'notification' );
+	$count   = 0;
+	$count  += isset( $counter->publish ) ? $counter->publish : 0;
+	$count  += isset( $counter->draft ) ? $counter->draft : 0;
+
+	return ! notification_is_whitelabeled() && ! get_option( 'notification_wizard_dismissed' ) && ( 0 === $count );
+
+}
+
+/**
  * Creates new View object.
  *
  * @since  6.0.0

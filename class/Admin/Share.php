@@ -54,8 +54,6 @@ class Share {
 	 */
 	public function maybe_redirect() {
 
-		return;
-
 		if ( ! notification_display_story() ) {
 			return;
 		}

@@ -36,6 +36,13 @@ class Wizard {
 	public $page_hook = 'none';
 
 	/**
+	 * Option name for dismissed Wizard.
+	 *
+	 * @var string
+	 */
+	protected $dismissed_option = 'notification_wizard_dismissed';
+
+	/**
 	 * Wizard constructor
 	 */
 	public function __construct() {
@@ -45,7 +52,7 @@ class Wizard {
 	}
 
 	/**
-	 * Set Library variables
+	 * Set Wizard variables.
 	 *
 	 * @return void
 	 */
@@ -56,7 +63,7 @@ class Wizard {
 	}
 
 	/**
-	 * Register Wizard page under plugin's menu.
+	 * Register Wizard invisible page.
 	 *
 	 * @action admin_menu 30
 	 *
@@ -65,7 +72,7 @@ class Wizard {
 	public function register_page() {
 
 		$this->page_hook = add_submenu_page(
-			'edit.php?post_type=notification',
+			null,
 			'',
 			__( 'Wizard', 'notification' ),
 			'manage_options',
@@ -76,13 +83,15 @@ class Wizard {
 	}
 
 	/**
-	 * Redirects the user to wizard screen.
+	 * Redirects the user to Wizard screen.
+	 *
+	 * @action current_screen
 	 *
 	 * @return void
 	 */
 	public function maybe_redirect() {
 
-		if ( ! notification_display_story() ) {
+		if ( ! notification_display_wizard() ) {
 			return;
 		}
 
@@ -278,8 +287,14 @@ class Wizard {
 			wp_die( 'Can\'t touch this' );
 		}
 
-		$notifications = isset( $data['notification_wizard'] ) ? $data['notification_wizard'] : [];
-		$this->add_notifications( $notifications );
+		if ( ! isset( $data['skip-wizard'] ) ) {
+
+			$notifications = isset( $data['notification_wizard'] ) ? $data['notification_wizard'] : [];
+			$this->add_notifications( $notifications );
+
+		}
+
+		$this->save_option_to_dismiss_wizard();
 
 		wp_safe_redirect( admin_url( 'edit.php?post_type=notification' ) );
 		exit;
@@ -308,6 +323,21 @@ class Wizard {
 			$wp_adapter   = notification_swap_adapter( 'WordPress', $json_adapter );
 			$wp_adapter->save();
 
+		}
+
+	}
+
+	/**
+	 * Saves option to dismiss auto-redirect to Wizard page.
+	 *
+	 * @return void
+	 */
+	private function save_option_to_dismiss_wizard() {
+
+		if ( get_option( $this->dismissed_option ) !== false ) {
+			update_option( $this->dismissed_option, true );
+		} else {
+			add_option( $this->dismissed_option, true, '', 'no' );
 		}
 
 	}

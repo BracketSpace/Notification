@@ -31,14 +31,6 @@
 
 		} );
 
-		$( '.skip-wizard' ).on( 'click', function(e) {
-
-			e.preventDefault();
-
-
-
-		} );
-
 	} );
 
 })(jQuery);

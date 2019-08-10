@@ -14,6 +14,7 @@ $sections = (array) $this->get_var( 'sections' );
 	<form action="<?php echo esc_attr( admin_url( 'admin-post.php' ) ); ?>" method="post">
 		<?php wp_nonce_field( 'notification_wizard' ); ?>
 		<input type="hidden" name="action" value="save_notification_wizard">
+
 		<div class="content">
 			<h1><?php esc_html_e( 'Notification Wizard', 'notification' ); ?></h1>
 			<h3><?php esc_html_e( 'Quickly setup the Notifications you need.', 'notification' ); ?><br/>
@@ -53,8 +54,8 @@ $sections = (array) $this->get_var( 'sections' );
 					</div>
 				</div>
 			<?php endforeach; ?>
-
 		</div>
+
 		<aside class="sidebar">
 			<div class="sidebar-content">
 				<h3>Useful links</h3>
@@ -62,7 +63,9 @@ $sections = (array) $this->get_var( 'sections' );
 				<a href="#">How Notification plugin works</a>
 				<a href="#">Extension possibilities</a>
 				<button type="submit" name="submit" class="button button-primary button-large create-notifications hidden"></button>
-				<a href="#" class="button button-secondary skip-wizard">Skip the Wizard</a>
+				<button type="submit" name="skip-wizard" class="button button-secondary skip-wizard">
+					<?php esc_html_e( 'Skip the Wizard', 'notification' ); ?>
+				</button>
 			</div>
 		</aside>
 	</form>
