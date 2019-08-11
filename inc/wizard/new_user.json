@@ -14,12 +14,6 @@
                 }
             ],
             "headers": null
-        },
-        "webhook": {
-            "enabled": false,
-            "urls": null,
-            "args": null,
-            "json": null
         }
     },
     "enabled": true,
