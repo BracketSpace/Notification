@@ -118,3 +118,31 @@ function notification_log( $component, $type, $message ) {
 	}
 
 }
+
+/**
+ * Checks if the DocHooks are enabled and working.
+ *
+ * @since  [Next]
+ * @return boolean
+ */
+function notification_dochooks_enabled() {
+	/**
+	 * NotificationDocHookTest class
+	 */
+	class NotificationDocHookTest {
+		/**
+		 * Test method
+		 *
+		 * @action test 10
+		 * @return void
+		 */
+		public function test_method() {}
+	}
+
+	$reflector = new \ReflectionObject( new NotificationDocHookTest() );
+
+	foreach ( $reflector->getMethods() as $method ) {
+		$doc = $method->getDocComment();
+		return (bool) strpos( $doc, '@action' );
+	}
+}

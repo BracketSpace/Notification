@@ -138,6 +138,12 @@ class Runtime extends Utils\DocHooks {
 
 		register_uninstall_hook( $this->plugin_file, [ 'BracketSpace\Notification\Core\Uninstall', 'remove_plugin_data' ] );
 
+		// DocHooks compatibility.
+		$hooks_file = $this->files->file_path( 'inc/hooks.php' );
+		if ( ! notification_dochooks_enabled() && file_exists( $hooks_file ) ) {
+			include_once $hooks_file;
+		}
+
 	}
 
 	/**

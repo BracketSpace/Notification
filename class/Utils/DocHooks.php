@@ -38,12 +38,11 @@ class DocHooks {
 		}
 
 		$class_name = get_class( $object );
+		$reflector  = new \ReflectionObject( $object );
 
-		$this->_called_doc_hooks[ $class_name ] = true;
-		$reflector                              = new \ReflectionObject( $object );
+		$this->_called_doc_hooks[ $class_name ] = [];
 
 		foreach ( $reflector->getMethods() as $method ) {
-
 			$doc       = $method->getDocComment();
 			$arg_count = $method->getNumberOfParameters();
 
@@ -58,6 +57,14 @@ class DocHooks {
 					$callback = [ $object, $method->getName() ];
 
 					call_user_func( [ $this, "add_{$type}" ], $name, $callback, compact( 'priority', 'arg_count' ) );
+
+					$this->_called_doc_hooks[ $class_name ][] = [
+						'name'      => $name,
+						'type'      => $type,
+						'callback'  => $method->getName(),
+						'priority'  => $priority,
+						'arg_count' => $arg_count,
+					];
 
 				}
 			}

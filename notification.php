@@ -22,16 +22,8 @@ require_once dirname( __FILE__ ) . '/vendor/autoload.php';
 $requirements = new BracketSpace\Notification\Utils\Requirements( __( 'Notification', 'notification' ), [
 	'php'                => '7.0',
 	'wp'                 => '5.2',
-	'dochooks'           => true,
 	'function_collision' => [ 'notification' ],
 ] );
-
-/**
- * Check if ReflectionObject returns proper docblock comments for methods.
- */
-if ( method_exists( $requirements, 'add_check' ) ) {
-	$requirements->add_check( 'dochooks', require 'inc/requirements/dochooks.php' );
-}
 
 if ( ! $requirements->satisfied() ) {
 	add_action( 'admin_notices', [ $requirements, 'notice' ] );
