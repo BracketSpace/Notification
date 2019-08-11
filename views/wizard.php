@@ -59,9 +59,15 @@ $sections = (array) $this->get_var( 'sections' );
 		<aside class="sidebar">
 			<div class="sidebar-content">
 				<h3>Useful links</h3>
-				<a href="#">Who can use this plugin</a>
-				<a href="#">How Notification plugin works</a>
-				<a href="#">Extension possibilities</a>
+				<a href="https://docs.bracketspace.com/notification/user-guide/who-can-use-this-plugin" target="_blank">
+					<?php esc_html_e( 'Who can use this plugin', 'notification' ); ?>
+				</a>
+				<a href="https://docs.bracketspace.com/notification/user-guide/how-notification-plugin-works" target="_blank">
+					<?php esc_html_e( 'How Notification plugin works', 'notification' ); ?>
+				</a>
+				<a href="https://docs.bracketspace.com/notification/developer/general/extension-possibilities" target="_blank">
+					<?php esc_html_e( 'Extension possibilities', 'notification' ); ?>
+				</a>
 				<button type="submit" name="submit" class="button button-primary button-large create-notifications hidden"></button>
 				<button type="submit" name="skip-wizard" class="button button-secondary skip-wizard">
 					<?php esc_html_e( 'Skip the Wizard', 'notification' ); ?>
