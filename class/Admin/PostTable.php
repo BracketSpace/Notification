@@ -136,7 +136,7 @@ class PostTable {
 			return $row_actions;
 		}
 
-		$row_actions['trash'] = '<a href="' . esc_url( get_delete_post_link( $post->ID, '', true ) ) . '" class="submitdelete">' . esc_html__( 'Remove', 'notification' ) . '</a>';
+		$row_actions['trash'] = '<a href="' . esc_url( get_delete_post_link( $post->ID, '', true ) ) . '" class="submitdelete notification-delete-post">' . esc_html__( 'Remove', 'notification' ) . '</a>';
 
 		return $row_actions;
 
