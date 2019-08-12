@@ -7,6 +7,7 @@
 
 namespace BracketSpace\Notification\Admin;
 
+use BracketSpace\Notification\Utils\Files;
 use BracketSpace\Notification\Utils\View;
 
 /**
@@ -15,18 +16,11 @@ use BracketSpace\Notification\Utils\View;
 class Wizard {
 
 	/**
-	 * JSON relative path
+	 * Files class
 	 *
-	 * @var string
+	 * @var object
 	 */
-	protected $relative_json_path = '/inc/wizard/';
-
-	/**
-	 * JSON absolute path
-	 *
-	 * @var string
-	 */
-	protected $json_path;
+	private $files;
 
 	/**
 	 * Wizard page hook.
@@ -44,22 +38,11 @@ class Wizard {
 
 	/**
 	 * Wizard constructor
-	 */
-	public function __construct() {
-
-		$this->set_variables();
-
-	}
-
-	/**
-	 * Set Wizard variables.
 	 *
-	 * @return void
+	 * @param Files $files Files class.
 	 */
-	public function set_variables() {
-
-		$this->json_path = dirname( dirname( dirname( __FILE__ ) ) ) . $this->relative_json_path;
-
+	public function __construct( Files $files ) {
+		$this->files = $files;
 	}
 
 	/**
@@ -311,9 +294,11 @@ class Wizard {
 	 */
 	private function add_notifications( $notifications ) {
 
+		$dir_path = $this->files->plugin_path() . 'inc/wizard/';
+
 		foreach ( $notifications as $notify_slug ) {
 
-			$json_path = $this->json_path . $notify_slug . '.json';
+			$json_path = $dir_path . $notify_slug . '.json';
 			if ( ! is_readable( $json_path ) ) {
 				continue;
 			}

@@ -81,7 +81,7 @@ class Runtime extends Utils\DocHooks {
 		$this->admin_scripts    = new Admin\Scripts( $this, $this->files );
 		$this->admin_screen     = new Admin\Screen();
 		$this->admin_share      = new Admin\Share();
-		$this->admin_wizard     = new Admin\Wizard();
+		$this->admin_wizard     = new Admin\Wizard( $this->files );
 		$this->admin_sync       = new Admin\Sync();
 		$this->admin_debugging  = new Admin\Debugging();
 
