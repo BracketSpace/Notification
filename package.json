@@ -8,7 +8,8 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "dev": "npm run development",
     "watch": "npm run development -- --watch",
-    "prod": "npm run production"
+    "prod": "npm run production",
+    "phpcs": "composer phpcs"
   },
   "author": "BracketSpace",
   "license": "ISC",
