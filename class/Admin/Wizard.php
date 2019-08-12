@@ -50,7 +50,7 @@ class Wizard {
 	 */
 	public function maybe_redirect() {
 
-		if ( ! notification_display_story() ) {
+		if ( ! notification_display_wizard() ) {
 			return;
 		}
 

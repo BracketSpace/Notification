@@ -19,20 +19,17 @@ function notification_add_doc_hooks( $object ) {
 }
 
 /**
- * Checks if the story should be displayed.
+ * Checks if the Wizard should be displayed.
  *
- * @since  5.2.2
+ * @since  [next]
  * @return boolean
  */
-function notification_display_story() {
-
+function notification_display_wizard() {
 	$counter = wp_count_posts( 'notification' );
 	$count   = 0;
 	$count  += isset( $counter->publish ) ? $counter->publish : 0;
 	$count  += isset( $counter->draft ) ? $counter->draft : 0;
-
-	return ! notification_is_whitelabeled() && ! get_option( 'notification_story_dismissed' ) && $count > 2;
-
+	return ! notification_is_whitelabeled() && ! get_option( 'notification_wizard_dismissed' ) && ( 0 === $count );
 }
 
 /**

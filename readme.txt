@@ -283,6 +283,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Carrier textarea field now can be unfiltered, so no HTML will be stripped.
 * [Changed] OP Cache is no longer a requirement, instead hooks compatibility file is loaded when.
 * [Removed] Freemius.
+* [Removed] The story screen.
 
 = 6.0.4 =
 * [Fixed] Webhook waring using empty header values.
