@@ -27,8 +27,8 @@ class Button {
 	/**
 	 * Sanitize button url
 	 *
-	 * @param  string $value Admin page path.
-	 * @return string        Sanitized admin url
+	 * @param  string $path Admin page path.
+	 * @return string       Sanitized admin url
 	 */
 	private function sanitize_url( $path ) {
 		return admin_url( $path );
