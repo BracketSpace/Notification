@@ -1,6 +1,6 @@
 {
     "hash": "notification_5d3af33ca0f05",
-    "title": "Post published - admin",
+    "title": "Post published - subscribers",
     "trigger": "wordpress/post/published",
     "carriers": {
         "email": {
