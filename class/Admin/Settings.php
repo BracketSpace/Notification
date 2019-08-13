@@ -49,18 +49,17 @@ class Settings {
 			] )
 			->description( __( 'Notification content settings', 'notification' ) );
 
-		$general->add_group( __( 'Configuration', 'notification' ), 'configuration' )
+		$general->add_group( __( 'Tools', 'notification' ), 'tools' )
 			->add_field( [
-				'name'        => __( 'Basic configuration', 'notification' ),
-				'slug'        => 'basic_config_url',
-				'addons'      => [
+				'name'   => __( 'Wizard', 'notification' ),
+				'slug'   => 'wizard',
+				'addons' => [
 					'url'   => 'edit.php?post_type=notification&page=wizard',
-					'label' => __( 'Run configuration', 'notification' ),
+					'label' => __( 'Run wizard', 'notification' ),
 				],
-				'description' => __( 'This launches Notification Wizard page', 'notification' ),
-				'render'      => [ new CoreFields\Button(), 'input' ],
+				'render' => [ new CoreFields\Button(), 'input' ],
 			] )
-			->description( __( 'Notification configuration', 'notification' ) );
+			->description( __( 'Plugin tools', 'notification' ) );
 
 		$general->add_group( __( 'Uninstallation', 'notification' ), 'uninstallation' )
 			->add_field( [

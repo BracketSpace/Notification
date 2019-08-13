@@ -107,151 +107,151 @@ class Wizard {
 	 */
 	public function get_settings() {
 
-		return array(
-			array(
+		return [
+			[
 				'name'  => __( 'Common Notifications', 'notification' ),
-				'items' => array(
-					array(
+				'items' => [
+					[
 						'name'        => __( 'Post published', 'notification' ),
 						'slug'        => 'post_published_admin',
 						'description' => __( 'An email to administrator when post is published', 'notification' ),
-						'recipients'  => array(
-							array(
+						'recipients'  => [
+							[
 								'name' => __( 'Administrator', 'notification' ),
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'name'        => __( 'Post published', 'notification' ),
 						'slug'        => 'post_published_subscribers',
 						'description' => __( 'An email to all Subscribers when post is published', 'notification' ),
-						'recipients'  => array(
-							array(
+						'recipients'  => [
+							[
 								'name' => __( 'Subscribers (role)', 'notification' ),
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'name'        => __( 'Post pending review', 'notification' ),
 						'slug'        => 'post_review',
 						'description' => __( 'An email to administrator when post has been sent for review', 'notification' ),
-						'recipients'  => array(
-							array(
+						'recipients'  => [
+							[
 								'name' => __( 'Administrator', 'notification' ),
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'name'        => __( 'Post updated', 'notification' ),
 						'slug'        => 'post_updated',
 						'description' => __( 'An email to administrator when post is updated', 'notification' ),
-						'recipients'  => array(
-							array(
+						'recipients'  => [
+							[
 								'name' => __( 'Administrator', 'notification' ),
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'name'        => __( 'Welcome email', 'notification' ),
 						'slug'        => 'welcome_email',
 						'description' => __( 'An email to registered user', 'notification' ),
-						'recipients'  => array(
-							array(
+						'recipients'  => [
+							[
 								'name' => __( 'User', 'notification' ),
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'name'        => __( 'Comment added', 'notification' ),
 						'slug'        => 'comment_added',
 						'description' => __( 'An email to post author about comment to his article', 'notification' ),
-						'recipients'  => array(
-							array(
+						'recipients'  => [
+							[
 								'name' => __( 'Post author', 'notification' ),
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'name'        => __( 'Comment reply', 'notification' ),
 						'slug'        => 'comment_reply',
 						'description' => __( 'An email to comment autor about the reply', 'notification' ),
-						'recipients'  => array(
-							array(
+						'recipients'  => [
+							[
 								'name' => __( 'Comment author', 'notification' ),
-							),
-						),
-					),
-				),
-			),
-			array(
+							],
+						],
+					],
+				],
+			],
+			[
 				'name'  => __( 'WordPress emails', 'notification' ),
-				'items' => array(
-					array(
+				'items' => [
+					[
 						'name'        => __( 'New user', 'notification' ),
 						'slug'        => 'new_user',
 						'description' => __( 'An email to administrator when new user is created', 'notification' ),
-						'recipients'  => array(
-							array(
+						'recipients'  => [
+							[
 								'name' => __( 'Administrator', 'notification' ),
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'name'        => __( 'Your account', 'notification' ),
 						'slug'        => 'your_account',
 						'description' => __( 'An email to registered user, with password reset link', 'notification' ),
-						'recipients'  => array(
-							array(
+						'recipients'  => [
+							[
 								'name' => __( 'User', 'notification' ),
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'name'        => __( 'Password reset request', 'notification' ),
 						'slug'        => 'password_forgotten',
 						'description' => __( 'An email to user when password reset has been requested', 'notification' ),
-						'recipients'  => array(
-							array(
+						'recipients'  => [
+							[
 								'name' => __( 'User', 'notification' ),
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'name'        => __( 'Password reset', 'notification' ),
 						'slug'        => 'password_reset',
 						'description' => __( 'An email with info that password has been reset', 'notification' ),
-						'recipients'  => array(
-							array(
+						'recipients'  => [
+							[
 								'name' => __( 'User', 'notification' ),
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'name'        => __( 'Comment awaiting moderation', 'notification' ),
 						'slug'        => 'comment_moderation',
 						'description' => __( 'An email to administrator and post author that comment is awaiting moderation', 'notification' ),
-						'recipients'  => array(
-							array(
+						'recipients'  => [
+							[
 								'name' => __( 'Administrator', 'notification' ),
-							),
-							array(
+							],
+							[
 								'name' => __( 'Post author', 'notification' ),
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'name'        => __( 'Comment has been published', 'notification' ),
 						'slug'        => 'comment_published',
 						'description' => __( 'An email to post author that comment has been published', 'notification' ),
-						'recipients'  => array(
-							array(
+						'recipients'  => [
+							[
 								'name' => __( 'Post author', 'notification' ),
-							),
-						),
-					),
-				),
-			),
-		);
+							],
+						],
+					],
+				],
+			],
+		];
 
 	}
 
