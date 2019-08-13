@@ -74,7 +74,7 @@ class Scripts {
 			return;
 		}
 
-		wp_enqueue_script( 'notification', $this->files->asset_url( 'js', 'scripts.min.js' ), [ 'jquery', 'wp-color-picker', 'wp-i18n', 'jquery-ui-sortable' ], $this->files->asset_mtime( 'js', 'scripts.min.js' ), false );
+		wp_enqueue_script( 'notification', $this->files->asset_url( 'js', 'scripts.js' ), [ 'jquery', 'wp-color-picker', 'wp-i18n', 'wp-hooks', 'jquery-ui-sortable' ], $this->files->asset_mtime( 'js', 'scripts.js' ), false );
 
 		wp_enqueue_style( 'notification', $this->files->asset_url( 'css', 'style.css' ), [], $this->files->asset_mtime( 'css', 'style.css' ) );
 

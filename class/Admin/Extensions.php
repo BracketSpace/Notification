@@ -97,6 +97,14 @@ class Extensions {
 
 		$extensions = $this->get_raw_extensions();
 
+		/**
+		 * Fix for changed Custom Fields slug:
+		 * notification-customfields/notification-customfields.php -> notification-custom-fields/notification-customfields.php
+		 */
+		if ( is_plugin_active( 'notification-custom-fields/notification-customfields.php' ) ) {
+			$extensions['notification-customfields/notification-customfields.php']['slug'] = 'notification-custom-fields/notification-customfields.php';
+		}
+
 		foreach ( $extensions as $extension ) {
 
 			if ( isset( $extension['wporg'] ) ) {

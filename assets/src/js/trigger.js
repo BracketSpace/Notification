@@ -18,7 +18,7 @@
 		} );
 
 		$( '#notification_trigger_select' ).selectize().change( function() {
-			notification.hooks.doAction( 'notification.trigger.changed', $( this ) );
+			wp.hooks.doAction( 'notification.trigger.changed', $( this ) );
 		} );
 
 	} );

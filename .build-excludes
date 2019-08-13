@@ -22,3 +22,4 @@ assets/src
 bin
 composer.json
 composer.lock
+webpack.mix.js

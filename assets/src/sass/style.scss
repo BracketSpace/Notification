@@ -6,8 +6,8 @@
 /**
  * Vendors
  */
-@import 'vendor/selectize';
-@import 'vendor/selectize.default';
+@import '../../../node_modules/selectize/dist/css/selectize';
+@import '../../../node_modules/selectize/dist/css/selectize.default';
 
 /**
  * Partials
