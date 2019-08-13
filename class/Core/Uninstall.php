@@ -69,6 +69,7 @@ class Uninstall {
 
 		// Remove other things.
 		delete_option( 'notification_story_dismissed' );
+		delete_option( 'notification_wizard_dismissed' );
 		delete_option( 'notification_debug_log' );
 		delete_option( 'notification_data_version' );
 		delete_option( 'notification_db_version' );

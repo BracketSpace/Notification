@@ -60,6 +60,7 @@ class TestMain extends \WP_UnitTestCase {
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Scripts', $this->notification->admin_scripts );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Screen', $this->notification->admin_screen );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Share', $this->notification->admin_share );
+		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Wizard', $this->notification->admin_wizard );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Sync', $this->notification->admin_sync );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Debugging', $this->notification->admin_debugging );
 

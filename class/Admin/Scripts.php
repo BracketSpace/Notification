@@ -54,6 +54,7 @@ class Scripts {
 			$this->runtime->admin_extensions->page_hook,
 			$this->runtime->core_settings->page_hook,
 			$this->runtime->admin_share->page_hook,
+			$this->runtime->admin_wizard->page_hook,
 			'plugins.php',
 			'post-new.php',
 			'post.php',
@@ -78,6 +79,7 @@ class Scripts {
 		wp_enqueue_style( 'notification', $this->files->asset_url( 'css', 'style.css' ), [], $this->files->asset_mtime( 'css', 'style.css' ) );
 
 		wp_set_script_translations( 'notification', 'notification' );
+
 		wp_localize_script( 'notification', 'notification', [
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
 		] );

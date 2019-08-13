@@ -77,6 +77,9 @@ Temporary Items
 # sftp configuration file
 sftp-config.json
 
+# postcss sorting config file
+settings.json
+
 # Package control specific files
 Package Control.last-run
 Package Control.ca-list
