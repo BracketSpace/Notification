@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Notification 5.3.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/notification\n"
-"POT-Creation-Date: 2019-08-05 21:15+0200\n"
+"POT-Creation-Date: 2019-08-12 22:58+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,6 +24,13 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
+
+#: assets/dist/js/scripts.min.js:3 assets/src/js/wizard.js:24
+#, javascript-format
+msgid "Create %d notification"
+msgid_plural "Create %d notifications"
+msgstr[0] ""
+msgstr[1] ""
 
 #: assets/src/js/fields/image.js:21
 msgid "Select image"
@@ -45,8 +52,12 @@ msgstr ""
 msgid "Importing data..."
 msgstr ""
 
-#: assets/src/js/mergetag.js:17 assets/src/js/share-story.js:16
+#: assets/src/js/mergetag.js:17
 msgid "Copied"
+msgstr ""
+
+#: assets/src/js/remove-confirmation.js:8
+msgid "Are you sure you want to permanently delete this notification?"
 msgstr ""
 
 #: assets/src/js/sync.js:48
@@ -127,55 +138,55 @@ msgstr ""
 msgid "Extensions"
 msgstr ""
 
-#: class/Admin/Extensions.php:325
+#: class/Admin/Extensions.php:333
 msgid "Your license has been activated."
 msgstr ""
 
-#: class/Admin/Extensions.php:330
+#: class/Admin/Extensions.php:338
 msgid "Your license has been deactivated."
 msgstr ""
 
-#: class/Admin/Extensions.php:335
+#: class/Admin/Extensions.php:343
 msgid "Couldn't activate the license, please try again."
 msgstr ""
 
-#: class/Admin/Extensions.php:342
+#: class/Admin/Extensions.php:350
 #, php-format
 msgid "Your license key expired on %s."
 msgstr ""
 
-#: class/Admin/Extensions.php:350
+#: class/Admin/Extensions.php:358
 msgid "Your license key has been disabled."
 msgstr ""
 
-#: class/Admin/Extensions.php:355
+#: class/Admin/Extensions.php:363
 #, php-format
 msgid "Invalid license key for %s."
 msgstr ""
 
-#: class/Admin/Extensions.php:361
+#: class/Admin/Extensions.php:369
 msgid "Your license is not active for this URL."
 msgstr ""
 
-#: class/Admin/Extensions.php:367
+#: class/Admin/Extensions.php:375
 #, php-format
 msgid "This appears to be an invalid license key for %s."
 msgstr ""
 
-#: class/Admin/Extensions.php:372
+#: class/Admin/Extensions.php:380
 msgid "Your license key has reached its activation limit."
 msgstr ""
 
-#: class/Admin/Extensions.php:377
+#: class/Admin/Extensions.php:385
 msgid "An error occurred, please try again."
 msgstr ""
 
-#: class/Admin/Extensions.php:414
+#: class/Admin/Extensions.php:422
 #, php-format
 msgid "Please activate the %1$s plugin to get the updates. %2$s"
 msgstr ""
 
-#: class/Admin/Extensions.php:416
+#: class/Admin/Extensions.php:424
 msgid "Go to Extensions"
 msgstr ""
 
@@ -245,7 +256,7 @@ msgstr ""
 msgid "No trigger selected"
 msgstr ""
 
-#: class/Admin/PostTable.php:139
+#: class/Admin/PostTable.php:139 views/save-metabox.php:28
 msgid "Remove"
 msgstr ""
 
@@ -566,6 +577,7 @@ msgid "Updates check period"
 msgstr ""
 
 #: class/Admin/Settings.php:283 class/Defaults/Carrier/Email.php:25
+#: views/wizard.php:32 views/wizard.php:46
 msgid "Email"
 msgstr ""
 
@@ -632,8 +644,125 @@ msgstr ""
 msgid "Allow to configure webhook headers"
 msgstr ""
 
-#: class/Admin/Share.php:40
-msgid "The story"
+#: class/Admin/Settings.php:378
+msgid "Integration"
+msgstr ""
+
+#: class/Admin/Settings.php:380
+msgid "Default WordPress emails"
+msgstr ""
+
+#: class/Admin/Settings.php:382
+msgid "New user"
+msgstr ""
+
+#: class/Admin/Settings.php:386
+msgid "Disable new user email to admin"
+msgstr ""
+
+#: class/Admin/Settings.php:388
+msgid "Email is sent after registration."
+msgstr ""
+
+#: class/Admin/Settings.php:393
+msgid "Welcome email"
+msgstr ""
+
+#: class/Admin/Settings.php:397
+msgid "Disable account details email to <strong>user</strong>"
+msgstr ""
+
+#: class/Admin/Settings.php:399
+msgid "Email is sent after registration and contains password setup link."
+msgstr ""
+
+#: class/Admin/Settings.php:404
+msgid "New comment"
+msgstr ""
+
+#: class/Admin/Settings.php:408
+msgid "Disable email to <strong>post author</strong> about a new comment"
+msgstr ""
+
+#: class/Admin/Settings.php:410
+msgid "Email is sent after comment is published."
+msgstr ""
+
+#: class/Admin/Settings.php:415
+msgid "Comment awaiting moderation"
+msgstr ""
+
+#: class/Admin/Settings.php:419
+msgid ""
+"Disable email to <strong>moderator (admin)</strong> when new comment awaits "
+"moderation"
+msgstr ""
+
+#: class/Admin/Settings.php:421
+msgid "Email is sent when new comment is awaiting approval."
+msgstr ""
+
+#: class/Admin/Settings.php:426 class/Admin/Settings.php:437
+msgid "Password reset request"
+msgstr ""
+
+#: class/Admin/Settings.php:430
+msgid "Disable email to <strong>admin</strong> about password change request"
+msgstr ""
+
+#: class/Admin/Settings.php:432 class/Admin/Settings.php:443
+msgid "Email is sent when user fills out the password reset request."
+msgstr ""
+
+#: class/Admin/Settings.php:441
+msgid "Disable email to <strong>user</strong> with password reset link"
+msgstr ""
+
+#: class/Admin/Settings.php:448 class/Admin/Settings.php:459
+msgid "Password changed"
+msgstr ""
+
+#: class/Admin/Settings.php:452
+msgid "Disable email to <strong>admin</strong> when user changed their password"
+msgstr ""
+
+#: class/Admin/Settings.php:454 class/Admin/Settings.php:465
+msgid "Email is sent when user changes his password."
+msgstr ""
+
+#: class/Admin/Settings.php:463
+msgid "Disable email to <strong>user</strong> when their password has been changed"
+msgstr ""
+
+#: class/Admin/Settings.php:470
+msgid "Email address changed"
+msgstr ""
+
+#: class/Admin/Settings.php:474
+msgid ""
+"Disable email to <strong>user</strong> about profile email address change request"
+msgstr ""
+
+#: class/Admin/Settings.php:476
+msgid "Email is sent when user saves a new email address in his profile."
+msgstr ""
+
+#: class/Admin/Settings.php:481
+msgid "Automatic WordPress core update"
+msgstr ""
+
+#: class/Admin/Settings.php:485
+msgid "Disable email to <strong>admin</strong> about successful background update"
+msgstr ""
+
+#: class/Admin/Settings.php:487
+msgid ""
+"Email is sent when background updates finishes successfully. \"Failed update\" "
+"email will always be sent to admin."
+msgstr ""
+
+#: class/Admin/Settings.php:491
+msgid "Disable each default emails by selecting the option."
 msgstr ""
 
 #: class/Admin/Sync.php:29
@@ -652,6 +781,10 @@ msgstr ""
 msgid ""
 "Something went wrong while importing the Notification, please refresh the page "
 "and try again."
+msgstr ""
+
+#: class/Admin/Wizard.php:36
+msgid "Wizard"
 msgstr ""
 
 #: class/Core/Cron.php:30
@@ -2266,23 +2399,17 @@ msgstr ""
 msgid "GET"
 msgstr ""
 
-#: inc/functions/general.php:74
+#: inc/functions/general.php:71
 #, php-format
 msgid ""
 "Class %1$s is <strong>deprecated</strong> since version %2$s! Use %3$s instead."
 msgstr ""
 
-#: inc/functions/general.php:77
+#: inc/functions/general.php:74
 #, php-format
 msgid ""
 "Class %1$s is <strong>deprecated</strong> since version %2$s with no alternative "
 "available."
-msgstr ""
-
-#: inc/requirements/dochooks.php:35
-msgid ""
-"PHP OP Cache to be disabled or <code>opcache.save_comments=1</code> added to php."
-"ini file"
 msgstr ""
 
 #: views/debug/error-log.php:21
@@ -2510,46 +2637,6 @@ msgstr ""
 msgid "No Settings available at the moment"
 msgstr ""
 
-#: views/story.php:14
-msgid ""
-"I know you've been using the Notification plugin for a while. That makes me very "
-"proud of my work."
-msgstr ""
-
-#: views/story.php:16
-msgid ""
-"The biggest problem is the plugin popularity. While I truly believe it's a very "
-"good software, still not to many people know that it exists."
-msgstr ""
-
-#: views/story.php:18
-msgid "You can help me change that."
-msgstr ""
-
-#: views/story.php:20
-msgid "Think about just one person who would be interested in this plugin."
-msgstr ""
-
-#: views/story.php:22
-msgid "Then, send this person a link to this plugin:"
-msgstr ""
-
-#: views/story.php:24
-msgid "copy"
-msgstr ""
-
-#: views/story.php:26
-msgid "Thanks for making things happen!"
-msgstr ""
-
-#: views/story.php:31
-msgid "Founder of the Notification plugin"
-msgstr ""
-
-#: views/story.php:35
-msgid "Skip this screen"
-msgstr ""
-
 #: views/sync/actions.php:12
 msgid "Save all to JSON"
 msgstr ""
@@ -2592,4 +2679,40 @@ msgstr ""
 
 #: views/trigger/select.php:10
 msgid "Select trigger"
+msgstr ""
+
+#: views/wizard.php:13
+msgid "Notification Wizard"
+msgstr ""
+
+#: views/wizard.php:14
+msgid "Quickly setup the Notifications you need."
+msgstr ""
+
+#: views/wizard.php:15
+msgid "You'll be able to edit them later."
+msgstr ""
+
+#: views/wizard.php:19
+msgid "Common Notifications"
+msgstr ""
+
+#: views/wizard.php:28
+msgid "FULLCONFIG Post updated"
+msgstr ""
+
+#: views/wizard.php:29 views/wizard.php:43
+msgid "Test of notification importing from JSON"
+msgstr ""
+
+#: views/wizard.php:30 views/wizard.php:44
+msgid "Example recipient"
+msgstr ""
+
+#: views/wizard.php:36 views/wizard.php:50
+msgid "Add this notification"
+msgstr ""
+
+#: views/wizard.php:42
+msgid "Webhook failed"
 msgstr ""

@@ -80,7 +80,6 @@ class Runtime extends Utils\DocHooks {
 		$this->admin_extensions = new Admin\Extensions();
 		$this->admin_scripts    = new Admin\Scripts( $this, $this->files );
 		$this->admin_screen     = new Admin\Screen();
-		$this->admin_share      = new Admin\Share();
 		$this->admin_wizard     = new Admin\Wizard( $this->files );
 		$this->admin_sync       = new Admin\Sync();
 		$this->admin_debugging  = new Admin\Debugging();
@@ -120,7 +119,6 @@ class Runtime extends Utils\DocHooks {
 		$this->add_hooks( $this->admin_extensions );
 		$this->add_hooks( $this->admin_scripts );
 		$this->add_hooks( $this->admin_screen );
-		$this->add_hooks( $this->admin_share );
 		$this->add_hooks( $this->admin_wizard );
 		$this->add_hooks( $this->admin_sync );
 		$this->add_hooks( $this->admin_debugging );

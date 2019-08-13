@@ -285,6 +285,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Webpack for assets processing instead of Gulp.
 * [Changed] OP Cache is no longer a requirement, instead hooks compatibility file is loaded when OP Cache config is incompatible.
 * [Removed] Freemius.
+* [Removed] The story screen.
 
 = 6.0.4 =
 * [Fixed] Webhook waring using empty header values.

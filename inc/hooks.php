@@ -59,9 +59,6 @@ add_action( 'add_meta_boxes', [ $this->admin_screen, 'metabox_cleanup' ], 999999
 add_action( 'current_screen', [ $this->admin_screen, 'add_help' ], 10, 1 );
 add_action( 'wp_ajax_get_merge_tags_for_trigger', [ $this->admin_screen, 'ajax_render_merge_tags' ], 10, 0 );
 add_action( 'wp_ajax_get_recipient_input', [ $this->admin_screen, 'ajax_get_recipient_input' ], 10, 0 );
-add_action( 'admin_menu', [ $this->admin_share, 'register_page' ], 30, 0 );
-add_action( 'current_screen', [ $this->admin_share, 'maybe_redirect' ], 10, 0 );
-add_action( 'admin_init', [ $this->admin_share, 'dismiss_story' ], 10, 0 );
 add_action( 'wp_ajax_notification_sync', [ $this->admin_sync, 'ajax_sync' ], 10, 0 );
 add_action( 'admin_notices', [ $this->admin_debugging, 'debug_warning' ], 10, 0 );
 add_action( 'admin_post_notification_clear_logs', [ $this->admin_debugging, 'action_clear_logs' ], 10, 0 );

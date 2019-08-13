@@ -56,7 +56,7 @@ class Wizard {
 
 		$this->page_hook = add_submenu_page(
 			null,
-			'',
+			__( 'Wizard', 'notification' ),
 			__( 'Wizard', 'notification' ),
 			'manage_options',
 			'wizard',
