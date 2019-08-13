@@ -54,7 +54,7 @@ class Settings {
 				'name'   => __( 'Wizard', 'notification' ),
 				'slug'   => 'wizard',
 				'addons' => [
-					'url'   => 'edit.php?post_type=notification&page=wizard',
+					'url'   => admin_url( 'edit.php?post_type=notification&page=wizard' ),
 					'label' => __( 'Run wizard', 'notification' ),
 				],
 				'render' => [ new CoreFields\Button(), 'input' ],

@@ -20,18 +20,18 @@ class Button {
 	 */
 	public function input( $field ) {
 
-		echo '<a href="' . $this->sanitize_url( $field->addon( 'url' ) ) . '" class="button">' . $field->addon( 'label' ) . '</a>'; // phpcs:ignore
+		echo '<a href="' . $this->sanitize( $field->addon( 'url' ) ) . '" class="button">' . $field->addon( 'label' ) . '</a>'; // phpcs:ignore
 
 	}
 
 	/**
-	 * Sanitize button url
+	 * Sanitize button URL
 	 *
-	 * @param  string $path Admin page path.
-	 * @return string       Sanitized admin url
+	 * @param  string $value URL.
+	 * @return string       Sanitized URL
 	 */
-	private function sanitize_url( $path ) {
-		return admin_url( $path );
+	public function sanitize( $value ) {
+		return esc_url_raw( $value );
 	}
 
 }
