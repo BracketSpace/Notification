@@ -49,6 +49,18 @@ class Settings {
 			] )
 			->description( __( 'Notification content settings', 'notification' ) );
 
+		$general->add_group( __( 'Tools', 'notification' ), 'tools' )
+			->add_field( [
+				'name'   => __( 'Wizard', 'notification' ),
+				'slug'   => 'wizard',
+				'addons' => [
+					'url'   => admin_url( 'edit.php?post_type=notification&page=wizard' ),
+					'label' => __( 'Run wizard', 'notification' ),
+				],
+				'render' => [ new CoreFields\Button(), 'input' ],
+			] )
+			->description( __( 'Plugin tools', 'notification' ) );
+
 		$general->add_group( __( 'Uninstallation', 'notification' ), 'uninstallation' )
 			->add_field( [
 				'name'     => __( 'Notifications', 'notification' ),

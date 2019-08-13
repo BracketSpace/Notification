@@ -278,10 +278,12 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] Confirmation before deleting the notification.
 * [Added] Default WordPress emails disabler.
 * [Added] `notification/integration/gutenberg` filter to disable Gutenberg support for specific post types. Useful when the post is in REST but no Gutenberg is used.
+* [Added] Wizard.
 * [Changed] Internationalization for JS files.
 * [Changed] Notification repeater field is now by default sortable.
 * [Changed] Carrier textarea field now can be unfiltered, so no HTML will be stripped.
-* [Changed] OP Cache is no longer a requirement, instead hooks compatibility file is loaded when.
+* [Changed] Webpack for assets processing instead of Gulp.
+* [Changed] OP Cache is no longer a requirement, instead hooks compatibility file is loaded when OP Cache config is incompatible.
 * [Removed] Freemius.
 * [Removed] The story screen.
 

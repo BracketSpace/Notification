@@ -4,6 +4,7 @@
 node_modules/
 /vendor/
 assets/dist/
+package-lock.json.
 
 ### Windows ###
 # Windows image file caches

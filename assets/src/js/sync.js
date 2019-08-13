@@ -21,7 +21,7 @@
 				var $button = $( notification_row ).find( '.button.notification-sync' );
 
 				if ( $button.data( 'sync-type' ) === $master_button.data( 'type' ) ) {
-					notification.hooks.doAction( 'notification.sync.init', $button );
+					wp.hooks.doAction( 'notification.sync.init', $button );
 				}
 
 			} );
@@ -30,10 +30,10 @@
 
 		$( '.group-sync .field-notifications td > .button.notification-sync' ).on( 'click', function( event ) {
 			event.preventDefault();
-			notification.hooks.doAction( 'notification.sync.init', $( this ) );
+			wp.hooks.doAction( 'notification.sync.init', $( this ) );
  		} );
 
- 		notification.hooks.addAction( 'notification.sync.init', function( $button ) {
+ 		wp.hooks.addAction( 'notification.sync.init', 'notification', function( $button ) {
 
  			if ( $button.attr( 'disabled' ) ) {
  				return false;

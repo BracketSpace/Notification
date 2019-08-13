@@ -43,7 +43,7 @@
 			$remove_button.parents( '.row' ).first().animate( { opacity: 0 }, 400, 'linear', function() {
 				$( this ).remove();
 	            recalculate_rows( $repeater );
-	            notification.hooks.doAction( 'notification.repeater.row.removed', $repeater );
+	            wp.hooks.doAction( 'notification.repeater.row.removed', $repeater );
 	        } );
 
 		}
@@ -75,7 +75,7 @@
 
 			recalculate_rows( $repeater );
 
-			notification.hooks.doAction( 'notification.repeater.row.added', $cloned, $repeater );
+			wp.hooks.doAction( 'notification.repeater.row.added', $cloned, $repeater );
 
 		} );
 
