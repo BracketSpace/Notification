@@ -16,12 +16,12 @@
 			counter-increment: rowNumber;
 		}
 
-		td, th {
+		td,
+		th {
 			width: auto;
 			padding: 12px;
-			background-color: #ffffff;
+			background-color: #fff;
 			border: 1px solid #e5e5e5;
-			// width: auto;
 
 			&.handle,
 			&.trash {
@@ -32,7 +32,7 @@
 				padding: 0;
 				color: #a5a5a5;
 
-				@media( max-width: 782px ) {
+				@media ( max-width: 782px ) {
 					width: calc(100% - 22px);
 					height: 30px;
 					line-height: 30px;
@@ -46,7 +46,7 @@
 
 			small {
 				display: block;
-				font-weight: normal;
+				font-weight: 400;
 			}
 
 		}
@@ -56,9 +56,9 @@
 			&.subfield {
 
 				.row-header {
-					display:none;
+					display: none;
 
-					@media( max-width: 782px ) {
+					@media ( max-width: 782px ) {
 						display: block;
 						margin-bottom: 5px;
 					}
@@ -75,14 +75,15 @@
 				&::after {
 					display: none;
 					content: "\f545";
-					font: 400 20px/1 dashicons;
+					font: 400 20px/1 dashicons, sans-serif;
 					line-height: 30px;
 				}
 
-				@media( max-width: 782px ) {
+				@media ( max-width: 782px ) {
 					position: relative;
 
-					&::before, &::after {
+					&::before,
+					&::after {
 						position: absolute;
 					}
 
@@ -100,17 +101,17 @@
 
 			&.trash {
 
-				@media( max-width: 782px ) {
+				@media ( max-width: 782px ) {
 					position: relative;
 				}
 
 				&::after {
 					display: none;
 					content: "\f182";
-					font: 400 20px/1 dashicons;
+					font: 400 20px/1 dashicons, sans-serif;
 					line-height: 30px;
 
-					@media( max-width: 782px ) {
+					@media ( max-width: 782px ) {
 						position: absolute;
 						display: block;
 						right: 10px;
@@ -149,18 +150,33 @@
 
 		tr {
 
+			td {
+
+				&.handle {
+
+					@media ( max-width: 782px ) {
+
+						&::after {
+							display: block;
+						}
+					}
+
+				}
+
+			}
+
 			&.ui-sortable-placeholder {
 				counter-increment: rowNumber 0;
 				visibility: visible !important;
 
-				@media( max-width: 782px ) {
+				@media ( max-width: 782px ) {
 					height: auto !important;
 				}
 
 				td {
 					background-color: #f5f5f5;
 
-					@media( max-width: 782px ) {
+					@media ( max-width: 782px ) {
 						border-top: 0;
 						border-bottom: 0;
 
@@ -173,7 +189,7 @@
 						}
 					}
 
-					@media( min-width: 783px ) {
+					@media ( min-width: 783px ) {
 						border-left: 0;
 						border-right: 0;
 
@@ -192,20 +208,6 @@
 				display: table;
 			}
 
-			td {
-
-				&.handle {
-
-					@media( max-width: 782px ) {
-						&::after {
-							display: block;
-						}
-					}
-
-				}
-
-			}
-
 			&:hover {
 
 				td.handle {
@@ -213,7 +215,7 @@
 
 					&::before {
 
-						@media( min-width: 783px ) {
+						@media ( min-width: 783px ) {
 							display: none;
 						}
 

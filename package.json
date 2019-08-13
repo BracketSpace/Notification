@@ -9,7 +9,11 @@
     "dev": "npm run development",
     "watch": "npm run development -- --watch",
     "prod": "npm run production",
-    "phpcs": "composer phpcs"
+    "phpcs": "composer phpcs",
+    "lint:css": "wp-scripts lint-style ./assets/src/sass",
+    "lint:css:fix": "wp-scripts lint-style ./assets/src/sass --fix",
+    "lint:js": "wp-scripts lint-js ./assets/src/js",
+    "lint:js:fix": "wp-scripts lint-js ./assets/src/js --fix"
   },
   "author": "BracketSpace",
   "license": "ISC",
@@ -21,6 +25,7 @@
     "ie 11"
   ],
   "devDependencies": {
+    "@wordpress/scripts": "^3.4.0",
     "browser-sync": "^2.26.7",
     "cross-env": "^5.2.0",
     "mati-mix": "^2.0.1"
@@ -31,5 +36,8 @@
     "microplugin": "0.0.3",
     "selectize": "^0.12.4",
     "sifter": "^0.5.3"
+  },
+  "stylelint": {
+    "extends": "stylelint-config-wordpress/scss"
   }
 }

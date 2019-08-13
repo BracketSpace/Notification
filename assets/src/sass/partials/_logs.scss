@@ -43,11 +43,60 @@
 
 				caption {
 					text-align: left;
-					font-weight: bold;
+					font-weight: 600;
 				}
 
 			}
 
+		}
+
+	}
+
+	.error-logs {
+
+		@extend .notification-logs;
+
+		.log-handle {
+
+			.message {
+				padding: 10px;
+				display: inline-block;
+				background: #ececec;
+				min-width: 90px;
+				font-weight: 600;
+				float: left;
+			}
+
+			.component {
+				padding: 10px;
+				display: inline-block;
+				float: left;
+			}
+
+			.excerpt {
+				padding: 10px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				max-width: 60%;
+				display: inline-block;
+				float: left;
+				color: #ccc;
+				transition: opacity 0.3s;
+			}
+
+		}
+
+		.error-log .log-handle .message {
+			color: #f00;
+		}
+
+		.warning-log .log-handle .message {
+			color: #ff880a;
+		}
+
+		.log-item.expanded .excerpt {
+			opacity: 0;
 		}
 
 	}
@@ -69,7 +118,7 @@
 					display: inline-block;
 					background: #ececec;
 					min-width: 120px;
-					font-weight: bold;
+					font-weight: 600;
 				}
 
 				.notification-title {
@@ -103,15 +152,11 @@
 					float: right;
 				}
 
-				@media( max-width: 768px ) {
+				@media ( max-width: 768px ) {
 
 					.carrier-name {
 						background: none;
 						width: 100%;
-					}
-
-					.source-label {
-						afloat: right;
 					}
 
 					.indicator {
@@ -126,7 +171,7 @@
 				max-height: 0;
 				overflow: hidden;
 				overflow-y: scroll;
-				transition: max-height .3s;
+				transition: max-height 0.3s;
 
 				.body-content {
 					border-top: 1px solid #ececec;
@@ -143,54 +188,6 @@
 
 			}
 
-		}
-
-	}
-
-	.error-logs {
-		@extend .notification-logs;
-
-		.log-handle {
-
-			.message {
-				padding: 10px;
-				display: inline-block;
-				background: #ececec;
-				min-width: 90px;
-				font-weight: bold;
-				float: left;
-			}
-
-			.component {
-				padding: 10px;
-				display: inline-block;
-				float: left;
-			}
-
-			.excerpt {
-				padding: 10px;
-				white-space: nowrap;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				max-width: 60%;
-				display: inline-block;
-				float: left;
-				color: #ccc;
-				transition: opacity .3s;
-			}
-
-		}
-
-		.error-log .log-handle .message {
-			color: red;
-		}
-
-		.warning-log .log-handle .message {
-			color: #ff880a;
-		}
-
-		.log-item.expanded .excerpt {
-			opacity: 0;
 		}
 
 	}
@@ -227,7 +224,7 @@
 			padding: 0 4px;
 		}
 
-		@media( max-width: 600px ) {
+		@media ( max-width: 600px ) {
 
 			.page-numbers:not(.prev):not(.next) {
 				display: none;

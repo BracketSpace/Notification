@@ -1,87 +1,74 @@
-( function($) {
-
-	var __ = wp.i18n.__;
+/* eslint no-alert: 0 */
+/* global notification, wp, jQuery, alert */
+( function( $ ) {
+	const __ = wp.i18n.__;
 
 	$( document ).ready( function() {
-
 		$( '.group-sync .field-actions .notification-sync-all' ).on( 'click', function( event ) {
-
 			event.preventDefault();
 
-			var $master_button = $( this );
+			const $masterButton = $( this );
 
-			if ( $master_button.attr( 'disabled' ) ) {
- 				return false;
- 			}
+			if ( $masterButton.attr( 'disabled' ) ) {
+				return false;
+			}
 
-			$master_button.attr( 'disabled', true );
+			$masterButton.attr( 'disabled', true );
 
-			$( '.group-sync .field-notifications tr' ).each( function( num, notification_row ) {
+			$( '.group-sync .field-notifications tr' ).each( function( num, notificationRow ) {
+				const $button = $( notificationRow ).find( '.button.notification-sync' );
 
-				var $button = $( notification_row ).find( '.button.notification-sync' );
-
-				if ( $button.data( 'sync-type' ) === $master_button.data( 'type' ) ) {
-					wp.hooks.doAction( 'notification.sync.init', $button );
+				if ( $button.data( 'sync-type' ) === $masterButton.data( 'type' ) ) {
+					notification.hooks.doAction( 'notification.sync.init', $button );
 				}
-
 			} );
-
- 		} );
+		} );
 
 		$( '.group-sync .field-notifications td > .button.notification-sync' ).on( 'click', function( event ) {
 			event.preventDefault();
-			wp.hooks.doAction( 'notification.sync.init', $( this ) );
- 		} );
+			notification.hooks.doAction( 'notification.sync.init', $( this ) );
+		} );
 
- 		wp.hooks.addAction( 'notification.sync.init', 'notification', function( $button ) {
+		notification.hooks.addAction( 'notification.sync.init', 'notification', function( $button ) {
+			if ( $button.attr( 'disabled' ) ) {
+				return false;
+			}
 
- 			if ( $button.attr( 'disabled' ) ) {
- 				return false;
- 			}
-
- 			var sync_type = $button.data( 'sync-type' ),
- 				hash      = $button.data( 'sync-hash' ),
- 				nonce     = $button.data( 'nonce' ),
- 				label     = $button.text();
+			const syncType = $button.data( 'sync-type' ),
+				hash = $button.data( 'sync-hash' ),
+				nonce = $button.data( 'nonce' );
 
 			$button.attr( 'disabled', true );
 			$button.text( __( 'Synchronizing...', 'notification' ) );
 
- 			data = {
-				action : 'notification_sync',
-				hash   : hash,
-				type   : sync_type,
-				nonce  : nonce
-			}
+			const data = {
+				action: 'notification_sync',
+				hash,
+				type: syncType,
+				nonce,
+			};
 
 			$.post( notification.ajaxurl, data, function( response ) {
+				if ( response.success === true ) {
+					const $notificationRow = $button.parent().parent();
 
-				if ( response.success == true ) {
-
-					var $notification_row = $button.parent().parent();
-
-					if ( 'wordpress' === sync_type ) {
-						var $title_td = $notification_row.find( 'td.title' );
-						var $link     = $( '<a>', {
-								text : $title_td.text(),
-								href : response.data
-							} );
-						$title_td.html( $link );
+					if ( 'wordpress' === syncType ) {
+						const $titleTd = $notificationRow.find( 'td.title' );
+						const $link = $( '<a>', {
+							text: $titleTd.text(),
+							href: response.data,
+						} );
+						$titleTd.html( $link );
 					}
 
-					$notification_row.find( 'td.status' ).text( __( 'Synchronized', 'notification' ) );
+					$notificationRow.find( 'td.status' ).text( __( 'Synchronized', 'notification' ) );
 					$button.remove();
-
 				} else {
 					alert( response.data );
 				}
 
 				$button.attr( 'disabled', false );
-
 			} );
-
- 		} );
-
+		} );
 	} );
-
-} )(jQuery);
+}( jQuery ) );

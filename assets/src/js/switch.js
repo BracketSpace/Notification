@@ -1,44 +1,36 @@
-( function($) {
-
+/* eslint no-alert: 0 */
+/* global notification, jQuery, alert */
+( function( $ ) {
 	$( document ).ready( function() {
-
 		$( '.column-switch .onoffswitch' ).on( 'click', function( event ) {
-
-			var $switch = $( this ),
-				post_id = $switch.data( 'postid' );
+			const $switch = $( this ),
+				postId = $switch.data( 'postid' );
 
 			event.preventDefault();
 
-			wp.hooks.doAction( 'notification.status.changed', $switch, post_id );
+			notification.hooks.doAction( 'notification.status.changed', $switch, postId );
+		} );
 
- 		} );
+		notification.hooks.addAction( 'notification.status.changed', 'notification', function( $switch, postId ) {
+			const status = ! $switch.find( 'input' ).attr( 'checked' );
 
- 		wp.hooks.addAction( 'notification.status.changed', 'notification', function( $switch, post_id ) {
+			$switch.addClass( 'loading' );
 
- 			var status = ! $switch.find( 'input' ).attr( 'checked' );
-
- 			$switch.addClass( 'loading' );
-
- 			data = {
-				action : 'change_notification_status',
-				post_id: post_id,
-				status : status,
-				nonce  : $switch.data( 'nonce' )
-			}
+			const data = {
+				action: 'change_notification_status',
+				post_id: postId,
+				status,
+				nonce: $switch.data( 'nonce' ),
+			};
 
 			$.post( notification.ajaxurl, data, function( response ) {
-
-		    	if ( response.success == true ) {
-		    		$switch.removeClass( 'loading' );
-	 				$switch.find( 'input' ).attr( 'checked', status );
-		    	} else {
-		    		alert( response.data );
-		    	}
-
+				if ( response.success === true ) {
+					$switch.removeClass( 'loading' );
+					$switch.find( 'input' ).attr( 'checked', status );
+				} else {
+					alert( response.data );
+				}
 			} );
-
- 		} );
-
+		} );
 	} );
-
-} )(jQuery);
+}( jQuery ) );

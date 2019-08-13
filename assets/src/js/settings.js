@@ -1,19 +1,18 @@
+/* global jQuery, jQueryCollapse */
 ( function( $ ) {
-
-	$(document).ready( function() {
+	$( document ).ready( function() {
 		$( '.underdev-settings .pretty-select' ).selectize();
 		new jQueryCollapse( $( '.underdev-settings .setting-group' ), {
-			open: function() {
-				this.slideDown(100);
+			open() {
+				this.slideDown( 100 );
 			},
-			close: function() {
-				this.slideUp(100);
-			}
+			close() {
+				this.slideUp( 100 );
+			},
 		} );
 		$( '.setting-group-header' ).click( function() {
-			var wrapper = $(this).parents('.setting-group').find( '.form-table' );
+			const wrapper = $( this ).parents( '.setting-group' ).find( '.form-table' );
 			wrapper.trigger( 'toggle' );
 		} );
 	} );
-
-} )( jQuery );
+}( jQuery ) );

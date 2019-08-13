@@ -1,94 +1,76 @@
-(function($) {
-
-	var __ = wp.i18n.__;
+/* eslint no-alert: 0 */
+/* global notification, wp, jQuery */
+( function( $ ) {
+	const __ = wp.i18n.__;
 
 	$( document ).ready( function() {
-
-		var recalculate_rows = function( $repeater ) {
-
-			var i = 0;
+		const recalculateRows = function( $repeater ) {
+			let i = 0;
 
 			$repeater.find( '.row:not(.header):not(.model)' ).each( function() {
-
-				var $row    = $( this ),
+				const $row = $( this ),
 					$inputs = $row.find( '.notification-field:not(.selectize-control):not(.selectize-dropdown)' );
 
 				$inputs.each( function() {
+					const $input = $( this ),
+						partName = $input.attr( 'name' );
 
-					var $input    = $(this),
-						part_name = $input.attr('name');
-
-					$input.attr( 'name', part_name.replace( /(.*)\[([0-9]+)\]/, '$1[' + i + ']' ) );
-
+					$input.attr( 'name', partName.replace( /(.*)\[([0-9]+)\]/, '$1[' + i + ']' ) );
 				} );
 
 				i++;
-
 			} );
-
-		}
+		};
 
 		// Set model in disable state
-
 		$( '.fields-repeater .model .subfield' ).each( function() {
 			$( this ).find( 'input, textarea, select' ).attr( 'disabled', true );
 		} );
 
 		// Remove row
+		function removeRow( $removeButton ) {
+			const $repeater = $removeButton.parents( '.fields-repeater' ).first();
 
-		function remove_row( $remove_button ) {
-
-			var $repeater = $remove_button.parents( '.fields-repeater' ).first();
-
-			$remove_button.parents( '.row' ).first().animate( { opacity: 0 }, 400, 'linear', function() {
+			$removeButton.parents( '.row' ).first().animate( { opacity: 0 }, 400, 'linear', function() {
 				$( this ).remove();
-	            recalculate_rows( $repeater );
-	            wp.hooks.doAction( 'notification.repeater.row.removed', $repeater );
-	        } );
-
+				recalculateRows( $repeater );
+				wp.hooks.doAction( 'notification.repeater.row.removed', $repeater );
+			} );
 		}
 
 		$( '.fields-repeater' ).on( 'click', '.row:not(.header):not(.model) .trash', function() {
-
-			var $remove_button = $( this );
+			const $removeButton = $( this );
 
 			if ( $( window ).width() > 768 ) {
-				remove_row( $remove_button );
+				removeRow( $removeButton );
 			} else if ( window.confirm( __( 'Do you really want to delete this?', 'notification' ) ) ) {
-				remove_row( $remove_button );
+				removeRow( $removeButton );
 			}
-
 		} );
 
 		// Add row
-
 		$( '.add-new-repeater-field' ).on( 'click', function( event ) {
-
 			event.preventDefault();
 
-			var $repeater = $( this ).prev( '.fields-repeater' ),
-				$model    = $repeater.find( '.row.model' ),
-				$cloned   = $model.clone().removeClass( 'model' );
+			const $repeater = $( this ).prev( '.fields-repeater' ),
+				$model = $repeater.find( '.row.model' ),
+				$cloned = $model.clone().removeClass( 'model' );
 
 			$cloned.find( 'input, textarea, select' ).attr( 'disabled', false );
-			$cloned.appendTo( $repeater )
+			$cloned.appendTo( $repeater );
 
-			recalculate_rows( $repeater );
+			recalculateRows( $repeater );
 
-			wp.hooks.doAction( 'notification.repeater.row.added', $cloned, $repeater );
-
+			notification.hooks.doAction( 'notification.repeater.row.added', $cloned, $repeater );
 		} );
 
 		// Sortable
-
 		$( '.fields-repeater-sortable > tbody' ).sortable( {
 			handle: '.handle',
 			axis: 'y',
-	    start:  function( e, ui ) {
-	    	ui.placeholder.height( ui.helper[0].scrollHeight );
-	    },
+			start( e, ui ) {
+				ui.placeholder.height( ui.helper[ 0 ].scrollHeight );
+			},
 		} );
-
 	} );
-
-})(jQuery);
+}( jQuery ) );

@@ -1,12 +1,9 @@
-(function($) {
-
+/* global notification, jQuery */
+( function( $ ) {
 	$( document ).ready( function() {
-
-		$( '#carrier-boxes .postbox .switch-container input' ).change( function( event ) {
+		$( '#carrier-boxes .postbox .switch-container input' ).change( function() {
 			$( this ).parents( '.switch' ).first().toggleClass( 'active' );
-			wp.hooks.doAction( 'notification.carrier.toggled', $( this ) );
+			notification.hooks.doAction( 'notification.carrier.toggled', $( this ) );
 		} );
-
 	} );
-
-})(jQuery);
+}( jQuery ) );
