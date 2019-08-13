@@ -17,8 +17,7 @@
 			display: block;
 			padding: 12px 0;
 			border-bottom: 1px solid rgba(229, 229, 229, 0.6);
-			position: relative;
-			font-weight: bold;
+			font-weight: 600;
 			text-transform: uppercase;
 			color: #636363;
 			text-decoration: none;
@@ -27,7 +26,7 @@
 			overflow: hidden;
 
 			&::after {
-				content: '';
+				content: "";
 				position: absolute;
 				top: 20px;
 				right: 10px;
@@ -50,9 +49,10 @@
 
 			.intro {
 				width: calc(100% - 30px);
+
 				label {
 					display: block;
-					font-weight: bold;
+					font-weight: 600;
 					margin-bottom: 5px;
 					max-width: 100%;
 					text-overflow: ellipsis;
@@ -79,7 +79,7 @@
 				top: 10px;
 				border-radius: 50%;
 				background-color: #888;
-				color: #ffffff;
+				color: #fff;
 				width: 20px;
 				height: 20px;
 				text-align: center;
@@ -91,21 +91,22 @@
 					visibility: hidden;
 					box-shadow: 0 0 8px #eaeaea;
 					right: -3px;
-				    top: 160%;
+					top: 160%;
 					z-index: 15;
 					min-width: 200px;
 					text-align: left;
 
 					.description-container {
 						border: 1px solid #e5e5e5;
-	    				background: #fff;
-	    				color: #333;
+						background: #fff;
+						color: #333;
 						padding: 10px;
 						font-size: 12px;
 						line-height: 16px;
 						position: relative;
 
-						&:after, &:before {
+						&::after,
+						&::before {
 							bottom: 100%;
 							right: 0;
 							border: solid transparent;
@@ -117,14 +118,15 @@
 							z-index: 18;
 						}
 
-						&:after {
+						&::after {
 							border-color: rgba(229, 229, 229, 0);
-							border-bottom-color: #ffffff;
+							border-bottom-color: #fff;
 							border-width: 9px;
 							margin-left: -9px;
 							margin-right: 2px;
 						}
-						&:before {
+
+						&::before {
 							border-color: rgba(229, 229, 229, 0);
 							border-bottom-color: #e5e5e5;
 							border-width: 11px;
@@ -133,7 +135,7 @@
 					}
 
 					label {
-						font-weight: bold;
+						font-weight: 600;
 					}
 				}
 
@@ -158,23 +160,23 @@ body.post-type-notification {
 	#notification_save {
 
 		.inside {
-		    margin: 0;
-		    padding: 0;
+			margin: 0;
+			padding: 0;
 
-		    .misc-pub-section {
-		    	padding: 10px;
-		    	overflow: auto;
+			.misc-pub-section {
+				padding: 10px;
+				overflow: auto;
 
-		    	.row-label {
-		    		float: left;
-		    		line-height: 34px;
-		    	}
+				.row-label {
+					float: left;
+					line-height: 34px;
+				}
 
-		    	.onoffswitch {
-		    		float: right;
-		    	}
+				.onoffswitch {
+					float: right;
+				}
 
-		    }
+			}
 
 		}
 

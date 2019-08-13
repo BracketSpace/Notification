@@ -11,7 +11,9 @@
     "prod": "npm run production",
     "phpcs": "composer phpcs",
     "lint:css": "wp-scripts lint-style ./assets/src/sass",
-    "lint:js": "wp-scripts lint-js ./assets/src/js"
+    "lint:css:fix": "wp-scripts lint-style ./assets/src/sass --fix",
+    "lint:js": "wp-scripts lint-js ./assets/src/js",
+    "lint:js:fix": "wp-scripts lint-js ./assets/src/js --fix"
   },
   "author": "BracketSpace",
   "license": "ISC",
@@ -34,5 +36,8 @@
     "microplugin": "0.0.3",
     "selectize": "^0.12.4",
     "sifter": "^0.5.3"
+  },
+  "stylelint": {
+    "extends": "stylelint-config-wordpress/scss"
   }
 }
