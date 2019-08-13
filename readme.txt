@@ -282,7 +282,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Notification repeater field is now by default sortable.
 * [Changed] Carrier textarea field now can be unfiltered, so no HTML will be stripped.
 * [Changed] Webpack for assets processing instead of Gulp.
-* [Changed] OP Cache error message.
+* [Changed] OP Cache is no longer a requirement, instead hooks compatibility file is loaded when OP Cache config is incompatible.
 * [Removed] Freemius.
 
 = 6.0.4 =
