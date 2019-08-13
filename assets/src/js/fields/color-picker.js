@@ -1,11 +1,10 @@
-(function($) {
-
+/* global notification, jQuery */
+( function( $ ) {
 	$( document ).ready( function() {
 		$( '.notification-color-picker:visible' ).wpColorPicker();
 	} );
 
-	wp.hooks.addAction( 'notification.carrier.repeater.row.added', 'notification', function( $cloned, $repeater ) {
+	notification.hooks.addAction( 'notification.carrier.repeater.row.added', 'notification', function( $cloned ) {
 		$cloned.find( '.notification-color-picker' ).wpColorPicker();
 	} );
-
-})(jQuery);
+}( jQuery ) );
