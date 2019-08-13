@@ -22,6 +22,7 @@
   ],
   "devDependencies": {
     "browser-sync": "^2.26.7",
+    "cross-env": "^5.2.0",
     "mati-mix": "^2.0.1"
   },
   "dependencies": {
