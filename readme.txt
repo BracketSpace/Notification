@@ -16,6 +16,10 @@ Custom Notifications and Alerts without a hassle. Notify anyone about any action
 
 [youtube https://www.youtube.com/watch?v=UPqVBhLGTek]
 
+= DEFAULT WORDPRESS EMAILS OVERWRITE =
+
+Now, with this plugin, you can easily disable default WordPress emails and replace them with your own. To do that you can use our awesome Wizard which will guide you through the process.
+
 = HOW DOES IT WORK =
 
 The Notification plugin is built with three main components:
@@ -55,14 +59,14 @@ How easy extending the Notification plugin is? Let's see:
 
 [See the developer documentation](https://docs.bracketspace.com/notification/developer/general) if you don't believe us.
 
-= DEFAULT NOTIFICATIONS =
+= DEFAULT CARRIERS =
 
 * Email
 * Webhook
 
 = DEFAULT RECIPIENTS =
 
-The plugin comes with few registered by default recipient types:
+The plugin comes with few registered by default recipient types for Email Carrier:
 
 * Email address or Merge Tag – free type email address or a Merge Tag
 * Administrator – takes an email from General Settings page
@@ -185,6 +189,7 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 
 = POSSIBLE USE CASES =
 
+* Overwriting default WordPress Emails
 * Post publication notification to the post author
 * Custom comment approved notification to post author and administrator
 * User logged in notification to the administrator
@@ -201,7 +206,7 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 
 = Requirements =
 
-This plugin require at least PHP 5.6.
+This plugin require at least PHP 7.0.
 
 = Plugin install =
 
@@ -264,6 +269,8 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 3. Settings
 4. Extensions
 5. Help tab with global Merge Tags
+6. Wizard
+7. Default email disabler
 
 == Changelog ==
 
