@@ -15,7 +15,7 @@
 
 		// Get recipient field according to type
 
-		notification.hooks.addAction( 'notification.carrier.recipients.type.changed', 'notification', function( type, $select, $recipient, $table ) {
+		notification.hooks.addAction( 'notification.carrier.recipients.type.changed', function( type, $select, $recipient, $table ) {
 			const data = {
 				action: 'get_recipient_input',
 				type,

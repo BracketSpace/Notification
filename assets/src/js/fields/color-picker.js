@@ -4,7 +4,7 @@
 		$( '.notification-color-picker:visible' ).wpColorPicker();
 	} );
 
-	notification.hooks.addAction( 'notification.carrier.repeater.row.added', 'notification', function( $cloned ) {
+	notification.hooks.addAction( 'notification.carrier.repeater.row.added', function( $cloned ) {
 		$cloned.find( '.notification-color-picker' ).wpColorPicker();
 	} );
 }( jQuery ) );

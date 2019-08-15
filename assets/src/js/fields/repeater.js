@@ -34,7 +34,7 @@
 			$removeButton.parents( '.row' ).first().animate( { opacity: 0 }, 400, 'linear', function() {
 				$( this ).remove();
 				recalculateRows( $repeater );
-				wp.hooks.doAction( 'notification.repeater.row.removed', $repeater );
+				notification.hooks.doAction( 'notification.repeater.row.removed', $repeater );
 			} );
 		}
 

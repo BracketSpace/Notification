@@ -11,7 +11,7 @@
 			const $code = $( e.trigger ),
 				tag = $code.text();
 
-			wp.hooks.doAction( 'notification.merge_tag.copied', tag, $code );
+			notification.hooks.doAction( 'notification.merge_tag.copied', tag, $code );
 
 			$code.text( __( 'Copied', 'notification' ) );
 
@@ -24,7 +24,7 @@
 		let collapse = $( '.notification_merge_tags_accordion' ).collapse();
 
 		// Swap Merge Tags list for new Trigger.
-		notification.hooks.addAction( 'notification.trigger.changed', 'notification', function( $trigger ) {
+		notification.hooks.addAction( 'notification.trigger.changed', function( $trigger ) {
 			const triggerSlug = $trigger.val();
 
 			const data = {

@@ -11,7 +11,7 @@
 			notification.hooks.doAction( 'notification.status.changed', $switch, postId );
 		} );
 
-		notification.hooks.addAction( 'notification.status.changed', 'notification', function( $switch, postId ) {
+		notification.hooks.addAction( 'notification.status.changed', function( $switch, postId ) {
 			const status = ! $switch.find( 'input' ).attr( 'checked' );
 
 			$switch.addClass( 'loading' );

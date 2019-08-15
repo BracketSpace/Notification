@@ -29,7 +29,7 @@
 			notification.hooks.doAction( 'notification.sync.init', $( this ) );
 		} );
 
-		notification.hooks.addAction( 'notification.sync.init', 'notification', function( $button ) {
+		notification.hooks.addAction( 'notification.sync.init', function( $button ) {
 			if ( $button.attr( 'disabled' ) ) {
 				return false;
 			}
