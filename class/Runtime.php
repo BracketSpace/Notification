@@ -54,6 +54,24 @@ class Runtime extends Utils\DocHooks {
 	}
 
 	/**
+	 * Registers all the hooks with DocHooks
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function register_hooks() {
+
+		$this->add_hooks();
+
+		foreach ( get_object_vars( $this ) as $instance ) {
+			if ( is_object( $instance ) ) {
+				$this->add_hooks( $instance );
+			}
+		}
+
+	}
+
+	/**
 	 * Creates needed classes
 	 * Singletons are used for a sake of performance
 	 *
@@ -99,34 +117,7 @@ class Runtime extends Utils\DocHooks {
 	 */
 	public function actions() {
 
-		$this->add_hooks();
-
-		$this->add_hooks( $this->files );
-		$this->add_hooks( $this->internationalization );
-
-		$this->add_hooks( $this->core_cron );
-		$this->add_hooks( $this->core_whitelabel );
-		$this->add_hooks( $this->core_debugging );
-		$this->add_hooks( $this->core_settings );
-		$this->add_hooks( $this->core_upgrade );
-		$this->add_hooks( $this->core_sync );
-
-		$this->add_hooks( $this->admin_impexp );
-		$this->add_hooks( $this->admin_settings );
-		$this->add_hooks( $this->admin_duplicator );
-		$this->add_hooks( $this->admin_post_type );
-		$this->add_hooks( $this->admin_post_table );
-		$this->add_hooks( $this->admin_extensions );
-		$this->add_hooks( $this->admin_scripts );
-		$this->add_hooks( $this->admin_screen );
-		$this->add_hooks( $this->admin_wizard );
-		$this->add_hooks( $this->admin_sync );
-		$this->add_hooks( $this->admin_debugging );
-
-		$this->add_hooks( $this->integration_wp );
-		$this->add_hooks( $this->integration_wp_emails );
-		$this->add_hooks( $this->integration_cf );
-		$this->add_hooks( $this->integration_gb );
+		$this->register_hooks();
 
 		notification_register_settings( [ $this->admin_settings, 'general_settings' ] );
 		notification_register_settings( [ $this->admin_settings, 'triggers_settings' ], 20 );
