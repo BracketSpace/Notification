@@ -82,7 +82,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 			'name'       => 'activated',
 			'value'      => '0',
 			'resolvable' => false,
-			'atts'       => 'data-nt-carrier-input',
+			'atts'       => 'data-nt-carrier-input-active',
 		] );
 
 		$activated_field->section = 'notification_carrier_' . $this->get_slug();
@@ -96,6 +96,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 			'name'       => 'enabled',
 			'value'      => '1',
 			'resolvable' => false,
+			'atts'       => 'data-nt-carrier-input-enable',
 		] );
 
 		$enabled_field->section = 'notification_carrier_' . $this->get_slug();

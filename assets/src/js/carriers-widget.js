@@ -1,4 +1,4 @@
-/* global jQuery */
+/* global jQuery, notification */
 const $ = jQuery;
 
 class CarriersWidget {
@@ -13,8 +13,10 @@ class CarriersWidget {
 	setVars() {
 		this.atts = {
 			carrier: 'data-nt-carrier', // single carrier wrapper
-			carrierInput: 'data-nt-carrier-input', // input inside carrier with activated value
-			carrierRemove: 'data-nt-carrier-remove', // remove button inside carrier
+			carrierActiveInput: 'data-nt-carrier-input-active', // input inside carrier with activated value
+			carrierEnableInput: 'data-nt-carrier-input-enable', // input inside carrier with enabled value
+			carrierSwitch: 'data-nt-carrier-input-switch', // input inside carrier with switch value
+			carrierRemoveButton: 'data-nt-carrier-remove', // remove button inside carrier
 			widget: 'data-nt-widget', // widget with buttons for adding carriers, "add" and "abort"
 			buttons: 'data-nt-buttons', // wrapper with buttons
 			button: 'data-nt-button', // button to adding carrier
@@ -30,8 +32,11 @@ class CarriersWidget {
 			return;
 		}
 
-		this.carrierInputs = document.querySelectorAll( `[${ this.atts.carrierInput }]` );
-		this.carrierRemoves = document.querySelectorAll( `[${ this.atts.carrierRemove }]` );
+		this.carrierHndles = document.querySelectorAll( `[${ this.atts.carrier }] .hndle` );
+		this.carrierActiveInputs = document.querySelectorAll( `[${ this.atts.carrierActiveInput }]` );
+		this.carrierEnableInputs = document.querySelectorAll( `[${ this.atts.carrierEnableInput }]` );
+		this.carrierSwitches = document.querySelectorAll( `[${ this.atts.carrierSwitch }]` );
+		this.carrierRemoveButtons = document.querySelectorAll( `[${ this.atts.carrierRemoveButton }]` );
 		this.buttonsWrapper = this.wrapper.querySelector( `[${ this.atts.buttons }]` );
 		this.buttons = this.buttonsWrapper.querySelectorAll( `[${ this.atts.button }]` );
 		this.links = this.buttonsWrapper.querySelectorAll( `[${ this.atts.buttonLink }]` );
@@ -39,6 +44,9 @@ class CarriersWidget {
 		this.buttonAbort = this.wrapper.querySelector( `[${ this.atts.abort }]` );
 
 		this.settings = {
+			classes: {
+				carrierDisabledClass: 'closed',
+			},
 			scrollTime: 1000,
 			scrollOffset: 50,
 		};
@@ -56,15 +64,21 @@ class CarriersWidget {
 			this.hideButtons();
 		} );
 
-		const { length } = this.buttons;
+		const { length } = this.carriers;
 		for ( let i = 0; i < length; i++ ) {
 			this.buttons[ i ].addEventListener( 'click', ( e ) => {
 				e.preventDefault();
 				this.addCarrier( i );
 			} );
-			this.carrierRemoves[ i ].addEventListener( 'click', ( e ) => {
+			this.carrierHndles[ i ].addEventListener( 'click', ( e ) => {
+				e.stopImmediatePropagation();
+			} );
+			this.carrierRemoveButtons[ i ].addEventListener( 'click', ( e ) => {
 				e.preventDefault();
 				this.removeCarrier( i );
+			} );
+			this.carrierSwitches[ i ].addEventListener( 'change', ( e ) => {
+				this.toggleCarrier( i, e.target.checked );
 			} );
 		}
 	}
@@ -83,9 +97,10 @@ class CarriersWidget {
 
 	addCarrier( index ) {
 		this.carriers[ index ].removeAttribute( this.atts.hidden );
-		this.carrierInputs[ index ].value = 1;
+		this.carrierActiveInputs[ index ].value = 1;
 		this.buttons[ index ].setAttribute( this.atts.hidden, true );
 
+		this.toggleCarrier( index, true );
 		this.hideButtons();
 		this.toggleWrapperVisibility();
 
@@ -96,10 +111,24 @@ class CarriersWidget {
 
 	removeCarrier( index ) {
 		this.carriers[ index ].setAttribute( this.atts.hidden, true );
-		this.carrierInputs[ index ].value = '';
+		this.carrierActiveInputs[ index ].value = '';
 		this.buttons[ index ].removeAttribute( this.atts.hidden );
 
+		this.toggleCarrier( index, false );
 		this.toggleWrapperVisibility();
+	}
+
+	toggleCarrier( index, status ) {
+		if ( status === true ) {
+			this.carriers[ index ].classList.remove( this.settings.classes.carrierDisabledClass );
+			this.carrierEnableInputs[ index ].value = 1;
+		} else {
+			this.carriers[ index ].classList.add( this.settings.classes.carrierDisabledClass );
+			this.carrierEnableInputs[ index ].value = '';
+		}
+		this.carrierSwitches[ index ].checked = status;
+
+		notification.hooks.doAction( 'notification.carrier.toggled', $( this.carrierSwitches[ index ] ) );
 	}
 
 	toggleWrapperVisibility() {
