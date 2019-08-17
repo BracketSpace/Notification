@@ -83,6 +83,7 @@ class Runtime extends Utils\DocHooks {
 		$this->admin_wizard     = new Admin\Wizard( $this->files );
 		$this->admin_sync       = new Admin\Sync();
 		$this->admin_debugging  = new Admin\Debugging();
+		$this->admin_carriers   = new Admin\Carriers();
 
 		$this->integration_wp        = new Integration\WordPress();
 		$this->integration_wp_emails = new Integration\WordPressEmails();
@@ -122,6 +123,7 @@ class Runtime extends Utils\DocHooks {
 		$this->add_hooks( $this->admin_wizard );
 		$this->add_hooks( $this->admin_sync );
 		$this->add_hooks( $this->admin_debugging );
+		$this->add_hooks( $this->admin_carriers );
 
 		$this->add_hooks( $this->integration_wp );
 		$this->add_hooks( $this->integration_wp_emails );

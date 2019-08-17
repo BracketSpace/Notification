@@ -1,7 +1,8 @@
 /* eslint no-alert: 0 */
-/* global wp, notification, jQuery, Clipboard, ajaxurl, alert */
+/* global wp, notification, jQuery, ajaxurl, alert */
 ( function( $ ) {
 	const __ = wp.i18n.__;
+	const Clipboard = require( 'clipboard' );
 
 	$( document ).ready( function() {
 		// Copy Merge Tag.

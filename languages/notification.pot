@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Notification 5.3.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/notification\n"
-"POT-Creation-Date: 2019-08-12 22:58+0200\n"
+"POT-Creation-Date: 2019-08-17 14:53+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,30 +25,30 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
 
-#: assets/dist/js/scripts.min.js:3 assets/src/js/wizard.js:24
+#: assets/dist/js/scripts.js:1 assets/src/js/wizard.js:22
 #, javascript-format
 msgid "Create %d notification"
 msgid_plural "Create %d notifications"
 msgstr[0] ""
 msgstr[1] ""
 
-#: assets/src/js/fields/image.js:21
+#: assets/src/js/fields/image.js:20
 msgid "Select image"
 msgstr ""
 
-#: assets/src/js/fields/image.js:27
+#: assets/src/js/fields/image.js:26
 msgid "Use selected image"
 msgstr ""
 
-#: assets/src/js/fields/repeater.js:57
+#: assets/src/js/fields/repeater.js:46
 msgid "Do you really want to delete this?"
 msgstr ""
 
-#: assets/src/js/import-export.js:60
+#: assets/src/js/import-export.js:53
 msgid "Please upload only valid JSON files"
 msgstr ""
 
-#: assets/src/js/import-export.js:85
+#: assets/src/js/import-export.js:77
 msgid "Importing data..."
 msgstr ""
 
@@ -60,11 +60,11 @@ msgstr ""
 msgid "Are you sure you want to permanently delete this notification?"
 msgstr ""
 
-#: assets/src/js/sync.js:48
+#: assets/src/js/sync.js:42
 msgid "Synchronizing..."
 msgstr ""
 
-#: assets/src/js/sync.js:72 views/sync/notifications.php:46
+#: assets/src/js/sync.js:64 views/sync/notifications.php:46
 msgid "Synchronized"
 msgstr ""
 
@@ -72,7 +72,7 @@ msgstr ""
 msgid "Debugging"
 msgstr ""
 
-#: class/Admin/Debugging.php:27 class/Admin/Settings.php:64
+#: class/Admin/Debugging.php:27 class/Admin/Settings.php:76
 #: class/Core/Settings.php:48 views/settings/page.php:12
 msgid "Settings"
 msgstr ""
@@ -200,7 +200,7 @@ msgstr ""
 
 #: class/Admin/ImportExport.php:30 class/Admin/ImportExport.php:43
 #: class/Admin/PostType.php:44 class/Admin/PostType.php:55
-#: class/Admin/Settings.php:54 class/Admin/Sync.php:46
+#: class/Admin/Settings.php:66 class/Admin/Sync.php:46
 msgid "Notifications"
 msgstr ""
 
@@ -248,7 +248,7 @@ msgid "Trigger"
 msgstr ""
 
 #: class/Admin/PostTable.php:34 class/Admin/Screen.php:87
-#: class/Admin/Settings.php:281
+#: class/Admin/Settings.php:293
 msgid "Carriers"
 msgstr ""
 
@@ -333,31 +333,31 @@ msgstr ""
 msgid "Disabled"
 msgstr ""
 
-#: class/Admin/PostType.php:346
+#: class/Admin/PostType.php:350
 msgid "Notification status couldn't be changed."
 msgstr ""
 
-#: class/Admin/Screen.php:163 views/save-metabox.php:33
+#: class/Admin/Screen.php:166 views/save-metabox.php:33
 msgid "Save"
 msgstr ""
 
-#: class/Admin/Screen.php:186
+#: class/Admin/Screen.php:189
 msgid "Delete Permanently"
 msgstr ""
 
-#: class/Admin/Screen.php:188
+#: class/Admin/Screen.php:191
 msgid "Move to Trash"
 msgstr ""
 
-#: class/Admin/Screen.php:213
+#: class/Admin/Screen.php:216
 msgid "Merge Tags"
 msgstr ""
 
-#: class/Admin/Screen.php:296
+#: class/Admin/Screen.php:299
 msgid "Other"
 msgstr ""
 
-#: class/Admin/Screen.php:373
+#: class/Admin/Screen.php:376
 msgid "Global Merge Tags"
 msgstr ""
 
@@ -394,34 +394,50 @@ msgid "Notification content settings"
 msgstr ""
 
 #: class/Admin/Settings.php:52
-msgid "Uninstallation"
+msgid "Tools"
+msgstr ""
+
+#: class/Admin/Settings.php:54 class/Admin/Wizard.php:59 class/Admin/Wizard.php:60
+msgid "Wizard"
 msgstr ""
 
 #: class/Admin/Settings.php:58
+msgid "Run wizard"
+msgstr ""
+
+#: class/Admin/Settings.php:62
+msgid "Plugin tools"
+msgstr ""
+
+#: class/Admin/Settings.php:64
+msgid "Uninstallation"
+msgstr ""
+
+#: class/Admin/Settings.php:70
 msgid "Remove all added notifications"
 msgstr ""
 
-#: class/Admin/Settings.php:68
+#: class/Admin/Settings.php:80
 msgid "Remove plugin settings"
 msgstr ""
 
-#: class/Admin/Settings.php:74
+#: class/Admin/Settings.php:86
 msgid "Licenses"
 msgstr ""
 
-#: class/Admin/Settings.php:78
+#: class/Admin/Settings.php:90
 msgid "Remove and deactivate extension licenses"
 msgstr ""
 
-#: class/Admin/Settings.php:83
+#: class/Admin/Settings.php:95
 msgid "Choose what to remove upon plugin removal"
 msgstr ""
 
-#: class/Admin/Settings.php:103
+#: class/Admin/Settings.php:115
 msgid "Triggers"
 msgstr ""
 
-#: class/Admin/Settings.php:105
+#: class/Admin/Settings.php:117
 #: class/Defaults/Trigger/Comment/CommentTrigger.php:135
 #: class/Defaults/Trigger/Comment/CommentTrigger.php:142
 #: class/Defaults/Trigger/Comment/CommentTrigger.php:150
@@ -434,57 +450,58 @@ msgstr ""
 msgid "Post"
 msgstr ""
 
-#: class/Admin/Settings.php:107
+#: class/Admin/Settings.php:119
 msgid "Post Types"
 msgstr ""
 
-#: class/Admin/Settings.php:118
+#: class/Admin/Settings.php:130
 msgid ""
 "For these post types you will be able to define published, updated, pending "
 "moderation etc. notifications"
 msgstr ""
 
-#: class/Admin/Settings.php:131 class/Defaults/MergeTag/Taxonomy/TaxonomyName.php:52
+#: class/Admin/Settings.php:143 class/Defaults/MergeTag/Taxonomy/TaxonomyName.php:52
 #: class/Defaults/MergeTag/Taxonomy/TaxonomySlug.php:52
 msgid "Taxonomy"
 msgstr ""
 
-#: class/Admin/Settings.php:133 class/Defaults/Trigger/Post/PostTrigger.php:136
+#: class/Admin/Settings.php:145 class/Defaults/Trigger/Post/PostTrigger.php:136
 msgid "Taxonomies"
 msgstr ""
 
-#: class/Admin/Settings.php:144
+#: class/Admin/Settings.php:156
 msgid ""
 "For these taxonomies you will be able to define published, updated and deleted "
 "notifications"
 msgstr ""
 
-#: class/Admin/Settings.php:146 class/Admin/Settings.php:155
+#: class/Admin/Settings.php:158 class/Admin/Settings.php:167
 msgid "Comment"
 msgstr ""
 
-#: class/Admin/Settings.php:148
+#: class/Admin/Settings.php:160
 msgid "Comment Types"
 msgstr ""
 
-#: class/Admin/Settings.php:156
+#: class/Admin/Settings.php:168
 msgid "Pingback"
 msgstr ""
 
-#: class/Admin/Settings.php:157
+#: class/Admin/Settings.php:169
 msgid "Trackback"
 msgstr ""
 
-#: class/Admin/Settings.php:164 class/Defaults/Trigger/Plugin/PluginTrigger.php:28
+#: class/Admin/Settings.php:176 class/Defaults/Trigger/Plugin/PluginTrigger.php:28
 msgid "Akismet"
 msgstr ""
 
-#: class/Admin/Settings.php:168
+#: class/Admin/Settings.php:180
 msgid "Do not send notification if comment has been marked as a spam by Akismet"
 msgstr ""
 
-#: class/Admin/Settings.php:174 class/Admin/Settings.php:176
-#: class/Defaults/MergeTag/User/UserBio.php:50
+#: class/Admin/Settings.php:186 class/Admin/Settings.php:188
+#: class/Admin/Wizard.php:160 class/Admin/Wizard.php:205 class/Admin/Wizard.php:215
+#: class/Admin/Wizard.php:225 class/Defaults/MergeTag/User/UserBio.php:50
 #: class/Defaults/MergeTag/User/UserDisplayName.php:50
 #: class/Defaults/MergeTag/User/UserEmail.php:50
 #: class/Defaults/MergeTag/User/UserFirstName.php:50
@@ -499,20 +516,20 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: class/Admin/Settings.php:180
+#: class/Admin/Settings.php:192
 msgid "Enable user triggers"
 msgstr ""
 
-#: class/Admin/Settings.php:186 class/Admin/Settings.php:188
+#: class/Admin/Settings.php:198 class/Admin/Settings.php:200
 #: class/Defaults/Trigger/Media/MediaTrigger.php:26
 msgid "Media"
 msgstr ""
 
-#: class/Admin/Settings.php:192
+#: class/Admin/Settings.php:204
 msgid "Enable media triggers"
 msgstr ""
 
-#: class/Admin/Settings.php:198 class/Admin/Settings.php:200
+#: class/Admin/Settings.php:210 class/Admin/Settings.php:212
 #: class/Defaults/Trigger/Theme/Installed.php:27
 #: class/Defaults/Trigger/Theme/Switched.php:27
 #: class/Defaults/Trigger/Theme/ThemeTrigger.php:33
@@ -527,11 +544,11 @@ msgstr ""
 msgid "Theme"
 msgstr ""
 
-#: class/Admin/Settings.php:204
+#: class/Admin/Settings.php:216
 msgid "Enable theme triggers"
 msgstr ""
 
-#: class/Admin/Settings.php:210 class/Admin/Settings.php:212
+#: class/Admin/Settings.php:222 class/Admin/Settings.php:224
 #: class/Defaults/Trigger/Plugin/Activated.php:27
 #: class/Defaults/Trigger/Plugin/Deactivated.php:27
 #: class/Defaults/Trigger/Plugin/Installed.php:26
@@ -545,223 +562,224 @@ msgstr ""
 msgid "Plugin"
 msgstr ""
 
-#: class/Admin/Settings.php:216
+#: class/Admin/Settings.php:228
 msgid "Enable plugin triggers"
 msgstr ""
 
-#: class/Admin/Settings.php:228
+#: class/Admin/Settings.php:240
 #: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:36
 #: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:94
 msgid "WordPress"
 msgstr ""
 
-#: class/Admin/Settings.php:230
+#: class/Admin/Settings.php:242
 #: class/Defaults/Trigger/WordPress/UpdatesAvailable.php:166
 msgid "Updates"
 msgstr ""
 
-#: class/Admin/Settings.php:234
+#: class/Admin/Settings.php:246
 msgid "Enable \"Updates available\" trigger"
 msgstr ""
 
-#: class/Admin/Settings.php:240
+#: class/Admin/Settings.php:252
 msgid "Send if no updates"
 msgstr ""
 
-#: class/Admin/Settings.php:244
+#: class/Admin/Settings.php:256
 msgid "Send updates email even if no updates available"
 msgstr ""
 
-#: class/Admin/Settings.php:250
+#: class/Admin/Settings.php:262
 msgid "Updates check period"
 msgstr ""
 
-#: class/Admin/Settings.php:283 class/Defaults/Carrier/Email.php:25
-#: views/wizard.php:32 views/wizard.php:46
+#: class/Admin/Settings.php:295 class/Defaults/Carrier/Email.php:32
+#: views/wizard.php:47
 msgid "Email"
 msgstr ""
 
-#: class/Admin/Settings.php:285 class/Admin/Settings.php:348
+#: class/Admin/Settings.php:297 class/Admin/Settings.php:360
 #: class/Defaults/Field/CheckboxField.php:36 views/save-metabox.php:13
 msgid "Enable"
 msgstr ""
 
-#: class/Admin/Settings.php:289
+#: class/Admin/Settings.php:301
 msgid "Enable Email Carrier"
 msgstr ""
 
-#: class/Admin/Settings.php:295
+#: class/Admin/Settings.php:307
 msgid "Message type"
 msgstr ""
 
-#: class/Admin/Settings.php:300
+#: class/Admin/Settings.php:312
 msgid "HTML"
 msgstr ""
 
-#: class/Admin/Settings.php:301
+#: class/Admin/Settings.php:313
 msgid "Plain text"
 msgstr ""
 
-#: class/Admin/Settings.php:308
+#: class/Admin/Settings.php:320
 msgid "Unfiltered HTML"
 msgstr ""
 
-#: class/Admin/Settings.php:312
+#: class/Admin/Settings.php:324
 msgid "Allow unfiltered HTML in email body"
 msgstr ""
 
-#: class/Admin/Settings.php:318
+#: class/Admin/Settings.php:330
 msgid "From Name"
 msgstr ""
 
-#: class/Admin/Settings.php:324 class/Admin/Settings.php:333
+#: class/Admin/Settings.php:336 class/Admin/Settings.php:345
 #, php-format
 msgid "Leave blank to use default value: %s"
 msgstr ""
 
-#: class/Admin/Settings.php:327
+#: class/Admin/Settings.php:339
 msgid "From Email"
 msgstr ""
 
-#: class/Admin/Settings.php:336 class/Admin/Settings.php:358
-#: class/Defaults/Carrier/Email.php:70 class/Defaults/Carrier/Webhook.php:79
+#: class/Admin/Settings.php:348 class/Admin/Settings.php:370
+#: class/Defaults/Carrier/Email.php:77 class/Defaults/Carrier/Webhook.php:86
 msgid "Headers"
 msgstr ""
 
-#: class/Admin/Settings.php:340
+#: class/Admin/Settings.php:352
 msgid "Allow to configure email headers"
 msgstr ""
 
-#: class/Admin/Settings.php:346 class/Defaults/Carrier/Webhook.php:25
+#: class/Admin/Settings.php:358 class/Defaults/Carrier/Webhook.php:32
 msgid "Webhook"
 msgstr ""
 
-#: class/Admin/Settings.php:352
+#: class/Admin/Settings.php:364
 msgid "Enable Webhook Carrier"
 msgstr ""
 
-#: class/Admin/Settings.php:362
+#: class/Admin/Settings.php:374
 msgid "Allow to configure webhook headers"
 msgstr ""
 
-#: class/Admin/Settings.php:378
+#: class/Admin/Settings.php:390
 msgid "Integration"
 msgstr ""
 
-#: class/Admin/Settings.php:380
+#: class/Admin/Settings.php:392
 msgid "Default WordPress emails"
 msgstr ""
 
-#: class/Admin/Settings.php:382
+#: class/Admin/Settings.php:394 class/Admin/Wizard.php:190
 msgid "New user"
 msgstr ""
 
-#: class/Admin/Settings.php:386
+#: class/Admin/Settings.php:398
 msgid "Disable new user email to admin"
 msgstr ""
 
-#: class/Admin/Settings.php:388
+#: class/Admin/Settings.php:400
 msgid "Email is sent after registration."
 msgstr ""
 
-#: class/Admin/Settings.php:393
+#: class/Admin/Settings.php:405 class/Admin/Wizard.php:155
 msgid "Welcome email"
 msgstr ""
 
-#: class/Admin/Settings.php:397
+#: class/Admin/Settings.php:409
 msgid "Disable account details email to <strong>user</strong>"
 msgstr ""
 
-#: class/Admin/Settings.php:399
+#: class/Admin/Settings.php:411
 msgid "Email is sent after registration and contains password setup link."
 msgstr ""
 
-#: class/Admin/Settings.php:404
+#: class/Admin/Settings.php:416
 msgid "New comment"
 msgstr ""
 
-#: class/Admin/Settings.php:408
+#: class/Admin/Settings.php:420
 msgid "Disable email to <strong>post author</strong> about a new comment"
 msgstr ""
 
-#: class/Admin/Settings.php:410
+#: class/Admin/Settings.php:422
 msgid "Email is sent after comment is published."
 msgstr ""
 
-#: class/Admin/Settings.php:415
+#: class/Admin/Settings.php:427 class/Admin/Wizard.php:230
 msgid "Comment awaiting moderation"
 msgstr ""
 
-#: class/Admin/Settings.php:419
+#: class/Admin/Settings.php:431
 msgid ""
 "Disable email to <strong>moderator (admin)</strong> when new comment awaits "
 "moderation"
 msgstr ""
 
-#: class/Admin/Settings.php:421
+#: class/Admin/Settings.php:433
 msgid "Email is sent when new comment is awaiting approval."
 msgstr ""
 
-#: class/Admin/Settings.php:426 class/Admin/Settings.php:437
+#: class/Admin/Settings.php:438 class/Admin/Settings.php:449
+#: class/Admin/Wizard.php:210
 msgid "Password reset request"
 msgstr ""
 
-#: class/Admin/Settings.php:430
+#: class/Admin/Settings.php:442
 msgid "Disable email to <strong>admin</strong> about password change request"
 msgstr ""
 
-#: class/Admin/Settings.php:432 class/Admin/Settings.php:443
+#: class/Admin/Settings.php:444 class/Admin/Settings.php:455
 msgid "Email is sent when user fills out the password reset request."
 msgstr ""
 
-#: class/Admin/Settings.php:441
+#: class/Admin/Settings.php:453
 msgid "Disable email to <strong>user</strong> with password reset link"
 msgstr ""
 
-#: class/Admin/Settings.php:448 class/Admin/Settings.php:459
+#: class/Admin/Settings.php:460 class/Admin/Settings.php:471
 msgid "Password changed"
 msgstr ""
 
-#: class/Admin/Settings.php:452
+#: class/Admin/Settings.php:464
 msgid "Disable email to <strong>admin</strong> when user changed their password"
 msgstr ""
 
-#: class/Admin/Settings.php:454 class/Admin/Settings.php:465
+#: class/Admin/Settings.php:466 class/Admin/Settings.php:477
 msgid "Email is sent when user changes his password."
 msgstr ""
 
-#: class/Admin/Settings.php:463
+#: class/Admin/Settings.php:475
 msgid "Disable email to <strong>user</strong> when their password has been changed"
 msgstr ""
 
-#: class/Admin/Settings.php:470
+#: class/Admin/Settings.php:482
 msgid "Email address changed"
 msgstr ""
 
-#: class/Admin/Settings.php:474
+#: class/Admin/Settings.php:486
 msgid ""
 "Disable email to <strong>user</strong> about profile email address change request"
 msgstr ""
 
-#: class/Admin/Settings.php:476
+#: class/Admin/Settings.php:488
 msgid "Email is sent when user saves a new email address in his profile."
 msgstr ""
 
-#: class/Admin/Settings.php:481
+#: class/Admin/Settings.php:493
 msgid "Automatic WordPress core update"
 msgstr ""
 
-#: class/Admin/Settings.php:485
+#: class/Admin/Settings.php:497
 msgid "Disable email to <strong>admin</strong> about successful background update"
 msgstr ""
 
-#: class/Admin/Settings.php:487
+#: class/Admin/Settings.php:499
 msgid ""
 "Email is sent when background updates finishes successfully. \"Failed update\" "
 "email will always be sent to admin."
 msgstr ""
 
-#: class/Admin/Settings.php:491
+#: class/Admin/Settings.php:503
 msgid "Disable each default emails by selecting the option."
 msgstr ""
 
@@ -783,8 +801,115 @@ msgid ""
 "and try again."
 msgstr ""
 
-#: class/Admin/Wizard.php:36
-msgid "Wizard"
+#: class/Admin/Wizard.php:112
+msgid "Common Notifications"
+msgstr ""
+
+#: class/Admin/Wizard.php:115 class/Admin/Wizard.php:125
+msgid "Post published"
+msgstr ""
+
+#: class/Admin/Wizard.php:117
+msgid "An email to administrator when post is published"
+msgstr ""
+
+#: class/Admin/Wizard.php:120 class/Admin/Wizard.php:140 class/Admin/Wizard.php:150
+#: class/Admin/Wizard.php:195 class/Admin/Wizard.php:235
+#: class/Defaults/Recipient/Administrator.php:26
+msgid "Administrator"
+msgstr ""
+
+#: class/Admin/Wizard.php:127
+msgid "An email to all Subscribers when post is published"
+msgstr ""
+
+#: class/Admin/Wizard.php:130
+msgid "Subscribers (role)"
+msgstr ""
+
+#: class/Admin/Wizard.php:135
+msgid "Post pending review"
+msgstr ""
+
+#: class/Admin/Wizard.php:137
+msgid "An email to administrator when post has been sent for review"
+msgstr ""
+
+#: class/Admin/Wizard.php:145
+msgid "Post updated"
+msgstr ""
+
+#: class/Admin/Wizard.php:147
+msgid "An email to administrator when post is updated"
+msgstr ""
+
+#: class/Admin/Wizard.php:157
+msgid "An email to registered user"
+msgstr ""
+
+#: class/Admin/Wizard.php:165
+msgid "Comment added"
+msgstr ""
+
+#: class/Admin/Wizard.php:167
+msgid "An email to post author about comment to his article"
+msgstr ""
+
+#: class/Admin/Wizard.php:170 class/Admin/Wizard.php:238 class/Admin/Wizard.php:248
+msgid "Post author"
+msgstr ""
+
+#: class/Admin/Wizard.php:175
+msgid "Comment reply"
+msgstr ""
+
+#: class/Admin/Wizard.php:177
+msgid "An email to comment autor about the reply"
+msgstr ""
+
+#: class/Admin/Wizard.php:180
+msgid "Comment author"
+msgstr ""
+
+#: class/Admin/Wizard.php:187
+msgid "WordPress emails"
+msgstr ""
+
+#: class/Admin/Wizard.php:192
+msgid "An email to administrator when new user is created"
+msgstr ""
+
+#: class/Admin/Wizard.php:200
+msgid "Your account"
+msgstr ""
+
+#: class/Admin/Wizard.php:202
+msgid "An email to registered user, with password reset link"
+msgstr ""
+
+#: class/Admin/Wizard.php:212
+msgid "An email to user when password reset has been requested"
+msgstr ""
+
+#: class/Admin/Wizard.php:220
+msgid "Password reset"
+msgstr ""
+
+#: class/Admin/Wizard.php:222
+msgid "An email with info that password has been reset"
+msgstr ""
+
+#: class/Admin/Wizard.php:232
+msgid ""
+"An email to administrator and post author that comment is awaiting moderation"
+msgstr ""
+
+#: class/Admin/Wizard.php:243
+msgid "Comment has been published"
+msgstr ""
+
+#: class/Admin/Wizard.php:245
+msgid "An email to post author that comment has been published"
 msgstr ""
 
 #: class/Core/Cron.php:30
@@ -811,63 +936,63 @@ msgstr ""
 msgid "Notification settings"
 msgstr ""
 
-#: class/Defaults/Carrier/Email.php:37
+#: class/Defaults/Carrier/Email.php:44
 msgid "Subject"
 msgstr ""
 
-#: class/Defaults/Carrier/Email.php:44 class/Defaults/Carrier/Email.php:54
+#: class/Defaults/Carrier/Email.php:51 class/Defaults/Carrier/Email.php:61
 msgid "Body"
 msgstr ""
 
-#: class/Defaults/Carrier/Email.php:72 class/Defaults/Carrier/Webhook.php:81
+#: class/Defaults/Carrier/Email.php:79 class/Defaults/Carrier/Webhook.php:88
 msgid "Add header"
 msgstr ""
 
-#: class/Defaults/Carrier/Email.php:75 class/Defaults/Carrier/Webhook.php:56
-#: class/Defaults/Carrier/Webhook.php:91 views/debug/notification-log.php:58
+#: class/Defaults/Carrier/Email.php:82 class/Defaults/Carrier/Webhook.php:63
+#: class/Defaults/Carrier/Webhook.php:98 views/debug/notification-log.php:58
 msgid "Key"
 msgstr ""
 
-#: class/Defaults/Carrier/Email.php:78 class/Defaults/Carrier/Email.php:84
-#: class/Defaults/Carrier/Webhook.php:59 class/Defaults/Carrier/Webhook.php:65
-#: class/Defaults/Carrier/Webhook.php:94 class/Defaults/Carrier/Webhook.php:100
+#: class/Defaults/Carrier/Email.php:85 class/Defaults/Carrier/Email.php:91
+#: class/Defaults/Carrier/Webhook.php:66 class/Defaults/Carrier/Webhook.php:72
+#: class/Defaults/Carrier/Webhook.php:101 class/Defaults/Carrier/Webhook.php:107
 msgid "You can use merge tags"
 msgstr ""
 
-#: class/Defaults/Carrier/Email.php:81 class/Defaults/Carrier/Webhook.php:62
-#: class/Defaults/Carrier/Webhook.php:97 views/debug/notification-log.php:59
+#: class/Defaults/Carrier/Email.php:88 class/Defaults/Carrier/Webhook.php:69
+#: class/Defaults/Carrier/Webhook.php:104 views/debug/notification-log.php:59
 msgid "Value"
 msgstr ""
 
-#: class/Defaults/Carrier/Webhook.php:38
+#: class/Defaults/Carrier/Webhook.php:45
 msgid "URLs"
 msgstr ""
 
-#: class/Defaults/Carrier/Webhook.php:40
+#: class/Defaults/Carrier/Webhook.php:47
 msgid "Add URL"
 msgstr ""
 
-#: class/Defaults/Carrier/Webhook.php:44
+#: class/Defaults/Carrier/Webhook.php:51
 msgid "Arguments"
 msgstr ""
 
-#: class/Defaults/Carrier/Webhook.php:46
+#: class/Defaults/Carrier/Webhook.php:53
 msgid "Add argument"
 msgstr ""
 
-#: class/Defaults/Carrier/Webhook.php:50 class/Defaults/Carrier/Webhook.php:85
+#: class/Defaults/Carrier/Webhook.php:57 class/Defaults/Carrier/Webhook.php:92
 msgid "Hide"
 msgstr ""
 
-#: class/Defaults/Carrier/Webhook.php:52 class/Defaults/Carrier/Webhook.php:87
+#: class/Defaults/Carrier/Webhook.php:59 class/Defaults/Carrier/Webhook.php:94
 msgid "Hide if empty value"
 msgstr ""
 
-#: class/Defaults/Carrier/Webhook.php:71
+#: class/Defaults/Carrier/Webhook.php:78
 msgid "JSON"
 msgstr ""
 
-#: class/Defaults/Carrier/Webhook.php:73
+#: class/Defaults/Carrier/Webhook.php:80
 msgid "Send the arguments in JSON format"
 msgstr ""
 
@@ -1255,10 +1380,6 @@ msgstr ""
 
 #: class/Defaults/MergeTag/User/UserRole.php:45
 msgid "Subscriber"
-msgstr ""
-
-#: class/Defaults/Recipient/Administrator.php:26
-msgid "Administrator"
 msgstr ""
 
 #: class/Defaults/Recipient/Administrator.php:55
@@ -2412,6 +2533,18 @@ msgid ""
 "available."
 msgstr ""
 
+#: views/carriers/widget-add.php:23
+msgid "Add Carrier"
+msgstr ""
+
+#: views/carriers/widget-add.php:35
+msgid "Add New Carrier"
+msgstr ""
+
+#: views/carriers/widget-add.php:44
+msgid "Abort"
+msgstr ""
+
 #: views/debug/error-log.php:21
 msgid "Warning"
 msgstr ""
@@ -2681,38 +2814,34 @@ msgstr ""
 msgid "Select trigger"
 msgstr ""
 
-#: views/wizard.php:13
+#: views/wizard.php:19
 msgid "Notification Wizard"
 msgstr ""
 
-#: views/wizard.php:14
+#: views/wizard.php:20
 msgid "Quickly setup the Notifications you need."
 msgstr ""
 
-#: views/wizard.php:15
+#: views/wizard.php:21
 msgid "You'll be able to edit them later."
 msgstr ""
 
-#: views/wizard.php:19
-msgid "Common Notifications"
-msgstr ""
-
-#: views/wizard.php:28
-msgid "FULLCONFIG Post updated"
-msgstr ""
-
-#: views/wizard.php:29 views/wizard.php:43
-msgid "Test of notification importing from JSON"
-msgstr ""
-
-#: views/wizard.php:30 views/wizard.php:44
-msgid "Example recipient"
-msgstr ""
-
-#: views/wizard.php:36 views/wizard.php:50
+#: views/wizard.php:50
 msgid "Add this notification"
 msgstr ""
 
-#: views/wizard.php:42
-msgid "Webhook failed"
+#: views/wizard.php:63
+msgid "Who can use this plugin"
+msgstr ""
+
+#: views/wizard.php:66
+msgid "How Notification plugin works"
+msgstr ""
+
+#: views/wizard.php:69
+msgid "Extension possibilities"
+msgstr ""
+
+#: views/wizard.php:73
+msgid "Skip the Wizard"
 msgstr ""

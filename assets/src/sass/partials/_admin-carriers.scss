@@ -22,7 +22,15 @@ body.post-type-notification {
 				margin: auto;
 				text-align: center;
 
+				&::before,
+				&::after {
+					content: "";
+					display: block;
+					clear: both;
+				}
+
 				.switch {
+					float: left;
 					display: inline-block;
 					font-size: 20px;
 					height: 1em;
