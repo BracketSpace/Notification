@@ -13,7 +13,7 @@ class CarriersWidget {
 	setVars() {
 		this.atts = {
 			carrier: 'data-nt-carrier', // single carrier wrapper
-			carrierInput: 'data-nt-carrier-input', // input inside carrier with actived value
+			carrierInput: 'data-nt-carrier-input', // input inside carrier with activated value
 			carrierRemove: 'data-nt-carrier-remove', // remove button inside carrier
 			widget: 'data-nt-widget', // widget with buttons for adding carriers, "add" and "abort"
 			buttons: 'data-nt-buttons', // wrapper with buttons

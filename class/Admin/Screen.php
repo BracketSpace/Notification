@@ -112,7 +112,7 @@ class Screen {
 				'title'       => $carrier->get_name(),
 				'content'     => $this->get_carrier_form( $carrier ),
 				'open'        => $carrier->is_enabled(),
-				'active'      => $carrier->is_actived( $notification_post->get_carriers() ),
+				'active'      => $carrier->is_activated( $notification_post->get_carriers() ),
 			] );
 
 			$box_view->get_view( 'box' );

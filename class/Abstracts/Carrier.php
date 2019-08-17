@@ -36,7 +36,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	 *
 	 * @var array
 	 */
-	public $restricted_fields = [ '_nonce', 'actived', 'enabled' ];
+	public $restricted_fields = [ '_nonce', 'activated', 'enabled' ];
 
 	/**
 	 * If is suppressed
@@ -76,18 +76,18 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 		$this->form_fields[ $nonce_field->get_raw_name() ] = $nonce_field;
 
 		// Carrier active.
-		$actived_field = new Field\InputField( [
+		$activated_field = new Field\InputField( [
 			'type'       => 'hidden',
 			'label'      => '',
-			'name'       => 'actived',
+			'name'       => 'activated',
 			'value'      => '0',
 			'resolvable' => false,
 			'atts'       => 'data-nt-carrier-input',
 		] );
 
-		$actived_field->section = 'notification_carrier_' . $this->get_slug();
+		$activated_field->section = 'notification_carrier_' . $this->get_slug();
 
-		$this->form_fields[ $actived_field->get_raw_name() ] = $actived_field;
+		$this->form_fields[ $activated_field->get_raw_name() ] = $activated_field;
 
 		// Carrier status.
 		$enabled_field = new Field\InputField( [
@@ -378,13 +378,13 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	}
 
 	/**
-	 * Checks if Carrier is actived
+	 * Checks if Carrier is activated
 	 *
 	 * @since  [next]
 	 * @param  object $carriers Carriers from Notification Post object.
 	 * @return boolean
 	 */
-	public function is_actived( $carriers ) {
+	public function is_activated( $carriers ) {
 		return array_key_exists( $this->slug, $carriers );
 	}
 
@@ -395,7 +395,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	 * @return $this
 	 */
 	public function activate() {
-		$this->get_form_field( 'actived' )->set_value( true );
+		$this->get_form_field( 'activated' )->set_value( true );
 		return $this;
 	}
 
@@ -406,7 +406,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	 * @return $this
 	 */
 	public function deactivate() {
-		$this->get_form_field( 'actived' )->set_value( false );
+		$this->get_form_field( 'activated' )->set_value( false );
 		return $this;
 	}
 

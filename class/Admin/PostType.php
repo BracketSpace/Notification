@@ -284,7 +284,7 @@ class PostType {
 
 			$carrier_data = $data[ 'notification_carrier_' . $carrier->get_slug() ];
 
-			if ( ! $carrier_data['actived'] ) {
+			if ( ! $carrier_data['activated'] ) {
 				continue;
 			}
 
