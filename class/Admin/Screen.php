@@ -130,6 +130,30 @@ class Screen {
 	}
 
 	/**
+	 * Renders a widget for adding Carriers
+	 *
+	 * @action notification/admin/carriers
+	 *
+	 * @param  object $notification_post Notification Post object.
+	 * @return void
+	 */
+	public function render_carriers_widget( $notification_post ) {
+
+		$carriers = notification_get_carriers();
+		$exists   = $notification_post->get_carriers();
+
+		$view = notification_create_view();
+		$view->set_vars( [
+			'carriers_added_count'  => count( $carriers ),
+			'carriers_exists_count' => count( $exists ),
+			'carriers'              => $carriers,
+			'carriers_exists'       => $exists,
+		] );
+		$view->get_view( 'carriers/widget-add' );
+
+	}
+
+	/**
 	 * Gets Carrier config form
 	 *
 	 * @since  6.0.0
