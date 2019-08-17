@@ -295,6 +295,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Carrier textarea field now can be unfiltered, so no HTML will be stripped.
 * [Changed] Webpack for assets processing instead of Gulp.
 * [Changed] OP Cache is no longer a requirement, instead hooks compatibility file is loaded when OP Cache config is incompatible.
+* [Changed] Better Carriers management, now Carrier can be added and enabled independently.
 * [Removed] Freemius.
 * [Removed] The story screen.
 

@@ -36,7 +36,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	 *
 	 * @var array
 	 */
-	public $restricted_fields = [ '_nonce', 'enabled' ];
+	public $restricted_fields = [ '_nonce', 'activated', 'enabled' ];
 
 	/**
 	 * If is suppressed
@@ -44,6 +44,13 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	 * @var boolean
 	 */
 	protected $suppressed = false;
+
+	/**
+	 * Carrier icon
+	 *
+	 * @var string SVG
+	 */
+	public $icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 143.3 152.5"><path d="M119.8,120.8V138a69.47,69.47,0,0,1-43.2,14.5q-32.4,0-55-22.2Q-1.05,108-1,75.9c0-15.6,3.9-29.2,11.8-40.7A82,82,0,0,1,40.7,8.3,74,74,0,0,1,75.6,0a71.79,71.79,0,0,1,31,6.6,69.31,69.31,0,0,1,25.3,21.8c6.9,9.6,10.4,21.2,10.4,34.8,0,13.8-3.3,25.5-9.9,35.3s-14.3,14.7-23.1,14.7c-10.6,0-16-6.9-16-20.6V82.3C93.3,63.4,86.4,54,72.5,54c-6.2,0-11.2,2.2-14.8,6.5a23.85,23.85,0,0,0-5.4,15.8,19.46,19.46,0,0,0,6.2,14.9,21.33,21.33,0,0,0,15.1,5.7,21.75,21.75,0,0,0,13.8-4.7v16.6a27.67,27.67,0,0,1-15.5,4.3q-15.3,0-25.8-10.2t-10.5-27c0-15.5,6.8-26.7,20.4-33.8a36.74,36.74,0,0,1,17.9-4.3c12.2,0,21.7,4.5,28.5,13.6,5.2,6.9,7.9,17.4,7.9,31.5v8.5c0,3.1,1,4.7,3,4.7,3,0,5.7-3.2,8.3-9.6A56.78,56.78,0,0,0,125.4,65q0-28.95-23.6-42.9h.2c-8.1-4.3-17.4-6.4-28.1-6.4a57.73,57.73,0,0,0-28.7,7.7A58.91,58.91,0,0,0,24,45.1a61.18,61.18,0,0,0-8.2,31.5c0,17.2,5.7,31.4,17,42.7s25.7,16.9,43,16.9c9.6,0,17.5-1.2,23.6-3.5S112.3,126.5,119.8,120.8Z" transform="translate(1)"/></svg>';
 
 	/**
 	 * Carrier constructor
@@ -68,13 +75,28 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 
 		$this->form_fields[ $nonce_field->get_raw_name() ] = $nonce_field;
 
+		// Carrier active.
+		$activated_field = new Field\InputField( [
+			'type'       => 'hidden',
+			'label'      => '',
+			'name'       => 'activated',
+			'value'      => '0',
+			'resolvable' => false,
+			'atts'       => 'data-nt-carrier-input-active',
+		] );
+
+		$activated_field->section = 'notification_carrier_' . $this->get_slug();
+
+		$this->form_fields[ $activated_field->get_raw_name() ] = $activated_field;
+
 		// Carrier status.
 		$enabled_field = new Field\InputField( [
 			'type'       => 'hidden',
 			'label'      => '',
 			'name'       => 'enabled',
-			'value'      => '0',
+			'value'      => '1',
 			'resolvable' => false,
+			'atts'       => 'data-nt-carrier-input-enable',
 		] );
 
 		$enabled_field->section = 'notification_carrier_' . $this->get_slug();
@@ -354,6 +376,39 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 
 		return $data;
 
+	}
+
+	/**
+	 * Checks if Carrier is activated
+	 *
+	 * @since  [next]
+	 * @param  object $carriers Carriers from Notification Post object.
+	 * @return boolean
+	 */
+	public function is_activated( $carriers ) {
+		return array_key_exists( $this->slug, $carriers );
+	}
+
+	/**
+	 * Activates the Carrier
+	 *
+	 * @since  [next]
+	 * @return $this
+	 */
+	public function activate() {
+		$this->get_form_field( 'activated' )->set_value( true );
+		return $this;
+	}
+
+	/**
+	 * Deactivates the Carrier
+	 *
+	 * @since  [next]
+	 * @return $this
+	 */
+	public function deactivate() {
+		$this->get_form_field( 'activated' )->set_value( false );
+		return $this;
 	}
 
 	/**
