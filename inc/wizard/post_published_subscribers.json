@@ -4,6 +4,7 @@
     "trigger": "wordpress/post/published",
     "carriers": {
         "email": {
+        	"activated": true,
             "enabled": true,
             "subject": "{site_title} - New post: \"{post_title}\"",
             "body": "Howdy,\r\n\r\nwe just published a new post: \"{post_title}\".\r\n\r\nSee the post: {post_permalink}",
