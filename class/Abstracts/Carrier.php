@@ -379,14 +379,13 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	}
 
 	/**
-	 * Checks if Carrier is activated
+	 * Checks if Carrier is active
 	 *
 	 * @since  [next]
-	 * @param  object $carriers Carriers from Notification Post object.
 	 * @return boolean
 	 */
-	public function is_activated( $carriers ) {
-		return array_key_exists( $this->slug, $carriers );
+	public function is_active() {
+		return ! empty( $this->get_field_value( 'activated' ) );
 	}
 
 	/**

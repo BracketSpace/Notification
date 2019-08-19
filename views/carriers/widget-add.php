@@ -11,7 +11,7 @@
 		<?php foreach ( $this->get_var( 'carriers' ) as $carrier ) : ?>
 			<li class="notification-carriers__carrier"
 				data-nt-button="<?php echo esc_attr( $carrier->get_slug() ); ?>"
-				<?php echo ( $carrier->is_activated( $this->get_var( 'carriers_exists' ) ) ) ? 'data-nt-hidden' : ''; ?>>
+				<?php echo ( array_key_exists( $carrier->get_slug(), $this->get_var( 'carriers_exists' ) ) ) ? 'data-nt-hidden' : ''; ?>>
 				<a href="#" class="notification-carriers__carrier-link" data-nt-button-link>
 					<div class="notification-carriers__carrier-media">
 						<div class="notification-carriers__carrier-icon"><?php echo $carrier->icon; // phpcs:ignore ?></div>
