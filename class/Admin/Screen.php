@@ -104,6 +104,12 @@ class Screen {
 				$carrier = $_carrier;
 			}
 
+			// If Carrier is enabled then it must be activated as well.
+			// Fix for previous versions when enabled but not activated Carrier was just wiped out.
+			if ( $carrier->is_enabled() ) {
+				$carrier->activate();
+			}
+
 			$box_view->set_vars( [
 				'slug'        => $carrier->get_slug(),
 				'id'          => 'notification-carrier-' . $carrier->get_slug() . '-box',

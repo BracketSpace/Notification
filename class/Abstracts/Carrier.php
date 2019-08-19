@@ -94,7 +94,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 			'type'       => 'hidden',
 			'label'      => '',
 			'name'       => 'enabled',
-			'value'      => '1',
+			'value'      => '0',
 			'resolvable' => false,
 			'atts'       => 'data-nt-carrier-input-enable',
 		] );
