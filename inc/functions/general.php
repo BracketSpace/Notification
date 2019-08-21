@@ -119,7 +119,7 @@ function notification_log( $component, $type, $message ) {
 /**
  * Checks if the DocHooks are enabled and working.
  *
- * @since  [Next]
+ * @since  6.1.0
  * @return boolean
  */
 function notification_dochooks_enabled() {

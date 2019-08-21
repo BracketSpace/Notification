@@ -153,7 +153,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * Postpones the action with later hook
 	 * It automatically stops the execution
 	 *
-	 * @since [Next] The postponed action have own method.
+	 * @since 6.1.0 The postponed action have own method.
 	 * @param string  $tag           action hook.
 	 * @param integer $priority      action priority, default 10.
 	 * @param integer $accepted_args how many args the action accepts, default 1.
@@ -451,7 +451,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Action callback
 	 *
-	 * @since [Next] The posponed action have own method.
+	 * @since 6.1.0 The posponed action have own method.
 	 * @return void
 	 */
 	public function _action() {
@@ -483,7 +483,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Postponed action callback
 	 *
-	 * @since [Next]
+	 * @since 6.1.0
 	 * @return void
 	 */
 	public function _postponed_action() {
@@ -508,7 +508,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Runs things after doing an action callback.
 	 *
-	 * @since  [Next]
+	 * @since  6.1.0
 	 * @param  bool $result Action result.
 	 * @return void
 	 */

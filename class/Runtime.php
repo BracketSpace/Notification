@@ -56,7 +56,7 @@ class Runtime extends Utils\DocHooks {
 	/**
 	 * Registers all the hooks with DocHooks
 	 *
-	 * @since  [Next]
+	 * @since  6.1.0
 	 * @return void
 	 */
 	public function register_hooks() {
