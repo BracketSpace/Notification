@@ -42,7 +42,6 @@ class TestMain extends \WP_UnitTestCase {
 		$this->assertInstanceOf( 'BracketSpace\Notification\Utils\View', $this->notification->view() );
 
 		$this->assertInstanceOf( 'BracketSpace\Notification\Utils\Files', $this->notification->files );
-		$this->assertInstanceOf( 'BracketSpace\Notification\Utils\Internationalization', $this->notification->internationalization );
 
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Cron', $this->notification->core_cron );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Whitelabel', $this->notification->core_whitelabel );

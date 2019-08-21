@@ -299,6 +299,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Better Carriers management, now Carrier can be added and enabled independently.
 * [Removed] Freemius.
 * [Removed] The story screen.
+* [Removed] Plugin internationalization files as all the translations comes from wp.org.
 
 = 6.0.4 =
 * [Fixed] Webhook waring using empty header values.

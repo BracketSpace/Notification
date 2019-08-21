@@ -80,8 +80,7 @@ class Runtime extends Utils\DocHooks {
 	 */
 	public function singletons() {
 
-		$this->files                = new Utils\Files( $this->plugin_file, $this->plugin_custom_url, $this->plugin_custom_path );
-		$this->internationalization = new Utils\Internationalization( $this->files, 'notification' );
+		$this->files = new Utils\Files( $this->plugin_file, $this->plugin_custom_url, $this->plugin_custom_path );
 
 		$this->core_cron       = new Core\Cron();
 		$this->core_whitelabel = new Core\Whitelabel();
