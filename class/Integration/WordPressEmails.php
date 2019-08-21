@@ -17,7 +17,7 @@ class WordPressEmails {
 	 *
 	 * @action plugins_loaded
 	 *
-	 * @since  [Next]
+	 * @since  6.1.0
 	 * @return void
 	 */
 	public function replace_new_user_notify_hooks() {
@@ -40,7 +40,7 @@ class WordPressEmails {
 	/**
 	 * Disables send the new user notification
 	 *
-	 * @since  [Next]
+	 * @since  6.1.0
 	 * @param  int    $user_id ID of the newly registered user.
 	 * @param  string $notify  Optional. Type of notification that should happen. Accepts 'admin'
 	 *                         or an empty string (admin only), 'user', or 'both' (admin and user).
@@ -63,7 +63,7 @@ class WordPressEmails {
 	 *
 	 * @filter notify_post_author
 	 *
-	 * @since  [Next]
+	 * @since  6.1.0
 	 * @param  bool $maybe_notify Whether to notify the post author about the new comment.
 	 * @param  int  $comment_id   The ID of the comment for the notification.
 	 * @return bool $maybe_notify
@@ -80,7 +80,7 @@ class WordPressEmails {
 	 *
 	 * @filter notify_moderator
 	 *
-	 * @since  [Next]
+	 * @since  6.1.0
 	 * @param  bool $maybe_notify Whether to notify blog moderator.
 	 * @param  int  $comment_id   The id of the comment for the notification.
 	 * @return bool $maybe_notify
@@ -97,7 +97,7 @@ class WordPressEmails {
 	 *
 	 * @action plugins_loaded
 	 *
-	 * @since  [Next]
+	 * @since  6.1.0
 	 * @return void
 	 */
 	public function disable_password_change_notify_to_admin() {
@@ -112,7 +112,7 @@ class WordPressEmails {
 	 *
 	 * @filter send_password_change_email
 	 *
-	 * @since  [Next]
+	 * @since  6.1.0
 	 * @param  bool  $send     Whether to send the email.
 	 * @param  array $user     The original user array.
 	 * @param  array $userdata The updated user array.
@@ -130,7 +130,7 @@ class WordPressEmails {
 	 *
 	 * @filter send_email_change_email
 	 *
-	 * @since  [Next]
+	 * @since  6.1.0
 	 * @param  bool  $send     Whether to send the email.
 	 * @param  array $user     The original user array.
 	 * @param  array $userdata The updated user array.
@@ -148,7 +148,7 @@ class WordPressEmails {
 	 *
 	 * @filter allow_password_reset
 	 *
-	 * @since  [Next]
+	 * @since  6.1.0
 	 * @param  bool $allow   Whether to allow the password to be reset. Default true.
 	 * @param  int  $user_id The ID of the user attempting to reset a password.
 	 * @return bool $allow
@@ -165,7 +165,7 @@ class WordPressEmails {
 	 *
 	 * @filter auto_core_update_send_email
 	 *
-	 * @since  [Next]
+	 * @since  6.1.0
 	 * @param  bool   $send        Whether to send the email. Default true.
 	 * @param  string $type        The type of email to send. Can be one of 'success', 'fail', 'critical'.
 	 * @param  object $core_update The update offer that was attempted.
@@ -182,7 +182,7 @@ class WordPressEmails {
 	/**
 	 * Gets setting value for user role
 	 *
-	 * @since  [Next]
+	 * @since  6.1.0
 	 * @param  mixed  $value   Default value of setting.
 	 * @param  int    $user_id ID of the user.
 	 * @param  string $slug    Slug prefix of setting.

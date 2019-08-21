@@ -11,8 +11,6 @@
 add_action( 'plugins_loaded', [ $this, 'load_early_defaults' ], 10, 0 );
 add_action( 'init', [ $this, 'load_late_defaults' ], 1000, 0 );
 add_action( 'init', [ $this, 'fully_booted' ], 1010, 0 );
-add_action( 'plugins_loaded', [ $this->internationalization, 'load_textdomain' ], 10, 0 );
-add_action( 'init', [ $this->internationalization, 'load_native_admin_textdomain' ], 10, 0 );
 add_filter( 'cron_schedules', [ $this->core_cron, 'register_intervals' ], 10, 1 );
 add_action( 'admin_init', [ $this->core_cron, 'register_check_updates_event' ], 10, 0 );
 add_action( 'init', [ $this->core_whitelabel, 'remove_defaults' ], 50, 0 );
@@ -53,6 +51,7 @@ add_action( 'admin_enqueue_scripts', [ $this->admin_scripts, 'enqueue_scripts' ]
 add_action( 'edit_form_after_title', [ $this->admin_screen, 'render_main_column' ], 1, 1 );
 add_action( 'notification/post/column/main', [ $this->admin_screen, 'render_trigger_select' ], 10, 1 );
 add_action( 'notification/post/column/main', [ $this->admin_screen, 'render_carrier_boxes' ], 20, 1 );
+add_action( 'notification/admin/carriers', [ $this->admin_screen, 'render_carriers_widget' ], 10, 1 );
 add_action( 'add_meta_boxes', [ $this->admin_screen, 'add_save_meta_box' ], 10, 0 );
 add_action( 'add_meta_boxes', [ $this->admin_screen, 'add_merge_tags_meta_box' ], 10, 0 );
 add_action( 'add_meta_boxes', [ $this->admin_screen, 'metabox_cleanup' ], 999999999, 0 );
@@ -77,5 +76,5 @@ add_filter( 'send_password_change_email', [ $this->integration_wp_emails, 'disab
 add_filter( 'send_email_change_email', [ $this->integration_wp_emails, 'disable_email_change_notify_to_user' ], 10, 3 );
 add_filter( 'allow_password_reset', [ $this->integration_wp_emails, 'disable_password_forgotten_notify' ], 10, 2 );
 add_filter( 'auto_core_update_send_email', [ $this->integration_wp_emails, 'disable_automatic_wp_core_update_notify' ], 10, 4 );
-add_action( 'notification/trigger/action/did', [ $this->integration_cf, 'maybe_postpone_action' ], 10, 1 );
 add_action( 'notification/trigger/action/did', [ $this->integration_gb, 'maybe_postpone_action' ], 5, 1 );
+add_action( 'notification/trigger/action/did', [ $this->integration_cf, 'maybe_postpone_action' ], 10, 1 );
