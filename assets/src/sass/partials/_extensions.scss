@@ -18,21 +18,11 @@
 				box-sizing: border-box;
 				text-align: center;
 				padding: 3px 10px;
-			    width: 100%;
-			    color: #fff;
-			    background: #0073aa;
-			    border-radius: 4px;
-			    text-transform: uppercase;
-			}
-
-		}
-
-		&.promo {
-
-			.desc,
-			.name,
-			.action-links {
-				margin-left: 0;
+				width: 100%;
+				color: #fff;
+				background: #0073aa;
+				border-radius: 4px;
+				text-transform: uppercase;
 			}
 
 		}
@@ -58,6 +48,16 @@
 					max-width: 180px;
 				}
 
+			}
+
+		}
+
+		&.promo {
+
+			.desc,
+			.name,
+			.action-links {
+				margin-left: 0;
 			}
 
 		}

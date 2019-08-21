@@ -17,6 +17,13 @@ use BracketSpace\Notification\Defaults\Field;
 class Email extends Abstracts\Carrier {
 
 	/**
+	 * Carrier icon
+	 *
+	 * @var string SVG
+	 */
+	public $icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 384"><path d="M448,64H64A64,64,0,0,0,0,128V384a64,64,0,0,0,64,64H448a64,64,0,0,0,64-64V128A64,64,0,0,0,448,64ZM342.66,234.78,478.13,118.69A31.08,31.08,0,0,1,480,128V384c0,2.22-.84,4.19-1.28,6.28ZM448,96c2.13,0,4,.81,6,1.22L256,266.94,58,97.22c2-.41,3.88-1.22,6-1.22ZM33.27,390.25c-.44-2.09-1.27-4-1.27-6.25V128a30.79,30.79,0,0,1,1.89-9.31L169.31,234.75ZM64,416a31,31,0,0,1-9.12-1.84L193.63,255.59l52,44.53a15.92,15.92,0,0,0,20.82,0l52-44.54L457.13,414.16A30.82,30.82,0,0,1,448,416Z" transform="translate(0 -64)"/></svg>';
+
+	/**
 	 * Carrier constructor
 	 *
 	 * @since 5.0.0
@@ -51,8 +58,9 @@ class Email extends Abstracts\Carrier {
 		} else {
 
 			$body_field = new Field\TextareaField( [
-				'label' => __( 'Body', 'notification' ),
-				'name'  => 'body',
+				'label'              => __( 'Body', 'notification' ),
+				'name'               => 'body',
+				'allowed_unfiltered' => true,
 			] );
 
 		}
@@ -62,6 +70,30 @@ class Email extends Abstracts\Carrier {
 		$this->add_form_field( new Field\RecipientsField( [
 			'carrier' => $this->get_slug(),
 		] ) );
+
+		if ( notification_get_setting( 'notifications/email/headers' ) ) {
+
+			$this->add_form_field( new Field\RepeaterField( [
+				'label'            => __( 'Headers', 'notification' ),
+				'name'             => 'headers',
+				'add_button_label' => __( 'Add header', 'notification' ),
+				'fields'           => [
+					new Field\InputField( [
+						'label'       => __( 'Key', 'notification' ),
+						'name'        => 'key',
+						'resolvable'  => true,
+						'description' => __( 'You can use merge tags', 'notification' ),
+					] ),
+					new Field\InputField( [
+						'label'       => __( 'Value', 'notification' ),
+						'name'        => 'value',
+						'resolvable'  => true,
+						'description' => __( 'You can use merge tags', 'notification' ),
+					] ),
+				],
+			] ) );
+
+		}
 
 	}
 
@@ -115,7 +147,14 @@ class Email extends Abstracts\Carrier {
 			$message = ' ';
 		}
 
-		$headers = apply_filters_deprecated( 'notification/email/headers', [ [], $this, $trigger ], '6.0.0', 'notification/carrier/email/headers' );
+		$headers = [];
+		if ( notification_get_setting( 'notifications/email/headers' ) && ! empty( $data['headers'] ) ) {
+			foreach ( $data['headers'] as $header ) {
+				$headers[] = $header['key'] . ': ' . $header['value'];
+			}
+		}
+
+		$headers = apply_filters_deprecated( 'notification/email/headers', [ $headers, $this, $trigger ], '6.0.0', 'notification/carrier/email/headers' );
 		$headers = apply_filters( 'notification/carrier/email/headers', $headers, $this, $trigger );
 
 		$attachments = apply_filters_deprecated( 'notification/email/attachments', [ [], $this, $trigger ], '6.0.0', 'notification/carrier/email/attachments' );

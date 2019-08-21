@@ -153,13 +153,14 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * Postpones the action with later hook
 	 * It automatically stops the execution
 	 *
+	 * @since 6.1.0 The postponed action have own method.
 	 * @param string  $tag           action hook.
 	 * @param integer $priority      action priority, default 10.
 	 * @param integer $accepted_args how many args the action accepts, default 1.
 	 */
 	public function postpone_action( $tag, $priority = 10, $accepted_args = 1 ) {
 
-		$this->add_action( $tag, $priority, $accepted_args );
+		add_action( $tag, [ $this, '_postponed_action' ], $priority, $accepted_args );
 
 		$this->stopped   = true;
 		$this->postponed = true;
@@ -450,6 +451,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Action callback
 	 *
+	 * @since 6.1.0 The posponed action have own method.
 	 * @return void
 	 */
 	public function _action() {
@@ -461,20 +463,56 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			return;
 		}
 
-		// reset the state.
+		// Reset the state.
 		$this->stopped = false;
 
-		// setup the arguments.
+		// Setup the arguments.
 		$this->callback_args = func_get_args();
 
-		// call the action.
-		if ( $this->is_postponed() && method_exists( $this, 'postponed_action' ) ) {
-			$result = call_user_func_array( [ $this, 'postponed_action' ], $this->callback_args );
-		} elseif ( ! $this->is_postponed() && method_exists( $this, 'action' ) ) {
+		// Call the action.
+		if ( method_exists( $this, 'action' ) ) {
 			$result = call_user_func_array( [ $this, 'action' ], $this->callback_args );
 		} else {
 			$result = true;
 		}
+
+		$this->_after_action( $result );
+
+	}
+
+	/**
+	 * Postponed action callback
+	 *
+	 * @since 6.1.0
+	 * @return void
+	 */
+	public function _postponed_action() {
+
+		// Reset the state.
+		$this->stopped = false;
+
+		// Setup the arguments.
+		$this->callback_args = func_get_args();
+
+		// Call the action.
+		if ( method_exists( $this, 'postponed_action' ) ) {
+			$result = call_user_func_array( [ $this, 'postponed_action' ], $this->callback_args );
+		} else {
+			$result = true;
+		}
+
+		$this->_after_action( $result );
+
+	}
+
+	/**
+	 * Runs things after doing an action callback.
+	 *
+	 * @since  6.1.0
+	 * @param  bool $result Action result.
+	 * @return void
+	 */
+	public function _after_action( $result ) {
 
 		if ( false === $result ) {
 			$this->stopped = true;

@@ -1,0 +1,23 @@
+{
+	"hash": "notification_5d3af50b188af",
+	"title": "Comment reply - comment author",
+	"trigger": "wordpress/comment_comment_replied",
+	"carriers": {
+		"email": {
+			"activated": true,
+			"enabled": true,
+			"subject": "{site_title} - a new reply to your comment on \"{post_title}\"",
+			"body": "A new reply to your comment on the post \"{post_title}\" has been just added.\r\n{post_permalink}\r\n\r\nAuthor: {comment_author_user_display_name}\r\nURL: {comment_author_url}\r\nComment: {comment_content}",
+			"recipients": [
+				{
+					"type": "email",
+					"recipient": "{parent_comment_author_user_email}"
+				}
+			],
+			"headers": null
+		}
+	},
+	"enabled": true,
+	"extras": [],
+	"version": 1564144907
+}

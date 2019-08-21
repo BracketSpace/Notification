@@ -1,0 +1,23 @@
+{
+    "hash": "notification_5cac7b60d7b35",
+    "title": "New user registration - admin",
+    "trigger": "wordpress/user_registered",
+    "carriers": {
+        "email": {
+        	"activated": true,
+            "enabled": true,
+            "subject": "{site_title} - New User Registration",
+            "body": "New user registration on your site {site_name}:\r\n\r\nUsername: {user_login}\r\n\r\nEmail: {user_email}",
+            "recipients": [
+                {
+                    "type": "administrator",
+                    "recipient": ""
+                }
+            ],
+            "headers": null
+        }
+    },
+    "enabled": true,
+    "extras": [],
+    "version": 1560424422
+}

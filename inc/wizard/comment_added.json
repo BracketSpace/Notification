@@ -1,0 +1,23 @@
+{
+    "hash": "notification_5d3af4a63af8b",
+    "title": "Comment added - post author",
+    "trigger": "wordpress/comment_comment_added",
+    "carriers": {
+        "email": {
+            "activated": true,
+            "enabled": true,
+            "subject": "{site_title} - a new comment to your \"{post_title}\" post has been added",
+            "body": "A new comment on the post \"{post_title}\" is waiting for your approval\r\n{post_permalink}\r\n\r\nAuthor: {comment_author_user_display_name} (IP address: {comment_author_IP})\r\nEmail: {comment_author_user_email}\r\nURL: {comment_author_url}\r\nComment: {comment_content}\r\n\r\nApprove it: {comment_approve_action_url}\r\nTrash it: {comment_trash_action_url}\r\nDelet it: {comment_delete_action_url}\r\nSpam it: {comment_spam_action_url}",
+            "recipients": [
+                {
+                    "type": "email",
+                    "recipient": "{post_author_user_email}"
+                }
+            ],
+            "headers": null
+        }
+    },
+    "enabled": true,
+    "extras": [],
+    "version": 1564144806
+}

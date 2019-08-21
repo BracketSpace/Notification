@@ -1,0 +1,23 @@
+{
+    "hash": "notification_5d3af398e4f96",
+    "title": "Post pending review - admin",
+    "trigger": "wordpress/post/pending",
+    "carriers": {
+        "email": {
+        	"activated": true,
+            "enabled": true,
+            "subject": "{site_title} - A new post \"{post_title}\" is pending review",
+            "body": "The post \"{post_title}\" has been just sent for a review.\r\n\r\nView: {post_permalink}\r\nEdit: {home_url}/wp-admin/post.php?post={post_ID}&amp;action=edit",
+            "recipients": [
+                {
+                    "type": "administrator",
+                    "recipient": ""
+                }
+            ],
+            "headers": null
+        }
+    },
+    "enabled": true,
+    "extras": [],
+    "version": 1564144536
+}

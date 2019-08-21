@@ -54,6 +54,24 @@ class Runtime extends Utils\DocHooks {
 	}
 
 	/**
+	 * Registers all the hooks with DocHooks
+	 *
+	 * @since  6.1.0
+	 * @return void
+	 */
+	public function register_hooks() {
+
+		$this->add_hooks();
+
+		foreach ( get_object_vars( $this ) as $instance ) {
+			if ( is_object( $instance ) ) {
+				$this->add_hooks( $instance );
+			}
+		}
+
+	}
+
+	/**
 	 * Creates needed classes
 	 * Singletons are used for a sake of performance
 	 *
@@ -62,8 +80,7 @@ class Runtime extends Utils\DocHooks {
 	 */
 	public function singletons() {
 
-		$this->files                = new Utils\Files( $this->plugin_file, $this->plugin_custom_url, $this->plugin_custom_path );
-		$this->internationalization = new Utils\Internationalization( $this->files, 'notification' );
+		$this->files = new Utils\Files( $this->plugin_file, $this->plugin_custom_url, $this->plugin_custom_path );
 
 		$this->core_cron       = new Core\Cron();
 		$this->core_whitelabel = new Core\Whitelabel();
@@ -80,13 +97,14 @@ class Runtime extends Utils\DocHooks {
 		$this->admin_extensions = new Admin\Extensions();
 		$this->admin_scripts    = new Admin\Scripts( $this, $this->files );
 		$this->admin_screen     = new Admin\Screen();
-		$this->admin_share      = new Admin\Share();
+		$this->admin_wizard     = new Admin\Wizard( $this->files );
 		$this->admin_sync       = new Admin\Sync();
 		$this->admin_debugging  = new Admin\Debugging();
 
-		$this->integration_wp = new Integration\WordPress();
-		$this->integration_gb = new Integration\Gutenberg();
-		$this->integration_cf = new Integration\CustomFields();
+		$this->integration_wp        = new Integration\WordPress();
+		$this->integration_wp_emails = new Integration\WordPressEmails();
+		$this->integration_gb        = new Integration\Gutenberg();
+		$this->integration_cf        = new Integration\CustomFields();
 
 	}
 
@@ -98,40 +116,23 @@ class Runtime extends Utils\DocHooks {
 	 */
 	public function actions() {
 
-		$this->add_hooks();
-
-		$this->add_hooks( $this->files );
-		$this->add_hooks( $this->internationalization );
-
-		$this->add_hooks( $this->core_cron );
-		$this->add_hooks( $this->core_whitelabel );
-		$this->add_hooks( $this->core_debugging );
-		$this->add_hooks( $this->core_settings );
-		$this->add_hooks( $this->core_upgrade );
-		$this->add_hooks( $this->core_sync );
-
-		$this->add_hooks( $this->admin_impexp );
-		$this->add_hooks( $this->admin_settings );
-		$this->add_hooks( $this->admin_duplicator );
-		$this->add_hooks( $this->admin_post_type );
-		$this->add_hooks( $this->admin_post_table );
-		$this->add_hooks( $this->admin_extensions );
-		$this->add_hooks( $this->admin_scripts );
-		$this->add_hooks( $this->admin_screen );
-		$this->add_hooks( $this->admin_share );
-		$this->add_hooks( $this->admin_sync );
-		$this->add_hooks( $this->admin_debugging );
-
-		$this->add_hooks( $this->integration_wp );
-		$this->add_hooks( $this->integration_cf );
-		$this->add_hooks( $this->integration_gb );
+		$this->register_hooks();
 
 		notification_register_settings( [ $this->admin_settings, 'general_settings' ] );
 		notification_register_settings( [ $this->admin_settings, 'triggers_settings' ], 20 );
 		notification_register_settings( [ $this->admin_settings, 'notifications_settings' ], 30 );
-		notification_register_settings( [ $this->admin_sync, 'settings' ], 40 );
-		notification_register_settings( [ $this->admin_impexp, 'settings' ], 50 );
-		notification_register_settings( [ $this->admin_debugging, 'debugging_settings' ], 60 );
+		notification_register_settings( [ $this->admin_settings, 'emails_settings' ], 40 );
+		notification_register_settings( [ $this->admin_sync, 'settings' ], 50 );
+		notification_register_settings( [ $this->admin_impexp, 'settings' ], 60 );
+		notification_register_settings( [ $this->admin_debugging, 'debugging_settings' ], 70 );
+
+		register_uninstall_hook( $this->plugin_file, [ 'BracketSpace\Notification\Core\Uninstall', 'remove_plugin_data' ] );
+
+		// DocHooks compatibility.
+		$hooks_file = $this->files->file_path( 'inc/hooks.php' );
+		if ( ! notification_dochooks_enabled() && file_exists( $hooks_file ) ) {
+			include_once $hooks_file;
+		}
 
 	}
 

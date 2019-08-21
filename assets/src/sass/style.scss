@@ -1,33 +1,34 @@
 /**
  * Variables
  */
-@import 'variables';
+@import "variables";
 
 /**
  * Vendors
  */
-@import 'vendor/selectize';
-@import 'vendor/selectize.default';
+@import "../../../node_modules/selectize/dist/css/selectize";
+@import "../../../node_modules/selectize/dist/css/selectize.default";
 
 /**
  * Partials
  */
-@import 'partials/global';
-@import 'partials/metabox';
-@import 'partials/messages';
-@import 'partials/extensions';
-@import 'partials/admin-carriers';
-@import 'partials/admin-trigger';
-@import 'partials/pretty-select';
-@import 'partials/settings';
-@import 'partials/notifications-table';
-@import 'partials/help';
-@import 'partials/admin-story';
-@import 'partials/import-export';
-@import 'partials/logs';
+@import "partials/global";
+@import "partials/metabox";
+@import "partials/messages";
+@import "partials/extensions";
+@import "partials/admin-carriers";
+@import "partials/admin-trigger";
+@import "partials/admin-wizard";
+@import "partials/pretty-select";
+@import "partials/settings";
+@import "partials/notifications-table";
+@import "partials/help";
+@import "partials/import-export";
+@import "partials/logs";
+@import "partials/carriers-widget";
 
 /**
  * Fields
  */
-@import 'fields/repeater';
-@import 'fields/image';
+@import "fields/repeater";
+@import "fields/image";

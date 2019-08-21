@@ -1,0 +1,23 @@
+{
+    "hash": "notification_5d3af43eb9397",
+    "title": "Welcome email",
+    "trigger": "wordpress/user_registered",
+    "carriers": {
+        "email": {
+        	"activated": true,
+            "enabled": true,
+            "subject": "Your account at {site_title}",
+            "body": "Howdy,\r\n\r\nthanks for registering your account on our website!\r\n\r\nYour username is: {user_login}\r\n\r\nPlease, setup your password: {user_password_setup_link}",
+            "recipients": [
+                {
+                    "type": "email",
+                    "recipient": "{user_email}"
+                }
+            ],
+            "headers": null
+        }
+    },
+    "enabled": true,
+    "extras": [],
+    "version": 1564144702
+}

@@ -1,9 +1,9 @@
 === Notification - Custom Notifications and Alerts for WordPress ===
-Contributors: notification, bracketspace, Kubitomakita, insejn
+Contributors: notification, bracketspace, Kubitomakita, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.2
-Stable tag: 6.0.4
+Stable tag: 6.1.0
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -15,6 +15,10 @@ Customisable email and webhook notifications with powerful developer friendly AP
 Custom Notifications and Alerts without a hassle. Notify anyone about any action in your WordPress. With powerful Merge Tags, you can endlessly customize your messages. Set unlimited Notifications in your WordPress Admin via the beautiful and intuitive interface within 5 minutes.
 
 [youtube https://www.youtube.com/watch?v=UPqVBhLGTek]
+
+= DEFAULT WORDPRESS EMAILS OVERWRITE =
+
+Now, with this plugin, you can easily disable default WordPress emails and replace them with your own. To do that you can use our awesome Wizard which will guide you through the process.
 
 = HOW DOES IT WORK =
 
@@ -53,16 +57,16 @@ How easy extending the Notification plugin is? Let's see:
 * Defining Global Merge Tag - 1 line of code
 * Creating new Extension - we have a [Boilerplate](https://github.com/BracketSpace/Notification-Extension-Boilerplate/) ready for you to start hacking
 
-[See the developer documentation](https://docs.bracketspace.com/docs-category/developer/) if you don't believe us.
+[See the developer documentation](https://docs.bracketspace.com/notification/developer/general) if you don't believe us.
 
-= DEFAULT NOTIFICATIONS =
+= DEFAULT CARRIERS =
 
 * Email
 * Webhook
 
 = DEFAULT RECIPIENTS =
 
-The plugin comes with few registered by default recipient types:
+The plugin comes with few registered by default recipient types for Email Carrier:
 
 * Email address or Merge Tag – free type email address or a Merge Tag
 * Administrator – takes an email from General Settings page
@@ -185,6 +189,7 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 
 = POSSIBLE USE CASES =
 
+* Overwriting default WordPress Emails
 * Post publication notification to the post author
 * Custom comment approved notification to post author and administrator
 * User logged in notification to the administrator
@@ -192,7 +197,7 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 
 = USEFUL LINKS =
 
-* [Documentation](https://docs.bracketspace.com/docs-category/notification/)
+* [Documentation](https://docs.bracketspace.com/notification/)
 * [Support plugin developement](https://www.paypal.me/underDEV/)
 * [GitHub repository](https://github.com/BracketSpace/Notification)
 * [Report a bug](https://github.com/BracketSpace/Notification/issues/new)
@@ -201,7 +206,7 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 
 = Requirements =
 
-This plugin require at least PHP 5.6.
+This plugin require at least PHP 7.0.
 
 = Plugin install =
 
@@ -211,13 +216,17 @@ Download and install this plugin from Plugins -> Add New admin screen.
 
 Notification can be loaded also as a part of any plugin or theme. To do it just include plugins's `load.php` file. It will figure out if it's loaded from theme or from plugin.
 
-[See the detailed guide](https://docs.bracketspace.com/docs/including-notification-in-the-plugin-or-theme/)
+[See the detailed guide](https://docs.bracketspace.com/notification/developer/general/bundling)
 
 == Frequently Asked Questions ==
 
 = How is this plugin different from Better Notifications for WordPress (BNFW)? =
 
 The Notification plugin works very similar to BNFW but it has better codebase and interface. You can read the full comparison in the [Notification vs Better Notifications for WordPress](https://bracketspace.com/notification-vs-better-notifications-for-wordpress/) article.
+
+= How can I test my notifications? =
+
+It's not needed to install 3rd-party plugins to catch your emails or other notifications. The Notification plugin comes with a logger which you can activate in the settings and see all the notification configuration parameters.
 
 = Why I'm not receiving any emails? =
 
@@ -233,11 +242,11 @@ So it doesn't matter if you don't have any coding skills, they are not required 
 
 = How to register my own triggers? =
 
-With `register_trigger()` function. [See the detailed guide](https://docs.bracketspace.com/docs/registering-custom-triggers/)
+With `register_trigger()` function. [See the detailed guide](https://docs.bracketspace.com/notification/developer/triggers/custom-trigger)
 
 = How to include a custom field in the notification? =
 
-You can [write a merge tag](https://docs.bracketspace.com/docs/adding-merge-tags-to-existing-triggers/) by yourself or go with a no-brainer [Custom Fields extension](https://bracketspace.com/downloads/notification-custom-fields/).
+You can [write a merge tag](https://docs.bracketspace.com/notification/developer/triggers/adding-merge-tags-to-existing-triggers) by yourself or go with a no-brainer [Custom Fields extension](https://bracketspace.com/downloads/notification-custom-fields/).
 
 = How to target only specific post / category / user etc? =
 
@@ -245,7 +254,7 @@ You can control when exactly the notification is sending with the [Conditionals 
 
 = Can I bundle the plugin with my plugin or theme? =
 
-Yes, you can. [See the detailed guide](https://docs.bracketspace.com/docs/including-notification-in-the-plugin-or-theme/)
+Yes, you can. [See the detailed guide](https://docs.bracketspace.com/notification/developer/general/bundling)
 
 = Is this plugin capable of sending high volume emails? =
 
@@ -264,8 +273,33 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 3. Settings
 4. Extensions
 5. Help tab with global Merge Tags
+6. Wizard
+7. Default email disabler
 
 == Changelog ==
+
+= 6.1.0 =
+* [Fixed] File mtime method now checks if file exists.
+* [Fixed] Cache is now cleared after saving the notification.
+* [Fixed] Uninstallation process.
+* [Fixed] License deactivation.
+* [Fixed] Issue with overlooping notifications when more than one action was called in the same request.
+* [Added] Ability to define email headers.
+* [Added] Webhook args and headers can be now not included if value is empty.
+* [Added] `notification/debug/suppress` filter to disable suppression of notifications when debug log is activated.
+* [Added] Confirmation before deleting the notification.
+* [Added] Default WordPress emails disabler.
+* [Added] `notification/integration/gutenberg` filter to disable Gutenberg support for specific post types. Useful when the post is in REST but no Gutenberg is used.
+* [Added] Wizard.
+* [Changed] Internationalization for JS files.
+* [Changed] Notification repeater field is now by default sortable.
+* [Changed] Carrier textarea field now can be unfiltered, so no HTML will be stripped.
+* [Changed] Webpack for assets processing instead of Gulp.
+* [Changed] OP Cache is no longer a requirement, instead hooks compatibility file is loaded when OP Cache config is incompatible.
+* [Changed] Better Carriers management, now Carrier can be added and enabled independently.
+* [Removed] Freemius.
+* [Removed] The story screen.
+* [Removed] Plugin internationalization files as all the translations comes from wp.org.
 
 = 6.0.4 =
 * [Fixed] Webhook waring using empty header values.

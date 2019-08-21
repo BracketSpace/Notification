@@ -284,6 +284,10 @@ class PostType {
 
 			$carrier_data = $data[ 'notification_carrier_' . $carrier->get_slug() ];
 
+			if ( ! $carrier_data['activated'] ) {
+				continue;
+			}
+
 			// If nonce not set or false, ignore this form.
 			if ( ! wp_verify_nonce( $carrier_data['_nonce'], $carrier->get_slug() . '_carrier_security' ) ) {
 				continue;
@@ -308,6 +312,9 @@ class PostType {
 		do_action( 'notification/data/save', $notification_post );
 
 		$notification_post->save();
+
+		$cache = new ObjectCache( 'notifications', 'notification' );
+		$cache->delete();
 
 		do_action( 'notification/data/save/after', $notification_post );
 

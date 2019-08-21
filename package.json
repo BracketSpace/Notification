@@ -2,22 +2,42 @@
   "name": "notification",
   "version": "6.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "webpack.mix.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "dev": "npm run development",
+    "watch": "npm run development -- --watch",
+    "prod": "npm run production",
+    "phpcs": "composer phpcs",
+    "lint:css": "wp-scripts lint-style ./assets/src/sass",
+    "lint:css:fix": "wp-scripts lint-style ./assets/src/sass --fix",
+    "lint:js": "wp-scripts lint-js ./assets/src/js",
+    "lint:js:fix": "wp-scripts lint-js ./assets/src/js --fix"
   },
   "author": "BracketSpace",
   "license": "ISC",
+  "browserslist": [
+    "chrome 60",
+    "firefox 55",
+    "safari 10",
+    "edge 15",
+    "ie 11"
+  ],
   "devDependencies": {
-    "browser-sync": "^2.26.3",
-    "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^3.1.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-order": "^1.2.0",
-    "gulp-sass": "^3.0.0",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^2.0.0",
-    "tar": ">=4.4.2"
+    "@wordpress/scripts": "^3.4.0",
+    "browser-sync": "^2.26.7",
+    "cross-env": "^5.2.0",
+    "mati-mix": "^2.0.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "clipboard": "^1.5.12",
+    "jquery-collapse": "^1.1.2",
+    "microplugin": "0.0.3",
+    "selectize": "^0.12.4",
+    "sifter": "^0.5.3"
+  },
+  "stylelint": {
+    "extends": "stylelint-config-wordpress/scss"
+  }
 }

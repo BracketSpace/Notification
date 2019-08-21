@@ -49,6 +49,18 @@ class Settings {
 			] )
 			->description( __( 'Notification content settings', 'notification' ) );
 
+		$general->add_group( __( 'Tools', 'notification' ), 'tools' )
+			->add_field( [
+				'name'   => __( 'Wizard', 'notification' ),
+				'slug'   => 'wizard',
+				'addons' => [
+					'url'   => admin_url( 'edit.php?post_type=notification&page=wizard' ),
+					'label' => __( 'Run wizard', 'notification' ),
+				],
+				'render' => [ new CoreFields\Button(), 'input' ],
+			] )
+			->description( __( 'Plugin tools', 'notification' ) );
+
 		$general->add_group( __( 'Uninstallation', 'notification' ), 'uninstallation' )
 			->add_field( [
 				'name'     => __( 'Notifications', 'notification' ),
@@ -331,6 +343,16 @@ class Settings {
 				'sanitize'    => [ new CoreFields\Text(), 'sanitize' ],
 				// Translators: %s default value.
 				'description' => sprintf( __( 'Leave blank to use default value: %s', 'notification' ), '<code>' . $default_from_email . '</code>' ),
+			] )
+			->add_field( [
+				'name'     => __( 'Headers', 'notification' ),
+				'slug'     => 'headers',
+				'default'  => false,
+				'addons'   => [
+					'label' => __( 'Allow to configure email headers', 'notification' ),
+				],
+				'render'   => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] );
 
 		$notifications->add_group( __( 'Webhook', 'notification' ), 'webhook' )
@@ -354,6 +376,131 @@ class Settings {
 				'render'   => [ new CoreFields\Checkbox(), 'input' ],
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] );
+
+	}
+
+	/**
+	 * Registers Emails settings
+	 *
+	 * @param object $settings Settings API object.
+	 * @return void
+	 */
+	public function emails_settings( $settings ) {
+
+		$general = $settings->add_section( __( 'Integration', 'notification' ), 'integration' );
+
+		$general->add_group( __( 'Default WordPress emails', 'notification' ), 'emails' )
+			->add_field( [
+				'name'        => __( 'New user', 'notification' ),
+				'slug'        => 'new_user_to_admin',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable new user email to admin', 'notification' ),
+				],
+				'description' => __( 'Email is sent after registration.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Welcome email', 'notification' ),
+				'slug'        => 'new_user_to_user',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable account details email to <strong>user</strong>', 'notification' ),
+				],
+				'description' => __( 'Email is sent after registration and contains password setup link.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'New comment', 'notification' ),
+				'slug'        => 'post_author',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable email to <strong>post author</strong> about a new comment', 'notification' ),
+				],
+				'description' => __( 'Email is sent after comment is published.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Comment awaiting moderation', 'notification' ),
+				'slug'        => 'comment_moderator',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable email to <strong>moderator (admin)</strong> when new comment awaits moderation', 'notification' ),
+				],
+				'description' => __( 'Email is sent when new comment is awaiting approval.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Password reset request', 'notification' ),
+				'slug'        => 'password_forgotten_to_admin',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable email to <strong>admin</strong> about password change request', 'notification' ),
+				],
+				'description' => __( 'Email is sent when user fills out the password reset request.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Password reset request', 'notification' ),
+				'slug'        => 'password_forgotten_to_user',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable email to <strong>user</strong> with password reset link', 'notification' ),
+				],
+				'description' => __( 'Email is sent when user fills out the password reset request.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Password changed', 'notification' ),
+				'slug'        => 'password_change_to_admin',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable email to <strong>admin</strong> when user changed their password', 'notification' ),
+				],
+				'description' => __( 'Email is sent when user changes his password.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Password changed', 'notification' ),
+				'slug'        => 'password_change_to_user',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable email to <strong>user</strong> when their password has been changed', 'notification' ),
+				],
+				'description' => __( 'Email is sent when user changes his password.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Email address changed', 'notification' ),
+				'slug'        => 'email_change_to_user',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable email to <strong>user</strong> about profile email address change request', 'notification' ),
+				],
+				'description' => __( 'Email is sent when user saves a new email address in his profile.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Automatic WordPress core update', 'notification' ),
+				'slug'        => 'automatic_wp_core_update',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable email to <strong>admin</strong> about successful background update', 'notification' ),
+				],
+				'description' => __( 'Email is sent when background updates finishes successfully. "Failed update" email will always be sent to admin.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->description( __( 'Disable each default emails by selecting the option.', 'notification' ) );
 
 	}
 

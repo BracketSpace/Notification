@@ -1,0 +1,23 @@
+{
+    "hash": "notification_5d3af3d844ac5",
+    "title": "Post updated - admin",
+    "trigger": "wordpress/post/updated",
+    "carriers": {
+        "email": {
+        	"activated": true,
+            "enabled": true,
+            "subject": "{site_title} - The post \"{post_title}\" has been updated",
+            "body": "The post \"{post_title}\" has been just updated.\r\n\r\nView: {post_permalink}\r\nEdit: {home_url}/wp-admin/post.php?post={post_ID}&amp;action=edit",
+            "recipients": [
+                {
+                    "type": "administrator",
+                    "recipient": ""
+                }
+            ],
+            "headers": null
+        }
+    },
+    "enabled": true,
+    "extras": [],
+    "version": 1564144600
+}

@@ -104,12 +104,21 @@ class Screen {
 				$carrier = $_carrier;
 			}
 
+			// If Carrier is enabled then it must be activated as well.
+			// Fix for previous versions when enabled but not activated Carrier was just wiped out.
+			if ( $carrier->is_enabled() ) {
+				$carrier->activate();
+			}
+
 			$box_view->set_vars( [
-				'id'      => 'notification-carrier-' . $carrier->get_slug() . '-box',
-				'name'    => 'notification_carrier_' . $carrier->get_slug() . '_enable',
-				'title'   => $carrier->get_name(),
-				'content' => $this->get_carrier_form( $carrier ),
-				'open'    => $carrier->is_enabled(),
+				'slug'        => $carrier->get_slug(),
+				'id'          => 'notification-carrier-' . $carrier->get_slug() . '-box',
+				'name'        => 'notification_carrier_' . $carrier->get_slug() . '_enable',
+				'active_name' => 'notification_carrier_' . $carrier->get_slug() . '_active',
+				'title'       => $carrier->get_name(),
+				'content'     => $this->get_carrier_form( $carrier ),
+				'open'        => $carrier->is_enabled(),
+				'active'      => $carrier->is_active(),
 			] );
 
 			$box_view->get_view( 'box' );
@@ -123,6 +132,30 @@ class Screen {
 		], '6.0.0', 'notification/admin/carriers' );
 
 		do_action( 'notification/admin/carriers', $notification_post );
+
+	}
+
+	/**
+	 * Renders a widget for adding Carriers
+	 *
+	 * @action notification/admin/carriers
+	 *
+	 * @param  object $notification_post Notification Post object.
+	 * @return void
+	 */
+	public function render_carriers_widget( $notification_post ) {
+
+		$carriers = notification_get_carriers();
+		$exists   = $notification_post->get_carriers();
+
+		$view = notification_create_view();
+		$view->set_vars( [
+			'carriers_added_count'  => count( $carriers ),
+			'carriers_exists_count' => count( $exists ),
+			'carriers'              => $carriers,
+			'carriers_exists'       => $exists,
+		] );
+		$view->get_view( 'carriers/widget-add' );
 
 	}
 

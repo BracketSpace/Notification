@@ -30,6 +30,13 @@ class InputField extends Field {
 	protected $placeholder = '';
 
 	/**
+	 * Field attributes
+	 *
+	 * @var string
+	 */
+	protected $atts = '';
+
+	/**
 	 * Field constructor
 	 *
 	 * @since 5.0.0
@@ -45,6 +52,10 @@ class InputField extends Field {
 			$this->placeholder = $params['placeholder'];
 		}
 
+		if ( isset( $params['atts'] ) ) {
+			$this->atts = $params['atts'];
+		}
+
 		parent::__construct( $params );
 
 	}
@@ -55,7 +66,7 @@ class InputField extends Field {
 	 * @return string html
 	 */
 	public function field() {
-		return '<input type="' . esc_attr( $this->type ) . '" name="' . esc_attr( $this->get_name() ) . '" id="' . esc_attr( $this->get_id() ) . '" value="' . esc_attr( $this->get_value() ) . '" placeholder="' . esc_attr( $this->placeholder ) . '" class="widefat ' . esc_attr( $this->css_class() ) . '" ' . $this->maybe_disable() . '>';
+		return '<input type="' . esc_attr( $this->type ) . '" name="' . esc_attr( $this->get_name() ) . '" id="' . esc_attr( $this->get_id() ) . '" value="' . esc_attr( $this->get_value() ) . '" placeholder="' . esc_attr( $this->placeholder ) . '" class="widefat ' . esc_attr( $this->css_class() ) . '" ' . $this->maybe_disable() . ' ' . esc_attr( $this->atts ) . '>';
 	}
 
 	/**

@@ -42,7 +42,6 @@ class TestMain extends \WP_UnitTestCase {
 		$this->assertInstanceOf( 'BracketSpace\Notification\Utils\View', $this->notification->view() );
 
 		$this->assertInstanceOf( 'BracketSpace\Notification\Utils\Files', $this->notification->files );
-		$this->assertInstanceOf( 'BracketSpace\Notification\Utils\Internationalization', $this->notification->internationalization );
 
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Cron', $this->notification->core_cron );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Whitelabel', $this->notification->core_whitelabel );
@@ -59,7 +58,7 @@ class TestMain extends \WP_UnitTestCase {
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Extensions', $this->notification->admin_extensions );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Scripts', $this->notification->admin_scripts );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Screen', $this->notification->admin_screen );
-		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Share', $this->notification->admin_share );
+		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Wizard', $this->notification->admin_wizard );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Sync', $this->notification->admin_sync );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Debugging', $this->notification->admin_debugging );
 

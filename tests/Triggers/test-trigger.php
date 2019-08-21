@@ -36,10 +36,13 @@ class TestTrigger extends \WP_UnitTestCase {
 
 		do_action( 'notification/test' );
 
-		$this->assertNotEmpty( $notification->get_trigger()->get_carriers() );
+		// Must access trough Trigger, because Carrier objects are cloned.
+		foreach ( $notification->get_trigger()->get_notifications() as $notification ) {
+			$this->assertNotEmpty( $notification->get_carriers() );
 
-		foreach ( $notification->get_trigger()->get_carriers() as $attached_carrier ) {
-			$this->assertTrue( $attached_carrier->is_sent );
+			foreach ( $notification->get_carriers() as $attached_carrier ) {
+				$this->assertTrue( $attached_carrier->is_sent );
+			}
 		}
 	}
 
@@ -60,10 +63,13 @@ class TestTrigger extends \WP_UnitTestCase {
 
 		do_action( 'notification/test/postponed' );
 
-		$this->assertNotEmpty( $notification->get_trigger()->get_carriers() );
+		// Must access trough Trigger, because Carrier objects are cloned.
+		foreach ( $notification->get_trigger()->get_notifications() as $notification ) {
+			$this->assertNotEmpty( $notification->get_carriers() );
 
-		foreach ( $notification->get_trigger()->get_carriers() as $attached_carrier ) {
-			$this->assertTrue( $attached_carrier->is_sent );
+			foreach ( $notification->get_carriers() as $attached_carrier ) {
+				$this->assertTrue( $attached_carrier->is_sent );
+			}
 		}
 	}
 

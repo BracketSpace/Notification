@@ -1,0 +1,23 @@
+{
+    "hash": "notification_5cac7c1bbfd28",
+    "title": "New user registration - user",
+    "trigger": "wordpress/user_registered",
+    "carriers": {
+        "email": {
+        	"activated": true,
+            "enabled": true,
+            "subject": "{site_title} - Login Details",
+            "body": "Username: %s\r\n\r\nTo set your password, visit the following address:\r\n\r\n{user_password_setup_link}",
+            "recipients": [
+                {
+                    "type": "email",
+                    "recipient": "{user_email}"
+                }
+            ],
+            "headers": null
+        }
+    },
+    "enabled": true,
+    "extras": [],
+    "version": 1564137499
+}

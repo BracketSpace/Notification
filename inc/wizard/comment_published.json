@@ -1,0 +1,23 @@
+{
+    "hash": "notification_5cac7fb9e2619",
+    "title": "Comment has been published",
+    "trigger": "wordpress/comment_comment_approved",
+    "carriers": {
+        "email": {
+        	"activated": true,
+            "enabled": true,
+            "subject": "{site_title} - Comment: \"{post_title}\"",
+            "body": "New comment on your post \"{post_title}\"\r\n\r\nAuthor: {comment_author_user_display_name} (IP address: {comment_author_IP})\r\n\r\nEmail: {comment_author_user_email}\r\n\r\nURL: {comment_author_url}\r\n\r\nComment: {comment_content}\r\n\r\nYou can see all comments on this post here:\r\n{post_permalink}#comments\r\n\r\nPermalink: {post_permalink}",
+            "recipients": [
+                {
+                    "type": "email",
+                    "recipient": "{post_author_user_email}"
+                }
+            ],
+            "headers": null
+        }
+    },
+    "enabled": true,
+    "extras": [],
+    "version": 1564138047
+}

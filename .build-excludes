@@ -3,11 +3,8 @@
 .gitignore
 .gitattributes
 .editorconfig
-package.json
 package-lock.json
 node_modules
-gulpfile.js
-gruntfile.js
 yarn.lock
 phpunit.xml.dist
 phpunit.xml
@@ -22,3 +19,4 @@ assets/src
 bin
 composer.json
 composer.lock
+webpack.mix.js

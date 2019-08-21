@@ -4,6 +4,7 @@
 node_modules/
 /vendor/
 assets/dist/
+package-lock.json.
 
 ### Windows ###
 # Windows image file caches
@@ -75,6 +76,9 @@ Temporary Items
 
 # sftp configuration file
 sftp-config.json
+
+# postcss sorting config file
+settings.json
 
 # Package control specific files
 Package Control.last-run

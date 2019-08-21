@@ -1,15 +1,16 @@
-( function($) {
+/* global wp, notification, jQuery, FormData */
+( function( $ ) {
+	const __ = wp.i18n.__;
 
 	$( document ).ready( function() {
+		const $button = $( '#export-notifications .button' );
+		const $items = $( '#export-notifications ul li input[type="checkbox"]:not(.select-all)' );
+		const link = $button.prop( 'href' );
 
-		var $button = $( '#export-notifications .button' );
-		var $items  = $( '#export-notifications ul li input[type="checkbox"]:not(.select-all)' );
-		var link    = $button.prop( 'href' );
-
-		function get_selected_items() {
-			var items = [];
+		function getSelectedItems() {
+			const items = [];
 			$.each( $items, function( index, item ) {
-				$item = $( item );
+				const $item = $( item );
 				if ( $item.is( ':checked' ) ) {
 					items.push( $item.val() );
 				}
@@ -18,60 +19,53 @@
 		}
 
 		$( '#export-notifications input[type="checkbox"]' ).change( function() {
-
 			if ( $( this ).hasClass( 'select-all' ) ) {
-
 				if ( $( this ).is( ':checked' ) ) {
 					$items.prop( 'checked', true );
 				} else {
 					$items.prop( 'checked', false );
 				}
-
 			}
 
-			$button.prop( 'href', link + get_selected_items() );
-
+			$button.prop( 'href', link + getSelectedItems() );
 		} );
-
 	} );
 
 	$( document ).ready( function() {
+		const $button = $( '#import-notifications .button' );
+		const $file = $( '#import-notifications input[type="file"]' );
+		let files = [];
+		const $message = $( '#import-notifications .message' );
 
-		var $button  = $( '#import-notifications .button' );
-		var $file    = $( '#import-notifications input[type="file"]' );
-		var files    = [];
-		var $message = $( '#import-notifications .message' );
-
-		function clear_message() {
+		function clearMessage() {
 			$message.removeClass( 'success' ).removeClass( 'error' ).text( '' );
-		};
+		}
 
-		function add_message( type, message ) {
-			clear_message();
+		function addMessage( type, message ) {
+			clearMessage();
 			$message.addClass( type ).text( message );
-		};
+		}
 
 		$file.on( 'change', function( event ) {
 			files = event.target.files;
 			$.each( files, function( key, value ) {
 				if ( 'application/json' !== value.type ) {
-					add_message( 'error', notification.i18n.valid_json_only );
+					addMessage( 'error', __( 'Please upload only valid JSON files', 'notification' ) );
 					$file.val( '' );
 				} else {
-					clear_message();
+					clearMessage();
 				}
 			} );
 		} );
 
 		$button.on( 'click', function( event ) {
-
 			if ( 'true' === $button.data( 'processing' ) ) {
 				return false;
 			}
 
 			event.preventDefault();
 
-			var data = new FormData();
+			const data = new FormData();
 			$.each( files, function( key, value ) {
 				data.append( key, value );
 			} );
@@ -80,33 +74,30 @@
 			data.append( 'type', 'notifications' );
 			data.append( 'nonce', $button.data( 'nonce' ) );
 
-			add_message( 'neutral', notification.i18n.importing_data );
+			addMessage( 'neutral', __( 'Importing data...', 'notification' ) );
 			$button.data( 'processing', 'true' );
 
 			$.ajax( {
-		        url: notification.ajaxurl,
-		        type: 'POST',
-		        data: data,
-		        cache: false,
-		        dataType: 'json',
-		        processData: false,
-		        contentType: false,
-		        success: function( response ) {
-		        	if ( response.success ) {
-		        		add_message( 'success', response.data );
-		        		$file.val( '' );
-		        	} else {
-		        		add_message( 'error', response.data );
-		        	}
-		        	$button.data( 'processing', 'false' );
-		        },
-		        error: function( jqXHR, text_status, error_thrown ) {
-		            add_message( 'error', error_thrown );
-		        }
-		    } );
-
+				url: notification.ajaxurl,
+				type: 'POST',
+				data,
+				cache: false,
+				dataType: 'json',
+				processData: false,
+				contentType: false,
+				success( response ) {
+					if ( response.success ) {
+						addMessage( 'success', response.data );
+						$file.val( '' );
+					} else {
+						addMessage( 'error', response.data );
+					}
+					$button.data( 'processing', 'false' );
+				},
+				error( jqXHR, textStatus, errorThrown ) {
+					addMessage( 'error', errorThrown );
+				},
+			} );
 		} );
-
 	} );
-
-} )(jQuery);
+}( jQuery ) );
