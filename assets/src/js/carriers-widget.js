@@ -162,4 +162,6 @@ class CarriersWidget {
 	}
 }
 
-new CarriersWidget();
+$( document ).ready( function() {
+	new CarriersWidget();
+} );
