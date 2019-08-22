@@ -278,6 +278,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] The Gutenberg integration causing an error for triggers other than related to post types.
+
 = 6.1.0 =
 * [Fixed] File mtime method now checks if file exists.
 * [Fixed] Cache is now cleared after saving the notification.
