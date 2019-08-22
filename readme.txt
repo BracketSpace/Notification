@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.2
-Stable tag: 6.1.0
+Stable tag: 6.1.1
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -277,6 +277,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 7. Default email disabler
 
 == Changelog ==
+
+= 6.1.1 =
+* [Fixed] The Gutenberg integration causing an error for triggers other than related to post types.
 
 = 6.1.0 =
 * [Fixed] File mtime method now checks if file exists.
