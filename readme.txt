@@ -278,6 +278,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Carrier adding section being booted too early and being broken with other extensions.
+
 = 6.1.1 =
 * [Fixed] The Gutenberg integration causing an error for triggers other than related to post types.
 
