@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.2
-Stable tag: 6.1.2
+Stable tag: 6.1.3
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -278,7 +278,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
-= [Next] =
+= 6.1.3 =
 * [Fixed] Password reset link fatal error when default WordPress notification was disabled.
 
 = 6.1.2 =
