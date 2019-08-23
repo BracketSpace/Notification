@@ -278,6 +278,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Password reset link fatal error when default WordPress notification was disabled.
+
 = 6.1.2 =
 * [Fixed] Carrier adding section being booted too early and being broken with other extensions.
 
