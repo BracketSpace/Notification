@@ -44,11 +44,11 @@ class PostTrashed extends PostTrigger {
 	 */
 	public function action( $post_id, $post ) {
 
-		$this->{ $this->post_type } = $post;
-
-		if ( $this->{ $this->post_type }->post_type !== $this->post_type ) {
+		if ( $post->post_type !== $this->post_type ) {
 			return false;
 		}
+
+		$this->{ $this->post_type } = $post;
 
 		$this->author        = get_userdata( $this->{ $this->post_type }->post_author );
 		$this->trashing_user = get_userdata( get_current_user_id() );

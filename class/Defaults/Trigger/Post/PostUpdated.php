@@ -45,18 +45,18 @@ class PostUpdated extends PostTrigger {
 	 */
 	public function action( $post_id, $post, $post_before ) {
 
-		$this->{ $this->post_type } = $post;
-
-		if ( $this->{ $this->post_type }->post_type !== $this->post_type ) {
+		if ( $post->post_type !== $this->post_type ) {
 			return false;
 		}
 
 		// Filter the post statuses for which the notification should be sent. By default it will be send only if you update already published post.
 		$updated_post_statuses = apply_filters( 'notification/trigger/wordpress/post/updated/statuses', [ 'publish' ], $this->post_type );
 
-		if ( empty( $this->{ $this->post_type }->post_name ) || ! in_array( $post_before->post_status, $updated_post_statuses, true ) || 'trash' === $this->{ $this->post_type }->post_status ) {
+		if ( empty( $post->post_name ) || ! in_array( $post_before->post_status, $updated_post_statuses, true ) || 'trash' === $post->post_status ) {
 			return false;
 		}
+
+		$this->{ $this->post_type } = $post;
 
 		$this->author        = get_userdata( $this->{ $this->post_type }->post_author );
 		$this->updating_user = get_userdata( get_current_user_id() );
