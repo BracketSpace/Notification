@@ -457,7 +457,7 @@ class Notification {
 	/**
 	 * Refreshes the hash
 	 *
-	 * @since  [Next]
+	 * @since  6.1.4
 	 * @return $this
 	 */
 	public function refresh_hash() {

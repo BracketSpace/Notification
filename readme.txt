@@ -278,7 +278,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
-= [Next] =
+= 6.1.4 =
 * [Fixed] Addig the same Notification twice from the Wizard. Now Notification hash is regenerated.
 * [Changed] Post triggers now setup properties after checking all the conditions. This way second action call with wrong params won't change the trigger state. Thanks to Tom Angell.
 
