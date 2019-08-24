@@ -454,4 +454,15 @@ class Notification {
 
 	}
 
+	/**
+	 * Refreshes the hash
+	 *
+	 * @since  [Next]
+	 * @return $this
+	 */
+	public function refresh_hash() {
+		$this->set_hash( self::create_hash() );
+		return $this;
+	}
+
 }

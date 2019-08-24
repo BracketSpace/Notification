@@ -9,6 +9,7 @@ namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Utils\Files;
 use BracketSpace\Notification\Utils\View;
+use BracketSpace\Notification\Core\Notification;
 
 /**
  * Wizard class
@@ -305,7 +306,9 @@ class Wizard {
 
 			$json         = file_get_contents( $json_path ); // phpcs:ignore
 			$json_adapter = notification_adapt_from( 'JSON', $json );
-			$wp_adapter   = notification_swap_adapter( 'WordPress', $json_adapter );
+			$json_adapter->refresh_hash();
+
+			$wp_adapter = notification_swap_adapter( 'WordPress', $json_adapter );
 			$wp_adapter->save();
 
 		}

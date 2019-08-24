@@ -53,7 +53,7 @@ class NotificationDuplicator {
 		$source = get_post( sanitize_text_field( wp_unslash( $_GET['duplicate'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$json   = notification_adapt_from( 'JSON', $source );
 
-		$json->set_hash( Notification::create_hash() );
+		$json->refresh_hash();
 
 		if ( get_post_type( $source ) !== 'notification' ) {
 			wp_die( 'You cannot duplicate post that\'s not Notification post' );

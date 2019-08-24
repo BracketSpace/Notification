@@ -278,6 +278,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Addig the same Notification twice from the Wizard. Now Notification hash is regenerated.
+
 = 6.1.3 =
 * [Fixed] Password reset link fatal error when default WordPress notification was disabled.
 
