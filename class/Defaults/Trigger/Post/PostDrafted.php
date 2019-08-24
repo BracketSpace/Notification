@@ -45,9 +45,7 @@ class PostDrafted extends PostTrigger {
 	 */
 	public function action( $new_status, $old_status, $post ) {
 
-		$this->{ $this->post_type } = $post;
-
-		if ( $this->{ $this->post_type }->post_type !== $this->post_type ) {
+		if ( $post->post_type !== $this->post_type ) {
 			return false;
 		}
 
@@ -58,6 +56,8 @@ class PostDrafted extends PostTrigger {
 		if ( 'draft' !== $new_status ) {
 			return false;
 		}
+
+		$this->{ $this->post_type } = $post;
 
 		$this->author          = get_userdata( $this->{ $this->post_type }->post_author );
 		$this->publishing_user = get_userdata( get_current_user_id() );

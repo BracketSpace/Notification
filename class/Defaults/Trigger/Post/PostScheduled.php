@@ -45,15 +45,15 @@ class PostScheduled extends PostTrigger {
 	 */
 	public function action( $new_status, $old_status, $post ) {
 
-		$this->{ $this->post_type } = $post;
-
-		if ( $this->{ $this->post_type }->post_type !== $this->post_type ) {
+		if ( $post->post_type !== $this->post_type ) {
 			return false;
 		}
 
 		if ( 'future' === $old_status || 'future' !== $new_status ) {
 			return false;
 		}
+
+		$this->{ $this->post_type } = $post;
 
 		$this->author = get_userdata( $this->{ $this->post_type }->post_author );
 

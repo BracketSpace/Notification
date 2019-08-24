@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.2
-Stable tag: 6.1.3
+Stable tag: 6.1.4
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -280,6 +280,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Fixed] Addig the same Notification twice from the Wizard. Now Notification hash is regenerated.
+* [Changed] Post triggers now setup properties after checking all the conditions. This way second action call with wrong params won't change the trigger state. Thanks to Tom Angell.
 
 = 6.1.3 =
 * [Fixed] Password reset link fatal error when default WordPress notification was disabled.
