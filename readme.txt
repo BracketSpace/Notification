@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.2
-Stable tag: 6.1.4
+Stable tag: 6.1.5
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -277,6 +277,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 7. Default email disabler
 
 == Changelog ==
+
+= 6.1.5 =
+* [Fixed] Error when a new user was added by logged in user, the password reset notification was sent.
 
 = 6.1.4 =
 * [Fixed] Addig the same Notification twice from the Wizard. Now Notification hash is regenerated.

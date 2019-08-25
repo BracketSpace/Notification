@@ -75,8 +75,10 @@ class UserRegistered extends UserTrigger {
 	public function get_password_reset_key() {
 
 		add_filter( 'allow_password_reset', '__return_true', 999999999 );
+		add_filter( 'notification/trigger/wordpress/user_password_reset_request/bail_for_registration', '__return_true', 999999999 );
 		$reset_key = get_password_reset_key( $this->user_object );
 		remove_filter( 'allow_password_reset', '__return_true', 999999999 );
+		remove_filter( 'notification/trigger/wordpress/user_password_reset_request/bail_for_registration', '__return_true', 999999999 );
 
 		if ( is_wp_error( $reset_key ) ) {
 			notification_log( 'Core', 'error', 'User registration trigger error: ' . $reset_key->get_error_message() );
