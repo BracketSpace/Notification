@@ -278,6 +278,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= 6.1.6 =
+* [Fixed] Notification duplication feature, thanks to Erik West.
+
 = 6.1.5 =
 * [Fixed] Error when a new user was added by logged in user, the password reset notification was sent.
 
