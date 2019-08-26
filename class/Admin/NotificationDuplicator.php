@@ -50,8 +50,10 @@ class NotificationDuplicator {
 		}
 
 		// Get the source notification post.
-		$source = get_post( sanitize_text_field( wp_unslash( $_GET['duplicate'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$json   = notification_adapt_from( 'JSON', $source );
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$source = get_post( sanitize_text_field( wp_unslash( $_GET['duplicate'] ) ) );
+		$wp     = notification_adapt_from( 'WordPress', $source );
+		$json   = notification_swap_adapter( 'JSON', $wp );
 
 		$json->refresh_hash();
 
