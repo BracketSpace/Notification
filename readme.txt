@@ -278,6 +278,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Changed] Input field sanitizer for Carriers, allowing for some HTML tags.
+
 = 6.1.6 =
 * [Fixed] Notification duplication feature, thanks to Erik West.
 
