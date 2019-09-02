@@ -280,6 +280,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Fixed] Checkbox in plugin settings now can specify true-ish default value.
+* [Fixed] Trigger select box margins.
 * [Changed] Input field sanitizer for Carriers, allowing for some HTML tags.
 
 = 6.1.6 =

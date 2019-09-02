@@ -8,15 +8,10 @@ body.post-type-notification {
 		font-size: 12px;
 		display: block;
 		color: #a0a0a0;
-		margin-left: 8px;
-	}
-
-	.selectize-control .selectize-dropdown .label {
-		margin-left: 8px;
 	}
 
 	.selectize-control .selectize-dropdown div[data-selectable] {
-		margin-bottom: 5px;
+		padding: 6px 8px;
 	}
 
 }
