@@ -279,6 +279,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
+* [Fixed] Checkbox in plugin settings now can specify true-ish default value.
 * [Changed] Input field sanitizer for Carriers, allowing for some HTML tags.
 
 = 6.1.6 =

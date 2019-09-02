@@ -21,7 +21,9 @@ class Checkbox {
 	 */
 	public function input( $field ) {
 
-		echo '<label><input type="checkbox" id="' . $field->input_id() . '" name="' . $field->input_name() . '" value="true" ' . checked( $field->value(), 'true', false ) . '> ' . $field->addon( 'label' ) . '</label>'; // phpcs:ignore
+		$checked = in_array( $field->value(), [ 'true', true ], true );
+
+		echo '<label><input type="checkbox" id="' . $field->input_id() . '" name="' . $field->input_name() . '" value="true" ' . checked( $checked, true, false ) . '> ' . $field->addon( 'label' ) . '</label>'; // phpcs:ignore
 
 	}
 
