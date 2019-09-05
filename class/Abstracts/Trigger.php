@@ -105,6 +105,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * This method just calls WordPress' add_action function,
 	 * but it hooks the class' action method
 	 *
+	 * @since [Next] If background processing is active the action is loaded into WP Cron.
 	 * @param string  $tag           action hook.
 	 * @param integer $priority      action priority, default 10.
 	 * @param integer $accepted_args how many args the action accepts, default 1.
@@ -121,7 +122,12 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			'accepted_args' => $accepted_args,
 		] );
 
-		add_action( $tag, [ $this, '_action' ], $priority, $accepted_args );
+		if ( notification_get_setting( 'general/advanced/background_processing' ) ) {
+			add_action( $tag, [ $this, '_load_to_cron' ], $priority, $accepted_args );
+			add_action( 'ntfn_bp_' . $tag, [ $this, '_action' ], $priority, $accepted_args );
+		} else {
+			add_action( $tag, [ $this, '_action' ], $priority, $accepted_args );
+		}
 
 	}
 
@@ -154,11 +160,16 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * It automatically stops the execution
 	 *
 	 * @since 6.1.0 The postponed action have own method.
+	 * @since [Next] Action cannot be postponed if background processing is active.
 	 * @param string  $tag           action hook.
 	 * @param integer $priority      action priority, default 10.
 	 * @param integer $accepted_args how many args the action accepts, default 1.
 	 */
 	public function postpone_action( $tag, $priority = 10, $accepted_args = 1 ) {
+
+		if ( notification_get_setting( 'general/advanced/background_processing' ) ) {
+			return;
+		}
 
 		add_action( $tag, [ $this, '_postponed_action' ], $priority, $accepted_args );
 
@@ -528,6 +539,20 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		$this->roll_out();
 		$this->clean_merge_tags();
 
+	}
+
+
+	/**
+	 * Loads the action execution to cron as a single event
+	 *
+	 * @since  [Next]
+	 * @param  array ...$params Action params.
+	 * @return void
+	 */
+	public function _load_to_cron( ...$params ) {
+		// Add a unique ID to arguments to bypass WP Cron limitations (no same even in 10 minute window).
+		$params[] = 'ntfn_bp_' . uniqid();
+		wp_schedule_single_event( time(), 'ntfn_bp_' . current_action(), $params );
 	}
 
 }

@@ -69,6 +69,7 @@ class Settings {
 					'label' => __( 'Enable background processing with WP Cron', 'notification' ),
 				],
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
 				'description' => __( 'By enabling this setting, no Trigger will be executed immediately. Instead the execution will be saved into WP Cron system and executed in a few minutes. This can be helpful when the execution is spread over a few requests, ie. using Gutenberg editor.', 'notification' ),
 			] );
 
