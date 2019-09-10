@@ -105,7 +105,6 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * This method just calls WordPress' add_action function,
 	 * but it hooks the class' action method
 	 *
-	 * @since [Next] If background processing is active the action is loaded into WP Cron.
 	 * @param string  $tag           action hook.
 	 * @param integer $priority      action priority, default 10.
 	 * @param integer $accepted_args how many args the action accepts, default 1.
@@ -122,12 +121,12 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			'accepted_args' => $accepted_args,
 		] );
 
+		// Add the cron action if background processing is active.
 		if ( notification_get_setting( 'general/advanced/background_processing' ) ) {
-			add_action( $tag, [ $this, '_load_to_cron' ], $priority, $accepted_args );
 			add_action( 'ntfn_bp_' . $tag, [ $this, '_action' ], $priority, $accepted_args );
-		} else {
-			add_action( $tag, [ $this, '_action' ], $priority, $accepted_args );
 		}
+
+		add_action( $tag, [ $this, '_action' ], $priority, $accepted_args );
 
 	}
 
@@ -442,6 +441,26 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
+	 * Gets action arguments.
+	 *
+	 * @since [Next]
+	 * @return array
+	 */
+	public function get_action_args() {
+		return $this->callback_args;
+	}
+
+	/**
+	 * Stops the trigger.
+	 *
+	 * @since [Next]
+	 * @return void
+	 */
+	public function stop() {
+		$this->stopped = true;
+	}
+
+	/**
 	 * Checks if trigger has been stopped
 	 *
 	 * @return boolean
@@ -487,7 +506,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			$result = true;
 		}
 
-		$this->_after_action( $result );
+		$this->_after_action( $result, current_action() );
 
 	}
 
@@ -512,7 +531,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			$result = true;
 		}
 
-		$this->_after_action( $result );
+		$this->_after_action( $result, current_action() );
 
 	}
 
@@ -520,16 +539,18 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * Runs things after doing an action callback.
 	 *
 	 * @since  6.1.0
-	 * @param  bool $result Action result.
+	 * @since  [Next] Action hook tag is passed.
+	 * @param  bool   $result     Action result.
+	 * @param  string $action_tag Action hook tag.
 	 * @return void
 	 */
-	public function _after_action( $result ) {
+	public function _after_action( $result, $action_tag ) {
 
 		if ( false === $result ) {
-			$this->stopped = true;
+			$this->stop();
 		}
 
-		do_action( 'notification/trigger/action/did', $this );
+		do_action( 'notification/trigger/action/did', $this, $action_tag );
 
 		if ( $this->is_stopped() ) {
 			return;
@@ -539,20 +560,6 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		$this->roll_out();
 		$this->clean_merge_tags();
 
-	}
-
-
-	/**
-	 * Loads the action execution to cron as a single event
-	 *
-	 * @since  [Next]
-	 * @param  array ...$params Action params.
-	 * @return void
-	 */
-	public function _load_to_cron( ...$params ) {
-		// Add a unique ID to arguments to bypass WP Cron limitations (no same even in 10 minute window).
-		$params[] = 'ntfn_bp_' . uniqid();
-		wp_schedule_single_event( time(), 'ntfn_bp_' . current_action(), $params );
 	}
 
 }
