@@ -283,6 +283,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Fixed] Trigger select box margins.
 * [Fixed] Role recipient for Email picking wrong roles with LIKE statement.
 * [Changed] Input field sanitizer for Carriers, allowing for some HTML tags.
+* [Added] Background processing feature, which load the actions into WP Cron.
 
 = 6.1.6 =
 * [Fixed] Notification duplication feature, thanks to Erik West.

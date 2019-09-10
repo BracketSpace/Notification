@@ -121,6 +121,11 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			'accepted_args' => $accepted_args,
 		] );
 
+		// Add the cron action if background processing is active.
+		if ( notification_get_setting( 'general/advanced/background_processing' ) ) {
+			add_action( 'ntfn_bp_' . $tag, [ $this, '_action' ], $priority, $accepted_args );
+		}
+
 		add_action( $tag, [ $this, '_action' ], $priority, $accepted_args );
 
 	}
@@ -154,11 +159,16 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * It automatically stops the execution
 	 *
 	 * @since 6.1.0 The postponed action have own method.
+	 * @since [Next] Action cannot be postponed if background processing is active.
 	 * @param string  $tag           action hook.
 	 * @param integer $priority      action priority, default 10.
 	 * @param integer $accepted_args how many args the action accepts, default 1.
 	 */
 	public function postpone_action( $tag, $priority = 10, $accepted_args = 1 ) {
+
+		if ( notification_get_setting( 'general/advanced/background_processing' ) ) {
+			return;
+		}
 
 		add_action( $tag, [ $this, '_postponed_action' ], $priority, $accepted_args );
 
@@ -431,6 +441,26 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
+	 * Gets action arguments.
+	 *
+	 * @since [Next]
+	 * @return array
+	 */
+	public function get_action_args() {
+		return $this->callback_args;
+	}
+
+	/**
+	 * Stops the trigger.
+	 *
+	 * @since [Next]
+	 * @return void
+	 */
+	public function stop() {
+		$this->stopped = true;
+	}
+
+	/**
 	 * Checks if trigger has been stopped
 	 *
 	 * @return boolean
@@ -476,7 +506,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			$result = true;
 		}
 
-		$this->_after_action( $result );
+		$this->_after_action( $result, current_action() );
 
 	}
 
@@ -501,7 +531,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			$result = true;
 		}
 
-		$this->_after_action( $result );
+		$this->_after_action( $result, current_action() );
 
 	}
 
@@ -509,16 +539,18 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * Runs things after doing an action callback.
 	 *
 	 * @since  6.1.0
-	 * @param  bool $result Action result.
+	 * @since  [Next] Action hook tag is passed.
+	 * @param  bool   $result     Action result.
+	 * @param  string $action_tag Action hook tag.
 	 * @return void
 	 */
-	public function _after_action( $result ) {
+	public function _after_action( $result, $action_tag ) {
 
 		if ( false === $result ) {
-			$this->stopped = true;
+			$this->stop();
 		}
 
-		do_action( 'notification/trigger/action/did', $this );
+		do_action( 'notification/trigger/action/did', $this, $action_tag );
 
 		if ( $this->is_stopped() ) {
 			return;
