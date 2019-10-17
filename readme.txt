@@ -72,6 +72,7 @@ The plugin comes with few registered by default recipient types for Email Carrie
 * Administrator – takes an email from General Settings page
 * User – takes an email from WordPress user profile
 * Role – notify all Users having selected role at once
+* Custom - email addresses specified by custom coding in your theme or plugin
 
 = DEFAULT TRIGGERS =
 
@@ -252,6 +253,10 @@ You can [write a merge tag](https://docs.bracketspace.com/notification/developer
 
 You can control when exactly the notification is sending with the [Conditionals extension](https://bracketspace.com/downloads/notification-conditionals/).
 
+= Can I send to a custom recipient list based on my own plugin or theme logic? =
+
+Yes, use the `Custom` recipient class and include `filter-id:some-value`, then return your recipient list from the `notification/recipients/some-value` filter.
+
 = Can I bundle the plugin with my plugin or theme? =
 
 Yes, you can. [See the detailed guide](https://docs.bracketspace.com/notification/developer/general/bundling)
@@ -282,6 +287,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Fixed] Notification loosing hash sync between JSON config and post name.
 * [Added] User Avatar merge tags.
 * [Added] Trigger cache engine for cache processing.
+* [Added] Custom recipient class to allow recipients to be specified via custom WP filter.
 
 = 6.2.0 =
 * [Fixed] Checkbox in plugin settings now can specify true-ish default value.
