@@ -47,6 +47,12 @@ class WordPress {
 	}
 
 	/**
+	 * --------------------------
+	 * Comment replied proxies
+	 * --------------------------
+	 */
+
+	/**
 	 * Proxies the wp_insert_comment action to check
 	 * if comment is a reply.
 	 *
@@ -60,6 +66,53 @@ class WordPress {
 	public function proxy_comment_reply( $comment_id, $comment ) {
 		$status = '1' === $comment->comment_approved ? 'approved' : 'unapproved';
 		do_action( 'notification_insert_comment_proxy', $status, 'insert', $comment );
+	}
+
+	/**
+	 * --------------------------
+	 * Comment published proxies
+	 * --------------------------
+	 */
+
+	/**
+	 * Proxies the comment_post action
+	 *
+	 * @action comment_post
+	 *
+	 * @since [Next]
+	 * @param integer $comment_id Comment ID.
+	 * @param object  $approved   If Comment is approved.
+	 * @return void
+	 */
+	public function proxy_post_comment_to_published( $comment_id, $approved ) {
+		if ( $approved ) {
+			do_action( 'notification_comment_published_proxy', get_comment( $comment_id ) );
+		}
+	}
+
+	/**
+	 * Proxies the transition_comment_status action
+	 *
+	 * @action transition_comment_status
+	 *
+	 * @since [Next]
+	 * @param string $comment_new_status New comment status.
+	 * @param string $comment_old_status Old comment status.
+	 * @param object $comment            Comment object.
+	 * @return void
+	 */
+	public function proxy_transition_comment_status_to_published( $comment_new_status, $comment_old_status, $comment ) {
+
+		if ( 'spam' === $comment->comment_approved && notification_get_setting( 'triggers/comment/akismet' ) ) {
+			return;
+		}
+
+		if ( $comment_new_status === $comment_old_status || 'approved' !== $comment_new_status ) {
+			return;
+		}
+
+		do_action( 'notification_comment_published_proxy', $comment );
+
 	}
 
 }

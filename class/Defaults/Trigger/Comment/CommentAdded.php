@@ -31,7 +31,7 @@ class CommentAdded extends CommentTrigger {
 		$this->add_action( 'wp_insert_comment', 10, 2 );
 
 		// Translators: comment type.
-		$this->set_description( sprintf( __( 'Fires when new %s is added', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
+		$this->set_description( sprintf( __( 'Fires when new %s is added to database and awaits moderation or is published. Includes comment replies.', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
 
 	}
 
