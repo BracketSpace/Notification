@@ -76,7 +76,10 @@ class InputField extends Field {
 	 * @return mixed        sanitized value
 	 */
 	public function sanitize( $value ) {
-		return sanitize_text_field( $value );
+		$value = preg_replace( '@<(script|style)[^>]*?>.*?</\\1>@si', '', $value ); // Remove script and style tags.
+		$value = preg_replace( '/[\r\n\t ]+/', ' ', $value ); // Remove breaks.
+		$value = trim( $value ); // Remove whitespace.
+		return $value;
 	}
 
 }

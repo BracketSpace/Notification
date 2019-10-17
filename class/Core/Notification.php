@@ -72,6 +72,13 @@ class Notification {
 	protected $version;
 
 	/**
+	 * Source
+	 *
+	 * @var string
+	 */
+	protected $source = 'Internal';
+
+	/**
 	 * Constructor
 	 *
 	 * @since 6.0.0

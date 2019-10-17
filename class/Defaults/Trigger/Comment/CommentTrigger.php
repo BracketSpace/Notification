@@ -86,6 +86,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\Comment\CommentContentHtml() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentStatus() );
 		$this->add_merge_tag( new MergeTag\Comment\CommentType() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentIsReply() );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
 			'slug'  => 'comment_datetime',

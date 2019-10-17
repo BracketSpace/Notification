@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.2
-Stable tag: 6.1.6
+Stable tag: 6.2.0
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -277,6 +277,15 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 7. Default email disabler
 
 == Changelog ==
+
+= 6.2.0 =
+* [Fixed] Checkbox in plugin settings now can specify true-ish default value.
+* [Fixed] Trigger select box margins.
+* [Fixed] Role recipient for Email picking wrong roles with LIKE statement.
+* [Changed] Input field sanitizer for Carriers, allowing for some HTML tags.
+* [Added] Background processing feature, which load the actions into WP Cron.
+* [Added] Comment published trigger.
+* [Added] Post publication date and time merge tag.
 
 = 6.1.6 =
 * [Fixed] Notification duplication feature, thanks to Erik West.

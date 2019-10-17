@@ -123,17 +123,20 @@ function notification_log( $component, $type, $message ) {
  * @return boolean
  */
 function notification_dochooks_enabled() {
-	/**
-	 * NotificationDocHookTest class
-	 */
-	class NotificationDocHookTest {
+
+	if ( ! class_exists( 'NotificationDocHookTest' ) ) {
 		/**
-		 * Test method
-		 *
-		 * @action test 10
-		 * @return void
+		 * NotificationDocHookTest class
 		 */
-		public function test_method() {}
+		class NotificationDocHookTest {
+			/**
+			 * Test method
+			 *
+			 * @action test 10
+			 * @return void
+			 */
+			public function test_method() {}
+		}
 	}
 
 	$reflector = new \ReflectionObject( new NotificationDocHookTest() );

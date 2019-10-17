@@ -68,6 +68,7 @@ if ( notification_get_setting( 'triggers/comment/types' ) ) {
 	$comment_types = notification_get_setting( 'triggers/comment/types' );
 
 	foreach ( $comment_types as $comment_type ) {
+		notification_register_trigger( new Trigger\Comment\CommentPublished( $comment_type ) );
 		notification_register_trigger( new Trigger\Comment\CommentAdded( $comment_type ) );
 		notification_register_trigger( new Trigger\Comment\CommentReplied( $comment_type ) );
 		notification_register_trigger( new Trigger\Comment\CommentApproved( $comment_type ) );

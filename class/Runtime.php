@@ -105,6 +105,7 @@ class Runtime extends Utils\DocHooks {
 		$this->integration_wp_emails = new Integration\WordPressEmails();
 		$this->integration_gb        = new Integration\Gutenberg();
 		$this->integration_cf        = new Integration\CustomFields();
+		$this->integration_bp        = new Integration\BackgroundProcessing();
 
 	}
 

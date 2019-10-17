@@ -58,6 +58,7 @@ class PostPublished extends PostTrigger {
 		$this->publishing_user = get_userdata( get_current_user_id() );
 
 		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date );
+		$this->{ $this->post_type . '_publication_datetime' }  = strtotime( $this->{ $this->post_type }->post_date );
 		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified );
 
 	}
@@ -128,6 +129,12 @@ class PostPublished extends PostTrigger {
 			'name'          => sprintf( __( '%s publishing user last name', 'notification' ), $post_name ),
 			'property_name' => 'publishing_user',
 			'group'         => __( 'Publishing user', 'notification' ),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
+			'slug' => $this->post_type . '_publication_datetime',
+			// translators: singular post name.
+			'name' => sprintf( __( '%s publication date and time', 'notification' ), $post_name ),
 		] ) );
 
 	}
