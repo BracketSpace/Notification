@@ -38,7 +38,7 @@ class CommentPublished extends CommentTrigger {
 	/**
 	 * Assigns action callback args to object
 	 *
-	 * @param object  $comment    Comment object.
+	 * @param object $comment Comment object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
 	public function action( $comment ) {
