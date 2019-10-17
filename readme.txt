@@ -285,6 +285,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Input field sanitizer for Carriers, allowing for some HTML tags.
 * [Added] Background processing feature, which load the actions into WP Cron.
 * [Added] Comment published trigger.
+* [Added] Post publication date and time merge tag.
 
 = 6.1.6 =
 * [Fixed] Notification duplication feature, thanks to Erik West.
