@@ -79,7 +79,7 @@ class WordPress {
 	 *
 	 * @action comment_post
 	 *
-	 * @since [Next]
+	 * @since 6.2.0
 	 * @param integer $comment_id Comment ID.
 	 * @param object  $approved   If Comment is approved.
 	 * @return void
@@ -95,7 +95,7 @@ class WordPress {
 	 *
 	 * @action transition_comment_status
 	 *
-	 * @since [Next]
+	 * @since 6.2.0
 	 * @param string $comment_new_status New comment status.
 	 * @param string $comment_old_status Old comment status.
 	 * @param object $comment            Comment object.
