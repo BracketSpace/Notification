@@ -17,7 +17,7 @@ class BackgroundProcessing {
 	 *
 	 * @action notification/trigger/action/did 1
 	 *
-	 * @since  [Next]
+	 * @since  6.2.0
 	 * @param  Trigger $trigger    Trigger object.
 	 * @param  string  $action_tag Trigger action tag.
 	 * @return void
