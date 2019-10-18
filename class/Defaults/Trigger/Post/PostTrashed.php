@@ -126,6 +126,14 @@ class PostTrashed extends PostTrigger {
 			'group'         => __( 'Trashing user', 'notification' ),
 		] ) );
 
+		$this->add_merge_tag( new MergeTag\AvatarTag( [
+			'slug'          => $this->post_type . '_trashing_user_avatar',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s trashing user avatar', 'notification' ), $post_name ),
+			'property_name' => 'trashing_user',
+			'group'         => __( 'Trashing user', 'notification' ),
+		] ) );
+
 	}
 
 }
