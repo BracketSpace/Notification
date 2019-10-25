@@ -67,7 +67,7 @@ class Avatar extends HtmlTag {
 	 * @return boolean
 	 */
 	public function check_requirements() {
-        return isset( $this->trigger->{ $this->property_name }->user_email );
+		return isset( $this->trigger->{ $this->property_name }->user_email );
 	}
 
 }
