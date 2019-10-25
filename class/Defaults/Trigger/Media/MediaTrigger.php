@@ -88,9 +88,9 @@ abstract class MediaTrigger extends Abstracts\Trigger {
 			'group' => __( 'Author', 'notification' ),
 		] ) );
 
-		$this->add_merge_tag( new MergeTag\AvatarTag( [
-			'slug'  => 'attachment_author_avatar',
-			'name'  => __( 'Attachment author avatar', 'notification' ),
+		$this->add_merge_tag( new MergeTag\User\Avatar( [
+			'slug'  => 'attachment_author_user_avatar',
+			'name'  => __( 'Attachment author user avatar', 'notification' ),
 			'group' => __( 'Author', 'notification' ),
 		] ) );
 

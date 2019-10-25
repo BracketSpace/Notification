@@ -77,7 +77,7 @@ notification_add_global_merge_tag( new MergeTag\EmailTag( [
 	},
 ] ) );
 
-notification_add_global_merge_tag( new MergeTag\AvatarTag( [
+notification_add_global_merge_tag( new MergeTag\User\Avatar( [
 	'slug'        => 'admin_avatar',
 	'name'        => __( 'Admin avatar', 'notification' ),
 	'description' => get_avatar( get_option( 'admin_email' ) ),

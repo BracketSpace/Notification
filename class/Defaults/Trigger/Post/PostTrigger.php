@@ -214,10 +214,10 @@ abstract class PostTrigger extends Abstracts\Trigger {
 			'group'         => __( 'Author', 'notification' ),
 		] ) );
 
-		$this->add_merge_tag( new MergeTag\AvatarTag( [
-			'slug'          => $this->post_type . '_author_avatar',
+		$this->add_merge_tag( new MergeTag\User\Avatar( [
+			'slug'          => $this->post_type . '_author_user_avatar',
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s author avatar', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s author user avatar', 'notification' ), $post_name ),
 			'property_name' => 'author',
 			'group'         => __( 'Author', 'notification' ),
 		] ) );

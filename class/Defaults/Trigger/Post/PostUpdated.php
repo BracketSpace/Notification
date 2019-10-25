@@ -134,7 +134,7 @@ class PostUpdated extends PostTrigger {
 			'group'         => __( 'Updating user', 'notification' ),
 		] ) );
 
-		$this->add_merge_tag( new MergeTag\AvatarTag( [
+		$this->add_merge_tag( new MergeTag\User\Avatar( [
 			'slug'          => $this->post_type . '_updating_user_avatar',
 			// translators: singular post name.
 			'name'          => sprintf( __( '%s updating user email', 'notification' ), $post_name ),
