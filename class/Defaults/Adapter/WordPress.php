@@ -54,6 +54,9 @@ class WordPress extends Abstracts\Adapter {
 			$do_nothing = true;
 		}
 
+		// Hash sync with WordPress post.
+		$this->set_hash( $this->post->post_name );
+
 		// Source.
 		$this->set_source( 'WordPress' );
 		$this->set_source_post_id( $this->get_id() );
