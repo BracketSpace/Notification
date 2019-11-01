@@ -52,7 +52,7 @@ class Email extends Abstracts\Recipient {
 			$value = trim( preg_replace( "/\bfilter-id:[\w][\w-]*/", "", $value ) );
 		}
 
-		$value  = apply_filters( 'notification/recipients/' . $filter_id, $value );
+		$value  = apply_filters( 'notification/recipient/email/' . $filter_id, $value );
 
 		$parsed_emails = [];
 		$emails = is_array( $value ) ? $value : explode( ',', $value );
