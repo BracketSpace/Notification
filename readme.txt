@@ -254,7 +254,7 @@ You can control when exactly the notification is sending with the [Conditionals 
 
 = Can I send to a custom recipient list based on my own plugin or theme logic? =
 
-Yes, just include `filter-id:some-value` in the `Recipient` value (using the `Email/Merge tag` type with the `Email` carrier), then return your recipient list from the `notification/recipients/email/some-value` filter.
+Yes, just include `filter-id:some-value` in the `Recipient` value (using the `Email/Merge tag` type with the `Email` carrier), then return your recipient list from the `notification/recipient/email/some-value` filter.
 
 = Can I bundle the plugin with my plugin or theme? =
 

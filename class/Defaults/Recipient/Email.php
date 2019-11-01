@@ -43,9 +43,9 @@ class Email extends Abstracts\Recipient {
 		/**
 		 * Include 'filter-id:your-favorite-id' in value to specify a filter id.
 		 *
-		 * defaults to 'email' (ie. filter 'notification/recipients/email'):
+		 * defaults to 'default' (ie. filter 'notification/recipient/email/default'):
 		 */
-		$filter_id = 'email';
+		$filter_id = 'default';
 
 		if ( preg_match( "/\bfilter-id:([\w][\w-]*)/", $value, $matches ) ) {
 			$filter_id = $matches[1];
