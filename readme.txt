@@ -281,6 +281,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 = [Next]=
 * [Fixed] Notification loosing hash sync between JSON config and post name.
 * [Added] User Avatar merge tags.
+* [Added] Trigger cache engine for cache processing.
 
 = 6.2.0 =
 * [Fixed] Checkbox in plugin settings now can specify true-ish default value.
