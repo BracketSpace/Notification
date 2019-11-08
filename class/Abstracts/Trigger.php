@@ -490,7 +490,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 *
 	 * @since  [Next]
 	 * @param  string $key     Cache key.
-	 * @param  mixed  $default Default value
+	 * @param  mixed  $default Default value.
 	 * @return mixed
 	 */
 	public function cache( $key, $default = '' ) {
