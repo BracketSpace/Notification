@@ -34,12 +34,12 @@ class UserLogout extends UserTrigger {
 	 */
 	public function action() {
 
-		$this->user_id     = get_current_user_id();
+		$this->user_id     = $this->cache( 'user_id', get_current_user_id() );
 		$this->user_object = get_userdata( $this->user_id );
 		$this->user_meta   = get_user_meta( $this->user_id );
 
 		$this->user_registered_datetime = strtotime( $this->user_object->user_registered );
-		$this->user_logout_datetime     = current_time( 'timestamp' );
+		$this->user_logout_datetime     = $this->cache( 'timestamp', current_time( 'timestamp' ) );
 
 	}
 

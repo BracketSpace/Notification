@@ -42,12 +42,15 @@ class Installed extends ThemeTrigger {
 			return false;
 		}
 
-		$this->theme                        = $upgrader->theme_info();
-		$this->theme_installation_date_time = current_time( 'timestamp' );
+		$theme = $upgrader->theme_info();
 
-		if ( false === $this->theme ) {
+		if ( false === $theme ) {
 			return false;
 		}
+
+		$this->theme = $theme;
+
+		$this->theme_installation_date_time = $this->cache( 'installation_timestamp', current_time( 'timestamp' ) );
 
 	}
 
