@@ -6,44 +6,39 @@
  */
 
 use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Defaults\Store\Recipient as RecipientStore;
 
 /**
  * Registers recipient
  * Uses notification/recipients filter
  *
- * @since  6.0.0 Changed naming convention from Notification to Carrier.
+ * @since  [next] Added Recipient Store
  * @param  string                $carrier_slug Carrier slug.
  * @param  Interfaces\Receivable $recipient    Recipient object.
- * @return void
+ * @return \WP_Error | true
  */
 function notification_register_recipient( $carrier_slug, Interfaces\Receivable $recipient ) {
+	$store = new RecipientStore();
 
-	add_filter( 'notification/recipients', function( $recipients ) use ( $carrier_slug, $recipient ) {
+	try {
+		$store[ $carrier_slug ] = $recipient;
+	} catch ( \Exception $e ) {
+		return new \WP_Error( 'notification_register_trigger_error', $e->getMessage() );
+	}
 
-		if ( ! isset( $recipients[ $carrier_slug ] ) ) {
-			$recipients[ $carrier_slug ] = [];
-		}
-
-		if ( isset( $recipients[ $carrier_slug ][ $recipient->get_slug() ] ) ) {
-			throw new \Exception( 'Recipient with that slug is already registered for ' . $carrier_slug . ' Carrier' );
-		} else {
-			$recipients[ $carrier_slug ][ $recipient->get_slug() ] = $recipient;
-		}
-
-		return $recipients;
-
-	} );
-
+	return true;
 }
 
 /**
  * Gets all registered recipients
  *
- * @since  5.0.0
+ * @since  [next] Added Recipient Store
  * @return array recipients
  */
 function notification_get_recipients() {
-	return apply_filters( 'notification/recipients', [] );
+	$store = new RecipientStore();
+
+	return  $store->get_items();
 }
 
 /**
