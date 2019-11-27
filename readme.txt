@@ -252,6 +252,10 @@ You can [write a merge tag](https://docs.bracketspace.com/notification/developer
 
 You can control when exactly the notification is sending with the [Conditionals extension](https://bracketspace.com/downloads/notification-conditionals/).
 
+= Can I send to a custom recipient list based on my own plugin or theme logic? =
+
+Yes, just include `filter-id:some-value` in the `Recipient` value (using the `Email/Merge tag` type with the `Email` carrier), then return your recipient list from the `notification/recipient/email/some-value` filter.
+
 = Can I bundle the plugin with my plugin or theme? =
 
 Yes, you can. [See the detailed guide](https://docs.bracketspace.com/notification/developer/general/bundling)
@@ -278,10 +282,11 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
-= [Next]=
+= [Next] =
 * [Fixed] Notification loosing hash sync between JSON config and post name.
 * [Added] User Avatar merge tags.
 * [Added] Trigger cache engine for cache processing.
+* [Added] Email recipient type accepts 'filter-id:' to specify recipients via custom WP filter.
 
 = 6.2.0 =
 * [Fixed] Checkbox in plugin settings now can specify true-ish default value.
