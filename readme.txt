@@ -278,11 +278,10 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
-= [Next] =
-* [Fixed] Namespace error in Abstracts/Trigger class.
 
 = [Next]=
 * [Fixed] Notification loosing hash sync between JSON config and post name.
+* [Fixed] Namespace error in Abstracts/Trigger class.
 * [Added] User Avatar merge tags.
 * [Added] Trigger cache engine for cache processing.
 
