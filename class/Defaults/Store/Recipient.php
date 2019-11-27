@@ -28,7 +28,7 @@ class Recipient extends Abstracts\Store {
 	 * @throws \Exception If no offset has been provided and item doesn't implements Nameable.
 	 * @param  mixed $offset Offset.
 	 * @param  mixed $value  Value.
-	 * @return array
+	 * @return void
 	 */
 	public function offsetSet( $offset, $value ) {
 

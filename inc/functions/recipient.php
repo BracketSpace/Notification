@@ -38,7 +38,7 @@ function notification_register_recipient( $carrier_slug, Interfaces\Receivable $
 function notification_get_recipients() {
 	$store = new RecipientStore();
 
-	return  $store->get_items();
+	return $store->get_items();
 }
 
 /**
