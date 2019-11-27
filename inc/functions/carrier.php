@@ -6,41 +6,36 @@
  */
 
 use BracketSpace\Notification\Interfaces;
-
+use BracketSpace\Notification\Defaults\Store\Carrier as CarrierStore;
 /**
  * Registers Carrier
  *
- * @uses notification/carriers filter
- * @since  6.0.0
+ * @since  [next]
  * @param  Interfaces\Sendable $carrier Carrier object.
- * @return void
+ * @return \WP_Error | true
  */
 function notification_register_carrier( Interfaces\Sendable $carrier ) {
 
-	add_filter( 'notification/carriers', function( $carriers ) use ( $carrier ) {
+	$store = new CarrierStore();
 
-		if ( isset( $carriers[ $carrier->get_slug() ] ) ) {
-			throw new \Exception( 'Carrier with that slug already exists' );
-		} else {
-			$carriers[ $carrier->get_slug() ] = $carrier;
-		}
-
-		return $carriers;
-
-	} );
-
-	do_action( 'notification/carrier/registered', $carrier );
+	try {
+		$store[] = $carrier;
+	} catch ( \Exception $e ) {
+		return new \WP_Error( 'notification_register_carrier_error', $e->getMessage() );
+	}
 
 }
 
 /**
  * Gets all registered Carriers
  *
- * @since  6.0.0
+ * @since  [next]
  * @return array carriers
  */
 function notification_get_carriers() {
-	return apply_filters( 'notification/carriers', [] );
+	$store = new CarrierStore();
+
+	return $store->get_items();
 }
 
 /**
