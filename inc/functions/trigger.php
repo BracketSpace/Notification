@@ -6,7 +6,6 @@
  */
 
 use BracketSpace\Notification\Interfaces;
-
 use BracketSpace\Notification\Defaults\Store\Trigger as TriggerStore;
 
 /**
