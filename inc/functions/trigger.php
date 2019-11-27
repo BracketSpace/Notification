@@ -25,7 +25,7 @@ function notification_register_trigger( Interfaces\Triggerable $trigger ) {
 		return new \WP_Error( 'notification_register_trigger_error', $e->getMessage() );
 	}
 
-	return true;
+	do_action( 'notification/trigger/registered', $trigger );
 
 }
 
