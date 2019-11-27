@@ -11,7 +11,7 @@ use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Interfaces\Sendable;
 use BracketSpace\Notification\Admin\FieldsResolver;
 use BracketSpace\Notification\Defaults\Store\Notification as NotificationStore;
-use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Core\Notification as CoreNotification;
 
 /**
  * Trigger abstract class
@@ -191,10 +191,10 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Attaches the Notification
 	 *
-	 * @param  Notification $notification Notification class.
+	 * @param  CoreNotification $notification Notification class.
 	 * @return void
 	 */
-	public function attach( Notification $notification ) {
+	public function attach( CoreNotification $notification ) {
 		$this->notification_storage[ $notification->get_hash() ] = clone $notification;
 	}
 
@@ -219,10 +219,10 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Detaches the Notification
 	 *
-	 * @param  Notification $notification Notification class.
+	 * @param  CoreNotification $notification Notification class.
 	 * @return void
 	 */
-	public function detach( Notification $notification ) {
+	public function detach( CoreNotification $notification ) {
 		if ( isset( $this->notification_storage[ $notification->get_hash() ] ) ) {
 			unset( $this->notification_storage[ $notification->get_hash() ] );
 		}
