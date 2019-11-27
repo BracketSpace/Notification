@@ -284,6 +284,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Fixed] Notification loosing hash sync between JSON config and post name.
+* [Changed] Added Trigger Store.
 * [Added] User Avatar merge tags.
 * [Added] Trigger cache engine for cache processing.
 * [Added] Email recipient type accepts 'filter-id:' to specify recipients via custom WP filter.

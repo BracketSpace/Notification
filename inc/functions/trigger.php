@@ -7,39 +7,39 @@
 
 use BracketSpace\Notification\Interfaces;
 
+use BracketSpace\Notification\Defaults\Store\Trigger as TriggerStore;
+
 /**
- * Registers trigger
- * Uses notification/triggers filter
+ * Adds Trigger to Store
  *
+ * @since [next]
  * @param  Interfaces\Triggerable $trigger trigger object.
- * @return void
+ * @return \WP_Error | true
  */
 function notification_register_trigger( Interfaces\Triggerable $trigger ) {
 
-	add_filter( 'notification/triggers', function( $triggers ) use ( $trigger ) {
+	$store = new TriggerStore();
 
-		if ( isset( $triggers[ $trigger->get_slug() ] ) ) {
-			throw new \Exception( 'Trigger with that slug already exists' );
-		} else {
-			$triggers[ $trigger->get_slug() ] = $trigger;
-		}
+	try {
+		$store[] = $trigger;
+	} catch ( \Exception $e ) {
+		return new \WP_Error( 'notification_register_trigger_error', $e->getMessage() );
+	}
 
-		return $triggers;
-
-	} );
-
-	do_action( 'notification/trigger/registered', $trigger );
+	return true;
 
 }
 
 /**
  * Gets all registered triggers
  *
- * @since  5.0.0
+ * @since  [next]
  * @return array triggers
  */
 function notification_get_triggers() {
-	return apply_filters( 'notification/triggers', [] );
+	$store = new TriggerStore();
+
+	return $store->get_items();
 }
 
 /**
