@@ -11,7 +11,7 @@ use BracketSpace\Notification\Defaults\Store\Trigger as TriggerStore;
 /**
  * Adds Trigger to Store
  *
- * @since [next]
+ * @since [next] Use Trigger Store
  * @param  Interfaces\Triggerable $trigger trigger object.
  * @return \WP_Error | true
  */
@@ -32,7 +32,7 @@ function notification_register_trigger( Interfaces\Triggerable $trigger ) {
 /**
  * Gets all registered triggers
  *
- * @since  [next]
+ * @since  [next] Use Trigger Store
  * @return array triggers
  */
 function notification_get_triggers() {
