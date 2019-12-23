@@ -35,19 +35,18 @@ class Recipient extends AbstractRecipient {
 	 * Parses saved value something understood by the Carrier
 	 *
 	 * @param  string $value raw value saved by the user.
-	 * @return array         array of resolved values
+	 * @return void
 	 */
 	public function parse_value( $value = '' ){
-		return;
 	}
 
 	/**
 	 * Returns input object
 	 *
-	 * @return object
+	 * @return void
 	 */
 	public function input(){
-		return;
+
 	}
 
 	/**

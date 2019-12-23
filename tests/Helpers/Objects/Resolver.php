@@ -28,7 +28,7 @@ class Resolver extends AbstractResolver {
 	/**
 	 * Gets merge tag pattern
 	 *
-	 * @return string Pattern
+	 * @return void
 	 */
 	public function get_pattern(){
 
@@ -37,7 +37,7 @@ class Resolver extends AbstractResolver {
 	/**
 	 * Gets resolver priority
 	 *
-	 * @return int Priority
+	 * @return void
 	 */
 	public function get_priority(){
 
@@ -48,10 +48,10 @@ class Resolver extends AbstractResolver {
 	 *
 	 * @param array       $match   Match array.
 	 * @param Triggerable $trigger Trigger object.
-	 * @return string              Resolved value
+	 * @return void
 	 */
 	public function resolve_merge_tag( $match, Triggerable $trigger ){
-		return;
+
 	}
 
 }
