@@ -18,7 +18,7 @@ use BracketSpace\Notification\Interfaces;
  * @param  array $data Notification data.
  * @return \WP_Error | true
  */
-function notification( $data = [] ) {
+function notification( $data = array() ) {
 
 	try {
 		notification_add( new Notification( notification_convert_data( $data ) ) );
@@ -47,6 +47,8 @@ function notification_add( Notification $notification ) {
 		return new \WP_Error( 'notification_add_error', $e->getMessage() );
 	}
 
+	do_action( 'notification/notification/registered', $notification );
+
 	return true;
 
 }
@@ -61,7 +63,7 @@ function notification_add( Notification $notification ) {
  * @param  array $data Notification static data.
  * @return array       Converted data.
  */
-function notification_convert_data( $data = [] ) {
+function notification_convert_data( $data = array() ) {
 
 	// Trigger conversion.
 	if ( isset( $data['trigger'] ) && ! ( $data['trigger'] instanceof Interfaces\Triggerable ) ) {
@@ -70,7 +72,7 @@ function notification_convert_data( $data = [] ) {
 
 	// Carriers conversion.
 	if ( isset( $data['carriers'] ) ) {
-		$carriers = [];
+		$carriers = array();
 
 		foreach ( $data['carriers'] as $carrier_slug => $carrier_data ) {
 			if ( $carrier_data instanceof Interfaces\Sendable ) {

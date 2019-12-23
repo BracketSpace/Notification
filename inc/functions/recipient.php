@@ -12,7 +12,7 @@ use BracketSpace\Notification\Defaults\Store\Recipient as RecipientStore;
  * Registers recipient
  * Uses notification/recipients filter
  *
- * @since  [Next] Added Recipient Store
+ * @since  [Next] Use Recipient Store
  * @param  string                $carrier_slug Carrier slug.
  * @param  Interfaces\Receivable $recipient    Recipient object.
  * @return \WP_Error | true
@@ -25,6 +25,8 @@ function notification_register_recipient( $carrier_slug, Interfaces\Receivable $
 	} catch ( \Exception $e ) {
 		return new \WP_Error( 'notification_register_trigger_error', $e->getMessage() );
 	}
+
+	do_action( 'notification/recipient/registered', $recipient );
 
 	return true;
 }
@@ -50,7 +52,7 @@ function notification_get_recipients() {
  */
 function notification_get_carrier_recipients( $carrier_slug ) {
 	$recipients = notification_get_recipients();
-	return isset( $recipients[ $carrier_slug ] ) ? $recipients[ $carrier_slug ] : [];
+	return isset( $recipients[ $carrier_slug ] ) ? $recipients[ $carrier_slug ] : array();
 }
 
 /**
@@ -81,7 +83,7 @@ function notification_parse_recipient( $carrier_slug, $recipient_type, $recipien
 	$recipient = notification_get_recipient( $carrier_slug, $recipient_type );
 
 	if ( ! $recipient instanceof Interfaces\Receivable ) {
-		return [];
+		return array();
 	}
 
 	return $recipient->parse_value( $recipient_raw_value );

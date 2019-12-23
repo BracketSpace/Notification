@@ -24,6 +24,9 @@ function notification_register_carrier( Interfaces\Sendable $carrier ) {
 		return new \WP_Error( 'notification_register_carrier_error', $e->getMessage() );
 	}
 
+	do_action( 'notification/carrier/registered', $carrier );
+
+	return true;
 }
 
 /**

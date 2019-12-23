@@ -61,12 +61,12 @@ function notification_get_trigger( $trigger_slug ) {
  */
 function notification_get_triggers_grouped() {
 
-	$return = [];
+	$return = array();
 
 	foreach ( notification_get_triggers() as $trigger ) {
 
 		if ( ! isset( $return[ $trigger->get_group() ] ) ) {
-			$return[ $trigger->get_group() ] = [];
+			$return[ $trigger->get_group() ] = array();
 		}
 
 		$return[ $trigger->get_group() ][ $trigger->get_slug() ] = $trigger;
@@ -108,5 +108,5 @@ function notification_add_global_merge_tag( Interfaces\Taggable $merge_tag ) {
  * @return array Merge Tags
  */
 function notification_get_global_merge_tags() {
-	return apply_filters( 'notification/global_merge_tags', [] );
+	return apply_filters( 'notification/global_merge_tags', array() );
 }
