@@ -18,6 +18,6 @@ class TestNotification extends \WP_UnitTestCase {
 	 */
 	public function test_notification_registration(){
 		Registerer::register_notification();
-		$this->assertGreaterThan( 0 , did_action( 'notification/notification/registered' ) );
+		$this->assertEquals( 1 , did_action( 'notification/notification/registered' ) );
 	}
 }

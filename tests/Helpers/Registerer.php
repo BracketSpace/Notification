@@ -97,8 +97,8 @@ class Registerer {
 	 * @since [Next]
 	 * @return Obejcts\Recipient Registered Recipient.
 	 */
-	public static function register_recipient(){
-		$recipient = new Objects\Recipient();
+	public static function register_recipient( $params = [] ){
+		$recipient = new Objects\Recipient( $params );
 
 		notification_register_recipient( 'dummy-carrier', $recipient );
 		return $recipient;

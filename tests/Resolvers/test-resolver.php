@@ -18,6 +18,6 @@ class TestResolver extends \WP_UnitTestCase {
 	 */
 	public function test_resolver_registration(){
 		Registerer::register_resolver();
-		$this->assertEquals( 2 , did_action( 'notification/resolver/registered' ) );
+		$this->assertGreaterThan( 0 , did_action( 'notification/resolver/registered' ) );
 	}
 }

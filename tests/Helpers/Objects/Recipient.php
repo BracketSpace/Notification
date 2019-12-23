@@ -28,11 +28,7 @@ class Recipient extends AbstractRecipient {
 	 * @param array $params recipient configuration params.
 	 */
 	public function __construct( $params = [] ) {
-
-		$this->slug          = 'Test slug';
-		$this->name          = 'Test name';
-		$this->default_value =  'Test default value';
-
+		parent::__construct( $params );
 	}
 
 	/**
