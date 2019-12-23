@@ -100,7 +100,7 @@ class Registerer {
 	public static function register_recipient( $params = [] ){
 		$recipient = new Objects\Recipient( $params );
 
-		notification_register_recipient( new Objects\Carrier(), $recipient );
+		notification_register_recipient( 'dummy_carrier', $recipient );
 		return $recipient;
 	}
 }
