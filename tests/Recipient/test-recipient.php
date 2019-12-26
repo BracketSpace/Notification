@@ -6,7 +6,6 @@
  */
 
 namespace BracketSpace\Notification\Tests\Notifications;
-use BracketSpace\Notification\Tests\Helpers\Registerer;
 
 class TestRecipient extends \WP_UnitTestCase {
 
@@ -17,8 +16,7 @@ class TestRecipient extends \WP_UnitTestCase {
 	 *
 	 */
 	public function test_recipient_registration(){
-		Registerer::register_recipient( [ 'slug' => 'test_slug', 'name' => 'default name', 'default_value' => 'Default value' ]  );
-		$this->assertGreaterThan( 0 , did_action( 'notification/recipient/registered' ) );
+		$this->assertEquals( 7 , did_action( 'notification/recipient/registered' ) );
 	}
 
 }
