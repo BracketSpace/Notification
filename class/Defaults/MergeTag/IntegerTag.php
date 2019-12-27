@@ -34,6 +34,7 @@ class IntegerTag extends MergeTag {
 	/**
 	 * Sanitizes the merge tag value
 	 *
+	 * @since [ Next ]
 	 * @param  mixed $value value.
 	 * @return mixed
 	 */
