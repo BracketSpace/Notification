@@ -50,7 +50,7 @@ class Updated extends ThemeTrigger {
 
 		$this->theme = $theme;
 
-		$this->theme_update_date_time = $this->cache( 'update_timestamp', current_time( 'timestamp' ) );
+		$this->theme_update_date_time = $this->cache( 'update_timestamp', current_time( 'timestamp' ) ); // phpcs:ignore
 		$this->theme_previous_version = ( ! property_exists( $upgrader->skin, 'theme_info' ) || null === $upgrader->skin->theme_info ) ? __( 'NA' ) : $upgrader->skin->theme_info->get( 'Version' );
 
 	}

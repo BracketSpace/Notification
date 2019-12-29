@@ -69,7 +69,7 @@ class TermUpdated extends TermTrigger {
 		$this->taxonomy       = $this->term->taxonomy;
 		$this->term_permalink = get_term_link( $this->term );
 
-		$this->term_modification_datetime = $this->cache( 'update_timestamp', current_time( 'timestamp' ) );
+		$this->term_modification_datetime = $this->cache( 'update_timestamp', current_time( 'timestamp' ) ); // phpcs:ignore
 
 	}
 

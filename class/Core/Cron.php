@@ -94,7 +94,7 @@ class Cron {
 			return;
 		}
 
-		wp_schedule_event( current_time( 'timestamp' ) + DAY_IN_SECONDS, $schedule, $event_name );
+		wp_schedule_event( current_time( 'timestamp' ) + DAY_IN_SECONDS, $schedule, $event_name ); // phpcs:ignore
 	}
 
 	/**

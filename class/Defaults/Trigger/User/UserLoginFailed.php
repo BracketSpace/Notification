@@ -46,7 +46,7 @@ class UserLoginFailed extends UserTrigger {
 		$this->user_object = get_userdata( $this->user_id );
 
 		$this->user_registered_datetime   = strtotime( $this->user_object->user_registered );
-		$this->user_login_failed_datetime = $this->cache( 'timestamp', current_time( 'timestamp' ) );
+		$this->user_login_failed_datetime = $this->cache( 'timestamp', current_time( 'timestamp' ) ); // phpcs:ignore
 
 	}
 

@@ -39,7 +39,7 @@ class Activated extends PluginTrigger {
 
 		$plugin_dir                        = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin_rel_path;
 		$this->plugin                      = get_plugin_data( $plugin_dir, false );
-		$this->plugin_activation_date_time = $this->cache( 'activation_timestamp', current_time( 'timestamp' ) );
+		$this->plugin_activation_date_time = $this->cache( 'activation_timestamp', current_time( 'timestamp' ) ); // phpcs:ignore
 
 	}
 
