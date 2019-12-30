@@ -39,11 +39,7 @@ class IntegerTag extends MergeTag {
 	 * @return mixed
 	 */
 	public function sanitize( $value ) {
-		if ( empty( $value ) ) {
-			return;
-		} else {
-			return intval( $value );
-		}
+		return intval( $value );
 	}
 
 }
