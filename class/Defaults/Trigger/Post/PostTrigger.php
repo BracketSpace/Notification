@@ -106,6 +106,10 @@ abstract class PostTrigger extends Abstracts\Trigger {
 			'post_type' => $this->post_type,
 		] ) );
 
+		$this->add_merge_tag( new MergeTag\Post\FeaturedImageId( [
+			'post_type' => $this->post_type,
+		] ) );
+
 		if ( 'post' === $this->post_type ) {
 
 			$this->add_merge_tag( new MergeTag\StringTag( [
