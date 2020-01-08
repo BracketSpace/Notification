@@ -37,7 +37,6 @@ function notification_register_trigger( Interfaces\Triggerable $trigger ) {
  */
 function notification_get_triggers() {
 	$store = new TriggerStore();
-
 	return $store->get_items();
 }
 

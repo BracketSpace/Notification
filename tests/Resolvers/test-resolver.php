@@ -6,6 +6,7 @@
  */
 
 namespace BracketSpace\Notification\Tests\Notifications;
+use BracketSpace\Notification\Tests\Helpers\Registerer;
 
 class TestResolver extends \WP_UnitTestCase {
 
@@ -16,6 +17,7 @@ class TestResolver extends \WP_UnitTestCase {
 	 *
 	 */
 	public function test_resolver_registration(){
+		Registerer::register_resolver();
 		$this->assertEquals( 1 , did_action( 'notification/resolver/registered' ) );
 	}
 }

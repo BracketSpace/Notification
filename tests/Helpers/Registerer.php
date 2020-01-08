@@ -77,4 +77,30 @@ class Registerer {
 		$carrier = static::register_carrier()->enable();
 		return static::register_notification( $trigger, [ $carrier ] );
 	}
+
+	/**
+	 * Register Resolver
+	 *
+	 * @since [Next]
+	 * @return Objects\Resolver Registered Resovler.
+	 */
+	public static function register_resolver(){
+		$resolver = new Objects\Resolver();
+
+		notification_register_resolver( $resolver );
+		return $resolver;
+	}
+
+	/**
+	 * Register Recipient
+	 *
+	 * @since [Next]
+	 * @return Obejcts\Recipient Registered Recipient.
+	 */
+	public static function register_recipient( $params = [] ){
+		$recipient = new Objects\Recipient( $params );
+
+		notification_register_recipient( 'dummy_carrier', $recipient );
+		return $recipient;
+	}
 }
