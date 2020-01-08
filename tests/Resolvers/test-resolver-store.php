@@ -1,6 +1,6 @@
 <?php
 /**
- * Class TestResolver
+ * Class TestResolverStore
  *
  * @package notification
  */
@@ -8,16 +8,16 @@
 namespace BracketSpace\Notification\Tests\Notifications;
 use BracketSpace\Notification\Tests\Helpers\Registerer;
 
-class TestResolver extends \WP_UnitTestCase {
+class TestResolverStore extends \WP_UnitTestCase {
 
 	/**
 	 * Test resolver registration
 	 *
 	 * @since [Next]
-	 *
 	 */
-	public function test_resolver_registration(){
+	public function test_resolver_registration_action() {
 		Registerer::register_resolver();
 		$this->assertEquals( 1 , did_action( 'notification/resolver/registered' ) );
 	}
+
 }
