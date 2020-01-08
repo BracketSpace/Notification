@@ -42,8 +42,8 @@ class Registerer {
 	 * @since  6.0.0
 	 * @return Objects\Carrier Registered Carrier.
 	 */
-	public static function register_carrier() {
-		$carrier = new Objects\Carrier();
+	public static function register_carrier( $carrier_slug = 'dummmy'  ) {
+		$carrier = new Objects\Carrier( $carrier_slug );
 		notification_register_carrier( $carrier );
 		return $carrier;
 	}
