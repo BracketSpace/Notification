@@ -22,12 +22,12 @@ class Registerer {
 	 * @param  bool $postponed If Trigger should be Postponed Trigger.
 	 * @return Objects\Notification Registered Trigger.
 	 */
-	public static function register_trigger( $postponed = false ) {
+	public static function register_trigger( $tag = 'notification/tests/simple_trigger', $postponed = false ) {
 
 		if ( $postponed ) {
 			$trigger = new Objects\PostponedTrigger();
 		} else {
-			$trigger = new Objects\SimpleTrigger();
+			$trigger = new Objects\SimpleTrigger( $tag );
 		}
 
 		notification_register_trigger( $trigger );
@@ -73,7 +73,7 @@ class Registerer {
 	 * @return Notifiation Registered Notification.
 	 */
 	public static function register_default_notification( $postponed = false ) {
-		$trigger = static::register_trigger( $postponed );
+		$trigger = static::register_trigger( '', $postponed );
 		$carrier = static::register_carrier()->enable();
 		return static::register_notification( $trigger, [ $carrier ] );
 	}
