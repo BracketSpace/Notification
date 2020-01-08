@@ -25,6 +25,22 @@ class TestRecipientStore extends \WP_UnitTestCase {
 	 *
 	 * @since [Next]
 	 */
+	public function test_getting_recipient(){
+		$carrier_recipient = Registerer::register_recipient();
+		$recipient_slug = $carrier_recipient->get_slug();
+
+		$expected_array = [
+			$carrier_recipient->get_slug() => $carrier_recipient
+		];
+
+		$this->assertSame( $expected_array, notification_get_carrier_recipients('dummy_carrier', $recipient_slug));
+	}
+
+	/**
+	 * Test getting recipients
+	 *
+	 * @since [Next]
+	 */
 	public function test_getting_recipients() {
 		$carrier1_recipient = Registerer::register_recipient( 'dummy1' );
 		$carrier2_recipient = Registerer::register_recipient( 'dummy2' );
@@ -41,4 +57,18 @@ class TestRecipientStore extends \WP_UnitTestCase {
 		$this->assertSame( $expected_array, notification_get_recipients() );
 	}
 
+	/**
+	 * Test getting carrier recipients
+	 *
+	 * @since [Next]
+	 */
+	public function test_getting_carrier_recipients() {
+		$carrier_recipient = Registerer::register_recipient();
+
+		$expected_array = [
+			$carrier_recipient->get_slug() => $carrier_recipient
+		];
+
+		$this->assertSame( $expected_array, notification_get_carrier_recipients( 'dummy_carrier' ) );
+	}
 }
