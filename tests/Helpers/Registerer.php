@@ -94,11 +94,12 @@ class Registerer {
 	 * Register Recipient
 	 *
 	 * @since [Next]
-	 * @return Obejcts\Recipient Registered Recipient.
+	 * @param  string            $carrier_slug Carrier slug.
+	 * @return Obejcts\Recipient               Registered Recipient.
 	 */
-	public static function register_recipient() {
+	public static function register_recipient( $carrier_slug = 'dummy_carrier' ) {
 		$recipient = new Objects\Recipient();
-		notification_register_recipient( 'dummy_carrier', $recipient );
+		notification_register_recipient( $carrier_slug, $recipient );
 		return $recipient;
 	}
 }
