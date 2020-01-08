@@ -12,6 +12,7 @@ use BracketSpace\Notification\Interfaces;
 /**
  * Adds Resolver to Store
  *
+ * @since  6.0.0
  * @since  [Next] Use Resolver Store.
  * @param  Interfaces\Resolvable $resolver Resolver object.
  * @return \WP_Error | true

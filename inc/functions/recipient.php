@@ -12,6 +12,7 @@ use BracketSpace\Notification\Defaults\Store\Recipient as RecipientStore;
  * Registers recipient
  * Uses notification/recipients filter
  *
+ * @since  6.0.0
  * @since  [Next] Use Recipient Store
  * @param  string                $carrier_slug Carrier slug.
  * @param  Interfaces\Receivable $recipient    Recipient object.
@@ -34,6 +35,7 @@ function notification_register_recipient( $carrier_slug, Interfaces\Receivable $
 /**
  * Gets all registered recipients
  *
+ * @since  6.0.0
  * @since  [Next] Added Recipient Store
  * @return array recipients
  */
