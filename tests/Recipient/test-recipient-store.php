@@ -29,11 +29,7 @@ class TestRecipientStore extends \WP_UnitTestCase {
 		$carrier_recipient = Registerer::register_recipient();
 		$recipient_slug = $carrier_recipient->get_slug();
 
-		$expected_array = [
-			$carrier_recipient->get_slug() => $carrier_recipient
-		];
-
-		$this->assertSame( $expected_array, notification_get_carrier_recipients('dummy_carrier', $recipient_slug));
+		$this->assertSame( $carrier_recipient, notification_get_recipient('dummy_carrier', $recipient_slug));
 	}
 
 	/**
