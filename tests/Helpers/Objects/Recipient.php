@@ -24,10 +24,9 @@ class Recipient extends AbstractRecipient {
 	/**
 	 * Recipient constructor
 	 *
-	 * @since 5.0.0
-	 * @param array $params recipient configuration params.
+	 * @since [Next]
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct() {
 		parent::__construct( [
 			'slug'          => 'dummy',
 			'name'          => 'Dummy',

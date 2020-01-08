@@ -30,7 +30,7 @@ class Resolver extends AbstractResolver {
 	 *
 	 * @return void
 	 */
-	public function get_pattern(){
+	public function get_pattern() {
 
 	}
 
@@ -39,7 +39,7 @@ class Resolver extends AbstractResolver {
 	 *
 	 * @return void
 	 */
-	public function get_priority(){
+	public function get_priority() {
 
 	}
 
@@ -50,7 +50,7 @@ class Resolver extends AbstractResolver {
 	 * @param Triggerable $trigger Trigger object.
 	 * @return void
 	 */
-	public function resolve_merge_tag( $match, Triggerable $trigger ){
+	public function resolve_merge_tag( $match, Triggerable $trigger ) {
 
 	}
 
