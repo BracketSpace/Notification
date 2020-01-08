@@ -84,9 +84,8 @@ class Registerer {
 	 * @since [Next]
 	 * @return Objects\Resolver Registered Resovler.
 	 */
-	public static function register_resolver(){
+	public static function register_resolver() {
 		$resolver = new Objects\Resolver();
-
 		notification_register_resolver( $resolver );
 		return $resolver;
 	}
@@ -97,9 +96,8 @@ class Registerer {
 	 * @since [Next]
 	 * @return Obejcts\Recipient Registered Recipient.
 	 */
-	public static function register_recipient( $params = [] ){
-		$recipient = new Objects\Recipient( $params );
-
+	public static function register_recipient() {
+		$recipient = new Objects\Recipient();
 		notification_register_recipient( 'dummy_carrier', $recipient );
 		return $recipient;
 	}

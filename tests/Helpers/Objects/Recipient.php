@@ -28,7 +28,11 @@ class Recipient extends AbstractRecipient {
 	 * @param array $params recipient configuration params.
 	 */
 	public function __construct( $params = [] ) {
-		parent::__construct( $params );
+		parent::__construct( [
+			'slug'          => 'dummy',
+			'name'          => 'Dummy',
+			'default_value' => 'Default value',
+		] );
 	}
 
 	/**
