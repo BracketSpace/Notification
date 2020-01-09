@@ -61,15 +61,14 @@ class TestTriggerStore extends \WP_UnitTestCase {
 		$trigger_1->set_group( 'group_1' );
 		$trigger_2->set_group( 'group_2' );
 
-		$expected_array = [];
-
-		foreach( notification_get_triggers() as $trigger ) {
-			if ( ! isset( $expected_array[ $trigger->get_group() ] ) ) {
-				$expected_array[ $trigger->get_group() ] = array();
-			}
-
-			$expected_array[ $trigger->get_group() ][ $trigger->get_slug() ] = $trigger;
-		}
+		$expected_array = [
+			'group_1' => [
+				'0' => $trigger_1
+			],
+			'group_2' => [
+				'1' => $trigger_2
+			]
+		];
 
 		$this->assertSame( $expected_array, notification_get_triggers_grouped() );
 	}
