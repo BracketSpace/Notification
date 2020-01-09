@@ -40,7 +40,7 @@ class UserProfileUpdated extends UserTrigger {
 		$this->user_meta   = get_user_meta( $this->user_id );
 
 		$this->user_registered_datetime      = strtotime( $this->user_object->user_registered );
-		$this->user_profile_updated_datetime = $this->cache( 'timestamp', current_time( 'timestamp' ) );
+		$this->user_profile_updated_datetime = $this->cache( 'timestamp', current_time( 'timestamp' ) ); // phpcs:ignore
 
 	}
 

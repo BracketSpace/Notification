@@ -283,12 +283,17 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
-* [Fixed] Notification loosing hash sync between JSON config and post name.
+* [Fixed] Notification losing hash sync between JSON config and post name.
 * [Fixed] Namespace error in Abstracts/Trigger class.
+* [Fixed] Namespace error in EDDUpdater class when no cache is available.
+* [Changed] Added Trigger, Carrier, Recipient Store.
+* [Changed] ACF integration acf/save_post action priority from 10 to 1000.
+* [Changed] Updated EDD updater class for premium extensions.
 * [Added] User Avatar merge tags.
 * [Added] Trigger cache engine for cache processing.
 * [Added] Email recipient type accepts 'filter-id:' to specify recipients via custom WP filter.
 * [Added] User ID recipient with free-type input.
+* [Added] Featured image ID merge tag.
 
 = 6.2.0 =
 * [Fixed] Checkbox in plugin settings now can specify true-ish default value.
