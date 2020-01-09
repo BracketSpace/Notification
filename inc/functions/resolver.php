@@ -13,18 +13,20 @@ use BracketSpace\Notification\Interfaces;
  * Adds Resolver to Store
  *
  * @since  6.0.0
+ * @since  [Next] Use Resolver Store.
  * @param  Interfaces\Resolvable $resolver Resolver object.
  * @return \WP_Error | true
  */
 function notification_register_resolver( Interfaces\Resolvable $resolver ) {
 
 	$store = new ResolverStore();
-
 	try {
 		$store[ $resolver->get_slug() ] = $resolver;
 	} catch ( \Exception $e ) {
 		return new \WP_Error( 'notification_register_resolver_error', $e->getMessage() );
 	}
+
+	do_action( 'notification/resolver/registered', $resolver );
 
 	return true;
 

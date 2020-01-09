@@ -17,8 +17,8 @@ class SimpleTrigger extends Trigger {
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
-		parent::__construct( 'notification/tests/simple_trigger', 'Simple Test Trigger' );
+	public function __construct( $tag ) {
+		parent::__construct( $tag , 'Simple Test Trigger' );
 		$this->add_action( 'notification/test' );
 	}
 

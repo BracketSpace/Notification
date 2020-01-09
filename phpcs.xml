@@ -4,6 +4,7 @@
 
 	<rule ref="WordPress">
 		<exclude name="Generic.Files.LowercasedFilename" />
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
 		<exclude name="WordPress.Files.FileName" />
 		<exclude name="WordPress.Files.FileName.UnderscoresNotAllowed" />
 		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />

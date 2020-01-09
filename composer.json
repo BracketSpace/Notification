@@ -3,12 +3,14 @@
 	"type": "wordpress-plugin",
 	"scripts": {
 		"phpcs": "phpcs",
-		"phpcbf": "phpcbf"
+		"phpcbf": "phpcbf",
+		"phpunit": "phpunit"
 	},
 	"require-dev": {
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
 		"phpcompatibility/php-compatibility": "^9.1",
-		"wp-coding-standards/wpcs": "^2.0"
+		"wp-coding-standards/wpcs": "^2.0",
+		"phpunit/phpunit": "^6.5.5"
 	},
 	"autoload": {
 		"psr-4": {

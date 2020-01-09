@@ -381,7 +381,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	/**
 	 * Checks if Carrier is active
 	 *
-	 * @since  [next]
+	 * @since  [Next]
 	 * @return boolean
 	 */
 	public function is_active() {
@@ -391,7 +391,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	/**
 	 * Activates the Carrier
 	 *
-	 * @since  [next]
+	 * @since  [Next]
 	 * @return $this
 	 */
 	public function activate() {
@@ -402,7 +402,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	/**
 	 * Deactivates the Carrier
 	 *
-	 * @since  [next]
+	 * @since  [Next]
 	 * @return $this
 	 */
 	public function deactivate() {

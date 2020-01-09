@@ -285,6 +285,8 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 = [Next] =
 * [Fixed] Notification losing hash sync between JSON config and post name.
 * [Fixed] Namespace error in Abstracts/Trigger class.
+* [Fixed] Namespace error in EDDUpdater class when no cache is available.
+* [Changed] Added Trigger, Carrier, Recipient Store.
 * [Changed] ACF integration acf/save_post action priority from 10 to 1000.
 * [Changed] Updated EDD updater class for premium extensions.
 * [Added] User Avatar merge tags.
