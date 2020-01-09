@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Abstracts;
 
 use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Utils\Cache\ObjectCache;
 
 /**
  * Store class
@@ -42,12 +43,23 @@ abstract class Store implements Interfaces\Storable {
 	 * Gets stored items
 	 *
 	 * @since  6.0.0
+	 * @since  [Next] Added caching
 	 * @return array
 	 */
 	public function get_items() {
-		$items      = (array) apply_filters( self::get_storage_key(), [] );
+
+		$cache = new ObjectCache( self::get_storage_key(), 'notification', DAY_IN_SECONDS );
+		$items = $cache->get();
+
+		if ( empty( $items ) ) {
+			$items = (array) apply_filters( self::get_storage_key(), [] );
+			$cache->set( $items );
+		}
+
 		$this->keys = array_keys( $items );
+
 		return $items;
+
 	}
 
 	/**

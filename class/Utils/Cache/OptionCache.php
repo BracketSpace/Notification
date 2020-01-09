@@ -1,8 +1,8 @@
 <?php
 /**
- * Object Cache
+ * Option Cache
  *
- * @uses    wp cache functions
+ * @uses    options table
  * @uses    Cacheable Interface
  * @package notification
  */
@@ -13,37 +13,30 @@ use BracketSpace\Notification\Utils\Cache\Cache;
 use BracketSpace\Notification\Utils\Interfaces\Cacheable;
 
 /**
- * Object cache
+ * Option cache
  */
-class ObjectCache extends Cache implements Cacheable {
+class OptionCache extends Cache implements Cacheable {
 
 	/**
 	 * Cache group
 	 *
 	 * @var string
 	 */
-	protected $group;
-
-	/**
-	 * Cache expiration time in seconds
-	 *
-	 * @var integer
-	 */
-	protected $expire = 0;
+	protected $group = '_notification_cache';
 
 	/**
 	 * Constructor
 	 *
-	 * @param string  $key    cache unique key.
-	 * @param string  $group  cache group, optional.
-	 * @param integet $expire time to expire, default infinite.
+	 * @param string $key   cache unique key.
+	 * @param string $group cache group, optional.
 	 */
-	public function __construct( $key, $group = '', $expire = 0 ) {
+	public function __construct( $key, $group = null ) {
 
 		parent::__construct( $key );
 
-		$this->group  = $group;
-		$this->expire = $expire;
+		if ( null !== $group ) {
+			$this->group = $group;
+		}
 
 	}
 
@@ -54,7 +47,7 @@ class ObjectCache extends Cache implements Cacheable {
 	 * @return object $this
 	 */
 	public function set( $value ) {
-		wp_cache_set( $this->key, $value, $this->group, $this->expire );
+		update_option( $this->group . $this->key, $value );
 		return $this;
 	}
 
@@ -65,7 +58,7 @@ class ObjectCache extends Cache implements Cacheable {
 	 * @return object $this
 	 */
 	public function add( $value ) {
-		wp_cache_add( $this->key, $value, $this->group, $this->expire );
+		add_option( $this->group . $this->key, $value );
 		return $this;
 	}
 
@@ -76,7 +69,7 @@ class ObjectCache extends Cache implements Cacheable {
 	 * @return mixed          cached value
 	 */
 	public function get( $force = false ) {
-		return wp_cache_get( $this->key, $this->group, $force );
+		return get_option( $this->group . $this->key, $value );
 	}
 
 	/**
@@ -85,7 +78,7 @@ class ObjectCache extends Cache implements Cacheable {
 	 * @return object $this
 	 */
 	public function delete() {
-		wp_cache_delete( $this->key, $this->group );
+		delete_option( $this->group . $this->key );
 		return $this;
 	}
 
