@@ -10,15 +10,15 @@ use BracketSpace\Notification\Defaults\Store\Recipient as RecipientStore;
 
 /**
  * Registers recipient
- * Uses notification/recipients filter
  *
  * @since  6.0.0
- * @since  [Next] Use Recipient Store
+ * @since  [Next] Uses Recipient Store
  * @param  string                $carrier_slug Carrier slug.
  * @param  Interfaces\Receivable $recipient    Recipient object.
  * @return \WP_Error | true
  */
 function notification_register_recipient( $carrier_slug, Interfaces\Receivable $recipient ) {
+
 	$store = new RecipientStore();
 
 	try {
@@ -30,18 +30,18 @@ function notification_register_recipient( $carrier_slug, Interfaces\Receivable $
 	do_action( 'notification/recipient/registered', $recipient );
 
 	return true;
+
 }
 
 /**
  * Gets all registered recipients
  *
  * @since  6.0.0
- * @since  [Next] Added Recipient Store
+ * @since  [Next] Uses Recipient Store
  * @return array recipients
  */
 function notification_get_recipients() {
 	$store = new RecipientStore();
-
 	return $store->get_items();
 }
 

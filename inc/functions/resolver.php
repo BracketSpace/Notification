@@ -13,13 +13,14 @@ use BracketSpace\Notification\Interfaces;
  * Adds Resolver to Store
  *
  * @since  6.0.0
- * @since  [Next] Use Resolver Store.
+ * @since  [Next] Uses Resolver Store.
  * @param  Interfaces\Resolvable $resolver Resolver object.
  * @return \WP_Error | true
  */
 function notification_register_resolver( Interfaces\Resolvable $resolver ) {
 
 	$store = new ResolverStore();
+
 	try {
 		$store[ $resolver->get_slug() ] = $resolver;
 	} catch ( \Exception $e ) {
@@ -35,9 +36,10 @@ function notification_register_resolver( Interfaces\Resolvable $resolver ) {
 /**
  * Resolves the value
  *
- * @since 6.0.0
- * @param string                 $value   Unresolved string with tags.
- * @param Interfaces\Triggerable $trigger Trigger object.
+ * @since  6.0.0
+ * @since  [Next] Uses Resolver Store.
+ * @param  string                 $value   Unresolved string with tags.
+ * @param  Interfaces\Triggerable $trigger Trigger object.
  * @return string                         Resolved value
  */
 function notification_resolve( $value, Interfaces\Triggerable $trigger ) {

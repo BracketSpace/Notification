@@ -7,11 +7,12 @@
 
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Defaults\Store\Carrier as CarrierStore;
+
 /**
  * Registers Carrier
  *
  * @since  6.0.0
- * @since  [Next] Use Carrier Store.
+ * @since  [Next] Uses Carrier Store.
  * @param  Interfaces\Sendable $carrier Carrier object.
  * @return \WP_Error | true
  */
@@ -28,18 +29,18 @@ function notification_register_carrier( Interfaces\Sendable $carrier ) {
 	do_action( 'notification/carrier/registered', $carrier );
 
 	return true;
+
 }
 
 /**
  * Gets all registered Carriers
  *
  * @since  6.0.0
- * @since  [Next] Use Carrier Store.
+ * @since  [Next] Uses Carrier Store.
  * @return array carriers
  */
 function notification_get_carriers() {
 	$store = new CarrierStore();
-
 	return $store->get_items();
 }
 
