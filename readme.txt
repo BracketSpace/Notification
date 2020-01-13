@@ -294,7 +294,6 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] Email recipient type accepts 'filter-id:' to specify recipients via custom WP filter.
 * [Added] User ID recipient with free-type input.
 * [Added] Featured image ID merge tag.
-* [Added] Store caching. Now Carriers, Notifications, Recipients, Resolvers and Triggers are cached.
 
 = 6.2.0 =
 * [Fixed] Checkbox in plugin settings now can specify true-ish default value.
