@@ -316,9 +316,6 @@ class PostType {
 		$cache = new ObjectCache( 'notifications', 'notification' );
 		$cache->delete();
 
-		$store_cache = new ObjectCache( 'notification/store/notification', 'notification' );
-		$store_cache->delete();
-
 		do_action( 'notification/data/save/after', $notification_post );
 
 	}

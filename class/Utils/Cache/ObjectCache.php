@@ -25,25 +25,16 @@ class ObjectCache extends Cache implements Cacheable {
 	protected $group;
 
 	/**
-	 * Cache expiration time in seconds
-	 *
-	 * @var integer
-	 */
-	protected $expire = 0;
-
-	/**
 	 * Constructor
 	 *
-	 * @param string  $key    cache unique key.
-	 * @param string  $group  cache group, optional.
-	 * @param integet $expire time to expire, default infinite.
+	 * @param string $key   cache unique key.
+	 * @param string $group cache group, optional.
 	 */
-	public function __construct( $key, $group = '', $expire = 0 ) {
+	public function __construct( $key, $group = '' ) {
 
 		parent::__construct( $key );
 
-		$this->group  = $group;
-		$this->expire = $expire;
+		$this->group = $group;
 
 	}
 
@@ -54,7 +45,7 @@ class ObjectCache extends Cache implements Cacheable {
 	 * @return object $this
 	 */
 	public function set( $value ) {
-		wp_cache_set( $this->key, $value, $this->group, $this->expire );
+		wp_cache_set( $this->key, $value, $this->group );
 		return $this;
 	}
 
@@ -65,7 +56,7 @@ class ObjectCache extends Cache implements Cacheable {
 	 * @return object $this
 	 */
 	public function add( $value ) {
-		wp_cache_add( $this->key, $value, $this->group, $this->expire );
+		wp_cache_add( $this->key, $value, $this->group );
 		return $this;
 	}
 
