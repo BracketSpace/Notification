@@ -1,4 +1,5 @@
 .build-excludes
+.github
 .git
 .gitignore
 .gitattributes
