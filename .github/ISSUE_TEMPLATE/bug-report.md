@@ -24,6 +24,12 @@ Steps to reproduce the behavior:
 
 A clear and concise description of what you expected to happen.
 
+## Environment ##
+
+- **PHP**: 7.
+- **WordPress**: 5.
+- **Notification plugin**: 6.
+
 ## Screenshots ##
 
 If applicable, add screenshots to help explain your problem.
