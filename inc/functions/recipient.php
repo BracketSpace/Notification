@@ -12,7 +12,7 @@ use BracketSpace\Notification\Defaults\Store\Recipient as RecipientStore;
  * Registers recipient
  *
  * @since  6.0.0
- * @since  [Next] Uses Recipient Store
+ * @since  6.3.0 Uses Recipient Store
  * @param  string                $carrier_slug Carrier slug.
  * @param  Interfaces\Receivable $recipient    Recipient object.
  * @return \WP_Error | true
@@ -37,7 +37,7 @@ function notification_register_recipient( $carrier_slug, Interfaces\Receivable $
  * Gets all registered recipients
  *
  * @since  6.0.0
- * @since  [Next] Uses Recipient Store
+ * @since  6.3.0 Uses Recipient Store
  * @return array recipients
  */
 function notification_get_recipients() {

@@ -13,7 +13,7 @@ class TestCarierStore extends \WP_UnitTestCase {
 	/**
 	 * Test carier registration
 	 *
-	 * @since [Next]
+	 * @since 6.3.0
 	 */
 	public function test_carrier_registration_action() {
 		Registerer::register_carrier();
@@ -23,7 +23,7 @@ class TestCarierStore extends \WP_UnitTestCase {
 	/**
 	 * Test getting carriers
 	 *
-	 * @since [Next]
+	 * @since 6.3.0
 	 */
 	public function test_getting_carriers() {
 		$carrier_1 = Registerer::register_carrier( 'dummy_1' );
@@ -40,7 +40,7 @@ class TestCarierStore extends \WP_UnitTestCase {
 	/**
 	 * Test getting carrier
 	 *
-	 * @since [Next]
+	 * @since 6.3.0
 	 */
 	public function test_getting_carrier() {
 		$carrier = Registerer::register_carrier();

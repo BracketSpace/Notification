@@ -18,7 +18,7 @@ class Resolver extends AbstractResolver {
 	/**
 	 * Dummy resolver slug
 	 *
-	 * @since [Next]
+	 * @since 6.3.0
 	 * @return string
 	 */
 	public function get_slug() {

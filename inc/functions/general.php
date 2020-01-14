@@ -21,7 +21,7 @@ function notification_add_doc_hooks( $object ) {
 /**
  * Checks if the Wizard should be displayed.
  *
- * @since  [Next]
+ * @since  6.3.0
  * @return boolean
  */
 function notification_display_wizard() {

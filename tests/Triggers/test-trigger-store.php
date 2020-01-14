@@ -28,7 +28,7 @@ class TestTriggerStore extends \WP_UnitTestCase {
 	/**
 	 * Test getting trigger
 	 *
-	 * @since [Next]
+	 * @since 6.3.0
 	 */
 	public function test_getting_trigger() {
 		$trigger = Registerer::register_trigger();
@@ -52,7 +52,7 @@ class TestTriggerStore extends \WP_UnitTestCase {
 	/**
 	 * Test getting triggers grouped
 	 *
-	 * @since [Next]
+	 * @since 6.3.0
 	 */
 	public function test_getting_triggers_grouped() {
 		$trigger_1 = Registerer::register_trigger( '0' );

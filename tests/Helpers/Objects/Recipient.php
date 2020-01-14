@@ -24,7 +24,7 @@ class Recipient extends AbstractRecipient {
 	/**
 	 * Recipient constructor
 	 *
-	 * @since [Next]
+	 * @since 6.3.0
 	 */
 	public function __construct() {
 		parent::__construct( [

@@ -29,7 +29,7 @@ class Avatar extends HtmlTag {
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since [Next]
+	 * @since 6.3.0
 	 * @param array $params merge tag configuration params.
 	 */
 	public function __construct( $params = [] ) {

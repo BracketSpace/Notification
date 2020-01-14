@@ -13,7 +13,7 @@ class TestNotificationStore extends \WP_UnitTestCase {
 	/**
 	 * Test notification registration
 	 *
-	 * @since [Next]
+	 * @since 6.3.0
 	 */
 	public function test_notification_registration_action() {
 		Registerer::register_notification();
