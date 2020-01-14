@@ -24,7 +24,7 @@ class Recipient extends Abstracts\Store {
 	 *
 	 * Compares the version of Recipient object, and replace it if adding the newer.
 	 *
-	 * @since  [Next]
+	 * @since  6.3.0
 	 * @throws \Exception If no offset has been provided and item doesn't implements Nameable.
 	 * @param  mixed $offset Offset.
 	 * @param  mixed $value  Value.

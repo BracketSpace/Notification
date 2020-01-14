@@ -113,7 +113,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * but it hooks the class' action method
 	 *
 	 * @since 6.0.0
-	 * @since [Next] Background processing action now accepts one more param for cache.
+	 * @since 6.3.0 Background processing action now accepts one more param for cache.
 	 *
 	 * @param string  $tag           action hook.
 	 * @param integer $priority      action priority, default 10.
@@ -464,7 +464,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Gets trigger cache.
 	 *
-	 * @since  [Next]
+	 * @since  6.3.0
 	 * @return array
 	 */
 	public function get_cache() {
@@ -474,7 +474,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Sets trigger cache.
 	 *
-	 * @since  [Next]
+	 * @since  6.3.0
 	 * @param  array $cache Array with cached vars.
 	 * @return $this
 	 */
@@ -488,7 +488,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * If no value is found, the default value is returned and cache is set.
 	 * If value is found, the cached valus is returned.
 	 *
-	 * @since  [Next]
+	 * @since  6.3.0
 	 * @param  string $key     Cache key.
 	 * @param  mixed  $default Default value.
 	 * @return mixed

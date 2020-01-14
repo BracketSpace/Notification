@@ -83,7 +83,7 @@ class Registerer {
 	/**
 	 * Register Resolver
 	 *
-	 * @since [Next]
+	 * @since 6.3.0
 	 * @return Objects\Resolver Registered Resovler.
 	 */
 	public static function register_resolver() {
@@ -95,7 +95,7 @@ class Registerer {
 	/**
 	 * Register Recipient
 	 *
-	 * @since [Next]
+	 * @since 6.3.0
 	 * @param  string            $carrier_slug Carrier slug.
 	 * @return Obejcts\Recipient               Registered Recipient.
 	 */

@@ -13,7 +13,7 @@ class TestRecipientStore extends \WP_UnitTestCase {
 	/**
 	 * Test recipient registration
 	 *
-	 * @since [Next]
+	 * @since 6.3.0
 	 */
 	public function test_recipient_registration_action() {
 		Registerer::register_recipient();
@@ -23,7 +23,7 @@ class TestRecipientStore extends \WP_UnitTestCase {
 	/**
 	 * Test getting recipients
 	 *
-	 * @since [Next]
+	 * @since 6.3.0
 	 */
 	public function test_getting_recipient(){
 		$carrier_recipient = Registerer::register_recipient();
@@ -35,7 +35,7 @@ class TestRecipientStore extends \WP_UnitTestCase {
 	/**
 	 * Test getting recipients
 	 *
-	 * @since [Next]
+	 * @since 6.3.0
 	 */
 	public function test_getting_recipients() {
 		$carrier1_recipient = Registerer::register_recipient( 'dummy1' );
@@ -56,7 +56,7 @@ class TestRecipientStore extends \WP_UnitTestCase {
 	/**
 	 * Test getting carrier recipients
 	 *
-	 * @since [Next]
+	 * @since 6.3.0
 	 */
 	public function test_getting_carrier_recipients() {
 		$carrier_recipient = Registerer::register_recipient();

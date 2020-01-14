@@ -13,7 +13,7 @@ class TestResolverStore extends \WP_UnitTestCase {
 	/**
 	 * Test resolver registration
 	 *
-	 * @since [Next]
+	 * @since 6.3.0
 	 */
 	public function test_resolver_registration_action() {
 		Registerer::register_resolver();
