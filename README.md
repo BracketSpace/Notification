@@ -15,4 +15,4 @@ By default it supports email and webhook notifications.
 * [Homepage](https://docs.bracketspace.com/notification/)
 * [WordPress readme](https://github.com/BracketSpace/Notification/blob/master/readme.txt)
 * [WordPress.org repository](https://wordpress.org/plugins/notification/)
-* [Download built development package](http://brkts.com/notification-dev)
+* [Download built development package](https://packages.bracketspace.com/repo/bracketspace/notification/notification-dev.zip)

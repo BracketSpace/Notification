@@ -162,6 +162,13 @@ class CommentReplied extends CommentTrigger {
 			'group'         => __( 'Parent comment author', 'notification' ),
 		] ) );
 
+		$this->add_merge_tag( new MergeTag\User\Avatar( [
+			'slug'          => 'parent_comment_author_user_avatar',
+			'name'          => __( 'Parent comment author user avatar', 'notification' ),
+			'property_name' => 'parent_comment_user_object',
+			'group'         => __( 'Parent comment author', 'notification' ),
+		] ) );
+
 	}
 
 }

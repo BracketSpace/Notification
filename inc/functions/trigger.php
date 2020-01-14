@@ -6,40 +6,42 @@
  */
 
 use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Defaults\Store\Trigger as TriggerStore;
 
 /**
- * Registers trigger
- * Uses notification/triggers filter
+ * Adds Trigger to Store
  *
+ * @since  6.0.0
+ * @since  6.3.0 Uses Trigger Store
  * @param  Interfaces\Triggerable $trigger trigger object.
- * @return void
+ * @return \WP_Error | true
  */
 function notification_register_trigger( Interfaces\Triggerable $trigger ) {
 
-	add_filter( 'notification/triggers', function( $triggers ) use ( $trigger ) {
+	$store = new TriggerStore();
 
-		if ( isset( $triggers[ $trigger->get_slug() ] ) ) {
-			throw new \Exception( 'Trigger with that slug already exists' );
-		} else {
-			$triggers[ $trigger->get_slug() ] = $trigger;
-		}
-
-		return $triggers;
-
-	} );
+	try {
+		$store[] = $trigger;
+	} catch ( \Exception $e ) {
+		return new \WP_Error( 'notification_register_trigger_error', $e->getMessage() );
+	}
 
 	do_action( 'notification/trigger/registered', $trigger );
+
+	return true;
 
 }
 
 /**
  * Gets all registered triggers
  *
- * @since  5.0.0
+ * @since  6.0.0
+ * @since  6.3.0 Uses Trigger Store
  * @return array triggers
  */
 function notification_get_triggers() {
-	return apply_filters( 'notification/triggers', [] );
+	$store = new TriggerStore();
+	return $store->get_items();
 }
 
 /**
@@ -62,12 +64,12 @@ function notification_get_trigger( $trigger_slug ) {
  */
 function notification_get_triggers_grouped() {
 
-	$return = [];
+	$return = array();
 
 	foreach ( notification_get_triggers() as $trigger ) {
 
 		if ( ! isset( $return[ $trigger->get_group() ] ) ) {
-			$return[ $trigger->get_group() ] = [];
+			$return[ $trigger->get_group() ] = array();
 		}
 
 		$return[ $trigger->get_group() ][ $trigger->get_slug() ] = $trigger;
@@ -109,5 +111,5 @@ function notification_add_global_merge_tag( Interfaces\Taggable $merge_tag ) {
  * @return array Merge Tags
  */
 function notification_get_global_merge_tags() {
-	return apply_filters( 'notification/global_merge_tags', [] );
+	return apply_filters( 'notification/global_merge_tags', array() );
 }

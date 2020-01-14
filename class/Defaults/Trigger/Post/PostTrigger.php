@@ -106,6 +106,10 @@ abstract class PostTrigger extends Abstracts\Trigger {
 			'post_type' => $this->post_type,
 		] ) );
 
+		$this->add_merge_tag( new MergeTag\Post\FeaturedImageId( [
+			'post_type' => $this->post_type,
+		] ) );
+
 		if ( 'post' === $this->post_type ) {
 
 			$this->add_merge_tag( new MergeTag\StringTag( [
@@ -210,6 +214,14 @@ abstract class PostTrigger extends Abstracts\Trigger {
 			'slug'          => $this->post_type . '_author_user_lastname',
 			// translators: singular post name.
 			'name'          => sprintf( __( '%s author user last name', 'notification' ), $post_name ),
+			'property_name' => 'author',
+			'group'         => __( 'Author', 'notification' ),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\User\Avatar( [
+			'slug'          => $this->post_type . '_author_user_avatar',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s author user avatar', 'notification' ), $post_name ),
 			'property_name' => 'author',
 			'group'         => __( 'Author', 'notification' ),
 		] ) );

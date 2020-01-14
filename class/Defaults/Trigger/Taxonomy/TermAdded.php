@@ -70,7 +70,7 @@ class TermAdded extends TermTrigger {
 		$this->taxonomy       = $this->term->taxonomy;
 		$this->term_permalink = get_term_link( $this->term );
 
-		$this->term_creation_datetime = current_time( 'timestamp' );
+		$this->term_creation_datetime = $this->cache( 'creation_timestamp', current_time( 'timestamp' ) ); // phpcs:ignore
 
 	}
 

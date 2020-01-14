@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.2
-Stable tag: 6.2.0
+Stable tag: 6.3.0
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -252,6 +252,10 @@ You can [write a merge tag](https://docs.bracketspace.com/notification/developer
 
 You can control when exactly the notification is sending with the [Conditionals extension](https://bracketspace.com/downloads/notification-conditionals/).
 
+= Can I send to a custom recipient list based on my own plugin or theme logic? =
+
+Yes, just include `filter-id:some-value` in the `Recipient` value (using the `Email/Merge tag` type with the `Email` carrier), then return your recipient list from the `notification/recipient/email/some-value` filter.
+
 = Can I bundle the plugin with my plugin or theme? =
 
 Yes, you can. [See the detailed guide](https://docs.bracketspace.com/notification/developer/general/bundling)
@@ -277,6 +281,19 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 7. Default email disabler
 
 == Changelog ==
+
+= 6.3.0 =
+* [Fixed] Notification losing hash sync between JSON config and post name.
+* [Fixed] Namespace error in Abstracts/Trigger class.
+* [Fixed] Namespace error in EDDUpdater class when no cache is available.
+* [Changed] Added Trigger, Carrier, Recipient Store.
+* [Changed] ACF integration acf/save_post action priority from 10 to 1000.
+* [Changed] Updated EDD updater class for premium extensions.
+* [Added] User Avatar merge tags.
+* [Added] Trigger cache engine for cache processing.
+* [Added] Email recipient type accepts 'filter-id:' to specify recipients via custom WP filter.
+* [Added] User ID recipient with free-type input.
+* [Added] Featured image ID merge tag.
 
 = 6.2.0 =
 * [Fixed] Checkbox in plugin settings now can specify true-ish default value.

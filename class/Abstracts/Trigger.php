@@ -11,7 +11,7 @@ use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Interfaces\Sendable;
 use BracketSpace\Notification\Admin\FieldsResolver;
 use BracketSpace\Notification\Defaults\Store\Notification as NotificationStore;
-use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Core\Notification as CoreNotification;
 
 /**
  * Trigger abstract class
@@ -78,6 +78,13 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	protected $callback_args = [];
 
 	/**
+	 * Trigger cache
+	 *
+	 * @var array
+	 */
+	protected $cache = [];
+
+	/**
 	 * Trigger constructor
 	 *
 	 * @param string $slug slug.
@@ -105,6 +112,9 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * This method just calls WordPress' add_action function,
 	 * but it hooks the class' action method
 	 *
+	 * @since 6.0.0
+	 * @since 6.3.0 Background processing action now accepts one more param for cache.
+	 *
 	 * @param string  $tag           action hook.
 	 * @param integer $priority      action priority, default 10.
 	 * @param integer $accepted_args how many args the action accepts, default 1.
@@ -123,7 +133,8 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 		// Add the cron action if background processing is active.
 		if ( notification_get_setting( 'general/advanced/background_processing' ) ) {
-			add_action( 'ntfn_bp_' . $tag, [ $this, '_action' ], $priority, $accepted_args );
+			// The last param will be cache.
+			add_action( 'ntfn_bp_' . $tag, [ $this, '_action' ], $priority, ( $accepted_args + 1 ) );
 		}
 
 		add_action( $tag, [ $this, '_action' ], $priority, $accepted_args );
@@ -180,10 +191,10 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Attaches the Notification
 	 *
-	 * @param  Notification $notification Notification class.
+	 * @param  CoreNotification $notification Notification class.
 	 * @return void
 	 */
-	public function attach( Notification $notification ) {
+	public function attach( CoreNotification $notification ) {
 		$this->notification_storage[ $notification->get_hash() ] = clone $notification;
 	}
 
@@ -208,10 +219,10 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Detaches the Notification
 	 *
-	 * @param  Notification $notification Notification class.
+	 * @param  CoreNotification $notification Notification class.
 	 * @return void
 	 */
-	public function detach( Notification $notification ) {
+	public function detach( CoreNotification $notification ) {
 		if ( isset( $this->notification_storage[ $notification->get_hash() ] ) ) {
 			unset( $this->notification_storage[ $notification->get_hash() ] );
 		}
@@ -451,6 +462,48 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	}
 
 	/**
+	 * Gets trigger cache.
+	 *
+	 * @since  6.3.0
+	 * @return array
+	 */
+	public function get_cache() {
+		return $this->cache;
+	}
+
+	/**
+	 * Sets trigger cache.
+	 *
+	 * @since  6.3.0
+	 * @param  array $cache Array with cached vars.
+	 * @return $this
+	 */
+	public function set_cache( $cache ) {
+		$this->cache = $cache;
+		return $this;
+	}
+
+	/**
+	 * Sets and gets value from cache.
+	 * If no value is found, the default value is returned and cache is set.
+	 * If value is found, the cached valus is returned.
+	 *
+	 * @since  6.3.0
+	 * @param  string $key     Cache key.
+	 * @param  mixed  $default Default value.
+	 * @return mixed
+	 */
+	public function cache( $key, $default = '' ) {
+
+		if ( ! isset( $this->cache[ $key ] ) ) {
+			$this->cache[ $key ] = $default;
+		}
+
+		return $this->cache[ $key ];
+
+	}
+
+	/**
 	 * Stops the trigger.
 	 *
 	 * @since 6.2.0
@@ -498,6 +551,11 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 		// Setup the arguments.
 		$this->callback_args = func_get_args();
+
+		// Setup cache if action is executed by Cron.
+		if ( defined( 'DOING_CRON' ) && DOING_CRON ) {
+			$this->set_cache( array_pop( $this->callback_args ) );
+		}
 
 		// Call the action.
 		if ( method_exists( $this, 'action' ) ) {

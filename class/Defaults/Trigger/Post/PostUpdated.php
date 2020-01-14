@@ -58,8 +58,10 @@ class PostUpdated extends PostTrigger {
 
 		$this->{ $this->post_type } = $post;
 
+		$updating_user_id = $this->cache( 'updating_user_id', get_current_user_id() );
+
 		$this->author        = get_userdata( $this->{ $this->post_type }->post_author );
-		$this->updating_user = get_userdata( get_current_user_id() );
+		$this->updating_user = get_userdata( $updating_user_id );
 
 		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date );
 		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified );
@@ -130,6 +132,14 @@ class PostUpdated extends PostTrigger {
 			'slug'          => $this->post_type . '_updating_user_lastname',
 			// translators: singular post name.
 			'name'          => sprintf( __( '%s updating user last name', 'notification' ), $post_name ),
+			'property_name' => 'updating_user',
+			'group'         => __( 'Updating user', 'notification' ),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\User\Avatar( [
+			'slug'          => $this->post_type . '_updating_user_avatar',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s updating user email', 'notification' ), $post_name ),
 			'property_name' => 'updating_user',
 			'group'         => __( 'Updating user', 'notification' ),
 		] ) );

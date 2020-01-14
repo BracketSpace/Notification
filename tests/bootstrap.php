@@ -53,5 +53,8 @@ function notification_tests_autoload( $class ) {
 }
 spl_autoload_register( 'notification_tests_autoload' );
 
+tests_add_filter( 'notification/load/default/recipients', '__return_false' );
+tests_add_filter( 'notification/load/default/resolvers', '__return_false' );
+
 // Start up the WP testing environment.
 require $_tests_dir . '/includes/bootstrap.php';

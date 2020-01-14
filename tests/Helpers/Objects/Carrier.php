@@ -27,8 +27,8 @@ class Carrier extends AbstractCarrier {
 	 *
 	 * @since 5.3.1
 	 */
-	public function __construct() {
-		parent::__construct( 'dummy', 'Dummy' );
+	public function __construct( $slug ) {
+		parent::__construct( $slug, 'Dummy' );
 	}
 
 	/**

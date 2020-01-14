@@ -4,7 +4,7 @@
 node_modules/
 /vendor/
 assets/dist/
-package-lock.json.
+package-lock.json
 
 ### Windows ###
 # Windows image file caches
@@ -69,6 +69,7 @@ Temporary Items
 
 # workspace files are user-specific
 *.sublime-workspace
+.vscode
 
 # project files should be checked into the repository, unless a significant
 # proportion of contributors will probably not be using SublimeText

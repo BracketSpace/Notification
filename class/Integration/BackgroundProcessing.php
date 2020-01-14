@@ -34,7 +34,9 @@ class BackgroundProcessing {
 
 		$action_handle = 'ntfn_bp_' . $action_tag;
 		$params        = $trigger->get_action_args();
-		$params_count  = count( $params );
+
+		// Add cached values.
+		$params[] = $trigger->get_cache();
 
 		// Add a unique ID to arguments to bypass WP Cron limitations (no same event in 10 minute window).
 		$params[] = 'ntfn_bp_' . uniqid();

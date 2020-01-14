@@ -15,17 +15,6 @@ use BracketSpace\Notification\Tests\Helpers\NotificationPost;
 class TestTrigger extends \WP_UnitTestCase {
 
 	/**
-	 * Tests trigger registration
-	 *
-	 * @since 5.3.1
-	 * @since 6.0.0 Changed to Registerer class and used new naming convention.
-	 */
-	public function test_trigger_registration() {
-		Registerer::register_trigger();
-		$this->assertEquals( 1, did_action( 'notification/trigger/registered' ) );
-	}
-
-	/**
 	 * Tests trigger action
 	 *
 	 * @since 5.3.1

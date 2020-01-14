@@ -77,6 +77,16 @@ notification_add_global_merge_tag( new MergeTag\EmailTag( [
 	},
 ] ) );
 
+notification_add_global_merge_tag( new MergeTag\User\Avatar( [
+	'slug'        => 'admin_avatar',
+	'name'        => __( 'Admin avatar', 'notification' ),
+	'description' => get_avatar( get_option( 'admin_email' ) ),
+	'hidden'      => true,
+	'resolver'    => function( $trigger ) {
+		return get_avatar( get_option( 'admin_email' ) );
+	},
+] ) );
+
 notification_add_global_merge_tag( new MergeTag\StringTag( [
 	'slug'        => 'trigger_name',
 	'name'        => __( 'Trigger name', 'notification' ),
@@ -103,19 +113,19 @@ notification_add_global_merge_tag( new MergeTag\DateTime\Date( [
 	'slug'      => 'date',
 	'name'      => __( 'Trigger execution date', 'notification' ),
 	'hidden'    => true,
-	'timestamp' => current_time( 'timestamp' ),
+	'timestamp' => current_time( 'timestamp' ), // phpcs:ignore
 ] ) );
 
 notification_add_global_merge_tag( new MergeTag\DateTime\DateTime( [
 	'slug'      => 'date_time',
 	'name'      => __( 'Trigger execution date and time', 'notification' ),
 	'hidden'    => true,
-	'timestamp' => current_time( 'timestamp' ),
+	'timestamp' => current_time( 'timestamp' ), // phpcs:ignore
 ] ) );
 
 notification_add_global_merge_tag( new MergeTag\DateTime\Time( [
 	'slug'      => 'time',
 	'name'      => __( 'Trigger execution time', 'notification' ),
 	'hidden'    => true,
-	'timestamp' => current_time( 'timestamp' ),
+	'timestamp' => current_time( 'timestamp' ), // phpcs:ignore
 ] ) );

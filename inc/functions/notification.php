@@ -47,6 +47,8 @@ function notification_add( Notification $notification ) {
 		return new \WP_Error( 'notification_add_error', $e->getMessage() );
 	}
 
+	do_action( 'notification/notification/registered', $notification );
+
 	return true;
 
 }

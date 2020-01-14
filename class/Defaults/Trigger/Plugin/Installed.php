@@ -43,7 +43,7 @@ class Installed extends PluginTrigger {
 
 		$plugin_dir                          = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $upgrader->plugin_info();
 		$this->plugin                        = get_plugin_data( $plugin_dir, false );
-		$this->plugin_installation_date_time = current_time( 'timestamp' );
+		$this->plugin_installation_date_time = $this->cache( 'installation_timestamp', current_time( 'timestamp' ) ); // phpcs:ignore
 
 	}
 

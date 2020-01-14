@@ -120,6 +120,13 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 			'group' => sprintf( __( '%s author', 'notification' ), ucfirst( $this->comment_type ) ),
 		] ) );
 
+		$this->add_merge_tag( new MergeTag\User\Avatar( [
+			'slug'  => 'comment_author_user_avatar',
+			'name'  => __( 'Comment author user avatar', 'notification' ),
+			// translators: comment type author.
+			'group' => sprintf( __( '%s author', 'notification' ), ucfirst( $this->comment_type ) ),
+		] ) );
+
 		// Post.
 		$this->add_merge_tag( new MergeTag\Post\PostID() );
 		$this->add_merge_tag( new MergeTag\Post\PostPermalink() );
