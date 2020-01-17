@@ -246,6 +246,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	public function roll_out() {
 
 		foreach ( $this->get_notifications() as $notification ) {
+
 			if ( ! apply_filters( 'notification/should_send', true, $notification, $this ) ) {
 				continue;
 			}
@@ -273,6 +274,9 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 				}
 			}
+
+			do_action( 'notification/sent', $notification, $this );
+
 		}
 
 	}
