@@ -558,7 +558,8 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 
 		// Setup cache if action is executed by Cron.
 		if ( defined( 'DOING_CRON' ) && DOING_CRON ) {
-			$this->set_cache( array_pop( $this->callback_args ) );
+			$args_for_caching = $this->callback_args;
+			$this->set_cache( array_pop( $args_for_caching ) );
 		}
 
 		// Call the action.
