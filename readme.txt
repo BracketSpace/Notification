@@ -283,6 +283,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
+* [Fixed] Trigger action being postponed when using quick edit action.
 * [Fixed] Too few argument passed to the trigger action, due to the argument caching.
 * [Added] `notification/sent` action which is executed when all carriers are sent.
 
