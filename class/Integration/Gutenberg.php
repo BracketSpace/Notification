@@ -90,11 +90,11 @@ class Gutenberg {
 	 * @return boolean
 	 */
 	public function is_quick_edit() {
-		$edit_action = isset( $_POST['action'] ); //phpcs:ignore WordPress.Security.NonceVerification.Missing
 
-		if ( wp_doing_ajax() && 'inline-save' === $edit_action ) {
+		if ( wp_doing_ajax() && ( isset( $_POST['action'] ) && 'inline-save' === $_POST['action'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Missing
 			return true;
 		}
+
 	}
 
 }
