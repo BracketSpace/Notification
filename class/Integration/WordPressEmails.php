@@ -126,18 +126,15 @@ class WordPressEmails {
 	}
 
 	/**
-	 * Disable email send to user when password reset is requested
+	 * Disables email to user when password reset is requested
 	 *
-	 * @filter retrieve_password_message 10
+	 * @filter retrieve_password_message 100
 	 *
 	 * @since [Next]
 	 * @param string $message Message send to user.
-	 * @param  string $key Activation key.
-	 * @param string $user_login User name.
-	 * @param object $user_data WP user object.
-	 * @return string;
+	 * @return string
 	 */
-	public function disable_password_reset_notify_to_user( $message, $key, $user_login, $user_data ) {
+	public function disable_password_reset_notify_to_user( $message ) {
 		if ( 'true' === notification_get_setting( 'integration/emails/password_forgotten_to_user' ) ) {
 			return '';
 		}
