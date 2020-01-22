@@ -140,7 +140,8 @@ abstract class Field implements Interfaces\Fillable {
 	 * @return mixed
 	 */
 	public function get_value() {
-		return apply_filters( 'notification/field/' . $this->get_raw_name() . '/value', wp_unslash( $this->value ), $this );
+		$value = is_string( $this->value ) ? stripslashes( $this->value ) : $this->value;
+		return apply_filters( 'notification/field/' . $this->get_raw_name() . '/value', $value, $this );
 	}
 
 	/**
