@@ -86,7 +86,7 @@ class Gutenberg {
 	/**
 	 * Checks if is Quick Edit action
 	 *
-	 * @since [Next]
+	 * @since 6.3.1
 	 * @return boolean
 	 */
 	public function is_quick_edit() {

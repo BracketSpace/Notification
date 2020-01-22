@@ -130,7 +130,7 @@ class WordPressEmails {
 	 *
 	 * @filter retrieve_password_message 100
 	 *
-	 * @since [Next]
+	 * @since 6.3.1
 	 * @param string $message Message send to user.
 	 * @return string
 	 */
