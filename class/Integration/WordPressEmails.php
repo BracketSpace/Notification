@@ -138,7 +138,6 @@ class WordPressEmails {
 	 * @return string;
 	 */
 	public function disable_password_reset_notify_to_user( $message, $key, $user_login, $user_data ) {
-
 		if ( 'true' === notification_get_setting( 'integration/emails/password_forgotten_to_user' ) ) {
 			return '';
 		}
