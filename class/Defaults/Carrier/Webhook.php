@@ -66,10 +66,11 @@ class Webhook extends Abstracts\Carrier {
 					'description' => __( 'You can use merge tags', 'notification' ),
 				] ),
 				new Field\InputField( [
-					'label'       => __( 'Value', 'notification' ),
-					'name'        => 'value',
-					'resolvable'  => true,
-					'description' => __( 'You can use merge tags', 'notification' ),
+					'label'            => __( 'Value', 'notification' ),
+					'name'             => 'value',
+					'resolvable'       => true,
+					'allow_linebreaks' => true,
+					'description'      => __( 'You can use merge tags', 'notification' ),
 				] ),
 			],
 		] ) );

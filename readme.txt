@@ -285,7 +285,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 = [Next] =
 * [Fixed] Trigger action being postponed when using quick edit action.
 * [Fixed] Too few argument passed to the trigger action, due to the argument caching.
+* [Changed] Webhook body value now can have the line breaks and tabs.
 * [Added] `notification/sent` action which is executed when all carriers are sent.
+* [Added] `allow_linebreaks` option for Input Field.
 
 = 6.3.0 =
 * [Fixed] Notification losing hash sync between JSON config and post name.
