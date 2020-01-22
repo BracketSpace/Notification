@@ -1,5 +1,5 @@
 === Notification - Custom Notifications and Alerts for WordPress ===
-Contributors: notification, bracketspace, Kubitomakita, insejn, mateuszgbiorczyk
+Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.2
