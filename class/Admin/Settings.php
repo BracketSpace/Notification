@@ -448,17 +448,6 @@ class Settings {
 			] )
 			->add_field( [
 				'name'        => __( 'Password reset request', 'notification' ),
-				'slug'        => 'password_forgotten_to_admin',
-				'default'     => false,
-				'addons'      => [
-					'label' => __( 'Disable email to <strong>admin</strong> about password change request', 'notification' ),
-				],
-				'description' => __( 'Email is sent when user fills out the password reset request.', 'notification' ),
-				'render'      => [ new CoreFields\Checkbox(), 'input' ],
-				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
-			] )
-			->add_field( [
-				'name'        => __( 'Password reset request', 'notification' ),
 				'slug'        => 'password_forgotten_to_user',
 				'default'     => false,
 				'addons'      => [
