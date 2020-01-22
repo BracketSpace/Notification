@@ -287,6 +287,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Fixed] Too few argument passed to the trigger action, due to the argument caching.
 * [Fixed] Disable password reset email filters preventing the password reset from wp-admin.
 * [Changed] Webhook body value now can have the line breaks and tabs.
+* [Removed] Obsolete option to disable password reset request email to admin.
 * [Added] `notification/sent` action which is executed when all carriers are sent.
 * [Added] `allow_linebreaks` option for Input Field.
 
