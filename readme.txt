@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.2
-Stable tag: 6.3.0
+Stable tag: 6.3.1
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -281,6 +281,15 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 7. Default email disabler
 
 == Changelog ==
+
+= 6.3.1 =
+* [Fixed] Trigger action being postponed when using quick edit action.
+* [Fixed] Too few argument passed to the trigger action, due to the argument caching.
+* [Fixed] Disable password reset email filters preventing the password reset from wp-admin.
+* [Changed] Webhook body value now can have the line breaks and tabs.
+* [Removed] Obsolete option to disable password reset request email to admin.
+* [Added] `notification/sent` action which is executed when all carriers are sent.
+* [Added] `allow_linebreaks` option for Input Field.
 
 = 6.3.0 =
 * [Fixed] Notification losing hash sync between JSON config and post name.

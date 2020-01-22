@@ -32,6 +32,10 @@ class Gutenberg {
 			return;
 		}
 
+		if ( $this->is_quick_edit() ) {
+			return;
+		}
+
 		if ( false === apply_filters( 'notification/integration/gutenberg', true, $trigger->get_post_type(), $trigger ) ) {
 			return;
 		}
@@ -77,6 +81,17 @@ class Gutenberg {
 
 		return ( get_option( 'classic-editor-replace' ) === 'no-replace' );
 
+	}
+
+	/**
+	 * Checks if is Quick Edit action
+	 *
+	 * @since 6.3.1
+	 * @return boolean
+	 */
+	public function is_quick_edit() {
+		//phpcs:ignore WordPress.Security.NonceVerification.Missing
+		return wp_doing_ajax() && ( isset( $_POST['action'] ) && 'inline-save' === $_POST['action'] );
 	}
 
 }

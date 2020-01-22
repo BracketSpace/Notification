@@ -126,6 +126,22 @@ class WordPressEmails {
 	}
 
 	/**
+	 * Disables email to user when password reset is requested
+	 *
+	 * @filter retrieve_password_message 100
+	 *
+	 * @since 6.3.1
+	 * @param string $message Message send to user.
+	 * @return string
+	 */
+	public function disable_password_reset_notify_to_user( $message ) {
+		if ( 'true' === notification_get_setting( 'integration/emails/password_forgotten_to_user' ) ) {
+			return '';
+		}
+		return $message;
+	}
+
+	/**
 	 * Disables send the email change email
 	 *
 	 * @filter send_email_change_email
@@ -141,23 +157,6 @@ class WordPressEmails {
 			$send = false;
 		}
 		return $send;
-	}
-
-	/**
-	 * Disables a password reset
-	 *
-	 * @filter allow_password_reset
-	 *
-	 * @since  6.1.0
-	 * @param  bool $allow   Whether to allow the password to be reset. Default true.
-	 * @param  int  $user_id The ID of the user attempting to reset a password.
-	 * @return bool $allow
-	 */
-	public function disable_password_forgotten_notify( $allow, $user_id ) {
-		if ( 'true' === $this->get_setting_for_user_role( false, $user_id, 'password_forgotten' ) ) {
-			$allow = false;
-		}
-		return $allow;
 	}
 
 	/**

@@ -37,9 +37,18 @@ class InputField extends Field {
 	protected $atts = '';
 
 	/**
+	 * Allow for line breaks while sanitizing
+	 *
+	 * @since 6.3.1
+	 * @var bool
+	 */
+	protected $allow_linebreaks = false;
+
+	/**
 	 * Field constructor
 	 *
 	 * @since 5.0.0
+	 * @since 6.3.1 Allow for whitespace characters.
 	 * @param array $params field configuration parameters.
 	 */
 	public function __construct( $params = [] ) {
@@ -54,6 +63,10 @@ class InputField extends Field {
 
 		if ( isset( $params['atts'] ) ) {
 			$this->atts = $params['atts'];
+		}
+
+		if ( isset( $params['allow_linebreaks'] ) ) {
+			$this->allow_linebreaks = $params['allow_linebreaks'];
 		}
 
 		parent::__construct( $params );
@@ -77,7 +90,9 @@ class InputField extends Field {
 	 */
 	public function sanitize( $value ) {
 		$value = preg_replace( '@<(script|style)[^>]*?>.*?</\\1>@si', '', $value ); // Remove script and style tags.
-		$value = preg_replace( '/[\r\n\t ]+/', ' ', $value ); // Remove breaks.
+		if ( true !== $this->allow_linebreaks ) {
+			$value = preg_replace( '/[\r\n\t ]+/', ' ', $value ); // Remove line breaks.
+		}
 		$value = trim( $value ); // Remove whitespace.
 		return $value;
 	}
