@@ -39,7 +39,7 @@ class InputField extends Field {
 	/**
 	 * Allow for line breaks while sanitizing
 	 *
-	 * @since [Next]
+	 * @since 6.3.1
 	 * @var bool
 	 */
 	protected $allow_linebreaks = false;
@@ -48,7 +48,7 @@ class InputField extends Field {
 	 * Field constructor
 	 *
 	 * @since 5.0.0
-	 * @since [Next] Allow for whitespace characters.
+	 * @since 6.3.1 Allow for whitespace characters.
 	 * @param array $params field configuration parameters.
 	 */
 	public function __construct( $params = [] ) {
