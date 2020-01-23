@@ -283,7 +283,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
-* [Changed] Added PUT and DELETE http request methods to Webhook. Combined all http requests methods into one class method.
+* [Changed] Added PUT, PATCH, DELETE http request methods to Webhook. Combined all http requests methods into one class method.
 
 = 6.3.1 =
 * [Fixed] Trigger action being postponed when using quick edit action.
