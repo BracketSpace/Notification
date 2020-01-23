@@ -165,30 +165,30 @@ class Webhook extends Abstracts\Carrier {
 	 */
 	public function http_request( $url, $args = [], $headers = [], $method ) {
 
-		$remote_args = apply_filters_deprecated( 'notification/webhook/remote_args/post', [
+		$remote_args = apply_filters_deprecated( "notification/webhook/remote_args/{$method}", [
 			[
 				'body'    => $args,
 				'headers' => $headers,
-				'method'  => $method,
+				'method'  => strtoupper( $method ),
 			],
 			$url,
 			$args,
 			$this,
-		], '6.0.0', 'notification/carrier/webhook/remote_args/post' );
+		], '6.0.0', "notification/carrier/webhook/remote_args/{$method}" );
 
-		$remote_args = apply_filters( 'notification/carrier/webhook/remote_args/post', $remote_args, $url, $args, $this );
+		$remote_args = apply_filters( "notification/carrier/webhook/remote_args/{$method}", $remote_args, $url, $args, $this );
 
 		$response = wp_remote_request( $url, $remote_args );
 
-		do_action_deprecated( 'notification/webhook/called/post', [
+		do_action_deprecated( "notification/webhook/called/{$method}", [
 			$response,
 			$url,
 			$args,
 			$remote_args,
 			$this,
-		], '6.0.0', 'notification/carrier/webhook/called/post' );
+		], '6.0.0', "notification/carrier/webhook/called/{$method}" );
 
-		do_action( 'notification/carrier/webhook/called/post', $response, $url, $args, $remote_args, $this );
+		do_action( "notification/carrier/webhook/called/{$method}", $response, $url, $args, $remote_args, $this );
 
 	}
 
