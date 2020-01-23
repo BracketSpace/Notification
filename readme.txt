@@ -282,6 +282,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Changed] Added PUT and DELETE http request methods to Webhook. Combined all http requests methods into one class method.
+
 = 6.3.1 =
 * [Fixed] Trigger action being postponed when using quick edit action.
 * [Fixed] Too few argument passed to the trigger action, due to the argument caching.
