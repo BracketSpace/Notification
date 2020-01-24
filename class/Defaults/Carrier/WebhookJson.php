@@ -43,6 +43,9 @@ class WebhookJson extends Abstracts\Carrier {
 			'label'       => __( 'JSON', 'notification' ),
 			'name'        => 'json',
 			'resolvable'  => true,
+			'settings'    => [
+				'media_buttons' => false,
+			],
 			'description' => __( 'You can use merge tags', 'notification' ),
 		] ) );
 
