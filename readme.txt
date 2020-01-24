@@ -282,6 +282,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Changed] Added PUT, PATCH, DELETE http request methods to Webhook. Combined all http requests methods into one class method.
+
 = 6.3.2 =
 * [Fixed] Wrong caching usage of the trigger args.
 
