@@ -1,10 +1,14 @@
-jQuery(function ( $ ) {
+class TinyMceIntegrator {
 
-	if( 'notification' === pagenow && 'notification' === typenow ) {
+	constructor(){
+		if( 'notification' === pagenow && 'notification' === typenow ) {
+			this.init();
+			this.mergeTagCompatibility();
+		}
+	}
 
-		let input = $( '#wp-link-url' );
-
-		tinymce.PluginManager.add('notification-tiny-mce-extension', function (editor, url) {
+	init(){
+		tinymce.PluginManager.add('notification-tiny-mce-extension', (editor, url) => {
 			if (editor) {
 				editor.addCommand('WP_Link', function () {
 					window.wpLink.open(editor.id);
@@ -12,16 +16,19 @@ jQuery(function ( $ ) {
 
 			}
 		});
+	}
 
-		originalWpLink = _.clone( wpLink );
+	mergeTagCompatibility(){
+		originalWpLink = Object.assign({}, wpLink);
 
 		wpLink = _.extend( wpLink, {
 
-			getAttrs: function() {
+			getAttrs: () => {
+
 				const attrs = originalWpLink.getAttrs();
 				let href = attrs.href;
 
-				if( ! this.isMergeTag( href ) ) {
+				if( ! wpLink.isMergeTag( href ) ) {
 					return attrs;
 				} else {
 					href = href.replace( /^(http?:|)\/\// , '' );
@@ -32,16 +39,15 @@ jQuery(function ( $ ) {
 				return attrs;
 			},
 
-			correctURL: function() {
+			correctURL: function(){
 
-				if( ! wpLink.isMergeTag( input[0].value ) ) {
+				if( ! wpLink.isMergeTag( this.value ) ) {
 					originalWpLink.correctURL();
 				} else {
 					return;
 				}
 			},
-
-			isMergeTag: function( href ){
+			isMergeTag: ( href ) => {
 
 				if( undefined !== href ) {
 					if ( -1 === href.search( '{' ) ) {
@@ -54,5 +60,10 @@ jQuery(function ( $ ) {
 
 		});
 	}
+}
+
+jQuery(function () {
+
+	new TinyMceIntegrator();
 
 });

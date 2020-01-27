@@ -18,7 +18,7 @@ class TinyMce {
 	 * @filter mce_external_plugins
 	 *
 	 * @since [Next]
-	 * @param array $plugins Array with plugins.
+	 * @param array $plugins Array with tinyMCE plugins.
 	 * @return array
 	 */
 	public function editor_full_link_modal( $plugins ) {
