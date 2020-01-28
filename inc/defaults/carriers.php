@@ -12,7 +12,7 @@ if ( notification_get_setting( 'notifications/email/enable' ) ) {
 }
 
 if ( notification_get_setting( 'notifications/webhook/enable' ) ) {
-	notification_register_carrier( notification_add_doc_hooks( new Carrier\Webhook( 'webhook' ) ) );
-	notification_register_carrier( notification_add_doc_hooks( new Carrier\WebhookJson( 'webhook-json' ) ) );
+	notification_register_carrier( notification_add_doc_hooks( new Carrier\Webhook( 'Webhook' ) ) );
+	notification_register_carrier( notification_add_doc_hooks( new Carrier\WebhookJson( 'Webhook JSON' ) ) );
 }
 

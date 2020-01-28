@@ -12,11 +12,13 @@ trait Webhook {
 	/**
 	 * Carrier constructor
 	 *
-	 * @param string $slug Webhook slug.
+	 * @param string $name Webhook nice name.
 	 * @since 5.0.0
 	 */
-	public function __construct( $slug ) {
-		parent::__construct( $slug, __( ucfirst( $slug ), 'notification' ) );
+	public function __construct( $name ) {
+		$slug = strtolower( str_replace( ' ', '_', $name ) );
+
+		parent::__construct( $slug, __( $name, 'notification' ) );
 	}
 
 	/**
