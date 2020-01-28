@@ -44,7 +44,7 @@ class TinyMceIntegrator {
 				if ( ! wpLink.isMergeTag( this.value ) ) {
 					originalWpLink.correctURL();
 				} else {
-
+					return;
 				}
 			},
 
