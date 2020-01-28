@@ -41,11 +41,11 @@ class TinyMceIntegrator {
 					return;
 				}
 
-				if ( ! wpLink.isMergeTag( this.value ) ) {
-					originalWpLink.correctURL();
-				} else {
-
+				if ( wpLink.isMergeTag( this.value ) ) {
+					return;
 				}
+
+				originalWpLink.correctURL();
 			},
 
 			isMergeTag: ( href ) => {
