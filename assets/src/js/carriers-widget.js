@@ -103,6 +103,7 @@ class CarriersWidget {
 		this.toggleCarrier( index, true );
 		this.hideButtons();
 		this.toggleWrapperVisibility();
+		this.initCodeMirror( index );
 
 		setTimeout( () => {
 			this.scrollToCarrier( index );
@@ -160,8 +161,18 @@ class CarriersWidget {
 		const position = element.getBoundingClientRect();
 		return ( position.top + scrollTop - this.settings.scrollOffset );
 	}
+
+	initCodeMirror() {
+		for ( const carrier of this.carriers ) {
+			if ( carrier.getAttribute( 'id' ).includes( 'json' ) ) {
+				const codeField = document.querySelector( '#notification-carrier-webhook_json-box textarea' );
+				wp.codeEditor.initialize( codeField, code_monitor_settings ); //eslint-disable-line
+			}
+		}
+	}
 }
 
 $( document ).ready( function() {
-	new CarriersWidget();
+	const widgets = new CarriersWidget();
+	widgets.initCodeMirror();
 } );

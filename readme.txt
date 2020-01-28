@@ -286,7 +286,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Added PUT, PATCH, DELETE http request methods to Webhook. Combined all http requests methods into one class method.
 * [Changed] Webhook class methods http_request and parse_args move to trait.
 * [Added] Added Webhhook trait.
-* [Added] Webhook-json carrier with plain json input field.
+* [Added] Webhook-json carrier with plain json input code field.
 
 = 6.3.2 =
 * [Fixed] Wrong caching usage of the trigger args.

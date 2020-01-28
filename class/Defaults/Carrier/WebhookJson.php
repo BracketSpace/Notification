@@ -39,13 +39,10 @@ class WebhookJson extends Abstracts\Carrier {
 			'add_button_label' => __( 'Add URL', 'notification' ),
 		] ) );
 
-		$this->add_form_field( new Field\EditorField( [
+		$this->add_form_field( new Field\CodeEditorField( [
 			'label'       => __( 'JSON', 'notification' ),
 			'name'        => 'json',
 			'resolvable'  => true,
-			'settings'    => [
-				'media_buttons' => false,
-			],
 			'description' => __( 'You can use merge tags', 'notification' ),
 		] ) );
 
