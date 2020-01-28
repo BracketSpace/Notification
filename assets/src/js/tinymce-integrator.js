@@ -37,19 +37,22 @@ class TinyMceIntegrator {
 			},
 
 			correctURL() {
+				if ( undefined === this.value ) {
+					return;
+				}
+
 				if ( ! wpLink.isMergeTag( this.value ) ) {
 					originalWpLink.correctURL();
 				} else {
 
 				}
 			},
+
 			isMergeTag: ( href ) => {
-				if ( undefined !== href ) {
-					if ( -1 === href.search( '{' ) ) {
-						return false;
-					}
-					return true;
+				if ( -1 === href.search( '{' ) ) {
+					return false;
 				}
+				return true;
 			},
 
 		} );
