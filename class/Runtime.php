@@ -106,7 +106,7 @@ class Runtime extends Utils\DocHooks {
 		$this->integration_gb        = new Integration\Gutenberg();
 		$this->integration_cf        = new Integration\CustomFields();
 		$this->integration_bp        = new Integration\BackgroundProcessing();
-
+		$this->integration_mce       = new Integration\TinyMce();
 	}
 
 	/**

@@ -284,6 +284,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Changed] Added PUT, PATCH, DELETE http request methods to Webhook. Combined all http requests methods into one class method.
+* [Fixed] Merge Tag used as anchor href now is not prefixed with protocol while adding the link.
 
 = 6.3.2 =
 * [Fixed] Wrong caching usage of the trigger args.
