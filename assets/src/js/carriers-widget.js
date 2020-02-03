@@ -128,7 +128,7 @@ class CarriersWidget {
 		}
 		this.carrierSwitches[ index ].checked = status;
 
-		notification.hooks.doAction( 'notification.carrier.toggled', $( this.carrierSwitches[ index ] ) );
+		notification.hooks.doAction( 'notification.carrier.toggled', $( this.carriers[ index ] ) );
 	}
 
 	toggleWrapperVisibility() {

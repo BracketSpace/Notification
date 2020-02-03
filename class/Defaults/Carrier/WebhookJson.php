@@ -15,7 +15,8 @@ use BracketSpace\Notification\Traits\Webhook as WebhookTrait;
 /**
  * Webhook Carrier
  */
-class Webhook extends Abstracts\Carrier {
+class WebhookJson extends Abstracts\Carrier {
+
 	use WebhookTrait;
 
 	/**
@@ -40,38 +41,15 @@ class Webhook extends Abstracts\Carrier {
 			'add_button_label' => __( 'Add URL', 'notification' ),
 		] ) );
 
-		$this->add_form_field( new Field\RepeaterField( [
-			'label'            => __( 'Arguments', 'notification' ),
-			'name'             => 'args',
-			'add_button_label' => __( 'Add argument', 'notification' ),
-			'fields'           => [
-				new Field\CheckboxField(
-					[
-						'label'          => __( 'Hide', 'notification-slack' ),
-						'name'           => 'hide',
-						'checkbox_label' => __( 'Hide if empty value', 'notification' ),
-					]
-				),
-				new Field\InputField( [
-					'label'       => __( 'Key', 'notification' ),
-					'name'        => 'key',
-					'resolvable'  => true,
-					'description' => __( 'You can use merge tags', 'notification' ),
-				] ),
-				new Field\InputField( [
-					'label'            => __( 'Value', 'notification' ),
-					'name'             => 'value',
-					'resolvable'       => true,
-					'allow_linebreaks' => true,
-					'description'      => __( 'You can use merge tags', 'notification' ),
-				] ),
+		$this->add_form_field( new Field\CodeEditorField( [
+			'label'       => __( 'JSON', 'notification' ),
+			'name'        => 'json',
+			'resolvable'  => true,
+			'settings'    => [
+				'mode'        => 'application/json',
+				'lineNumbers' => true,
 			],
-		] ) );
-
-		$this->add_form_field( new Field\CheckboxField( [
-			'label'          => __( 'JSON', 'notification' ),
-			'name'           => 'json',
-			'checkbox_label' => __( 'Send the arguments in JSON format', 'notification' ),
+			'description' => __( 'You can use merge tags', 'notification' ),
 		] ) );
 
 		if ( notification_get_setting( 'notifications/webhook/headers' ) ) {
@@ -122,7 +100,7 @@ class Webhook extends Abstracts\Carrier {
 		$args = apply_filters( 'notification/carrier/webhook/args', $args, $this, $trigger );
 
 		if ( $data['json'] ) {
-			$args = wp_json_encode( $args );
+			$args = $data['json'];
 		}
 
 		// Headers.
