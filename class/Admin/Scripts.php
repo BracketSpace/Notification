@@ -73,12 +73,6 @@ class Scripts {
 			return;
 		}
 
-		$code_monitor_settings['codeEditor'] = wp_enqueue_code_editor( array( 'type' => 'application/json' ) );
-		wp_localize_script( 'jquery', 'code_monitor_settings', $code_monitor_settings );
-
-		wp_enqueue_script( 'wp-theme-plugin-editor' );
-		wp_enqueue_style( 'wp-codemirror' );
-
 		wp_enqueue_script( 'notification', $this->files->asset_url( 'js', 'scripts.js' ), [ 'jquery', 'wp-color-picker', 'wp-i18n', 'wp-hooks', 'jquery-ui-sortable' ], $this->files->asset_mtime( 'js', 'scripts.js' ), true );
 
 		wp_enqueue_style( 'notification', $this->files->asset_url( 'css', 'style.css' ), [], $this->files->asset_mtime( 'css', 'style.css' ) );

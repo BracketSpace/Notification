@@ -44,7 +44,22 @@ class CodeEditorField extends Field {
 	 * @return string html
 	 */
 	public function field() {
-		return '<textarea id="' . esc_attr( $this->get_id() ) . '" class="widefat widefat notification-field" rows="10" name="' . esc_attr( $this->get_name() ) . '">' . esc_attr( $this->get_value() ) . '</textarea>';
+
+		$settings = wp_parse_args( $this->settings, [
+			'indentUnit' => 4,
+			'tabSize'    => 4,
+		] );
+
+		wp_enqueue_script( 'code-editor' );
+		wp_enqueue_style( 'code-editor' );
+
+		return '<textarea
+			id="' . esc_attr( $this->get_id() ) . '"
+			class="widefat notification-field notification-code-editor-field"
+			data-settings="' . esc_attr( wp_json_encode( $settings ) ) . '"
+			rows="10"
+			name="' . esc_attr( $this->get_name() ) . '"
+		>' . esc_attr( $this->get_value() ) . '</textarea>';
 
 	}
 

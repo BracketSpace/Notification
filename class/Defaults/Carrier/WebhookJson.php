@@ -11,10 +11,12 @@ use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\Field;
 use BracketSpace\Notification\Traits\Webhook as WebhookTrait;
+
 /**
  * Webhook Carrier
  */
 class WebhookJson extends Abstracts\Carrier {
+
 	use WebhookTrait;
 
 	/**
@@ -43,6 +45,10 @@ class WebhookJson extends Abstracts\Carrier {
 			'label'       => __( 'JSON', 'notification' ),
 			'name'        => 'json',
 			'resolvable'  => true,
+			'settings'    => [
+				'mode'        => 'application/json',
+				'lineNumbers' => true,
+			],
 			'description' => __( 'You can use merge tags', 'notification' ),
 		] ) );
 
