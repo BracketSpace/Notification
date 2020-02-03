@@ -160,7 +160,6 @@ class CarriersWidget {
 		const position = element.getBoundingClientRect();
 		return ( position.top + scrollTop - this.settings.scrollOffset );
 	}
-
 }
 
 $( document ).ready( function() {

@@ -1,11 +1,10 @@
-/* global wp, notification, jQuery */
+/* global _, wp, notification, jQuery */
 
 ( function( $ ) {
-
-	function init_code_editor( $elem ) {
-		var editorSettings = wp.codeEditor.defaultSettings ? _.clone( wp.codeEditor.defaultSettings ) : {};
+	function initCodeEditor( $elem ) {
+		const editorSettings = wp.codeEditor.defaultSettings ? _.clone( wp.codeEditor.defaultSettings ) : {};
 		editorSettings.codemirror = _.extend( {}, editorSettings.codemirror, $elem.data( 'settings' ) );
-		var editor = wp.codeEditor.initialize( $elem, editorSettings );
+		let editor = wp.codeEditor.initialize( $elem, editorSettings ); // eslint-disable-line prefer-const
 
 		notification.hooks.addAction( 'notification.carrier.toggled', () => {
 			editor.codemirror.refresh();
@@ -14,8 +13,7 @@
 
 	$( document ).ready( function() {
 		$( '.notification-code-editor-field' ).each( function() {
-			init_code_editor( $( this ) );
+			initCodeEditor( $( this ) );
 		} );
 	} );
-
 }( jQuery ) );
