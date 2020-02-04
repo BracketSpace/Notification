@@ -130,7 +130,7 @@ class Runtime extends Utils\DocHooks {
 		register_uninstall_hook( $this->plugin_file, [ 'BracketSpace\Notification\Core\Uninstall', 'remove_plugin_data' ] );
 
 		// DocHooks compatibility.
-		$hooks_file = $this->files->file_path( 'inc/hooks.php' );
+		$hooks_file = $this->files->file_path( 'src/includes/hooks.php' );
 		if ( ! notification_dochooks_enabled() && file_exists( $hooks_file ) ) {
 			include_once $hooks_file;
 		}
@@ -155,17 +155,17 @@ class Runtime extends Utils\DocHooks {
 	 */
 	public function load_functions() {
 
-		require_once $this->files->file_path( 'inc/functions/general.php' );
-		require_once $this->files->file_path( 'inc/functions/settings.php' );
-		require_once $this->files->file_path( 'inc/functions/resolver.php' );
-		require_once $this->files->file_path( 'inc/functions/carrier.php' );
-		require_once $this->files->file_path( 'inc/functions/trigger.php' );
-		require_once $this->files->file_path( 'inc/functions/recipient.php' );
-		require_once $this->files->file_path( 'inc/functions/notification.php' );
-		require_once $this->files->file_path( 'inc/functions/notification-post.php' );
-		require_once $this->files->file_path( 'inc/functions/whitelabel.php' );
-		require_once $this->files->file_path( 'inc/functions/import-export.php' );
-		require_once $this->files->file_path( 'inc/functions/adapter.php' );
+		require_once $this->files->file_path( 'src/includes/functions/general.php' );
+		require_once $this->files->file_path( 'src/includes/functions/settings.php' );
+		require_once $this->files->file_path( 'src/includes/functions/resolver.php' );
+		require_once $this->files->file_path( 'src/includes/functions/carrier.php' );
+		require_once $this->files->file_path( 'src/includes/functions/trigger.php' );
+		require_once $this->files->file_path( 'src/includes/functions/recipient.php' );
+		require_once $this->files->file_path( 'src/includes/functions/notification.php' );
+		require_once $this->files->file_path( 'src/includes/functions/notification-post.php' );
+		require_once $this->files->file_path( 'src/includes/functions/whitelabel.php' );
+		require_once $this->files->file_path( 'src/includes/functions/import-export.php' );
+		require_once $this->files->file_path( 'src/includes/functions/adapter.php' );
 
 	}
 
@@ -178,12 +178,12 @@ class Runtime extends Utils\DocHooks {
 	public function load_deprecated() {
 
 		// Functions.
-		require_once $this->files->file_path( 'inc/deprecated/functions.php' );
+		require_once $this->files->file_path( 'src/includes/deprecated/functions.php' );
 
 		// Classes.
-		require_once $this->files->file_path( 'inc/deprecated/class/Abstracts/Notification.php' );
-		require_once $this->files->file_path( 'inc/deprecated/class/Defaults/Notification/Email.php' );
-		require_once $this->files->file_path( 'inc/deprecated/class/Defaults/Notification/Webhook.php' );
+		require_once $this->files->file_path( 'src/includes/deprecated/class/Abstracts/Notification.php' );
+		require_once $this->files->file_path( 'src/includes/deprecated/class/Defaults/Notification/Email.php' );
+		require_once $this->files->file_path( 'src/includes/deprecated/class/Defaults/Notification/Webhook.php' );
 
 	}
 
@@ -225,7 +225,7 @@ class Runtime extends Utils\DocHooks {
 	 */
 	public function load_default( $default ) {
 		if ( apply_filters( 'notification/load/default/' . $default, true ) ) {
-			$path = $this->files->file_path( 'inc/defaults/' . $default . '.php' );
+			$path = $this->files->file_path( 'src/includes/defaults/' . $default . '.php' );
 			if ( file_exists( $path ) ) {
 				require_once $path;
 			}

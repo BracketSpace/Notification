@@ -16,7 +16,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"BracketSpace\\Notification\\": "class"
+			"BracketSpace\\Notification\\": "src/classes"
 		}
 	}
 }

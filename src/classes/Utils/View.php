@@ -42,7 +42,7 @@ class View {
 	public function __construct( Files $files ) {
 
 		$this->files     = $files;
-		$this->views_dir = 'views';
+		$this->views_dir = 'src/templates';
 
 	}
 

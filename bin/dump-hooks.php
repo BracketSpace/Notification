@@ -56,7 +56,7 @@ foreach ( $runtime->_called_doc_hooks as $class_name => $hooks ) {
 
 
 // Clear the hooks file.
-$hooks_file = $plugin_dir . '/inc/hooks.php';
+$hooks_file = $plugin_dir . '/src/includes/hooks.php';
 if ( file_exists( $hooks_file ) ) {
 	unlink( $hooks_file );
 }

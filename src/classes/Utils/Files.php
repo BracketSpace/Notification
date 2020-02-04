@@ -52,7 +52,7 @@ class Files {
 		$this->plugin_file     = $plugin_file;
 		$this->plugin_url      = $plugin_url;
 		$this->plugin_path     = $plugin_path;
-		$this->assets_dir_name = [ 'assets', 'dist' ];
+		$this->assets_dir_name = [ 'dist' ];
 	}
 
 	/**
@@ -205,23 +205,6 @@ class Files {
 		}
 		$data = file_get_contents( $path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		return 'data:image/' . $type . ';base64,' . base64_encode( $data );  // phpcs:ignore
-	}
-
-	/**
-	 * Gets url to a vendor asset file
-	 *
-	 * @param  string $vendor asset vendor name (name of the vendor dir).
-	 * @param  string $file   file name.
-	 * @return string         asset file url
-	 */
-	public function vendor_asset_url( $vendor = '', $file = '' ) {
-		$assets_dirs = [
-			'assets',
-			'vendor',
-			$vendor,
-			$file,
-		];
-		return $this->file_url( $assets_dirs );
 	}
 
 }
