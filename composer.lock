@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "micropackage/internationalization",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/micropackage/internationalization.git",
-                "reference": "7e41ba8af08f84d42fe1a7c887d7e9f3044e46e4"
+                "reference": "8de158b8fc71557a8310f0d98d2b8ad9f4f44dd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/micropackage/internationalization/zipball/7e41ba8af08f84d42fe1a7c887d7e9f3044e46e4",
-                "reference": "7e41ba8af08f84d42fe1a7c887d7e9f3044e46e4",
+                "url": "https://api.github.com/repos/micropackage/internationalization/zipball/8de158b8fc71557a8310f0d98d2b8ad9f4f44dd5",
+                "reference": "8de158b8fc71557a8310f0d98d2b8ad9f4f44dd5",
                 "shasum": ""
             },
             "require": {
@@ -45,20 +45,20 @@
                 }
             ],
             "description": "Internationalization (i18n) wrapper for WordPress plugins, themes or libraries",
-            "time": "2020-01-23T15:31:35+00:00"
+            "time": "2020-02-04T19:48:51+00:00"
         },
         {
             "name": "micropackage/requirements",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/micropackage/requirements.git",
-                "reference": "df08e81d91ec059538e70f0b677c899f1af495c2"
+                "reference": "5d05bcaa2649fb40076da9ed0fb99b72aa3f3d2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/micropackage/requirements/zipball/df08e81d91ec059538e70f0b677c899f1af495c2",
-                "reference": "df08e81d91ec059538e70f0b677c899f1af495c2",
+                "url": "https://api.github.com/repos/micropackage/requirements/zipball/5d05bcaa2649fb40076da9ed0fb99b72aa3f3d2e",
+                "reference": "5d05bcaa2649fb40076da9ed0fb99b72aa3f3d2e",
                 "shasum": ""
             },
             "require": {
@@ -89,7 +89,7 @@
                 }
             ],
             "description": "Requirements checker for WordPress plugins",
-            "time": "2020-02-03T11:12:52+00:00"
+            "time": "2020-02-04T19:44:42+00:00"
         }
     ],
     "packages-dev": [
