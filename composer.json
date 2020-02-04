@@ -18,5 +18,8 @@
 		"psr-4": {
 			"BracketSpace\\Notification\\": "src/classes"
 		}
+	},
+	"require": {
+		"micropackage/requirements": "^1.0"
 	}
 }
