@@ -295,7 +295,7 @@ class Wizard {
 	 */
 	private function add_notifications( $notifications ) {
 
-		$dir_path = $this->files->plugin_path() . 'inc/wizard/';
+		$dir_path = $this->files->plugin_path() . 'src/includes/wizard/';
 
 		foreach ( $notifications as $notify_slug ) {
 

@@ -112,7 +112,7 @@ class Settings {
 			$current_section = key( $this->get_sections() );
 		}
 
-		include $this->path . '/views/settings/page.php';
+		include $this->path . '/src/templates/settings/page.php';
 
 	}
 
@@ -309,7 +309,7 @@ class Settings {
 	public function set_variables() {
 
 		// path.
-		$this->path = dirname( dirname( dirname( __FILE__ ) ) );
+		$this->path = dirname( dirname( dirname( dirname( __FILE__ ) ) ) );
 
 		// URI.
 		$theme_url = wp_parse_url( get_stylesheet_directory_uri() );
