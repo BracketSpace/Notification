@@ -29,3 +29,27 @@ jobs:
       run: |
         composer setup-local-tests
         composer phpunit
+  css-lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: CSS lint
+      uses: actions/setup-node@v1
+      with:
+        node-version: '8'
+      run: |
+        npm install
+        npm run lint:css
+  js-lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: JS lint
+      uses: actions/setup-node@v1
+      with:
+        node-version: '8'
+      run: |
+        npm install
+        npm run lint:js
