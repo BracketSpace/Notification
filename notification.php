@@ -19,14 +19,13 @@ require_once dirname( __FILE__ ) . '/vendor/autoload.php';
 /**
  * Requirements check
  */
-$requirements = new BracketSpace\Notification\Utils\Requirements( __( 'Notification', 'notification' ), [
-	'php'                => '7.0',
-	'wp'                 => '5.2',
-	'function_collision' => [ 'notification' ],
+$requirements = new BracketSpace\Notification\Vendor\Micropackage\Requirements\Requirements( __( 'Notification', 'notification' ), [
+	'php' => '7.0',
+	'wp'  => '5.2',
 ] );
 
 if ( ! $requirements->satisfied() ) {
-	add_action( 'admin_notices', [ $requirements, 'notice' ] );
+	$requirements->print_notice();
 	return;
 }
 

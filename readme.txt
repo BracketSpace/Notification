@@ -285,8 +285,10 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 = [Next] =
 * [Changed] Added PUT, PATCH, DELETE http request methods to Webhook. Combined all http requests methods into one class method.
 * [Changed] Webhook class methods http_request and parse_args move to trait.
+* [Changed] Requirements to `micropackage/requirements`.
 * [Added] Added Webhook trait.
 * [Added] Webhook JSON Carrier with plain JSON input code field.
+* [Added] Composer imposter package to aviod package conflicts.
 * [Fixed] Merge Tag used as anchor href now is not prefixed with protocol while adding the link.
 
 = 6.3.2 =
