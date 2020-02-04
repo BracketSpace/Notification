@@ -22,7 +22,7 @@
     "ie 11"
   ],
   "devDependencies": {
-    "@wordpress/scripts": "^3.4.0",
+    "@wordpress/scripts": "^5.0",
     "cross-env": "^5.2.0",
     "mati-mix": "^2.0.1"
   },

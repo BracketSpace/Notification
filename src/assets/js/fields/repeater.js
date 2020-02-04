@@ -1,5 +1,5 @@
 /* eslint no-alert: 0 */
-/* global notification, wp, jQuery */
+/* global notification, jQuery */
 ( function( $ ) {
 	const __ = wp.i18n.__;
 

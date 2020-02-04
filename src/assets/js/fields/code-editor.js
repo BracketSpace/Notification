@@ -1,4 +1,4 @@
-/* global _, wp, notification, jQuery */
+/* global _, notification, jQuery */
 
 ( function( $ ) {
 	function initCodeEditor( $elem ) {

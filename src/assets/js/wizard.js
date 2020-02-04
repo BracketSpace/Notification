@@ -1,4 +1,4 @@
-/* global wp, jQuery */
+/* global jQuery */
 ( function( $ ) {
 	$( document ).ready( function() {
 		let count = ( $( '#notifications-wizard' ).data( 'selected-notifications-count' ) ) ? $( '#notifications-wizard' ).data( 'selected-notifications-count' ) : 0;

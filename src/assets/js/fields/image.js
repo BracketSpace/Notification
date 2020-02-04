@@ -1,4 +1,4 @@
-/* global wp, jQuery */
+/* global jQuery */
 ( function( $ ) {
 	const __ = wp.i18n.__;
 

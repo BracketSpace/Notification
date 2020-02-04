@@ -1,4 +1,4 @@
-/* global wp, notification, jQuery, FormData */
+/* global notification, jQuery */
 ( function( $ ) {
 	const __ = wp.i18n.__;
 
