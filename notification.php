@@ -19,7 +19,7 @@ require_once dirname( __FILE__ ) . '/vendor/autoload.php';
 /**
  * Requirements check
  */
-$requirements = new \Micropackage\Requirements\Requirements( __( 'Notification', 'notification' ), [
+$requirements = new BracketSpace\Notification\Vendor\Micropackage\Requirements\Requirements( __( 'Notification', 'notification' ), [
 	'php' => '7.0',
 	'wp'  => '5.2',
 ] );
