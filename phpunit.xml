@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <phpunit
 	bootstrap="tests/bootstrap.php"
 	backupGlobals="false"
@@ -11,4 +12,10 @@
 			<directory prefix="test-" suffix=".php">./tests/</directory>
 		</testsuite>
 	</testsuites>
+	<filter>
+        <whitelist>
+            <directory suffix=".php">./class</directory>
+            <directory suffix=".php">./inc</directory>
+        </whitelist>
+    </filter>
 </phpunit>
