@@ -29,7 +29,7 @@ jobs:
       run: |
         composer setup-local-tests
         composer phpunit
-  CSS lint:
+  CSS-lint:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -42,7 +42,7 @@ jobs:
       run: |
         npm install
         npm run lint:css
-  JS lint:
+  JS-lint:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
