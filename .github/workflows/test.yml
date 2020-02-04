@@ -6,7 +6,7 @@ on:
       - develop
 
 jobs:
-  phpcs:
+  PHPCS:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -15,7 +15,7 @@ jobs:
       run: composer install
     - name: Coding Standards
       run: composer phpcs
-  phpunit:
+  PHPUnit:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -29,7 +29,7 @@ jobs:
       run: |
         composer setup-local-tests
         composer phpunit
-  css-lint:
+  CSS lint:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -42,7 +42,7 @@ jobs:
       run: |
         npm install
         npm run lint:css
-  js-lint:
+  JS lint:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
