@@ -1,0 +1,57 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  PHPCS:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Install dependencies
+      run: composer install
+    - name: Coding Standards
+      run: composer phpcs
+  PHPUnit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: ['5.6', '7.0', '7.1', '7.2', '7.3']
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Install dependencies
+      run: composer install
+    - name: PHPUnit
+      run: |
+        composer setup-local-tests
+        composer phpunit
+  CSS-lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '8'
+    - name: CSS lint
+      run: |
+        npm install
+        npm run lint:css
+  JS-lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '8'
+    - name: JS lint
+      run: |
+        npm install
+        npm run lint:js
