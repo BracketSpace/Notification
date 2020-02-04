@@ -2,7 +2,6 @@
 const $ = jQuery;
 
 class CarriersWidget {
-
 	constructor() {
 		if ( ! this.setVars() ) {
 			return;
