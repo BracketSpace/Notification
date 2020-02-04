@@ -1,8 +1,6 @@
 const mix = require('mati-mix');
 
 mix.js([
-	'node_modules/sifter/sifter.js',
-	'node_modules/microplugin/src/microplugin.js',
 	'node_modules/selectize/dist/js/selectize.js',
 	'node_modules/jquery-collapse/src/jquery.collapse.js',
 	'src/assets/js/vendor/*.js',

@@ -4,12 +4,9 @@
   "description": "",
   "main": "webpack.mix.js",
   "scripts": {
-    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "dev": "npm run development",
-    "watch": "npm run development -- --watch",
-    "prod": "npm run production",
-    "phpcs": "composer phpcs",
+    "build": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "build:production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "start": "npm run build -- --watch",
     "lint:css": "wp-scripts lint-style ./src/assets/sass",
     "lint:css:fix": "wp-scripts lint-style ./src/assets/sass --fix",
     "lint:js": "wp-scripts lint-js ./src/assets/js",
@@ -26,16 +23,13 @@
   ],
   "devDependencies": {
     "@wordpress/scripts": "^3.4.0",
-    "browser-sync": "^2.26.7",
     "cross-env": "^5.2.0",
     "mati-mix": "^2.0.1"
   },
   "dependencies": {
     "clipboard": "^1.5.12",
     "jquery-collapse": "^1.1.2",
-    "microplugin": "0.0.3",
-    "selectize": "^0.12.4",
-    "sifter": "^0.5.3"
+    "selectize": "^0.12.4"
   },
   "stylelint": {
     "extends": "stylelint-config-wordpress/scss"
