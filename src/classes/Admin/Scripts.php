@@ -7,7 +7,7 @@
 
 namespace BracketSpace\Notification\Admin;
 
-use BracketSpace\Notification\Utils\Files;
+use BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem;
 
 /**
  * Scripts class
@@ -15,11 +15,11 @@ use BracketSpace\Notification\Utils\Files;
 class Scripts {
 
 	/**
-	 * Files class
+	 * Filesystem object
 	 *
-	 * @var object
+	 * @var Filesystem
 	 */
-	private $files;
+	private $filesystem;
 
 	/**
 	 * Runtime class
@@ -32,12 +32,12 @@ class Scripts {
 	 * Scripts constructor
 	 *
 	 * @since 5.0.0
-	 * @param object $runtime Plugin Runtime class.
-	 * @param Files  $files   Files class.
+	 * @param object     $runtime Plugin Runtime class.
+	 * @param Filesystem $fs      Assets filesystem object.
 	 */
-	public function __construct( $runtime, Files $files ) {
-		$this->files   = $files;
-		$this->runtime = $runtime;
+	public function __construct( $runtime, Filesystem $fs ) {
+		$this->filesystem = $fs;
+		$this->runtime    = $runtime;
 	}
 
 	/**
@@ -73,9 +73,9 @@ class Scripts {
 			return;
 		}
 
-		wp_enqueue_script( 'notification', $this->files->asset_url( 'js', 'scripts.js' ), [ 'jquery', 'wp-color-picker', 'wp-i18n', 'wp-hooks', 'jquery-ui-sortable' ], $this->files->asset_mtime( 'js', 'scripts.js' ), true );
+		wp_enqueue_script( 'notification', $this->filesystem->url( 'js/scripts.js' ), [ 'jquery', 'wp-color-picker', 'wp-i18n', 'wp-hooks', 'jquery-ui-sortable' ], $this->filesystem->mtime( 'js/scripts.js' ), true );
 
-		wp_enqueue_style( 'notification', $this->files->asset_url( 'css', 'style.css' ), [], $this->files->asset_mtime( 'css', 'style.css' ) );
+		wp_enqueue_style( 'notification', $this->filesystem->url( 'css/style.css' ), [], $this->filesystem->mtime( 'css/style.css' ) );
 
 		wp_set_script_translations( 'notification', 'notification' );
 

@@ -287,9 +287,11 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Webhook class methods http_request and parse_args move to trait.
 * [Changed] Requirements utility to `micropackage/requirements`.
 * [Changed] DocHooks utility to `micropackage/dochooks`.
+* [Changed] Files utility to `micropackage/filesystem`. Now the plugin has few filesystems which can be accessed easily from outside the plugin.
 * [Added] Added Webhook trait.
 * [Added] Webhook JSON Carrier with plain JSON input code field.
 * [Added] Composer imposter package to aviod package conflicts.
+* [Added] `notification_filesystem` function to get plugin filesystem(s).
 * [Fixed] Merge Tag used as anchor href now is not prefixed with protocol while adding the link.
 
 = 6.3.2 =
