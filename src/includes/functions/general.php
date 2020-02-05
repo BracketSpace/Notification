@@ -6,19 +6,6 @@
  */
 
 /**
- * Adds handlers for doc hooks to an object
- *
- * @since  5.2.2
- * @param  object $object Object to create the hooks.
- * @return object
- */
-function notification_add_doc_hooks( $object ) {
-	$dochooks = new BracketSpace\Notification\Utils\DocHooks();
-	$dochooks->add_hooks( $object );
-	return $object;
-}
-
-/**
  * Checks if the Wizard should be displayed.
  *
  * @since  6.3.0
@@ -114,35 +101,4 @@ function notification_log( $component, $type, $message ) {
 		return new \WP_Error( 'wrong_log_data', $e->getMessage() );
 	}
 
-}
-
-/**
- * Checks if the DocHooks are enabled and working.
- *
- * @since  6.1.0
- * @return boolean
- */
-function notification_dochooks_enabled() {
-
-	if ( ! class_exists( 'NotificationDocHookTest' ) ) {
-		/**
-		 * NotificationDocHookTest class
-		 */
-		class NotificationDocHookTest {
-			/**
-			 * Test method
-			 *
-			 * @action test 10
-			 * @return void
-			 */
-			public function test_method() {}
-		}
-	}
-
-	$reflector = new \ReflectionObject( new NotificationDocHookTest() );
-
-	foreach ( $reflector->getMethods() as $method ) {
-		$doc = $method->getDocComment();
-		return (bool) strpos( $doc, '@action' );
-	}
 }
