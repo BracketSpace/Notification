@@ -6,6 +6,7 @@
  */
 
 use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Vendor\Micropackage\DocHooks\Helper as DocHooksHelper;
 
 /**
  * Checks if notification post has been just started
@@ -121,4 +122,29 @@ function notification_get_single_trigger( $trigger_slug ) {
 function register_recipient( $carrier_slug, Interfaces\Receivable $recipient ) {
 	_deprecated_function( 'register_recipient', '6.0.0', 'notification_register_recipient' );
 	notification_register_recipient( $carrier_slug, $recipient );
+}
+
+/**
+ * Adds handlers for doc hooks to an object
+ *
+ * @since      5.2.2
+ * @deprecated [Next] Use `the micropackage/dochooks` package.
+ * @param      object $object Object to create the hooks.
+ * @return     object
+ */
+function notification_add_doc_hooks( $object ) {
+	_deprecated_function( 'notification_add_doc_hooks', '[Next]' );
+	return DocHooksHelper::hook( $object );
+}
+
+/**
+ * Checks if the DocHooks are enabled and working.
+ *
+ * @since      6.1.0
+ * @deprecated [Next] Use `the micropackage/dochooks` package.
+ * @return     boolean
+ */
+function notification_dochooks_enabled() {
+	_deprecated_function( 'notification_dochooks_enabled', '[Next]' );
+	return DocHooksHelper::is_enabled();
 }

@@ -10,11 +10,12 @@ namespace BracketSpace\Notification;
 use BracketSpace\Notification\Utils;
 use BracketSpace\Notification\Admin;
 use BracketSpace\Notification\Core;
+use BracketSpace\Notification\Vendor\Micropackage\DocHooks;
 
 /**
  * Runtime class
  */
-class Runtime extends Utils\DocHooks {
+class Runtime extends DocHooks\HookAnnotations {
 
 	/**
 	 * Class constructor
@@ -131,7 +132,7 @@ class Runtime extends Utils\DocHooks {
 
 		// DocHooks compatibility.
 		$hooks_file = $this->files->file_path( 'src/includes/hooks.php' );
-		if ( ! notification_dochooks_enabled() && file_exists( $hooks_file ) ) {
+		if ( ! DocHooks\Helper::is_enabled() && file_exists( $hooks_file ) ) {
 			include_once $hooks_file;
 		}
 
