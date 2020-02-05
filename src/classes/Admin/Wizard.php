@@ -7,9 +7,9 @@
 
 namespace BracketSpace\Notification\Admin;
 
-use BracketSpace\Notification\Utils\Files;
-use BracketSpace\Notification\Utils\View;
 use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem;
+use BracketSpace\Notification\Utils\View;
 
 /**
  * Wizard class
@@ -17,11 +17,11 @@ use BracketSpace\Notification\Core\Notification;
 class Wizard {
 
 	/**
-	 * Files class
+	 * Filesystem object
 	 *
-	 * @var object
+	 * @var Filesystem
 	 */
-	private $files;
+	private $filesystem;
 
 	/**
 	 * Wizard page hook.
@@ -40,10 +40,11 @@ class Wizard {
 	/**
 	 * Wizard constructor
 	 *
-	 * @param Files $files Files class.
+	 * @since [Next] Changed the Files util to Filesystem.
+	 * @param Filesystem $fs Includes filesystem object.
 	 */
-	public function __construct( Files $files ) {
-		$this->files = $files;
+	public function __construct( Filesystem $fs ) {
+		$this->filesystem = $fs;
 	}
 
 	/**
@@ -295,16 +296,18 @@ class Wizard {
 	 */
 	private function add_notifications( $notifications ) {
 
-		$dir_path = $this->files->plugin_path() . 'src/includes/wizard/';
+		$json_path_tmpl = 'wizard/%s.json';
 
-		foreach ( $notifications as $notify_slug ) {
+		foreach ( $notifications as $notification_slug ) {
 
-			$json_path = $dir_path . $notify_slug . '.json';
-			if ( ! is_readable( $json_path ) ) {
+			$json_path = sprintf( $json_path_tmpl, $notification_slug );
+
+			if ( ! $this->filesystem->is_readable( $json_path ) ) {
 				continue;
 			}
 
-			$json         = file_get_contents( $json_path ); // phpcs:ignore
+			$json = $this->filesystem->get_contents( $json_path );
+
 			$json_adapter = notification_adapt_from( 'JSON', $json );
 			$json_adapter->refresh_hash();
 

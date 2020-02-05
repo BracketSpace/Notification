@@ -102,3 +102,14 @@ function notification_log( $component, $type, $message ) {
 	}
 
 }
+
+/**
+ * Gets one of the plugin filesystems
+ *
+ * @since  [Next]
+ * @param  string $name Filesystem name.
+ * @return Filesystem|null
+ */
+function notification_filesystem( $name ) {
+	return notification_runtime()->get_filesystem( $name );
+}

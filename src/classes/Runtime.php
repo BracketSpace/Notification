@@ -11,6 +11,7 @@ use BracketSpace\Notification\Utils;
 use BracketSpace\Notification\Admin;
 use BracketSpace\Notification\Core;
 use BracketSpace\Notification\Vendor\Micropackage\DocHooks;
+use BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem;
 
 /**
  * Runtime class
@@ -38,6 +39,7 @@ class Runtime extends DocHooks\HookAnnotations {
 	 */
 	public function boot() {
 
+		$this->filesystems();
 		$this->singletons();
 		$this->load_functions();
 		$this->load_deprecated();
@@ -73,6 +75,36 @@ class Runtime extends DocHooks\HookAnnotations {
 	}
 
 	/**
+	 * Sets up the plugin filesystems
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function filesystems() {
+
+		$root = new Filesystem( dirname( $this->plugin_file ) );
+
+		$this->filesystems = [
+			'root'      => $root,
+			'dist'      => new Filesystem( $root->path( 'dist' ) ),
+			'includes'  => new Filesystem( $root->path( 'src/includes' ) ),
+			'templates' => new Filesystem( $root->path( 'src/templates' ) ),
+		];
+
+	}
+
+	/**
+	 * Gets filesystem
+	 *
+	 * @since  [Next]
+	 * @param  string $name Filesystem name.
+	 * @return Filesystem|null
+	 */
+	public function get_filesystem( $name ) {
+		return $this->filesystems[ $name ];
+	}
+
+	/**
 	 * Creates needed classes
 	 * Singletons are used for a sake of performance
 	 *
@@ -81,6 +113,7 @@ class Runtime extends DocHooks\HookAnnotations {
 	 */
 	public function singletons() {
 
+		// Deprecated. Used to get views.
 		$this->files = new Utils\Files( $this->plugin_file, $this->plugin_custom_url, $this->plugin_custom_path );
 
 		$this->core_cron       = new Core\Cron();
@@ -96,9 +129,9 @@ class Runtime extends DocHooks\HookAnnotations {
 		$this->admin_post_type  = new Admin\PostType();
 		$this->admin_post_table = new Admin\PostTable();
 		$this->admin_extensions = new Admin\Extensions();
-		$this->admin_scripts    = new Admin\Scripts( $this, $this->files );
+		$this->admin_scripts    = new Admin\Scripts( $this, $this->get_filesystem( 'dist' ) );
 		$this->admin_screen     = new Admin\Screen();
-		$this->admin_wizard     = new Admin\Wizard( $this->files );
+		$this->admin_wizard     = new Admin\Wizard( $this->get_filesystem( 'includes' ) );
 		$this->admin_sync       = new Admin\Sync();
 		$this->admin_debugging  = new Admin\Debugging();
 
@@ -131,9 +164,8 @@ class Runtime extends DocHooks\HookAnnotations {
 		register_uninstall_hook( $this->plugin_file, [ 'BracketSpace\Notification\Core\Uninstall', 'remove_plugin_data' ] );
 
 		// DocHooks compatibility.
-		$hooks_file = $this->files->file_path( 'src/includes/hooks.php' );
-		if ( ! DocHooks\Helper::is_enabled() && file_exists( $hooks_file ) ) {
-			include_once $hooks_file;
+		if ( ! DocHooks\Helper::is_enabled() && $this->get_filesystem( 'includes' )->exists( 'hooks.php' ) ) {
+			include_once $this->get_filesystem( 'includes' )->path( 'hooks.php' );
 		}
 
 	}
@@ -156,17 +188,23 @@ class Runtime extends DocHooks\HookAnnotations {
 	 */
 	public function load_functions() {
 
-		require_once $this->files->file_path( 'src/includes/functions/general.php' );
-		require_once $this->files->file_path( 'src/includes/functions/settings.php' );
-		require_once $this->files->file_path( 'src/includes/functions/resolver.php' );
-		require_once $this->files->file_path( 'src/includes/functions/carrier.php' );
-		require_once $this->files->file_path( 'src/includes/functions/trigger.php' );
-		require_once $this->files->file_path( 'src/includes/functions/recipient.php' );
-		require_once $this->files->file_path( 'src/includes/functions/notification.php' );
-		require_once $this->files->file_path( 'src/includes/functions/notification-post.php' );
-		require_once $this->files->file_path( 'src/includes/functions/whitelabel.php' );
-		require_once $this->files->file_path( 'src/includes/functions/import-export.php' );
-		require_once $this->files->file_path( 'src/includes/functions/adapter.php' );
+		$function_files = [
+			'general',
+			'settings',
+			'resolver',
+			'carrier',
+			'trigger',
+			'recipient',
+			'notification',
+			'notification-post',
+			'whitelabel',
+			'import-export',
+			'adapter',
+		];
+
+		array_map( function( $function_file ) {
+				require_once $this->get_filesystem( 'includes' )->path( sprintf( 'functions/%s.php', $function_file ) );
+		}, $function_files );
 
 	}
 
@@ -178,13 +216,18 @@ class Runtime extends DocHooks\HookAnnotations {
 	 */
 	public function load_deprecated() {
 
-		// Functions.
-		require_once $this->files->file_path( 'src/includes/deprecated/functions.php' );
+		$deprecation_files = [
+			// Functions.
+			'functions',
+			// Classes.
+			'class/Abstracts/Notification',
+			'class/Defaults/Notification/Email',
+			'class/Defaults/Notification/Webhook',
+		];
 
-		// Classes.
-		require_once $this->files->file_path( 'src/includes/deprecated/class/Abstracts/Notification.php' );
-		require_once $this->files->file_path( 'src/includes/deprecated/class/Defaults/Notification/Email.php' );
-		require_once $this->files->file_path( 'src/includes/deprecated/class/Defaults/Notification/Webhook.php' );
+		array_map( function( $deprecation_file ) {
+				require_once $this->get_filesystem( 'includes' )->path( sprintf( 'deprecated/%s.php', $deprecation_file ) );
+		}, $deprecation_files );
 
 	}
 
@@ -226,7 +269,7 @@ class Runtime extends DocHooks\HookAnnotations {
 	 */
 	public function load_default( $default ) {
 		if ( apply_filters( 'notification/load/default/' . $default, true ) ) {
-			$path = $this->files->file_path( 'src/includes/defaults/' . $default . '.php' );
+			$path = $this->get_filesystem( 'includes' )->path( sprintf( 'defaults/%s.php', $default ) );
 			if ( file_exists( $path ) ) {
 				require_once $path;
 			}
