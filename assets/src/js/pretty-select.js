@@ -6,7 +6,7 @@
 
 		notification.hooks.addAction( 'notification.carrier.recipients.recipient.replaced', function( $input ) {
 			if ( $input.hasClass( 'notification-pretty-select' ) ) {
-				$input.selectize();
+				$input.find( '.notification-pretty-select' ).selectize();
 			}
 		} );
 
