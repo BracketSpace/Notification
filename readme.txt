@@ -287,6 +287,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Webhook class methods http_request and parse_args move to trait.
 * [Added] Added Webhook trait.
 * [Added] Webhook JSON Carrier with plain JSON input code field.
+* [Added] Scheduling user Merge Tags for Post Scheduled trigger.
 * [Fixed] Merge Tag used as anchor href now is not prefixed with protocol while adding the link.
 
 = 6.3.2 =
