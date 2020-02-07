@@ -12,7 +12,7 @@
 		<?php do_action( 'notification/admin/metabox/save/pre', $this ); ?>
 		<label class="row-label" for="onoffswitch"><strong><?php esc_html_e( 'Enable', 'notification' ); ?></strong></label>
 		<div class="onoffswitch">
-			<input type="checkbox" name="notification_onoff_switch" class="onoffswitch-checkbox" value="1" id="onoffswitch" <?php checked( $this->get_var( 'enabled' ), true ); ?>>
+			<input type="checkbox" name="notification_onoff_switch" class="onoffswitch-checkbox" value="1" id="onoffswitch" <?php checked( $get( 'enabled' ), true ); ?>>
 			<label class="onoffswitch-label" for="onoffswitch">
 				<span class="onoffswitch-inner"></span>
 				<span class="onoffswitch-switch"></span>
@@ -24,8 +24,8 @@
 
 	<div id="major-publishing-actions">
 		<div id="delete-action">
-			<?php if ( current_user_can( 'delete_post', $this->get_var( 'post_id' ) ) ) : ?>
-				<a class="submitdelete deletion notification-delete-post" href="<?php echo get_delete_post_link( $this->get_var( 'post_id' ), '', true ); ?>"><?php echo esc_html__( 'Remove', 'notification' ); ?></a>
+			<?php if ( current_user_can( 'delete_post', $get( 'post_id' ) ) ) : ?>
+				<a class="submitdelete deletion notification-delete-post" href="<?php echo get_delete_post_link( $get( 'post_id' ), '', true ); ?>"><?php echo esc_html__( 'Remove', 'notification' ); ?></a>
 			<?php endif; ?>
 		</div>
 		<div id="publishing-action">

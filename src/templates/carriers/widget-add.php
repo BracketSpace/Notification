@@ -6,12 +6,12 @@
  */
 
 ?>
-<div class="notification-carriers" data-nt-widget <?php echo ( $this->get_var( 'carriers_added_count' ) === $this->get_var( 'carriers_exists_count' ) ) ? 'data-nt-hidden' : ''; ?>>
+<div class="notification-carriers" data-nt-widget <?php echo ( $get( 'carriers_added_count' ) === $get( 'carriers_exists_count' ) ) ? 'data-nt-hidden' : ''; ?>>
 	<ul class="notification-carriers__carriers" data-nt-buttons data-nt-hidden>
-		<?php foreach ( $this->get_var( 'carriers' ) as $carrier ) : ?>
+		<?php foreach ( $get( 'carriers' ) as $carrier ) : ?>
 			<li class="notification-carriers__carrier"
 				data-nt-button="<?php echo esc_attr( $carrier->get_slug() ); ?>"
-				<?php echo ( array_key_exists( $carrier->get_slug(), $this->get_var( 'carriers_exists' ) ) ) ? 'data-nt-hidden' : ''; ?>>
+				<?php echo ( array_key_exists( $carrier->get_slug(), $get( 'carriers_exists' ) ) ) ? 'data-nt-hidden' : ''; ?>>
 				<a href="#" class="notification-carriers__carrier-link" data-nt-button-link>
 					<div class="notification-carriers__carrier-media">
 						<div class="notification-carriers__carrier-icon"><?php echo $carrier->icon; // phpcs:ignore ?></div>

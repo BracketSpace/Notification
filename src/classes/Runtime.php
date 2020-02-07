@@ -12,6 +12,7 @@ use BracketSpace\Notification\Admin;
 use BracketSpace\Notification\Core;
 use BracketSpace\Notification\Vendor\Micropackage\DocHooks;
 use BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem;
+use BracketSpace\Notification\Vendor\Micropackage\Templates\Storage as TemplateStorage;
 
 /**
  * Runtime class
@@ -40,6 +41,7 @@ class Runtime extends DocHooks\HookAnnotations {
 	public function boot() {
 
 		$this->filesystems();
+		$this->templates();
 		$this->singletons();
 		$this->load_functions();
 		$this->load_deprecated();
@@ -75,6 +77,18 @@ class Runtime extends DocHooks\HookAnnotations {
 	}
 
 	/**
+	 * Sets up the templates storage
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function templates() {
+
+		TemplateStorage::add( 'templates', $this->get_filesystem( 'root' )->path( 'src/templates' ) );
+
+	}
+
+	/**
 	 * Sets up the plugin filesystems
 	 *
 	 * @since  [Next]
@@ -85,10 +99,9 @@ class Runtime extends DocHooks\HookAnnotations {
 		$root = new Filesystem( dirname( $this->plugin_file ) );
 
 		$this->filesystems = [
-			'root'      => $root,
-			'dist'      => new Filesystem( $root->path( 'dist' ) ),
-			'includes'  => new Filesystem( $root->path( 'src/includes' ) ),
-			'templates' => new Filesystem( $root->path( 'src/templates' ) ),
+			'root'     => $root,
+			'dist'     => new Filesystem( $root->path( 'dist' ) ),
+			'includes' => new Filesystem( $root->path( 'src/includes' ) ),
 		];
 
 	}
@@ -112,9 +125,6 @@ class Runtime extends DocHooks\HookAnnotations {
 	 * @return void
 	 */
 	public function singletons() {
-
-		// Deprecated. Used to get views.
-		$this->files = new Utils\Files( $this->plugin_file, $this->plugin_custom_url, $this->plugin_custom_path );
 
 		$this->core_cron       = new Core\Cron();
 		$this->core_whitelabel = new Core\Whitelabel();
@@ -168,16 +178,6 @@ class Runtime extends DocHooks\HookAnnotations {
 			include_once $this->get_filesystem( 'includes' )->path( 'hooks.php' );
 		}
 
-	}
-
-	/**
-	 * Returns new View object
-	 *
-	 * @since  5.0.0
-	 * @return View view object
-	 */
-	public function view() {
-		return new Utils\View( $this->files );
 	}
 
 	/**

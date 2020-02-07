@@ -5,4 +5,4 @@
  * @package notification
  */
 
-echo $this->get_var( 'current_field' )->field();  // phpcs:ignore
+echo $get( 'current_field' )->field(); // phpcs:ignore

@@ -16,7 +16,7 @@
 			<td><?php esc_html_e( 'Action' ); ?></td>
 		</tr>
 	</thead>
-	<?php foreach ( $this->get_var( 'collection' ) as $item ) : ?>
+	<?php foreach ( $get( 'collection' ) as $item ) : ?>
 		<?php $hash = $item['notification']->get_hash(); ?>
 		<tr>
 			<td class="title">

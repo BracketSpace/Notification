@@ -39,10 +39,6 @@ class TestMain extends \WP_UnitTestCase {
 	public function test_boot() {
 
 		// Instances.
-		$this->assertInstanceOf( 'BracketSpace\Notification\Utils\View', $this->notification->view() );
-
-		$this->assertInstanceOf( 'BracketSpace\Notification\Utils\Files', $this->notification->files );
-
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Cron', $this->notification->core_cron );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Whitelabel', $this->notification->core_whitelabel );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Debugging', $this->notification->core_debugging );
@@ -63,7 +59,11 @@ class TestMain extends \WP_UnitTestCase {
 		$this->assertInstanceOf( 'BracketSpace\Notification\Admin\Debugging', $this->notification->admin_debugging );
 
 		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\WordPress', $this->notification->integration_wp );
+		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\WordPressEmails', $this->notification->integration_wp_emails );
+		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\Gutenberg', $this->notification->integration_gb );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\CustomFields', $this->notification->integration_cf );
+		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\BackgroundProcessing', $this->notification->integration_bp );
+		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\TinyMce', $this->notification->integration_mce );
 
 	}
 

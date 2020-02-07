@@ -5,7 +5,7 @@
  * @package notification
  */
 
-$premium_extensions = (array) $this->get_var( 'premium_extensions' );
+$premium_extensions = (array) $get( 'premium_extensions' );
 
 ?>
 
@@ -19,10 +19,7 @@ $premium_extensions = (array) $this->get_var( 'premium_extensions' );
 
 		<div id="the-list">
 			<?php foreach ( $premium_extensions as $extension ) : ?>
-				<?php
-					$this->set_var( 'extension', $extension, true );
-					$this->get_view( 'extension/extension-box-premium' );
-				?>
+				<?php notification_template( 'extension/extension-box-premium', [ 'extension' => $extention ] ); ?>
 			<?php endforeach; ?>
 		</div>
 
@@ -35,13 +32,10 @@ $premium_extensions = (array) $this->get_var( 'premium_extensions' );
 	<?php endif ?>
 
 	<div id="the-list">
-		<?php foreach ( (array) $this->get_var( 'extensions' ) as $extension ) : ?>
-			<?php
-				$this->set_var( 'extension', $extension, true );
-				$this->get_view( 'extension/extension-box' );
-			?>
+		<?php foreach ( (array) $get( 'extensions' ) as $extension ) : ?>
+			<?php notification_template( 'extension/extension-box', [ 'extension' => $extension ] ); ?>
 		<?php endforeach; ?>
-		<?php $this->get_view( 'extension/promo-box' ); ?>
+		<?php notification_template( 'extension/promo-box' ); ?>
 	</div>
 
 </div>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f996d5f9bc6b62e479597f0d7fbe7986",
+    "content-hash": "e639985435ee623bdc116f36ce0b98e8",
     "packages": [
         {
             "name": "micropackage/dochooks",
@@ -173,6 +173,52 @@
             ],
             "description": "Requirements checker for WordPress plugins",
             "time": "2020-02-04T20:14:06+00:00"
+        },
+        {
+            "name": "micropackage/templates",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/micropackage/templates.git",
+                "reference": "917f0d5046c98f12a67b6d5d2ce8db646d0f2c96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/micropackage/templates/zipball/917f0d5046c98f12a67b6d5d2ce8db646d0f2c96",
+                "reference": "917f0d5046c98f12a67b6d5d2ce8db646d0f2c96",
+                "shasum": ""
+            },
+            "require": {
+                "micropackage/filesystem": "^1.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+                "phpcompatibility/php-compatibility": "^9.1",
+                "phpunit/phpunit": "^6.5.5",
+                "wp-coding-standards/wpcs": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Micropackage\\Templates\\": "src"
+                },
+                "files": [
+                    "src/functions/template.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jakub Mikita",
+                    "email": "jakub@bracketspace.com"
+                }
+            ],
+            "description": "Simple PHP template engine which is easy to use",
+            "time": "2020-01-31T11:51:20+00:00"
         },
         {
             "name": "typisttech/imposter",

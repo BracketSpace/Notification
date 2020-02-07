@@ -95,11 +95,9 @@ class Wizard {
 	 * @return void
 	 */
 	public function wizard_page() {
-
-		$view = notification_create_view();
-		$view->set_var( 'sections', $this->get_settings() );
-		$view->get_view( 'wizard' );
-
+		notification_template( 'wizard', [
+			'sections' => $this->get_settings(),
+		] );
 	}
 
 	/**

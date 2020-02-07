@@ -5,7 +5,7 @@
  * @package notification
  */
 
-$field = $this->get_var( 'current_field' );
+$field = $get( 'current_field' );
 ?>
 
 <tr class="<?php echo esc_attr( $field->get_raw_name() ); ?>">

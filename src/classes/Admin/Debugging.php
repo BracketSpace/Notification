@@ -92,7 +92,6 @@ class Debugging {
 	 */
 	public function get_notification_log() {
 
-		$view     = notification_create_view();
 		$debug    = notification_runtime( 'core_debugging' );
 		$page     = isset( $_GET['notification_log_page'] ) ? intval( $_GET['notification_log_page'] ) : 1; // phpcs:ignore
 		$raw_logs = $debug->get_logs( $page, 'notification' );
@@ -108,22 +107,17 @@ class Debugging {
 			];
 		}
 
-		// Logs.
-		$view->set_vars( [
+		$html = notification_get_template( 'debug/notification-log', [
 			'datetime_format' => get_option( 'date_format' ) . ' ' . get_option( 'time_format' ),
 			'time_offset'     => get_option( 'gmt_offset' ) * HOUR_IN_SECONDS,
 			'logs'            => $logs,
 		] );
 
-		// Pagination.
-		$view->set_vars( [
+		$html .= notification_get_template( 'debug/pagination', [
 			'query_arg' => 'notification_log_page',
 			'total'     => $debug->get_logs_count( 'pages' ),
 			'current'   => $page,
 		] );
-
-		$html  = $view->get_view_output( 'debug/notification-log' );
-		$html .= $view->get_view_output( 'debug/pagination' );
 
 		return $html;
 
@@ -137,26 +131,20 @@ class Debugging {
 	 */
 	public function get_error_log() {
 
-		$view  = notification_create_view();
 		$debug = notification_runtime( 'core_debugging' );
 		$page  = isset( $_GET['error_log_page'] ) ? intval( $_GET['error_log_page'] ) : 1; // phpcs:ignore
 
-		// Logs.
-		$view->set_vars( [
+		$html = notification_get_template( 'debug/error-log', [
 			'datetime_format' => get_option( 'date_format' ) . ' ' . get_option( 'time_format' ),
 			'time_offset'     => get_option( 'gmt_offset' ) * HOUR_IN_SECONDS,
 			'logs'            => $debug->get_logs( $page, [ 'error', 'warning' ] ),
 		] );
 
-		// Pagination.
-		$view->set_vars( [
+		$html .= notification_get_template( 'debug/pagination', [
 			'query_arg' => 'error_log_page',
 			'total'     => $debug->get_logs_count( 'pages' ),
 			'current'   => $page,
 		] );
-
-		$html  = $view->get_view_output( 'debug/error-log' );
-		$html .= $view->get_view_output( 'debug/pagination' );
 
 		return $html;
 
