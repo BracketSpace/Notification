@@ -5,7 +5,7 @@
  * @package notification
  */
 
-$notifications = $this->get_var( 'notifications' );
+$notifications = $get( 'notifications' );
 
 ?>
 
@@ -20,7 +20,7 @@ $notifications = $this->get_var( 'notifications' );
 				<li><label><input type="checkbox" name="export-items" value="<?php echo esc_attr( $notification->get_id() ); ?>"> <?php echo esc_html( $notification->get_title() ); ?></label></li>
 			<?php endforeach ?>
 		</ul>
-		<a href="<?php $this->echo_var( 'download_link' ); ?>" class="button button-secondary"><?php esc_html_e( 'Download JSON' ); ?></a>
+		<a href="<?php $the( 'download_link' ); ?>" class="button button-secondary"><?php esc_html_e( 'Download JSON' ); ?></a>
 	</div>
 
 <?php endif ?>

@@ -5,31 +5,28 @@
  * @package notification
  */
 
-do_action( 'notification/metabox/trigger/tags/before', $this->get_var( 'trigger' ) );
+do_action( 'notification/metabox/trigger/tags/before', $get( 'trigger' ) );
 
-$groups = $this->get_var( 'tag_groups' );
+$groups = $get( 'tag_groups' );
 
-$this->get_view( 'mergetag/searchbox' );
+notification_template( 'mergetag/searchbox' );
 
 ?>
 
 <div class="notification_merge_tags_accordion">
-	<?php do_action( 'notification/metabox/trigger/tags/groups/before', $this->get_var( 'trigger' ) ); ?>
+	<?php do_action( 'notification/metabox/trigger/tags/groups/before', $get( 'trigger' ) ); ?>
 	<?php foreach ( $groups as $group_key => $group_value ) : ?>
 		<h2 data-group="<?php echo esc_html( sanitize_title( $group_key ) ); ?>"><?php echo esc_html( $group_key ); ?></h2>
 		<?php if ( $group_value ) : ?>
 			<ul class="tags-group" data-group="<?php echo esc_html( sanitize_title( $group_key ) ); ?>">
 				<?php foreach ( $group_value as $tag ) : ?>
 					<li>
-						<?php
-						$this->set_var( 'tag', $tag, true );
-						$this->get_view( 'mergetag/tag' );
-						?>
+						<?php notification_template( 'mergetag/tag', [ 'tag' => $tag ] ); ?>
 					</li>
 				<?php endforeach; ?>
 			</ul>
 		<?php endif; ?>
 	<?php endforeach; ?>
-	<?php do_action( 'notification/metabox/trigger/tags/groups/after', $this->get_var( 'trigger' ) ); ?>
+	<?php do_action( 'notification/metabox/trigger/tags/groups/after', $get( 'trigger' ) ); ?>
 </div>
-<?php do_action( 'notification/metabox/trigger/tags/after', $this->get_var( 'trigger' ) ); ?>
+<?php do_action( 'notification/metabox/trigger/tags/after', $get( 'trigger' ) ); ?>

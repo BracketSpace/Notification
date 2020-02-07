@@ -5,7 +5,7 @@
  * @package notification
  */
 
-$sections = (array) $this->get_var( 'sections' );
+$sections = (array) $get( 'sections' );
 
 ?>
 

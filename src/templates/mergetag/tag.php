@@ -5,7 +5,7 @@
  * @package notification
  */
 
-$tag = $this->get_var( 'tag' );
+$tag = $get( 'tag' );
 
 ?>
 

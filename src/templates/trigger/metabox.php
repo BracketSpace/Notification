@@ -9,16 +9,16 @@
 
 <h3 class="trigger-section-title"><?php esc_html_e( 'Trigger', 'notification' ); ?></h3>
 
-<?php if ( ! $this->get_var( 'has_triggers' ) ) : ?>
+<?php if ( ! $get( 'has_triggers' ) ) : ?>
 
 	<p><?php esc_html_e( 'No Triggers defined yet', 'notification' ); ?></p>
 
 <?php else : ?>
 
-	<?php do_action( 'notification/metabox/trigger/before', $this->get_var( 'triggers' ), $this->get_var( 'selected' ), $this->get_var( 'notification' ) ); ?>
+	<?php do_action( 'notification/metabox/trigger/before', $get( 'triggers' ), $get( 'selected' ), $get( 'notification' ) ); ?>
 
-	<?php $this->get_view( 'trigger/select' ); ?>
+	<?php notification_template( 'trigger/select', $this->get_vars() ); ?>
 
-	<?php do_action( 'notification/metabox/trigger/after', $this->get_var( 'triggers' ), $this->get_var( 'selected' ), $this->get_var( 'notification' ) ); ?>
+	<?php do_action( 'notification/metabox/trigger/after', $get( 'triggers' ), $get( 'selected' ), $get( 'notification' ) ); ?>
 
 <?php endif ?>

@@ -5,7 +5,7 @@
  * @package notification
  */
 
-$ext     = $this->get_var( 'extension' );
+$ext     = $get( 'extension' );
 $license = $ext['license']->get();
 
 ?>

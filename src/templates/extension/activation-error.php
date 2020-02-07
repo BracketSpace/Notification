@@ -8,5 +8,5 @@
 ?>
 
 <div class="error">
-	<p><?php $this->echo_var( 'message' ); ?></p>
+	<p><?php $the( 'message' ); ?></p>
 </div>

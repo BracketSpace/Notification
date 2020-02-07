@@ -5,25 +5,22 @@
  * @package notification
  */
 
-do_action( 'notification/metabox/trigger/tags/before', $this->get_var( 'trigger' ) );
+do_action( 'notification/metabox/trigger/tags/before', $get( 'trigger' ) );
 
-$tags = $this->get_var( 'tags' );
+$tags = $get( 'tags' );
 
-$this->get_view( 'mergetag/searchbox' );
+notification_template( 'mergetag/searchbox' );
 
 ?>
 
 <ul>
-	<?php do_action( 'notification/metabox/trigger/tags/list/before', $this->get_var( 'trigger' ) ); ?>
+	<?php do_action( 'notification/metabox/trigger/tags/list/before', $get( 'trigger' ) ); ?>
 	<?php foreach ( $tags as $tag ) : ?>
 		<li>
-			<?php
-			$this->set_var( 'tag', $tag, true );
-			$this->get_view( 'mergetag/tag' );
-			?>
+			<?php notification_template( 'mergetag/tag', [ 'tag' => $tag ] ); ?>
 		</li>
 	<?php endforeach ?>
-	<?php do_action( 'notification/metabox/trigger/tags/list/after', $this->get_var( 'trigger' ) ); ?>
+	<?php do_action( 'notification/metabox/trigger/tags/list/after', $get( 'trigger' ) ); ?>
 </ul>
 
-<?php do_action( 'notification/metabox/trigger/tags/after', $this->get_var( 'trigger' ) ); ?>
+<?php do_action( 'notification/metabox/trigger/tags/after', $get( 'trigger' ) ); ?>

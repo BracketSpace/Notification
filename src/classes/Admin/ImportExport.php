@@ -59,8 +59,7 @@ class ImportExport {
 	 * @return string
 	 */
 	public function notification_import_form() {
-		$view = notification_create_view();
-		return $view->get_view_output( 'import/notifications' );
+		return notification_get_template( 'import/notifications' );
 	}
 
 	/**
@@ -71,12 +70,12 @@ class ImportExport {
 	 */
 	public function notification_export_form() {
 
-		$view = notification_create_view();
+		$download_link = admin_url( 'admin-post.php?action=notification_export&nonce=' . wp_create_nonce( 'notification-export' ) . '&type=notifications&items=' );
 
-		$view->set_var( 'notifications', notification_get_posts( null, true ) );
-		$view->set_var( 'download_link', admin_url( 'admin-post.php?action=notification_export&nonce=' . wp_create_nonce( 'notification-export' ) . '&type=notifications&items=' ) );
-
-		return $view->get_view_output( 'export/notifications' );
+		return notification_get_template( 'export/notifications', [
+			'notifications' => notification_get_posts( null, true ),
+			'download_link' => $download_link,
+		] );
 
 	}
 

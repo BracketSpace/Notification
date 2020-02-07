@@ -59,17 +59,16 @@ class Screen {
 	 */
 	public function render_trigger_select( $notification_post ) {
 
-		$view             = notification_create_view();
 		$grouped_triggers = notification_get_triggers_grouped();
 		$trigger          = $notification_post->get_trigger();
 
-		$view->set_var( 'selected', $trigger ? $trigger->get_slug() : '' );
-		$view->set_var( 'triggers', $grouped_triggers );
-		$view->set_var( 'has_triggers', ! empty( $grouped_triggers ) );
-		$view->set_var( 'select_name', 'notification_trigger' );
-		$view->set_var( 'notification', $notification_post );
-
-		$view->get_view( 'trigger/metabox' );
+		notification_template( 'trigger/metabox', [
+			'selected'     => $trigger ? $trigger->get_slug() : '',
+			'triggers'     => $grouped_triggers,
+			'has_triggers' => ! empty( $grouped_triggers ),
+			'select_name'  => 'notification_trigger',
+			'notification' => $notification_post,
+		] );
 
 	}
 
@@ -96,8 +95,7 @@ class Screen {
 
 		foreach ( notification_get_carriers() as $_carrier ) {
 
-			$box_view = notification_create_view();
-			$carrier  = $notification_post->get_carrier( $_carrier->get_slug() );
+			$carrier = $notification_post->get_carrier( $_carrier->get_slug() );
 
 			// If Carrier wasn't set before, use the blank one.
 			if ( ! $carrier ) {
@@ -110,7 +108,7 @@ class Screen {
 				$carrier->activate();
 			}
 
-			$box_view->set_vars( [
+			notification_template( 'box', [
 				'slug'        => $carrier->get_slug(),
 				'id'          => 'notification-carrier-' . $carrier->get_slug() . '-box',
 				'name'        => 'notification_carrier_' . $carrier->get_slug() . '_enable',
@@ -120,8 +118,6 @@ class Screen {
 				'open'        => $carrier->is_enabled(),
 				'active'      => $carrier->is_active(),
 			] );
-
-			$box_view->get_view( 'box' );
 
 		}
 
@@ -148,14 +144,12 @@ class Screen {
 		$carriers = notification_get_carriers();
 		$exists   = $notification_post->get_carriers();
 
-		$view = notification_create_view();
-		$view->set_vars( [
+		notification_template( 'carriers/widget-add', [
 			'carriers_added_count'  => count( $carriers ),
 			'carriers_exists_count' => count( $exists ),
 			'carriers'              => $carriers,
 			'carriers_exists'       => $exists,
 		] );
-		$view->get_view( 'carriers/widget-add' );
 
 	}
 
@@ -168,17 +162,15 @@ class Screen {
 	 */
 	public function get_carrier_form( Interfaces\Sendable $carrier ) {
 
-		$view   = notification_create_view();
 		$fields = $carrier->get_form_fields();
 
 		// No fields available so return the default view.
 		if ( empty( $fields ) ) {
-			return $view->get_view_output( 'form/empty-form' );
+			return notification_get_template( 'form/empty-form' );
 		}
 
 		// Setup the fields and return form.
-		$view->set_var( 'fields', $fields );
-		return $view->get_view_output( 'form/table' );
+		return notification_get_template( 'form/table', [ 'fields' => $fields ] );
 
 	}
 
@@ -213,8 +205,6 @@ class Screen {
 	 */
 	public function render_save_metabox( $post ) {
 
-		$view = notification_create_view();
-
 		if ( ! EMPTY_TRASH_DAYS ) {
 			$delete_text = __( 'Delete Permanently', 'notification' );
 		} else {
@@ -224,11 +214,11 @@ class Screen {
 		// New posts has the status auto-draft and in this case the Notification should be enabled.
 		$enabled = 'draft' !== get_post_status( $post->ID );
 
-		$view->set_var( 'enabled', $enabled );
-		$view->set_var( 'post_id', $post->ID );
-		$view->set_var( 'delete_link_label', $delete_text );
-
-		$view->get_view( 'save-metabox' );
+		notification_template( 'save-metabox', [
+			'enabled'           => $enabled,
+			'post_id'           => $post->ID,
+			'delete_link_label' => $delete_text,
+		] );
 
 	}
 
@@ -263,13 +253,12 @@ class Screen {
 	 */
 	public function render_merge_tags_metabox( $post ) {
 
-		$view         = notification_create_view();
 		$notification = notification_adapt_from( 'WordPress', $post );
 		$trigger      = $notification->get_trigger();
 		$trigger_slug = $trigger ? $trigger->get_slug() : false;
 
 		if ( ! $trigger_slug ) {
-			$view->get_view( 'mergetag/metabox-notrigger' );
+			notification_template( 'mergetag/metabox-notrigger' );
 			return;
 		}
 
@@ -285,29 +274,30 @@ class Screen {
 	 */
 	public function render_merge_tags_list( $trigger_slug ) {
 
-		$view    = notification_create_view();
 		$trigger = notification_get_trigger( $trigger_slug );
 
 		if ( empty( $trigger ) ) {
-			$view->get_view( 'mergetag/metabox-nomergetags' );
+			notification_template( 'mergetag/metabox-nomergetags' );
 			return;
 		}
 
 		$tag_groups = $this->prepare_merge_tag_groups( $trigger );
 
 		if ( empty( $tag_groups ) ) {
-			$view->get_view( 'mergetag/metabox-nomergetags' );
+			notification_template( 'mergetag/metabox-nomergetags' );
 			return;
 		}
 
-		$view->set_var( 'trigger', $trigger );
-		$view->set_var( 'tags', $trigger->get_merge_tags( 'visible' ) );
-		$view->set_var( 'tag_groups', $tag_groups );
+		$vars = [
+			'trigger'    => $trigger,
+			'tags'       => $trigger->get_merge_tags( 'visible' ),
+			'tag_groups' => $tag_groups,
+		];
 
 		if ( count( $tag_groups ) > 1 ) {
-			$view->get_view( 'mergetag/metabox-accordion' );
+			notification_template( 'mergetag/metabox-accordion', $vars );
 		} else {
-			$view->get_view( 'mergetag/metabox-list' );
+			notification_template( 'mergetag/metabox-list', $vars );
 		}
 	}
 
@@ -397,17 +387,15 @@ class Screen {
 			return;
 		}
 
-		$view = notification_create_view();
-
-		$view->set_var( 'tags', notification_get_global_merge_tags() );
-
 		$screen->add_help_tab( [
 			'id'      => 'notification_global_merge_tags',
 			'title'   => __( 'Global Merge Tags', 'notification' ),
-			'content' => $view->get_view_output( 'help/global-merge-tags' ),
+			'content' => notification_get_template( 'help/global-merge-tags', [
+				'tags' => notification_get_global_merge_tags(),
+			] ),
 		] );
 
-		$screen->set_help_sidebar( $view->get_view_output( 'help/sidebar' ) );
+		$screen->set_help_sidebar( notification_get_template( 'help/sidebar' ) );
 
 	}
 

@@ -5,7 +5,7 @@
  * @package notification
  */
 
-$logs = $this->get_var( 'logs' );
+$logs = $get( 'logs' );
 
 ?>
 
@@ -27,7 +27,7 @@ $logs = $this->get_var( 'logs' );
 					<span class="excerpt"><?php echo esc_html( preg_replace( '/\s+/', ' ', wp_strip_all_tags( $log->message ) ) ); ?></span>
 					<span class="indicator dashicons dashicons-arrow-down"></span>
 					<span class="date">
-						<abbr title="<?php echo esc_html( date_i18n( $this->get_var( 'datetime_format' ), strtotime( $log->time_logged ) + $this->get_var( 'time_offset' ) ) ); ?>">
+						<abbr title="<?php echo esc_html( date_i18n( $get( 'datetime_format' ), strtotime( $log->time_logged ) + $get( 'time_offset' ) ) ); ?>">
 							<?php // translators: Time ago. ?>
 							<?php esc_html_e( sprintf( __( '%s ago' ), human_time_diff( strtotime( $log->time_logged ) ) ) ); ?>
 						</abbr>

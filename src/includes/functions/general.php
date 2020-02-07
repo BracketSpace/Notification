@@ -20,16 +20,6 @@ function notification_display_wizard() {
 }
 
 /**
- * Creates new View object.
- *
- * @since  6.0.0
- * @return View
- */
-function notification_create_view() {
-	return notification_runtime()->view();
-}
-
-/**
  * Creates new AJAX Handler object.
  *
  * @since  6.0.0
@@ -112,4 +102,32 @@ function notification_log( $component, $type, $message ) {
  */
 function notification_filesystem( $name ) {
 	return notification_runtime()->get_filesystem( $name );
+}
+
+/**
+ * Prints the template
+ * Wrapper for micropackage's template function
+ *
+ * @since  [Next]
+ * @param  string $template_name Template name.
+ * @param  array  $vars          Template variables.
+ *                               Default: empty.
+ * @return void
+ */
+function notification_template( $template_name, $vars = [] ) {
+	BracketSpace\Notification\Vendor\Micropackage\Templates\template( 'templates', $template_name, $vars );
+}
+
+/**
+ * Gets the template
+ * Wrapper for micropackage's get_template function
+ *
+ * @since  [Next]
+ * @param  string $template_name Template name.
+ * @param  array  $vars          Template variables.
+ *                               Default: empty.
+ * @return string
+ */
+function notification_get_template( $template_name, $vars = [] ) {
+	return BracketSpace\Notification\Vendor\Micropackage\Templates\get_template( 'templates', $template_name, $vars );
 }

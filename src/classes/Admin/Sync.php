@@ -63,13 +63,11 @@ class Sync {
 	 */
 	public function template_actions() {
 
-		$view = notification_create_view();
-
 		if ( ! notification_is_syncing() ) {
-			return $view->get_view_output( 'sync/disabled' );
+			return notification_get_template( 'sync/disabled' );
 		}
 
-		return $view->get_view_output( 'sync/actions' );
+		return notification_get_template( 'sync/actions' );
 
 	}
 
@@ -80,8 +78,6 @@ class Sync {
 	 * @return string
 	 */
 	public function template_notifications() {
-
-		$view = notification_create_view();
 
 		// Get all Notifications.
 		$wp_json_notifiactions = PostType::get_all_notifications();
@@ -146,11 +142,12 @@ class Sync {
 		}
 
 		if ( empty( $collection ) ) {
-			return $view->get_view_output( 'sync/notifications-empty' );
-		} else {
-			$view->set_var( 'collection', array_reverse( $collection ) );
-			return $view->get_view_output( 'sync/notifications' );
+			return notification_get_template( 'sync/notifications-empty' );
 		}
+
+		return notification_get_template( 'sync/notifications', [
+			'collection' => array_reverse( $collection ),
+		] );
 
 	}
 

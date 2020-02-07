@@ -141,10 +141,23 @@ function notification_add_doc_hooks( $object ) {
  * Checks if the DocHooks are enabled and working.
  *
  * @since      6.1.0
- * @deprecated [Next] Use `the micropackage/dochooks` package.
+ * @deprecated [Next] Use the `micropackage/dochooks` package.
  * @return     boolean
  */
 function notification_dochooks_enabled() {
 	_deprecated_function( 'notification_dochooks_enabled', '[Next]' );
 	return DocHooksHelper::is_enabled();
+}
+
+/**
+ * Creates new View object.
+ *
+ * @since  6.0.0
+ * @deprecated [Next] Use `notification_template` or `notification_get_template` functions.
+ *                    Or use Template object from micropackage.
+ * @return View
+ */
+function notification_create_view() {
+	_deprecated_function( 'notification_create_view', '[Next]' );
+	return false;
 }

@@ -169,10 +169,10 @@ class Extensions {
 	 * @return void
 	 */
 	public function extensions_page() {
-		$view = notification_create_view();
-		$view->set_var( 'premium_extensions', $this->premium_extensions );
-		$view->set_var( 'extensions', $this->extensions );
-		$view->get_view( 'extension/page' );
+		notification_template( 'extension/page', [
+			'premium_extensions' => $this->premium_extensions,
+			'extensions'         => $this->extensions,
+		] );
 	}
 
 	/**
@@ -386,9 +386,7 @@ class Extensions {
 				break;
 		}
 
-		$view_class = notification_create_view();
-		$view_class->set_var( 'message', $message );
-		$view_class->get_view( 'extension/activation-' . $view );
+		notification_template( sprintf( 'extension/activation-%s', $view ), [ 'message' => $message ] );
 
 	}
 
@@ -424,9 +422,9 @@ class Extensions {
 						'<a href="' . admin_url( 'edit.php?post_type=notification&page=extensions' ) . '">' . __( 'Go to Extensions', 'notification' ) . '</a>'
 					);
 
-					$view = notification_create_view();
-					$view->set_var( 'message', $message, true );
-					$view->get_view( 'extension/activation-error' );
+					notification_template( 'extension/activation-error', [
+						'message' => $message,
+					] );
 
 				}
 			}
