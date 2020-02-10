@@ -73,6 +73,8 @@ class Scripts {
 			return;
 		}
 
+		wp_enqueue_media();
+
 		wp_enqueue_script( 'notification', $this->filesystem->url( 'js/scripts.js' ), [ 'jquery', 'wp-color-picker', 'wp-i18n', 'wp-hooks', 'jquery-ui-sortable' ], $this->filesystem->mtime( 'js/scripts.js' ), true );
 
 		wp_enqueue_style( 'notification', $this->filesystem->url( 'css/style.css' ), [], $this->filesystem->mtime( 'css/style.css' ) );

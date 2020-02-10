@@ -6,7 +6,18 @@
 
 		notification.hooks.addAction( 'notification.carrier.recipients.recipient.replaced', function( $input ) {
 			if ( $input.hasClass( 'notification-pretty-select' ) ) {
-				$input.selectize();
+				const selectized = $input.selectize();
+
+				if ( ! selectized[ 1 ] ) {
+					return;
+				}
+
+				if ( selectized[ 1 ].classList.contains( 'description' ) ) {
+					const parent = selectized[ 0 ].parentNode;
+					const clonedField = parent.querySelector( '.selectize-control.description' );
+					selectized[ 1 ].style.display = 'block';
+					clonedField.style.display = 'none';
+				}
 			}
 		} );
 
