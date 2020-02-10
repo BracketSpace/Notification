@@ -171,7 +171,7 @@ class Settings {
 			->add_field( [
 				'name'     => __( 'Comment Types', 'notification' ),
 				'slug'     => 'types',
-				'default'  => [ 'comment', 'pingback', 'trackback' ],
+				'default'  => [ 'comment' ],
 				'addons'   => [
 					'multiple' => true,
 					'pretty'   => true,

@@ -62,6 +62,9 @@ class Screen {
 		$grouped_triggers = notification_get_triggers_grouped();
 		$trigger          = $notification_post->get_trigger();
 
+		// Add merge tags.
+		$trigger->merge_tags();
+
 		notification_template( 'trigger/metabox', [
 			'selected'     => $trigger ? $trigger->get_slug() : '',
 			'triggers'     => $grouped_triggers,

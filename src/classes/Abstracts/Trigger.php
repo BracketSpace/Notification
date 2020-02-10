@@ -95,8 +95,6 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		$this->slug = $slug;
 		$this->name = $name;
 
-		$this->merge_tags();
-
 	}
 
 	/**
@@ -106,6 +104,16 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * @return void
 	 */
 	abstract public function merge_tags();
+
+	/**
+	 * Sets up the merge tags
+	 *
+	 * @return void
+	 */
+	public function setup_merge_tags() {
+		$this->merge_tags();
+		do_action( 'notification/trigger/merge_tags', $this );
+	}
 
 	/**
 	 * Listens to an action
@@ -620,6 +628,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 			return;
 		}
 
+		$this->setup_merge_tags();
 		$this->resolve_fields();
 		$this->roll_out();
 		$this->clean_merge_tags();
