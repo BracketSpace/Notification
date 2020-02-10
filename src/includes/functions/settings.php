@@ -19,7 +19,7 @@ function notification_register_settings( $callback, $priority = 10 ) {
 		trigger_error( 'You have to pass callable while registering the settings', E_USER_ERROR );
 	}
 
-	add_action( 'notification/settings/register', $callback );
+	add_action( 'notification/settings/register', $callback, $priority );
 
 }
 
