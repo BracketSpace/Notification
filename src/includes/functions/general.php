@@ -23,10 +23,11 @@ function notification_display_wizard() {
  * Creates new AJAX Handler object.
  *
  * @since  6.0.0
- * @return BracketSpace\Notification\Utils\Ajax
+ * @since  [Next] Using Ajax Micropackage.
+ * @return BracketSpace\Notification\Vendor\Micropackage\Ajax\Response
  */
 function notification_ajax_handler() {
-	return new BracketSpace\Notification\Utils\Ajax();
+	return new BracketSpace\Notification\Vendor\Micropackage\Ajax\Response();
 }
 
 /**

@@ -24,7 +24,8 @@
 		"typisttech/imposter-plugin": "^0.4.0",
 		"micropackage/dochooks": "^1.0",
 		"micropackage/filesystem": "^1.1",
-		"micropackage/templates": "^1.1"
+		"micropackage/templates": "^1.1",
+		"micropackage/ajax": "^1.0"
 	},
 	"extra": {
 		"imposter": {
