@@ -63,7 +63,9 @@ class Screen {
 		$trigger          = $notification_post->get_trigger();
 
 		// Add merge tags.
-		$trigger->merge_tags();
+		if ( $trigger ) {
+			$trigger->merge_tags();
+		}
 
 		notification_template( 'trigger/metabox', [
 			'selected'     => $trigger ? $trigger->get_slug() : '',
@@ -427,7 +429,7 @@ class Screen {
 
 		$this->render_merge_tags_list( sanitize_text_field( wp_unslash( $_POST['trigger_slug'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
-		$ajax->success( ob_get_clean() );
+		$ajax->send( ob_get_clean() );
 
 	}
 
@@ -459,7 +461,7 @@ class Screen {
 			echo '<small class="description">' . $description . '</small>'; // phpcs:ignore
 		}
 
-		notification_ajax_handler()->success( ob_get_clean() );
+		notification_ajax_handler()->send( ob_get_clean() );
 
 	}
 

@@ -4,8 +4,51 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e639985435ee623bdc116f36ce0b98e8",
+    "content-hash": "47d3ea41f05e8904bc09c37bfb247c7b",
     "packages": [
+        {
+            "name": "micropackage/ajax",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/micropackage/ajax.git",
+                "reference": "8bf2c0528776696208f53ce8c393da3aba7b24ac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/micropackage/ajax/zipball/8bf2c0528776696208f53ce8c393da3aba7b24ac",
+                "reference": "8bf2c0528776696208f53ce8c393da3aba7b24ac",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+                "php-mock/php-mock-phpunit": "^2.6",
+                "phpcompatibility/php-compatibility": "^9.1",
+                "phpunit/phpunit": "^6.5.5",
+                "wp-coding-standards/wpcs": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Micropackage\\Ajax\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jakub Mikita",
+                    "email": "jakub@bracketspace.com"
+                }
+            ],
+            "description": "Wrapper for WordPress' AJAX",
+            "time": "2020-02-11T09:58:59+00:00"
+        },
         {
             "name": "micropackage/dochooks",
             "version": "1.0.1",

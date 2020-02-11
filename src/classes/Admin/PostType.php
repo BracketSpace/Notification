@@ -347,10 +347,10 @@ class PostType {
 		$result = $adapter->save();
 
 		if ( is_wp_error( $result ) ) {
-			$error = __( 'Notification status couldn\'t be changed.', 'notification' );
+			$ajax->error( __( 'Notification status couldn\'t be changed.', 'notification' ) );
 		}
 
-		$ajax->response( true, $error );
+		$ajax->send( true );
 
 	}
 
