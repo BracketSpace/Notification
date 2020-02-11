@@ -12,12 +12,13 @@
  * @package notification
  */
 
-define( 'NOTIFICATION_VERSION', '6.1.6' );
-
+/**
+ * Autoloading.
+ */
 require_once dirname( __FILE__ ) . '/vendor/autoload.php';
 
 /**
- * Requirements check
+ * Requirements check.
  */
 $requirements = new BracketSpace\Notification\Vendor\Micropackage\Requirements\Requirements( __( 'Notification', 'notification' ), [
 	'php' => '7.0',
@@ -29,31 +30,28 @@ if ( ! $requirements->satisfied() ) {
 	return;
 }
 
-global $notification_runtime;
+if ( ! function_exists( 'notification_runtime' ) ) :
+	/**
+	 * Gets the plugin runtime.
+	 *
+	 * @param string $property Optional property to get.
+	 * @return object Runtime class instance
+	 */
+	function notification_runtime( $property = null ) {
 
-/**
- * Gets the plugin runtime.
- *
- * @param string $property Optional property to get.
- * @return object Runtime class instance
- */
-function notification_runtime( $property = null ) {
+		global $notification_runtime;
 
-	global $notification_runtime;
+		if ( empty( $notification_runtime ) ) {
+			$notification_runtime = new BracketSpace\Notification\Runtime( __FILE__ );
+		}
 
-	if ( empty( $notification_runtime ) ) {
-		$notification_runtime = new BracketSpace\Notification\Runtime( __FILE__ );
+		if ( null !== $property && isset( $notification_runtime->{ $property } ) ) {
+			return $notification_runtime->{ $property };
+		}
+
+		return $notification_runtime;
+
 	}
+endif;
 
-	if ( null !== $property && isset( $notification_runtime->{ $property } ) ) {
-		return $notification_runtime->{ $property };
-	}
-
-	return $notification_runtime;
-
-}
-
-add_action( 'plugins_loaded', function() {
-	$runtime = notification_runtime();
-	$runtime->boot();
-}, 5 );
+notification_runtime()->boot();
