@@ -34,8 +34,8 @@ if ( ! function_exists( 'notification_runtime' ) ) :
 	/**
 	 * Gets the plugin runtime.
 	 *
-	 * @param string $property Optional property to get.
-	 * @return object Runtime class instance
+	 * @param  string $property Optional property to get.
+	 * @return object           Runtime class instance
 	 */
 	function notification_runtime( $property = null ) {
 
