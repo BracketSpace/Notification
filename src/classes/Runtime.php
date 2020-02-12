@@ -7,7 +7,6 @@
 
 namespace BracketSpace\Notification;
 
-use BracketSpace\Notification\Utils;
 use BracketSpace\Notification\Admin;
 use BracketSpace\Notification\Core;
 use BracketSpace\Notification\Vendor\Micropackage\DocHooks;
