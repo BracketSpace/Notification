@@ -50,7 +50,16 @@ export const fieldHandler = {
 				let counter = 0;
 
 				for( const value in this.values[i] ){
-					this.fields[i][counter].value = this.values[i][value];
+					const field = this.fields[i][counter];
+
+					field.value = this.values[i][value];
+
+					if( 'checkbox' === field.type ){
+
+						if( this.values[i][value] ){
+							field.checked = 'checked';
+						}
+					}
 					counter++;
 				}
 			}

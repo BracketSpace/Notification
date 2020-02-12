@@ -1,6 +1,7 @@
 /* global Vue */
 import { init } from './init';
 import { fieldHandler } from './fieldHandler';
+import { inputsHandler } from './inputsHandler';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -12,7 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		vueInstances[ wrapperId ] = new Vue( {
 			el: `#${wrapperId}`,
-			mixins: [ init, fieldHandler ],
+			mixins: [
+				init,
+				fieldHandler,
+				inputsHandler
+			],
 			data: {
 				'model' : '',
 				'type' : {},

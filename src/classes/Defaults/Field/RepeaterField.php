@@ -182,8 +182,10 @@ class RepeaterField extends Field {
 					:id="subfield.id"
 					:class="subfield.css_class"
 					:type="subfield.type"
-					:checked="subfield.value"
-					:name="`notification_carrier_[${key}][${subfield.name}]`">
+					:value="subfield.value"
+					:checked="subfield.checked"
+					:name="`notification_carrier_${type.fieldCarrier}[${type.fieldType}][${key}][${subfield.name}]`"
+					@click="selectCheckbox( subfield, $event )">
 					{{ subfield.checkbox_label }}
 					</label>
 					<input
