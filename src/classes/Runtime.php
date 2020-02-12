@@ -70,6 +70,7 @@ class Runtime extends DocHooks\HookAnnotations {
 
 		foreach ( get_object_vars( $this ) as $instance ) {
 			if ( is_object( $instance ) ) {
+
 				$this->add_hooks( $instance );
 			}
 		}
@@ -151,6 +152,8 @@ class Runtime extends DocHooks\HookAnnotations {
 		$this->integration_cf        = new Integration\CustomFields();
 		$this->integration_bp        = new Integration\BackgroundProcessing();
 		$this->integration_mce       = new Integration\TinyMce();
+
+		$this->repeater_api = new Api\RepeaterAPI();
 	}
 
 	/**

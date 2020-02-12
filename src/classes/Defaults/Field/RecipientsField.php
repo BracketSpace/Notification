@@ -89,90 +89,49 @@ class RecipientsField extends RepeaterField {
 	/**
 	 * Prints repeater row
 	 *
+	 * @since [Next] Added vue template.
 	 * @since  5.0.0
-	 * @param  array   $values row values.
-	 * @param  boolean $model  if this is a hidden model row.
-	 * @return string          row HTML
+	 * @return string
 	 */
-	public function row( $values = [], $model = false ) {
+	public function row() {
 
 		$html = '';
 
-		if ( $model ) {
-			$html .= '<tr class="row model">';
-		} else {
-			$html .= '<tr class="row">';
-		}
-
+		$html .= '<template v-for="( field, key ) in fields">';
+		$html .= '<tr class="row">';
 		$html .= '<td class="handle"></td>';
-
-		foreach ( $this->fields as $sub_field ) {
-			if ( isset( $values[ $sub_field->get_raw_name() ] ) ) {
-				$sub_field->set_value( $values[ $sub_field->get_raw_name() ] );
-			}
-
-			$sub_field->section = $this->get_name() . '[' . $this->current_row . ']';
-
-			// extract the type of recipient for the second field.
-			if ( ! $model && $sub_field->get_raw_name() === 'type' ) {
-				$recipient_type = $sub_field->get_value();
-			}
-
-			// don't print useless informations for hidden field.
-			if ( isset( $sub_field->type ) && 'hidden' === $sub_field->type ) {
-				$html .= $sub_field->field();
-			} else {
-
-				// swap the field to correct type.
-				if ( isset( $recipient_type ) &&
-					$recipient_type &&
-					$sub_field->get_raw_name() === 'recipient' ) {
-
-					$recipient = notification_get_recipient( $this->carrier, $recipient_type );
-
-					if ( empty( $recipient ) ) {
-						return '';
-					}
-
-					$sub_field = $recipient->input();
-
-					// rewrite value and section.
-					if ( isset( $values[ $sub_field->get_raw_name() ] ) ) {
-						$sub_field->set_value( $values[ $sub_field->get_raw_name() ] );
-					}
-					$sub_field->section = $this->get_name() . '[' . $this->current_row . ']';
-
-					// reset value for another type.
-					$recipient_type = false;
-
-				}
-
-				$html .= '<td class="subfield ' . esc_attr( $sub_field->get_raw_name() ) . '">';
-
-				if ( isset( $this->headers[ $sub_field->get_raw_name() ] ) ) {
-					$html .= '<div class="row-header">' . $this->headers[ $sub_field->get_raw_name() ] . '</div>';
-				}
-
-				$html       .= '<div class="row-field">';
-				$html       .= $sub_field->field();
-				$description = $sub_field->get_description();
-
-				if ( ! empty( $description ) ) {
-					$html .= '<small class="description">' . $description . '</small>';
-				}
-
-				$html .= '</div>';
-				$html .= '</td>';
-
-			}
-		}
-
-		$html .= '<td class="trash"></td>';
-
+		$html .= '
+			<template v-for="( subfield, index ) in field">
+			<td :class="`subfield ${subfield.name}`">
+				<div class="row-field">
+					<template
+						v-if="subfield.options"
+					>
+					<select
+					:id="subfield.id"
+					:name="`notification_carrier_${type.fieldCarrier}[${type.fieldType}][${key}][${subfield.name}]`"
+					:class="subfield.css_class">
+					<option v-for="( option, key ) in subfield.options" :value="key">{{option}}</option>
+					</select>
+					</template>
+					<input
+					:id="subfield.id"
+					:class="subfield.css_class"
+					type="text"
+					:value="subfield.value"
+					:name="`notification_carrier_${type.fieldCarrier}[${type.fieldType}][${key}][${subfield.name}]`"
+					v-else>
+					<small
+						v-if="field.description"
+					class="description"></small>
+				</div>
+			</td>
+			</template>
+			<td class="trash" @click="removeField(key)"></td>
+		';
 		$html .= '</tr>';
-
+		$html .= '</template>';
 		return $html;
-
 	}
 
 }

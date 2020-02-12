@@ -5,10 +5,30 @@
  * @package notification
  */
 
-$field = $get( 'current_field' );
+$field   = $get( 'current_field' );
+$carrier = $get( 'carrier' );
+
+if ( isset( $field->field_type ) ) {
+	$type = $field->field_type;
+} else {
+	$type = false;
+}
+
+if ( $type ) {
+	$id        = 'id=' . $field->id . '';
+	$vue_class = ' vue-repeater';
+} else {
+	$id        = '';
+	$vue_class = '';
+}
+
+if ( $carrier ) {
+	$data_carrier = ' data-carrier=' . $carrier . '';
+}
+
 ?>
 
-<tr class="<?php echo esc_attr( $field->get_raw_name() ); ?>">
+<tr <?php echo esc_attr( $id ); ?> class="<?php echo esc_attr( $field->get_raw_name() ) . esc_attr( $vue_class ); ?>" data-field-name=<?php echo esc_attr( $field->get_raw_name() ) . esc_attr( $data_carrier ); ?> >
 	<th>
 		<label for="<?php echo esc_attr( $field->get_id() ); ?>"><?php echo esc_html( $field->get_label() ); ?></label>
 	</th>

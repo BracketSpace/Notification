@@ -162,15 +162,18 @@ class Screen {
 	 */
 	public function get_carrier_form( Interfaces\Sendable $carrier ) {
 
-		$fields = $carrier->get_form_fields();
-
+		$fields       = $carrier->get_form_fields();
+		$carrier_slug = $carrier->get_slug();
 		// No fields available so return the default view.
 		if ( empty( $fields ) ) {
 			return notification_get_template( 'form/empty-form' );
 		}
 
 		// Setup the fields and return form.
-		return notification_get_template( 'form/table', [ 'fields' => $fields ] );
+		return notification_get_template( 'form/table', [
+			'fields'  => $fields,
+			'carrier' => $carrier_slug,
+		] );
 
 	}
 

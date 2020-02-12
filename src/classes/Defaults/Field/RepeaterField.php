@@ -57,6 +57,13 @@ class RepeaterField extends Field {
 	protected $sortable = true;
 
 	/**
+	 * Repeater field type
+	 *
+	 * @var string
+	 */
+	public $field_type = 'repeater';
+
+	/**
 	 * Field constructor
 	 *
 	 * @since 5.0.0
@@ -84,6 +91,7 @@ class RepeaterField extends Field {
 			$this->sortable = false;
 		}
 
+		$this->carrier = $params['carrier'];
 		parent::__construct( $params );
 
 	}
@@ -139,19 +147,12 @@ class RepeaterField extends Field {
 
 		$html .= '<tbody>';
 
-		$html .= $this->row( [], true );
-
-		if ( ! empty( $this->value ) ) {
-			foreach ( $this->value as $row_values ) {
-				$html .= $this->row( $row_values );
-				$this->current_row++;
-			}
-		}
+		$html .= $this->row();
 
 		$html .= '</tbody>';
 		$html .= '</table>';
 
-		$html .= '<a href="#" class="button button-secondary add-new-repeater-field">' . esc_html( $this->add_button_label ) . '</a>';
+		$html .= '<a href="#" class="button button-secondary add-new-repeater-field" @click="addField">' . esc_html( $this->add_button_label ) . '</a>';
 
 		return $html;
 
@@ -160,53 +161,49 @@ class RepeaterField extends Field {
 	/**
 	 * Prints repeater row
 	 *
+	 * @since [Next] Added vue template.
 	 * @since  5.0.0
-	 * @param  array   $values row values.
-	 * @param  boolean $model  if this is a hidden model row.
 	 * @return string          row HTML
 	 */
-	public function row( $values = [], $model = false ) {
+	public function row() {
 
 		$html = '';
 
-		if ( $model ) {
-			$html .= '<tr class="row model">';
-		} else {
-			$html .= '<tr class="row">';
-		}
-
+		$html .= '<template v-for="( field, key ) in fields">';
+		$html .= '<tr class="row">';
 		$html .= '<td class="handle"></td>';
-
-		foreach ( $this->fields as $sub_field ) {
-			if ( isset( $values[ $sub_field->get_raw_name() ] ) ) {
-				$sub_field->set_value( $values[ $sub_field->get_raw_name() ] );
-			}
-
-			$sub_field->section = $this->get_name() . '[' . $this->current_row . ']';
-
-			// don't print useless informations for hidden field.
-			if ( isset( $sub_field->type ) && 'hidden' === $sub_field->type ) {
-				$html .= $sub_field->field();
-			} else {
-
-				$html .= '<td class="subfield ' . esc_attr( $sub_field->get_raw_name() ) . '">';
-
-				if ( isset( $this->headers[ $sub_field->get_raw_name() ] ) ) {
-					$html .= '<div class="row-header">' . $this->headers[ $sub_field->get_raw_name() ] . '</div>';
-				}
-
-				$html .= '<div class="row-field">';
-				$html .= $sub_field->field();
-				$html .= '</div>';
-				$html .= '</td>';
-
-			}
-		}
-
-		$html .= '<td class="trash"></td>';
-
+		$html .= '
+			<template v-for="( subfield, index ) in field">
+			<td :class="`subfield ${subfield.name}`">
+				<div class="row-field">
+					<label
+						v-if="subfield.checkbox_label"
+					>
+					<input
+					:id="subfield.id"
+					:class="subfield.css_class"
+					:type="subfield.type"
+					:checked="subfield.value"
+					:name="`notification_carrier_[${key}][${subfield.name}]`">
+					{{ subfield.checkbox_label }}
+					</label>
+					<input
+					:id="subfield.id"
+					:class="subfield.css_class"
+					type="text"
+					:value="subfield.value"
+					:name="`notification_carrier_${type.fieldCarrier}[${type.fieldType}][${key}][${subfield.name}]`"
+					v-else>
+					<small
+						v-if="field.description"
+					class="description"></small>
+				</div>
+			</td>
+			</template>
+			<td class="trash" @click="removeField(key)"></td>
+		';
 		$html .= '</tr>';
-
+		$html .= '</template>';
 		return $html;
 
 	}

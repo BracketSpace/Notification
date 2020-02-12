@@ -41,6 +41,7 @@ class Webhook extends Abstracts\Carrier {
 		] ) );
 
 		$this->add_form_field( new Field\RepeaterField( [
+			'carrier'          => 'webhook',
 			'label'            => __( 'Arguments', 'notification' ),
 			'name'             => 'args',
 			'add_button_label' => __( 'Add argument', 'notification' ),
@@ -77,6 +78,7 @@ class Webhook extends Abstracts\Carrier {
 		if ( notification_get_setting( 'notifications/webhook/headers' ) ) {
 
 			$this->add_form_field( new Field\RepeaterField( [
+				'carrier'          => 'webhook',
 				'label'            => __( 'Headers', 'notification' ),
 				'name'             => 'headers',
 				'add_button_label' => __( 'Add header', 'notification' ),

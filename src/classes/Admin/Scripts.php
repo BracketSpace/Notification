@@ -49,6 +49,7 @@ class Scripts {
 	 * @return void
 	 */
 	public function enqueue_scripts( $page_hook ) {
+		global $post;
 
 		$allowed_hooks = apply_filters( 'notification/scripts/allowed_hooks', [
 			$this->runtime->admin_extensions->page_hook,
@@ -75,12 +76,15 @@ class Scripts {
 
 		wp_enqueue_script( 'notification', $this->filesystem->url( 'js/scripts.js' ), [ 'jquery', 'wp-color-picker', 'wp-i18n', 'wp-hooks', 'jquery-ui-sortable' ], $this->filesystem->mtime( 'js/scripts.js' ), true );
 
+		wp_enqueue_script( 'vue', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', [ 'notification' ], '1.0.0', true );
+
 		wp_enqueue_style( 'notification', $this->filesystem->url( 'css/style.css' ), [], $this->filesystem->mtime( 'css/style.css' ) );
 
 		wp_set_script_translations( 'notification', 'notification' );
 
 		wp_localize_script( 'notification', 'notification', [
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'postId'  => $post->ID,
 		] );
 
 		// Remove TinyMCE styles as they are not applied to any frontend content.
