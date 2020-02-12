@@ -1,9 +1,10 @@
-/* global notification, */
+/* global jQuery, notification, */
 
 export const init = {
 	mounted(){
 		this.setType();
 		this.apiCall();
+		this.sortable();
 	},
 	methods: {
 		apiCall(){
@@ -19,7 +20,7 @@ export const init = {
 			} )
 			.then( res => res.json() )
 			.then( data => {
-				const configuration = JSON.parse( data );
+				const configuration = data;
 
 				this.addModel( configuration.field );
 
@@ -43,5 +44,14 @@ export const init = {
 				fieldCarrier
 			}
 		},
+		sortable(){
+			jQuery( '.fields-repeater-sortable > tbody' ).sortable( {
+				handle: '.handle',
+				axis: 'y',
+				start( e, ui ) {
+					ui.placeholder.height( ui.helper[ 0 ].scrollHeight );
+				},
+			} );
+		}
 	}
 }

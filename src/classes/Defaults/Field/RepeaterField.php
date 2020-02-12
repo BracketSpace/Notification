@@ -161,7 +161,6 @@ class RepeaterField extends Field {
 	/**
 	 * Prints repeater row
 	 *
-	 * @since [Next] Added vue template.
 	 * @since  5.0.0
 	 * @return string          row HTML
 	 */

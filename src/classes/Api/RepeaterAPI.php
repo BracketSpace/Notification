@@ -106,10 +106,8 @@ class RepeaterAPI {
 
 		$data = [
 			'field'  => $field,
-			'values' => $values,
+			'values' => array_values( $values ),
 		];
-
-		$data = wp_json_encode( $data );
 
 		wp_send_json( $data );
 	}

@@ -65,12 +65,6 @@
 // 		} );
 
 // 		// Sortable
-// 		$( '.fields-repeater-sortable > tbody' ).sortable( {
-// 			handle: '.handle',
-// 			axis: 'y',
-// 			start( e, ui ) {
-// 				ui.placeholder.height( ui.helper[ 0 ].scrollHeight );
-// 			},
-// 		} );
+//
 // 	} );
 // }( jQuery ) );
