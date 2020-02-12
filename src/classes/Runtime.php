@@ -25,9 +25,7 @@ class Runtime extends DocHooks\HookAnnotations {
 	 * @param string $plugin_file plugin main file full path.
 	 */
 	public function __construct( $plugin_file ) {
-		$this->plugin_file        = $plugin_file;
-		$this->plugin_custom_url  = defined( 'NOTIFICATION_URL' ) ? NOTIFICATION_URL : false;
-		$this->plugin_custom_path = defined( 'NOTIFICATION_DIR' ) ? NOTIFICATION_DIR : false;
+		$this->plugin_file = $plugin_file;
 	}
 
 	/**
@@ -50,7 +48,7 @@ class Runtime extends DocHooks\HookAnnotations {
 
 		/**
 		 * Subsequent boot actions:
-		 * - plugins_loaded 10 - Most of the defaults loaded.
+		 * - after_setup_theme 5 - Most of the defaults loaded.
 		 * - init 1000 - Rest of the defaults loaded.
 		 * - init 1010 - Proxy action for boot, `notification/boot` action called
 		 */

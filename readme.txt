@@ -299,3 +299,6 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] Image field for settings page.
 * [Fixed] Merge Tag used as anchor href now is not prefixed with protocol while adding the link.
 * [Fixed] Selectize script breaking description field in select input.
+* [Removed] `NOTIFICATION_VERSION` constant.
+* [Removed] `NOTIFICATION_DIR` and `NOTIFICATION_URL` constants.
+* [Removed] `load.php` file used for bundling.
