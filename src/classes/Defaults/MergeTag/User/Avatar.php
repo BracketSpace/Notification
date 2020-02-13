@@ -43,7 +43,7 @@ class Avatar extends HtmlTag {
 			[
 				'slug'        => 'user_avatar',
 				'name'        => __( 'User avatar', 'notification' ),
-				'description' => get_avatar( get_option( 'admin_email' ) ),
+				'description' => __( 'HTML img tag with avatar', 'notification' ),
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
 

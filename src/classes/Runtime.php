@@ -33,6 +33,7 @@ class Runtime extends DocHooks\HookAnnotations {
 	 *
 	 * @since  5.0.0
 	 * @since  6.0.0 Added boot action.
+	 * @since  [Next] All the defaults and boot action are called on initialization.
 	 * @return void
 	 */
 	public function boot() {
@@ -42,16 +43,11 @@ class Runtime extends DocHooks\HookAnnotations {
 		$this->singletons();
 		$this->load_functions();
 		$this->load_deprecated();
+		$this->load_defaults();
 		$this->actions();
 
-		do_action( 'notification/boot/initial' );
-
-		/**
-		 * Subsequent boot actions:
-		 * - after_setup_theme 5 - Most of the defaults loaded.
-		 * - init 1000 - Rest of the defaults loaded.
-		 * - init 1010 - Proxy action for boot, `notification/boot` action called
-		 */
+		do_action_deprecated( 'notification/boot/initial', [], '[Next]', 'notification/boot' );
+		do_action( 'notification/boot' );
 
 	}
 
@@ -229,30 +225,17 @@ class Runtime extends DocHooks\HookAnnotations {
 	}
 
 	/**
-	 * Loads early defaults
+	 * Loads defaults
 	 *
-	 * @action plugins_loaded
 	 * @since  6.0.0
 	 * @return void
 	 */
-	public function load_early_defaults() {
+	public function load_defaults() {
 		array_map( [ $this, 'load_default' ], [
 			'global-merge-tags',
 			'resolvers',
 			'recipients',
 			'carriers',
-		] );
-	}
-
-	/**
-	 * Loads late defaults
-	 *
-	 * @action init 1000
-	 * @since  6.0.0
-	 * @return void
-	 */
-	public function load_late_defaults() {
-		array_map( [ $this, 'load_default' ], [
 			'triggers',
 		] );
 	}
@@ -266,22 +249,11 @@ class Runtime extends DocHooks\HookAnnotations {
 	 */
 	public function load_default( $default ) {
 		if ( apply_filters( 'notification/load/default/' . $default, true ) ) {
-			$path = $this->get_filesystem( 'includes' )->path( sprintf( 'defaults/%s.php', $default ) );
-			if ( file_exists( $path ) ) {
-				require_once $path;
+			$path = sprintf( 'defaults/%s.php', $default );
+			if ( $this->get_filesystem( 'includes' )->exists( $path ) ) {
+				require_once $this->get_filesystem( 'includes' )->path( $path );
 			}
 		}
-	}
-
-	/**
-	 * Proxies the full boot action
-	 *
-	 * @action init 1010
-	 * @since  6.0.0
-	 * @return void
-	 */
-	public function fully_booted() {
-		do_action( 'notification/boot' );
 	}
 
 }
