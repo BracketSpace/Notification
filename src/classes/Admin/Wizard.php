@@ -9,7 +9,6 @@ namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem;
-use BracketSpace\Notification\Utils\View;
 
 /**
  * Wizard class

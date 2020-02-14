@@ -7,8 +7,6 @@
 
 namespace BracketSpace\Notification\Core;
 
-use BracketSpace\Notification\Utils\Files;
-
 /**
  * Cron class
  */
