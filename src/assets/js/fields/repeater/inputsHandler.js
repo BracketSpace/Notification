@@ -1,5 +1,3 @@
-/* global notification */
-
 export const inputsHandler = {
 	methods: {
 		checkboxHandler( checkbox, e ){

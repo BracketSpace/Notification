@@ -23,6 +23,7 @@ export const init = {
 				const configuration = data;
 
 				this.addModel( configuration.field );
+				this.nestedRepeater = configuration.repeater;
 
 				if(configuration.values ){
 					this.values = configuration.values

@@ -42,6 +42,7 @@ class RepeaterHandler {
 			$sub_field['type']           = strtolower( str_replace( 'Field', '', $field->field_type_html ) );
 
 			array_push( $fields, $sub_field );
+
 		}
 
 		return $fields;
@@ -70,6 +71,26 @@ class RepeaterHandler {
 	}
 
 	/**
+	 * Checks if field is instance of repeater field
+	 *
+	 * @since [Next]
+	 * @param \BracketSpace\Notification\Abstracts\Field $field Form field type.
+	 * @return boolean
+	 */
+	public function check_repeater( \BracketSpace\Notification\Abstracts\Field $field ) {
+
+		if ( $field instanceof \BracketSpace\Notification\Defaults\Field\RecipientsField ) {
+			return false;
+		}
+
+		if ( $field instanceof \BracketSpace\Notification\Defaults\Field\RepeaterField ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
 	 * Sends response
 	 *
 	 * @since [Next]
@@ -89,11 +110,14 @@ class RepeaterHandler {
 
 		$field = $carriers[ $carrier ]->get_form_field( $field );
 
+		$is_repeater = $this->check_repeater( $field );
+
 		$field = $this->form_field_data( $field->fields );
 
 		$data = [
-			'field'  => $field,
-			'values' => array_values( $values ),
+			'field'    => $field,
+			'values'   => array_values( $values ),
+			'repeater' => $is_repeater,
 		];
 
 		wp_send_json( $data );
