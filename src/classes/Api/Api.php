@@ -17,7 +17,7 @@ class Api {
 	 *
 	 * @var string
 	 */
-	public $namespace = 'notification/v2';
+	public $namespace = 'notification/v1';
 
 	/**
 	 * Route configuration

@@ -10,7 +10,7 @@ export const init = {
 		apiCall(){
 			this.postID = notification.postId;
 
-			fetch( `http://notification.local/wp-json/notification/v2/repeater-field/${this.postID}`,{
+			fetch( `http://notification.local/wp-json/notification/v1/repeater-field/${this.postID}`,{
 				method: 'POST',
 				headers: {
 					'Accept': 'application/json',
