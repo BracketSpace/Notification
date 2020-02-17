@@ -7,8 +7,6 @@
 
 namespace BracketSpace\Notification;
 
-use BracketSpace\Notification\Admin;
-use BracketSpace\Notification\Core;
 use BracketSpace\Notification\Vendor\Micropackage\DocHooks;
 use BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem;
 use BracketSpace\Notification\Vendor\Micropackage\Templates\Storage as TemplateStorage;
@@ -119,6 +117,7 @@ class Runtime extends DocHooks\HookAnnotations {
 	 */
 	public function singletons() {
 
+		$this->core_cache      = new Core\Cache();
 		$this->core_cron       = new Core\Cron();
 		$this->core_whitelabel = new Core\Whitelabel();
 		$this->core_debugging  = new Core\Debugging();

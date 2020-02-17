@@ -132,3 +132,22 @@ function notification_template( $template_name, $vars = [] ) {
 function notification_get_template( $template_name, $vars = [] ) {
 	return BracketSpace\Notification\Vendor\Micropackage\Templates\get_template( 'templates', $template_name, $vars );
 }
+
+/**
+ * Gets cached value or cache object
+ *
+ * @since  [Next]
+ * @param  string|null $cache_key Cache key or null to get Cache engine.
+ * @return mixed                  Cache engine object or cached value.
+ */
+function notification_cache( $cache_key = null ) {
+
+	$cache = notification_runtime( 'core_cache' );
+
+	if ( null !== $cache_key ) {
+		return $cache->get( $cache_key );
+	}
+
+	return $cache;
+
+}

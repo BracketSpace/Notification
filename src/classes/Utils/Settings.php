@@ -90,9 +90,6 @@ class Settings {
 		// settings autoload on admin side.
 		add_action( 'admin_init', [ $this, 'setup_field_values' ], 10 );
 
-		// save the settings config for later easly-action uses.
-		add_action( 'admin_footer', [ $this, 'catch_config' ], 10 );
-
 		add_action( 'admin_post_save_' . $this->handle . '_settings', [ $this, 'save_settings' ] );
 
 	}
@@ -215,7 +212,7 @@ class Settings {
 
 		if ( empty( $this->settings ) ) {
 
-			$config = get_option( '_' . $this->handle . '_settings_config' );
+			$config = notification_cache( 'settings_config' );
 
 			foreach ( (array) $config as $section_slug => $groups ) {
 
@@ -324,42 +321,6 @@ class Settings {
 
 			$this->uri = trailingslashit( plugins_url( '', dirname( __FILE__ ) ) );
 
-		}
-
-	}
-
-	/**
-	 * Catches settings config and saves it for later use
-	 *
-	 * @since  5.0.0
-	 * @return void
-	 */
-	public function catch_config() {
-
-		$config = [];
-
-		foreach ( $this->get_sections() as $section_slug => $section ) {
-
-			$config[ $section_slug ] = [];
-
-			foreach ( $section->get_groups() as $group_slug => $group ) {
-
-				$config[ $section_slug ][ $group_slug ] = [];
-
-				foreach ( $group->get_fields() as $field_slug => $field ) {
-
-					$config[ $section_slug ][ $group_slug ][ $field_slug ] = $field->default_value();
-
-				}
-			}
-		}
-
-		$config_hash = md5( wp_json_encode( $config ) );
-		$prev_hash   = get_option( '_' . $this->handle . '_settings_hash' );
-
-		if ( $config_hash !== $prev_hash ) {
-			update_option( '_' . $this->handle . '_settings_config', $config );
-			update_option( '_' . $this->handle . '_settings_hash', $config_hash );
 		}
 
 	}
