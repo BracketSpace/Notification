@@ -112,7 +112,7 @@ class Cache {
 	 */
 	protected function get_post_types() {
 
-		$post_types = [ 'dupa' => 'Dupa' ];
+		$post_types = [];
 
 		foreach ( get_post_types( [ 'public' => true ], 'objects' ) as $post_type ) {
 			$post_types[ $post_type->name ] = $post_type->labels->singular_name;
