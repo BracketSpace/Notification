@@ -12,8 +12,9 @@ trait Webhook {
 	/**
 	 * Carrier constructor
 	 *
-	 * @param string $name Webhook nice name.
-	 * @since 5.0.0
+	 * @param  string $name Webhook nice name.
+	 * @since  [Next]
+	 * @return void
 	 */
 	public function __construct( $name ) {
 		$slug = strtolower( str_replace( ' ', '_', $name ) );
@@ -25,10 +26,10 @@ trait Webhook {
 	 * Makes http request
 	 *
 	 * @since  [Next]
-	 * @param  string $url  URL to call.
-	 * @param  array  $args    arguments.
-	 * @param  array  $headers headers.
-	 * @param string $method Http request method.
+	 * @param  string $url     URL to call.
+	 * @param  array  $args    Arguments. Default: empty.
+	 * @param  array  $headers Headers. Default: empty.
+	 * @param  string $method  HTTP request method.
 	 * @return void
 	 */
 	public function http_request( $url, $args = [], $headers = [], $method ) {
@@ -63,9 +64,9 @@ trait Webhook {
 	/**
 	 * Parses args to be understand by the wp_remote_* functions
 	 *
-	 * @since  5.0.0
-	 * @param  array $args args from saved fields.
-	 * @return array       parsed args as key => value array
+	 * @since  [Next]
+	 * @param  array $args Args from saved fields.
+	 * @return array       Parsed args as key => value array
 	 */
 	private function parse_args( $args ) {
 
@@ -86,4 +87,5 @@ trait Webhook {
 		return $parsed_args;
 
 	}
+
 }
