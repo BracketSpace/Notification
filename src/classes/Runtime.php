@@ -43,6 +43,7 @@ class Runtime extends DocHooks\HookAnnotations {
 		$this->filesystems();
 		$this->templates();
 		$this->singletons();
+		$this->rest_api();
 		$this->load_functions();
 		$this->load_deprecated();
 		$this->actions();
@@ -153,7 +154,18 @@ class Runtime extends DocHooks\HookAnnotations {
 		$this->integration_bp        = new Integration\BackgroundProcessing();
 		$this->integration_mce       = new Integration\TinyMce();
 
-		$this->repeater_api = new Api\RepeaterAPI();
+	}
+
+	/**
+	 * Creates rest API handlers
+	 *
+	 * @return void
+	 */
+	public function rest_api() {
+		$this->repeater_api = new Api\Api( '/repeater-field/(?P<id>\d+)', [
+			'methods'  => 'POST',
+			'callback' => [ new Api\Handlers\RepeaterHandler(), 'send_response' ],
+		] );
 	}
 
 	/**

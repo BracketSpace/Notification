@@ -110,8 +110,11 @@ class RecipientsField extends RepeaterField {
 					<select
 					:id="subfield.id"
 					:name="`notification_carrier_${type.fieldCarrier}[${type.fieldType}][${key}][${subfield.name}]`"
-					:class="subfield.css_class">
-					<option v-for="( option, key ) in subfield.options" :value="key">{{option}}</option>
+					:class="subfield.css_class"
+					@change="selectChange( subfield, field, $event )">
+					<template v-for="( option, key ) in subfield.options">
+						<option :value="key" :selected="handleSelect( key, subfield.value )">{{option}}</option>
+					</template>
 					</select>
 					</template>
 					<input
@@ -120,10 +123,12 @@ class RecipientsField extends RepeaterField {
 					type="text"
 					:value="subfield.value"
 					:name="`notification_carrier_${type.fieldCarrier}[${type.fieldType}][${key}][${subfield.name}]`"
+					:placeholder="subfield.placeholder"
 					v-else>
-					<small
-						v-if="field.description"
-					class="description"></small>
+					<small class="description"
+						v-if="subfield.description">
+						{{ subfield.description }}
+					</small>
 				</div>
 			</td>
 			</template>

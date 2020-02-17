@@ -1,35 +1,21 @@
 <?php
 /**
- * Repeater API class
+ * Repeater Handler class
  *
  * @package notification
  */
 
-namespace BracketSpace\Notification\Api;
+namespace BracketSpace\Notification\Api\Handlers;
 
 /**
- * RepeaterAPI class
+ * RepeaterHandler class
  *
  * @action
  */
-class RepeaterAPI {
+class RepeaterHandler {
 
 	/**
-	 * Init rest api endpoint
-	 *
-	 * @action rest_api_init
-	 * @return void
-	 */
-	public function rest_api_init() {
-
-		register_rest_route( 'notification/v2', '/repeater-field/(?P<id>\d+)', [
-			'methods'  => 'POST',
-			'callback' => [ $this, 'send_response' ],
-		]);
-	}
-
-	/**
-	 * Form field data
+	 * Forms field data
 	 *
 	 * @since [Next]
 	 * @param array $data Field data.
@@ -52,6 +38,7 @@ class RepeaterAPI {
 			$sub_field['disabled']       = $field->disabled;
 			$sub_field['css_class']      = $field->css_class;
 			$sub_field['id']             = $field->id;
+			$sub_field['placeholder']    = $field->placeholder;
 			$sub_field['type']           = strtolower( str_replace( 'Field', '', $field->field_type_html ) );
 
 			array_push( $fields, $sub_field );
@@ -62,7 +49,7 @@ class RepeaterAPI {
 	}
 
 	/**
-	 * Get field values
+	 * Gets field values
 	 *
 	 * @since [Next]
 	 * @param int    $post_id Post id.
@@ -83,7 +70,7 @@ class RepeaterAPI {
 	}
 
 	/**
-	 * Send response
+	 * Sends response
 	 *
 	 * @since [Next]
 	 * @param \WP_REST_Request $request WP request instance.

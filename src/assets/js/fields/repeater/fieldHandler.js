@@ -51,7 +51,6 @@ export const fieldHandler = {
 
 				for( const value in this.values[i] ){
 					const field = this.fields[i][counter];
-
 					field.value = this.values[i][value];
 
 					if( 'checkbox' === field.type ){
@@ -60,6 +59,12 @@ export const fieldHandler = {
 							field.checked = 'checked';
 						}
 					}
+
+					if( 'type' === field.name ){
+						this.selectChange( field, this.fields[i] );
+						field.value = this.values[i][value];
+					}
+
 					counter++;
 				}
 			}

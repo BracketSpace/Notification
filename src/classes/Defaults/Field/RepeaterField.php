@@ -185,7 +185,7 @@ class RepeaterField extends Field {
 					:value="subfield.value"
 					:checked="subfield.checked"
 					:name="`notification_carrier_${type.fieldCarrier}[${type.fieldType}][${key}][${subfield.name}]`"
-					@click="selectCheckbox( subfield, $event )">
+					@click="checkboxHandler( subfield, $event )">
 					{{ subfield.checkbox_label }}
 					</label>
 					<input
@@ -194,6 +194,7 @@ class RepeaterField extends Field {
 					type="text"
 					:value="subfield.value"
 					:name="`notification_carrier_${type.fieldCarrier}[${type.fieldType}][${key}][${subfield.name}]`"
+					:placeholder="subfield.placeholder"
 					v-else>
 					<small
 						v-if="field.description"

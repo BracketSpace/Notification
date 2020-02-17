@@ -440,26 +440,26 @@ class Screen {
 	 */
 	public function ajax_get_recipient_input() {
 
-		ob_start();
-
 		$carrier   = sanitize_text_field( wp_unslash( $_POST['carrier'] ) ); // phpcs:ignore
 		$type      = sanitize_text_field( wp_unslash( $_POST['type'] ) ); // phpcs:ignore
 		$recipient = notification_get_recipient( $carrier, $type );
-		$input     = $recipient->input();
 
-		// A little trick to get rid of the last part of input name
-		// which will be added by the field itself.
-		$input_name     = sanitize_text_field( wp_unslash( $_POST['input_name'] ) ); // phpcs:ignore
-		$input->section = str_replace( '[' . $input->get_raw_name() . ']', '', $input_name );
+		$input = $recipient->input();
 
-		echo $input->field(); // phpcs:ignore
+		$data['options']        = $input->options;
+		$data['pretty']         = $input->pretty;
+		$data['label']          = $input->label;
+		$data['checkbox_label'] = $input->checkbox_label;
+		$data['name']           = $input->name;
+		$data['description']    = $input->description;
+		$data['section']        = $input->section;
+		$data['disabled']       = $input->disabled;
+		$data['css_class']      = $input->css_class;
+		$data['id']             = $input->id;
+		$data['placeholder']    = $input->placeholder;
+		$data['type']           = strtolower( str_replace( 'Field', '', $input->field_type_html ) );
 
-		$description = $input->get_description();
-		if ( ! empty( $description ) ) {
-			echo '<small class="description">' . $description . '</small>'; // phpcs:ignore
-		}
-
-		notification_ajax_handler()->success( ob_get_clean() );
+		notification_ajax_handler()->success( $data );
 
 	}
 
