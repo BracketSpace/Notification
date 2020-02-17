@@ -12,25 +12,31 @@
  * @package notification
  */
 
-/**
- * Autoloading.
- */
-require_once dirname( __FILE__ ) . '/vendor/autoload.php';
-
-/**
- * Requirements check.
- */
-$requirements = new BracketSpace\Notification\Vendor\Micropackage\Requirements\Requirements( __( 'Notification', 'notification' ), [
-	'php' => '7.0',
-	'wp'  => '5.2',
-] );
-
-if ( ! $requirements->satisfied() ) {
-	$requirements->print_notice();
-	return;
-}
-
 if ( ! function_exists( 'notification_runtime' ) ) :
+
+	// Don't initialize if the plugin has been loaded from the theme.
+	if ( ! did_action( 'plugins_loaded' ) ) {
+		return;
+	}
+
+	/**
+	 * Autoloading.
+	 */
+	require_once dirname( __FILE__ ) . '/vendor/autoload.php';
+
+	/**
+	 * Requirements check.
+	 */
+	$requirements = new BracketSpace\Notification\Vendor\Micropackage\Requirements\Requirements( __( 'Notification', 'notification' ), [
+		'php' => '7.0',
+		'wp'  => '5.2',
+	] );
+
+	if ( ! $requirements->satisfied() ) {
+		$requirements->print_notice();
+		return;
+	}
+
 	/**
 	 * Gets the plugin runtime.
 	 *
@@ -52,6 +58,7 @@ if ( ! function_exists( 'notification_runtime' ) ) :
 		return $notification_runtime;
 
 	}
-endif;
 
-notification_runtime()->boot();
+	add_action( 'init', [ notification_runtime(), 'boot' ], 5 );
+
+endif;
