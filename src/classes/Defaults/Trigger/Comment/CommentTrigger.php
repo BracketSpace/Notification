@@ -37,7 +37,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 
 		parent::__construct( $params['slug'], $params['name'] );
 
-		$this->set_group( __( ucfirst( $this->comment_type ), 'notification' ) );
+		$this->set_group( $this->get_current_type_name() );
 
 	}
 
@@ -91,7 +91,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
 			'slug'  => 'comment_datetime',
 			'name'  => __( 'Comment date and time', 'notification' ),
-			'group' => __( ucfirst( $this->comment_type ), 'notification' ),
+			'group' => __( $this->get_current_type_name(), 'notification' ),
 		] ) );
 
 		// Author.
@@ -103,28 +103,28 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 			'slug'  => 'comment_author_user_ID',
 			'name'  => __( 'Comment author user ID', 'notification' ),
 			// translators: comment type author.
-			'group' => sprintf( __( '%s author', 'notification' ), ucfirst( $this->comment_type ) ),
+			'group' => sprintf( __( '%s author', 'notification' ), $this->get_current_type_name() ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserEmail( [
 			'slug'  => 'comment_author_user_email',
 			'name'  => __( 'Comment author user email', 'notification' ),
 			// translators: comment type author.
-			'group' => sprintf( __( '%s author', 'notification' ), ucfirst( $this->comment_type ) ),
+			'group' => sprintf( __( '%s author', 'notification' ), $this->get_current_type_name() ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserDisplayName( [
 			'slug'  => 'comment_author_user_display_name',
 			'name'  => __( 'Comment author user display name', 'notification' ),
 			// translators: comment type author.
-			'group' => sprintf( __( '%s author', 'notification' ), ucfirst( $this->comment_type ) ),
+			'group' => sprintf( __( '%s author', 'notification' ), $this->get_current_type_name() ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\Avatar( [
 			'slug'  => 'comment_author_user_avatar',
 			'name'  => __( 'Comment author user avatar', 'notification' ),
 			// translators: comment type author.
-			'group' => sprintf( __( '%s author', 'notification' ), ucfirst( $this->comment_type ) ),
+			'group' => sprintf( __( '%s author', 'notification' ), $this->get_current_type_name() ),
 		] ) );
 
 		// Post.
@@ -214,18 +214,44 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 	 * Gets nice, translated post type name
 	 *
 	 * @since  6.0.0
+	 * @since  [Next] Using internal caching.
 	 * @return string post name
 	 */
 	public function get_post_type_nicename() {
+		$post_types = notification_cache( 'post_types' );
+		return $post_types['post'] ?? __( 'Post' );
+	}
 
-		$post_type = get_post_type_object( 'post' );
+	/**
+	 * Gets nice, translated comment type
+	 *
+	 * @since  [Next]
+	 * @return string
+	 */
+	public function get_current_type_name() {
+		return self::get_comment_type_name( $this->get_comment_type() );
+	}
 
-		if ( empty( $post_type ) ) {
-			return '';
-		}
+	/**
+	 * Gets nice, translated post name for post type slug
+	 *
+	 * @since  [Next]
+	 * @param  string $comment_type Comment type slug.
+	 * @return string               Comment type name.
+	 */
+	public static function get_comment_type_name( $comment_type ) {
+		$comment_types = notification_cache( 'comment_types' );
+		return $comment_types[ $comment_type ] ?? '';
+	}
 
-		return $post_type->labels->singular_name;
-
+	/**
+	 * Gets comment type slug
+	 *
+	 * @since  [Next]
+	 * @return string
+	 */
+	public function get_comment_type() {
+		return $this->comment_type;
 	}
 
 }

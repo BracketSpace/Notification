@@ -24,14 +24,14 @@ class CommentPublished extends CommentTrigger {
 		parent::__construct( [
 			'slug'         => 'wordpress/comment_' . $comment_type . '_published',
 			// Translators: %s comment type.
-			'name'         => sprintf( __( '%s published', 'notification' ), ucfirst( $comment_type ) ),
+			'name'         => sprintf( __( '%s published', 'notification' ), parent::get_comment_type_name( $comment_type ) ),
 			'comment_type' => $comment_type,
 		] );
 
 		$this->add_action( 'notification_comment_published_proxy', 10, 1 );
 
 		// Translators: comment type.
-		$this->set_description( sprintf( __( 'Fires when new %s is published on the website. Includes comment replies.', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
+		$this->set_description( sprintf( __( 'Fires when new %s is published on the website. Includes comment replies.', 'notification' ), parent::get_comment_type_name( $comment_type ) ) );
 
 	}
 

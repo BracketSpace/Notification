@@ -36,7 +36,7 @@ class TaxonomySlug extends StringTag {
 		if ( isset( $params['taxonomy'] ) ) {
 			$this->taxonomy = $params['taxonomy'];
 		} else {
-			$this->taxonomy = 'category';
+			$this->taxonomy = 'taxonomy';
 		}
 
 		$args = wp_parse_args(

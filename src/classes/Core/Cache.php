@@ -171,7 +171,7 @@ class Cache {
 				continue;
 			}
 
-			$taxonomies[ $taxonomy->name ] = $taxonomy->labels->name;
+			$taxonomies[ $taxonomy->name ] = $taxonomy->labels->singular_name;
 
 		}
 

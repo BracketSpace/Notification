@@ -24,14 +24,14 @@ class CommentAdded extends CommentTrigger {
 		parent::__construct( [
 			'slug'         => 'wordpress/comment_' . $comment_type . '_added',
 			// Translators: %s comment type.
-			'name'         => sprintf( __( '%s added', 'notification' ), ucfirst( $comment_type ) ),
+			'name'         => sprintf( __( '%s added', 'notification' ), parent::get_comment_type_name( $comment_type ) ),
 			'comment_type' => $comment_type,
 		] );
 
 		$this->add_action( 'wp_insert_comment', 10, 2 );
 
 		// Translators: comment type.
-		$this->set_description( sprintf( __( 'Fires when new %s is added to database and awaits moderation or is published. Includes comment replies.', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
+		$this->set_description( sprintf( __( 'Fires when new %s is added to database and awaits moderation or is published. Includes comment replies.', 'notification' ), parent::get_comment_type_name( $comment_type ) ) );
 
 	}
 
