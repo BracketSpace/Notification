@@ -20,16 +20,26 @@ class Api {
 	public $namespace = 'notification/v2';
 
 	/**
+	 * Route configuration
+	 *
+	 * @var array
+	 */
+	public $routes = [];
+
+	/**
 	 * Constructor method
 	 *
 	 * @since [Next]
-	 * @param string $route Rest api route.
-	 * @param array  $args Rest route params.
 	 * @return void
 	 */
-	public function __construct( $route, $args ) {
-		$this->route = $route;
-		$this->args  = $args;
+	public function __construct() {
+		$this->routes[] = [
+			'path' => '/repeater-field/(?P<id>\d+)',
+			'args' => [
+				'methods'  => 'POST',
+				'callback' => [ new Handlers\RepeaterHandler(), 'send_response' ],
+			],
+		];
 	}
 
 	/**
@@ -40,6 +50,10 @@ class Api {
 	 * @return void
 	 */
 	public function rest_api_init() {
-		register_rest_route( $this->namespace, $this->route, $this->args );
+
+		foreach ( $this->routes as $route ) {
+			register_rest_route( $this->namespace, $route['path'], $route['args'] );
+		}
+
 	}
 }
