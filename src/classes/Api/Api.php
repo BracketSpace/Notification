@@ -40,6 +40,14 @@ class Api {
 				'callback' => [ new Handlers\RepeaterHandler(), 'send_response' ],
 			],
 		];
+
+		$this->routes[] = [
+			'path' => 'repeater-field/select',
+			'args' => [
+				'methods'  => 'POST',
+				'callback' => [ new Handlers\SelectInputHandler(), 'send_response' ],
+			],
+		];
 	}
 
 	/**

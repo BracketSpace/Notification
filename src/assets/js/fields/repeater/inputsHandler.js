@@ -38,7 +38,6 @@ export const inputsHandler = {
 			}
 
 			const payload = {
-				action: 'get_recipient_input',
 				type: field.value,
 				carrier: this._data.type.fieldCarrier,
 			}
@@ -53,7 +52,7 @@ export const inputsHandler = {
 
 			data = data.join('&');
 
-			fetch( notification.ajaxurl, {
+			fetch( 'http://notification.local/wp-json/notification/v1/repeater-field/select/', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'

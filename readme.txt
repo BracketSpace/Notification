@@ -289,11 +289,13 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] DocHooks utility to `micropackage/dochooks`.
 * [Changed] Files utility to `micropackage/filesystem`. Now the plugin has few filesystems which can be accessed easily from outside the plugin.
 * [Changed] View utility to `micropackage/templates`.
+* [Changed] Repeater and recipient field is handled by vue.js.
 * [Added] Added Webhook trait.
 * [Added] Webhook JSON Carrier with plain JSON input code field.
 * [Added] Composer imposter package to aviod package conflicts.
 * [Added] `notification_filesystem` function to get plugin filesystem(s).
 * [Fixed] Merge Tag used as anchor href now is not prefixed with protocol while adding the link.
+* [Removed] WP Ajax action ajax_get_recipient_input.
 
 = 6.3.2 =
 * [Fixed] Wrong caching usage of the trigger args.

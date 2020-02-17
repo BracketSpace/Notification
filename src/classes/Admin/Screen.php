@@ -430,37 +430,4 @@ class Screen {
 		$ajax->success( ob_get_clean() );
 
 	}
-
-	/**
-	 * Renders recipient input for AJAX call.
-	 *
-	 * @action wp_ajax_get_recipient_input
-	 *
-	 * @return void
-	 */
-	public function ajax_get_recipient_input() {
-
-		$carrier   = sanitize_text_field( wp_unslash( $_POST['carrier'] ) ); // phpcs:ignore
-		$type      = sanitize_text_field( wp_unslash( $_POST['type'] ) ); // phpcs:ignore
-		$recipient = notification_get_recipient( $carrier, $type );
-
-		$input = $recipient->input();
-
-		$data['options']        = $input->options;
-		$data['pretty']         = $input->pretty;
-		$data['label']          = $input->label;
-		$data['checkbox_label'] = $input->checkbox_label;
-		$data['name']           = $input->name;
-		$data['description']    = $input->description;
-		$data['section']        = $input->section;
-		$data['disabled']       = $input->disabled;
-		$data['css_class']      = $input->css_class;
-		$data['id']             = $input->id;
-		$data['placeholder']    = $input->placeholder;
-		$data['type']           = strtolower( str_replace( 'Field', '', $input->field_type_html ) );
-
-		notification_ajax_handler()->success( $data );
-
-	}
-
 }
