@@ -39,7 +39,7 @@ class Runtime extends DocHooks\HookAnnotations {
 		$this->filesystems();
 		$this->templates();
 		$this->singletons();
-		$this->load_defaults();
+		$this->defaults();
 		$this->actions();
 
 		do_action_deprecated( 'notification/boot/initial', [], '[Next]', 'notification/boot' );
@@ -176,7 +176,7 @@ class Runtime extends DocHooks\HookAnnotations {
 	 * @since  6.0.0
 	 * @return void
 	 */
-	public function load_defaults() {
+	public function defaults() {
 		array_map( [ $this, 'load_default' ], [
 			'global-merge-tags',
 			'resolvers',
