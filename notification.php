@@ -15,7 +15,7 @@
 if ( ! function_exists( 'notification_runtime' ) ) :
 
 	// Don't initialize if the plugin has been loaded from the theme.
-	if ( ! did_action( 'plugins_loaded' ) ) {
+	if ( ! did_action( 'plugins_loaded' ) && ! defined( 'NOTIFICATION_DOING_TESTS' ) ) {
 		return;
 	}
 

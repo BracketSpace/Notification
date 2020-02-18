@@ -39,8 +39,6 @@ class Runtime extends DocHooks\HookAnnotations {
 		$this->filesystems();
 		$this->templates();
 		$this->singletons();
-		$this->load_functions();
-		$this->load_deprecated();
 		$this->load_defaults();
 		$this->actions();
 
@@ -169,57 +167,6 @@ class Runtime extends DocHooks\HookAnnotations {
 		if ( ! DocHooks\Helper::is_enabled() && $this->get_filesystem( 'includes' )->exists( 'hooks.php' ) ) {
 			include_once $this->get_filesystem( 'includes' )->path( 'hooks.php' );
 		}
-
-	}
-
-	/**
-	 * Loads functions
-	 *
-	 * @since  6.0.0
-	 * @return void
-	 */
-	public function load_functions() {
-
-		$function_files = [
-			'general',
-			'settings',
-			'resolver',
-			'carrier',
-			'trigger',
-			'recipient',
-			'notification',
-			'notification-post',
-			'whitelabel',
-			'import-export',
-			'adapter',
-		];
-
-		array_map( function( $function_file ) {
-				require_once $this->get_filesystem( 'includes' )->path( sprintf( 'functions/%s.php', $function_file ) );
-		}, $function_files );
-
-	}
-
-	/**
-	 * Loads deprecated functions and classes
-	 *
-	 * @since  6.0.0
-	 * @return void
-	 */
-	public function load_deprecated() {
-
-		$deprecation_files = [
-			// Functions.
-			'functions',
-			// Classes.
-			'class/Abstracts/Notification',
-			'class/Defaults/Notification/Email',
-			'class/Defaults/Notification/Webhook',
-		];
-
-		array_map( function( $deprecation_file ) {
-				require_once $this->get_filesystem( 'includes' )->path( sprintf( 'deprecated/%s.php', $deprecation_file ) );
-		}, $deprecation_files );
 
 	}
 

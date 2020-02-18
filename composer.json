@@ -17,6 +17,28 @@
 	"autoload": {
 		"psr-4": {
 			"BracketSpace\\Notification\\": "src/classes"
+		},
+		"classmap": [
+			"src/includes/deprecated/class/"
+		],
+		"files": [
+			"src/includes/deprecated/functions.php",
+			"src/includes/functions/general.php",
+			"src/includes/functions/settings.php",
+			"src/includes/functions/resolver.php",
+			"src/includes/functions/carrier.php",
+			"src/includes/functions/trigger.php",
+			"src/includes/functions/recipient.php",
+			"src/includes/functions/notification.php",
+			"src/includes/functions/notification-post.php",
+			"src/includes/functions/whitelabel.php",
+			"src/includes/functions/import-export.php",
+			"src/includes/functions/adapter.php"
+		]
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"BracketSpace\\Notification\\Tests\\": "tests"
 		}
 	},
 	"require": {
