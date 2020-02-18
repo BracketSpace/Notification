@@ -307,11 +307,13 @@ abstract class PostTrigger extends Abstracts\Trigger {
 	 * Gets nice, translated post name for post type slug
 	 *
 	 * @since  5.0.0
-	 * @param string $post_type post type slug.
+	 * @since  [Next] Using internal caching.
+	 * @param  string $post_type post type slug.
 	 * @return string post name
 	 */
 	public static function get_post_type_name( $post_type ) {
-		return get_post_type_object( $post_type )->labels->singular_name;
+		$post_types = notification_cache( 'post_types' );
+		return $post_types[ $post_type ] ?? '';
 	}
 
 	/**

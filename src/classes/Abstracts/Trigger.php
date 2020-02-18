@@ -85,6 +85,13 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	protected $cache = [];
 
 	/**
+	 * Flag indicating that merge tags has been already added.
+	 *
+	 * @var boolean
+	 */
+	protected $merge_tags_added = false;
+
+	/**
 	 * Trigger constructor
 	 *
 	 * @param string $slug slug.
@@ -111,8 +118,17 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * @return void
 	 */
 	public function setup_merge_tags() {
+
+		if ( $this->merge_tags_added ) {
+			return;
+		}
+
 		$this->merge_tags();
+
+		$this->merge_tags_added = true;
+
 		do_action( 'notification/trigger/merge_tags', $this );
+
 	}
 
 	/**
@@ -389,6 +405,10 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 * @return $array merge tags
 	 */
 	public function get_merge_tags( $type = 'all', $grouped = false ) {
+
+		if ( ! $this->merge_tags_added ) {
+			$this->setup_merge_tags();
+		}
 
 		if ( 'all' === $type ) {
 			$tags = $this->merge_tags;

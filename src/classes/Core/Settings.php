@@ -57,6 +57,9 @@ class Settings extends SettingsAPI {
 			[ $this, 'settings_page' ]
 		);
 
+		// Refresh caches.
+		add_action( "load-$this->page_hook", [ notification_cache(), 'cache_objects' ] );
+
 	}
 
 	/**

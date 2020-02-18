@@ -41,13 +41,13 @@ class TermDeleted extends TermTrigger {
 			'taxonomy' => $taxonomy,
 			'slug'     => 'wordpress/' . $taxonomy . '/deleted',
 			// Translators: taxonomy name.
-			'name'     => sprintf( __( '%s term deleted', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ) ),
+			'name'     => sprintf( __( '%s term deleted', 'notification' ), parent::get_taxonomy_name( $taxonomy ) ),
 		] );
 
 		$this->add_action( 'pre_delete_term', 100, 4 );
 
 		// translators: 1. taxonomy name, 2. taxonomy slug.
-		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is deleted', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ), $taxonomy ) );
+		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is deleted', 'notification' ), parent::get_taxonomy_name( $taxonomy ), $taxonomy ) );
 
 	}
 

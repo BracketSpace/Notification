@@ -9,8 +9,8 @@
  * Registers settings
  *
  * @since  5.0.0
- * @param  mixed   $callback callback for settings registration, array of string.
- * @param  integer $priority action priority.
+ * @param  mixed   $callback Callback for settings registration, array of string.
+ * @param  integer $priority Action priority.
  * @return void
  */
 function notification_register_settings( $callback, $priority = 10 ) {
@@ -30,8 +30,7 @@ function notification_register_settings( $callback, $priority = 10 ) {
  * @return mixed
  */
 function notification_get_settings() {
-	$runtime = notification_runtime();
-	return $runtime->core_settings->get_settings();
+	return notification_runtime( 'core_settings' )->get_settings();
 }
 
 /**
@@ -42,6 +41,5 @@ function notification_get_settings() {
  * @return mixed
  */
 function notification_get_setting( $setting ) {
-	$runtime = notification_runtime();
-	return $runtime->core_settings->get_setting( $setting );
+	return notification_runtime( 'core_settings' )->get_setting( $setting );
 }

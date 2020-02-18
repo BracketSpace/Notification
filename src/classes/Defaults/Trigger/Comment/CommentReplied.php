@@ -24,7 +24,7 @@ class CommentReplied extends CommentTrigger {
 		parent::__construct( [
 			'slug'         => 'wordpress/comment_' . $comment_type . '_replied',
 			// Translators: %s comment type.
-			'name'         => sprintf( __( '%s replied', 'notification' ), ucfirst( $comment_type ) ),
+			'name'         => sprintf( __( '%s replied', 'notification' ), parent::get_comment_type_name( $comment_type ) ),
 			'comment_type' => $comment_type,
 		] );
 
@@ -32,7 +32,7 @@ class CommentReplied extends CommentTrigger {
 		$this->add_action( 'notification_insert_comment_proxy', 10, 3 );
 
 		// translators: comment type.
-		$this->set_description( sprintf( __( 'Fires when %s is replied and the reply is approved', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
+		$this->set_description( sprintf( __( 'Fires when %s is replied and the reply is approved', 'notification' ), parent::get_comment_type_name( $comment_type ) ) );
 
 	}
 

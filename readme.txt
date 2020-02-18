@@ -297,5 +297,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] Scheduling user Merge Tags for Post Scheduled trigger.
 * [Added] Last updated by user Merge Tags for Post triggers.
 * [Added] Image field for settings page.
+* [Added] Notification runtime cache with `notification_cache()` function wrapper.
 * [Fixed] Merge Tag used as anchor href now is not prefixed with protocol while adding the link.
 * [Fixed] Selectize script breaking description field in select input.
+* [Removed] `NOTIFICATION_VERSION` constant.
+* [Removed] `NOTIFICATION_DIR` and `NOTIFICATION_URL` constants.
+* [Removed] `load.php` file used for bundling.

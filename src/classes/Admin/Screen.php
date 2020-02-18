@@ -64,7 +64,7 @@ class Screen {
 
 		// Add merge tags.
 		if ( $trigger ) {
-			$trigger->merge_tags();
+			$trigger->setup_merge_tags();
 		}
 
 		notification_template( 'trigger/metabox', [

@@ -41,13 +41,13 @@ class TermAdded extends TermTrigger {
 			'taxonomy' => $taxonomy,
 			'slug'     => 'wordpress/' . $taxonomy . '/created',
 			// Translators: taxonomy name.
-			'name'     => sprintf( __( '%s term created', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ) ),
+			'name'     => sprintf( __( '%s term created', 'notification' ), parent::get_taxonomy_name( $taxonomy ) ),
 		] );
 
 		$this->add_action( 'created_' . $taxonomy, 100, 2 );
 
 		// translators: 1. taxonomy name, 2. taxonomy slug.
-		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is created', 'notification' ), parent::get_taxonomy_singular_name( $taxonomy ), $taxonomy ) );
+		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is created', 'notification' ), parent::get_taxonomy_name( $taxonomy ), $taxonomy ) );
 
 	}
 
