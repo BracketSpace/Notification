@@ -5,18 +5,32 @@ export const fieldHandler = {
 		addModel( field ){
 			this.model = this.cloneField( field );
 		},
-		addFields(){
-			if( this.rowCount ){
-				for( let i = 0; i < this.rowCount; i++ ){
-					const model = this.cloneField( this.model );
+		addFields( rowCount, model ){
+			const fieldModel = model;
+
+			if( rowCount ){
+				for( let i = 0; i < rowCount; i++ ){
+					// eslint-disable-next-line no-shadow
+					const model = this.cloneField( fieldModel );
 
 					this.fields.push( model );
 				 }
 			} else {
-				const model = this.cloneField( this.model );
+				// eslint-disable-next-line no-shadow
+				const model = this.cloneField( fieldModel );
 
 				this.fields.push( model );
 				this.rowCount++;
+			}
+		},
+		addNestedModel( fields ){
+			if( fields ){
+				fields.forEach( field => {
+					if( field.fields ){
+						this.nestedRepeater = true;
+						this.nestedModel = this.cloneField(field.fields);
+					}
+				} )
 			}
 		},
 		cloneField( model ){
@@ -30,7 +44,9 @@ export const fieldHandler = {
 			return clonedModel;
 		},
 		addField( event ){
-			event.preventDefault();
+			if(event){
+				event.preventDefault();
+			}
 
 			const model = this.cloneField( this.model );
 
@@ -39,8 +55,8 @@ export const fieldHandler = {
 			notification.hooks.doAction( 'notification.repeater.row.added', model, this );
 
 		},
-		removeField( index ){
-			this.fields.splice( index, 1 );
+		removeField( index, fields ){
+			fields.splice( index, 1 );
 			notification.hooks.doAction( 'notification.repeater.row.removed', this );
 
 		},

@@ -91,7 +91,10 @@ class RepeaterField extends Field {
 			$this->sortable = false;
 		}
 
-		$this->carrier = $params['carrier'];
+		if ( isset( $params['carrier'] ) ) {
+			$this->carrier = $params['carrier'];
+		}
+
 		parent::__construct( $params );
 
 	}
@@ -168,44 +171,20 @@ class RepeaterField extends Field {
 
 		$html = '';
 
-		$html .= '<template v-for="( field, key ) in fields">';
-		$html .= '<tr class="row">';
-		$html .= '<td class="handle"></td>';
-		$html .= '
-			<template v-for="( subfield, index ) in field">
-			<td :class="`subfield ${subfield.name}`">
-				<div class="row-field">
-					<label
-						v-if="subfield.checkbox_label"
+		$html .= '<template v-for="( field, key ) in fields">
+					<repeater-row
+					:field="field"
+					:fields="fields"
+					:type="type"
+					:key-index="key"
+					:nested-fields="nestedFields"
+					:nested-model="nestedModel"
+					:nested-row-count="nestedRowCount"
+					:type="type"
 					>
-					<input
-					:id="subfield.id"
-					:class="subfield.css_class"
-					:type="subfield.type"
-					:value="subfield.value"
-					:checked="subfield.checked"
-					:name="`notification_carrier_${type.fieldCarrier}[${type.fieldType}][${key}][${subfield.name}]`"
-					@click="checkboxHandler( subfield, $event )">
-					{{ subfield.checkbox_label }}
-					</label>
-					<input
-					:id="subfield.id"
-					:class="subfield.css_class"
-					type="text"
-					:value="subfield.value"
-					:name="`notification_carrier_${type.fieldCarrier}[${type.fieldType}][${key}][${subfield.name}]`"
-					:placeholder="subfield.placeholder"
-					v-else>
-					<small
-						v-if="field.description"
-					class="description"></small>
-				</div>
-			</td>
-			</template>
-			<td class="trash" @click="removeField(key)"></td>
-		';
-		$html .= '</tr>';
-		$html .= '</template>';
+					</repeater-row>
+				  </template>';
+
 		return $html;
 
 	}

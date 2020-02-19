@@ -19,13 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
 				inputsHandler
 			],
 			data: {
-				'model' : '',
+				'model' : [],
+				'nestedModel': [],
 				'type' : {},
 				'fields': [],
+				'nestedFields': [],
 				'rowCount': 0,
+				'nestedRowCount': 0,
 				'values': [],
 				'postID': '',
-				'nestedRepeater': false
+				'nestedRepeater': false,
 			}
 		} )
 	}

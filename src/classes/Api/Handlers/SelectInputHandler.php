@@ -27,22 +27,27 @@ class SelectInputHandler {
 		$type      = $params['type'];
 		$recipient = notification_get_recipient( $carrier, $type );
 
-		$input = $recipient->input();
+		if ( $recipient ) {
+			$input = $recipient->input();
 
-		$data['options']        = $input->options;
-		$data['pretty']         = $input->pretty;
-		$data['label']          = $input->label;
-		$data['checkbox_label'] = $input->checkbox_label;
-		$data['name']           = $input->name;
-		$data['description']    = $input->description;
-		$data['section']        = $input->section;
-		$data['disabled']       = $input->disabled;
-		$data['css_class']      = $input->css_class;
-		$data['id']             = $input->id;
-		$data['placeholder']    = $input->placeholder;
-		$data['type']           = strtolower( str_replace( 'Field', '', $input->field_type_html ) );
+			$data['options']        = $input->options;
+			$data['pretty']         = $input->pretty;
+			$data['label']          = $input->label;
+			$data['checkbox_label'] = $input->checkbox_label;
+			$data['name']           = $input->name;
+			$data['description']    = $input->description;
+			$data['section']        = $input->section;
+			$data['disabled']       = $input->disabled;
+			$data['css_class']      = $input->css_class;
+			$data['id']             = $input->id;
+			$data['placeholder']    = $input->placeholder;
+			$data['type']           = strtolower( str_replace( 'Field', '', $input->field_type_html ) );
 
-		notification_ajax_handler()->success( $data );
+			notification_ajax_handler()->success( $data );
+		} else {
+			notification_ajax_handler()->success( [ 'message' => 'no recipient' ] );
+		}
+
 	}
 
 }

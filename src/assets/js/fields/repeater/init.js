@@ -22,13 +22,13 @@ export const init = {
 			.then( data => {
 				const configuration = data;
 
+				this.addNestedModel( configuration.field );
 				this.addModel( configuration.field );
-				this.nestedRepeater = configuration.repeater;
 
 				if(configuration.values ){
 					this.values = configuration.values
 					this.rowCount = this.values.length;
-					this.addFields();
+					this.addFields( this.rowCount, this.model );
 					this.addFieldValues();
 				}
 			}

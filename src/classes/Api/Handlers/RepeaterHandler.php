@@ -26,6 +26,7 @@ class RepeaterHandler {
 		$fields = [];
 
 		foreach ( $data as $field ) {
+
 			$sub_field = [];
 
 			$sub_field['options']        = $field->options;
@@ -39,7 +40,12 @@ class RepeaterHandler {
 			$sub_field['css_class']      = $field->css_class;
 			$sub_field['id']             = $field->id;
 			$sub_field['placeholder']    = $field->placeholder;
+			$sub_field['nested']         = $field->nested;
 			$sub_field['type']           = strtolower( str_replace( 'Field', '', $field->field_type_html ) );
+
+			if ( $field->fields ) {
+				$sub_field['fields'] = $this->form_field_data( $field->fields );
+			}
 
 			array_push( $fields, $sub_field );
 
@@ -110,14 +116,11 @@ class RepeaterHandler {
 
 		$field = $carriers[ $carrier ]->get_form_field( $field );
 
-		$is_repeater = $this->check_repeater( $field );
-
 		$field = $this->form_field_data( $field->fields );
 
 		$data = [
-			'field'    => $field,
-			'values'   => array_values( $values ),
-			'repeater' => $is_repeater,
+			'field'  => $field,
+			'values' => array_values( $values ),
 		];
 
 		wp_send_json( $data );

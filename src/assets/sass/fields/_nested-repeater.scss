@@ -1,0 +1,24 @@
+.notification-field.fields-repeater {
+
+	.subfield.nested-repeater {
+		padding: 0;
+	}
+
+	tr {
+
+		td {
+
+			&.trash,
+			&.handle {
+				width: 20px;
+			}
+
+			&.handle {
+
+				&::before {
+					display: none;
+				}
+			}
+		}
+	}
+}

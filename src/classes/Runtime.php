@@ -152,7 +152,8 @@ class Runtime extends DocHooks\HookAnnotations {
 		$this->integration_cf        = new Integration\CustomFields();
 		$this->integration_bp        = new Integration\BackgroundProcessing();
 		$this->integration_mce       = new Integration\TinyMce();
-		$this->repeater_api          = new Api\Api();
+
+		$this->repeater_api = new Api\Api();
 
 	}
 
