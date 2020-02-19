@@ -1,5 +1,5 @@
 /* eslint no-alert: 0 */
-/* global notification, jQuery */
+/* global notification, jQuery, alert */
 ( function( $ ) {
 	$( document ).ready( function() {
 		$( '.column-switch .onoffswitch' ).on( 'click', function( event ) {
