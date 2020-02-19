@@ -1,5 +1,5 @@
 /* eslint no-alert: 0 */
-/* global notification, jQuery, ajaxurl */
+/* global notification, jQuery, ajaxurl, alert */
 ( function( $ ) {
 	const __ = wp.i18n.__;
 	const Clipboard = require( 'clipboard' );
