@@ -78,7 +78,7 @@ function notification_log( $component, $type, $message ) {
 		return false;
 	}
 
-	$debugger = notification_runtime( 'core_debugging' );
+	$debugger = \Notification::component( 'core_debugging' );
 
 	$log_data = [
 		'component' => $component,
@@ -102,7 +102,7 @@ function notification_log( $component, $type, $message ) {
  * @return Filesystem|null
  */
 function notification_filesystem( $name ) {
-	return notification_runtime()->get_filesystem( $name );
+	return \Notification::runtime()->get_filesystem( $name );
 }
 
 /**
@@ -142,7 +142,7 @@ function notification_get_template( $template_name, $vars = [] ) {
  */
 function notification_cache( $cache_key = null ) {
 
-	$cache = notification_runtime( 'core_cache' );
+	$cache = \Notification::component( 'core_cache' );
 
 	if ( null !== $cache_key ) {
 		return $cache->get( $cache_key );

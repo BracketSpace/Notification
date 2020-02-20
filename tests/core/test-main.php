@@ -19,7 +19,7 @@ class TestMain extends \WP_UnitTestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->notification = notification_runtime();
+		$this->notification = \Notification::runtime();
 	}
 
 	/**
