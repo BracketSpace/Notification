@@ -27,6 +27,7 @@ Vue.component( 'repeater-row', {
 						<nested-sub-field
 						:model="nestedModel"
 						:nested-fields="nestedFields"
+						:nested-values="nestedValues"
 						:sub-rows="subRows"
 						:row-index="keyIndex"
 						:row-name="subfield.name"
@@ -53,7 +54,7 @@ Vue.component( 'repeater-row', {
 			<td class="trash" @click="removeField(keyIndex, fields)"></td>
 		</tr>
 	`,
-	props: ['field', 'keyIndex', 'fields', 'type', 'nestedFields', 'nestedModel', 'nestedRowCount', 'type'],
+	props: ['field', 'keyIndex', 'fields', 'type', 'nestedFields', 'nestedValues', 'nestedModel', 'nestedRowCount', 'type'],
 	mixins: [fieldHandler],
 	data(){
 		return {

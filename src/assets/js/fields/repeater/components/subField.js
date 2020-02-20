@@ -23,16 +23,18 @@ Vue.component( 'nested-sub-field', {
 		>Add sub field</a>
 	</div>
 	`,
-	props: ['model', 'nestedFields', 'subRows', 'type', 'rowIndex', 'rowName'],
+	props: ['model', 'nestedFields', 'nestedValues', 'subRows', 'type', 'rowIndex', 'rowName'],
 	mixins: [fieldHandler],
 	data() {
 		return {
 			'fields' : [],
+			'values': this.nestedValues[this.rowIndex]
 		}
 	},
 	mounted(){
-		this.addField();
 		this.$emit('add-nested-field');
+		this.addSubFieldRows();
+		this.addFieldValues();
 	},
 	methods: {
 		addNestedSubField( e ){
@@ -42,6 +44,11 @@ Vue.component( 'nested-sub-field', {
 		},
 		removeSubField(index){
 			this.removeField( index, this.fields );
+		},
+		addSubFieldRows(){
+			this.rowCount = this.values.length;
+			this.addFields( this.rowCount, this.model );
 		}
+
 	}
 } )

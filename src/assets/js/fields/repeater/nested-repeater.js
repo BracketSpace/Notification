@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				'rowCount': 0,
 				'nestedRowCount': 0,
 				'values': [],
+				'nestedValues': [],
 				'postID': '',
 				'nestedRepeater': false,
 			}

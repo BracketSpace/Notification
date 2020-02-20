@@ -178,6 +178,7 @@ class RepeaterField extends Field {
 					:type="type"
 					:key-index="key"
 					:nested-fields="nestedFields"
+					:nested-values="nestedValues"
 					:nested-model="nestedModel"
 					:nested-row-count="nestedRowCount"
 					:type="type"

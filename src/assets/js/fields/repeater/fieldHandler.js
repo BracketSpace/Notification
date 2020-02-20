@@ -66,6 +66,10 @@ export const fieldHandler = {
 				let counter = 0;
 
 				for( const value in this.values[i] ){
+					if( 'object' === typeof this.values[i][value] ){
+						this.nestedValues[i] = this.values[i].nested_repeater;
+					}
+
 					const field = this.fields[i][counter];
 					field.value = this.values[i][value];
 
