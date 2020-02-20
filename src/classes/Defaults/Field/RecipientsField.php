@@ -97,45 +97,15 @@ class RecipientsField extends RepeaterField {
 
 		$html = '';
 
-		$html .= '<template v-for="( field, key ) in fields">';
-		$html .= '<tr class="row">';
-		$html .= '<td class="handle"></td>';
-		$html .= '
-			<template v-for="( subfield, index ) in field">
-			<td :class="`subfield ${subfield.name}`">
-				<div class="row-field">
-					<template
-						v-if="subfield.options"
+		$html .= '<template v-for="( field, key ) in fields">
+					<recipient-row
+					:field="field"
+					:fields="fields"
+					:type="type"
+					:key-index="key"
 					>
-					<select
-					:id="subfield.id"
-					:name="`notification_carrier_${type.fieldCarrier}[${type.fieldType}][${key}][${subfield.name}]`"
-					:class="subfield.css_class"
-					@change="selectChange( subfield, field, $event )">
-					<template v-for="( option, key ) in subfield.options">
-						<option :value="key" :selected="handleSelect( key, subfield.value )">{{option}}</option>
-					</template>
-					</select>
-					</template>
-					<input
-					:id="subfield.id"
-					:class="subfield.css_class"
-					type="text"
-					:value="subfield.value"
-					:name="`notification_carrier_${type.fieldCarrier}[${type.fieldType}][${key}][${subfield.name}]`"
-					:placeholder="subfield.placeholder"
-					v-else>
-					<small class="description"
-						v-if="subfield.description">
-						{{ subfield.description }}
-					</small>
-				</div>
-			</td>
-			</template>
-			<td class="trash" @click="removeField(key)"></td>
-		';
-		$html .= '</tr>';
-		$html .= '</template>';
+					</recipient-row>
+				</template>';
 		return $html;
 	}
 

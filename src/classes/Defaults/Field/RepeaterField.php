@@ -181,7 +181,6 @@ class RepeaterField extends Field {
 					:nested-values="nestedValues"
 					:nested-model="nestedModel"
 					:nested-row-count="nestedRowCount"
-					:type="type"
 					>
 					</repeater-row>
 				  </template>';

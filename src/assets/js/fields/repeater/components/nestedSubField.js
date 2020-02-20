@@ -5,7 +5,7 @@ import { fieldHandler } from '../fieldHandler';
 Vue.component( 'nested-sub-field', {
 	template:
 	`<div class="nested-repeater-fields">
-		<table>
+		<table class="fields-repeater-sortable">
 			<template v-for="( field, key ) in fields">
 				<repeater-sub-field
 				:field="field"

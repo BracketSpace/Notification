@@ -37,7 +37,7 @@ export const inputsHandler = {
 
 			const payload = {
 				type: field.value,
-				carrier: this._data.type.fieldCarrier,
+				carrier: this.type.fieldCarrier,
 			}
 
 			let data = [];

@@ -4,7 +4,7 @@ import { fieldHandler } from '../fieldHandler';
 
 Vue.component( 'repeater-row', {
 	template: `
-		<tr class="row"><td class="handle"></td>
+		<tr class="row"><td class="handle"><span class="handle-index">{{keyIndex + 1}}</span></td>
 			<template v-for="( subfield, index ) in field">
 				<td :class="'subfield ' + subfield.name">
 					<div class="row-field">
@@ -54,7 +54,7 @@ Vue.component( 'repeater-row', {
 			<td class="trash" @click="removeField(keyIndex, fields)"></td>
 		</tr>
 	`,
-	props: ['field', 'keyIndex', 'fields', 'type', 'nestedFields', 'nestedValues', 'nestedModel', 'nestedRowCount', 'type'],
+	props: ['field', 'keyIndex', 'fields', 'type', 'nestedFields', 'nestedValues', 'nestedModel', 'nestedRowCount'],
 	mixins: [fieldHandler],
 	data(){
 		return {

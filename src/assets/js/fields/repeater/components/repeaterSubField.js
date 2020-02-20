@@ -5,7 +5,7 @@ import { fieldHandler } from '../fieldHandler';
 Vue.component( 'repeater-sub-field', {
 	template:
 	`<div>
-		<tr class="row"><td class="handle">{{keyIndex + 1}}</td>
+		<tr class="row"><td class="handle"><span class="handle-index">{{keyIndex + 1}}</span></td>
 			<template v-for="( subfield, index ) in field">
 				<td :class="'subfield ' + subfield.name">
 					<div class="row-field">
