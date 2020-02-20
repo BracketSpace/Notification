@@ -94,10 +94,7 @@ class RecipientsField extends RepeaterField {
 	 * @return string
 	 */
 	public function row() {
-
-		$html = '';
-
-		$html .= '<template v-for="( field, key ) in fields">
+		$html = '<template v-for="( field, key ) in fields">
 					<recipient-row
 					:field="field"
 					:fields="fields"

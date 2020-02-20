@@ -169,9 +169,7 @@ class RepeaterField extends Field {
 	 */
 	public function row() {
 
-		$html = '';
-
-		$html .= '<template v-for="( field, key ) in fields">
+		$html = '<template v-for="( field, key ) in fields">
 					<repeater-row
 					:field="field"
 					:fields="fields"

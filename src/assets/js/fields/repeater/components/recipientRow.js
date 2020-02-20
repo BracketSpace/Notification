@@ -46,8 +46,5 @@ Vue.component( 'recipient-row', {
 	mixins: [
 		fieldHandler,
 		inputsHandler
-	],
-	mounted(){
-		console.log(this.type)
-	}
+	]
 } )
