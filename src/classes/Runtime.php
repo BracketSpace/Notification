@@ -36,6 +36,11 @@ class Runtime extends DocHooks\HookAnnotations {
 	 */
 	public function boot() {
 
+		// Plugin has been already initialized.
+		if ( did_action( 'notification/boot' ) ) {
+			return;
+		}
+
 		$this->filesystems();
 		$this->templates();
 		$this->singletons();

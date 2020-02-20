@@ -12,53 +12,44 @@
  * @package notification
  */
 
-if ( ! function_exists( 'notification_runtime' ) ) :
+/**
+ * Autoloading.
+ */
+require_once dirname( __FILE__ ) . '/vendor/autoload.php';
 
-	// Don't initialize if the plugin has been loaded from the theme.
-	if ( ! did_action( 'plugins_loaded' ) && ! defined( 'NOTIFICATION_DOING_TESTS' ) ) {
-		return;
+/**
+ * Requirements check.
+ */
+$requirements = new BracketSpace\Notification\Vendor\Micropackage\Requirements\Requirements( __( 'Notification', 'notification' ), [
+	'php' => '7.0',
+	'wp'  => '5.2',
+] );
+
+if ( ! $requirements->satisfied() ) {
+	$requirements->print_notice();
+	return;
+}
+
+/**
+ * Gets the plugin runtime.
+ *
+ * @param  string $property Optional property to get.
+ * @return object           Runtime class instance
+ */
+function notification_runtime( $property = null ) {
+
+	global $notification_runtime;
+
+	if ( empty( $notification_runtime ) ) {
+		$notification_runtime = new BracketSpace\Notification\Runtime( __FILE__ );
 	}
 
-	/**
-	 * Autoloading.
-	 */
-	require_once dirname( __FILE__ ) . '/vendor/autoload.php';
-
-	/**
-	 * Requirements check.
-	 */
-	$requirements = new BracketSpace\Notification\Vendor\Micropackage\Requirements\Requirements( __( 'Notification', 'notification' ), [
-		'php' => '7.0',
-		'wp'  => '5.2',
-	] );
-
-	if ( ! $requirements->satisfied() ) {
-		$requirements->print_notice();
-		return;
+	if ( null !== $property && isset( $notification_runtime->{ $property } ) ) {
+		return $notification_runtime->{ $property };
 	}
 
-	/**
-	 * Gets the plugin runtime.
-	 *
-	 * @param  string $property Optional property to get.
-	 * @return object           Runtime class instance
-	 */
-	function notification_runtime( $property = null ) {
+	return $notification_runtime;
 
-		global $notification_runtime;
+}
 
-		if ( empty( $notification_runtime ) ) {
-			$notification_runtime = new BracketSpace\Notification\Runtime( __FILE__ );
-		}
-
-		if ( null !== $property && isset( $notification_runtime->{ $property } ) ) {
-			return $notification_runtime->{ $property };
-		}
-
-		return $notification_runtime;
-
-	}
-
-	add_action( 'init', [ notification_runtime(), 'boot' ], 5 );
-
-endif;
+add_action( 'init', [ notification_runtime(), 'boot' ], 5 );
