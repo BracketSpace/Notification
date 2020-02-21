@@ -46,13 +46,13 @@ class Runtime {
 	 *
 	 * @since  5.0.0
 	 * @since  6.0.0 Added boot action.
-	 * @since  [Next] All the defaults and boot action are called on initialization.
+	 * @since  [Next] All the defaults and init action are called on initialization.
 	 * @return void
 	 */
-	public function boot() {
+	public function init() {
 
 		// Plugin has been already initialized.
-		if ( did_action( 'notification/boot' ) || $this->requirements_unmet ) {
+		if ( did_action( 'notification/init' ) || $this->requirements_unmet ) {
 			return;
 		}
 
@@ -77,8 +77,9 @@ class Runtime {
 		$this->defaults();
 		$this->actions();
 
-		do_action_deprecated( 'notification/boot/initial', [], '[Next]', 'notification/boot' );
-		do_action( 'notification/boot' );
+		do_action_deprecated( 'notification/boot/initial', [], '[Next]', 'notification/init' );
+		do_action_deprecated( 'notification/boot', [], '[Next]', 'notification/init' );
+		do_action( 'notification/init' );
 
 	}
 

@@ -70,5 +70,5 @@ if ( ! class_exists( 'Notification' ) ) :
 endif;
 
 add_action( 'init', function() {
-	Notification::init( __FILE__ )->boot();
+	Notification::init( __FILE__ )->init();
 }, 5 );

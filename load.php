@@ -14,5 +14,5 @@ require_once __DIR__ . '/notification.php';
  * Initialize early.
  */
 add_action( 'init', function() {
-	Notification::init( __FILE__ )->boot();
+	Notification::init( __FILE__ )->init();
 }, 4 );
