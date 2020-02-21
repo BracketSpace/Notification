@@ -82,13 +82,4 @@ class PostTerms extends StringTag {
 
 	}
 
-	/**
-	 * Function for checking requirements
-	 *
-	 * @return boolean
-	 */
-	public function check_requirements() {
-		return isset( $this->trigger->{ $this->post_type } );
-	}
-
 }

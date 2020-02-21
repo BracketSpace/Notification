@@ -52,13 +52,4 @@ class AttachmentPage extends UrlTag {
 
 	}
 
-	/**
-	 * Function for checking requirements
-	 *
-	 * @return boolean
-	 */
-	public function check_requirements() {
-		return isset( $this->{ $this->property_name }->attachment->ID );
-	}
-
 }
