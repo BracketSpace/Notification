@@ -290,8 +290,8 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Files utility to `micropackage/filesystem`. Now the plugin has few filesystems which can be accessed easily from outside the plugin.
 * [Changed] View utility to `micropackage/templates`.
 * [Changed] Ajax utility to `micropackage/ajax`.
-* [Changed] Loading stack.
-* [Added] Added Webhook trait.
+* [Changed] Loading stack, now the plugin initializes on init 5 (or 4 if bundled).
+* [Added] Webhook and Cache trait.
 * [Added] Webhook JSON Carrier with plain JSON input code field.
 * [Added] Composer imposter package to aviod package conflicts.
 * [Added] `notification_filesystem` function to get plugin filesystem(s).
