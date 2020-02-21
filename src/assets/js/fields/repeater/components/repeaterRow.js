@@ -1,6 +1,7 @@
 /* global Vue */
 
 import { fieldHandler } from '../fieldHandler';
+import { inputsHandler } from '../inputsHandler';
 
 Vue.component( 'repeater-row', {
 	template: `
@@ -17,7 +18,7 @@ Vue.component( 'repeater-row', {
 						:type="subfield.type"
 						:value="subfield.value"
 						:checked="subfield.checked"
-						:name="'notification_carrier_' + type.fieldCarrier + '[' + type.fieldType + ']' + '[' + keyIndex + ']' + '[' + subfield.name + ']'"
+						:name="createFieldName(type, keyIndex, subfield) + '[' + subfield.name + ']'"
 						@click="checkboxHandler( subfield, $event )">
 						{{ subfield.checkbox_label }}
 						</label>
@@ -41,7 +42,7 @@ Vue.component( 'repeater-row', {
 						:class="subfield.css_class"
 						type="text"
 						:value="subfield.value"
-						:name="'notification_carrier_' + type.fieldCarrier + '[' + type.fieldType + ']' + '[' + keyIndex + ']' + '[' + subfield.name + ']'"
+						:name="createFieldName(type, keyIndex, subfield) + '[' + subfield.name + ']'"
 						:placeholder="subfield.placeholder"
 						>
 						<small
@@ -55,16 +56,22 @@ Vue.component( 'repeater-row', {
 		</tr>
 	`,
 	props: ['field', 'keyIndex', 'fields', 'type', 'nestedFields', 'nestedValues', 'nestedModel', 'nestedRowCount'],
-	mixins: [fieldHandler],
+	mixins: [fieldHandler, inputsHandler],
 	data(){
 		return {
-			subRows: 0
+			subRows: 0,
+			rowName: ''
 		}
 	},
 	methods: {
 		addSubField(){
 			this.subRows++;
 		},
+		createFieldName( type, index ){
+			this.rowName = `notification_carrier_${type.fieldCarrier}[${type.fieldType}][${index}]`;
+
+			return this.rowName;
+		}
 	}
 
 } )

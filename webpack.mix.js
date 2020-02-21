@@ -7,7 +7,7 @@ mix.js([
 	'src/assets/js/fields/*.js',
 	'src/assets/js/fields/repeater/components/recipientRow.js',
 	'src/assets/js/fields/repeater/components/repeaterRow.js',
-	'src/assets/js/fields/repeater/components/repeaterSubField.js',
+	'src/assets/js/fields/repeater/components/repeaterSubRow.js',
 	'src/assets/js/fields/repeater/components/nestedSubField.js',
 	'src/assets/js/fields/repeater/*.js',
 	'src/assets/js/*.js',

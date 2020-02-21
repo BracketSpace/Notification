@@ -7,15 +7,17 @@ Vue.component( 'nested-sub-field', {
 	`<div class="nested-repeater-fields">
 		<table class="fields-repeater-sortable">
 			<template v-for="( field, key ) in fields">
-				<repeater-sub-field
+				<repeater-sub-row
 				:field="field"
 				:type="type"
+				nested-model="model"
+				:field-name="fieldName"
 				:row-index="rowIndex"
 				:row-name="rowName"
 				:key-index="key"
 				:row="subRows"
 				@sub-field-removed="removeSubField">
-				</repeater-sub-field>
+				</repeater-sub-row>
 			</template>
 		</table>
 		<a href="#" class="button button-secondary add-new-repeater-field"
@@ -23,12 +25,14 @@ Vue.component( 'nested-sub-field', {
 		>Add sub field</a>
 	</div>
 	`,
-	props: ['model', 'nestedFields', 'nestedValues', 'subRows', 'type', 'rowIndex', 'rowName'],
+	props: ['model', 'nestedFields', 'nestedValues', 'subRows', 'type', 'rowIndex', 'rowName', 'fieldName'],
 	mixins: [fieldHandler],
 	data() {
 		return {
 			'fields' : [],
-			'values': this.nestedValues[this.rowIndex]
+			'values': this.nestedValues[this.rowIndex],
+			'subModel': [],
+			'subRowName': null
 		}
 	},
 	mounted(){
@@ -46,9 +50,10 @@ Vue.component( 'nested-sub-field', {
 			this.removeField( index, this.fields );
 		},
 		addSubFieldRows(){
-			this.rowCount = this.values.length;
-			this.addFields( this.rowCount, this.model );
-		}
-
+			if(this.values){
+				this.rowCount = this.values.length;
+				this.addFields( this.rowCount, this.model );
+			}
+		},
 	}
 } )

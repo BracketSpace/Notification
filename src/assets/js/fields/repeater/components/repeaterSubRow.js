@@ -1,8 +1,9 @@
 /* global Vue */
 
 import { fieldHandler } from '../fieldHandler';
+import { inputsHandler } from '../inputsHandler';
 
-Vue.component( 'repeater-sub-field', {
+Vue.component( 'repeater-sub-row', {
 	template:
 	`<div>
 		<tr class="row"><td class="handle"><span class="handle-index">{{keyIndex + 1}}</span></td>
@@ -18,7 +19,7 @@ Vue.component( 'repeater-sub-field', {
 						:type="subfield.type"
 						:value="subfield.value"
 						:checked="subfield.checked"
-						:name="'notification_carrier_' + type.fieldCarrier + '[' + type.fieldType + ']' + '[' + rowIndex + ']' + '[' + rowName + ']' + '[' + keyIndex + ']' "
+						:name="'notification_carrier_' + type.fieldCarrier + '[' + type.fieldType + ']' + '[' + rowIndex + ']' + '[' + rowName + ']' + '[' + keyIndex + ']' + '[' + subfield.name + ']' "
 						@click="checkboxHandler( subfield, $event )">
 						{{ subfield.checkbox_label }}
 						</label>
@@ -55,7 +56,7 @@ Vue.component( 'repeater-sub-field', {
 	</div>
 	`,
 	props: ['field', 'type', 'keyIndex', 'row', 'rowIndex', 'rowName'],
-	mixins: [fieldHandler],
+	mixins: [fieldHandler, inputsHandler],
 	methods: {
 		removeSubfield( index ){
 			this.$emit('sub-field-removed', index );

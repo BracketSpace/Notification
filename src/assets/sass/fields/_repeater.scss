@@ -43,18 +43,18 @@
 			&.handle {
 				position: relative;
 
-				&:hover {
-
-					.handle-index {
-						opacity: 0;
-					}
-				}
-
 				.handle-index {
 					position: absolute;
 					top: 50%;
 					left: 50%;
 					transform: translate(-50%, -50%);
+				}
+
+				&:hover {
+
+					.handle-index {
+						opacity: 0;
+					}
 				}
 			}
 
