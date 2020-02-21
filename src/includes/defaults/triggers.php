@@ -12,6 +12,14 @@ $post_types = notification_get_setting( 'triggers/post_types/types' );
 
 if ( $post_types ) {
 	foreach ( $post_types as $post_type ) {
+
+		$cached_types = notification_cache( 'post_types' );
+
+		// Skip if the post type cache wasn't set.
+		if ( ! in_array( $post_type, $cached_types, true ) ) {
+			continue;
+		}
+
 		notification_register_trigger( new Trigger\Post\PostAdded( $post_type ) );
 		notification_register_trigger( new Trigger\Post\PostDrafted( $post_type ) );
 		notification_register_trigger( new Trigger\Post\PostPublished( $post_type ) );
@@ -19,6 +27,7 @@ if ( $post_types ) {
 		notification_register_trigger( new Trigger\Post\PostPending( $post_type ) );
 		notification_register_trigger( new Trigger\Post\PostScheduled( $post_type ) );
 		notification_register_trigger( new Trigger\Post\PostTrashed( $post_type ) );
+
 	}
 }
 
