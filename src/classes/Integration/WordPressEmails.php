@@ -104,6 +104,7 @@ class WordPressEmails {
 		if ( 'true' !== notification_get_setting( 'integration/emails/password_change_to_admin' ) ) {
 			return;
 		}
+		add_filter( 'woocommerce_disable_password_change_notification', '__return_true' );
 		remove_action( 'after_password_reset', 'wp_password_change_notification' );
 	}
 
