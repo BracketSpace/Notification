@@ -30,7 +30,7 @@ function notification_register_settings( $callback, $priority = 10 ) {
  * @return mixed
  */
 function notification_get_settings() {
-	return notification_runtime( 'core_settings' )->get_settings();
+	return \Notification::component( 'core_settings' )->get_settings();
 }
 
 /**
@@ -41,5 +41,5 @@ function notification_get_settings() {
  * @return mixed
  */
 function notification_get_setting( $setting ) {
-	return notification_runtime( 'core_settings' )->get_setting( $setting );
+	return \Notification::component( 'core_settings' )->get_setting( $setting );
 }

@@ -12,53 +12,63 @@
  * @package notification
  */
 
-if ( ! function_exists( 'notification_runtime' ) ) :
-
-	// Don't initialize if the plugin has been loaded from the theme.
-	if ( ! did_action( 'plugins_loaded' ) && ! defined( 'NOTIFICATION_DOING_TESTS' ) ) {
-		return;
-	}
+if ( ! class_exists( 'Notification' ) ) :
 
 	/**
-	 * Autoloading.
+	 * Notification class
 	 */
-	require_once dirname( __FILE__ ) . '/vendor/autoload.php';
+	class Notification {
 
-	/**
-	 * Requirements check.
-	 */
-	$requirements = new BracketSpace\Notification\Vendor\Micropackage\Requirements\Requirements( __( 'Notification', 'notification' ), [
-		'php' => '7.0',
-		'wp'  => '5.2',
-	] );
+		/**
+		 * Runtime object
+		 *
+		 * @var BracketSpace\Notification\Runtime
+		 */
+		protected static $runtime;
 
-	if ( ! $requirements->satisfied() ) {
-		$requirements->print_notice();
-		return;
-	}
+		/**
+		 * Initializes the plugin runtime
+		 *
+		 * @since  [Next]
+		 * @param  string $plugin_file Main plugin file.
+		 * @return BracketSpace\Notification\Runtime
+		 */
+		public static function init( $plugin_file ) {
+			if ( ! isset( self::$runtime ) ) {
+				require_once dirname( $plugin_file ) . '/src/classes/Runtime.php';
+				self::$runtime = new BracketSpace\Notification\Runtime( $plugin_file );
+			}
 
-	/**
-	 * Gets the plugin runtime.
-	 *
-	 * @param  string $property Optional property to get.
-	 * @return object           Runtime class instance
-	 */
-	function notification_runtime( $property = null ) {
-
-		global $notification_runtime;
-
-		if ( empty( $notification_runtime ) ) {
-			$notification_runtime = new BracketSpace\Notification\Runtime( __FILE__ );
+			return self::$runtime;
 		}
 
-		if ( null !== $property && isset( $notification_runtime->{ $property } ) ) {
-			return $notification_runtime->{ $property };
+		/**
+		 * Gets runtime component
+		 *
+		 * @since  [Next]
+		 * @param  string $component_name Component name.
+		 * @return mixed
+		 */
+		public static function component( $component_name ) {
+			if ( isset( self::$runtime, self::$runtime->{ $component_name } ) ) {
+				return self::$runtime->{ $component_name };
+			}
 		}
 
-		return $notification_runtime;
+		/**
+		 * Gets runtime object
+		 *
+		 * @since  [Next]
+		 * @return BracketSpace\Notification\Runtime
+		 */
+		public static function runtime() {
+			return self::$runtime;
+		}
 
 	}
-
-	add_action( 'init', [ notification_runtime(), 'boot' ], 5 );
 
 endif;
+
+add_action( 'init', function() {
+	Notification::init( __FILE__ )->init();
+}, 5 );

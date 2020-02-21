@@ -189,7 +189,7 @@ class Cache {
 
 		$config = [];
 
-		foreach ( notification_runtime( 'core_settings' )->get_sections() as $section_slug => $section ) {
+		foreach ( \Notification::component( 'core_settings' )->get_sections() as $section_slug => $section ) {
 			$config[ $section_slug ] = [];
 
 			foreach ( $section->get_groups() as $group_slug => $group ) {

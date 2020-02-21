@@ -290,6 +290,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Files utility to `micropackage/filesystem`. Now the plugin has few filesystems which can be accessed easily from outside the plugin.
 * [Changed] View utility to `micropackage/templates`.
 * [Changed] Ajax utility to `micropackage/ajax`.
+* [Changed] Loading stack.
 * [Added] Added Webhook trait.
 * [Added] Webhook JSON Carrier with plain JSON input code field.
 * [Added] Composer imposter package to aviod package conflicts.
@@ -302,4 +303,3 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Fixed] Selectize script breaking description field in select input.
 * [Removed] `NOTIFICATION_VERSION` constant.
 * [Removed] `NOTIFICATION_DIR` and `NOTIFICATION_URL` constants.
-* [Removed] `load.php` file used for bundling.

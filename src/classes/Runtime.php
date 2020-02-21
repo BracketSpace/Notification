@@ -7,14 +7,29 @@
 
 namespace BracketSpace\Notification;
 
-use BracketSpace\Notification\Vendor\Micropackage\DocHooks;
+use BracketSpace\Notification\Vendor\Micropackage\Requirements\Requirements;
+use BracketSpace\Notification\Vendor\Micropackage\DocHooks\Helper as DocHooks;
 use BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem;
 use BracketSpace\Notification\Vendor\Micropackage\Templates\Storage as TemplateStorage;
 
 /**
  * Runtime class
  */
-class Runtime extends DocHooks\HookAnnotations {
+class Runtime {
+
+	/**
+	 * Main plugin file path
+	 *
+	 * @var string
+	 */
+	protected $plugin_file;
+
+	/**
+	 * Flag for unmet requirements
+	 *
+	 * @var bool
+	 */
+	protected $requirements_unmet;
 
 	/**
 	 * Class constructor
@@ -31,10 +46,30 @@ class Runtime extends DocHooks\HookAnnotations {
 	 *
 	 * @since  5.0.0
 	 * @since  6.0.0 Added boot action.
-	 * @since  [Next] All the defaults and boot action are called on initialization.
+	 * @since  [Next] All the defaults and init action are called on initialization.
 	 * @return void
 	 */
-	public function boot() {
+	public function init() {
+
+		// Plugin has been already initialized.
+		if ( did_action( 'notification/init' ) || $this->requirements_unmet ) {
+			return;
+		}
+
+		// Autoloading.
+		require_once dirname( $this->plugin_file ) . '/vendor/autoload.php';
+
+		// Requirements check.
+		$requirements = new Requirements( __( 'Notification', 'notification' ), [
+			'php' => '7.0',
+			'wp'  => '5.2',
+		] );
+
+		if ( ! $requirements->satisfied() ) {
+			$requirements->print_notice();
+			$this->requirements_unmet = true;
+			return;
+		}
 
 		$this->filesystems();
 		$this->templates();
@@ -42,8 +77,9 @@ class Runtime extends DocHooks\HookAnnotations {
 		$this->defaults();
 		$this->actions();
 
-		do_action_deprecated( 'notification/boot/initial', [], '[Next]', 'notification/boot' );
-		do_action( 'notification/boot' );
+		do_action_deprecated( 'notification/boot/initial', [], '[Next]', 'notification/init' );
+		do_action_deprecated( 'notification/boot', [], '[Next]', 'notification/init' );
+		do_action( 'notification/init' );
 
 	}
 
@@ -55,11 +91,11 @@ class Runtime extends DocHooks\HookAnnotations {
 	 */
 	public function register_hooks() {
 
-		$this->add_hooks();
+		DocHooks::hook( $this );
 
 		foreach ( get_object_vars( $this ) as $instance ) {
 			if ( is_object( $instance ) ) {
-				$this->add_hooks( $instance );
+				DocHooks::hook( $instance );
 			}
 		}
 
@@ -164,7 +200,7 @@ class Runtime extends DocHooks\HookAnnotations {
 		register_uninstall_hook( $this->plugin_file, [ 'BracketSpace\Notification\Core\Uninstall', 'remove_plugin_data' ] );
 
 		// DocHooks compatibility.
-		if ( ! DocHooks\Helper::is_enabled() && $this->get_filesystem( 'includes' )->exists( 'hooks.php' ) ) {
+		if ( ! DocHooks::is_enabled() && $this->get_filesystem( 'includes' )->exists( 'hooks.php' ) ) {
 			include_once $this->get_filesystem( 'includes' )->path( 'hooks.php' );
 		}
 
