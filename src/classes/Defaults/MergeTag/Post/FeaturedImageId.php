@@ -11,10 +11,14 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag\IntegerTag;
+use BracketSpace\Notification\Traits;
+
 /**
  * Post featured image id merge tag class
  */
 class FeaturedImageId extends IntegerTag {
+
+	use Traits\Cache;
 
 	/**
 	 * Post type slug
@@ -42,15 +46,15 @@ class FeaturedImageId extends IntegerTag {
 			[
 				'slug'        => $this->post_type . '_featured_image_id',
 				// translators: singular post name.
-				'name'        => sprintf( __( '%s featured image id', 'notification' ), $this->get_nicename() ),
+				'name'        => sprintf( __( '%s featured image id', 'notification' ), $this->get_current_post_type_name() ),
 				'description' => __( '123', 'notification' ),
 				'example'     => true,
-				'resolver'    => function() {
-					$post_id = $this->trigger->{ $this->post_type }->ID;
+				'resolver'    => function( $trigger ) {
+					$post_id = $trigger->{ $this->post_type }->ID;
 
 					return (int) get_post_thumbnail_id( $post_id );
 				},
-				'group'       => $this->get_nicename(),
+				'group'       => $this->get_current_post_type_name(),
 			]
 		);
 
@@ -67,20 +71,4 @@ class FeaturedImageId extends IntegerTag {
 		return isset( $this->trigger->{ $this->post_type }->ID );
 	}
 
-	/**
-	 * Gets nice, translated post name
-	 *
-	 * @since [ Next ]
-	 * @return string post name.
-	 */
-	public function get_nicename() {
-		$post_type = get_post_type_object( $this->post_type );
-
-		if ( empty( $post_type ) ) {
-			return '';
-		}
-
-		return $post_type->labels->singular_name;
-
-	}
 }

@@ -11,12 +11,14 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
-
+use BracketSpace\Notification\Traits;
 
 /**
  * Post featured image url merge tag class
  */
 class FeaturedImageUrl extends UrlTag {
+
+	use Traits\Cache;
 
 	/**
 	 * Post Type slug
@@ -44,13 +46,13 @@ class FeaturedImageUrl extends UrlTag {
 			[
 				'slug'        => $this->post_type . '_featured_image_url',
 				// translators: singular post name.
-				'name'        => sprintf( __( '%s featured image url', 'notification' ), $this->get_nicename() ),
+				'name'        => sprintf( __( '%s featured image url', 'notification' ), $this->get_current_post_type_name() ),
 				'description' => __( 'https://example.com/wp-content/2019/01/image.jpg', 'notification' ),
 				'example'     => true,
-				'resolver'    => function() {
-					return wp_get_attachment_image_url( get_post_thumbnail_id( $this->trigger->{ $this->post_type }->ID ), 'full' );
+				'resolver'    => function( $trigger ) {
+					return wp_get_attachment_image_url( get_post_thumbnail_id( $trigger->{ $this->post_type }->ID ), 'full' );
 				},
-				'group'       => $this->get_nicename(),
+				'group'       => $this->get_current_post_type_name(),
 			]
 		);
 
@@ -65,20 +67,6 @@ class FeaturedImageUrl extends UrlTag {
 	 */
 	public function check_requirements() {
 		return isset( $this->trigger->{ $this->post_type }->ID );
-	}
-
-	/**
-	 * Gets nice, translated post name
-	 *
-	 * @since  6.0.0
-	 * @return string post name
-	 */
-	public function get_nicename() {
-		$post_type = get_post_type_object( $this->post_type );
-		if ( empty( $post_type ) ) {
-			return '';
-		}
-		return $post_type->labels->singular_name;
 	}
 
 }

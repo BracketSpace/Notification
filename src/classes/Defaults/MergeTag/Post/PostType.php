@@ -11,12 +11,14 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
-
+use BracketSpace\Notification\Traits;
 
 /**
  * Post type merge tag class
  */
 class PostType extends StringTag {
+
+	use Traits\Cache;
 
 	/**
 	 * Post Type slug
@@ -49,26 +51,12 @@ class PostType extends StringTag {
 				'resolver'    => function( $trigger ) {
 					return $trigger->post_type;
 				},
-				'group'       => $this->get_nicename(),
+				'group'       => $this->get_current_post_type_name(),
 			]
 		);
 
 		parent::__construct( $args );
 
-	}
-
-	/**
-	 * Gets nice, translated post name
-	 *
-	 * @since  5.0.0
-	 * @return string post name
-	 */
-	public function get_nicename() {
-		$post_type = get_post_type_object( $this->post_type );
-		if ( empty( $post_type ) ) {
-			return '';
-		}
-		return $post_type->labels->singular_name;
 	}
 
 }

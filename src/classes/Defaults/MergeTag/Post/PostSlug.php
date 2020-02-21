@@ -11,12 +11,14 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
-
+use BracketSpace\Notification\Traits;
 
 /**
  * Post slug merge tag class
  */
 class PostSlug extends StringTag {
+
+	use Traits\Cache;
 
 	/**
 	 * Post Type slug
@@ -44,13 +46,13 @@ class PostSlug extends StringTag {
 			[
 				'slug'        => $this->post_type . '_slug',
 				// translators: singular post name.
-				'name'        => sprintf( __( '%s slug', 'notification' ), $this->get_nicename() ),
+				'name'        => sprintf( __( '%s slug', 'notification' ), $this->get_current_post_type_name() ),
 				'description' => __( 'hello-world', 'notification' ),
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->post_type }->post_name;
 				},
-				'group'       => $this->get_nicename(),
+				'group'       => $this->get_current_post_type_name(),
 			]
 		);
 
@@ -65,20 +67,6 @@ class PostSlug extends StringTag {
 	 */
 	public function check_requirements() {
 		return isset( $this->trigger->{ $this->post_type } );
-	}
-
-	/**
-	 * Gets nice, translated post name
-	 *
-	 * @since  5.0.0
-	 * @return string post name
-	 */
-	public function get_nicename() {
-		$post_type = get_post_type_object( $this->post_type );
-		if ( empty( $post_type ) ) {
-			return '';
-		}
-		return $post_type->labels->singular_name;
 	}
 
 }

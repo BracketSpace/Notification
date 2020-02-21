@@ -9,11 +9,14 @@ namespace BracketSpace\Notification\Defaults\Trigger\Post;
 
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Traits;
 
 /**
  * Post trigger class
  */
 abstract class PostTrigger extends Abstracts\Trigger {
+
+	use Traits\Cache;
 
 	/**
 	 * Post Type slug
@@ -291,39 +294,6 @@ abstract class PostTrigger extends Abstracts\Trigger {
 			'group'         => __( 'Last editor', 'notification' ),
 		] ) );
 
-	}
-
-	/**
-	 * Gets nice, translated post name
-	 *
-	 * @since  5.0.0
-	 * @return string post name
-	 */
-	public function get_current_post_type_name() {
-		return self::get_post_type_name( $this->post_type );
-	}
-
-	/**
-	 * Gets nice, translated post name for post type slug
-	 *
-	 * @since  5.0.0
-	 * @since  [Next] Using internal caching.
-	 * @param  string $post_type post type slug.
-	 * @return string post name
-	 */
-	public static function get_post_type_name( $post_type ) {
-		$post_types = notification_cache( 'post_types' );
-		return $post_types[ $post_type ] ?? '';
-	}
-
-	/**
-	 * Gets post type slug
-	 *
-	 * @since  5.2.3
-	 * @return string post type slug
-	 */
-	public function get_post_type() {
-		return $this->post_type;
 	}
 
 }

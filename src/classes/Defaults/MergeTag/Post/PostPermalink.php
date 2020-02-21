@@ -11,12 +11,14 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
-
+use BracketSpace\Notification\Traits;
 
 /**
  * Post permalink merge tag class
  */
 class PostPermalink extends UrlTag {
+
+	use Traits\Cache;
 
 	/**
 	 * Post Type slug
@@ -44,13 +46,13 @@ class PostPermalink extends UrlTag {
 			[
 				'slug'        => $this->post_type . '_permalink',
 				// translators: singular post name.
-				'name'        => sprintf( __( '%s permalink', 'notification' ), $this->get_nicename() ),
+				'name'        => sprintf( __( '%s permalink', 'notification' ), $this->get_current_post_type_name() ),
 				'description' => __( 'https://example.com/hello-world/', 'notification' ),
 				'example'     => true,
-				'resolver'    => function() {
-					return get_permalink( $this->trigger->{ $this->post_type }->ID );
+				'resolver'    => function( $trigger ) {
+					return get_permalink( $trigger->{ $this->post_type }->ID );
 				},
-				'group'       => $this->get_nicename(),
+				'group'       => $this->get_current_post_type_name(),
 			]
 		);
 
@@ -65,20 +67,6 @@ class PostPermalink extends UrlTag {
 	 */
 	public function check_requirements() {
 		return isset( $this->trigger->{ $this->post_type }->ID );
-	}
-
-	/**
-	 * Gets nice, translated post name
-	 *
-	 * @since  5.0.0
-	 * @return string post name
-	 */
-	public function get_nicename() {
-		$post_type = get_post_type_object( $this->post_type );
-		if ( empty( $post_type ) ) {
-			return '';
-		}
-		return $post_type->labels->singular_name;
 	}
 
 }
