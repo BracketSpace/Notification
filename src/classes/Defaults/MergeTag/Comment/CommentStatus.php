@@ -8,19 +8,21 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
-
+use BracketSpace\Notification\Traits;
 
 /**
  * Comment status merge tag class
  */
 class CommentStatus extends StringTag {
 
+	use Traits\Cache;
+
 	/**
 	 * Trigger property to get the comment data from
 	 *
 	 * @var string
 	 */
-	protected $property_name = 'comment';
+	protected $comment_type = 'comment';
 
 	/**
 	 * Merge tag constructor
@@ -30,29 +32,30 @@ class CommentStatus extends StringTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
-			$this->property_name = $params['property_name'];
+		if ( isset( $params['comment_type'] ) && ! empty( $params['comment_type'] ) ) {
+			$this->comment_type = $params['comment_type'];
 		}
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug'        => 'comment_status',
-				'name'        => __( 'Comment status', 'notification' ),
+				// Translators: Comment type name.
+				'name'        => sprintf( __( '%s status', 'notification' ), self::get_current_comment_type_name() ),
 				'description' => __( 'Approved', 'notification' ),
 				'example'     => true,
-				'resolver'    => function() {
-					if ( '1' === $this->trigger->{ $this->property_name }->comment_approved ) {
+				'resolver'    => function( $trigger ) {
+					if ( '1' === $trigger->comment->comment_approved ) {
 						return __( 'Approved', 'notification' );
-					} elseif ( '0' === $this->trigger->{ $this->property_name }->comment_approved ) {
+					} elseif ( '0' === $trigger->comment->comment_approved ) {
 						return __( 'Unapproved', 'notification' );
-					} elseif ( 'spam' === $this->trigger->{ $this->property_name }->comment_approved ) {
+					} elseif ( 'spam' === $trigger->comment->comment_approved ) {
 						return __( 'Marked as spam', 'notification' );
-					} elseif ( 'trash' === $this->trigger->{ $this->property_name }->comment_approved ) {
+					} elseif ( 'trash' === $trigger->comment->comment_approved ) {
 						return __( 'Trashed', 'notification' );
 					}
 				},
-				'group'       => __( ucfirst( $this->property_name ), 'notification' ),
+				'group'       => __( self::get_current_comment_type_name(), 'notification' ),
 			]
 		);
 
@@ -66,7 +69,7 @@ class CommentStatus extends StringTag {
 	 * @return boolean
 	 */
 	public function check_requirements() {
-		return isset( $this->trigger->{ $this->property_name }->comment_approved );
+		return isset( $this->trigger->{ $this->comment_type }->comment_approved );
 	}
 
 }

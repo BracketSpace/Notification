@@ -67,10 +67,21 @@ class CommentAdded extends CommentTrigger {
 
 		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\Comment\CommentActionApprove() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentActionTrash() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentActionDelete() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentActionSpam() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentActionApprove( [
+			'comment_type' => $this->get_comment_type(),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\Comment\CommentActionTrash( [
+			'comment_type' => $this->get_comment_type(),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\Comment\CommentActionDelete( [
+			'comment_type' => $this->get_comment_type(),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\Comment\CommentActionSpam( [
+			'comment_type' => $this->get_comment_type(),
+		] ) );
 
 	}
 

@@ -8,19 +8,21 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
-
+use BracketSpace\Notification\Traits;
 
 /**
  * Comment action spam URL merge tag class
  */
 class CommentActionSpam extends UrlTag {
 
+	use Traits\Cache;
+
 	/**
 	 * Trigger property to get the comment data from
 	 *
 	 * @var string
 	 */
-	protected $property_name = 'comment';
+	protected $comment_type = 'comment';
 
 	/**
 	 * Merge tag constructor
@@ -30,20 +32,21 @@ class CommentActionSpam extends UrlTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
-			$this->property_name = $params['property_name'];
+		if ( isset( $params['comment_type'] ) && ! empty( $params['comment_type'] ) ) {
+			$this->comment_type = $params['comment_type'];
 		}
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug'     => 'comment_spam_action_url',
-				'name'     => __( 'Comment spam URL', 'notification' ),
+				// Translators: Comment type name.
+				'name'     => sprintf( __( '%s mark as spam URL', 'notification' ), self::get_current_comment_type_name() ),
 				'resolver' => function( $trigger ) {
-					return admin_url( "comment.php?action=spam&c={$trigger->{ $this->property_name }->comment_ID}#wpbody-content" );
+					return admin_url( "comment.php?action=spam&c={$trigger->comment->comment_ID}#wpbody-content" );
 				},
 				// translators: comment type actions text.
-				'group'    => sprintf( __( '%s actions', 'notification' ), ucfirst( $this->property_name ) ),
+				'group'    => sprintf( __( '%s actions', 'notification' ), self::get_current_comment_type_name() ),
 			]
 		);
 
@@ -57,7 +60,7 @@ class CommentActionSpam extends UrlTag {
 	 * @return boolean
 	 */
 	public function check_requirements() {
-		return isset( $this->trigger->{ $this->property_name }->comment_ID );
+		return isset( $this->trigger->{ $this->comment_type }->comment_ID );
 	}
 
 }

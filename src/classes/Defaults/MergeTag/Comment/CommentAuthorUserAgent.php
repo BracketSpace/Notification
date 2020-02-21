@@ -8,19 +8,21 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
-
+use BracketSpace\Notification\Traits;
 
 /**
  * Comment author user agent tag class
  */
 class CommentAuthorUserAgent extends StringTag {
 
+	use Traits\Cache;
+
 	/**
 	 * Trigger property to get the comment data from
 	 *
 	 * @var string
 	 */
-	protected $property_name = 'comment';
+	protected $comment_type = 'comment';
 
 	/**
 	 * Merge tag constructor
@@ -30,22 +32,23 @@ class CommentAuthorUserAgent extends StringTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
-			$this->property_name = $params['property_name'];
+		if ( isset( $params['comment_type'] ) && ! empty( $params['comment_type'] ) ) {
+			$this->comment_type = $params['comment_type'];
 		}
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug'        => 'comment_author_user_agent',
-				'name'        => __( 'Comment author user agent', 'notification' ),
+				// Translators: Comment type name.
+				'name'        => sprintf( __( '%s author user browser agent', 'notification' ), self::get_current_comment_type_name() ),
 				'description' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
-					return $trigger->{ $this->property_name }->comment_agent;
+					return $trigger->comment->comment_agent;
 				},
 				// translators: comment type author.
-				'group'       => sprintf( __( '%s author', 'notification' ), ucfirst( $this->property_name ) ),
+				'group'       => sprintf( __( '%s author', 'notification' ), self::get_current_comment_type_name() ),
 			]
 		);
 
@@ -59,7 +62,7 @@ class CommentAuthorUserAgent extends StringTag {
 	 * @return boolean
 	 */
 	public function check_requirements() {
-		return isset( $this->trigger->{ $this->property_name }->comment_agent );
+		return isset( $this->trigger->{ $this->comment_type }->comment_agent );
 	}
 
 }
