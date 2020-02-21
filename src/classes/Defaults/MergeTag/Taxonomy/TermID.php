@@ -12,7 +12,6 @@ namespace BracketSpace\Notification\Defaults\MergeTag\Taxonomy;
 
 use BracketSpace\Notification\Defaults\MergeTag\IntegerTag;
 
-
 /**
  * Taxonomy term ID merge tag class
  */

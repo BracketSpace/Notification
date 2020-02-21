@@ -88,4 +88,42 @@ trait Cache {
 		return $this->comment_type;
 	}
 
+	/**
+	 * ====================================
+	 * Taxonomy
+	 * ====================================
+	 */
+
+	/**
+	 * Gets nice, translated taxonomy name
+	 *
+	 * @since  [Next]
+	 * @return string taxonomy
+	 */
+	public function get_current_taxonomy_name() {
+		return self::get_taxonomy_name( $this->get_taxonomy() );
+	}
+
+	/**
+	 * Gets nice, translated taxonomy name for taxonomy slug
+	 *
+	 * @since  [Next]
+	 * @param  string $taxonomy Taxonomy slug.
+	 * @return string
+	 */
+	public static function get_taxonomy_name( $taxonomy ) {
+		$taxonomies = notification_cache( 'taxonomies' );
+		return $taxonomies[ $taxonomy ] ?? '';
+	}
+
+	/**
+	 * Gets taxonomy slug
+	 *
+	 * @since  [Next]
+	 * @return string
+	 */
+	public function get_taxonomy() {
+		return $this->taxonomy;
+	}
+
 }

@@ -12,7 +12,6 @@ namespace BracketSpace\Notification\Defaults\MergeTag\Taxonomy;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 
-
 /**
  * Taxonomy term slug merge tag class
  */

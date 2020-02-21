@@ -12,7 +12,6 @@ namespace BracketSpace\Notification\Defaults\MergeTag\Taxonomy;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 
-
 /**
  * Taxonomy name merge tag class
  */
@@ -47,7 +46,7 @@ class TaxonomyName extends StringTag {
 				'description' => __( 'Hello World', 'notification' ),
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
-					return $this->get_nicename();
+					return $trigger->get_current_taxonomy_name();
 				},
 				'group'       => __( 'Taxonomy', 'notification' ),
 			]
@@ -64,20 +63,6 @@ class TaxonomyName extends StringTag {
 	 */
 	public function check_requirements() {
 		return isset( $this->trigger->taxonomy );
-	}
-
-	/**
-	 * Gets nice, translated taxonomy name
-	 *
-	 * @since  5.2.2
-	 * @return string taxonomy nicename
-	 */
-	public function get_nicename() {
-		$taxonomy = get_taxonomy( $this->trigger->taxonomy );
-		if ( empty( $taxonomy ) ) {
-			return '';
-		}
-		return $taxonomy->labels->singular_name;
 	}
 
 }

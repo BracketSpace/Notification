@@ -9,11 +9,14 @@ namespace BracketSpace\Notification\Defaults\Trigger\Taxonomy;
 
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Traits;
 
 /**
  * Taxonomy trigger class
  */
 abstract class TermTrigger extends Abstracts\Trigger {
+
+	use Traits\Cache;
 
 	/**
 	 * Taxonomy slug
@@ -62,29 +65,6 @@ abstract class TermTrigger extends Abstracts\Trigger {
 			'taxonomy' => $this->taxonomy,
 		] ) );
 
-	}
-
-	/**
-	 * Gets nice, translated taxonomy name
-	 *
-	 * @since  5.2.2
-	 * @return string taxonomy
-	 */
-	public function get_current_taxonomy_name() {
-		return self::get_taxonomy_name( $this->taxonomy );
-	}
-
-	/**
-	 * Gets nice, translated taxonomy name for taxonomy slug
-	 *
-	 * @since  5.2.2
-	 * @since  [Next] Using internal caching.
-	 * @param  string $taxonomy Taxonomy slug.
-	 * @return string
-	 */
-	public static function get_taxonomy_name( $taxonomy ) {
-		$taxonomies = notification_cache( 'taxonomies' );
-		return $taxonomies[ $taxonomy ] ?? '';
 	}
 
 }
