@@ -41,13 +41,4 @@ class TermID extends IntegerTag {
 
 	}
 
-	/**
-	 * Function for checking requirements
-	 *
-	 * @return boolean
-	 */
-	public function check_requirements() {
-		return isset( $this->trigger->term->term_id );
-	}
-
 }

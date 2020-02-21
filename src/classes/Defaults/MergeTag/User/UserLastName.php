@@ -55,13 +55,4 @@ class UserLastName extends StringTag {
 
 	}
 
-	/**
-	 * Function for checking requirements
-	 *
-	 * @return boolean
-	 */
-	public function check_requirements() {
-		return isset( $this->trigger->{ $this->property_name }->last_name );
-	}
-
 }

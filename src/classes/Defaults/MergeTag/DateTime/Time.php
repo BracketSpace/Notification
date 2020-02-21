@@ -75,13 +75,4 @@ class Time extends StringTag {
 
 	}
 
-	/**
-	 * Checks merge tag requirements
-	 *
-	 * @return boolean
-	 */
-	public function check_requirements() {
-		return isset( $this->trigger->{ $this->get_slug() } );
-	}
-
 }
