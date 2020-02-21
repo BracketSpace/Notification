@@ -1,4 +1,4 @@
-/* global jQuery */
+/* global jQuery, jQueryCollapse */
 
 import 'selectize';
 import 'jquery-collapse/src/jquery.collapse.js';
