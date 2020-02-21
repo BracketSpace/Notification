@@ -291,6 +291,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] View utility to `micropackage/templates`.
 * [Changed] Ajax utility to `micropackage/ajax`.
 * [Changed] Loading stack, now the plugin initializes on init 5 (or 4 if bundled).
+* [Changed] Merge Tags don't need the requirements now and throwable resolver errors are caught and changed to notices.
 * [Added] Webhook and Cache trait.
 * [Added] Webhook JSON Carrier with plain JSON input code field.
 * [Added] Composer imposter package to aviod package conflicts.

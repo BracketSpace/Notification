@@ -54,13 +54,4 @@ class CommentActionDelete extends UrlTag {
 
 	}
 
-	/**
-	 * Function for checking requirements
-	 *
-	 * @return boolean
-	 */
-	public function check_requirements() {
-		return isset( $this->trigger->{ $this->comment_type }->comment_ID );
-	}
-
 }

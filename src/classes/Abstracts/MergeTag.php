@@ -130,16 +130,6 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 	abstract public function sanitize( $value );
 
 	/**
-	 * Checks the merge tag reqirements
-	 * ie. if there's a property set
-	 *
-	 * @return boolean default always true
-	 */
-	public function check_requirements() {
-		return true;
-	}
-
-	/**
 	 * Gets description
 	 *
 	 * @return string description
@@ -181,7 +171,12 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 			return $this->get_value();
 		}
 
-		$value = call_user_func( $this->resolver, $this->get_trigger() );
+		try {
+			$value = call_user_func( $this->resolver, $this->get_trigger() );
+		} catch ( \Throwable $t ) {
+			$value = null;
+			trigger_error( $t->getMessage(), E_USER_NOTICE ); // phpcs:ignore
+		}
 
 		if ( ! empty( $value ) && ! $this->validate( $value ) ) {
 			$error_type = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? E_USER_ERROR : E_USER_NOTICE;

@@ -54,13 +54,4 @@ class AttachmentDirectUrl extends UrlTag {
 
 	}
 
-	/**
-	 * Function for checking requirements
-	 *
-	 * @return boolean
-	 */
-	public function check_requirements() {
-		return isset( $this->trigger->{ $this->property_name }->ID );
-	}
-
 }
