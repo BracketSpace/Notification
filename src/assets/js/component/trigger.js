@@ -1,4 +1,7 @@
 /* global notification, jQuery */
+
+import 'selectize';
+
 ( function( $ ) {
 	$( document ).ready( function() {
 		$( '#notification_trigger_select' ).selectize( {

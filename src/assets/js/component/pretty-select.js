@@ -1,5 +1,8 @@
 /* eslint no-alert: 0 */
 /* global notification, jQuery */
+
+import 'selectize';
+
 ( function( $ ) {
 	$( document ).ready( function() {
 		$( '.notification-pretty-select:visible' ).selectize();
