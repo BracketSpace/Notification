@@ -15,7 +15,7 @@ class WordPressEmails {
 	/**
 	 * Replaces the default hooks for the new user notification
 	 *
-	 * @action plugins_loaded
+	 * @action notification/init
 	 *
 	 * @since  6.1.0
 	 * @return void
@@ -95,7 +95,7 @@ class WordPressEmails {
 	/**
 	 * Disables send the email change email notification to admin
 	 *
-	 * @action plugins_loaded
+	 * @action notification/init
 	 *
 	 * @since  6.1.0
 	 * @return void
