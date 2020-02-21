@@ -8,15 +8,14 @@
 use BracketSpace\Notification\Defaults\Trigger;
 
 // Post triggers.
-$post_types = notification_get_setting( 'triggers/post_types/types' );
+$post_types        = notification_get_setting( 'triggers/post_types/types' );
+$cached_post_types = notification_cache( 'post_types' );
 
 if ( $post_types ) {
 	foreach ( $post_types as $post_type ) {
 
-		$cached_types = notification_cache( 'post_types' );
-
 		// Skip if the post type cache wasn't set.
-		if ( ! in_array( $post_type, $cached_types, true ) ) {
+		if ( ! array_key_exists( $post_type, $cached_post_types ) ) {
 			continue;
 		}
 
@@ -32,17 +31,21 @@ if ( $post_types ) {
 }
 
 // Taxonomy triggers.
-if ( notification_get_setting( 'triggers/taxonomies/types' ) ) {
-	$taxonomies = notification_get_setting( 'triggers/taxonomies/types' );
+$taxonomies        = notification_get_setting( 'triggers/taxonomies/types' );
+$cached_taxonomies = notification_cache( 'taxonomies' );
 
+if ( $taxonomies ) {
 	foreach ( $taxonomies as $taxonomy ) {
-		if ( ! taxonomy_exists( $taxonomy ) ) {
+
+		// Skip if the taxonomy cache wasn't set.
+		if ( ! array_key_exists( $taxonomy, $cached_taxonomies ) ) {
 			continue;
 		}
 
 		notification_register_trigger( new Trigger\Taxonomy\TermAdded( $taxonomy ) );
 		notification_register_trigger( new Trigger\Taxonomy\TermUpdated( $taxonomy ) );
 		notification_register_trigger( new Trigger\Taxonomy\TermDeleted( $taxonomy ) );
+
 	}
 }
 
@@ -69,10 +72,17 @@ if ( notification_get_setting( 'triggers/media/enable' ) ) {
 }
 
 // Comment triggers.
-if ( notification_get_setting( 'triggers/comment/types' ) ) {
-	$comment_types = notification_get_setting( 'triggers/comment/types' );
+$comment_types        = notification_get_setting( 'triggers/comment/types' );
+$cached_comment_types = notification_cache( 'comment_types' );
 
+if ( $comment_types ) {
 	foreach ( $comment_types as $comment_type ) {
+
+		// Skip if the comment type cache wasn't set.
+		if ( ! array_key_exists( $comment_type, $cached_comment_types ) ) {
+			continue;
+		}
+
 		notification_register_trigger( new Trigger\Comment\CommentPublished( $comment_type ) );
 		notification_register_trigger( new Trigger\Comment\CommentAdded( $comment_type ) );
 		notification_register_trigger( new Trigger\Comment\CommentReplied( $comment_type ) );
@@ -80,6 +90,7 @@ if ( notification_get_setting( 'triggers/comment/types' ) ) {
 		notification_register_trigger( new Trigger\Comment\CommentUnapproved( $comment_type ) );
 		notification_register_trigger( new Trigger\Comment\CommentSpammed( $comment_type ) );
 		notification_register_trigger( new Trigger\Comment\CommentTrashed( $comment_type ) );
+
 	}
 }
 
