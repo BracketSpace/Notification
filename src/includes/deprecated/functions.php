@@ -9,6 +9,23 @@ use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Vendor\Micropackage\DocHooks\Helper as DocHooksHelper;
 
 /**
+ * Gets the plugin Runtime.
+ *
+ * @deprecated [Next] New Notification static class should be used.
+ * @param      string $property Optional property to get.
+ * @return     object           Runtime class instance
+ */
+function notification_runtime( $property = null ) {
+	_deprecated_function( 'notification_runtime', '[Next]', 'Notification static class' );
+
+	if ( null !== $property ) {
+		return Notification::component( $property );
+	}
+
+	return Notification::runtime();
+}
+
+/**
  * Checks if notification post has been just started
  *
  * @since  5.0.0

@@ -12,26 +12,8 @@
  * @package notification
  */
 
-if ( ! function_exists( 'notification_runtime' ) ) :
-	/**
-	 * Gets the plugin Runtime.
-	 *
-	 * @deprecated [Next] New Notification static class should be used.
-	 * @param      string $property Optional property to get.
-	 * @return     object           Runtime class instance
-	 */
-	function notification_runtime( $property = null ) {
-		_deprecated_function( 'notification_runtime', '[Next]', 'Notification static class' );
-
-		if ( null !== $property ) {
-			return Notification::component( $property );
-		}
-
-		return Notification::runtime();
-	}
-endif;
-
 if ( ! class_exists( 'Notification' ) ) :
+
 	/**
 	 * Notification class
 	 */
@@ -84,6 +66,7 @@ if ( ! class_exists( 'Notification' ) ) :
 		}
 
 	}
+
 endif;
 
 add_action( 'init', function() {
