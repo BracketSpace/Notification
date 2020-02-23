@@ -74,8 +74,8 @@ class Runtime {
 		$this->filesystems();
 		$this->templates();
 		$this->singletons();
-		$this->defaults();
 		$this->actions();
+		$this->defaults();
 
 		do_action_deprecated( 'notification/boot/initial', [], '[Next]', 'notification/init' );
 		do_action_deprecated( 'notification/boot', [], '[Next]', 'notification/init' );
@@ -177,6 +177,7 @@ class Runtime {
 		$this->integration_cf        = new Integration\CustomFields();
 		$this->integration_bp        = new Integration\BackgroundProcessing();
 		$this->integration_mce       = new Integration\TinyMce();
+		$this->integration_2fa       = new Integration\TwoFactor();
 	}
 
 	/**
