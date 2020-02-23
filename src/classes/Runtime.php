@@ -62,7 +62,7 @@ class Runtime {
 		// Requirements check.
 		$requirements = new Requirements( __( 'Notification', 'notification' ), [
 			'php' => '7.0',
-			'wp'  => '5.2',
+			'wp'  => '5.3',
 		] );
 
 		if ( ! $requirements->satisfied() ) {

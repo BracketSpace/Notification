@@ -54,7 +54,7 @@ class UserPasswordResetRequest extends UserTrigger {
 		$this->password_reset_key = $reset_key;
 
 		$this->user_registered_datetime        = strtotime( $this->user_object->user_registered );
-		$this->password_reset_request_datetime = $this->cache( 'timestamp', current_time( 'timestamp' ) ); // phpcs:ignore
+		$this->password_reset_request_datetime = $this->cache( 'timestamp', time() );
 
 	}
 

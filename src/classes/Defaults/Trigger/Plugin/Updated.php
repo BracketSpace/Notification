@@ -44,7 +44,7 @@ class Updated extends PluginTrigger {
 		$this->previous_version        = $upgrader->skin->plugin_info['Version'];
 		$plugin_dir                    = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $upgrader->plugin_info();
 		$this->plugin                  = get_plugin_data( $plugin_dir, false );
-		$this->plugin_update_date_time = $this->cache( 'update_timestamp', current_time( 'timestamp' ) ); // phpcs:ignore
+		$this->plugin_update_date_time = $this->cache( 'update_timestamp', time() );
 
 	}
 

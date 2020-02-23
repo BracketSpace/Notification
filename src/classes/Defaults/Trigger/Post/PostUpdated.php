@@ -64,8 +64,8 @@ class PostUpdated extends PostTrigger {
 		$this->last_editor   = get_userdata( get_post_meta( $this->{ $this->post_type }->ID, '_edit_last', true ) );
 		$this->updating_user = get_userdata( $updating_user_id );
 
-		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date );
-		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified );
+		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date_gmt );
+		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified_gmt );
 
 	}
 

@@ -22,6 +22,8 @@ class Date extends StringTag {
 	 * Merge tag constructor
 	 *
 	 * @since 5.0.0
+	 * @since [Next] Expects the timestamp without an offset.
+	 *               You can pass timezone argument as well, use GMT if timestamp is with offset.
 	 * @param array $params merge tag configuration params.
 	 */
 	public function __construct( $params = [] ) {
@@ -32,18 +34,14 @@ class Date extends StringTag {
 				'slug'        => 'date',
 				'name'        => __( 'Date', 'notification' ),
 				'date_format' => get_option( 'date_format' ),
+				'timezone'    => null,
 				'example'     => true,
 				'group'       => __( 'Date', 'notification' ),
 			]
 		);
 
 		if ( ! isset( $args['description'] ) ) {
-			$args['description']  = date_i18n( $args['date_format'] ) . '. ';
-			$args['description'] .= __( 'You can change the format in General WordPress Settings.', 'notification' );
-		}
-
-		if ( ! isset( $args['description'] ) ) {
-			$args['description']  = date_i18n( $args['date_format'] ) . '. ';
+			$args['description']  = wp_date( $args['date_format'] ) . '. ';
 			$args['description'] .= __( 'You can change the format in General WordPress Settings.', 'notification' );
 		}
 
@@ -58,7 +56,7 @@ class Date extends StringTag {
 					$timestamp = 0;
 				}
 
-				return date_i18n( $args['date_format'], $timestamp );
+				return wp_date( $args['date_format'], $timestamp, $args['timezone'] );
 
 			};
 		}

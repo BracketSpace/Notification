@@ -42,7 +42,7 @@ class MediaTrashed extends MediaTrigger {
 		$this->user_object   = get_userdata( $this->user_id );
 		$this->trashing_user = get_userdata( $this->user_id );
 
-		$this->attachment_creation_date = strtotime( $this->attachment->post_date );
+		$this->attachment_creation_date = strtotime( $this->attachment->post_date_gmt );
 
 	}
 
