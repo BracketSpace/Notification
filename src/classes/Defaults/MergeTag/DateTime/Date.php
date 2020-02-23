@@ -53,7 +53,7 @@ class Date extends StringTag {
 				} elseif ( isset( $trigger->{ $this->get_slug() } ) ) {
 					$timestamp = $trigger->{ $this->get_slug() };
 				} else {
-					$timestamp = 0;
+					$timestamp = null;
 				}
 
 				return wp_date( $args['date_format'], $timestamp, $args['timezone'] );

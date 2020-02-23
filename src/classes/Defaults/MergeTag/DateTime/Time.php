@@ -50,14 +50,6 @@ class Time extends StringTag {
 			$args['description'] .= __( 'You can change the format in General WordPress Settings.', 'notification' );
 		}
 
-		if ( isset( $args['timestamp'] ) ) {
-			$timestamp = $args['timestamp'];
-		} elseif ( isset( $this->trigger->{ $this->get_slug() } ) ) {
-			$timestamp = $this->trigger->{ $this->get_slug() };
-		} else {
-			$timestamp = 0;
-		}
-
 		if ( ! isset( $args['resolver'] ) ) {
 			$args['resolver'] = function( $trigger ) use ( $args ) {
 
@@ -66,7 +58,7 @@ class Time extends StringTag {
 				} elseif ( isset( $trigger->{ $this->get_slug() } ) ) {
 					$timestamp = $trigger->{ $this->get_slug() };
 				} else {
-					$timestamp = 0;
+					$timestamp = null;
 				}
 
 				return wp_date( $args['time_format'], $timestamp, $args['timezone'] );
