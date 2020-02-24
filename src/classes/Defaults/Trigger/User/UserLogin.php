@@ -20,7 +20,7 @@ class UserLogin extends UserTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/user_login', __( 'User login', 'notification' ) );
+		parent::__construct( 'user/login', __( 'User login', 'notification' ) );
 
 		$this->add_action( 'wp_login', 10, 2 );
 

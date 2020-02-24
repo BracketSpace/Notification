@@ -23,7 +23,7 @@ class PostTrashed extends PostTrigger {
 
 		parent::__construct( [
 			'post_type' => $post_type,
-			'slug'      => 'wordpress/' . $post_type . '/trashed',
+			'slug'      => 'post/' . $post_type . '/trashed',
 			// translators: singular post name.
 			'name'      => sprintf( __( '%s trashed', 'notification' ), parent::get_post_type_name( $post_type ) ),
 		] );

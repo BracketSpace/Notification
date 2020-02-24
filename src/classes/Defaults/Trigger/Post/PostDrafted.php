@@ -23,7 +23,7 @@ class PostDrafted extends PostTrigger {
 
 		parent::__construct( [
 			'post_type' => $post_type,
-			'slug'      => 'wordpress/' . $post_type . '/drafted',
+			'slug'      => 'post/' . $post_type . '/drafted',
 			// translators: singular post name.
 			'name'      => sprintf( __( '%s saved as a draft', 'notification' ), parent::get_post_type_name( $post_type ) ),
 		] );

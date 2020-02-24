@@ -19,7 +19,7 @@ class UserProfileUpdated extends UserTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/user_profile_updated', __( 'User profile updated', 'notification' ) );
+		parent::__construct( 'user/profile_updated', __( 'User profile updated', 'notification' ) );
 
 		$this->add_action( 'profile_update', 10, 2 );
 

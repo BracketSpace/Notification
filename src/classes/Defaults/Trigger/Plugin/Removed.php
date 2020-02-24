@@ -19,7 +19,7 @@ class Removed extends PluginTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/plugin/removed', __( 'Plugin removed', 'notification' ) );
+		parent::__construct( 'plugin/removed', __( 'Plugin removed', 'notification' ) );
 
 		$this->add_action( 'delete_plugin', 1000 );
 

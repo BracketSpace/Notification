@@ -20,7 +20,7 @@ class Updated extends ThemeTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/theme/updated', __( 'Theme updated', 'notification' ) );
+		parent::__construct( 'theme/updated', __( 'Theme updated', 'notification' ) );
 
 		$this->add_action( 'upgrader_process_complete', 1000, 2 );
 

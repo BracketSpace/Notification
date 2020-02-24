@@ -22,7 +22,7 @@ class CommentTrashed extends CommentTrigger {
 	public function __construct( $comment_type = 'comment' ) {
 
 		parent::__construct( [
-			'slug'         => 'wordpress/comment_' . $comment_type . '_trashed',
+			'slug'         => 'comment/' . $comment_type . '/trashed',
 			// Translators: %s comment type.
 			'name'         => sprintf( __( '%s trashed', 'notification' ), parent::get_comment_type_name( $comment_type ) ),
 			'comment_type' => $comment_type,

@@ -19,7 +19,7 @@ class UserLoginFailed extends UserTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/user_login_failed', __( 'User login failed', 'notification' ) );
+		parent::__construct( 'user/login_failed', __( 'User login failed', 'notification' ) );
 
 		$this->add_action( 'wp_login_failed', 10, 1 );
 

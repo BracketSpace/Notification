@@ -23,7 +23,7 @@ class PostUpdated extends PostTrigger {
 
 		parent::__construct( [
 			'post_type' => $post_type,
-			'slug'      => 'wordpress/' . $post_type . '/updated',
+			'slug'      => 'post/' . $post_type . '/updated',
 			// translators: singular post name.
 			'name'      => sprintf( __( '%s updated', 'notification' ), parent::get_post_type_name( $post_type ) ),
 		] );

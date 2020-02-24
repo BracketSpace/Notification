@@ -39,7 +39,7 @@ class TermDeleted extends TermTrigger {
 
 		parent::__construct( [
 			'taxonomy' => $taxonomy,
-			'slug'     => 'wordpress/' . $taxonomy . '/deleted',
+			'slug'     => 'taxonomy/' . $taxonomy . '/deleted',
 			// Translators: taxonomy name.
 			'name'     => sprintf( __( '%s term deleted', 'notification' ), $this->get_current_taxonomy_name() ),
 		] );

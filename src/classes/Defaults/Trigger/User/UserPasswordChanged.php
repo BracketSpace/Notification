@@ -19,7 +19,7 @@ class UserPasswordChanged extends UserTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/user_password_changed', __( 'User password changed', 'notification' ) );
+		parent::__construct( 'user/password_changed', __( 'User password changed', 'notification' ) );
 
 		$this->add_action( 'password_reset', 10, 1 );
 

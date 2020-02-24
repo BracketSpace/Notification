@@ -19,7 +19,7 @@ class UserPasswordResetRequest extends UserTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/user_password_reset_request', __( 'User password reset request', 'notification' ) );
+		parent::__construct( 'user/password_reset_request', __( 'User password reset request', 'notification' ) );
 
 		$this->add_action( 'retrieve_password_key', 10, 2 );
 

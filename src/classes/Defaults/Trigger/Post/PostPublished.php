@@ -23,7 +23,7 @@ class PostPublished extends PostTrigger {
 
 		parent::__construct( [
 			'post_type' => $post_type,
-			'slug'      => 'wordpress/' . $post_type . '/published',
+			'slug'      => 'post/' . $post_type . '/published',
 			// translators: singular post name.
 			'name'      => sprintf( __( '%s published', 'notification' ), parent::get_post_type_name( $post_type ) ),
 		] );
