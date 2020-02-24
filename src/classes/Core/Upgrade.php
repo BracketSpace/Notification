@@ -80,7 +80,7 @@ class Upgrade {
 	/**
 	 * Install database tables
 	 *
-	 * @action plugins_loaded 100
+	 * @action notification/init
 	 * @return void
 	 */
 	public function upgrade_db() {

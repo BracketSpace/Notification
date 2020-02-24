@@ -23,10 +23,11 @@ function notification_display_wizard() {
  * Creates new AJAX Handler object.
  *
  * @since  6.0.0
- * @return BracketSpace\Notification\Utils\Ajax
+ * @since  [Next] Using Ajax Micropackage.
+ * @return BracketSpace\Notification\Vendor\Micropackage\Ajax\Response
  */
 function notification_ajax_handler() {
-	return new BracketSpace\Notification\Utils\Ajax();
+	return new BracketSpace\Notification\Vendor\Micropackage\Ajax\Response();
 }
 
 /**
@@ -77,7 +78,7 @@ function notification_log( $component, $type, $message ) {
 		return false;
 	}
 
-	$debugger = notification_runtime( 'core_debugging' );
+	$debugger = \Notification::component( 'core_debugging' );
 
 	$log_data = [
 		'component' => $component,
@@ -101,7 +102,7 @@ function notification_log( $component, $type, $message ) {
  * @return Filesystem|null
  */
 function notification_filesystem( $name ) {
-	return notification_runtime()->get_filesystem( $name );
+	return \Notification::runtime()->get_filesystem( $name );
 }
 
 /**
@@ -130,4 +131,23 @@ function notification_template( $template_name, $vars = [] ) {
  */
 function notification_get_template( $template_name, $vars = [] ) {
 	return BracketSpace\Notification\Vendor\Micropackage\Templates\get_template( 'templates', $template_name, $vars );
+}
+
+/**
+ * Gets cached value or cache object
+ *
+ * @since  [Next]
+ * @param  string|null $cache_key Cache key or null to get Cache engine.
+ * @return mixed                  Cache engine object or cached value.
+ */
+function notification_cache( $cache_key = null ) {
+
+	$cache = \Notification::component( 'core_cache' );
+
+	if ( null !== $cache_key ) {
+		return $cache->get( $cache_key );
+	}
+
+	return $cache;
+
 }

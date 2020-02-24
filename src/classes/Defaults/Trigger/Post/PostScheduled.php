@@ -55,11 +55,15 @@ class PostScheduled extends PostTrigger {
 
 		$this->{ $this->post_type } = $post;
 
-		$this->author = get_userdata( $this->{ $this->post_type }->post_author );
+		$scheduling_user_id = $this->cache( 'scheduling_user_id', get_current_user_id() );
 
-		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date );
-		$this->{ $this->post_type . '_publication_datetime' }  = strtotime( $this->{ $this->post_type }->post_date );
-		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified );
+		$this->author          = get_userdata( $this->{ $this->post_type }->post_author );
+		$this->last_editor     = get_userdata( get_post_meta( $this->{ $this->post_type }->ID, '_edit_last', true ) );
+		$this->scheduling_user = get_userdata( $scheduling_user_id );
+
+		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date_gmt );
+		$this->{ $this->post_type . '_publication_datetime' }  = strtotime( $this->{ $this->post_type }->post_date_gmt );
+		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified_gmt );
 
 	}
 
@@ -78,6 +82,71 @@ class PostScheduled extends PostTrigger {
 			'slug' => $this->post_type . '_publication_datetime',
 			// translators: singular post name.
 			'name' => sprintf( __( '%s publication date and time', 'notification' ), $post_name ),
+		] ) );
+
+		// Scheduling user.
+		$this->add_merge_tag( new MergeTag\User\UserID( [
+			'slug'          => $this->post_type . '_scheduling_user_ID',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s scheduling user ID', 'notification' ), $post_name ),
+			'property_name' => 'scheduling_user',
+			'group'         => __( 'Scheduling user', 'notification' ),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\User\UserLogin( [
+			'slug'          => $this->post_type . '_scheduling_user_login',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s scheduling user login', 'notification' ), $post_name ),
+			'property_name' => 'scheduling_user',
+			'group'         => __( 'Scheduling user', 'notification' ),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\User\UserEmail( [
+			'slug'          => $this->post_type . '_scheduling_user_email',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s scheduling user email', 'notification' ), $post_name ),
+			'property_name' => 'scheduling_user',
+			'group'         => __( 'Scheduling user', 'notification' ),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\User\UserNicename( [
+			'slug'          => $this->post_type . '_scheduling_user_nicename',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s scheduling user nicename', 'notification' ), $post_name ),
+			'property_name' => 'scheduling_user',
+			'group'         => __( 'Scheduling user', 'notification' ),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\User\UserDisplayName( [
+			'slug'          => $this->post_type . '_scheduling_user_display_name',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s scheduling user display name', 'notification' ), $post_name ),
+			'property_name' => 'scheduling_user',
+			'group'         => __( 'Scheduling user', 'notification' ),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\User\UserFirstName( [
+			'slug'          => $this->post_type . '_scheduling_user_firstname',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s scheduling user first name', 'notification' ), $post_name ),
+			'property_name' => 'scheduling_user',
+			'group'         => __( 'Scheduling user', 'notification' ),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\User\UserLastName( [
+			'slug'          => $this->post_type . '_scheduling_user_lastname',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s scheduling user last name', 'notification' ), $post_name ),
+			'property_name' => 'scheduling_user',
+			'group'         => __( 'Scheduling user', 'notification' ),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\User\Avatar( [
+			'slug'          => $this->post_type . '_scheduling_user_avatar',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s scheduling user email', 'notification' ), $post_name ),
+			'property_name' => 'scheduling_user',
+			'group'         => __( 'Scheduling user', 'notification' ),
 		] ) );
 
 	}

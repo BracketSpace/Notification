@@ -92,7 +92,7 @@ class Debugging {
 	 */
 	public function get_notification_log() {
 
-		$debug    = notification_runtime( 'core_debugging' );
+		$debug    = \Notification::component( 'core_debugging' );
 		$page     = isset( $_GET['notification_log_page'] ) ? intval( $_GET['notification_log_page'] ) : 1; // phpcs:ignore
 		$raw_logs = $debug->get_logs( $page, 'notification' );
 
@@ -131,7 +131,7 @@ class Debugging {
 	 */
 	public function get_error_log() {
 
-		$debug = notification_runtime( 'core_debugging' );
+		$debug = \Notification::component( 'core_debugging' );
 		$page  = isset( $_GET['error_log_page'] ) ? intval( $_GET['error_log_page'] ) : 1; // phpcs:ignore
 
 		$html = notification_get_template( 'debug/error-log', [
@@ -186,7 +186,7 @@ class Debugging {
 
 		check_admin_referer( 'notification_clear_log_' . $log_type, 'nonce' );
 
-		$debug = notification_runtime( 'core_debugging' );
+		$debug = \Notification::component( 'core_debugging' );
 
 		$remove_types = [];
 

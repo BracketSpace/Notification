@@ -116,13 +116,8 @@ class Settings {
 	 */
 	public function triggers_settings( $settings ) {
 
-		// prepare post types for post types option select.
-		$valid_post_types = apply_filters( 'notification/settings/triggers/valid_post_types', get_post_types( [ 'public' => true ], 'objects' ) );
-
-		$post_types = [];
-		foreach ( $valid_post_types as $post_type ) {
-			$post_types[ $post_type->name ] = $post_type->labels->name;
-		}
+		// Prepare post types for post types option select.
+		$post_types = apply_filters( 'notification/settings/triggers/valid_post_types', notification_cache( 'post_types' ) );
 
 		$triggers = $settings->add_section( __( 'Triggers', 'notification' ), 'triggers' );
 
@@ -141,16 +136,8 @@ class Settings {
 			] )
 			->description( __( 'For these post types you will be able to define published, updated, pending moderation etc. notifications', 'notification' ) );
 
-		// prepare taxonomies for taxonomies option select.
-		$valid_taxonomies = apply_filters( 'notification/settings/triggers/valid_taxonomies', get_taxonomies( [ 'public' => true ], 'objects' ) );
-
-		$taxonomies = [];
-		foreach ( $valid_taxonomies as $taxonomy ) {
-			if ( 'post_format' === $taxonomy->name ) {
-				continue;
-			}
-			$taxonomies[ $taxonomy->name ] = $taxonomy->labels->name;
-		}
+		// Prepare taxonomies for taxonomies option select.
+		$taxonomies = apply_filters( 'notification/settings/triggers/valid_taxonomies', notification_cache( 'taxonomies' ) );
 
 		$triggers->add_group( __( 'Taxonomy', 'notification' ), 'taxonomies' )
 			->add_field( [
@@ -171,15 +158,11 @@ class Settings {
 			->add_field( [
 				'name'     => __( 'Comment Types', 'notification' ),
 				'slug'     => 'types',
-				'default'  => [ 'comment', 'pingback', 'trackback' ],
+				'default'  => [ 'comment' ],
 				'addons'   => [
 					'multiple' => true,
 					'pretty'   => true,
-					'options'  => [
-						'comment'   => __( 'Comment', 'notification' ),
-						'pingback'  => __( 'Pingback', 'notification' ),
-						'trackback' => __( 'Trackback', 'notification' ),
-					],
+					'options'  => notification_cache( 'comment_types' ),
 				],
 				'render'   => [ new CoreFields\Select(), 'input' ],
 				'sanitize' => [ new CoreFields\Select(), 'sanitize' ],

@@ -2,7 +2,7 @@
  * Metabox styles for Notification post type
  */
 
-#notification_merge_tags .inside {
+#notification_merge_tags .inside { /* stylelint-disable-line */
 
 	.notification-search-merge-tags {
 		margin-top: 10px;
@@ -157,7 +157,7 @@
 
 body.post-type-notification {
 
-	#notification_save {
+	#notification_save { /* stylelint-disable-line */
 
 		.inside {
 			margin: 0;

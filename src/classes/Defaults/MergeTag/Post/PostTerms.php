@@ -11,12 +11,14 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
-
+use BracketSpace\Notification\Traits;
 
 /**
  * Post terms merge tag class
  */
 class PostTerms extends StringTag {
+
+	use Traits\Cache;
 
 	/**
 	 * Post Type slug
@@ -57,7 +59,7 @@ class PostTerms extends StringTag {
 			[
 				'slug'        => $this->post_type . '_' . $this->taxonomy->name,
 				// translators: 1. Post Type 2. Taxonomy name.
-				'name'        => sprintf( __( '%1$s %2$s', 'notification' ), $this->get_nicename(), $this->taxonomy->label ),
+				'name'        => sprintf( __( '%1$s %2$s', 'notification' ), $this->get_current_post_type_name(), $this->taxonomy->label ),
 				'description' => __( 'General, Tech, Lifestyle', 'notification' ),
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
@@ -72,35 +74,12 @@ class PostTerms extends StringTag {
 					}
 					return implode( ', ', $terms );
 				},
-				'group'       => $this->get_nicename(),
+				'group'       => $this->get_current_post_type_name(),
 			]
 		);
 
 		parent::__construct( $args );
 
-	}
-
-	/**
-	 * Function for checking requirements
-	 *
-	 * @return boolean
-	 */
-	public function check_requirements() {
-		return isset( $this->trigger->{ $this->post_type } );
-	}
-
-	/**
-	 * Gets nice, translated post name
-	 *
-	 * @since  5.0.0
-	 * @return string post name
-	 */
-	public function get_nicename() {
-		$post_type = get_post_type_object( $this->post_type );
-		if ( empty( $post_type ) ) {
-			return '';
-		}
-		return $post_type->labels->singular_name;
 	}
 
 }

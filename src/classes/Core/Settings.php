@@ -57,6 +57,9 @@ class Settings extends SettingsAPI {
 			[ $this, 'settings_page' ]
 		);
 
+		// Refresh caches.
+		add_action( "load-$this->page_hook", [ notification_cache(), 'cache_objects' ] );
+
 	}
 
 	/**
@@ -67,7 +70,9 @@ class Settings extends SettingsAPI {
 	 * @return void
 	 */
 	public function register_settings() {
-		do_action( 'notification/settings/register', $this );
+		if ( is_admin() ) {
+			do_action( 'notification/settings/register', $this );
+		}
 	}
 
 }

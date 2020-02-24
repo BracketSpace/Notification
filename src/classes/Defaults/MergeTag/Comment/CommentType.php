@@ -8,19 +8,21 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
-
+use BracketSpace\Notification\Traits;
 
 /**
  * Comment type merge tag class
  */
 class CommentType extends StringTag {
 
+	use Traits\Cache;
+
 	/**
 	 * Trigger property to get the comment data from
 	 *
 	 * @var string
 	 */
-	protected $property_name = 'comment';
+	protected $comment_type = 'comment';
 
 	/**
 	 * Merge tag constructor
@@ -30,8 +32,8 @@ class CommentType extends StringTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
-			$this->property_name = $params['property_name'];
+		if ( isset( $params['comment_type'] ) && ! empty( $params['comment_type'] ) ) {
+			$this->comment_type = $params['comment_type'];
 		}
 
 		$args = wp_parse_args(
@@ -39,25 +41,16 @@ class CommentType extends StringTag {
 			[
 				'slug'        => 'comment_type',
 				'name'        => __( 'Comment type', 'notification' ),
-				'description' => __( 'Comment or Pingback or Trackback', 'notification' ),
-				'resolver'    => function() {
-					return get_comment_type( $this->trigger->{ $this->property_name } );
+				'description' => __( 'Comment or Pingback or Trackback or Custom', 'notification' ),
+				'resolver'    => function( $trigger ) {
+					return get_comment_type( $trigger->comment );
 				},
-				'group'       => __( ucfirst( $this->property_name ), 'notification' ),
+				'group'       => __( self::get_current_comment_type_name(), 'notification' ),
 			]
 		);
 
 		parent::__construct( $args );
 
-	}
-
-	/**
-	 * Function for checking requirements
-	 *
-	 * @return boolean
-	 */
-	public function check_requirements() {
-		return isset( $this->trigger->{ $this->property_name }->comment_type );
 	}
 
 }

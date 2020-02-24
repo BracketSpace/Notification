@@ -173,10 +173,10 @@ class Sync {
 		}
 
 		if ( false === $response ) {
-			$error = __( 'Something went wrong while importing the Notification, please refresh the page and try again.' );
+			$ajax->error( __( 'Something went wrong while importing the Notification, please refresh the page and try again.' ) );
 		}
 
-		$ajax->response( $response, $error );
+		$ajax->send( $response, $error );
 
 	}
 

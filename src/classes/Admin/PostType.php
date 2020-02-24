@@ -347,10 +347,10 @@ class PostType {
 		$result = $adapter->save();
 
 		if ( is_wp_error( $result ) ) {
-			$error = __( 'Notification status couldn\'t be changed.', 'notification' );
+			$ajax->error( __( 'Notification status couldn\'t be changed.', 'notification' ) );
 		}
 
-		$ajax->response( true, $error );
+		$ajax->send( true );
 
 	}
 
@@ -395,7 +395,7 @@ class PostType {
 	 * Sets up all the Notification from database
 	 * It's running on every single page load.
 	 *
-	 * @action notification/boot 9999999
+	 * @action notification/init 9999999
 	 *
 	 * @since  6.0.0
 	 * @return void

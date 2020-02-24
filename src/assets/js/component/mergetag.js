@@ -1,12 +1,15 @@
 /* eslint no-alert: 0 */
-/* global notification, jQuery, ajaxurl */
+/* global notification, jQuery, ajaxurl, alert */
+
+import ClipboardJS from 'clipboard';
+import 'jquery-collapse/src/jquery.collapse.js';
+
 ( function( $ ) {
 	const __ = wp.i18n.__;
-	const Clipboard = require( 'clipboard' );
 
 	$( document ).ready( function() {
 		// Copy Merge Tag.
-		const mergeTagClipboard = new Clipboard( 'code.notification-merge-tag' );
+		const mergeTagClipboard = new ClipboardJS( 'code.notification-merge-tag' );
 
 		mergeTagClipboard.on( 'success', function( e ) {
 			const $code = $( e.trigger ),

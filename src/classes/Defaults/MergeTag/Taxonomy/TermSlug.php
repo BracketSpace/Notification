@@ -12,7 +12,6 @@ namespace BracketSpace\Notification\Defaults\MergeTag\Taxonomy;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 
-
 /**
  * Taxonomy term slug merge tag class
  */
@@ -40,15 +39,6 @@ class TermSlug extends StringTag {
 
 		parent::__construct( $args );
 
-	}
-
-	/**
-	 * Function for checking requirements
-	 *
-	 * @return boolean
-	 */
-	public function check_requirements() {
-		return isset( $this->trigger->term->slug );
 	}
 
 }

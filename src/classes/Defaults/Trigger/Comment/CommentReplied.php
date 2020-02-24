@@ -24,7 +24,7 @@ class CommentReplied extends CommentTrigger {
 		parent::__construct( [
 			'slug'         => 'wordpress/comment_' . $comment_type . '_replied',
 			// Translators: %s comment type.
-			'name'         => sprintf( __( '%s replied', 'notification' ), ucfirst( $comment_type ) ),
+			'name'         => sprintf( __( '%s replied', 'notification' ), parent::get_comment_type_name( $comment_type ) ),
 			'comment_type' => $comment_type,
 		] );
 
@@ -32,7 +32,7 @@ class CommentReplied extends CommentTrigger {
 		$this->add_action( 'notification_insert_comment_proxy', 10, 3 );
 
 		// translators: comment type.
-		$this->set_description( sprintf( __( 'Fires when %s is replied and the reply is approved', 'notification' ), __( ucfirst( $comment_type ), 'notification' ) ) );
+		$this->set_description( sprintf( __( 'Fires when %s is replied and the reply is approved', 'notification' ), parent::get_comment_type_name( $comment_type ) ) );
 
 	}
 
@@ -85,10 +85,21 @@ class CommentReplied extends CommentTrigger {
 
 		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\Comment\CommentActionApprove() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentActionTrash() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentActionDelete() );
-		$this->add_merge_tag( new MergeTag\Comment\CommentActionSpam() );
+		$this->add_merge_tag( new MergeTag\Comment\CommentActionApprove( [
+			'comment_type' => $this->get_comment_type(),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\Comment\CommentActionTrash( [
+			'comment_type' => $this->get_comment_type(),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\Comment\CommentActionDelete( [
+			'comment_type' => $this->get_comment_type(),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\Comment\CommentActionSpam( [
+			'comment_type' => $this->get_comment_type(),
+		] ) );
 
 		// Parent comment.
 		$this->add_merge_tag( new MergeTag\Comment\CommentID( [

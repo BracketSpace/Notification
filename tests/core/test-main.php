@@ -19,7 +19,7 @@ class TestMain extends \WP_UnitTestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->notification = notification_runtime();
+		$this->notification = \Notification::runtime();
 	}
 
 	/**
@@ -39,6 +39,7 @@ class TestMain extends \WP_UnitTestCase {
 	public function test_boot() {
 
 		// Instances.
+		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Cache', $this->notification->core_cache );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Cron', $this->notification->core_cron );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Whitelabel', $this->notification->core_whitelabel );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Debugging', $this->notification->core_debugging );

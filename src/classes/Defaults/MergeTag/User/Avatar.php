@@ -43,7 +43,7 @@ class Avatar extends HtmlTag {
 			[
 				'slug'        => 'user_avatar',
 				'name'        => __( 'User avatar', 'notification' ),
-				'description' => get_avatar( get_option( 'admin_email' ) ),
+				'description' => __( 'HTML img tag with avatar', 'notification' ),
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
 
@@ -59,15 +59,6 @@ class Avatar extends HtmlTag {
 
 		parent::__construct( $args );
 
-	}
-
-	/**
-	 * Function for checking requirements
-	 *
-	 * @return boolean
-	 */
-	public function check_requirements() {
-		return isset( $this->trigger->{ $this->property_name }->user_email );
 	}
 
 }

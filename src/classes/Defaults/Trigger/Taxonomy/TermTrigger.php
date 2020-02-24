@@ -9,11 +9,14 @@ namespace BracketSpace\Notification\Defaults\Trigger\Taxonomy;
 
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Traits;
 
 /**
  * Taxonomy trigger class
  */
 abstract class TermTrigger extends Abstracts\Trigger {
+
+	use Traits\Cache;
 
 	/**
 	 * Taxonomy slug
@@ -53,41 +56,15 @@ abstract class TermTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\Taxonomy\TermName() );
 		$this->add_merge_tag( new MergeTag\Taxonomy\TermSlug() );
 		$this->add_merge_tag( new MergeTag\Taxonomy\TermPermalink() );
-		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomyName() );
-		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomySlug() );
 
-	}
+		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomyName( [
+			'taxonomy' => $this->taxonomy,
+		] ) );
 
-	/**
-	 * Gets nice, translated taxonomy name
-	 *
-	 * @since  5.2.2
-	 * @return string taxonomy
-	 */
-	public function get_current_taxonomy_name() {
-		return self::get_taxonomy_name( $this->taxonomy );
-	}
+		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomySlug( [
+			'taxonomy' => $this->taxonomy,
+		] ) );
 
-	/**
-	 * Gets nice, translated taxonomy name for taxonomy slug
-	 *
-	 * @since 5.2.2
-	 * @param string $taxonomy taxonomy slug.
-	 * @return string taxonomy
-	 */
-	public static function get_taxonomy_name( $taxonomy ) {
-		return get_taxonomy( $taxonomy )->labels->name;
-	}
-
-	/**
-	 * Gets nice, translated singular taxonomy name for taxonomy slug
-	 *
-	 * @since 5.2.2
-	 * @param string $taxonomy taxonomy slug.
-	 * @return string taxonomy
-	 */
-	public static function get_taxonomy_singular_name( $taxonomy ) {
-		return get_taxonomy( $taxonomy )->labels->singular_name;
 	}
 
 }

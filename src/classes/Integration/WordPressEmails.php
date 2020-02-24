@@ -15,7 +15,7 @@ class WordPressEmails {
 	/**
 	 * Replaces the default hooks for the new user notification
 	 *
-	 * @action plugins_loaded
+	 * @action notification/init
 	 *
 	 * @since  6.1.0
 	 * @return void
@@ -95,7 +95,7 @@ class WordPressEmails {
 	/**
 	 * Disables send the email change email notification to admin
 	 *
-	 * @action plugins_loaded
+	 * @action notification/init
 	 *
 	 * @since  6.1.0
 	 * @return void
@@ -104,6 +104,7 @@ class WordPressEmails {
 		if ( 'true' !== notification_get_setting( 'integration/emails/password_change_to_admin' ) ) {
 			return;
 		}
+		add_filter( 'woocommerce_disable_password_change_notification', '__return_true' );
 		remove_action( 'after_password_reset', 'wp_password_change_notification' );
 	}
 

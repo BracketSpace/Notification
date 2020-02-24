@@ -142,4 +142,23 @@ class PostTable {
 
 	}
 
+	/**
+	 * Changes the table bulk actions.
+	 *
+	 * @filter bulk_actions-edit-notification
+	 *
+	 * @param  array $actions Bulk actions array.
+	 * @return array          Filtered actions
+	 */
+	public function adjust_bulk_actions( $actions ) {
+
+		unset( $actions['edit'] );
+		unset( $actions['trash'] );
+
+		$actions['delete'] = __( 'Remove', 'notification' );
+
+		return $actions;
+
+	}
+
 }

@@ -8,19 +8,21 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
-
+use BracketSpace\Notification\Traits;
 
 /**
  * Comment is reply merge tag class
  */
 class CommentIsReply extends StringTag {
 
+	use Traits\Cache;
+
 	/**
 	 * Trigger property to get the comment data from
 	 *
 	 * @var string
 	 */
-	protected $property_name = 'comment';
+	protected $comment_type = 'comment';
 
 	/**
 	 * Merge tag constructor
@@ -30,36 +32,28 @@ class CommentIsReply extends StringTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
-			$this->property_name = $params['property_name'];
+		if ( isset( $params['comment_type'] ) && ! empty( $params['comment_type'] ) ) {
+			$this->comment_type = $params['comment_type'];
 		}
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug'        => 'comment_is_reply',
-				'name'        => __( 'Is comment a reply?', 'notification' ),
+				// Translators: Comment type name.
+				'name'        => sprintf( __( 'Is %s a reply?', 'notification' ), self::get_current_comment_type_name() ),
 				'description' => __( 'Yes or No', 'notification' ),
 				'example'     => true,
-				'resolver'    => function() {
-					$has_parent = $this->trigger->{ $this->property_name }->comment_parent;
+				'resolver'    => function( $trigger ) {
+					$has_parent = $trigger->comment->comment_parent;
 					return $has_parent ? __( 'Yes', 'notification' ) : __( 'No', 'notification' );
 				},
-				'group'       => __( ucfirst( $this->property_name ), 'notification' ),
+				'group'       => __( self::get_current_comment_type_name(), 'notification' ),
 			]
 		);
 
 		parent::__construct( $args );
 
-	}
-
-	/**
-	 * Function for checking requirements
-	 *
-	 * @return boolean
-	 */
-	public function check_requirements() {
-		return isset( $this->trigger->{ $this->property_name } );
 	}
 
 }

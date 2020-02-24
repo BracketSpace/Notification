@@ -1,4 +1,8 @@
 /* global jQuery, jQueryCollapse */
+
+import 'selectize';
+import 'jquery-collapse/src/jquery.collapse.js';
+
 ( function( $ ) {
 	$( document ).ready( function() {
 		$( '.underdev-settings .pretty-select' ).selectize();

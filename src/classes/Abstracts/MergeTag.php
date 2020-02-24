@@ -82,6 +82,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 	 * Merge tag constructor
 	 *
 	 * @since 5.0.0
+	 * @since [Next] The resolver closure context is static.
 	 * @param array $params merge tag configuration params.
 	 */
 	public function __construct( $params = [] ) {
@@ -93,6 +94,11 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 		$this->slug  = $params['slug'];
 		$this->name  = $params['name'];
 		$this->group = ( isset( $params['group'] ) ) ? $params['group'] : '';
+
+		// Change resolver context to static.
+		if ( $params['resolver'] instanceof \Closure ) {
+			$params['resolver']->bindTo( $this );
+		}
 
 		$this->set_resolver( $params['resolver'] );
 
@@ -122,16 +128,6 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 	 * @return mixed        sanitized value
 	 */
 	abstract public function sanitize( $value );
-
-	/**
-	 * Checks the merge tag reqirements
-	 * ie. if there's a property set
-	 *
-	 * @return boolean default always true
-	 */
-	public function check_requirements() {
-		return true;
-	}
 
 	/**
 	 * Gets description
@@ -175,7 +171,12 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 			return $this->get_value();
 		}
 
-		$value = call_user_func( $this->resolver, $this->get_trigger() );
+		try {
+			$value = call_user_func( $this->resolver, $this->get_trigger() );
+		} catch ( \Throwable $t ) {
+			$value = null;
+			trigger_error( $t->getMessage(), E_USER_NOTICE ); // phpcs:ignore
+		}
 
 		if ( ! empty( $value ) && ! $this->validate( $value ) ) {
 			$error_type = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? E_USER_ERROR : E_USER_NOTICE;

@@ -12,7 +12,6 @@ namespace BracketSpace\Notification\Defaults\MergeTag\Taxonomy;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 
-
 /**
  * Taxonomy slug merge tag class
  */
@@ -36,7 +35,7 @@ class TaxonomySlug extends StringTag {
 		if ( isset( $params['taxonomy'] ) ) {
 			$this->taxonomy = $params['taxonomy'];
 		} else {
-			$this->taxonomy = 'category';
+			$this->taxonomy = 'taxonomy';
 		}
 
 		$args = wp_parse_args(
@@ -55,15 +54,6 @@ class TaxonomySlug extends StringTag {
 
 		parent::__construct( $args );
 
-	}
-
-	/**
-	 * Function for checking requirements
-	 *
-	 * @return boolean
-	 */
-	public function check_requirements() {
-		return isset( $this->trigger->taxonomy );
 	}
 
 }

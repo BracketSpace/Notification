@@ -495,3 +495,21 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * notification_get_notification_recipients -> notification_get_carrier_recipients
 * notification_get_single_trigger -> notification_get_trigger
 * register_recipient -> notification_register_recipient
+* [Changed] Ajax utility to `micropackage/ajax`.
+* [Changed] Loading stack, now the plugin initializes on init 5 (or 4 if bundled).
+* [Changed] Merge Tags don't need the requirements now and throwable resolver errors are caught and changed to notices.
+* [Changed] Date and Time Merge Tags now expect Unix timestaps (GMT) without offset.
+* [Added] Webhook and Cache trait.
+* [Added] Webhook JSON Carrier with plain JSON input code field.
+* [Added] Composer imposter package to aviod package conflicts.
+* [Added] `notification_filesystem` function to get plugin filesystem(s).
+* [Added] Scheduling user Merge Tags for Post Scheduled trigger.
+* [Added] Last updated by user Merge Tags for Post triggers.
+* [Added] Image field for settings page.
+* [Added] Notification runtime cache with `notification_cache()` function wrapper.
+* [Added] Two Factor plugin integration.
+* [Fixed] Merge Tag used as anchor href now is not prefixed with protocol while adding the link.
+* [Fixed] Selectize script breaking description field in select input.
+* [Fixed] Bulk removing Notifications.
+* [Removed] `NOTIFICATION_VERSION` constant.
+* [Removed] `NOTIFICATION_DIR` and `NOTIFICATION_URL` constants.

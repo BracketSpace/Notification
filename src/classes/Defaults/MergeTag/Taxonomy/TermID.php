@@ -12,7 +12,6 @@ namespace BracketSpace\Notification\Defaults\MergeTag\Taxonomy;
 
 use BracketSpace\Notification\Defaults\MergeTag\IntegerTag;
 
-
 /**
  * Taxonomy term ID merge tag class
  */
@@ -40,15 +39,6 @@ class TermID extends IntegerTag {
 
 		parent::__construct( $args );
 
-	}
-
-	/**
-	 * Function for checking requirements
-	 *
-	 * @return boolean
-	 */
-	public function check_requirements() {
-		return isset( $this->trigger->term->term_id );
 	}
 
 }

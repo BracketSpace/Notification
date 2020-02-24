@@ -62,6 +62,11 @@ class Screen {
 		$grouped_triggers = notification_get_triggers_grouped();
 		$trigger          = $notification_post->get_trigger();
 
+		// Add merge tags.
+		if ( $trigger ) {
+			$trigger->setup_merge_tags();
+		}
+
 		notification_template( 'trigger/metabox', [
 			'selected'     => $trigger ? $trigger->get_slug() : '',
 			'triggers'     => $grouped_triggers,
@@ -427,7 +432,7 @@ class Screen {
 
 		$this->render_merge_tags_list( sanitize_text_field( wp_unslash( $_POST['trigger_slug'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
-		$ajax->success( ob_get_clean() );
+		$ajax->send( ob_get_clean() );
 
 	}
 }

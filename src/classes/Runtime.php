@@ -7,17 +7,29 @@
 
 namespace BracketSpace\Notification;
 
-use BracketSpace\Notification\Utils;
-use BracketSpace\Notification\Admin;
-use BracketSpace\Notification\Core;
-use BracketSpace\Notification\Vendor\Micropackage\DocHooks;
+use BracketSpace\Notification\Vendor\Micropackage\Requirements\Requirements;
+use BracketSpace\Notification\Vendor\Micropackage\DocHooks\Helper as DocHooks;
 use BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem;
 use BracketSpace\Notification\Vendor\Micropackage\Templates\Storage as TemplateStorage;
 
 /**
  * Runtime class
  */
-class Runtime extends DocHooks\HookAnnotations {
+class Runtime {
+
+	/**
+	 * Main plugin file path
+	 *
+	 * @var string
+	 */
+	protected $plugin_file;
+
+	/**
+	 * Flag for unmet requirements
+	 *
+	 * @var bool
+	 */
+	protected $requirements_unmet;
 
 	/**
 	 * Class constructor
@@ -26,9 +38,7 @@ class Runtime extends DocHooks\HookAnnotations {
 	 * @param string $plugin_file plugin main file full path.
 	 */
 	public function __construct( $plugin_file ) {
-		$this->plugin_file        = $plugin_file;
-		$this->plugin_custom_url  = defined( 'NOTIFICATION_URL' ) ? NOTIFICATION_URL : false;
-		$this->plugin_custom_path = defined( 'NOTIFICATION_DIR' ) ? NOTIFICATION_DIR : false;
+		$this->plugin_file = $plugin_file;
 	}
 
 	/**
@@ -36,25 +46,40 @@ class Runtime extends DocHooks\HookAnnotations {
 	 *
 	 * @since  5.0.0
 	 * @since  6.0.0 Added boot action.
+	 * @since  [Next] All the defaults and init action are called on initialization.
 	 * @return void
 	 */
-	public function boot() {
+	public function init() {
+
+		// Plugin has been already initialized.
+		if ( did_action( 'notification/init' ) || $this->requirements_unmet ) {
+			return;
+		}
+
+		// Autoloading.
+		require_once dirname( $this->plugin_file ) . '/vendor/autoload.php';
+
+		// Requirements check.
+		$requirements = new Requirements( __( 'Notification', 'notification' ), [
+			'php' => '7.0',
+			'wp'  => '5.3',
+		] );
+
+		if ( ! $requirements->satisfied() ) {
+			$requirements->print_notice();
+			$this->requirements_unmet = true;
+			return;
+		}
 
 		$this->filesystems();
 		$this->templates();
 		$this->singletons();
-		$this->load_functions();
-		$this->load_deprecated();
 		$this->actions();
+		$this->defaults();
 
-		do_action( 'notification/boot/initial' );
-
-		/**
-		 * Subsequent boot actions:
-		 * - plugins_loaded 10 - Most of the defaults loaded.
-		 * - init 1000 - Rest of the defaults loaded.
-		 * - init 1010 - Proxy action for boot, `notification/boot` action called
-		 */
+		do_action_deprecated( 'notification/boot/initial', [], '[Next]', 'notification/init' );
+		do_action_deprecated( 'notification/boot', [], '[Next]', 'notification/init' );
+		do_action( 'notification/init' );
 
 	}
 
@@ -66,12 +91,11 @@ class Runtime extends DocHooks\HookAnnotations {
 	 */
 	public function register_hooks() {
 
-		$this->add_hooks();
+		DocHooks::hook( $this );
 
 		foreach ( get_object_vars( $this ) as $instance ) {
 			if ( is_object( $instance ) ) {
-
-				$this->add_hooks( $instance );
+				DocHooks::hook( $instance );
 			}
 		}
 
@@ -127,6 +151,7 @@ class Runtime extends DocHooks\HookAnnotations {
 	 */
 	public function singletons() {
 
+		$this->core_cache      = new Core\Cache();
 		$this->core_cron       = new Core\Cron();
 		$this->core_whitelabel = new Core\Whitelabel();
 		$this->core_debugging  = new Core\Debugging();
@@ -155,6 +180,7 @@ class Runtime extends DocHooks\HookAnnotations {
 
 		$this->repeater_api = new Api\Api();
 
+		$this->integration_2fa       = new Integration\TwoFactor();
 	}
 
 	/**
@@ -178,88 +204,24 @@ class Runtime extends DocHooks\HookAnnotations {
 		register_uninstall_hook( $this->plugin_file, [ 'BracketSpace\Notification\Core\Uninstall', 'remove_plugin_data' ] );
 
 		// DocHooks compatibility.
-		if ( ! DocHooks\Helper::is_enabled() && $this->get_filesystem( 'includes' )->exists( 'hooks.php' ) ) {
+		if ( ! DocHooks::is_enabled() && $this->get_filesystem( 'includes' )->exists( 'hooks.php' ) ) {
 			include_once $this->get_filesystem( 'includes' )->path( 'hooks.php' );
 		}
 
 	}
 
 	/**
-	 * Loads functions
+	 * Loads defaults
 	 *
 	 * @since  6.0.0
 	 * @return void
 	 */
-	public function load_functions() {
-
-		$function_files = [
-			'general',
-			'settings',
-			'resolver',
-			'carrier',
-			'trigger',
-			'recipient',
-			'notification',
-			'notification-post',
-			'whitelabel',
-			'import-export',
-			'adapter',
-		];
-
-		array_map( function( $function_file ) {
-				require_once $this->get_filesystem( 'includes' )->path( sprintf( 'functions/%s.php', $function_file ) );
-		}, $function_files );
-
-	}
-
-	/**
-	 * Loads deprecated functions and classes
-	 *
-	 * @since  6.0.0
-	 * @return void
-	 */
-	public function load_deprecated() {
-
-		$deprecation_files = [
-			// Functions.
-			'functions',
-			// Classes.
-			'class/Abstracts/Notification',
-			'class/Defaults/Notification/Email',
-			'class/Defaults/Notification/Webhook',
-		];
-
-		array_map( function( $deprecation_file ) {
-				require_once $this->get_filesystem( 'includes' )->path( sprintf( 'deprecated/%s.php', $deprecation_file ) );
-		}, $deprecation_files );
-
-	}
-
-	/**
-	 * Loads early defaults
-	 *
-	 * @action plugins_loaded
-	 * @since  6.0.0
-	 * @return void
-	 */
-	public function load_early_defaults() {
+	public function defaults() {
 		array_map( [ $this, 'load_default' ], [
 			'global-merge-tags',
 			'resolvers',
 			'recipients',
 			'carriers',
-		] );
-	}
-
-	/**
-	 * Loads late defaults
-	 *
-	 * @action init 1000
-	 * @since  6.0.0
-	 * @return void
-	 */
-	public function load_late_defaults() {
-		array_map( [ $this, 'load_default' ], [
 			'triggers',
 		] );
 	}
@@ -273,22 +235,11 @@ class Runtime extends DocHooks\HookAnnotations {
 	 */
 	public function load_default( $default ) {
 		if ( apply_filters( 'notification/load/default/' . $default, true ) ) {
-			$path = $this->get_filesystem( 'includes' )->path( sprintf( 'defaults/%s.php', $default ) );
-			if ( file_exists( $path ) ) {
-				require_once $path;
+			$path = sprintf( 'defaults/%s.php', $default );
+			if ( $this->get_filesystem( 'includes' )->exists( $path ) ) {
+				require_once $this->get_filesystem( 'includes' )->path( $path );
 			}
 		}
-	}
-
-	/**
-	 * Proxies the full boot action
-	 *
-	 * @action init 1010
-	 * @since  6.0.0
-	 * @return void
-	 */
-	public function fully_booted() {
-		do_action( 'notification/boot' );
 	}
 
 }

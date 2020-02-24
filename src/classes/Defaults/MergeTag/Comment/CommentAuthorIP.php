@@ -8,19 +8,21 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag\IPTag;
-
+use BracketSpace\Notification\Traits;
 
 /**
  * Comment author IP merge tag class
  */
 class CommentAuthorIP extends IPTag {
 
+	use Traits\Cache;
+
 	/**
 	 * Trigger property to get the comment data from
 	 *
 	 * @var string
 	 */
-	protected $property_name = 'comment';
+	protected $comment_type = 'comment';
 
 	/**
 	 * Merge tag constructor
@@ -30,36 +32,28 @@ class CommentAuthorIP extends IPTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
-			$this->property_name = $params['property_name'];
+		if ( isset( $params['comment_type'] ) && ! empty( $params['comment_type'] ) ) {
+			$this->comment_type = $params['comment_type'];
 		}
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug'        => 'comment_author_IP',
-				'name'        => __( 'Comment author IP', 'notification' ),
+				// Translators: Comment type name.
+				'name'        => sprintf( __( '%s author IP', 'notification' ), self::get_current_comment_type_name() ),
 				'description' => '127.0.0.1',
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
-					return $trigger->{ $this->property_name }->comment_author_IP;
+					return $trigger->comment->comment_author_IP;
 				},
 				// translators: comment type author.
-				'group'       => sprintf( __( '%s author', 'notification' ), ucfirst( $this->property_name ) ),
+				'group'       => sprintf( __( '%s author', 'notification' ), self::get_current_comment_type_name() ),
 			]
 		);
 
 		parent::__construct( $args );
 
-	}
-
-	/**
-	 * Function for checking requirements
-	 *
-	 * @return boolean
-	 */
-	public function check_requirements() {
-		return isset( $this->trigger->{ $this->property_name }->comment_author_IP );
 	}
 
 }

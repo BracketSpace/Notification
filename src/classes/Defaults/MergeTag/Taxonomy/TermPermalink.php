@@ -12,7 +12,6 @@ namespace BracketSpace\Notification\Defaults\MergeTag\Taxonomy;
 
 use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
 
-
 /**
  * Taxonomy term permalink merge tag class
  */
@@ -40,14 +39,5 @@ class TermPermalink extends UrlTag {
 
 		parent::__construct( $args );
 
-	}
-
-	/**
-	 * Function for checking requirements
-	 *
-	 * @return boolean
-	 */
-	public function check_requirements() {
-		return isset( $this->trigger->term->term_id );
 	}
 }
