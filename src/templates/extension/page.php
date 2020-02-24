@@ -27,9 +27,15 @@ $premium_extensions = (array) $get( 'premium_extensions' );
 
 	<?php endif ?>
 
-	<?php if ( ! empty( $premium_extensions ) ) : ?>
-		<h2><?php esc_html_e( 'Available extensions', 'notification' ); ?></h2>
-	<?php endif ?>
+	<h2><?php esc_html_e( 'All Access', 'notification' ); ?></h2>
+
+	<div id="the-list">
+		<?php notification_template( 'extension/upsell-all-extensions' ); ?>
+	</div>
+
+	<div class="clear"></div>
+
+	<h2><?php esc_html_e( 'Available extensions', 'notification' ); ?></h2>
 
 	<div id="the-list">
 		<?php foreach ( (array) $get( 'extensions' ) as $extension ) : ?>
