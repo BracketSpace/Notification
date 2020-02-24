@@ -45,12 +45,16 @@ class Upgrade {
 	/**
 	 * Checks if an upgrade is required
 	 *
-	 * @action admin_init
+	 * @action notification/init
 	 *
 	 * @since  6.0.0
 	 * @return void
 	 */
 	public function check_upgrade() {
+
+		if ( ! is_admin() ) {
+			return;
+		}
 
 		$data_version = get_option( static::$data_setting_name, 0 );
 
