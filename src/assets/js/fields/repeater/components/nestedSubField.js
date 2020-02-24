@@ -5,15 +5,14 @@ import { fieldHandler } from '../fieldHandler';
 Vue.component( 'nested-sub-field', {
 	template:
 	`<div class="nested-repeater-fields">
-		<table class="fields-repeater-sortable">
+		<table class="fields-repeater-nested-sortable">
 			<template v-for="( field, key ) in fields">
 				<repeater-sub-row
 				:field="field"
 				:type="type"
-				nested-model="model"
 				:field-name="fieldName"
 				:row-index="rowIndex"
-				:row-name="rowName"
+				:sub-name="subName"
 				:key-index="key"
 				:row="subRows"
 				@sub-field-removed="removeSubField">
@@ -25,7 +24,7 @@ Vue.component( 'nested-sub-field', {
 		>Add sub field</a>
 	</div>
 	`,
-	props: ['model', 'nestedFields', 'nestedValues', 'subRows', 'type', 'rowIndex', 'rowName', 'fieldName'],
+	props: ['model', 'nestedFields', 'nestedValues', 'subRows', 'type', 'rowIndex', 'subName', 'fieldName'],
 	mixins: [fieldHandler],
 	data() {
 		return {

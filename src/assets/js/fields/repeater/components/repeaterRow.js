@@ -5,7 +5,8 @@ import { inputsHandler } from '../inputsHandler';
 
 Vue.component( 'repeater-row', {
 	template: `
-		<tr class="row"><td class="handle"><span class="handle-index">{{keyIndex + 1}}</span></td>
+		<tr class="row">
+			<td class="handle"><span class="handle-index">{{keyIndex + 1}}</span></td>
 			<template v-for="( subfield, index ) in field">
 				<td :class="'subfield ' + subfield.name">
 					<div class="row-field">
@@ -31,7 +32,7 @@ Vue.component( 'repeater-row', {
 						:nested-values="nestedValues"
 						:sub-rows="subRows"
 						:row-index="keyIndex"
-						:row-name="subfield.name"
+						:sub-name="subfield.name"
 						:type="type"
 						@add-nested-field="addSubField">
 						</nested-sub-field>
@@ -49,9 +50,8 @@ Vue.component( 'repeater-row', {
 							v-if="field.description"
 						class="description"></small>
 					</div>
-
 				</td>
-				</template>
+			</template>
 			<td class="trash" @click="removeField(keyIndex, fields)"></td>
 		</tr>
 	`,
@@ -67,11 +67,6 @@ Vue.component( 'repeater-row', {
 		addSubField(){
 			this.subRows++;
 		},
-		createFieldName( type, index ){
-			this.rowName = `notification_carrier_${type.fieldCarrier}[${type.fieldType}][${index}]`;
-
-			return this.rowName;
-		}
 	}
 
 } )

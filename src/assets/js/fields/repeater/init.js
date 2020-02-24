@@ -1,4 +1,5 @@
-/* global jQuery, notification, */
+/* global notification, */
+import sortableHandle from './sortableHandle';
 
 export const init = {
 	mounted(){
@@ -46,15 +47,7 @@ export const init = {
 			}
 		},
 		sortable(){
-			jQuery( '.fields-repeater-sortable > tbody' ).sortable( {
-				handle: '.handle',
-				items: '.row',
-				containment: 'parent',
-				axis: 'y',
-				start( e, ui ) {
-					ui.placeholder.height( ui.helper[ 0 ].scrollHeight );
-				},
-			} );
+			sortableHandle();
 		}
 	}
 }

@@ -88,6 +88,11 @@ export const fieldHandler = {
 					counter++;
 				}
 			}
+		},
+		createFieldName( type, index ){
+			this.rowName = `notification_carrier_${type.fieldCarrier}[${type.fieldType}][${index}]`;
+
+			return this.rowName;
 		}
 	}
 }
