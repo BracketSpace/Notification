@@ -19,7 +19,7 @@ class UserRoleChanged extends UserTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/user/role_changed', __( 'User role changed', 'notification' ) );
+		parent::__construct( 'user/role_changed', __( 'User role changed', 'notification' ) );
 
 		$this->add_action( 'set_user_role', 1000, 3 );
 

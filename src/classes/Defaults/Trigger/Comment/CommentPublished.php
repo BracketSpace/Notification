@@ -22,7 +22,7 @@ class CommentPublished extends CommentTrigger {
 	public function __construct( $comment_type = 'comment' ) {
 
 		parent::__construct( [
-			'slug'         => 'wordpress/comment_' . $comment_type . '_published',
+			'slug'         => 'comment/' . $comment_type . '/published',
 			// Translators: %s comment type.
 			'name'         => sprintf( __( '%s published', 'notification' ), parent::get_comment_type_name( $comment_type ) ),
 			'comment_type' => $comment_type,

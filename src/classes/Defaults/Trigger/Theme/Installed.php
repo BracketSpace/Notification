@@ -20,7 +20,7 @@ class Installed extends ThemeTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/theme/installed', __( 'Theme installed', 'notification' ) );
+		parent::__construct( 'theme/installed', __( 'Theme installed', 'notification' ) );
 
 		$this->add_action( 'upgrader_process_complete', 1000, 2 );
 

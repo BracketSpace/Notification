@@ -19,7 +19,7 @@ class MediaAdded extends MediaTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/media_added', __( 'Media added', 'notification' ) );
+		parent::__construct( 'media/added', __( 'Media added', 'notification' ) );
 
 		$this->add_action( 'add_attachment', 10, 1 );
 		$this->set_description( __( 'Fires when new attachment is added', 'notification' ) );

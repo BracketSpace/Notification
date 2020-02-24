@@ -39,7 +39,7 @@ class TermAdded extends TermTrigger {
 
 		parent::__construct( [
 			'taxonomy' => $taxonomy,
-			'slug'     => 'wordpress/' . $taxonomy . '/created',
+			'slug'     => 'taxonomy/' . $taxonomy . '/created',
 			// Translators: taxonomy name.
 			'name'     => sprintf( __( '%s term created', 'notification' ), $this->get_current_taxonomy_name() ),
 		] );

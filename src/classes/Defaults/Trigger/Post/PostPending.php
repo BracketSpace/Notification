@@ -23,7 +23,7 @@ class PostPending extends PostTrigger {
 
 		parent::__construct( [
 			'post_type' => $post_type,
-			'slug'      => 'wordpress/' . $post_type . '/pending',
+			'slug'      => 'post/' . $post_type . '/pending',
 			// translators: singular post name.
 			'name'      => sprintf( __( '%s sent for review', 'notification' ), parent::get_post_type_name( $post_type ) ),
 		] );

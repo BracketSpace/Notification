@@ -19,7 +19,7 @@ class Installed extends PluginTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/plugin/installed', __( 'Plugin installed', 'notification' ) );
+		parent::__construct( 'plugin/installed', __( 'Plugin installed', 'notification' ) );
 
 		$this->add_action( 'upgrader_process_complete', 1000, 2 );
 

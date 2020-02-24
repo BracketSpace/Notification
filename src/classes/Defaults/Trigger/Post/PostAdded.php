@@ -23,7 +23,7 @@ class PostAdded extends PostTrigger {
 
 		parent::__construct( [
 			'post_type' => $post_type,
-			'slug'      => 'wordpress/' . $post_type . '/added',
+			'slug'      => 'post/' . $post_type . '/added',
 			// translators: singular post name.
 			'name'      => sprintf( __( '%s added', 'notification' ), parent::get_post_type_name( $post_type ) ),
 		] );
