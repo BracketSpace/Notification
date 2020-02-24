@@ -73,12 +73,6 @@
 					transform: translate(-50%, -50%);
 				}
 
-				&:hover {
-
-					.handle-index {
-						opacity: 0;
-					}
-				}
 			}
 
 		}
@@ -231,6 +225,10 @@
 
 					}
 
+					.handle-index {
+						display: none;
+					}
+
 					&::after {
 						display: block;
 					}
@@ -243,8 +241,4 @@
 
 	}
 
-}
-
-.add-new-repeater-field {
-	float: right;
 }

@@ -180,7 +180,7 @@ class Runtime {
 
 		$this->repeater_api = new Api\Api();
 
-		$this->integration_2fa       = new Integration\TwoFactor();
+		$this->integration_2fa = new Integration\TwoFactor();
 	}
 
 	/**

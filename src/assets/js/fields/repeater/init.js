@@ -1,4 +1,4 @@
-/* global notification, */
+/* global notification, fetch */
 import sortableHandle from './sortableHandle';
 
 export const init = {

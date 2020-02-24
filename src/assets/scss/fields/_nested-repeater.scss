@@ -1,24 +1,76 @@
 .notification-field.fields-repeater {
+	/* stylelint-disable */
+	.subfield.nested_repeater {
+	/* stylelint-enable */
 
-	.subfield.nested-repeater {
-		padding: 0;
+		@media (max-width: 782px) {
+			padding-bottom: 50px;
+		}
 	}
 
-	tr {
+	.add-new-repeater-field {
+		float: right;
+		margin-top: 4px;
+	}
 
-		td {
+	.nested-repeater-fields {
 
-			&.trash,
-			&.handle {
-				width: 20px;
+		table {
+
+			@media ( max-width: 1680px ) {
+				width: 100%;
+			}
+		}
+
+		tr.row {
+
+			@media ( max-width: 1680px ) {
+				display: flex;
+				flex-direction: column;
 			}
 
-			&.handle {
+			td {
 
-				&::before {
-					display: none;
+				@media ( max-width: 1680px ) {
+					width: calc(100% - 24px);
+				}
+
+				&.trash,
+				&.sub-handle {
+					width: 20px;
+
+					@media ( max-width: 1680px ) {
+						width: 100%;
+						height: 30px;
+					}
+
+					@media (max-width: 782px) {
+						width: calc(100% - 20px);
+						margin-left: auto;
+						margin-right: auto;
+					}
+				}
+
+				&.sub-handle {
+
+					@media (max-width: 1680px) {
+						margin-bottom: 9px;
+					}
+
+					&::before {
+						display: none;
+					}
+				}
+
+				&.trash {
+
+					@media (max-width: 1680px) {
+						margin-top: 9px;
+					}
 				}
 			}
 		}
 	}
+
+
 }

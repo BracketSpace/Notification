@@ -1,3 +1,4 @@
+/* global fetch */
 export const inputsHandler = {
 	methods: {
 		checkboxHandler( checkbox, e ){

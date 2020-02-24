@@ -43,9 +43,9 @@ class SelectInputHandler {
 			$data['placeholder']    = $input->placeholder;
 			$data['type']           = strtolower( str_replace( 'Field', '', $input->field_type_html ) );
 
-			notification_ajax_handler()->success( $data );
+			notification_ajax_handler()->send( $data );
 		} else {
-			notification_ajax_handler()->success( [ 'message' => 'no recipient' ] );
+			notification_ajax_handler()->send( [ 'message' => 'no recipient' ] );
 		}
 
 	}

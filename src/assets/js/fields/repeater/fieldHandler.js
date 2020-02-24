@@ -52,7 +52,7 @@ export const fieldHandler = {
 
 			this.rowCount++;
 			this.fields.push(model);
-			notification.hooks.doAction( 'notification.repeater.row.added', model, this );
+			notification.hooks.doAction( 'notification.repeater.row.added', this );
 
 		},
 		removeField( index, fields ){
