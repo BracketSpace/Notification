@@ -294,6 +294,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] Webhook JSON Carrier with plain JSON input code field.
 * [Added] Composer imposter package to aviod package conflicts.
 * [Added] `notification_filesystem` function to get plugin filesystem(s).
+* [Added] Possibility to nest one level repeater field in another repeater field.
 * [Fixed] Merge Tag used as anchor href now is not prefixed with protocol while adding the link.
 * [Removed] WP Ajax action ajax_get_recipient_input.
 
