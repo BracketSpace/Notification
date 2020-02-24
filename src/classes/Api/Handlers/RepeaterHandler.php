@@ -99,6 +99,7 @@ class RepeaterHandler {
 	/**
 	 * Normalize values array
 	 *
+	 * @since [Next]
 	 * @param array $values Field values.
 	 * @return array
 	 */
