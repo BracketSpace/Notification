@@ -22,7 +22,7 @@ class CommentReplied extends CommentTrigger {
 	public function __construct( $comment_type = 'comment' ) {
 
 		parent::__construct( [
-			'slug'         => 'comment_' . $comment_type . '_replied',
+			'slug'         => 'comment/' . $comment_type . '/replied',
 			// Translators: %s comment type.
 			'name'         => sprintf( __( '%s replied', 'notification' ), parent::get_comment_type_name( $comment_type ) ),
 			'comment_type' => $comment_type,
