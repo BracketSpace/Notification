@@ -29,5 +29,4 @@ import './fields/repeater/components/repeaterRow';
 import './fields/repeater/components/recipientRow';
 import './fields/repeater/components/nestedSubField';
 import './fields/repeater/components/repeaterSubRow';
-import './fields/repeater/init.js';
 import './fields/repeater/nested-repeater';

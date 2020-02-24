@@ -1,16 +1,11 @@
 .notification-field.fields-repeater {
 	/* stylelint-disable */
 	.subfield.nested_repeater {
-	/* stylelint-enable */
+		/* stylelint-enable */
 
 		@media (max-width: 782px) {
 			padding-bottom: 50px;
 		}
-	}
-
-	.add-new-repeater-field {
-		float: right;
-		margin-top: 4px;
 	}
 
 	.nested-repeater-fields {
