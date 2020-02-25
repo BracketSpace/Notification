@@ -17,14 +17,19 @@ Vue.component( 'notification-select', {
 	`,
 	props: [ 'field', 'type', 'keyIndex', 'subfield' ],
 	mixins: [inputsHandler, fieldHandler],
+	data() {
+		return {
+			'selectized': null
+		}
+	},
 	mounted() {
 		this.initSelectize();
 	},
 	beforeUpdate(){
 		this.destroySelectize();
-		this.$forceUpdate();
 	},
 	updated(){
+		this.initSelectize();
 	},
 	beforeDestroy(){
 		this.destroySelectize();
@@ -35,15 +40,14 @@ Vue.component( 'notification-select', {
 			this.selectChange( subfield, field, $event );
 		},
 		destroySelectize(){
-			const selectizeInputId = `${this.$el.getAttribute( 'id' )}-selectized`;
-			const selectizeControl = document.getElementById( selectizeInputId );
-			if( selectizeControl ){
-				selectizeControl.parentNode.parentNode.remove();
+			if(this.selectized){
+				const control = this.selectized[0].selectize;
+				control.destroy();
 			}
 		},
 		initSelectize(){
 			if( this.$el.classList.contains( 'notification-pretty-select' ) ){
-				jQuery( this.$el ).selectize();
+				this.selectized = jQuery( this.$el ).selectize();
 			}
 		}
 	}
