@@ -19,7 +19,7 @@ class UserRegistered extends UserTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/user_registered', __( 'User registration', 'notification' ) );
+		parent::__construct( 'user/registered', __( 'User registration', 'notification' ) );
 
 		$this->add_action( 'user_register', 1000 );
 

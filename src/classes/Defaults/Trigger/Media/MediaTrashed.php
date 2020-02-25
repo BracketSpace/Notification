@@ -20,7 +20,7 @@ class MediaTrashed extends MediaTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/media_trashed', __( 'Media trashed', 'notification' ) );
+		parent::__construct( 'media/trashed', __( 'Media trashed', 'notification' ) );
 
 		$this->add_action( 'delete_attachment', 10, 1 );
 		$this->set_description( __( 'Fires when attachment is removed', 'notification' ) );

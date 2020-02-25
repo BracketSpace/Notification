@@ -20,7 +20,7 @@ class UserDeleted extends UserTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/user_deleted', __( 'User deleted', 'notification' ) );
+		parent::__construct( 'user/deleted', __( 'User deleted', 'notification' ) );
 
 		$this->add_action( 'delete_user', 10, 1 );
 

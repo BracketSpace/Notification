@@ -77,6 +77,8 @@ class Runtime {
 		$this->actions();
 		$this->defaults();
 
+		$this->load_bundled_extensions();
+
 		do_action_deprecated( 'notification/boot/initial', [], '[Next]', 'notification/init' );
 		do_action_deprecated( 'notification/boot', [], '[Next]', 'notification/init' );
 		do_action( 'notification/init' );
@@ -195,7 +197,7 @@ class Runtime {
 
 		notification_register_settings( [ $this->admin_settings, 'general_settings' ] );
 		notification_register_settings( [ $this->admin_settings, 'triggers_settings' ], 20 );
-		notification_register_settings( [ $this->admin_settings, 'notifications_settings' ], 30 );
+		notification_register_settings( [ $this->admin_settings, 'carriers_settings' ], 30 );
 		notification_register_settings( [ $this->admin_settings, 'emails_settings' ], 40 );
 		notification_register_settings( [ $this->admin_sync, 'settings' ], 50 );
 		notification_register_settings( [ $this->admin_impexp, 'settings' ], 60 );
@@ -240,6 +242,32 @@ class Runtime {
 				require_once $this->get_filesystem( 'includes' )->path( $path );
 			}
 		}
+	}
+
+	/**
+	 * Loads bundled extensions
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function load_bundled_extensions() {
+
+		$extensions         = $this->get_filesystem( 'root' )->dirlist( 'extensions', false );
+		$extension_template = 'extensions/%s/load.php';
+
+		if ( empty( $extensions ) ) {
+			return;
+		}
+
+		foreach ( $extensions as $extension ) {
+			if ( 'd' === $extension['type'] ) {
+				$extension_file = sprintf( $extension_template, $extension['name'] );
+				if ( $this->get_filesystem( 'root' )->exists( $extension_file ) ) {
+					require_once $this->get_filesystem( 'root' )->path( $extension_file );
+				}
+			}
+		}
+
 	}
 
 }

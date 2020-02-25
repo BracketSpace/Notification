@@ -20,7 +20,7 @@ class Switched extends ThemeTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/theme/switched', __( 'Theme switched', 'notification' ) );
+		parent::__construct( 'theme/switched', __( 'Theme switched', 'notification' ) );
 
 		$this->add_action( 'switch_theme', 1000, 3 );
 

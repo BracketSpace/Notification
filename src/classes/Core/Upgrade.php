@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Admin\PostType;
 
 /**
  * Upgrade class
@@ -19,7 +20,7 @@ class Upgrade {
 	 *
 	 * @var integer
 	 */
-	public static $data_version = 1;
+	public static $data_version = 2;
 
 	/**
 	 * Version of database tables
@@ -174,6 +175,31 @@ class Upgrade {
 	}
 
 	/**
+	 * Gets new trigger slug replacements
+	 *
+	 * @since  [Next]
+	 * @return array
+	 */
+	public function trigger_slug_replacements() {
+
+		$taxonomies = '(' . implode( '|', array_keys( notification_cache( 'taxonomies' ) ) ) . ')';
+
+		// phpcs:disable
+		return [
+			'/wordpress\/comment_(.*)_(added|approved|replied|spammed|trashed|unapproved|published)/' => 'comment/${1}/${2}',
+			'/wordpress\/media_(added|trashed|updated)/' => 'media/${1}',
+			"/wordpress\/{$taxonomies}\/(created|updated|deleted)/" => 'taxonomy/${1}/${2}',
+			'/wordpress\/((?!.*(plugin|theme)).*)\/(updated|trashed|published|drafted|added|pending|scheduled)/' => 'post/${1}/${3}',
+			'/wordpress\/user_(.*)/' => 'user/${1}',
+			'/wordpress\/user\/(.*)/' => 'user/${1}',
+			'/wordpress\/plugin\/(.*)/' => 'plugin/${1}',
+			'/wordpress\/theme\/(.*)/' => 'theme/${1}',
+		];
+		// phpcs:enable
+
+	}
+
+	/**
 	 * --------------------------------------------------
 	 * Upgrader methods.
 	 * --------------------------------------------------
@@ -239,6 +265,62 @@ class Upgrade {
 
 		// 3. Remove old debug log
 		delete_option( 'notification_debug_log' );
+
+	}
+
+	/**
+	 * Upgrades data to v2.
+	 * - 1. Changes the Trigger slugs.
+	 * - 2. Changes the settings section `notifications` to `carriers`.
+	 *
+	 * @since  6.0.0
+	 * @return void
+	 */
+	public function upgrade_to_v2() {
+
+		global $wpdb;
+
+		// 1. Changes the Trigger slugs.
+
+		$notifications = $wpdb->get_results( // phpcs:ignore
+			"SELECT p.ID, p.post_content
+			FROM {$wpdb->posts} p
+			WHERE p.post_type = 'notification'"
+		);
+
+		foreach ( $notifications as $notifiation_raw ) {
+
+			$data = json_decode( $notifiation_raw->post_content, true );
+
+			$data['trigger'] = preg_replace(
+				array_keys( $this->trigger_slug_replacements() ),
+				array_values( $this->trigger_slug_replacements() ),
+				$data['trigger']
+			);
+
+			$wpdb->update( // phpcs:ignore
+				$wpdb->posts,
+				[
+					'post_content' => wp_json_encode( $data, JSON_UNESCAPED_UNICODE ),
+				],
+				[
+					'ID' => $notifiation_raw->ID,
+				],
+				[ '%s' ],
+				[ '%d' ]
+			);
+
+		}
+
+		// 2. Changes the settings section `notifications` to `carriers`.
+
+		$wpdb->update( // phpcs:ignore
+			$wpdb->options,
+			[ 'option_name' => 'notification_carriers' ],
+			[ 'option_name' => 'notification_notifications' ],
+			[ '%s' ],
+			[ '%s' ]
+		);
 
 	}
 

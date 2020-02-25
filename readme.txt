@@ -283,6 +283,14 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
+
+**Breaking changes**
+
+1. All trigger's slugs has been changed to unify them. Compare the [old slugs](https://docs.bracketspace.com/notification/v/6/developer/triggers/default-triggers) and [new slugs](https://docs.bracketspace.com/notification/v/7/developer/triggers/default-triggers).
+2. Settings section `notifications` has been changed to `carriers`. Pay attention while registering the Carrier settings and update all `notification_get_setting( 'notifications/group/option' )` to `notification_get_setting( 'carriers/group/option' )`.
+
+**Full changelog**
+
 * [Changed] Added PUT, PATCH, DELETE http request methods to Webhook. Combined all http requests methods into one class method.
 * [Changed] Webhook class methods http_request and parse_args move to trait.
 * [Changed] Requirements utility to `micropackage/requirements`.
@@ -499,6 +507,8 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Loading stack, now the plugin initializes on init 5 (or 4 if bundled).
 * [Changed] Merge Tags don't need the requirements now and throwable resolver errors are caught and changed to notices.
 * [Changed] Date and Time Merge Tags now expect Unix timestaps (GMT) without offset.
+* [Changed] All Trigger's slugs.
+* [Changed] Settings section `notifiations` to proper `carriers` to follow the standard established in version 6.
 * [Added] Webhook and Cache trait.
 * [Added] Webhook JSON Carrier with plain JSON input code field.
 * [Added] Composer imposter package to aviod package conflicts.

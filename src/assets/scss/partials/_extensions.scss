@@ -25,6 +25,19 @@
 				text-transform: uppercase;
 			}
 
+			.discount {
+				margin-top: 3px;
+				display: inline-block;
+				box-sizing: border-box;
+				text-align: center;
+				padding: 3px 10px;
+				width: 100%;
+				color: #fff;
+				background: #00aa4c;
+				border-radius: 4px;
+				text-transform: uppercase;
+			}
+
 		}
 
 		&-premium {

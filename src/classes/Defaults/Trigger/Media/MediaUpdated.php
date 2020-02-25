@@ -19,7 +19,7 @@ class MediaUpdated extends MediaTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/media_updated', __( 'Media updated', 'notification' ) );
+		parent::__construct( 'media/updated', __( 'Media updated', 'notification' ) );
 
 		$this->add_action( 'attachment_updated', 10, 1 );
 		$this->set_description( __( 'Fires when attachment is updated', 'notification' ) );
