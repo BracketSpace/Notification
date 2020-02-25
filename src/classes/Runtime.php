@@ -252,6 +252,10 @@ class Runtime {
 		$extensions         = $this->get_filesystem( 'root' )->dirlist( 'extensions', false );
 		$extension_template = 'extensions/%s/load.php';
 
+		if ( empty( $extensions ) ) {
+			return;
+		}
+
 		foreach ( $extensions as $extension ) {
 			if ( 'd' === $extension['type'] ) {
 				$extension_file = sprintf( $extension_template, $extension['name'] );
