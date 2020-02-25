@@ -1,0 +1,13 @@
+on: repository_dispatch
+name: Release new version
+jobs:
+  test:
+    if: github.event.action == 'release'
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.client_payload.version }}
+      - run: |
+          echo "New version is: ${{ github.event.client_payload.version }}"
