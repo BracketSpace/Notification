@@ -194,7 +194,7 @@ class Runtime {
 
 		notification_register_settings( [ $this->admin_settings, 'general_settings' ] );
 		notification_register_settings( [ $this->admin_settings, 'triggers_settings' ], 20 );
-		notification_register_settings( [ $this->admin_settings, 'notifications_settings' ], 30 );
+		notification_register_settings( [ $this->admin_settings, 'carriers_settings' ], 30 );
 		notification_register_settings( [ $this->admin_settings, 'emails_settings' ], 40 );
 		notification_register_settings( [ $this->admin_sync, 'settings' ], 50 );
 		notification_register_settings( [ $this->admin_impexp, 'settings' ], 60 );
@@ -251,6 +251,10 @@ class Runtime {
 
 		$extensions         = $this->get_filesystem( 'root' )->dirlist( 'extensions', false );
 		$extension_template = 'extensions/%s/load.php';
+
+		if ( empty( $extensions ) ) {
+			return;
+		}
 
 		foreach ( $extensions as $extension ) {
 			if ( 'd' === $extension['type'] ) {

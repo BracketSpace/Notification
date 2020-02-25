@@ -52,7 +52,7 @@ class WebhookJson extends Abstracts\Carrier {
 			'description' => __( 'You can use merge tags', 'notification' ),
 		] ) );
 
-		if ( notification_get_setting( 'notifications/webhook/headers' ) ) {
+		if ( notification_get_setting( 'carriers/webhook/headers' ) ) {
 
 			$this->add_form_field( new Field\RepeaterField( [
 				'label'            => __( 'Headers', 'notification' ),
@@ -110,7 +110,7 @@ class WebhookJson extends Abstracts\Carrier {
 			$headers = [];
 		}
 
-		if ( notification_get_setting( 'notifications/webhook/headers' ) ) {
+		if ( notification_get_setting( 'carriers/webhook/headers' ) ) {
 			$headers = array_merge( $headers, $this->parse_args( $data['headers'] ) );
 		}
 

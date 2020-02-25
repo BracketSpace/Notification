@@ -45,7 +45,7 @@ class Email extends Abstracts\Carrier {
 			'name'  => 'subject',
 		] ) );
 
-		if ( notification_get_setting( 'notifications/email/type' ) === 'html' && ! notification_get_setting( 'notifications/email/unfiltered_html' ) ) {
+		if ( notification_get_setting( 'carriers/email/type' ) === 'html' && ! notification_get_setting( 'carriers/email/unfiltered_html' ) ) {
 
 			$body_field = new Field\EditorField( [
 				'label'    => __( 'Body', 'notification' ),
@@ -71,7 +71,7 @@ class Email extends Abstracts\Carrier {
 			'carrier' => $this->get_slug(),
 		] ) );
 
-		if ( notification_get_setting( 'notifications/email/headers' ) ) {
+		if ( notification_get_setting( 'carriers/email/headers' ) ) {
 
 			$this->add_form_field( new Field\RepeaterField( [
 				'label'            => __( 'Headers', 'notification' ),
@@ -114,7 +114,7 @@ class Email extends Abstracts\Carrier {
 	 */
 	public function send( Triggerable $trigger ) {
 
-		$default_html_mime = notification_get_setting( 'notifications/email/type' ) === 'html';
+		$default_html_mime = notification_get_setting( 'carriers/email/type' ) === 'html';
 		$html_mime         = apply_filters_deprecated( 'notification/email/use_html_mime', [ $default_html_mime, $this, $trigger ], '6.0.0', 'notification/carrier/email/use_html_mime' );
 		$html_mime         = apply_filters( 'notification/carrier/email/use_html_mime', $html_mime, $this, $trigger );
 
@@ -148,7 +148,7 @@ class Email extends Abstracts\Carrier {
 		}
 
 		$headers = [];
-		if ( notification_get_setting( 'notifications/email/headers' ) && ! empty( $data['headers'] ) ) {
+		if ( notification_get_setting( 'carriers/email/headers' ) && ! empty( $data['headers'] ) ) {
 			foreach ( $data['headers'] as $header ) {
 				$headers[] = $header['key'] . ': ' . $header['value'];
 			}
@@ -182,7 +182,7 @@ class Email extends Abstracts\Carrier {
 	 **/
 	public function allow_unfiltered_html_body( $carrier_data, $raw_data ) {
 
-		if ( notification_get_setting( 'notifications/email/unfiltered_html' ) ) {
+		if ( notification_get_setting( 'carriers/email/unfiltered_html' ) ) {
 			$carrier_data['body'] = $raw_data['body'];
 		}
 
