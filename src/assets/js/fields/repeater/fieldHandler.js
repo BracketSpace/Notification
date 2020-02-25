@@ -52,7 +52,7 @@ export const fieldHandler = {
 
 			this.rowCount++;
 			this.fields.push(model);
-			notification.hooks.doAction( 'notification.repeater.row.added', this );
+			notification.hooks.doAction( 'notification.repeater.row.added', this, this.rowCount );
 
 		},
 		removeField( index, fields ){
@@ -90,7 +90,11 @@ export const fieldHandler = {
 			}
 		},
 		createFieldName( type, index ){
-			this.rowName = `notification_carrier_${type.fieldCarrier}[${type.fieldType}][${index}]`;
+			if( type.fieldCarrier ){
+				this.rowName = `notification_carrier_${type.fieldCarrier}[${type.fieldType}][${index}]`;
+			} else {
+				this.rowName = `${type.fieldType}][${index}]`;
+			}
 
 			return this.rowName;
 		}

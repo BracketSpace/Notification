@@ -8,20 +8,18 @@ Vue.component( 'recipient-row', {
 	<tr class="row">
 		<td class="handle"><span class="handle-index">{{keyIndex + 1}}</span></td>
 		<template v-for="( subfield, index ) in field">
-			<td :class="'subfield' + subfield.name">
+			<td :class="'subfield ' + subfield.name">
 				<div class="row-field">
 					<template
 						v-if="subfield.options"
 					>
-					<select
-					:id="subfield.id"
-					:name="createFieldName(type, keyIndex, subfield) + '[' + subfield.name + ']'"
-					:class="subfield.css_class"
-					@change="selectChange( subfield, field, $event )">
-					<template v-for="( option, key ) in subfield.options">
-						<option :value="key" :selected="handleSelect( key, subfield.value )">{{option}}</option>
-					</template>
-					</select>
+						<notification-select
+						:subfield="subfield"
+						:type="type"
+						:field="field"
+						:key-index="keyIndex"
+						>
+						</notification-select>
 					</template>
 					<input
 					:id="subfield.id"
@@ -46,5 +44,6 @@ Vue.component( 'recipient-row', {
 	mixins: [
 		fieldHandler,
 		inputsHandler
-	]
+	],
+
 } )

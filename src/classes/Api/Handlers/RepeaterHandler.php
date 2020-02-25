@@ -7,6 +7,7 @@
 
 namespace BracketSpace\Notification\Api\Handlers;
 
+use BracketSpace\Notification\Defaults\Field;
 /**
  * RepeaterHandler class
  *
@@ -85,11 +86,11 @@ class RepeaterHandler {
 	 */
 	public function check_repeater( \BracketSpace\Notification\Abstracts\Field $field ) {
 
-		if ( $field instanceof \BracketSpace\Notification\Defaults\Field\RecipientsField ) {
+		if ( $field instanceof Field\RecipientsField ) {
 			return false;
 		}
 
-		if ( $field instanceof \BracketSpace\Notification\Defaults\Field\RepeaterField ) {
+		if ( $field instanceof Field\RepeaterField ) {
 			return true;
 		}
 

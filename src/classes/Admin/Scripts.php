@@ -49,7 +49,6 @@ class Scripts {
 	 * @return void
 	 */
 	public function enqueue_scripts( $page_hook ) {
-		global $post;
 
 		$allowed_hooks = apply_filters( 'notification/scripts/allowed_hooks', [
 			$this->runtime->admin_extensions->page_hook,
@@ -84,8 +83,10 @@ class Scripts {
 		wp_set_script_translations( 'notification', 'notification' );
 
 		wp_localize_script( 'notification', 'notification', [
-			'ajaxurl' => admin_url( 'admin-ajax.php' ),
-			'postId'  => $post->ID,
+			'ajaxurl'           => admin_url( 'admin-ajax.php' ),
+			'postId'            => get_the_ID(),
+			'select_rest_url'   => get_rest_url( null, 'notification/v1/repeater-field/select/' ),
+			'repeater_rest_url' => get_rest_url( null, 'notification/v1/repeater-field/' ),
 		] );
 
 		// Remove TinyMCE styles as they are not applied to any frontend content.

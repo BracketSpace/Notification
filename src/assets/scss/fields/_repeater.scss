@@ -240,9 +240,84 @@
 		}
 
 	}
-}
 
-.add-new-repeater-field {
-	float: right;
-	margin-top: 4px;
+	.add-new-repeater-field {
+		float: right;
+	}
+
+	/* stylelint-disable */
+	.subfield.nested_repeater {
+		/* stylelint-enable */
+		padding: 0;
+
+		@media (max-width: 782px) {
+			padding-bottom: 50px;
+		}
+
+		.add-new-repeater-field {
+			margin: 10px;
+		}
+	}
+
+	.nested-repeater-fields {
+
+		table {
+			border-spacing: 0;
+			border-collapse: collapse;
+			margin: -1px;
+
+			@media ( max-width: 1680px ) {
+				width: 100%;
+			}
+		}
+
+		tr.row {
+
+			@media ( max-width: 1680px ) {
+				display: flex;
+				flex-direction: column;
+			}
+
+			td {
+
+				@media ( max-width: 1680px ) {
+					width: calc(100% - 24px);
+				}
+
+				&.trash,
+				&.sub-handle {
+					width: 20px;
+
+					@media ( max-width: 1680px ) {
+						width: 100%;
+						height: 30px;
+					}
+
+					@media (max-width: 782px) {
+						width: calc(100% - 20px);
+						margin-left: auto;
+						margin-right: auto;
+					}
+				}
+
+				&.sub-handle {
+
+					@media (max-width: 1680px) {
+						margin-bottom: 9px;
+					}
+
+					&::before {
+						display: none;
+					}
+				}
+
+				&.trash {
+
+					@media (max-width: 1680px) {
+						margin-top: 9px;
+					}
+				}
+			}
+		}
+	}
 }

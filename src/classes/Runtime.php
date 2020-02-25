@@ -177,10 +177,10 @@ class Runtime {
 		$this->integration_cf        = new Integration\CustomFields();
 		$this->integration_bp        = new Integration\BackgroundProcessing();
 		$this->integration_mce       = new Integration\TinyMce();
+		$this->integration_2fa       = new Integration\TwoFactor();
 
 		$this->repeater_api = new Api\Api();
 
-		$this->integration_2fa = new Integration\TwoFactor();
 	}
 
 	/**

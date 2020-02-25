@@ -1,4 +1,4 @@
-/* global fetch */
+/* global fetch, notification */
 export const inputsHandler = {
 	methods: {
 		checkboxHandler( checkbox, e ){
@@ -51,7 +51,7 @@ export const inputsHandler = {
 
 			data = data.join('&');
 
-			fetch( 'http://notification.local/wp-json/notification/v1/repeater-field/select/', {
+			fetch( notification.select_rest_url, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -68,9 +68,13 @@ export const inputsHandler = {
 				recipientTypeField.description = data.description;
 				recipientTypeField.type = data.type;
 				recipientTypeField.id = data.id;
+				recipientTypeField.pretty = data.pretty;
 				if( e ){
 					recipientTypeField.value = '';
 				}
+
+				notification.hooks.doAction( 'notification.carrier.recipients.recipient.replaced', this);
+
 			} )
 		}
 	}

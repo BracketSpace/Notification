@@ -5,21 +5,16 @@
  * @package notification
  */
 
-$field   = $get( 'current_field' );
-$carrier = $get( 'carrier' );
+$field     = $get( 'current_field' );
+$carrier   = $get( 'carrier' );
+$type      = false;
+$id        = '';
+$vue_class = '';
 
 if ( isset( $field->field_type ) ) {
-	$type = $field->field_type;
-} else {
-	$type = false;
-}
-
-if ( $type ) {
+	$type      = $field->field_type;
 	$id        = 'id=' . $field->id . '';
 	$vue_class = ' vue-repeater';
-} else {
-	$id        = '';
-	$vue_class = '';
 }
 
 if ( $carrier ) {
