@@ -77,6 +77,8 @@ class Runtime {
 		$this->actions();
 		$this->defaults();
 
+		$this->load_bundled_extensions();
+
 		do_action_deprecated( 'notification/boot/initial', [], '[Next]', 'notification/init' );
 		do_action_deprecated( 'notification/boot', [], '[Next]', 'notification/init' );
 		do_action( 'notification/init' );
@@ -237,6 +239,28 @@ class Runtime {
 				require_once $this->get_filesystem( 'includes' )->path( $path );
 			}
 		}
+	}
+
+	/**
+	 * Loads bundled extensions
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function load_bundled_extensions() {
+
+		$extensions         = $this->get_filesystem( 'root' )->dirlist( 'extensions', false );
+		$extension_template = 'extensions/%s/load.php';
+
+		foreach ( $extensions as $extension ) {
+			if ( 'd' === $extension['type'] ) {
+				$extension_file = sprintf( $extension_template, $extension['name'] );
+				if ( $this->get_filesystem( 'root' )->exists( $extension_file ) ) {
+					require_once $this->get_filesystem( 'root' )->path( $extension_file );
+				}
+			}
+		}
+
 	}
 
 }
