@@ -271,6 +271,7 @@ class Upgrade {
 	/**
 	 * Upgrades data to v2.
 	 * - 1. Changes the Trigger slugs.
+	 * - 2. Changes the settings section `notifications` to `carriers`.
 	 *
 	 * @since  6.0.0
 	 * @return void
@@ -310,6 +311,16 @@ class Upgrade {
 			);
 
 		}
+
+		// 2. Changes the settings section `notifications` to `carriers`.
+
+		$wpdb->update( // phpcs:ignore
+			$wpdb->options,
+			[ 'option_name' => 'notification_carriers' ],
+			[ 'option_name' => 'notification_notifications' ],
+			[ '%s' ],
+			[ '%s' ]
+		);
 
 	}
 

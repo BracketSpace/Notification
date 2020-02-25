@@ -23,7 +23,7 @@ class WordPress {
 	 */
 	public function filter_email_from_name( $from_name ) {
 
-		$setting = notification_get_setting( 'notifications/email/from_name' );
+		$setting = notification_get_setting( 'carriers/email/from_name' );
 
 		return empty( $setting ) ? $from_name : $setting;
 
@@ -40,7 +40,7 @@ class WordPress {
 	 */
 	public function filter_email_from_email( $from_email ) {
 
-		$setting = notification_get_setting( 'notifications/email/from_email' );
+		$setting = notification_get_setting( 'carriers/email/from_email' );
 
 		return empty( $setting ) ? $from_email : $setting;
 

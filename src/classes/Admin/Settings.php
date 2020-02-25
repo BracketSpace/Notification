@@ -272,7 +272,7 @@ class Settings {
 	 * @param object $settings Settings API object.
 	 * @return void
 	 */
-	public function notifications_settings( $settings ) {
+	public function carriers_settings( $settings ) {
 
 		if ( ! empty( $_SERVER['SERVER_NAME'] ) ) {
 			$sitename = strtolower( sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) ) );
@@ -285,9 +285,9 @@ class Settings {
 
 		$default_from_email = 'wordpress@' . $sitename;
 
-		$notifications = $settings->add_section( __( 'Carriers', 'notification' ), 'notifications' );
+		$carriers = $settings->add_section( __( 'Carriers', 'notification' ), 'carriers' );
 
-		$notifications->add_group( __( 'Email', 'notification' ), 'email' )
+		$carriers->add_group( __( 'Email', 'notification' ), 'email' )
 			->add_field( [
 				'name'     => __( 'Enable', 'notification' ),
 				'slug'     => 'enable',
@@ -350,7 +350,7 @@ class Settings {
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] );
 
-		$notifications->add_group( __( 'Webhook', 'notification' ), 'webhook' )
+		$carriers->add_group( __( 'Webhook', 'notification' ), 'webhook' )
 			->add_field( [
 				'name'     => __( 'Enable', 'notification' ),
 				'slug'     => 'enable',
