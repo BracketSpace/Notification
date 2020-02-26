@@ -12,6 +12,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: develop
+        run: |
+          git checkout --track origin/master
+          git checkout develop
       - name: Install git-flow
         run: |
           sudo apt-get install git-flow -y
@@ -20,6 +23,7 @@ jobs:
           git config --local user.email "buddy@bracketspace.com"
       - name: Start release
         run: |
+          git flow init -d
           git flow release start ${{ github.event.client_payload.new_version }}
       - name: Replace [Next] tags with new version number
         uses: jacobtomlinson/gha-find-replace@master
