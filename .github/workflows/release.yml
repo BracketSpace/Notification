@@ -1,13 +1,23 @@
-on: repository_dispatch
 name: Release new version
+
+on: repository_dispatch
+
 jobs:
-  test:
+  release:
     if: github.event.action == 'release'
     name: Test
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+   steps:
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
           ref: develop
-      - run: |
+      - name: Install git-glow
+        run: |
+          apt-get install git-flow -y
+      - name: Configure commiter
+        run: |
+          git config --local user.email "buddy@bracketspace.com"
+      - name: Test git-flow
+        run: |
           echo "New version is: ${{ github.event.client_payload.new_version }}"
