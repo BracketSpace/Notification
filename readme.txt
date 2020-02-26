@@ -307,6 +307,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Date and Time Merge Tags now expect Unix timestaps (GMT) without offset.
 * [Changed] All Trigger's slugs.
 * [Changed] Settings section `notifiations` to proper `carriers` to follow the standard established in version 6.
+* [Changed] `NOTIFICATION_VERSION` constant to `\Notification::version()` method.
 * [Added] Webhook and Cache trait.
 * [Added] Webhook JSON Carrier with plain JSON input code field.
 * [Added] Composer imposter package to aviod package conflicts.

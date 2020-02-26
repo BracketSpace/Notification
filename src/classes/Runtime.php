@@ -18,6 +18,11 @@ use BracketSpace\Notification\Vendor\Micropackage\Templates\Storage as TemplateS
 class Runtime {
 
 	/**
+	 * Plugin version
+	 */
+	const VERSION = '7.0.0';
+
+	/**
 	 * Main plugin file path
 	 *
 	 * @var string
