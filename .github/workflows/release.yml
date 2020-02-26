@@ -24,7 +24,7 @@ jobs:
       - name: Replace [Next] tags with new version number
         uses: jacobtomlinson/gha-find-replace@master
         with:
-          find: "\[Next\]"
+          find: "[Next]"
           replace: "${{ github.event.client_payload.new_version }}"
       - name: Replace stable tag in readme
         uses: jacobtomlinson/gha-find-replace@master
