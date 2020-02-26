@@ -14,8 +14,7 @@ jobs:
           ref: develop
       - name: Fetch master branch
         run: |
-          git checkout --track origin/master
-          git checkout develop
+          git fetch origin master
       - name: Install git-flow
         run: |
           sudo apt-get install git-flow -y
