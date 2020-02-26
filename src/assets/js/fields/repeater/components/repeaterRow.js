@@ -1,5 +1,4 @@
 /* global Vue */
-
 import { fieldHandler } from '../fieldHandler';
 import { inputsHandler } from '../inputsHandler';
 

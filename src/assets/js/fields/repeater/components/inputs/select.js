@@ -1,15 +1,15 @@
-/* global Vue, jQuery */
-
+/* global Vue, jQuery, notification */
 import { inputsHandler } from '../../inputsHandler';
 import { fieldHandler } from '../../fieldHandler';
 
 Vue.component( 'notification-select', {
 	template:
 	`<select
-	:id="subfield.id"
-	:name="createFieldName(type, keyIndex, subfield) + '[' + subfield.name + ']'"
-	:class="subfield.css_class + ' ' + subfield.pretty"
-	@change="selectUpdate( subfield, field, $event )">
+		:id="subfield.id"
+		:name="createFieldName(type, keyIndex, subfield) + '[' + subfield.name + ']'"
+		:class="subfield.css_class + ' ' + subfield.pretty + ' repeater-select'"
+		@change="selectUpdate( subfield, field, $event )"
+	>
 		<template v-for="( option, key ) in subfield.options">
 			<option :value="key" :selected="handleSelect( key, subfield.value )">{{option}}</option>
 		</template>
@@ -36,8 +36,8 @@ Vue.component( 'notification-select', {
 	},
 	methods:{
 		selectUpdate( subfield, field, $event ){
-			this.destroySelectize();
 			this.selectChange( subfield, field, $event );
+			notification.hooks.doAction( 'notification.carrier.select.changed', this );
 		},
 		destroySelectize(){
 			if(this.selectized){

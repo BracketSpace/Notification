@@ -1,5 +1,4 @@
 /* global Vue */
-
 import { fieldHandler } from '../fieldHandler';
 
 Vue.component( 'nested-sub-field', {

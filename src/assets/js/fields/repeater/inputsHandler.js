@@ -1,4 +1,5 @@
 /* global fetch, notification */
+
 export const inputsHandler = {
 	methods: {
 		checkboxHandler( checkbox, e ){
@@ -73,7 +74,7 @@ export const inputsHandler = {
 					recipientTypeField.value = '';
 				}
 
-				notification.hooks.doAction( 'notification.carrier.recipients.recipient.replaced', this);
+				notification.hooks.doAction( 'notification.carrier.recipients.recipient.replaced', this );
 
 			} )
 		}

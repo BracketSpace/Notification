@@ -1,5 +1,4 @@
 /* global Vue */
-
 import { fieldHandler } from '../fieldHandler';
 import { inputsHandler } from '../inputsHandler';
 
@@ -22,13 +21,14 @@ Vue.component( 'recipient-row', {
 						</notification-select>
 					</template>
 					<input
+					v-else
 					:id="subfield.id"
 					:class="subfield.css_class"
 					type="text"
 					:value="subfield.value"
 					:name="createFieldName(type, keyIndex, subfield) + '[' + subfield.name + ']'"
 					:placeholder="subfield.placeholder"
-					v-else>
+					>
 					<small class="description"
 						v-if="subfield.description"
 						v-html="subfield.description">
