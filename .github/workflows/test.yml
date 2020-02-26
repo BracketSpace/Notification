@@ -1,9 +1,6 @@
 name: Test
 
-on:
-  pull_request:
-    branches:
-      - develop
+on: pull_request
 
 jobs:
   PHPCS:
@@ -12,19 +9,19 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Install dependencies
-      run: composer install
+      run: composer install --no-progress
     - name: Coding Standards
       run: composer phpcs
   PHPUnit:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['5.6', '7.0', '7.1', '7.2', '7.3']
+        php-versions: ['7.0', '7.1', '7.2', '7.3', '7.4']
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Install dependencies
-      run: composer install
+      run: composer install --no-progress
     - name: PHPUnit
       run: |
         composer setup-local-tests

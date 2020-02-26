@@ -2,7 +2,7 @@
 Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
-Tested up to: 5.2
+Tested up to: 5.4
 Stable tag: 6.3.2
 Requires PHP: 7.0
 License: GPLv3
@@ -283,210 +283,47 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
+
+**Breaking changes**
+
+1. All trigger's slugs has been changed to unify them. Compare the [old slugs](https://docs.bracketspace.com/notification/v/6/developer/triggers/default-triggers) and [new slugs](https://docs.bracketspace.com/notification/v/7/developer/triggers/default-triggers).
+2. Settings section `notifications` has been changed to `carriers`. Pay attention while registering the Carrier settings and update all `notification_get_setting( 'notifications/{$group}/{$option}' )` to `notification_get_setting( 'carriers/{$group}/{$option}' )`.
+3. Changed the plugin file structure and many internal classes which might be used by other plugins.
+4. The plugin initializes now on `init 5` action and no functions/classes are available until then. You may use `notifiation/init` action to init the customizations.
+5. The Date and Time Merge Tags now require the Unix timestamp which shouldn't have the timezone offset. Use GMT timezone.
+6. The `notification_runtime` function has been deprecated in favor of new `\Notification` static class.
+
+**Full changelog**
+
 * [Changed] Added PUT, PATCH, DELETE http request methods to Webhook. Combined all http requests methods into one class method.
 * [Changed] Webhook class methods http_request and parse_args move to trait.
-* [Added] Added Webhook trait.
+* [Changed] Requirements utility to `micropackage/requirements`.
+* [Changed] DocHooks utility to `micropackage/dochooks`.
+* [Changed] Files utility to `micropackage/filesystem`. Now the plugin has few filesystems which can be accessed easily from outside the plugin.
+* [Changed] View utility to `micropackage/templates`.
+* [Changed] Ajax utility to `micropackage/ajax`.
+* [Changed] Loading stack, now the plugin initializes on init 5 (or 4 if bundled).
+* [Changed] Merge Tags don't need the requirements now and throwable resolver errors are caught and changed to notices.
+* [Changed] Date and Time Merge Tags now expect Unix timestaps (GMT) without offset.
+* [Changed] All Trigger's slugs.
+* [Changed] Settings section `notifiations` to proper `carriers` to follow the standard established in version 6.
+* [Changed] `NOTIFICATION_VERSION` constant to `\Notification::version()` method.
+* [Added] Webhook and Cache trait.
 * [Added] Webhook JSON Carrier with plain JSON input code field.
+* [Added] Composer imposter package to aviod package conflicts.
+* [Added] `notification_filesystem` function to get plugin filesystem(s).
 * [Added] Scheduling user Merge Tags for Post Scheduled trigger.
 * [Added] Last updated by user Merge Tags for Post triggers.
 * [Added] Image field for settings page.
+* [Added] Notification runtime cache with `notification_cache()` function wrapper.
+* [Added] Two Factor plugin integration.
 * [Fixed] Merge Tag used as anchor href now is not prefixed with protocol while adding the link.
 * [Fixed] Selectize script breaking description field in select input.
+* [Fixed] Bulk removing Notifications.
+* [Removed] `NOTIFICATION_DIR` and `NOTIFICATION_URL` constants.
 
-= 6.3.2 =
-* [Fixed] Wrong caching usage of the trigger args.
+== Upgrade Notice ==
 
-= 6.3.1 =
-* [Fixed] Trigger action being postponed when using quick edit action.
-* [Fixed] Too few argument passed to the trigger action, due to the argument caching.
-* [Fixed] Disable password reset email filters preventing the password reset from wp-admin.
-* [Changed] Webhook body value now can have the line breaks and tabs.
-* [Removed] Obsolete option to disable password reset request email to admin.
-* [Added] `notification/sent` action which is executed when all carriers are sent.
-* [Added] `allow_linebreaks` option for Input Field.
-
-= 6.3.0 =
-* [Fixed] Notification losing hash sync between JSON config and post name.
-* [Fixed] Namespace error in Abstracts/Trigger class.
-* [Fixed] Namespace error in EDDUpdater class when no cache is available.
-* [Changed] Added Trigger, Carrier, Recipient Store.
-* [Changed] ACF integration acf/save_post action priority from 10 to 1000.
-* [Changed] Updated EDD updater class for premium extensions.
-* [Added] User Avatar merge tags.
-* [Added] Trigger cache engine for cache processing.
-* [Added] Email recipient type accepts 'filter-id:' to specify recipients via custom WP filter.
-* [Added] User ID recipient with free-type input.
-* [Added] Featured image ID merge tag.
-
-= 6.2.0 =
-* [Fixed] Checkbox in plugin settings now can specify true-ish default value.
-* [Fixed] Trigger select box margins.
-* [Fixed] Role recipient for Email picking wrong roles with LIKE statement.
-* [Changed] Input field sanitizer for Carriers, allowing for some HTML tags.
-* [Added] Background processing feature, which load the actions into WP Cron.
-* [Added] Comment published trigger.
-* [Added] Post publication date and time merge tag.
-
-= 6.1.6 =
-* [Fixed] Notification duplication feature, thanks to Erik West.
-
-= 6.1.5 =
-* [Fixed] Error when a new user was added by logged in user, the password reset notification was sent.
-
-= 6.1.4 =
-* [Fixed] Addig the same Notification twice from the Wizard. Now Notification hash is regenerated.
-* [Changed] Post triggers now setup properties after checking all the conditions. This way second action call with wrong params won't change the trigger state. Thanks to Tom Angell.
-
-= 6.1.3 =
-* [Fixed] Password reset link fatal error when default WordPress notification was disabled.
-
-= 6.1.2 =
-* [Fixed] Carrier adding section being booted too early and being broken with other extensions.
-
-= 6.1.1 =
-* [Fixed] The Gutenberg integration causing an error for triggers other than related to post types.
-
-= 6.1.0 =
-* [Fixed] File mtime method now checks if file exists.
-* [Fixed] Cache is now cleared after saving the notification.
-* [Fixed] Uninstallation process.
-* [Fixed] License deactivation.
-* [Fixed] Issue with overlooping notifications when more than one action was called in the same request.
-* [Added] Ability to define email headers.
-* [Added] Webhook args and headers can be now not included if value is empty.
-* [Added] `notification/debug/suppress` filter to disable suppression of notifications when debug log is activated.
-* [Added] Confirmation before deleting the notification.
-* [Added] Default WordPress emails disabler.
-* [Added] `notification/integration/gutenberg` filter to disable Gutenberg support for specific post types. Useful when the post is in REST but no Gutenberg is used.
-* [Added] Wizard.
-* [Changed] Internationalization for JS files.
-* [Changed] Notification repeater field is now by default sortable.
-* [Changed] Carrier textarea field now can be unfiltered, so no HTML will be stripped.
-* [Changed] Webpack for assets processing instead of Gulp.
-* [Changed] OP Cache is no longer a requirement, instead hooks compatibility file is loaded when OP Cache config is incompatible.
-* [Changed] Better Carriers management, now Carrier can be added and enabled independently.
-* [Removed] Freemius.
-* [Removed] The story screen.
-* [Removed] Plugin internationalization files as all the translations comes from wp.org.
-
-= 6.0.4 =
-* [Fixed] Webhook waring using empty header values.
-* [Fixed] Quick switch in Notifications table.
-* [Fixed] Catching Notifications.
-* [Added] Basic Gutenberg compatibility, post triggers are now postponed to `rest_after_insert_{$post_type}` action.
-
-= 6.0.3 =
-* [Fixed] On/off switch in notifications table.
-* [Fixed] Duplicate feature.
-* [Fixed] Licensing.
-* [Changed] Notification trash link wording.
-
-= 6.0.2 =
-* [Fixed] Error in admin notice while manipulating extension license.
-* [Fixed] Scripts and styles conditional loading.
-
-= 6.0.1 =
-* [Changed] Added soft-fail for not valid JSON configuration for Notifications. This is most likely caused by updating from a very old version.
-
-= 6.0.0 =
-* [Fixed] Theme Update trigger errors on update.
-* [Added] Notification object as a wrapper for Notification Post.
-* [Added] `notification_create_view` function for seamless view creation.
-* [Added] `notification/post/column/main` action for notification edit screen addons.
-* [Added] `notification_get_posts` function.
-* [Added] Import and Export feature using JSON files.
-* [Added] Composer support with unified testing.
-* [Added] Merge Tags groups.
-* [Added] Notification Adapters - WordPress and JSON.
-* [Added] `notification_ajax_handler` function.
-* [Added] Ability to define Notifications programmatically.
-* [Added] JSON synchronization feature.
-* [Added] `add_quick_merge_tag` Trigger method.
-* [Added] Collapse option for plugin settings groups.
-* [Added] Common error log for all extensions, you can use `notification_log` function.
-* [Added] Post thumbnail URL and featured imager URL Merge Tags.
-* [Added] Comment content HTML merge tag.
-* [Added] Resolver API which allows to register more Merge Tag resolvers.
-* [Added] `notification/should_send` filter to hold off the whole Notification.
-* [Removed] Trigger usage tracking.
-* [Changed] PostData class has been removed in favor of Notification object and procedural functions.
-* [Changed] Admin Classes: MergeTags, Notifications, PostData, Recipients, Triggers has been removed and their content included in the Admin/PostType class.
-* [Changed] Notification data is now using single nonce field and additional data should be saved with `notification/data/save` action.
-* [Changed] Namespaces of Cron, Internationalization, License and Whitelabel classes.
-* [Changed] Native class autoloader to Composer autoloader.
-* [Changed] User recipients optimization with direct database calls.
-* [Changed] Notification (in "type" context) has been renamed to Carrier.
-* [Changed] The View object is not injected anymore to any Class, all use the `notification_create_view` function.
-* [Changed] ScreenHelp class has been renamed to Screen and render methods from PostType class has been moved to this new class.
-* [Changed] Notifications are now loaded on every page load and the Trigger action is not executing at all if no Notification is using it.
-* [Changed] Notifications doesn't have the trash anymore, the items are removed right away.
-* [Changed] On notification edit screen the editor styles are no longer applied.
-* [Changed] Carriers now have two step status - they can be either added to a Notification and be disabled at the same time.
-* [Changed] strip_shortcodes function to custom preg_replace for better stripping.
-* [Changed] Trigger storage now contains whole Notifications instead of just Carriers.
-
-
-= Compatibility breaking changes =
-
-*Hooks* - Some of the hooks names has been renamed for better consistency across the plugin. List of all changes:
-
-* notification/notification/pre-send -> notification/carrier/pre-send
-* notification/notification/sent -> notification/carrier/sent
-* notificaiton/notification/field/resolving -> notification/carrier/field/resolving
-* notification/value/strip_empty_mergetags -> notification/resolve/strip_empty_mergetags
-* notification/value/strip_shortcodes -> notification/carrier/field/value/strip_shortcodes
-* notificaiton/notification/field/resolved -> notification/carrier/field/value/resolved
-* notificaiton/merge_tag/value/resolved -> notification/merge_tag/value/resolved
-* notitication/admin/notifications/pre -> notification/admin/carriers/pre
-* notitication/admin/notifications -> notification/admin/carriers
-* notification/webhook/called/get -> notification/carrier/webhook/called/get
-* notification/webhook/called/post -> notification/carrier/webhook/called/post
-* notification/notification/box/pre -> notification/carrier/box/pre
-* notification/notification/box/post -> notification/carrier/box/post
-* notification/notification/box/field/pre -> notification/carrier/box/field/pre
-* notification/notification/box/field/post -> notification/carrier/box/field/post
-* notification/notification/form_fields/values -> notification/carrier/fields/values
-* notification/email/use_html_mime -> notification/carrier/email/use_html_mime
-* notification/email/recipients -> notification/carrier/email/recipients
-* notification/email/subject -> notification/carrier/email/subject
-* notification/email/message/pre -> notification/carrier/email/message/pre
-* notification/email/message/use_autop -> notification/carrier/email/message/use_autop
-* notification/email/message -> notification/carrier/email/message
-* notification/email/headers -> notification/carrier/email/headers
-* notification/email/attachments -> notification/carrier/email/attachments
-* notification/webhook/args -> notification/carrier/webhook/args
-* notification/webhook/args/$type -> notification/carrier/webhook/args/$type
-* notification/webhook/remote_args/get -> notification/carrier/webhook/remote_args/get
-* notification/webhook/remote_args/post -> notification/carrier/webhook/remote_args/post
-
-*Classes* - Some of the classes or namespaces has been renamed or removed. List of all changes:
-
-* BracketSpace\Notification\Admin\MergeTags - removed
-* BracketSpace\Notification\Admin\Notifications - removed
-* BracketSpace\Notification\Admin\PostData - removed
-* BracketSpace\Notification\Admin\Recipients - removed
-* BracketSpace\Notification\Admin\Triggers - removed
-* BracketSpace\Notification\Admin\PostData - removed
-* BracketSpace\Notification\Tracking - removed
-* BracketSpace\Notification\Admin\BoxRenderer - removed
-* BracketSpace\Notification\Admin\FormRenderer - removed
-* BracketSpace\Notification\Admin\ScreenHelp - removed
-* BracketSpace\Notification\Admin\FieldsResolver - removed
-* BracketSpace\Notification\Abstracts\Notification -> BracketSpace\Notification\Abstracts\Carrier
-* BracketSpace\Notification\Defaults\Notification -> BracketSpace\Notification\Defaults\Carrier
-* BracketSpace\Notification\Admin\Cron -> BracketSpace\Notification\Core\Cron
-* BracketSpace\Notification\Internationalization -> BracketSpace\Notification\Core\Internationalization
-* BracketSpace\Notification\License -> BracketSpace\Notification\Core\License
-* BracketSpace\Notification\Whitelabel -> BracketSpace\Notification\Core\Whitelabel
-
-*Functions* - Some of the functions has been renamed for better consistency across the plugin. List of all changes:
-
-* notification_is_new_notification -> notification_post_is_new
-* register_notification -> notification_register_carrier
-* notification_get_notifications -> notification_get_carriers
-* notification_get_single_notification -> notification_get_carrier
-* register_trigger -> notification_register_trigger
-* notification_get_single_recipient -> notification_get_recipient
-* notification_get_notification_recipients -> notification_get_carrier_recipients
-* notification_get_single_trigger -> notification_get_trigger
-* register_recipient -> notification_register_recipient
+= [Next] =
+Compatibility breaking changes. Please make sure to review the changelog before upgrading and adjust your customizations.
+The premium plugins won't work with Notification v7 unless updated.

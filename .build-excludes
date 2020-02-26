@@ -16,7 +16,8 @@ LICENSE
 README.md
 builds
 tests
-assets/src
+src/assets
+dist
 bin
 composer.json
 composer.lock

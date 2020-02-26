@@ -14,8 +14,8 @@
 	</testsuites>
 	<filter>
         <whitelist>
-            <directory suffix=".php">./class</directory>
-            <directory suffix=".php">./inc</directory>
+            <directory suffix=".php">./src/classes</directory>
+            <directory suffix=".php">./src/includes</directory>
         </whitelist>
     </filter>
 </phpunit>

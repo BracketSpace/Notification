@@ -3,7 +3,7 @@
 *.log
 node_modules/
 /vendor/
-assets/dist/
+dist/
 package-lock.json
 
 ### Windows ###
