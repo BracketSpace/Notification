@@ -12,13 +12,35 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: develop
-      - name: Install git-glow
+      - name: Install git-flow
         run: |
           sudo apt-get install git-flow -y
       - name: Configure commiter
         run: |
           git config --local user.email "buddy@bracketspace.com"
-      - name: Test git-flow
+      - name: Start release
         run: |
-          git flow
-          echo "New version is: ${{ github.event.client_payload.new_version }}"
+          git flow release start ${{ github.event.client_payload.new_version }}
+      - name: Replace [Next] tags with new version number
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "\[Next\]"
+          replace: "${{ github.event.client_payload.new_version }}"
+      - name: Replace stable tag in readme
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "Stable tag: [0-9]+.[0-9]+.[0-9]+"
+          replace: "Stable tag: ${{ github.event.client_payload.new_version }}"
+          include: "/readme.txt"
+      - name: Commit version bump
+        run: |
+          git commit -am "Version bump"
+      - name: Finish release
+        run: |
+          git flow release finish ${{ github.event.client_payload.new_version }}
+      - name: Test branches
+        run: |
+          git status
+          git branch --list
+          git checkout master
+          git status
