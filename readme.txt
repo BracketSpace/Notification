@@ -288,6 +288,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 1. All trigger's slugs has been changed to unify them. Compare the [old slugs](https://docs.bracketspace.com/notification/v/6/developer/triggers/default-triggers) and [new slugs](https://docs.bracketspace.com/notification/v/7/developer/triggers/default-triggers).
 2. Settings section `notifications` has been changed to `carriers`. Pay attention while registering the Carrier settings and update all `notification_get_setting( 'notifications/group/option' )` to `notification_get_setting( 'carriers/group/option' )`.
+3. Repeater and recipients fields on the front-end has been rewriten to use vue.js. Hooks for actions in js scripts for this fields provide now access to vue.js instance. Each repeater and recipient field, are now separate vue.js instances.
 
 **Full changelog**
 
@@ -303,6 +304,8 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Date and Time Merge Tags now expect Unix timestaps (GMT) without offset.
 * [Changed] All Trigger's slugs.
 * [Changed] Settings section `notifiations` to proper `carriers` to follow the standard established in version 6.
+* [Changed] Repeater and recipient fields are now using vue.js on the front-end.
+* [Changed] Pretty select fields in the repeater and recipient fields are now handled by vue.js lifecycle hooks.
 * [Added] Webhook and Cache trait.
 * [Added] Webhook JSON Carrier with plain JSON input code field.
 * [Added] Composer imposter package to aviod package conflicts.
@@ -312,8 +315,11 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] Image field for settings page.
 * [Added] Notification runtime cache with `notification_cache()` function wrapper.
 * [Added] Two Factor plugin integration.
+* [Added] Possibility to nest one level repeater field in another repeater field. Nested repeater field must have `nested_repeater` name.
+* [Added] Rest API class to handle internal requests.
 * [Fixed] Merge Tag used as anchor href now is not prefixed with protocol while adding the link.
 * [Fixed] Selectize script breaking description field in select input.
 * [Fixed] Bulk removing Notifications.
 * [Removed] `NOTIFICATION_VERSION` constant.
 * [Removed] `NOTIFICATION_DIR` and `NOTIFICATION_URL` constants.
+* [Removed  WP Ajax action `ajax_get_recipient_input` was removed.
