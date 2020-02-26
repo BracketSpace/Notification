@@ -16,6 +16,7 @@ jobs:
         run: |
           git fetch origin master
           git checkout --track origin/master
+          git pull origin master
       - name: Install git-flow
         run: |
           sudo apt-get install git-flow -y
