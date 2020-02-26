@@ -14,7 +14,7 @@ jobs:
           ref: develop
       - name: Install git-glow
         run: |
-          apt-get install git-flow -y
+          sudo apt-get install git-flow -y
       - name: Configure commiter
         run: |
           git config --local user.email "buddy@bracketspace.com"
