@@ -7,7 +7,7 @@ jobs:
     if: github.event.action == 'release'
     name: Test
     runs-on: ubuntu-latest
-   steps:
+    steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -20,4 +20,5 @@ jobs:
           git config --local user.email "buddy@bracketspace.com"
       - name: Test git-flow
         run: |
+          git flow
           echo "New version is: ${{ github.event.client_payload.new_version }}"
