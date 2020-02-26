@@ -3,4 +3,4 @@ buttons:
     action: "release"
     description: Releases new version
     arguments:
-      - name: version
+      - name: newversion
