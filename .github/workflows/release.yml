@@ -15,6 +15,8 @@ jobs:
       - name: Fetch master branch
         run: |
           git fetch origin master
+          git checkout -b -t master
+          git checkout -b -t develop
       - name: Install git-flow
         run: |
           sudo apt-get install git-flow -y
@@ -27,12 +29,12 @@ jobs:
           git flow init -d
           git flow release start ${{ github.event.client_payload.new_version }}
       - name: Replace [Next] tags with new version number
-        uses: jacobtomlinson/gha-find-replace@0.1.1
+        uses: jacobtomlinson/gha-find-replace@master
         with:
           find: "[Next]"
           replace: "${{ github.event.client_payload.new_version }}"
       - name: Replace stable tag in readme
-        uses: jacobtomlinson/gha-find-replace@0.1.1
+        uses: jacobtomlinson/gha-find-replace@master
         with:
           find: "Stable tag: [0-9]+.[0-9]+.[0-9]+"
           replace: "Stable tag: ${{ github.event.client_payload.new_version }}"
