@@ -8,6 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.client_payload.newversion }}
+          ref: develop
       - run: |
-          echo "New version is: ${{ github.event.client_payload.newversion }}"
+          echo "New version is: ${{ github.event.client_payload.new_version }}"
