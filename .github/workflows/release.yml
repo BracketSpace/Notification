@@ -21,6 +21,7 @@ jobs:
       - name: Configure commiter
         run: |
           git config --local user.email "buddy@bracketspace.com"
+          git config --local user.name "BracketSpace Worker"
       - name: Start release
         run: |
           git flow init -d
