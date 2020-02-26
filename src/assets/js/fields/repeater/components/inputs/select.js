@@ -29,6 +29,10 @@ Vue.component( 'notification-select', {
 		this.destroySelectize();
 	},
 	updated(){
+		if( this.subfield.value ){
+			this.$el.value = this.subfield.value;
+		}
+
 		this.initSelectize();
 	},
 	beforeDestroy(){
