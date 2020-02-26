@@ -287,7 +287,11 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 **Breaking changes**
 
 1. All trigger's slugs has been changed to unify them. Compare the [old slugs](https://docs.bracketspace.com/notification/v/6/developer/triggers/default-triggers) and [new slugs](https://docs.bracketspace.com/notification/v/7/developer/triggers/default-triggers).
-2. Settings section `notifications` has been changed to `carriers`. Pay attention while registering the Carrier settings and update all `notification_get_setting( 'notifications/group/option' )` to `notification_get_setting( 'carriers/group/option' )`.
+2. Settings section `notifications` has been changed to `carriers`. Pay attention while registering the Carrier settings and update all `notification_get_setting( 'notifications/{$group}/{$option}' )` to `notification_get_setting( 'carriers/{$group}/{$option}' )`.
+3. Changed the plugin file structure and many internal classes which might be used by other plugins.
+4. The plugin initializes now on `init 5` action and no functions/classes are available until then. You may use `notifiation/init` action to init the customizations.
+5. The Date and Time Merge Tags now require the Unix timestamp which shouldn't have the timezone offset. Use GMT timezone.
+6. The `notification_runtime` function has been deprecated in favor of new `\Notification` static class.
 
 **Full changelog**
 
@@ -315,5 +319,10 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Fixed] Merge Tag used as anchor href now is not prefixed with protocol while adding the link.
 * [Fixed] Selectize script breaking description field in select input.
 * [Fixed] Bulk removing Notifications.
-* [Removed] `NOTIFICATION_VERSION` constant.
 * [Removed] `NOTIFICATION_DIR` and `NOTIFICATION_URL` constants.
+
+== Upgrade Notice ==
+
+= [Next] =
+Compatibility breaking changes. Please make sure to review the changelog before upgrading and adjust your customizations.
+The premium plugins won't work with Notification v7 unless updated.
