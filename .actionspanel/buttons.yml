@@ -1,0 +1,6 @@
+buttons:
+  - title: Release new version
+    action: "release"
+    description: Releases new version
+    arguments:
+      - name: new_version
