@@ -8,15 +8,14 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout master
+        uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: Checkout develop
         uses: actions/checkout@v2
         with:
           ref: develop
-      - name: Fetch master branch
-        run: |
-          git fetch origin master
-          git checkout -b -t master
-          git checkout -b -t develop
       - name: Install git-flow
         run: |
           sudo apt-get install git-flow -y
