@@ -72,7 +72,7 @@ class Scripts {
 		if ( in_array( $page_hook, [ 'post-new.php', 'post.php', 'edit.php' ], true ) && ! in_array( get_post_type(), $allowed_post_types, true ) ) {
 			return;
 		}
-		wp_enqueue_script( 'notification-vue', 'https://cdn.jsdelivr.net/npm/vue@2.6.11', [], '2.6.11', true );
+		wp_enqueue_script( 'notification-vue', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', [], '2.6.11', true );
 
 		wp_enqueue_media();
 

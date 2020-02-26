@@ -23,6 +23,17 @@ Vue.component( 'repeater-row', {
 						{{ subfield.checkbox_label }}
 						</label>
 						<template
+						v-else-if="subfield.options"
+						>
+							<notification-select
+							:subfield="subfield"
+							:type="type"
+							:field="field"
+							:key-index="keyIndex"
+							>
+							</notification-select>
+						</template>
+						<template
 						v-else-if="subfield.type === 'repeater'"
 						>
 						<nested-sub-field
