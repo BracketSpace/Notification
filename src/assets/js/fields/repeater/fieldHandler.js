@@ -2,8 +2,16 @@
 
 export const fieldHandler = {
 	methods: {
-		addModel( field ){
-			this.model = this.cloneField( field );
+		addField( event ){
+			if(event){
+				event.preventDefault();
+			}
+
+			const model = this.cloneField( this.model );
+
+			this.rowCount++;
+			this.fields.push(model);
+			notification.hooks.doAction( 'notification.repeater.row.added', this );
 		},
 		addFields( rowCount, model ){
 			const fieldModel = model;
@@ -23,16 +31,6 @@ export const fieldHandler = {
 				this.rowCount++;
 			}
 		},
-		addNestedModel( fields ){
-			if( fields ){
-				fields.forEach( field => {
-					if( field.fields ){
-						this.nestedRepeater = true;
-						this.nestedModel = this.cloneField(field.fields);
-					}
-				} )
-			}
-		},
 		cloneField( model ){
 			const clonedModel = [];
 
@@ -43,20 +41,18 @@ export const fieldHandler = {
 
 			return clonedModel;
 		},
-		addField( event ){
-			if(event){
-				event.preventDefault();
-			}
-
-			const model = this.cloneField( this.model );
-
-			this.rowCount++;
-			this.fields.push(model);
-			notification.hooks.doAction( 'notification.repeater.row.added', this );
-		},
 		removeField( index, fields ){
 			fields.splice( index, 1 );
 			notification.hooks.doAction( 'notification.repeater.row.removed', this );
+		},
+		createFieldName( type, index ){
+			if( type.fieldCarrier ){
+				this.rowName = `notification_carrier_${type.fieldCarrier}[${type.fieldType}][${index}]`;
+			} else {
+				this.rowName = `${type.fieldType}][${index}]`;
+			}
+
+			return this.rowName;
 		},
 		addFieldValues(){
 
@@ -87,14 +83,18 @@ export const fieldHandler = {
 				}
 			}
 		},
-		createFieldName( type, index ){
-			if( type.fieldCarrier ){
-				this.rowName = `notification_carrier_${type.fieldCarrier}[${type.fieldType}][${index}]`;
-			} else {
-				this.rowName = `${type.fieldType}][${index}]`;
+		addModel( field ){
+			this.model = this.cloneField( field );
+		},
+		addNestedModel( fields ){
+			if( fields ){
+				fields.forEach( field => {
+					if( field.fields ){
+						this.nestedRepeater = true;
+						this.nestedModel = this.cloneField(field.fields);
+					}
+				} )
 			}
-
-			return this.rowName;
 		}
 	}
 }

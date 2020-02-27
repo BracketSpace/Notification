@@ -34,6 +34,7 @@ Vue.component( 'notification-select', {
 		}
 
 		this.initSelectize();
+		notification.hooks.doAction( 'notification.carrier.select.changed', this );
 	},
 	beforeDestroy(){
 		this.destroySelectize();
@@ -41,7 +42,6 @@ Vue.component( 'notification-select', {
 	methods:{
 		selectUpdate( subfield, field, $event ){
 			this.selectChange( subfield, field, $event );
-			notification.hooks.doAction( 'notification.carrier.select.changed', this );
 		},
 		destroySelectize(){
 			if(this.selectized){
