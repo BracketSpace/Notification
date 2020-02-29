@@ -12,6 +12,10 @@
  * @package notification
  */
 
+if ( ! defined( 'NOTIFICATION_VERSION' ) ) {
+	define( 'NOTIFICATION_VERSION', '6.3.2' );
+}
+
 if ( ! class_exists( 'Notification' ) ) :
 
 	/**
@@ -63,6 +67,16 @@ if ( ! class_exists( 'Notification' ) ) :
 		 */
 		public static function runtime() {
 			return self::$runtime;
+		}
+
+		/**
+		 * Gets plugin version
+		 *
+		 * @since  [Next]
+		 * @return string
+		 */
+		public static function version() {
+			return self::$runtime::VERSION;
 		}
 
 	}
