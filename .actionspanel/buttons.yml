@@ -4,3 +4,4 @@ buttons:
     description: Releases new version
     arguments:
       - name: new_version
+      - name: password
