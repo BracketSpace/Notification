@@ -1,6 +1,6 @@
-![Test](https://github.com/BracketSpace/Notification/workflows/Test/badge.svg)
-![Develop](https://github.com/BracketSpace/Notification/workflows/Develop/badge.svg)
-![Stable](https://github.com/BracketSpace/Notification/workflows/Stable/badge.svg)
+[![Test](https://github.com/BracketSpace/Notification/workflows/Test/badge.svg)](https://github.com/BracketSpace/Notification/actions?query=workflow%3ATest)
+[![Develop](https://github.com/BracketSpace/Notification/workflows/Develop/badge.svg)](https://github.com/BracketSpace/Notification/actions?query=workflow%3ADevelop)
+[![Stable](https://github.com/BracketSpace/Notification/workflows/Stable/badge.svg)](https://github.com/BracketSpace/Notification/actions?query=workflow%3AStable)
 
 # Notification
 
