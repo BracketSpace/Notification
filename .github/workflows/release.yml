@@ -4,7 +4,7 @@ on: repository_dispatch
 
 jobs:
   release:
-    if: github.event.action == 'release' && github.event.client_payload.password == secrets.RELEASE_PASSWORD
+    if: github.event.action == 'release'
     name: Release
     runs-on: ubuntu-latest
     steps:
