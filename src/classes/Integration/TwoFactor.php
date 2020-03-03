@@ -23,7 +23,7 @@ class TwoFactor {
 	 */
 	public function add_trigger_action( $trigger ) {
 
-		if ( 'wordpress/user_login' !== $trigger->get_slug() ) {
+		if ( 'user/login' !== $trigger->get_slug() ) {
 			return;
 		}
 

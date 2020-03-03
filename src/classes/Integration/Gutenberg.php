@@ -28,7 +28,7 @@ class Gutenberg {
 			return;
 		}
 
-		if ( ! preg_match( '/wordpress\/(?!.*(plugin|theme)).*\/(updated|published|drafted|added|pending)/', $trigger->get_slug() ) ) {
+		if ( ! preg_match( '/post\/(.*)\/(updated|published|drafted|added|pending|scheduled)/', $trigger->get_slug() ) ) {
 			return;
 		}
 
