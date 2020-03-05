@@ -1,6 +1,6 @@
 /* global Vue */
-import { fieldHandler } from '../fieldHandler';
-import { inputsHandler } from '../inputsHandler';
+import { fieldHandler } from '../../mixins/fieldHandler';
+import { inputsHandler } from '../../mixins/inputsHandler';
 
 Vue.component( 'recipient-row', {
 	template: `

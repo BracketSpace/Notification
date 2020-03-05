@@ -43,6 +43,7 @@ class RepeaterHandler {
 			$sub_field['placeholder']    = $field->placeholder;
 			$sub_field['nested']         = $field->nested;
 			$sub_field['type']           = strtolower( str_replace( 'Field', '', $field->field_type_html ) );
+			$sub_field['sections']       = $field->sections;
 
 			if ( $field->fields ) {
 				$sub_field['fields'] = $this->form_field_data( $field->fields );
@@ -90,7 +91,7 @@ class RepeaterHandler {
 			return false;
 		}
 
-		if ( $field instanceof Field\RepeaterField ) {
+		if ( $field instanceof Field\RepeaterField || $field instanceof Field\SectionRepeater ) {
 			return true;
 		}
 
@@ -132,19 +133,25 @@ class RepeaterHandler {
 		$post_id = intval( $params['id'] );
 		$carrier = $params['fieldCarrier'];
 		$field   = $params['fieldType'];
-
-		$values = $this->get_values( $post_id, $carrier, $field );
+		$data    = [];
+		$values  = $this->get_values( $post_id, $carrier, $field );
 
 		$carriers = notification_get_carriers();
 
 		$field = $carriers[ $carrier ]->get_form_field( $field );
 
+		if ( ! empty( $field->sections ) ) {
+			$data['field_sections'] = $field->sections;
+		}
+
 		$field = $this->form_field_data( $field->fields );
 
-		$data = [
+		$field_data = [
 			'field'  => $field,
 			'values' => $this->normalize_values( $values ),
 		];
+
+		$data = array_merge( $data, $field_data );
 
 		wp_send_json( $data );
 	}

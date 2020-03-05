@@ -1,5 +1,6 @@
 /* global Vue */
-import { fieldHandler } from '../fieldHandler';
+import { fieldHandler } from '../../mixins/fieldHandler';
+import { repeaterHandler } from '../../mixins/repeaterHandler';
 
 Vue.component( 'nested-sub-field', {
 	template:
@@ -9,7 +10,6 @@ Vue.component( 'nested-sub-field', {
 				<repeater-sub-row
 				:field="field"
 				:type="type"
-				:field-name="fieldName"
 				:row-index="rowIndex"
 				:sub-name="subName"
 				:key-index="key"
@@ -24,34 +24,5 @@ Vue.component( 'nested-sub-field', {
 	</div>
 	`,
 	props: ['model', 'nestedFields', 'nestedValues', 'subRows', 'type', 'rowIndex', 'subName', 'fieldName'],
-	mixins: [fieldHandler],
-	data() {
-		return {
-			'fields' : [],
-			'values': this.nestedValues[this.rowIndex],
-			'subModel': [],
-			'subRowName': null
-		}
-	},
-	mounted(){
-		this.$emit('add-nested-field');
-		this.addSubFieldRows();
-		this.addFieldValues();
-	},
-	methods: {
-		addNestedSubField( e ){
-			e.preventDefault();
-			this.addField();
-			this.$emit('add-nested-field');
-		},
-		removeSubField(index){
-			this.removeField( index, this.fields );
-		},
-		addSubFieldRows(){
-			if(this.values){
-				this.rowCount = this.values.length;
-				this.addFields( this.rowCount, this.model );
-			}
-		},
-	}
+	mixins: [fieldHandler, repeaterHandler],
 } )

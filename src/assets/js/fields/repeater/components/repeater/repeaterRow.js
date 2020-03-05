@@ -1,6 +1,6 @@
 /* global Vue */
-import { fieldHandler } from '../fieldHandler';
-import { inputsHandler } from '../inputsHandler';
+import { fieldHandler } from '../../mixins/fieldHandler';
+import { inputsHandler } from '../../mixins/inputsHandler';
 
 Vue.component( 'repeater-row', {
 	template: `
@@ -58,7 +58,7 @@ Vue.component( 'repeater-row', {
 						>
 						<small
 							v-if="field.description"
-						class="description"></small>
+						class="description">{{ field.description }}</small>
 					</div>
 				</td>
 			</template>

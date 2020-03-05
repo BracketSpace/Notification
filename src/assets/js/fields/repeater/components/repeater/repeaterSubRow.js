@@ -1,7 +1,7 @@
 /* global Vue */
-import { fieldHandler } from '../fieldHandler';
-import { inputsHandler } from '../inputsHandler';
-import sortableHandle from '../sortableHandle';
+import { fieldHandler } from '../../mixins/fieldHandler';
+import { inputsHandler } from '../../mixins/inputsHandler';
+import sortableHandle from '../../mixins/sortableHandle';
 
 Vue.component( 'repeater-sub-row', {
 	template:
@@ -18,7 +18,7 @@ Vue.component( 'repeater-sub-row', {
 					:type="subfield.type"
 					:value="subfield.value"
 					:checked="subfield.checked"
-					:name="'notification_carrier_' + type.fieldCarrier + '[' + type.fieldType + ']' + '[' + rowIndex + ']' + '[' + rowName + ']' + '[' + keyIndex + ']' + '[' + subfield.name + ']' "
+					:name="'notification_carrier_' + type.fieldCarrier + '[' + type.fieldType + ']' + '[' + rowIndex + ']' + '[' + subName + ']' + '[' + keyIndex + ']' + '[' + subfield.name + ']' "
 					@click="checkboxHandler( subfield, $event )">
 					{{ subfield.checkbox_label }}
 					</label>

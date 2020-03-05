@@ -1,7 +1,8 @@
 /* global Vue */
-import { init } from './init';
-import { fieldHandler } from './fieldHandler';
-import { inputsHandler } from './inputsHandler';
+import { init } from './mixins/init';
+import { fieldHandler } from './mixins/fieldHandler';
+import { inputsHandler } from './mixins/inputsHandler';
+import { sectionsModal } from './mixins/sectionsModal';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -16,7 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			mixins: [
 				init,
 				fieldHandler,
-				inputsHandler
+				inputsHandler,
+				sectionsModal
 			],
 			data: {
 				'model' : [],
@@ -30,7 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				'nestedValues': [],
 				'postID': '',
 				'nestedRepeater': false,
-			}
+				'sections': [],
+				'selectedSection': null,
+			},
 		} )
 	}
 });
