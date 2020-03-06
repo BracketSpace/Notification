@@ -51,7 +51,7 @@ jobs:
     - name: Setup Node
       uses: actions/setup-node@v1
       with:
-        node-version: '8'
+        node-version: '12'
     - name: JS lint
       run: |
         yarn install --no-progress
