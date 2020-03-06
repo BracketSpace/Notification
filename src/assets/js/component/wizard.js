@@ -8,11 +8,13 @@
 
 			if ( $( this ).hasClass( 'selected' ) ) {
 				$( this ).removeClass( 'selected' );
-				$( this ).find( 'input[type="checkbox"]' ).attr( 'checked', false );
+				const checkbox = $(this)[0].querySelector( 'input' );
+				checkbox.checked = false;
 				count = count - 1;
 			} else {
 				$( this ).addClass( 'selected' );
-				$( this ).find( 'input[type="checkbox"]' ).attr( 'checked', true );
+				const checkbox = $(this)[0].querySelector( 'input' );
+				checkbox.checked = true;
 				count = count + 1;
 			}
 
