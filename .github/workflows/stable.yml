@@ -143,7 +143,7 @@ jobs:
       - name: Parse changelog
         run: |
           START="= ${{ steps.vars.outputs.version }} ="
-          END="= [0-9]+.[0-9]+ =|==|\$"
+          END="= [0-9]+.[0-9]+.[0-9]+ =|==|\$"
           grep -oPz "(?s)${START}.*?\n\K.*?(?=${END})" readme.txt > changelog.txt
           truncate -s-2 changelog.txt
       - name: Download artifact
