@@ -1,17 +1,15 @@
 /* global notification, fetch */
-import sortableHandle from './sortableHandle';
-
 export const init = {
 	mounted(){
 		this.setType();
 		this.apiCall();
-		this.sortable();
+		// this.sortable();
 	},
 	methods: {
 		apiCall(){
 			this.postID = notification.postId;
 
-			fetch( `${notification.repeater_rest_url}${this.postID}`,{
+			fetch( `${notification.section_repeater_rest_url}${this.postID}`,{
 				method: 'POST',
 				headers: {
 					'Accept': 'application/json',
@@ -21,20 +19,10 @@ export const init = {
 			} )
 			.then( res => res.json() )
 			.then( data => {
-				// eslint-disable-next-line camelcase
-				const { field, values } = data;
+				const { sections, values } = data;
 
-				if( field ){
-					this.addNestedModel( field );
-					this.addModel( field );
-
-					if( values ){
-						this.values = values
-						this.rowCount = this.values.length;
-						this.addFields( this.rowCount, this.model );
-						this.addFieldValues();
-					}
-
+				if( sections ){
+					this.sections = sections;
 				}
 			}
 			);
@@ -50,8 +38,8 @@ export const init = {
 				fieldCarrier
 			}
 		},
-		sortable(){
-			sortableHandle();
-		}
+		// sortable(){
+		// 	sortableHandle();
+		// }
 	}
 }

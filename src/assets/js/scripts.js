@@ -25,12 +25,14 @@ import './fields/color-picker.js';
 import './fields/image.js';
 // Repeater
 import './fields/repeater/components/inputs/select';
-import './fields/repeater/components/sections/sectionsRow';
 import './fields/repeater/components/repeater/repeaterRow';
 import './fields/repeater/components/repeater/recipientRow';
-import './fields/repeater/components/sections/nestedSubSection';
 import './fields/repeater/components/repeater/nestedSubField';
 import './fields/repeater/components/repeater/repeaterSubRow';
-import './fields/repeater/components/sections/sectionSubRow';
 import './fields/repeater/mixins/init';
 import './fields/repeater/nestedRepeater';
+//Section Repeater
+// import './fields/section-repeater/sections/sectionSubRow';
+import './fields/section-repeater/sections/sectionsRow';
+import './fields/section-repeater/sections/nestedSubSection';
+import './fields/section-repeater/sectionRepeater';

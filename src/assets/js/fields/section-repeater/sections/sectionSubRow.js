@@ -1,12 +1,12 @@
 /* global Vue */
-import { fieldHandler } from '../../mixins/fieldHandler';
-import { inputsHandler } from '../../mixins/inputsHandler';
-import sortableHandle from '../../mixins/sortableHandle';
+import { fieldHandler } from '../../repeater/mixins/fieldHandler';
+import { inputsHandler } from '../../repeater/mixins/inputsHandler';
+import sortableHandle from '../../repeater/mixins/sortableHandle';
 
 Vue.component( 'section-sub-row', {
 	template:
 	`<tr class="row"><td class="sub-handle"><span class="handle-index">{{keyIndex + 1}}</span></td>
-		<template v-for="( subfield, index ) in field">
+		<template v-for="( subfield, index ) in row">
 			<td :class="'subfield ' + subfield.name">
 				<div class="row-field">
 					<label class="section-label"

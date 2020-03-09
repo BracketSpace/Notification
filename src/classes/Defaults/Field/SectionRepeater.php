@@ -61,7 +61,7 @@ class SectionRepeater extends Field {
 	 *
 	 * @var string
 	 */
-	public $field_type = 'repeater';
+	public $field_type = 'section-repeater';
 
 	/**
 	 * Field constructor
@@ -75,7 +75,13 @@ class SectionRepeater extends Field {
 			trigger_error( 'SectionsRepeater requires sections param', E_USER_ERROR );
 		}
 
+		if ( ! isset( $params['section_labels'] ) ) {
+			trigger_error( 'SectionsRepeater requires section labels param', E_USER_ERROR );
+		}
+
 		$this->sections = $params['sections'];
+
+		$this->section_labels = $params['section_labels'];
 
 		if ( isset( $params['fields'] ) ) {
 			$this->fields = $params['fields'];
@@ -126,24 +132,11 @@ class SectionRepeater extends Field {
 
 		$html .= '<th class="handle"></th>';
 
-		foreach ( $this->fields as $sub_field ) {
+		foreach ( $this->section_labels as $label ) {
 
-			// don't print header for hidden field.
-			if ( isset( $sub_field->type ) && 'hidden' === $sub_field->type ) {
-				continue;
-			}
+			$html .= '<th class="section-repeater-label">';
 
-			$description = $sub_field->get_description();
-
-			$html .= '<th class="' . esc_attr( $sub_field->get_raw_name() ) . '">';
-
-			$this->headers[ $sub_field->get_raw_name() ] = $sub_field->get_label();
-
-			$html .= esc_html( $sub_field->get_label() );
-
-			if ( ! empty( $description ) ) {
-				$html .= '<small class="description">' . $description . '</small>';
-			}
+			$html .= esc_html( $label );
 
 			$html .= '</th>';
 
@@ -169,7 +162,7 @@ class SectionRepeater extends Field {
 			>
 				<template v-for="(section, index) in sections">
 					<span @click="createSection( $event, section )">
-						{{ section }}
+						{{ section.name }}
 					</span>
 				</template>
 			</div>
@@ -188,16 +181,13 @@ class SectionRepeater extends Field {
 	 */
 	public function row() {
 
-		$html = '<template v-for="( field, key ) in fields">
+		$html = '<template v-for="( row, itemKey, index ) in rows">
 					<sections-row
-					:field="field"
-					:fields="fields"
+					:rows="rows"
+					:row="row"
 					:type="type"
-					:key-index="key"
-					:nested-fields="nestedFields"
-					:nested-values="nestedValues"
-					:nested-model="nestedModel"
-					:nested-row-count="nestedRowCount"
+					:item-key="itemKey"
+					:index="index"
 					:selected-section="selectedSection"
 					>
 					</sections-row>
@@ -225,18 +215,20 @@ class SectionRepeater extends Field {
 
 			$sanitized[ $row_id ] = [];
 
-			foreach ( $this->fields as $sub_field ) {
+			foreach ( $this->sections as $section ) {
 
-				$subkey = $sub_field->get_raw_name();
+				foreach ( $section['fields'] as $sub_field ) {
 
-				if ( isset( $row[ $subkey ] ) ) {
-					$sanitized_value = $sub_field->sanitize( $row[ $subkey ] );
-				} else {
-					$sanitized_value = '';
+					$sub_key = $sub_field->get_raw_name();
+
+					if ( isset( $row[ $sub_key ] ) ) {
+						$sanitized_value = $sub_field->sanitize( $row[ $sub_key ] );
+					} else {
+						$sanitized_value = '';
+					}
+
+					$sanitized[ $row_id ][ $sub_key ] = $sanitized_value;
 				}
-
-				$sanitized[ $row_id ][ $subkey ] = $sanitized_value;
-
 			}
 		}
 

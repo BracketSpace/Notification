@@ -17,8 +17,9 @@ export const sectionsModal = {
 			e.preventDefault();
 			e.stopPropagation();
 
-			this.selectedSection = section;
-			this.addField();
+			this.selectedSection = section.name;
+			this.selectedFieldType = '';
+			this.addFieldSection( section.fields );
 			this.modalOpen = false;
 		}
 	}

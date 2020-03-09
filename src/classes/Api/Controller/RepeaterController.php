@@ -5,15 +5,35 @@
  * @package notification
  */
 
-namespace BracketSpace\Notification\Api\Handlers;
+namespace BracketSpace\Notification\Api\Controller;
 
-use BracketSpace\Notification\Defaults\Field;
 /**
  * RepeaterHandler class
  *
  * @action
  */
-class RepeaterHandler {
+class RepeaterController {
+
+	/**
+	 * Post ID
+	 *
+	 * @var int
+	 */
+	public $post_id;
+
+	/**
+	 * Carrier slug
+	 *
+	 * @var string
+	 */
+	public $carrier;
+
+	/**
+	 * Field slug
+	 *
+	 * @var string
+	 */
+	public $field;
 
 	/**
 	 * Forms field data
@@ -22,7 +42,12 @@ class RepeaterHandler {
 	 * @param array $data Field data.
 	 * @return array
 	 */
-	public function form_field_data( $data ) {
+	public function form_field_data( $data = null ) {
+
+		if ( empty( $data ) ) {
+			$carrier_fields = $this->get_carrier_fields();
+			$data           = $carrier_fields->fields;
+		}
 
 		$fields = [];
 
@@ -44,6 +69,7 @@ class RepeaterHandler {
 			$sub_field['nested']         = $field->nested;
 			$sub_field['type']           = strtolower( str_replace( 'Field', '', $field->field_type_html ) );
 			$sub_field['sections']       = $field->sections;
+			$sub_field['message']        = $field->message;
 
 			if ( $field->fields ) {
 				$sub_field['fields'] = $this->form_field_data( $field->fields );
@@ -79,23 +105,16 @@ class RepeaterHandler {
 	}
 
 	/**
-	 * Checks if field is instance of repeater field
+	 * Gets carrier fields
 	 *
 	 * @since [Next]
-	 * @param \BracketSpace\Notification\Abstracts\Field $field Form field type.
-	 * @return boolean
+	 * @return array
 	 */
-	public function check_repeater( \BracketSpace\Notification\Abstracts\Field $field ) {
+	public function get_carrier_fields() {
+		$carriers       = notification_get_carriers();
+		$carrier_fields = $carriers[ $this->carrier ]->get_form_field( $this->field );
 
-		if ( $field instanceof Field\RecipientsField ) {
-			return false;
-		}
-
-		if ( $field instanceof Field\RepeaterField || $field instanceof Field\SectionRepeater ) {
-			return true;
-		}
-
-		return false;
+		return $carrier_fields;
 	}
 
 	/**
@@ -121,6 +140,36 @@ class RepeaterHandler {
 	}
 
 	/**
+	 * Gets request params
+	 *
+	 * @param array $params Request params.
+	 * @return void
+	 */
+	public function parse_params( $params ) {
+		$this->post_id = intval( $params['id'] );
+		$this->carrier = $params['fieldCarrier'];
+		$this->field   = $params['fieldType'];
+	}
+
+	/**
+	 * Forms response data
+	 *
+	 * @since [Next]
+	 * @return array
+	 */
+	public function form_data() {
+		$values           = $this->get_values( $this->post_id, $this->carrier, $this->field ) ?? [];
+		$populated_fields = $this->form_field_data();
+
+		$data = [
+			'field'  => $populated_fields,
+			'values' => $this->normalize_values( $values ),
+		];
+
+		return $data;
+	}
+
+	/**
 	 * Sends response
 	 *
 	 * @since [Next]
@@ -129,31 +178,9 @@ class RepeaterHandler {
 	 */
 	public function send_response( \WP_REST_Request $request ) {
 
-		$params  = $request->get_params();
-		$post_id = intval( $params['id'] );
-		$carrier = $params['fieldCarrier'];
-		$field   = $params['fieldType'];
-		$data    = [];
-		$values  = $this->get_values( $post_id, $carrier, $field );
+		$this->parse_params( $request->get_params() );
 
-		$carriers = notification_get_carriers();
-
-		$field = $carriers[ $carrier ]->get_form_field( $field );
-
-		if ( ! empty( $field->sections ) ) {
-			$data['field_sections'] = $field->sections;
-		}
-
-		$field = $this->form_field_data( $field->fields );
-
-		$field_data = [
-			'field'  => $field,
-			'values' => $this->normalize_values( $values ),
-		];
-
-		$data = array_merge( $data, $field_data );
-
-		wp_send_json( $data );
+		wp_send_json( $this->form_data() );
 	}
 
 }

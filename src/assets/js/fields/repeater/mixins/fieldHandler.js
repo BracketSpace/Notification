@@ -65,21 +65,25 @@ export const fieldHandler = {
 					}
 
 					const field = this.fields[i][counter];
-					field.value = this.values[i][value];
 
-					if( 'checkbox' === field.type ){
-
-						if( this.values[i][value] ){
-							field.checked = 'checked';
-						}
-					}
-
-					if( 'type' === field.name ){
-						this.selectChange( field, this.fields[i] );
+					if( field ){
 						field.value = this.values[i][value];
+
+						if( 'checkbox' === field.type ){
+
+							if( this.values[i][value] ){
+								field.checked = 'checked';
+							}
+						}
+
+						if( 'type' === field.name ){
+							this.selectChange( field, this.fields[i] );
+							field.value = this.values[i][value];
+						}
+
+						counter++;
 					}
 
-					counter++;
 				}
 			}
 		},

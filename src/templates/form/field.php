@@ -12,9 +12,13 @@ $id        = '';
 $vue_class = '';
 
 if ( isset( $field->field_type ) ) {
-	$type      = $field->field_type;
-	$id        = 'id=' . $field->id . '';
-	$vue_class = ' vue-repeater';
+	$type = $field->field_type;
+	$id   = 'id=' . $field->id . '';
+	if ( 'repeater' === $type ) {
+		$vue_class = ' vue-repeater';
+	} elseif ( 'section-repeater' === $type ) {
+		$vue_class = ' vue-section-repeater';
+	}
 }
 
 if ( $carrier ) {

@@ -2,7 +2,7 @@
 import { init } from './mixins/init';
 import { fieldHandler } from './mixins/fieldHandler';
 import { inputsHandler } from './mixins/inputsHandler';
-import { sectionsModal } from './mixins/sectionsModal';
+import { sectionsModal } from '../section-repeater/mixins/sectionsModal';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -32,8 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				'nestedValues': [],
 				'postID': '',
 				'nestedRepeater': false,
-				'sections': [],
-				'selectedSection': null,
 			},
 		} )
 	}
