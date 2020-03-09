@@ -21,16 +21,20 @@ export const init = {
 			} )
 			.then( res => res.json() )
 			.then( data => {
-				const configuration = data;
+				// eslint-disable-next-line camelcase
+				const { field, values } = data;
 
-				this.addNestedModel( configuration.field );
-				this.addModel( configuration.field );
+				if( field ){
+					this.addNestedModel( field );
+					this.addModel( field );
 
-				if(configuration.values ){
-					this.values = configuration.values
-					this.rowCount = this.values.length;
-					this.addFields( this.rowCount, this.model );
-					this.addFieldValues();
+					if( values ){
+						this.values = values
+						this.rowCount = this.values.length;
+						this.addFields( this.rowCount, this.model );
+						this.addFieldValues();
+					}
+
 				}
 			}
 			);

@@ -1,6 +1,6 @@
 /* global Vue, jQuery, notification */
-import { inputsHandler } from '../../inputsHandler';
-import { fieldHandler } from '../../fieldHandler';
+import { inputsHandler } from '../../mixins/inputsHandler';
+import { fieldHandler } from '../../mixins/fieldHandler';
 
 Vue.component( 'notification-select', {
 	template:

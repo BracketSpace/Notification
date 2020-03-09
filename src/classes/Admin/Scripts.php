@@ -83,10 +83,11 @@ class Scripts {
 		wp_set_script_translations( 'notification', 'notification' );
 
 		wp_localize_script( 'notification', 'notification', [
-			'ajaxurl'           => admin_url( 'admin-ajax.php' ),
-			'postId'            => get_the_ID(),
-			'select_rest_url'   => get_rest_url( null, 'notification/v1/repeater-field/select/' ),
-			'repeater_rest_url' => get_rest_url( null, 'notification/v1/repeater-field/' ),
+			'ajaxurl'                   => admin_url( 'admin-ajax.php' ),
+			'postId'                    => get_the_ID(),
+			'select_rest_url'           => get_rest_url( null, 'notification/v1/repeater-field/select/' ),
+			'repeater_rest_url'         => get_rest_url( null, 'notification/v1/repeater-field/' ),
+			'section_repeater_rest_url' => get_rest_url( null, 'notification/v1/section-repeater-field/' ),
 		] );
 
 		// Remove TinyMCE styles as they are not applied to any frontend content.

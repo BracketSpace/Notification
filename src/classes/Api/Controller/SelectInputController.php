@@ -5,14 +5,14 @@
  * @package notification
  */
 
-namespace BracketSpace\Notification\Api\Handlers;
+namespace BracketSpace\Notification\Api\Controller;
 
 /**
  * RepeaterHandler class
  *
  * @action
  */
-class SelectInputHandler {
+class SelectInputController {
 
 	/**
 	 * Sends response

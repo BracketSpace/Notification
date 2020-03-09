@@ -37,7 +37,15 @@ class Api {
 			'path' => '/repeater-field/(?P<id>\d+)',
 			'args' => [
 				'methods'  => 'POST',
-				'callback' => [ new Handlers\RepeaterHandler(), 'send_response' ],
+				'callback' => [ new Controller\RepeaterController(), 'send_response' ],
+			],
+		];
+
+		$this->routes[] = [
+			'path' => '/section-repeater-field/(?P<id>\d+)',
+			'args' => [
+				'methods'  => 'POST',
+				'callback' => [ new Controller\SectionRepeaterController(), 'send_response' ],
 			],
 		];
 
@@ -45,7 +53,7 @@ class Api {
 			'path' => 'repeater-field/select',
 			'args' => [
 				'methods'  => 'POST',
-				'callback' => [ new Handlers\SelectInputHandler(), 'send_response' ],
+				'callback' => [ new Controller\SelectInputController(), 'send_response' ],
 			],
 		];
 	}
