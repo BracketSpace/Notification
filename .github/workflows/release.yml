@@ -38,6 +38,18 @@ jobs:
           find: "Stable tag: [0-9]+.[0-9]+.[0-9]+"
           replace: "Stable tag: ${{ github.event.client_payload.new_version }}"
           include: "readme.txt"
+      - name: Replace version tag in main file
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "Version: [0-9]+.[0-9]+.[0-9]+"
+          replace: "Version: ${{ github.event.client_payload.new_version }}"
+          include: "${{ secrets.SLUG }}.php"
+      - name: Replace constant tag in main file
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "'NOTIFICATION_VERSION', '[0-9]+.[0-9]+.[0-9]+'"
+          replace: "'NOTIFICATION_VERSION', '${{ github.event.client_payload.new_version }}'"
+          include: "${{ secrets.SLUG }}.php"
       - name: Commit version bump
         run: git commit -am "Version bump"
       - name: Finish release
