@@ -9,32 +9,33 @@
  * @package notification
  */
 
-$runtime    = notification_runtime();
-$plugin_dir = dirname( $runtime->plugin_file );
+$runtime    = Notification::runtime();
+$filesystem = $runtime->get_filesystem( 'includes' );
+$hooks_file = 'hooks.php';
 
 // Build an array of searchable instances.
 $objects = [];
-foreach ( get_object_vars( $runtime ) as $property_name => $instance ) {
+foreach ( Notification::components() as $component_name => $instance ) {
 	if ( is_object( $instance ) ) {
-		$objects[ $property_name ] = get_class( $instance );
+		$objects[ $component_name ] = get_class( $instance );
 	}
 }
 
 $hook_functions = [];
 
 // Loop over each class who added own hooks.
-foreach ( $runtime->_called_doc_hooks as $class_name => $hooks ) {
+foreach ( $runtime->get_calls() as $class_name => $hooks ) {
 	$count = 0;
 
 	if ( 'BracketSpace\\Notification\\Runtime' === $class_name ) {
 		$callback_object_name = '$this';
 	} else {
-		$property_name = array_search( $class_name, $objects );
-		if ( ! $property_name ) {
+		$component_name = array_search( $class_name, $objects );
+		if ( ! $component_name ) {
 			WP_CLI::warning( str_replace( 'BracketSpace\\Notification\\', '', $class_name ) . ' skipped, no instance available' );
 			continue;
 		}
-		$callback_object_name = '$this->' . $property_name;
+		$callback_object_name = '$this->component( \'' . $component_name . '\' )';
 	}
 
 	foreach ( $hooks as $hook ) {
@@ -54,11 +55,9 @@ foreach ( $runtime->_called_doc_hooks as $class_name => $hooks ) {
 	WP_CLI::log( str_replace( 'BracketSpace\\Notification\\', '', $class_name ) . ' added ' . $count . ' hooks' );
 }
 
-
 // Clear the hooks file.
-$hooks_file = $plugin_dir . '/src/includes/hooks.php';
-if ( file_exists( $hooks_file ) ) {
-	unlink( $hooks_file );
+if ( $filesystem->exists( $hooks_file ) ) {
+	$filesystem->delete( $hooks_file );
 }
 
 // Save the content.
@@ -77,6 +76,6 @@ $file_content = '<?php
 $file_content .= implode( "\r\n", $hook_functions );
 $file_content .= "\r\n";
 
-file_put_contents( $hooks_file, $file_content );
+$filesystem->put_contents( $hooks_file, $file_content );
 
 WP_CLI::success( 'All the hooks dumped!' );
