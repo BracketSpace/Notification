@@ -219,16 +219,16 @@
         },
         {
             "name": "micropackage/templates",
-            "version": "1.1.0",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/micropackage/templates.git",
-                "reference": "917f0d5046c98f12a67b6d5d2ce8db646d0f2c96"
+                "reference": "b7fa204273d75326d398a573dbf667fe7130b987"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/micropackage/templates/zipball/917f0d5046c98f12a67b6d5d2ce8db646d0f2c96",
-                "reference": "917f0d5046c98f12a67b6d5d2ce8db646d0f2c96",
+                "url": "https://api.github.com/repos/micropackage/templates/zipball/b7fa204273d75326d398a573dbf667fe7130b987",
+                "reference": "b7fa204273d75326d398a573dbf667fe7130b987",
                 "shasum": ""
             },
             "require": {
@@ -261,7 +261,7 @@
                 }
             ],
             "description": "Simple PHP template engine which is easy to use",
-            "time": "2020-01-31T11:51:20+00:00"
+            "time": "2020-03-13T14:02:16+00:00"
         },
         {
             "name": "typisttech/imposter",
