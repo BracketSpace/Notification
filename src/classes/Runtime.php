@@ -87,13 +87,16 @@ class Runtime {
 		$this->templates();
 		$this->singletons();
 		$this->actions();
-		$this->defaults();
 
 		$this->load_bundled_extensions();
 
 		do_action_deprecated( 'notification/boot/initial', [], '[Next]', 'notification/init' );
 		do_action_deprecated( 'notification/boot', [], '[Next]', 'notification/init' );
 		do_action( 'notification/init' );
+
+		$this->defaults();
+
+		do_action( 'notification/elements' );
 
 	}
 
