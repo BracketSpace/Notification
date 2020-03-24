@@ -5,7 +5,7 @@ import { sectionsHandler } from '../mixins/sectionsHandler';
 Vue.component( 'sections-row', {
 	template: `
 		<tr class="row">
-			<td class="handle"><span class="handle-index">{{index + 1}}</span></td>
+			<td class="handle no-sortable">{{index + 1}}</td>
 			<td>
 				<label class="section-label">
 					{{ sectionName }}

@@ -9,7 +9,7 @@ Vue.component( 'section-sub-row', {
 			<td>{{sectionName}}</td>
 		</tr>
 		<tr>
-			<td><span class="handle-index">{{keyIndex + 1}}</span></td>
+			<td class="sub-handle no-sortable">{{keyIndex + 1}}</td>
 			<td class="section-content">
 				<template v-if="inputType === 'textarea'">
 					<notification-textarea

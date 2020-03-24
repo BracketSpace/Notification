@@ -35,7 +35,7 @@ Vue.component( 'nested-sub-section', {
 				</template>
 			</div>
 		</a>
-		<p>You can add one field type for each section</p>
+		<p class="add-new-sections-field-info">You can add one field type for each section</p>
 	</td>
 	`,
 	props: ['row', 'type', 'rowIndex', 'parentField', 'subFieldValues', 'baseFields', 'sectionSubRows'],
@@ -88,7 +88,7 @@ Vue.component( 'nested-sub-section', {
 						return true;
 					}
 				}
-				
+
 				return false;
 			} )
 

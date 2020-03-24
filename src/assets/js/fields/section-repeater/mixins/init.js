@@ -1,9 +1,9 @@
 /* global notification, fetch */
+
 export const init = {
 	mounted(){
 		this.setType();
 		this.apiCall();
-		// this.sortable();
 	},
 	methods: {
 		apiCall(){
@@ -56,6 +56,6 @@ export const init = {
 				fieldType,
 				fieldCarrier
 			}
-		}
+		},
 	}
 }

@@ -8,6 +8,15 @@
 		position: relative;
 		margin-top: 10px;
 
+		@media ( max-width: 782px) {
+			position: static;
+			float: none;
+		}
+
+		&-info {
+			margin-top: 15px;
+		}
+
 		.section-modal {
 			position: absolute;
 			z-index: 1;
@@ -109,6 +118,13 @@
 						text-align: center;
 					}
 
+				}
+
+				&.no-sortable {
+
+					&::after {
+						opacity: 0;
+					}
 				}
 
 			}
@@ -271,6 +287,14 @@
 
 					}
 
+					td.no-sortable {
+						cursor: initial;
+
+						&::after {
+							display: none;
+						}
+					}
+
 				}
 
 			}
@@ -297,7 +321,6 @@
 			table {
 				border-spacing: 0;
 				border-collapse: collapse;
-				margin: -1px;
 
 				@media ( max-width: 1680px ) {
 					width: 100%;
@@ -319,7 +342,6 @@
 
 					&.trash,
 					&.sub-handle {
-						width: 20px;
 
 						@media ( max-width: 1680px ) {
 							width: 100%;
@@ -382,6 +404,9 @@
 			/* stylelint-disable */
 			td {
 				border: 0;
+				width: 50px;
+				display: block;
+				word-wrap: break-word;
 			}
 			/* stylelint-enable */
 		}
