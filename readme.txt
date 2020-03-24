@@ -308,6 +308,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] All Trigger's slugs.
 * [Changed] Settings section `notifiations` to proper `carriers` to follow the standard established in version 6.
 * [Changed] `NOTIFICATION_VERSION` constant to `\Notification::version()` method.
+* [Changed] User ID Email recipient now support the comma-separated value, thanks to Robert P.
 * [Added] Webhook and Cache trait.
 * [Added] Webhook JSON Carrier with plain JSON input code field.
 * [Added] Composer imposter package to aviod package conflicts.
