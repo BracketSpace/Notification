@@ -39,7 +39,7 @@ jobs:
         php-version: ${{ matrix.php }}
     - name: PHPUnit
       run: |
-        bin/install-wp-tests.sh wordpress_test root root localhost latest
+        bin/install-wp-tests.sh wordpress_test root root mysql latest
         vendor/bin/phpunit
   css:
     name: CSS Lint
