@@ -84,6 +84,8 @@ abstract class Field implements Interfaces\Fillable {
 			trigger_error( 'Field requires label and name', E_USER_ERROR );
 		}
 
+		$this->field_type_html = substr( strrchr( get_called_class(), '\\' ), 1 );
+
 		$this->label = $params['label'];
 		$this->name  = $params['name'];
 		$this->id    = $this->name . '_' . uniqid();
@@ -108,6 +110,20 @@ abstract class Field implements Interfaces\Fillable {
 			$this->css_class .= $params['css_class'];
 		}
 
+	}
+
+	/**
+	 * Returns field data
+	 *
+	 * @since [Next]
+	 * @param string $param Field data name.
+	 * @return  array
+	 */
+	public function __get( $param ) {
+
+		$data = $this->$param;
+
+		return $data;
 	}
 
 	/**

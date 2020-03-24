@@ -12,7 +12,7 @@ use BracketSpace\Notification\Abstracts\Field;
 /**
  * Repeater field class
  */
-class RepeaterField extends Field {
+class SectionRepeater extends Field {
 
 	/**
 	 * Current repeater row
@@ -61,7 +61,7 @@ class RepeaterField extends Field {
 	 *
 	 * @var string
 	 */
-	public $field_type = 'repeater';
+	public $field_type = 'section-repeater';
 
 	/**
 	 * Field constructor
@@ -70,6 +70,18 @@ class RepeaterField extends Field {
 	 * @param array $params field configuration parameters.
 	 */
 	public function __construct( $params = [] ) {
+
+		if ( ! isset( $params['sections'] ) ) {
+			trigger_error( 'SectionsRepeater requires sections param', E_USER_ERROR );
+		}
+
+		if ( ! isset( $params['section_labels'] ) ) {
+			trigger_error( 'SectionsRepeater requires section labels param', E_USER_ERROR );
+		}
+
+		$this->sections = $params['sections'];
+
+		$this->section_labels = $params['section_labels'];
 
 		if ( isset( $params['fields'] ) ) {
 			$this->fields = $params['fields'];
@@ -113,31 +125,18 @@ class RepeaterField extends Field {
 
 		$this->headers = [];
 
-		$html = '<table class="fields-repeater ' . $this->css_class() . '" id="' . $this->get_id() . '" ' . $data_attr . '>';
+		$html = '<table class="section-repeater fields-repeater ' . $this->css_class() . '" id="' . $this->get_id() . '" ' . $data_attr . '>';
 
 		$html .= '<thead>';
 		$html .= '<tr class="row header">';
 
 		$html .= '<th class="handle"></th>';
 
-		foreach ( $this->fields as $sub_field ) {
+		foreach ( $this->section_labels as $label ) {
 
-			// don't print header for hidden field.
-			if ( isset( $sub_field->type ) && 'hidden' === $sub_field->type ) {
-				continue;
-			}
+			$html .= '<th class="section-repeater-label">';
 
-			$description = $sub_field->get_description();
-
-			$html .= '<th class="' . esc_attr( $sub_field->get_raw_name() ) . '">';
-
-			$this->headers[ $sub_field->get_raw_name() ] = $sub_field->get_label();
-
-			$html .= esc_html( $sub_field->get_label() );
-
-			if ( ! empty( $description ) ) {
-				$html .= '<small class="description">' . $description . '</small>';
-			}
+			$html .= esc_html( $label );
 
 			$html .= '</th>';
 
@@ -155,7 +154,20 @@ class RepeaterField extends Field {
 		$html .= '</tbody>';
 		$html .= '</table>';
 
-		$html .= '<a href="#" class="button button-secondary add-new-repeater-field" @click="addField">' . esc_html( $this->add_button_label ) . '</a>';
+		$html .= '<a href="#" class="button button-secondary add-new-repeater-field add-new-sections-field" @click="addSection">';
+		$html .= esc_html( $this->add_button_label );
+		$html .= '
+			<div class="section-modal"
+			v-show="modalOpen"
+			>
+				<template v-for="(section, index) in sections">
+					<span @click="createSection( $event, section )">
+						{{ section.name }}
+					</span>
+				</template>
+			</div>
+		';
+		$html .= '</a>';
 
 		return $html;
 
@@ -169,18 +181,21 @@ class RepeaterField extends Field {
 	 */
 	public function row() {
 
-		$html = '<template v-for="( field, key ) in fields">
-					<repeater-row
-					:field="field"
-					:fields="fields"
+		$html = '<template v-for="( row, key, index ) in rows">
+					<sections-row
+					:key="key"
+					:rows="rows"
+					:row="row"
 					:type="type"
-					:key-index="key"
-					:nested-fields="nestedFields"
-					:nested-values="nestedValues"
-					:nested-model="nestedModel"
-					:nested-row-count="nestedRowCount"
+					:index="index"
+					:selected-section="selectedSection"
+					:values="values"
+					:sub-field-values="subFieldValues"
+					:base-fields="baseFields"
+					:saved-sections="savedSections"
+					:sub-field-values="subFieldValues"
 					>
-					</repeater-row>
+					</sections-row>
 				  </template>';
 
 		return $html;
@@ -199,28 +214,11 @@ class RepeaterField extends Field {
 			return [];
 		}
 
-		$sanitized = [];
-
-		foreach ( $value as $row_id => $row ) {
-
-			$sanitized[ $row_id ] = [];
-
-			foreach ( $this->fields as $sub_field ) {
-
-				$subkey = $sub_field->get_raw_name();
-
-				if ( isset( $row[ $subkey ] ) ) {
-					$sanitized_value = $sub_field->sanitize( $row[ $subkey ] );
-				} else {
-					$sanitized_value = '';
-				}
-
-				$sanitized[ $row_id ][ $subkey ] = $sanitized_value;
-
-			}
+		if ( array_keys( $value ) !== range( 0, count( $value ) - 1 ) ) {
+			return;
 		}
 
-		return $sanitized;
+		return $value;
 
 	}
 

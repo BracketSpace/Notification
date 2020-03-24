@@ -115,6 +115,7 @@ class Screen {
 
 			notification_template( 'box', [
 				'slug'        => $carrier->get_slug(),
+				'carrier'     => $carrier,
 				'id'          => 'notification-carrier-' . $carrier->get_slug() . '-box',
 				'name'        => 'notification_carrier_' . $carrier->get_slug() . '_enable',
 				'active_name' => 'notification_carrier_' . $carrier->get_slug() . '_active',
@@ -167,15 +168,18 @@ class Screen {
 	 */
 	public function get_carrier_form( Interfaces\Sendable $carrier ) {
 
-		$fields = $carrier->get_form_fields();
-
+		$fields       = $carrier->get_form_fields();
+		$carrier_slug = $carrier->get_slug();
 		// No fields available so return the default view.
 		if ( empty( $fields ) ) {
 			return notification_get_template( 'form/empty-form' );
 		}
 
 		// Setup the fields and return form.
-		return notification_get_template( 'form/table', [ 'fields' => $fields ] );
+		return notification_get_template( 'form/table', [
+			'fields'  => $fields,
+			'carrier' => $carrier_slug,
+		] );
 
 	}
 
@@ -432,37 +436,4 @@ class Screen {
 		$ajax->send( ob_get_clean() );
 
 	}
-
-	/**
-	 * Renders recipient input for AJAX call.
-	 *
-	 * @action wp_ajax_get_recipient_input
-	 *
-	 * @return void
-	 */
-	public function ajax_get_recipient_input() {
-
-		ob_start();
-
-		$carrier   = sanitize_text_field( wp_unslash( $_POST['carrier'] ) ); // phpcs:ignore
-		$type      = sanitize_text_field( wp_unslash( $_POST['type'] ) ); // phpcs:ignore
-		$recipient = notification_get_recipient( $carrier, $type );
-		$input     = $recipient->input();
-
-		// A little trick to get rid of the last part of input name
-		// which will be added by the field itself.
-		$input_name     = sanitize_text_field( wp_unslash( $_POST['input_name'] ) ); // phpcs:ignore
-		$input->section = str_replace( '[' . $input->get_raw_name() . ']', '', $input_name );
-
-		echo $input->field(); // phpcs:ignore
-
-		$description = $input->get_description();
-		if ( ! empty( $description ) ) {
-			echo '<small class="description">' . $description . '</small>'; // phpcs:ignore
-		}
-
-		notification_ajax_handler()->send( ob_get_clean() );
-
-	}
-
 }

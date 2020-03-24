@@ -12,6 +12,10 @@
  * @package notification
  */
 
+if ( ! defined( 'NOTIFICATION_VERSION' ) ) {
+	define( 'NOTIFICATION_VERSION', '6.3.2' );
+}
+
 if ( ! class_exists( 'Notification' ) ) :
 
 	/**

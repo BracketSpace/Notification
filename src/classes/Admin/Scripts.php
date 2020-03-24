@@ -63,17 +63,22 @@ class Scripts {
 		if ( in_array( $page_hook, [ 'post-new.php', 'post.php', 'edit.php' ], true ) && ! in_array( get_post_type(), $allowed_post_types, true ) ) {
 			return;
 		}
+		wp_enqueue_script( 'notification-vue', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', [], '2.6.11', true );
 
 		wp_enqueue_media();
 
-		wp_enqueue_script( 'notification', $this->filesystem->url( 'js/scripts.js' ), [ 'jquery', 'wp-color-picker', 'wp-i18n', 'wp-hooks', 'jquery-ui-sortable', 'wp-polyfill' ], $this->filesystem->mtime( 'js/scripts.js' ), true );
+		wp_enqueue_script( 'notification', $this->filesystem->url( 'js/scripts.js' ), [ 'jquery', 'wp-color-picker', 'wp-i18n', 'wp-hooks', 'jquery-ui-sortable', 'wp-polyfill', 'notification-vue' ], $this->filesystem->mtime( 'js/scripts.js' ), true );
 
 		wp_enqueue_style( 'notification', $this->filesystem->url( 'css/style.css' ), [], $this->filesystem->mtime( 'css/style.css' ) );
 
 		wp_set_script_translations( 'notification', 'notification' );
 
 		wp_localize_script( 'notification', 'notification', [
-			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'ajaxurl'                   => admin_url( 'admin-ajax.php' ),
+			'postId'                    => get_the_ID(),
+			'select_rest_url'           => get_rest_url( null, 'notification/v1/repeater-field/select/' ),
+			'repeater_rest_url'         => get_rest_url( null, 'notification/v1/repeater-field/' ),
+			'section_repeater_rest_url' => get_rest_url( null, 'notification/v1/section-repeater-field/' ),
 		] );
 
 		// Remove TinyMCE styles as they are not applied to any frontend content.

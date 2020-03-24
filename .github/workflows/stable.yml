@@ -18,8 +18,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12'
-    - name: Install OS dependencies
-      run: sudo apt-get install zip -y
     - name: Setup variables
       id: vars
       run: |

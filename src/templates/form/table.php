@@ -11,7 +11,12 @@
 
 	<?php foreach ( $get( 'fields' ) as $field ) : ?>
 
-		<?php $vars = [ 'current_field' => $field ]; ?>
+		<?php
+		$vars = [
+			'current_field' => $field,
+			'carrier'       => $get( 'carrier' ),
+		];
+		?>
 
 		<?php if ( empty( $field->get_label() ) ) : ?>
 			<?php notification_template( 'form/field-hidden', $vars ); ?>
