@@ -44,6 +44,12 @@ jobs:
         options: '--exclude="node_modules" --exclude=".git"'
         src: '.'
         dest: 'build'
+    - name: Check files
+      run: |
+        cd build
+        ls -al
+        cd vendor
+        ls -al
     - name: Upload artifact
       uses: actions/upload-artifact@v1
       with:
