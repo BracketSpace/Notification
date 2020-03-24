@@ -32,7 +32,11 @@ import './fields/repeater/components/repeater/repeaterSubRow';
 import './fields/repeater/mixins/init';
 import './fields/repeater/nestedRepeater';
 //Section Repeater
-// import './fields/section-repeater/sections/sectionSubRow';
+import './fields/section-repeater/components/select';
+import './fields/section-repeater/components/input';
+import './fields/section-repeater/components/checkbox';
+import './fields/section-repeater/components/textarea';
+import './fields/section-repeater/sections/sectionSubRow';
 import './fields/section-repeater/sections/sectionsRow';
 import './fields/section-repeater/sections/nestedSubSection';
 import './fields/section-repeater/sectionRepeater';

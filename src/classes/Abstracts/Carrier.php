@@ -350,6 +350,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 
 		foreach ( $this->get_form_fields() as $field ) {
 			if ( isset( $data[ $field->get_raw_name() ] ) ) {
+
 				$field->set_value( $field->sanitize( $data[ $field->get_raw_name() ] ) );
 			}
 		}

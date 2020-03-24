@@ -1,6 +1,5 @@
 /* global Vue */
 import { fieldHandler } from '../../repeater/mixins/fieldHandler';
-import { inputsHandler } from '../../repeater/mixins/inputsHandler';
 import { sectionsHandler } from '../mixins/sectionsHandler';
 
 Vue.component( 'sections-row', {
@@ -15,33 +14,52 @@ Vue.component( 'sections-row', {
 					:class="row.css_class"
 					type="hidden"
 					:value="sectionName"
-					:name="createFieldName(type, index, row) + '[' + row.type + ']'"
+					:name="createParentSectionName( type, index ) + '[' + fieldName + ']'"
 					>
 					<small
 						v-if="row.description"
 					class="description"></small>
 				</label>
 			</td>
-			<template v-if=" 'message' === row.name ">
-				<td v-html="row.message"></td>
+			<template v-if=" 'message' in row ">
+				<td v-html="row.message.message"></td>
 			</template>
 			<template v-else>
 				<nested-sub-section
 					:row="row"
+					:type="type"
+					:row-index="index"
+					:parent-field="sectionName"
+					:sub-field-values="subFieldValues"
+					:base-fields="baseFields"
 				>
 				</nested-sub-section>
 			</template>
-			<td class="trash" @click="removeField(index, rows)"></td>
+			<td class="trash" @click="removeSection(index)"></td>
 		</tr>
 	`,
-	props: ['itemKey', 'index', 'rows', 'row', 'type', 'selectedSection'],
-	mixins: [fieldHandler],
+	props: ['index', 'rows', 'row', 'rowCount', 'type', 'selectedSection', 'subFieldValues', 'baseFields', 'savedSections'],
+	mixins: [fieldHandler, sectionsHandler],
 	data(){
 		return {
-			sectionName: null
+			sectionName: null,
+		}
+	},
+	computed: {
+		fieldName(){
+			if( this.sectionName ){
+				return this.sectionName.toLowerCase();
+			}
 		}
 	},
 	mounted() {
-		this.sectionName = Object.freeze( this.selectedSection );
+		if( this.selectedSection ){
+			this.sectionName = Object.freeze( this.selectedSection );
+		} else {
+			this.sectionName = this.savedSections[this.index];
+		}
+	},
+	updated(){
+		this.sectionName = this.savedSections[this.index];
 	}
 } )

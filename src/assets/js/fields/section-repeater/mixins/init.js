@@ -23,10 +23,29 @@ export const init = {
 
 				if( sections ){
 					this.sections = sections;
+					this.extractFields();
+				}
+
+				if( values ){
+					this.values = values;
+					this.addFieldSectionValues();
 				}
 			}
 			);
 
+		},
+		extractFields(){
+			const baseFields = {};
+			// eslint-disable-next-line no-unused-vars
+			for( const [section, field] of Object.entries(this.sections) ){
+
+				for( const [ name, data ] of Object.entries( field.fields ) ){
+
+					baseFields[name] = data;
+				}
+			}
+
+			this.baseFields = baseFields;
 		},
 		setType(){
 			const instance = this.$el;
@@ -37,9 +56,6 @@ export const init = {
 				fieldType,
 				fieldCarrier
 			}
-		},
-		// sortable(){
-		// 	sortableHandle();
-		// }
+		}
 	}
 }

@@ -19,7 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
 				sections: {},
 				rows: {},
 				rowCount: 0,
-				selectedSection: null
+				selectedSection: null,
+				savedSections: [],
+				values: {},
+				subFieldValues: [],
+				baseFields:{}
 			}
 		} )
 	}

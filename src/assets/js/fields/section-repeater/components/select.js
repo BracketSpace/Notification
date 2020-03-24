@@ -1,12 +1,13 @@
 /* global Vue, jQuery, notification */
-import { inputsHandler } from '../../mixins/inputsHandler';
-import { fieldHandler } from '../../mixins/fieldHandler';
+import { inputsHandler } from '../../repeater/mixins/inputsHandler';
+import { fieldHandler } from '../../repeater/mixins/fieldHandler';
+import { inputNameHandler } from '../mixins/inputNameHandler';
 
-Vue.component( 'notification-select', {
+Vue.component( 'notification-section-select', {
 	template:
 	`<select
 		:id="subfield.id"
-		:name="createFieldName(type, keyIndex, subfield) + '[' + subfield.name + ']'"
+		:name="inputName"
 		:class="subfield.css_class + ' ' + subfield.pretty + ' repeater-select'"
 		@change="selectUpdate( subfield, field, $event )"
 	>
@@ -15,8 +16,8 @@ Vue.component( 'notification-select', {
 		</template>
 	</select>
 	`,
-	props: [ 'field', 'type', 'keyIndex', 'subfield' ],
-	mixins: [inputsHandler, fieldHandler],
+	props: [ 'field', 'type', 'keyIndex', 'subfield', 'sectionName', 'inputType', 'parentField'  ],
+	mixins: [inputsHandler, fieldHandler, inputNameHandler],
 	data() {
 		return {
 			'selectized': null
@@ -24,7 +25,6 @@ Vue.component( 'notification-select', {
 	},
 	mounted() {
 		this.initSelectize();
-		notification.hooks.doAction( 'notification.carrier.select.initialized', this );
 	},
 	beforeUpdate(){
 		this.destroySelectize();
@@ -39,6 +39,17 @@ Vue.component( 'notification-select', {
 	},
 	beforeDestroy(){
 		this.destroySelectize();
+	},
+	computed: {
+		inputName(){
+			const baseFieldName = this.createFieldName( this.type, this.rowIndex, this.subfield );
+			const fieldName = `[${this.parentFieldName}][${this.keyIndex}]`;
+			if( 'repeater' === this.inputType){
+				return `${baseFieldName}${fieldName.toLowerCase()}[${this.sectionName.toLowerCase()}][${this.subfield.name.toLowerCase()}]`
+			} 
+				return `${baseFieldName}${fieldName.toLowerCase()}[${this.subfield.name.toLowerCase()}]`
+			
+		}
 	},
 	methods:{
 		selectUpdate( subfield, field, $event ){

@@ -21,4 +21,16 @@ export default () => {
 				ui.placeholder.height( ui.helper[ 0 ].scrollHeight );
 			},
 		} )
+
+		jQuery( '.fields-repeater-nested-sortable' ).sortable( {
+			handle: '.sub-handle',
+			connectWith: '.fields-repeater-nested-sortable',
+			containment: 'parent',
+			items: 'table.row',
+			placeholder: 'table.row',
+			axis: 'y',
+			start( e, ui ) {
+				ui.placeholder.height( ui.helper[ 0 ].scrollHeight );
+			},
+		} )
 }

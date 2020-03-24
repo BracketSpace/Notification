@@ -33,6 +33,16 @@ Vue.component( 'repeater-row', {
 							>
 							</notification-select>
 						</template>
+						<template v-else-if="subfield.rows">
+							<textarea
+							:id="subfield.id"
+							:class="subfield.css_class"
+							:value="subfield.value"
+							:rows="subfield.rows || 20"
+							:name="createFieldName(type, keyIndex, subfield) + '[' + subfield.name + ']'"
+							:placeholder="subfield.placeholder"
+							></textarea>
+						</template>
 						<template
 						v-else-if="subfield.type === 'repeater'"
 						>
@@ -58,7 +68,9 @@ Vue.component( 'repeater-row', {
 						>
 						<small
 							v-if="field.description"
-						class="description">{{ field.description }}</small>
+						class="description">
+							{{ field.description }}
+						</small>
 					</div>
 				</td>
 			</template>

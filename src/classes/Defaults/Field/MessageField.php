@@ -15,13 +15,6 @@ use BracketSpace\Notification\Abstracts\Field;
 class MessageField extends Field {
 
 	/**
-	 * Repeater field type
-	 *
-	 * @var string
-	 */
-	public $field_type = 'message';
-
-	/**
 	 * Field constructor
 	 *
 	 * @since 5.0.0

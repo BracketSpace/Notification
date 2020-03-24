@@ -181,14 +181,19 @@ class SectionRepeater extends Field {
 	 */
 	public function row() {
 
-		$html = '<template v-for="( row, itemKey, index ) in rows">
+		$html = '<template v-for="( row, key, index ) in rows">
 					<sections-row
+					:key="key"
 					:rows="rows"
 					:row="row"
 					:type="type"
-					:item-key="itemKey"
 					:index="index"
 					:selected-section="selectedSection"
+					:values="values"
+					:sub-field-values="subFieldValues"
+					:base-fields="baseFields"
+					:saved-sections="savedSections"
+					:sub-field-values="subFieldValues"
 					>
 					</sections-row>
 				  </template>';
@@ -209,30 +214,11 @@ class SectionRepeater extends Field {
 			return [];
 		}
 
-		$sanitized = [];
-
-		foreach ( $value as $row_id => $row ) {
-
-			$sanitized[ $row_id ] = [];
-
-			foreach ( $this->sections as $section ) {
-
-				foreach ( $section['fields'] as $sub_field ) {
-
-					$sub_key = $sub_field->get_raw_name();
-
-					if ( isset( $row[ $sub_key ] ) ) {
-						$sanitized_value = $sub_field->sanitize( $row[ $sub_key ] );
-					} else {
-						$sanitized_value = '';
-					}
-
-					$sanitized[ $row_id ][ $sub_key ] = $sanitized_value;
-				}
-			}
+		if ( array_keys( $value ) !== range( 0, count( $value ) - 1 ) ) {
+			return;
 		}
 
-		return $sanitized;
+		return $value;
 
 	}
 

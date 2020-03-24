@@ -6,6 +6,7 @@
 
 	.add-new-sections-field {
 		position: relative;
+		margin-top: 10px;
 
 		.section-modal {
 			position: absolute;
@@ -105,6 +106,7 @@
 						top: 50%;
 						left: 50%;
 						transform: translate(-50%, -50%);
+						text-align: center;
 					}
 
 				}
@@ -359,7 +361,7 @@
 			text-transform: capitalize;
 			font-weight: 700;
 		}
-
+		/* stylelint-disable */
 		tr {
 
 			td:nth-of-type(2),
@@ -367,11 +369,36 @@
 				width: 20%;
 			}
 		}
+		/* stylelint-enable */
 	}
 
 	.nested-section-repeater {
 
 		width: 100%;
+
+		.sub-section-label {
+			padding: 10px 0;
+			text-transform: capitalize;
+			/* stylelint-disable */
+			td {
+				border: 0;
+			}
+			/* stylelint-enable */
+		}
+
+		.row {
+			width: 100%;
+			margin-bottom: 10px;
+
+			.section-content {
+				width: auto;
+			}
+
+			.sub-handle,
+			.trash {
+				width: 20px;
+			}
+		}
 	}
 
 }

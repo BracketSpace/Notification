@@ -1,66 +1,107 @@
 /* global Vue */
 import { fieldHandler } from '../../repeater/mixins/fieldHandler';
 import { inputsHandler } from '../../repeater/mixins/inputsHandler';
-import sortableHandle from '../../repeater/mixins/sortableHandle';
 
 Vue.component( 'section-sub-row', {
 	template:
-	`<tr class="row"><td class="sub-handle"><span class="handle-index">{{keyIndex + 1}}</span></td>
-		<template v-for="( subfield, index ) in row">
-			<td :class="'subfield ' + subfield.name">
-				<div class="row-field">
-					<label class="section-label"
-						v-if="subfield.name === 'section'"
-					>
-					{{ sectionName || field[0].value }}
-						<input
-						:id="subfield.id"
-						:class="subfield.css_class"
-						type="hidden"
-						:value="sectionName || field[0].value"
-						:name="'notification_carrier_' + type.fieldCarrier + '[' + type.fieldType + ']' + '[' + rowIndex + ']' + '[' + subName + ']' + '[' + keyIndex + ']' + '[' + subfield.name + ']'"
-						>
-						<small
-							v-if="field.description"
-						class="description"></small>
-					</label>
-					<input
-						v-else
-						:id="subfield.id"
-						:class="subfield.css_class"
-						type="subfield.type"
-						:value="subfield.value"
-						:name="'notification_carrier_' + type.fieldCarrier + '[' + type.fieldType + ']' + '[' + rowIndex + ']' + '[' + subName + ']' + '[' + keyIndex + ']' + '[' + subfield.name + ']'"
-						:placeholder="subfield.placeholder"
-					>
-						<small class="description"
-							v-if="subfield.description"
-							v-html="subfield.description">
-							{{ subfield.description }}
-						</small>
-					</input>
-				</div>
+	`<table class="row">
+		<tr class="sub-section-label">
+			<td>{{sectionName}}</td>
+		</tr>
+		<tr>
+			<td><span class="handle-index">{{keyIndex + 1}}</span></td>
+			<td class="section-content">
+				<template v-if="inputType === 'textarea'">
+					<notification-textarea
+						:subfield="row"
+						:type="type"
+						:key-index="keyIndex"
+						:row-index="rowIndex"
+						:parent-field="parentField"
+						:input-type="inputType"
+						:section-name="sectionName"
+					/>
+				</template>
+				<template v-else-if="inputType === 'select'">
+					<notification-section-select
+					:subfield="row"
+					:type="type"
+					:key-index="keyIndex"
+					:row-index="rowIndex"
+					:parent-field="parentField"
+					:input-type="inputType"
+					:section-name="sectionName"
+					/>
+				</template>
+				<template v-else-if="inputType === 'input'">
+					<notification-text
+						:subfield="row"
+						:type="type"
+						:key-index="keyIndex"
+						:row-index="rowIndex"
+						:parent-field="parentField"
+						:input-type="inputType"
+						:section-name="sectionName"
+					/>
+				</template>
+				<template v-else-if="inputType === 'checkbox'">
+					<notification-checkbox
+						:subfield="row"
+						:type="type"
+						:key-index="keyIndex"
+						:row-index="rowIndex"
+						:parent-field="parentField"
+						:input-type="inputType"
+						:section-name="sectionName"
+					/>
+				</template>
+				<template v-else>
+					<template v-for="(field, index) in row.fields">
+						<notification-text
+						:subfield="field"
+						:type="type"
+						:key-index="keyIndex"
+						:row-index="rowIndex"
+						:parent-field="parentField"
+						:input-type="inputType"
+						:section-name="sectionName"
+						/>
+					</template>
+				</template>
 			</td>
-		</template>
-		<td class="trash" @click="removeSubfield(keyIndex)"></td>
-	</tr>`,
-	props: ['field', 'type', 'keyIndex', 'row', 'rowIndex', 'subName', 'selectedSection'],
+			<td class="trash" @click="removeSubfield(keyIndex)"></td>
+		</tr>
+	</table>`,
+	props: ['row', 'keyIndex', 'rowIndex', 'selectedSection', 'type', 'parentField', 'baseFields'],
 	mixins: [fieldHandler, inputsHandler],
 	data() {
 		return {
 			sectionName: null,
+			inputType: null,
 		}
 	},
 	mounted(){
-		this.sortable();
-		this.sectionName = Object.freeze( this.selectedSection )
+		this.setInputData();
+	},
+	updated(){
+		this.setInputData();
 	},
 	methods: {
 		removeSubfield( index ){
 			this.$emit('sub-field-removed', index );
 		},
-		sortable(){
-			sortableHandle();
-		}
+		setInputData(){
+			const input = Object.freeze( this.row );
+
+			this.sectionName = input.name || input.label;
+
+				if( input.type ){
+					this.inputType = input.type;
+				} else {
+					this.inputType = 'repeater';
+				}
+			}
+
+		},
 	}
-} )
+)

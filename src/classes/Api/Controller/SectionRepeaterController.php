@@ -15,6 +15,24 @@ namespace BracketSpace\Notification\Api\Controller;
 class SectionRepeaterController extends RepeaterController {
 
 	/**
+	 * Group fields in associative array
+	 *
+	 * @since [Next]
+	 * @param array $fields Fields data.
+	 * @return  array  Modified fields data.
+	 */
+	public function group_fields( $fields ) {
+
+		$groupped_fields = [];
+
+		foreach ( $fields as $field ) {
+			$groupped_fields[ $field['name'] ] = $field;
+		}
+
+		return $groupped_fields;
+	}
+
+	/**
 	 * Forms field data for sections
 	 *
 	 * @param array $sections Sections data.
@@ -27,7 +45,9 @@ class SectionRepeaterController extends RepeaterController {
 		foreach ( $sections as $section => $value ) {
 
 			$section_fields[ $section ]['name']   = ucfirst( $section );
-			$section_fields[ $section ]['fields'] = $this->form_field_data( $value['fields'] );
+			$base_fields                          = $this->form_field_data( $value['fields'] );
+			$groupped_fields                      = $this->group_fields( $base_fields );
+			$section_fields[ $section ]['fields'] = $groupped_fields;
 
 			foreach ( $section_fields[ $section ]['fields'] as &$field ) {
 
@@ -37,7 +57,9 @@ class SectionRepeaterController extends RepeaterController {
 					foreach ( $field['sections'] as $section ) {
 						$section_field           = [];
 						$section_field['name']   = $section['name'];
-						$section_field['fields'] = $this->form_field_data( $section['fields'] );
+						$base_sub_fields         = $this->form_field_data( $section['fields'] );
+						$groupped_sub_fields     = $this->group_fields( $base_sub_fields );
+						$section_field['fields'] = $groupped_sub_fields;
 						$sections                = array_merge( $sections, $section_field );
 
 					}

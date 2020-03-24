@@ -35,6 +35,7 @@ class RepeaterController {
 	 */
 	public $field;
 
+
 	/**
 	 * Forms field data
 	 *
@@ -70,6 +71,8 @@ class RepeaterController {
 			$sub_field['type']           = strtolower( str_replace( 'Field', '', $field->field_type_html ) );
 			$sub_field['sections']       = $field->sections;
 			$sub_field['message']        = $field->message;
+			$sub_field['value']          = '';
+			$sub_field['rows']           = $field->rows;
 
 			if ( $field->fields ) {
 				$sub_field['fields'] = $this->form_field_data( $field->fields );
@@ -111,8 +114,8 @@ class RepeaterController {
 	 * @return array
 	 */
 	public function get_carrier_fields() {
-		$carriers       = notification_get_carriers();
-		$carrier_fields = $carriers[ $this->carrier ]->get_form_field( $this->field );
+		$carrier        = notification_get_carrier( $this->carrier );
+		$carrier_fields = $carrier->get_form_field( $this->field );
 
 		return $carrier_fields;
 	}
@@ -125,7 +128,6 @@ class RepeaterController {
 	 * @return array
 	 */
 	public function normalize_values( $values ) {
-
 		foreach ( $values as &$value ) {
 
 			if ( array_key_exists( 'nested_repeater', $value ) ) {
