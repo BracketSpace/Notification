@@ -26,11 +26,6 @@ class Runtime {
 	const VERSION = '7.0.0';
 
 	/**
-	 * Plugin version
-	 */
-	const VERSION = '7.0.0';
-
-	/**
 	 * Main plugin file path
 	 *
 	 * @var string
