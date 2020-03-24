@@ -42,6 +42,7 @@ class SelectInputController {
 			$data['id']             = $input->id;
 			$data['placeholder']    = $input->placeholder;
 			$data['type']           = strtolower( str_replace( 'Field', '', $input->field_type_html ) );
+			$data['value']			= $input->value;
 
 			notification_ajax_handler()->send( $data );
 		} else {
