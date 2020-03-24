@@ -36,7 +36,7 @@ jobs:
       with:
         php-version: ${{ matrix.php }}
     - name: Install dependencies
-      run: composer install --no-progress
+      run: composer install --ignore-platform-reqs --no-progress
     - name: PHPUnit
       run: |
         composer setup-local-tests
