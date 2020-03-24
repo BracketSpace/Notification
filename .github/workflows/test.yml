@@ -31,12 +31,12 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: Install dependencies
+      run: composer install --no-progress
     - name: Setup PHP
       uses: nanasess/setup-php@master
       with:
         php-version: ${{ matrix.php }}
-    - name: Install dependencies
-      run: composer install --ignore-platform-reqs --no-progress
     - name: PHPUnit
       run: |
         composer setup-local-tests
