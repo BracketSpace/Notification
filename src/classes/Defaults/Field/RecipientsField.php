@@ -47,36 +47,20 @@ class RecipientsField extends RepeaterField {
 		if ( ! empty( $recipients ) ) {
 
 			$first_recipient = array_values( $recipients )[0];
+			$recipient_types = [];
 
-			if ( count( $recipients ) === 1 ) {
-
-				$params['fields'] = [
-					new InputField( [
-						'label' => __( 'Type', 'notification' ),
-						'name'  => 'type',
-						'type'  => 'hidden',
-						'value' => $first_recipient->get_slug(),
-					] ),
-				];
-
-			} else {
-
-				$recipient_types = [];
-
-				foreach ( $recipients as $recipient ) {
-					$recipient_types[ $recipient->get_slug() ] = $recipient->get_name();
-				}
-
-				$params['fields'] = [
-					new SelectField( [
-						'label'     => __( 'Type', 'notification' ),
-						'name'      => 'type',
-						'css_class' => 'recipient-type',
-						'options'   => $recipient_types,
-					] ),
-				];
-
+			foreach ( (array) $recipients as $recipient ) {
+				$recipient_types[ $recipient->get_slug() ] = $recipient->get_name();
 			}
+
+			$params['fields'] = [
+				new SelectField( [
+					'label'     => __( 'Type', 'notification' ),
+					'name'      => 'type',
+					'css_class' => 'recipient-type',
+					'options'   => $recipient_types,
+				] ),
+			];
 
 			$params['fields'][] = $first_recipient->input();
 

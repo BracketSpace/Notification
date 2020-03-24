@@ -319,6 +319,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Pretty select fields in the repeater and recipient fields are now handled by vue.js lifecycle hooks.
 * [Changed] `NOTIFICATION_VERSION` constant to `\Notification::version()` method.
 * [Changed] User ID Email recipient now support the comma-separated value, thanks to Robert P.
+* [Changed] The Recipients section in Carrier box now displays Type column even if a single recipient type is registered.
 * [Added] Webhook and Cache trait.
 * [Added] Webhook JSON Carrier with plain JSON input code field.
 * [Added] Composer imposter package to aviod package conflicts.
