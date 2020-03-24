@@ -34,7 +34,7 @@ jobs:
     - name: Install Node dependencies
       run: yarn install --no-progress
     - name: Install Composer dependencies
-      run: composer install -o --no-dev --no-progress
+      run: composer install --no-progress
     - name: Copy files
       uses: Pendect/action-rsyncer@v1.1.0
       env:
@@ -44,12 +44,6 @@ jobs:
         options: '--exclude node_modules --exclude .git'
         src: '.'
         dest: 'build'
-    - name: Check files
-      run: |
-        cd build
-        ls -al
-        cd vendor
-        ls -al
     - name: Upload artifact
       uses: actions/upload-artifact@v1
       with:
