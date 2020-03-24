@@ -5,6 +5,8 @@
  * @package notification
  */
 
+namespace BracketSpace\Notification\Utils;
+
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
