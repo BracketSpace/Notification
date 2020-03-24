@@ -96,6 +96,10 @@ class Extensions {
 
 		$extensions = $this->get_raw_extensions();
 
+		if ( empty( $extensions ) ) {
+			return;
+		}
+
 		/**
 		 * Fix for changed Custom Fields slug:
 		 * notification-customfields/notification-customfields.php -> notification-custom-fields/notification-customfields.php
@@ -191,6 +195,10 @@ class Extensions {
 		$premium      = [];
 		$wp_plugins   = get_plugins();
 		$plugin_slugs = array_keys( $wp_plugins );
+
+		if ( empty( $extensions ) ) {
+			return;
+		}
 
 		foreach ( $extensions as $extension ) {
 
@@ -407,6 +415,10 @@ class Extensions {
 		}
 
 		$extensions = $this->get_raw_extensions();
+
+		if ( empty( $extensions ) ) {
+			return;
+		}
 
 		foreach ( $extensions as $extension ) {
 			if ( isset( $extension['edd'] ) && is_plugin_active( $extension['slug'] ) ) {

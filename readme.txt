@@ -287,11 +287,17 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 **Breaking changes**
 
 1. All trigger's slugs has been changed to unify them. Compare the [old slugs](https://docs.bracketspace.com/notification/v/6/developer/triggers/default-triggers) and [new slugs](https://docs.bracketspace.com/notification/v/7/developer/triggers/default-triggers).
+<<<<<<< HEAD
 2. Settings section `notifications` has been changed to `carriers`. Pay attention while registering the Carrier settings and update all `notification_get_setting( 'notifications/group/option' )` to `notification_get_setting( 'carriers/group/option' )`.
 3. Repeater and recipients fields on the front-end has been rewriten to use vue.js. Hooks for actions in js scripts for this fields provide now access to vue.js instance. Each repeater and recipient field, are now separate vue.js instances.
 2. Settings section `notifications` has been changed to `carriers`. Pay attention while registering the Carrier settings and update all `notification_get_setting( 'notifications/{$group}/{$option}' )` to `notification_get_setting( 'carriers/{$group}/{$option}' )`.
 3. Changed the plugin file structure and many internal classes which might be used by other plugins.
 4. The plugin initializes now on `init 5` action and no functions/classes are available until then. You may use `notifiation/init` action to init the customizations.
+=======
+2. Settings section `notifications` has been changed to `carriers`. Pay attention while registering the Carrier settings and update all `notification_get_setting( 'notifications/{$group}/{$option}' )` to `notification_get_setting( 'carriers/{$group}/{$option}' )`.
+3. Changed the plugin file structure and many internal classes which might be used by other plugins.
+4. The plugin initializes now on `init 5` action and no functions/classes are available until then. You may use `notifiation/init` action to init the extensions and `notification/elements` to register custom Triggers and Carriers.
+>>>>>>> develop
 5. The Date and Time Merge Tags now require the Unix timestamp which shouldn't have the timezone offset. Use GMT timezone.
 6. The `notification_runtime` function has been deprecated in favor of new `\Notification` static class.
 
@@ -312,6 +318,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Repeater and recipient fields are now using vue.js on the front-end.
 * [Changed] Pretty select fields in the repeater and recipient fields are now handled by vue.js lifecycle hooks.
 * [Changed] `NOTIFICATION_VERSION` constant to `\Notification::version()` method.
+* [Changed] User ID Email recipient now support the comma-separated value, thanks to Robert P.
 * [Added] Webhook and Cache trait.
 * [Added] Webhook JSON Carrier with plain JSON input code field.
 * [Added] Composer imposter package to aviod package conflicts.
@@ -321,13 +328,20 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] Image field for settings page.
 * [Added] Notification runtime cache with `notification_cache()` function wrapper.
 * [Added] Two Factor plugin integration.
+<<<<<<< HEAD
 * [Added] Possibility to nest one level repeater field in another repeater field. Nested repeater field must have `nested_repeater` name.
 * [Added] Rest API class to handle internal requests.
+=======
+* [Added] `notification/settings/saved` action.
+>>>>>>> develop
 * [Fixed] Merge Tag used as anchor href now is not prefixed with protocol while adding the link.
 * [Fixed] Selectize script breaking description field in select input.
 * [Fixed] Bulk removing Notifications.
 * [Removed] `NOTIFICATION_DIR` and `NOTIFICATION_URL` constants.
+<<<<<<< HEAD
 * [Removed  WP Ajax action `ajax_get_recipient_input` was removed.
+=======
+>>>>>>> develop
 
 == Upgrade Notice ==
 

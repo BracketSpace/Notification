@@ -3,7 +3,8 @@ name: Test
 on: pull_request
 
 jobs:
-  PHPCS:
+  phpcs:
+    name: WordPress Coding Standards
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -12,7 +13,8 @@ jobs:
       run: composer install --no-progress
     - name: Coding Standards
       run: composer phpcs
-  PHPUnit:
+  phpunit:
+    name: PHPUnit
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -26,7 +28,8 @@ jobs:
       run: |
         composer setup-local-tests
         composer phpunit
-  CSS-lint:
+  css:
+    name: CSS Lint
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -37,9 +40,10 @@ jobs:
         node-version: '12'
     - name: CSS lint
       run: |
-        npm install
-        npm run lint:css
-  JS-lint:
+        yarn install --no-progress
+        yarn lint:css
+  js:
+    name: JS Lint
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -50,5 +54,5 @@ jobs:
         node-version: '12'
     - name: JS lint
       run: |
-        npm install
-        npm run lint:js
+        yarn install --no-progress
+        yarn lint:js

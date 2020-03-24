@@ -70,6 +70,10 @@
 			width: 100%;
 		}
 
+		input[type="checkbox"] {
+			pointer-events: none;
+		}
+
 		&-hover {
 			position: absolute;
 			top: 0;

@@ -11,7 +11,6 @@ use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\Field;
 use BracketSpace\Notification\Traits\Users;
 
-
 /**
  * User ID recipient
  */
@@ -42,13 +41,13 @@ class UserID extends Abstracts\Recipient {
 			return [];
 		}
 
-		$user = get_userdata( $value );
+		$user_ids = array_map( 'trim', explode( ',', $value ) );
+		$users    = get_users( [
+			'include' => $user_ids,
+			'fields'  => [ 'user_email' ],
+		] );
 
-		if ( $user ) {
-			return [ $user->user_email ];
-		}
-
-		return [];
+		return wp_list_pluck( $users, 'user_email' );
 
 	}
 

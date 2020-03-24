@@ -58,7 +58,7 @@ class Sync {
 	/**
 	 * Loads local JSON files
 	 *
-	 * @action notification/init
+	 * @action notification/elements
 	 *
 	 * @since  6.0.0
 	 * @return void

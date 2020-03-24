@@ -22,22 +22,13 @@ class Scripts {
 	private $filesystem;
 
 	/**
-	 * Runtime class
-	 *
-	 * @var object
-	 */
-	private $runtime;
-
-	/**
 	 * Scripts constructor
 	 *
 	 * @since 5.0.0
-	 * @param object     $runtime Plugin Runtime class.
-	 * @param Filesystem $fs      Assets filesystem object.
+	 * @param Filesystem $fs Assets filesystem object.
 	 */
-	public function __construct( $runtime, Filesystem $fs ) {
+	public function __construct( Filesystem $fs ) {
 		$this->filesystem = $fs;
-		$this->runtime    = $runtime;
 	}
 
 	/**
@@ -51,9 +42,9 @@ class Scripts {
 	public function enqueue_scripts( $page_hook ) {
 
 		$allowed_hooks = apply_filters( 'notification/scripts/allowed_hooks', [
-			$this->runtime->admin_extensions->page_hook,
-			$this->runtime->core_settings->page_hook,
-			$this->runtime->admin_wizard->page_hook,
+			\Notification::component( 'admin_extensions' )->page_hook,
+			\Notification::component( 'core_settings' )->page_hook,
+			\Notification::component( 'admin_wizard' )->page_hook,
 			'plugins.php',
 			'post-new.php',
 			'post.php',

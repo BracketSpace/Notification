@@ -8,7 +8,8 @@
 namespace BracketSpace\Notification;
 
 use BracketSpace\Notification\Vendor\Micropackage\Requirements\Requirements;
-use BracketSpace\Notification\Vendor\Micropackage\DocHooks\Helper as DocHooks;
+use BracketSpace\Notification\Vendor\Micropackage\DocHooks\HookTrait;
+use BracketSpace\Notification\Vendor\Micropackage\DocHooks\Helper as DocHooksHelper;
 use BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem;
 use BracketSpace\Notification\Vendor\Micropackage\Templates\Storage as TemplateStorage;
 
@@ -16,6 +17,13 @@ use BracketSpace\Notification\Vendor\Micropackage\Templates\Storage as TemplateS
  * Runtime class
  */
 class Runtime {
+
+	use HookTrait;
+
+	/**
+	 * Plugin version
+	 */
+	const VERSION = '7.0.0';
 
 	/**
 	 * Plugin version
@@ -35,6 +43,13 @@ class Runtime {
 	 * @var bool
 	 */
 	protected $requirements_unmet;
+
+	/**
+	 * Components
+	 *
+	 * @var array
+	 */
+	protected $components = [];
 
 	/**
 	 * Class constructor
@@ -61,9 +76,6 @@ class Runtime {
 			return;
 		}
 
-		// Autoloading.
-		require_once dirname( $this->plugin_file ) . '/vendor/autoload.php';
-
 		// Requirements check.
 		$requirements = new Requirements( __( 'Notification', 'notification' ), [
 			'php' => '7.0',
@@ -80,13 +92,16 @@ class Runtime {
 		$this->templates();
 		$this->singletons();
 		$this->actions();
-		$this->defaults();
 
 		$this->load_bundled_extensions();
 
 		do_action_deprecated( 'notification/boot/initial', [], '[Next]', 'notification/init' );
 		do_action_deprecated( 'notification/boot', [], '[Next]', 'notification/init' );
 		do_action( 'notification/init' );
+
+		$this->defaults();
+
+		do_action( 'notification/elements' );
 
 	}
 
@@ -98,11 +113,11 @@ class Runtime {
 	 */
 	public function register_hooks() {
 
-		DocHooks::hook( $this );
+		$this->add_hooks( $this );
 
-		foreach ( get_object_vars( $this ) as $instance ) {
-			if ( is_object( $instance ) ) {
-				DocHooks::hook( $instance );
+		foreach ( $this->components as $component ) {
+			if ( is_object( $component ) ) {
+				$this->add_hooks( $component );
 			}
 		}
 
@@ -150,6 +165,48 @@ class Runtime {
 	}
 
 	/**
+	 * Adds runtime component
+	 *
+	 * @since  [Next]
+	 * @throws \Exception When component is already registered.
+	 * @param  string $name      Component name.
+	 * @param  mixed  $component Component.
+	 * @return $this
+	 */
+	public function add_component( $name, $component ) {
+
+		if ( isset( $this->components[ $name ] ) ) {
+			throw new \Exception( sprintf( 'Component %s is already added.', $name ) );
+		}
+
+		$this->components[ $name ] = $component;
+
+		return $this;
+
+	}
+
+	/**
+	 * Gets runtime component
+	 *
+	 * @since  [Next]
+	 * @param  string $name Component name.
+	 * @return mixed        Component or null
+	 */
+	public function component( $name ) {
+		return isset( $this->components[ $name ] ) ? $this->components[ $name ] : null;
+	}
+
+	/**
+	 * Gets runtime components
+	 *
+	 * @since  [Next]
+	 * @return array
+	 */
+	public function components() {
+		return $this->components;
+	}
+
+	/**
 	 * Creates needed classes
 	 * Singletons are used for a sake of performance
 	 *
@@ -158,35 +215,35 @@ class Runtime {
 	 */
 	public function singletons() {
 
-		$this->core_cache      = new Core\Cache();
-		$this->core_cron       = new Core\Cron();
-		$this->core_whitelabel = new Core\Whitelabel();
-		$this->core_debugging  = new Core\Debugging();
-		$this->core_settings   = new Core\Settings();
-		$this->core_upgrade    = new Core\Upgrade();
-		$this->core_sync       = new Core\Sync();
+		$this->add_component( 'core_cache', new Core\Cache() );
+		$this->add_component( 'core_cron', new Core\Cron() );
+		$this->add_component( 'core_whitelabel', new Core\Whitelabel() );
+		$this->add_component( 'core_debugging', new Core\Debugging() );
+		$this->add_component( 'core_settings', new Core\Settings() );
+		$this->add_component( 'core_upgrade', new Core\Upgrade() );
+		$this->add_component( 'core_sync', new Core\Sync() );
 
-		$this->admin_impexp     = new Admin\ImportExport();
-		$this->admin_settings   = new Admin\Settings();
-		$this->admin_duplicator = new Admin\NotificationDuplicator();
-		$this->admin_post_type  = new Admin\PostType();
-		$this->admin_post_table = new Admin\PostTable();
-		$this->admin_extensions = new Admin\Extensions();
-		$this->admin_scripts    = new Admin\Scripts( $this, $this->get_filesystem( 'dist' ) );
-		$this->admin_screen     = new Admin\Screen();
-		$this->admin_wizard     = new Admin\Wizard( $this->get_filesystem( 'includes' ) );
-		$this->admin_sync       = new Admin\Sync();
-		$this->admin_debugging  = new Admin\Debugging();
+		$this->add_component( 'admin_impexp', new Admin\ImportExport() );
+		$this->add_component( 'admin_settings', new Admin\Settings() );
+		$this->add_component( 'admin_duplicator', new Admin\NotificationDuplicator() );
+		$this->add_component( 'admin_post_type', new Admin\PostType() );
+		$this->add_component( 'admin_post_table', new Admin\PostTable() );
+		$this->add_component( 'admin_extensions', new Admin\Extensions() );
+		$this->add_component( 'admin_scripts', new Admin\Scripts( $this->get_filesystem( 'dist' ) ) );
+		$this->add_component( 'admin_screen', new Admin\Screen() );
+		$this->add_component( 'admin_wizard', new Admin\Wizard( $this->get_filesystem( 'includes' ) ) );
+		$this->add_component( 'admin_sync', new Admin\Sync() );
+		$this->add_component( 'admin_debugging', new Admin\Debugging() );
 
-		$this->integration_wp        = new Integration\WordPress();
-		$this->integration_wp_emails = new Integration\WordPressEmails();
-		$this->integration_gb        = new Integration\Gutenberg();
-		$this->integration_cf        = new Integration\CustomFields();
-		$this->integration_bp        = new Integration\BackgroundProcessing();
-		$this->integration_mce       = new Integration\TinyMce();
-		$this->integration_2fa       = new Integration\TwoFactor();
+		$this->add_component( 'integration_wp', new Integration\WordPress() );
+		$this->add_component( 'integration_wp_emails', new Integration\WordPressEmails() );
+		$this->add_component( 'integration_gb', new Integration\Gutenberg() );
+		$this->add_component( 'integration_cf', new Integration\CustomFields() );
+		$this->add_component( 'integration_bp', new Integration\BackgroundProcessing() );
+		$this->add_component( 'integration_mce', new Integration\TinyMce() );
+		$this->add_component( 'integration_2fa', new Integration\TwoFactor() );
 
-		$this->repeater_api = new Api\Api();
+		$this->add_component( 'repeater_api', new Api\Api() );
 
 	}
 
@@ -200,18 +257,18 @@ class Runtime {
 
 		$this->register_hooks();
 
-		notification_register_settings( [ $this->admin_settings, 'general_settings' ] );
-		notification_register_settings( [ $this->admin_settings, 'triggers_settings' ], 20 );
-		notification_register_settings( [ $this->admin_settings, 'carriers_settings' ], 30 );
-		notification_register_settings( [ $this->admin_settings, 'emails_settings' ], 40 );
-		notification_register_settings( [ $this->admin_sync, 'settings' ], 50 );
-		notification_register_settings( [ $this->admin_impexp, 'settings' ], 60 );
-		notification_register_settings( [ $this->admin_debugging, 'debugging_settings' ], 70 );
+		notification_register_settings( [ $this->component( 'admin_settings' ), 'general_settings' ] );
+		notification_register_settings( [ $this->component( 'admin_settings' ), 'triggers_settings' ], 20 );
+		notification_register_settings( [ $this->component( 'admin_settings' ), 'carriers_settings' ], 30 );
+		notification_register_settings( [ $this->component( 'admin_settings' ), 'emails_settings' ], 40 );
+		notification_register_settings( [ $this->component( 'admin_sync' ), 'settings' ], 50 );
+		notification_register_settings( [ $this->component( 'admin_impexp' ), 'settings' ], 60 );
+		notification_register_settings( [ $this->component( 'admin_debugging' ), 'debugging_settings' ], 70 );
 
 		register_uninstall_hook( $this->plugin_file, [ 'BracketSpace\Notification\Core\Uninstall', 'remove_plugin_data' ] );
 
 		// DocHooks compatibility.
-		if ( ! DocHooks::is_enabled() && $this->get_filesystem( 'includes' )->exists( 'hooks.php' ) ) {
+		if ( ! DocHooksHelper::is_enabled() && $this->get_filesystem( 'includes' )->exists( 'hooks.php' ) ) {
 			include_once $this->get_filesystem( 'includes' )->path( 'hooks.php' );
 		}
 

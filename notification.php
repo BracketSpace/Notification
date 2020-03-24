@@ -39,7 +39,8 @@ if ( ! class_exists( 'Notification' ) ) :
 		 */
 		public static function init( $plugin_file ) {
 			if ( ! isset( self::$runtime ) ) {
-				require_once dirname( $plugin_file ) . '/src/classes/Runtime.php';
+				// Autoloading.
+				require_once dirname( $plugin_file ) . '/vendor/autoload.php';
 				self::$runtime = new BracketSpace\Notification\Runtime( $plugin_file );
 			}
 
@@ -50,13 +51,21 @@ if ( ! class_exists( 'Notification' ) ) :
 		 * Gets runtime component
 		 *
 		 * @since  [Next]
+		 * @return array
+		 */
+		public static function components() {
+			return isset( self::$runtime ) ? self::$runtime->components() : [];
+		}
+
+		/**
+		 * Gets runtime component
+		 *
+		 * @since  [Next]
 		 * @param  string $component_name Component name.
 		 * @return mixed
 		 */
 		public static function component( $component_name ) {
-			if ( isset( self::$runtime, self::$runtime->{ $component_name } ) ) {
-				return self::$runtime->{ $component_name };
-			}
+			return isset( self::$runtime ) ? self::$runtime->component( $component_name ) : null;
 		}
 
 		/**

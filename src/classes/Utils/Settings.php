@@ -198,6 +198,8 @@ class Settings {
 			update_option( $this->handle . '_' . $section, $value );
 		}
 
+		do_action( $this->handle . '/settings/saved', $to_save, $this );
+
 		wp_safe_redirect( add_query_arg( 'updated', 'true', $data['_wp_http_referer'] ) );
 
 	}
