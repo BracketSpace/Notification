@@ -41,7 +41,7 @@ jobs:
         DEPLOY_KEY: ${{ secrets.PACKAGES_DEPLOY_KEY }}
       with:
         flags: '-avq'
-        options: '--exclude="node_modules" --exclude=".git"'
+        options: '--exclude node_modules --exclude .git'
         src: '.'
         dest: 'build'
     - name: Check files
