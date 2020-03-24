@@ -115,6 +115,7 @@ class Screen {
 
 			notification_template( 'box', [
 				'slug'        => $carrier->get_slug(),
+				'carrier'     => $carrier,
 				'id'          => 'notification-carrier-' . $carrier->get_slug() . '-box',
 				'name'        => 'notification_carrier_' . $carrier->get_slug() . '_enable',
 				'active_name' => 'notification_carrier_' . $carrier->get_slug() . '_active',
