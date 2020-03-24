@@ -3,18 +3,68 @@ name: Test
 on: pull_request
 
 jobs:
-  phpcs:
-    name: WordPress Coding Standards
+  # Builds the package and creates artifact with all files
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Install dependencies
-      run: composer install --no-progress
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+    - name: Setup variables
+      id: vars
+      run: |
+        echo "::set-output name=yarn-cache-path::$(yarn cache dir)"
+        echo "::set-output name=composer-cache-path::$(composer config cache-files-dir)"
+    - name: Cache Yarn
+      uses: actions/cache@v1
+      with:
+        path: ${{ steps.vars.outputs.yarn-cache-path }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: ${{ runner.os }}-yarn-
+    - name: Cache Composer
+      uses: actions/cache@v1
+      with:
+        path: ${{ steps.vars.outputs.composer-cache-path }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: ${{ runner.os }}-composer-
+    - name: Install Node dependencies
+      run: yarn install --no-progress
+    - name: Install Composer dependencies
+      run: composer install -o --no-dev --no-progress
+    - name: Copy files
+      uses: Pendect/action-rsyncer@v1.1.0
+      env:
+        DEPLOY_KEY: ${{ secrets.PACKAGES_DEPLOY_KEY }}
+      with:
+        flags: '-avq'
+        options: '--exclude="node_modules" --exclude=".git"'
+        src: '.'
+        dest: 'build'
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: build
+        path: build
+
+  phpcs:
+    name: WordPress Coding Standards
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: build
+        path: .
     - name: Coding Standards
       run: composer phpcs
   phpunit:
     name: PHPUnit
+    needs: build
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -29,10 +79,11 @@ jobs:
           - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Install dependencies
-      run: composer install --no-progress
+    - name: Download artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: build
+        path: .
     - name: Setup PHP
       uses: shivammathur/setup-php@v1
       with:
@@ -45,29 +96,33 @@ jobs:
         vendor/bin/phpunit
   css:
     name: CSS Lint
+    needs: build
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+    - name: Download artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: build
+        path: .
     - name: Setup Node
       uses: actions/setup-node@v1
       with:
         node-version: '12'
     - name: CSS lint
-      run: |
-        yarn install --no-progress
-        yarn lint:css
+      run: yarn lint:css
   js:
     name: JS Lint
+    needs: build
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+    - name: Download artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: build
+        path: .
     - name: Setup Node
       uses: actions/setup-node@v1
       with:
         node-version: '12'
     - name: JS lint
-      run: |
-        yarn install --no-progress
-        yarn lint:js
+      run: yarn lint:js
