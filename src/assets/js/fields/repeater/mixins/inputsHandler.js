@@ -5,8 +5,8 @@ export const inputsHandler = {
 		checkboxHandler( checkbox, e ){
 			const checkboxInput = e.target;
 
-			checkbox.value = !checkbox.value;
-			if( ! checkbox.value ) {
+			const value = !checkbox.value;
+			if( ! value ) {
 				checkbox.checked = '';
 				checkboxInput.setAttribute( 'checked', '' );
 				checkboxInput.setAttribute( 'value', 0 );

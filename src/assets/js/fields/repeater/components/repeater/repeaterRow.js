@@ -15,11 +15,11 @@ Vue.component( 'repeater-row', {
 						<input
 						:id="subfield.id"
 						:class="subfield.css_class"
-						:type="subfield.type"
+						type="checkbox"
 						:value="subfield.value"
 						:checked="subfield.checked"
 						:name="createFieldName(type, keyIndex, subfield) + '[' + subfield.name + ']'"
-						@click="checkboxHandler( subfield, $event )">
+						@click="checkboxHandler( field[index], $event )">
 						{{ subfield.checkbox_label }}
 						</label>
 						<template
