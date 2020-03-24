@@ -47,7 +47,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v1
       with:
-        name: build
+        name: test-build
         path: build
 
   phpcs:
@@ -58,7 +58,7 @@ jobs:
     - name: Download artifact
       uses: actions/download-artifact@v1
       with:
-        name: build
+        name: test-build
         path: .
     - name: Coding Standards
       run: composer phpcs
@@ -82,7 +82,7 @@ jobs:
     - name: Download artifact
       uses: actions/download-artifact@v1
       with:
-        name: build
+        name: test-build
         path: .
     - name: Setup PHP
       uses: shivammathur/setup-php@v1
@@ -102,7 +102,7 @@ jobs:
     - name: Download artifact
       uses: actions/download-artifact@v1
       with:
-        name: build
+        name: test-build
         path: .
     - name: Setup Node
       uses: actions/setup-node@v1
@@ -118,7 +118,7 @@ jobs:
     - name: Download artifact
       uses: actions/download-artifact@v1
       with:
-        name: build
+        name: test-build
         path: .
     - name: Setup Node
       uses: actions/setup-node@v1
