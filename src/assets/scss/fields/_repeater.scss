@@ -8,6 +8,11 @@
 		position: relative;
 		margin-top: 10px;
 		margin-right: 40px;
+		visibility: hidden;
+
+		&.show {
+			visibility: visible;
+		}
 
 		@media ( max-width: 782px) {
 			position: static;
@@ -39,6 +44,7 @@
 			}
 		}
 	}
+
 }
 
 .notification-field {

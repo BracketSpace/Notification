@@ -20,14 +20,14 @@ Vue.component( 'nested-sub-section', {
 			>
 			</section-sub-row>
 		</template>
-		<a href="#" class="button button-secondary add-new-repeater-field add-new-sections-field"
+		<a :class="{show: !emptyModal }" href="#" class="button button-secondary add-new-repeater-field add-new-sections-field"
 		@click="addSection"
 		>Add section field
 			<div class="section-modal"
 				v-show="modalOpen"
 			>
 				<template v-for="(section, index) in sections">
-					<span v-if="testSection(section)" @click="addSubSection( section )">
+					<span class="modal-section-label" v-if="testSection(section)" @click="addSubSection( section )">
 						{{ section.label || section.name }}
 					</span>
 				</template>
@@ -43,12 +43,16 @@ Vue.component( 'nested-sub-section', {
 			sections:{},
 			rows: [],
 			rowCount: 0,
-			subSections: []
+			subSections: [],
+			emptyModal: false,
 		}
 	},
 	mounted(){
 		this.createSections();
 		this.addValues();
+	},
+	updated(){
+		this.testModal();
 	},
 	methods: {
 		addValues(){
@@ -94,6 +98,20 @@ Vue.component( 'nested-sub-section', {
 			}
 
 			return true;
+		},
+		testModal(){
+			const modal = this.$el.querySelector( '.section-modal' );
+			let isEmpty = false;
+
+			[...modal.childNodes].forEach( node  => {
+				if( node.tagName  === undefined){
+					isEmpty = true;
+				}else {
+					isEmpty = false;
+				}
+			});
+
+			this.emptyModal = isEmpty;
 		},
 		addSubSection( section ){
 
