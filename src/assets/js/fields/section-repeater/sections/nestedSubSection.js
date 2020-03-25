@@ -27,7 +27,7 @@ Vue.component( 'nested-sub-section', {
 				v-show="modalOpen"
 			>
 				<template v-for="(section, index) in sections">
-					<span @click="addSubSection( section )">
+					<span v-if="testSection(section)" @click="addSubSection( section )">
 						{{ section.label || section.name }}
 					</span>
 				</template>
@@ -69,7 +69,7 @@ Vue.component( 'nested-sub-section', {
 		removeField( index ){
 			this.$delete( this.rows, index);
 		},
-		addSubSection( section ){
+		testSection( section ){
 			const sectionToAdd = section.name || section.label;
 
 			const forbidenSection = this.rows.filter( (value) => {
@@ -89,10 +89,13 @@ Vue.component( 'nested-sub-section', {
 				return false;
 			} )
 
-
 			if( 0 < forbidenSection.length ){
-				return;
+				return false;
 			}
+
+			return true;
+		},
+		addSubSection( section ){
 
 			this.createSubSection( section );
 		}
