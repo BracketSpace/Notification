@@ -8,11 +8,6 @@
 		position: relative;
 		margin-top: 10px;
 		margin-right: 40px;
-		visibility: hidden;
-
-		&.show {
-			visibility: visible;
-		}
 
 		@media ( max-width: 782px) {
 			position: static;
@@ -402,6 +397,14 @@
 		padding: 0 0 10px 0;
 		width: 100%;
 		border-bottom: 1px solid #e5e5e5;
+
+		.add-new-sections-field {
+			visibility: hidden;
+
+			&.show {
+				visibility: visible;
+			}
+		}
 
 		.row {
 			width: 100%;
