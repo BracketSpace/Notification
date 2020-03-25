@@ -2,6 +2,7 @@
  * Vendor
  */
 import './vendor/event-manager.js';
+
 /**
  * Components
  */
@@ -17,6 +18,7 @@ import './component/sync.js';
 import './component/tinymce-integrator.js';
 import './component/trigger.js';
 import './component/wizard.js';
+
 /**
  * Fields
  */
