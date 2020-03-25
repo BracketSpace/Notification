@@ -17,7 +17,7 @@ use BracketSpace\Notification\Defaults\Field;
 class Email extends Abstracts\Carrier {
 
 	/**
-	 * Carrier iconk     *
+	 * Carrier icon
 	 *
 	 * @var string SVG
 	 */
