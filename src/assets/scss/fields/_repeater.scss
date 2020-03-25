@@ -424,9 +424,22 @@
 				}
 			}
 
+			/* stylelint-disable declaration-property-unit-whitelist*/
+			label {
+				line-height: 2em;
+			}
+
+			/* style-lint enable */
+
+			.description {
+				display: block;
+				margin-bottom: 10px;
+			}
+
 			.section-name-field {
 				width: 80px;
 				text-transform: capitalize;
+				font-weight: 600;
 			}
 
 			.trash {

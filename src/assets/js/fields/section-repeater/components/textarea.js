@@ -10,7 +10,8 @@ Vue.component( 'notification-textarea', {
 	<div>
 		<label>
 			{{ subfield.label }}
-			<textarea
+		</label>
+		<textarea
 			:id="subfield.id"
 			:class="subfield.css_class"
 			:value="subfield.value"
@@ -20,12 +21,11 @@ Vue.component( 'notification-textarea', {
 			:parent-field="parentField"
 			:row-index="rowIndex"
 			></textarea>
-			<small
-				v-if="subfield.description"
-			class="description">
-				{{ subfield.description }}
-			</small>
-		</label>
+		<small
+			v-if="subfield.description"
+		class="description">
+			{{ subfield.description }}
+		</small>
 	</div>
 	`,
 	props: ['subfield','rowIndex', 'keyIndex', 'type', 'sectionName', 'inputType', 'parentField' ],
@@ -36,9 +36,9 @@ Vue.component( 'notification-textarea', {
 			const fieldName = `[${this.parentFieldName}][${this.keyIndex}]`;
 			if( 'repeater' === this.inputType){
 				return `${baseFieldName}${fieldName.toLowerCase()}[${this.sectionName.toLowerCase()}][${this.subfield.name.toLowerCase()}]`
-			} 
+			}
 				return `${baseFieldName}${fieldName.toLowerCase()}[${this.subfield.name.toLowerCase()}]`
-			
+
 		}
 	}
 } )

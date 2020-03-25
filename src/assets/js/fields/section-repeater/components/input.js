@@ -10,7 +10,8 @@ Vue.component( 'notification-text', {
 	<div>
 		<label>
 			{{ subfield.label }}
-			<input
+		</label>
+		<input
 			:id="subfield.id"
 			:class="subfield.css_class"
 			type="text"
@@ -19,12 +20,11 @@ Vue.component( 'notification-text', {
 			:placeholder="subfield.placeholder"
 			:row-index="rowIndex"
 			>
-			<small
-				v-if="subfield.description"
-			class="description">
-				{{ subfield.description }}
-			</small>
-		</label>
+		<small
+			v-if="subfield.description"
+		class="description">
+			{{ subfield.description }}
+		</small>
 	</div>
 	`,
 	props: ['subfield','rowIndex', 'keyIndex', 'type', 'sectionName', 'inputType', 'parentField' ],
@@ -35,9 +35,9 @@ Vue.component( 'notification-text', {
 			const fieldName = `[${this.parentFieldName}][${this.keyIndex}]`;
 			if( 'repeater' === this.inputType){
 				return `${baseFieldName}${fieldName.toLowerCase()}[${this.sectionName.toLowerCase()}][${this.subfield.name.toLowerCase()}]`
-			} 
+			}
 				return `${baseFieldName}${fieldName.toLowerCase()}[${this.subfield.name.toLowerCase()}]`
-			
+
 		}
 	}
 } )
