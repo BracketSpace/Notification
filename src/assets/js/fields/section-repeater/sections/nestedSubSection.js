@@ -20,7 +20,7 @@ Vue.component( 'nested-sub-section', {
 			>
 			</section-sub-row>
 		</template>
-		<a :class="{show: !emptyModal }" href="#" class="button button-secondary add-new-repeater-field add-new-sections-field"
+		<a :disabled="emptyModal" href="#" class="button button-secondary add-new-repeater-field add-new-sections-field"
 		@click="addSection"
 		>Add section field
 			<div class="section-modal"
@@ -76,7 +76,7 @@ Vue.component( 'nested-sub-section', {
 		testSection( section ){
 			const sectionToAdd = section.name || section.label;
 
-			const forbidenSection = this.rows.filter( (value) => {
+			const forbidenSection = this.rows.filter( value => {
 				const addedSection = value.name || value.label;
 
 				if( sectionToAdd === addedSection ) {
@@ -103,13 +103,13 @@ Vue.component( 'nested-sub-section', {
 			const modal = this.$el.querySelector( '.section-modal' );
 			let isEmpty = false;
 
-			[...modal.childNodes].forEach( node  => {
-				if( node.tagName  === undefined){
-					isEmpty = true;
-				}else {
-					isEmpty = false;
-				}
+			const modalSections = [...modal.childNodes].filter( node  => {
+				return node.classList
 			});
+
+			if( 0 === modalSections.length ){
+				isEmpty = true;
+			}
 
 			this.emptyModal = isEmpty;
 		},
