@@ -5,11 +5,8 @@ import { inputsHandler } from '../../repeater/mixins/inputsHandler';
 Vue.component( 'section-sub-row', {
 	template:
 	`<table class="row">
-		<tr class="sub-section-label">
-			<td>{{sectionName}}</td>
-		</tr>
 		<tr>
-			<td class="sub-handle no-sortable">{{keyIndex + 1}}</td>
+			<td class="section-name-field">{{sectionName}}</td>
 			<td class="section-content">
 				<template v-if="inputType === 'textarea'">
 					<notification-textarea

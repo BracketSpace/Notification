@@ -7,6 +7,7 @@
 	.add-new-sections-field {
 		position: relative;
 		margin-top: 10px;
+		margin-right: 40px;
 
 		@media ( max-width: 782px) {
 			position: static;
@@ -55,7 +56,7 @@
 				display: none;
 			}
 
-			td,
+			td:not(.nested-section-repeater),
 			th {
 				width: auto;
 				padding: 12px;
@@ -109,8 +110,9 @@
 							top: 0;
 						}
 					}
-
+					/* stylelint-disable no-descending-specificity */
 					.handle-index {
+						/* stylelint-enable */
 						position: absolute;
 						top: 50%;
 						left: 50%;
@@ -137,9 +139,9 @@
 				}
 
 			}
-
+			/* stylelint-disable no-descending-specificity */
 			td {
-
+				/* stylelint-enable */
 				&.subfield {
 
 					.row-header {
@@ -152,8 +154,9 @@
 					}
 
 				}
-
+				/* stylelint-disable no-descending-specificity */
 				&.trash {
+					/* stylelint-enable */
 
 					@media ( max-width: 782px ) {
 						position: relative;
@@ -301,7 +304,6 @@
 
 		}
 
-
 		/* stylelint-disable */
 		.subfield.nested_repeater {
 			/* stylelint-enable */
@@ -379,11 +381,7 @@
 
 	&.section-repeater {
 
-		.section-label {
-			text-transform: capitalize;
-			font-weight: 700;
-		}
-		/* stylelint-disable */
+		/* stylelint-disable no-descending-specificity */
 		tr {
 
 			td:nth-of-type(2),
@@ -395,35 +393,45 @@
 	}
 
 	.nested-section-repeater {
-
+		padding: 0 0 10px 0;
 		width: 100%;
-
-		.sub-section-label {
-			padding: 10px 0;
-			text-transform: capitalize;
-			/* stylelint-disable */
-			td {
-				border: 0;
-				width: 50px;
-				display: block;
-				word-wrap: break-word;
-			}
-			/* stylelint-enable */
-		}
+		border-bottom: 1px solid #e5e5e5;
 
 		.row {
 			width: 100%;
-			margin-bottom: 10px;
+			border-collapse: collapse;
 
 			.section-content {
 				width: auto;
 			}
 
-			.sub-handle,
+			/* stylelint-disable no-descending-specificity*/
+			tr {
+
+				td {
+					/* stylelint-enable */
+					border: 0;
+					border-bottom: 1px solid #e5e5e5;
+
+					&:first-of-type {
+						border-right: 1px solid #e5e5e5;
+					}
+
+					&:last-of-type {
+						border-left: 1px solid #e5e5e5;
+
+					}
+				}
+			}
+
+			.section-name-field {
+				width: 80px;
+				text-transform: capitalize;
+			}
+
 			.trash {
 				width: 20px;
 			}
 		}
 	}
-
 }

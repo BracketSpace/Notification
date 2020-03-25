@@ -6,22 +6,20 @@ import { sectionsHandler } from '../mixins/sectionsHandler';
 
 Vue.component( 'nested-sub-section', {
 	template:
-	`<td class="nested-repeater-fields">
-		<table class="fields-repeater-nested-sortable section-repeater nested-section-repeater">
-			<template v-for="(row, index) in rows">
-				<section-sub-row
-					:row="row"
-					:key-index="index"
-					:row-index="rowIndex"
-					:selected-section="selectedSection"
-					:type="type"
-					:parent-field="parentField"
-					:base-fields="baseFields"
-					@sub-field-removed="removeField"
-				>
-				</section-sub-row>
-			</template>
-		</table>
+	`<td class="nested-section-repeater">
+		<template v-for="(row, index) in rows">
+			<section-sub-row
+				:row="row"
+				:key-index="index"
+				:row-index="rowIndex"
+				:selected-section="selectedSection"
+				:type="type"
+				:parent-field="parentField"
+				:base-fields="baseFields"
+				@sub-field-removed="removeField"
+			>
+			</section-sub-row>
+		</template>
 		<a href="#" class="button button-secondary add-new-repeater-field add-new-sections-field"
 		@click="addSection"
 		>Add section field
@@ -35,7 +33,6 @@ Vue.component( 'nested-sub-section', {
 				</template>
 			</div>
 		</a>
-		<p class="add-new-sections-field-info">You can add one field type for each section</p>
 	</td>
 	`,
 	props: ['row', 'type', 'rowIndex', 'parentField', 'subFieldValues', 'baseFields', 'sectionSubRows'],
