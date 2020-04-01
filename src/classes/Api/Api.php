@@ -29,7 +29,7 @@ class Api {
 	/**
 	 * Constructor method
 	 *
-	 * @since [Next]
+	 * @since 7.0.0
 	 * @return void
 	 */
 	public function __construct() {
@@ -62,7 +62,7 @@ class Api {
 	 * Registers rest api route.
 	 *
 	 * @action rest_api_init
-	 * @since [Next]
+	 * @since 7.0.0
 	 * @return void
 	 */
 	public function rest_api_init() {

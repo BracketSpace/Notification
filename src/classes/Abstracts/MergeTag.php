@@ -82,7 +82,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 	 * Merge tag constructor
 	 *
 	 * @since 5.0.0
-	 * @since [Next] The resolver closure context is static.
+	 * @since 7.0.0 The resolver closure context is static.
 	 * @param array $params merge tag configuration params.
 	 */
 	public function __construct( $params = [] ) {

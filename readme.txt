@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 6.3.2
+Stable tag: 7.0.0
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -282,7 +282,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
-= [Next] =
+= 7.0.0 =
 
 **Breaking changes**
 
@@ -333,6 +333,6 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Upgrade Notice ==
 
-= [Next] =
+= 7.0.0 =
 Compatibility breaking changes. Please make sure to review the changelog before upgrading and adjust your customizations.
 The premium plugins won't work with Notification v7 unless updated.

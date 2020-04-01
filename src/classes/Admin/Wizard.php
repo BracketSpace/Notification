@@ -39,7 +39,7 @@ class Wizard {
 	/**
 	 * Wizard constructor
 	 *
-	 * @since [Next] Changed the Files util to Filesystem.
+	 * @since 7.0.0 Changed the Files util to Filesystem.
 	 * @param Filesystem $fs Includes filesystem object.
 	 */
 	public function __construct( Filesystem $fs ) {

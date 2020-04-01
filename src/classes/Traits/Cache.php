@@ -21,7 +21,7 @@ trait Cache {
 	/**
 	 * Gets nice, translated post name for post type slug
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @param  string $post_type post type slug.
 	 * @return string post name
 	 */
@@ -33,7 +33,7 @@ trait Cache {
 	/**
 	 * Gets nice, translated post name
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @return string post name
 	 */
 	public function get_current_post_type_name() {
@@ -43,7 +43,7 @@ trait Cache {
 	/**
 	 * Gets post type slug
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @return string post type slug
 	 */
 	public function get_post_type() {
@@ -59,7 +59,7 @@ trait Cache {
 	/**
 	 * Gets nice, translated comment type
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @return string
 	 */
 	public function get_current_comment_type_name() {
@@ -69,7 +69,7 @@ trait Cache {
 	/**
 	 * Gets nice, translated post name for post type slug
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @param  string $comment_type Comment type slug.
 	 * @return string               Comment type name.
 	 */
@@ -81,7 +81,7 @@ trait Cache {
 	/**
 	 * Gets comment type slug
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @return string
 	 */
 	public function get_comment_type() {
@@ -97,7 +97,7 @@ trait Cache {
 	/**
 	 * Gets nice, translated taxonomy name
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @return string taxonomy
 	 */
 	public function get_current_taxonomy_name() {
@@ -107,7 +107,7 @@ trait Cache {
 	/**
 	 * Gets nice, translated taxonomy name for taxonomy slug
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @param  string $taxonomy Taxonomy slug.
 	 * @return string
 	 */
@@ -119,7 +119,7 @@ trait Cache {
 	/**
 	 * Gets taxonomy slug
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @return string
 	 */
 	public function get_taxonomy() {

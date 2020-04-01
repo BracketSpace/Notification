@@ -17,7 +17,7 @@ class TinyMce {
 	 *
 	 * @filter mce_external_plugins
 	 *
-	 * @since [Next]
+	 * @since 7.0.0
 	 * @param array $plugins Array with tinyMCE plugins.
 	 * @return array
 	 */

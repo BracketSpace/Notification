@@ -73,7 +73,7 @@ class RecipientsField extends RepeaterField {
 	/**
 	 * Prints repeater row
 	 *
-	 * @since [Next] Added vue template.
+	 * @since 7.0.0 Added vue template.
 	 * @since  5.0.0
 	 * @return string
 	 */

@@ -177,7 +177,7 @@ class Upgrade {
 	/**
 	 * Gets new trigger slug replacements
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @return array
 	 */
 	public function trigger_slug_replacements() {
