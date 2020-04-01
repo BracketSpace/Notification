@@ -22,7 +22,7 @@ class Date extends StringTag {
 	 * Merge tag constructor
 	 *
 	 * @since 5.0.0
-	 * @since [Next] Expects the timestamp without an offset.
+	 * @since 7.0.0 Expects the timestamp without an offset.
 	 *               You can pass timezone argument as well, use GMT if timestamp is with offset.
 	 * @param array $params merge tag configuration params.
 	 */

@@ -23,7 +23,7 @@ function notification_display_wizard() {
  * Creates new AJAX Handler object.
  *
  * @since  6.0.0
- * @since  [Next] Using Ajax Micropackage.
+ * @since  7.0.0 Using Ajax Micropackage.
  * @return BracketSpace\Notification\Vendor\Micropackage\Ajax\Response
  */
 function notification_ajax_handler() {
@@ -97,7 +97,7 @@ function notification_log( $component, $type, $message ) {
 /**
  * Gets one of the plugin filesystems
  *
- * @since  [Next]
+ * @since  7.0.0
  * @param  string $name Filesystem name.
  * @return Filesystem|null
  */
@@ -109,7 +109,7 @@ function notification_filesystem( $name ) {
  * Prints the template
  * Wrapper for micropackage's template function
  *
- * @since  [Next]
+ * @since  7.0.0
  * @param  string $template_name Template name.
  * @param  array  $vars          Template variables.
  *                               Default: empty.
@@ -123,7 +123,7 @@ function notification_template( $template_name, $vars = [] ) {
  * Gets the template
  * Wrapper for micropackage's get_template function
  *
- * @since  [Next]
+ * @since  7.0.0
  * @param  string $template_name Template name.
  * @param  array  $vars          Template variables.
  *                               Default: empty.
@@ -136,7 +136,7 @@ function notification_get_template( $template_name, $vars = [] ) {
 /**
  * Gets cached value or cache object
  *
- * @since  [Next]
+ * @since  7.0.0
  * @param  string|null $cache_key Cache key or null to get Cache engine.
  * @return mixed                  Cache engine object or cached value.
  */

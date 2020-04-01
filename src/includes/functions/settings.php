@@ -37,7 +37,7 @@ function notification_get_settings() {
  * Gets single setting value
  *
  * @since  5.0.0
- * @since  [Next] The `notifications` section has been changed to `carriers`.
+ * @since  7.0.0 The `notifications` section has been changed to `carriers`.
  * @param  string $setting setting name in `a/b/c` format.
  * @return mixed
  */
@@ -46,7 +46,7 @@ function notification_get_setting( $setting ) {
 	$parts = explode( '/', $setting );
 
 	if ( 'notifications' === $parts[0] ) {
-		_deprecated_argument( __FUNCTION__, '[Next]', 'The `notifications` section has been changed to `carriers`, adjust the first part of the setting.' );
+		_deprecated_argument( __FUNCTION__, '7.0.0', 'The `notifications` section has been changed to `carriers`, adjust the first part of the setting.' );
 		$parts[0] = 'carriers';
 		$setting  = implode( '/', $parts );
 	}

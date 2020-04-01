@@ -31,7 +31,7 @@ class Cache {
 	/**
 	 * Cache constructor
 	 *
-	 * @since [Next]
+	 * @since 7.0.0
 	 */
 	public function __construct() {
 
@@ -50,7 +50,7 @@ class Cache {
 	 *
 	 * @action wp_loaded 20
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @return void
 	 */
 	public function audo_cache_objects() {
@@ -66,7 +66,7 @@ class Cache {
 	/**
 	 * Caches the objects for later use
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @return void
 	 */
 	public function cache_objects() {
@@ -80,7 +80,7 @@ class Cache {
 	/**
 	 * Caches single value
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @param  string $cache_key Object name to cache.
 	 * @return void
 	 */
@@ -94,7 +94,7 @@ class Cache {
 	/**
 	 * Gets single value from cache
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @param  string $cache_key Object name to cache.
 	 * @return mixed
 	 */
@@ -107,7 +107,7 @@ class Cache {
 	/**
 	 * Gets post types
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @return array
 	 */
 	protected function get_post_types() {
@@ -125,7 +125,7 @@ class Cache {
 	/**
 	 * Gets comment types for cache
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @return array
 	 */
 	protected function get_comment_types() {
@@ -158,7 +158,7 @@ class Cache {
 	/**
 	 * Gets taxonomies for cache
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @return array
 	 */
 	protected function get_taxonomies() {
@@ -182,7 +182,7 @@ class Cache {
 	/**
 	 * Gets settings for cache
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @return array
 	 */
 	protected function get_settings_config() {

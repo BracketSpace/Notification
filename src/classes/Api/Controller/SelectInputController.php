@@ -17,7 +17,7 @@ class SelectInputController {
 	/**
 	 * Sends response
 	 *
-	 * @since [Next]
+	 * @since 7.0.0
 	 * @param \WP_REST_Request $request WP request instance.
 	 * @return void
 	 */

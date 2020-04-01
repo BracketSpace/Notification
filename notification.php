@@ -4,7 +4,7 @@
  * Description: Customisable email and webhook notifications with powerful developer friendly API for custom triggers and notifications. Send alerts easily.
  * Author: BracketSpace
  * Author URI: https://bracketspace.com
- * Version: 6.3.2
+ * Version: 7.0.0
  * License: GPL3
  * Text Domain: notification
  * Domain Path: /languages
@@ -13,7 +13,7 @@
  */
 
 if ( ! defined( 'NOTIFICATION_VERSION' ) ) {
-	define( 'NOTIFICATION_VERSION', '6.3.2' );
+	define( 'NOTIFICATION_VERSION', '7.0.0' );
 }
 
 if ( ! class_exists( 'Notification' ) ) :
@@ -33,7 +33,7 @@ if ( ! class_exists( 'Notification' ) ) :
 		/**
 		 * Initializes the plugin runtime
 		 *
-		 * @since  [Next]
+		 * @since  7.0.0
 		 * @param  string $plugin_file Main plugin file.
 		 * @return BracketSpace\Notification\Runtime
 		 */
@@ -50,7 +50,7 @@ if ( ! class_exists( 'Notification' ) ) :
 		/**
 		 * Gets runtime component
 		 *
-		 * @since  [Next]
+		 * @since  7.0.0
 		 * @return array
 		 */
 		public static function components() {
@@ -60,7 +60,7 @@ if ( ! class_exists( 'Notification' ) ) :
 		/**
 		 * Gets runtime component
 		 *
-		 * @since  [Next]
+		 * @since  7.0.0
 		 * @param  string $component_name Component name.
 		 * @return mixed
 		 */
@@ -71,7 +71,7 @@ if ( ! class_exists( 'Notification' ) ) :
 		/**
 		 * Gets runtime object
 		 *
-		 * @since  [Next]
+		 * @since  7.0.0
 		 * @return BracketSpace\Notification\Runtime
 		 */
 		public static function runtime() {
@@ -81,7 +81,7 @@ if ( ! class_exists( 'Notification' ) ) :
 		/**
 		 * Gets plugin version
 		 *
-		 * @since  [Next]
+		 * @since  7.0.0
 		 * @return string
 		 */
 		public static function version() {

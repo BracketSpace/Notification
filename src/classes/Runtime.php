@@ -61,7 +61,7 @@ class Runtime {
 	 *
 	 * @since  5.0.0
 	 * @since  6.0.0 Added boot action.
-	 * @since  [Next] All the defaults and init action are called on initialization.
+	 * @since  7.0.0 All the defaults and init action are called on initialization.
 	 * @return void
 	 */
 	public function init() {
@@ -90,8 +90,8 @@ class Runtime {
 
 		$this->load_bundled_extensions();
 
-		do_action_deprecated( 'notification/boot/initial', [], '[Next]', 'notification/init' );
-		do_action_deprecated( 'notification/boot', [], '[Next]', 'notification/init' );
+		do_action_deprecated( 'notification/boot/initial', [], '7.0.0', 'notification/init' );
+		do_action_deprecated( 'notification/boot', [], '7.0.0', 'notification/init' );
 		do_action( 'notification/init' );
 
 		$this->defaults();
@@ -121,7 +121,7 @@ class Runtime {
 	/**
 	 * Sets up the templates storage
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @return void
 	 */
 	public function templates() {
@@ -133,7 +133,7 @@ class Runtime {
 	/**
 	 * Sets up the plugin filesystems
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @return void
 	 */
 	public function filesystems() {
@@ -151,7 +151,7 @@ class Runtime {
 	/**
 	 * Gets filesystem
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @param  string $name Filesystem name.
 	 * @return Filesystem|null
 	 */
@@ -162,7 +162,7 @@ class Runtime {
 	/**
 	 * Adds runtime component
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @throws \Exception When component is already registered.
 	 * @param  string $name      Component name.
 	 * @param  mixed  $component Component.
@@ -183,7 +183,7 @@ class Runtime {
 	/**
 	 * Gets runtime component
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @param  string $name Component name.
 	 * @return mixed        Component or null
 	 */
@@ -194,7 +194,7 @@ class Runtime {
 	/**
 	 * Gets runtime components
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @return array
 	 */
 	public function components() {
@@ -304,7 +304,7 @@ class Runtime {
 	/**
 	 * Loads bundled extensions
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @return void
 	 */
 	public function load_bundled_extensions() {

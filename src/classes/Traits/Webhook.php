@@ -13,7 +13,7 @@ trait Webhook {
 	 * Carrier constructor
 	 *
 	 * @param  string $name Webhook nice name.
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @return void
 	 */
 	public function __construct( $name ) {
@@ -25,7 +25,7 @@ trait Webhook {
 	/**
 	 * Makes http request
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @param  string $url     URL to call.
 	 * @param  array  $args    Arguments. Default: empty.
 	 * @param  array  $headers Headers. Default: empty.
@@ -64,7 +64,7 @@ trait Webhook {
 	/**
 	 * Parses args to be understand by the wp_remote_* functions
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @param  array $args Args from saved fields.
 	 * @return array       Parsed args as key => value array
 	 */

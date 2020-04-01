@@ -16,7 +16,7 @@ class Image {
 	 * Image Field field
 	 * Requires 'label' addon
 	 *
-	 * @since [Next]
+	 * @since 7.0.0
 	 * @param  Field $field Field instance.
 	 * @return void
 	 */
@@ -50,7 +50,7 @@ class Image {
 	 * Sanitize checkbox value
 	 * Allows only for empty string and 'true'
 	 *
-	 * @since [Next]
+	 * @since 7.0.0
 	 * @param  string $value saved value.
 	 * @return string        empty string or 'true'
 	 */

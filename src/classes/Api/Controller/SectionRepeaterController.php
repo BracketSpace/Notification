@@ -17,7 +17,7 @@ class SectionRepeaterController extends RepeaterController {
 	/**
 	 * Group fields in associative array
 	 *
-	 * @since [Next]
+	 * @since 7.0.0
 	 * @param array $fields Fields data.
 	 * @return  array  Modified fields data.
 	 */
@@ -76,7 +76,7 @@ class SectionRepeaterController extends RepeaterController {
 	/**
 	 * Forms response data
 	 *
-	 * @since [Next]
+	 * @since 7.0.0
 	 * @return array
 	 */
 	public function form_data() {

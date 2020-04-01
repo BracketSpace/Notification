@@ -11,12 +11,12 @@ use BracketSpace\Notification\Vendor\Micropackage\DocHooks\Helper as DocHooksHel
 /**
  * Gets the plugin Runtime.
  *
- * @deprecated [Next] New Notification static class should be used.
+ * @deprecated 7.0.0 New Notification static class should be used.
  * @param      string $property Optional property to get.
  * @return     object           Runtime class instance
  */
 function notification_runtime( $property = null ) {
-	_deprecated_function( 'notification_runtime', '[Next]', 'Notification static class' );
+	_deprecated_function( 'notification_runtime', '7.0.0', 'Notification static class' );
 
 	if ( null !== $property ) {
 		return Notification::component( $property );
@@ -145,12 +145,12 @@ function register_recipient( $carrier_slug, Interfaces\Receivable $recipient ) {
  * Adds handlers for doc hooks to an object
  *
  * @since      5.2.2
- * @deprecated [Next] Use `the micropackage/dochooks` package.
+ * @deprecated 7.0.0 Use `the micropackage/dochooks` package.
  * @param      object $object Object to create the hooks.
  * @return     object
  */
 function notification_add_doc_hooks( $object ) {
-	_deprecated_function( 'notification_add_doc_hooks', '[Next]' );
+	_deprecated_function( 'notification_add_doc_hooks', '7.0.0' );
 	return DocHooksHelper::hook( $object );
 }
 
@@ -158,11 +158,11 @@ function notification_add_doc_hooks( $object ) {
  * Checks if the DocHooks are enabled and working.
  *
  * @since      6.1.0
- * @deprecated [Next] Use the `micropackage/dochooks` package.
+ * @deprecated 7.0.0 Use the `micropackage/dochooks` package.
  * @return     boolean
  */
 function notification_dochooks_enabled() {
-	_deprecated_function( 'notification_dochooks_enabled', '[Next]' );
+	_deprecated_function( 'notification_dochooks_enabled', '7.0.0' );
 	return DocHooksHelper::is_enabled();
 }
 
@@ -170,11 +170,11 @@ function notification_dochooks_enabled() {
  * Creates new View object.
  *
  * @since  6.0.0
- * @deprecated [Next] Use `notification_template` or `notification_get_template` functions.
+ * @deprecated 7.0.0 Use `notification_template` or `notification_get_template` functions.
  *                    Or use Template object from micropackage.
  * @return View
  */
 function notification_create_view() {
-	_deprecated_function( 'notification_create_view', '[Next]' );
+	_deprecated_function( 'notification_create_view', '7.0.0' );
 	return false;
 }

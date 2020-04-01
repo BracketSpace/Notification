@@ -39,7 +39,7 @@ class RepeaterController {
 	/**
 	 * Forms field data
 	 *
-	 * @since [Next]
+	 * @since 7.0.0
 	 * @param array $data Field data.
 	 * @return array
 	 */
@@ -89,7 +89,7 @@ class RepeaterController {
 	/**
 	 * Gets field values
 	 *
-	 * @since [Next]
+	 * @since 7.0.0
 	 * @param int    $post_id Post id.
 	 * @param string $carrier Carrier slug.
 	 * @param string $field Field slug.
@@ -110,7 +110,7 @@ class RepeaterController {
 	/**
 	 * Gets carrier fields
 	 *
-	 * @since [Next]
+	 * @since 7.0.0
 	 * @return array
 	 */
 	public function get_carrier_fields() {
@@ -123,7 +123,7 @@ class RepeaterController {
 	/**
 	 * Normalize values array
 	 *
-	 * @since [Next]
+	 * @since 7.0.0
 	 * @param array $values Field values.
 	 * @return array
 	 */
@@ -156,7 +156,7 @@ class RepeaterController {
 	/**
 	 * Forms response data
 	 *
-	 * @since [Next]
+	 * @since 7.0.0
 	 * @return array
 	 */
 	public function form_data() {
@@ -174,7 +174,7 @@ class RepeaterController {
 	/**
 	 * Sends response
 	 *
-	 * @since [Next]
+	 * @since 7.0.0
 	 * @param \WP_REST_Request $request WP request instance.
 	 * @return void
 	 */

@@ -17,7 +17,7 @@ class TwoFactor {
 	 *
 	 * @action notification/trigger/registered
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @param  object $trigger Trigger instance.
 	 * @return void
 	 */
@@ -36,7 +36,7 @@ class TwoFactor {
 	 *
 	 * @action two_factor_user_authenticated
 	 *
-	 * @since  [Next]
+	 * @since  7.0.0
 	 * @param  \WP_User $user User instance.
 	 * @return void
 	 */
