@@ -1,0 +1,113 @@
+name: Test
+
+on: push
+
+jobs:
+  phpcs:
+    name: WordPress Coding Standards
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup variables
+      id: vars
+      run: |
+        echo "::set-output name=composer-cache-path::$(composer config cache-files-dir)"
+    - name: Cache Composer
+      uses: actions/cache@v1
+      with:
+        path: ${{ steps.vars.outputs.composer-cache-path }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: ${{ runner.os }}-composer-
+    - name: Install Composer dependencies
+      run: composer install --no-progress
+    - name: Coding Standards
+      run: composer phpcs
+  phpunit:
+    name: PHPUnit
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.0', '7.1', '7.2', '7.3', '7.4']
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress_test
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup variables
+      id: vars
+      run: |
+        echo "::set-output name=composer-cache-path::$(composer config cache-files-dir)"
+    - name: Cache Composer
+      uses: actions/cache@v1
+      with:
+        path: ${{ steps.vars.outputs.composer-cache-path }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: ${{ runner.os }}-composer-
+    - name: Install Composer dependencies
+      run: composer install --no-progress
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v1
+      with:
+        php-version: ${{ matrix.php }}
+        extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
+        coverage: none
+    - name: PHPUnit
+      run: |
+        bin/install-wp-tests.sh wordpress_test root root 127.0.0.1:${{ job.services.mysql.ports['3306'] }} latest true
+        vendor/bin/phpunit
+  css:
+    name: CSS Lint
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+    - name: Setup variables
+      id: vars
+      run: |
+        echo "::set-output name=yarn-cache-path::$(yarn cache dir)"
+    - name: Cache Yarn
+      uses: actions/cache@v1
+      with:
+        path: ${{ steps.vars.outputs.yarn-cache-path }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: ${{ runner.os }}-yarn-
+    - name: Install Node dependencies
+      run: yarn install --no-progress
+    - name: CSS lint
+      run: yarn lint:css
+  js:
+    name: JS Lint
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+    - name: Setup variables
+      id: vars
+      run: |
+        echo "::set-output name=yarn-cache-path::$(yarn cache dir)"
+    - name: Cache Yarn
+      uses: actions/cache@v1
+      with:
+        path: ${{ steps.vars.outputs.yarn-cache-path }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: ${{ runner.os }}-yarn-
+    - name: Install Node dependencies
+      run: yarn install --no-progress
+    - name: JS lint
+      run: yarn lint:js

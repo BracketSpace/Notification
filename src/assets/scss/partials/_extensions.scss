@@ -1,0 +1,80 @@
+/**
+ * Extensions styles
+ */
+
+.notification-extensions {
+
+	h1 {
+		margin-bottom: 16px;
+	}
+
+	.plugin-card {
+
+		.action-links {
+
+			.official {
+				margin-top: 3px;
+				display: inline-block;
+				box-sizing: border-box;
+				text-align: center;
+				padding: 3px 10px;
+				width: 100%;
+				color: #fff;
+				background: #0073aa;
+				border-radius: 4px;
+				text-transform: uppercase;
+			}
+
+			.discount {
+				margin-top: 3px;
+				display: inline-block;
+				box-sizing: border-box;
+				text-align: center;
+				padding: 3px 10px;
+				width: 100%;
+				color: #fff;
+				background: #00aa4c;
+				border-radius: 4px;
+				text-transform: uppercase;
+			}
+
+		}
+
+		&-premium {
+
+			.desc {
+				margin-right: 0;
+			}
+
+			.plugin-card-bottom {
+
+				.column-license {
+					float: left;
+					clear: left;
+					width: 65%;
+					width: calc(100% - 180px);
+				}
+
+				.column-submit {
+					float: right;
+					clear: right;
+					max-width: 180px;
+				}
+
+			}
+
+		}
+
+		&.promo {
+
+			.desc,
+			.name,
+			.action-links {
+				margin-left: 0;
+			}
+
+		}
+
+	}
+
+}

@@ -1,0 +1,66 @@
+name: Release
+
+on: repository_dispatch
+
+jobs:
+  release:
+    if: github.event.action == 'release'
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v1
+        with:
+          ref: 'master'
+      - name: Checkout develop
+        uses: actions/checkout@v1
+        with:
+          ref: 'develop'
+          clean: false
+      - name: Install git-flow
+        run: sudo apt-get install git-flow -y
+      - name: Configure commiter
+        run: |
+          git config --local user.email "${{ secrets.WORKER_EMAIL }}"
+          git config --local user.name "${{ secrets.WORKER_NAME }}"
+      - name: Init git-flow
+        run: git flow init -d
+      - name: Start release
+        run: git flow release start ${{ github.event.client_payload.new_version }}
+      - name: Replace [Next] tags with new version number
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "(?i)\\[Next\\]"
+          replace: "${{ github.event.client_payload.new_version }}"
+      - name: Replace stable tag in readme
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "Stable tag: [0-9]+.[0-9]+.[0-9]+"
+          replace: "Stable tag: ${{ github.event.client_payload.new_version }}"
+          include: "readme.txt"
+      - name: Replace version tag in main file
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "Version: [0-9]+.[0-9]+.[0-9]+"
+          replace: "Version: ${{ github.event.client_payload.new_version }}"
+          include: "${{ secrets.SLUG }}.php"
+      - name: Replace constant tag in main file
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "'NOTIFICATION_VERSION', '[0-9]+.[0-9]+.[0-9]+'"
+          replace: "'NOTIFICATION_VERSION', '${{ github.event.client_payload.new_version }}'"
+          include: "${{ secrets.SLUG }}.php"
+      - name: Commit version bump
+        run: git commit -am "Version bump"
+      - name: Finish release
+        run: git flow release finish ${{ github.event.client_payload.new_version }} -m "v${{ github.event.client_payload.new_version }}"
+      - name: Push develop and tags
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.WORKER_TOKEN }}
+          branch: 'develop'
+      - name: Push master
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.WORKER_TOKEN }}
+          branch: 'master'

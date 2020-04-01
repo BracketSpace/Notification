@@ -5,6 +5,8 @@
  * @package Sample_Plugin
  */
 
+define( 'NOTIFICATION_DOING_TESTS', true );
+
 $_tests_dir = getenv( 'WP_TESTS_DIR' );
 
 if ( ! $_tests_dir ) {
@@ -22,36 +24,9 @@ require_once $_tests_dir . '/includes/functions.php';
 /**
  * Manually load the plugin being tested.
  */
-function _manually_load_plugin() {
+tests_add_filter( 'muplugins_loaded', function() {
 	require dirname( dirname( __FILE__ ) ) . '/notification.php';
-}
-tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
-
-/**
- * Plugin's autoload function for test files
- *
- * @param  string $class class name.
- * @return mixed         false if not plugin's class or void
- */
-function notification_tests_autoload( $class ) {
-
-	$parts      = explode( '\\', $class );
-	$namespaces = array( 'BracketSpace', 'Notification', 'Tests' );
-
-	foreach ( $namespaces as $namespace ) {
-		if ( array_shift( $parts ) !== $namespace ) {
-			return false;
-		}
-	}
-
-	$file = trailingslashit( dirname( __FILE__ ) ) . implode( '/', $parts ) . '.php';
-
-	if ( file_exists( $file ) ) {
-		require_once $file;
-	}
-
-}
-spl_autoload_register( 'notification_tests_autoload' );
+} );
 
 tests_add_filter( 'notification/load/default/recipients', '__return_false' );
 tests_add_filter( 'notification/load/default/resolvers', '__return_false' );

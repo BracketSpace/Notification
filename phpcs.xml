@@ -31,7 +31,7 @@
 
 	<!-- PHPCompatibility -->
 	<rule ref="PHPCompatibility" />
-	<config name="testVersion" value="5.6-" />
+	<config name="testVersion" value="7.0-" />
 
 	<!-- Check all PHP files in directory tree by default. -->
 	<arg name="extensions" value="php"/>
@@ -40,12 +40,11 @@
 	<!-- Show progress and sniff codes in all reports -->
 	<arg value="ps"/>
 
-	<exclude-pattern>assets/*</exclude-pattern>
 	<exclude-pattern>bin/*</exclude-pattern>
+	<exclude-pattern>dist/*</exclude-pattern>
 	<exclude-pattern>node_modules/*</exclude-pattern>
-	<exclude-pattern>freemius/*</exclude-pattern>
-	<exclude-pattern>languages/*</exclude-pattern>
 	<exclude-pattern>tests/*</exclude-pattern>
 	<exclude-pattern>vendor/*</exclude-pattern>
-	<exclude-pattern>class/Utils/EDDUpdater.php</exclude-pattern>
+	<exclude-pattern>src/classes/Utils/EDDUpdater.php</exclude-pattern>
+	<exclude-pattern>src/assets/*</exclude-pattern>
 </ruleset>
