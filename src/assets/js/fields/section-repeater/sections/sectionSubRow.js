@@ -1,10 +1,9 @@
 /* global Vue */
-import { fieldHandler } from '../../repeater/mixins/fieldHandler';
-import { inputsHandler } from '../../repeater/mixins/inputsHandler';
+import { fieldHandler } from "../../repeater/mixins/fieldHandler";
+import { inputsHandler } from "../../repeater/mixins/inputsHandler";
 
-Vue.component( 'section-sub-row', {
-	template:
-	`<table class="row">
+Vue.component("section-sub-row", {
+	template: `<table class="row">
 		<tr>
 			<td class="section-name-field">{{sectionName}}</td>
 			<td class="section-content">
@@ -69,36 +68,42 @@ Vue.component( 'section-sub-row', {
 			<td class="trash" @click="removeSubfield(keyIndex)"></td>
 		</tr>
 	</table>`,
-	props: ['row', 'keyIndex', 'rowIndex', 'selectedSection', 'type', 'parentField', 'baseFields'],
+	props: [
+		"row",
+		"keyIndex",
+		"rowIndex",
+		"selectedSection",
+		"type",
+		"parentField",
+		"baseFields"
+	],
 	mixins: [fieldHandler, inputsHandler],
 	data() {
 		return {
 			sectionName: null,
-			inputType: null,
-		}
+			inputType: null
+		};
 	},
-	mounted(){
+	mounted() {
 		this.setInputData();
 	},
-	updated(){
+	updated() {
 		this.setInputData();
 	},
 	methods: {
-		removeSubfield( index ){
-			this.$emit('sub-field-removed', index );
+		removeSubfield(index) {
+			this.$emit("sub-field-removed", index);
 		},
-		setInputData(){
-			const input = Object.freeze( this.row );
+		setInputData() {
+			const input = Object.freeze(this.row);
 
 			this.sectionName = input.name || input.label;
 
-				if( input.type ){
-					this.inputType = input.type;
-				} else {
-					this.inputType = 'repeater';
-				}
+			if (input.type) {
+				this.inputType = input.type;
+			} else {
+				this.inputType = "repeater";
 			}
-
-		},
+		}
 	}
-)
+});

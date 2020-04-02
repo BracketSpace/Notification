@@ -1,19 +1,19 @@
 export const inputNameHandler = {
-	data(){
+	data() {
 		return {
 			parentFieldName: null,
 			nested: false
-		}
+		};
 	},
-	mounted(){
-		this.setProps()
+	mounted() {
+		this.setProps();
 	},
 	methods: {
-		setProps(){
+		setProps() {
 			const parent = this.$parent;
 
-			this.parentFieldName = Object.freeze( this.parentField.toLowerCase() );
-			this.nested = Object.freeze( parent.nested );
+			this.parentFieldName = Object.freeze(this.parentField.toLowerCase());
+			this.nested = Object.freeze(parent.nested);
 		}
 	}
-}
+};

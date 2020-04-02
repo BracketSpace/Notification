@@ -1,10 +1,9 @@
 /* global Vue */
-import { fieldHandler } from '../../mixins/fieldHandler';
-import { repeaterHandler } from '../../mixins/repeaterHandler';
+import { fieldHandler } from "../../mixins/fieldHandler";
+import { repeaterHandler } from "../../mixins/repeaterHandler";
 
-Vue.component( 'nested-sub-field', {
-	template:
-	`<div class="nested-repeater-fields">
+Vue.component("nested-sub-field", {
+	template: `<div class="nested-repeater-fields">
 		<table class="fields-repeater-nested-sortable">
 			<template v-for="( field, key ) in fields">
 				<repeater-sub-row
@@ -23,6 +22,15 @@ Vue.component( 'nested-sub-field', {
 		>Add sub field</a>
 	</div>
 	`,
-	props: ['model', 'nestedFields', 'nestedValues', 'subRows', 'type', 'rowIndex', 'subName', 'fieldName'],
-	mixins: [fieldHandler, repeaterHandler],
-} )
+	props: [
+		"model",
+		"nestedFields",
+		"nestedValues",
+		"subRows",
+		"type",
+		"rowIndex",
+		"subName",
+		"fieldName"
+	],
+	mixins: [fieldHandler, repeaterHandler]
+});

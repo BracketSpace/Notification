@@ -1,25 +1,24 @@
 /* global notification, Vue */
 
 export const sectionsHandler = {
-	data(){
+	data() {
 		return {
 			subRows: 0,
-			rowName: '',
-			secitioName: null,
-		}
+			rowName: "",
+			secitioName: null
+		};
 	},
-	mounted(){
-		this.sectionName = Object.freeze( this.selectedSection );
+	mounted() {
+		this.sectionName = Object.freeze(this.selectedSection);
 	},
 	methods: {
-		addFieldSection( section ){
-
+		addFieldSection(section) {
 			const sectionFields = {};
 
-			for( const field in section ){
-				const fieldModel = Object.assign( {}, section[field] );
+			for (const field in section) {
+				const fieldModel = Object.assign({}, section[field]);
 
-				if( 'message' === section.type ){
+				if ("message" === section.type) {
 					this.rows[`section-${this.rowCount}`] = fieldModel;
 				} else {
 					sectionFields[section[field].name] = fieldModel;
@@ -30,31 +29,31 @@ export const sectionsHandler = {
 
 			this.rowCount++;
 
-			notification.hooks.doAction( 'notification.section.row.added', this );
+			notification.hooks.doAction("notification.section.row.added", this);
 		},
-		addSubFieldSection( name, value ){
-			const fieldModel = Object.assign( {}, this.baseFields[name.toLowerCase()] );
+		addSubFieldSection(name, value) {
+			const fieldModel = Object.assign({}, this.baseFields[name.toLowerCase()]);
 
 			this.selectedSection = fieldModel.label || fieldModel.name;
 
 			const fieldData = [];
 
-			if( value ){
-				for( const data in value ){
-					if( typeof value === 'string' || value instanceof String){
-						fieldData.push( value );
-					} else{
-						fieldData.push( value[data] );
+			if (value) {
+				for (const data in value) {
+					if (typeof value === "string" || value instanceof String) {
+						fieldData.push(value);
+					} else {
+						fieldData.push(value[data]);
 					}
 				}
 			}
 
-			if( !fieldModel.fields ){
+			if (!fieldModel.fields) {
 				fieldModel.value = fieldData[0];
 			} else {
 				let counter = 0;
 
-				for( const field in fieldModel.fields ){
+				for (const field in fieldModel.fields) {
 					fieldModel.fields[field].value = fieldData[counter];
 					counter++;
 				}
@@ -64,51 +63,47 @@ export const sectionsHandler = {
 
 			this.rowCount++;
 
-			notification.hooks.doAction( 'notification.section.row.added', this );
+			notification.hooks.doAction("notification.section.row.added", this);
 		},
-		addFieldSectionValues(){
+		addFieldSectionValues() {
 			let sectionIndex = 0;
 
-			this.values.forEach( value => {
+			this.values.forEach(value => {
 				const sections = this.sections;
 
-				for( const key in value ){
-
+				for (const key in value) {
 					const section = sections[key];
 
-					this.savedSections.push( section.name );
-					this.addFieldSection( section.fields );
+					this.savedSections.push(section.name);
+					this.addFieldSection(section.fields);
 
-					if( Array.isArray( value[key] ) ){
+					if (Array.isArray(value[key])) {
 						this.subFieldValues[sectionIndex] = [];
 
-						value[key].forEach( field => {
-							this.subFieldValues[sectionIndex].push( field );
-						})
+						value[key].forEach(field => {
+							this.subFieldValues[sectionIndex].push(field);
+						});
 						sectionIndex++;
 					} else {
-						this.subFieldValues.push( undefined );
+						this.subFieldValues.push(undefined);
 						sectionIndex++;
 					}
-
 				}
-
-			} )
+			});
 		},
-		addSubField(){
+		addSubField() {
 			this.subRows++;
 		},
-		removeSection( index ){
+		removeSection(index) {
+			const keys = Object.keys(this.rows);
 
-			const keys = Object.keys( this.rows );
-
-			Vue.delete( this.rows, keys[index] );
+			Vue.delete(this.rows, keys[index]);
 			Vue.delete(this.$parent.savedSections, index);
-			Vue.delete( this.$parent.values, index );
-			Vue.delete( this.$parent.subFieldValues, index );
+			Vue.delete(this.$parent.values, index);
+			Vue.delete(this.$parent.subFieldValues, index);
 		},
-		createParentSectionName( type, index ){
-			return this.rowName = `notification_carrier_${type.fieldCarrier}[${type.fieldType}][${index}]`;
+		createParentSectionName(type, index) {
+			return (this.rowName = `notification_carrier_${type.fieldCarrier}[${type.fieldType}][${index}]`);
 		}
 	}
-}
+};
