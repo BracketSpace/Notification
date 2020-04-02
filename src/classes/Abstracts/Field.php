@@ -120,10 +120,7 @@ abstract class Field implements Interfaces\Fillable {
 	 * @return  array
 	 */
 	public function __get( $param ) {
-
-		$data = $this->$param;
-
-		return $data;
+		return $this->$param ?? null;
 	}
 
 	/**

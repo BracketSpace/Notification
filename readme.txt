@@ -282,6 +282,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Param accessor causing PHP notices
+
 = 7.0.0 =
 
 **Breaking changes**
