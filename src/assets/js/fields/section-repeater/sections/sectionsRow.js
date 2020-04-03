@@ -1,8 +1,8 @@
 /* global Vue */
-import { fieldHandler } from '../../repeater/mixins/fieldHandler';
-import { sectionsHandler } from '../mixins/sectionsHandler';
+import { fieldHandler } from "../../repeater/mixins/fieldHandler";
+import { sectionsHandler } from "../mixins/sectionsHandler";
 
-Vue.component( 'sections-row', {
+Vue.component("sections-row", {
 	template: `
 		<tr class="row">
 			<td class="handle no-sortable">{{index + 1}}</td>
@@ -38,28 +38,38 @@ Vue.component( 'sections-row', {
 			<td class="trash" @click="removeSection(index)"></td>
 		</tr>
 	`,
-	props: ['index', 'rows', 'row', 'rowCount', 'type', 'selectedSection', 'subFieldValues', 'baseFields', 'savedSections'],
+	props: [
+		"index",
+		"rows",
+		"row",
+		"rowCount",
+		"type",
+		"selectedSection",
+		"subFieldValues",
+		"baseFields",
+		"savedSections"
+	],
 	mixins: [fieldHandler, sectionsHandler],
-	data(){
+	data() {
 		return {
-			sectionName: null,
-		}
+			sectionName: null
+		};
 	},
 	computed: {
-		fieldName(){
-			if( this.sectionName ){
+		fieldName() {
+			if (this.sectionName) {
 				return this.sectionName.toLowerCase();
 			}
 		}
 	},
 	mounted() {
-		if( this.selectedSection ){
-			this.sectionName = Object.freeze( this.selectedSection );
+		if (this.selectedSection) {
+			this.sectionName = Object.freeze(this.selectedSection);
 		} else {
 			this.sectionName = this.savedSections[this.index];
 		}
 	},
-	updated(){
+	updated() {
 		this.sectionName = this.savedSections[this.index];
 	}
-} )
+});

@@ -1,12 +1,11 @@
 /* global Vue */
 // import { fieldHandler } from '../../repeater/mixins/fieldHandler';
 // import { repeaterHandler } from '../../repeater/mixins/repeaterHandler';
-import { sectionsModal } from '../mixins/sectionsModal';
-import { sectionsHandler } from '../mixins/sectionsHandler';
+import { sectionsModal } from "../mixins/sectionsModal";
+import { sectionsHandler } from "../mixins/sectionsHandler";
 
-Vue.component( 'nested-sub-section', {
-	template:
-	`<td class="nested-section-repeater">
+Vue.component("nested-sub-section", {
+	template: `<td class="nested-section-repeater">
 		<template v-for="(row, index) in rows">
 			<section-sub-row
 				:row="row"
@@ -35,88 +34,93 @@ Vue.component( 'nested-sub-section', {
 		</a>
 	</td>
 	`,
-	props: ['row', 'type', 'rowIndex', 'parentField', 'subFieldValues', 'baseFields', 'sectionSubRows'],
+	props: [
+		"row",
+		"type",
+		"rowIndex",
+		"parentField",
+		"subFieldValues",
+		"baseFields",
+		"sectionSubRows"
+	],
 	mixins: [sectionsModal, sectionsHandler],
-	data(){
+	data() {
 		return {
 			selectedSection: null,
-			sections:{},
+			sections: {},
 			rows: [],
 			rowCount: 0,
 			subSections: [],
-			emptyModal: false,
-		}
+			emptyModal: false
+		};
 	},
-	mounted(){
+	mounted() {
 		this.createSections();
 		this.addValues();
 	},
-	updated(){
+	updated() {
 		this.testModal();
 	},
 	methods: {
-		addValues(){
+		addValues() {
 			const allValues = this.subFieldValues;
 			const sectionValues = allValues[this.rowIndex];
 
-			if( sectionValues ){
-				sectionValues.forEach( value => {
+			if (sectionValues) {
+				sectionValues.forEach(value => {
 					const field = Object.keys(value)[0];
 
-					this.addSubFieldSection( field, value[field] );
-				} )
+					this.addSubFieldSection(field, value[field]);
+				});
 			}
 		},
-		createSections(){
+		createSections() {
 			this.sections = this.row;
 		},
-		removeField( index ){
-			this.$delete( this.rows, index);
+		removeField(index) {
+			this.$delete(this.rows, index);
 		},
-		testSection( section ){
+		testSection(section) {
 			const sectionToAdd = section.name || section.label;
 
-			const forbidenSection = this.rows.filter( value => {
+			const forbidenSection = this.rows.filter(value => {
 				const addedSection = value.name || value.label;
 
-				if( sectionToAdd === addedSection ) {
+				if (sectionToAdd === addedSection) {
 					return true;
 				}
 
-				if( 'Button' === sectionToAdd || 'Image' === sectionToAdd ){
-					if('Button' === addedSection || 'Image' === addedSection ) {
-
+				if ("Button" === sectionToAdd || "Image" === sectionToAdd) {
+					if ("Button" === addedSection || "Image" === addedSection) {
 						return true;
 					}
 				}
 
 				return false;
-			} )
+			});
 
-			if( 0 < forbidenSection.length ){
+			if (0 < forbidenSection.length) {
 				return false;
 			}
 
 			return true;
 		},
-		testModal(){
-			const modal = this.$el.querySelector( '.section-modal' );
+		testModal() {
+			const modal = this.$el.querySelector(".section-modal");
 			let isEmpty = false;
 
-			const modalSections = [...modal.childNodes].filter( node  => {
-				return node.classList
+			const modalSections = [...modal.childNodes].filter(node => {
+				return node.classList;
 			});
 
-			if( 0 === modalSections.length ){
+			if (0 === modalSections.length) {
 				isEmpty = true;
 			}
 
 			this.emptyModal = isEmpty;
 		},
-		addSubSection( section ){
-
-			this.createSubSection( section );
+		addSubSection(section) {
+			this.createSubSection(section);
 		}
 	}
-
-} )
+});

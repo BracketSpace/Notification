@@ -1,9 +1,9 @@
 /* global jQuery */
 
-import 'selectize';
+import "selectize";
 
-( function( $ ) {
-	$( document ).ready( function() {
-		$( '.notification-pretty-select:visible:not( repeater-select )' ).selectize();
-	} );
-}( jQuery ) );
+(function($) {
+	$(document).ready(function() {
+		$(".notification-pretty-select:visible:not( repeater-select )").selectize();
+	});
+})(jQuery);

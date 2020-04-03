@@ -1,8 +1,8 @@
 /* global Vue */
-import { fieldHandler } from '../../mixins/fieldHandler';
-import { inputsHandler } from '../../mixins/inputsHandler';
+import { fieldHandler } from "../../mixins/fieldHandler";
+import { inputsHandler } from "../../mixins/inputsHandler";
 
-Vue.component( 'repeater-row', {
+Vue.component("repeater-row", {
 	template: `
 		<tr class="row">
 			<td class="handle"><span class="handle-index">{{keyIndex + 1}}</span></td>
@@ -77,18 +77,26 @@ Vue.component( 'repeater-row', {
 			<td class="trash" @click="removeField(keyIndex, fields)"></td>
 		</tr>
 	`,
-	props: ['field', 'keyIndex', 'fields', 'type', 'nestedFields', 'nestedValues', 'nestedModel', 'nestedRowCount'],
+	props: [
+		"field",
+		"keyIndex",
+		"fields",
+		"type",
+		"nestedFields",
+		"nestedValues",
+		"nestedModel",
+		"nestedRowCount"
+	],
 	mixins: [fieldHandler, inputsHandler],
-	data(){
+	data() {
 		return {
 			subRows: 0,
-			rowName: ''
-		}
+			rowName: ""
+		};
 	},
 	methods: {
-		addSubField(){
+		addSubField() {
 			this.subRows++;
-		},
+		}
 	}
-
-} )
+});

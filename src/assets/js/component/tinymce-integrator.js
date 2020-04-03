@@ -1,35 +1,34 @@
 /*eslint-disable no-undef */
 class TinyMceIntegrator {
 	constructor() {
-		if ( 'notification' === pagenow && 'notification' === typenow ) {
+		if ("notification" === pagenow && "notification" === typenow) {
 			this.init();
 			this.mergeTagCompatibility();
 		}
 	}
 
 	init() {
-		tinymce.PluginManager.add( 'notification-tiny-mce-extension', ( editor ) => {
-			if ( editor ) {
-				editor.addCommand( 'WP_Link', function() {
-					window.wpLink.open( editor.id );
-				} );
+		tinymce.PluginManager.add("notification-tiny-mce-extension", editor => {
+			if (editor) {
+				editor.addCommand("WP_Link", function() {
+					window.wpLink.open(editor.id);
+				});
 			}
-		} );
+		});
 	}
 
 	mergeTagCompatibility() {
-		const originalWpLink = Object.assign( {}, wpLink );
+		const originalWpLink = Object.assign({}, wpLink);
 
-		wpLink = _.extend( wpLink, {
-
+		wpLink = _.extend(wpLink, {
 			getAttrs: () => {
 				const attrs = originalWpLink.getAttrs();
 				let href = attrs.href;
 
-				if ( ! wpLink.isMergeTag( href ) ) {
+				if (!wpLink.isMergeTag(href)) {
 					return attrs;
 				}
-				href = href.replace( /^(http?:|)\/\//, '' );
+				href = href.replace(/^(http?:|)\/\//, "");
 
 				attrs.href = href;
 
@@ -37,30 +36,29 @@ class TinyMceIntegrator {
 			},
 
 			correctURL() {
-				if ( undefined === this.value ) {
+				if (undefined === this.value) {
 					return;
 				}
 
-				if ( wpLink.isMergeTag( this.value ) ) {
+				if (wpLink.isMergeTag(this.value)) {
 					return;
 				}
 
 				originalWpLink.correctURL();
 			},
 
-			isMergeTag: ( href ) => {
-				if ( -1 === href.search( '{' ) ) {
+			isMergeTag: href => {
+				if (-1 === href.search("{")) {
 					return false;
 				}
 				return true;
-			},
-
-		} );
+			}
+		});
 	}
 }
 
-jQuery( function() {
+jQuery(function() {
 	new TinyMceIntegrator();
-} );
+});
 
 /* eslint-enable */
