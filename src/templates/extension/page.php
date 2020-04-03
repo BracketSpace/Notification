@@ -19,7 +19,7 @@ $premium_extensions = (array) $get( 'premium_extensions' );
 
 		<div id="the-list">
 			<?php foreach ( $premium_extensions as $extension ) : ?>
-				<?php notification_template( 'extension/extension-box-premium', [ 'extension' => $extention ] ); ?>
+				<?php notification_template( 'extension/extension-box-premium', [ 'extension' => $extension ] ); ?>
 			<?php endforeach; ?>
 		</div>
 

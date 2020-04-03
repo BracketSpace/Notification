@@ -50,6 +50,12 @@ jobs:
           find: "'NOTIFICATION_VERSION', '[0-9]+.[0-9]+.[0-9]+'"
           replace: "'NOTIFICATION_VERSION', '${{ github.event.client_payload.new_version }}'"
           include: "${{ secrets.SLUG }}.php"
+      - name: Replace constant tag in Runtime file
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "VERSION = '[0-9]+.[0-9]+.[0-9]+'"
+          replace: "VERSION = '${{ github.event.client_payload.new_version }}'"
+          include: "src/classes/Runtime.php"
       - name: Commit version bump
         run: git commit -am "Version bump"
       - name: Finish release
