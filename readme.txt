@@ -284,7 +284,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Fixed] Param accessor causing PHP notices.
+* [Fixed] TinyMCE error when using unfiltered HTML email body.
 * [Changed] Updated Composer and NPM dependencies.
+* [Changed] When using unfiltered HTML email body, the field is now an HTML editor.
 
 = 7.0.0 =
 
