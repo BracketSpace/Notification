@@ -282,6 +282,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Extensions screen error with premium extension
+
 = 7.0.1 =
 * [Fixed] Param accessor causing PHP notices.
 * [Fixed] TinyMCE error when using unfiltered HTML email body.
