@@ -282,8 +282,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
-= 7.0.3 =
+= [Next] =
 * [Fixed] Wizard notifications trigger slugs.
+* [Fixed] Logging dates, now the notification and error log displays the dates properly and respects the timezone.
 
 = 7.0.2 =
 * [Fixed] Extensions screen error with premium extension.

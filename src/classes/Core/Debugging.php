@@ -72,11 +72,13 @@ class Debugging {
 		return (bool) $wpdb->insert( // phpcs:ignore
 			$this->logs_table,
 			[
-				'type'      => $log_data['type'],
-				'message'   => $log_data['message'],
-				'component' => $log_data['component'],
+				'type'        => $log_data['type'],
+				'message'     => $log_data['message'],
+				'component'   => $log_data['component'],
+				'time_logged' => gmdate( 'Y-m-d H:i:s' ),
 			],
 			[
+				'%s',
 				'%s',
 				'%s',
 				'%s',
