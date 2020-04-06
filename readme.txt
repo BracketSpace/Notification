@@ -287,6 +287,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Fixed] Logging dates, now the notification and error log displays the dates properly and respects the timezone.
 * [Fixed] Logger now displays the extras key properly.
 * [Fixed] Notification bulk delete confirmation message.
+* [Fixed] Uninstallation process not fireing.
 
 = 7.0.2 =
 * [Fixed] Extensions screen error with premium extension.

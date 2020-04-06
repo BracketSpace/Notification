@@ -67,6 +67,10 @@ class Uninstall {
 
 		}
 
+		// Remove logs table.
+		$logs_table = $wpdb->prefix . 'notification_logs';
+		$wpdb->query( "DROP TABLE IF EXISTS ${logs_table}"  ); // phpcs:ignore
+
 		// Remove other things.
 		delete_option( 'notification_story_dismissed' );
 		delete_option( 'notification_wizard_dismissed' );

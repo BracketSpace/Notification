@@ -260,8 +260,6 @@ class Runtime {
 		notification_register_settings( [ $this->component( 'admin_impexp' ), 'settings' ], 60 );
 		notification_register_settings( [ $this->component( 'admin_debugging' ), 'debugging_settings' ], 70 );
 
-		register_uninstall_hook( $this->plugin_file, [ 'BracketSpace\Notification\Core\Uninstall', 'remove_plugin_data' ] );
-
 		// DocHooks compatibility.
 		if ( ! DocHooksHelper::is_enabled() && $this->get_filesystem( 'includes' )->exists( 'hooks.php' ) ) {
 			include_once $this->get_filesystem( 'includes' )->path( 'hooks.php' );
