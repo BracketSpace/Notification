@@ -200,6 +200,11 @@ class Debugging {
 			return;
 		}
 
+		// Remove unneccessary carrier keys.
+		$carrier_data = $carrier->data;
+		unset( $carrier_data['activated'] );
+		unset( $carrier_data['enabled'] );
+
 		$data = [
 			'notification' => [
 				'title'  => $notification->get_title(),
@@ -210,7 +215,7 @@ class Debugging {
 			'carrier'      => [
 				'slug' => $carrier->get_slug(),
 				'name' => $carrier->get_name(),
-				'data' => $carrier->data,
+				'data' => $carrier_data,
 			],
 			'trigger'      => [
 				'slug' => $trigger->get_slug(),
