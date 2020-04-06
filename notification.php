@@ -4,7 +4,7 @@
  * Description: Customisable email and webhook notifications with powerful developer friendly API for custom triggers and notifications. Send alerts easily.
  * Author: BracketSpace
  * Author URI: https://bracketspace.com
- * Version: 7.0.2
+ * Version: 7.0.3
  * License: GPL3
  * Text Domain: notification
  * Domain Path: /languages
@@ -13,7 +13,7 @@
  */
 
 if ( ! defined( 'NOTIFICATION_VERSION' ) ) {
-	define( 'NOTIFICATION_VERSION', '7.0.2' );
+	define( 'NOTIFICATION_VERSION', '7.0.3' );
 }
 
 if ( ! class_exists( 'Notification' ) ) :
@@ -95,3 +95,6 @@ endif;
 add_action( 'init', function() {
 	Notification::init( __FILE__ )->init();
 }, 5 );
+
+require_once __DIR__ . '/src/classes/Core/Uninstall.php';
+register_uninstall_hook( __FILE__, [ 'BracketSpace\Notification\Core\Uninstall', 'remove_plugin_data' ] );

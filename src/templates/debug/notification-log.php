@@ -21,7 +21,7 @@ $logs = $get( 'logs' );
 					<span class="source-label"><?php echo esc_html( $log['notification']['source'] ); ?></span>
 					<span class="indicator dashicons dashicons-arrow-down"></span>
 					<span class="date">
-						<abbr title="<?php echo esc_html( date_i18n( $get( 'datetime_format' ), strtotime( $log['time'] ) + $get( 'time_offset' ) ) ); ?>">
+						<abbr title="<?php echo esc_html( date_i18n( $get( 'datetime_format' ), strtotime( $log['time'] ) ) ); ?>">
 							<?php // translators: Time ago. ?>
 							<?php esc_html_e( sprintf( __( '%s ago' ), human_time_diff( strtotime( $log['time'] ) ) ) ); ?>
 						</abbr>
@@ -53,13 +53,6 @@ $logs = $get( 'logs' );
 							</tr>
 						</table>
 						<table class="form-table">
-							<caption><?php esc_html_e( 'Notification extras', 'notification' ); ?></caption>
-							<tr>
-								<th><?php esc_html_e( 'Key', 'notification' ); ?></th>
-								<td><?php esc_html_e( 'Value', 'notification' ); ?></td>
-							</tr>
-						</table>
-						<table class="form-table">
 							<caption><?php esc_html_e( 'Carrier data' ); ?></caption>
 							<?php foreach ( $log['carrier']['data'] as $key => $value ) : ?>
 								<tr>
@@ -74,6 +67,27 @@ $logs = $get( 'logs' );
 								</tr>
 							<?php endforeach ?>
 						</table>
+						<?php if ( ! empty( $log['notification']['extras'] ) ) : ?>
+							<table class="form-table">
+								<caption><?php esc_html_e( 'Notification extras', 'notification' ); ?></caption>
+								<tr>
+									<th><?php esc_html_e( 'Key', 'notification' ); ?></th>
+									<td><?php esc_html_e( 'Value', 'notification' ); ?></td>
+								</tr>
+								<?php foreach ( $log['notification']['extras'] as $key => $value ) : ?>
+									<tr>
+										<th><code><?php echo esc_html( $key ); ?></code></th>
+										<td>
+											<?php if ( is_array( $value ) ) : ?>
+												<pre><code><?php print_r( $value ); // phpcs:ignore ?></code></pre>
+											<?php else : ?>
+												<pre><code><?php echo esc_html( $value ); ?></code></pre>
+											<?php endif ?>
+										</td>
+									</tr>
+								<?php endforeach ?>
+							</table>
+						<?php endif ?>
 					</div>
 				</div>
 			</div>

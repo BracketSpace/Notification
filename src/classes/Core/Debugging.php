@@ -72,11 +72,13 @@ class Debugging {
 		return (bool) $wpdb->insert( // phpcs:ignore
 			$this->logs_table,
 			[
-				'type'      => $log_data['type'],
-				'message'   => $log_data['message'],
-				'component' => $log_data['component'],
+				'type'        => $log_data['type'],
+				'message'     => $log_data['message'],
+				'component'   => $log_data['component'],
+				'time_logged' => gmdate( 'Y-m-d H:i:s' ),
 			],
 			[
+				'%s',
 				'%s',
 				'%s',
 				'%s',
@@ -198,6 +200,11 @@ class Debugging {
 			return;
 		}
 
+		// Remove unneccessary carrier keys.
+		$carrier_data = $carrier->data;
+		unset( $carrier_data['activated'] );
+		unset( $carrier_data['enabled'] );
+
 		$data = [
 			'notification' => [
 				'title'  => $notification->get_title(),
@@ -208,7 +215,7 @@ class Debugging {
 			'carrier'      => [
 				'slug' => $carrier->get_slug(),
 				'name' => $carrier->get_name(),
-				'data' => $carrier->data,
+				'data' => $carrier_data,
 			],
 			'trigger'      => [
 				'slug' => $trigger->get_slug(),

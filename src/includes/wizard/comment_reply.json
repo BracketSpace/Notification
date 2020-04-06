@@ -1,7 +1,7 @@
 {
 	"hash": "notification_5d3af50b188af",
 	"title": "Comment reply - comment author",
-	"trigger": "wordpress/comment_comment_replied",
+	"trigger": "comment/comment/replied",
 	"carriers": {
 		"email": {
 			"activated": true,

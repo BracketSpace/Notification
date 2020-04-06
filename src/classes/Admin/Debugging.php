@@ -109,7 +109,6 @@ class Debugging {
 
 		$html = notification_get_template( 'debug/notification-log', [
 			'datetime_format' => get_option( 'date_format' ) . ' ' . get_option( 'time_format' ),
-			'time_offset'     => get_option( 'gmt_offset' ) * HOUR_IN_SECONDS,
 			'logs'            => $logs,
 		] );
 
@@ -136,7 +135,6 @@ class Debugging {
 
 		$html = notification_get_template( 'debug/error-log', [
 			'datetime_format' => get_option( 'date_format' ) . ' ' . get_option( 'time_format' ),
-			'time_offset'     => get_option( 'gmt_offset' ) * HOUR_IN_SECONDS,
 			'logs'            => $debug->get_logs( $page, [ 'error', 'warning' ] ),
 		] );
 

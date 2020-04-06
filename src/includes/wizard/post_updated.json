@@ -1,7 +1,7 @@
 {
     "hash": "notification_5d3af3d844ac5",
     "title": "Post updated - admin",
-    "trigger": "wordpress/post/updated",
+    "trigger": "post/post/updated",
     "carriers": {
         "email": {
         	"activated": true,

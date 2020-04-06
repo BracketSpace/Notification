@@ -1,7 +1,7 @@
 {
     "hash": "notification_5d3af43eb9397",
     "title": "Welcome email",
-    "trigger": "wordpress/user_registered",
+    "trigger": "user/registered",
     "carriers": {
         "email": {
         	"activated": true,

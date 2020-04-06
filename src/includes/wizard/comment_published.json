@@ -1,7 +1,7 @@
 {
     "hash": "notification_5cac7fb9e2619",
     "title": "Comment has been published",
-    "trigger": "wordpress/comment_comment_approved",
+    "trigger": "comment/comment/approved",
     "carriers": {
         "email": {
         	"activated": true,

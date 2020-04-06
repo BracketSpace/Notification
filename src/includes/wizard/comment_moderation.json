@@ -1,7 +1,7 @@
 {
     "hash": "notification_5d3adb5ed7076",
     "title": "Comment is awaiting moderation",
-    "trigger": "wordpress/comment_comment_added",
+    "trigger": "comment/comment/added",
     "carriers": {
         "email": {
         	"activated": true,

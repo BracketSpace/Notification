@@ -23,7 +23,7 @@ class Runtime {
 	/**
 	 * Plugin version
 	 */
-	const VERSION = '7.0.2';
+	const VERSION = '7.0.3';
 
 	/**
 	 * Main plugin file path
@@ -259,8 +259,6 @@ class Runtime {
 		notification_register_settings( [ $this->component( 'admin_sync' ), 'settings' ], 50 );
 		notification_register_settings( [ $this->component( 'admin_impexp' ), 'settings' ], 60 );
 		notification_register_settings( [ $this->component( 'admin_debugging' ), 'debugging_settings' ], 70 );
-
-		register_uninstall_hook( $this->plugin_file, [ 'BracketSpace\Notification\Core\Uninstall', 'remove_plugin_data' ] );
 
 		// DocHooks compatibility.
 		if ( ! DocHooksHelper::is_enabled() && $this->get_filesystem( 'includes' )->exists( 'hooks.php' ) ) {
