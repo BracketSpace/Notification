@@ -98,17 +98,17 @@ class PostType {
 	public function post_updated_messages( $messages ) {
 
 		$messages['notification'] = [
-			0  => '',
-			1  => __( 'Notification updated.', 'notification' ),
-			2  => '',
-			3  => '',
-			4  => __( 'Notification updated.', 'notification' ),
-			5  => '',
-			6  => __( 'Notification saved.', 'notification' ),
-			7  => __( 'Notification saved.', 'notification' ),
-			8  => '',
-			9  => '',
-			10 => '',
+			'',
+			__( 'Notification updated.', 'notification' ),
+			'',
+			'',
+			__( 'Notification updated.', 'notification' ),
+			'',
+			__( 'Notification saved.', 'notification' ),
+			__( 'Notification saved.', 'notification' ),
+			'',
+			'',
+			'',
 		];
 
 		return $messages;
@@ -129,7 +129,7 @@ class PostType {
 
 		$bulk_messages['notification'] = [
 			// translators: Number of Notifications.
-			'trashed' => _n( '%s notification removed.', '%s notifications removed.', $bulk_counts['trashed'] ),
+			'deleted' => _n( '%s notification removed.', '%s notifications removed.', $bulk_counts['trashed'] ),
 		];
 
 		return $bulk_messages;
