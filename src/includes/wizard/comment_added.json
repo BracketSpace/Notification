@@ -1,7 +1,7 @@
 {
     "hash": "notification_5d3af4a63af8b",
     "title": "Comment added - post author",
-    "trigger": "wordpress/comment_comment_added",
+    "trigger": "comment/comment/added",
     "carriers": {
         "email": {
             "activated": true,

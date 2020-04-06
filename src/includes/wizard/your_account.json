@@ -1,7 +1,7 @@
 {
     "hash": "notification_5cac7c1bbfd28",
     "title": "New user registration - user",
-    "trigger": "wordpress/user_registered",
+    "trigger": "user/registered",
     "carriers": {
         "email": {
         	"activated": true,

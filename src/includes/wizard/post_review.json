@@ -1,7 +1,7 @@
 {
     "hash": "notification_5d3af398e4f96",
     "title": "Post pending review - admin",
-    "trigger": "wordpress/post/pending",
+    "trigger": "post/post/pending",
     "carriers": {
         "email": {
         	"activated": true,

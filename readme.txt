@@ -282,8 +282,11 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= 7.0.3 =
+* [Fixed] Wizard notifications trigger slugs.
+
 = 7.0.2 =
-* [Fixed] Extensions screen error with premium extension
+* [Fixed] Extensions screen error with premium extension.
 
 = 7.0.1 =
 * [Fixed] Param accessor causing PHP notices.
