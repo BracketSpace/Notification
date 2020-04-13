@@ -282,6 +282,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Added] Webhook error logging, thanks to @callum-veloxcommerce
+
 = 7.0.3 =
 * [Fixed] Wizard notifications trigger slugs.
 * [Fixed] Logging dates, now the notification and error log displays the dates properly and respects the timezone.
