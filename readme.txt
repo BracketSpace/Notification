@@ -283,7 +283,8 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
-* [Added] Webhook error logging, thanks to @callum-veloxcommerce
+* [Added] Webhook error logging, thanks to @callum-veloxcommerce.
+* [Added] Fallback for PRO extensions having a version number in the directory name. They are now properly recognized.
 
 = 7.0.3 =
 * [Fixed] Wizard notifications trigger slugs.

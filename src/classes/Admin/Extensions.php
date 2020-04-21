@@ -115,7 +115,11 @@ class Extensions {
 				$extension['url']   = self_admin_url( $extension['url'] );
 			}
 
-			if ( isset( $extension['edd'] ) && is_plugin_active( $extension['slug'] ) ) {
+			// Fix for the PRO extension having a version number in the directory name.
+			$glob_slug     = wp_normalize_path( trailingslashit( WP_PLUGIN_DIR ) ) . str_replace( '/', '-*/', $extension['slug'] );
+			$pro_installed = is_plugin_active( $extension['slug'] ) || ! empty( glob( $glob_slug ) );
+
+			if ( isset( $extension['edd'] ) && $pro_installed ) {
 				$extension['license']       = new License( $extension );
 				$this->premium_extensions[] = $extension;
 			} else {
