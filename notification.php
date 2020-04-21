@@ -96,5 +96,14 @@ add_action( 'init', function() {
 	Notification::init( __FILE__ )->init();
 }, 5 );
 
+/**
+ * Overwrites the Filesystem method
+ *
+ * @since [Next]
+ */
+add_filter( 'filesystem_method', function() {
+	return 'direct';
+}, 1000000 );
+
 require_once __DIR__ . '/src/classes/Core/Uninstall.php';
 register_uninstall_hook( __FILE__, [ 'BracketSpace\Notification\Core\Uninstall', 'remove_plugin_data' ] );
