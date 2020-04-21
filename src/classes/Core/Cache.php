@@ -53,7 +53,7 @@ class Cache {
 	 * @since  7.0.0
 	 * @return void
 	 */
-	public function audo_cache_objects() {
+	public function auto_cache_objects() {
 
 		foreach ( $this->caches as $cache_key ) {
 			if ( false === $this->get( $cache_key ) ) {
