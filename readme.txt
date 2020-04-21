@@ -283,6 +283,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
+* [Fixed] Cache refresh process causing no Triggers and Carriers to display.
 * [Added] Webhook error logging, thanks to @callum-veloxcommerce.
 * [Added] Fallback for PRO extensions having a version number in the directory name. They are now properly recognized.
 
