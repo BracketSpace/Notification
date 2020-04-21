@@ -68,10 +68,10 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: build
-          path: .
+          path: ${{ secrets.SLUG }}
       - name: Create archive
         run: |
-          zip -rq ${{ secrets.SLUG }}-dev.zip .
+          zip -rq ${{ secrets.SLUG }}-dev.zip ${{ secrets.SLUG }}
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
