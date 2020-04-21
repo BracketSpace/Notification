@@ -51,14 +51,22 @@ class Cache {
 	 * @action wp_loaded 20
 	 *
 	 * @since  7.0.0
+	 * @since  7.0.4 Cache refresh is reloading the page.
 	 * @return void
 	 */
-	public function audo_cache_objects() {
+	public function auto_cache_objects() {
+
+		$cache_refreshed = false;
 
 		foreach ( $this->caches as $cache_key ) {
 			if ( false === $this->get( $cache_key ) ) {
+				$cache_refreshed = true;
 				$this->cache( $cache_key );
 			}
+		}
+
+		if ( $cache_refreshed && ! isset( $_GET['notification-cache-refresh'] ) ) { // phpcs:ignore
+			wp_safe_redirect( add_query_arg( 'notification-cache-refresh', 1 ) );
 		}
 
 	}

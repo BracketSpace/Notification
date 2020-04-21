@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 7.0.3
+Stable tag: 7.0.4
 Requires PHP: 7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -281,6 +281,12 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 7. Default email disabler
 
 == Changelog ==
+
+= 7.0.4 =
+* [Fixed] Cache refresh process causing no Triggers and Carriers to display.
+* [Added] Webhook error logging, thanks to @callum-veloxcommerce.
+* [Added] Fallback for PRO extensions having a version number in the directory name. They are now properly recognized.
+* [Changed] The Filesystem method is now set to `direct` when using this plugin.
 
 = 7.0.3 =
 * [Fixed] Wizard notifications trigger slugs.

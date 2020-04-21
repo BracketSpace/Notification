@@ -49,6 +49,15 @@ trait Webhook {
 
 		$response = wp_remote_request( $url, $remote_args );
 
+		if ( is_wp_error( $response ) ) {
+			// phpcs:ignore
+			notification_log( $this->get_name(), 'error', '<pre>' . print_r( [
+				'url'    => $url,
+				'args'   => $remote_args,
+				'errors' => $response->get_error_messages(),
+			], true ) . '</pre>' );
+		}
+
 		do_action_deprecated( "notification/webhook/called/{$method}", [
 			$response,
 			$url,
