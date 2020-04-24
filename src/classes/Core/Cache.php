@@ -51,7 +51,7 @@ class Cache {
 	 * @action wp_loaded 20
 	 *
 	 * @since  7.0.0
-	 * @since  [Next] Cache refresh is reloading the page.
+	 * @since  7.0.4 Cache refresh is reloading the page.
 	 * @return void
 	 */
 	public function auto_cache_objects() {
