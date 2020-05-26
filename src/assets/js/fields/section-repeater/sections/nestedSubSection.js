@@ -84,6 +84,11 @@ Vue.component("nested-sub-section", {
 			const sectionToAdd = section.name || section.label;
 
 			const forbidenSection = this.rows.filter(value => {
+
+				if( 'Field' === value.name ){
+					return false;
+				}
+
 				const addedSection = value.name || value.label;
 
 				if (sectionToAdd === addedSection) {
