@@ -85,7 +85,7 @@ Vue.component("nested-sub-section", {
 
 			const forbidenSection = this.rows.filter(value => {
 
-				if( 'Field' === value.name ){
+				if( "Field" === value.name ){
 					return false;
 				}
 
