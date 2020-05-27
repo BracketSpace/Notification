@@ -145,7 +145,10 @@ class PostUpdated extends PostTrigger {
 			'group'         => __( 'Updating user', 'notification' ),
 		] ) );
 
-		$this->add_merge_tag( new MergeTag\Post\RevisionLink() );
+		// add revision link tag if revisions are enabled.
+		if ( WP_POST_REVISIONS ) {
+			$this->add_merge_tag( new MergeTag\Post\RevisionLink() );
+		}
 	}
 
 }
