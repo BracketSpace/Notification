@@ -145,6 +145,7 @@ class PostUpdated extends PostTrigger {
 			'group'         => __( 'Updating user', 'notification' ),
 		] ) );
 
+		$this->add_merge_tag( new MergeTag\Post\RevisionLink() );
 	}
 
 }

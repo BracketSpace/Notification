@@ -282,6 +282,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Added] Revision link for updated post.
+
 = 7.0.4 =
 * [Fixed] Cache refresh process causing no Triggers and Carriers to display.
 * [Added] Webhook error logging, thanks to @callum-veloxcommerce.
