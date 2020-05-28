@@ -59,8 +59,7 @@ class RevisionLink extends UrlTag {
 						)
 					);
 					if ( ! empty( $revisions_id ) ) {
-						$revision_id = $revisions_id[0];
-						return sprintf( admin_url( 'revision.php?revision=%s' ), $revision_id );
+						return sprintf( admin_url( 'revision.php?revision=%s' ), $revisions_id[0] );
 					}
 					return '';
 				},
