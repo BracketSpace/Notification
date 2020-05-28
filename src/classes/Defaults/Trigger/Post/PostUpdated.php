@@ -146,7 +146,7 @@ class PostUpdated extends PostTrigger {
 		] ) );
 
 		// add revision link tag if revisions are enabled.
-		if ( WP_POST_REVISIONS ) {
+		if ( defined( 'WP_POST_REVISIONS' ) && WP_POST_REVISIONS ) {
 			$this->add_merge_tag( new MergeTag\Post\RevisionLink() );
 		}
 	}
