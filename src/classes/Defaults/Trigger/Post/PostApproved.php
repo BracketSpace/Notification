@@ -51,7 +51,7 @@ class PostApproved extends PostTrigger {
 
 		$this->author          = get_userdata( $this->{ $this->post_type }->post_author );
 		$this->last_editor     = get_userdata( get_post_meta( $this->{ $this->post_type }->ID, '_edit_last', true ) );
-		$this->publishing_user = get_userdata( get_current_user_id() );
+		$this->approving_user = get_userdata( get_current_user_id() );
 
 		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date_gmt );
 		$this->{ $this->post_type . '_publication_datetime' }  = strtotime( $this->{ $this->post_type }->post_date_gmt );
