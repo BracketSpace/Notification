@@ -283,6 +283,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
+* [Added] Post approved Trigger.
 * [Added] Revision link for updated post.
 
 = 7.0.4 =
