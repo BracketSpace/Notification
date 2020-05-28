@@ -31,6 +31,7 @@ class PostPublished extends PostTrigger {
 		$this->add_action( 'new_to_publish', 10 );
 		$this->add_action( 'auto-draft_to_publish', 10 );
 		$this->add_action( 'draft_to_publish', 10 );
+		$this->add_action( 'pending_to_publish', 10 );
 		$this->add_action( 'private_to_publish', 10 );
 		$this->add_action( 'future_to_publish', 10 );
 
