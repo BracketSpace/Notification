@@ -50,9 +50,16 @@ class RevisionLink extends UrlTag {
 				'description' => __( 'https://example.com/wp-admin/revesion.php?revision=id', 'notification' ),
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
-					$revisions = wp_get_post_revisions( $trigger->{ $this->post_type }->ID );
-					if ( ! empty( $revisions ) ) {
-						$revision_id = array_pop( array_reverse( $revisions ) )->ID;
+					$revisions_id = wp_get_post_revisions(
+						$trigger->{ $this->post_type }->ID,
+						array(
+							'orderby' => 'ID',
+							'order'   => 'DESC',
+							'fields'  => 'ids',
+						)
+					);
+					if ( ! empty( $revisions_id ) ) {
+						$revision_id = $revisions_id[0];
 						return sprintf( admin_url( 'revision.php?revision=%s' ), $revision_id );
 					}
 					return '';
