@@ -51,7 +51,7 @@ class RevisionLink extends UrlTag {
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
 					$revisions = wp_get_post_revisions( $trigger->{ $this->post_type }->ID );
-					if ( isset( $revisions ) && count( $revisions ) > 0 ) {
+					if ( ! empty( $revisions ) ) {
 						$url_template = admin_url() . 'revision.php?revision=%s';
 						$revision_id = array_pop( array_reverse( $revisions ) )->ID;
 						return sprintf( $url_template, $revision_id );
