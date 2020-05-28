@@ -283,7 +283,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
-* [Added] Post approved trigger.
+* [Added] Post approved Trigger.
 
 = 7.0.4 =
 * [Fixed] Cache refresh process causing no Triggers and Carriers to display.
