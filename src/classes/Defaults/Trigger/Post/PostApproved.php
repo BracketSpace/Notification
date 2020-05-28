@@ -75,7 +75,7 @@ class PostApproved extends PostTrigger {
 			'slug'          => $this->post_type . '_approving_user_ID',
 			// translators: singular post name.
 			'name'          => sprintf( __( '%s approving user ID', 'notification' ), $post_name ),
-			'property_name' => 'publishing_user',
+			'property_name' => 'approving_user',
 			'group'         => __( 'Approving user', 'notification' ),
 		] ) );
 
@@ -83,7 +83,7 @@ class PostApproved extends PostTrigger {
 			'slug'          => $this->post_type . '_approving_user_login',
 			// translators: singular post name.
 			'name'          => sprintf( __( '%s approving user login', 'notification' ), $post_name ),
-			'property_name' => 'publishing_user',
+			'property_name' => 'approving_user',
 			'group'         => __( 'Approving user', 'notification' ),
 		] ) );
 
@@ -91,7 +91,7 @@ class PostApproved extends PostTrigger {
 			'slug'          => $this->post_type . '_approving_user_email',
 			// translators: singular post name.
 			'name'          => sprintf( __( '%s approving user email', 'notification' ), $post_name ),
-			'property_name' => 'publishing_user',
+			'property_name' => 'approving_user',
 			'group'         => __( 'Approving user', 'notification' ),
 		] ) );
 
@@ -99,7 +99,7 @@ class PostApproved extends PostTrigger {
 			'slug'          => $this->post_type . '_approving_user_nicename',
 			// translators: singular post name.
 			'name'          => sprintf( __( '%s approving user nicename', 'notification' ), $post_name ),
-			'property_name' => 'publishing_user',
+			'property_name' => 'approving_user',
 			'group'         => __( 'Approving user', 'notification' ),
 		] ) );
 
@@ -107,7 +107,7 @@ class PostApproved extends PostTrigger {
 			'slug'          => $this->post_type . '_approving_user_display_name',
 			// translators: singular post name.
 			'name'          => sprintf( __( '%s approving user display name', 'notification' ), $post_name ),
-			'property_name' => 'publishing_user',
+			'property_name' => 'approving_user',
 			'group'         => __( 'Approving user', 'notification' ),
 		] ) );
 
@@ -115,7 +115,7 @@ class PostApproved extends PostTrigger {
 			'slug'          => $this->post_type . '_approving_user_firstname',
 			// translators: singular post name.
 			'name'          => sprintf( __( '%s approving user first name', 'notification' ), $post_name ),
-			'property_name' => 'publishing_user',
+			'property_name' => 'approving_user',
 			'group'         => __( 'Approving user', 'notification' ),
 		] ) );
 
@@ -123,7 +123,7 @@ class PostApproved extends PostTrigger {
 			'slug'          => $this->post_type . '_approving_user_lastname',
 			// translators: singular post name.
 			'name'          => sprintf( __( '%s approving user last name', 'notification' ), $post_name ),
-			'property_name' => 'publishing_user',
+			'property_name' => 'approving_user',
 			'group'         => __( 'Approving user', 'notification' ),
 		] ) );
 
@@ -131,7 +131,7 @@ class PostApproved extends PostTrigger {
 			'slug'          => $this->post_type . '_approving_user_avatar',
 			// translators: singular post name.
 			'name'          => sprintf( __( '%s approving user avatar', 'notification' ), $post_name ),
-			'property_name' => 'publishing_user',
+			'property_name' => 'approving_user',
 			'group'         => __( 'Approving user', 'notification' ),
 		] ) );
 
