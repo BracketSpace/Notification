@@ -1,6 +1,6 @@
 <?php
 /**
- * Post upproved trigger
+ * Post approved trigger
  *
  * @package notification
  */
