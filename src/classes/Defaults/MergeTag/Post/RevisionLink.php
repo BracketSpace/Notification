@@ -47,7 +47,7 @@ class RevisionLink extends UrlTag {
 				'slug'        => $this->post_type . '_revision_link',
 				// translators: singular post name.
 				'name'        => sprintf( __( '%s revision link', 'notification' ), $this->get_current_post_type_name() ),
-				'description' => __( 'https://example.com/wp-admin/revesion.php?revision=id', 'notification' ),
+				'description' => __( 'https://example.com/wp-admin/revision.php?revision=id', 'notification' ),
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
 					$revisions_id = wp_get_post_revisions(
