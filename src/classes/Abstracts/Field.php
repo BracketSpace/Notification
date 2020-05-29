@@ -73,7 +73,7 @@ abstract class Field implements Interfaces\Fillable {
 	public $css_class = 'widefat notification-field '; // space here on purpose.
 
 	/**
-	 * If field can be used multiple times in Section Repeater
+	 * If field can be used multiple times in Section Repeater row
 	 *
 	 * @var  boolean
 	 */
