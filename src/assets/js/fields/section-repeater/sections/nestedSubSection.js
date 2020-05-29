@@ -49,7 +49,7 @@ Vue.component("nested-sub-section", {
 			rows: [],
 			rowCount: 0,
 			subSections: [],
-			emptyModal: false,
+			emptyModal: false
 		};
 	},
 	mounted() {
@@ -79,26 +79,23 @@ Vue.component("nested-sub-section", {
 			this.$delete(this.rows, index);
 		},
 		showSection(section) {
-
-			if(section.multiple){
+			if (section.multiple) {
 				return true;
 			}
 
 			const sectionName = section.name || section.label;
 
-			const forbidenSection = this.rows.filter( rowSection => {
-
+			const forbidenSection = this.rows.filter(rowSection => {
 				const addedSection = rowSection.name || rowSection.label;
 
 				if (sectionName === addedSection) {
 					return true;
 				}
 
-				return (section.special && rowSection.special) ? true : false;
+				return section.special && rowSection.special ? true : false;
 			});
 
-			return ( 0 < forbidenSection.length ) ? false : true;
-
+			return 0 < forbidenSection.length ? false : true;
 		},
 		testModal() {
 			const modal = this.$el.querySelector(".section-modal");
