@@ -73,6 +73,13 @@ abstract class Field implements Interfaces\Fillable {
 	public $css_class = 'widefat notification-field '; // space here on purpose.
 
 	/**
+	 * If field can be used multiple times in Section Repeater
+	 *
+	 * @var  boolean
+	 */
+	public $multiple_section = false;
+
+	/**
 	 * Field constructor
 	 *
 	 * @since 5.0.0
@@ -108,6 +115,10 @@ abstract class Field implements Interfaces\Fillable {
 
 		if ( isset( $params['css_class'] ) ) {
 			$this->css_class .= $params['css_class'];
+		}
+
+		if ( isset( $params['multiple_section'] ) ) {
+			$this->multiple_section = $params['multiple_section'];
 		}
 
 	}
