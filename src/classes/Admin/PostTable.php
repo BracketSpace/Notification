@@ -205,6 +205,7 @@ class PostTable {
 	 * Notification enable/disable admin notices
 	 *
 	 * @action admin_notices
+	 * @since [Next]
 	 */
 	public function display_bulk_actions_admin_notices() {
 		// phpcs:disable WordPress.Security.NonceVerification.Recommended
