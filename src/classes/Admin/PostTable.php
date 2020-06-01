@@ -186,8 +186,6 @@ class PostTable {
 
 		if ( 'disable' === $doaction ) {
 			$notification_status = false;
-		} else {
-			$notification_status = true;
 		}
 
 		foreach ( $post_ids as $post_id ) {
