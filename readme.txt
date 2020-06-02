@@ -285,6 +285,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 = [Next] =
 * [Added] Post approved Trigger.
 * [Added] Revision link for updated post.
+* [Added] Privacy triggers for user request erase/export data and user erased/exported data.
 
 = 7.0.4 =
 * [Fixed] Cache refresh process causing no Triggers and Carriers to display.
