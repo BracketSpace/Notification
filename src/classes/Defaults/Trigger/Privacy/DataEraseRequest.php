@@ -30,12 +30,11 @@ class DataEraseRequest extends PrivacyTrigger {
 	 * @param integer $request_id Request id.
 	 */
 	public function action( $request_id ) {
-		$this->request = get_post( $request_id );
-
 		if ( 'remove_personal_data' !== $this->request->post_name ) {
 			return;
 		}
 
+		$this->request = get_post( $request_id );
 		$this->user_object         = get_userdata( $this->request->post_author );
 		$this->data_operation_time = $this->cache( 'timestamp', time() );
 
