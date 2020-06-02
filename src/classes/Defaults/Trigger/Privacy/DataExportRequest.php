@@ -34,7 +34,7 @@ class DataExportRequest extends PrivacyTrigger {
 			return;
 		}
 
-		$this->request = get_post( $request_id );
+		$this->request             = get_post( $request_id );
 		$this->user_object         = get_userdata( $this->request->post_author );
 		$this->data_operation_time = $this->cache( 'timestamp', time() );
 
