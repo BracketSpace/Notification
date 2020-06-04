@@ -239,4 +239,14 @@ abstract class Field implements Interfaces\Fillable {
 		return $this->css_class;
 	}
 
+	/**
+	 * Returns rest API error message
+	 *
+	 * @since [Next]
+	 * @return string
+	 */
+	public function rest_api_error() {
+		return esc_html__( 'The REST API is required to display this field, but it has been blocked. Please unlock the /notification REST API endpoint.', 'notification' );
+	}
+
 }
