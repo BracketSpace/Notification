@@ -30,6 +30,10 @@ export const init = {
 						this.values = values;
 						this.addFieldSectionValues();
 					}
+				})
+				//eslint-disable-next-line no-unused-vars
+				.catch(err => {
+					this.repeaterError = true;
 				});
 		},
 		extractFields() {

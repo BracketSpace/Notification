@@ -154,6 +154,12 @@ class SectionRepeater extends Field {
 		$html .= '</tbody>';
 		$html .= '</table>';
 
+		$html .= '<template v-if="repeaterError">
+					<div class="repeater-error">'
+					. $this->rest_api_error() .
+					'</div>
+				  </template>';
+
 		$html .= '<a href="#" class="button button-secondary add-new-repeater-field add-new-sections-field" @click="addSection">';
 		$html .= esc_html( $this->add_button_label );
 		$html .= '
@@ -180,23 +186,25 @@ class SectionRepeater extends Field {
 	 * @return string          row HTML
 	 */
 	public function row() {
-
-		$html = '<template v-for="( row, key, index ) in rows">
-					<sections-row
-					:key="key"
-					:rows="rows"
-					:row="row"
-					:type="type"
-					:index="index"
-					:selected-section="selectedSection"
-					:values="values"
-					:sub-field-values="subFieldValues"
-					:base-fields="baseFields"
-					:saved-sections="savedSections"
-					:sub-field-values="subFieldValues"
-					>
-					</sections-row>
-				  </template>';
+		$html = '<template v-if="!repeaterError">
+					<template v-for="( row, key, index ) in rows">
+						<sections-row
+						:key="key"
+						:rows="rows"
+						:row="row"
+						:type="type"
+						:index="index"
+						:selected-section="selectedSection"
+						:values="values"
+						:sub-field-values="subFieldValues"
+						:base-fields="baseFields"
+						:saved-sections="savedSections"
+						:sub-field-values="subFieldValues"
+						>
+						</sections-row>
+					</template>
+				</template>
+				';
 
 		return $html;
 

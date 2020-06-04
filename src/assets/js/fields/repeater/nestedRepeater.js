@@ -25,7 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
 				values: [],
 				nestedValues: [],
 				postID: "",
-				nestedRepeater: false
+				nestedRepeater: false,
+				repeaterError: false
 			}
 		});
 	}
