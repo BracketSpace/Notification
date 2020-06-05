@@ -474,6 +474,17 @@ class Settings {
 				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] )
 			->add_field( [
+				'name'        => __( 'Email address change request', 'notification' ),
+				'slug'        => 'send_confirmation_on_profile_email',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable email address change request email to <strong>user</strong>', 'notification' ),
+				],
+				'description' => __( 'Email is sent when user requests email address change.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
 				'name'        => __( 'Automatic WordPress core update', 'notification' ),
 				'slug'        => 'automatic_wp_core_update',
 				'default'     => false,
