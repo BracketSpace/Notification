@@ -262,6 +262,16 @@ class Settings {
 				],
 				'render'   => [ new CoreFields\Select(), 'input' ],
 				'sanitize' => [ new CoreFields\Select(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'     => __( 'Admin email address change', 'notification' ),
+				'slug'     => 'email_address_change',
+				'default'  => 'true',
+				'addons'   => [
+					'label' => __( 'Enable admin email address change trigger', 'notification' ),
+				],
+				'render'   => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] );
 
 	}
@@ -481,6 +491,17 @@ class Settings {
 					'label' => __( 'Disable email address change request email to <strong>user</strong>', 'notification' ),
 				],
 				'description' => __( 'Email is sent when user requests email address change.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Admin Email address change request', 'notification' ),
+				'slug'        => 'send_confirmation_on_admin_email',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable admin email address change request email to <strong>user</strong>', 'notification' ),
+				],
+				'description' => __( 'Amind email is sent when user requests site admin email address change.', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
 				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] )
