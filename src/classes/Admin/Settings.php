@@ -477,7 +477,7 @@ class Settings {
 				'slug'        => 'email_change_to_user',
 				'default'     => false,
 				'addons'      => [
-					'label' => __( 'Disable email to <strong>user</strong> about profile email address change request', 'notification' ),
+					'label' => __( 'Disable email to <strong>user</strong> about profile email address change', 'notification' ),
 				],
 				'description' => __( 'Email is sent when user saves a new email address in his profile.', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
@@ -488,7 +488,7 @@ class Settings {
 				'slug'        => 'send_confirmation_on_profile_email',
 				'default'     => false,
 				'addons'      => [
-					'label' => __( 'Disable email address change request email to <strong>user</strong>', 'notification' ),
+					'label' => __( 'Disable email to <strong>user</strong> about email address change request', 'notification' ),
 				],
 				'description' => __( 'Email is sent when user requests email address change.', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
@@ -499,9 +499,9 @@ class Settings {
 				'slug'        => 'send_confirmation_on_admin_email',
 				'default'     => false,
 				'addons'      => [
-					'label' => __( 'Disable admin email address change request email to <strong>user</strong>', 'notification' ),
+					'label' => __( 'Disable email to <strong>admin</strong> about site email address change request', 'notification' ),
 				],
-				'description' => __( 'Amind email is sent when user requests site admin email address change.', 'notification' ),
+				'description' => __( 'Email is sent when site admin email address change is requested.', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
 				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] )
