@@ -42,7 +42,7 @@ class UserEmailChangeRequest extends UserTrigger {
 			$this->user_id          = $user_id;
 			$this->user_object      = get_userdata( $this->user_id );
 			$this->user_meta        = get_user_meta( $this->user_id );
-			$this->site_url         = get_site_url();
+			$this->site_url         = home_url();
 			$this->hash             = $new_email['hash'];
 			$this->new_user_email   = $new_email['newemail'];
 			$this->confirmation_url = esc_url( admin_url( 'profile.php?newuseremail=' . $this->hash ) );
