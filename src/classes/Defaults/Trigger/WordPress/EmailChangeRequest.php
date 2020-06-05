@@ -33,22 +33,22 @@ class EmailChangeRequest extends Abstracts\Trigger {
 	 *
 	 * @since [Next]
 	 *
-	 * @param string  $old_value Old email value.
-	 * @param string  $value New email value.
+	 * @param string $old_value Old email value.
+	 * @param string $value New email value.
 	 * @return mixed
 	 */
 	public function action( $old_value, $value ) {
 
-		if( $old_value === $value ){
+		if ( $old_value === $value ) {
 			return;
 		}
 
-		$data = get_option('adminhash');
+		$data         = get_option( 'adminhash' );
 		$current_user = wp_get_current_user();
 
 		$this->user             = $current_user->user_login;
 		$this->site_url         = home_url();
-		$this->site_name		= wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
+		$this->site_name        = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
 		$this->hash             = $data['hash'];
 		$this->new_admin_email  = $data['newemail'];
 		$this->confirmation_url = esc_url( admin_url( 'options.php?adminhash=' . $this->hash ) );
@@ -70,21 +70,21 @@ class EmailChangeRequest extends Abstracts\Trigger {
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\StringTag([
-			'slug' => 'admin_login',
-			'name' => __( 'Admin login', 'notification' ),
-			'resolver' => function( $trigger ){
+			'slug'     => 'admin_login',
+			'name'     => __( 'Admin login', 'notification' ),
+			'resolver' => function( $trigger ) {
 				return $trigger->user;
 			},
-			'group' => __( 'Site', 'notification' ),
+			'group'    => __( 'Site', 'notification' ),
 		]) );
 
 		$this->add_merge_tag( new MergeTag\StringTag([
-			'slug' => 'site_name',
-			'name' => __( 'Site name', 'notification' ),
-			'resolver' => function( $trigger ){
+			'slug'     => 'site_name',
+			'name'     => __( 'Site name', 'notification' ),
+			'resolver' => function( $trigger ) {
 				return $trigger->site_name;
 			},
-			'group' => __( 'Site', 'notification' ),
+			'group'    => __( 'Site', 'notification' ),
 		]) );
 
 		$this->add_merge_tag( new MergeTag\EmailTag( [

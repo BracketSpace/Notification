@@ -122,7 +122,7 @@ class WordPressEmails {
 
 			add_filter( 'new_user_email_content', function( $email_text = false, $new_user_email = false ) {
 				$_POST['email'] = false;
-				return $email_text;
+				return false;
 			});
 
 		}
@@ -141,8 +141,7 @@ class WordPressEmails {
 		if ( 'true' === notification_get_setting( 'integration/emails/send_confirmation_on_admin_email' ) ) {
 
 			add_filter( 'new_admin_email_content', function( $email_text = false, $new_admin_email = false ) {
-
-				return $email_text = false;
+				return false;
 			});
 		}
 
