@@ -264,11 +264,11 @@ class Settings {
 				'sanitize' => [ new CoreFields\Select(), 'sanitize' ],
 			] )
 			->add_field( [
-				'name'     => __( 'Admin email address change', 'notification' ),
+				'name'     => __( 'Site email address change', 'notification' ),
 				'slug'     => 'email_address_change',
 				'default'  => 'true',
 				'addons'   => [
-					'label' => __( 'Enable admin email address change trigger', 'notification' ),
+					'label' => __( 'Enable site email address change trigger', 'notification' ),
 				],
 				'render'   => [ new CoreFields\Checkbox(), 'input' ],
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
@@ -501,7 +501,7 @@ class Settings {
 				'addons'      => [
 					'label' => __( 'Disable email to <strong>admin</strong> about site email address change request', 'notification' ),
 				],
-				'description' => __( 'Email is sent when site admin email address change is requested.', 'notification' ),
+				'description' => __( 'Email is sent when site email address change is requested.', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
 				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] )

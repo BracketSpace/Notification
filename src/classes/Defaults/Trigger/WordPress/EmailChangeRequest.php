@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin email change request trigger
+ * Site email change request trigger
  *
  * @package notification
  */
@@ -11,7 +11,7 @@ use BracketSpace\Notification\Defaults\MergeTag;
 use BracketSpace\Notification\Abstracts;
 
 /**
- * Admin Email Change Request
+ * Site Email Change Request
  */
 class EmailChangeRequest extends Abstracts\Trigger {
 
@@ -20,11 +20,12 @@ class EmailChangeRequest extends Abstracts\Trigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'wordpress/email_changed', __( 'Admin email change request', 'notification' ) );
+		parent::__construct( 'wordpress/email_change_request', __( 'Site email change request', 'notification' ) );
 
 		$this->add_action( 'update_option_new_admin_email', 10, 2 );
 
-		$this->set_description( __( 'Fires when admin requests of email address', 'notification' ) );
+		$this->set_group( __( 'WordPress', 'notification' ) );
+		$this->set_description( __( 'Fires when admin requests change of site email address', 'notification' ) );
 
 	}
 
@@ -65,8 +66,8 @@ class EmailChangeRequest extends Abstracts\Trigger {
 	public function merge_tags() {
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
-			'slug' => 'admin_email_change_datetime',
-			'name' => __( 'User email change time', 'notification' ),
+			'slug' => 'site_email_change_datetime',
+			'name' => __( 'Site email change time', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\StringTag([
