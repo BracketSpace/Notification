@@ -7,7 +7,7 @@
 
 namespace BracketSpace\Notification\Core;
 
-use BracketSpace\Notification\Admin\Extensions;
+require_once __DIR__ . '/../Admin/Extensions.php';
 
 /**
  * Uninstall class
@@ -24,32 +24,30 @@ class Uninstall {
 
 		global $wpdb;
 
-		$general_settings = get_option( 'notification_general' );
+		$settings = get_option( '_transient_notification_settings_config' );
 
-		$un = $general_settings['uninstallation'];
+		$uninstallation_settings = $settings['general']['uninstallation'];
 
 		// Remove notifications.
-		if ( isset( $un['notifications'] ) && 'true' === $un['notifications'] ) {
+		if ( isset( $uninstallation_settings['notifications'] ) && 'true' === $uninstallation_settings['notifications'] ) {
 			$wpdb->query( "DELETE FROM {$wpdb->posts} WHERE post_type = 'notification'" ); // phpcs:ignore
 		}
 
 		// Remove settings.
-		if ( isset( $un['settings'] ) && 'true' === $un['settings'] ) {
+		if ( isset( $uninstallation_settings['settings'] ) && 'true' === $uninstallation_settings['settings'] ) {
 
-			$settings_config = get_option( '_notification_settings_config' );
-
-			foreach ( $settings_config as $section_slug => $section ) {
+			foreach ( $settings as $section_slug => $section ) {
 				delete_option( 'notification_' . $section_slug );
 				delete_site_option( 'notification_' . $section_slug );
 			}
 
-			delete_option( '_notification_settings_config' );
+			delete_option( '_transient_notification_settings_config' );
 			delete_option( '_notification_settings_hash' );
 
 		}
 
 		// Remove licenses.
-		if ( isset( $un['licenses'] ) && 'true' === $un['licenses'] ) {
+		if ( isset( $uninstallation_settings['licenses'] ) && 'true' === $uninstallation_settings['licenses'] ) {
 
 			$extensions_class = new Extensions();
 
