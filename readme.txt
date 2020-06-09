@@ -283,6 +283,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
+* [Fixed] Carrier Recipients using the explicit slug, now it's configurable.
 * [Added] Field class property multiple_section.
 * [Added] Post approved Trigger.
 * [Added] Revision link for updated post.
