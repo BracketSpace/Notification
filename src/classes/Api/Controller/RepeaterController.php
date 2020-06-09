@@ -73,6 +73,7 @@ class RepeaterController {
 			$sub_field['message']        = $field->message;
 			$sub_field['value']          = '';
 			$sub_field['rows']           = $field->rows;
+			$sub_field['multiple']       = $field->multiple_section;
 
 			if ( $field->fields ) {
 				$sub_field['fields'] = $this->form_field_data( $field->fields );
