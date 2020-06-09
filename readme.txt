@@ -283,9 +283,11 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
+* [Added] Field class property multiple_section.
 * [Added] Post approved Trigger.
 * [Added] Revision link for updated post.
-* [Added] Enable/Disable bulk actions for Notifications in admin panel.
+* [Added] Enable/Disable bulk actions for Notifications.
+* [Changed] Fields usage validation in Section Repeater Vue component now checks Field properties to determine if field can be used in the same row.
 
 = 7.0.4 =
 * [Fixed] Cache refresh process causing no Triggers and Carriers to display.
