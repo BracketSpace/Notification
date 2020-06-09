@@ -13,6 +13,7 @@ Vue.component("nested-sub-section", {
 				:type="type"
 				:parent-field="parentField"
 				:base-fields="baseFields"
+				:values="subFieldValues"
 				@sub-field-removed="removeField"
 			>
 			</section-sub-row>
@@ -67,8 +68,9 @@ Vue.component("nested-sub-section", {
 			if (sectionValues) {
 				sectionValues.forEach(value => {
 					const field = Object.keys(value)[0];
+					const fieldValue = Object.assign({}, value[field]);
 
-					this.addSubFieldSection(field, value[field]);
+					this.addSubFieldSection(field, fieldValue);
 				});
 			}
 		},
