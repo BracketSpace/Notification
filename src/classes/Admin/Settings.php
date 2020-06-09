@@ -264,7 +264,7 @@ class Settings {
 				'sanitize' => [ new CoreFields\Select(), 'sanitize' ],
 			] );
 
-			$triggers->add_group( __( 'Privacy', 'notification' ), 'privacy' )
+		$triggers->add_group( __( 'Privacy', 'notification' ), 'privacy' )
 			->add_field( [
 				'name'     => __( 'Privacy', 'notification' ),
 				'slug'     => 'enable',

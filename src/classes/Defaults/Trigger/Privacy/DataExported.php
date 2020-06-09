@@ -22,8 +22,9 @@ class DataExported extends PrivacyTrigger {
 		parent::__construct( 'privacy/data-exported', __( 'Privacy Data Exported', 'notification' ) );
 
 		$this->add_action( 'wp_privacy_personal_data_export_file_created', 10, 5 );
-		$this->set_group( __( 'Privacy', 'notification' ) );
+
 		$this->set_description( __( 'Fires when user personal data is exported', 'notification' ) );
+
 	}
 
 	/**
@@ -36,13 +37,15 @@ class DataExported extends PrivacyTrigger {
 	 * @param string  $json_report_pathname Json report pathname.
 	 */
 	public function action( $archive_pathname, $archive_url, $html_report_pathname, $request_id, $json_report_pathname = null ) {
-		$this->request              = get_post( $request_id );
-		$this->user_object          = get_userdata( $this->request->post_author );
+
+		$this->request              = wp_get_user_request( $request_id );
+		$this->user_object          = get_userdata( $this->request->user_id );
 		$this->archive_path         = $archive_pathname;
 		$this->archive_url          = $archive_url;
 		$this->html_report_path     = $html_report_pathname;
 		$this->json_report_pathname = $json_report_pathname;
 		$this->data_operation_time  = $this->cache( 'timestamp', time() );
+
 	}
 
 	/**
@@ -59,43 +62,43 @@ class DataExported extends PrivacyTrigger {
 			'name'        => __( 'User data archive URL', 'notification' ),
 			'description' => __( 'https://example.com/wp-content/uploads/wp-personal-data-exports/wp-personal-data-file-f3563fe4.zip', 'notification' ),
 			'example'     => true,
+			'group'       => __( 'Archive', 'notification' ),
 			'resolver'    => function( $trigger ) {
 				return $trigger->archive_url;
 			},
-			'group'       => __( 'File', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'archive_pathname',
 			'name'        => __( 'User data archive pathname', 'notification' ),
-			'description' => __( 'app/public/wp-content/uploads/wp-personal-data-exports/wp-personal-data-file-gsdfgs.zip', 'notification' ),
+			'description' => __( '/var/www/html/wp-content/uploads/wp-personal-data-exports/wp-personal-data-file-test.zip', 'notification' ),
 			'example'     => true,
+			'group'       => __( 'Archive', 'notification' ),
 			'resolver'    => function( $trigger ) {
 				return $trigger->archive_path;
 			},
-			'group'       => __( 'File', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'html_report_pathname',
 			'name'        => __( 'User data html report pathname', 'notification' ),
-			'description' => __( 'app/public/wp-content/uploads/wp-personal-data-exports/wp-personal-data-file-gsdfgs.html', 'notification' ),
+			'description' => __( '/var/www/html/wp-content/uploads/wp-personal-data-exports/wp-personal-data-file-test.html', 'notification' ),
 			'example'     => true,
+			'group'       => __( 'Archive', 'notification' ),
 			'resolver'    => function( $trigger ) {
 				return $trigger->html_report_path;
 			},
-			'group'       => __( 'File', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'json_report_pathname',
 			'name'        => __( 'User data JSON report pathname', 'notification' ),
-			'description' => __( 'app/public/wp-content/uploads/wp-personal-data-exports/wp-personal-data-file-gsdfgs.JSON', 'notification' ),
+			'description' => __( '/var/www/html/wp-content/uploads/wp-personal-data-exports/wp-personal-data-file-test.JSON', 'notification' ),
 			'example'     => true,
+			'group'       => __( 'Archive', 'notification' ),
 			'resolver'    => function( $trigger ) {
 				return $trigger->json_report_pathname;
 			},
-			'group'       => __( 'File', 'notification' ),
 		] ) );
 
 	}

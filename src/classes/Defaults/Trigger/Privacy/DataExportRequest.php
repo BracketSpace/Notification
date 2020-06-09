@@ -20,8 +20,9 @@ class DataExportRequest extends PrivacyTrigger {
 		parent::__construct( 'privacy/data-export-request', __( 'Privacy Data Export Request', 'notification' ) );
 
 		$this->add_action( 'user_request_action_confirmed', 10, 1 );
-		$this->set_group( __( 'Privacy', 'notification' ) );
+
 		$this->set_description( __( 'Fires when user requests privacy data export', 'notification' ) );
+
 	}
 
 	/**
@@ -30,12 +31,9 @@ class DataExportRequest extends PrivacyTrigger {
 	 * @param integer $request_id Request id.
 	 */
 	public function action( $request_id ) {
-		if ( 'export_personal_data' !== $this->request->post_name ) {
-			return;
-		}
 
-		$this->request             = get_post( $request_id );
-		$this->user_object         = get_userdata( $this->request->post_author );
+		$this->request             = wp_get_user_request( $request_id );
+		$this->user_object         = get_userdata( $this->request->user_id );
 		$this->data_operation_time = $this->cache( 'timestamp', time() );
 
 	}

@@ -16,6 +16,20 @@ use BracketSpace\Notification\Defaults\MergeTag;
 abstract class PrivacyTrigger extends Abstracts\Trigger {
 
 	/**
+	 * Constructor
+	 *
+	 * @param string $slug Slug.
+	 * @param string $name Name.
+	 */
+	public function __construct( $slug, $name ) {
+
+		parent::__construct( $slug, $name );
+
+		$this->set_group( __( 'Privacy', 'notification' ) );
+
+	}
+
+	/**
 	 * Registers attached merge tags
 	 *
 	 * @return void
@@ -39,14 +53,14 @@ abstract class PrivacyTrigger extends Abstracts\Trigger {
 			'description' => __( 'john@doe.com', 'notification' ),
 			'example'     => true,
 			'resolver'    => function( $trigger ) {
-				return $trigger->request->post_title;
+				return $trigger->request->email;
 			},
 			'group'       => __( 'User', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
 			'slug' => 'data_operation_time',
-			'name' => __( 'Data erase date and time', 'notification' ),
+			'name' => __( 'Operation date and time', 'notification' ),
 		] ) );
 
 	}
