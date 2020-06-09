@@ -35,6 +35,10 @@ export const init = {
 							this.addFieldValues();
 						}
 					}
+				})
+				//eslint-disable-next-line no-unused-vars
+				.catch(err => {
+					this.repeaterError = true;
 				});
 		},
 		setType() {

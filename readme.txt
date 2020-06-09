@@ -283,9 +283,14 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
+* [Fixed] Carrier Recipients using the explicit slug, now it's configurable.
+* [Added] Field class property multiple_section.
 * [Added] Post approved Trigger.
 * [Added] Revision link for updated post.
-* [Added] Privacy triggers for user request erase/export data and user erased/exported data.
+* [Added] Privacy Triggers for user erase/export data request and user erased/exported data.
+* [Added] Enable/Disable bulk actions for Notifications.
+* [Changed] Fields usage validation in Section Repeater Vue component now checks Field properties to determine if field can be used in the same row.
+* [Changed] Repeater/Recipients Carrier field based on Vue now displays an error when REST API endpoint is not reachable.
 
 = 7.0.4 =
 * [Fixed] Cache refresh process causing no Triggers and Carriers to display.
