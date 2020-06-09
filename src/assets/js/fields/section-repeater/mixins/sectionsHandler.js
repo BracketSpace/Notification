@@ -49,7 +49,7 @@ export const sectionsHandler = {
 			}
 
 			if (!fieldModel.fields) {
-				fieldModel.value = fieldData[0];
+				fieldModel.value = fieldData.join("");
 			} else {
 				let counter = 0;
 

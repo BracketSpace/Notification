@@ -61,6 +61,8 @@ Vue.component("section-sub-row", {
 						:parent-field="parentField"
 						:input-type="inputType"
 						:section-name="sectionName"
+						:values="values"
+						:multiple="row.multiple"
 						/>
 					</template>
 				</template>
@@ -75,7 +77,8 @@ Vue.component("section-sub-row", {
 		"selectedSection",
 		"type",
 		"parentField",
-		"baseFields"
+		"baseFields",
+		"values"
 	],
 	mixins: [fieldHandler, inputsHandler],
 	data() {
