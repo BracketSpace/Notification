@@ -288,6 +288,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] Revision link for updated post.
 * [Added] Enable/Disable bulk actions for Notifications.
 * [Changed] Fields usage validation in Section Repeater Vue component now checks Field properties to determine if field can be used in the same row.
+* [Changed] Repeater/Recipients Carrier field based on Vue now displays an error when REST API endpoint is not reachable.
 
 = 7.0.4 =
 * [Fixed] Cache refresh process causing no Triggers and Carriers to display.
