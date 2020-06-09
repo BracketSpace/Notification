@@ -164,68 +164,66 @@ class PostTable {
 	}
 
 	/**
-	 * Handles disable notification bulk actions
+	 * Handles status bulk actions
 	 *
 	 * @filter handle_bulk_actions-edit-notification 10
 	 *
-	 * @since [Next]
+	 * @since  [Next]
 	 * @param  string $redirect_to Redirect to link.
-	 * @param  string $doaction Action to perform.
-	 * @param  array  $post_ids Array with post ids.
-	 *
-	 * @return string Redirect link.
+	 * @param  string $doaction    Action to perform.
+	 * @param  array  $post_ids    Array with post ids.
+	 * @return string              Redirect link.
 	 */
-	public function handle_disable_bulk_actions( $redirect_to, $doaction, $post_ids ) {
-		if ( 'disable' !== $doaction && 'enable' !== $doaction ) {
+	public function handle_status_bulk_actions( $redirect_to, $doaction, $post_ids ) {
+
+		if ( ! in_array( $doaction, [ 'enable', 'disable' ], true ) ) {
 			return $redirect_to;
 		}
 
-		$redirect_to = remove_query_arg( array( 'bulk_disable_notifications', 'bulk_enable_notifications' ), $redirect_to );
-
-		$notification_status = true;
-
-		if ( 'disable' === $doaction ) {
-			$notification_status = false;
-		}
+		$redirect_to = remove_query_arg( [ 'bulk_disable_notifications', 'bulk_enable_notifications' ], $redirect_to );
 
 		foreach ( $post_ids as $post_id ) {
 			$notification = notification_adapt_from( 'WordPress', $post_id );
-			$notification->set_enabled( $notification_status );
+			$notification->set_enabled( 'enable' === $doaction );
 			$notification->save();
 		}
 
-		$redirect_to = add_query_arg( 'bulk_' . $doaction . '_notifications', count( $post_ids ), $redirect_to );
+		return add_query_arg( 'bulk_' . $doaction . '_notifications', count( $post_ids ), $redirect_to );
 
-		return $redirect_to;
 	}
 
 	/**
-	 * Notification enable/disable admin notices
+	 * Prints notices for bulk status changes.
 	 *
 	 * @action admin_notices
+	 *
 	 * @since [Next]
+	 * @return void
 	 */
 	public function display_bulk_actions_admin_notices() {
-		// phpcs:disable WordPress.Security.NonceVerification.Recommended
-		if ( ! empty( $_REQUEST['bulk_disable_notifications'] || ! empty( $_REQUEST['bulk_enable_notifications'] ) ) ) {
-			$action_type = '';
-			$bulk_count  = 0;
 
-			if ( ! empty( $_REQUEST['bulk_disable_notifications'] ) ) {
-				$action_type = esc_html__( 'disabled', 'notification' );
-				$bulk_count  = intval( $_REQUEST['bulk_disable_notifications'] );
+		$action = $_GET; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-			} else {
-				$action_type = esc_html__( 'enabled', 'notification' );
-				$bulk_count  = intval( $_REQUEST['bulk_enable_notifications'] );
-			}
-			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
-			// translators: Number of Notifications.
-			printf( '<div id="message" class="updated notice is-dismissible"><p>' . _n( '%1$s notification %2$s.', '%1$s notifications %2$s.', $bulk_count, $action_type ) . '</p></div>', $bulk_count, $action_type ); // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+		if ( ! isset( $action['bulk_disable_notifications'] ) && ! isset( $action['bulk_enable_notifications'] ) ) {
+			return;
 		}
 
-		// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
-		// phpcs:enable WordPress.Security.NonceVerification.Recommended
+		if ( ! empty( $action['bulk_disable_notifications'] ) ) {
+			$action_type = esc_html__( 'disabled', 'notification' );
+			$bulk_count  = intval( $action['bulk_disable_notifications'] );
+		} else {
+			$action_type = esc_html__( 'enabled', 'notification' );
+			$bulk_count  = intval( $action['bulk_enable_notifications'] );
+		}
+
+		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+		printf(
+			// translators: 1. Number of Notifications, 2. Action taken disabled|enabled.
+			'<div id="message" class="updated notice is-dismissible"><p>' . _n( '%1$s notification %2$s.', '%1$s notifications %2$s.', $bulk_count, $action_type ) . '</p></div>',
+			$bulk_count,
+			$action_type
+		);
+
 	}
 
 }
