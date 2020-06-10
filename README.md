@@ -15,109 +15,110 @@ By default it supports Email, Webhook and Webhook plain JSON notifications.
 ## Default Triggers
 
 <details>
-  <summary>Comment, Pingback, Trackback and Custom Comment Type</summary>
+	<summary>Comment, Pingback, Trackback and Custom Comment Type</summary>
 
-  This covers all the comment types. Use `comment`, `pingback`, `trackback`, `another_comment_type` instead of the `{comment_type_slug}`.
+	This covers all the comment types. Use `comment`, `pingback`, `trackback`, `another_comment_type` instead of the `{comment_type_slug}`.
 
-  | Trigger name | Trigger slug |
-  | :--- | :--- |
-  | Comment added | `comment/{comment_type_slug}/added` |
-  | Comment approved | `comment/{comment_type_slug}/approved` |
-  | Comment replied | `comment/{comment_type_slug}/replied` |
-  | Comment spammed | `comment/{comment_type_slug}/spammed` |
-  | Comment trashed | `comment/{comment_type_slug}/trashed` |
-  | Comment unapproved | `comment/{comment_type_slug}/unapproved` |
-  | Comment published | `comment/{comment_type_slug}/published` |
-
-</details>
-
-<details>
-  <summary>Media</summary>
-
-  | Trigger name | Trigger slug |
-  | :--- | :--- |
-  | Media added | `media/added` |
-  | Media trashed | `media/trashed` |
-  | Media updated | `media/updated` |
+	| Trigger name | Trigger slug |
+	| :--- | :--- |
+	| Comment added | `comment/{comment_type_slug}/added` |
+	| Comment approved | `comment/{comment_type_slug}/approved` |
+	| Comment replied | `comment/{comment_type_slug}/replied` |
+	| Comment spammed | `comment/{comment_type_slug}/spammed` |
+	| Comment trashed | `comment/{comment_type_slug}/trashed` |
+	| Comment unapproved | `comment/{comment_type_slug}/unapproved` |
+	| Comment published | `comment/{comment_type_slug}/published` |
 
 </details>
 
 <details>
-  <summary>Plugin</summary>
+	<summary>Media</summary>
 
-  | Trigger name | Trigger slug |
-  | :--- | :--- |
-  | Plugin activated | `plugin/activated` |
-  | Plugin deactivated | `plugin/deactivated` |
-  | Plugin installed | `plugin/installed` |
-  | Plugin removed | `plugin/removed` |
-  | Plugin updated | `plugin/updated` |
-  
-</details>
-
-<details>
-  <summary>Post, Page and Custom Post Type</summary>
-
-  This covers all the custom post types, as well. Use `post`, `page`, `product`, `another_post_type` instead of the `{post_type_slug}`.
-
-  | Trigger name | Trigger slug |
-  | :--- | :--- |
-  | Post added | `post/{post_type_slug}/added` |
-  | Post saved as a draft | `post/{post_type_slug}/drafted` |
-  | Post sent for review | `post/{post_type_slug}/pending` |
-  | Post published | `post/{post_type_slug}/published` |
-  | Post trashed | `post/{post_type_slug}/trashed` |
-  | Post updated | `post/{post_type_slug}/updated` |
-  | Post scheduled | `post/{post_type_slug}/scheduled` |
-  
-</details>
-
-<details>
-  <summary>Category, Tag and Custom Taxonomy</summary>
-
-  This covers all the taxonomies. Use `category`, `post_tag`, `another_taxonomy` instead of the `{taxonomy_slug}`.
-
-  | Trigger name | Trigger slug |
-  | :--- | :--- |
-  | Taxonomy term created | `taxonomny/{taxonomy_slug}/created` |
-  | Taxonomy term deleted | `taxonomny/{taxonomy_slug}/deleted` |
-  | Taxonomy term updated | `taxonomny/{taxonomy_slug}/updated` |
+	| Trigger name | Trigger slug |
+	| :--- | :--- |
+	| Media added | `media/added` |
+	| Media trashed | `media/trashed` |
+	| Media updated | `media/updated` |
 
 </details>
 
 <details>
-  <summary>Theme</summary>
+	<summary>Plugin</summary>
 
-  | Trigger name | Trigger slug |
-  | :--- | :--- |
-  | Theme installed | `theme/installed` |
-  | Theme switched | `theme/switched` |
-  | Theme updated | `theme/updated` |
-  
+	| Trigger name | Trigger slug |
+	| :--- | :--- |
+	| Plugin activated | `plugin/activated` |
+	| Plugin deactivated | `plugin/deactivated` |
+	| Plugin installed | `plugin/installed` |
+	| Plugin removed | `plugin/removed` |
+	| Plugin updated | `plugin/updated` |
+
 </details>
 
 <details>
-  <summary>User</summary>
+	<summary>Post, Page and Custom Post Type</summary>
 
-  | Trigger name | Trigger slug |
-  | :--- | :--- |
-  | User deleted | `user/deleted` |
-  | User login | `user/login` |
-  | User login failed | `user/login_failed` |
-  | User logout | `user/logout` |
-  | User password changed | `user/password_changed` |
-  | User password reset request | `user/password_reset_request` |
-  | User profile updated | `user/profile_updated` |
-  | User role changed | `user/role_changed` |
-  
+	This covers all the custom post types, as well. Use `post`, `page`, `product`, `another_post_type` instead of the `{post_type_slug}`.
+
+	| Trigger name | Trigger slug |
+	| :--- | :--- |
+	| Post added | `post/{post_type_slug}/added` |
+	| Post saved as a draft | `post/{post_type_slug}/drafted` |
+	| Post sent for review | `post/{post_type_slug}/pending` |
+	| Post approved | `post/{post_type_slug}/approved` |
+	| Post published | `post/{post_type_slug}/published` |
+	| Post trashed | `post/{post_type_slug}/trashed` |
+	| Post updated | `post/{post_type_slug}/updated` |
+	| Post scheduled | `post/{post_type_slug}/scheduled` |
+
 </details>
 
 <details>
-  <summary>WordPress</summary>
+	<summary>Category, Tag and Custom Taxonomy</summary>
 
-  | Trigger name | Trigger slug |
-  | :--- | :--- |
-  | Available updates | `wordpress/updates_available` |
+	This covers all the taxonomies. Use `category`, `post_tag`, `another_taxonomy` instead of the `{taxonomy_slug}`.
+
+	| Trigger name | Trigger slug |
+	| :--- | :--- |
+	| Taxonomy term created | `taxonomny/{taxonomy_slug}/created` |
+	| Taxonomy term deleted | `taxonomny/{taxonomy_slug}/deleted` |
+	| Taxonomy term updated | `taxonomny/{taxonomy_slug}/updated` |
+
+</details>
+
+<details>
+	<summary>Theme</summary>
+
+	| Trigger name | Trigger slug |
+	| :--- | :--- |
+	| Theme installed | `theme/installed` |
+	| Theme switched | `theme/switched` |
+	| Theme updated | `theme/updated` |
+
+</details>
+
+<details>
+	<summary>User</summary>
+
+	| Trigger name | Trigger slug |
+	| :--- | :--- |
+	| User deleted | `user/deleted` |
+	| User login | `user/login` |
+	| User login failed | `user/login_failed` |
+	| User logout | `user/logout` |
+	| User password changed | `user/password_changed` |
+	| User password reset request | `user/password_reset_request` |
+	| User profile updated | `user/profile_updated` |
+	| User role changed | `user/role_changed` |
+
+</details>
+
+<details>
+	<summary>WordPress</summary>
+
+	| Trigger name | Trigger slug |
+	| :--- | :--- |
+	| Available updates | `wordpress/updates_available` |
 
 </details>
 

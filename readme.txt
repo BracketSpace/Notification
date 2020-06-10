@@ -88,6 +88,7 @@ Post Type:
 * Post drafted (saved as a draft) notification
 * Updated post notification
 * Post send for review (pending post) notification
+* Post approved (pending to publish) notification
 * Post moved to trash notification
 
 The Notification plugin supports any Custom Post Type out of the box.
