@@ -168,7 +168,7 @@ class PostTable {
 	 *
 	 * @filter handle_bulk_actions-edit-notification 10
 	 *
-	 * @since  [Next]
+	 * @since  7.1.0
 	 * @param  string $redirect_to Redirect to link.
 	 * @param  string $doaction    Action to perform.
 	 * @param  array  $post_ids    Array with post ids.
@@ -197,7 +197,7 @@ class PostTable {
 	 *
 	 * @action admin_notices
 	 *
-	 * @since [Next]
+	 * @since 7.1.0
 	 * @return void
 	 */
 	public function display_bulk_actions_admin_notices() {

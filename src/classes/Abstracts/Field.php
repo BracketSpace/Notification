@@ -253,7 +253,7 @@ abstract class Field implements Interfaces\Fillable {
 	/**
 	 * Returns rest API error message
 	 *
-	 * @since [Next]
+	 * @since 7.1.0
 	 * @return string
 	 */
 	public function rest_api_error() {
