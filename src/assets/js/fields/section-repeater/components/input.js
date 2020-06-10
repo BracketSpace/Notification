@@ -14,7 +14,7 @@ Vue.component("notification-text", {
 			:id="subfield.id"
 			:class="subfield.css_class"
 			type="text"
-			:value="subfield.value"
+			:value="value"
 			:name="inputName"
 			:placeholder="subfield.placeholder"
 			:row-index="rowIndex"
@@ -33,9 +33,16 @@ Vue.component("notification-text", {
 		"type",
 		"sectionName",
 		"inputType",
-		"parentField"
+		"parentField",
+		"values",
+		"multiple"
 	],
 	mixins: [inputsHandler, fieldHandler, inputNameHandler],
+	data() {
+		return {
+			value: null
+		};
+	},
 	computed: {
 		inputName() {
 			const baseFieldName = this.createFieldName(
@@ -48,6 +55,15 @@ Vue.component("notification-text", {
 				return `${baseFieldName}${fieldName.toLowerCase()}[${this.sectionName.toLowerCase()}][${this.subfield.name.toLowerCase()}]`;
 			}
 			return `${baseFieldName}${fieldName.toLowerCase()}[${this.subfield.name.toLowerCase()}]`;
+		}
+	},
+	mounted() {
+		if (this.multiple && this.values[this.rowIndex][this.keyIndex]) {
+			this.value = this.values[this.rowIndex][this.keyIndex].field[
+				this.subfield.name.toLowerCase()
+			];
+		} else {
+			this.value = Object.freeze(this.subfield.value);
 		}
 	}
 });

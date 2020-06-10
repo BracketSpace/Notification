@@ -26,6 +26,7 @@ if ( $post_types ) {
 		notification_register_trigger( new Trigger\Post\PostPending( $post_type ) );
 		notification_register_trigger( new Trigger\Post\PostScheduled( $post_type ) );
 		notification_register_trigger( new Trigger\Post\PostTrashed( $post_type ) );
+		notification_register_trigger( new Trigger\Post\PostApproved( $post_type ) );
 
 	}
 }

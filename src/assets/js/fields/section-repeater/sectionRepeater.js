@@ -22,7 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
 				savedSections: [],
 				values: {},
 				subFieldValues: [],
-				baseFields: {}
+				baseFields: {},
+				repeaterError: false
 			}
 		});
 	}

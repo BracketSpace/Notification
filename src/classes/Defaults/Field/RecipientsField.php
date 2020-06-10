@@ -78,15 +78,18 @@ class RecipientsField extends RepeaterField {
 	 * @return string
 	 */
 	public function row() {
-		$html = '<template v-for="( field, key ) in fields">
-					<recipient-row
-					:field="field"
-					:fields="fields"
-					:type="type"
-					:key-index="key"
-					>
-					</recipient-row>
-				</template>';
+		$html = '<template v-if="!repeaterError">
+					<template v-for="( field, key ) in fields">
+						<recipient-row
+						:field="field"
+						:fields="fields"
+						:type="type"
+						:key-index="key"
+						>
+						</recipient-row>
+					</template>
+				</template>
+				';
 		return $html;
 	}
 

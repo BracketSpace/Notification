@@ -73,6 +73,13 @@ abstract class Field implements Interfaces\Fillable {
 	public $css_class = 'widefat notification-field '; // space here on purpose.
 
 	/**
+	 * If field can be used multiple times in Section Repeater row
+	 *
+	 * @var  boolean
+	 */
+	public $multiple_section = false;
+
+	/**
 	 * Field constructor
 	 *
 	 * @since 5.0.0
@@ -108,6 +115,10 @@ abstract class Field implements Interfaces\Fillable {
 
 		if ( isset( $params['css_class'] ) ) {
 			$this->css_class .= $params['css_class'];
+		}
+
+		if ( isset( $params['multiple_section'] ) ) {
+			$this->multiple_section = $params['multiple_section'];
 		}
 
 	}
@@ -237,6 +248,16 @@ abstract class Field implements Interfaces\Fillable {
 	 */
 	public function css_class() {
 		return $this->css_class;
+	}
+
+	/**
+	 * Returns rest API error message
+	 *
+	 * @since 7.1.0
+	 * @return string
+	 */
+	public function rest_api_error() {
+		return esc_html__( 'The REST API is required to display this field, but it has been blocked. Please unlock the /notification REST API endpoint.', 'notification' );
 	}
 
 }

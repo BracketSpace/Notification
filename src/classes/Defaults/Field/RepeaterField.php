@@ -155,6 +155,12 @@ class RepeaterField extends Field {
 		$html .= '</tbody>';
 		$html .= '</table>';
 
+		$html .= '<template v-if="repeaterError">
+					<div class="repeater-error">'
+					. $this->rest_api_error() .
+					'</div>
+				  </template>';
+
 		$html .= '<a href="#" class="button button-secondary add-new-repeater-field" @click="addField">' . esc_html( $this->add_button_label ) . '</a>';
 
 		return $html;
@@ -168,20 +174,21 @@ class RepeaterField extends Field {
 	 * @return string          row HTML
 	 */
 	public function row() {
-
-		$html = '<template v-for="( field, key ) in fields">
-					<repeater-row
-					:field="field"
-					:fields="fields"
-					:type="type"
-					:key-index="key"
-					:nested-fields="nestedFields"
-					:nested-values="nestedValues"
-					:nested-model="nestedModel"
-					:nested-row-count="nestedRowCount"
-					>
-					</repeater-row>
-				  </template>';
+		$html = '<template v-if="!repeaterError">
+					<template v-for="( field, key ) in fields">
+						<repeater-row
+						:field="field"
+						:fields="fields"
+						:type="type"
+						:key-index="key"
+						:nested-fields="nestedFields"
+						:nested-values="nestedValues"
+						:nested-model="nestedModel"
+						:nested-row-count="nestedRowCount"
+						>
+						</repeater-row>
+					</template>
+				</template>';
 
 		return $html;
 

@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 7.0.4
+Stable tag: 7.1.0
 Requires PHP: 7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -88,6 +88,7 @@ Post Type:
 * Post drafted (saved as a draft) notification
 * Updated post notification
 * Post send for review (pending post) notification
+* Post approved (pending to publish) notification
 * Post moved to trash notification
 
 The Notification plugin supports any Custom Post Type out of the box.
@@ -281,6 +282,15 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 7. Default email disabler
 
 == Changelog ==
+
+= 7.1.0 =
+* [Fixed] Carrier Recipients using the explicit slug, now it's configurable.
+* [Added] Field class property multiple_section.
+* [Added] Post approved Trigger.
+* [Added] Revision link for updated post.
+* [Added] Enable/Disable bulk actions for Notifications.
+* [Changed] Fields usage validation in Section Repeater Vue component now checks Field properties to determine if field can be used in the same row.
+* [Changed] Repeater/Recipients Carrier field based on Vue now displays an error when REST API endpoint is not reachable.
 
 = 7.0.4 =
 * [Fixed] Cache refresh process causing no Triggers and Carriers to display.
