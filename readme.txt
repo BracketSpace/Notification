@@ -285,6 +285,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Fixed] License keys not being passed to the Updater class.
+* [Changed] Non-public Post Types are cached too in case someone want's to unlock them.
 
 = 7.1.0 =
 * [Fixed] Carrier Recipients using the explicit slug, now it's configurable.
