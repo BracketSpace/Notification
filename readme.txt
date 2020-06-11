@@ -283,6 +283,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] License keys not being passed to the Updater class.
+
 = 7.1.0 =
 * [Fixed] Carrier Recipients using the explicit slug, now it's configurable.
 * [Added] Field class property multiple_section.
