@@ -124,6 +124,17 @@ class License {
 	}
 
 	/**
+	 * Gets the license key
+	 *
+	 * @since  [Next]
+	 * @return string
+	 */
+	public function get_key() {
+		$license_data = $this->get();
+		return $license_data->license_key;
+	}
+
+	/**
 	 * Saves single license info
 	 *
 	 * @since  5.1.0
