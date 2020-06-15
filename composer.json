@@ -36,6 +36,11 @@
 			"src/includes/functions/adapter.php"
 		]
 	},
+	"autoload-dev": {
+		"psr-4": {
+			"BracketSpace\\Notification\\Tests\\": "tests"
+		}
+	},
 	"require": {
 		"micropackage/requirements": "^1.0",
 		"typisttech/imposter-plugin": "^0.4.0",
