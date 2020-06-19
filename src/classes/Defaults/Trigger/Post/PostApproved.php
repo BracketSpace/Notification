@@ -135,6 +135,14 @@ class PostApproved extends PostTrigger {
 			'group'         => __( 'Approving user', 'notification' ),
 		] ) );
 
+		$this->add_merge_tag( new MergeTag\User\UserRole( [
+			'slug'          => $this->post_type . '_approving_user_role',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s approving user role', 'notification' ), $post_name ),
+			'property_name' => 'approving_user',
+			'group'         => __( 'Approving user', 'notification' ),
+		] ) );
+
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
 			'slug' => $this->post_type . '_approving_datetime',
 			// translators: singular post name.
