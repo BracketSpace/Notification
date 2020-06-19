@@ -286,6 +286,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 = [Next] =
 * [Fixed] License keys not being passed to the Updater class.
 * [Fixed] Cache refreshing on front-end.
+* [Fixed] `{comment_datetime}` merge tag being not rendered, thanks to Jean-Paul.
 * [Changed] Non-public Post Types are cached too in case someone want's to unlock them.
 * [Changed] Plugin settings are registered on front-end as well to ensure enough data is provided for the cache.
 

@@ -61,7 +61,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 
 		$this->post_creation_datetime     = strtotime( $this->post->post_date_gmt );
 		$this->post_modification_datetime = strtotime( $this->post->post_modified_gmt );
-		$this->comment_datetime           = strtotime( $this->comment->date );
+		$this->comment_datetime           = strtotime( $this->comment->comment_date_gmt );
 
 		$this->post_author = get_userdata( $this->post->post_author );
 
