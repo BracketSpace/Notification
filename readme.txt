@@ -289,6 +289,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Fixed] `{comment_datetime}` merge tag being not rendered, thanks to Jean-Paul.
 * [Changed] Non-public Post Types are cached too in case someone want's to unlock them.
 * [Changed] Plugin settings are registered on front-end as well to ensure enough data is provided for the cache.
+* [Added] Option in the Settings to log the Notification and still send it. Previously it was always suppressed.
 
 = 7.1.0 =
 * [Fixed] Carrier Recipients using the explicit slug, now it's configurable.

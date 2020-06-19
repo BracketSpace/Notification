@@ -12,3 +12,17 @@
 		});
 	});
 })(jQuery);
+
+(function($) {
+	$(document).ready(function() {
+		function toggleSuppressingSetting() {
+			var $log = $("#notification-setting-debugging-settings-debug_log");
+			var $suppressing = $(".notification-settings .field-debug_suppressing");
+			$log.is(':checked') ? $suppressing.show() : $suppressing.hide();
+		}
+
+		toggleSuppressingSetting();
+
+		$("#notification-setting-debugging-settings-debug_log").change(toggleSuppressingSetting);
+	});
+})(jQuery);
