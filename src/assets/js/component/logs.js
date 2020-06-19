@@ -16,13 +16,20 @@
 (function($) {
 	$(document).ready(function() {
 		function toggleSuppressingSetting() {
-			var $log = $("#notification-setting-debugging-settings-debug_log");
-			var $suppressing = $(".notification-settings .field-debug_suppressing");
-			$log.is(':checked') ? $suppressing.show() : $suppressing.hide();
+			const $log = $("#notification-setting-debugging-settings-debug_log");
+			const $suppressing = $(".notification-settings .field-debug_suppressing");
+
+			if ($log.is(":checked")) {
+				$suppressing.show();
+			} else {
+				$suppressing.hide();
+			}
 		}
 
 		toggleSuppressingSetting();
 
-		$("#notification-setting-debugging-settings-debug_log").change(toggleSuppressingSetting);
+		$("#notification-setting-debugging-settings-debug_log").change(
+			toggleSuppressingSetting
+		);
 	});
 })(jQuery);
