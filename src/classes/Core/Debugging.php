@@ -225,7 +225,7 @@ class Debugging {
 		notification_log( 'Core', 'notification', wp_json_encode( $data ) );
 
 		// Suppress when debug log is active.
-		if ( apply_filters( 'notification/debug/suppress', true, $data['notification'], $data['carrier'], $data['trigger'] ) === true ) {
+		if ( true === apply_filters( 'notification/debug/suppress', (bool) notification_get_setting( 'debugging/settings/debug_suppressing' ), $data['notification'], $data['carrier'], $data['trigger'] ) ) {
 			$carrier->suppress();
 		}
 
