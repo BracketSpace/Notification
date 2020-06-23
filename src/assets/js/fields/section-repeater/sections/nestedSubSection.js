@@ -1,6 +1,4 @@
 /* global Vue */
-// import { fieldHandler } from '../../repeater/mixins/fieldHandler';
-// import { repeaterHandler } from '../../repeater/mixins/repeaterHandler';
 import { sectionsModal } from "../mixins/sectionsModal";
 import { sectionsHandler } from "../mixins/sectionsHandler";
 
@@ -15,6 +13,7 @@ Vue.component("nested-sub-section", {
 				:type="type"
 				:parent-field="parentField"
 				:base-fields="baseFields"
+				:values="subFieldValues"
 				@sub-field-removed="removeField"
 			>
 			</section-sub-row>
@@ -26,7 +25,7 @@ Vue.component("nested-sub-section", {
 				v-show="modalOpen"
 			>
 				<template v-for="(section, index) in sections">
-					<span class="modal-section-label" v-if="testSection(section)" @click="addSubSection( section )">
+					<span class="modal-section-label" v-if="showSection(section)" @click="addSubSection( section )">
 						{{ section.label || section.name }}
 					</span>
 				</template>
@@ -69,8 +68,9 @@ Vue.component("nested-sub-section", {
 			if (sectionValues) {
 				sectionValues.forEach(value => {
 					const field = Object.keys(value)[0];
+					const fieldValue = Object.assign({}, value[field]);
 
-					this.addSubFieldSection(field, value[field]);
+					this.addSubFieldSection(field, fieldValue);
 				});
 			}
 		},
@@ -80,30 +80,24 @@ Vue.component("nested-sub-section", {
 		removeField(index) {
 			this.$delete(this.rows, index);
 		},
-		testSection(section) {
-			const sectionToAdd = section.name || section.label;
+		showSection(section) {
+			if (section.multiple) {
+				return true;
+			}
 
-			const forbidenSection = this.rows.filter(value => {
-				const addedSection = value.name || value.label;
+			const sectionName = section.name || section.label;
 
-				if (sectionToAdd === addedSection) {
+			const forbidenSection = this.rows.filter(rowSection => {
+				const addedSection = rowSection.name || rowSection.label;
+
+				if (sectionName === addedSection) {
 					return true;
 				}
 
-				if ("Button" === sectionToAdd || "Image" === sectionToAdd) {
-					if ("Button" === addedSection || "Image" === addedSection) {
-						return true;
-					}
-				}
-
-				return false;
+				return section.special && rowSection.special ? true : false;
 			});
 
-			if (0 < forbidenSection.length) {
-				return false;
-			}
-
-			return true;
+			return 0 < forbidenSection.length ? false : true;
 		},
 		testModal() {
 			const modal = this.$el.querySelector(".section-modal");

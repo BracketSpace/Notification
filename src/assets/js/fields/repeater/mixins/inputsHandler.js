@@ -36,9 +36,13 @@ export const inputsHandler = {
 				field.value = row[0].value;
 			}
 
+			const carrier =
+				this.$el.querySelector(".recipients-repeater") ||
+				this.$parent.$parent.$el.querySelector(".recipients-repeater");
+
 			const payload = {
 				type: field.value,
-				carrier: this.type.fieldCarrier
+				carrier: carrier.getAttribute("data-carrier")
 			};
 
 			let data = [];

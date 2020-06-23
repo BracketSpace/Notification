@@ -52,7 +52,7 @@ By default it supports Email, Webhook and Webhook plain JSON notifications.
   | Plugin installed | `plugin/installed` |
   | Plugin removed | `plugin/removed` |
   | Plugin updated | `plugin/updated` |
-  
+
 </details>
 
 <details>
@@ -65,11 +65,12 @@ By default it supports Email, Webhook and Webhook plain JSON notifications.
   | Post added | `post/{post_type_slug}/added` |
   | Post saved as a draft | `post/{post_type_slug}/drafted` |
   | Post sent for review | `post/{post_type_slug}/pending` |
+  | Post approved | `post/{post_type_slug}/approved` |
   | Post published | `post/{post_type_slug}/published` |
   | Post trashed | `post/{post_type_slug}/trashed` |
   | Post updated | `post/{post_type_slug}/updated` |
   | Post scheduled | `post/{post_type_slug}/scheduled` |
-  
+
 </details>
 
 <details>
@@ -93,7 +94,7 @@ By default it supports Email, Webhook and Webhook plain JSON notifications.
   | Theme installed | `theme/installed` |
   | Theme switched | `theme/switched` |
   | Theme updated | `theme/updated` |
-  
+
 </details>
 
 <details>
@@ -109,7 +110,7 @@ By default it supports Email, Webhook and Webhook plain JSON notifications.
   | User password reset request | `user/password_reset_request` |
   | User profile updated | `user/profile_updated` |
   | User role changed | `user/role_changed` |
-  
+
 </details>
 
 <details>

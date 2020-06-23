@@ -38,6 +38,7 @@ Vue.component("section-sub-row", {
 						:parent-field="parentField"
 						:input-type="inputType"
 						:section-name="sectionName"
+						:values="values"
 					/>
 				</template>
 				<template v-else-if="inputType === 'checkbox'">
@@ -54,6 +55,7 @@ Vue.component("section-sub-row", {
 				<template v-else>
 					<template v-for="(field, index) in row.fields">
 						<notification-text
+						v-if="sectionName"
 						:subfield="field"
 						:type="type"
 						:key-index="keyIndex"
@@ -61,6 +63,8 @@ Vue.component("section-sub-row", {
 						:parent-field="parentField"
 						:input-type="inputType"
 						:section-name="sectionName"
+						:values="values"
+						:multiple="row.multiple"
 						/>
 					</template>
 				</template>
@@ -75,7 +79,8 @@ Vue.component("section-sub-row", {
 		"selectedSection",
 		"type",
 		"parentField",
-		"baseFields"
+		"baseFields",
+		"values"
 	],
 	mixins: [fieldHandler, inputsHandler],
 	data() {
