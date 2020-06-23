@@ -316,14 +316,15 @@ class Settings {
 				'sanitize' => [ new CoreFields\Select(), 'sanitize' ],
 			] )
 			->add_field( [
-				'name'     => __( 'Unfiltered HTML', 'notification' ),
-				'slug'     => 'unfiltered_html',
-				'default'  => false,
-				'addons'   => [
+				'name'        => __( 'Unfiltered HTML', 'notification' ),
+				'slug'        => 'unfiltered_html',
+				'default'     => false,
+				'addons'      => [
 					'label' => __( 'Allow unfiltered HTML in email body', 'notification' ),
 				],
-				'render'   => [ new CoreFields\Checkbox(), 'input' ],
-				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+				'description' => __( 'This will change the Visual editor to code editor with HTML syntax', 'notification' ),
 			] )
 			->add_field( [
 				'name'        => __( 'From Name', 'notification' ),
