@@ -287,6 +287,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Fixed] License keys not being passed to the Updater class.
 * [Fixed] Cache refreshing on front-end.
 * [Fixed] `{comment_datetime}` merge tag being not rendered, thanks to @jphorn.
+* [Fixed] Repeater field values being incorrectly parsed.
 * [Changed] Non-public Post Types are cached too in case someone want's to unlock them.
 * [Changed] Plugin settings are registered on front-end as well to ensure enough data is provided for the cache.
 * [Added] Option in the Settings to log the Notification and still send it. Previously it was always suppressed.
