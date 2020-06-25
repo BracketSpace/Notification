@@ -126,7 +126,7 @@ class License {
 	/**
 	 * Gets the license key
 	 *
-	 * @since  [Next]
+	 * @since  7.1.1
 	 * @return string
 	 */
 	public function get_key() {

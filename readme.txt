@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 7.1.0
+Stable tag: 7.1.1
 Requires PHP: 7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -283,7 +283,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
-= [Next] =
+= 7.1.1 =
 * [Fixed] License keys not being passed to the Updater class.
 * [Fixed] Cache refreshing on front-end.
 * [Fixed] `{comment_datetime}` merge tag being not rendered, thanks to @jphorn.
