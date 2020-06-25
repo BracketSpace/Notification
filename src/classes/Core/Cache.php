@@ -122,7 +122,7 @@ class Cache {
 
 		$post_types = [];
 
-		foreach ( get_post_types( [ 'public' => true ], 'objects' ) as $post_type ) {
+		foreach ( get_post_types( [], 'objects' ) as $post_type ) {
 			$post_types[ $post_type->name ] = $post_type->labels->singular_name;
 		}
 

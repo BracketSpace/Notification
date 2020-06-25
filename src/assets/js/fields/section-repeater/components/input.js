@@ -58,12 +58,16 @@ Vue.component("notification-text", {
 		}
 	},
 	mounted() {
-		if (this.multiple && this.values[this.rowIndex][this.keyIndex]) {
-			this.value = this.values[this.rowIndex][this.keyIndex].field[
-				this.subfield.name.toLowerCase()
-			];
-		} else {
-			this.value = Object.freeze(this.subfield.value);
+		if (this.values && this.values[this.rowIndex]) {
+			const section = this.sectionName.toLowerCase();
+
+			if ("repeater" === this.inputType) {
+				this.value = this.values[this.rowIndex][this.keyIndex][section][
+					this.subfield.name.toLowerCase()
+				];
+			} else {
+				this.value = this.values[this.rowIndex][this.keyIndex][section];
+			}
 		}
 	}
 });

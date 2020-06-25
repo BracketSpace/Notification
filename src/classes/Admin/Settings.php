@@ -117,7 +117,11 @@ class Settings {
 	public function triggers_settings( $settings ) {
 
 		// Prepare post types for post types option select.
-		$post_types = apply_filters( 'notification/settings/triggers/valid_post_types', notification_cache( 'post_types' ) );
+		$post_types = [];
+		foreach ( get_post_types( [ 'public' => true ], 'objects' ) as $post_type ) {
+			$post_types[ $post_type->name ] = $post_type->labels->singular_name;
+		}
+		$post_types = apply_filters( 'notification/settings/triggers/valid_post_types', $post_types );
 
 		$triggers = $settings->add_section( __( 'Triggers', 'notification' ), 'triggers' );
 
@@ -312,14 +316,15 @@ class Settings {
 				'sanitize' => [ new CoreFields\Select(), 'sanitize' ],
 			] )
 			->add_field( [
-				'name'     => __( 'Unfiltered HTML', 'notification' ),
-				'slug'     => 'unfiltered_html',
-				'default'  => false,
-				'addons'   => [
+				'name'        => __( 'Unfiltered HTML', 'notification' ),
+				'slug'        => 'unfiltered_html',
+				'default'     => false,
+				'addons'      => [
 					'label' => __( 'Allow unfiltered HTML in email body', 'notification' ),
 				],
-				'render'   => [ new CoreFields\Checkbox(), 'input' ],
-				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+				'description' => __( 'This will change the Visual editor to code editor with HTML syntax', 'notification' ),
 			] )
 			->add_field( [
 				'name'        => __( 'From Name', 'notification' ),

@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 7.1.0
+Stable tag: 7.1.1
 Requires PHP: 7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -282,6 +282,16 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 7. Default email disabler
 
 == Changelog ==
+
+= 7.1.1 =
+* [Fixed] License keys not being passed to the Updater class.
+* [Fixed] Cache refreshing on front-end.
+* [Fixed] `{comment_datetime}` merge tag being not rendered, thanks to @jphorn.
+* [Fixed] Repeater field values being incorrectly parsed.
+* [Changed] Non-public Post Types are cached too in case someone want's to unlock them.
+* [Changed] Plugin settings are registered on front-end as well to ensure enough data is provided for the cache.
+* [Added] Option in the Settings to log the Notification and still send it. Previously it was always suppressed.
+* [Added] User role merge tag to all the Post triggers, thanks to Steven N.
 
 = 7.1.0 =
 * [Fixed] Carrier Recipients using the explicit slug, now it's configurable.

@@ -140,6 +140,14 @@ class PostPublished extends PostTrigger {
 			'group'         => __( 'Publishing user', 'notification' ),
 		] ) );
 
+		$this->add_merge_tag( new MergeTag\User\UserRole( [
+			'slug'          => $this->post_type . '_publishing_user_role',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s publishing user role', 'notification' ), $post_name ),
+			'property_name' => 'publishing_user',
+			'group'         => __( 'Publishing user', 'notification' ),
+		] ) );
+
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
 			'slug' => $this->post_type . '_publication_datetime',
 			// translators: singular post name.
