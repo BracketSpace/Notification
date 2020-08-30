@@ -287,7 +287,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] Field class property multiple_section.
 * [Added] Post approved Trigger.
 * [Added] Revision link for updated post.
-* [Added] Privacy Triggers for user erase/export data request and user erased/exported data.
+* [Added] Privacy Triggers for User erase/export data request and user erased/exported data.
 * [Added] Enable/Disable bulk actions for Notifications.
 * [Changed] Fields usage validation in Section Repeater Vue component now checks Field properties to determine if field can be used in the same row.
 * [Changed] Repeater/Recipients Carrier field based on Vue now displays an error when REST API endpoint is not reachable.
