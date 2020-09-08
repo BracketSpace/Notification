@@ -40,7 +40,7 @@ class AvatarUrl extends UrlTag {
 			[
 				'slug'        => 'user_avatar_url',
 				'name'        => __( 'User avatar url', 'notification' ),
-				'description' => __( 'Url to avatar', 'notification' ),
+				'description' => __( 'http://0.gravatar.com/avatar/320eab812ab24ef3dbaa2e6dc6e024e0?s=96&d=mm&r=g', 'notification' ),
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
 
