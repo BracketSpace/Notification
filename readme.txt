@@ -283,6 +283,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Added] User avatar url to comment trigger and comment replied trigger.
+
 = 7.1.1 =
 * [Fixed] License keys not being passed to the Updater class.
 * [Fixed] Cache refreshing on front-end.
