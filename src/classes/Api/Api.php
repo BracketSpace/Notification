@@ -34,27 +34,36 @@ class Api {
 	 */
 	public function __construct() {
 		$this->routes[] = [
-			'path' => '/repeater-field/(?P<id>\d+)',
-			'args' => [
+			'path'                => '/repeater-field/(?P<id>\d+)',
+			'args'                => [
 				'methods'  => 'POST',
 				'callback' => [ new Controller\RepeaterController(), 'send_response' ],
 			],
+			'permission_callback' => function () {
+				return current_user_can( 'manage_options' );
+			},
 		];
 
 		$this->routes[] = [
-			'path' => '/section-repeater-field/(?P<id>\d+)',
-			'args' => [
+			'path'                => '/section-repeater-field/(?P<id>\d+)',
+			'args'                => [
 				'methods'  => 'POST',
 				'callback' => [ new Controller\SectionRepeaterController(), 'send_response' ],
 			],
+			'permission_callback' => function () {
+				return current_user_can( 'manage_options' );
+			},
 		];
 
 		$this->routes[] = [
-			'path' => 'repeater-field/select',
-			'args' => [
+			'path'                => 'repeater-field/select',
+			'args'                => [
 				'methods'  => 'POST',
 				'callback' => [ new Controller\SelectInputController(), 'send_response' ],
 			],
+			'permission_callback' => function () {
+				return current_user_can( 'manage_options' );
+			},
 		];
 	}
 
