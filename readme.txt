@@ -283,7 +283,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
-= 7.1.2 =
+= [Next] =
 * [Added] User avatar url to comment trigger and comment replied trigger.
 
 = 7.1.1 =
