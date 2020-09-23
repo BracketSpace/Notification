@@ -285,6 +285,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Fixed] DB Upgrade running on every admin request, thanks to @pewu-dev.
+* [Added] User avatar url to comment trigger and comment replied trigger.
 
 = 7.1.1 =
 * [Fixed] License keys not being passed to the Updater class.
