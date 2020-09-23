@@ -88,7 +88,7 @@ class Upgrade {
 
 		$current_version = get_option( static::$db_setting_name );
 
-		if ( $current_version > static::$db_version ) {
+		if ( $current_version >= static::$db_version ) {
 			return;
 		}
 
