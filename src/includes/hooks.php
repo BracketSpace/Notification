@@ -8,7 +8,7 @@
  */
 
 // phpcs:disable
-add_action( 'wp_loaded', [ $this->component( 'core_cache' ), 'audo_cache_objects' ], 20, 0 );
+add_action( 'wp_loaded', [ $this->component( 'core_cache' ), 'auto_cache_objects' ], 20, 0 );
 add_filter( 'cron_schedules', [ $this->component( 'core_cron' ), 'register_intervals' ], 10, 1 );
 add_action( 'admin_init', [ $this->component( 'core_cron' ), 'register_check_updates_event' ], 10, 0 );
 add_action( 'init', [ $this->component( 'core_whitelabel' ), 'remove_defaults' ], 50, 0 );
@@ -17,7 +17,7 @@ add_action( 'admin_menu', [ $this->component( 'core_settings' ), 'register_page'
 add_action( 'wp_loaded', [ $this->component( 'core_settings' ), 'register_settings' ], 10, 0 );
 add_action( 'admin_init', [ $this->component( 'core_upgrade' ), 'check_upgrade' ], 10, 0 );
 add_action( 'notification/init', [ $this->component( 'core_upgrade' ), 'upgrade_db' ], 10, 0 );
-add_action( 'notification/init', [ $this->component( 'core_sync' ), 'load_local_json' ], 10, 0 );
+add_action( 'notification/elements', [ $this->component( 'core_sync' ), 'load_local_json' ], 10, 0 );
 add_action( 'notification/data/save/after', [ $this->component( 'core_sync' ), 'save_local_json' ], 10, 1 );
 add_action( 'delete_post', [ $this->component( 'core_sync' ), 'delete_local_json' ], 10, 1 );
 add_action( 'admin_post_notification_export', [ $this->component( 'admin_impexp' ), 'export_request' ], 10, 0 );
@@ -33,13 +33,15 @@ add_action( 'wp_trash_post', [ $this->component( 'admin_post_type' ), 'bypass_tr
 add_filter( 'wp_insert_post_data', [ $this->component( 'admin_post_type' ), 'create_notification_hash' ], 100, 2 );
 add_action( 'save_post_notification', [ $this->component( 'admin_post_type' ), 'save' ], 10, 3 );
 add_action( 'wp_ajax_change_notification_status', [ $this->component( 'admin_post_type' ), 'ajax_change_notification_status' ], 10, 0 );
-add_action( 'notification/init', [ $this->component( 'admin_post_type' ), 'setup_notifications' ], 9999999, 0 );
+add_action( 'notification/elements', [ $this->component( 'admin_post_type' ), 'setup_notifications' ], 9999999, 0 );
 add_filter( 'manage_notification_posts_columns', [ $this->component( 'admin_post_table' ), 'table_columns' ], 10, 1 );
 add_action( 'manage_notification_posts_custom_column', [ $this->component( 'admin_post_table' ), 'table_column_content' ], 10, 2 );
 add_filter( 'display_post_states', [ $this->component( 'admin_post_table' ), 'remove_status_display' ], 10, 2 );
 add_filter( 'post_row_actions', [ $this->component( 'admin_post_table' ), 'remove_quick_edit' ], 10, 2 );
 add_filter( 'post_row_actions', [ $this->component( 'admin_post_table' ), 'adjust_trash_link' ], 10, 2 );
 add_filter( 'bulk_actions-edit-notification', [ $this->component( 'admin_post_table' ), 'adjust_bulk_actions' ], 10, 1 );
+add_filter( 'handle_bulk_actions-edit-notification', [ $this->component( 'admin_post_table' ), 'handle_status_bulk_actions' ], 10, 3 );
+add_action( 'admin_notices', [ $this->component( 'admin_post_table' ), 'display_bulk_actions_admin_notices' ], 10, 0 );
 add_action( 'admin_menu', [ $this->component( 'admin_extensions' ), 'register_page' ], 10, 0 );
 add_action( 'admin_init', [ $this->component( 'admin_extensions' ), 'updater' ], 10, 0 );
 add_action( 'admin_post_notification_activate_extension', [ $this->component( 'admin_extensions' ), 'activate' ], 10, 0 );
@@ -56,7 +58,6 @@ add_action( 'add_meta_boxes', [ $this->component( 'admin_screen' ), 'add_merge_t
 add_action( 'add_meta_boxes', [ $this->component( 'admin_screen' ), 'metabox_cleanup' ], 999999999, 0 );
 add_action( 'current_screen', [ $this->component( 'admin_screen' ), 'add_help' ], 10, 1 );
 add_action( 'wp_ajax_get_merge_tags_for_trigger', [ $this->component( 'admin_screen' ), 'ajax_render_merge_tags' ], 10, 0 );
-add_action( 'wp_ajax_get_recipient_input', [ $this->component( 'admin_screen' ), 'ajax_get_recipient_input' ], 10, 0 );
 add_action( 'admin_menu', [ $this->component( 'admin_wizard' ), 'register_page' ], 30, 0 );
 add_action( 'current_screen', [ $this->component( 'admin_wizard' ), 'maybe_redirect' ], 10, 0 );
 add_action( 'admin_post_save_notification_wizard', [ $this->component( 'admin_wizard' ), 'save_settings' ], 10, 0 );
@@ -83,3 +84,4 @@ add_action( 'notification/trigger/action/did', [ $this->component( 'integration_
 add_filter( 'mce_external_plugins', [ $this->component( 'integration_mce' ), 'editor_full_link_modal' ], 10, 1 );
 add_action( 'notification/trigger/registered', [ $this->component( 'integration_2fa' ), 'add_trigger_action' ], 10, 1 );
 add_action( 'two_factor_user_authenticated', [ $this->component( 'integration_2fa' ), 'user_login_with_2fa' ], 10, 1 );
+add_action( 'rest_api_init', [ $this->component( 'repeater_api' ), 'rest_api_init' ], 10, 0 );
