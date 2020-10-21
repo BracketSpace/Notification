@@ -1,17 +1,13 @@
 <?php
 /**
- * Plugin Name: Notification
- * Description: Customisable email and webhook notifications with powerful developer friendly API for custom triggers and notifications. Send alerts easily.
- * Author: BracketSpace
- * Author URI: https://bracketspace.com
- * Version: 7.1.1
- * License: GPL3
- * Text Domain: notification
- * Domain Path: /languages
+ * Uninstall plugin file
  *
  * @package notification
  */
 
+/**
+ * Load the vendor autoload.
+ */
 require_once __DIR__ . '/vendor/autoload.php';
 
 global $wpdb;
