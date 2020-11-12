@@ -24,7 +24,7 @@ if ( isset( $un['notifications'] ) && 'true' === $un['notifications'] ) {
 // Remove settings.
 if ( isset( $un['settings'] ) && 'true' === $un['settings'] ) {
 
-	$settings_config = get_option( '_notification_settings_config' );
+	$settings_config = get_option('_transient_notification_settings_config');
 
 	foreach ( $settings_config as $section_slug => $section ) {
 		delete_option( 'notification_' . $section_slug );
