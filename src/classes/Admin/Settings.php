@@ -268,6 +268,18 @@ class Settings {
 				'sanitize' => [ new CoreFields\Select(), 'sanitize' ],
 			] );
 
+		$triggers->add_group( __( 'Privacy', 'notification' ), 'privacy' )
+			->add_field( [
+				'name'     => __( 'Privacy', 'notification' ),
+				'slug'     => 'enable',
+				'default'  => 'true',
+				'addons'   => [
+					'label' => __( 'Enable privacy triggers', 'notification' ),
+				],
+				'render'   => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] );
+
 	}
 
 	/**
