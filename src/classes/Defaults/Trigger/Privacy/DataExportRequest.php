@@ -17,7 +17,7 @@ class DataExportRequest extends PrivacyTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'privacy/data-export-request', __( 'Privacy Data Export Request', 'notification' ) );
+		parent::__construct( 'privacy/data-export-request', __( 'Personal Data Export Request', 'notification' ) );
 
 		$this->add_action( 'user_request_action_confirmed', 10, 1 );
 

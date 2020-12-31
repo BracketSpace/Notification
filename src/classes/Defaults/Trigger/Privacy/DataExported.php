@@ -19,7 +19,7 @@ class DataExported extends PrivacyTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'privacy/data-exported', __( 'Privacy Data Exported', 'notification' ) );
+		parent::__construct( 'privacy/data-exported', __( 'Personal Data Exported', 'notification' ) );
 
 		$this->add_action( 'wp_privacy_personal_data_export_file_created', 10, 5 );
 

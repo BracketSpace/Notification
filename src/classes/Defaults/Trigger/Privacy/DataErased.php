@@ -17,7 +17,7 @@ class DataErased extends PrivacyTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'privacy/data-erased', __( 'Privacy Data Erased', 'notification' ) );
+		parent::__construct( 'privacy/data-erased', __( 'Personal Data Erased', 'notification' ) );
 
 		$this->add_action( 'wp_privacy_personal_data_erased', 10, 1 );
 

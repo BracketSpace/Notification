@@ -17,7 +17,7 @@ class DataEraseRequest extends PrivacyTrigger {
 	 */
 	public function __construct() {
 
-		parent::__construct( 'privacy/data-erase-request', __( 'Privacy Data Erase Request', 'notification' ) );
+		parent::__construct( 'privacy/data-erase-request', __( 'Personal Data Erase Request', 'notification' ) );
 
 		$this->add_action( 'user_request_action_confirmed', 10, 1 );
 

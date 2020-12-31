@@ -145,6 +145,13 @@ WordPress:
 
 * Available updates notification
 
+Privacy:
+
+* Personal Data erased notification
+* Personal Data erase request notification
+* Personal Data exported notification
+* Personal Data export request notification
+
 Feel free to suggest new core triggers in the support forum.
 
 Each Trigger has own set of Merge Tags but you can use the Global Merge Tags anywhere.
