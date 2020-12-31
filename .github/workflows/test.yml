@@ -30,16 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['7.1', '7.2', '7.3', '7.4']
-        include:
-          - php: 7.1
-            imposter: 0.3.1
-          - php: 7.2
-            imposter: 0.6.0
-          - php: 7.3
-            imposter: 0.6.2
-          - php: 7.3
-            imposter: 0.6.2
+        php: ['7.3', '7.4']
     services:
       mysql:
         image: mysql:5.7
@@ -69,9 +60,7 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
-        run: |
-          composer update  "typisttech/imposter-plugin:${{ matrix.imposter }}" -W --no-interaction
-          composer install --no-progress
+        run: composer install --no-progress
       - name: PHPUnit
         run: |
           bin/install-wp-tests.sh wordpress_test root root 127.0.0.1:${{ job.services.mysql.ports['3306'] }} latest true
