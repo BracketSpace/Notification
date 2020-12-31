@@ -36,73 +36,74 @@ abstract class PrivacyTrigger extends Abstracts\Trigger {
 	 */
 	public function merge_tags() {
 
-		// Owner data.
-		$this->add_merge_tag( new MergeTag\StringTag( [
-			'slug'        => 'owner_data_ID',
-			'name'        => __( 'Owner data ID', 'notification' ),
-			'description' => __( '25', 'notification' ),
-			'example'     => true,
-			'resolver'    => function( $trigger ) {
-				return $trigger->user_object->data->ID;
-			},
-			'group'       => __( 'Owner data', 'notification' ),
+		// Data owner.
+		$this->add_merge_tag( new MergeTag\User\UserID( [
+			'slug'  => 'data_owner_ID',
+			'name'  => __( 'Data owner ID', 'notification' ),
+			'group' => __( 'Data owner', 'notification' ),
 		] ) );
 
-		$this->add_merge_tag( new MergeTag\StringTag( [
-			'slug'        => 'owner_data_login',
-			'name'        => __( 'Owner data login', 'notification' ),
-			'description' => __( 'johndoe', 'notification' ),
-			'example'     => true,
-			'resolver'    => function( $trigger ) {
-				return $trigger->user_object->data->user_login;
-			},
-			'group'       => __( 'Owner data', 'notification' ),
+		$this->add_merge_tag( new MergeTag\User\UserEmail( [
+			'slug'  => 'data_owner_email',
+			'name'  => __( 'Data owner email', 'notification' ),
+			'group' => __( 'Data owner', 'notification' ),
 		] ) );
 
-		$this->add_merge_tag( new MergeTag\StringTag( [
-			'slug'        => 'owner_data_nicename',
-			'name'        => __( 'Owner data nicename', 'notification' ),
-			'description' => __( 'Johhnie', 'notification' ),
-			'example'     => true,
-			'resolver'    => function( $trigger ) {
-				return $trigger->user_object->data->user_nicename;
-			},
-			'group'       => __( 'Owner data', 'notification' ),
+		$this->add_merge_tag( new MergeTag\User\UserLogin( [
+			'slug'  => 'data_owner_login',
+			'name'  => __( 'Data owner login', 'notification' ),
+			'group' => __( 'Data owner', 'notification' ),
 		] ) );
 
-		$this->add_merge_tag( new MergeTag\StringTag( [
-			'slug'        => 'owner_data_email',
-			'name'        => __( 'Owner data email', 'notification' ),
-			'description' => __( 'john@doe.com', 'notification' ),
-			'example'     => true,
-			'resolver'    => function( $trigger ) {
-				return $trigger->user_object->data->user_email;
-			},
-			'group'       => __( 'Owner data', 'notification' ),
+		$this->add_merge_tag( new MergeTag\User\UserFirstName( [
+			'slug'  => 'data_owner_first_name',
+			'name'  => __( 'Data owner first name', 'notification' ),
+			'group' => __( 'Data owner', 'notification' ),
 		] ) );
 
-		$this->add_merge_tag( new MergeTag\StringTag( [
-			'slug'        => 'owner_data_display_name',
-			'name'        => __( 'Owner data display name', 'notification' ),
-			'description' => __( 'John Doe', 'notification' ),
-			'example'     => true,
-			'resolver'    => function( $trigger ) {
-				return $trigger->user_object->data->display_name;
-			},
-			'group'       => __( 'Owner data', 'notification' ),
+		$this->add_merge_tag( new MergeTag\User\UserLastName( [
+			'slug'  => 'data_owner_last_name',
+			'name'  => __( 'Data owner last name', 'notification' ),
+			'group' => __( 'Data owner', 'notification' ),
 		] ) );
 
-		$this->add_merge_tag( new MergeTag\StringTag( [
-			'slug'        => 'owner_data_role',
-			'name'        => __( 'Owner data role', 'notification' ),
-			'description' => __( 'Subscriber', 'notification' ),
-			'example'     => true,
-			'resolver'    => function( $trigger ) {
-				return $trigger->user_object->roles[0];
-			},
-			'group'       => __( 'Owner data', 'notification' ),
+		$this->add_merge_tag( new MergeTag\User\UserNicename( [
+			'slug'  => 'data_owner_nicename',
+			'name'  => __( 'Data owner nicename', 'notification' ),
+			'group' => __( 'Data owner', 'notification' ),
 		] ) );
 
+		$this->add_merge_tag( new MergeTag\User\UserDisplayName( [
+			'slug'  => 'data_owner_display_name',
+			'name'  => __( 'Data owner display name', 'notification' ),
+			'group' => __( 'Data owner', 'notification' ),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\User\UserRole( [
+			'slug'  => 'data_owner_role',
+			'name'  => __( 'Data owner role', 'notification' ),
+			'group' => __( 'Data owner', 'notification' ),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\User\Avatar( [
+			'slug'  => 'data_owner_avatar',
+			'name'  => __( 'Data owner avatar', 'notification' ),
+			'group' => __( 'Data owner', 'notification' ),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\User\AvatarUrl( [
+			'slug'  => 'data_owner_avatar_url',
+			'name'  => __( 'Data owner avatar url', 'notification' ),
+			'group' => __( 'Data owner', 'notification' ),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\User\UserBio( [
+			'slug'  => 'data_owner_bio',
+			'name'  => __( 'Data owner bio', 'notification' ),
+			'group' => __( 'Data owner', 'notification' ),
+		] ) );
+
+		// Date and time.
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
 			'slug' => 'data_operation_time',
 			'name' => __( 'Operation date and time', 'notification' ),
