@@ -1,17 +1,19 @@
 name: Release
 
-on: 
+on:
   workflow_dispatch:
     inputs:
       new_version:
-        description: 'New version'     
-        required: true 
+        description: 'New version'
+        required: true
 
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
     steps:
+      - name: Set PHP version
+        run: sudo update-alternatives --set php /usr/bin/php7.4
       - name: Checkout master
         uses: actions/checkout@v1
         with:
