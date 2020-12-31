@@ -297,6 +297,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Fixed] Uninstall process.
 * [Fixed] TinyMCE plugin error.
 * [Fixed] Notice when Suppressing is active and Debug log is inactive.
+* [Fixed] Cache refreshing while running under WP CLI, thanks to @mircobabini.
 * [Added] User avatar url to comment trigger and comment replied trigger.
 * [Added] Privacy Triggers for User erase/export data request and user erased/exported data.
 
