@@ -235,7 +235,6 @@ class Runtime {
 		$this->add_component( 'integration_gb', new Integration\Gutenberg() );
 		$this->add_component( 'integration_cf', new Integration\CustomFields() );
 		$this->add_component( 'integration_bp', new Integration\BackgroundProcessing() );
-		$this->add_component( 'integration_mce', new Integration\TinyMce() );
 		$this->add_component( 'integration_2fa', new Integration\TwoFactor() );
 
 		$this->add_component( 'repeater_api', new Api\Api() );
