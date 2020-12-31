@@ -2,7 +2,7 @@
 Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
-Tested up to: 5.4
+Tested up to: 5.6
 Stable tag: 7.1.1
 Requires PHP: 7.1
 License: GPLv3
