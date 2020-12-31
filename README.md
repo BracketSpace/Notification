@@ -138,11 +138,11 @@ This covers all the taxonomies. Use `category`, `post_tag`, `another_taxonomy` i
 
 The Notification plugin have multiple APIs which gives you the ability to customize the plugin. The most important ones are:
 
-- [Trigger API](https://docs.bracketspace.com/notification/developer/triggers/custom-trigger) - you can wrap any WordPress' `do_action` into a Trigger.
-- [Carrier API](https://docs.bracketspace.com/notification/developer/carriers/custom-carrier) - you can register a custom Carrier, like a service connection. Carriers are independent from Triggers and works with all default and custom Triggers out of the box. It's packed with configuration form builder.
-- [Recipient API](https://docs.bracketspace.com/notification/developer/recipients/custom-recipient) - you can register a custom Recipients for your Carriers. Like automatically pulled users from external database or simply custom user query with meta etc.
-- Resolver API - you can create another Merge Tag resolver, ie. `{customtag param1}` which is handled differently than a standard Merge Tag.
-- Settings API - for quick plugin Settings registration
+  - [Trigger API](https://docs.bracketspace.com/notification/developer/triggers/custom-trigger) - you can wrap any WordPress' `do_action` into a Trigger.
+  - [Carrier API](https://docs.bracketspace.com/notification/developer/carriers/custom-carrier) - you can register a custom Carrier, like a service connection. Carriers are independent from Triggers and works with   all default and custom Triggers out of the box. It's packed with configuration form builder.
+  - [Recipient API](https://docs.bracketspace.com/notification/developer/recipients/custom-recipient) - you can register a custom Recipients for your Carriers. Like automatically pulled users from external database or simply custom user query with meta etc.
+  - Resolver API - you can create another Merge Tag resolver, ie. `{customtag param1}` which is handled differently than a standard Merge Tag.
+  - Settings API - for quick plugin Settings registration
 
 ### Bundling the plugin
 
