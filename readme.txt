@@ -288,6 +288,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Fixed] Missing permission_callback argument in REST endpoints.
 * [Fixed] UserPasswordResetLink Merge Tag property names, thanks to @mircobabini.
 * [Fixed] Uninstall process.
+* [Fixed] TinyMCE plugin error.
 * [Added] User avatar url to comment trigger and comment replied trigger.
 * [Added] Privacy Triggers for User erase/export data request and user erased/exported data.
 
