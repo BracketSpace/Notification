@@ -5,7 +5,7 @@
  * @package notification
  */
 
-namespace BracketSpace\Notification\Tests\Notifications;
+namespace BracketSpace\Notification\Tests\Carriers;
 use BracketSpace\Notification\Tests\Helpers\Registerer;
 
 class TestCarierStore extends \WP_UnitTestCase {

@@ -145,6 +145,14 @@ class PostUpdated extends PostTrigger {
 			'group'         => __( 'Updating user', 'notification' ),
 		] ) );
 
+		$this->add_merge_tag( new MergeTag\User\UserRole( [
+			'slug'          => $this->post_type . '_updating_user_role',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s updating user role', 'notification' ), $post_name ),
+			'property_name' => 'updating_user',
+			'group'         => __( 'Updating user', 'notification' ),
+		] ) );
+
 		// add revision link tag if revisions are enabled.
 		if ( defined( 'WP_POST_REVISIONS' ) && WP_POST_REVISIONS ) {
 			$this->add_merge_tag( new MergeTag\Post\RevisionLink() );

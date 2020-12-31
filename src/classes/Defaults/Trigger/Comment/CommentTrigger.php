@@ -61,7 +61,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 
 		$this->post_creation_datetime     = strtotime( $this->post->post_date_gmt );
 		$this->post_modification_datetime = strtotime( $this->post->post_modified_gmt );
-		$this->comment_datetime           = strtotime( $this->comment->date );
+		$this->comment_datetime           = strtotime( $this->comment->comment_date_gmt );
 
 		$this->post_author = get_userdata( $this->post->post_author );
 
@@ -156,6 +156,14 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 			'slug'  => 'comment_author_user_avatar',
 			// Translators: Comment type name.
 			'name'  => sprintf( __( '%s author user avatar', 'notification' ), self::get_current_comment_type_name() ),
+			// Translators: comment type author.
+			'group' => sprintf( __( '%s author', 'notification' ), $this->get_current_comment_type_name() ),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\User\AvatarUrl( [
+			'slug'  => 'comment_author_user_avatar_url',
+			// Translators: Comment type name.
+			'name'  => sprintf( __( '%s author user avatar url', 'notification' ), self::get_current_comment_type_name() ),
 			// Translators: comment type author.
 			'group' => sprintf( __( '%s author', 'notification' ), $this->get_current_comment_type_name() ),
 		] ) );

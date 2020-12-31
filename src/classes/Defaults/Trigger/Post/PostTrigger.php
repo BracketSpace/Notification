@@ -229,6 +229,14 @@ abstract class PostTrigger extends Abstracts\Trigger {
 			'group'         => __( 'Author', 'notification' ),
 		] ) );
 
+		$this->add_merge_tag( new MergeTag\User\UserRole( [
+			'slug'          => $this->post_type . '_author_user_role',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s author user role', 'notification' ), $post_name ),
+			'property_name' => 'author',
+			'group'         => __( 'Author', 'notification' ),
+		] ) );
+
 		// Last updated by.
 		$this->add_merge_tag( new MergeTag\User\UserID( [
 			'slug'          => $this->post_type . '_last_editor_ID',
@@ -290,6 +298,14 @@ abstract class PostTrigger extends Abstracts\Trigger {
 			'slug'          => $this->post_type . '_last_editor_avatar',
 			// translators: singular post name.
 			'name'          => sprintf( __( '%s last editor avatar', 'notification' ), $post_name ),
+			'property_name' => 'last_editor',
+			'group'         => __( 'Last editor', 'notification' ),
+		] ) );
+
+		$this->add_merge_tag( new MergeTag\User\UserRole( [
+			'slug'          => $this->post_type . '_last_editor_role',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s last editor role', 'notification' ), $post_name ),
 			'property_name' => 'last_editor',
 			'group'         => __( 'Last editor', 'notification' ),
 		] ) );

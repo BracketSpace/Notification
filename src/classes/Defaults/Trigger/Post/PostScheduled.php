@@ -149,6 +149,14 @@ class PostScheduled extends PostTrigger {
 			'group'         => __( 'Scheduling user', 'notification' ),
 		] ) );
 
+		$this->add_merge_tag( new MergeTag\User\UserRole( [
+			'slug'          => $this->post_type . '_scheduling_user_role',
+			// translators: singular post name.
+			'name'          => sprintf( __( '%s scheduling user role', 'notification' ), $post_name ),
+			'property_name' => 'scheduling_user',
+			'group'         => __( 'Scheduling user', 'notification' ),
+		] ) );
+
 	}
 
 }
