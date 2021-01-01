@@ -2,8 +2,8 @@
 Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
-Tested up to: 5.4
-Stable tag: 7.1.1
+Tested up to: 5.6
+Stable tag: 7.2.0
 Requires PHP: 7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -145,6 +145,13 @@ WordPress:
 
 * Available updates notification
 
+Privacy:
+
+* Personal Data erased notification
+* Personal Data erase request notification
+* Personal Data exported notification
+* Personal Data export request notification
+
 Feel free to suggest new core triggers in the support forum.
 
 Each Trigger has own set of Merge Tags but you can use the Global Merge Tags anywhere.
@@ -282,6 +289,17 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 7. Default email disabler
 
 == Changelog ==
+
+= 7.2.0 =
+* [Fixed] DB Upgrade running on every admin request, thanks to @pewu-dev.
+* [Fixed] Missing permission_callback argument in REST endpoints.
+* [Fixed] UserPasswordResetLink Merge Tag property names, thanks to @mircobabini.
+* [Fixed] Uninstall process.
+* [Fixed] TinyMCE plugin error.
+* [Fixed] Notice when Suppressing is active and Debug log is inactive.
+* [Fixed] Cache refreshing while running under WP CLI, thanks to @mircobabini.
+* [Added] User avatar url to comment trigger and comment replied trigger.
+* [Added] Privacy Triggers for User erase/export data request and user erased/exported data.
 
 = 7.1.1 =
 * [Fixed] License keys not being passed to the Updater class.

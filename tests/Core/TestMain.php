@@ -64,7 +64,6 @@ class TestMain extends \WP_UnitTestCase {
 		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\Gutenberg', \Notification::component( 'integration_gb' ) );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\CustomFields', \Notification::component( 'integration_cf' ) );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\BackgroundProcessing', \Notification::component( 'integration_bp' ) );
-		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\TinyMce', \Notification::component( 'integration_mce' ) );
 
 	}
 

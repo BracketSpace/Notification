@@ -115,3 +115,11 @@ if ( notification_get_setting( 'triggers/theme/enable' ) ) {
 	notification_register_trigger( new Trigger\Theme\Updated() );
 	notification_register_trigger( new Trigger\Theme\Installed() );
 }
+
+if ( notification_get_setting( 'triggers/privacy/enable' ) ) {
+	notification_register_trigger( new Trigger\Privacy\DataEraseRequest() );
+	notification_register_trigger( new Trigger\Privacy\DataErased() );
+	notification_register_trigger( new Trigger\Privacy\DataExportRequest() );
+	notification_register_trigger( new Trigger\Privacy\DataExported() );
+}
+

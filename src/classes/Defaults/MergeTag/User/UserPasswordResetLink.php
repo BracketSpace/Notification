@@ -40,11 +40,11 @@ class UserPasswordResetLink extends StringTag {
 	public function __construct() {
 
 		if ( isset( $params['key_property_name'] ) && ! empty( $params['key_property_name'] ) ) {
-			$this->property_name = $params['key_property_name'];
+			$this->key_property_name = $params['key_property_name'];
 		}
 
 		if ( isset( $params['user_property_name'] ) && ! empty( $params['user_property_name'] ) ) {
-			$this->property_name = $params['user_property_name'];
+			$this->user_property_name = $params['user_property_name'];
 		}
 
 		$args = wp_parse_args(
