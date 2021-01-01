@@ -2,8 +2,8 @@
 Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
-Tested up to: 5.4
-Stable tag: 7.0.4
+Tested up to: 5.6
+Stable tag: 7.1.1
 Requires PHP: 7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -88,6 +88,7 @@ Post Type:
 * Post drafted (saved as a draft) notification
 * Updated post notification
 * Post send for review (pending post) notification
+* Post approved (pending to publish) notification
 * Post moved to trash notification
 
 The Notification plugin supports any Custom Post Type out of the box.
@@ -143,6 +144,13 @@ Theme:
 WordPress:
 
 * Available updates notification
+
+Privacy:
+
+* Personal Data erased notification
+* Personal Data erase request notification
+* Personal Data exported notification
+* Personal Data export request notification
 
 Feel free to suggest new core triggers in the support forum.
 
@@ -283,10 +291,36 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
+* [Fixed] DB Upgrade running on every admin request, thanks to @pewu-dev.
+* [Fixed] Missing permission_callback argument in REST endpoints.
+* [Fixed] UserPasswordResetLink Merge Tag property names, thanks to @mircobabini.
+* [Fixed] Uninstall process.
+* [Fixed] TinyMCE plugin error.
+* [Fixed] Notice when Suppressing is active and Debug log is inactive.
+* [Fixed] Cache refreshing while running under WP CLI, thanks to @mircobabini.
+* [Added] User avatar url to comment trigger and comment replied trigger.
+* [Added] Privacy Triggers for User erase/export data request and user erased/exported data.
+* [Added] User email change request Trigger.
+* [Added] Admin email change request Trigger.
+
+= 7.1.1 =
+* [Fixed] License keys not being passed to the Updater class.
+* [Fixed] Cache refreshing on front-end.
+* [Fixed] `{comment_datetime}` merge tag being not rendered, thanks to @jphorn.
+* [Fixed] Repeater field values being incorrectly parsed.
+* [Changed] Non-public Post Types are cached too in case someone want's to unlock them.
+* [Changed] Plugin settings are registered on front-end as well to ensure enough data is provided for the cache.
+* [Added] Option in the Settings to log the Notification and still send it. Previously it was always suppressed.
+* [Added] User role merge tag to all the Post triggers, thanks to Steven N.
+
+= 7.1.0 =
+* [Fixed] Carrier Recipients using the explicit slug, now it's configurable.
+* [Added] Field class property multiple_section.
 * [Added] Post approved Trigger.
 * [Added] Revision link for updated post.
-* [Added] Trigger for user email address change request.
-* [Added] Trigger for admin email address change request.
+* [Added] Enable/Disable bulk actions for Notifications.
+* [Changed] Fields usage validation in Section Repeater Vue component now checks Field properties to determine if field can be used in the same row.
+* [Changed] Repeater/Recipients Carrier field based on Vue now displays an error when REST API endpoint is not reachable.
 
 = 7.0.4 =
 * [Fixed] Cache refresh process causing no Triggers and Carriers to display.

@@ -223,7 +223,7 @@ class Extensions {
 				$extension['slug'],
 				[
 					'version'   => $wp_plugin['Version'],
-					'license'   => '',
+					'license'   => $license->get_key(),
 					'item_name' => $extension['edd']['item_name'],
 					'author'    => $extension['author'],
 					'beta'      => false,

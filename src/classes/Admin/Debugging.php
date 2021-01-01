@@ -26,13 +26,23 @@ class Debugging {
 
 		$debugging->add_group( __( 'Settings', 'notification' ), 'settings' )
 			->add_field( [
-				'name'        => __( 'Notification log', 'notification' ),
-				'slug'        => 'debug_log',
-				'default'     => false,
-				'addons'      => [
+				'name'     => __( 'Notification log', 'notification' ),
+				'slug'     => 'debug_log',
+				'default'  => false,
+				'addons'   => [
 					'label' => __( 'Enable Notification logging', 'notification' ),
 				],
-				'description' => __( 'While log is active, no notifications are sent', 'notification' ),
+				'render'   => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Suppress Notifications', 'notification' ),
+				'slug'        => 'debug_suppressing',
+				'default'     => 'true',
+				'addons'      => [
+					'label' => __( 'Suppress Notifications while logging is active', 'notification' ),
+				],
+				'description' => __( 'While suppressing is active, no notifications are sent', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
 				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] )
@@ -158,7 +168,7 @@ class Debugging {
 	 */
 	public function debug_warning() {
 
-		if ( 'notification' !== get_post_type() || ! notification_get_setting( 'debugging/settings/debug_log' ) ) {
+		if ( 'notification' !== get_post_type() || ! notification_get_setting( 'debugging/settings/debug_log' ) || ! notification_get_setting( 'debugging/settings/debug_suppressing' ) ) {
 			return;
 		}
 

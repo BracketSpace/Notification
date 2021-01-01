@@ -55,12 +55,15 @@ class SectionRepeaterController extends RepeaterController {
 					$sections = [];
 
 					foreach ( $field['sections'] as $section ) {
-						$section_field           = [];
-						$section_field['name']   = $section['name'];
-						$base_sub_fields         = $this->form_field_data( $section['fields'] );
-						$groupped_sub_fields     = $this->group_fields( $base_sub_fields );
-						$section_field['fields'] = $groupped_sub_fields;
-						$sections                = array_merge( $sections, $section_field );
+
+						$section_field             = [];
+						$section_field['name']     = $section['name'];
+						$section_field['multiple'] = $section['multiple_section'];
+						$section_field['special']  = $section['special_section'];
+						$base_sub_fields           = $this->form_field_data( $section['fields'] );
+						$groupped_sub_fields       = $this->group_fields( $base_sub_fields );
+						$section_field['fields']   = $groupped_sub_fields;
+						$sections                  = array_merge( $sections, $section_field );
 
 					}
 

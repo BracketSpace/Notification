@@ -70,9 +70,7 @@ class Settings extends SettingsAPI {
 	 * @return void
 	 */
 	public function register_settings() {
-		if ( is_admin() ) {
-			do_action( 'notification/settings/register', $this );
-		}
+		do_action( 'notification/settings/register', $this );
 	}
 
 }

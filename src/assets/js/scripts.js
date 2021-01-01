@@ -15,7 +15,6 @@ import "./component/remove-confirmation.js";
 import "./component/settings.js";
 import "./component/switch.js";
 import "./component/sync.js";
-import "./component/tinymce-integrator.js";
 import "./component/trigger.js";
 import "./component/wizard.js";
 
@@ -33,7 +32,7 @@ import "./fields/repeater/components/repeater/nestedSubField";
 import "./fields/repeater/components/repeater/repeaterSubRow";
 import "./fields/repeater/mixins/init";
 import "./fields/repeater/nestedRepeater";
-//Section Repeater
+// Section Repeater
 import "./fields/section-repeater/components/select";
 import "./fields/section-repeater/components/input";
 import "./fields/section-repeater/components/checkbox";

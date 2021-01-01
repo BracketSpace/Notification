@@ -65,7 +65,7 @@ class Cache {
 			}
 		}
 
-		if ( $cache_refreshed && ! isset( $_GET['notification-cache-refresh'] ) ) { // phpcs:ignore
+		if ( $cache_refreshed && ! isset( $_GET['notification-cache-refresh'] ) && ! ( defined( 'WP_CLI' ) && WP_CLI ) ) { // phpcs:ignore
 			wp_safe_redirect( add_query_arg( 'notification-cache-refresh', 1 ) );
 		}
 
@@ -122,7 +122,7 @@ class Cache {
 
 		$post_types = [];
 
-		foreach ( get_post_types( [ 'public' => true ], 'objects' ) as $post_type ) {
+		foreach ( get_post_types( [], 'objects' ) as $post_type ) {
 			$post_types[ $post_type->name ] = $post_type->labels->singular_name;
 		}
 
