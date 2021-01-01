@@ -43,15 +43,18 @@
 	},
 	"require": {
 		"micropackage/requirements": "^1.0",
-		"typisttech/imposter-plugin": "^0.6.2",
 		"micropackage/dochooks": "^1.0",
 		"micropackage/filesystem": "^1.1",
 		"micropackage/templates": "^1.1",
-		"micropackage/ajax": "^1.0"
+		"micropackage/ajax": "^1.0",
+		"typisttech/imposter-plugin": "^0.6.2"
 	},
 	"extra": {
 		"imposter": {
 			"namespace": "BracketSpace\\Notification\\Vendor"
 		}
-	}
+	},
+	"config": {
+        "platform-check": false
+    }
 }
