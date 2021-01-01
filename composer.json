@@ -12,8 +12,7 @@
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
 		"phpcompatibility/php-compatibility": "^9.1",
 		"wp-coding-standards/wpcs": "^2.0",
-		"phpunit/phpunit": "^6.5.5",
-		"typisttech/imposter-plugin": "^0.6.2"
+		"phpunit/phpunit": "^6.5.5"
 	},
 	"autoload": {
 		"psr-4": {
@@ -47,11 +46,15 @@
 		"micropackage/dochooks": "^1.0",
 		"micropackage/filesystem": "^1.1",
 		"micropackage/templates": "^1.1",
-		"micropackage/ajax": "^1.0"
+		"micropackage/ajax": "^1.0",
+		"typisttech/imposter-plugin": "^0.6.2"
 	},
 	"extra": {
 		"imposter": {
 			"namespace": "BracketSpace\\Notification\\Vendor"
 		}
-	}
+	},
+	"config": {
+        "platform-check": false
+    }
 }
