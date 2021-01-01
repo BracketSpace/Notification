@@ -12,7 +12,8 @@
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
 		"phpcompatibility/php-compatibility": "^9.1",
 		"wp-coding-standards/wpcs": "^2.0",
-		"phpunit/phpunit": "^6.5.5"
+		"phpunit/phpunit": "^6.5.5",
+		"typisttech/imposter-plugin": "^0.6.2"
 	},
 	"autoload": {
 		"psr-4": {
@@ -43,7 +44,6 @@
 	},
 	"require": {
 		"micropackage/requirements": "^1.0",
-		"typisttech/imposter-plugin": "^0.6.2",
 		"micropackage/dochooks": "^1.0",
 		"micropackage/filesystem": "^1.1",
 		"micropackage/templates": "^1.1",

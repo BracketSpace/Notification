@@ -290,6 +290,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Composer dev dependency causing platform requirements to go up all the way to PHP 7.3, thanks to @saowp.
+
 = 7.2.0 =
 * [Fixed] DB Upgrade running on every admin request, thanks to @pewu-dev.
 * [Fixed] Missing permission_callback argument in REST endpoints.
