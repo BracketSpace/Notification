@@ -292,6 +292,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Fixed] Wrong implementation of permission_callback while defining REST endpoints, thanks to @jphorn.
+* [Fixed] REST endpoints authentication.
 
 = 7.2.1 =
 * [Fixed] Composer dev dependency causing platform requirements to go up all the way to PHP 7.3, thanks to @saowp.

@@ -61,6 +61,10 @@ class Role extends Abstracts\Recipient {
 	 */
 	public function input() {
 
+		if ( ! function_exists( 'get_editable_roles' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/user.php';
+		}
+
 		$roles = get_editable_roles();
 		$opts  = [];
 
