@@ -14,8 +14,8 @@ $cached_post_types = notification_cache( 'post_types' );
 if ( $post_types ) {
 	foreach ( $post_types as $post_type ) {
 
-		// Skip if the post type cache wasn't set.
-		if ( ! array_key_exists( $post_type, $cached_post_types ) ) {
+		// Skip if the post type cache isn't an array or wasn't set.
+		if ( !is_array( $cached_post_types ) || ! array_key_exists( $post_type, $cached_post_types ) ) {
 			continue;
 		}
 
