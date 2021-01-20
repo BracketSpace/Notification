@@ -15,7 +15,7 @@ if ( $post_types ) {
 	foreach ( $post_types as $post_type ) {
 
 		// Skip if the post type cache wasn't set.
-		if ( ! array_key_exists( $post_type, $cached_post_types ) ) {
+		if ( ! array_key_exists( $post_type, (array) $cached_post_types ) ) {
 			continue;
 		}
 
