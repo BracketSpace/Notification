@@ -154,7 +154,7 @@ class Screen {
 			'carriers_added_count'  => count( $carriers ),
 			'carriers_exists_count' => count( $exists ),
 			'carriers'              => $carriers,
-			'carriers_exists'       => $exists,
+			'carriers_exists'       => (array) $exists,
 		] );
 
 	}
