@@ -15,7 +15,7 @@ if ( $post_types ) {
 	foreach ( $post_types as $post_type ) {
 
 		// Skip if the post type cache wasn't set.
-		if ( ! array_key_exists( $post_type, $cached_post_types ) ) {
+		if ( ! array_key_exists( $post_type, (array) $cached_post_types ) ) {
 			continue;
 		}
 
@@ -39,7 +39,7 @@ if ( $taxonomies ) {
 	foreach ( $taxonomies as $taxonomy ) {
 
 		// Skip if the taxonomy cache wasn't set.
-		if ( ! array_key_exists( $taxonomy, $cached_taxonomies ) ) {
+		if ( ! array_key_exists( $taxonomy, (array) $cached_taxonomies ) ) {
 			continue;
 		}
 
@@ -80,7 +80,7 @@ if ( $comment_types ) {
 	foreach ( $comment_types as $comment_type ) {
 
 		// Skip if the comment type cache wasn't set.
-		if ( ! array_key_exists( $comment_type, $cached_comment_types ) ) {
+		if ( ! array_key_exists( $comment_type, (array) $cached_comment_types ) ) {
 			continue;
 		}
 

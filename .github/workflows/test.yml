@@ -36,13 +36,13 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: wordpress_test
+          MYSQL_DATABASE: wp_phpunit_tests
         ports:
           - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - name: Setup PHP ${{ matrix.php }}
-        uses: shivammathur/setup-php@v1
+        uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
@@ -62,9 +62,9 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-progress
       - name: PHPUnit
-        run: |
-          bin/install-wp-tests.sh wordpress_test root root 127.0.0.1:${{ job.services.mysql.ports['3306'] }} latest true
-          vendor/bin/phpunit
+        env:
+          WP_DB_HOST: 127.0.0.1:${{ job.services.mysql.ports['3306'] }}
+        run: vendor/bin/phpunit
   css:
     name: CSS Lint
     runs-on: ubuntu-latest
