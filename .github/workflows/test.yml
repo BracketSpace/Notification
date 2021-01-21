@@ -62,6 +62,8 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-progress
       - name: PHPUnit
+        env:
+          WP_DB_HOST: 127.0.0.1:${{ job.services.mysql.ports['3306'] }}
         run: vendor/bin/phpunit
   css:
     name: CSS Lint
