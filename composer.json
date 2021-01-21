@@ -12,7 +12,9 @@
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
 		"phpcompatibility/php-compatibility": "^9.3",
 		"wp-coding-standards/wpcs": "^2.0",
-		"phpunit/phpunit": "^7.5"
+		"phpunit/phpunit": "^6.5",
+		"wp-phpunit/wp-phpunit": "^5.6",
+		"roots/wordpress": "^5.6"
 	},
 	"autoload": {
 		"psr-4": {
@@ -51,8 +53,13 @@
 	},
 	"extra": {
 		"imposter": {
-			"namespace": "BracketSpace\\Notification\\Vendor"
-		}
+			"namespace": "BracketSpace\\Notification\\Vendor",
+			"excludes": [
+				"roots/wordpress",
+				"wp-phpunit/wp-phpunit"
+			]
+		},
+		"wordpress-install-dir": "tests/_wordpress"
 	},
 	"config": {
         "platform-check": false
