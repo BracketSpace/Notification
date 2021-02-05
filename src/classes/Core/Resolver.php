@@ -55,7 +55,11 @@ class Resolver {
 		$resolvers = $store->get_items();
 
 		usort( $resolvers, function( $a, $b ) {
-			return $a->get_priority() > $b->get_priority();
+			if ( $a->get_priority() === $b->get_priority() ) {
+				return 0;
+			}
+
+			return $a->get_priority() < $b->get_priority() ? -1 : 1;
 		} );
 
 		return $resolvers;
@@ -70,7 +74,7 @@ class Resolver {
 	 * @return string
 	 */
 	public function clear( $value ) {
-		return preg_replace( '/(?<!\!)\{(?:(.*))*\}/', '', $value );
+		return preg_replace( '/(?<!\!)\{(?:[^{}])*\}/', '', $value );
 	}
 
 }

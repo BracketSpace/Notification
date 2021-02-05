@@ -290,6 +290,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Merge Tag cleaning regex which could lead in some cases to wiping entire Carrier field.
+
 = 7.2.2 =
 * [Fixed] Wrong implementation of permission_callback while defining REST endpoints, thanks to @jphorn.
 * [Fixed] REST endpoints authentication.
