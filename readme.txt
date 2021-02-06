@@ -292,6 +292,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Fixed] Merge Tag cleaning regex which could lead in some cases to wiping entire Carrier field.
+* [Added] [Filter for Background Processing](https://docs.bracketspace.com/notification/developer/snippets/general/background-processing-filter) which can be used to enable or disable particular trigger queueing.
 
 = 7.2.2 =
 * [Fixed] Wrong implementation of permission_callback while defining REST endpoints, thanks to @jphorn.
