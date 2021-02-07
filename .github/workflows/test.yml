@@ -47,6 +47,28 @@ jobs:
         run: composer install --no-progress
       - name: Analyze
         run: composer phpstan
+  phplint:
+    name: PHP Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set PHP version
+        run: sudo update-alternatives --set php /usr/bin/php7.4
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup variables
+        id: vars
+        run: |
+          echo "::set-output name=composer-cache-path::$(composer config cache-files-dir)"
+      - name: Cache Composer
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.vars.outputs.composer-cache-path }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+      - name: Install Composer dependencies
+        run: composer install --no-progress
+      - name: Lint
+        run: composer phplint
   phpunit:
     name: PHPUnit
     runs-on: ubuntu-latest
