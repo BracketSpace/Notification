@@ -13,7 +13,8 @@
 		"wp-coding-standards/wpcs": "^2.0",
 		"phpunit/phpunit": "^6.5",
 		"wp-phpunit/wp-phpunit": "^5.6",
-		"roots/wordpress": "^5.6"
+		"roots/wordpress": "^5.6",
+		"szepeviktor/phpstan-wordpress": "^0.7.2"
 	},
 	"autoload": {
 		"psr-4": {
