@@ -5,7 +5,8 @@
 		"phpcs": "phpcs",
 		"phpcbf": "phpcbf",
 		"phpunit": "phpunit",
-		"phpunit-coverage": "phpunit --coverage-text"
+		"phpunit-coverage": "phpunit --coverage-text",
+		"phpstan": "phpstan analyze"
 	},
 	"require-dev": {
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
