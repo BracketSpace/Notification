@@ -24,8 +24,9 @@
 
 	<div id="major-publishing-actions">
 		<div id="delete-action">
-			<?php if ( current_user_can( 'delete_post', $get( 'post_id' ) ) ) : ?>
-				<a class="submitdelete deletion notification-delete-post" href="<?php echo get_delete_post_link( $get( 'post_id' ), '', true ); ?>"><?php echo esc_html__( 'Remove', 'notification' ); ?></a>
+			<?php $delete_link = get_delete_post_link( $get( 'post_id' ), '', true ); ?>
+			<?php if ( current_user_can( 'delete_post', $get( 'post_id' ) ) && $delete_link ) : ?>
+				<a class="submitdelete deletion notification-delete-post" href="<?php echo esc_url( $delete_link ); ?>"><?php echo esc_html__( 'Remove', 'notification' ); ?></a>
 			<?php endif; ?>
 		</div>
 		<div id="publishing-action">

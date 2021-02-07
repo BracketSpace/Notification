@@ -5,6 +5,10 @@
  * @package notification
  */
 
+if ( ! isset( $current_section ) ) {
+	$current_section = '';
+}
+
 ?>
 
 <div class="wrap underdev-settings <?php echo esc_attr( $this->handle ); ?>-settings">

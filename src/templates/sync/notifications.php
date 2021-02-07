@@ -21,7 +21,7 @@
 		<tr>
 			<td class="title">
 				<?php if ( isset( $item['post_id'] ) ) : ?>
-					<a href="<?php echo esc_url( get_edit_post_link( $item['post_id'], 'admin' ) ); ?>">
+					<a href="<?php echo esc_url( (string) get_edit_post_link( $item['post_id'], 'admin' ) ); ?>">
 				<?php endif ?>
 				<?php echo esc_html( $item['notification']->get_title() ); ?>
 				<?php if ( isset( $item['post_id'] ) ) : ?>
