@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e3e2de3ad374ea423f6bb8296c6eafa7",
+    "content-hash": "53156f042a5d27d5944f735e7bb6e1f6",
     "packages": [
         {
             "name": "micropackage/ajax",
@@ -1482,15 +1482,15 @@
         },
         {
             "name": "roots/wordpress",
-            "version": "5.6",
+            "version": "4.9.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/WordPress.git",
-                "reference": "5.6"
+                "reference": "4.9.16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress/WordPress/zipball/5.6"
+                "url": "https://api.github.com/repos/WordPress/WordPress/zipball/4.9.16"
             },
             "require": {
                 "php": ">=5.3.2",
@@ -1533,7 +1533,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2020-12-08T22:15:57+00:00"
+            "time": "2020-10-29T20:06:45+00:00"
         },
         {
             "name": "roots/wordpress-core-installer",
@@ -2582,7 +2582,9 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "^5.6 || ^7.0"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
 }

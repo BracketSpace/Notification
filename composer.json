@@ -13,7 +13,7 @@
 		"wp-coding-standards/wpcs": "^2.0",
 		"phpunit/phpunit": "^6.5",
 		"wp-phpunit/wp-phpunit": "^5.6",
-		"roots/wordpress": "^5.6"
+		"roots/wordpress": "~4.9"
 	},
 	"autoload": {
 		"psr-4": {
@@ -43,6 +43,7 @@
 		}
 	},
 	"require": {
+		"php": "^5.6 || ^7.0",
 		"micropackage/requirements": "^1.0",
 		"micropackage/dochooks": "^1.0",
 		"micropackage/filesystem": "^1.1",
@@ -61,6 +62,6 @@
 		"wordpress-install-dir": "tests/_wordpress"
 	},
 	"config": {
-        "platform-check": false
-    }
+		"platform-check": false
+	}
 }
