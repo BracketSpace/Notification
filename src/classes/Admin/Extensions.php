@@ -417,7 +417,7 @@ class Extensions {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
-		
+
 		if ( get_current_screen()->id === $this->page_hook ) {
 			return;
 		}
