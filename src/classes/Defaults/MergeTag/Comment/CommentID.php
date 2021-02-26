@@ -32,8 +32,8 @@ class CommentID extends IntegerTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		if ( isset( $params['comment_type'] ) && ! empty( $params['comment_type'] ) ) {
-			$this->comment_type = $params['comment_type'];
+		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
+			$this->comment_type = $params['property_name'];
 		}
 
 		$args = wp_parse_args(
@@ -45,7 +45,7 @@ class CommentID extends IntegerTag {
 				'description' => '35',
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
-					return $trigger->comment->comment_ID;
+					return $trigger->{ $this->comment_type }->comment_ID;
 				},
 				'group'       => __( self::get_current_comment_type_name(), 'notification' ),
 			]

@@ -43,7 +43,7 @@ class CommentActionDelete extends UrlTag {
 				// Translators: Comment type name.
 				'name'     => sprintf( __( '%s delete URL', 'notification' ), self::get_current_comment_type_name() ),
 				'resolver' => function( $trigger ) {
-					return admin_url( "comment.php?action=delete&c={$trigger->comment->comment_ID}#wpbody-content" );
+					return admin_url( "comment.php?action=delete&c={$trigger->{ $this->comment_type }->comment_ID}#wpbody-content" );
 				},
 				// translators: comment type actions text.
 				'group'    => sprintf( __( '%s actions', 'notification' ), self::get_current_comment_type_name() ),

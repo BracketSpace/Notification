@@ -43,7 +43,7 @@ class CommentType extends StringTag {
 				'name'        => __( 'Comment type', 'notification' ),
 				'description' => __( 'Comment or Pingback or Trackback or Custom', 'notification' ),
 				'resolver'    => function( $trigger ) {
-					return get_comment_type( $trigger->comment );
+					return get_comment_type( $trigger->{ $this->comment_type } );
 				},
 				'group'       => __( self::get_current_comment_type_name(), 'notification' ),
 			]
