@@ -25,6 +25,13 @@ class CommentAuthorUserAgent extends StringTag {
 	protected $comment_type = 'comment';
 
 	/**
+	 * Trigger property name to get the comment data from
+	 *
+	 * @var string
+	 */
+	protected $property_name = '';
+
+	/**
 	 * Merge tag constructor
 	 *
 	 * @since 5.0.0
@@ -36,6 +43,12 @@ class CommentAuthorUserAgent extends StringTag {
 			$this->comment_type = $params['comment_type'];
 		}
 
+		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
+			$this->property_name = $params['property_name'];
+		} else {
+			$this->property_name = $this->comment_type;
+		}
+
 		$args = wp_parse_args(
 			$params,
 			[
@@ -45,7 +58,7 @@ class CommentAuthorUserAgent extends StringTag {
 				'description' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
-					return $trigger->{ $this->comment_type }->comment_agent;
+					return $trigger->{ $this->property_name }->comment_agent;
 				},
 				// translators: comment type author.
 				'group'       => sprintf( __( '%s author', 'notification' ), self::get_current_comment_type_name() ),

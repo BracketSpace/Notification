@@ -25,6 +25,13 @@ class CommentAuthorIP extends IPTag {
 	protected $comment_type = 'comment';
 
 	/**
+	 * Trigger property name to get the comment data from
+	 *
+	 * @var string
+	 */
+	protected $property_name = '';
+
+	/**
 	 * Merge tag constructor
 	 *
 	 * @since 5.0.0
