@@ -45,7 +45,7 @@ class CommentAuthorIP extends IPTag {
 				'description' => '127.0.0.1',
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
-					return $trigger->comment->comment_author_IP;
+					return $trigger->{ $this->comment_type }->comment_author_IP;
 				},
 				// translators: comment type author.
 				'group'       => sprintf( __( '%s author', 'notification' ), self::get_current_comment_type_name() ),

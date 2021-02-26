@@ -296,6 +296,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Post published action to generic "published_{post_type}" action which allows to trigger the notification when publishing from custom statuses.
 * [Changed] Import process which now allows to import singular notification instead of always requireing a collection.
 * [Added] [Filter for Background Processing](https://docs.bracketspace.com/notification/developer/snippets/general/background-processing-filter) which can be used to enable or disable particular trigger queueing.
+* [Fixed] Parent Comment ID Merge Tag returning reply ID not the parent.
 
 = 7.2.2 =
 * [Fixed] Wrong implementation of permission_callback while defining REST endpoints, thanks to @jphorn.

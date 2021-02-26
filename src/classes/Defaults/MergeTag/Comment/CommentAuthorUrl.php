@@ -45,7 +45,7 @@ class CommentAuthorUrl extends UrlTag {
 				'description' => __( 'http://mywebsite.com', 'notification' ),
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
-					return $trigger->comment->comment_author_url;
+					return $trigger->{ $this->comment_type }->comment_author_url;
 				},
 				// translators: comment type author.
 				'group'       => sprintf( __( '%s author', 'notification' ), self::get_current_comment_type_name() ),

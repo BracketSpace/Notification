@@ -45,7 +45,7 @@ class CommentAuthorUserAgent extends StringTag {
 				'description' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
-					return $trigger->comment->comment_agent;
+					return $trigger->{ $this->comment_type }->comment_agent;
 				},
 				// translators: comment type author.
 				'group'       => sprintf( __( '%s author', 'notification' ), self::get_current_comment_type_name() ),

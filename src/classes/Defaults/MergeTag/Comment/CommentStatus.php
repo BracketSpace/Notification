@@ -45,13 +45,13 @@ class CommentStatus extends StringTag {
 				'description' => __( 'Approved', 'notification' ),
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
-					if ( '1' === $trigger->comment->comment_approved ) {
+					if ( '1' === $trigger->{ $this->comment_type }->comment_approved ) {
 						return __( 'Approved', 'notification' );
-					} elseif ( '0' === $trigger->comment->comment_approved ) {
+					} elseif ( '0' === $trigger->{ $this->comment_type }->comment_approved ) {
 						return __( 'Unapproved', 'notification' );
-					} elseif ( 'spam' === $trigger->comment->comment_approved ) {
+					} elseif ( 'spam' === $trigger->{ $this->comment_type }->comment_approved ) {
 						return __( 'Marked as spam', 'notification' );
-					} elseif ( 'trash' === $trigger->comment->comment_approved ) {
+					} elseif ( 'trash' === $trigger->{ $this->comment_type }->comment_approved ) {
 						return __( 'Trashed', 'notification' );
 					}
 				},
