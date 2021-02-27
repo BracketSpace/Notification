@@ -28,12 +28,7 @@ class PostPublished extends PostTrigger {
 			'name'      => sprintf( __( '%s published', 'notification' ), parent::get_post_type_name( $post_type ) ),
 		] );
 
-		$this->add_action( 'new_to_publish', 10 );
-		$this->add_action( 'auto-draft_to_publish', 10 );
-		$this->add_action( 'draft_to_publish', 10 );
-		$this->add_action( 'pending_to_publish', 10 );
-		$this->add_action( 'private_to_publish', 10 );
-		$this->add_action( 'future_to_publish', 10 );
+		$this->add_action( "publish_{$post_type}", 10, 2 );
 
 		// translators: 1. singular post name, 2. post type slug.
 		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is published', 'notification' ), parent::get_post_type_name( $post_type ), $post_type ) );
@@ -43,10 +38,11 @@ class PostPublished extends PostTrigger {
 	/**
 	 * Assigns action callback args to object
 	 *
-	 * @param object $post Post object.
+	 * @param int      $post_id Post ID.
+	 * @param \WP_Post $post    Post object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function action( $post ) {
+	public function action( $post_id, $post ) {
 
 		if ( $post->post_type !== $this->post_type ) {
 			return false;
