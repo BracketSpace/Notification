@@ -43,6 +43,12 @@ class CommentAuthorIP extends IPTag {
 			$this->comment_type = $params['comment_type'];
 		}
 
+		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
+			$this->property_name = $params['property_name'];
+		} else {
+			$this->property_name = $this->comment_type;
+		}
+
 		$args = wp_parse_args(
 			$params,
 			[
@@ -52,7 +58,7 @@ class CommentAuthorIP extends IPTag {
 				'description' => '127.0.0.1',
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
-					return $trigger->{ $this->comment_type }->comment_author_IP;
+					return $trigger->{ $this->property_name }->comment_author_IP;
 				},
 				// translators: comment type author.
 				'group'       => sprintf( __( '%s author', 'notification' ), self::get_current_comment_type_name() ),
