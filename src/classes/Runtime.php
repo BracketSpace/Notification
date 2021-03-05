@@ -23,7 +23,7 @@ class Runtime {
 	/**
 	 * Plugin version
 	 */
-	const VERSION = '7.2.2';
+	const VERSION = '7.2.3';
 
 	/**
 	 * Main plugin file path
