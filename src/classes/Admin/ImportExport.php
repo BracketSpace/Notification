@@ -185,6 +185,11 @@ class ImportExport {
 		$data = json_decode( $json, true );
 		$type = sanitize_text_field( wp_unslash( $_POST['type'] ) );
 
+		// Wrap the singular notification into a collection.
+		if ( isset( $data['hash'] ) ) {
+			$data = [ $data ];
+		}
+
 		try {
 			$result = call_user_func( [ $this, 'process_' . $type . '_import_request' ], $data );
 		} catch ( \Exception $e ) {
