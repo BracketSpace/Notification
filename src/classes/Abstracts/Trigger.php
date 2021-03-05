@@ -156,7 +156,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		] );
 
 		// Add the cron action if background processing is active.
-		if ( notification_get_setting( 'general/advanced/background_processing' ) ) {
+		if ( $this->has_background_processing_enabled() ) {
 			// The last param will be cache.
 			add_action( 'ntfn_bp_' . $tag, [ $this, '_action' ], $priority, ( $accepted_args + 1 ) );
 		}
@@ -201,7 +201,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	public function postpone_action( $tag, $priority = 10, $accepted_args = 1 ) {
 
-		if ( notification_get_setting( 'general/advanced/background_processing' ) ) {
+		if ( $this->has_background_processing_enabled() ) {
 			return;
 		}
 
@@ -238,6 +238,20 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	public function has_notifications() {
 		return ! empty( $this->get_notifications() );
+	}
+
+	/**
+	 * Checks if this trigger has background processing active.
+	 *
+	 * @since 7.2.3
+	 * @return bool
+	 */
+	public function has_background_processing_enabled() {
+		return apply_filters(
+			'notification/trigger/process_in_background',
+			notification_get_setting( 'general/advanced/background_processing' ),
+			$this
+		);
 	}
 
 	/**

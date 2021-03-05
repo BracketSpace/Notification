@@ -24,7 +24,7 @@ class BackgroundProcessing {
 	 */
 	public function load_to_cron( $trigger, $action_tag ) {
 
-		if ( $trigger->is_stopped() || ! notification_get_setting( 'general/advanced/background_processing' ) ) {
+		if ( $trigger->is_stopped() || ! $trigger->has_background_processing_enabled() ) {
 			return;
 		}
 
