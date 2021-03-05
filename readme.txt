@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.6
-Stable tag: 7.2.2
+Stable tag: 7.2.3
 Requires PHP: 7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -290,7 +290,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
-= [Next] =
+= 7.2.3 =
 * [Fixed] Merge Tag cleaning regex which could lead in some cases to wiping entire Carrier field.
 * [Fixed] Parent Comment ID Merge Tag returning reply ID not the parent.
 * [Changed] A check for activation nag if the user can manage options. Otherwise the useless notice is printed when a paid extension is not activated with license key, thanks to @mircobabini.
