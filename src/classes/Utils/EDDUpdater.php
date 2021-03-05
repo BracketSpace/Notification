@@ -25,6 +25,7 @@ class EDDUpdater {
 	private $version     = '';
 	private $wp_override = false;
 	private $cache_key   = '';
+	private $beta        = false;
 
 	private $health_check_timeout = 5;
 
