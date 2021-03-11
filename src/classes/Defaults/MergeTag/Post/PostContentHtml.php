@@ -18,7 +18,7 @@ use BracketSpace\Notification\Traits;
  */
 class PostContentHtml extends HtmlTag {
 
-	use Traits\Cache;
+	use Traits\PostTypeUtils;
 
 	/**
 	 * Post Type slug

@@ -16,6 +16,20 @@ use BracketSpace\Notification\Abstracts;
 class UserLogin extends UserTrigger {
 
 	/**
+	 * User meta data
+	 *
+	 * @var array
+	 */
+	protected $user_meta;
+
+	/**
+	 * User login date and time
+	 *
+	 * @var string
+	 */
+	protected $user_logged_in_datetime;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {

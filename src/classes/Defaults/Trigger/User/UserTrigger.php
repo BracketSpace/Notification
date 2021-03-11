@@ -16,6 +16,27 @@ use BracketSpace\Notification\Defaults\MergeTag;
 abstract class UserTrigger extends Abstracts\Trigger {
 
 	/**
+	 * User ID
+	 *
+	 * @var int
+	 */
+	protected $user_id;
+
+	/**
+	 * User object
+	 *
+	 * @var \WP_User
+	 */
+	protected $user_object;
+
+	/**
+	 * User registration date and time
+	 *
+	 * @var string
+	 */
+	protected $user_registered_datetime;
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $slug $params trigger slug.

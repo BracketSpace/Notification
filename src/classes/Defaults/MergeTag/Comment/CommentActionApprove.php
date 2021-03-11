@@ -15,7 +15,7 @@ use BracketSpace\Notification\Traits;
  */
 class CommentActionApprove extends UrlTag {
 
-	use Traits\Cache;
+	use Traits\CommentTypeUtils;
 
 	/**
 	 * Trigger property to get the comment data from

@@ -15,6 +15,13 @@ use BracketSpace\Notification\Defaults\MergeTag;
 class Removed extends PluginTrigger {
 
 	/**
+	 * Plugin deletion date and time
+	 *
+	 * @var string
+	 */
+	protected $plugin_deletion_date_time;
+
+	/**
 	 * Constructor.
 	 */
 	public function __construct() {

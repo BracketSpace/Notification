@@ -18,7 +18,7 @@ use BracketSpace\Notification\Traits;
  */
 class FeaturedImageId extends IntegerTag {
 
-	use Traits\Cache;
+	use Traits\PostTypeUtils;
 
 	/**
 	 * Post type slug

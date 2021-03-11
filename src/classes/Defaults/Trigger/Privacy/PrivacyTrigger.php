@@ -16,6 +16,27 @@ use BracketSpace\Notification\Defaults\MergeTag;
 abstract class PrivacyTrigger extends Abstracts\Trigger {
 
 	/**
+	 * User request object
+	 *
+	 * @var \WP_User_Request
+	 */
+	protected $request;
+
+	/**
+	 * Request user object
+	 *
+	 * @var stdClass
+	 */
+	protected $user_object;
+
+	/**
+	 * Data operation date and time
+	 *
+	 * @var string
+	 */
+	protected $data_operation_time;
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $slug Slug.

@@ -15,18 +15,11 @@ use BracketSpace\Notification\Defaults\MergeTag;
 class TermDeleted extends TermTrigger {
 
 	/**
-	 * Term object
-	 *
-	 * @var object
-	 */
-	public $term;
-
-	/**
-	 * Taxonomy slug
+	 * Term deletion date and time
 	 *
 	 * @var string
 	 */
-	public $taxonomy;
+	protected $term_deletion_datetime;
 
 	/**
 	 * Constructor

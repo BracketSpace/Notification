@@ -15,6 +15,20 @@ use BracketSpace\Notification\Defaults\MergeTag;
 class Updated extends PluginTrigger {
 
 	/**
+	 * Plugin previous version
+	 *
+	 * @var string
+	 */
+	protected $previous_version;
+
+	/**
+	 * Plugin update date and time
+	 *
+	 * @var string
+	 */
+	protected $plugin_update_date_time;
+
+	/**
 	 * Constructor.
 	 */
 	public function __construct() {

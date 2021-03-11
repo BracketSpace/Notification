@@ -40,6 +40,13 @@ class Runtime {
 	protected $requirements_unmet;
 
 	/**
+	 * Filesystems
+	 *
+	 * @var Filesystem[]
+	 */
+	protected $filesystems = [];
+
+	/**
 	 * Components
 	 *
 	 * @var array

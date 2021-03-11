@@ -16,7 +16,7 @@ use BracketSpace\Notification\Traits;
  */
 abstract class CommentTrigger extends Abstracts\Trigger {
 
-	use Traits\Cache;
+	use Traits\CommentTypeUtils, Traits\PostTypeUtils;
 
 	/**
 	 * Comment Type slug
@@ -24,6 +24,62 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 	 * @var string
 	 */
 	protected $comment_type;
+
+	/**
+	 * Comment object
+	 *
+	 * @var WP_Comment
+	 */
+	protected $comment;
+
+	/**
+	 * Comment author user object
+	 *
+	 * @var stdClass
+	 */
+	protected $user_object;
+
+	/**
+	 * Post object
+	 *
+	 * @var \WP_Post
+	 */
+	protected $post;
+
+	/**
+	 * Post Type slug
+	 *
+	 * @var string
+	 */
+	protected $post_type;
+
+	/**
+	 * Post creation date and time
+	 *
+	 * @var string
+	 */
+	protected $post_creation_datetime;
+
+	/**
+	 * Post modification date and time
+	 *
+	 * @var string
+	 */
+	protected $post_modification_datetime;
+
+	/**
+	 * Comment date and time
+	 *
+	 * @var string
+	 */
+	protected $comment_datetime;
+
+	/**
+	 * Post author user object
+	 *
+	 * @var \WP_User
+	 */
+	protected $post_author;
 
 	/**
 	 * Constructor

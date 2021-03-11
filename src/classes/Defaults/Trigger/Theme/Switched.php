@@ -16,6 +16,20 @@ use BracketSpace\Notification\Abstracts;
 class Switched extends ThemeTrigger {
 
 	/**
+	 * Old theme object
+	 *
+	 * @var \WP_Theme
+	 */
+	protected $old_theme;
+
+	/**
+	 * Theme switch date and time
+	 *
+	 * @var string
+	 */
+	protected $theme_switch_date_time;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {

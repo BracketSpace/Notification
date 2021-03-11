@@ -16,6 +16,13 @@ use BracketSpace\Notification\Abstracts;
 class Deactivated extends PluginTrigger {
 
 	/**
+	 * Plugin deactivation date and time
+	 *
+	 * @var string
+	 */
+	protected $plugin_deactivation_date_time;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {

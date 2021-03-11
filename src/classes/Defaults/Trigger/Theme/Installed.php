@@ -16,6 +16,13 @@ use BracketSpace\Notification\Abstracts;
 class Installed extends ThemeTrigger {
 
 	/**
+	 * Theme installation date and time
+	 *
+	 * @var string
+	 */
+	protected $theme_installation_date_time;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {

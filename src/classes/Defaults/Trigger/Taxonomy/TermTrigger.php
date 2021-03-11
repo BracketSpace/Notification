@@ -16,7 +16,7 @@ use BracketSpace\Notification\Traits;
  */
 abstract class TermTrigger extends Abstracts\Trigger {
 
-	use Traits\Cache;
+	use Traits\TaxonomyUtils;
 
 	/**
 	 * Taxonomy slug
@@ -24,6 +24,20 @@ abstract class TermTrigger extends Abstracts\Trigger {
 	 * @var string
 	 */
 	protected $taxonomy;
+
+	/**
+	 * Term object
+	 *
+	 * @var \WP_Term
+	 */
+	protected $term;
+
+	/**
+	 * Term permalink
+	 *
+	 * @var string
+	 */
+	protected $term_permalink;
 
 	/**
 	 * Constructor

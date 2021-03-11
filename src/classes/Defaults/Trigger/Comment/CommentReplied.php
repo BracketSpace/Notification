@@ -15,6 +15,20 @@ use BracketSpace\Notification\Defaults\MergeTag;
 class CommentReplied extends CommentTrigger {
 
 	/**
+	 * Parent comment object
+	 *
+	 * @var \WP_Comment
+	 */
+	protected $parent_comment;
+
+	/**
+	 * Parent comment user object
+	 *
+	 * @var stdClass
+	 */
+	protected $parent_comment_user_object;
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $comment_type optional, default: comment.

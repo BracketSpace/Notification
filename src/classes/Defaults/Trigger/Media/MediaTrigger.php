@@ -16,6 +16,34 @@ use BracketSpace\Notification\Defaults\MergeTag;
 abstract class MediaTrigger extends Abstracts\Trigger {
 
 	/**
+	 * Attachment post object
+	 *
+	 * @var \WP_Post
+	 */
+	protected $attachment;
+
+	/**
+	 * User ID
+	 *
+	 * @var int
+	 */
+	protected $user_id;
+
+	/**
+	 * User object
+	 *
+	 * @var \WP_User
+	 */
+	protected $user_object;
+
+	/**
+	 * Attachment creation date and time
+	 *
+	 * @var string
+	 */
+	protected $attachment_creation_date;
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $slug $params trigger slug.

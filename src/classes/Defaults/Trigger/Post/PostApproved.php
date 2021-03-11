@@ -15,6 +15,13 @@ use BracketSpace\Notification\Defaults\MergeTag;
 class PostApproved extends PostTrigger {
 
 	/**
+	 * Post approving user object
+	 *
+	 * @var \WP_User
+	 */
+	protected $approving_user;
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $post_type optional, default: post.

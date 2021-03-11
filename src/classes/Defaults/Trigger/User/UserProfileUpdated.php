@@ -15,6 +15,20 @@ use BracketSpace\Notification\Defaults\MergeTag;
 class UserProfileUpdated extends UserTrigger {
 
 	/**
+	 * User meta data
+	 *
+	 * @var array
+	 */
+	protected $user_meta;
+
+	/**
+	 * User profile update date and time
+	 *
+	 * @var string
+	 */
+	protected $user_profile_updated_datetime;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {

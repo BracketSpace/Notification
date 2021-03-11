@@ -15,18 +15,11 @@ use BracketSpace\Notification\Defaults\MergeTag;
 class TermUpdated extends TermTrigger {
 
 	/**
-	 * Term object
-	 *
-	 * @var object
-	 */
-	public $term;
-
-	/**
-	 * Taxonomy slug
+	 * Term modification date and time
 	 *
 	 * @var string
 	 */
-	public $taxonomy;
+	protected $term_modification_datetime;
 
 	/**
 	 * Constructor

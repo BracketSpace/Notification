@@ -15,6 +15,20 @@ use BracketSpace\Notification\Defaults\MergeTag;
 class UserPasswordChanged extends UserTrigger {
 
 	/**
+	 * User meta data
+	 *
+	 * @var array
+	 */
+	protected $user_meta;
+
+	/**
+	 * Password change date and time
+	 *
+	 * @var string
+	 */
+	protected $password_change_datetime;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {

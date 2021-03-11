@@ -15,6 +15,20 @@ use BracketSpace\Notification\Defaults\MergeTag;
 class UserPasswordResetRequest extends UserTrigger {
 
 	/**
+	 * Password reset request date and time
+	 *
+	 * @var string
+	 */
+	protected $password_reset_request_datetime;
+
+	/**
+	 * Password reset key
+	 *
+	 * @var string
+	 */
+	protected $password_reset_key;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {
@@ -48,7 +62,6 @@ class UserPasswordResetRequest extends UserTrigger {
 		}
 
 		$this->user_id     = $user->data->ID;
-		$this->user_login  = $user->data->user_login;
 		$this->user_object = get_userdata( $this->user_id );
 
 		$this->password_reset_key = $reset_key;

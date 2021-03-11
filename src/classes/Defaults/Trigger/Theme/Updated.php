@@ -16,6 +16,20 @@ use BracketSpace\Notification\Abstracts;
 class Updated extends ThemeTrigger {
 
 	/**
+	 * Theme update date and time
+	 *
+	 * @var string
+	 */
+	protected $theme_update_date_time;
+
+	/**
+	 * Theme previous version
+	 *
+	 * @var string
+	 */
+	protected $theme_previous_version;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {
