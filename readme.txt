@@ -291,7 +291,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
-* [Changed] Email Carrier sanitizer when "Allow unfiltered HTML" option is enabled. Now you can use style and div tags within the email body.
+* [Changed] Code Editor Field sanitizer to allow for multiple HTML tags.
 
 = 7.2.4 =
 * [Fixed] Fix Post published trigger which was triggered even if the post was just updated.

@@ -86,12 +86,21 @@ class CodeEditorField extends Field {
 	 * @return array
 	 */
 	public function allow_html_tags( $allowed_tags ) {
-		$allowed_tags['style'] = [];
-		$allowed_tags['div']   = [
+		$allowed_atts = [
 			'class' => true,
+			'style' => true,
 		];
 
-		return $allowed_tags;
+		$extended = [
+			'style' => [],
+			'div'   => $allowed_atts,
+			'span'  => $allowed_atts,
+			'table' => $allowed_atts,
+			'td'    => $allowed_atts,
+			'tr'    => $allowed_atts,
+		];
+
+		return array_merge_recursive( $allowed_tags, $extended );
 	}
 
 }
