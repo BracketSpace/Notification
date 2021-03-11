@@ -15,6 +15,11 @@ use BracketSpace\Notification\Interfaces;
 abstract class Store implements Interfaces\Storable {
 
 	/**
+	 * Storage key
+	 */
+	const STORAGE_KEY = '';
+
+	/**
 	 * Iterator position
 	 *
 	 * @var integer

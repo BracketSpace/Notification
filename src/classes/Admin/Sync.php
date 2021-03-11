@@ -185,10 +185,10 @@ class Sync {
 	 *
 	 * @since  6.0.0
 	 * @param  string $hash Notification hash.
-	 * @return mixxed
+	 * @return void
 	 */
 	public function load_notification_to_json( $hash ) {
-		return CoreSync::save_local_json( notification_get_post_by_hash( $hash ) );
+		CoreSync::save_local_json( notification_get_post_by_hash( $hash ) );
 	}
 
 	/**

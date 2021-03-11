@@ -400,7 +400,7 @@ class Notification {
 	public function get_carrier_data( $carrier_slug ) {
 		$carrier = $this->get_carrier( $carrier_slug );
 		if ( null !== $carrier ) {
-			$carrier->get_data( $data );
+			$carrier->get_data();
 		}
 	}
 

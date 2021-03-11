@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Defaults\Store;
 
 use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Interfaces;
 
 /**
  * Notification Store

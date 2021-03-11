@@ -36,8 +36,9 @@ class UserPasswordResetLink extends StringTag {
 	 * Merge tag constructor
 	 *
 	 * @since 5.2.2
+	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct() {
+	public function __construct( $params = [] ) {
 
 		if ( isset( $params['key_property_name'] ) && ! empty( $params['key_property_name'] ) ) {
 			$this->key_property_name = $params['key_property_name'];
