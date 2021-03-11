@@ -70,7 +70,28 @@ class CodeEditorField extends Field {
 	 * @return mixed        sanitized value
 	 */
 	public function sanitize( $value ) {
-		return wp_kses_post( $value );
+		add_filter( 'wp_kses_allowed_html', [ $this, 'allow_html_tags' ] );
+		$sanitized = wp_kses_data( $value );
+		remove_filter( 'wp_kses_allowed_html', [ $this, 'allow_html_tags' ] );
+
+		return $sanitized;
+	}
+
+	/**
+	 * Allows for specific tags to be used within the editor
+	 *
+	 * @see https://developer.wordpress.org/reference/functions/wp_kses_allowed_html/
+	 * @since  [Next]
+	 * @param  array $allowed_tags Allowed tags list.
+	 * @return array
+	 */
+	public function allow_html_tags( $allowed_tags ) {
+		$allowed_tags['style'] = [];
+		$allowed_tags['div']   = [
+			'class' => true,
+		];
+
+		return $allowed_tags;
 	}
 
 }
