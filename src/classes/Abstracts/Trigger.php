@@ -243,7 +243,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Checks if this trigger has background processing active.
 	 *
-	 * @since [Next]
+	 * @since 7.2.3
 	 * @return bool
 	 */
 	public function has_background_processing_enabled() {
