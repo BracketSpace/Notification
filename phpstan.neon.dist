@@ -8,9 +8,3 @@ parameters:
         - load.php
         - uninstall.php
         - src/
-    ignoreErrors:
-        # Uses func_get_args()
-        - '#^Function apply_filters(_ref_array)? invoked with [34567] parameters, 2 required\.$#'
-        # Var getters are defined outside the template view
-        - message: '#Variable \$(get|the|this) might not be defined#'
-          path: %currentWorkingDirectory%/src/templates
