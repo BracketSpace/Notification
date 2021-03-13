@@ -13,6 +13,8 @@ use BracketSpace\Notification\Core\Notification;
 
 /**
  * WordPress Adapter class
+ *
+ * @method void set_source_post_id( int $post_id )
  */
 class WordPress extends Abstracts\Adapter {
 
@@ -121,7 +123,7 @@ class WordPress extends Abstracts\Adapter {
 	 * Gets notification post ID
 	 *
 	 * @since 6.0.0
-	 * @return integer post ID
+	 * @return int post ID
 	 */
 	public function get_id() {
 		return ! empty( $this->post ) ? $this->post->ID : 0;
@@ -131,7 +133,7 @@ class WordPress extends Abstracts\Adapter {
 	 * Gets post
 	 *
 	 * @since 6.0.0
-	 * @return null || WP_Post
+	 * @return null|WP_Post
 	 */
 	public function get_post() {
 		return $this->post;

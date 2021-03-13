@@ -31,6 +31,7 @@ class Image {
 			$image = $field->default_value();
 			$class = 'selected';
 		} else {
+			$image = '';
 			$class = '';
 		}
 

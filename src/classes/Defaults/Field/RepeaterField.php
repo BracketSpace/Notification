@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Defaults\Field;
 
 use BracketSpace\Notification\Abstracts\Field;
+use BracketSpace\Notification\Interfaces\Sendable;
 
 /**
  * Repeater field class
@@ -62,6 +63,13 @@ class RepeaterField extends Field {
 	 * @var string
 	 */
 	public $field_type = 'repeater';
+
+	/**
+	 * Carrier object
+	 *
+	 * @var Sendable
+	 */
+	protected $carrier;
 
 	/**
 	 * Field constructor

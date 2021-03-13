@@ -21,9 +21,7 @@ if ( isset( $field->field_type ) ) {
 	}
 }
 
-if ( $carrier ) {
-	$data_carrier = ' data-carrier=' . $carrier . '';
-}
+$data_carrier = $carrier ? ' data-carrier=' . $carrier : '';
 
 ?>
 

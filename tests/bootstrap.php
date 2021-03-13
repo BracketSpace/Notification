@@ -2,7 +2,7 @@
 /**
  * PHPUnit bootstrap file
  *
- * @package Sample_Plugin
+ * @package notification
  */
 
 define( 'NOTIFICATION_DOING_TESTS', true );

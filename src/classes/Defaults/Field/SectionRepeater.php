@@ -64,6 +64,27 @@ class SectionRepeater extends Field {
 	public $field_type = 'section-repeater';
 
 	/**
+	 * Carrier object
+	 *
+	 * @var Sendable
+	 */
+	protected $carrier;
+
+	/**
+	 * Sections
+	 *
+	 * @var array
+	 */
+	protected $sections = [];
+
+	/**
+	 * Section labels
+	 *
+	 * @var array
+	 */
+	protected $section_labels = [];
+
+	/**
 	 * Field constructor
 	 *
 	 * @since 5.0.0

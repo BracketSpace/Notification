@@ -19,6 +19,20 @@ use BracketSpace\Notification\Interfaces;
  * - enabled
  * - extras
  * - version
+ *
+ * @method string get_hash()
+ * @method string get_title()
+ * @method Interfaces\Triggerable get_trigger()
+ * @method array<Interfaces\Sendable> get_carriers()
+ * @method bool get_enabled()
+ * @method array get_extras()
+ * @method int get_version()
+ * @method void set_hash( string $hash )
+ * @method void set_title( string $title )
+ * @method void set_trigger( Interfaces\Triggerable $trigger )
+ * @method void set_enabled( bool $enabled )
+ * @method void set_extras( array $extras )
+ * @method void set_version( int $version )
  */
 class Notification {
 
@@ -67,7 +81,7 @@ class Notification {
 	/**
 	 * Version
 	 *
-	 * @var integer
+	 * @var int
 	 */
 	protected $version;
 
