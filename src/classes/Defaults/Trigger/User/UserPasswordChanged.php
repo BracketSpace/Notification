@@ -24,7 +24,7 @@ class UserPasswordChanged extends UserTrigger {
 	/**
 	 * Password change date and time
 	 *
-	 * @var string
+	 * @var int|false
 	 */
 	protected $password_change_datetime;
 

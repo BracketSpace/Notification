@@ -25,7 +25,7 @@ class UserDeleted extends UserTrigger {
 	/**
 	 * User deletion date and time
 	 *
-	 * @var string
+	 * @var int|false
 	 */
 	protected $user_deleted_datetime;
 

@@ -25,7 +25,7 @@ class UserLogin extends UserTrigger {
 	/**
 	 * User login date and time
 	 *
-	 * @var string
+	 * @var int|false
 	 */
 	protected $user_logged_in_datetime;
 

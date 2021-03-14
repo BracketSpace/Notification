@@ -25,7 +25,7 @@ abstract class PrivacyTrigger extends Abstracts\Trigger {
 	/**
 	 * Request user object
 	 *
-	 * @var \stdClass
+	 * @var \WP_User|false
 	 */
 	protected $user_object;
 

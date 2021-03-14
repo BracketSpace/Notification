@@ -50,8 +50,6 @@ class PostTerms extends StringTag {
 
 		if ( isset( $params['taxonomy'] ) ) {
 			$this->taxonomy = is_string( $params['taxonomy'] ) ? get_taxonomy( $params['taxonomy'] ) : $params['taxonomy'];
-		} else {
-			$this->taxonomy = false;
 		}
 
 		$args = wp_parse_args(

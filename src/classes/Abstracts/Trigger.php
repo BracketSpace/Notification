@@ -236,7 +236,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Check if Trigger has attached Notifications
 	 *
-	 * @return array
+	 * @return bool
 	 */
 	public function has_notifications() {
 		return ! empty( $this->get_notifications() );

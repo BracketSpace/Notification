@@ -32,7 +32,7 @@ abstract class UserTrigger extends Abstracts\Trigger {
 	/**
 	 * User registration date and time
 	 *
-	 * @var string
+	 * @var int|false
 	 */
 	protected $user_registered_datetime;
 

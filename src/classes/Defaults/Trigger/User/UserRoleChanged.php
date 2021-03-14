@@ -38,7 +38,7 @@ class UserRoleChanged extends UserTrigger {
 	/**
 	 * User role change date and time
 	 *
-	 * @var string
+	 * @var int|false
 	 */
 	protected $user_role_change_datetime;
 

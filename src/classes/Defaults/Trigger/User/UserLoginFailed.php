@@ -17,7 +17,7 @@ class UserLoginFailed extends UserTrigger {
 	/**
 	 * User login failure date and time
 	 *
-	 * @var string
+	 * @var int|false
 	 */
 	protected $user_login_failed_datetime;
 

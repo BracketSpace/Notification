@@ -25,7 +25,7 @@ class RepeaterField extends Field {
 	/**
 	 * Fields to repeat
 	 *
-	 * @var string
+	 * @var Field[]
 	 */
 	public $fields = [];
 
@@ -53,7 +53,7 @@ class RepeaterField extends Field {
 	/**
 	 * If table is sortable
 	 *
-	 * @var array
+	 * @var bool
 	 */
 	protected $sortable = true;
 

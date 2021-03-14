@@ -39,7 +39,7 @@ abstract class MediaTrigger extends Abstracts\Trigger {
 	/**
 	 * Attachment creation date and time
 	 *
-	 * @var string
+	 * @var int|false
 	 */
 	protected $attachment_creation_date;
 

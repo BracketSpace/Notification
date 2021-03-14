@@ -24,7 +24,7 @@ class UserLogout extends UserTrigger {
 	/**
 	 * User logout date and time
 	 *
-	 * @var string
+	 * @var int|false
 	 */
 	protected $user_logout_datetime;
 

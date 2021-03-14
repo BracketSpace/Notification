@@ -35,7 +35,7 @@ class MediaAdded extends MediaTrigger {
 	public function action( $attachment_id ) {
 
 		$this->attachment  = get_post( $attachment_id );
-		$this->user_id     = $this->attachment->post_author;
+		$this->user_id     = (int) $this->attachment->post_author;
 		$this->user_object = get_userdata( $this->user_id );
 
 		$this->attachment_creation_date = strtotime( $this->attachment->post_date_gmt );

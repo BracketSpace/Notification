@@ -24,7 +24,7 @@ class UserProfileUpdated extends UserTrigger {
 	/**
 	 * User profile update date and time
 	 *
-	 * @var string
+	 * @var int|false
 	 */
 	protected $user_profile_updated_datetime;
 

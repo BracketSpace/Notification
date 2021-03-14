@@ -56,21 +56,21 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 	/**
 	 * Post creation date and time
 	 *
-	 * @var string
+	 * @var int|false
 	 */
 	protected $post_creation_datetime;
 
 	/**
 	 * Post modification date and time
 	 *
-	 * @var string
+	 * @var int|false
 	 */
 	protected $post_modification_datetime;
 
 	/**
 	 * Comment date and time
 	 *
-	 * @var string
+	 * @var int|false
 	 */
 	protected $comment_datetime;
 

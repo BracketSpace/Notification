@@ -17,7 +17,7 @@ class UserPasswordResetRequest extends UserTrigger {
 	/**
 	 * Password reset request date and time
 	 *
-	 * @var string
+	 * @var int|false
 	 */
 	protected $password_reset_request_datetime;
 
