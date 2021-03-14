@@ -291,7 +291,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
-* [Fixed] Code issues with static analysis.
+* [Fixed] Code issues from not using static analysis.
 * [Changed] Code Editor Field sanitizer to allow for multiple HTML tags.
 
 = 7.2.4 =
