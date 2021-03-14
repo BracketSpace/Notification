@@ -45,9 +45,9 @@ class Updated extends PluginTrigger {
 	/**
 	 * Trigger action.
 	 *
-	 * @param  Plugin_Upgrader $upgrader Plugin_Upgrader class.
-	 * @param  array           $data     Update data information.
-	 * @return mixed                     Void or false if no notifications should be sent.
+	 * @param  \Plugin_Upgrader $upgrader Plugin_Upgrader class.
+	 * @param  array            $data     Update data information.
+	 * @return void|false
 	 */
 	public function action( $upgrader, $data ) {
 
@@ -55,7 +55,10 @@ class Updated extends PluginTrigger {
 			return false;
 		}
 
-		$this->previous_version        = $upgrader->skin->plugin_info['Version'];
+		/** @var \stdClass */
+		$skin = $upgrader->skin;
+
+		$this->previous_version        = $skin->plugin_info['Version'];
 		$plugin_dir                    = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $upgrader->plugin_info();
 		$this->plugin                  = get_plugin_data( $plugin_dir, false );
 		$this->plugin_update_date_time = $this->cache( 'update_timestamp', time() );

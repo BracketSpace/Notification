@@ -46,9 +46,9 @@ class Updated extends ThemeTrigger {
 	/**
 	 * Trigger action.
 	 *
-	 * @param  Theme_Upgrader $upgrader Theme_Upgrader class.
-	 * @param  array          $data     Update data information.
-	 * @return mixed                    Void or false if no notifications should be sent.
+	 * @param  \Theme_Upgrader $upgrader Theme_Upgrader class.
+	 * @param  array           $data     Update data information.
+	 * @return mixed                     Void or false if no notifications should be sent.
 	 */
 	public function action( $upgrader, $data ) {
 

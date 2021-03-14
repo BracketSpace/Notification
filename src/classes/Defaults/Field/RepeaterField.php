@@ -27,7 +27,7 @@ class RepeaterField extends Field {
 	 *
 	 * @var string
 	 */
-	protected $fields = [];
+	public $fields = [];
 
 	/**
 	 * Add new button label

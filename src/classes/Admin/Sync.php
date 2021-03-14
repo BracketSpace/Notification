@@ -160,9 +160,8 @@ class Sync {
 	 */
 	public function ajax_sync() {
 
-		$ajax  = notification_ajax_handler();
-		$data  = $_POST; // phpcs:ignore
-		$error = false;
+		$ajax = notification_ajax_handler();
+		$data = $_POST; // phpcs:ignore
 
 		$ajax->verify_nonce( 'notification_sync_' . $data['hash'] );
 
@@ -176,7 +175,7 @@ class Sync {
 			$ajax->error( __( 'Something went wrong while importing the Notification, please refresh the page and try again.' ) );
 		}
 
-		$ajax->send( $response, $error );
+		$ajax->send( $response );
 
 	}
 
@@ -204,8 +203,19 @@ class Sync {
 
 		foreach ( $json_notifications as $json ) {
 			try {
+				/**
+				 * JSON Adapter
+				 *
+				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
+				 */
 				$json_adapter = notification_adapt_from( 'JSON', $json );
+
 				if ( $json_adapter->get_hash() === $hash ) {
+					/**
+					 * WordPress Adapter
+					 *
+					 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
+					 */
 					$wp_adapter = notification_swap_adapter( 'WordPress', $json_adapter );
 					$wp_adapter->save();
 					return get_edit_post_link( $wp_adapter->get_id(), 'admin' );

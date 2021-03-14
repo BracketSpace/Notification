@@ -1,10 +1,12 @@
 includes:
     - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
-    level: 1
+    level: 2
     inferPrivatePropertyTypeFromConstructor: true
     bootstrapFiles:
         - tests/phpstan/bootstrap.php
+    stubFiles:
+        - tests/phpstan/stubs/Filesystem.stub
     paths:
         - notification.php
         - load.php
@@ -13,6 +15,3 @@ parameters:
     ignoreErrors:
         # Uses func_get_args()
         - '#^Function apply_filters(_ref_array)? invoked with [34567] parameters, 2 required\.$#'
-        # Var getters are defined outside the template view
-        - message: '#Variable \$(get|the|this) might not be defined#'
-          path: %currentWorkingDirectory%/src/templates

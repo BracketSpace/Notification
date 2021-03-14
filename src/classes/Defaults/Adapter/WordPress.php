@@ -21,7 +21,7 @@ class WordPress extends Abstracts\Adapter {
 	/**
 	 * Notification post
 	 *
-	 * @var WP_Post
+	 * @var \WP_Post
 	 */
 	protected $post;
 
@@ -70,7 +70,7 @@ class WordPress extends Abstracts\Adapter {
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @return $this || WP_Error
+	 * @return $this|\WP_Error
 	 */
 	public function save() {
 
@@ -79,7 +79,10 @@ class WordPress extends Abstracts\Adapter {
 		$this->set_version( time() );
 
 		$data = $this->get_notification()->to_array();
-		$json = notification_swap_adapter( 'JSON', $this )->save( JSON_UNESCAPED_UNICODE );
+
+		/** @var JSON */
+		$json_adapter = notification_swap_adapter( 'JSON', $this );
+		$json         = $json_adapter->save( JSON_UNESCAPED_UNICODE );
 
 		// Update the hash.
 		if ( ! preg_match( '/notification_[a-z0-9]{13}/', $data['hash'] ) ) {
@@ -113,7 +116,7 @@ class WordPress extends Abstracts\Adapter {
 	 * Checks if notification post has been just started
 	 *
 	 * @since 6.0.0
-	 * @return boolean
+	 * @return bool
 	 */
 	public function is_new() {
 		return empty( $this->post ) || '0000-00-00 00:00:00' === $this->post->post_date_gmt;
@@ -133,7 +136,7 @@ class WordPress extends Abstracts\Adapter {
 	 * Gets post
 	 *
 	 * @since 6.0.0
-	 * @return null|WP_Post
+	 * @return null|\WP_Post
 	 */
 	public function get_post() {
 		return $this->post;

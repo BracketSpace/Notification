@@ -9,6 +9,7 @@ namespace BracketSpace\Notification\Abstracts;
 
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Interfaces\Sendable;
+use BracketSpace\Notification\Interfaces\Taggable;
 use BracketSpace\Notification\Admin\FieldsResolver;
 use BracketSpace\Notification\Defaults\Store\Notification as NotificationStore;
 use BracketSpace\Notification\Core\Notification as CoreNotification;
@@ -363,10 +364,10 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Adds Trigger's Merge Tag
 	 *
-	 * @param Interfaces\Taggable $merge_tag merge tag object.
+	 * @param Taggable $merge_tag merge tag object.
 	 * @return $this
 	 */
-	public function add_merge_tag( Interfaces\Taggable $merge_tag ) {
+	public function add_merge_tag( Taggable $merge_tag ) {
 		$merge_tag->set_trigger( $this );
 		array_push( $this->merge_tags, $merge_tag );
 		return $this;
@@ -417,7 +418,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 *               with merge tag slugs as keys.
 	 * @param string $type    Optional, all|visible|hidden, default: all.
 	 * @param bool   $grouped Optional, default: false.
-	 * @return $array merge tags
+	 * @return array<Taggable>
 	 */
 	public function get_merge_tags( $type = 'all', $grouped = false ) {
 

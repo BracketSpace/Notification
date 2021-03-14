@@ -99,7 +99,7 @@ function notification_log( $component, $type, $message ) {
  *
  * @since  7.0.0
  * @param  string $name Filesystem name.
- * @return Filesystem|null
+ * @return BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem|null
  */
 function notification_filesystem( $name ) {
 	return \Notification::runtime()->get_filesystem( $name );

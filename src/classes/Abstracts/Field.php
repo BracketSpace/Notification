@@ -231,7 +231,7 @@ abstract class Field implements Interfaces\Fillable {
 	/**
 	 * Cheks if field should be resolved with merge tags
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function is_resolvable() {
 		return $this->resolvable;
@@ -240,7 +240,7 @@ abstract class Field implements Interfaces\Fillable {
 	/**
 	 * Cheks if field is disabled
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function is_disabled() {
 		return $this->disabled;

@@ -13,20 +13,7 @@ use BracketSpace\Notification\Core\Notification as CoreNotification;
 /**
  * Adapter class
  *
- * @method string get_hash()
- * @method string get_title()
- * @method Interfaces\Triggerable get_trigger()
- * @method array<Interfaces\Sendable> get_carriers()
- * @method bool get_enabled()
- * @method array get_extras()
- * @method int get_version()
- * @method void set_hash( string $hash )
- * @method void set_title( string $title )
- * @method void set_trigger( Interfaces\Triggerable $trigger )
- * @method void set_enabled( bool $enabled )
- * @method void set_extras( array $extras )
- * @method void set_version( int $version )
- * @method void set_source( string $source )
+ * @mixin CoreNotification
  */
 abstract class Adapter implements Interfaces\Adaptable {
 
@@ -62,7 +49,7 @@ abstract class Adapter implements Interfaces\Adaptable {
 	 * Gets Notification object
 	 *
 	 * @since  6.0.0
-	 * @return Notification
+	 * @return CoreNotification
 	 */
 	public function get_notification() {
 		return $this->notification;

@@ -159,7 +159,7 @@ function notification_add_doc_hooks( $object ) {
  *
  * @since      6.1.0
  * @deprecated 7.0.0 Use the `micropackage/dochooks` package.
- * @return     boolean
+ * @return     bool
  */
 function notification_dochooks_enabled() {
 	_deprecated_function( 'notification_dochooks_enabled', '7.0.0' );
@@ -172,7 +172,7 @@ function notification_dochooks_enabled() {
  * @since  6.0.0
  * @deprecated 7.0.0 Use `notification_template` or `notification_get_template` functions.
  *                    Or use Template object from micropackage.
- * @return View
+ * @return bool
  */
 function notification_create_view() {
 	_deprecated_function( 'notification_create_view', '7.0.0' );

@@ -28,14 +28,14 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 	/**
 	 * Comment object
 	 *
-	 * @var WP_Comment
+	 * @var \WP_Comment
 	 */
 	protected $comment;
 
 	/**
 	 * Comment author user object
 	 *
-	 * @var stdClass
+	 * @var \stdClass
 	 */
 	protected $user_object;
 

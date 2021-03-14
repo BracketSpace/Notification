@@ -17,6 +17,7 @@ use BracketSpace\Notification\Defaults\Adapter;
  * @return boolean     True if notification has been just started
  */
 function notification_post_is_new( $post ) {
+	/** @var BracketSpace\Notification\Defaults\Adapter\WordPress $notification */
 	$notification = notification_adapt_from( 'WordPress', $post );
 	return $notification->is_new();
 }

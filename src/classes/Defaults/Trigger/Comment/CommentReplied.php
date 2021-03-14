@@ -24,7 +24,7 @@ class CommentReplied extends CommentTrigger {
 	/**
 	 * Parent comment user object
 	 *
-	 * @var stdClass
+	 * @var \stdClass
 	 */
 	protected $parent_comment_user_object;
 

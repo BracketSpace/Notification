@@ -3,10 +3,18 @@
  * Form table row template
  *
  * @package notification
+ *
+ * @var callable(string $var_name, string $default=): mixed $get Variable getter.
+ * @var callable(string $var_name, string $default=): void $the Variable printer.
+ * @var BracketSpace\Notification\Vendor\Micropackage\Templates\Template $this Template instance.
  */
 
-$field     = $get( 'current_field' );
-$carrier   = $get( 'carrier' );
+/** @var BracketSpace\Notification\Abstracts\Field $field */
+$field = $get( 'current_field' );
+
+/** @var string $carrier Carrier slug */
+$carrier = $get( 'carrier' );
+
 $type      = false;
 $id        = '';
 $vue_class = '';

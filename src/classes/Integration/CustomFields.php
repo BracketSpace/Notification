@@ -7,6 +7,8 @@
 
 namespace BracketSpace\Notification\Integration;
 
+use BracketSpace\Notification\Abstracts\Trigger;
+
 /**
  * Custom Fields integration class
  */

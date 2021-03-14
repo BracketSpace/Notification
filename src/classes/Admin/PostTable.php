@@ -49,6 +49,11 @@ class PostTable {
 	 */
 	public function table_column_content( $column, $post_id ) {
 
+		/**
+		 * WordPress Adapter
+		 *
+		 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
+		 */
 		$notification = notification_adapt_from( 'WordPress', $post_id );
 
 		switch ( $column ) {
@@ -82,8 +87,8 @@ class PostTable {
 	 *
 	 * @filter display_post_states
 	 *
-	 * @param array   $post_states an array of post display states.
-	 * @param WP_Post $post        the current post object.
+	 * @param array    $post_states an array of post display states.
+	 * @param \WP_Post $post        the current post object.
 	 * @return array               filtered states
 	 */
 	public function remove_status_display( $post_states, $post ) {

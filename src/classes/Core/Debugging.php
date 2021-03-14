@@ -7,6 +7,9 @@
 
 namespace BracketSpace\Notification\Core;
 
+use BracketSpace\Notification\Abstracts\Carrier;
+use BracketSpace\Notification\Abstracts\Trigger;
+
 /**
  * Debugging class
  */

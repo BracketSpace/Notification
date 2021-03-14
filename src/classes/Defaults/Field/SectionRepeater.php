@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Defaults\Field;
 
 use BracketSpace\Notification\Abstracts\Field;
+use BracketSpace\Notification\Interfaces\Sendable;
 
 /**
  * Repeater field class
@@ -26,7 +27,7 @@ class SectionRepeater extends Field {
 	 *
 	 * @var string
 	 */
-	protected $fields = [];
+	public $fields = [];
 
 	/**
 	 * Add new button label
@@ -75,7 +76,7 @@ class SectionRepeater extends Field {
 	 *
 	 * @var array
 	 */
-	protected $sections = [];
+	public $sections = [];
 
 	/**
 	 * Section labels

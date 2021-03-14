@@ -137,6 +137,12 @@ class ImportExport {
 		foreach ( $posts as $wppost ) {
 
 			$wp_adapter   = notification_adapt_from( 'WordPress', $wppost );
+
+			/**
+			 * JSON Adapter
+			 *
+			 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
+			 */
 			$json_adapter = notification_swap_adapter( 'JSON', $wp_adapter );
 			$json         = $json_adapter->save( null, false );
 
@@ -215,7 +221,13 @@ class ImportExport {
 
 		foreach ( $data as $notification_data ) {
 			$json_adapter = notification_adapt_from( 'JSON', wp_json_encode( $notification_data ) );
-			$wp_adapter   = notification_swap_adapter( 'WordPress', $json_adapter );
+
+			/**
+			 * WordPress Adapter
+			 *
+			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
+			 */
+			$wp_adapter = notification_swap_adapter( 'WordPress', $json_adapter );
 
 			$existing_notification = notification_get_post_by_hash( $wp_adapter->get_hash() );
 

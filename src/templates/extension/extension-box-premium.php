@@ -3,9 +3,16 @@
  * Premium Extension box template
  *
  * @package notification
+ *
+ * @var callable(string $var_name, string $default=): mixed $get Variable getter.
+ * @var callable(string $var_name, string $default=): void $the Variable printer.
+ * @var BracketSpace\Notification\Vendor\Micropackage\Templates\Template $this Template instance.
  */
 
-$ext     = $get( 'extension' );
+/** @var array $ext */
+$ext = $get( 'extension' );
+
+/** @var mixed $license */
 $license = $ext['license']->get();
 
 ?>

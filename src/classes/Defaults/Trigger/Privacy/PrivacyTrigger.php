@@ -25,7 +25,7 @@ abstract class PrivacyTrigger extends Abstracts\Trigger {
 	/**
 	 * Request user object
 	 *
-	 * @var stdClass
+	 * @var \stdClass
 	 */
 	protected $user_object;
 

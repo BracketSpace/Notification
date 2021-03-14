@@ -225,6 +225,10 @@ class EDDUpdater {
 
 		}
 
+		/**
+		 * @var \stdClass $version_info
+		 */
+
 		// Restore our filter
 		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_update' ) );
 
@@ -355,7 +359,7 @@ class EDDUpdater {
 	 *
 	 * @since 3.6.5
 	 *
-	 * @param stdClass $data
+	 * @param \stdClass $data
 	 *
 	 * @return array
 	 */

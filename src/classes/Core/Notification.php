@@ -27,12 +27,14 @@ use BracketSpace\Notification\Interfaces;
  * @method bool get_enabled()
  * @method array get_extras()
  * @method int get_version()
+ * @method string get_source()
  * @method void set_hash( string $hash )
  * @method void set_title( string $title )
  * @method void set_trigger( Interfaces\Triggerable $trigger )
  * @method void set_enabled( bool $enabled )
  * @method void set_extras( array $extras )
  * @method void set_version( int $version )
+ * @method void set_source( string $source )
  */
 class Notification {
 
@@ -310,8 +312,8 @@ class Notification {
 	 * @since  6.0.0
 	 * @throws \Exception If you try to add already added Carrier.
 	 * @throws \Exception If you try to add non-existing Carrier.
-	 * @param  mixed $carrier Carrier object or slug.
-	 * @return Carrier
+	 * @param  Interfaces\Sendable $carrier Carrier object or slug.
+	 * @return Interfaces\Sendable
 	 */
 	public function add_carrier( $carrier ) {
 
