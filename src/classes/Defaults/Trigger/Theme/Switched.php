@@ -46,7 +46,7 @@ class Switched extends ThemeTrigger {
 	/**
 	 * Trigger action.
 	 *
-	 * @param  string   $name       Name of the new theme.
+	 * @param  string    $name       Name of the new theme.
 	 * @param  \WP_Theme $theme     Instance of the new theme.
 	 * @param  \WP_Theme $old_theme Instance of the old theme.
 	 * @return mixed                Void or false if no notifications should be sent.

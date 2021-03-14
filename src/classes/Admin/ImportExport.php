@@ -136,7 +136,7 @@ class ImportExport {
 
 		foreach ( $posts as $wppost ) {
 
-			$wp_adapter   = notification_adapt_from( 'WordPress', $wppost );
+			$wp_adapter = notification_adapt_from( 'WordPress', $wppost );
 
 			/**
 			 * JSON Adapter

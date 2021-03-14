@@ -45,9 +45,9 @@ class PostUpdated extends PostTrigger {
 	/**
 	 * Assigns action callback args to object
 	 *
-	 * @param integer   $post_id     Post ID.
-	 * @param \WP_Post  $post        Post object.
-	 * @param \WP_Post  $post_before Post before object.
+	 * @param integer  $post_id     Post ID.
+	 * @param \WP_Post $post        Post object.
+	 * @param \WP_Post $post_before Post before object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
 	public function action( $post_id, $post, $post_before ) {
