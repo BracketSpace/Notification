@@ -15,6 +15,13 @@ use BracketSpace\Notification\Defaults\MergeTag;
 class UserLoginFailed extends UserTrigger {
 
 	/**
+	 * User login failure date and time
+	 *
+	 * @var int|false
+	 */
+	protected $user_login_failed_datetime;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {

@@ -49,12 +49,17 @@ class PostTable {
 	 */
 	public function table_column_content( $column, $post_id ) {
 
+		/**
+		 * WordPress Adapter
+		 *
+		 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
+		 */
 		$notification = notification_adapt_from( 'WordPress', $post_id );
 
 		switch ( $column ) {
 			case 'trigger':
 				$trigger = $notification->get_trigger();
-				echo $trigger ? esc_html( $trigger->get_name() ) : esc_html__( 'No trigger selected', 'notification' );
+				echo esc_html( null === $trigger ? __( 'No trigger selected', 'notification' ) : $trigger->get_name() );
 				break;
 
 			case 'switch':
@@ -82,8 +87,8 @@ class PostTable {
 	 *
 	 * @filter display_post_states
 	 *
-	 * @param array   $post_states an array of post display states.
-	 * @param WP_Post $post        the current post object.
+	 * @param array    $post_states an array of post display states.
+	 * @param \WP_Post $post        the current post object.
 	 * @return array               filtered states
 	 */
 	public function remove_status_display( $post_states, $post ) {

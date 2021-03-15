@@ -145,7 +145,7 @@ class Section {
 	public function get_group( $slug = '' ) {
 
 		if ( isset( $this->groups[ $slug ] ) ) {
-			return apply_filters( $this->handle . '/settings/group', $this->group[ $slug ], $this );
+			return apply_filters( $this->handle . '/settings/group', $this->groups[ $slug ], $this );
 		}
 
 		return false;

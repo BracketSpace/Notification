@@ -39,8 +39,8 @@ class JSON extends Abstracts\Adapter {
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @param int  $json_options          JSON options, pass null to use default as well.
-	 * @param bool $only_enabled_carriers If only enabled Carriers should be saved.
+	 * @param int|null $json_options          JSON options, pass null to use default as well.
+	 * @param bool     $only_enabled_carriers If only enabled Carriers should be saved.
 	 * @return mixed
 	 */
 	public function save( $json_options = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE, $only_enabled_carriers = false ) {

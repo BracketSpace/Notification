@@ -11,6 +11,8 @@ use BracketSpace\Notification\Interfaces\Nameable;
 
 /**
  * Fillable interface
+ *
+ * @property string $section Field section name.
  */
 interface Fillable {
 
@@ -35,6 +37,13 @@ interface Fillable {
 	 * @return string
 	 */
 	public function get_name();
+
+	/**
+	 * Gets raw field name
+	 *
+	 * @return string
+	 */
+	public function get_raw_name();
 
 	/**
 	 * Gets field label
@@ -63,5 +72,20 @@ interface Fillable {
 	 * @return string
 	 */
 	public function css_class();
+
+	/**
+	 * Cheks if field should be resolved with merge tags
+	 *
+	 * @return bool
+	 */
+	public function is_resolvable();
+
+	/**
+	 * Sanitizes the value sent by user
+	 *
+	 * @param  mixed $value value to sanitize.
+	 * @return mixed        sanitized value
+	 */
+	public function sanitize( $value );
 
 }

@@ -16,6 +16,13 @@ use BracketSpace\Notification\Abstracts;
 class MediaTrashed extends MediaTrigger {
 
 	/**
+	 * Trashing user object
+	 *
+	 * @var \WP_User
+	 */
+	protected $trashing_user;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {

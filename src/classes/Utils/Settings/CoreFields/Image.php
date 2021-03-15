@@ -7,6 +7,8 @@
 
 namespace BracketSpace\Notification\Utils\Settings\CoreFields;
 
+use BracketSpace\Notification\Utils\Settings\Field;
+
 /**
  * Image field class
  */
@@ -31,6 +33,7 @@ class Image {
 			$image = $field->default_value();
 			$class = 'selected';
 		} else {
+			$image = '';
 			$class = '';
 		}
 

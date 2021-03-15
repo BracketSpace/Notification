@@ -7,6 +7,8 @@
 
 namespace BracketSpace\Notification\Api\Controller;
 
+use BracketSpace\Notification\Interfaces\Fillable;
+
 /**
  * RepeaterHandler class
  *
@@ -46,6 +48,7 @@ class RepeaterController {
 	public function form_field_data( $data = null ) {
 
 		if ( empty( $data ) ) {
+			/** @var \BracketSpace\Notification\Defaults\Field\RepeaterField */
 			$carrier_fields = $this->get_carrier_fields();
 			$data           = $carrier_fields->fields;
 		}
@@ -112,7 +115,7 @@ class RepeaterController {
 	 * Gets carrier fields
 	 *
 	 * @since 7.0.0
-	 * @return array
+	 * @return Fillable
 	 */
 	public function get_carrier_fields() {
 		$carrier        = notification_get_carrier( $this->carrier );

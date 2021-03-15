@@ -40,6 +40,13 @@ class Runtime {
 	protected $requirements_unmet;
 
 	/**
+	 * Filesystems
+	 *
+	 * @var Filesystem[]
+	 */
+	protected $filesystems = [];
+
+	/**
 	 * Components
 	 *
 	 * @var array
@@ -153,7 +160,7 @@ class Runtime {
 	 *
 	 * @since  7.0.0
 	 * @param  string $name Filesystem name.
-	 * @return Filesystem|null
+	 * @return Filesystem
 	 */
 	public function get_filesystem( $name ) {
 		return $this->filesystems[ $name ];

@@ -177,7 +177,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	/**
 	 * Gets form fields array
 	 *
-	 * @return array fields
+	 * @return Interfaces\Fillable[] fields
 	 */
 	public function get_form_fields() {
 		return $this->form_fields;
@@ -383,7 +383,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	 * Checks if Carrier is active
 	 *
 	 * @since  6.3.0
-	 * @return boolean
+	 * @return bool
 	 */
 	public function is_active() {
 		return ! empty( $this->get_field_value( 'activated' ) );
@@ -415,7 +415,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	 * Checks if Carrier is enabled
 	 *
 	 * @since  6.0.0
-	 * @return boolean
+	 * @return bool
 	 */
 	public function is_enabled() {
 		return ! empty( $this->get_field_value( 'enabled' ) );

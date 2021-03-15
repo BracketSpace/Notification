@@ -6,7 +6,7 @@
  */
 
 use BracketSpace\Notification\Core\Notification;
-use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Interfaces\Adaptable;
 
 /**
  * Adapts Notification object
@@ -51,10 +51,10 @@ function notification_adapt_from( $adapter_name, $data ) {
  * Changes one adapter to another
  *
  * @since  6.0.0
- * @param  string               $new_adapter_name Adapter class name.
- * @param  Interfaces\Adaptable $adapter          Adapter.
- * @return Interfaces\Adaptable                   Adaptable class.
+ * @param  string    $new_adapter_name Adapter class name.
+ * @param  Adaptable $adapter          Adapter.
+ * @return Adaptable                   Adaptable class.
  */
-function notification_swap_adapter( $new_adapter_name, Interfaces\Adaptable $adapter ) {
+function notification_swap_adapter( $new_adapter_name, Adaptable $adapter ) {
 	return notification_adapt( $new_adapter_name, $adapter->get_notification() );
 }

@@ -18,7 +18,7 @@ use BracketSpace\Notification\Traits;
  */
 class PostID extends IntegerTag {
 
-	use Traits\Cache;
+	use Traits\PostTypeUtils;
 
 	/**
 	 * Post Type slug

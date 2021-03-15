@@ -18,7 +18,7 @@ use BracketSpace\Notification\Traits;
  */
 class PostPermalink extends UrlTag {
 
-	use Traits\Cache;
+	use Traits\PostTypeUtils;
 
 	/**
 	 * Post Type slug

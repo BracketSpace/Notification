@@ -15,6 +15,34 @@ use BracketSpace\Notification\Abstracts\Field;
 class MessageField extends Field {
 
 	/**
+	 * Message
+	 *
+	 * @var string
+	 */
+	protected $message = '';
+
+	/**
+	 * Field type
+	 *
+	 * @var string
+	 */
+	protected $type = '';
+
+	/**
+	 * Field placeholder
+	 *
+	 * @var string
+	 */
+	protected $placeholder = '';
+
+	/**
+	 * Field attributes
+	 *
+	 * @var string
+	 */
+	protected $atts = '';
+
+	/**
 	 * Field constructor
 	 *
 	 * @since 5.0.0
@@ -34,7 +62,7 @@ class MessageField extends Field {
 		}
 
 		if ( isset( $params['name'] ) ) {
-			$this->type = $params['name'];
+			$this->name = $params['name'];
 		}
 
 		parent::__construct( $params );

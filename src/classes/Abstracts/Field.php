@@ -15,6 +15,13 @@ use BracketSpace\Notification\Interfaces;
 abstract class Field implements Interfaces\Fillable {
 
 	/**
+	 * Field unique ID
+	 *
+	 * @var string
+	 */
+	public $id;
+
+	/**
 	 * Field value
 	 *
 	 * @var mixed
@@ -78,6 +85,13 @@ abstract class Field implements Interfaces\Fillable {
 	 * @var  boolean
 	 */
 	public $multiple_section = false;
+
+	/**
+	 * Field type used in HTML attribute.
+	 *
+	 * @var string
+	 */
+	public $field_type_html = '';
 
 	/**
 	 * Field constructor
@@ -217,7 +231,7 @@ abstract class Field implements Interfaces\Fillable {
 	/**
 	 * Cheks if field should be resolved with merge tags
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function is_resolvable() {
 		return $this->resolvable;
@@ -226,7 +240,7 @@ abstract class Field implements Interfaces\Fillable {
 	/**
 	 * Cheks if field is disabled
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function is_disabled() {
 		return $this->disabled;

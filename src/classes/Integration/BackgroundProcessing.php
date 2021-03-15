@@ -7,6 +7,8 @@
 
 namespace BracketSpace\Notification\Integration;
 
+use BracketSpace\Notification\Abstracts\Trigger;
+
 /**
  * Background processing class
  */
@@ -22,7 +24,7 @@ class BackgroundProcessing {
 	 * @param  string  $action_tag Trigger action tag.
 	 * @return void
 	 */
-	public function load_to_cron( $trigger, $action_tag ) {
+	public function load_to_cron( Trigger $trigger, $action_tag ) {
 
 		if ( $trigger->is_stopped() || ! $trigger->has_background_processing_enabled() ) {
 			return;

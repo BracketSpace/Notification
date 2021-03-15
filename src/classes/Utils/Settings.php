@@ -33,14 +33,14 @@ class Settings {
 	 *
 	 * @var string
 	 */
-	protected $handle;
+	public $handle;
 
 	/**
 	 * Textdomain for all strings, if not provided the handle is used
 	 *
 	 * @var string
 	 */
-	protected $textdomain;
+	public $textdomain;
 
 	/**
 	 * Library root path
@@ -70,8 +70,8 @@ class Settings {
 	 *
 	 * @throws \Exception Exception.
 	 * @since 5.0.0
-	 * @param string $handle     settings handle.
-	 * @param string $textdomain textdomain.
+	 * @param string      $handle     settings handle.
+	 * @param string|bool $textdomain textdomain.
 	 */
 	public function __construct( $handle, $textdomain = false ) {
 

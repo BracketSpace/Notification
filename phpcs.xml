@@ -3,6 +3,7 @@
 	<description>Sniffs for Notification WordPress plugin</description>
 
 	<rule ref="WordPress">
+		<exclude name="Generic.Commenting.DocComment.MissingShort" />
 		<exclude name="Generic.Files.LowercasedFilename" />
 		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
 		<exclude name="WordPress.Files.FileName" />

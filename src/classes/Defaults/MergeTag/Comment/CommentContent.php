@@ -15,7 +15,7 @@ use BracketSpace\Notification\Traits;
  */
 class CommentContent extends StringTag {
 
-	use Traits\Cache;
+	use Traits\CommentTypeUtils;
 
 	/**
 	 * Trigger property to get the comment data from

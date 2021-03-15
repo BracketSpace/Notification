@@ -16,6 +16,17 @@ use BracketSpace\Notification\Interfaces\Triggerable;
 abstract class Resolver implements Interfaces\Resolvable {
 
 	/**
+	 * Resolver priority
+	 * Higher number means later execution
+	 */
+	const PRIORITY = 100;
+
+	/**
+	 * Resolver pattern
+	 */
+	const PATTERN = '';
+
+	/**
 	 * Gets resolver slug
 	 * Note: it's automatically generated from the class name.
 	 *

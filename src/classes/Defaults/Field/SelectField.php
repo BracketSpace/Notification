@@ -18,7 +18,7 @@ class SelectField extends Field {
 	 * Field options
 	 * value => label array
 	 *
-	 * @var string
+	 * @var array
 	 */
 	protected $options = [];
 

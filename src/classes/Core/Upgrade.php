@@ -136,9 +136,9 @@ class Upgrade {
 	 *
 	 * @since  6.0.0
 	 * @throws \Exception If Carrier hasn't been found.
-	 * @param  mixed   $carrier Sendable object or Carrier slug.
-	 * @param  integer $post_id Notification post ID.
-	 * @return Sendable
+	 * @param  string|Interfaces\Sendable $carrier Sendable object or Carrier slug.
+	 * @param  integer                    $post_id Notification post ID.
+	 * @return Interfaces\Sendable
 	 */
 	protected function populate_carrier( $carrier, $post_id ) {
 

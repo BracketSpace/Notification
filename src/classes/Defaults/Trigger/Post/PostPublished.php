@@ -22,6 +22,13 @@ class PostPublished extends PostTrigger {
 	protected static $publish_status = 'publish';
 
 	/**
+	 * Post publishing user object
+	 *
+	 * @var \WP_User
+	 */
+	protected $publishing_user;
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $post_type optional, default: post.

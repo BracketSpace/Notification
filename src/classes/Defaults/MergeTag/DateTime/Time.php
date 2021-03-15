@@ -41,8 +41,7 @@ class Time extends StringTag {
 		);
 
 		if ( ! isset( $args['group'] ) ) {
-			$args['group'] = $this->set_group( __( 'Date', 'notification' ) );
-
+			$this->set_group( __( 'Date', 'notification' ) );
 		}
 
 		if ( ! isset( $args['description'] ) ) {

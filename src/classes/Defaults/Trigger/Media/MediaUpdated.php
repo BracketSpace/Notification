@@ -15,6 +15,13 @@ use BracketSpace\Notification\Defaults\MergeTag;
 class MediaUpdated extends MediaTrigger {
 
 	/**
+	 * Updating user object
+	 *
+	 * @var \WP_User
+	 */
+	protected $updating_user;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {

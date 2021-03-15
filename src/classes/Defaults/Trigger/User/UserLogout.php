@@ -15,6 +15,20 @@ use BracketSpace\Notification\Defaults\MergeTag;
 class UserLogout extends UserTrigger {
 
 	/**
+	 * User meta data
+	 *
+	 * @var array
+	 */
+	protected $user_meta;
+
+	/**
+	 * User logout date and time
+	 *
+	 * @var int|false
+	 */
+	protected $user_logout_datetime;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {

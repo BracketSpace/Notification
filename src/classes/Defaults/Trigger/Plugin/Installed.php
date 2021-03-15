@@ -15,6 +15,13 @@ use BracketSpace\Notification\Defaults\MergeTag;
 class Installed extends PluginTrigger {
 
 	/**
+	 * Plugin installation date and time
+	 *
+	 * @var string
+	 */
+	protected $plugin_installation_date_time;
+
+	/**
 	 * Constructor.
 	 */
 	public function __construct() {
@@ -31,9 +38,9 @@ class Installed extends PluginTrigger {
 	/**
 	 * Trigger action.
 	 *
-	 * @param  Plugin_Upgrader $upgrader Plugin_Upgrader class.
-	 * @param  array           $data     Update data information.
-	 * @return mixed                     Void or false if no notifications should be sent.
+	 * @param  \Plugin_Upgrader $upgrader Plugin_Upgrader class.
+	 * @param  array            $data     Update data information.
+	 * @return mixed                      Void or false if no notifications should be sent.
 	 */
 	public function action( $upgrader, $data ) {
 

@@ -59,7 +59,7 @@ class Group {
 	/**
 	 * Section collapsed
 	 *
-	 * @var string
+	 * @var bool
 	 */
 	private $collapsed;
 
@@ -168,8 +168,8 @@ class Group {
 	/**
 	 * Set or get collapsed
 	 *
-	 * @param   bool $collapsed bool to set collapsed, null to get it.
-	 * @return  string|Group String when using getter and Group when using setter
+	 * @param   bool|null $collapsed Bool to set collapsed, null to get it.
+	 * @return  bool|Group           String when using getter and Group when using setter
 	 */
 	public function collapsed( $collapsed = null ) {
 
