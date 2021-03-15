@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8949b78852e6266d232aa983275f945d",
+    "content-hash": "aa78d37bda41061d5d06e1aec35a6152",
     "packages": [
         {
             "name": "micropackage/ajax",
@@ -2887,7 +2887,9 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "^7.0"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
 }
