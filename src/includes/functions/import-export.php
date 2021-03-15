@@ -2,7 +2,7 @@
 /**
  * Import/Export functions
  *
- * @package notificaiton
+ * @package notification
  */
 
 /**
