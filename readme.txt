@@ -4,7 +4,7 @@ Tags: notification, notify, alert, email, mail, webhook, API, developer, framewo
 Requires at least: 4.9
 Tested up to: 5.7
 Stable tag: 7.2.4
-Requires PHP: 7.1
+Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
