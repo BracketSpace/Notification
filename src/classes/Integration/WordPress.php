@@ -80,12 +80,12 @@ class WordPress {
 	 * @action comment_post
 	 *
 	 * @since 6.2.0
-	 * @param integer $comment_id Comment ID.
-	 * @param object  $approved   If Comment is approved.
+	 * @param integer    $comment_id Comment ID.
+	 * @param int|string $approved   1 if the comment is approved, 0 if not, 'spam' if spam.
 	 * @return void
 	 */
 	public function proxy_post_comment_to_published( $comment_id, $approved ) {
-		if ( $approved ) {
+		if ( 1 === $approved ) {
 			do_action( 'notification_comment_published_proxy', get_comment( $comment_id ) );
 		}
 	}

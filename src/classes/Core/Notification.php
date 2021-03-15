@@ -22,7 +22,7 @@ use BracketSpace\Notification\Interfaces;
  *
  * @method string get_hash()
  * @method string get_title()
- * @method Interfaces\Triggerable get_trigger()
+ * @method Interfaces\Triggerable|null get_trigger()
  * @method array<Interfaces\Sendable> get_carriers()
  * @method bool get_enabled()
  * @method array get_extras()
@@ -55,7 +55,7 @@ class Notification {
 	/**
 	 * Trigger
 	 *
-	 * @var Interfaces\Triggerable
+	 * @var Interfaces\Triggerable|null
 	 */
 	protected $trigger;
 
@@ -457,7 +457,7 @@ class Notification {
 	 * @since  6.0.0
 	 * @throws \Exception If extra is not type of array, string or number or boolean.
 	 * @param  string $key   Extra data key.
-	 * @param  string $value Extra data value.
+	 * @param  mixed  $value Extra data value.
 	 * @return $this
 	 */
 	public function add_extra( $key, $value ) {

@@ -60,7 +60,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 	/**
 	 * Trigger object, the Merge tag is assigned to
 	 *
-	 * @var object
+	 * @var Interfaces\Triggerable
 	 */
 	protected $trigger;
 
@@ -249,7 +249,7 @@ abstract class MergeTag extends Common implements Interfaces\Taggable {
 	 * Gets trigger object
 	 *
 	 * @since 5.0.0
-	 * @return Trigger object.
+	 * @return Interfaces\Triggerable|null
 	 */
 	public function get_trigger() {
 		return $this->trigger;

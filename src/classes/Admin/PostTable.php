@@ -59,7 +59,7 @@ class PostTable {
 		switch ( $column ) {
 			case 'trigger':
 				$trigger = $notification->get_trigger();
-				echo $trigger ? esc_html( $trigger->get_name() ) : esc_html__( 'No trigger selected', 'notification' );
+				echo null !== $trigger ? esc_html( $trigger->get_name() ) : esc_html__( 'No trigger selected', 'notification' );
 				break;
 
 			case 'switch':
