@@ -2,7 +2,7 @@
 /**
  * Notification post functions
  *
- * @package notificaiton
+ * @package notification
  */
 
 use BracketSpace\Notification\Core\Notification;

@@ -2,7 +2,7 @@
 /**
  * Recipient functions
  *
- * @package notificaiton
+ * @package notification
  */
 
 use BracketSpace\Notification\Interfaces;

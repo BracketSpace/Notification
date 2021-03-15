@@ -2,7 +2,7 @@
 /**
  * General functions
  *
- * @package notificaiton
+ * @package notification
  */
 
 /**

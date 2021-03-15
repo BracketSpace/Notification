@@ -2,7 +2,7 @@
 /**
  * Settings functions
  *
- * @package notificaiton
+ * @package notification
  */
 
 /**
