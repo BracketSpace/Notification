@@ -9,7 +9,7 @@
  * @var BracketSpace\Notification\Vendor\Micropackage\Templates\Template $this Template instance.
  */
 
-/** @var array @logs */
+/** @var array $logs */
 $logs = $get( 'logs' );
 
 ?>
