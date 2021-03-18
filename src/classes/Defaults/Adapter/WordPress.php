@@ -89,6 +89,9 @@ class WordPress extends Abstracts\Adapter {
 			$data['hash'] = Notification::create_hash();
 		}
 
+		// Fix WordPress balance tags filter.
+		remove_filter( 'content_save_pre', 'balanceTags', 50 );
+
 		// WordPress post related: Title, Hash, Status, Version.
 		$post_id = wp_insert_post( [
 			'ID'           => $this->get_id(),
@@ -98,6 +101,8 @@ class WordPress extends Abstracts\Adapter {
 			'post_name'    => $data['hash'],
 			'post_status'  => $data['enabled'] ? 'publish' : 'draft',
 		], true );
+
+		add_filter( 'content_save_pre', 'balanceTags', 50 );
 
 		if ( is_wp_error( $post_id ) ) {
 			$this->set_version( $version_backup );
