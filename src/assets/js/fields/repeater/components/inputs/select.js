@@ -37,7 +37,10 @@ Vue.component("notification-select", {
 		}
 
 		this.initSelectize();
-		notification.hooks.doAction("notification.carrier.select.changed", this);
+		notification.hooks.doAction(
+			"notification.carrier.select.changed",
+			this
+		);
 	},
 	beforeDestroy() {
 		this.destroySelectize();

@@ -58,7 +58,8 @@ export const inputsHandler = {
 			fetch(notification.select_rest_url, {
 				method: "POST",
 				headers: {
-					"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+					"Content-Type":
+						"application/x-www-form-urlencoded; charset=UTF-8",
 					"X-WP-Nonce": notification.rest_nonce
 				},
 				body: data

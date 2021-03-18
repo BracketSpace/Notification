@@ -7,7 +7,11 @@ import "selectize";
 		$("#notification_trigger_select").selectize({
 			render: {
 				item(item) {
-					return "<div>" + item.text.replace(/\[\[(.*)\]\]/g, "") + "</div>";
+					return (
+						"<div>" +
+						item.text.replace(/\[\[(.*)\]\]/g, "") +
+						"</div>"
+					);
 				},
 				option(item) {
 					return (
@@ -25,7 +29,10 @@ import "selectize";
 		$("#notification_trigger_select")
 			.selectize()
 			.change(function() {
-				notification.hooks.doAction("notification.trigger.changed", $(this));
+				notification.hooks.doAction(
+					"notification.trigger.changed",
+					$(this)
+				);
 			});
 	});
 })(jQuery);
