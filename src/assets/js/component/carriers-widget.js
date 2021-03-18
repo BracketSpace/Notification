@@ -47,7 +47,9 @@ class CarriersWidget {
 		this.carrierRemoveButtons = document.querySelectorAll(
 			`[${this.atts.carrierRemoveButton}]`
 		);
-		this.buttonsWrapper = this.wrapper.querySelector(`[${this.atts.buttons}]`);
+		this.buttonsWrapper = this.wrapper.querySelector(
+			`[${this.atts.buttons}]`
+		);
 		this.buttons = this.buttonsWrapper.querySelectorAll(
 			`[${this.atts.button}]`
 		);

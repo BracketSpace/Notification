@@ -4,6 +4,8 @@ import "selectize";
 
 (function($) {
 	$(document).ready(function() {
-		$(".notification-pretty-select:visible:not( repeater-select )").selectize();
+		$(
+			".notification-pretty-select:visible:not( repeater-select )"
+		).selectize();
 	});
 })(jQuery);

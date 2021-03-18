@@ -4,30 +4,38 @@
 	const __ = wp.i18n.__;
 
 	$(document).ready(function() {
-		$(".group-sync .field-actions .notification-sync-all").on("click", function(
-			event
-		) {
-			event.preventDefault();
+		$(".group-sync .field-actions .notification-sync-all").on(
+			"click",
+			function(event) {
+				event.preventDefault();
 
-			const $masterButton = $(this);
+				const $masterButton = $(this);
 
-			if ($masterButton.attr("disabled")) {
-				return false;
-			}
-
-			$masterButton.attr("disabled", true);
-
-			$(".group-sync .field-notifications tr").each(function(
-				num,
-				notificationRow
-			) {
-				const $button = $(notificationRow).find(".button.notification-sync");
-
-				if ($button.data("sync-type") === $masterButton.data("type")) {
-					notification.hooks.doAction("notification.sync.init", $button);
+				if ($masterButton.attr("disabled")) {
+					return false;
 				}
-			});
-		});
+
+				$masterButton.attr("disabled", true);
+
+				$(".group-sync .field-notifications tr").each(function(
+					num,
+					notificationRow
+				) {
+					const $button = $(notificationRow).find(
+						".button.notification-sync"
+					);
+
+					if (
+						$button.data("sync-type") === $masterButton.data("type")
+					) {
+						notification.hooks.doAction(
+							"notification.sync.init",
+							$button
+						);
+					}
+				});
+			}
+		);
 
 		$(".group-sync .field-notifications td > .button.notification-sync").on(
 			"click",
@@ -37,7 +45,9 @@
 			}
 		);
 
-		notification.hooks.addAction("notification.sync.init", function($button) {
+		notification.hooks.addAction("notification.sync.init", function(
+			$button
+		) {
 			if ($button.attr("disabled")) {
 				return false;
 			}

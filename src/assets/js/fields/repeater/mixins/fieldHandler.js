@@ -11,7 +11,10 @@ export const fieldHandler = {
 
 			this.rowCount++;
 			this.fields.push(model);
-			notification.hooks.doAction("notification.repeater.row.added", this);
+			notification.hooks.doAction(
+				"notification.repeater.row.added",
+				this
+			);
 		},
 		addFields(rowCount, model) {
 			const fieldModel = model;
@@ -43,7 +46,10 @@ export const fieldHandler = {
 		},
 		removeField(index, fields) {
 			fields.splice(index, 1);
-			notification.hooks.doAction("notification.repeater.row.removed", this);
+			notification.hooks.doAction(
+				"notification.repeater.row.removed",
+				this
+			);
 		},
 		createFieldName(type, index) {
 			if (type.fieldCarrier) {
