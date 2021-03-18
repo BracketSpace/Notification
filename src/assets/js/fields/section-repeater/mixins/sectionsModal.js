@@ -13,7 +13,9 @@ export const sectionsModal = {
 			this.modalOpen = true;
 
 			window.addEventListener("click", event => {
-				if (!event.target.classList.contains("add-new-sections-field")) {
+				if (
+					!event.target.classList.contains("add-new-sections-field")
+				) {
 					this.modalOpen = false;
 				}
 			});

@@ -9,13 +9,19 @@ import "jquery-collapse/src/jquery.collapse.js";
 
 	$(document).ready(function() {
 		// Copy Merge Tag.
-		const mergeTagClipboard = new ClipboardJS("code.notification-merge-tag");
+		const mergeTagClipboard = new ClipboardJS(
+			"code.notification-merge-tag"
+		);
 
 		mergeTagClipboard.on("success", function(e) {
 			const $code = $(e.trigger),
 				tag = $code.text();
 
-			notification.hooks.doAction("notification.merge_tag.copied", tag, $code);
+			notification.hooks.doAction(
+				"notification.merge_tag.copied",
+				tag,
+				$code
+			);
 
 			$code.text(__("Copied", "notification"));
 
@@ -43,7 +49,9 @@ import "jquery-collapse/src/jquery.collapse.js";
 					alert(response.data);
 				} else {
 					$("#notification_merge_tags .inside").html(response.data);
-					collapse = $(".notification_merge_tags_accordion").collapse();
+					collapse = $(
+						".notification_merge_tags_accordion"
+					).collapse();
 				}
 			});
 		});

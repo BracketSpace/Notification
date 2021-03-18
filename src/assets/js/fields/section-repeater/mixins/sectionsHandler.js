@@ -32,7 +32,10 @@ export const sectionsHandler = {
 			notification.hooks.doAction("notification.section.row.added", this);
 		},
 		addSubFieldSection(name, value) {
-			const fieldModel = Object.assign({}, this.baseFields[name.toLowerCase()]);
+			const fieldModel = Object.assign(
+				{},
+				this.baseFields[name.toLowerCase()]
+			);
 
 			this.selectedSection = fieldModel.label || fieldModel.name;
 

@@ -12,7 +12,9 @@ export const inputNameHandler = {
 		setProps() {
 			const parent = this.$parent;
 
-			this.parentFieldName = Object.freeze(this.parentField.toLowerCase());
+			this.parentFieldName = Object.freeze(
+				this.parentField.toLowerCase()
+			);
 			this.nested = Object.freeze(parent.nested);
 		}
 	}

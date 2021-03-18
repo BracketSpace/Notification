@@ -12,7 +12,9 @@
 			function(event) {
 				event.preventDefault();
 
-				$clickedImageField = $(this).parents(".notification-image-field");
+				$clickedImageField = $(this).parents(
+					".notification-image-field"
+				);
 
 				if (wp.media.frames.frame) {
 					wp.media.frames.frame.open();
@@ -31,7 +33,9 @@
 				});
 
 				const mediaSetImage = () => {
-					const selection = wp.media.frames.frame.state().get("selection");
+					const selection = wp.media.frames.frame
+						.state()
+						.get("selection");
 
 					if (!selection) {
 						return;
@@ -39,10 +43,15 @@
 
 					selection.each(function(attachment) {
 						$clickedImageField.addClass("selected");
-						$clickedImageField.find(".image-input").val(attachment.id);
+						$clickedImageField
+							.find(".image-input")
+							.val(attachment.id);
 						$clickedImageField
 							.find(".image .preview")
-							.attr("src", attachment.attributes.sizes.thumbnail.url);
+							.attr(
+								"src",
+								attachment.attributes.sizes.thumbnail.url
+							);
 					});
 				};
 

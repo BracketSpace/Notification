@@ -16,8 +16,12 @@
 (function($) {
 	$(document).ready(function() {
 		function toggleSuppressingSetting() {
-			const $log = $("#notification-setting-debugging-settings-debug_log");
-			const $suppressing = $(".notification-settings .field-debug_suppressing");
+			const $log = $(
+				"#notification-setting-debugging-settings-debug_log"
+			);
+			const $suppressing = $(
+				".notification-settings .field-debug_suppressing"
+			);
 
 			if ($log.is(":checked")) {
 				$suppressing.show();

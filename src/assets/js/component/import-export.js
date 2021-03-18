@@ -57,7 +57,10 @@
 				if ("application/json" !== value.type) {
 					addMessage(
 						"error",
-						__("Please upload only valid JSON files", "notification")
+						__(
+							"Please upload only valid JSON files",
+							"notification"
+						)
 					);
 					$file.val("");
 				} else {

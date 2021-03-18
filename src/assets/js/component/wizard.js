@@ -1,7 +1,9 @@
 /* global jQuery */
 (function($) {
 	$(document).ready(function() {
-		let count = $("#notifications-wizard").data("selected-notifications-count")
+		let count = $("#notifications-wizard").data(
+			"selected-notifications-count"
+		)
 			? $("#notifications-wizard").data("selected-notifications-count")
 			: 0;
 
@@ -20,7 +22,10 @@
 				count = count + 1;
 			}
 
-			$("#notifications-wizard").data("selected-notifications-count", count);
+			$("#notifications-wizard").data(
+				"selected-notifications-count",
+				count
+			);
 
 			if (count > 0) {
 				const text = wp.i18n.sprintf(
