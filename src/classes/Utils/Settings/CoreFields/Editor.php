@@ -7,6 +7,8 @@
 
 namespace BracketSpace\Notification\Utils\Settings\CoreFields;
 
+use BracketSpace\Notification\Utils\Settings\Field;
+
 /**
  * Editor class
  */

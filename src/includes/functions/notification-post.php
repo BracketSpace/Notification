@@ -2,7 +2,7 @@
 /**
  * Notification post functions
  *
- * @package notificaiton
+ * @package notification
  */
 
 use BracketSpace\Notification\Core\Notification;
@@ -17,12 +17,16 @@ use BracketSpace\Notification\Defaults\Adapter;
  * @return boolean     True if notification has been just started
  */
 function notification_post_is_new( $post ) {
+	/** @var BracketSpace\Notification\Defaults\Adapter\WordPress $notification */
 	$notification = notification_adapt_from( 'WordPress', $post );
 	return $notification->is_new();
 }
 
 /**
  * Gets all notification posts with enabled trigger.
+ *
+ * @todo This function needs to be fixed because we are no longer storing
+ *       the Trigger in Notification post meta.
  *
  * @since  6.0.0
  * @param  mixed $trigger_slug Trigger slug or null if all posts should be returned.
@@ -41,7 +45,7 @@ function notification_get_posts( $trigger_slug = null, $all = false ) {
 	}
 
 	if ( ! empty( $trigger_slug ) ) {
-		$query_args['meta_key']   = Adapter\WordPress::$metakey_trigger;
+		$query_args['meta_key']   = null; // Adapter\WordPress::$metakey_trigger; phpcs:ignore.
 		$query_args['meta_value'] = $trigger_slug;
 	}
 

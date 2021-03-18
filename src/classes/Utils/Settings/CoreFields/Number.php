@@ -7,6 +7,8 @@
 
 namespace BracketSpace\Notification\Utils\Settings\CoreFields;
 
+use BracketSpace\Notification\Utils\Settings\Field;
+
 /**
  * Number class
  */
@@ -29,7 +31,7 @@ class Number {
 	 * Sanitize input value
 	 *
 	 * @param  string $value saved value.
-	 * @return string        sanitized number
+	 * @return int|float     sanitized number
 	 */
 	public function sanitize( $value ) {
 

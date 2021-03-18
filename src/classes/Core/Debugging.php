@@ -7,6 +7,9 @@
 
 namespace BracketSpace\Notification\Core;
 
+use BracketSpace\Notification\Abstracts\Carrier;
+use BracketSpace\Notification\Abstracts\Trigger;
+
 /**
  * Debugging class
  */
@@ -163,7 +166,7 @@ class Debugging {
 	 *
 	 * @since  6.0.0
 	 * @param  string $type Type of count, values: total|pages.
-	 * @return integer
+	 * @return int
 	 */
 	public function get_logs_count( $type = 'total' ) {
 		global $wpdb;
@@ -171,7 +174,7 @@ class Debugging {
 		$total = $wpdb->get_var( 'SELECT FOUND_ROWS();' ); //phpcs:ignore
 
 		if ( 'pages' === $type ) {
-			return ceil( $total / $this->logs_per_page );
+			return (int) ceil( $total / $this->logs_per_page );
 		}
 
 		return $total;

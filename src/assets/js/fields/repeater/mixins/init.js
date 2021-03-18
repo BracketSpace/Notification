@@ -15,7 +15,8 @@ export const init = {
 				method: "POST",
 				headers: {
 					Accept: "application/json",
-					"Content-Type": "application/json"
+					"Content-Type": "application/json",
+					"X-WP-Nonce": notification.rest_nonce
 				},
 				body: JSON.stringify(this.type)
 			})

@@ -15,6 +15,20 @@ use BracketSpace\Notification\Defaults\MergeTag;
 class PostPublished extends PostTrigger {
 
 	/**
+	 * Status name of published post
+	 *
+	 * @var string
+	 */
+	protected static $publish_status = 'publish';
+
+	/**
+	 * Post publishing user object
+	 *
+	 * @var \WP_User
+	 */
+	protected $publishing_user;
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $post_type optional, default: post.
@@ -28,12 +42,7 @@ class PostPublished extends PostTrigger {
 			'name'      => sprintf( __( '%s published', 'notification' ), parent::get_post_type_name( $post_type ) ),
 		] );
 
-		$this->add_action( 'new_to_publish', 10 );
-		$this->add_action( 'auto-draft_to_publish', 10 );
-		$this->add_action( 'draft_to_publish', 10 );
-		$this->add_action( 'pending_to_publish', 10 );
-		$this->add_action( 'private_to_publish', 10 );
-		$this->add_action( 'future_to_publish', 10 );
+		$this->add_action( 'transition_post_status', 10, 3 );
 
 		// translators: 1. singular post name, 2. post type slug.
 		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is published', 'notification' ), parent::get_post_type_name( $post_type ), $post_type ) );
@@ -43,12 +52,18 @@ class PostPublished extends PostTrigger {
 	/**
 	 * Assigns action callback args to object
 	 *
-	 * @param object $post Post object.
+	 * @param string $new_status New post status.
+	 * @param string $old_status Old post status.
+	 * @param object $post       Post object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function action( $post ) {
+	public function action( $new_status, $old_status, $post ) {
 
 		if ( $post->post_type !== $this->post_type ) {
+			return false;
+		}
+
+		if ( self::$publish_status === $old_status || self::$publish_status !== $new_status ) {
 			return false;
 		}
 

@@ -15,6 +15,13 @@ use BracketSpace\Notification\Defaults\MergeTag;
 class PostScheduled extends PostTrigger {
 
 	/**
+	 * Post scheduling user object
+	 *
+	 * @var \WP_User
+	 */
+	protected $scheduling_user;
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $post_type optional, default: post.

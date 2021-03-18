@@ -163,7 +163,7 @@ class Extensions {
 	 * Gets single raw extension data
 	 *
 	 * @param string $slug extension slug.
-	 * @return array
+	 * @return array|false
 	 */
 	public function get_raw_extension( $slug ) {
 		$extensions = $this->get_raw_extensions();
@@ -411,6 +411,10 @@ class Extensions {
 	public function activation_nag() {
 
 		if ( notification_is_whitelabeled() ) {
+			return;
+		}
+
+		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 

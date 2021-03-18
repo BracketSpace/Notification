@@ -15,7 +15,7 @@ use BracketSpace\Notification\Traits;
  */
 class CommentIsReply extends StringTag {
 
-	use Traits\Cache;
+	use Traits\CommentTypeUtils;
 
 	/**
 	 * Trigger property to get the comment data from
@@ -23,6 +23,13 @@ class CommentIsReply extends StringTag {
 	 * @var string
 	 */
 	protected $comment_type = 'comment';
+
+	/**
+	 * Trigger property name to get the comment data from
+	 *
+	 * @var string
+	 */
+	protected $property_name = '';
 
 	/**
 	 * Merge tag constructor
@@ -36,6 +43,12 @@ class CommentIsReply extends StringTag {
 			$this->comment_type = $params['comment_type'];
 		}
 
+		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
+			$this->property_name = $params['property_name'];
+		} else {
+			$this->property_name = $this->comment_type;
+		}
+
 		$args = wp_parse_args(
 			$params,
 			[
@@ -45,7 +58,7 @@ class CommentIsReply extends StringTag {
 				'description' => __( 'Yes or No', 'notification' ),
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
-					$has_parent = $trigger->comment->comment_parent;
+					$has_parent = $trigger->{ $this->property_name }->comment_parent;
 					return $has_parent ? __( 'Yes', 'notification' ) : __( 'No', 'notification' );
 				},
 				'group'       => __( self::get_current_comment_type_name(), 'notification' ),

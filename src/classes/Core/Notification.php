@@ -19,6 +19,22 @@ use BracketSpace\Notification\Interfaces;
  * - enabled
  * - extras
  * - version
+ *
+ * @method string get_hash()
+ * @method string get_title()
+ * @method Interfaces\Triggerable|null get_trigger()
+ * @method array<Interfaces\Sendable> get_carriers()
+ * @method bool get_enabled()
+ * @method array get_extras()
+ * @method int get_version()
+ * @method string get_source()
+ * @method void set_hash( string $hash )
+ * @method void set_title( string $title )
+ * @method void set_trigger( Interfaces\Triggerable $trigger )
+ * @method void set_enabled( bool $enabled )
+ * @method void set_extras( array $extras )
+ * @method void set_version( int $version )
+ * @method void set_source( string $source )
  */
 class Notification {
 
@@ -39,7 +55,7 @@ class Notification {
 	/**
 	 * Trigger
 	 *
-	 * @var Interfaces\Triggerable
+	 * @var Interfaces\Triggerable|null
 	 */
 	protected $trigger;
 
@@ -67,7 +83,7 @@ class Notification {
 	/**
 	 * Version
 	 *
-	 * @var integer
+	 * @var int
 	 */
 	protected $version;
 
@@ -296,8 +312,8 @@ class Notification {
 	 * @since  6.0.0
 	 * @throws \Exception If you try to add already added Carrier.
 	 * @throws \Exception If you try to add non-existing Carrier.
-	 * @param  mixed $carrier Carrier object or slug.
-	 * @return Carrier
+	 * @param  Interfaces\Sendable $carrier Carrier object or slug.
+	 * @return Interfaces\Sendable
 	 */
 	public function add_carrier( $carrier ) {
 
@@ -400,7 +416,7 @@ class Notification {
 	public function get_carrier_data( $carrier_slug ) {
 		$carrier = $this->get_carrier( $carrier_slug );
 		if ( null !== $carrier ) {
-			$carrier->get_data( $data );
+			$carrier->get_data();
 		}
 	}
 
@@ -441,7 +457,7 @@ class Notification {
 	 * @since  6.0.0
 	 * @throws \Exception If extra is not type of array, string or number or boolean.
 	 * @param  string $key   Extra data key.
-	 * @param  string $value Extra data value.
+	 * @param  mixed  $value Extra data value.
 	 * @return $this
 	 */
 	public function add_extra( $key, $value ) {

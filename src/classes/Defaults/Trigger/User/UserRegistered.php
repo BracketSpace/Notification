@@ -15,6 +15,13 @@ use BracketSpace\Notification\Defaults\MergeTag;
 class UserRegistered extends UserTrigger {
 
 	/**
+	 * User meta data
+	 *
+	 * @var array
+	 */
+	protected $user_meta;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {

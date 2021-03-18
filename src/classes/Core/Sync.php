@@ -73,6 +73,11 @@ class Sync {
 
 		foreach ( $notifications as $json ) {
 			try {
+				/**
+				 * JSON Adapter
+				 *
+				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
+				 */
 				$adapter = notification_adapt_from( 'JSON', $json );
 				$adapter->register_notification();
 			} catch ( \Exception $e ) {
@@ -89,7 +94,7 @@ class Sync {
 	 * @action notification/data/save/after
 	 *
 	 * @since  6.0.0
-	 * @param Adapter\WordPress $wp_adapter WordPress adapter.
+	 * @param  WordPress $wp_adapter WordPress adapter.
 	 * @return void
 	 */
 	public static function save_local_json( $wp_adapter ) {

@@ -2,9 +2,9 @@
 Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
-Tested up to: 5.6
-Stable tag: 7.1.1
-Requires PHP: 7.1
+Tested up to: 5.7
+Stable tag: 7.2.4
+Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -291,6 +291,29 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
+* [Fixed] Code issues from not using static analysis.
+* [Changed] Code Editor Field sanitizer to allow for multiple HTML tags.
+
+= 7.2.4 =
+* [Fixed] Fix Post published trigger which was triggered even if the post was just updated.
+
+= 7.2.3 =
+* [Fixed] Merge Tag cleaning regex which could lead in some cases to wiping entire Carrier field.
+* [Fixed] Parent Comment ID Merge Tag returning reply ID not the parent.
+* [Changed] A check for activation nag if the user can manage options. Otherwise the useless notice is printed when a paid extension is not activated with license key, thanks to @mircobabini.
+* [Changed] Post published action to generic "publish_{post_type}" action which allows to trigger the notification when publishing from custom statuses.
+* [Changed] Import process which now allows to import singular notification instead of always requireing a collection.
+* [Added] [Filter for Background Processing](https://docs.bracketspace.com/notification/developer/snippets/general/background-processing-filter) which can be used to enable or disable particular trigger queueing.
+
+= 7.2.2 =
+* [Fixed] Wrong implementation of permission_callback while defining REST endpoints, thanks to @jphorn.
+* [Fixed] REST endpoints authentication.
+* [Fixed] PHP 8 compatibility, thanks to @g-kanoufi.
+
+= 7.2.1 =
+* [Fixed] Composer dev dependency causing platform requirements to go up all the way to PHP 7.3, thanks to @saowp.
+
+= 7.2.0 =
 * [Fixed] DB Upgrade running on every admin request, thanks to @pewu-dev.
 * [Fixed] Missing permission_callback argument in REST endpoints.
 * [Fixed] UserPasswordResetLink Merge Tag property names, thanks to @mircobabini.

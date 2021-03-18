@@ -16,7 +16,7 @@ use BracketSpace\Notification\Traits;
  */
 abstract class PostTrigger extends Abstracts\Trigger {
 
-	use Traits\Cache;
+	use Traits\PostTypeUtils;
 
 	/**
 	 * Post Type slug
@@ -24,6 +24,20 @@ abstract class PostTrigger extends Abstracts\Trigger {
 	 * @var string
 	 */
 	protected $post_type;
+
+	/**
+	 * Post author user object
+	 *
+	 * @var \WP_User
+	 */
+	protected $author;
+
+	/**
+	 * Post last editor user object
+	 *
+	 * @var \WP_User
+	 */
+	protected $last_editor;
 
 	/**
 	 * Constructor

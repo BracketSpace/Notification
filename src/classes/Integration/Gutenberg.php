@@ -7,6 +7,8 @@
 
 namespace BracketSpace\Notification\Integration;
 
+use BracketSpace\Notification\Abstracts\Trigger;
+
 /**
  * Gutenberg integration class
  */
@@ -36,6 +38,9 @@ class Gutenberg {
 			return;
 		}
 
+		/** @var \BracketSpace\Notification\Defaults\Trigger\Post\PostTrigger */
+		$trigger = $trigger;
+
 		if ( false === apply_filters( 'notification/integration/gutenberg', true, $trigger->get_post_type(), $trigger ) ) {
 			return;
 		}
@@ -52,7 +57,7 @@ class Gutenberg {
 	 * Checks if Gutenberg is active
 	 *
 	 * @since  6.0.4
-	 * @return boolean
+	 * @return bool
 	 */
 	public function is_gutenberg_active() {
 
@@ -87,7 +92,7 @@ class Gutenberg {
 	 * Checks if is Quick Edit action
 	 *
 	 * @since 6.3.1
-	 * @return boolean
+	 * @return bool
 	 */
 	public function is_quick_edit() {
 		//phpcs:ignore WordPress.Security.NonceVerification.Missing

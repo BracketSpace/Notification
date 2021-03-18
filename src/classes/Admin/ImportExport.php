@@ -136,7 +136,13 @@ class ImportExport {
 
 		foreach ( $posts as $wppost ) {
 
-			$wp_adapter   = notification_adapt_from( 'WordPress', $wppost );
+			$wp_adapter = notification_adapt_from( 'WordPress', $wppost );
+
+			/**
+			 * JSON Adapter
+			 *
+			 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
+			 */
 			$json_adapter = notification_swap_adapter( 'JSON', $wp_adapter );
 			$json         = $json_adapter->save( null, false );
 
@@ -171,19 +177,24 @@ class ImportExport {
 			wp_send_json_error( __( 'Wrong import type' ) );
 		}
 
-		if ( ! isset( $_FILES[0] ) ) {
+		if ( ! isset( $_FILES['notification_import_file'] ) ) {
 			wp_send_json_error( __( 'Please select file for import' ) );
 		}
 
 		// phpcs:disable
-		$file = fopen( $_FILES[0]['tmp_name'], 'rb' );
-		$json = fread( $file, filesize( $_FILES[0]['tmp_name'] ) );
+		$file = fopen( $_FILES['notification_import_file']['tmp_name'], 'rb' );
+		$json = fread( $file, filesize( $_FILES['notification_import_file']['tmp_name'] ) );
 		fclose( $file );
-		unlink( $_FILES[0]['tmp_name'] );
+		unlink( $_FILES['notification_import_file']['tmp_name'] );
 		// phpcs:enable
 
 		$data = json_decode( $json, true );
 		$type = sanitize_text_field( wp_unslash( $_POST['type'] ) );
+
+		// Wrap the singular notification into a collection.
+		if ( isset( $data['hash'] ) ) {
+			$data = [ $data ];
+		}
 
 		try {
 			$result = call_user_func( [ $this, 'process_' . $type . '_import_request' ], $data );
@@ -210,7 +221,13 @@ class ImportExport {
 
 		foreach ( $data as $notification_data ) {
 			$json_adapter = notification_adapt_from( 'JSON', wp_json_encode( $notification_data ) );
-			$wp_adapter   = notification_swap_adapter( 'WordPress', $json_adapter );
+
+			/**
+			 * WordPress Adapter
+			 *
+			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
+			 */
+			$wp_adapter = notification_swap_adapter( 'WordPress', $json_adapter );
 
 			$existing_notification = notification_get_post_by_hash( $wp_adapter->get_hash() );
 

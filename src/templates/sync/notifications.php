@@ -3,6 +3,10 @@
  * Notifications template
  *
  * @package notification
+ *
+ * @var callable(string $var_name, string $default=): mixed $get Variable getter.
+ * @var callable(string $var_name, string $default=): void $the Variable printer.
+ * @var BracketSpace\Notification\Vendor\Micropackage\Templates\Template $this Template instance.
  */
 
 ?>
@@ -21,7 +25,7 @@
 		<tr>
 			<td class="title">
 				<?php if ( isset( $item['post_id'] ) ) : ?>
-					<a href="<?php echo esc_url( get_edit_post_link( $item['post_id'], 'admin' ) ); ?>">
+					<a href="<?php echo esc_url( (string) get_edit_post_link( $item['post_id'], 'admin' ) ); ?>">
 				<?php endif ?>
 				<?php echo esc_html( $item['notification']->get_title() ); ?>
 				<?php if ( isset( $item['post_id'] ) ) : ?>

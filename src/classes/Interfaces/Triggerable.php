@@ -30,4 +30,20 @@ interface Triggerable extends Nameable {
 	 */
 	public function detach( Notification $notification );
 
+	/**
+	 * Sets up the merge tags
+	 *
+	 * @return void
+	 */
+	public function setup_merge_tags();
+
+	/**
+	 * Gets Trigger's merge tags
+	 *
+	 * @param string $type    Optional, all|visible|hidden, default: all.
+	 * @param bool   $grouped Optional, default: false.
+	 * @return array<Taggable>
+	 */
+	public function get_merge_tags( $type = 'all', $grouped = false );
+
 }

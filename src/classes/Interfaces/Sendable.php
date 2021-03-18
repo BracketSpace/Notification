@@ -27,4 +27,25 @@ interface Sendable extends Nameable {
 	 */
 	public function hash();
 
+	/**
+	 * Gets form fields array
+	 *
+	 * @return Fillable[] fields
+	 */
+	public function get_form_fields();
+
+	/**
+	 * Checks if Carrier is enabled
+	 *
+	 * @return bool
+	 */
+	public function is_enabled();
+
+	/**
+	 * Checks if Carrier is active
+	 *
+	 * @return bool
+	 */
+	public function is_active();
+
 }

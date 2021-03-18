@@ -18,7 +18,7 @@ use BracketSpace\Notification\Traits;
  */
 class PostType extends StringTag {
 
-	use Traits\Cache;
+	use Traits\PostTypeUtils;
 
 	/**
 	 * Post Type slug

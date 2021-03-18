@@ -16,6 +16,20 @@ use BracketSpace\Notification\Abstracts;
 class UserDeleted extends UserTrigger {
 
 	/**
+	 * User meta data
+	 *
+	 * @var array
+	 */
+	protected $user_meta;
+
+	/**
+	 * User deletion date and time
+	 *
+	 * @var int|false
+	 */
+	protected $user_deleted_datetime;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {

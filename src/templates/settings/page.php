@@ -3,7 +3,13 @@
  * Settings page template
  *
  * @package notification
+ *
+ * @var BracketSpace\Notification\Utils\Settings $this Settings instance.
  */
+
+if ( ! isset( $current_section ) ) {
+	$current_section = '';
+}
 
 ?>
 

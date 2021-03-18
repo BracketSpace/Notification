@@ -16,6 +16,13 @@ use BracketSpace\Notification\Defaults\MergeTag;
 abstract class ThemeTrigger extends Abstracts\Trigger {
 
 	/**
+	 * Theme object
+	 *
+	 * @var \WP_Theme
+	 */
+	protected $theme;
+
+	/**
 	 * Registers attached merge tags
 	 *
 	 * @return void

@@ -83,8 +83,12 @@ class SectionRepeaterController extends RepeaterController {
 	 * @return array
 	 */
 	public function form_data() {
-		$values             = $this->get_values( $this->post_id, $this->carrier, $this->field ) ?? [];
-		$populated_sections = $this->get_sections_fields( $this->get_carrier_fields()->sections );
+		$values = $this->get_values( $this->post_id, $this->carrier, $this->field ) ?? [];
+
+		/** @var \BracketSpace\Notification\Defaults\Field\SectionRepeater */
+		$field = $this->get_carrier_fields();
+
+		$populated_sections = $this->get_sections_fields( $field->sections );
 
 		$data = [
 			'sections' => $populated_sections,

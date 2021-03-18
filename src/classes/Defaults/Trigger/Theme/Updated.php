@@ -16,6 +16,20 @@ use BracketSpace\Notification\Abstracts;
 class Updated extends ThemeTrigger {
 
 	/**
+	 * Theme update date and time
+	 *
+	 * @var string
+	 */
+	protected $theme_update_date_time;
+
+	/**
+	 * Theme previous version
+	 *
+	 * @var string
+	 */
+	protected $theme_previous_version;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {
@@ -32,9 +46,9 @@ class Updated extends ThemeTrigger {
 	/**
 	 * Trigger action.
 	 *
-	 * @param  Theme_Upgrader $upgrader Theme_Upgrader class.
-	 * @param  array          $data     Update data information.
-	 * @return mixed                    Void or false if no notifications should be sent.
+	 * @param  \Theme_Upgrader $upgrader Theme_Upgrader class.
+	 * @param  array           $data     Update data information.
+	 * @return mixed                     Void or false if no notifications should be sent.
 	 */
 	public function action( $upgrader, $data ) {
 

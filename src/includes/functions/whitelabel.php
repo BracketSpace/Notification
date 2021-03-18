@@ -2,7 +2,7 @@
 /**
  * White label functions
  *
- * @package notificaiton
+ * @package notification
  */
 
 /**

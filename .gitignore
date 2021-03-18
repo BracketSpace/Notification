@@ -5,6 +5,7 @@ node_modules/
 /vendor/
 dist/
 package-lock.json
+/tests/_wordpress/
 
 ### Windows ###
 # Windows image file caches

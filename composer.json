@@ -1,18 +1,39 @@
 {
 	"name": "bracketspace/notification",
 	"type": "wordpress-plugin",
-	"scripts": {
-		"phpcs": "phpcs",
-		"phpcbf": "phpcbf",
-		"phpunit": "phpunit",
-		"phpunit-coverage": "phpunit --coverage-text",
-		"setup-local-tests": "bash bin/install-wp-tests.sh wordpress_test root root localhost latest"
+	"license": "GPL-3.0-or-later",
+	"description": "Notification plugin for WordPress",
+	"require": {
+		"php": "^7.0",
+		"micropackage/ajax": "^1.0",
+		"micropackage/dochooks": "^1.0",
+		"micropackage/filesystem": "^1.1",
+		"micropackage/requirements": "^1.0",
+		"micropackage/templates": "^1.1",
+		"typisttech/imposter-plugin": "^0.6.2"
 	},
 	"require-dev": {
-		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-		"phpcompatibility/php-compatibility": "^9.1",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+		"jakub-onderka/php-parallel-lint": "^1.0",
+		"phpcompatibility/php-compatibility": "^9.3",
+		"phpunit/phpunit": "^6.5",
+		"roots/wordpress": "^5.6",
+		"szepeviktor/phpstan-wordpress": "^0.7.2",
 		"wp-coding-standards/wpcs": "^2.0",
-		"phpunit/phpunit": "^6.5.5"
+		"wp-phpunit/wp-phpunit": "^5.6"
+	},
+	"config": {
+		"platform-check": false
+	},
+	"extra": {
+		"imposter": {
+			"excludes": [
+				"roots/wordpress",
+				"wp-phpunit/wp-phpunit"
+			],
+			"namespace": "BracketSpace\\Notification\\Vendor"
+		},
+		"wordpress-install-dir": "tests/_wordpress"
 	},
 	"autoload": {
 		"psr-4": {
@@ -41,17 +62,13 @@
 			"BracketSpace\\Notification\\Tests\\": "tests"
 		}
 	},
-	"require": {
-		"micropackage/requirements": "^1.0",
-		"typisttech/imposter-plugin": "^0.6.2",
-		"micropackage/dochooks": "^1.0",
-		"micropackage/filesystem": "^1.1",
-		"micropackage/templates": "^1.1",
-		"micropackage/ajax": "^1.0"
-	},
-	"extra": {
-		"imposter": {
-			"namespace": "BracketSpace\\Notification\\Vendor"
-		}
+	"scripts": {
+		"phpcbf": "phpcbf",
+		"phpcs": "phpcs",
+		"phpcompat": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.0 notification.php load.php uninstall.php src/",
+		"phplint": "parallel-lint --exclude node_modules --exclude vendor --exclude dist .",
+		"phpstan": "phpstan analyze",
+		"phpunit": "phpunit",
+		"phpunit-coverage": "phpunit --coverage-text"
 	}
 }

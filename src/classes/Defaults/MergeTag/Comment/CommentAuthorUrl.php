@@ -15,7 +15,7 @@ use BracketSpace\Notification\Traits;
  */
 class CommentAuthorUrl extends UrlTag {
 
-	use Traits\Cache;
+	use Traits\CommentTypeUtils;
 
 	/**
 	 * Trigger property to get the comment data from
@@ -23,6 +23,13 @@ class CommentAuthorUrl extends UrlTag {
 	 * @var string
 	 */
 	protected $comment_type = 'comment';
+
+	/**
+	 * Trigger property name to get the comment data from
+	 *
+	 * @var string
+	 */
+	protected $property_name = '';
 
 	/**
 	 * Merge tag constructor
@@ -36,6 +43,12 @@ class CommentAuthorUrl extends UrlTag {
 			$this->comment_type = $params['comment_type'];
 		}
 
+		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
+			$this->property_name = $params['property_name'];
+		} else {
+			$this->property_name = $this->comment_type;
+		}
+
 		$args = wp_parse_args(
 			$params,
 			[
@@ -45,7 +58,7 @@ class CommentAuthorUrl extends UrlTag {
 				'description' => __( 'http://mywebsite.com', 'notification' ),
 				'example'     => true,
 				'resolver'    => function( $trigger ) {
-					return $trigger->comment->comment_author_url;
+					return $trigger->{ $this->property_name }->comment_author_url;
 				},
 				// translators: comment type author.
 				'group'       => sprintf( __( '%s author', 'notification' ), self::get_current_comment_type_name() ),

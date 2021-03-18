@@ -9,6 +9,7 @@ namespace BracketSpace\Notification\Abstracts;
 
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Interfaces\Sendable;
+use BracketSpace\Notification\Interfaces\Taggable;
 use BracketSpace\Notification\Admin\FieldsResolver;
 use BracketSpace\Notification\Defaults\Store\Notification as NotificationStore;
 use BracketSpace\Notification\Core\Notification as CoreNotification;
@@ -156,7 +157,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 		] );
 
 		// Add the cron action if background processing is active.
-		if ( notification_get_setting( 'general/advanced/background_processing' ) ) {
+		if ( $this->has_background_processing_enabled() ) {
 			// The last param will be cache.
 			add_action( 'ntfn_bp_' . $tag, [ $this, '_action' ], $priority, ( $accepted_args + 1 ) );
 		}
@@ -168,24 +169,25 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Removes the action from the actions library.
 	 *
-	 * @param string  $tag           action hook.
-	 * @param integer $priority      action priority, default 10.
-	 * @param integer $accepted_args how many args the action accepts, default 1.
+	 * @param string  $tag        action hook.
+	 * @param integer $priority   action priority, default 10.
+	 * @param mixed   $deprecated deprecated.
+	 * @return void
 	 */
-	public function remove_action( $tag, $priority = 10, $accepted_args = 1 ) {
+	public function remove_action( $tag, $priority = 10, $deprecated = null ) {
 
 		if ( empty( $tag ) ) {
 			trigger_error( 'Action tag cannot be empty', E_USER_ERROR );
 		}
 
 		foreach ( $this->actions as $action_index => $action ) {
-			if ( $action['tag'] === $tag && $action['priority'] === $priority && $action['accepted_args'] === $accepted_args ) {
+			if ( $action['tag'] === $tag && $action['priority'] === $priority ) {
 				unset( $this->actions[ $action_index ] );
 				break;
 			}
 		}
 
-		remove_action( $tag, [ $this, '_action' ], $priority, $accepted_args );
+		remove_action( $tag, [ $this, '_action' ], $priority );
 
 	}
 
@@ -201,7 +203,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 */
 	public function postpone_action( $tag, $priority = 10, $accepted_args = 1 ) {
 
-		if ( notification_get_setting( 'general/advanced/background_processing' ) ) {
+		if ( $this->has_background_processing_enabled() ) {
 			return;
 		}
 
@@ -234,10 +236,24 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Check if Trigger has attached Notifications
 	 *
-	 * @return array
+	 * @return bool
 	 */
 	public function has_notifications() {
 		return ! empty( $this->get_notifications() );
+	}
+
+	/**
+	 * Checks if this trigger has background processing active.
+	 *
+	 * @since 7.2.3
+	 * @return bool
+	 */
+	public function has_background_processing_enabled() {
+		return apply_filters(
+			'notification/trigger/process_in_background',
+			notification_get_setting( 'general/advanced/background_processing' ),
+			$this
+		);
 	}
 
 	/**
@@ -348,10 +364,10 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	/**
 	 * Adds Trigger's Merge Tag
 	 *
-	 * @param Interfaces\Taggable $merge_tag merge tag object.
+	 * @param Taggable $merge_tag merge tag object.
 	 * @return $this
 	 */
-	public function add_merge_tag( Interfaces\Taggable $merge_tag ) {
+	public function add_merge_tag( Taggable $merge_tag ) {
 		$merge_tag->set_trigger( $this );
 		array_push( $this->merge_tags, $merge_tag );
 		return $this;
@@ -402,7 +418,7 @@ abstract class Trigger extends Common implements Interfaces\Triggerable {
 	 *               with merge tag slugs as keys.
 	 * @param string $type    Optional, all|visible|hidden, default: all.
 	 * @param bool   $grouped Optional, default: false.
-	 * @return $array merge tags
+	 * @return array<Taggable>
 	 */
 	public function get_merge_tags( $type = 'all', $grouped = false ) {
 

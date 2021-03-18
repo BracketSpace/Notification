@@ -8,6 +8,7 @@
 
 namespace BracketSpace\Notification\Admin;
 
+use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Interfaces;
 
 /**
@@ -34,7 +35,7 @@ class Screen {
 	 *
 	 * @action edit_form_after_title 1
 	 *
-	 * @param  object $post WP_Post.
+	 * @param  \WP_Post $post Post object.
 	 * @return void
 	 */
 	public function render_main_column( $post ) {
@@ -154,7 +155,7 @@ class Screen {
 			'carriers_added_count'  => count( $carriers ),
 			'carriers_exists_count' => count( $exists ),
 			'carriers'              => $carriers,
-			'carriers_exists'       => $exists,
+			'carriers_exists'       => (array) $exists,
 		] );
 
 	}

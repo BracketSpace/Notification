@@ -3,9 +3,11 @@
  * Wizard content
  *
  * @package notification
+ *
+ * @var callable(string $var_name, string $default=): mixed $get Variable getter.
+ * @var callable(string $var_name, string $default=): void $the Variable printer.
+ * @var BracketSpace\Notification\Vendor\Micropackage\Templates\Template $this Template instance.
  */
-
-$sections = (array) $get( 'sections' );
 
 ?>
 
@@ -20,7 +22,7 @@ $sections = (array) $get( 'sections' );
 			<h3><?php esc_html_e( 'Quickly setup the Notifications you need.', 'notification' ); ?><br/>
 			<?php esc_html_e( 'You\'ll be able to edit them later.', 'notification' ); ?></h3>
 
-			<?php foreach ( $sections as $section ) : ?>
+			<?php foreach ( (array) $get( 'sections' ) as $section ) : ?>
 				<div class="notifications-group">
 					<h2 class="notifications-group-title">
 						<?php esc_html_e( $section['name'] ); ?>

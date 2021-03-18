@@ -15,6 +15,34 @@ use BracketSpace\Notification\Defaults\MergeTag;
 class UserRoleChanged extends UserTrigger {
 
 	/**
+	 * User meta data
+	 *
+	 * @var array
+	 */
+	protected $user_meta;
+
+	/**
+	 * New role
+	 *
+	 * @var string
+	 */
+	protected $new_role;
+
+	/**
+	 * Old role
+	 *
+	 * @var string
+	 */
+	protected $old_role;
+
+	/**
+	 * User role change date and time
+	 *
+	 * @var int|false
+	 */
+	protected $user_role_change_datetime;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {

@@ -3,9 +3,16 @@
  * Extension box template
  *
  * @package notification
+ *
+ * @var callable(string $var_name, string $default=): mixed $get Variable getter.
+ * @var callable(string $var_name, string $default=): void $the Variable printer.
+ * @var BracketSpace\Notification\Vendor\Micropackage\Templates\Template $this Template instance.
  */
 
+/** @var array $ext */
 $ext = $get( 'extension' );
+
+$action_button = '';
 
 // fragment forked from wp-admin/includes/class-wp-plugin-install-list-table.php.
 if ( isset( $ext['wporg'] ) && ! is_wp_error( $ext['wporg'] ) && ( current_user_can( 'install_plugins' ) || current_user_can( 'update_plugins' ) ) ) {

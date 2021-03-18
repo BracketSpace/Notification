@@ -7,8 +7,12 @@
 
 namespace BracketSpace\Notification\Interfaces;
 
+use BracketSpace\Notification\Core\Notification;
+
 /**
  * Adaptable interface
+ *
+ * @mixin Notification
  */
 interface Adaptable {
 
@@ -26,5 +30,12 @@ interface Adaptable {
 	 * @return mixed
 	 */
 	public function save();
+
+	/**
+	 * Gets Notification object
+	 *
+	 * @return Notification
+	 */
+	public function get_notification();
 
 }
