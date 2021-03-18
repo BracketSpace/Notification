@@ -292,6 +292,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 * [Fixed] Code issues from not using static analysis.
+* [Fixed] WordPress' balanceTags filter which was breaking the Notification content.
 * [Changed] Code Editor Field sanitizer to allow for multiple HTML tags.
 
 = 7.2.4 =
