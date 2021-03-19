@@ -16,11 +16,11 @@ use BracketSpace\Notification\Abstracts;
 class EmailChangeRequest extends Abstracts\Trigger {
 
 	/**
-	 * User object
+	 * User login
 	 *
-	 * @var \WP_User
+	 * @var string
 	 */
-	protected $user;
+	protected $user_login;
 
 	/**
 	 * Site URL
@@ -35,6 +35,27 @@ class EmailChangeRequest extends Abstracts\Trigger {
 	 * @var string
 	 */
 	protected $site_name;
+
+	/**
+	 * New admin email
+	 *
+	 * @var string
+	 */
+	protected $new_admin_email;
+
+	/**
+	 * Confirmation email
+	 *
+	 * @var string
+	 */
+	protected $confirmation_url;
+
+	/**
+	 * Email change timestamp
+	 *
+	 * @var int
+	 */
+	protected $email_change_datetime;
 
 	/**
 	 * [description]
@@ -73,12 +94,11 @@ class EmailChangeRequest extends Abstracts\Trigger {
 		$data         = get_option( 'adminhash' );
 		$current_user = wp_get_current_user();
 
-		$this->user             = $current_user->user_login;
-		$this->site_url         = home_url();
-		$this->site_name        = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
-		$this->new_admin_email  = $data['newemail'];
-		$this->confirmation_url = esc_url( admin_url( 'options.php?adminhash=' . $data['hash'] ) );
-
+		$this->user_login            = $current_user->user_login;
+		$this->site_url              = home_url();
+		$this->site_name             = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
+		$this->new_admin_email       = $data['newemail'];
+		$this->confirmation_url      = esc_url( admin_url( 'options.php?adminhash=' . $data['hash'] ) );
 		$this->email_change_datetime = $this->cache( 'timestamp', time() );
 	}
 
@@ -99,7 +119,7 @@ class EmailChangeRequest extends Abstracts\Trigger {
 			'slug'     => 'admin_login',
 			'name'     => __( 'Admin login', 'notification' ),
 			'resolver' => function( $trigger ) {
-				return $trigger->user;
+				return $trigger->user_login;
 			},
 			'group'    => __( 'Site', 'notification' ),
 		]) );
