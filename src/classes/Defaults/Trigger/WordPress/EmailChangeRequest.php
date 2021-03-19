@@ -23,20 +23,6 @@ class EmailChangeRequest extends Abstracts\Trigger {
 	protected $user_login;
 
 	/**
-	 * Site URL
-	 *
-	 * @var string
-	 */
-	protected $site_url;
-
-	/**
-	 * Site name
-	 *
-	 * @var string
-	 */
-	protected $site_name;
-
-	/**
 	 * New admin email
 	 *
 	 * @var string
@@ -91,12 +77,9 @@ class EmailChangeRequest extends Abstracts\Trigger {
 			return false;
 		}
 
-		$data         = get_option( 'adminhash' );
-		$current_user = wp_get_current_user();
-
+		$data                        = get_option( 'adminhash' );
+		$current_user                = wp_get_current_user();
 		$this->user_login            = $current_user->user_login;
-		$this->site_url              = home_url();
-		$this->site_name             = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
 		$this->new_admin_email       = $data['newemail'];
 		$this->confirmation_url      = esc_url( admin_url( 'options.php?adminhash=' . $data['hash'] ) );
 		$this->email_change_datetime = $this->cache( 'timestamp', time() );
@@ -120,15 +103,6 @@ class EmailChangeRequest extends Abstracts\Trigger {
 			'name'     => __( 'Admin login', 'notification' ),
 			'resolver' => function( $trigger ) {
 				return $trigger->user_login;
-			},
-			'group'    => __( 'Site', 'notification' ),
-		]) );
-
-		$this->add_merge_tag( new MergeTag\StringTag([
-			'slug'     => 'site_name',
-			'name'     => __( 'Site name', 'notification' ),
-			'resolver' => function( $trigger ) {
-				return $trigger->site_name;
 			},
 			'group'    => __( 'Site', 'notification' ),
 		]) );

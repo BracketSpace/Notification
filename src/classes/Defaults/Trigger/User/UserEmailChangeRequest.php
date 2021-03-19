@@ -21,13 +21,6 @@ class UserEmailChangeRequest extends UserTrigger {
 	protected $user_meta;
 
 	/**
-	 * Site URL
-	 *
-	 * @var string
-	 */
-	protected $site_url;
-
-	/**
 	 * New user email
 	 *
 	 * @var string
@@ -79,7 +72,6 @@ class UserEmailChangeRequest extends UserTrigger {
 		$this->user_id               = $user_id;
 		$this->user_object           = get_userdata( $this->user_id );
 		$this->user_meta             = get_user_meta( $this->user_id );
-		$this->site_url              = home_url();
 		$this->new_user_email        = $new_email['newemail'];
 		$this->confirmation_url      = esc_url( admin_url( 'profile.php?newuseremail=' . $new_email['hash'] ) );
 		$this->email_change_datetime = $this->cache( 'timestamp', time() );
@@ -120,15 +112,5 @@ class UserEmailChangeRequest extends UserTrigger {
 			},
 			'group'    => __( 'Site', 'notification' ),
 		] ) );
-
-		$this->add_merge_tag( new MergeTag\UrlTag( [
-			'slug'     => 'site_url',
-			'name'     => __( 'Site url', 'notification' ),
-			'resolver' => function( $trigger ) {
-				return $trigger->site_url;
-			},
-			'group'    => __( 'Site', 'notification' ),
-		] ) );
-
 	}
 }
