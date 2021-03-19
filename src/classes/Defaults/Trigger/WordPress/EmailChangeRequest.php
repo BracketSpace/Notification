@@ -16,6 +16,31 @@ use BracketSpace\Notification\Abstracts;
 class EmailChangeRequest extends Abstracts\Trigger {
 
 	/**
+	 * User object
+	 *
+	 * @var \WP_User
+	 */
+	protected $user;
+
+	/**
+	 * Site URL
+	 *
+	 * @var string
+	 */
+	protected $site_url;
+
+	/**
+	 * Site name
+	 *
+	 * @var string
+	 */
+	protected $site_name;
+
+	/**
+	 * [description]
+	 */
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {
@@ -36,12 +61,13 @@ class EmailChangeRequest extends Abstracts\Trigger {
 	 *
 	 * @param string $old_value Old email value.
 	 * @param string $value New email value.
+	 *
 	 * @return mixed
 	 */
 	public function action( $old_value, $value ) {
 
 		if ( $old_value === $value ) {
-			return;
+			return false;
 		}
 
 		$data         = get_option( 'adminhash' );
@@ -50,9 +76,8 @@ class EmailChangeRequest extends Abstracts\Trigger {
 		$this->user             = $current_user->user_login;
 		$this->site_url         = home_url();
 		$this->site_name        = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
-		$this->hash             = $data['hash'];
 		$this->new_admin_email  = $data['newemail'];
-		$this->confirmation_url = esc_url( admin_url( 'options.php?adminhash=' . $this->hash ) );
+		$this->confirmation_url = esc_url( admin_url( 'options.php?adminhash=' . $data['hash'] ) );
 
 		$this->email_change_datetime = $this->cache( 'timestamp', time() );
 	}

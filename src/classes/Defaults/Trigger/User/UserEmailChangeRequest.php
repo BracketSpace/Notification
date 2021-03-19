@@ -13,6 +13,40 @@ use BracketSpace\Notification\Defaults\MergeTag;
  * User Email Change Request
  */
 class UserEmailChangeRequest extends UserTrigger {
+	/**
+	 * User meta
+	 *
+	 * @var array
+	 */
+	protected $user_meta;
+
+	/**
+	 * Site URL
+	 *
+	 * @var string
+	 */
+	protected $site_url;
+
+	/**
+	 * New user email
+	 *
+	 * @var string
+	 */
+	protected $new_user_email;
+
+	/**
+	 * Email change confirmation URL
+	 *
+	 * @var string
+	 */
+	protected $confirmation_url;
+
+	/**
+	 * Email change datetime
+	 *
+	 * @var int
+	 */
+	protected $email_change_datetime;
 
 	/**
 	 * Constructor
@@ -32,23 +66,23 @@ class UserEmailChangeRequest extends UserTrigger {
 	 *
 	 * @since [Next]
 	 * @param integer $user_id User ID.
-	 * @return void
+	 * @return mixed
 	 */
 	public function action( $user_id ) {
 
 		$new_email = get_user_meta( $user_id, '_new_email', true );
 
-		if ( $new_email ) {
-			$this->user_id          = $user_id;
-			$this->user_object      = get_userdata( $this->user_id );
-			$this->user_meta        = get_user_meta( $this->user_id );
-			$this->site_url         = home_url();
-			$this->hash             = $new_email['hash'];
-			$this->new_user_email   = $new_email['newemail'];
-			$this->confirmation_url = esc_url( admin_url( 'profile.php?newuseremail=' . $this->hash ) );
-
-			$this->email_change_datetime = $this->cache( 'timestamp', time() );
+		if ( ! $new_email ) {
+			return false;
 		}
+
+		$this->user_id               = $user_id;
+		$this->user_object           = get_userdata( $this->user_id );
+		$this->user_meta             = get_user_meta( $this->user_id );
+		$this->site_url              = home_url();
+		$this->new_user_email        = $new_email['newemail'];
+		$this->confirmation_url      = esc_url( admin_url( 'profile.php?newuseremail=' . $new_email['hash'] ) );
+		$this->email_change_datetime = $this->cache( 'timestamp', time() );
 	}
 
 	/**
