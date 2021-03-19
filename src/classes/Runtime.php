@@ -115,8 +115,6 @@ class Runtime {
 	 */
 	public function register_hooks() {
 
-		$this->add_hooks( $this );
-
 		foreach ( $this->components as $component ) {
 			if ( is_object( $component ) ) {
 				$this->add_hooks( $component );
