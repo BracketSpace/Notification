@@ -268,11 +268,11 @@ class Settings {
 				'sanitize' => [ new CoreFields\Select(), 'sanitize' ],
 			] )
 			->add_field( [
-				'name'     => __( 'Site email address change', 'notification' ),
-				'slug'     => 'email_address_change',
+				'name'     => __( 'Site email address change request', 'notification' ),
+				'slug'     => 'email_address_change_request',
 				'default'  => 'true',
 				'addons'   => [
-					'label' => __( 'Enable site email address change trigger', 'notification' ),
+					'label' => __( 'Enable site email address change request trigger', 'notification' ),
 				],
 				'render'   => [ new CoreFields\Checkbox(), 'input' ],
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],

@@ -101,7 +101,7 @@ if ( notification_get_setting( 'triggers/wordpress/updates' ) ) {
 	notification_register_trigger( new Trigger\WordPress\UpdatesAvailable() );
 }
 
-if ( notification_get_setting( 'triggers/wordpress/email_address_change' ) ) {
+if ( notification_get_setting( 'triggers/wordpress/email_address_change_request' ) ) {
 	notification_register_trigger( new Trigger\WordPress\EmailChangeRequest() );
 }
 
