@@ -10,8 +10,8 @@
  */
 
 $runtime    = Notification::runtime();
-$filesystem = $runtime->get_filesystem( 'includes' );
-$hooks_file = 'register-hooks.php';
+$filesystem = $runtime->get_filesystem( 'root' );
+$hooks_file = 'compat/register-hooks.php';
 
 // Build an array of searchable instances.
 $objects = [];
