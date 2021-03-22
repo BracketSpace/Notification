@@ -26,8 +26,10 @@
 	},
 	"mpScriptsConfig": {
 		"paths": {
-			"src": "resources/js/src",
-			"output": "resources/js/dist"
+			"src": "resources",
+			"output": "resources/dist",
+			"styles": "css/scss",
+			"scripts": "js/src"
 		}
 	}
 }
