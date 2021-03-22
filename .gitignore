@@ -3,7 +3,8 @@
 *.log
 node_modules/
 /vendor/
-dist/
+/resources/js/dist/
+/resources/css/dist/
 package-lock.json
 /tests/_wordpress/
 
