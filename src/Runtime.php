@@ -131,7 +131,7 @@ class Runtime {
 	 */
 	public function templates() {
 
-		TemplateStorage::add( 'templates', $this->get_filesystem( 'root' )->path( 'src/templates' ) );
+		TemplateStorage::add( 'templates', $this->get_filesystem( 'root' )->path( 'templates' ) );
 
 	}
 
@@ -146,9 +146,9 @@ class Runtime {
 		$root = new Filesystem( dirname( $this->plugin_file ) );
 
 		$this->filesystems = [
-			'root'     => $root,
-			'dist'     => new Filesystem( $root->path( 'dist' ) ),
-			'includes' => new Filesystem( $root->path( 'src/includes' ) ),
+			'root'      => $root,
+			'dist'      => new Filesystem( $root->path( 'dist' ) ),
+			'resources' => new Filesystem( $root->path( 'resources' ) ),
 		];
 
 	}
@@ -231,7 +231,7 @@ class Runtime {
 		$this->add_component( 'admin_extensions', new Admin\Extensions() );
 		$this->add_component( 'admin_scripts', new Admin\Scripts( $this->get_filesystem( 'dist' ) ) );
 		$this->add_component( 'admin_screen', new Admin\Screen() );
-		$this->add_component( 'admin_wizard', new Admin\Wizard( $this->get_filesystem( 'includes' ) ) );
+		$this->add_component( 'admin_wizard', new Admin\Wizard( $this->get_filesystem( 'resources' ) ) );
 		$this->add_component( 'admin_sync', new Admin\Sync() );
 		$this->add_component( 'admin_debugging', new Admin\Debugging() );
 
@@ -265,8 +265,8 @@ class Runtime {
 		notification_register_settings( [ $this->component( 'admin_debugging' ), 'debugging_settings' ], 70 );
 
 		// DocHooks compatibility.
-		if ( ! DocHooksHelper::is_enabled() && $this->get_filesystem( 'includes' )->exists( 'hooks.php' ) ) {
-			include_once $this->get_filesystem( 'includes' )->path( 'hooks.php' );
+		if ( ! DocHooksHelper::is_enabled() && $this->get_filesystem( 'root' )->exists( 'compat/register-hooks.php' ) ) {
+			include_once $this->get_filesystem( 'root' )->path( 'compat/register-hooks.php' );
 		}
 
 	}
@@ -279,11 +279,7 @@ class Runtime {
 	 */
 	public function defaults() {
 		array_map( [ $this, 'load_default' ], [
-			'global-merge-tags',
-			'resolvers',
-			'recipients',
-			'carriers',
-			'triggers',
+			'defaults',
 		] );
 	}
 
@@ -296,9 +292,9 @@ class Runtime {
 	 */
 	public function load_default( $default ) {
 		if ( apply_filters( 'notification/load/default/' . $default, true ) ) {
-			$path = sprintf( 'defaults/%s.php', $default );
-			if ( $this->get_filesystem( 'includes' )->exists( $path ) ) {
-				require_once $this->get_filesystem( 'includes' )->path( $path );
+			$path = sprintf( 'src/%s.php', $default );
+			if ( $this->get_filesystem( 'root' )->exists( $path ) ) {
+				require_once $this->get_filesystem( 'root' )->path( $path );
 			}
 		}
 	}

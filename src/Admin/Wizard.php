@@ -293,7 +293,7 @@ class Wizard {
 	 */
 	private function add_notifications( $notifications ) {
 
-		$json_path_tmpl = 'wizard/%s.json';
+		$json_path_tmpl = 'wizard-data/%s.json';
 
 		foreach ( $notifications as $notification_slug ) {
 
