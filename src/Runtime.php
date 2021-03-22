@@ -131,7 +131,7 @@ class Runtime {
 	 */
 	public function templates() {
 
-		TemplateStorage::add( 'templates', $this->get_filesystem( 'root' )->path( 'templates' ) );
+		TemplateStorage::add( 'templates', $this->get_filesystem( 'resources' )->path( 'templates' ) );
 
 	}
 
