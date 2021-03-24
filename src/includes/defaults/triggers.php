@@ -105,7 +105,6 @@ if ( notification_get_setting( 'triggers/wordpress/email_address_change_request'
 	notification_register_trigger( new Trigger\WordPress\EmailChangeRequest() );
 }
 
-
 // Plugin triggers.
 if ( notification_get_setting( 'triggers/plugin/enable' ) ) {
 	notification_register_trigger( new Trigger\Plugin\Activated() );
@@ -128,4 +127,3 @@ if ( notification_get_setting( 'triggers/privacy/enable' ) ) {
 	notification_register_trigger( new Trigger\Privacy\DataExportRequest() );
 	notification_register_trigger( new Trigger\Privacy\DataExported() );
 }
-
