@@ -39,15 +39,13 @@ class CommentActionApprove extends UrlTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		if ( isset( $params['comment_type'] ) && ! empty( $params['comment_type'] ) ) {
+		if ( ! empty( $params['comment_type'] ) ) {
 			$this->comment_type = $params['comment_type'];
 		}
 
-		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
-			$this->property_name = $params['property_name'];
-		} else {
-			$this->property_name = $this->comment_type;
-		}
+		$this->property_name = empty( $params['property_name'] )
+			? $this->comment_type
+			: $params['property_name'];
 
 		$args = wp_parse_args(
 			$params,
@@ -55,7 +53,7 @@ class CommentActionApprove extends UrlTag {
 				'slug'     => 'comment_approve_action_url',
 				// Translators: Comment type name.
 				'name'     => sprintf( __( '%s approve URL', 'notification' ), self::get_current_comment_type_name() ),
-				'resolver' => function( $trigger ) {
+				'resolver' => function ( $trigger ) {
 					return admin_url( "comment.php?action=approve&c={$trigger->{ $this->property_name }->comment_ID}#wpbody-content" );
 				},
 				// translators: comment type actions text.
