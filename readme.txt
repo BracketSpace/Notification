@@ -324,6 +324,8 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Fixed] Cache refreshing while running under WP CLI, thanks to @mircobabini.
 * [Added] User avatar url to comment trigger and comment replied trigger.
 * [Added] Privacy Triggers for User erase/export data request and user erased/exported data.
+* [Added] User email change request Trigger.
+* [Added] Admin email change request Trigger.
 
 = 7.1.1 =
 * [Fixed] License keys not being passed to the Updater class.

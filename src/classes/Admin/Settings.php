@@ -266,6 +266,16 @@ class Settings {
 				],
 				'render'   => [ new CoreFields\Select(), 'input' ],
 				'sanitize' => [ new CoreFields\Select(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'     => __( 'Site email address change request', 'notification' ),
+				'slug'     => 'email_address_change_request',
+				'default'  => 'true',
+				'addons'   => [
+					'label' => __( 'Enable site email address change request trigger', 'notification' ),
+				],
+				'render'   => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] );
 
 		$triggers->add_group( __( 'Privacy', 'notification' ), 'privacy' )
@@ -484,9 +494,31 @@ class Settings {
 				'slug'        => 'email_change_to_user',
 				'default'     => false,
 				'addons'      => [
-					'label' => __( 'Disable email to <strong>user</strong> about profile email address change request', 'notification' ),
+					'label' => __( 'Disable email to <strong>user</strong> about profile email address change', 'notification' ),
 				],
 				'description' => __( 'Email is sent when user saves a new email address in his profile.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Email address change request', 'notification' ),
+				'slug'        => 'send_confirmation_on_profile_email',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable email to <strong>user</strong> about email address change request', 'notification' ),
+				],
+				'description' => __( 'Email is sent when user requests email address change.', 'notification' ),
+				'render'      => [ new CoreFields\Checkbox(), 'input' ],
+				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
+			] )
+			->add_field( [
+				'name'        => __( 'Admin Email address change request', 'notification' ),
+				'slug'        => 'send_confirmation_on_admin_email',
+				'default'     => false,
+				'addons'      => [
+					'label' => __( 'Disable email to <strong>admin</strong> about site email address change request', 'notification' ),
+				],
+				'description' => __( 'Email is sent when site email address change is requested.', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
 				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] )
