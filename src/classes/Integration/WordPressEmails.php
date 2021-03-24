@@ -140,9 +140,7 @@ class WordPressEmails {
 
 		if ( 'true' === notification_get_setting( 'integration/emails/send_confirmation_on_admin_email' ) ) {
 
-			add_filter( 'new_admin_email_content', function( $email_text = false, $new_admin_email = false ) {
-				return false;
-			});
+			add_filter( 'new_admin_email_content', '__return_false' );
 		}
 
 	}
