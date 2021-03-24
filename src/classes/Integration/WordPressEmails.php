@@ -109,6 +109,43 @@ class WordPressEmails {
 	}
 
 	/**
+	 * Disables confirmation email on profile email address change
+	 *
+	 * @action notification/init
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function disable_send_confirmation_on_profile_email() {
+
+		if ( 'true' === notification_get_setting( 'integration/emails/send_confirmation_on_profile_email' ) ) {
+
+			add_filter( 'new_user_email_content', function( $email_text = false, $new_user_email = false ) {
+				$_POST['email'] = false;
+				return false;
+			});
+
+		}
+	}
+
+	/**
+	 * Disables confirmation email on admin email address change
+	 *
+	 * @action notification/init
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function disable_send_confirmation_on_admin_email() {
+
+		if ( 'true' === notification_get_setting( 'integration/emails/send_confirmation_on_admin_email' ) ) {
+
+			add_filter( 'new_admin_email_content', '__return_false' );
+		}
+
+	}
+
+	/**
 	 * Disables send the email change email to user
 	 *
 	 * @filter send_password_change_email
