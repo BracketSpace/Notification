@@ -42,9 +42,9 @@ class Runtime {
 	/**
 	 * Filesystems
 	 *
-	 * @var Filesystem[]
+	 * @var Filesystem
 	 */
-	protected $filesystems = [];
+	protected $filesystem;
 
 	/**
 	 * Components
@@ -90,7 +90,7 @@ class Runtime {
 			return;
 		}
 
-		$this->filesystems();
+		$this->filesystem();
 		$this->templates();
 		$this->singletons();
 		$this->actions();
@@ -136,16 +136,14 @@ class Runtime {
 	}
 
 	/**
-	 * Sets up the plugin filesystems
+	 * Sets up the plugin filesystem
 	 *
 	 * @since  7.0.0
 	 * @return void
 	 */
-	public function filesystems() {
+	public function filesystem() {
 
-		$this->filesystems = [
-			'root' => new Filesystem( dirname( $this->plugin_file ) ),
-		];
+		$this->filesystem = new Filesystem( dirname( $this->plugin_file ) );
 
 	}
 
@@ -157,7 +155,7 @@ class Runtime {
 	 * @return Filesystem
 	 */
 	public function get_filesystem( $deprecated = 'root' ) {
-		return $this->filesystems['root'];
+		return $this->filesystem;
 	}
 
 	/**
