@@ -241,6 +241,7 @@ class Runtime {
 		$this->add_component( 'integration_cf', new Integration\CustomFields() );
 		$this->add_component( 'integration_bp', new Integration\BackgroundProcessing() );
 		$this->add_component( 'integration_2fa', new Integration\TwoFactor() );
+		$this->add_component( 'integration_cf7registration', new Integration\ContactForm7RegistrationIntegration() );
 
 		$this->add_component( 'repeater_api', new Api\Api() );
 
