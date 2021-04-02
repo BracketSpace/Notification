@@ -278,13 +278,23 @@ class Runtime {
 	 * @return void
 	 */
 	public function defaults() {
-		array_map( [ $this, 'load_default' ], [
-			'global-merge-tags',
-			'resolvers',
-			'recipients',
-			'carriers',
-			'triggers',
-		] );
+		array_map(
+			[ $this, 'load_default' ],
+			[
+				'global-merge-tags',
+				'resolvers',
+				'recipients',
+				'carriers',
+				'triggers',
+			],
+			[
+				Register\GlobalMergeTags::class,
+				Register\Resolvers::class,
+				Register\Recipients::class,
+				Register\Carriers::class,
+				Register\Triggers::class,
+			]
+		);
 	}
 
 	/**
@@ -292,13 +302,13 @@ class Runtime {
 	 *
 	 * @since  6.0.0
 	 * @param  string $default Default file slug.
+	 * @param  class-string $class_name Default class name.
 	 * @return void
 	 */
-	public function load_default( $default ) {
+	public function load_default( $default, $class_name ) {
 		if ( apply_filters( 'notification/load/default/' . $default, true ) ) {
-			$path = sprintf( 'defaults/%s.php', $default );
-			if ( $this->get_filesystem( 'includes' )->exists( $path ) ) {
-				require_once $this->get_filesystem( 'includes' )->path( $path );
+			if ( is_callable( [ $class_name, 'register' ] ) ) {
+				$class_name::register();
 			}
 		}
 	}
