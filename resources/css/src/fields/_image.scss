@@ -1,0 +1,46 @@
+.notification-image-field {
+
+	.image-input {
+		display: none;
+	}
+
+	.image {
+		position: relative;
+		display: none;
+
+		.clear {
+			position: absolute;
+			top: -9px;
+			right: -9px;
+			border: 1px solid #fff;
+			font-size: 26px;
+			height: 26px;
+			width: 28px;
+			background: #fff;
+			border-radius: 50%;
+			cursor: pointer;
+		}
+
+		.preview {
+			border: 1px solid #e5e5e5;
+			border-radius: 5px;
+			max-width: 200px;
+			height: auto;
+			cursor: pointer;
+		}
+
+	}
+
+	&.selected {
+
+		.image {
+			display: inline-block;
+		}
+
+		.select-image {
+			display: none;
+		}
+
+	}
+
+}

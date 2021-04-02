@@ -1,0 +1,23 @@
+/**
+ * Import/Export styles
+ */
+
+.notification-settings .section-import_export { /* stylelint-disable-line */
+
+	p.submit {
+		display: none;
+	}
+
+	.message {
+
+		&.error {
+			color: #f00;
+		}
+
+		&.success {
+			color: #00ad00;
+		}
+
+	}
+
+}
