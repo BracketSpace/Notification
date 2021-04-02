@@ -151,6 +151,7 @@ class Runtime {
 	 * Gets filesystem
 	 *
 	 * @since  7.0.0
+	 * @since  [Next] Always return the root filesystem.
 	 * @param  string $deprecated Filesystem name.
 	 * @return Filesystem
 	 */

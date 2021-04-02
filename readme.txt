@@ -294,6 +294,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Fixed] Code issues from not using static analysis.
 * [Fixed] WordPress' balanceTags filter which was breaking the Notification content.
 * [Changed] Code Editor Field sanitizer to allow for multiple HTML tags.
+* [Changed] Always return the single root filesystem in Runtime.
 
 = 7.2.4 =
 * [Fixed] Fix Post published trigger which was triggered even if the post was just updated.
