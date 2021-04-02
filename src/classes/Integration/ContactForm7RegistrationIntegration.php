@@ -21,7 +21,7 @@ class ContactForm7RegistrationIntegration {
 	 * @return void
 	 */
 	public function disable_email() {
-		add_filter( 'new_user_email_content', '__return_false');
+		add_filter( 'new_user_email_content', '__return_false' );
 	}
 
 	/**
@@ -34,6 +34,6 @@ class ContactForm7RegistrationIntegration {
 	 * @return void
 	 */
 	public function enable_email() {
-		remove_filter( 'new_user_email_content', '__return_false');
+		remove_filter( 'new_user_email_content', '__return_false' );
 	}
 }
