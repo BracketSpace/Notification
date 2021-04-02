@@ -1,0 +1,20 @@
+/**
+ * Notifications table
+ */
+
+.post-type-notification .wp-list-table {
+
+	.column-switch {
+		width: 70px;
+	}
+
+	@media ( max-width: 782px ) {
+
+		.column-switch {
+			display: none !important;
+			padding-left: 35%;
+		}
+
+	}
+
+}

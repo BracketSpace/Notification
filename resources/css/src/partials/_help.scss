@@ -1,0 +1,28 @@
+/**
+ * Screen help styles
+ */
+
+#contextual-help-wrap {
+
+	#tab-panel-notification_global_merge_tags { /* stylelint-disable-line */
+
+		table {
+
+			td {
+				padding: 5px 10px;
+
+				label {
+					cursor: text;
+				}
+
+				code {
+					cursor: pointer;
+				}
+
+			}
+
+		}
+
+	}
+
+}
