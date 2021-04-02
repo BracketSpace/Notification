@@ -13,12 +13,11 @@
 		</testsuite>
 	</testsuites>
 	<filter>
-        <whitelist>
-            <directory suffix=".php">./src/classes</directory>
-            <directory suffix=".php">./src/includes</directory>
-        </whitelist>
-    </filter>
-    <php>
-        <env name="WP_PHPUNIT__TESTS_CONFIG" value="tests/wp-tests-config.php" />
-    </php>
+		<whitelist>
+			<directory suffix=".php">./src</directory>
+		</whitelist>
+	</filter>
+	<php>
+		<env name="WP_PHPUNIT__TESTS_CONFIG" value="tests/wp-tests-config.php" />
+	</php>
 </phpunit>

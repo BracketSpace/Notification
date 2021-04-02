@@ -301,7 +301,7 @@ class Runtime {
 	 * Loads default
 	 *
 	 * @since  6.0.0
-	 * @param  string $default Default file slug.
+	 * @param  string       $default    Default file slug.
 	 * @param  class-string $class_name Default class name.
 	 * @return void
 	 */
