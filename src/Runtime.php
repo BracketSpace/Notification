@@ -131,7 +131,7 @@ class Runtime {
 	 */
 	public function templates() {
 
-		TemplateStorage::add( 'templates', $this->get_filesystem( 'root' )->path( 'src/templates' ) );
+		TemplateStorage::add( 'templates', $this->get_filesystem()->path( 'templates' ) );
 
 	}
 
@@ -143,12 +143,8 @@ class Runtime {
 	 */
 	public function filesystems() {
 
-		$root = new Filesystem( dirname( $this->plugin_file ) );
-
 		$this->filesystems = [
-			'root'     => $root,
-			'dist'     => new Filesystem( $root->path( 'dist' ) ),
-			'includes' => new Filesystem( $root->path( 'src/includes' ) ),
+			'root' => new Filesystem( dirname( $this->plugin_file ) ),
 		];
 
 	}
@@ -157,11 +153,11 @@ class Runtime {
 	 * Gets filesystem
 	 *
 	 * @since  7.0.0
-	 * @param  string $name Filesystem name.
+	 * @param  string $deprecated Filesystem name.
 	 * @return Filesystem
 	 */
-	public function get_filesystem( $name ) {
-		return $this->filesystems[ $name ];
+	public function get_filesystem( $deprecated = 'root' ) {
+		return $this->filesystems['root'];
 	}
 
 	/**
@@ -229,9 +225,9 @@ class Runtime {
 		$this->add_component( 'admin_post_type', new Admin\PostType() );
 		$this->add_component( 'admin_post_table', new Admin\PostTable() );
 		$this->add_component( 'admin_extensions', new Admin\Extensions() );
-		$this->add_component( 'admin_scripts', new Admin\Scripts( $this->get_filesystem( 'dist' ) ) );
+		$this->add_component( 'admin_scripts', new Admin\Scripts( $this->get_filesystem() ) );
 		$this->add_component( 'admin_screen', new Admin\Screen() );
-		$this->add_component( 'admin_wizard', new Admin\Wizard( $this->get_filesystem( 'includes' ) ) );
+		$this->add_component( 'admin_wizard', new Admin\Wizard( $this->get_filesystem() ) );
 		$this->add_component( 'admin_sync', new Admin\Sync() );
 		$this->add_component( 'admin_debugging', new Admin\Debugging() );
 
@@ -265,8 +261,8 @@ class Runtime {
 		notification_register_settings( [ $this->component( 'admin_debugging' ), 'debugging_settings' ], 70 );
 
 		// DocHooks compatibility.
-		if ( ! DocHooksHelper::is_enabled() && $this->get_filesystem( 'includes' )->exists( 'hooks.php' ) ) {
-			include_once $this->get_filesystem( 'includes' )->path( 'hooks.php' );
+		if ( ! DocHooksHelper::is_enabled() && $this->get_filesystem()->exists( 'compat/register-hooks.php' ) ) {
+			include_once $this->get_filesystem()->path( 'compat/register-hooks.php' );
 		}
 
 	}
@@ -321,7 +317,7 @@ class Runtime {
 	 */
 	public function load_bundled_extensions() {
 
-		$extensions         = $this->get_filesystem( 'root' )->dirlist( 'extensions', false );
+		$extensions         = $this->get_filesystem()->dirlist( 'extensions', false );
 		$extension_template = 'extensions/%s/load.php';
 
 		if ( empty( $extensions ) ) {
@@ -331,8 +327,8 @@ class Runtime {
 		foreach ( $extensions as $extension ) {
 			if ( 'd' === $extension['type'] ) {
 				$extension_file = sprintf( $extension_template, $extension['name'] );
-				if ( $this->get_filesystem( 'root' )->exists( $extension_file ) ) {
-					require_once $this->get_filesystem( 'root' )->path( $extension_file );
+				if ( $this->get_filesystem()->exists( $extension_file ) ) {
+					require_once $this->get_filesystem()->path( $extension_file );
 				}
 			}
 		}
