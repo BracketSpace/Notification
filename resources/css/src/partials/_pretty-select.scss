@@ -1,0 +1,18 @@
+/**
+ * Selectize styles to not wrap the text
+ */
+
+.selectize-input {
+
+	> * {
+		vertical-align: middle;
+	}
+
+	.item {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		max-width: 80%;
+	}
+
+}
