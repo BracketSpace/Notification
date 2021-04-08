@@ -43,7 +43,8 @@
 			"compat/src-deprecated/"
 		],
 		"files": [
-			"compat/src-deprecated/functions.php"
+			"compat/src-deprecated/functions.php",
+			"src/api.php"
 		]
 	},
 	"autoload-dev": {
