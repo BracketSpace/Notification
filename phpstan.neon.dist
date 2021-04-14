@@ -18,3 +18,5 @@ parameters:
     ignoreErrors:
         # Uses func_get_args()
         - '#^Function apply_filters(_ref_array)? invoked with [34567] parameters, 2 required\.$#'
+        # Exception is thrown by the Store class which implements ArrayAccess. We convert that Exception to WP_Error
+        - '#^Function notification_register_[a-zA-Z]+\(\) never returns WP_Error so it can be removed from the return typehint\.$#'
