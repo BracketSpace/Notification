@@ -94,7 +94,7 @@ class Runtime {
 
 		// Support WP-CLI.
 		if ( defined( 'WP_CLI' ) && \WP_CLI === true ) {
-			WP_CLI::add_command('notification dump-hooks', DumpHooks::class);
+			WP_CLI::add_command( 'notification dump-hooks', DumpHooks::class );
 		}
 
 		$this->filesystem();

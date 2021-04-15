@@ -14,12 +14,15 @@ namespace BracketSpace\Notification\Cli;
 use Notification;
 use WP_CLI;
 
+/**
+ * Dump all hooks as add_filter() calls.
+ */
 class DumpHooks {
 
 	/**
 	 * Dump all the Dochooks.
 	 *
-	 * @param list<string> $args
+	 * @param list<string> $args Arguments.
 	 * @return void
 	 */
 	public function __invoke( $args ) {
@@ -45,7 +48,7 @@ class DumpHooks {
 			if ( 'BracketSpace\\Notification\\Runtime' === $class_name ) {
 				$callback_object_name = '$this';
 			} else {
-				$component_name = array_search( $class_name, $objects );
+				$component_name = array_search( $class_name, $objects, true );
 				if ( ! $component_name ) {
 					WP_CLI::warning( str_replace( 'BracketSpace\\Notification\\', '', $class_name ) . ' skipped, no instance available' );
 					continue;
