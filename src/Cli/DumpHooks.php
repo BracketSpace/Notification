@@ -87,11 +87,13 @@ class DumpHooks {
  * @package notification
  */
 
+/** @var \BracketSpace\Notification\Runtime $this */
+
 // phpcs:disable
 ';
 
 		// Save the content.
-		$filesystem->put_contents( $hooks_file, $file_header . implode( "\r\n", $hook_functions ) . "\r\n" );
+		$filesystem->put_contents( $hooks_file, $file_header . implode( "\n", $hook_functions ) . "\n" );
 
 		WP_CLI::success( 'All hooks dumped!' );
 	}
