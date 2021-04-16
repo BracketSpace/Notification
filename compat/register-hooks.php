@@ -7,6 +7,8 @@
  * @package notification
  */
 
+/** @var \BracketSpace\Notification\Runtime $this */
+
 // phpcs:disable
 add_action( 'wp_loaded', [ $this->component( 'core_cache' ), 'auto_cache_objects' ], 20, 0 );
 add_filter( 'cron_schedules', [ $this->component( 'core_cron' ), 'register_intervals' ], 10, 1 );
