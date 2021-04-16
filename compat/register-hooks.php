@@ -2,15 +2,9 @@
 /**
  * Hooks compatibilty file.
  *
- * Automatically generated with bin/dump-hooks.php file.
+ * Automatically generated with `wp notification dump-hooks`.
  *
  * @package notification
- */
-
-/**
- * Runtime var
- *
- * @var \BracketSpace\Notification\Runtime $this
  */
 
 // phpcs:disable
@@ -80,6 +74,8 @@ add_action( 'notification/init', [ $this->component( 'integration_wp_emails' ), 
 add_filter( 'notify_post_author', [ $this->component( 'integration_wp_emails' ), 'disable_post_author_notify' ], 10, 2 );
 add_filter( 'notify_moderator', [ $this->component( 'integration_wp_emails' ), 'disable_comment_moderator_notify' ], 10, 2 );
 add_action( 'notification/init', [ $this->component( 'integration_wp_emails' ), 'disable_password_change_notify_to_admin' ], 10, 0 );
+add_action( 'notification/init', [ $this->component( 'integration_wp_emails' ), 'disable_send_confirmation_on_profile_email' ], 10, 0 );
+add_action( 'notification/init', [ $this->component( 'integration_wp_emails' ), 'disable_send_confirmation_on_admin_email' ], 10, 0 );
 add_filter( 'send_password_change_email', [ $this->component( 'integration_wp_emails' ), 'disable_password_change_notify_to_user' ], 10, 3 );
 add_filter( 'retrieve_password_message', [ $this->component( 'integration_wp_emails' ), 'disable_password_reset_notify_to_user' ], 100, 1 );
 add_filter( 'send_email_change_email', [ $this->component( 'integration_wp_emails' ), 'disable_email_change_notify_to_user' ], 10, 3 );
@@ -87,7 +83,6 @@ add_filter( 'auto_core_update_send_email', [ $this->component( 'integration_wp_e
 add_action( 'notification/trigger/action/did', [ $this->component( 'integration_gb' ), 'maybe_postpone_action' ], 5, 1 );
 add_action( 'notification/trigger/action/did', [ $this->component( 'integration_cf' ), 'maybe_postpone_action' ], 10, 1 );
 add_action( 'notification/trigger/action/did', [ $this->component( 'integration_bp' ), 'load_to_cron' ], 1, 2 );
-add_filter( 'mce_external_plugins', [ $this->component( 'integration_mce' ), 'editor_full_link_modal' ], 10, 1 );
 add_action( 'notification/trigger/registered', [ $this->component( 'integration_2fa' ), 'add_trigger_action' ], 10, 1 );
 add_action( 'two_factor_user_authenticated', [ $this->component( 'integration_2fa' ), 'user_login_with_2fa' ], 10, 1 );
 add_action( 'rest_api_init', [ $this->component( 'repeater_api' ), 'rest_api_init' ], 10, 0 );
