@@ -150,7 +150,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Remove unnecessary dependencies
         run: |
-          jq -r '."require-dev" | keys[] | select(endswith("phpunit") | not)' <composer.json | xargs -- composer remove --dev --no-update
+          jq -r '."require-dev" | keys - ["roots/wordpress"] | .[] | select(endswith("phpunit") | not)' <composer.json | xargs -- composer remove --dev --no-update
       - name: Install Composer dependencies
         run: composer install --no-progress
       # Downgrade!
