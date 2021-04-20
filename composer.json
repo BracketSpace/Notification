@@ -24,9 +24,6 @@
 		"php-stubs/wp-cli-stubs": "^2.4"
 	},
 	"config": {
-		"platform": {
-			"php": "7.0.0"
-		},
 		"platform-check": false
 	},
 	"extra": {
