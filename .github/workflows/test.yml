@@ -162,7 +162,7 @@ jobs:
       - name: PHPUnit
         env:
           WP_DB_HOST: 127.0.0.1:${{ job.services.mysql.ports['3306'] }}
-        run: vendor/bin/phpunit --printer 'PHPUnit\Util\Printer'
+        run: vendor/bin/phpunit --printer 'BracketSpace\Notification\Tests\Helpers'
   css:
     name: CSS Lint
     runs-on: ubuntu-latest
