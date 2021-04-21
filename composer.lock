@@ -239,16 +239,16 @@
         },
         {
             "name": "micropackage/templates",
-            "version": "1.1.2",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/micropackage/templates.git",
-                "reference": "b7fa204273d75326d398a573dbf667fe7130b987"
+                "reference": "2ed9aca818fd911183d5cbefb4aa10ff4e4794d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/micropackage/templates/zipball/b7fa204273d75326d398a573dbf667fe7130b987",
-                "reference": "b7fa204273d75326d398a573dbf667fe7130b987",
+                "url": "https://api.github.com/repos/micropackage/templates/zipball/2ed9aca818fd911183d5cbefb4aa10ff4e4794d9",
+                "reference": "2ed9aca818fd911183d5cbefb4aa10ff4e4794d9",
                 "shasum": ""
             },
             "require": {
@@ -256,7 +256,7 @@
                 "php": ">=5.6"
             },
             "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                 "phpcompatibility/php-compatibility": "^9.1",
                 "phpunit/phpunit": "^6.5.5",
                 "wp-coding-standards/wpcs": "^2.0"
@@ -283,9 +283,9 @@
             "description": "Simple PHP template engine which is easy to use",
             "support": {
                 "issues": "https://github.com/micropackage/templates/issues",
-                "source": "https://github.com/micropackage/templates/tree/1.1.2"
+                "source": "https://github.com/micropackage/templates/tree/1.1.3"
             },
-            "time": "2020-03-13T14:02:16+00:00"
+            "time": "2021-04-21T19:08:39+00:00"
         },
         {
             "name": "typisttech/imposter",
