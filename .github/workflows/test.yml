@@ -154,9 +154,10 @@ jobs:
           jq -r '."require-dev" | keys - ["roots/wordpress"] | .[] | select(endswith("phpunit") | not)' <composer.json | xargs -- composer remove --no-progress --no-update --ignore-platform-req php --dev
       - name: Downgrade
         #if: "matrix.php == '7.0'"
-        #run: composer require --no-progress --ignore-platform-req php 'doctrine/instantiator:<=1.0.5'
-        run: composer update --no-progress --ignore-platform-req php
-      # Downgrade!
+        run: |
+          composer remove --no-progress --no-update typisttech/imposter-plugin
+          composer update --no-progress
+          composer remove --no-progress --ignore-platform-req php typisttech/imposter-plugin
       - name: Setup PHP ${{ matrix.php }}
         uses: shivammathur/setup-php@v2
         with:
