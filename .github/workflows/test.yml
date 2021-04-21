@@ -152,6 +152,7 @@ jobs:
         run: |
           composer config platform.php 7.0.0
           jq -r '."require-dev" | keys - ["roots/wordpress"] | .[] | select(endswith("phpunit") | not)' <composer.json | xargs -- composer remove --no-progress --ignore-platform-req php --dev
+          composer require --no-progress --ignore-platform-req php "doctrine/instantiator:<=1.0.5"
       # Downgrade!
       - name: Setup PHP ${{ matrix.php }}
         uses: shivammathur/setup-php@v2
