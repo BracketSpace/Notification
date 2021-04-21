@@ -114,6 +114,61 @@ jobs:
         env:
           WP_DB_HOST: 127.0.0.1:${{ job.services.mysql.ports['3306'] }}
         run: vendor/bin/phpunit
+  phpunit-rector:
+    name: PHPUnit with Rector
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.0', '7.1', '7.2']
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wp_phpunit_tests
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - name: Setup PHP 7.4
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
+          coverage: none
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup variables
+        id: vars
+        run: |
+          echo "::set-output name=composer-cache-path::$(composer config cache-files-dir)"
+      - name: Cache Composer
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.vars.outputs.composer-cache-path }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+      - name: Remove unnecessary dependencies and install the rest
+        run: |
+          composer config platform.php '${{ matrix.php }}.0'
+          jq -r '."require-dev" | keys - ["roots/wordpress"] | .[] | select(endswith("phpunit") | not)' <composer.json | xargs -- composer remove --no-progress --no-update --ignore-platform-req php --dev
+      - name: Downgrade
+        run: |
+          composer remove --no-progress --no-update typisttech/imposter-plugin
+          composer update --no-progress
+          composer require --no-progress --ignore-platform-req php typisttech/imposter-plugin
+      - name: Setup PHP ${{ matrix.php }}
+        # https://github.com/shivammathur/setup-php/issues/446#issuecomment-824001225
+        uses: shivammathur/setup-php@develop
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
+          coverage: none
+          tools: none
+      - name: PHPUnit
+        env:
+          WP_DB_HOST: 127.0.0.1:${{ job.services.mysql.ports['3306'] }}
+        run: vendor/bin/phpunit --verbose
   css:
     name: CSS Lint
     runs-on: ubuntu-latest
