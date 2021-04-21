@@ -10,8 +10,7 @@
 		"micropackage/filesystem": "^1.1",
 		"micropackage/requirements": "^1.0",
 		"micropackage/templates": "^1.1",
-		"typisttech/imposter-plugin": "^0.6.2",
-		"doctrine/instantiator": "<=1.0.5"
+		"typisttech/imposter-plugin": "^0.6.2"
 	},
 	"require-dev": {
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
