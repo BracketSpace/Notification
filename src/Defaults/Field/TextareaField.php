@@ -65,7 +65,7 @@ class TextareaField extends Field {
 	 * @return string html
 	 */
 	public function field() {
-		return '<textarea name="' . esc_attr( $this->get_name() ) . '" rows="' . esc_attr( $this->rows ) . '" id="' . esc_attr( $this->get_id() ) . '" placeholder="' . esc_attr( $this->placeholder ) . '" class="widefat ' . esc_attr( $this->css_class() ) . '" ' . $this->maybe_disable() . '>' . $this->get_value() . '</textarea>';
+		return '<textarea name="' . esc_attr( $this->get_name() ) . '" rows="' . esc_attr( (string) $this->rows ) . '" id="' . esc_attr( $this->get_id() ) . '" placeholder="' . esc_attr( $this->placeholder ) . '" class="widefat ' . esc_attr( $this->css_class() ) . '" ' . $this->maybe_disable() . '>' . $this->get_value() . '</textarea>';
 	}
 
 	/**

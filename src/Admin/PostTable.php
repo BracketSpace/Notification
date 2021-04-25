@@ -63,9 +63,9 @@ class PostTable {
 				break;
 
 			case 'switch':
-				echo '<div class="onoffswitch" data-postid="' . esc_attr( $post_id ) . '" data-nonce="' . esc_attr( wp_create_nonce( 'change_notification_status_' . $post_id ) ) . '">';
-					echo '<input type="checkbox" name="notification_onoff_switch" class="onoffswitch-checkbox" value="1" id="onoffswitch-' . esc_attr( $post_id ) . '" ' . checked( $notification->is_enabled(), true, false ) . '>';
-					echo '<label class="onoffswitch-label" for="onoffswitch-' . esc_attr( $post_id ) . '">';
+				echo '<div class="onoffswitch" data-postid="' . esc_attr( (string) $post_id ) . '" data-nonce="' . esc_attr( wp_create_nonce( 'change_notification_status_' . $post_id ) ) . '">';
+					echo '<input type="checkbox" name="notification_onoff_switch" class="onoffswitch-checkbox" value="1" id="onoffswitch-' . esc_attr( (string) $post_id ) . '" ' . checked( $notification->is_enabled(), true, false ) . '>';
+					echo '<label class="onoffswitch-label" for="onoffswitch-' . esc_attr( (string) $post_id ) . '">';
 						echo '<span class="onoffswitch-inner"></span>';
 						echo '<span class="onoffswitch-switch"></span>';
 					echo '</label>';

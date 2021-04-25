@@ -112,14 +112,14 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 		$this->user_object->display_name = $this->comment->comment_author;
 		$this->user_object->user_email   = $this->comment->comment_author_email;
 
-		$this->post      = get_post( $this->comment->comment_post_ID );
+		$this->post      = get_post( (int) $this->comment->comment_post_ID );
 		$this->post_type = $this->post->post_type;
 
 		$this->post_creation_datetime     = strtotime( $this->post->post_date_gmt );
 		$this->post_modification_datetime = strtotime( $this->post->post_modified_gmt );
 		$this->comment_datetime           = strtotime( $this->comment->comment_date_gmt );
 
-		$this->post_author = get_userdata( $this->post->post_author );
+		$this->post_author = get_userdata( (int) $this->post->post_author );
 
 	}
 

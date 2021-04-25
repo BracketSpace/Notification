@@ -44,7 +44,7 @@ class User extends Abstracts\Recipient {
 			$value = [ $this->get_default_value() ];
 		}
 
-		$user = get_userdata( $value );
+		$user = get_userdata( (int) $value );
 
 		if ( $user ) {
 			return [ $user->user_email ];

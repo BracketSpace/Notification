@@ -51,7 +51,7 @@ class NotificationDuplicator {
 
 		// Get the source notification post.
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$source = get_post( sanitize_text_field( wp_unslash( $_GET['duplicate'] ) ) );
+		$source = get_post( (int) sanitize_text_field( wp_unslash( $_GET['duplicate'] ) ) );
 		$wp     = notification_adapt_from( 'WordPress', $source );
 
 		/**

@@ -119,7 +119,7 @@ class Sync {
 				$collection[ $notification->get_hash() ]['has_json'] = true;
 				$wp_notification                                     = $collection[ $notification->get_hash() ]['notification'];
 
-				if ( version_compare( $wp_notification->get_version(), $notification->get_version(), '>=' ) ) {
+				if ( version_compare( (string) $wp_notification->get_version(), (string) $notification->get_version(), '>=' ) ) {
 					$collection[ $notification->get_hash() ]['up_to_date'] = true;
 				}
 			} else {
