@@ -312,7 +312,7 @@ class Notification {
 	 * @since  6.0.0
 	 * @throws \Exception If you try to add already added Carrier.
 	 * @throws \Exception If you try to add non-existing Carrier.
-	 * @param  Interfaces\Sendable $carrier Carrier object or slug.
+	 * @param  Interfaces\Sendable|string $carrier Carrier object or slug.
 	 * @return Interfaces\Sendable
 	 */
 	public function add_carrier( $carrier ) {

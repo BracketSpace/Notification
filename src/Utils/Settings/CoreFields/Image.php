@@ -24,7 +24,7 @@ class Image {
 	 */
 	public function input( $field ) {
 
-		$uploaded_image = esc_url( wp_get_attachment_url( esc_attr( $field->value() ) ) );
+		$uploaded_image = esc_url( wp_get_attachment_url( (int) $field->value() ) );
 
 		if ( $uploaded_image ) {
 			$image = $uploaded_image;
