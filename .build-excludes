@@ -20,5 +20,6 @@ phpcs.xml
 phpmd.xml
 phpunit.xml
 README.md
+rector.php
 yarn-error.log
 yarn.lock
