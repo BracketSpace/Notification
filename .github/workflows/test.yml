@@ -148,17 +148,20 @@ jobs:
           path: ${{ steps.vars.outputs.composer-cache-path }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
+      - name: Run Rector
+        run: |
+          composer require --no-progress rector/rector-prefixed
+          vendor/bin/rector process --verbose
+          composer remove --no-progress rector/rector-prefixed
       - name: Remove unnecessary dependencies and install the rest
         run: |
           composer config platform.php '${{ matrix.php }}.0'
           jq -r '."require-dev" | keys - ["roots/wordpress"] | .[] | select(endswith("phpunit") | not)' <composer.json | xargs -- composer remove --no-progress --no-update --ignore-platform-req php --dev
-      - name: Downgrade
+      - name: Downgrade typisttech/imposter-plugin
         run: |
           composer remove --no-progress --no-update typisttech/imposter-plugin
           composer update --no-progress
-          composer require --no-progress --ignore-platform-req php rector/rector-prefixed typisttech/imposter-plugin
-          vendor/bin/rector process --verbose
-          composer remove --no-progress rector/rector-prefixed
+          composer require --no-progress --ignore-platform-req php typisttech/imposter-plugin
       - name: Setup PHP ${{ matrix.php }}
         # https://github.com/shivammathur/setup-php/issues/446#issuecomment-824001225
         uses: shivammathur/setup-php@develop
