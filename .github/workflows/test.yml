@@ -79,7 +79,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['7.3', '7.4']
+        php: ['7.4']
     services:
       mysql:
         image: mysql:5.7
@@ -119,7 +119,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['7.0', '7.1', '7.2']
+        php: ['7.0', '7.1', '7.2', '7.3']
     services:
       mysql:
         image: mysql:5.7
