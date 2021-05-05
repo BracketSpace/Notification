@@ -21,7 +21,8 @@
 		"szepeviktor/phpstan-wordpress": "^0.7.2",
 		"wp-coding-standards/wpcs": "^2.0",
 		"wp-phpunit/wp-phpunit": "^5.6",
-		"php-stubs/wp-cli-stubs": "^2.4"
+		"php-stubs/wp-cli-stubs": "^2.4",
+		"rector/rector-prefixed": "^0.10.19"
 	},
 	"config": {
 		"platform-check": false
