@@ -1,11 +1,16 @@
 <?php
+/**
+ * Extensions class
+ *
+ * @package notification
+ */
 
 use Rector\Core\Configuration\Option;
 use Rector\Set\ValueObject\DowngradeSetList;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-	$parameters = $containerConfigurator->parameters();
+return static function ( ContainerConfigurator $container_configurator ) {
+	$parameters = $container_configurator->parameters();
 	$parameters->set(Option::SETS, [
 		DowngradeSetList::PHP_74,
 		DowngradeSetList::PHP_73,
