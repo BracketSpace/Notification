@@ -151,10 +151,11 @@ jobs:
       - name: Remove unnecessary dependencies and install the rest
         run: |
           composer config platform.php '${{ matrix.php }}.0'
-          jq -r '."require-dev" | keys - ["roots/wordpress"] | .[] | select(endswith("phpunit") | not)' <composer.json | xargs -- composer remove --no-progress --no-update --ignore-platform-req php --dev
+          jq -r '."require-dev" | keys - ["roots/wordpress", "rector/rector-prefixed"] | .[] | select(endswith("phpunit") | not)' <composer.json | xargs -- composer remove --no-progress --no-update --ignore-platform-req php --dev
       - name: Downgrade
         run: |
-          composer remove --no-progress --no-update typisttech/imposter-plugin
+          vendor/bin/rector process --verbose
+          composer remove --no-progress --no-update rector/rector-prefixed typisttech/imposter-plugin
           composer update --no-progress
           composer require --no-progress --ignore-platform-req php typisttech/imposter-plugin
       - name: Setup PHP ${{ matrix.php }}
