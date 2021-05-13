@@ -292,9 +292,21 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 
-**Breaking changes**
+**Compatibnility Breaking Changes**
 
 1. Runtime `get_filesystems()` method has been changed to `get_filesystem()` and now only root file system is defined.
+2. Trigger `action()` method has been renamed to `context()`.
+3. Trigger doesn't have the postponing feature anymore, as processing is happening on the `shutdown` action.
+4. Trigger is now only a description object, all the processing is handled by the Runner class.
+5. `notification/carrier/sent` action doesn't have the Notification context anymore, so there's no 3rd parameter.
+
+Removed deprecated hooks:
+- `notification/notification/pre-send`, use `notification/carrier/pre-send`
+- `notification/notification/sent`, use `notification/processed`
+- `notificaiton/notification/field/resolving`, use `notification/carrier/field/resolving`
+- `notification/value/strip_empty_mergetags`, use `notification/resolve/strip_empty_mergetags`
+- `notification/value/strip_shortcodes`, use `notification/carrier/field/value/strip_shortcodes`
+- `notificaiton/notification/field/resolved`, use `notification/carrier/field/value/resolved`
 
 **Full changelog**
 
@@ -302,6 +314,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Fixed] WordPress' balanceTags filter which was breaking the Notification content.
 * [Changed] Code Editor Field sanitizer to allow for multiple HTML tags.
 * [Changed] Always return the single root filesystem in Runtime.
+* [Added] Runner class that processes the Triggers.
 
 == Upgrade Notice ==
 

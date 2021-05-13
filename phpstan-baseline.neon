@@ -501,42 +501,12 @@ parameters:
 			path: src/Abstracts/Trigger.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:get_notifications\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Trigger.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:postpone_action\\(\\) has no return typehint specified\\.$#"
-			count: 1
-			path: src/Abstracts/Trigger.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:set_cache\\(\\) has parameter \\$cache with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Abstracts/Trigger.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:\\$actions type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Trigger.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:\\$cache type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Trigger.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:\\$callback_args type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Trigger.php
-
-		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:\\$merge_tags type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Trigger.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:\\$notification_storage type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Abstracts/Trigger.php
 
@@ -2509,11 +2479,6 @@ parameters:
 			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\WordPress\\\\UpdatesAvailable\\:\\:\\$update_types type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
-
-		-
-			message: "#^Parameter \\#2 \\$function_to_check of function has_filter expects \\(callable\\(\\)\\: mixed\\)\\|false, 'gutenberg_init' given\\.$#"
-			count: 1
-			path: src/Integration/Gutenberg.php
 
 		-
 			message: "#^Call to an undefined method object\\:\\:add_action\\(\\)\\.$#"

@@ -34,6 +34,13 @@ abstract class Store implements Interfaces\Storable {
 	private $keys = [];
 
 	/**
+	 * Constructor
+	 *
+	 * @since [Next]
+	 */
+	final public function __construct() {}
+
+	/**
 	 * Gets store key
 	 *
 	 * @since  6.0.0
@@ -53,6 +60,17 @@ abstract class Store implements Interfaces\Storable {
 		$items      = (array) apply_filters( self::get_storage_key(), [] );
 		$this->keys = array_keys( $items );
 		return $items;
+	}
+
+	/**
+	 * Gets all stored items
+	 *
+	 * @since  [next]
+	 * @return array<mixed>
+	 */
+	public static function all() {
+		$store = new static();
+		return $store->get_items();
 	}
 
 	/**

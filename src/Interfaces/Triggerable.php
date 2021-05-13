@@ -15,22 +15,6 @@ use BracketSpace\Notification\Core\Notification;
 interface Triggerable extends Nameable {
 
 	/**
-	 * Attaches the Notification to the Trigger
-	 *
-	 * @param  Notification $notification Notification class.
-	 * @return void
-	 */
-	public function attach( Notification $notification );
-
-	/**
-	 * Detaches the Notification from the Trigger
-	 *
-	 * @param  Notification $notification Notification class.
-	 * @return void
-	 */
-	public function detach( Notification $notification );
-
-	/**
 	 * Sets up the merge tags
 	 *
 	 * @return void
@@ -46,4 +30,25 @@ interface Triggerable extends Nameable {
 	 */
 	public function get_merge_tags( $type = 'all', $grouped = false );
 
+	/**
+	 * Stops the trigger.
+	 *
+	 * @return void
+	 */
+	public function stop();
+
+	/**
+	 * Checks if trigger has been stopped
+	 *
+	 * @return boolean
+	 */
+	public function is_stopped() : bool;
+
+	/**
+	 * Gets Trigger actions
+	 *
+	 * @since [Next]
+	 * @return array<int, array{tag: string, priority: int, accepted_args: int}>
+	 */
+	public function get_actions() : array;
 }

@@ -224,6 +224,8 @@ class Runtime {
 		$this->add_component( 'core_settings', new Core\Settings() );
 		$this->add_component( 'core_upgrade', new Core\Upgrade() );
 		$this->add_component( 'core_sync', new Core\Sync() );
+		$this->add_component( 'core_binder', new Core\Binder() );
+		$this->add_component( 'core_processor', new Core\Processor() );
 
 		$this->add_component( 'admin_impexp', new Admin\ImportExport() );
 		$this->add_component( 'admin_settings', new Admin\Settings() );
@@ -239,9 +241,6 @@ class Runtime {
 
 		$this->add_component( 'integration_wp', new Integration\WordPress() );
 		$this->add_component( 'integration_wp_emails', new Integration\WordPressEmails() );
-		$this->add_component( 'integration_gb', new Integration\Gutenberg() );
-		$this->add_component( 'integration_cf', new Integration\CustomFields() );
-		$this->add_component( 'integration_bp', new Integration\BackgroundProcessing() );
 		$this->add_component( 'integration_2fa', new Integration\TwoFactor() );
 
 		$this->add_component( 'repeater_api', new Api\Api() );
