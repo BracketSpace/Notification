@@ -19,7 +19,7 @@ class Removed extends PluginTrigger {
 	 *
 	 * @var string
 	 */
-	protected $plugin_deletion_date_time;
+	public $plugin_deletion_date_time;
 
 	/**
 	 * Constructor.

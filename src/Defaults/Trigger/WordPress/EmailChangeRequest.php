@@ -20,28 +20,28 @@ class EmailChangeRequest extends Abstracts\Trigger {
 	 *
 	 * @var string
 	 */
-	protected $user_login;
+	public $user_login;
 
 	/**
 	 * New admin email
 	 *
 	 * @var string
 	 */
-	protected $new_admin_email;
+	public $new_admin_email;
 
 	/**
 	 * Confirmation email
 	 *
 	 * @var string
 	 */
-	protected $confirmation_url;
+	public $confirmation_url;
 
 	/**
 	 * Email change timestamp
 	 *
 	 * @var int
 	 */
-	protected $email_change_datetime;
+	public $email_change_datetime;
 
 	/**
 	 * [description]

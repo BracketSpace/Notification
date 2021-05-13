@@ -19,7 +19,7 @@ class MediaUpdated extends MediaTrigger {
 	 *
 	 * @var \WP_User
 	 */
-	protected $updating_user;
+	public $updating_user;
 
 	/**
 	 * Constructor

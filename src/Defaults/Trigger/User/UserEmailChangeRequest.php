@@ -18,28 +18,28 @@ class UserEmailChangeRequest extends UserTrigger {
 	 *
 	 * @var array
 	 */
-	protected $user_meta;
+	public $user_meta;
 
 	/**
 	 * New user email
 	 *
 	 * @var string
 	 */
-	protected $new_user_email;
+	public $new_user_email;
 
 	/**
 	 * Email change confirmation URL
 	 *
 	 * @var string
 	 */
-	protected $confirmation_url;
+	public $confirmation_url;
 
 	/**
 	 * Email change datetime
 	 *
 	 * @var int
 	 */
-	protected $email_change_datetime;
+	public $email_change_datetime;
 
 	/**
 	 * Constructor

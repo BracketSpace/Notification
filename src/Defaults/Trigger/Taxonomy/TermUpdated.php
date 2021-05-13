@@ -19,7 +19,7 @@ class TermUpdated extends TermTrigger {
 	 *
 	 * @var string
 	 */
-	protected $term_modification_datetime;
+	public $term_modification_datetime;
 
 	/**
 	 * Constructor

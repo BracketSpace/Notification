@@ -19,14 +19,14 @@ class UserProfileUpdated extends UserTrigger {
 	 *
 	 * @var array
 	 */
-	protected $user_meta;
+	public $user_meta;
 
 	/**
 	 * User profile update date and time
 	 *
 	 * @var int|false
 	 */
-	protected $user_profile_updated_datetime;
+	public $user_profile_updated_datetime;
 
 	/**
 	 * Constructor

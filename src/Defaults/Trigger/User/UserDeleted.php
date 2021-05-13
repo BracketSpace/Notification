@@ -20,14 +20,14 @@ class UserDeleted extends UserTrigger {
 	 *
 	 * @var array
 	 */
-	protected $user_meta;
+	public $user_meta;
 
 	/**
 	 * User deletion date and time
 	 *
 	 * @var int|false
 	 */
-	protected $user_deleted_datetime;
+	public $user_deleted_datetime;
 
 	/**
 	 * Constructor

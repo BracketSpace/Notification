@@ -20,7 +20,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	 *
 	 * @var array
 	 */
-	protected $update_types;
+	public $update_types;
 
 	/**
 	 * Constructor

@@ -19,14 +19,14 @@ class Updated extends PluginTrigger {
 	 *
 	 * @var string
 	 */
-	protected $previous_version;
+	public $previous_version;
 
 	/**
 	 * Plugin update date and time
 	 *
 	 * @var string
 	 */
-	protected $plugin_update_date_time;
+	public $plugin_update_date_time;
 
 	/**
 	 * Constructor.

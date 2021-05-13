@@ -20,21 +20,21 @@ abstract class PrivacyTrigger extends Abstracts\Trigger {
 	 *
 	 * @var \WP_User_Request
 	 */
-	protected $request;
+	public $request;
 
 	/**
 	 * Request user object
 	 *
 	 * @var \WP_User|false
 	 */
-	protected $user_object;
+	public $user_object;
 
 	/**
 	 * Data operation date and time
 	 *
 	 * @var string
 	 */
-	protected $data_operation_time;
+	public $data_operation_time;
 
 	/**
 	 * Constructor

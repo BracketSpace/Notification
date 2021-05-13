@@ -19,7 +19,7 @@ class PostUpdated extends PostTrigger {
 	 *
 	 * @var \WP_User
 	 */
-	protected $updating_user;
+	public $updating_user;
 
 	/**
 	 * Constructor

@@ -19,7 +19,7 @@ class PostDrafted extends PostTrigger {
 	 *
 	 * @var \WP_User
 	 */
-	protected $publishing_user;
+	public $publishing_user;
 
 	/**
 	 * Constructor

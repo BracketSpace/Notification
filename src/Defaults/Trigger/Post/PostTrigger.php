@@ -23,21 +23,21 @@ abstract class PostTrigger extends Abstracts\Trigger {
 	 *
 	 * @var string
 	 */
-	protected $post_type;
+	public $post_type;
 
 	/**
 	 * Post author user object
 	 *
 	 * @var \WP_User
 	 */
-	protected $author;
+	public $author;
 
 	/**
 	 * Post last editor user object
 	 *
 	 * @var \WP_User
 	 */
-	protected $last_editor;
+	public $last_editor;
 
 	/**
 	 * Constructor

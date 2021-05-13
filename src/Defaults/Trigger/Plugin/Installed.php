@@ -19,7 +19,7 @@ class Installed extends PluginTrigger {
 	 *
 	 * @var string
 	 */
-	protected $plugin_installation_date_time;
+	public $plugin_installation_date_time;
 
 	/**
 	 * Constructor.

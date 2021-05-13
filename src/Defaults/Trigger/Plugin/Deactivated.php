@@ -20,7 +20,7 @@ class Deactivated extends PluginTrigger {
 	 *
 	 * @var string
 	 */
-	protected $plugin_deactivation_date_time;
+	public $plugin_deactivation_date_time;
 
 	/**
 	 * Constructor

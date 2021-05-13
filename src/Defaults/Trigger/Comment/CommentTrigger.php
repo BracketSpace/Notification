@@ -23,63 +23,63 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 	 *
 	 * @var string
 	 */
-	protected $comment_type;
+	public $comment_type;
 
 	/**
 	 * Comment object
 	 *
 	 * @var \WP_Comment
 	 */
-	protected $comment;
+	public $comment;
 
 	/**
 	 * Comment author user object
 	 *
 	 * @var \stdClass
 	 */
-	protected $user_object;
+	public $user_object;
 
 	/**
 	 * Post object
 	 *
 	 * @var \WP_Post
 	 */
-	protected $post;
+	public $post;
 
 	/**
 	 * Post Type slug
 	 *
 	 * @var string
 	 */
-	protected $post_type;
+	public $post_type;
 
 	/**
 	 * Post creation date and time
 	 *
 	 * @var int|false
 	 */
-	protected $post_creation_datetime;
+	public $post_creation_datetime;
 
 	/**
 	 * Post modification date and time
 	 *
 	 * @var int|false
 	 */
-	protected $post_modification_datetime;
+	public $post_modification_datetime;
 
 	/**
 	 * Comment date and time
 	 *
 	 * @var int|false
 	 */
-	protected $comment_datetime;
+	public $comment_datetime;
 
 	/**
 	 * Post author user object
 	 *
 	 * @var \WP_User
 	 */
-	protected $post_author;
+	public $post_author;
 
 	/**
 	 * Constructor
