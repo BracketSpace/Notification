@@ -34,7 +34,7 @@ class DataErased extends PrivacyTrigger {
 
 		$this->request             = wp_get_user_request( $request_id );
 		$this->user_object         = get_userdata( $this->request->user_id );
-		$this->data_operation_time = $this->cache( 'timestamp', time() );
+		$this->data_operation_time = time();
 
 	}
 

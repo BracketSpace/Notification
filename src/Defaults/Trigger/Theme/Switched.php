@@ -54,7 +54,7 @@ class Switched extends ThemeTrigger {
 	public function context( $name, $theme, $old_theme ) {
 		$this->theme                  = $theme;
 		$this->old_theme              = $old_theme;
-		$this->theme_switch_date_time = $this->cache( 'switch_timestamp', time() );
+		$this->theme_switch_date_time = time();
 	}
 
 	/**

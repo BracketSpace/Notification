@@ -82,7 +82,7 @@ class EmailChangeRequest extends Abstracts\Trigger {
 		$this->user_login            = $current_user->user_login;
 		$this->new_admin_email       = $data['newemail'];
 		$this->confirmation_url      = esc_url( admin_url( 'options.php?adminhash=' . $data['hash'] ) );
-		$this->email_change_datetime = $this->cache( 'timestamp', time() );
+		$this->email_change_datetime = time();
 	}
 
 	/**

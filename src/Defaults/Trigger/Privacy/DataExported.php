@@ -72,7 +72,7 @@ class DataExported extends PrivacyTrigger {
 		$this->archive_url          = $archive_url;
 		$this->html_report_path     = $html_report_pathname;
 		$this->json_report_pathname = $json_report_pathname;
-		$this->data_operation_time  = $this->cache( 'timestamp', time() );
+		$this->data_operation_time  = time();
 
 	}
 

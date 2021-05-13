@@ -43,7 +43,7 @@ class MediaUpdated extends MediaTrigger {
 
 		$this->attachment = get_post( $attachment_id );
 
-		$this->user_id = $this->cache( 'user_id', get_current_user_id() );
+		$this->user_id = get_current_user_id();
 
 		$this->user_object   = get_userdata( $this->user_id );
 		$this->updating_user = get_userdata( $this->user_id );
