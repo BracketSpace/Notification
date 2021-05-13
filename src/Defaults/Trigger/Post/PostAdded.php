@@ -43,7 +43,7 @@ class PostAdded extends PostTrigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 * Return `false` if you want to abort the trigger execution
 	 *
 	 * @param integer $post_id Post ID.
@@ -51,7 +51,7 @@ class PostAdded extends PostTrigger {
 	 * @param bool    $update  Whether this is an existing post being updated or not.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function action( $post_id, $post, $update ) {
+	public function context( $post_id, $post, $update ) {
 
 		// Bail if post has been already added.
 		if ( $update ) {

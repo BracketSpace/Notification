@@ -26,11 +26,11 @@ class DataErased extends PrivacyTrigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 *
 	 * @param integer $request_id Request id.
 	 */
-	public function action( $request_id ) {
+	public function context( $request_id ) {
 
 		$this->request             = wp_get_user_request( $request_id );
 		$this->user_object         = get_userdata( $this->request->user_id );

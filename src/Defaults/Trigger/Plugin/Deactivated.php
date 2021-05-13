@@ -41,7 +41,7 @@ class Deactivated extends PluginTrigger {
 	 * @param  string $plugin_rel_path Plugin path.
 	 * @return void
 	 */
-	public function action( $plugin_rel_path ) {
+	public function context( $plugin_rel_path ) {
 
 		$plugin_dir                          = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin_rel_path;
 		$this->plugin                        = get_plugin_data( $plugin_dir, false );

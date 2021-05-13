@@ -49,7 +49,7 @@ class Updated extends PluginTrigger {
 	 * @param  array            $data     Update data information.
 	 * @return void|false
 	 */
-	public function action( $upgrader, $data ) {
+	public function context( $upgrader, $data ) {
 
 		if ( ! isset( $data['type'], $data['action'] ) || 'plugin' !== $data['type'] || 'update' !== $data['action'] ) {
 			return false;

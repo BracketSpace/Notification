@@ -50,7 +50,7 @@ class Updated extends ThemeTrigger {
 	 * @param  array           $data     Update data information.
 	 * @return mixed                     Void or false if no notifications should be sent.
 	 */
-	public function action( $upgrader, $data ) {
+	public function context( $upgrader, $data ) {
 
 		if ( ! isset( $data['type'], $data['action'] ) || 'theme' !== $data['type'] || 'update' !== $data['action'] ) {
 			return false;

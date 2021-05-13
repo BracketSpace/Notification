@@ -43,13 +43,13 @@ class PostTrashed extends PostTrigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 *
 	 * @param integer $post_id Post ID.
 	 * @param object  $post    Post object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function action( $post_id, $post ) {
+	public function context( $post_id, $post ) {
 
 		if ( $post->post_type !== $this->post_type ) {
 			return false;

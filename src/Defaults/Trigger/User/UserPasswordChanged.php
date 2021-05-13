@@ -42,12 +42,12 @@ class UserPasswordChanged extends UserTrigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 *
 	 * @param object $user User object.
 	 * @return void
 	 */
-	public function action( $user ) {
+	public function context( $user ) {
 
 		$this->user_id     = $user->ID;
 		$this->user_object = get_userdata( $this->user_id );

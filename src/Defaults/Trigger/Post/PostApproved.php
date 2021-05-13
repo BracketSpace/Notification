@@ -43,12 +43,12 @@ class PostApproved extends PostTrigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 *
 	 * @param object $post Post object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function action( $post ) {
+	public function context( $post ) {
 
 		if ( $post->post_type !== $this->post_type ) {
 			return false;

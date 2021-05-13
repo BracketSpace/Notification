@@ -101,7 +101,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 *
 	 * @return void
 	 */

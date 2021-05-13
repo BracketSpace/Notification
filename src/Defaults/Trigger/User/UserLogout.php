@@ -42,11 +42,11 @@ class UserLogout extends UserTrigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 *
 	 * @return void
 	 */
-	public function action() {
+	public function context() {
 
 		$this->user_id     = $this->cache( 'user_id', get_current_user_id() );
 		$this->user_object = get_userdata( $this->user_id );

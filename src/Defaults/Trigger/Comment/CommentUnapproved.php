@@ -36,14 +36,14 @@ class CommentUnapproved extends CommentTrigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 *
 	 * @param string $comment_new_status New comment status.
 	 * @param string $comment_old_status Old comment status.
 	 * @param object $comment            Comment object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function action( $comment_new_status, $comment_old_status, $comment ) {
+	public function context( $comment_new_status, $comment_old_status, $comment ) {
 
 		$this->comment = $comment;
 

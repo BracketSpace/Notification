@@ -56,7 +56,7 @@ class DataExported extends PrivacyTrigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 *
 	 * @param string  $archive_pathname Archive pathname.
 	 * @param string  $archive_url Archive url.
@@ -64,7 +64,7 @@ class DataExported extends PrivacyTrigger {
 	 * @param integer $request_id Request id.
 	 * @param string  $json_report_pathname Json report pathname.
 	 */
-	public function action( $archive_pathname, $archive_url, $html_report_pathname, $request_id, $json_report_pathname = null ) {
+	public function context( $archive_pathname, $archive_url, $html_report_pathname, $request_id, $json_report_pathname = null ) {
 
 		$this->request              = wp_get_user_request( $request_id );
 		$this->user_object          = get_userdata( $this->request->user_id );
