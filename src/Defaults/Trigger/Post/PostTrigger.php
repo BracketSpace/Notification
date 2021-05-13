@@ -59,22 +59,6 @@ abstract class PostTrigger extends Abstracts\Trigger {
 	}
 
 	/**
-	 * Postponed action
-	 *
-	 * @since  5.3.0
-	 * @param  mixed $post_id Post ID or string if is a revision.
-	 * @return mixed          void or false
-	 */
-	public function postponed_action( $post_id ) {
-
-		// Bail if different post type, like post revision.
-		if ( get_post_type( $post_id ) !== $this->post_type ) {
-			return false;
-		}
-
-	}
-
-	/**
 	 * Registers attached merge tags
 	 *
 	 * @return void

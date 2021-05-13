@@ -57,7 +57,7 @@ class Installed extends ThemeTrigger {
 
 		$this->theme = $theme;
 
-		$this->theme_installation_date_time = $this->cache( 'installation_timestamp', time() );
+		$this->theme_installation_date_time = time();
 
 	}
 

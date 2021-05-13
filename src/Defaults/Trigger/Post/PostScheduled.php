@@ -62,7 +62,7 @@ class PostScheduled extends PostTrigger {
 
 		$this->{ $this->post_type } = $post;
 
-		$scheduling_user_id = $this->cache( 'scheduling_user_id', get_current_user_id() );
+		$scheduling_user_id = get_current_user_id();
 
 		$this->author          = get_userdata( $this->{ $this->post_type }->post_author );
 		$this->last_editor     = get_userdata( get_post_meta( $this->{ $this->post_type }->ID, '_edit_last', true ) );
