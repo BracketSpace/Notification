@@ -19,28 +19,28 @@ class DataExported extends PrivacyTrigger {
 	 *
 	 * @var string
 	 */
-	protected $archive_path;
+	public $archive_path;
 
 	/**
 	 * Archive package URL
 	 *
 	 * @var string
 	 */
-	protected $archive_url;
+	public $archive_url;
 
 	/**
 	 * HTML report path
 	 *
 	 * @var string
 	 */
-	protected $html_report_path;
+	public $html_report_path;
 
 	/**
 	 * JSON report pathname
 	 *
 	 * @var string
 	 */
-	protected $json_report_pathname;
+	public $json_report_pathname;
 
 	/**
 	 * Constructor

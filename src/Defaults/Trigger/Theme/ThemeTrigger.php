@@ -20,7 +20,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger {
 	 *
 	 * @var \WP_Theme
 	 */
-	protected $theme;
+	public $theme;
 
 	/**
 	 * Registers attached merge tags

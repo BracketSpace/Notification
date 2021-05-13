@@ -19,14 +19,14 @@ class UserLogout extends UserTrigger {
 	 *
 	 * @var array
 	 */
-	protected $user_meta;
+	public $user_meta;
 
 	/**
 	 * User logout date and time
 	 *
 	 * @var int|false
 	 */
-	protected $user_logout_datetime;
+	public $user_logout_datetime;
 
 	/**
 	 * Constructor

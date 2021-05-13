@@ -19,28 +19,28 @@ class UserRoleChanged extends UserTrigger {
 	 *
 	 * @var array
 	 */
-	protected $user_meta;
+	public $user_meta;
 
 	/**
 	 * New role
 	 *
 	 * @var string
 	 */
-	protected $new_role;
+	public $new_role;
 
 	/**
 	 * Old role
 	 *
 	 * @var string
 	 */
-	protected $old_role;
+	public $old_role;
 
 	/**
 	 * User role change date and time
 	 *
 	 * @var int|false
 	 */
-	protected $user_role_change_datetime;
+	public $user_role_change_datetime;
 
 	/**
 	 * Constructor

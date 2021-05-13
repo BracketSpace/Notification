@@ -19,14 +19,14 @@ class UserPasswordResetRequest extends UserTrigger {
 	 *
 	 * @var int|false
 	 */
-	protected $password_reset_request_datetime;
+	public $password_reset_request_datetime;
 
 	/**
 	 * Password reset key
 	 *
 	 * @var string
 	 */
-	protected $password_reset_key;
+	public $password_reset_key;
 
 	/**
 	 * Constructor

@@ -20,7 +20,7 @@ class MediaTrashed extends MediaTrigger {
 	 *
 	 * @var \WP_User
 	 */
-	protected $trashing_user;
+	public $trashing_user;
 
 	/**
 	 * Constructor

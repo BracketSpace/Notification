@@ -19,7 +19,7 @@ class PostScheduled extends PostTrigger {
 	 *
 	 * @var \WP_User
 	 */
-	protected $scheduling_user;
+	public $scheduling_user;
 
 	/**
 	 * Constructor

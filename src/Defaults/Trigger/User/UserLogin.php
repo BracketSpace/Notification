@@ -20,14 +20,14 @@ class UserLogin extends UserTrigger {
 	 *
 	 * @var array
 	 */
-	protected $user_meta;
+	public $user_meta;
 
 	/**
 	 * User login date and time
 	 *
 	 * @var int|false
 	 */
-	protected $user_logged_in_datetime;
+	public $user_logged_in_datetime;
 
 	/**
 	 * Constructor

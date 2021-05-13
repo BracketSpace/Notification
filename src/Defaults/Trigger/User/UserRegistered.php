@@ -19,7 +19,7 @@ class UserRegistered extends UserTrigger {
 	 *
 	 * @var array
 	 */
-	protected $user_meta;
+	public $user_meta;
 
 	/**
 	 * Constructor

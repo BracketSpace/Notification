@@ -20,7 +20,7 @@ class Installed extends ThemeTrigger {
 	 *
 	 * @var string
 	 */
-	protected $theme_installation_date_time;
+	public $theme_installation_date_time;
 
 	/**
 	 * Constructor

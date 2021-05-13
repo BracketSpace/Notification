@@ -19,7 +19,7 @@ class PostTrashed extends PostTrigger {
 	 *
 	 * @var \WP_User
 	 */
-	protected $trashing_user;
+	public $trashing_user;
 
 	/**
 	 * Constructor

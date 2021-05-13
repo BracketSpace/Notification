@@ -19,7 +19,7 @@ class UserLoginFailed extends UserTrigger {
 	 *
 	 * @var int|false
 	 */
-	protected $user_login_failed_datetime;
+	public $user_login_failed_datetime;
 
 	/**
 	 * Constructor

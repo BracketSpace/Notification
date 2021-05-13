@@ -23,21 +23,21 @@ abstract class TermTrigger extends Abstracts\Trigger {
 	 *
 	 * @var string
 	 */
-	protected $taxonomy;
+	public $taxonomy;
 
 	/**
 	 * Term object
 	 *
 	 * @var \WP_Term
 	 */
-	protected $term;
+	public $term;
 
 	/**
 	 * Term permalink
 	 *
 	 * @var string
 	 */
-	protected $term_permalink;
+	public $term_permalink;
 
 	/**
 	 * Constructor

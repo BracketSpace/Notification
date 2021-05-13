@@ -19,7 +19,7 @@ class PostApproved extends PostTrigger {
 	 *
 	 * @var \WP_User
 	 */
-	protected $approving_user;
+	public $approving_user;
 
 	/**
 	 * Constructor

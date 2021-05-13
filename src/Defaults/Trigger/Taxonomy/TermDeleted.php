@@ -19,7 +19,7 @@ class TermDeleted extends TermTrigger {
 	 *
 	 * @var string
 	 */
-	protected $term_deletion_datetime;
+	public $term_deletion_datetime;
 
 	/**
 	 * Constructor

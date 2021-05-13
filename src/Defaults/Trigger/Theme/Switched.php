@@ -20,14 +20,14 @@ class Switched extends ThemeTrigger {
 	 *
 	 * @var \WP_Theme
 	 */
-	protected $old_theme;
+	public $old_theme;
 
 	/**
 	 * Theme switch date and time
 	 *
 	 * @var string
 	 */
-	protected $theme_switch_date_time;
+	public $theme_switch_date_time;
 
 	/**
 	 * Constructor

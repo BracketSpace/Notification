@@ -20,7 +20,7 @@ abstract class PluginTrigger extends Abstracts\Trigger {
 	 *
 	 * @var array
 	 */
-	protected $plugin;
+	public $plugin;
 
 	/**
 	 * Registers attached merge tags

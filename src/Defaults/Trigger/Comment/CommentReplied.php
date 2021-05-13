@@ -19,14 +19,14 @@ class CommentReplied extends CommentTrigger {
 	 *
 	 * @var \WP_Comment
 	 */
-	protected $parent_comment;
+	public $parent_comment;
 
 	/**
 	 * Parent comment user object
 	 *
 	 * @var \stdClass
 	 */
-	protected $parent_comment_user_object;
+	public $parent_comment_user_object;
 
 	/**
 	 * Constructor
