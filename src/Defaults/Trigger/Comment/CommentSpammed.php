@@ -36,13 +36,13 @@ class CommentSpammed extends CommentTrigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 *
 	 * @param integer $comment_id Comment ID.
 	 * @param object  $comment    Comment object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function action( $comment_id, $comment ) {
+	public function context( $comment_id, $comment ) {
 
 		$this->comment = $comment;
 

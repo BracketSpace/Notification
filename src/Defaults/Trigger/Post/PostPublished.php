@@ -50,14 +50,14 @@ class PostPublished extends PostTrigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 *
 	 * @param string $new_status New post status.
 	 * @param string $old_status Old post status.
 	 * @param object $post       Post object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function action( $new_status, $old_status, $post ) {
+	public function context( $new_status, $old_status, $post ) {
 
 		if ( $post->post_type !== $this->post_type ) {
 			return false;

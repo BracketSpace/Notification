@@ -55,13 +55,13 @@ class UserEmailChangeRequest extends UserTrigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 *
 	 * @since [Next]
 	 * @param integer $user_id User ID.
 	 * @return mixed
 	 */
-	public function action( $user_id ) {
+	public function context( $user_id ) {
 
 		$new_email = get_user_meta( $user_id, '_new_email', true );
 

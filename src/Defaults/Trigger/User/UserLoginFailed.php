@@ -35,12 +35,12 @@ class UserLoginFailed extends UserTrigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 *
 	 * @param string $username username.
 	 * @return mixed
 	 */
-	public function action( $username ) {
+	public function context( $username ) {
 
 		$user = get_user_by( 'login', $username );
 

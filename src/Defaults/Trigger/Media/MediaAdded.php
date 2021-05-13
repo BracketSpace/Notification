@@ -27,12 +27,12 @@ class MediaAdded extends MediaTrigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 *
 	 * @param integer $attachment_id Attachment Post ID.
 	 * @return void
 	 */
-	public function action( $attachment_id ) {
+	public function context( $attachment_id ) {
 
 		$this->attachment  = get_post( $attachment_id );
 		$this->user_id     = (int) $this->attachment->post_author;

@@ -42,13 +42,13 @@ class UserPasswordResetRequest extends UserTrigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 *
 	 * @param string $username  username.
 	 * @param string $reset_key password reset key.
 	 * @return mixed
 	 */
-	public function action( $username, $reset_key ) {
+	public function context( $username, $reset_key ) {
 
 		$user = get_user_by( 'login', $username );
 

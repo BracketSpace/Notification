@@ -51,7 +51,7 @@ class Switched extends ThemeTrigger {
 	 * @param  \WP_Theme $old_theme Instance of the old theme.
 	 * @return mixed                Void or false if no notifications should be sent.
 	 */
-	public function action( $name, $theme, $old_theme ) {
+	public function context( $name, $theme, $old_theme ) {
 		$this->theme                  = $theme;
 		$this->old_theme              = $old_theme;
 		$this->theme_switch_date_time = $this->cache( 'switch_timestamp', time() );

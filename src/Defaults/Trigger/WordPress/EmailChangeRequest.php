@@ -62,7 +62,7 @@ class EmailChangeRequest extends Abstracts\Trigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 *
 	 * @since [Next]
 	 *
@@ -71,7 +71,7 @@ class EmailChangeRequest extends Abstracts\Trigger {
 	 *
 	 * @return mixed
 	 */
-	public function action( $old_value, $value ) {
+	public function context( $old_value, $value ) {
 
 		if ( $old_value === $value ) {
 			return false;

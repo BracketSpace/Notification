@@ -45,13 +45,13 @@ class TermAdded extends TermTrigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 * Return `false` if you want to abort the trigger execution
 	 *
 	 * @param integer $term_id Term ID.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function action( $term_id ) {
+	public function context( $term_id ) {
 
 		$term       = get_term( $term_id );
 		$this->term = $term;

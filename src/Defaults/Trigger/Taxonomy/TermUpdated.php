@@ -45,12 +45,12 @@ class TermUpdated extends TermTrigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 *
 	 * @param integer $term_id Term ID used only due to lack of taxonomy param.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function action( $term_id ) {
+	public function context( $term_id ) {
 
 		$term       = get_term( $term_id );
 		$this->term = $term;

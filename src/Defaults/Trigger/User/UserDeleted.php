@@ -43,12 +43,12 @@ class UserDeleted extends UserTrigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 *
 	 * @param integer $user_id User ID.
 	 * @return void
 	 */
-	public function action( $user_id ) {
+	public function context( $user_id ) {
 
 		$this->user_id     = $user_id;
 		$this->user_object = get_userdata( $this->user_id );

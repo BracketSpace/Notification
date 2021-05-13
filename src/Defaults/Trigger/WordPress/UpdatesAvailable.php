@@ -39,11 +39,11 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	}
 
 	/**
-	 * Assigns action callback args to object
+	 * Sets trigger's context
 	 *
 	 * @return mixed
 	 */
-	public function action() {
+	public function context() {
 
 		require_once ABSPATH . '/wp-admin/includes/update.php';
 
