@@ -250,51 +250,40 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 				$val              = $this->resolve_value( $val, $trigger );
 				$resolved[ $key ] = $val;
 			}
-		} else {
 
-			$value = apply_filters_deprecated( 'notificaiton/notification/field/resolving', [
-				$value,
-				null,
-			], '6.0.0', 'notification/carrier/field/resolving' );
-			$value = apply_filters( 'notification/carrier/field/resolving', $value, null );
-
-			$resolved = notification_resolve( $value, $trigger );
-
-			// Unused tags.
-			$strip_merge_tags = notification_get_setting( 'general/content/strip_empty_tags' );
-			$strip_merge_tags = apply_filters_deprecated( 'notification/value/strip_empty_mergetags', [
-				$strip_merge_tags,
-			], '6.0.0', 'notification/resolve/strip_empty_mergetags' );
-			$strip_merge_tags = apply_filters( 'notification/resolve/strip_empty_mergetags', $strip_merge_tags );
-
-			if ( $strip_merge_tags ) {
-				$resolved = notification_clear_tags( $resolved );
-			}
-
-			// Shortcodes.
-			$strip_shortcodes = notification_get_setting( 'general/content/strip_shortcodes' );
-			$strip_shortcodes = apply_filters_deprecated( 'notification/value/strip_shortcodes', [
-				$strip_shortcodes,
-			], '6.0.0', 'notification/carrier/field/value/strip_shortcodes' );
-
-			if ( apply_filters( 'notification/carrier/field/value/strip_shortcodes', $strip_shortcodes ) ) {
-				$resolved = preg_replace( '#\[[^\]]+\]#', '', $resolved );
-			} else {
-				$resolved = do_shortcode( $resolved );
-			}
-
-			// Unescape escaped {.
-			$resolved = str_replace( '!{', '{', $resolved );
-
-			$resolved = apply_filters_deprecated( 'notificaiton/notification/field/resolved', [
-				$resolved,
-				null,
-			], '6.0.0', 'notification/carrier/field/value/resolved' );
-			$resolved = apply_filters( 'notification/carrier/field/value/resolved', $resolved, null );
-
+			return $resolved;
 		}
 
-		return $resolved;
+		$value = apply_filters( 'notification/carrier/field/resolving', $value );
+
+		$resolved = notification_resolve( $value, $trigger );
+
+		// Unused tags.
+		$strip_merge_tags = apply_filters(
+			'notification/resolve/strip_empty_mergetags',
+			notification_get_setting( 'general/content/strip_empty_tags' )
+		);
+
+		if ( $strip_merge_tags ) {
+			$resolved = notification_clear_tags( $resolved );
+		}
+
+		// Shortcodes.
+		$strip_shortcodes = apply_filters(
+			'notification/carrier/field/value/strip_shortcodes',
+			notification_get_setting( 'general/content/strip_shortcodes' )
+		);
+
+		if ( $strip_shortcodes ) {
+			$resolved = preg_replace( '#\[[^\]]+\]#', '', $resolved );
+		} else {
+			$resolved = do_shortcode( $resolved );
+		}
+
+		// Unescape escaped {.
+		$resolved = str_replace( '!{', '{', $resolved );
+
+		return apply_filters( 'notification/carrier/field/value/resolved', $resolved, null );
 
 	}
 
