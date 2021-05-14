@@ -150,7 +150,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Run Rector
         run: |
-          composer require --no-progress rector/rector-prefixed
+          composer require -W --no-progress rector/rector-prefixed
           vendor/bin/rector process --verbose
           composer remove --no-progress rector/rector-prefixed
       - name: Remove unnecessary dependencies and install the rest
