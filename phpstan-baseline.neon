@@ -921,6 +921,21 @@ parameters:
 			path: src/Cli/DumpHooks.php
 
 		-
+			message: "#^Call to method get_actions\\(\\) on an unknown class BracketSpace\\\\Notification\\\\Core\\\\Triggerable\\.$#"
+			count: 1
+			path: src/Core/Binder.php
+
+		-
+			message: "#^Parameter \\#1 \\$trigger of class BracketSpace\\\\Notification\\\\Core\\\\Runner constructor expects BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, BracketSpace\\\\Notification\\\\Core\\\\Triggerable given\\.$#"
+			count: 1
+			path: src/Core/Binder.php
+
+		-
+			message: "#^Parameter \\$triggers of method BracketSpace\\\\Notification\\\\Core\\\\Binder\\:\\:bind\\(\\) has invalid typehint type BracketSpace\\\\Notification\\\\Core\\\\Triggerable\\.$#"
+			count: 2
+			path: src/Core/Binder.php
+
+		-
 			message: "#^Cannot access property \\$labels on string\\|WP_Post_Type\\.$#"
 			count: 1
 			path: src/Core/Cache.php
@@ -1094,6 +1109,11 @@ parameters:
 			message: "#^Parameter \\#3 \\$subject of function preg_replace_callback expects array\\|string, string\\|null given\\.$#"
 			count: 1
 			path: src/Core/Resolver.php
+
+		-
+			message: "#^Call to an undefined method BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable\\:\\:clear_merge_tags\\(\\)\\.$#"
+			count: 1
+			path: src/Core/Runner.php
 
 		-
 			message: "#^Parameter \\#2 \\$function_to_add of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'cache_objects'\\) given\\.$#"
@@ -1841,7 +1861,22 @@ parameters:
 			path: src/Defaults/Trigger/Media/MediaUpdated.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Plugin\\\\Installed\\:\\:action\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Plugin\\\\Activated\\:\\:\\$plugin_activation_date_time \\(string\\) does not accept int\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Plugin/Activated.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Plugin\\\\Deactivated\\:\\:\\$plugin_deactivation_date_time \\(string\\) does not accept int\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Plugin/Deactivated.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Plugin\\\\Installed\\:\\:context\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Plugin/Installed.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Plugin\\\\Installed\\:\\:\\$plugin_installation_date_time \\(string\\) does not accept int\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Plugin/Installed.php
 
@@ -1851,7 +1886,17 @@ parameters:
 			path: src/Defaults/Trigger/Plugin/PluginTrigger.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Plugin\\\\Updated\\:\\:action\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Plugin\\\\Removed\\:\\:\\$plugin_deletion_date_time \\(string\\) does not accept int\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Plugin/Removed.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Plugin\\\\Updated\\:\\:context\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Plugin/Updated.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Plugin\\\\Updated\\:\\:\\$plugin_update_date_time \\(string\\) does not accept int\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Plugin/Updated.php
 
@@ -2166,7 +2211,12 @@ parameters:
 			path: src/Defaults/Trigger/Privacy/DataEraseRequest.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\DataEraseRequest\\:\\:action\\(\\) has no return typehint specified\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\DataEraseRequest\\:\\:context\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Privacy/DataEraseRequest.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$data_operation_time \\(string\\) does not accept int\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Privacy/DataEraseRequest.php
 
@@ -2181,7 +2231,12 @@ parameters:
 			path: src/Defaults/Trigger/Privacy/DataErased.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\DataErased\\:\\:action\\(\\) has no return typehint specified\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\DataErased\\:\\:context\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Privacy/DataErased.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$data_operation_time \\(string\\) does not accept int\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Privacy/DataErased.php
 
@@ -2196,7 +2251,12 @@ parameters:
 			path: src/Defaults/Trigger/Privacy/DataExportRequest.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\DataExportRequest\\:\\:action\\(\\) has no return typehint specified\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\DataExportRequest\\:\\:context\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Privacy/DataExportRequest.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$data_operation_time \\(string\\) does not accept int\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Privacy/DataExportRequest.php
 
@@ -2211,12 +2271,17 @@ parameters:
 			path: src/Defaults/Trigger/Privacy/DataExported.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\DataExported\\:\\:action\\(\\) has no return typehint specified\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\DataExported\\:\\:context\\(\\) has no return typehint specified\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Privacy/DataExported.php
 
 		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\DataExported\\:\\:\\$json_report_pathname \\(string\\) does not accept string\\|null\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Privacy/DataExported.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$data_operation_time \\(string\\) does not accept int\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Privacy/DataExported.php
 
@@ -2232,6 +2297,11 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$term of function get_term_link expects int\\|string\\|WP_Term, array\\|WP_Error\\|WP_Term\\|null given\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Taxonomy/TermAdded.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermAdded\\:\\:\\$term_creation_datetime \\(string\\) does not accept int\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Taxonomy/TermAdded.php
 
@@ -2252,6 +2322,11 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$term of function get_term_link expects int\\|string\\|WP_Term, array\\|WP_Error\\|WP_Term\\|null given\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Taxonomy/TermDeleted.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermDeleted\\:\\:\\$term_deletion_datetime \\(string\\) does not accept int\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Taxonomy/TermDeleted.php
 
@@ -2291,12 +2366,42 @@ parameters:
 			path: src/Defaults/Trigger/Taxonomy/TermUpdated.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Theme\\\\Installed\\:\\:action\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermUpdated\\:\\:\\$term_modification_datetime \\(string\\) does not accept int\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Taxonomy/TermUpdated.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Theme\\\\Installed\\:\\:context\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Theme/Installed.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Theme\\\\Updated\\:\\:action\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Theme\\\\Installed\\:\\:\\$theme_installation_date_time \\(string\\) does not accept int\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Theme/Installed.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Theme\\\\ThemeTrigger\\:\\:\\$theme \\(WP_Theme\\) does not accept \\\\WP_Theme\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Theme/Installed.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Theme\\\\Switched\\:\\:\\$theme_switch_date_time \\(string\\) does not accept int\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Theme/Switched.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Theme\\\\Updated\\:\\:context\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Theme/Updated.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Theme\\\\ThemeTrigger\\:\\:\\$theme \\(WP_Theme\\) does not accept \\\\WP_Theme\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Theme/Updated.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Theme\\\\Updated\\:\\:\\$theme_update_date_time \\(string\\) does not accept int\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Theme/Updated.php
 
@@ -2441,7 +2546,7 @@ parameters:
 			path: src/Defaults/Trigger/User/UserRoleChanged.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserRoleChanged\\:\\:action\\(\\) has parameter \\$old_roles with no value type specified in iterable type array\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserRoleChanged\\:\\:context\\(\\) has parameter \\$old_roles with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/User/UserRoleChanged.php
 
@@ -2539,6 +2644,16 @@ parameters:
 			message: "#^Method BracketSpace\\\\Notification\\\\Interfaces\\\\Taggable\\:\\:set_trigger\\(\\) has no return typehint specified\\.$#"
 			count: 1
 			path: src/Interfaces/Taggable.php
+
+		-
+			message: "#^Access to property \\$name on an unknown class \\\\WP_Theme\\.$#"
+			count: 2
+			path: src/Register/GlobalMergeTags.php
+
+		-
+			message: "#^Access to property \\$version on an unknown class \\\\WP_Theme\\.$#"
+			count: 2
+			path: src/Register/GlobalMergeTags.php
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Runtime\\:\\:components\\(\\) return type has no value type specified in iterable type array\\.$#"
