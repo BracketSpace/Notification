@@ -292,7 +292,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 
-**Compatibnility Breaking Changes**
+**Compatibility Breaking Changes**
 
 1. Runtime `get_filesystems()` method has been changed to `get_filesystem()` and now only root file system is defined.
 2. Trigger `action()` method has been renamed to `context()`.
