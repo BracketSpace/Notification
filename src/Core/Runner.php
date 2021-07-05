@@ -51,7 +51,7 @@ class Runner {
 	/**
 	 * Runs the action by setting the context.
 	 *
-	 * Adds the specific Carrier and corresponsing Trigger
+	 * Adds the specific Carrier and corresponding Trigger
 	 * to the Queue for later execution.
 	 *
 	 * @since  [Next]
