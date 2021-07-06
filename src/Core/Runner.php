@@ -113,7 +113,11 @@ class Runner {
 				do_action( 'notification/carrier/pre-send', $carrier, $this->trigger, $notification );
 
 				if ( ! $carrier->is_suppressed() ) {
-					Queue::add( $carrier, $this->trigger );
+					/**
+					 * If an item already exists in the queue, we are replacing it with the new version.
+					 * This doesn't prevents the duplicates coming from two separate requests.
+					 */
+					Queue::add_replace( $carrier, $this->trigger );
 				}
 			}
 
