@@ -49,4 +49,14 @@ class TestCarierStore extends \WP_UnitTestCase {
 		$this->assertSame( $carrier, notification_get_carrier( $carrier_slug ) );
 	}
 
+	/**
+	 * Clears after the test
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function tearDown() {
+        Registerer::clear();
+    }
+
 }

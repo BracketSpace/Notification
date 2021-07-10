@@ -9,7 +9,7 @@
 namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\Core\Notification as CoreNotification;
-use BracketSpace\Notification\Defaults\Store\Notification as NotificationStore;
+use BracketSpace\Notification\Store\Notification as NotificationStore;
 use BracketSpace\Notification\Interfaces\Triggerable;
 
 /**

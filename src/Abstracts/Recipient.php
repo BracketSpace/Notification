@@ -50,7 +50,7 @@ abstract class Recipient extends Common implements Interfaces\Receivable {
 	/**
 	 * Returns input object
 	 *
-	 * @return object
+	 * @return Interfaces\Fillable
 	 */
 	abstract public function input();
 

@@ -30,7 +30,7 @@ class ImportExport {
 					'name'     => __( 'Notifications', 'notification' ),
 					'slug'     => 'notifications',
 					'addons'   => [
-						'message' => $this->notification_import_form(),
+						'message' => [ $this, 'notification_import_form' ],
 					],
 					'render'   => [ new CoreFields\Message(), 'input' ],
 					'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
@@ -43,7 +43,7 @@ class ImportExport {
 					'name'     => __( 'Notifications', 'notification' ),
 					'slug'     => 'notifications',
 					'addons'   => [
-						'message' => $this->notification_export_form(),
+						'message' => [ $this, 'notification_export_form' ],
 					],
 					'render'   => [ new CoreFields\Message(), 'input' ],
 					'sanitize' => [ new CoreFields\Message(), 'sanitize' ],

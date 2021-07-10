@@ -471,16 +471,6 @@ parameters:
 			path: src/Abstracts/Resolver.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Store\\:\\:get_items\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Store.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Abstracts\\\\Store\\:\\:\\$keys type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Store.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:add_action\\(\\) has no return typehint specified\\.$#"
 			count: 1
 			path: src/Abstracts/Trigger.php
@@ -914,6 +904,71 @@ parameters:
 			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\SectionRepeaterController\\:\\:group_fields\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Api/Controller/SectionRepeaterController.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$checkbox_label\\.$#"
+			count: 1
+			path: src/Api/Controller/SelectInputController.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$css_class\\.$#"
+			count: 1
+			path: src/Api/Controller/SelectInputController.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$description\\.$#"
+			count: 1
+			path: src/Api/Controller/SelectInputController.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$disabled\\.$#"
+			count: 1
+			path: src/Api/Controller/SelectInputController.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$field_type_html\\.$#"
+			count: 1
+			path: src/Api/Controller/SelectInputController.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$id\\.$#"
+			count: 1
+			path: src/Api/Controller/SelectInputController.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$label\\.$#"
+			count: 1
+			path: src/Api/Controller/SelectInputController.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$name\\.$#"
+			count: 1
+			path: src/Api/Controller/SelectInputController.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$options\\.$#"
+			count: 1
+			path: src/Api/Controller/SelectInputController.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$placeholder\\.$#"
+			count: 1
+			path: src/Api/Controller/SelectInputController.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$pretty\\.$#"
+			count: 1
+			path: src/Api/Controller/SelectInputController.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$section\\.$#"
+			count: 1
+			path: src/Api/Controller/SelectInputController.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$value\\.$#"
+			count: 1
+			path: src/Api/Controller/SelectInputController.php
 
 		-
 			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, int\\|string given\\.$#"
@@ -1669,11 +1724,6 @@ parameters:
 			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Resolver\\\\Basic\\:\\:resolve_merge_tag\\(\\) has parameter \\$match with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Defaults/Resolver/Basic.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Store\\\\Notification\\:\\:with_trigger\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Store/Notification.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
@@ -2631,16 +2681,6 @@ parameters:
 			path: src/Interfaces/Resolvable.php
 
 		-
-			message: "#^Interface BracketSpace\\\\Notification\\\\Interfaces\\\\Storable extends generic interface ArrayAccess but does not specify its types\\: TKey, TValue$#"
-			count: 1
-			path: src/Interfaces/Storable.php
-
-		-
-			message: "#^Interface BracketSpace\\\\Notification\\\\Interfaces\\\\Storable extends generic interface Iterator but does not specify its types\\: TKey, TValue$#"
-			count: 1
-			path: src/Interfaces/Storable.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Interfaces\\\\Taggable\\:\\:set_trigger\\(\\) has no return typehint specified\\.$#"
 			count: 1
 			path: src/Interfaces/Taggable.php
@@ -2761,16 +2801,6 @@ parameters:
 			path: src/api.php
 
 		-
-			message: "#^Function notification_get_carrier_recipients\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/api.php
-
-		-
-			message: "#^Function notification_get_carriers\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/api.php
-
-		-
 			message: "#^Function notification_get_global_merge_tags\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/api.php
@@ -2781,17 +2811,7 @@ parameters:
 			path: src/api.php
 
 		-
-			message: "#^Function notification_get_recipients\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/api.php
-
-		-
 			message: "#^Function notification_get_template\\(\\) has parameter \\$vars with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/api.php
-
-		-
-			message: "#^Function notification_get_triggers\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/api.php
 

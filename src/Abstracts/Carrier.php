@@ -422,7 +422,7 @@ abstract class Carrier extends Common implements Interfaces\Sendable {
 	}
 
 	/**
-	 * Disabled the Carrier
+	 * Disables the Carrier
 	 *
 	 * @since  6.0.0
 	 * @return $this

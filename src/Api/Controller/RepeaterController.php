@@ -115,10 +115,15 @@ class RepeaterController {
 	 * Gets carrier fields
 	 *
 	 * @since 7.0.0
-	 * @return Fillable
+	 * @return array<mixed>
 	 */
 	public function get_carrier_fields() {
-		$carrier        = notification_get_carrier( $this->carrier );
+		$carrier = notification_get_carrier( $this->carrier );
+
+		if ( null === $carrier ) {
+			return [];
+		}
+
 		$carrier_fields = $carrier->get_form_field( $this->field );
 
 		return $carrier_fields;

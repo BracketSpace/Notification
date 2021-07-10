@@ -8,13 +8,8 @@
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Resolver;
 use BracketSpace\Notification\Defaults\Adapter;
-use BracketSpace\Notification\Defaults\Store\Carrier as CarrierStore;
-use BracketSpace\Notification\Defaults\Store\Notification as NotificationStore;
-use BracketSpace\Notification\Defaults\Store\Recipient as RecipientStore;
-use BracketSpace\Notification\Defaults\Store\Resolver as ResolverStore;
-use BracketSpace\Notification\Defaults\Store\Trigger as TriggerStore;
+use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Interfaces;
-use BracketSpace\Notification\Interfaces\Adaptable;
 
 /**
  * Adapts Notification object
@@ -24,7 +19,7 @@ use BracketSpace\Notification\Interfaces\Adaptable;
  * @throws \Exception If adapter wasn't found.
  * @param  string       $adapter_name Adapter class name.
  * @param  Notification $notification Notification object.
- * @return Adaptable                  Adaptable class.
+ * @return Interfaces\Adaptable
  */
 function notification_adapt( $adapter_name, Notification $notification ) {
 
@@ -48,7 +43,7 @@ function notification_adapt( $adapter_name, Notification $notification ) {
  * @since  6.0.0
  * @param  string $adapter_name Adapter class name.
  * @param  mixed  $data         Input data needed by adapter.
- * @return Adaptable            Adaptable class.
+ * @return Interfaces\Adaptable
  */
 function notification_adapt_from( $adapter_name, $data ) {
 	$adapter = notification_adapt( $adapter_name, new Notification() );
@@ -59,11 +54,11 @@ function notification_adapt_from( $adapter_name, $data ) {
  * Changes one adapter to another
  *
  * @since  6.0.0
- * @param  string    $new_adapter_name Adapter class name.
- * @param  Adaptable $adapter          Adapter.
- * @return Adaptable                   Adaptable class.
+ * @param  string               $new_adapter_name Adapter class name.
+ * @param  Interfaces\Adaptable $adapter          Adapter.
+ * @return Interfaces\Adaptable
  */
-function notification_swap_adapter( $new_adapter_name, Adaptable $adapter ) {
+function notification_swap_adapter( $new_adapter_name, Interfaces\Adaptable $adapter ) {
 	return notification_adapt( $new_adapter_name, $adapter->get_notification() );
 }
 
@@ -73,22 +68,11 @@ function notification_swap_adapter( $new_adapter_name, Adaptable $adapter ) {
  * @since  6.0.0
  * @since  6.3.0 Uses Carrier Store.
  * @param  Interfaces\Sendable $carrier Carrier object.
- * @return \WP_Error | true
+ * @return void
  */
 function notification_register_carrier( Interfaces\Sendable $carrier ) {
-
-	$store = new CarrierStore();
-
-	try {
-		$store[] = $carrier;
-	} catch ( \Exception $e ) {
-		return new \WP_Error( 'notification_register_carrier_error', $e->getMessage() );
-	}
-
+	Store\Carrier::insert( $carrier->get_slug(), $carrier );
 	do_action( 'notification/carrier/registered', $carrier );
-
-	return true;
-
 }
 
 /**
@@ -96,11 +80,10 @@ function notification_register_carrier( Interfaces\Sendable $carrier ) {
  *
  * @since  6.0.0
  * @since  6.3.0 Uses Carrier Store.
- * @return array carriers
+ * @return array<string,Interfaces\Sendable>
  */
 function notification_get_carriers() {
-	$store = new CarrierStore();
-	return $store->get_items();
+	return Store\Carrier::all();
 }
 
 /**
@@ -108,11 +91,10 @@ function notification_get_carriers() {
  *
  * @since  6.0.0
  * @param  string $carrier_slug Carrier slug.
- * @return mixed                Carrier object or false
+ * @return Interfaces\Sendable|null
  */
 function notification_get_carrier( $carrier_slug ) {
-	$carriers = notification_get_carriers();
-	return isset( $carriers[ $carrier_slug ] ) ? $carriers[ $carrier_slug ] : false;
+	return Store\Carrier::get( $carrier_slug );
 }
 
 /**
@@ -341,22 +323,11 @@ function notification( $data = [] ) {
  *
  * @since  6.0.0
  * @param  Notification $notification Notification object.
- * @return \WP_Error | true
+ * @return void
  */
 function notification_add( Notification $notification ) {
-
-	$store = new NotificationStore();
-
-	try {
-		$store[ $notification->get_hash() ] = $notification;
-	} catch ( \Exception $e ) {
-		return new \WP_Error( 'notification_add_error', $e->getMessage() );
-	}
-
+	Store\Notification::insert( $notification->get_hash(), $notification );
 	do_action( 'notification/notification/registered', $notification );
-
-	return true;
-
 }
 
 /**
@@ -372,7 +343,7 @@ function notification_add( Notification $notification ) {
 function notification_convert_data( $data = [] ) {
 
 	// Trigger conversion.
-	if ( isset( $data['trigger'] ) && ! ( $data['trigger'] instanceof Interfaces\Triggerable ) ) {
+	if ( ! empty( $data['trigger'] ) && ! ( $data['trigger'] instanceof Interfaces\Triggerable ) ) {
 		$data['trigger'] = notification_get_trigger( $data['trigger'] );
 	}
 
@@ -485,22 +456,11 @@ function notification_get_post_by_hash( $hash ) {
  * @since  6.3.0 Uses Recipient Store
  * @param  string                $carrier_slug Carrier slug.
  * @param  Interfaces\Receivable $recipient    Recipient object.
- * @return \WP_Error | true
+ * @return void
  */
 function notification_register_recipient( $carrier_slug, Interfaces\Receivable $recipient ) {
-
-	$store = new RecipientStore();
-
-	try {
-		$store[ $carrier_slug ] = $recipient;
-	} catch ( \Exception $e ) {
-		return new \WP_Error( 'notification_register_trigger_error', $e->getMessage() );
-	}
-
-	do_action( 'notification/recipient/registered', $recipient );
-
-	return true;
-
+	Store\Recipient::insert( $carrier_slug, $recipient->get_slug(), $recipient );
+	do_action( 'notification/recipient/registered', $recipient, $carrier_slug );
 }
 
 /**
@@ -508,11 +468,10 @@ function notification_register_recipient( $carrier_slug, Interfaces\Receivable $
  *
  * @since  6.0.0
  * @since  6.3.0 Uses Recipient Store
- * @return array recipients
+ * @return array<string,array<string,Interfaces\Receivable>>
  */
 function notification_get_recipients() {
-	$store = new RecipientStore();
-	return $store->get_items();
+	return Store\Recipient::all();
 }
 
 /**
@@ -520,11 +479,10 @@ function notification_get_recipients() {
  *
  * @since  6.0.0
  * @param  string $carrier_slug Carrier slug.
- * @return array                Recipients array
+ * @return array<string,Interfaces\Receivable>
  */
 function notification_get_carrier_recipients( $carrier_slug ) {
-	$recipients = notification_get_recipients();
-	return isset( $recipients[ $carrier_slug ] ) ? $recipients[ $carrier_slug ] : array();
+	return Store\Recipient::all_for_carrier( $carrier_slug );
 }
 
 /**
@@ -533,11 +491,10 @@ function notification_get_carrier_recipients( $carrier_slug ) {
  * @since  6.0.0
  * @param  string $carrier_slug   Carrier slug.
  * @param  string $recipient_slug Recipient slug.
- * @return mixed                  Recipient object or false
+ * @return Interfaces\Receivable|null
  */
 function notification_get_recipient( $carrier_slug, $recipient_slug ) {
-	$recipients = notification_get_recipients();
-	return isset( $recipients[ $carrier_slug ][ $recipient_slug ] ) ? $recipients[ $carrier_slug ][ $recipient_slug ] : false;
+	return Store\Recipient::get( $carrier_slug, $recipient_slug );
 }
 
 /**
@@ -568,22 +525,11 @@ function notification_parse_recipient( $carrier_slug, $recipient_type, $recipien
  * @since  6.0.0
  * @since  6.3.0 Uses Resolver Store.
  * @param  Interfaces\Resolvable $resolver Resolver object.
- * @return \WP_Error | true
+ * @return void
  */
 function notification_register_resolver( Interfaces\Resolvable $resolver ) {
-
-	$store = new ResolverStore();
-
-	try {
-		$store[ $resolver->get_slug() ] = $resolver;
-	} catch ( \Exception $e ) {
-		return new \WP_Error( 'notification_register_resolver_error', $e->getMessage() );
-	}
-
+	Store\Resolver::insert( $resolver->get_slug(), $resolver );
 	do_action( 'notification/resolver/registered', $resolver );
-
-	return true;
-
 }
 
 /**
@@ -668,22 +614,11 @@ function notification_get_setting( $setting ) {
  * @since  6.0.0
  * @since  6.3.0 Uses Trigger Store
  * @param  Interfaces\Triggerable $trigger trigger object.
- * @return \WP_Error | true
+ * @return void
  */
 function notification_register_trigger( Interfaces\Triggerable $trigger ) {
-
-	$store = new TriggerStore();
-
-	try {
-		$store[] = $trigger;
-	} catch ( \Exception $e ) {
-		return new \WP_Error( 'notification_register_trigger_error', $e->getMessage() );
-	}
-
+	Store\Trigger::insert( $trigger->get_slug(), $trigger );
 	do_action( 'notification/trigger/registered', $trigger );
-
-	return true;
-
 }
 
 /**
@@ -691,11 +626,10 @@ function notification_register_trigger( Interfaces\Triggerable $trigger ) {
  *
  * @since  6.0.0
  * @since  6.3.0 Uses Trigger Store
- * @return array triggers
+ * @return array<int,Interfaces\Triggerable>
  */
 function notification_get_triggers() {
-	$store = new TriggerStore();
-	return $store->get_items();
+	return Store\Trigger::all();
 }
 
 /**
@@ -703,11 +637,10 @@ function notification_get_triggers() {
  *
  * @since  6.0.0
  * @param  string $trigger_slug trigger slug.
- * @return mixed                trigger object or false
+ * @return Interfaces\Triggerable|null
  */
 function notification_get_trigger( $trigger_slug ) {
-	$triggers = notification_get_triggers();
-	return isset( $triggers[ $trigger_slug ] ) ? $triggers[ $trigger_slug ] : false;
+	return Store\Trigger::get( $trigger_slug );
 }
 
 /**
