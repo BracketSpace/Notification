@@ -24,24 +24,17 @@ class TestTrigger extends \WP_UnitTestCase {
 		$notification = Registerer::register_default_notification();
 
 		do_action( 'notification/test' );
+		$this->assertEquals( 1, did_action( 'notification/trigger/action/did' ) );
 	}
 
 	/**
-	 * Tests trigger action if no Carriers
+	 * Clears after the test
 	 *
-	 * @since 6.0.0
+	 * @since  [Next]
+	 * @return void
 	 */
-	public function test_trigger_no_carriers() {
-		$trigger = Registerer::register_trigger();
-
-		do_action( 'notification/test' );
-		$this->assertEquals( 0, did_action( 'notification/trigger/action/did' ) );
-
-		$carrier = Registerer::register_carrier()->enable();
-		Registerer::register_notification( $trigger, [ $carrier ] );
-
-		do_action( 'notification/test' );
-		$this->assertEquals( 1, did_action( 'notification/trigger/action/did' ) );
-	}
+	public function tearDown() {
+        Registerer::clear();
+    }
 
 }

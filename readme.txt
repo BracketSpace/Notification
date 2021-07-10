@@ -299,6 +299,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 3. Trigger doesn't have the postponing feature anymore, as processing is happening on the `shutdown` action.
 4. Trigger is now only a description object, all the processing is handled by the Runner class.
 5. `notification/carrier/sent` action doesn't have the Notification context anymore, so there's no 3rd parameter.
+6. Store classes now live under `BracketSpace\Notification\Store` namespace rather than `BracketSpace\Notification\Defaults\Store`.
 
 Removed deprecated hooks:
 - `notification/notification/pre-send`, use `notification/carrier/pre-send`
@@ -314,6 +315,7 @@ Removed deprecated hooks:
 * [Fixed] WordPress' balanceTags filter which was breaking the Notification content.
 * [Changed] Code Editor Field sanitizer to allow for multiple HTML tags.
 * [Changed] Always return the single root filesystem in Runtime.
+* [Changed] Stores with plugin objects, now they are much simpler and don't use WP filters.
 * [Added] Runner class that processes the Triggers.
 
 == Upgrade Notice ==

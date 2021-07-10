@@ -7,7 +7,7 @@
 
 namespace BracketSpace\Notification\Tests\Core;
 
-use BracketSpace\Notification\Tests\Helpers;
+use BracketSpace\Notification\Tests\Helpers\Registerer;
 use BracketSpace\Notification\Core\Notification;
 
 /**
@@ -97,7 +97,7 @@ class TestNotification extends \WP_UnitTestCase {
 	 */
 	public function test_trigger() {
 
-		$trigger      = Helpers\Registerer::register_trigger();
+		$trigger      = Registerer::register_trigger();
 		$notification = new Notification( [
 			'trigger' => $trigger,
 		] );
@@ -128,7 +128,7 @@ class TestNotification extends \WP_UnitTestCase {
 	 */
 	public function test_carriers() {
 
-		$carrier      = Helpers\Registerer::register_carrier();
+		$carrier      = Registerer::register_carrier();
 		$notification = new Notification( [
 			'carriers' => [ $carrier ],
 		] );
@@ -240,8 +240,8 @@ class TestNotification extends \WP_UnitTestCase {
 	 */
 	public function test_to_array() {
 
-		$trigger = Helpers\Registerer::register_trigger();
-		$carrier = Helpers\Registerer::register_carrier();
+		$trigger = Registerer::register_trigger();
+		$carrier = Registerer::register_carrier();
 		$carrier->enable();
 
 		$version = time() - 100;
@@ -299,7 +299,7 @@ class TestNotification extends \WP_UnitTestCase {
 	public function test_add_carrier_object() {
 
 		$notification = new Notification();
-		$carrier      = Helpers\Registerer::register_carrier();
+		$carrier      = Registerer::register_carrier();
 
 		$notification->add_carrier( $carrier );
 
@@ -316,7 +316,7 @@ class TestNotification extends \WP_UnitTestCase {
 
 		$this->expectException( \Exception::class );
 
-		$carrier      = Helpers\Registerer::register_carrier();
+		$carrier      = Registerer::register_carrier();
 		$notification = new Notification();
 		$notification->add_carrier( $carrier );
 		$notification->add_carrier( $carrier );
@@ -344,7 +344,7 @@ class TestNotification extends \WP_UnitTestCase {
 	 */
 	public function test_get_carrier() {
 
-		$carrier      = Helpers\Registerer::register_carrier();
+		$carrier      = Registerer::register_carrier();
 		$notification = new Notification( [
 			'carriers' => [ $carrier ]
 		] );
@@ -361,7 +361,7 @@ class TestNotification extends \WP_UnitTestCase {
 	 */
 	public function test_enable_carrier() {
 
-		$carrier      = Helpers\Registerer::register_carrier();
+		$carrier      = Registerer::register_carrier();
 		$notification = new Notification( [
 			'carriers' => [ $carrier ]
 		] );
@@ -380,7 +380,7 @@ class TestNotification extends \WP_UnitTestCase {
 	 */
 	public function test_enable_carrier_adding() {
 
-		$carrier      = Helpers\Registerer::register_carrier();
+		$carrier      = Registerer::register_carrier();
 		$notification = new Notification();
 		$notification->enable_carrier( $carrier->get_slug() );
 
@@ -395,7 +395,7 @@ class TestNotification extends \WP_UnitTestCase {
 	 */
 	public function test_disable_carrier() {
 
-		$carrier      = Helpers\Registerer::register_carrier()->enable();
+		$carrier      = Registerer::register_carrier()->enable();
 		$notification = new Notification( [
 			'carriers' => [ $carrier ]
 		] );
@@ -424,5 +424,15 @@ class TestNotification extends \WP_UnitTestCase {
 		$this->assertNull( $notification->get_extra( 'undefined' ) );
 
 	}
+
+	/**
+	 * Clears after the test
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function tearDown() {
+        Registerer::clear();
+    }
 
 }

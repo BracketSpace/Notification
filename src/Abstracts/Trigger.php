@@ -187,11 +187,11 @@ abstract class Trigger extends Common implements Triggerable {
 	}
 
 	/**
-	 * Gets group
+	 * Gets group name
 	 *
-	 * @return string group
+	 * @return string
 	 */
-	public function get_group() {
+	public function get_group() : string {
 		return $this->group;
 	}
 

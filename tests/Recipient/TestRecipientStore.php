@@ -67,4 +67,14 @@ class TestRecipientStore extends \WP_UnitTestCase {
 
 		$this->assertSame( $expected_array, notification_get_carrier_recipients( 'dummy_carrier' ) );
 	}
+
+	/**
+	 * Clears after the test
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function tearDown() {
+        Registerer::clear();
+    }
 }

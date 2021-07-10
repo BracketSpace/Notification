@@ -10,4 +10,4 @@ namespace BracketSpace\Notification\Interfaces;
 /**
  * Storable interface
  */
-interface Storable extends \ArrayAccess, \Iterator {}
+interface Storable {}

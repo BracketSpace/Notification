@@ -80,10 +80,10 @@ abstract class Adapter implements Interfaces\Adaptable {
 	 * Registers Notification
 	 *
 	 * @since  6.0.0
-	 * @return mixed
+	 * @return void
 	 */
 	public function register_notification() {
-		return notification_add( $this->get_notification() );
+		notification_add( $this->get_notification() );
 	}
 
 }

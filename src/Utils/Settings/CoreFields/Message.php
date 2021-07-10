@@ -26,7 +26,9 @@ class Message {
 			echo '<pre><code>';
 		}
 
-		echo $field->addon( 'message' ); // phpcs:ignore
+		$message = $field->addon( 'message' );
+
+		echo is_callable( $message ) ? $message() : $message; // phpcs:ignore
 
 		if ( $field->addon( 'code' ) ) {
 			echo '</code></pre>';

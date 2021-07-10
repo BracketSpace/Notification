@@ -9,7 +9,7 @@
 namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\Interfaces\Triggerable;
-use BracketSpace\Notification\Defaults\Store\Resolver as ResolverStore;
+use BracketSpace\Notification\Store\Resolver as ResolverStore;
 
 /**
  * Resolver class
@@ -51,8 +51,7 @@ class Resolver {
 	 */
 	public function get_resolvers() {
 
-		$store     = new ResolverStore();
-		$resolvers = $store->get_items();
+		$resolvers = ResolverStore::all();
 
 		usort( $resolvers, function( $a, $b ) {
 			if ( $a->get_priority() === $b->get_priority() ) {

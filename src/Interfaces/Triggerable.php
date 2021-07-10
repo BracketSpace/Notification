@@ -51,4 +51,11 @@ interface Triggerable extends Nameable {
 	 * @return array<int, array{tag: string, priority: int, accepted_args: int}>
 	 */
 	public function get_actions() : array;
+
+	/**
+	 * Gets group
+	 *
+	 * @return string
+	 */
+	public function get_group() : string;
 }
