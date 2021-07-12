@@ -303,7 +303,6 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 Removed deprecated hooks:
 - `notification/notification/pre-send`, use `notification/carrier/pre-send`
-- `notification/notification/sent`, use `notification/processed`
 - `notificaiton/notification/field/resolving`, use `notification/carrier/field/resolving`
 - `notification/value/strip_empty_mergetags`, use `notification/resolve/strip_empty_mergetags`
 - `notification/value/strip_shortcodes`, use `notification/carrier/field/value/strip_shortcodes`
