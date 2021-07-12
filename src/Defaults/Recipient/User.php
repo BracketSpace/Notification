@@ -41,7 +41,7 @@ class User extends Abstracts\Recipient {
 	public function parse_value( $value = '' ) {
 
 		if ( empty( $value ) ) {
-			$value = [ $this->get_default_value() ];
+			$value = $this->get_default_value();
 		}
 
 		$user = get_userdata( (int) $value );

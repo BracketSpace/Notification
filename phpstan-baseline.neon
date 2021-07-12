@@ -1691,11 +1691,6 @@ parameters:
 			path: src/Defaults/Recipient/Role.php
 
 		-
-			message: "#^Cannot cast array\\(string\\)\\|string to int\\.$#"
-			count: 1
-			path: src/Defaults/Recipient/User.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Recipient\\\\User\\:\\:get_all_users\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Defaults/Recipient/User.php
