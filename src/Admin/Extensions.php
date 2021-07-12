@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\License;
+use BracketSpace\Notification\ErrorHandler;
 use BracketSpace\Notification\Utils\EDDUpdater;
 use BracketSpace\Notification\Utils\Cache\Transient as TransientCache;
 
@@ -138,7 +139,7 @@ class Extensions {
 
 		$extensions_cache = new TransientCache( 'notification_extensions', DAY_IN_SECONDS );
 
-		if ( defined( 'NOTIFICATION_DEBUG' ) && NOTIFICATION_DEBUG ) {
+		if ( ErrorHandler::debug_enabled() ) {
 			$extensions = false;
 		} else {
 			$extensions = $extensions_cache->get();

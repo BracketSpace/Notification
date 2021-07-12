@@ -9,6 +9,7 @@
 
 namespace BracketSpace\Notification\Core;
 
+use BracketSpace\Notification\ErrorHandler;
 use BracketSpace\Notification\Utils\Cache\ObjectCache;
 use BracketSpace\Notification\Utils\Cache\Transient as TransientCache;
 
@@ -61,7 +62,7 @@ class License {
 
 		$license_cache = new ObjectCache( $this->extension['slug'], 'notification_license' );
 
-		if ( defined( 'NOTIFICATION_DEBUG' ) && NOTIFICATION_DEBUG ) {
+		if ( ErrorHandler::debug_enabled() ) {
 			$license = false;
 		} else {
 			$license = $license_cache->get();
@@ -98,7 +99,7 @@ class License {
 
 		$license_transient = new TransientCache( 'notification_checked_license' . $this->extension['slug'], DAY_IN_SECONDS );
 
-		if ( defined( 'NOTIFICATION_DEBUG' ) && NOTIFICATION_DEBUG ) {
+		if ( ErrorHandler::debug_enabled() ) {
 			$license = false;
 		} else {
 			$license = $license_transient->get();

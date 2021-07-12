@@ -316,6 +316,7 @@ Removed deprecated hooks:
 * [Changed] Always return the single root filesystem in Runtime.
 * [Changed] Stores with plugin objects, now they are much simpler and don't use WP filters.
 * [Added] Runner class that processes the Triggers.
+* [Added] ErrorHandler class that helps handle errors. It can throw an exception when NOTIFICATION_DEBUG is enabled or save a warning to error_log when it's disabled.
 
 == Upgrade Notice ==
 
