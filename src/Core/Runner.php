@@ -93,9 +93,6 @@ class Runner {
 			return;
 		}
 
-		// Setup merge tags.
-		$this->trigger->setup_merge_tags();
-
 		// Setup notifications and prepare the carriers.
 		foreach ( $this->get_notifications() as $notification ) {
 
@@ -103,31 +100,11 @@ class Runner {
 				continue;
 			}
 
-			foreach ( $notification->get_enabled_carriers() as $carrier ) {
-				$carrier->resolve_fields( $this->trigger );
-				$carrier->prepare_data();
-
-				// Optimize the Trigger class.
-				$this->trigger->clear_merge_tags();
-
-				do_action( 'notification/carrier/pre-send', $carrier, $this->trigger, $notification );
-
-				if ( ! $carrier->is_suppressed() ) {
-					/**
-					 * If an item already exists in the queue, we are replacing it with the new version.
-					 * This doesn't prevents the duplicates coming from two separate requests.
-					 */
-					Queue::add_replace( $carrier, $this->trigger );
-				}
-			}
-
-			do_action_deprecated(
-				'notification/sent',
-				[ $notification, $this->trigger ],
-				'[Next]',
-				'notification/processed',
-				'The hook just means the carriers has been processed and are about to be sent'
-			);
+			/**
+			 * If an item already exists in the queue, we are replacing it with the new version.
+			 * This doesn't prevents the duplicates coming from two separate requests.
+			 */
+			Queue::add_replace( $notification, $this->trigger );
 
 			do_action( 'notification/processed', $notification );
 

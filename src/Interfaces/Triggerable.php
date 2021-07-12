@@ -31,6 +31,13 @@ interface Triggerable extends Nameable {
 	public function get_merge_tags( $type = 'all', $grouped = false );
 
 	/**
+	 * Clears the merge tags
+	 *
+	 * @return $this
+	 */
+	public function clear_merge_tags() : self;
+
+	/**
 	 * Stops the trigger.
 	 *
 	 * @return void

@@ -7,10 +7,18 @@
 
 namespace BracketSpace\Notification\Integration;
 
+use BracketSpace\Notification\Interfaces\Triggerable;
+
 /**
  * WordPress integration class
  */
 class WordPress {
+
+	/**
+	 * --------------------------
+	 * Email headers
+	 * --------------------------
+	 */
 
 	/**
 	 * Filters default Email From Name
@@ -44,6 +52,47 @@ class WordPress {
 
 		return empty( $setting ) ? $from_email : $setting;
 
+	}
+
+	/**
+	 * --------------------------
+	 * Duplicate prevention
+	 * --------------------------
+	 */
+
+	/**
+	 * Prevents the duplicate notifications
+	 *
+	 * Gutenberg or other editors, especiallyu when used within other
+	 * plugins which manipulate the data.
+	 *
+	 * @filter notification/background_processing/trigger_key
+	 *
+	 * @since  [Next]
+	 * @param  string      $trigger_key Trigger unique key.
+	 * @param  Triggerable $trigger     Trigger object.
+	 * @return string
+	 */
+	public function identify_trigger( $trigger_key, Triggerable $trigger ) {
+		$covered_triggers = [
+			'BracketSpace\Notification\Defaults\Trigger\Post\PostTrigger' => static function ( $trigger ) {
+				return $trigger->{ $trigger->get_post_type() }->ID;
+			},
+			'BracketSpace\Notification\Defaults\Trigger\User\UserTrigger' => static function ( $trigger ) {
+				return $trigger->user_id;
+			},
+			'BracketSpace\Notification\Defaults\Trigger\Comment\CommentTrigger' => static function ( $trigger ) {
+				return $trigger->comment->comment_ID;
+			},
+		];
+
+		foreach ( $covered_triggers as $class_name => $callback ) {
+			if ( $trigger instanceof $class_name ) {
+				return $callback( $trigger );
+			}
+		}
+
+		return $trigger_key;
 	}
 
 	/**

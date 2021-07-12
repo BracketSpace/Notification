@@ -1141,6 +1141,11 @@ parameters:
 			path: src/Core/Notification.php
 
 		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Interfaces\\\\Adaptable\\:\\:save\\(\\) invoked with 2 parameters, 0 required\\.$#"
+			count: 1
+			path: src/Core/Processor.php
+
+		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Resolver\\:\\:clear\\(\\) should return string but returns string\\|null\\.$#"
 			count: 1
 			path: src/Core/Resolver.php
@@ -1164,11 +1169,6 @@ parameters:
 			message: "#^Parameter \\#3 \\$subject of function preg_replace_callback expects array\\|string, string\\|null given\\.$#"
 			count: 1
 			path: src/Core/Resolver.php
-
-		-
-			message: "#^Call to an undefined method BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable\\:\\:clear_merge_tags\\(\\)\\.$#"
-			count: 1
-			path: src/Core/Runner.php
 
 		-
 			message: "#^Parameter \\#2 \\$function_to_add of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'cache_objects'\\) given\\.$#"
