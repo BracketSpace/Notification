@@ -58,8 +58,8 @@ class SectionRepeaterController extends RepeaterController {
 
 						$section_field             = [];
 						$section_field['name']     = $section['name'];
-						$section_field['multiple'] = $section['multiple_section'];
-						$section_field['special']  = $section['special_section'];
+						$section_field['multiple'] = isset( $section['multiple_section'] ) ? $section['multiple_section'] : false;
+						$section_field['special']  = isset( $section['special_section'] ) ? $section['special_section'] : false;
 						$base_sub_fields           = $this->form_field_data( $section['fields'] );
 						$groupped_sub_fields       = $this->group_fields( $base_sub_fields );
 						$section_field['fields']   = $groupped_sub_fields;
