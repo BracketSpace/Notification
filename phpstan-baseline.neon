@@ -1276,16 +1276,6 @@ parameters:
 			path: src/Defaults/Field/CodeEditorField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\CodeEditorField\\:\\:allow_html_tags\\(\\) has parameter \\$allowed_tags with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Field/CodeEditorField.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\CodeEditorField\\:\\:allow_html_tags\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Field/CodeEditorField.php
-
-		-
 			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, string\\|false given\\.$#"
 			count: 1
 			path: src/Defaults/Field/CodeEditorField.php

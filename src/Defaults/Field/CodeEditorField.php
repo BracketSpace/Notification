@@ -70,6 +70,6 @@ class CodeEditorField extends Field {
 	 * @return mixed        sanitized value
 	 */
 	public function sanitize( $value ) {
-		return $sanitized;
+		return $value;
 	}
 }
