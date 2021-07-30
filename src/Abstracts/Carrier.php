@@ -7,15 +7,18 @@
 
 namespace BracketSpace\Notification\Abstracts;
 
-use BracketSpace\Notification\Interfaces;
-use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Defaults\Field;
 use BracketSpace\Notification\Defaults\Field\RecipientsField;
+use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Interfaces\Triggerable;
+use BracketSpace\Notification\Traits;
 
 /**
  * Carrier abstract class
  */
-abstract class Carrier extends Common implements Interfaces\Sendable {
+abstract class Carrier implements Interfaces\Sendable {
+
+	use Traits\HasName, Traits\HasSlug;
 
 	/**
 	 * Carrier form fields

@@ -8,11 +8,14 @@
 namespace BracketSpace\Notification\Abstracts;
 
 use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Traits;
 
 /**
  * MergeTag abstract class
  */
-abstract class MergeTag extends Common implements Interfaces\Taggable {
+abstract class MergeTag implements Interfaces\Taggable {
+
+	use Traits\HasName, Traits\HasSlug;
 
 	/**
 	 * MergeTag resolved value

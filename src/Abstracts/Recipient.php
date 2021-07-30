@@ -8,11 +8,14 @@
 namespace BracketSpace\Notification\Abstracts;
 
 use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Traits;
 
 /**
  * Recipient abstract class
  */
-abstract class Recipient extends Common implements Interfaces\Receivable {
+abstract class Recipient implements Interfaces\Receivable {
+
+	use Traits\HasName, Traits\HasSlug;
 
 	/**
 	 * Recipient input default value

@@ -9,12 +9,14 @@ namespace BracketSpace\Notification\Abstracts;
 
 use BracketSpace\Notification\Interfaces\Taggable;
 use BracketSpace\Notification\Interfaces\Triggerable;
-
+use BracketSpace\Notification\Traits;
 
 /**
  * Trigger abstract class
  */
-abstract class Trigger extends Common implements Triggerable {
+abstract class Trigger implements Triggerable {
+
+	use Traits\HasName, Traits\HasSlug;
 
 	/**
 	 * Group
