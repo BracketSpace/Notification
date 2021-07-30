@@ -65,7 +65,12 @@ class Cache {
 			}
 		}
 
-		if ( $cache_refreshed && ! isset( $_GET['notification-cache-refresh'] ) && ! ( defined( 'WP_CLI' ) && WP_CLI ) ) { // phpcs:ignore
+		$background_request =
+			( defined( 'WP_CLI' ) && WP_CLI ) ||
+			wp_doing_ajax() ||
+			( defined( 'NOTIFICATION_DOING_TESTS' ) && NOTIFICATION_DOING_TESTS );
+
+		if ( $cache_refreshed && ! isset( $_GET['notification-cache-refresh'] ) && ! $background_request ) { // phpcs:ignore
 			wp_safe_redirect( add_query_arg( 'notification-cache-refresh', 1 ) );
 		}
 
