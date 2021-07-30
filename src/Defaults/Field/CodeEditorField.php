@@ -64,43 +64,12 @@ class CodeEditorField extends Field {
 	}
 
 	/**
-	 * Sanitizes the value sent by user
+	 * The code is not sanitized
 	 *
 	 * @param  mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
 	public function sanitize( $value ) {
-		add_filter( 'wp_kses_allowed_html', [ $this, 'allow_html_tags' ] );
-		$sanitized = wp_kses_data( $value );
-		remove_filter( 'wp_kses_allowed_html', [ $this, 'allow_html_tags' ] );
-
 		return $sanitized;
 	}
-
-	/**
-	 * Allows for specific tags to be used within the editor
-	 *
-	 * @see https://developer.wordpress.org/reference/functions/wp_kses_allowed_html/
-	 * @since  [Next]
-	 * @param  array $allowed_tags Allowed tags list.
-	 * @return array
-	 */
-	public function allow_html_tags( $allowed_tags ) {
-		$allowed_atts = [
-			'class' => true,
-			'style' => true,
-		];
-
-		$extended = [
-			'style' => [],
-			'div'   => $allowed_atts,
-			'span'  => $allowed_atts,
-			'table' => $allowed_atts,
-			'td'    => $allowed_atts,
-			'tr'    => $allowed_atts,
-		];
-
-		return array_merge_recursive( $allowed_tags, $extended );
-	}
-
 }
