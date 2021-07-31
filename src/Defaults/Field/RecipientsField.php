@@ -13,6 +13,13 @@ namespace BracketSpace\Notification\Defaults\Field;
 class RecipientsField extends RepeaterField {
 
 	/**
+	 * If the global description in the header should be printed
+	 *
+	 * @var bool
+	 */
+	public $print_header_description = false;
+
+	/**
 	 * Field constructor
 	 *
 	 * @since 5.0.0

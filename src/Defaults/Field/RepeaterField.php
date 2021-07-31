@@ -72,6 +72,13 @@ class RepeaterField extends Field {
 	protected $carrier;
 
 	/**
+	 * If the global description in the header should be printed
+	 *
+	 * @var bool
+	 */
+	public $print_header_description = true;
+
+	/**
 	 * Field constructor
 	 *
 	 * @since 5.0.0
@@ -135,15 +142,15 @@ class RepeaterField extends Field {
 				continue;
 			}
 
-			$description = $sub_field->get_description();
-
 			$html .= '<th class="' . esc_attr( $sub_field->get_raw_name() ) . '">';
 
 			$this->headers[ $sub_field->get_raw_name() ] = $sub_field->get_label();
 
 			$html .= esc_html( $sub_field->get_label() );
 
-			if ( ! empty( $description ) ) {
+			$description = $sub_field->get_description();
+
+			if ( $this->print_header_description && ! empty( $description ) ) {
 				$html .= '<small class="description">' . $description . '</small>';
 			}
 
