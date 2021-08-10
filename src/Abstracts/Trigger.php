@@ -16,14 +16,7 @@ use BracketSpace\Notification\Traits;
  */
 abstract class Trigger implements Triggerable {
 
-	use Traits\HasName, Traits\HasSlug;
-
-	/**
-	 * Group
-	 *
-	 * @var string
-	 */
-	protected $group = '';
+	use Traits\HasGroup, Traits\HasName, Traits\HasSlug;
 
 	/**
 	 * Short description of the Trigger
@@ -65,12 +58,17 @@ abstract class Trigger implements Triggerable {
 	/**
 	 * Trigger constructor
 	 *
-	 * @param string $slug slug.
-	 * @param string $name nice name.
+	 * @param string $slug Slug, optional.
+	 * @param string $name Nice name, optional.
 	 */
-	public function __construct( $slug, $name ) {
-		$this->slug = $slug;
-		$this->name = $name;
+	public function __construct( $slug = null, $name = null ) {
+		if ( null !== $slug ) {
+			$this->set_slug( $slug );
+		}
+
+		if ( null !== $name ) {
+			$this->set_name( $name );
+		}
 	}
 
 	/**
@@ -185,26 +183,6 @@ abstract class Trigger implements Triggerable {
 	 */
 	public function set_description( $description ) {
 		$this->description = sanitize_text_field( $description );
-		return $this;
-	}
-
-	/**
-	 * Gets group name
-	 *
-	 * @return string
-	 */
-	public function get_group() : string {
-		return $this->group;
-	}
-
-	/**
-	 * Sets group
-	 *
-	 * @param string $group group.
-	 * @return $this
-	 */
-	public function set_group( $group ) {
-		$this->group = sanitize_text_field( $group );
 		return $this;
 	}
 

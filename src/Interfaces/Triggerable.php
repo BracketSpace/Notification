@@ -62,7 +62,7 @@ interface Triggerable extends Nameable {
 	/**
 	 * Gets group
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-	public function get_group() : string;
+	public function get_group() : ?string;
 }

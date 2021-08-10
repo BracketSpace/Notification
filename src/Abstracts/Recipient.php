@@ -32,12 +32,18 @@ abstract class Recipient implements Interfaces\Receivable {
 	 */
 	public function __construct( $params = [] ) {
 
-		if ( ! isset( $params['slug'], $params['name'], $params['default_value'] ) ) {
-			trigger_error( 'Recipient requires slug, name and default_value', E_USER_ERROR );
+		if ( ! empty( $params['slug'] ) ) {
+			$this->set_slug( $params['slug'] );
 		}
 
-		$this->slug          = $params['slug'];
-		$this->name          = $params['name'];
+		if ( ! empty( $params['name'] ) ) {
+			$this->set_name( $params['name'] );
+		}
+
+		if ( ! isset( $params['default_value'] ) ) {
+			trigger_error( 'Recipient requires default_value', E_USER_ERROR );
+		}
+
 		$this->default_value = $params['default_value'];
 
 	}

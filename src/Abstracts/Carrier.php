@@ -58,13 +58,17 @@ abstract class Carrier implements Interfaces\Sendable {
 	/**
 	 * Carrier constructor
 	 *
-	 * @param string $slug slug.
-	 * @param string $name nice name.
+	 * @param string $slug Slug, optional.
+	 * @param string $name Nice name, optional.
 	 */
-	public function __construct( $slug, $name ) {
+	public function __construct( $slug = null, $name = null ) {
+		if ( null !== $slug ) {
+			$this->set_slug( $slug );
+		}
 
-		$this->slug = $slug;
-		$this->name = $name;
+		if ( null !== $name ) {
+			$this->set_name( $name );
+		}
 
 		// Form nonce.
 		$nonce_field = new Field\NonceField( [
@@ -107,7 +111,6 @@ abstract class Carrier implements Interfaces\Sendable {
 		$this->form_fields[ $enabled_field->get_raw_name() ] = $enabled_field;
 
 		$this->form_fields();
-
 	}
 
 	/**

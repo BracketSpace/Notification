@@ -91,11 +91,17 @@ abstract class MergeTag implements Interfaces\Taggable {
 	public function __construct( $params = [] ) {
 
 		if ( ! isset( $params['slug'], $params['name'], $params['resolver'] ) ) {
-			trigger_error( 'Merge tag requires slug, name and resolver', E_USER_ERROR );
+			trigger_error( 'Merge tag requires resolver', E_USER_ERROR );
 		}
 
-		$this->slug  = $params['slug'];
-		$this->name  = $params['name'];
+		if ( ! empty( $params['slug'] ) ) {
+			$this->set_slug( $params['slug'] );
+		}
+
+		if ( ! empty( $params['name'] ) ) {
+			$this->set_name( $params['name'] );
+		}
+
 		$this->group = ( isset( $params['group'] ) ) ? $params['group'] : '';
 
 		// Change resolver context to static.
