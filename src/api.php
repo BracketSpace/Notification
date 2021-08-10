@@ -651,19 +651,17 @@ function notification_get_trigger( $trigger_slug ) {
  */
 function notification_get_triggers_grouped() {
 
-	$return = array();
+	$groups = [];
 
 	foreach ( notification_get_triggers() as $trigger ) {
-
-		if ( ! isset( $return[ $trigger->get_group() ] ) ) {
-			$return[ $trigger->get_group() ] = array();
+		if ( ! isset( $groups[ $trigger->get_group() ] ) ) {
+			$groups[ $trigger->get_group() ] = array();
 		}
 
-		$return[ $trigger->get_group() ][ $trigger->get_slug() ] = $trigger;
-
+		$groups[ $trigger->get_group() ][ $trigger->get_slug() ] = $trigger;
 	}
 
-	return $return;
+	return $groups;
 
 }
 
