@@ -226,25 +226,6 @@ function notification_get_template( $template_name, $vars = [] ) {
 }
 
 /**
- * Gets cached value or cache object
- *
- * @since  7.0.0
- * @param  string|null $cache_key Cache key or null to get Cache engine.
- * @return mixed                  Cache engine object or cached value.
- */
-function notification_cache( $cache_key = null ) {
-
-	$cache = \Notification::component( 'core_cache' );
-
-	if ( null !== $cache_key ) {
-		return $cache->get( $cache_key );
-	}
-
-	return $cache;
-
-}
-
-/**
  * Enables the notification syncing
  * By default path used is current theme's `notifiations` dir.
  *

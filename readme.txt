@@ -300,6 +300,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 4. Trigger is now only a description object, all the processing is handled by the Runner class.
 5. `notification/carrier/sent` action doesn't have the Notification context anymore, so there's no 3rd parameter.
 6. Store classes now live under `BracketSpace\Notification\Store` namespace rather than `BracketSpace\Notification\Defaults\Store`.
+7. Plugin doesn't cache anything anymore, the loading process is more streamlined and things like Post Types are lazy loaded when needed
 
 Removed deprecated hooks:
 - `notification/notification/pre-send`, use `notification/carrier/pre-send`
@@ -315,7 +316,9 @@ Removed deprecated hooks:
 * [Changed] Code Editor Field sanitizer to allow for multiple HTML tags.
 * [Changed] Always return the single root filesystem in Runtime.
 * [Changed] Stores with plugin objects, now they are much simpler and don't use WP filters.
+* [Changed] Plugin loading stack, [see docs](https://docs.bracketspace.com/notification/developer/general/plugin-loading-chain) for more details.
 * [Removed] `Common` Abstract that has been replaced by HasName and HasSlug Traits.
+* [Removed] Cache class and all caching mechanism for post types, taxonomies and comment types.
 * [Added] Runner class that processes the Triggers.
 * [Added] ErrorHandler class that helps handle errors. It can throw an exception when NOTIFICATION_DEBUG is enabled or save a warning to error_log when it's disabled.
 

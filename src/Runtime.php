@@ -217,7 +217,6 @@ class Runtime {
 	 */
 	public function singletons() {
 
-		$this->add_component( 'core_cache', new Core\Cache() );
 		$this->add_component( 'core_cron', new Core\Cron() );
 		$this->add_component( 'core_whitelabel', new Core\Whitelabel() );
 		$this->add_component( 'core_debugging', new Core\Debugging() );
