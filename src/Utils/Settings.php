@@ -10,7 +10,7 @@ namespace BracketSpace\Notification\Utils;
 use BracketSpace\Notification\Utils\Settings\Section;
 
 /**
- * Settings class``
+ * Settings class
  */
 class Settings {
 
