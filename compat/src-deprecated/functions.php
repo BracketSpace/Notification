@@ -169,12 +169,24 @@ function notification_dochooks_enabled() {
 /**
  * Creates new View object.
  *
- * @since  6.0.0
+ * @since      6.0.0
  * @deprecated 7.0.0 Use `notification_template` or `notification_get_template` functions.
  *                    Or use Template object from micropackage.
- * @return bool
+ * @return     bool
  */
 function notification_create_view() {
 	_deprecated_function( 'notification_create_view', '7.0.0' );
 	return false;
+}
+
+/**
+ * Gets cached value or cache object
+ *
+ * @since      7.0.0
+ * @deprecated [Next]
+ * @return     null
+ */
+function notification_cache() {
+	_deprecated_function( 'notification_cache', '[Next]' );
+	return null;
 }
