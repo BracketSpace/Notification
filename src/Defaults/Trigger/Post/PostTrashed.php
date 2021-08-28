@@ -28,19 +28,36 @@ class PostTrashed extends PostTrigger {
 	 * @param string $post_type optional, default: post.
 	 */
 	public function __construct( $post_type = 'post' ) {
-
 		parent::__construct( [
 			'post_type' => $post_type,
 			'slug'      => 'post/' . $post_type . '/trashed',
-			// translators: singular post name.
-			'name'      => sprintf( __( '%s trashed', 'notification' ), WpObjectHelper::get_post_type_name( $post_type ) ),
 		] );
 
 		$this->add_action( 'trash_' . $post_type, 10, 2 );
+	}
 
-		// translators: 1. singular post name, 2. post type slug.
-		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is moved to trash', 'notification' ), WpObjectHelper::get_post_type_name( $post_type ), $post_type ) );
+	/**
+	 * Lazy loads the name
+	 *
+	 * @return string name
+	 */
+	public function get_name() : string {
+		// translators: singular post name.
+		return sprintf( __( '%s trashed', 'notification' ), WpObjectHelper::get_post_type_name( $this->post_type ) );
+	}
 
+	/**
+	 * Lazy loads the description
+	 *
+	 * @return string description
+	 */
+	public function get_description() : string {
+		return sprintf(
+			// translators: 1. singular post name, 2. post type slug.
+			__( 'Fires when %1$s (%2$s) is moved to trash', 'notification' ),
+			WpObjectHelper::get_post_type_name( $this->post_type ),
+			$this->post_type
+		);
 	}
 
 	/**

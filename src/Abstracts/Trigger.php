@@ -16,15 +16,7 @@ use BracketSpace\Notification\Traits;
  */
 abstract class Trigger implements Triggerable {
 
-	use Traits\HasGroup, Traits\HasName, Traits\HasSlug;
-
-	/**
-	 * Short description of the Trigger
-	 * No html tags allowed. Keep it tweet-short.
-	 *
-	 * @var string
-	 */
-	protected $description = '';
+	use Traits\HasDescription, Traits\HasGroup, Traits\HasName, Traits\HasSlug;
 
 	/**
 	 * Flag indicating that trigger
@@ -164,26 +156,6 @@ abstract class Trigger implements Triggerable {
 	 */
 	public function get_actions() : array {
 		return $this->actions;
-	}
-
-	/**
-	 * Gets description
-	 *
-	 * @return string description
-	 */
-	public function get_description() {
-		return $this->description;
-	}
-
-	/**
-	 * Sets description
-	 *
-	 * @param string $description description.
-	 * @return $this
-	 */
-	public function set_description( $description ) {
-		$this->description = sanitize_text_field( $description );
-		return $this;
 	}
 
 	/**

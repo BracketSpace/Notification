@@ -28,22 +28,38 @@ class TermUpdated extends TermTrigger {
 	 * @param string $taxonomy optional, default: category.
 	 */
 	public function __construct( $taxonomy = 'category' ) {
-
 		$this->taxonomy = $taxonomy;
-		$taxonomy_name  = WpObjectHelper::get_taxonomy_name( $taxonomy );
 
 		parent::__construct( [
 			'taxonomy' => $taxonomy,
 			'slug'     => 'taxonomy/' . $taxonomy . '/updated',
-			// Translators: taxonomy name.
-			'name'     => sprintf( __( '%s term updated', 'notification' ), $taxonomy_name ),
 		] );
 
 		$this->add_action( 'edited_term', 100, 2 );
+	}
 
-		// translators: 1. taxonomy name, 2. taxonomy slug.
-		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is updated', 'notification' ), $taxonomy_name, $taxonomy ) );
+	/**
+	 * Lazy loads the name
+	 *
+	 * @return string name
+	 */
+	public function get_name() : string {
+		// Translators: taxonomy name.
+		return sprintf( __( '%s term updated', 'notification' ), WpObjectHelper::get_taxonomy_name( $this->taxonomy ) );
+	}
 
+	/**
+	 * Lazy loads the description
+	 *
+	 * @return string description
+	 */
+	public function get_description() : string {
+		return sprintf(
+			// Translators: 1. taxonomy name, 2. taxonomy slug.
+			__( 'Fires when %1$s (%2$s) is updated', 'notification' ),
+			WpObjectHelper::get_taxonomy_name( $this->taxonomy ),
+			$this->taxonomy
+		);
 	}
 
 	/**

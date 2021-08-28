@@ -43,17 +43,22 @@ abstract class PostTrigger extends Abstracts\Trigger {
 	 * @param array $params trigger configuration params.
 	 */
 	public function __construct( $params = [] ) {
-
-		if ( ! isset( $params['post_type'], $params['slug'], $params['name'] ) ) {
-			trigger_error( 'PostTrigger requires post_type, slug and name params.', E_USER_ERROR );
+		if ( ! isset( $params['post_type'], $params['slug'] ) ) {
+			trigger_error( 'PostTrigger requires post_type and slug params.', E_USER_ERROR );
 		}
 
 		$this->post_type = $params['post_type'];
 
-		parent::__construct( $params['slug'], $params['name'] );
+		parent::__construct( $params['slug'] );
+	}
 
-		$this->set_group( (string) WpObjectHelper::get_post_type_name( $this->post_type ) );
-
+	/**
+	 * Lazy loads group name
+	 *
+	 * @return string|null Group name
+	 */
+	public function get_group() : ?string {
+		return WpObjectHelper::get_post_type_name( $this->post_type );
 	}
 
 	/**
