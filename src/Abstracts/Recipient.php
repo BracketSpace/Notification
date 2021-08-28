@@ -15,7 +15,7 @@ use BracketSpace\Notification\Traits;
  */
 abstract class Recipient implements Interfaces\Receivable {
 
-	use Traits\HasName, Traits\HasSlug;
+	use Traits\ClassUtils, Traits\HasName, Traits\HasSlug;
 
 	/**
 	 * Recipient input default value
