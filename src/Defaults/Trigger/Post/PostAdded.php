@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Defaults\Trigger\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Post added trigger class
@@ -32,13 +33,13 @@ class PostAdded extends PostTrigger {
 			'post_type' => $post_type,
 			'slug'      => 'post/' . $post_type . '/added',
 			// translators: singular post name.
-			'name'      => sprintf( __( '%s added', 'notification' ), parent::get_post_type_name( $post_type ) ),
+			'name'      => sprintf( __( '%s added', 'notification' ), WpObjectHelper::get_post_type_name( $post_type ) ),
 		] );
 
 		$this->add_action( 'wp_insert_post', 10, 3 );
 
 		// translators: 1. singular post name, 2. post type slug.
-		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is added to database. Useful when adding posts programatically or for 3rd party integration', 'notification' ), parent::get_post_type_name( $post_type ), $post_type ) );
+		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is added to database. Useful when adding posts programatically or for 3rd party integration', 'notification' ), WpObjectHelper::get_post_type_name( $post_type ), $post_type ) );
 
 	}
 

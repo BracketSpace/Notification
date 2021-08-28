@@ -796,16 +796,6 @@ parameters:
 			path: src/Admin/Settings.php
 
 		-
-			message: "#^Cannot access property \\$labels on string\\|WP_Post_Type\\.$#"
-			count: 1
-			path: src/Admin/Settings.php
-
-		-
-			message: "#^Cannot access property \\$name on string\\|WP_Post_Type\\.$#"
-			count: 1
-			path: src/Admin/Settings.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\Settings\\:\\:filter_post_types\\(\\) has parameter \\$post_types with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Admin/Settings.php
@@ -991,46 +981,6 @@ parameters:
 			path: src/Core/Binder.php
 
 		-
-			message: "#^Cannot access property \\$labels on string\\|WP_Post_Type\\.$#"
-			count: 1
-			path: src/Core/Cache.php
-
-		-
-			message: "#^Cannot access property \\$name on string\\|WP_Post_Type\\.$#"
-			count: 1
-			path: src/Core/Cache.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Cache\\:\\:get_comment_types\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Core/Cache.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Cache\\:\\:get_post_types\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Core/Cache.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Cache\\:\\:get_settings_config\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Core/Cache.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Cache\\:\\:get_taxonomies\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Core/Cache.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func expects callable\\(\\)\\: mixed, array\\(\\$this\\(BracketSpace\\\\Notification\\\\Core\\\\Cache\\), string\\) given\\.$#"
-			count: 1
-			path: src/Core/Cache.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Core\\\\Cache\\:\\:\\$caches type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Core/Cache.php
-
-		-
 			message: "#^Binary operation \"\\+\" between int\\|string and 86400 results in an error\\.$#"
 			count: 1
 			path: src/Core/Cron.php
@@ -1169,11 +1119,6 @@ parameters:
 			message: "#^Parameter \\#3 \\$subject of function preg_replace_callback expects array\\|string, string\\|null given\\.$#"
 			count: 1
 			path: src/Core/Resolver.php
-
-		-
-			message: "#^Parameter \\#2 \\$function_to_add of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'cache_objects'\\) given\\.$#"
-			count: 1
-			path: src/Core/Settings.php
 
 		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\:\\:\\$page_hook \\(string\\) does not accept string\\|false\\.$#"
@@ -1538,11 +1483,6 @@ parameters:
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$name\\.$#"
 			count: 2
-			path: src/Defaults/MergeTag/Post/PostTerms.php
-
-		-
-			message: "#^Argument of an invalid type array\\<WP_Term\\>\\|WP_Error supplied for foreach, only iterables are supported\\.$#"
-			count: 1
 			path: src/Defaults/MergeTag/Post/PostTerms.php
 
 		-

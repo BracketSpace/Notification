@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Defaults\Trigger\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Post sent for review trigger class
@@ -25,13 +26,13 @@ class PostPending extends PostTrigger {
 			'post_type' => $post_type,
 			'slug'      => 'post/' . $post_type . '/pending',
 			// translators: singular post name.
-			'name'      => sprintf( __( '%s sent for review', 'notification' ), parent::get_post_type_name( $post_type ) ),
+			'name'      => sprintf( __( '%s sent for review', 'notification' ), WpObjectHelper::get_post_type_name( $post_type ) ),
 		] );
 
 		$this->add_action( 'transition_post_status', 10, 3 );
 
 		// translators: 1. singular post name, 2. post type slug.
-		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is sent for review', 'notification' ), parent::get_post_type_name( $post_type ), $post_type ) );
+		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is sent for review', 'notification' ), WpObjectHelper::get_post_type_name( $post_type ), $post_type ) );
 
 	}
 

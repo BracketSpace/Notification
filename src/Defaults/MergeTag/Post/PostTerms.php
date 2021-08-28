@@ -63,7 +63,7 @@ class PostTerms extends StringTag {
 				'group'       => $post_type_name,
 				'resolver'    => function( $trigger ) {
 					$post_terms = get_the_terms( $trigger->{ $this->post_type }, $this->taxonomy->name );
-					if ( empty( $post_terms ) ) {
+					if ( empty( $post_terms ) || is_wp_error( $post_terms ) ) {
 						return '';
 					}
 

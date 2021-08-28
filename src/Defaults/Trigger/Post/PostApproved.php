@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Defaults\Trigger\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Post approved trigger class. Approved means published after review.
@@ -32,13 +33,13 @@ class PostApproved extends PostTrigger {
 			'post_type' => $post_type,
 			'slug'      => 'post/' . $post_type . '/approved',
 			// translators: singular post name.
-			'name'      => sprintf( __( '%s approved', 'notification' ), parent::get_post_type_name( $post_type ) ),
+			'name'      => sprintf( __( '%s approved', 'notification' ), WpObjectHelper::get_post_type_name( $post_type ) ),
 		] );
 
 		$this->add_action( 'pending_to_publish', 10 );
 
 		// translators: 1. singular post name, 2. post type slug.
-		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is approved', 'notification' ), parent::get_post_type_name( $post_type ), $post_type ) );
+		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is approved', 'notification' ), WpObjectHelper::get_post_type_name( $post_type ), $post_type ) );
 
 	}
 
@@ -73,87 +74,87 @@ class PostApproved extends PostTrigger {
 	 */
 	public function merge_tags() {
 
-		$post_name = parent::get_post_type_name( $this->post_type );
+		$post_type_name = WpObjectHelper::get_post_type_name( $this->post_type );
 
 		parent::merge_tags();
 
 		// Approving user.
 		$this->add_merge_tag( new MergeTag\User\UserID( [
-			'slug'          => $this->post_type . '_approving_user_ID',
+			'slug'          => sprintf( '%s_approving_user_ID', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s approving user ID', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s approving user ID', 'notification' ), $post_type_name ),
 			'property_name' => 'approving_user',
 			'group'         => __( 'Approving user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserLogin( [
-			'slug'          => $this->post_type . '_approving_user_login',
+			'slug'          => sprintf( '%s_approving_user_login', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s approving user login', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s approving user login', 'notification' ), $post_type_name ),
 			'property_name' => 'approving_user',
 			'group'         => __( 'Approving user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserEmail( [
-			'slug'          => $this->post_type . '_approving_user_email',
+			'slug'          => sprintf( '%s_approving_user_email', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s approving user email', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s approving user email', 'notification' ), $post_type_name ),
 			'property_name' => 'approving_user',
 			'group'         => __( 'Approving user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserNicename( [
-			'slug'          => $this->post_type . '_approving_user_nicename',
+			'slug'          => sprintf( '%s_approving_user_nicename', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s approving user nicename', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s approving user nicename', 'notification' ), $post_type_name ),
 			'property_name' => 'approving_user',
 			'group'         => __( 'Approving user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserDisplayName( [
-			'slug'          => $this->post_type . '_approving_user_display_name',
+			'slug'          => sprintf( '%s_approving_user_display_name', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s approving user display name', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s approving user display name', 'notification' ), $post_type_name ),
 			'property_name' => 'approving_user',
 			'group'         => __( 'Approving user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserFirstName( [
-			'slug'          => $this->post_type . '_approving_user_firstname',
+			'slug'          => sprintf( '%s_approving_user_firstname', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s approving user first name', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s approving user first name', 'notification' ), $post_type_name ),
 			'property_name' => 'approving_user',
 			'group'         => __( 'Approving user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserLastName( [
-			'slug'          => $this->post_type . '_approving_user_lastname',
+			'slug'          => sprintf( '%s_approving_user_lastname', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s approving user last name', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s approving user last name', 'notification' ), $post_type_name ),
 			'property_name' => 'approving_user',
 			'group'         => __( 'Approving user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\Avatar( [
-			'slug'          => $this->post_type . '_approving_user_avatar',
+			'slug'          => sprintf( '%s_approving_user_avatar', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s approving user avatar', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s approving user avatar', 'notification' ), $post_type_name ),
 			'property_name' => 'approving_user',
 			'group'         => __( 'Approving user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserRole( [
-			'slug'          => $this->post_type . '_approving_user_role',
+			'slug'          => sprintf( '%s_approving_user_role', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s approving user role', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s approving user role', 'notification' ), $post_type_name ),
 			'property_name' => 'approving_user',
 			'group'         => __( 'Approving user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
-			'slug' => $this->post_type . '_approving_datetime',
+			'slug' => sprintf( '%s_approving_datetime', $this->post_type ),
 			// translators: singular post name.
-			'name' => sprintf( __( '%s approving date and time', 'notification' ), $post_name ),
+			'name' => sprintf( __( '%s approving date and time', 'notification' ), $post_type_name ),
 		] ) );
 
 	}

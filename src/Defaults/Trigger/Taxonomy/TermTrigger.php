@@ -9,14 +9,12 @@ namespace BracketSpace\Notification\Defaults\Trigger\Taxonomy;
 
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\MergeTag;
-use BracketSpace\Notification\Traits;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Taxonomy trigger class
  */
 abstract class TermTrigger extends Abstracts\Trigger {
-
-	use Traits\TaxonomyUtils;
 
 	/**
 	 * Taxonomy slug
@@ -54,7 +52,7 @@ abstract class TermTrigger extends Abstracts\Trigger {
 
 		parent::__construct( $params['slug'], $params['name'] );
 
-		$this->set_group( $this->get_current_taxonomy_name() );
+		$this->set_group( (string) WpObjectHelper::get_taxonomy_name( $this->taxonomy ) );
 
 	}
 
