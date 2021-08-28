@@ -62,6 +62,15 @@ abstract class PostTrigger extends Abstracts\Trigger {
 	}
 
 	/**
+	 * Gets Post Type slug
+	 *
+	 * @return string Post Type slug
+	 */
+	public function get_post_type() : string {
+		return $this->post_type;
+	}
+
+	/**
 	 * Registers attached merge tags
 	 *
 	 * @return void
