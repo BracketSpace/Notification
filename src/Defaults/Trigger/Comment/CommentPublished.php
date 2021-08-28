@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Defaults\Trigger\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Comment published trigger class
@@ -24,14 +25,14 @@ class CommentPublished extends CommentTrigger {
 		parent::__construct( [
 			'slug'         => 'comment/' . $comment_type . '/published',
 			// Translators: %s comment type.
-			'name'         => sprintf( __( '%s published', 'notification' ), parent::get_comment_type_name( $comment_type ) ),
+			'name'         => sprintf( __( '%s published', 'notification' ), WpObjectHelper::get_comment_type_name( $comment_type ) ),
 			'comment_type' => $comment_type,
 		] );
 
 		$this->add_action( 'notification_comment_published_proxy', 10, 1 );
 
 		// Translators: comment type.
-		$this->set_description( sprintf( __( 'Fires when new %s is published on the website. Includes comment replies.', 'notification' ), parent::get_comment_type_name( $comment_type ) ) );
+		$this->set_description( sprintf( __( 'Fires when new %s is published on the website. Includes comment replies.', 'notification' ), WpObjectHelper::get_comment_type_name( $comment_type ) ) );
 
 	}
 

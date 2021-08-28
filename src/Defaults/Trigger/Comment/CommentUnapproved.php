@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Defaults\Trigger\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Comment unapproved trigger class
@@ -24,14 +25,14 @@ class CommentUnapproved extends CommentTrigger {
 		parent::__construct( [
 			'slug'         => 'comment/' . $comment_type . '/unapproved',
 			// Translators: %s comment type.
-			'name'         => sprintf( __( '%s unapproved', 'notification' ), parent::get_comment_type_name( $comment_type ) ),
+			'name'         => sprintf( __( '%s unapproved', 'notification' ), WpObjectHelper::get_comment_type_name( $comment_type ) ),
 			'comment_type' => $comment_type,
 		] );
 
 		$this->add_action( 'transition_comment_status', 10, 3 );
 
 		// translators: comment type.
-		$this->set_description( sprintf( __( 'Fires when %s is marked as unapproved', 'notification' ), parent::get_comment_type_name( $comment_type ), 'notification' ) );
+		$this->set_description( sprintf( __( 'Fires when %s is marked as unapproved', 'notification' ), WpObjectHelper::get_comment_type_name( $comment_type ), 'notification' ) );
 
 	}
 

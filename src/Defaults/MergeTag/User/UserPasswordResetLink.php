@@ -54,11 +54,16 @@ class UserPasswordResetLink extends StringTag {
 				'name'        => __( 'Password reset link', 'notification' ),
 				'description' => __( 'http://example.com/wp-login.php?action=rp&key=mm2sAR8jmIyjSiMsCJRm&login=admin', 'notification' ),
 				'example'     => true,
-				'resolver'    => function( $trigger ) {
-					$login = $trigger->{ $this->user_property_name }->data->user_login;
-					return network_site_url( 'wp-login.php?action=rp&key=' . $trigger->{ $this->key_property_name } . '&login=' . $login );
-				},
 				'group'       => __( 'User action', 'notification' ),
+				'resolver'    => function( $trigger ) {
+					return network_site_url(
+						sprintf(
+							'wp-login.php?action=rp&key=%s&login=%s',
+							$trigger->{ $this->key_property_name },
+							$trigger->{ $this->user_property_name }->data->user_login
+						)
+					);
+				},
 			]
 		);
 

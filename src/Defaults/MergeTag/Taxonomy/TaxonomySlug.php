@@ -41,14 +41,14 @@ class TaxonomySlug extends StringTag {
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => $this->taxonomy . '_slug',
+				'slug'        => sprintf( '%s_slug', $this->taxonomy ),
 				'name'        => __( 'Taxonomy slug', 'notification' ),
 				'description' => __( 'hello-world', 'notification' ),
 				'example'     => true,
+				'group'       => __( 'Taxonomy', 'notification' ),
 				'resolver'    => function( $trigger ) {
 					return $trigger->taxonomy;
 				},
-				'group'       => __( 'Taxonomy', 'notification' ),
 			]
 		);
 

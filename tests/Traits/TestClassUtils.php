@@ -5,7 +5,7 @@
  * @package notification
  */
 
-namespace BracketSpace\Notification\Tests\Core;
+namespace BracketSpace\Notification\Tests\Traits;
 
 use BracketSpace\Notification\Tests\Helpers\Objects\DummyClassName;
 

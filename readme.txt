@@ -317,10 +317,12 @@ Removed deprecated hooks:
 * [Changed] Always return the single root filesystem in Runtime.
 * [Changed] Stores with plugin objects, now they are much simpler and don't use WP filters.
 * [Changed] Plugin loading stack, [see docs](https://docs.bracketspace.com/notification/developer/general/plugin-loading-chain) for more details.
+* [Changed] Plugin settings now are initialized on `notification/init 5` action.
 * [Removed] `Common` Abstract that has been replaced by HasName and HasSlug Traits.
 * [Removed] Cache class and all caching mechanism for post types, taxonomies and comment types.
 * [Added] Runner class that processes the Triggers.
 * [Added] ErrorHandler class that helps handle errors. It can throw an exception when NOTIFICATION_DEBUG is enabled or save a warning to error_log when it's disabled.
+* [Added] Plugin settings value lazy loading.
 
 == Upgrade Notice ==
 

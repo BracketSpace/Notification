@@ -11,14 +11,12 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
-use BracketSpace\Notification\Traits;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Post excerpt merge tag class
  */
 class PostExcerpt extends StringTag {
-
-	use Traits\PostTypeUtils;
 
 	/**
 	 * Post Type slug
@@ -41,18 +39,20 @@ class PostExcerpt extends StringTag {
 			$this->post_type = 'post';
 		}
 
+		$post_type_name = WpObjectHelper::get_post_type_name( $this->post_type );
+
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => $this->post_type . '_excerpt',
+				'slug'        => sprintf( '%s_excerpt', $this->post_type ),
 				// translators: singular post name.
-				'name'        => sprintf( __( '%s excerpt', 'notification' ), $this->get_current_post_type_name() ),
+				'name'        => sprintf( __( '%s excerpt', 'notification' ), $post_type_name ),
 				'description' => __( 'Welcome to WordPress...', 'notification' ),
 				'example'     => true,
+				'group'       => $post_type_name,
 				'resolver'    => function( $trigger ) {
 					return get_the_excerpt( $trigger->{ $this->post_type } );
 				},
-				'group'       => $this->get_current_post_type_name(),
 			]
 		);
 

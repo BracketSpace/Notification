@@ -57,15 +57,12 @@ class Settings extends SettingsAPI {
 			[ $this, 'settings_page' ]
 		);
 
-		// Refresh caches.
-		add_action( "load-$this->page_hook", [ notification_cache(), 'cache_objects' ] );
-
 	}
 
 	/**
 	 * Registers Settings
 	 *
-	 * @action wp_loaded
+	 * @action notification/init 5
 	 *
 	 * @return void
 	 */

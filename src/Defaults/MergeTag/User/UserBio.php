@@ -44,10 +44,10 @@ class UserBio extends StringTag {
 				'name'        => __( 'User bio', 'notification' ),
 				'description' => __( 'Developer based in Ontario, Canada', 'notification' ),
 				'example'     => true,
+				'group'       => __( 'User', 'notification' ),
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->description;
 				},
-				'group'       => __( 'User', 'notification' ),
 			]
 		);
 

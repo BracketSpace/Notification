@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Utils\Settings\CoreFields;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Settings class
@@ -116,13 +117,6 @@ class Settings {
 	 */
 	public function triggers_settings( $settings ) {
 
-		// Prepare post types for post types option select.
-		$post_types = [];
-		foreach ( get_post_types( [ 'public' => true ], 'objects' ) as $post_type ) {
-			$post_types[ $post_type->name ] = $post_type->labels->singular_name;
-		}
-		$post_types = apply_filters( 'notification/settings/triggers/valid_post_types', $post_types );
-
 		$triggers = $settings->add_section( __( 'Triggers', 'notification' ), 'triggers' );
 
 		$triggers->add_group( __( 'Post', 'notification' ), 'post_types' )
@@ -133,15 +127,14 @@ class Settings {
 				'addons'   => [
 					'multiple' => true,
 					'pretty'   => true,
-					'options'  => $post_types,
+					'options'  => static function () {
+						return apply_filters( 'notification/settings/triggers/valid_post_types', WpObjectHelper::get_post_types( [ 'public' => true ] ) );
+					},
 				],
 				'render'   => [ new CoreFields\Select(), 'input' ],
 				'sanitize' => [ new CoreFields\Select(), 'sanitize' ],
 			] )
 			->description( __( 'For these post types you will be able to define published, updated, pending moderation etc. notifications', 'notification' ) );
-
-		// Prepare taxonomies for taxonomies option select.
-		$taxonomies = apply_filters( 'notification/settings/triggers/valid_taxonomies', notification_cache( 'taxonomies' ) );
 
 		$triggers->add_group( __( 'Taxonomy', 'notification' ), 'taxonomies' )
 			->add_field( [
@@ -151,7 +144,9 @@ class Settings {
 				'addons'   => [
 					'multiple' => true,
 					'pretty'   => true,
-					'options'  => $taxonomies,
+					'options'  => static function () {
+						return apply_filters( 'notification/settings/triggers/valid_taxonomies', WpObjectHelper::get_taxonomies( [ 'public' => true ] ) );
+					},
 				],
 				'render'   => [ new CoreFields\Select(), 'input' ],
 				'sanitize' => [ new CoreFields\Select(), 'sanitize' ],
@@ -166,7 +161,9 @@ class Settings {
 				'addons'   => [
 					'multiple' => true,
 					'pretty'   => true,
-					'options'  => notification_cache( 'comment_types' ),
+					'options'  => static function () {
+						return WpObjectHelper::get_comment_types();
+					},
 				],
 				'render'   => [ new CoreFields\Select(), 'input' ],
 				'sanitize' => [ new CoreFields\Select(), 'sanitize' ],
@@ -230,12 +227,6 @@ class Settings {
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] );
 
-		$updates_cron_options = [];
-
-		foreach ( wp_get_schedules() as $schedule_name => $schedule ) {
-			$updates_cron_options[ $schedule_name ] = $schedule['display'];
-		}
-
 		$triggers->add_group( __( 'WordPress', 'notification' ), 'wordpress' ) // phpcs:ignore
 			->add_field( [
 				'name'     => __( 'Updates', 'notification' ),
@@ -262,7 +253,13 @@ class Settings {
 				'slug'     => 'updates_cron_period',
 				'default'  => 'ntfn_week',
 				'addons'   => [
-					'options' => $updates_cron_options,
+					'options' => static function () {
+						$options = [];
+						foreach ( wp_get_schedules() as $schedule_name => $schedule ) {
+							$options[ $schedule_name ] = $schedule['display'];
+						}
+						return $options;
+					},
 				],
 				'render'   => [ new CoreFields\Select(), 'input' ],
 				'sanitize' => [ new CoreFields\Select(), 'sanitize' ],

@@ -9,6 +9,7 @@ namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Admin\PostType;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Upgrade class
@@ -182,7 +183,7 @@ class Upgrade {
 	 */
 	public function trigger_slug_replacements() {
 
-		$taxonomies = '(' . implode( '|', array_keys( notification_cache( 'taxonomies' ) ) ) . ')';
+		$taxonomies = '(' . implode( '|', array_keys( WpObjectHelper::get_taxonomies() ) ) . ')';
 
 		// phpcs:disable
 		return [

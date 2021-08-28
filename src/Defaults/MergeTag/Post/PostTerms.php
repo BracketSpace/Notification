@@ -11,14 +11,12 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
-use BracketSpace\Notification\Traits;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Post terms merge tag class
  */
 class PostTerms extends StringTag {
-
-	use Traits\PostTypeUtils;
 
 	/**
 	 * Post Type slug
@@ -52,27 +50,25 @@ class PostTerms extends StringTag {
 			$this->taxonomy = is_string( $params['taxonomy'] ) ? get_taxonomy( $params['taxonomy'] ) : $params['taxonomy'];
 		}
 
+		$post_type_name = WpObjectHelper::get_post_type_name( $this->post_type );
+
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => $this->post_type . '_' . $this->taxonomy->name,
+				'slug'        => sprintf( '%s_%s', $this->post_type, $this->taxonomy->name ),
 				// translators: 1. Post Type 2. Taxonomy name.
-				'name'        => sprintf( __( '%1$s %2$s', 'notification' ), $this->get_current_post_type_name(), $this->taxonomy->label ),
+				'name'        => sprintf( __( '%1$s %2$s', 'notification' ), $post_type_name, $this->taxonomy->label ),
 				'description' => __( 'General, Tech, Lifestyle', 'notification' ),
 				'example'     => true,
+				'group'       => $post_type_name,
 				'resolver'    => function( $trigger ) {
 					$post_terms = get_the_terms( $trigger->{ $this->post_type }, $this->taxonomy->name );
 					if ( empty( $post_terms ) ) {
 						return '';
 					}
 
-					$terms = [];
-					foreach ( $post_terms as $term ) {
-						$terms[] = $term->name;
-					}
-					return implode( ', ', $terms );
+					return implode( ', ', wp_list_pluck( $post_terms, 'name' ) );
 				},
-				'group'       => $this->get_current_post_type_name(),
 			]
 		);
 

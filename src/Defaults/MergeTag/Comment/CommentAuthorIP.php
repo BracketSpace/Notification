@@ -8,14 +8,12 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag\IPTag;
-use BracketSpace\Notification\Traits;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Comment author IP merge tag class
  */
 class CommentAuthorIP extends IPTag {
-
-	use Traits\CommentTypeUtils;
 
 	/**
 	 * Trigger property to get the comment data from
@@ -49,19 +47,21 @@ class CommentAuthorIP extends IPTag {
 			$this->property_name = $this->comment_type;
 		}
 
+		$comment_type_name = WpObjectHelper::get_comment_type_name( $this->comment_type );
+
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug'        => 'comment_author_IP',
 				// Translators: Comment type name.
-				'name'        => sprintf( __( '%s author IP', 'notification' ), self::get_current_comment_type_name() ),
+				'name'        => sprintf( __( '%s author IP', 'notification' ), $comment_type_name ),
 				'description' => '127.0.0.1',
 				'example'     => true,
+				// Translators: comment type author.
+				'group'       => sprintf( __( '%s author', 'notification' ), $comment_type_name ),
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->comment_author_IP;
 				},
-				// translators: comment type author.
-				'group'       => sprintf( __( '%s author', 'notification' ), self::get_current_comment_type_name() ),
 			]
 		);
 

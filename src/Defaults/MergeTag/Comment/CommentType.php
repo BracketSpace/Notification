@@ -8,14 +8,12 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
-use BracketSpace\Notification\Traits;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Comment type merge tag class
  */
 class CommentType extends StringTag {
-
-	use Traits\CommentTypeUtils;
 
 	/**
 	 * Trigger property to get the comment data from
@@ -55,10 +53,10 @@ class CommentType extends StringTag {
 				'slug'        => 'comment_type',
 				'name'        => __( 'Comment type', 'notification' ),
 				'description' => __( 'Comment or Pingback or Trackback or Custom', 'notification' ),
+				'group'       => WpObjectHelper::get_comment_type_name( $this->comment_type ),
 				'resolver'    => function( $trigger ) {
 					return get_comment_type( $trigger->{ $this->property_name } );
 				},
-				'group'       => __( self::get_current_comment_type_name(), 'notification' ),
 			]
 		);
 

@@ -11,14 +11,12 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
-use BracketSpace\Notification\Traits;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Post permalink merge tag class
  */
 class PostPermalink extends UrlTag {
-
-	use Traits\PostTypeUtils;
 
 	/**
 	 * Post Type slug
@@ -41,18 +39,20 @@ class PostPermalink extends UrlTag {
 			$this->post_type = 'post';
 		}
 
+		$post_type_name = WpObjectHelper::get_post_type_name( $this->post_type );
+
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => $this->post_type . '_permalink',
+				'slug'        => sprintf( '%s_permalink', $this->post_type ),
 				// translators: singular post name.
-				'name'        => sprintf( __( '%s permalink', 'notification' ), $this->get_current_post_type_name() ),
+				'name'        => sprintf( __( '%s permalink', 'notification' ), $post_type_name ),
 				'description' => __( 'https://example.com/hello-world/', 'notification' ),
 				'example'     => true,
+				'group'       => $post_type_name,
 				'resolver'    => function( $trigger ) {
 					return get_permalink( $trigger->{ $this->post_type }->ID );
 				},
-				'group'       => $this->get_current_post_type_name(),
 			]
 		);
 

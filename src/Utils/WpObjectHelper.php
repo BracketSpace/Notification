@@ -26,6 +26,22 @@ class WpObjectHelper {
 	}
 
 	/**
+	 * Gets registered post types in slug => name format
+	 *
+	 * @since  [Next]
+	 * @param  array<mixed> $args Query args.
+	 * @return array<string,string>
+	 */
+	public static function get_post_types( $args = [] ) : array {
+		$post_types = [];
+		foreach ( get_post_types( $args, 'objects' ) as $post_type ) {
+			$post_types[ $post_type->name ] = $post_type->labels->singular_name;
+		}
+
+		return $post_types;
+	}
+
+	/**
 	 * Gets post type object name
 	 *
 	 * @since  [Next]
@@ -50,6 +66,27 @@ class WpObjectHelper {
 	}
 
 	/**
+	 * Gets registered taxonomies in slug => name format
+	 *
+	 * @since  [Next]
+	 * @param  array<mixed> $args Query args.
+	 * @return array<string,\WP_Taxonomy>
+	 */
+	public static function get_taxonomies( $args ) : array {
+		$taxonomies = [];
+
+		foreach ( get_taxonomies( $args, 'objects' ) as $taxonomy ) {
+			if ( 'post_format' === $taxonomy->name ) {
+				continue;
+			}
+
+			$taxonomies[ $taxonomy->name ] = $taxonomy->labels->singular_name;
+		}
+
+		return $taxonomies;
+	}
+
+	/**
 	 * Gets taxonomy object name
 	 *
 	 * @since  [Next]
@@ -66,21 +103,43 @@ class WpObjectHelper {
 	 *
 	 * @since  [Next]
 	 * @param  string $comment_type_slug Comment type slug.
-	 * @return string
+	 * @return string|null
 	 */
-	public static function get_comment_type_name( $comment_type_slug ) : string {
-		$known_comment_types = [
+	public static function get_comment_type_name( $comment_type_slug ) : ?string {
+		$comment_types = self::get_comment_types();
+		return $comment_types[ $comment_type_slug ] ?? null;
+	}
+
+	/**
+	 * Gets comment types from database
+	 *
+	 * @since  [Next]
+	 * @return array<string,string>
+	 */
+	public static function get_comment_types() : array {
+		global $wpdb;
+
+		$comment_types = [
 			'comment'   => __( 'Comment', 'notification' ),
 			'pingback'  => __( 'Pingback', 'notification' ),
 			'trackback' => __( 'Trackback', 'notification' ),
 		];
 
-		if ( isset( $known_comment_types[ $comment_type_slug ] ) ) {
-			return $known_comment_types[ $comment_type_slug ];
+		$db_types = $wpdb->get_col( // phpcs:ignore
+			"SELECT DISTINCT comment_type
+			FROM $wpdb->comments
+			WHERE 1=1"
+		);
+
+		foreach ( $db_types as $type ) {
+			if ( ! isset( $comment_types[ $type ] ) ) {
+				// Dynamically generated and translated name.
+				$name                   = ucfirst( str_replace( [ '_', '-' ], ' ', $type ) );
+				$comment_types[ $type ] = __( $name );
+			}
 		}
 
-		// Dynamically generated and translated name.
-		return __( ucfirst( str_replace( [ '_', '-' ], ' ', $comment_type_slug ) ) );
+		return $comment_types;
 	}
 
 }
