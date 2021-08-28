@@ -323,6 +323,7 @@ Removed deprecated hooks:
 * [Added] Runner class that processes the Triggers.
 * [Added] ErrorHandler class that helps handle errors. It can throw an exception when NOTIFICATION_DEBUG is enabled or save a warning to error_log when it's disabled.
 * [Added] Plugin settings value lazy loading.
+* [Added] Email error catcher.
 
 == Upgrade Notice ==
 

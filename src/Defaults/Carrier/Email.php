@@ -164,9 +164,31 @@ class Email extends Abstracts\Carrier {
 		$attachments = apply_filters_deprecated( 'notification/email/attachments', [ [], $this, $trigger ], '6.0.0', 'notification/carrier/email/attachments' );
 		$attachments = apply_filters( 'notification/carrier/email/attachments', $attachments, $this, $trigger );
 
+		$errors = [];
+
 		// Fire an email one by one.
 		foreach ( $recipients as $to ) {
-			wp_mail( $to, $subject, $message, $headers, $attachments );
+			try {
+				wp_mail( $to, $subject, $message, $headers, $attachments );
+			} catch ( \Exception $e ) {
+				if ( ! isset( $errors[ $e->getMessage() ] ) ) {
+					$errors[ $e->getMessage() ] = [
+						'recipients' => [],
+					];
+				}
+
+				$errors[ $e->getMessage() ]['recipients'][] = $to;
+			}
+		}
+
+		foreach ( $errors as $error => $error_data ) {
+			// phpcs:ignore
+			notification_log( $this->get_name(), 'error', '<pre>' . print_r( [
+				'error'               => $error,
+				'recipients_affected' => $error_data['recipients'],
+				'trigger'             => sprintf( '%s (%s)', $trigger->get_name(), $trigger->get_slug() ),
+				'email_subject'       => $subject,
+			], true ) . '</pre>' );
 		}
 
 		if ( $html_mime ) {
