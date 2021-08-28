@@ -53,17 +53,10 @@ class Triggers {
 	 * @return void
 	 */
 	public static function register_post_triggers() {
-		$post_types        = notification_get_setting( 'triggers/post_types/types' );
-		$cached_post_types = notification_cache( 'post_types' );
+		$post_types = notification_get_setting( 'triggers/post_types/types' );
 
 		if ( $post_types ) {
 			foreach ( $post_types as $post_type ) {
-
-				// Skip if the post type cache wasn't set.
-				if ( ! array_key_exists( $post_type, (array) $cached_post_types ) ) {
-					continue;
-				}
-
 				notification_register_trigger( new Trigger\Post\PostAdded( $post_type ) );
 				notification_register_trigger( new Trigger\Post\PostDrafted( $post_type ) );
 				notification_register_trigger( new Trigger\Post\PostPublished( $post_type ) );
@@ -72,7 +65,6 @@ class Triggers {
 				notification_register_trigger( new Trigger\Post\PostScheduled( $post_type ) );
 				notification_register_trigger( new Trigger\Post\PostTrashed( $post_type ) );
 				notification_register_trigger( new Trigger\Post\PostApproved( $post_type ) );
-
 			}
 		}
 	}
@@ -81,21 +73,13 @@ class Triggers {
 	 * @return void
 	 */
 	public static function register_taxonomy_triggers() {
-		$taxonomies        = notification_get_setting( 'triggers/taxonomies/types' );
-		$cached_taxonomies = notification_cache( 'taxonomies' );
+		$taxonomies = notification_get_setting( 'triggers/taxonomies/types' );
 
 		if ( $taxonomies ) {
 			foreach ( $taxonomies as $taxonomy ) {
-
-				// Skip if the taxonomy cache wasn't set.
-				if ( ! array_key_exists( $taxonomy, (array) $cached_taxonomies ) ) {
-					continue;
-				}
-
 				notification_register_trigger( new Trigger\Taxonomy\TermAdded( $taxonomy ) );
 				notification_register_trigger( new Trigger\Taxonomy\TermUpdated( $taxonomy ) );
 				notification_register_trigger( new Trigger\Taxonomy\TermDeleted( $taxonomy ) );
-
 			}
 		}
 	}

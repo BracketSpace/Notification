@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Defaults\Trigger\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Post published trigger class
@@ -39,13 +40,13 @@ class PostPublished extends PostTrigger {
 			'post_type' => $post_type,
 			'slug'      => 'post/' . $post_type . '/published',
 			// translators: singular post name.
-			'name'      => sprintf( __( '%s published', 'notification' ), parent::get_post_type_name( $post_type ) ),
+			'name'      => sprintf( __( '%s published', 'notification' ), WpObjectHelper::get_post_type_name( $post_type ) ),
 		] );
 
 		$this->add_action( 'transition_post_status', 10, 3 );
 
 		// translators: 1. singular post name, 2. post type slug.
-		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is published', 'notification' ), parent::get_post_type_name( $post_type ), $post_type ) );
+		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is published', 'notification' ), WpObjectHelper::get_post_type_name( $post_type ), $post_type ) );
 
 	}
 
@@ -86,87 +87,87 @@ class PostPublished extends PostTrigger {
 	 */
 	public function merge_tags() {
 
-		$post_name = parent::get_post_type_name( $this->post_type );
+		$post_type_name = WpObjectHelper::get_post_type_name( $this->post_type );
 
 		parent::merge_tags();
 
 		// Publishing user.
 		$this->add_merge_tag( new MergeTag\User\UserID( [
-			'slug'          => $this->post_type . '_publishing_user_ID',
+			'slug'          => sprintf( '%s_publishing_user_ID', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s publishing user ID', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s publishing user ID', 'notification' ), $post_type_name ),
 			'property_name' => 'publishing_user',
 			'group'         => __( 'Publishing user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserLogin( [
-			'slug'          => $this->post_type . '_publishing_user_login',
+			'slug'          => sprintf( '%s_publishing_user_login', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s publishing user login', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s publishing user login', 'notification' ), $post_type_name ),
 			'property_name' => 'publishing_user',
 			'group'         => __( 'Publishing user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserEmail( [
-			'slug'          => $this->post_type . '_publishing_user_email',
+			'slug'          => sprintf( '%s_publishing_user_email', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s publishing user email', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s publishing user email', 'notification' ), $post_type_name ),
 			'property_name' => 'publishing_user',
 			'group'         => __( 'Publishing user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserNicename( [
-			'slug'          => $this->post_type . '_publishing_user_nicename',
+			'slug'          => sprintf( '%s_publishing_user_nicename', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s publishing user nicename', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s publishing user nicename', 'notification' ), $post_type_name ),
 			'property_name' => 'publishing_user',
 			'group'         => __( 'Publishing user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserDisplayName( [
-			'slug'          => $this->post_type . '_publishing_user_display_name',
+			'slug'          => sprintf( '%s_publishing_user_display_name', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s publishing user display name', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s publishing user display name', 'notification' ), $post_type_name ),
 			'property_name' => 'publishing_user',
 			'group'         => __( 'Publishing user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserFirstName( [
-			'slug'          => $this->post_type . '_publishing_user_firstname',
+			'slug'          => sprintf( '%s_publishing_user_firstname', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s publishing user first name', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s publishing user first name', 'notification' ), $post_type_name ),
 			'property_name' => 'publishing_user',
 			'group'         => __( 'Publishing user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserLastName( [
-			'slug'          => $this->post_type . '_publishing_user_lastname',
+			'slug'          => sprintf( '%s_publishing_user_lastname', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s publishing user last name', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s publishing user last name', 'notification' ), $post_type_name ),
 			'property_name' => 'publishing_user',
 			'group'         => __( 'Publishing user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\Avatar( [
-			'slug'          => $this->post_type . '_publishing_user_avatar',
+			'slug'          => sprintf( '%s_publishing_user_avatar', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s publishing user avatar', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s publishing user avatar', 'notification' ), $post_type_name ),
 			'property_name' => 'publishing_user',
 			'group'         => __( 'Publishing user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserRole( [
-			'slug'          => $this->post_type . '_publishing_user_role',
+			'slug'          => sprintf( '%s_publishing_user_role', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s publishing user role', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s publishing user role', 'notification' ), $post_type_name ),
 			'property_name' => 'publishing_user',
 			'group'         => __( 'Publishing user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
-			'slug' => $this->post_type . '_publication_datetime',
+			'slug' => sprintf( '%s_publication_datetime', $this->post_type ),
 			// translators: singular post name.
-			'name' => sprintf( __( '%s publication date and time', 'notification' ), $post_name ),
+			'name' => sprintf( __( '%s publication date and time', 'notification' ), $post_type_name ),
 		] ) );
 
 	}

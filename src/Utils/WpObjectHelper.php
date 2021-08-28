@@ -35,6 +35,10 @@ class WpObjectHelper {
 	public static function get_post_types( $args = [] ) : array {
 		$post_types = [];
 		foreach ( get_post_types( $args, 'objects' ) as $post_type ) {
+			if ( ! $post_type instanceof \WP_Post_Type ) {
+				continue;
+			}
+
 			$post_types[ $post_type->name ] = $post_type->labels->singular_name;
 		}
 
@@ -134,8 +138,9 @@ class WpObjectHelper {
 		foreach ( $db_types as $type ) {
 			if ( ! isset( $comment_types[ $type ] ) ) {
 				// Dynamically generated and translated name.
-				$name                   = ucfirst( str_replace( [ '_', '-' ], ' ', $type ) );
-				$comment_types[ $type ] = __( $name );
+				$name = ucfirst( str_replace( [ '_', '-' ], ' ', $type ) );
+
+				$comment_types[ (string) $type ] = __( $name );
 			}
 		}
 

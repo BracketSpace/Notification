@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Defaults\Trigger\Taxonomy;
 
 use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Taxonomy term deleted trigger class
@@ -29,18 +30,19 @@ class TermDeleted extends TermTrigger {
 	public function __construct( $taxonomy = 'category' ) {
 
 		$this->taxonomy = $taxonomy;
+		$taxonomy_name  = WpObjectHelper::get_taxonomy_name( $taxonomy );
 
 		parent::__construct( [
 			'taxonomy' => $taxonomy,
 			'slug'     => 'taxonomy/' . $taxonomy . '/deleted',
 			// Translators: taxonomy name.
-			'name'     => sprintf( __( '%s term deleted', 'notification' ), $this->get_current_taxonomy_name() ),
+			'name'     => sprintf( __( '%s term deleted', 'notification' ), $taxonomy_name ),
 		] );
 
 		$this->add_action( 'pre_delete_term', 100, 4 );
 
 		// translators: 1. taxonomy name, 2. taxonomy slug.
-		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is deleted', 'notification' ), $this->get_current_taxonomy_name(), $taxonomy ) );
+		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is deleted', 'notification' ), $taxonomy_name, $taxonomy ) );
 
 	}
 

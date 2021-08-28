@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Defaults\Trigger\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Post updated trigger class
@@ -32,13 +33,13 @@ class PostUpdated extends PostTrigger {
 			'post_type' => $post_type,
 			'slug'      => 'post/' . $post_type . '/updated',
 			// translators: singular post name.
-			'name'      => sprintf( __( '%s updated', 'notification' ), parent::get_post_type_name( $post_type ) ),
+			'name'      => sprintf( __( '%s updated', 'notification' ), WpObjectHelper::get_post_type_name( $post_type ) ),
 		] );
 
 		$this->add_action( 'post_updated', 10, 3 );
 
 		// translators: 1. singular post name, 2. post type slug.
-		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is updated', 'notification' ), parent::get_post_type_name( $post_type ), $post_type ) );
+		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is updated', 'notification' ), WpObjectHelper::get_post_type_name( $post_type ), $post_type ) );
 
 	}
 
@@ -83,79 +84,79 @@ class PostUpdated extends PostTrigger {
 	 */
 	public function merge_tags() {
 
-		$post_name = parent::get_post_type_name( $this->post_type );
+		$post_type_name = WpObjectHelper::get_post_type_name( $this->post_type );
 
 		parent::merge_tags();
 
 		// updating user.
 		$this->add_merge_tag( new MergeTag\User\UserID( [
-			'slug'          => $this->post_type . '_updating_user_ID',
+			'slug'          => sprintf( '%s_updating_user_ID', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s updating user ID', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s updating user ID', 'notification' ), $post_type_name ),
 			'property_name' => 'updating_user',
 			'group'         => __( 'Updating user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserLogin( [
-			'slug'          => $this->post_type . '_updating_user_login',
+			'slug'          => sprintf( '%s_updating_user_login', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s updating user login', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s updating user login', 'notification' ), $post_type_name ),
 			'property_name' => 'updating_user',
 			'group'         => __( 'Updating user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserEmail( [
-			'slug'          => $this->post_type . '_updating_user_email',
+			'slug'          => sprintf( '%s_updating_user_email', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s updating user email', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s updating user email', 'notification' ), $post_type_name ),
 			'property_name' => 'updating_user',
 			'group'         => __( 'Updating user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserNicename( [
-			'slug'          => $this->post_type . '_updating_user_nicename',
+			'slug'          => sprintf( '%s_updating_user_nicename', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s updating user nicename', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s updating user nicename', 'notification' ), $post_type_name ),
 			'property_name' => 'updating_user',
 			'group'         => __( 'Updating user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserDisplayName( [
-			'slug'          => $this->post_type . '_updating_user_display_name',
+			'slug'          => sprintf( '%s_updating_user_display_name', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s updating user display name', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s updating user display name', 'notification' ), $post_type_name ),
 			'property_name' => 'updating_user',
 			'group'         => __( 'Updating user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserFirstName( [
-			'slug'          => $this->post_type . '_updating_user_firstname',
+			'slug'          => sprintf( '%s_updating_user_firstname', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s updating user first name', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s updating user first name', 'notification' ), $post_type_name ),
 			'property_name' => 'updating_user',
 			'group'         => __( 'Updating user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserLastName( [
-			'slug'          => $this->post_type . '_updating_user_lastname',
+			'slug'          => sprintf( '%s_updating_user_lastname', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s updating user last name', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s updating user last name', 'notification' ), $post_type_name ),
 			'property_name' => 'updating_user',
 			'group'         => __( 'Updating user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\Avatar( [
-			'slug'          => $this->post_type . '_updating_user_avatar',
+			'slug'          => sprintf( '%s_updating_user_avatar', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s updating user email', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s updating user email', 'notification' ), $post_type_name ),
 			'property_name' => 'updating_user',
 			'group'         => __( 'Updating user', 'notification' ),
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\User\UserRole( [
-			'slug'          => $this->post_type . '_updating_user_role',
+			'slug'          => sprintf( '%s_updating_user_role', $this->post_type ),
 			// translators: singular post name.
-			'name'          => sprintf( __( '%s updating user role', 'notification' ), $post_name ),
+			'name'          => sprintf( __( '%s updating user role', 'notification' ), $post_type_name ),
 			'property_name' => 'updating_user',
 			'group'         => __( 'Updating user', 'notification' ),
 		] ) );

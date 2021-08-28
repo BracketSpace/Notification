@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Defaults\Trigger\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Post drafted trigger class
@@ -32,13 +33,13 @@ class PostDrafted extends PostTrigger {
 			'post_type' => $post_type,
 			'slug'      => 'post/' . $post_type . '/drafted',
 			// translators: singular post name.
-			'name'      => sprintf( __( '%s saved as a draft', 'notification' ), parent::get_post_type_name( $post_type ) ),
+			'name'      => sprintf( __( '%s saved as a draft', 'notification' ), WpObjectHelper::get_post_type_name( $post_type ) ),
 		] );
 
 		$this->add_action( 'transition_post_status', 10, 3 );
 
 		// translators: 1. singular post name, 2. post type slug.
-		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is saved as a draft', 'notification' ), parent::get_post_type_name( $post_type ), $post_type ) );
+		$this->set_description( sprintf( __( 'Fires when %1$s (%2$s) is saved as a draft', 'notification' ), WpObjectHelper::get_post_type_name( $post_type ), $post_type ) );
 
 	}
 

@@ -9,7 +9,6 @@ namespace BracketSpace\Notification\Defaults\Trigger\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag;
 use BracketSpace\Notification\Abstracts;
-use BracketSpace\Notification\Traits;
 use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
@@ -95,7 +94,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 
 		parent::__construct( $params['slug'], $params['name'] );
 
-		$this->set_group( WpObjectHelper::get_comment_type_name( $this->comment_type ) );
+		$this->set_group( (string) WpObjectHelper::get_comment_type_name( $this->comment_type ) );
 
 	}
 
@@ -170,7 +169,7 @@ abstract class CommentTrigger extends Abstracts\Trigger {
 			'slug'  => 'comment_datetime',
 			// Translators: Comment type name.
 			'name'  => sprintf( __( '%s date and time', 'notification' ), $comment_type_name ),
-			'group' => __( $comment_type_name, 'notification' ),
+			'group' => $comment_type_name,
 		] ) );
 
 		// Author.
