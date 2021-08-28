@@ -43,17 +43,22 @@ abstract class TermTrigger extends Abstracts\Trigger {
 	 * @param array $params trigger configuration params.
 	 */
 	public function __construct( $params = [] ) {
-
-		if ( ! isset( $params['taxonomy'], $params['slug'], $params['name'] ) ) {
-			trigger_error( 'TaxonomyTrigger requires taxonomy slug, slug and name.', E_USER_ERROR );
+		if ( ! isset( $params['taxonomy'], $params['slug'] ) ) {
+			trigger_error( 'TaxonomyTrigger requires taxonomy slug and trigger slug.', E_USER_ERROR );
 		}
 
 		$this->taxonomy = $params['taxonomy'];
 
-		parent::__construct( $params['slug'], $params['name'] );
+		parent::__construct( $params['slug'] );
+	}
 
-		$this->set_group( (string) WpObjectHelper::get_taxonomy_name( $this->taxonomy ) );
-
+	/**
+	 * Lazy loads group name
+	 *
+	 * @return string|null Group name
+	 */
+	public function get_group() : ?string {
+		return WpObjectHelper::get_taxonomy_name( $this->taxonomy );
 	}
 
 	/**
