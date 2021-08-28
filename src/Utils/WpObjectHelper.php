@@ -72,7 +72,7 @@ class WpObjectHelper {
 	 * @param  array<mixed> $args Query args.
 	 * @return array<string,\WP_Taxonomy>
 	 */
-	public static function get_taxonomies( $args ) : array {
+	public static function get_taxonomies( $args = [] ) : array {
 		$taxonomies = [];
 
 		foreach ( get_taxonomies( $args, 'objects' ) as $taxonomy ) {
