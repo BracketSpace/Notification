@@ -15,7 +15,7 @@ use BracketSpace\Notification\Traits;
  */
 abstract class MergeTag implements Interfaces\Taggable {
 
-	use Traits\HasName, Traits\HasSlug;
+	use Traits\ClassUtils, Traits\HasName, Traits\HasSlug;
 
 	/**
 	 * MergeTag resolved value

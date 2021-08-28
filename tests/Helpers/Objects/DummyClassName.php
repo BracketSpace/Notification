@@ -14,6 +14,6 @@ use BracketSpace\Notification\Traits;
  */
 class DummyClassName {
 
-	use Traits\HasName, Traits\HasSlug;
+	use Traits\ClassUtils, Traits\HasName, Traits\HasSlug;
 
 }

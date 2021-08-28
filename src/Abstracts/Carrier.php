@@ -18,7 +18,7 @@ use BracketSpace\Notification\Traits;
  */
 abstract class Carrier implements Interfaces\Sendable {
 
-	use Traits\HasName, Traits\HasSlug;
+	use Traits\ClassUtils, Traits\HasName, Traits\HasSlug;
 
 	/**
 	 * Carrier form fields

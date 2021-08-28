@@ -16,7 +16,7 @@ use BracketSpace\Notification\Traits;
  */
 abstract class Trigger implements Triggerable {
 
-	use Traits\HasDescription, Traits\HasGroup, Traits\HasName, Traits\HasSlug;
+	use Traits\ClassUtils, Traits\HasDescription, Traits\HasGroup, Traits\HasName, Traits\HasSlug;
 
 	/**
 	 * Flag indicating that trigger

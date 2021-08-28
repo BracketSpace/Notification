@@ -12,8 +12,6 @@ namespace BracketSpace\Notification\Traits;
  */
 trait HasName {
 
-	use ClassUtils;
-
 	/**
 	 * Human readable, translated name
 	 *
