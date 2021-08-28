@@ -8,14 +8,12 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag\IntegerTag;
-use BracketSpace\Notification\Traits;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Comment ID merge tag class
  */
 class CommentID extends IntegerTag {
-
-	use Traits\CommentTypeUtils;
 
 	/**
 	 * Trigger property to get the comment data from
@@ -49,18 +47,20 @@ class CommentID extends IntegerTag {
 			$this->property_name = $this->comment_type;
 		}
 
+		$comment_type_name = WpObjectHelper::get_comment_type_name( $this->comment_type );
+
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug'        => 'comment_ID',
 				// Translators: Comment type name.
-				'name'        => sprintf( __( '%s ID', 'notification' ), self::get_current_comment_type_name() ),
+				'name'        => sprintf( __( '%s ID', 'notification' ), $comment_type_name ),
 				'description' => '35',
 				'example'     => true,
+				'group'       => $comment_type_name,
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->comment_ID;
 				},
-				'group'       => __( self::get_current_comment_type_name(), 'notification' ),
 			]
 		);
 

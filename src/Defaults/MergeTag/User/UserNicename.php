@@ -44,10 +44,10 @@ class UserNicename extends StringTag {
 				'name'        => __( 'User nicename', 'notification' ),
 				'description' => __( 'Johhnie', 'notification' ),
 				'example'     => true,
+				'group'       => __( 'User', 'notification' ),
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->user_nicename;
 				},
-				'group'       => __( 'User', 'notification' ),
 			]
 		);
 

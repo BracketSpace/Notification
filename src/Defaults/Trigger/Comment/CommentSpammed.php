@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Defaults\Trigger\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Comment spammed trigger class
@@ -24,14 +25,14 @@ class CommentSpammed extends CommentTrigger {
 		parent::__construct( [
 			'slug'         => 'comment/' . $comment_type . '/spammed',
 			// Translators: %s comment type.
-			'name'         => sprintf( __( '%s spammed', 'notification' ), parent::get_comment_type_name( $comment_type ) ),
+			'name'         => sprintf( __( '%s spammed', 'notification' ), WpObjectHelper::get_comment_type_name( $comment_type ) ),
 			'comment_type' => $comment_type,
 		] );
 
 		$this->add_action( 'spammed_comment', 100, 2 );
 
 		// translators: comment type.
-		$this->set_description( sprintf( __( 'Fires when %s is marked as spam', 'notification' ), parent::get_comment_type_name( $comment_type ) ) );
+		$this->set_description( sprintf( __( 'Fires when %s is marked as spam', 'notification' ), WpObjectHelper::get_comment_type_name( $comment_type ) ) );
 
 	}
 

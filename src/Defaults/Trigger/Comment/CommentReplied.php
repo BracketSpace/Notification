@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Defaults\Trigger\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Comment replied trigger class
@@ -38,7 +39,7 @@ class CommentReplied extends CommentTrigger {
 		parent::__construct( [
 			'slug'         => 'comment/' . $comment_type . '/replied',
 			// Translators: %s comment type.
-			'name'         => sprintf( __( '%s replied', 'notification' ), parent::get_comment_type_name( $comment_type ) ),
+			'name'         => sprintf( __( '%s replied', 'notification' ), WpObjectHelper::get_comment_type_name( $comment_type ) ),
 			'comment_type' => $comment_type,
 		] );
 
@@ -46,7 +47,7 @@ class CommentReplied extends CommentTrigger {
 		$this->add_action( 'notification_insert_comment_proxy', 10, 3 );
 
 		// translators: comment type.
-		$this->set_description( sprintf( __( 'Fires when %s is replied and the reply is approved', 'notification' ), parent::get_comment_type_name( $comment_type ) ) );
+		$this->set_description( sprintf( __( 'Fires when %s is replied and the reply is approved', 'notification' ), WpObjectHelper::get_comment_type_name( $comment_type ) ) );
 
 	}
 
@@ -100,19 +101,19 @@ class CommentReplied extends CommentTrigger {
 		parent::merge_tags();
 
 		$this->add_merge_tag( new MergeTag\Comment\CommentActionApprove( [
-			'comment_type' => $this->get_comment_type(),
+			'comment_type' => $this->comment_type,
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\Comment\CommentActionTrash( [
-			'comment_type' => $this->get_comment_type(),
+			'comment_type' => $this->comment_type,
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\Comment\CommentActionDelete( [
-			'comment_type' => $this->get_comment_type(),
+			'comment_type' => $this->comment_type,
 		] ) );
 
 		$this->add_merge_tag( new MergeTag\Comment\CommentActionSpam( [
-			'comment_type' => $this->get_comment_type(),
+			'comment_type' => $this->comment_type,
 		] ) );
 
 		// Parent comment.

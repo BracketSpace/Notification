@@ -41,10 +41,10 @@ class AttachmentPage extends UrlTag {
 				'name'        => __( 'Attachment page link', 'notification' ),
 				'description' => __( 'http://example.com/forest-landscape/', 'notification' ),
 				'example'     => true,
+				'group'       => __( 'Attachment', 'notification' ),
 				'resolver'    => function() {
 					return get_permalink( $this->{ $this->property_name }->attachment->ID );
 				},
-				'group'       => __( 'Attachment', 'notification' ),
 			]
 		);
 

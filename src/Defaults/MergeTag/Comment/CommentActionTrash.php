@@ -8,14 +8,12 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
-use BracketSpace\Notification\Traits;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Comment action trash URL merge tag class
  */
 class CommentActionTrash extends UrlTag {
-
-	use Traits\CommentTypeUtils;
 
 	/**
 	 * Trigger property to get the comment data from
@@ -49,17 +47,19 @@ class CommentActionTrash extends UrlTag {
 			$this->property_name = $this->comment_type;
 		}
 
+		$comment_type_name = WpObjectHelper::get_comment_type_name( $this->comment_type );
+
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug'     => 'comment_trash_action_url',
 				// Translators: Comment type name.
-				'name'     => sprintf( __( '%s trash URL', 'notification' ), self::get_current_comment_type_name() ),
+				'name'     => sprintf( __( '%s trash URL', 'notification' ), $comment_type_name ),
+				// Translators: comment type actions text.
+				'group'    => sprintf( __( '%s actions', 'notification' ), $comment_type_name ),
 				'resolver' => function( $trigger ) {
 					return admin_url( "comment.php?action=trash&c={$trigger->{ $this->property_name }->comment_ID}#wpbody-content" );
 				},
-				// translators: comment type actions text.
-				'group'    => sprintf( __( '%s actions', 'notification' ), self::get_current_comment_type_name() ),
 			]
 		);
 

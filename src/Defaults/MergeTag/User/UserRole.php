@@ -44,6 +44,7 @@ class UserRole extends StringTag {
 				'name'        => __( 'User role', 'notification' ),
 				'description' => __( 'Subscriber', 'notification' ),
 				'example'     => true,
+				'group'       => __( 'User', 'notification' ),
 				'resolver'    => function() {
 					$roles = array_map(
 						function ( $role ) {
@@ -55,7 +56,6 @@ class UserRole extends StringTag {
 
 					return implode( ', ', $roles );
 				},
-				'group'       => __( 'User', 'notification' ),
 			]
 		);
 

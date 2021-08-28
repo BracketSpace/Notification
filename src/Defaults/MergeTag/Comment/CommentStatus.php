@@ -8,14 +8,12 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
-use BracketSpace\Notification\Traits;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Comment status merge tag class
  */
 class CommentStatus extends StringTag {
-
-	use Traits\CommentTypeUtils;
 
 	/**
 	 * Trigger property to get the comment data from
@@ -49,14 +47,17 @@ class CommentStatus extends StringTag {
 			$this->property_name = $this->comment_type;
 		}
 
+		$comment_type_name = WpObjectHelper::get_comment_type_name( $this->comment_type );
+
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug'        => 'comment_status',
 				// Translators: Comment type name.
-				'name'        => sprintf( __( '%s status', 'notification' ), self::get_current_comment_type_name() ),
+				'name'        => sprintf( __( '%s status', 'notification' ), $comment_type_name ),
 				'description' => __( 'Approved', 'notification' ),
 				'example'     => true,
+				'group'       => $comment_type_name,
 				'resolver'    => function( $trigger ) {
 					if ( '1' === $trigger->{ $this->property_name }->comment_approved ) {
 						return __( 'Approved', 'notification' );
@@ -68,7 +69,6 @@ class CommentStatus extends StringTag {
 						return __( 'Trashed', 'notification' );
 					}
 				},
-				'group'       => __( self::get_current_comment_type_name(), 'notification' ),
 			]
 		);
 

@@ -44,10 +44,10 @@ class UserLogin extends StringTag {
 				'name'        => __( 'User login', 'notification' ),
 				'description' => __( 'johndoe', 'notification' ),
 				'example'     => true,
+				'group'       => __( 'User', 'notification' ),
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->user_login;
 				},
-				'group'       => __( 'User', 'notification' ),
 			]
 		);
 

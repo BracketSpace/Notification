@@ -11,14 +11,12 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag\IntegerTag;
-use BracketSpace\Notification\Traits;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Post ID merge tag class
  */
 class PostID extends IntegerTag {
-
-	use Traits\PostTypeUtils;
 
 	/**
 	 * Post Type slug
@@ -41,18 +39,20 @@ class PostID extends IntegerTag {
 			$this->post_type = 'post';
 		}
 
+		$post_type_name = WpObjectHelper::get_post_type_name( $this->post_type );
+
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => $this->post_type . '_ID',
+				'slug'        => sprintf( '%s_ID', $this->post_type ),
 				// translators: singular post name.
-				'name'        => sprintf( __( '%s ID', 'notification' ), $this->get_current_post_type_name() ),
+				'name'        => sprintf( __( '%s ID', 'notification' ), $post_type_name ),
 				'description' => '35',
 				'example'     => true,
+				'group'       => $post_type_name,
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->post_type }->ID;
 				},
-				'group'       => $this->get_current_post_type_name(),
 			]
 		);
 

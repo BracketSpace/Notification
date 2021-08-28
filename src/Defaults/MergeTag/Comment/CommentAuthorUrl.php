@@ -8,14 +8,12 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
-use BracketSpace\Notification\Traits;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Comment author URL merge tag class
  */
 class CommentAuthorUrl extends UrlTag {
-
-	use Traits\CommentTypeUtils;
 
 	/**
 	 * Trigger property to get the comment data from
@@ -49,19 +47,21 @@ class CommentAuthorUrl extends UrlTag {
 			$this->property_name = $this->comment_type;
 		}
 
+		$comment_type_name = WpObjectHelper::get_comment_type_name( $this->comment_type );
+
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug'        => 'comment_author_url',
 				// Translators: Comment type name.
-				'name'        => sprintf( __( '%s author URL', 'notification' ), self::get_current_comment_type_name() ),
+				'name'        => sprintf( __( '%s author URL', 'notification' ), $comment_type_name ),
 				'description' => __( 'http://mywebsite.com', 'notification' ),
 				'example'     => true,
+				// Translators: comment type author.
+				'group'       => sprintf( __( '%s author', 'notification' ), $comment_type_name ),
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->comment_author_url;
 				},
-				// translators: comment type author.
-				'group'       => sprintf( __( '%s author', 'notification' ), self::get_current_comment_type_name() ),
 			]
 		);
 

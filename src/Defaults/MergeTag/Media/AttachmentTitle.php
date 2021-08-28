@@ -41,10 +41,10 @@ class AttachmentTitle extends StringTag {
 				'name'        => __( 'Attachment title', 'notification' ),
 				'description' => __( 'Forest landscape', 'notification' ),
 				'example'     => true,
+				'group'       => __( 'Attachment', 'notification' ),
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->post_title;
 				},
-				'group'       => __( 'Attachment', 'notification' ),
 			]
 		);
 

@@ -11,14 +11,12 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
-use BracketSpace\Notification\Traits;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Post slug merge tag class
  */
 class PostSlug extends StringTag {
-
-	use Traits\PostTypeUtils;
 
 	/**
 	 * Post Type slug
@@ -41,18 +39,20 @@ class PostSlug extends StringTag {
 			$this->post_type = 'post';
 		}
 
+		$post_type_name = WpObjectHelper::get_post_type_name( $this->post_type );
+
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => $this->post_type . '_slug',
+				'slug'        => sprintf( '%s_slug', $this->post_type ),
 				// translators: singular post name.
-				'name'        => sprintf( __( '%s slug', 'notification' ), $this->get_current_post_type_name() ),
+				'name'        => sprintf( __( '%s slug', 'notification' ), $post_type_name ),
 				'description' => __( 'hello-world', 'notification' ),
 				'example'     => true,
+				'group'       => $post_type_name,
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->post_type }->post_name;
 				},
-				'group'       => $this->get_current_post_type_name(),
 			]
 		);
 

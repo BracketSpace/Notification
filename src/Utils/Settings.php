@@ -177,11 +177,8 @@ class Settings {
 		$to_save = [];
 
 		foreach ( $settings as $section_slug => $groups_values ) {
-
 			foreach ( $this->get_section( $section_slug )->get_groups() as $group ) {
-
 				foreach ( $group->get_fields() as $field ) {
-
 					if ( isset( $groups_values[ $field->group() ][ $field->slug() ] ) ) {
 						$value = $field->sanitize( $groups_values[ $field->group() ][ $field->slug() ] );
 					} else {
@@ -189,7 +186,6 @@ class Settings {
 					}
 
 					$to_save[ $field->section() ][ $field->group() ][ $field->slug() ] = $value;
-
 				}
 			}
 		}
@@ -206,40 +202,32 @@ class Settings {
 
 	/**
 	 * Get all settings
-	 * Uses stored config
 	 *
 	 * @return array settings
 	 */
 	public function get_settings() {
 
 		if ( empty( $this->settings ) ) {
-
-			$config = notification_cache( 'settings_config' );
-
-			foreach ( (array) $config as $section_slug => $groups ) {
-
+			foreach ( $this->get_sections() as $section_slug => $section ) {
 				$setting = get_option( $this->handle . '_' . $section_slug );
 
 				$this->settings[ $section_slug ] = [];
 
-				if ( empty( $groups ) ) {
-					continue;
-				}
+				$groups = $section->get_groups();
 
-				foreach ( $groups as $group_slug => $fields ) {
-
+				foreach ( $groups as $group_slug => $group ) {
 					$this->settings[ $section_slug ][ $group_slug ] = [];
 
-					foreach ( $fields as $field_slug => $default_value ) {
+					$fields = $group->get_fields();
 
+					foreach ( $fields as $field_slug => $field ) {
 						if ( isset( $setting[ $group_slug ][ $field_slug ] ) ) {
 							$value = $setting[ $group_slug ][ $field_slug ];
 						} else {
-							$value = $default_value;
+							$value = $field->default_value();
 						}
 
 						$this->settings[ $section_slug ][ $group_slug ][ $field_slug ] = $value;
-
 					}
 				}
 			}

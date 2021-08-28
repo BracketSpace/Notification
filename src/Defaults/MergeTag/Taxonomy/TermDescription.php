@@ -30,10 +30,10 @@ class TermDescription extends StringTag {
 				'name'        => __( 'Term description', 'notification' ),
 				'description' => 'Lorem ipsum sit dolor amet',
 				'example'     => true,
+				'group'       => __( 'Term', 'notification' ),
 				'resolver'    => function( $trigger ) {
 					return $trigger->term->description;
 				},
-				'group'       => __( 'Term', 'notification' ),
 			]
 		);
 

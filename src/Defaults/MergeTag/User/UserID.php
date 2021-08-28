@@ -44,10 +44,10 @@ class UserID extends IntegerTag {
 				'name'        => __( 'User ID', 'notification' ),
 				'description' => '25',
 				'example'     => true,
+				'group'       => __( 'User', 'notification' ),
 				'resolver'    => function( $trigger ) {
 					return $trigger->{ $this->property_name }->ID;
 				},
-				'group'       => __( 'User', 'notification' ),
 			]
 		);
 

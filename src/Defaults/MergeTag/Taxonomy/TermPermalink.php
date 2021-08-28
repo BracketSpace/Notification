@@ -30,10 +30,10 @@ class TermPermalink extends UrlTag {
 				'name'        => __( 'Term link', 'notification' ),
 				'description' => 'http://example.com/category/nature',
 				'example'     => true,
+				'group'       => __( 'Term', 'notification' ),
 				'resolver'    => function( $trigger ) {
 					return $trigger->term_permalink;
 				},
-				'group'       => __( 'Term', 'notification' ),
 			]
 		);
 

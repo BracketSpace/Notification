@@ -11,14 +11,12 @@
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
-use BracketSpace\Notification\Traits;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Post type merge tag class
  */
 class PostType extends StringTag {
-
-	use Traits\PostTypeUtils;
 
 	/**
 	 * Post Type slug
@@ -48,10 +46,10 @@ class PostType extends StringTag {
 				'name'        => __( 'Post Type', 'notification' ),
 				'description' => 'post',
 				'example'     => true,
+				'group'       => WpObjectHelper::get_post_type_name( $this->post_type ),
 				'resolver'    => function( $trigger ) {
 					return $trigger->post_type;
 				},
-				'group'       => $this->get_current_post_type_name(),
 			]
 		);
 
