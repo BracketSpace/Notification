@@ -39,7 +39,6 @@ class TestMain extends \WP_UnitTestCase {
 	public function test_boot() {
 
 		// Instances.
-		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Cache', \Notification::component( 'core_cache' ) );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Cron', \Notification::component( 'core_cron' ) );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Whitelabel', \Notification::component( 'core_whitelabel' ) );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Debugging', \Notification::component( 'core_debugging' ) );
