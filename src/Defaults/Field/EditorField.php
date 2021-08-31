@@ -74,7 +74,7 @@ class EditorField extends Field {
 		 */
 		$value = str_replace( [ 'https://{', 'http://{' ], '{', $value );
 
-		return wp_kses_post( $value );
+		return $value;
 	}
 
 }
