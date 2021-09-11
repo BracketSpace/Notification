@@ -334,6 +334,18 @@ class Settings {
 
 		$settings = $this->get_settings();
 
+		if ( ! is_array( $settings ) ) {
+			$settings = [];
+		}
+
+		if ( ! isset( $settings[ $section_slug ] ) ) {
+			$settings[ $section_slug ] = [];
+		}
+
+		if ( ! isset( $settings[ $section_slug ][ $group_slug ] ) ) {
+			$settings[ $section_slug ][ $group_slug ] = [];
+		}
+
 		$settings[ $section_slug ][ $group_slug ][ $field_slug ] = $value;
 
 		return update_option( $this->handle . '_' . $section_slug, $settings );
