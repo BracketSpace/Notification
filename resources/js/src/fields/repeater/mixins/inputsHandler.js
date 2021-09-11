@@ -72,6 +72,7 @@ export const inputsHandler = {
 					recipientTypeField.options = data.options;
 					recipientTypeField.placeholder = data.placeholder;
 					recipientTypeField.description = data.description;
+					recipientTypeField.disabled = data.disabled;
 					recipientTypeField.type = data.type;
 					recipientTypeField.id = data.id;
 					recipientTypeField.pretty = data.pretty;
