@@ -289,6 +289,57 @@ class Settings {
 	}
 
 	/**
+	 * Update single settings value.
+	 *
+	 * @throws \Exception Exception.
+	 * @param   string $setting setting name in `a/b/c` format.
+	 * @param   mixed  $value setting value.
+	 * @return  mixed
+	 */
+	public function update_setting( $setting, $value ) {
+		$parts = explode( '/', $setting );
+
+		if ( count( $parts ) !== 3 ) {
+			throw new \Exception( 'You must provide exactly 3 parts as the setting name' );
+		}
+
+		list($section_slug, $group_slug, $field_slug) = $parts;
+
+		$section = $this->get_section( $section_slug );
+
+		if ( false === $section ) {
+			throw new \Exception( "Cannot find \"${section_slug}\" settings section." );
+		}
+
+		$sanitized = false;
+
+		foreach ( $section->get_groups() as $group ) {
+			if ( $group->slug() !== $group_slug ) {
+				continue;
+			}
+
+			foreach ( $group->get_fields() as $field ) {
+				if ( $field->slug() !== $field_slug ) {
+					continue;
+				}
+
+				$value     = $field->sanitize( $value );
+				$sanitized = true;
+			}
+		}
+
+		if ( false === $sanitized ) {
+			throw new \Exception( "Cannot update \"${setting}\" setting." );
+		}
+
+		$settings = $this->get_settings();
+
+		$settings[ $section_slug ][ $group_slug ][ $field_slug ] = $value;
+
+		return update_option( $this->handle . '_' . $section_slug, $settings );
+	}
+
+	/**
 	 * Set Library variables like path and URI
 	 *
 	 * @return void
