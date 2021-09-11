@@ -590,6 +590,17 @@ function notification_get_setting( $setting ) {
 }
 
 /**
+ * Updates single setting value.
+ *
+ * @param   string $setting setting name in `a/b/c` format.
+ * @param   mixed  $value setting value.
+ * @return  mixed
+ */
+function notification_update_setting( $setting, $value ) {
+	return \Notification::component( 'core_settings' )->update_setting( $setting, $value );
+}
+
+/**
  * Adds Trigger to Store
  *
  * @since  6.0.0
