@@ -283,15 +283,15 @@ class Runtime {
 			[
 				'global-merge-tags',
 				'resolvers',
-				'recipients',
 				'carriers',
+				'recipients',
 				'triggers',
 			],
 			[
 				Register\GlobalMergeTags::class,
 				Register\Resolvers::class,
-				Register\Recipients::class,
 				Register\Carriers::class,
+				Register\Recipients::class,
 				Register\Triggers::class,
 			]
 		);

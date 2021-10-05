@@ -71,9 +71,7 @@ class Email extends Abstracts\Carrier {
 
 		$this->add_form_field( $body_field );
 
-		$this->add_form_field( new Field\RecipientsField( [
-			'carrier' => $this->get_slug(),
-		] ) );
+		$this->add_recipients_field();
 
 		if ( notification_get_setting( 'carriers/email/headers' ) ) {
 

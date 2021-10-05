@@ -21,11 +21,32 @@ abstract class Carrier implements Interfaces\Sendable {
 	use Traits\ClassUtils, Traits\HasName, Traits\HasSlug;
 
 	/**
-	 * Carrier form fields
+	 * Form fields
 	 *
 	 * @var array
 	 */
 	public $form_fields = [];
+
+	/**
+	 * Recipients form field closure
+	 *
+	 * @var callable() : RecipientsField|null
+	 */
+	protected $recipients_field;
+
+	/**
+	 * Recipients form field index
+	 *
+	 * @var int
+	 */
+	public $recipients_field_index = 0;
+
+	/**
+	 * Recipients form field raw data
+	 *
+	 * @var mixed
+	 */
+	public $recipients_data;
 
 	/**
 	 * Fields data for send method
@@ -176,8 +197,75 @@ abstract class Carrier implements Interfaces\Sendable {
 
 		$this->form_fields[ $field->get_raw_name() ] = $adding_field;
 
+		if ( ! $this->has_recipients_field() ) {
+			$this->recipients_field_index++;
+		}
+
 		return $this;
 
+	}
+
+	/**
+	 * Adds recipients form field
+	 *
+	 * @since  [Next]
+	 * @throws \Exception When recipients fields was already added.
+	 * @param  array<mixed> $params Recipients field params.
+	 * @return $this
+	 */
+	public function add_recipients_field( array $params = [] ) {
+		if ( $this->has_recipients_field() ) {
+			throw new \Exception( 'Recipient field has been already added' );
+		}
+
+		$this->recipients_field = function () use ( $params ) {
+			return new RecipientsField( [
+				'carrier' => $this->get_slug(),
+			] + $params );
+		};
+
+		return $this;
+	}
+
+	/**
+	 * Checks if the recipients field was added
+	 *
+	 * @since  [Next]
+	 * @return bool
+	 */
+	public function has_recipients_field() {
+		return null !== $this->recipients_field;
+	}
+
+	/**
+	 * Gets the recipients field
+	 * Calls the field closure.
+	 *
+	 * @since  [Next]
+	 * @return RecipientsField|null
+	 */
+	public function get_recipients_field() {
+		if ( ! $this->has_recipients_field() || ! is_callable( $this->recipients_field ) ) {
+			return null;
+		}
+
+		$closure = $this->recipients_field;
+		$field   = $closure();
+
+		// Setup the field data if it's available.
+		$this->set_field_data( $field, $this->recipients_data );
+
+		return $field;
+	}
+
+	/**
+	 * Gets the saved recipients
+	 *
+	 * @return mixed
+	 */
+	public function get_recipients() {
+		$recipients_field = $this->get_recipients_field();
+		return $recipients_field ? $recipients_field->get_value() : null;
 	}
 
 	/**
@@ -301,22 +389,16 @@ abstract class Carrier implements Interfaces\Sendable {
 	 * @return void
 	 */
 	public function prepare_data() {
-
-		$recipients_field = false;
-
-		// Save recipients field for additional parsing.
-		foreach ( $this->get_form_fields() as $field ) {
-			if ( $field instanceof RecipientsField ) {
-				$recipients_field = $field;
-				continue;
-			}
-		}
-
 		$this->data = $this->get_data();
 
 		// If there's set recipients field, parse them into a nice array.
 		// Parsed recipients are saved to key named `parsed_{recipients_field_slug}`.
-		if ( $recipients_field ) {
+		if ( $this->has_recipients_field() ) {
+			$recipients_field = $this->get_recipients_field();
+
+			if ( ! $recipients_field ) {
+				return;
+			}
 
 			$parsed_recipients = [];
 
@@ -329,9 +411,7 @@ abstract class Carrier implements Interfaces\Sendable {
 
 			// Remove duplicates and save to data property.
 			$this->data[ 'parsed_' . $recipients_field->get_raw_name() ] = array_unique( $parsed_recipients );
-
 		}
-
 	}
 
 	/**
@@ -342,16 +422,34 @@ abstract class Carrier implements Interfaces\Sendable {
 	 * @return $this
 	 */
 	public function set_data( $data ) {
-
+		// Set fields data.
 		foreach ( $this->get_form_fields() as $field ) {
 			if ( isset( $data[ $field->get_raw_name() ] ) ) {
+				$this->set_field_data( $field, $data[ $field->get_raw_name() ] );
+			}
+		}
 
-				$field->set_value( $field->sanitize( $data[ $field->get_raw_name() ] ) );
+		// Set recipients data.
+		if ( $this->has_recipients_field() ) {
+			$recipients_field = $this->get_recipients_field();
+			if ( $recipients_field && isset( $data[ $recipients_field->get_raw_name() ] ) ) {
+				$this->recipients_data = $data[ $recipients_field->get_raw_name() ];
 			}
 		}
 
 		return $this;
+	}
 
+	/**
+	 * Sets field data
+	 *
+	 * @since  [Next]
+	 * @param  Interfaces\Fillable $field Field.
+	 * @param  mixed               $data  Field data.
+	 * @return void
+	 */
+	protected function set_field_data( Interfaces\Fillable $field, $data ) {
+		$field->set_value( $field->sanitize( $data ) );
 	}
 
 	/**
@@ -361,17 +459,25 @@ abstract class Carrier implements Interfaces\Sendable {
 	 * @return array
 	 */
 	public function get_data() {
-
 		$data = [];
 
+		// Get fields data.
 		foreach ( $this->get_form_fields() as $field ) {
 			if ( ! $field instanceof Field\NonceField ) {
 				$data[ $field->get_raw_name() ] = $field->get_value();
 			}
 		}
 
-		return $data;
+		// Get recipients data.
+		if ( $this->has_recipients_field() ) {
+			$recipients_field = $this->get_recipients_field();
 
+			if ( $recipients_field ) {
+				$data[ $recipients_field->get_raw_name() ] = $recipients_field->get_value();
+			}
+		}
+
+		return $data;
 	}
 
 	/**

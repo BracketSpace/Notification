@@ -33,18 +33,11 @@ class Webhook extends Abstracts\Carrier {
 	 */
 	public function form_fields() {
 
-		$recipients = new Field\RecipientsField(
-			[
-				'carrier'          => 'webhook',
-				'label'            => __( 'URLs', 'notification' ),
-				'name'             => 'urls',
-				'add_button_label' => __( 'Add URL', 'notification' ),
-			]
-		);
-
-		$recipients->print_header_description = true;
-
-		$this->add_form_field( $recipients );
+		$this->add_recipients_field( [
+			'label'            => __( 'URLs', 'notification' ),
+			'name'             => 'urls',
+			'add_button_label' => __( 'Add URL', 'notification' ),
+		] );
 
 		$this->add_form_field( new Field\RepeaterField( [
 			'label'            => __( 'Arguments', 'notification' ),

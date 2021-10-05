@@ -15,22 +15,34 @@ use BracketSpace\Notification\Defaults\Recipient;
 class Recipients {
 
 	/**
+	 * Webhook recipient types.
+	 *
+	 * @var array<string,string>
+	 */
+	public static $webhook_recipient_types = [
+		'post'   => 'POST',
+		'get'    => 'GET',
+		'put'    => 'PUT',
+		'delete' => 'DELETE',
+		'patch'  => 'PATCH',
+	];
+
+	/**
 	 * @return void
 	 */
 	public static function register() {
-
 		notification_register_recipient( 'email', new Recipient\Email() );
 		notification_register_recipient( 'email', new Recipient\Administrator() );
 		notification_register_recipient( 'email', new Recipient\User() );
 		notification_register_recipient( 'email', new Recipient\UserID() );
 		notification_register_recipient( 'email', new Recipient\Role() );
 
-		notification_register_recipient( 'webhook', new Recipient\Webhook( 'post', __( 'POST', 'notification' ) ) );
-		notification_register_recipient( 'webhook', new Recipient\Webhook( 'get', __( 'GET', 'notification' ) ) );
-		notification_register_recipient( 'webhook', new Recipient\Webhook( 'put', __( 'PUT', 'notification' ) ) );
-		notification_register_recipient( 'webhook', new Recipient\Webhook( 'delete', __( 'DELETE', 'notification' ) ) );
-		notification_register_recipient( 'webhook', new Recipient\Webhook( 'patch', __( 'PATCH', 'notification' ) ) );
+		foreach ( self::$webhook_recipient_types as $type => $name ) {
+			$recipient = new Recipient\Webhook( $type, $name );
 
+			notification_register_recipient( 'webhook', $recipient );
+			notification_register_recipient( 'webhook_json', $recipient );
+		}
 	}
 
 }

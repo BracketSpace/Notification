@@ -318,6 +318,7 @@ Removed deprecated hooks:
 * [Changed] Stores with plugin objects, now they are much simpler and don't use WP filters.
 * [Changed] Plugin loading stack, [see docs](https://docs.bracketspace.com/notification/developer/general/plugin-loading-chain) for more details.
 * [Changed] Plugin settings now are initialized on `notification/init 5` action.
+* [Changed] Recipients now can be loaded anytime, not only before Carriers get registered.
 * [Removed] `Common` Abstract that has been replaced by HasName and HasSlug Traits.
 * [Removed] Cache class and all caching mechanism for post types, taxonomies and comment types.
 * [Added] Runner class that processes the Triggers.
