@@ -308,6 +308,7 @@ Removed deprecated hooks:
 - `notification/value/strip_empty_mergetags`, use `notification/resolve/strip_empty_mergetags`
 - `notification/value/strip_shortcodes`, use `notification/carrier/field/value/strip_shortcodes`
 - `notificaiton/notification/field/resolved`, use `notification/carrier/field/value/resolved`
+- `notificaiton/merge_tag/value/resolved`, use `notification/merge_tag/value/resolved`
 
 **Full changelog**
 

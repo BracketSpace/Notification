@@ -48,11 +48,11 @@ class Basic extends Abstracts\Resolver {
 			return $match[0];
 		}
 
-		$resolved = apply_filters_deprecated( 'notificaiton/merge_tag/value/resolved', [
+		$resolved = apply_filters(
+			'notification/merge_tag/value/resolved',
 			$merge_tags[ $tag_slug ]->resolve(),
-			$merge_tags[ $tag_slug ],
-		], '6.0.0', 'notification/merge_tag/value/resolved' );
-		$resolved = apply_filters( 'notification/merge_tag/value/resolved', $resolved, $merge_tags[ $tag_slug ] );
+			$merge_tags[ $tag_slug ]
+		);
 
 		return $resolved;
 
