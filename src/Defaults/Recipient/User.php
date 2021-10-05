@@ -60,7 +60,7 @@ class User extends Abstracts\Recipient {
 		$opts = [];
 
 		foreach ( UserQueries::all() as $user ) {
-			$opts[ $user->ID ] = esc_html( $user->display_name ) . ' (' . $user->user_email . ')';
+			$opts[ $user['ID'] ] = esc_html( $user['display_name'] ) . ' (' . $user['user_email'] . ')';
 		}
 
 		return new Field\SelectField( [

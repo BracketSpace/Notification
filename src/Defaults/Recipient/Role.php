@@ -43,7 +43,7 @@ class Role extends Abstracts\Recipient {
 		$emails = [];
 
 		foreach ( UserQueries::with_role( $value ) as $user ) {
-			$emails[] = $user->user_email;
+			$emails[] = $user['user_email'];
 		}
 
 		return $emails;

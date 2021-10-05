@@ -1606,29 +1606,9 @@ parameters:
 			path: src/Defaults/Recipient/Email.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Recipient\\\\Role\\:\\:get_all_users\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Recipient/Role.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Recipient\\\\Role\\:\\:get_users_by_role\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Recipient/Role.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Recipient\\\\Role\\:\\:parse_value\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Defaults/Recipient/Role.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Recipient\\\\User\\:\\:get_all_users\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Recipient/User.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Recipient\\\\User\\:\\:get_users_by_role\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Recipient/User.php
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Recipient\\\\User\\:\\:parse_value\\(\\) return type has no value type specified in iterable type array\\.$#"
