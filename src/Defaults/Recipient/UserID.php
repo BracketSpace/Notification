@@ -9,7 +9,6 @@ namespace BracketSpace\Notification\Defaults\Recipient;
 
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\Field;
-use BracketSpace\Notification\Traits\Users;
 
 /**
  * User ID recipient

@@ -1,26 +1,25 @@
 <?php
 /**
- * Trait for users database operations.
+ * User Queries
  *
  * @package notification
  */
 
-namespace BracketSpace\Notification\Traits;
+namespace BracketSpace\Notification\Queries;
 
 use BracketSpace\Notification\Utils\Cache\ObjectCache;
 
 /**
- * Users trait
+ * Users Queries class
  */
-trait Users {
+class UserQueries {
 
 	/**
-	 * Get all prepared users directly from database.
+	 * Gets all users.
 	 *
-	 * @return array $results user results.
+	 * @return array
 	 */
-	public function get_all_users() {
-
+	public static function all() {
 		global $wpdb;
 
 		$cache = new ObjectCache( 'users', 'notification' );
@@ -33,18 +32,15 @@ trait Users {
 		}
 
 		return $users;
-
 	}
 
 	/**
-	 * Get role based prepared users directly from database.
+	 * Gets users with role.
 	 *
 	 * @param string $role user role.
-	 *
-	 * @return array $results user results.
+	 * @return array
 	 */
-	public function get_users_by_role( $role ) {
-
+	public static function with_role( string $role ) {
 		global $wpdb;
 
 		$cache = new ObjectCache( $role . '_users', 'notification' );
@@ -59,7 +55,6 @@ trait Users {
 		}
 
 		return $users;
-
 	}
 
 }

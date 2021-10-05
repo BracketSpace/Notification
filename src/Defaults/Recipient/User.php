@@ -9,7 +9,7 @@ namespace BracketSpace\Notification\Defaults\Recipient;
 
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\Field;
-use BracketSpace\Notification\Traits\Users;
+use BracketSpace\Notification\Queries\UserQueries;
 
 
 /**
@@ -60,12 +60,9 @@ class User extends Abstracts\Recipient {
 	 * @return object
 	 */
 	public function input() {
-
-		$users = $this->get_all_users();
-
 		$opts = [];
 
-		foreach ( $users as $user ) {
+		foreach ( UserQueries::all() as $user ) {
 			$opts[ $user->ID ] = esc_html( $user->display_name ) . ' (' . $user->user_email . ')';
 		}
 
@@ -77,7 +74,6 @@ class User extends Abstracts\Recipient {
 			'pretty'    => true,
 			'options'   => $opts,
 		] );
-
 	}
 
 }

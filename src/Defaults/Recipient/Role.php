@@ -9,7 +9,7 @@ namespace BracketSpace\Notification\Defaults\Recipient;
 
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\Field;
-use BracketSpace\Notification\Traits\Users;
+use BracketSpace\Notification\Queries\UserQueries;
 
 /**
  * Role recipient
@@ -38,20 +38,17 @@ class Role extends Abstracts\Recipient {
 	 * @return array         array of resolved values
 	 */
 	public function parse_value( $value = '' ) {
-
 		if ( empty( $value ) ) {
 			$value = $this->get_default_value();
 		}
 
-		$users  = $this->get_users_by_role( $value );
 		$emails = [];
 
-		foreach ( $users as $user ) {
+		foreach ( UserQueries::with_role( $value ) as $user ) {
 			$emails[] = $user->user_email;
 		}
 
 		return $emails;
-
 	}
 
 	/**
@@ -60,7 +57,6 @@ class Role extends Abstracts\Recipient {
 	 * @return object
 	 */
 	public function input() {
-
 		if ( ! function_exists( 'get_editable_roles' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/user.php';
 		}
@@ -69,9 +65,7 @@ class Role extends Abstracts\Recipient {
 		$opts  = [];
 
 		foreach ( $roles as $role_slug => $role ) {
-			$users_query = $this->get_users_by_role( $role_slug );
-
-			$num_users = count( $users_query );
+			$num_users = count( UserQueries::with_role( $role_slug ) );
 
 			// Translators: %s numer of users.
 			$label = translate_user_role( $role['name'] ) . ' (' . sprintf( _n( '%s user', '%s users', $num_users, 'notification' ), $num_users ) . ')';
@@ -87,7 +81,6 @@ class Role extends Abstracts\Recipient {
 			'pretty'    => true,
 			'options'   => $opts,
 		] );
-
 	}
 
 }

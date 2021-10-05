@@ -322,6 +322,7 @@ Removed deprecated hooks:
 * [Changed] Recipients now can be loaded anytime, not only before Carriers get registered.
 * [Removed] `Common` Abstract that has been replaced by HasName and HasSlug Traits.
 * [Removed] Cache class and all caching mechanism for post types, taxonomies and comment types.
+* [Removed] Trait Users. This is replaced with `BracketSpace\Notification\Queries\UserQueries` class.
 * [Added] Runner class that processes the Triggers.
 * [Added] ErrorHandler class that helps handle errors. It can throw an exception when NOTIFICATION_DEBUG is enabled or save a warning to error_log when it's disabled.
 * [Added] Plugin settings value lazy loading.
