@@ -16,8 +16,6 @@ use BracketSpace\Notification\Queries\UserQueries;
  */
 class User extends Abstracts\Recipient {
 
-	use Users;
-
 	/**
 	 * Recipient constructor
 	 *

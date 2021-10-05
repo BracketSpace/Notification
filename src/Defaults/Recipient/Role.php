@@ -16,8 +16,6 @@ use BracketSpace\Notification\Queries\UserQueries;
  */
 class Role extends Abstracts\Recipient {
 
-	use Users;
-
 	/**
 	 * Recipient constructor
 	 *
