@@ -33,8 +33,8 @@ trait Webhook {
 	 * @return void
 	 */
 	public function http_request( $url, $args = [], $headers = [], $method ) {
-
-		$remote_args = apply_filters_deprecated( "notification/webhook/remote_args/{$method}", [
+		$remote_args = apply_filters(
+			"notification/carrier/webhook/remote_args/{$method}",
 			[
 				'body'    => $args,
 				'headers' => $headers,
@@ -42,10 +42,8 @@ trait Webhook {
 			],
 			$url,
 			$args,
-			$this,
-		], '6.0.0', "notification/carrier/webhook/remote_args/{$method}" );
-
-		$remote_args = apply_filters( "notification/carrier/webhook/remote_args/{$method}", $remote_args, $url, $args, $this );
+			$this
+		);
 
 		$response = wp_remote_request( $url, $remote_args );
 
@@ -58,16 +56,7 @@ trait Webhook {
 			], true ) . '</pre>' );
 		}
 
-		do_action_deprecated( "notification/webhook/called/{$method}", [
-			$response,
-			$url,
-			$args,
-			$remote_args,
-			$this,
-		], '6.0.0', "notification/carrier/webhook/called/{$method}" );
-
 		do_action( "notification/carrier/webhook/called/{$method}", $response, $url, $args, $remote_args, $this );
-
 	}
 
 	/**
@@ -78,7 +67,6 @@ trait Webhook {
 	 * @return array       Parsed args as key => value array
 	 */
 	private function parse_args( $args ) {
-
 		$parsed_args = [];
 
 		if ( empty( $args ) ) {
@@ -94,7 +82,6 @@ trait Webhook {
 		}
 
 		return $parsed_args;
-
 	}
 
 }

@@ -309,6 +309,8 @@ Removed deprecated hooks:
 - `notification/value/strip_shortcodes`, use `notification/carrier/field/value/strip_shortcodes`
 - `notificaiton/notification/field/resolved`, use `notification/carrier/field/value/resolved`
 - `notificaiton/merge_tag/value/resolved`, use `notification/merge_tag/value/resolved`
+- `notification/webhook/remote_args/{$method}`, use `notification/carrier/webhook/remote_args/{$method}`
+- `notification/webhook/called/{$method}`, use `notification/carrier/webhook/called/{$method}`
 
 **Full changelog**
 
@@ -323,6 +325,7 @@ Removed deprecated hooks:
 * [Removed] `Common` Abstract that has been replaced by HasName and HasSlug Traits.
 * [Removed] Cache class and all caching mechanism for post types, taxonomies and comment types.
 * [Removed] Trait Users. This is replaced with `BracketSpace\Notification\Queries\UserQueries` class.
+* [Removed] Deprecated hooks for actions and filters.
 * [Added] Runner class that processes the Triggers.
 * [Added] ErrorHandler class that helps handle errors. It can throw an exception when NOTIFICATION_DEBUG is enabled or save a warning to error_log when it's disabled.
 * [Added] Plugin settings value lazy loading.
