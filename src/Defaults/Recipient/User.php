@@ -11,7 +11,6 @@ use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\Field;
 use BracketSpace\Notification\Queries\UserQueries;
 
-
 /**
  * User recipient
  */
