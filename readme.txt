@@ -302,6 +302,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 6. Store classes now live under `BracketSpace\Notification\Store` namespace rather than `BracketSpace\Notification\Defaults\Store`.
 7. Plugin doesn't cache anything anymore, the loading process is more streamlined and things like Post Types are lazy loaded when needed
 8. Registration functions has been replaced with `Register` class and its static methods.
+9. Multiple functions has been replaced with their static method equivalents.
 
 Removed deprecated hooks:
 - `notification/notification/pre-send`, use `notification/carrier/pre-send`
