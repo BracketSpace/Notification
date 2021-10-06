@@ -329,6 +329,7 @@ Removed deprecated hooks:
 * [Removed] Deprecated hooks for actions and filters.
 * [Removed] Carrier helper functions: `notification_register_carrier`, `notification_get_carriers`, `notification_get_carrier`.
 * [Removed] `notification_display_wizard` function.
+* [Removed] `notification_ajax_handler` function.
 * [Added] Runner class that processes the Triggers.
 * [Added] ErrorHandler class that helps handle errors. It can throw an exception when NOTIFICATION_DEBUG is enabled or save a warning to error_log when it's disabled.
 * [Added] Plugin settings value lazy loading.

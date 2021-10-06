@@ -209,6 +209,20 @@ function notification_display_wizard() {
 }
 
 /**
+ * Creates new AJAX Handler object.
+ *
+ * @since      6.0.0
+ * @since      7.0.0 Using Ajax Micropackage.
+ * @deprecated [Next]
+ * @return     BracketSpace\Notification\Vendor\Micropackage\Ajax\Response
+ */
+function notification_ajax_handler() {
+	_deprecated_function( __FUNCTION__, '[Next]' );
+
+	return new BracketSpace\Notification\Vendor\Micropackage\Ajax\Response();
+}
+
+/**
  * Registers Carrier
  *
  * @since      6.0.0

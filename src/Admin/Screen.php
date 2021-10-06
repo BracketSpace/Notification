@@ -11,6 +11,7 @@ namespace BracketSpace\Notification\Admin;
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Store;
+use BracketSpace\Notification\Vendor\Micropackage\Ajax\Response;
 
 /**
  * Screen class
@@ -424,7 +425,7 @@ class Screen {
 	 */
 	public function ajax_render_merge_tags() {
 
-		$ajax = notification_ajax_handler();
+		$ajax = new Response();
 
 		if ( ! isset( $_POST['trigger_slug'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$ajax->error();

@@ -63,17 +63,6 @@ function notification_swap_adapter( $new_adapter_name, Interfaces\Adaptable $ada
 }
 
 /**
- * Creates new AJAX Handler object.
- *
- * @since  6.0.0
- * @since  7.0.0 Using Ajax Micropackage.
- * @return BracketSpace\Notification\Vendor\Micropackage\Ajax\Response
- */
-function notification_ajax_handler() {
-	return new BracketSpace\Notification\Vendor\Micropackage\Ajax\Response();
-}
-
-/**
  * Throws a deprecation notice from deprecated class
  *
  * @since  6.0.0

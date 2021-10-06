@@ -10,6 +10,7 @@ namespace BracketSpace\Notification\Admin;
 use BracketSpace\Notification\Admin\PostType;
 use BracketSpace\Notification\Core\Sync as CoreSync;
 use BracketSpace\Notification\Utils\Settings\CoreFields;
+use BracketSpace\Notification\Vendor\Micropackage\Ajax\Response;
 
 /**
  * Sync class
@@ -160,7 +161,7 @@ class Sync {
 	 */
 	public function ajax_sync() {
 
-		$ajax = notification_ajax_handler();
+		$ajax = new Response();
 		$data = $_POST; // phpcs:ignore
 
 		$ajax->verify_nonce( 'notification_sync_' . $data['hash'] );

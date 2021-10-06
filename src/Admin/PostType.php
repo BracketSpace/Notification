@@ -10,6 +10,7 @@ namespace BracketSpace\Notification\Admin;
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Utils\Cache\ObjectCache;
 use BracketSpace\Notification\Store;
+use BracketSpace\Notification\Vendor\Micropackage\Ajax\Response;
 
 /**
  * PostType class
@@ -336,7 +337,7 @@ class PostType {
 	 */
 	public function ajax_change_notification_status() {
 
-		$ajax  = notification_ajax_handler();
+		$ajax  = new Response();
 		$data  = $_POST; // phpcs:ignore
 		$error = false;
 
