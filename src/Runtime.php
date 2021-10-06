@@ -8,11 +8,11 @@
 namespace BracketSpace\Notification;
 
 use BracketSpace\Notification\Cli\DumpHooks;
+use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Vendor\Micropackage\Requirements\Requirements;
 use BracketSpace\Notification\Vendor\Micropackage\DocHooks\HookTrait;
 use BracketSpace\Notification\Vendor\Micropackage\DocHooks\Helper as DocHooksHelper;
 use BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem;
-use BracketSpace\Notification\Vendor\Micropackage\Templates\Storage as TemplateStorage;
 use WP_CLI;
 
 /**
@@ -98,7 +98,7 @@ class Runtime {
 		}
 
 		$this->filesystem();
-		$this->templates();
+		Templates::register_storage();
 		$this->singletons();
 		$this->actions();
 
@@ -127,18 +127,6 @@ class Runtime {
 				$this->add_hooks( $component );
 			}
 		}
-
-	}
-
-	/**
-	 * Sets up the templates storage
-	 *
-	 * @since  7.0.0
-	 * @return void
-	 */
-	public function templates() {
-
-		TemplateStorage::add( 'templates', $this->get_filesystem()->path( 'resources/templates' ) );
 
 	}
 

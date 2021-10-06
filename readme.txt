@@ -335,6 +335,7 @@ Removed deprecated hooks:
 * [Added] Plugin settings value lazy loading.
 * [Added] Email error catcher.
 * [Added] `Notification::fs()` helper that returns plugin filesystem.
+* [Added] Core\Templates wrapper for Templates provider.
 
 == Upgrade Notice ==
 
