@@ -127,17 +127,6 @@ function notification_log( $component, $type, $message ) {
 }
 
 /**
- * Gets one of the plugin filesystems
- *
- * @since  7.0.0
- * @param  string $name Filesystem name.
- * @return BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem
- */
-function notification_filesystem( $name ) {
-	return \Notification::runtime()->get_filesystem( $name );
-}
-
-/**
  * Prints the template
  * Wrapper for micropackage's template function
  *

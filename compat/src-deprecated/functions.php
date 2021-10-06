@@ -223,6 +223,20 @@ function notification_ajax_handler() {
 }
 
 /**
+ * Gets one of the plugin filesystems
+ *
+ * @since      7.0.0
+ * @deprecated [Next]
+ * @param      string $deprecated Filesystem name.
+ * @return     BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem
+ */
+function notification_filesystem( $deprecated ) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'Notification::fs()' );
+
+	return \Notification::fs();
+}
+
+/**
  * Registers Carrier
  *
  * @since      6.0.0
@@ -233,6 +247,7 @@ function notification_ajax_handler() {
  */
 function notification_register_carrier( Interfaces\Sendable $carrier ) {
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Register::carrier' );
+
 	Register::carrier( $carrier );
 }
 
@@ -246,6 +261,7 @@ function notification_register_carrier( Interfaces\Sendable $carrier ) {
  */
 function notification_get_carriers() {
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Store\\Carrier::all' );
+
 	return Store\Carrier::all();
 }
 
@@ -259,5 +275,6 @@ function notification_get_carriers() {
  */
 function notification_get_carrier( $carrier_slug ) {
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Store\\Carrier::get' );
+
 	return Store\Carrier::get( $carrier_slug );
 }

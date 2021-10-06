@@ -329,12 +329,12 @@ Removed deprecated hooks:
 * [Removed] Trait Users. This is replaced with `BracketSpace\Notification\Queries\UserQueries` class.
 * [Removed] Deprecated hooks for actions and filters.
 * [Removed] Carrier helper functions: `notification_register_carrier`, `notification_get_carriers`, `notification_get_carrier`.
-* [Removed] `notification_display_wizard` function.
-* [Removed] `notification_ajax_handler` function.
+* [Removed] Misc functions: `notification_display_wizard`, `notification_ajax_handler`, `notification_filesystem`.
 * [Added] Runner class that processes the Triggers.
 * [Added] ErrorHandler class that helps handle errors. It can throw an exception when NOTIFICATION_DEBUG is enabled or save a warning to error_log when it's disabled.
 * [Added] Plugin settings value lazy loading.
 * [Added] Email error catcher.
+* [Added] `Notification::fs()` helper that returns plugin filesystem.
 
 == Upgrade Notice ==
 
