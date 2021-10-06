@@ -5,6 +5,7 @@
  * @package notification
  */
 
+use BracketSpace\Notification\Admin\Wizard;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Store;
@@ -191,6 +192,20 @@ function notification_create_view() {
 function notification_cache() {
 	_deprecated_function( __FUNCTION__, '[Next]' );
 	return null;
+}
+
+
+/**
+ * Checks if the Wizard should be displayed.
+ *
+ * @since      6.3.0
+ * @deprecated [Next]
+ * @return     bool
+ */
+function notification_display_wizard() {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Admin\\Wizard::should_display' );
+
+	return Wizard::should_display();
 }
 
 /**
