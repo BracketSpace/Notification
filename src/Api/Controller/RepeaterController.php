@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Api\Controller;
 
 use BracketSpace\Notification\Interfaces\Fillable;
+use BracketSpace\Notification\Store;
 
 /**
  * RepeaterHandler class
@@ -125,7 +126,7 @@ class RepeaterController {
 	 * @return array<mixed>
 	 */
 	public function get_carrier_fields() {
-		$carrier        = notification_get_carrier( $this->carrier );
+		$carrier        = Store\Carrier::get( $this->carrier );
 		$carrier_fields = [];
 
 		if ( null === $carrier ) {

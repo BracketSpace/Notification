@@ -63,41 +63,6 @@ function notification_swap_adapter( $new_adapter_name, Interfaces\Adaptable $ada
 }
 
 /**
- * Registers Carrier
- *
- * @since  6.0.0
- * @since  6.3.0 Uses Carrier Store.
- * @param  Interfaces\Sendable $carrier Carrier object.
- * @return void
- */
-function notification_register_carrier( Interfaces\Sendable $carrier ) {
-	Store\Carrier::insert( $carrier->get_slug(), $carrier );
-	do_action( 'notification/carrier/registered', $carrier );
-}
-
-/**
- * Gets all registered Carriers
- *
- * @since  6.0.0
- * @since  6.3.0 Uses Carrier Store.
- * @return array<string,Interfaces\Sendable>
- */
-function notification_get_carriers() {
-	return Store\Carrier::all();
-}
-
-/**
- * Gets single registered Carrier
- *
- * @since  6.0.0
- * @param  string $carrier_slug Carrier slug.
- * @return Interfaces\Sendable|null
- */
-function notification_get_carrier( $carrier_slug ) {
-	return Store\Carrier::get( $carrier_slug );
-}
-
-/**
  * Checks if the Wizard should be displayed.
  *
  * @since  6.3.0
@@ -338,7 +303,7 @@ function notification_convert_data( $data = [] ) {
 				continue;
 			}
 
-			$registered_carrier = notification_get_carrier( $carrier_slug );
+			$registered_carrier = Store\Carrier::get( $carrier_slug );
 
 			if ( ! empty( $registered_carrier ) ) {
 				$carrier = clone $registered_carrier;

@@ -301,6 +301,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 5. `notification/carrier/sent` action doesn't have the Notification context anymore, so there's no 3rd parameter.
 6. Store classes now live under `BracketSpace\Notification\Store` namespace rather than `BracketSpace\Notification\Defaults\Store`.
 7. Plugin doesn't cache anything anymore, the loading process is more streamlined and things like Post Types are lazy loaded when needed
+8. Registration functions has been replaced with `Register` class and its static methods.
 
 Removed deprecated hooks:
 - `notification/notification/pre-send`, use `notification/carrier/pre-send`
@@ -326,6 +327,7 @@ Removed deprecated hooks:
 * [Removed] Cache class and all caching mechanism for post types, taxonomies and comment types.
 * [Removed] Trait Users. This is replaced with `BracketSpace\Notification\Queries\UserQueries` class.
 * [Removed] Deprecated hooks for actions and filters.
+* [Removed] Carrier helper functions: `notification_register_carrier`, `notification_get_carriers`, `notification_get_carrier`
 * [Added] Runner class that processes the Triggers.
 * [Added] ErrorHandler class that helps handle errors. It can throw an exception when NOTIFICATION_DEBUG is enabled or save a warning to error_log when it's disabled.
 * [Added] Plugin settings value lazy loading.

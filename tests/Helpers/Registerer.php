@@ -9,6 +9,7 @@ namespace BracketSpace\Notification\Tests\Helpers;
 
 use BracketSpace\Notification\Tests\Helpers\Objects;
 use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Store;
 
 /**
@@ -57,7 +58,7 @@ class Registerer {
 	 */
 	public static function register_carrier( $carrier_slug = 'dummmy'  ) {
 		$carrier = new Objects\Carrier( $carrier_slug );
-		notification_register_carrier( $carrier );
+		Register::carrier( $carrier );
 		return $carrier;
 	}
 

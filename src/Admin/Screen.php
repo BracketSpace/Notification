@@ -10,6 +10,7 @@ namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Store;
 
 /**
  * Screen class
@@ -99,7 +100,7 @@ class Screen {
 
 		echo '<div id="carrier-boxes">';
 
-		foreach ( notification_get_carriers() as $_carrier ) {
+		foreach ( Store\Carrier::all() as $_carrier ) {
 
 			$carrier = $notification_post->get_carrier( $_carrier->get_slug() );
 
@@ -148,7 +149,7 @@ class Screen {
 	 */
 	public function render_carriers_widget( $notification_post ) {
 
-		$carriers = notification_get_carriers();
+		$carriers = Store\Carrier::all();
 		$exists   = $notification_post->get_carriers();
 
 		notification_template( 'carriers/widget-add', [

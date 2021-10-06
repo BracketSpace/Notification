@@ -5,12 +5,12 @@
  * @package notification
  */
 
-namespace BracketSpace\Notification\Register;
+namespace BracketSpace\Notification\Repository;
 
 use BracketSpace\Notification\Defaults\MergeTag;
 
 /**
- * Register global merge tags.
+ * Global Merge Tags Repository.
  */
 class GlobalMergeTags {
 

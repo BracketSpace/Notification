@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Store;
 
 /**
  * Notification class
@@ -318,7 +319,7 @@ class Notification {
 	public function add_carrier( $carrier ) {
 
 		if ( ! $carrier instanceof Interfaces\Sendable ) {
-			$carrier = notification_get_carrier( $carrier );
+			$carrier = Store\Carrier::get( $carrier );
 		}
 
 		if ( ! $carrier instanceof Interfaces\Sendable ) {

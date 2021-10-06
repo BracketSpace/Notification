@@ -10,6 +10,7 @@ namespace BracketSpace\Notification\Core;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Admin\PostType;
 use BracketSpace\Notification\Utils\WpObjectHelper;
+use BracketSpace\Notification\Store;
 
 /**
  * Upgrade class
@@ -144,7 +145,7 @@ class Upgrade {
 	protected function populate_carrier( $carrier, $post_id ) {
 
 		if ( ! $carrier instanceof Interfaces\Sendable ) {
-			$carrier = notification_get_carrier( $carrier );
+			$carrier = Store\Carrier::get( $carrier );
 		}
 
 		if ( ! $carrier ) {
@@ -235,7 +236,7 @@ class Upgrade {
 			}
 
 			// Carriers.
-			$raw_carriers = (array) notification_get_carriers();
+			$raw_carriers = (array) Store\Carrier::all();
 			$carriers     = [];
 
 			foreach ( $raw_carriers as $carrier ) {

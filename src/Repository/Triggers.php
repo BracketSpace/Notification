@@ -5,12 +5,12 @@
  * @package notification
  */
 
-namespace BracketSpace\Notification\Register;
+namespace BracketSpace\Notification\Repository;
 
 use BracketSpace\Notification\Defaults\Trigger;
 
 /**
- * Register triggers.
+ * Triggers Repository.
  */
 class Triggers {
 

@@ -5,12 +5,12 @@
  * @package notification
  */
 
-namespace BracketSpace\Notification\Register;
+namespace BracketSpace\Notification\Repository;
 
 use BracketSpace\Notification\Defaults\Resolver;
 
 /**
- * Register resolvers.
+ * Resolvers Repository.
  */
 class Resolvers {
 

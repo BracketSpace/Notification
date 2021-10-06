@@ -9,6 +9,7 @@ namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Utils\Cache\ObjectCache;
+use BracketSpace\Notification\Store;
 
 /**
  * PostType class
@@ -276,7 +277,7 @@ class PostType {
 		// Prepare Carriers to save.
 		$carriers = [];
 
-		foreach ( notification_get_carriers() as $carrier ) {
+		foreach ( Store\Carrier::all() as $carrier ) {
 
 			if ( ! isset( $data[ 'notification_carrier_' . $carrier->get_slug() ] ) ) {
 				continue;

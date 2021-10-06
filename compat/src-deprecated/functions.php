@@ -6,6 +6,8 @@
  */
 
 use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Register;
+use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Vendor\Micropackage\DocHooks\Helper as DocHooksHelper;
 
 /**
@@ -16,7 +18,7 @@ use BracketSpace\Notification\Vendor\Micropackage\DocHooks\Helper as DocHooksHel
  * @return     object           Runtime class instance
  */
 function notification_runtime( $property = null ) {
-	_deprecated_function( 'notification_runtime', '7.0.0', 'Notification static class' );
+	_deprecated_function( __FUNCTION__, '7.0.0', '\Notification' );
 
 	if ( null !== $property ) {
 		return Notification::component( $property );
@@ -34,7 +36,7 @@ function notification_runtime( $property = null ) {
  * @return boolean     True if notification has been just started
  */
 function notification_is_new_notification( $post ) {
-	_deprecated_function( 'notification_is_new_notification', '6.0.0', 'notification_post_is_new' );
+	_deprecated_function( __FUNCTION__, '6.0.0', 'notification_post_is_new' );
 	return notification_post_is_new( $post );
 }
 
@@ -46,7 +48,7 @@ function notification_is_new_notification( $post ) {
  * @return void
  */
 function register_notification( Interfaces\Sendable $notification ) {
-	_deprecated_function( 'register_notification', '6.0.0', 'notification_register_carrier' );
+	_deprecated_function( __FUNCTION__, '6.0.0', 'notification_register_carrier' );
 	notification_register_carrier( $notification );
 }
 
@@ -58,7 +60,7 @@ function register_notification( Interfaces\Sendable $notification ) {
  * @return array notifications
  */
 function notification_get_notifications() {
-	_deprecated_function( 'notification_get_notifications', '6.0.0', 'notification_get_carriers' );
+	_deprecated_function( __FUNCTION__, '6.0.0', 'notification_get_carriers' );
 	return notification_get_carriers();
 }
 
@@ -70,7 +72,7 @@ function notification_get_notifications() {
  * @return mixed                     notification object or false
  */
 function notification_get_single_notification( $notification_slug ) {
-	_deprecated_function( 'notification_get_single_notification', '6.0.0', 'notification_get_carrier' );
+	_deprecated_function( __FUNCTION__, '6.0.0', 'notification_get_carrier' );
 	return notification_get_carrier( $notification_slug );
 }
 
@@ -83,7 +85,7 @@ function notification_get_single_notification( $notification_slug ) {
  * @return void
  */
 function register_trigger( Interfaces\Triggerable $trigger ) {
-	_deprecated_function( 'register_trigger', '6.0.0', 'notification_register_trigger' );
+	_deprecated_function( __FUNCTION__, '6.0.0', 'notification_register_trigger' );
 	notification_register_trigger( $trigger );
 }
 
@@ -97,7 +99,7 @@ function register_trigger( Interfaces\Triggerable $trigger ) {
  * @return mixed                  Recipient object or false
  */
 function notification_get_single_recipient( $carrier_slug, $recipient_slug ) {
-	_deprecated_function( 'notification_get_single_recipient', '6.0.0', 'notification_get_recipient' );
+	_deprecated_function( __FUNCTION__, '6.0.0', 'notification_get_recipient' );
 	return notification_get_recipient( $carrier_slug, $recipient_slug );
 }
 
@@ -110,7 +112,7 @@ function notification_get_single_recipient( $carrier_slug, $recipient_slug ) {
  * @return array                Recipients array
  */
 function notification_get_notification_recipients( $carrier_slug ) {
-	_deprecated_function( 'notification_get_notification_recipients', '6.0.0', 'notification_get_carrier_recipients' );
+	_deprecated_function( __FUNCTION__, '6.0.0', 'notification_get_carrier_recipients' );
 	return notification_get_carrier_recipients( $carrier_slug );
 }
 
@@ -123,7 +125,7 @@ function notification_get_notification_recipients( $carrier_slug ) {
  * @return mixed                trigger object or false
  */
 function notification_get_single_trigger( $trigger_slug ) {
-	_deprecated_function( 'notification_get_single_trigger', '6.0.0', 'notification_get_trigger' );
+	_deprecated_function( __FUNCTION__, '6.0.0', 'notification_get_trigger' );
 	return notification_get_trigger( $trigger_slug );
 }
 
@@ -137,7 +139,7 @@ function notification_get_single_trigger( $trigger_slug ) {
  * @return void
  */
 function register_recipient( $carrier_slug, Interfaces\Receivable $recipient ) {
-	_deprecated_function( 'register_recipient', '6.0.0', 'notification_register_recipient' );
+	_deprecated_function( __FUNCTION__, '6.0.0', 'notification_register_recipient' );
 	notification_register_recipient( $carrier_slug, $recipient );
 }
 
@@ -150,7 +152,7 @@ function register_recipient( $carrier_slug, Interfaces\Receivable $recipient ) {
  * @return     object
  */
 function notification_add_doc_hooks( $object ) {
-	_deprecated_function( 'notification_add_doc_hooks', '7.0.0' );
+	_deprecated_function( __FUNCTION__, '7.0.0' );
 	return DocHooksHelper::hook( $object );
 }
 
@@ -162,7 +164,7 @@ function notification_add_doc_hooks( $object ) {
  * @return     bool
  */
 function notification_dochooks_enabled() {
-	_deprecated_function( 'notification_dochooks_enabled', '7.0.0' );
+	_deprecated_function( __FUNCTION__, '7.0.0' );
 	return DocHooksHelper::is_enabled();
 }
 
@@ -175,7 +177,7 @@ function notification_dochooks_enabled() {
  * @return     bool
  */
 function notification_create_view() {
-	_deprecated_function( 'notification_create_view', '7.0.0' );
+	_deprecated_function( __FUNCTION__, '7.0.0' );
 	return false;
 }
 
@@ -187,6 +189,46 @@ function notification_create_view() {
  * @return     null
  */
 function notification_cache() {
-	_deprecated_function( 'notification_cache', '[Next]' );
+	_deprecated_function( __FUNCTION__, '[Next]' );
 	return null;
+}
+
+/**
+ * Registers Carrier
+ *
+ * @since      6.0.0
+ * @since      6.3.0 Uses Carrier Store.
+ * @deprecated [Next]
+ * @param      Interfaces\Sendable $carrier Carrier object.
+ * @return     void
+ */
+function notification_register_carrier( Interfaces\Sendable $carrier ) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Register::carrier' );
+	Register::carrier( $carrier );
+}
+
+/**
+ * Gets all registered Carriers
+ *
+ * @since      6.0.0
+ * @since      6.3.0 Uses Carrier Store.
+ * @deprecated [Next]
+ * @return     array<string,Interfaces\Sendable>
+ */
+function notification_get_carriers() {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Store\\Carrier::all' );
+	return Store\Carrier::all();
+}
+
+/**
+ * Gets single registered Carrier
+ *
+ * @since      6.0.0
+ * @deprecated [Next]
+ * @param      string $carrier_slug Carrier slug.
+ * @return     Interfaces\Sendable|null
+ */
+function notification_get_carrier( $carrier_slug ) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Store\\Carrier::get' );
+	return Store\Carrier::get( $carrier_slug );
 }
