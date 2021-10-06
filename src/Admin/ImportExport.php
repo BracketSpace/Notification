@@ -9,6 +9,7 @@ namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Utils\Settings\CoreFields;
+use BracketSpace\Notification\Queries\NotificationQueries;
 
 /**
  * Import/Export class
@@ -74,7 +75,7 @@ class ImportExport {
 		$download_link = admin_url( 'admin-post.php?action=notification_export&nonce=' . wp_create_nonce( 'notification-export' ) . '&type=notifications&items=' );
 
 		return Templates::get( 'export/notifications', [
-			'notifications' => notification_get_posts( null, true ),
+			'notifications' => NotificationQueries::all( true ),
 			'download_link' => $download_link,
 		] );
 
@@ -230,9 +231,9 @@ class ImportExport {
 			 */
 			$wp_adapter = notification_swap_adapter( 'WordPress', $json_adapter );
 
-			$existing_notification = notification_get_post_by_hash( $wp_adapter->get_hash() );
+			$existing_notification = NotificationQueries::with_hash( $wp_adapter->get_hash() );
 
-			if ( empty( $existing_notification ) ) {
+			if ( null === $existing_notification ) {
 				$wp_adapter->save();
 				$added++;
 			} else {

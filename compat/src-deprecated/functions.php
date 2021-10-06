@@ -11,6 +11,7 @@ use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Vendor\Micropackage\DocHooks\Helper as DocHooksHelper;
+use BracketSpace\Notification\Queries\NotificationQueries;
 
 /**
  * Gets the plugin Runtime.
@@ -234,6 +235,54 @@ function notification_filesystem( $deprecated ) {
 	_deprecated_function( __FUNCTION__, '[Next]', 'Notification::fs()' );
 
 	return \Notification::fs();
+}
+
+/**
+ * Gets all notification posts with enabled trigger.
+ *
+ * @todo This function needs to be fixed because we are no longer storing
+ *       the Trigger in Notification post meta.
+ *
+ * @since      6.0.0
+ * @deprecated [Next]
+ * @param      mixed $trigger_slug Trigger slug or null if all posts should be returned.
+ * @param      bool  $all          If get all posts or just active.
+ * @return     array
+ */
+function notification_get_posts( $trigger_slug = null, $all = false ) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Queries\\NotificationQueries::all()' );
+
+	return NotificationQueries::all( $all );
+}
+
+/**
+ * Gets notification post by its hash.
+ *
+ * @since      6.0.0
+ * @deprecated [Next]
+ * @param      string $hash Notification unique hash.
+ * @return     mixed        null or Notification object
+ */
+function notification_get_post_by_hash( $hash ) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Queries\\NotificationQueries::with_hash()' );
+
+	return NotificationQueries::with_hash( $hash );
+}
+
+/**
+ * Checks if notification post has been just started
+ *
+ * @since      6.0.0 We are using Notification Post object.
+ * @deprecated [Next]
+ * @param      mixed $post Post ID or WP_Post.
+ * @return     boolean     True if notification has been just started
+ */
+function notification_post_is_new( $post ) {
+	_deprecated_function( __FUNCTION__, '[Next]' );
+
+	/** @var BracketSpace\Notification\Defaults\Adapter\WordPress $notification */
+	$notification = notification_adapt_from( 'WordPress', $post );
+	return $notification->is_new();
 }
 
 /**

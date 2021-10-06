@@ -11,6 +11,7 @@ use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Admin\PostType;
 use BracketSpace\Notification\Utils\WpObjectHelper;
 use BracketSpace\Notification\Store;
+use BracketSpace\Notification\Queries\NotificationQueries;
 
 /**
  * Upgrade class
@@ -219,7 +220,7 @@ class Upgrade {
 	public function upgrade_to_v1() {
 
 		// 1. Save the Notification cache in post_content field.
-		$notifications = notification_get_posts( null, true );
+		$notifications = NotificationQueries::all( true );
 		foreach ( $notifications as $adapter ) {
 
 			$post = $adapter->get_post();

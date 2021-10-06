@@ -371,6 +371,21 @@ parameters:
 			path: compat/src-deprecated/functions.php
 
 		-
+			message: "#^Function notification_get_posts\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: compat/src-deprecated/functions.php
+
+		-
+			message: "#^Function notification_get_template\\(\\) has parameter \\$vars with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: compat/src-deprecated/functions.php
+
+		-
+			message: "#^Function notification_template\\(\\) has parameter \\$vars with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: compat/src-deprecated/functions.php
+
+		-
 			message: "#^Method Notification\\:\\:components\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: notification.php
@@ -577,6 +592,11 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
+			count: 1
+			path: src/Admin/ImportExport.php
+
+		-
+			message: "#^Parameter \\#1 \\$post of method BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\WordPress\\:\\:set_post\\(\\) expects WP_Post, WP_Post\\|null given\\.$#"
 			count: 1
 			path: src/Admin/ImportExport.php
 
@@ -1136,12 +1156,37 @@ parameters:
 			path: src/Core/Upgrade.php
 
 		-
+			message: "#^Cannot access property \\$post_modified_gmt on WP_Post\\|null\\.$#"
+			count: 1
+			path: src/Core/Upgrade.php
+
+		-
+			message: "#^Cannot access property \\$post_name on WP_Post\\|null\\.$#"
+			count: 1
+			path: src/Core/Upgrade.php
+
+		-
+			message: "#^Cannot access property \\$post_status on WP_Post\\|null\\.$#"
+			count: 1
+			path: src/Core/Upgrade.php
+
+		-
+			message: "#^Cannot access property \\$post_title on WP_Post\\|null\\.$#"
+			count: 1
+			path: src/Core/Upgrade.php
+
+		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Upgrade\\:\\:trigger_slug_replacements\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Core/Upgrade.php
 
 		-
 			message: "#^Parameter \\#1 \\$function of function call_user_func expects callable\\(\\)\\: mixed, array\\(\\$this\\(BracketSpace\\\\Notification\\\\Core\\\\Upgrade\\), string\\) given\\.$#"
+			count: 1
+			path: src/Core/Upgrade.php
+
+		-
+			message: "#^Parameter \\#1 \\$version of method BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:set_version\\(\\) expects int, int\\|false given\\.$#"
 			count: 1
 			path: src/Core/Upgrade.php
 
@@ -2591,6 +2636,26 @@ parameters:
 			path: src/Interfaces/Taggable.php
 
 		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Queries\\\\NotificationQueries\\:\\:all\\(\\) should return array\\<int, BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\WordPress\\> but returns array\\<int, BracketSpace\\\\Notification\\\\Interfaces\\\\Adaptable\\>\\.$#"
+			count: 1
+			path: src/Queries/NotificationQueries.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Queries\\\\NotificationQueries\\:\\:with_hash\\(\\) should return BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\WordPress\\|null but returns BracketSpace\\\\Notification\\\\Interfaces\\\\Adaptable\\|null\\.$#"
+			count: 1
+			path: src/Queries/NotificationQueries.php
+
+		-
+			message: "#^PHPDoc tag @return with type BracketSpace\\\\Notification\\\\Queries\\\\BracketSpace\\\\Notification\\\\Interfaces\\\\Adaptable\\|null is not subtype of native type BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\WordPress\\|null\\.$#"
+			count: 1
+			path: src/Queries/NotificationQueries.php
+
+		-
+			message: "#^Return typehint of method BracketSpace\\\\Notification\\\\Queries\\\\NotificationQueries\\:\\:with_hash\\(\\) has invalid type BracketSpace\\\\Notification\\\\Queries\\\\BracketSpace\\\\Notification\\\\Interfaces\\\\Adaptable\\.$#"
+			count: 1
+			path: src/Queries/NotificationQueries.php
+
+		-
 			message: "#^Access to property \\$name on an unknown class \\\\WP_Theme\\.$#"
 			count: 2
 			path: src/Repository/GlobalMergeTags.php
@@ -2711,22 +2776,7 @@ parameters:
 			path: src/api.php
 
 		-
-			message: "#^Function notification_get_posts\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/api.php
-
-		-
-			message: "#^Function notification_get_template\\(\\) has parameter \\$vars with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/api.php
-
-		-
 			message: "#^Function notification_get_triggers_grouped\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/api.php
-
-		-
-			message: "#^Function notification_template\\(\\) has parameter \\$vars with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/api.php
 

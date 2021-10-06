@@ -12,6 +12,7 @@ use BracketSpace\Notification\Core\Sync as CoreSync;
 use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Utils\Settings\CoreFields;
 use BracketSpace\Notification\Vendor\Micropackage\Ajax\Response;
+use BracketSpace\Notification\Queries\NotificationQueries;
 
 /**
  * Sync class
@@ -97,11 +98,17 @@ class Sync {
 				continue;
 			}
 
+			$notification_adapter = NotificationQueries::with_hash( $notification->get_hash() );
+
+			if ( null === $notification_adapter ) {
+				continue;
+			}
+
 			$collection[ $notification->get_hash() ] = [
 				'source'       => 'WordPress',
 				'has_json'     => false,
 				'up_to_date'   => false,
-				'post_id'      => notification_get_post_by_hash( $notification->get_hash() )->get_id(),
+				'post_id'      => $notification_adapter->get_id(),
 				'notification' => $notification,
 			];
 
@@ -189,7 +196,13 @@ class Sync {
 	 * @return void
 	 */
 	public function load_notification_to_json( $hash ) {
-		CoreSync::save_local_json( notification_get_post_by_hash( $hash ) );
+		$notification = NotificationQueries::with_hash( $hash );
+
+		if ( null === $notification ) {
+			return;
+		}
+
+		CoreSync::save_local_json( $notification );
 	}
 
 	/**
