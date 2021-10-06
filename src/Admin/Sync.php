@@ -9,6 +9,7 @@ namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Admin\PostType;
 use BracketSpace\Notification\Core\Sync as CoreSync;
+use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Utils\Settings\CoreFields;
 use BracketSpace\Notification\Vendor\Micropackage\Ajax\Response;
 
@@ -65,10 +66,10 @@ class Sync {
 	public function template_actions() {
 
 		if ( ! notification_is_syncing() ) {
-			return notification_get_template( 'sync/disabled' );
+			return Templates::get( 'sync/disabled' );
 		}
 
-		return notification_get_template( 'sync/actions' );
+		return Templates::get( 'sync/actions' );
 
 	}
 
@@ -143,10 +144,10 @@ class Sync {
 		}
 
 		if ( empty( $collection ) ) {
-			return notification_get_template( 'sync/notifications-empty' );
+			return Templates::get( 'sync/notifications-empty' );
 		}
 
-		return notification_get_template( 'sync/notifications', [
+		return Templates::get( 'sync/notifications', [
 			'collection' => array_reverse( $collection ),
 		] );
 

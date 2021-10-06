@@ -7,6 +7,7 @@
 
 namespace BracketSpace\Notification\Admin;
 
+use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Utils\Settings\CoreFields;
 
 /**
@@ -59,7 +60,7 @@ class ImportExport {
 	 * @return string
 	 */
 	public function notification_import_form() {
-		return notification_get_template( 'import/notifications' );
+		return Templates::get( 'import/notifications' );
 	}
 
 	/**
@@ -72,7 +73,7 @@ class ImportExport {
 
 		$download_link = admin_url( 'admin-post.php?action=notification_export&nonce=' . wp_create_nonce( 'notification-export' ) . '&type=notifications&items=' );
 
-		return notification_get_template( 'export/notifications', [
+		return Templates::get( 'export/notifications', [
 			'notifications' => notification_get_posts( null, true ),
 			'download_link' => $download_link,
 		] );

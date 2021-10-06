@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem;
 
 /**
@@ -94,7 +95,7 @@ class Wizard {
 	 * @return void
 	 */
 	public function wizard_page() {
-		notification_template( 'wizard', [
+		Templates::render( 'wizard', [
 			'sections' => $this->get_settings(),
 		] );
 	}

@@ -6,6 +6,7 @@
  */
 
 use BracketSpace\Notification\Admin\Wizard;
+use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Store;
@@ -173,8 +174,7 @@ function notification_dochooks_enabled() {
  * Creates new View object.
  *
  * @since      6.0.0
- * @deprecated 7.0.0 Use `notification_template` or `notification_get_template` functions.
- *                    Or use Template object from micropackage.
+ * @deprecated 7.0.0 Use Templates object.
  * @return     bool
  */
 function notification_create_view() {
@@ -234,6 +234,40 @@ function notification_filesystem( $deprecated ) {
 	_deprecated_function( __FUNCTION__, '[Next]', 'Notification::fs()' );
 
 	return \Notification::fs();
+}
+
+/**
+ * Prints the template
+ * Wrapper for micropackage's template function
+ *
+ * @since      7.0.0
+ * @deprecated [Next]
+ * @param      string $template_name Template name.
+ * @param      array  $vars          Template variables.
+ *                                   Default: empty.
+ * @return     void
+ */
+function notification_template( $template_name, $vars = [] ) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Core\\Templates::render' );
+
+	Templates::render( $template_name, $vars );
+}
+
+/**
+ * Gets the template
+ * Wrapper for micropackage's get_template function
+ *
+ * @since      7.0.0
+ * @deprecated [Next]
+ * @param      string $template_name Template name.
+ * @param      array  $vars          Template variables.
+ *                                   Default: empty.
+ * @return     string
+ */
+function notification_get_template( $template_name, $vars = [] ) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Core\\Templates::get' );
+
+	return Templates::get( $template_name, $vars );
 }
 
 /**

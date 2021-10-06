@@ -9,6 +9,8 @@
  * @var BracketSpace\Notification\Vendor\Micropackage\Templates\Template $this Template instance.
  */
 
+use BracketSpace\Notification\Core\Templates;
+
 /** @var BracketSpace\Notification\Interfaces\Sendable $carrier */
 $carrier                 = $get( 'carrier' );
 $current_index           = 0;
@@ -22,7 +24,7 @@ $recipient_field_printed = false;
 	foreach ( $carrier->get_form_fields() as $field ) {
 		// Check if this is the right moment to print recipients field.
 		if ( ! $recipient_field_printed && $carrier->has_recipients_field() && $current_index === $carrier->recipients_field_index ) {
-			notification_template( 'form/field', [
+			Templates::render( 'form/field', [
 				'current_field' => $carrier->get_recipients_field(),
 				'carrier'       => $carrier->get_slug(),
 			] );
@@ -35,16 +37,16 @@ $recipient_field_printed = false;
 		];
 
 		if ( empty( $field->get_label() ) ) {
-			notification_template( 'form/field-hidden', $vars );
+			Templates::render( 'form/field-hidden', $vars );
 		} else {
-			notification_template( 'form/field', $vars );
+			Templates::render( 'form/field', $vars );
 			$current_index++;
 		}
 	}
 
 	// Check if the recipients field should be printed as a last field.
 	if ( $carrier->has_recipients_field() && $current_index === $carrier->recipients_field_index ) {
-		notification_template( 'form/field', [
+		Templates::render( 'form/field', [
 			'current_field' => $carrier->get_recipients_field(),
 			'carrier'       => $carrier->get_slug(),
 		] );

@@ -127,34 +127,6 @@ function notification_log( $component, $type, $message ) {
 }
 
 /**
- * Prints the template
- * Wrapper for micropackage's template function
- *
- * @since  7.0.0
- * @param  string $template_name Template name.
- * @param  array  $vars          Template variables.
- *                               Default: empty.
- * @return void
- */
-function notification_template( $template_name, $vars = [] ) {
-	BracketSpace\Notification\Vendor\Micropackage\Templates\template( 'templates', $template_name, $vars );
-}
-
-/**
- * Gets the template
- * Wrapper for micropackage's get_template function
- *
- * @since  7.0.0
- * @param  string $template_name Template name.
- * @param  array  $vars          Template variables.
- *                               Default: empty.
- * @return string
- */
-function notification_get_template( $template_name, $vars = [] ) {
-	return BracketSpace\Notification\Vendor\Micropackage\Templates\get_template( 'templates', $template_name, $vars );
-}
-
-/**
  * Enables the notification syncing
  * By default path used is current theme's `notifiations` dir.
  *
