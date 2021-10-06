@@ -88,6 +88,21 @@ if ( ! class_exists( 'Notification' ) ) :
 			return self::$runtime::VERSION;
 		}
 
+		/**
+		 * Gets plugin filesystem
+		 *
+		 * @since  [Next]
+		 * @throws \Exception When runtime wasn't invoked yet.
+		 * @return \BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem
+		 */
+		public static function fs() {
+			if ( ! isset( self::$runtime ) ) {
+				throw new Exception( 'Notification runtime has not been invoked yet.' );
+			}
+
+			return self::$runtime->get_filesystem();
+		}
+
 	}
 
 endif;
