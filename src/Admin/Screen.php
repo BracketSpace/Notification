@@ -63,7 +63,7 @@ class Screen {
 	 */
 	public function render_trigger_select( $notification_post ) {
 
-		$grouped_triggers = notification_get_triggers_grouped();
+		$grouped_triggers = Store\Trigger::grouped();
 		$trigger          = $notification_post->get_trigger();
 
 		// Add merge tags.
@@ -286,7 +286,7 @@ class Screen {
 	 */
 	public function render_merge_tags_list( $trigger_slug ) {
 
-		$trigger = notification_get_trigger( $trigger_slug );
+		$trigger = Store\Trigger::get( $trigger_slug );
 
 		if ( empty( $trigger ) ) {
 			Templates::render( 'mergetag/metabox-nomergetags' );

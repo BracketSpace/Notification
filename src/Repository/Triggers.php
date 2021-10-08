@@ -7,6 +7,7 @@
 
 namespace BracketSpace\Notification\Repository;
 
+use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Defaults\Trigger;
 
 /**
@@ -57,14 +58,14 @@ class Triggers {
 
 		if ( $post_types ) {
 			foreach ( $post_types as $post_type ) {
-				notification_register_trigger( new Trigger\Post\PostAdded( $post_type ) );
-				notification_register_trigger( new Trigger\Post\PostDrafted( $post_type ) );
-				notification_register_trigger( new Trigger\Post\PostPublished( $post_type ) );
-				notification_register_trigger( new Trigger\Post\PostUpdated( $post_type ) );
-				notification_register_trigger( new Trigger\Post\PostPending( $post_type ) );
-				notification_register_trigger( new Trigger\Post\PostScheduled( $post_type ) );
-				notification_register_trigger( new Trigger\Post\PostTrashed( $post_type ) );
-				notification_register_trigger( new Trigger\Post\PostApproved( $post_type ) );
+				Register::trigger( new Trigger\Post\PostAdded( $post_type ) );
+				Register::trigger( new Trigger\Post\PostDrafted( $post_type ) );
+				Register::trigger( new Trigger\Post\PostPublished( $post_type ) );
+				Register::trigger( new Trigger\Post\PostUpdated( $post_type ) );
+				Register::trigger( new Trigger\Post\PostPending( $post_type ) );
+				Register::trigger( new Trigger\Post\PostScheduled( $post_type ) );
+				Register::trigger( new Trigger\Post\PostTrashed( $post_type ) );
+				Register::trigger( new Trigger\Post\PostApproved( $post_type ) );
 			}
 		}
 	}
@@ -77,9 +78,9 @@ class Triggers {
 
 		if ( $taxonomies ) {
 			foreach ( $taxonomies as $taxonomy ) {
-				notification_register_trigger( new Trigger\Taxonomy\TermAdded( $taxonomy ) );
-				notification_register_trigger( new Trigger\Taxonomy\TermUpdated( $taxonomy ) );
-				notification_register_trigger( new Trigger\Taxonomy\TermDeleted( $taxonomy ) );
+				Register::trigger( new Trigger\Taxonomy\TermAdded( $taxonomy ) );
+				Register::trigger( new Trigger\Taxonomy\TermUpdated( $taxonomy ) );
+				Register::trigger( new Trigger\Taxonomy\TermDeleted( $taxonomy ) );
 			}
 		}
 	}
@@ -88,24 +89,24 @@ class Triggers {
 	 * @return void
 	 */
 	public static function register_user_triggers() {
-		notification_register_trigger( new Trigger\User\UserLogin() );
-		notification_register_trigger( new Trigger\User\UserLogout() );
-		notification_register_trigger( new Trigger\User\UserRegistered() );
-		notification_register_trigger( new Trigger\User\UserProfileUpdated() );
-		notification_register_trigger( new Trigger\User\UserDeleted() );
-		notification_register_trigger( new Trigger\User\UserPasswordChanged() );
-		notification_register_trigger( new Trigger\User\UserPasswordResetRequest() );
-		notification_register_trigger( new Trigger\User\UserLoginFailed() );
-		notification_register_trigger( new Trigger\User\UserRoleChanged() );
+		Register::trigger( new Trigger\User\UserLogin() );
+		Register::trigger( new Trigger\User\UserLogout() );
+		Register::trigger( new Trigger\User\UserRegistered() );
+		Register::trigger( new Trigger\User\UserProfileUpdated() );
+		Register::trigger( new Trigger\User\UserDeleted() );
+		Register::trigger( new Trigger\User\UserPasswordChanged() );
+		Register::trigger( new Trigger\User\UserPasswordResetRequest() );
+		Register::trigger( new Trigger\User\UserLoginFailed() );
+		Register::trigger( new Trigger\User\UserRoleChanged() );
 	}
 
 	/**
 	 * @return void
 	 */
 	public static function register_media_triggers() {
-		notification_register_trigger( new Trigger\Media\MediaAdded() );
-		notification_register_trigger( new Trigger\Media\MediaUpdated() );
-		notification_register_trigger( new Trigger\Media\MediaTrashed() );
+		Register::trigger( new Trigger\Media\MediaAdded() );
+		Register::trigger( new Trigger\Media\MediaUpdated() );
+		Register::trigger( new Trigger\Media\MediaTrashed() );
 	}
 
 	/**
@@ -116,13 +117,13 @@ class Triggers {
 
 		if ( $comment_types ) {
 			foreach ( $comment_types as $comment_type ) {
-				notification_register_trigger( new Trigger\Comment\CommentPublished( $comment_type ) );
-				notification_register_trigger( new Trigger\Comment\CommentAdded( $comment_type ) );
-				notification_register_trigger( new Trigger\Comment\CommentReplied( $comment_type ) );
-				notification_register_trigger( new Trigger\Comment\CommentApproved( $comment_type ) );
-				notification_register_trigger( new Trigger\Comment\CommentUnapproved( $comment_type ) );
-				notification_register_trigger( new Trigger\Comment\CommentSpammed( $comment_type ) );
-				notification_register_trigger( new Trigger\Comment\CommentTrashed( $comment_type ) );
+				Register::trigger( new Trigger\Comment\CommentPublished( $comment_type ) );
+				Register::trigger( new Trigger\Comment\CommentAdded( $comment_type ) );
+				Register::trigger( new Trigger\Comment\CommentReplied( $comment_type ) );
+				Register::trigger( new Trigger\Comment\CommentApproved( $comment_type ) );
+				Register::trigger( new Trigger\Comment\CommentUnapproved( $comment_type ) );
+				Register::trigger( new Trigger\Comment\CommentSpammed( $comment_type ) );
+				Register::trigger( new Trigger\Comment\CommentTrashed( $comment_type ) );
 			}
 		}
 	}
@@ -131,37 +132,37 @@ class Triggers {
 	 * @return void
 	 */
 	public static function register_wp_triggers() {
-		notification_register_trigger( new Trigger\WordPress\UpdatesAvailable() );
+		Register::trigger( new Trigger\WordPress\UpdatesAvailable() );
 	}
 
 	/**
 	 * @return void
 	 */
 	public static function register_plugin_triggers() {
-		notification_register_trigger( new Trigger\Plugin\Activated() );
-		notification_register_trigger( new Trigger\Plugin\Deactivated() );
-		notification_register_trigger( new Trigger\Plugin\Updated() );
-		notification_register_trigger( new Trigger\Plugin\Installed() );
-		notification_register_trigger( new Trigger\Plugin\Removed() );
+		Register::trigger( new Trigger\Plugin\Activated() );
+		Register::trigger( new Trigger\Plugin\Deactivated() );
+		Register::trigger( new Trigger\Plugin\Updated() );
+		Register::trigger( new Trigger\Plugin\Installed() );
+		Register::trigger( new Trigger\Plugin\Removed() );
 	}
 
 	/**
 	 * @return void
 	 */
 	public static function register_theme_triggers() {
-		notification_register_trigger( new Trigger\Theme\Switched() );
-		notification_register_trigger( new Trigger\Theme\Updated() );
-		notification_register_trigger( new Trigger\Theme\Installed() );
+		Register::trigger( new Trigger\Theme\Switched() );
+		Register::trigger( new Trigger\Theme\Updated() );
+		Register::trigger( new Trigger\Theme\Installed() );
 	}
 
 	/**
 	 * @return void
 	 */
 	public static function register_privacy_triggers() {
-		notification_register_trigger( new Trigger\Privacy\DataEraseRequest() );
-		notification_register_trigger( new Trigger\Privacy\DataErased() );
-		notification_register_trigger( new Trigger\Privacy\DataExportRequest() );
-		notification_register_trigger( new Trigger\Privacy\DataExported() );
+		Register::trigger( new Trigger\Privacy\DataEraseRequest() );
+		Register::trigger( new Trigger\Privacy\DataErased() );
+		Register::trigger( new Trigger\Privacy\DataExportRequest() );
+		Register::trigger( new Trigger\Privacy\DataExported() );
 	}
 
 }

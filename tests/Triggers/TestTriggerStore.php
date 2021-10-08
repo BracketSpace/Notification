@@ -6,6 +6,8 @@
  */
 
 namespace BracketSpace\Notification\Tests\Triggers;
+
+use BracketSpace\Notification\Store\Trigger as TriggerStore;
 use BracketSpace\Notification\Tests\Helpers\Registerer;
 use BracketSpace\Notification\Tests\Helpers\NotificationPost;
 
@@ -23,7 +25,7 @@ class TestTriggerStore extends \WP_UnitTestCase {
 		$trigger = Registerer::register_trigger();
 		$trigger_slug = $trigger->get_slug();
 
-		$this->assertSame( $trigger, notification_get_trigger( $trigger_slug ) );
+		$this->assertSame( $trigger, TriggerStore::get( $trigger_slug ) );
 	}
 
 	public function test_getting_tiggers() {
@@ -35,7 +37,7 @@ class TestTriggerStore extends \WP_UnitTestCase {
 			$trigger_2
 		];
 
-		$this->assertSame( $expected_array, notification_get_triggers() );
+		$this->assertSame( $expected_array, TriggerStore::all() );
 	}
 
 	/**
@@ -44,11 +46,8 @@ class TestTriggerStore extends \WP_UnitTestCase {
 	 * @since 6.3.0
 	 */
 	public function test_getting_triggers_grouped() {
-		$trigger_1 = Registerer::register_trigger( '0' );
-		$trigger_2 = Registerer::register_trigger( '1' );
-
-		$trigger_1->set_group( 'group_1' );
-		$trigger_2->set_group( 'group_2' );
+		$trigger_1 = Registerer::register_trigger( '0' )->set_group( 'group_1' );
+		$trigger_2 = Registerer::register_trigger( '1' )->set_group( 'group_2' );
 
 		$expected_array = [
 			'group_1' => [
@@ -59,7 +58,7 @@ class TestTriggerStore extends \WP_UnitTestCase {
 			]
 		];
 
-		$this->assertSame( $expected_array, notification_get_triggers_grouped() );
+		$this->assertSame( $expected_array, TriggerStore::grouped() );
 	}
 
 	/**

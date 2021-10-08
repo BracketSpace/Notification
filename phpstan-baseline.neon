@@ -2705,8 +2705,3 @@ parameters:
 			count: 1
 			path: src/api.php
 
-		-
-			message: "#^Function notification_get_triggers_grouped\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/api.php
-

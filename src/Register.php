@@ -55,4 +55,18 @@ class Register {
 		return $resolver;
 	}
 
+	/**
+	 * Registers Trigger
+	 *
+	 * @since  [Next]
+	 * @param  Interfaces\Triggerable $trigger Trigger object.
+	 * @return Interfaces\Triggerable
+	 */
+	public static function trigger( Interfaces\Triggerable $trigger ) {
+		Store\Trigger::insert( $trigger->get_slug(), $trigger );
+		do_action( 'notification/trigger/registered', $trigger );
+
+		return $trigger;
+	}
+
 }

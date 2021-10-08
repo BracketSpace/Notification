@@ -34,7 +34,7 @@ class Registerer {
 			$trigger = new Objects\SimpleTrigger( $trigger_tag );
 		}
 
-		notification_register_trigger( $trigger );
+		Register::trigger( $trigger );
 
 		return $trigger;
 

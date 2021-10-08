@@ -553,7 +553,7 @@ function notification_parse_recipient( $carrier_slug, $recipient_type, $recipien
  * @return     void
  */
 function notification_register_resolver( Interfaces\Resolvable $resolver ) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Register::recipient' );
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Register::resolver' );
 
 	Register::resolver( $resolver );
 }
@@ -587,4 +587,59 @@ function notification_clear_tags( $value ) {
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Core\\Resolver::clear' );
 
 	return Resolver::clear( $value );
+}
+
+/**
+ * Adds Trigger to Store
+ *
+ * @since  6.0.0
+ * @since  6.3.0 Uses Trigger Store
+ * @param  Interfaces\Triggerable $trigger trigger object.
+ * @return void
+ */
+function notification_register_trigger( Interfaces\Triggerable $trigger ) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Register::trigger' );
+
+	Register::trigger( $trigger );
+}
+
+/**
+ * Gets all registered triggers
+ *
+ * @since      6.0.0
+ * @since      6.3.0 Uses Trigger Store
+ * @deprecated [Next]
+ * @return     array<int,Interfaces\Triggerable>
+ */
+function notification_get_triggers() {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Store\\Trigger::all' );
+
+	return Store\Trigger::all();
+}
+
+/**
+ * Gets single registered trigger
+ *
+ * @since      6.0.0
+ * @deprecated [Next]
+ * @param      string $trigger_slug trigger slug.
+ * @return     Interfaces\Triggerable|null
+ */
+function notification_get_trigger( $trigger_slug ) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Store\\Trigger::get' );
+
+	return Store\Trigger::get( $trigger_slug );
+}
+
+/**
+ * Gets all registered triggers in a grouped array
+ *
+ * @since      5.0.0
+ * @deprecated [Next]
+ * @return     array<string,array<string, Interfaces\Triggerable>>
+ */
+function notification_get_triggers_grouped() {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Store\\Trigger::grouped' );
+
+	return Store\Trigger::grouped();
 }

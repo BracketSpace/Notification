@@ -269,7 +269,7 @@ class PostType {
 
 		// Trigger.
 		if ( ! empty( $data['notification_trigger'] ) ) {
-			$trigger = notification_get_trigger( $data['notification_trigger'] );
+			$trigger = Store\Trigger::get( $data['notification_trigger'] );
 			if ( ! empty( $trigger ) ) {
 				$notification_post->set_trigger( $trigger );
 			}

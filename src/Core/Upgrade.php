@@ -230,7 +230,7 @@ class Upgrade {
 
 			// Trigger.
 			$trigger_slug = get_post_meta( $adapter->get_id(), '_trigger', true );
-			$trigger      = notification_get_trigger( $trigger_slug );
+			$trigger      = Store\Trigger::get( $trigger_slug );
 
 			if ( ! empty( $trigger ) ) {
 				$adapter->set_trigger( $trigger );

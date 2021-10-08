@@ -139,7 +139,7 @@ function notification_convert_data( $data = [] ) {
 
 	// Trigger conversion.
 	if ( ! empty( $data['trigger'] ) && ! ( $data['trigger'] instanceof Interfaces\Triggerable ) ) {
-		$data['trigger'] = notification_get_trigger( $data['trigger'] );
+		$data['trigger'] = Store\Trigger::get( $data['trigger'] );
 	}
 
 	// Carriers conversion.
@@ -215,63 +215,6 @@ function notification_get_setting( $setting ) {
 	}
 
 	return \Notification::component( 'core_settings' )->get_setting( $setting );
-
-}
-
-/**
- * Adds Trigger to Store
- *
- * @since  6.0.0
- * @since  6.3.0 Uses Trigger Store
- * @param  Interfaces\Triggerable $trigger trigger object.
- * @return void
- */
-function notification_register_trigger( Interfaces\Triggerable $trigger ) {
-	Store\Trigger::insert( $trigger->get_slug(), $trigger );
-	do_action( 'notification/trigger/registered', $trigger );
-}
-
-/**
- * Gets all registered triggers
- *
- * @since  6.0.0
- * @since  6.3.0 Uses Trigger Store
- * @return array<int,Interfaces\Triggerable>
- */
-function notification_get_triggers() {
-	return Store\Trigger::all();
-}
-
-/**
- * Gets single registered trigger
- *
- * @since  6.0.0
- * @param  string $trigger_slug trigger slug.
- * @return Interfaces\Triggerable|null
- */
-function notification_get_trigger( $trigger_slug ) {
-	return Store\Trigger::get( $trigger_slug );
-}
-
-/**
- * Gets all registered triggers in a grouped array
- *
- * @since  5.0.0
- * @return array grouped triggers
- */
-function notification_get_triggers_grouped() {
-
-	$groups = [];
-
-	foreach ( notification_get_triggers() as $trigger ) {
-		if ( ! isset( $groups[ $trigger->get_group() ] ) ) {
-			$groups[ $trigger->get_group() ] = array();
-		}
-
-		$groups[ $trigger->get_group() ][ $trigger->get_slug() ] = $trigger;
-	}
-
-	return $groups;
 
 }
 
