@@ -9,6 +9,7 @@ namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\License;
 use BracketSpace\Notification\Core\Templates;
+use BracketSpace\Notification\Core\Whitelabel;
 use BracketSpace\Notification\ErrorHandler;
 use BracketSpace\Notification\Utils\EDDUpdater;
 use BracketSpace\Notification\Utils\Cache\Transient as TransientCache;
@@ -412,7 +413,7 @@ class Extensions {
 	 */
 	public function activation_nag() {
 
-		if ( notification_is_whitelabeled() ) {
+		if ( Whitelabel::is_whitelabeled() ) {
 			return;
 		}
 

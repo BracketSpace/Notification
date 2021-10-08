@@ -333,6 +333,7 @@ Removed deprecated hooks:
 * [Removed] Template functions: `notification_template`, `notification_get_template`.
 * [Removed] Notification post functions: `notification_get_posts`, `notification_get_post_by_hash`, `notification_post_is_new`.
 * [Removed] Syncing functions: `notification_sync`, `notification_get_sync_path`, `notification_is_syncing`.
+* [Removed] Whitelabeling functions: `notification_whitelabel`, `notification_is_whitelabeled`.
 * [Added] Runner class that processes the Triggers.
 * [Added] ErrorHandler class that helps handle errors. It can throw an exception when NOTIFICATION_DEBUG is enabled or save a warning to error_log when it's disabled.
 * [Added] Plugin settings value lazy loading.

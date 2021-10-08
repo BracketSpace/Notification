@@ -20,6 +20,8 @@ class TestSync extends \WP_UnitTestCase {
 	 * @since [Next]
 	 */
 	public function test_enabling_syncing() {
+		$this->assertFalse( Sync::is_syncing() );
+
 		$path = get_stylesheet_directory() . '/' . uniqid();
 		Sync::enable( $path );
 

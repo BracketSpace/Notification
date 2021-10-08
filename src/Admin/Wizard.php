@@ -9,6 +9,7 @@ namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Templates;
+use BracketSpace\Notification\Core\Whitelabel;
 use BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem;
 
 /**
@@ -343,7 +344,7 @@ class Wizard {
 		$count  += isset( $counter->publish ) ? $counter->publish : 0;
 		$count  += isset( $counter->draft ) ? $counter->draft : 0;
 
-		return ! notification_is_whitelabeled() && ! get_option( 'notification_wizard_dismissed' ) && ( 0 === $count );
+		return ! Whitelabel::is_whitelabeled() && ! get_option( 'notification_wizard_dismissed' ) && ( 0 === $count );
 	}
 
 }

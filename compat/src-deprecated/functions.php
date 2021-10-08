@@ -8,6 +8,7 @@
 use BracketSpace\Notification\Admin\Wizard;
 use BracketSpace\Notification\Core\Sync;
 use BracketSpace\Notification\Core\Templates;
+use BracketSpace\Notification\Core\Whitelabel;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Store;
@@ -393,6 +394,33 @@ function notification_is_syncing() {
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Core\\Sync::is_syncing' );
 
 	return Sync::is_syncing();
+}
+
+/**
+ * Sets the plugin in white label mode.
+ *
+ * @since      5.0.0
+ * @deprecated [Next]
+ * @param      array $args white label args.
+ * @return     void
+ */
+function notification_whitelabel( $args = [] ) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Core\\Whitelabel::enable' );
+
+	Whitelabel::enable( $args );
+}
+
+/**
+ * Checks if the plugin is in white label mode.
+ *
+ * @since      5.0.0
+ * @deprecated [Next]
+ * @return     bool
+ */
+function notification_is_whitelabeled() {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Core\\Whitelabel::is_whitelabeled' );
+
+	return Whitelabel::is_whitelabeled();
 }
 
 /**

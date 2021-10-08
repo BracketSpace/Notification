@@ -386,6 +386,11 @@ parameters:
 			path: compat/src-deprecated/functions.php
 
 		-
+			message: "#^Function notification_whitelabel\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: compat/src-deprecated/functions.php
+
+		-
 			message: "#^Method Notification\\:\\:components\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: notification.php
@@ -2777,11 +2782,6 @@ parameters:
 
 		-
 			message: "#^Function notification_get_triggers_grouped\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/api.php
-
-		-
-			message: "#^Function notification_whitelabel\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/api.php
 
