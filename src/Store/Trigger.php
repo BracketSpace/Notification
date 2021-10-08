@@ -12,6 +12,9 @@ use BracketSpace\Notification\Traits\Storage;
 
 /**
  * Trigger Store
+ *
+ * @method static array<string,Interfaces\Triggerable> all() Gets all registered Triggers
+ * @method static Interfaces\Triggerable|null get(string $index) Gets registered Trigger
  */
 class Trigger implements Interfaces\Storable {
 	use Storage;
@@ -25,9 +28,6 @@ class Trigger implements Interfaces\Storable {
 	public static function grouped() : array {
 		$groups = [];
 
-		/**
-		 * @var Interfaces\Triggerable $trigger
-		 */
 		foreach ( static::all() as $trigger ) {
 			if ( ! isset( $groups[ $trigger->get_group() ] ) ) {
 				$groups[ (string) $trigger->get_group() ] = [];
