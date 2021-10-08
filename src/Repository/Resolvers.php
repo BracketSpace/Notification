@@ -7,6 +7,7 @@
 
 namespace BracketSpace\Notification\Repository;
 
+use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Defaults\Resolver;
 
 /**
@@ -18,9 +19,7 @@ class Resolvers {
 	 * @return void
 	 */
 	public static function register() {
-
-		notification_register_resolver( new Resolver\Basic() );
-
+		Register::resolver( new Resolver\Basic() );
 	}
 
 }
