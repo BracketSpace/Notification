@@ -6,7 +6,6 @@
  */
 
 use BracketSpace\Notification\Core\Notification;
-use BracketSpace\Notification\Core\Resolver;
 use BracketSpace\Notification\Defaults\Adapter;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Interfaces;
@@ -167,45 +166,6 @@ function notification_convert_data( $data = [] ) {
 
 	return $data;
 
-}
-
-/**
- * Adds Resolver to Store
- *
- * @since  6.0.0
- * @since  6.3.0 Uses Resolver Store.
- * @param  Interfaces\Resolvable $resolver Resolver object.
- * @return void
- */
-function notification_register_resolver( Interfaces\Resolvable $resolver ) {
-	Store\Resolver::insert( $resolver->get_slug(), $resolver );
-	do_action( 'notification/resolver/registered', $resolver );
-}
-
-/**
- * Resolves the value
- *
- * @since  6.0.0
- * @since  6.3.0 Uses Resolver Store.
- * @param  string                 $value   Unresolved string with tags.
- * @param  Interfaces\Triggerable $trigger Trigger object.
- * @return string                         Resolved value
- */
-function notification_resolve( $value, Interfaces\Triggerable $trigger ) {
-	$resolver = new Resolver();
-	return $resolver->resolve( $value, $trigger );
-}
-
-/**
- * Clears all Merge Tags
- *
- * @since  6.0.0
- * @param  string $value Unresolved string with tags.
- * @return string        Value without any tags
- */
-function notification_clear_tags( $value ) {
-	$resolver = new Resolver();
-	return $resolver->clear( $value );
 }
 
 /**

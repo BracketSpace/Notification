@@ -7,6 +7,7 @@
 
 namespace BracketSpace\Notification\Abstracts;
 
+use BracketSpace\Notification\Core\Resolver;
 use BracketSpace\Notification\Defaults\Field;
 use BracketSpace\Notification\Defaults\Field\RecipientsField;
 use BracketSpace\Notification\Interfaces;
@@ -351,7 +352,7 @@ abstract class Carrier implements Interfaces\Sendable {
 
 		$value = apply_filters( 'notification/carrier/field/resolving', $value );
 
-		$resolved = notification_resolve( $value, $trigger );
+		$resolved = Resolver::resolve( $value, $trigger );
 
 		// Unused tags.
 		$strip_merge_tags = apply_filters(
@@ -360,7 +361,7 @@ abstract class Carrier implements Interfaces\Sendable {
 		);
 
 		if ( $strip_merge_tags ) {
-			$resolved = notification_clear_tags( $resolved );
+			$resolved = Resolver::clear( $resolved );
 		}
 
 		// Shortcodes.

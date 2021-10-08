@@ -1061,17 +1061,7 @@ parameters:
 			path: src/Core/Resolver.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Resolver\\:\\:get_resolvers\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Core/Resolver.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Resolver\\:\\:resolve\\(\\) should return string but returns string\\|null\\.$#"
-			count: 1
-			path: src/Core/Resolver.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func expects callable\\(\\)\\: mixed, array\\(mixed, 'resolve_merge_tag'\\) given\\.$#"
 			count: 1
 			path: src/Core/Resolver.php
 

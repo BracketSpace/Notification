@@ -41,4 +41,18 @@ class Register {
 		return $recipient;
 	}
 
+	/**
+	 * Registers Recipient
+	 *
+	 * @since  [Next]
+	 * @param  Interfaces\Resolvable $resolver Resolver object.
+	 * @return Interfaces\Resolvable
+	 */
+	public static function resolver( Interfaces\Resolvable $resolver ) {
+		Store\Resolver::insert( $resolver->get_slug(), $resolver );
+		do_action( 'notification/resolver/registered', $resolver );
+
+		return $resolver;
+	}
+
 }

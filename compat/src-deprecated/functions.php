@@ -6,6 +6,7 @@
  */
 
 use BracketSpace\Notification\Admin\Wizard;
+use BracketSpace\Notification\Core\Resolver;
 use BracketSpace\Notification\Core\Sync;
 use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Core\Whitelabel;
@@ -540,4 +541,50 @@ function notification_parse_recipient( $carrier_slug, $recipient_type, $recipien
 	_deprecated_function( __FUNCTION__, '[Next]' );
 
 	return Store\Recipient::get( $carrier_slug, $recipient_type )->parse_value( $recipient_raw_value ) ?? [];
+}
+
+/**
+ * Adds Resolver to Store
+ *
+ * @since      6.0.0
+ * @since      6.3.0 Uses Resolver Store.
+ * @deprecated [Next]
+ * @param      Interfaces\Resolvable $resolver Resolver object.
+ * @return     void
+ */
+function notification_register_resolver( Interfaces\Resolvable $resolver ) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Register::recipient' );
+
+	Register::resolver( $resolver );
+}
+
+
+/**
+ * Resolves the value
+ *
+ * @since      6.0.0
+ * @since      6.3.0 Uses Resolver Store.
+ * @deprecated [Next]
+ * @param      string                 $value   Unresolved string with tags.
+ * @param      Interfaces\Triggerable $trigger Trigger object.
+ * @return     string                         Resolved value
+ */
+function notification_resolve( $value, Interfaces\Triggerable $trigger ) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Core\\Resolver::resolve' );
+
+	return Resolver::resolve( $value, $trigger );
+}
+
+/**
+ * Clears all Merge Tags
+ *
+ * @since      6.0.0
+ * @deprecated [Next]
+ * @param      string $value Unresolved string with tags.
+ * @return     string        Value without any tags
+ */
+function notification_clear_tags( $value ) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Core\\Resolver::clear' );
+
+	return Resolver::clear( $value );
 }

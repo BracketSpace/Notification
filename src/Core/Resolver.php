@@ -19,14 +19,15 @@ class Resolver {
 	/**
 	 * Resolves value with all the resolvers
 	 *
-	 * @since 6.0.0
-	 * @param string      $value   Unresolved string with tags.
-	 * @param Triggerable $trigger Trigger object.
-	 * @return string              Resolved value
+	 * @since  6.0.0
+	 * @since  [Next] Method is static
+	 * @param  string      $value   Unresolved string with tags.
+	 * @param  Triggerable $trigger Trigger object.
+	 * @return string               Resolved value
 	 */
-	public function resolve( $value, Triggerable $trigger ) {
+	public static function resolve( $value, Triggerable $trigger ) {
 
-		$resolvers = $this->get_resolvers();
+		$resolvers = ResolverStore::sorted();
 
 		if ( empty( $resolvers ) ) {
 			return $value;
@@ -44,35 +45,14 @@ class Resolver {
 	}
 
 	/**
-	 * Gets resolvers from store and sort them by priority
-	 *
-	 * @since  6.0.0
-	 * @return array
-	 */
-	public function get_resolvers() {
-
-		$resolvers = ResolverStore::all();
-
-		usort( $resolvers, function( $a, $b ) {
-			if ( $a->get_priority() === $b->get_priority() ) {
-				return 0;
-			}
-
-			return $a->get_priority() < $b->get_priority() ? -1 : 1;
-		} );
-
-		return $resolvers;
-
-	}
-
-	/**
 	 * Clears any Merge Tags
 	 *
 	 * @since  6.0.0
+	 * @since  [Next] Method is static
 	 * @param  string $value Unresolved string with tags.
 	 * @return string
 	 */
-	public function clear( $value ) {
+	public static function clear( $value ) {
 		return preg_replace( '/(?<!\!)\{(?:[^{}])*\}/', '', $value );
 	}
 

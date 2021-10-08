@@ -120,7 +120,7 @@ class Registerer {
 	 */
 	public static function register_resolver() {
 		$resolver = new Objects\Resolver();
-		notification_register_resolver( $resolver );
+		Register::resolver( $resolver );
 		return $resolver;
 	}
 
