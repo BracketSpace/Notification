@@ -318,7 +318,6 @@ Removed deprecated hooks:
 
 * [Fixed] Code issues from not using static analysis.
 * [Fixed] WordPress' balanceTags filter which was breaking the Notification content.
-* [Changed] Code Editor Field sanitizer to allow for multiple HTML tags.
 * [Changed] Always return the single root filesystem in Runtime.
 * [Changed] Stores with plugin objects, now they are much simpler and don't use WP filters.
 * [Changed] Plugin loading stack, [see docs](https://docs.bracketspace.com/notification/developer/general/plugin-loading-chain) for more details.
@@ -338,6 +337,7 @@ Removed deprecated hooks:
 * [Removed] Notification post functions: `notification_get_posts`, `notification_get_post_by_hash`, `notification_post_is_new`.
 * [Removed] Syncing functions: `notification_sync`, `notification_get_sync_path`, `notification_is_syncing`.
 * [Removed] Whitelabeling functions: `notification_whitelabel`, `notification_is_whitelabeled`.
+* [Removed] Editor and Code Editor fields sanitizers to allow for HTML usage, ie. email templates.
 * [Added] Runner class that processes the Triggers.
 * [Added] ErrorHandler class that helps handle errors. It can throw an exception when NOTIFICATION_DEBUG is enabled or save a warning to error_log when it's disabled.
 * [Added] Plugin settings value lazy loading.

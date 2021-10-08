@@ -69,12 +69,11 @@ class EditorField extends Field {
 	 * @return mixed        sanitized value
 	 */
 	public function sanitize( $value ) {
-		/**
-		 * Fixes WPLinkPreview TinyMCE component which adds the https:// prefix to not valid URL.
-		 */
-		$value = str_replace( [ 'https://{', 'http://{' ], '{', $value );
 
-		return wp_kses_post( $value );
+		/**
+		 * Fixes WPLinkPreview TinyMCE component which adds the https:// prefix to invalid URL.
+		 */
+		return str_replace( [ 'https://{', 'http://{' ], '{', $value );
 	}
 
 }

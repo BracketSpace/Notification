@@ -26,6 +26,7 @@ Vue.component("recipient-row", {
 					:class="subfield.css_class"
 					type="text"
 					:value="subfield.value"
+					:disabled="subfield.disabled"
 					:name="createFieldName(type, keyIndex, subfield) + '[' + subfield.name + ']'"
 					:placeholder="subfield.placeholder"
 					>
