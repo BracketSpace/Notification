@@ -7,6 +7,8 @@
 
 namespace BracketSpace\Notification\Defaults\Field;
 
+use BracketSpace\Notification\Store\Recipient as RecipientStore;
+
 /**
  * Recipients field class
  */
@@ -49,7 +51,7 @@ class RecipientsField extends RepeaterField {
 			'carrier' => $this->carrier,
 		];
 
-		$recipients = notification_get_carrier_recipients( $this->carrier );
+		$recipients = RecipientStore::all_for_carrier( $this->carrier );
 
 		if ( ! empty( $recipients ) ) {
 

@@ -6,6 +6,8 @@
  */
 
 namespace BracketSpace\Notification\Tests\Recipient;
+
+use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Tests\Helpers\Registerer;
 
 class TestRecipientStore extends \WP_UnitTestCase {
@@ -29,7 +31,7 @@ class TestRecipientStore extends \WP_UnitTestCase {
 		$carrier_recipient = Registerer::register_recipient();
 		$recipient_slug = $carrier_recipient->get_slug();
 
-		$this->assertSame( $carrier_recipient, notification_get_recipient('dummy_carrier', $recipient_slug));
+		$this->assertSame( $carrier_recipient, Store\Recipient::get('dummy_carrier', $recipient_slug));
 	}
 
 	/**
@@ -50,7 +52,7 @@ class TestRecipientStore extends \WP_UnitTestCase {
 			],
 		];
 
-		$this->assertSame( $expected_array, notification_get_recipients() );
+		$this->assertSame( $expected_array, Store\Recipient::all() );
 	}
 
 	/**
@@ -65,7 +67,7 @@ class TestRecipientStore extends \WP_UnitTestCase {
 			$carrier_recipient->get_slug() => $carrier_recipient
 		];
 
-		$this->assertSame( $expected_array, notification_get_carrier_recipients( 'dummy_carrier' ) );
+		$this->assertSame( $expected_array, Store\Recipient::all_for_carrier( 'dummy_carrier' ) );
 	}
 
 	/**

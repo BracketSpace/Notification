@@ -143,7 +143,7 @@ class Registerer {
 	 */
 	public static function register_recipient( $carrier_slug = 'dummy_carrier' ) {
 		$recipient = new Objects\Recipient();
-		notification_register_recipient( $carrier_slug, $recipient );
+		Register::recipient( $carrier_slug, $recipient );
 		return $recipient;
 	}
 

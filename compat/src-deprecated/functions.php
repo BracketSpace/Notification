@@ -465,3 +465,79 @@ function notification_get_carrier( $carrier_slug ) {
 
 	return Store\Carrier::get( $carrier_slug );
 }
+
+/**
+ * Registers recipient
+ *
+ * @since      6.0.0
+ * @since      6.3.0 Uses Recipient Store
+ * @deprecated [Next]
+ * @param      string                $carrier_slug Carrier slug.
+ * @param      Interfaces\Receivable $recipient    Recipient object.
+ * @return     void
+ */
+function notification_register_recipient( $carrier_slug, Interfaces\Receivable $recipient ) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Register::recipient' );
+
+	Register::recipient( $carrier_slug, $recipient );
+}
+
+/**
+ * Gets all registered recipients
+ *
+ * @since      6.0.0
+ * @since      6.3.0 Uses Recipient Store
+ * @deprecated [Next]
+ * @return     array<string,array<string,Interfaces\Receivable>>
+ */
+function notification_get_recipients() {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Store\\Recipient::all' );
+
+	return Store\Recipient::all();
+}
+
+/**
+ * Gets registered recipients for specific Carrier
+ *
+ * @since      6.0.0
+ * @deprecated [Next]
+ * @param      string $carrier_slug Carrier slug.
+ * @return     array<string,Interfaces\Receivable>
+ */
+function notification_get_carrier_recipients( $carrier_slug ) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Store\\Recipient::all_for_carrier' );
+
+	return Store\Recipient::all_for_carrier( $carrier_slug );
+}
+
+/**
+ * Gets single registered recipient for specific Carrier
+ *
+ * @since      6.0.0
+ * @deprecated [Next]
+ * @param      string $carrier_slug   Carrier slug.
+ * @param      string $recipient_slug Recipient slug.
+ * @return     Interfaces\Receivable|null
+ */
+function notification_get_recipient( $carrier_slug, $recipient_slug ) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Store\\Recipient::get' );
+
+	return Store\Recipient::get( $carrier_slug, $recipient_slug );
+}
+
+/**
+ * Parses recipient raw value to values which can be used by notifications
+ *
+ * @since      5.0.0
+ * @since      6.0.0 Changed naming convention from Notification to Carrier.
+ * @deprecated [Next]
+ * @param      string $carrier_slug        Slug of the Carrier.
+ * @param      string $recipient_type      Slug of the Recipient.
+ * @param      mixed  $recipient_raw_value Raw value.
+ * @return     mixed                       Parsed value
+ */
+function notification_parse_recipient( $carrier_slug, $recipient_type, $recipient_raw_value ) {
+	_deprecated_function( __FUNCTION__, '[Next]' );
+
+	return Store\Recipient::get( $carrier_slug, $recipient_type )->parse_value( $recipient_raw_value ) ?? [];
+}

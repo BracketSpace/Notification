@@ -7,6 +7,7 @@
 
 namespace BracketSpace\Notification\Repository;
 
+use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Defaults\Recipient;
 
 /**
@@ -31,17 +32,17 @@ class Recipients {
 	 * @return void
 	 */
 	public static function register() {
-		notification_register_recipient( 'email', new Recipient\Email() );
-		notification_register_recipient( 'email', new Recipient\Administrator() );
-		notification_register_recipient( 'email', new Recipient\User() );
-		notification_register_recipient( 'email', new Recipient\UserID() );
-		notification_register_recipient( 'email', new Recipient\Role() );
+		Register::recipient( 'email', new Recipient\Email() );
+		Register::recipient( 'email', new Recipient\Administrator() );
+		Register::recipient( 'email', new Recipient\User() );
+		Register::recipient( 'email', new Recipient\UserID() );
+		Register::recipient( 'email', new Recipient\Role() );
 
 		foreach ( self::$webhook_recipient_types as $type => $name ) {
 			$recipient = new Recipient\Webhook( $type, $name );
 
-			notification_register_recipient( 'webhook', $recipient );
-			notification_register_recipient( 'webhook_json', $recipient );
+			Register::recipient( 'webhook', $recipient );
+			Register::recipient( 'webhook_json', $recipient );
 		}
 	}
 

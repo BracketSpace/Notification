@@ -11,6 +11,7 @@ use BracketSpace\Notification\Defaults\Field;
 use BracketSpace\Notification\Defaults\Field\RecipientsField;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Interfaces\Triggerable;
+use BracketSpace\Notification\Store\Recipient as RecipientStore;
 use BracketSpace\Notification\Traits;
 
 /**
@@ -405,8 +406,10 @@ abstract class Carrier implements Interfaces\Sendable {
 			$raw_recipients = $this->get_field_value( $recipients_field->get_raw_name() );
 
 			foreach ( $raw_recipients as $recipient ) {
-				$type_recipients   = notification_parse_recipient( $this->get_slug(), $recipient['type'], $recipient['recipient'] );
-				$parsed_recipients = array_merge( $parsed_recipients, (array) $type_recipients );
+				$parsed_recipients = array_merge(
+					$parsed_recipients,
+					(array) RecipientStore::get( $this->get_slug(), $recipient['type'] )->parse_value( $recipient['recipient'] ) ?? []
+				);
 			}
 
 			// Remove duplicates and save to data property.

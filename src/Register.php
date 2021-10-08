@@ -26,4 +26,19 @@ class Register {
 		return $carrier;
 	}
 
+	/**
+	 * Registers Recipient
+	 *
+	 * @since  [Next]
+	 * @param  string                $carrier_slug Carrier slug.
+	 * @param  Interfaces\Receivable $recipient    Recipient object.
+	 * @return Interfaces\Receivable
+	 */
+	public static function recipient( string $carrier_slug, Interfaces\Receivable $recipient ) {
+		Store\Recipient::insert( $carrier_slug, $recipient->get_slug(), $recipient );
+		do_action( 'notification/recipient/registered', $recipient, $carrier_slug );
+
+		return $recipient;
+	}
+
 }
