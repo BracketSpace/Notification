@@ -6,6 +6,7 @@
  */
 
 use BracketSpace\Notification\Admin\Wizard;
+use BracketSpace\Notification\Core\Sync;
 use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Register;
@@ -317,6 +318,47 @@ function notification_get_template( $template_name, $vars = [] ) {
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Core\\Templates::get' );
 
 	return Templates::get( $template_name, $vars );
+}
+
+/**
+ * Enables the notification syncing
+ * By default path used is current theme's `notifiations` dir.
+ *
+ * @since      6.0.0
+ * @deprecated [Next]
+ * @param      mixed $path full json directory path or null to use default.
+ * @return     void
+ */
+function notification_sync( $path = null ) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Core\\Sync::enable' );
+
+	Sync::enable( $path );
+}
+
+/**
+ * Gets the synchronization path.
+ *
+ * @since      6.0.0
+ * @deprecated [Next]
+ * @return     string|null
+ */
+function notification_get_sync_path() {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Core\\Sync::get_sync_path' );
+
+	return Sync::get_sync_path();
+}
+
+/**
+ * Checks if synchronization is active.
+ *
+ * @since      6.0.0
+ * @deprecated [Next]
+ * @return     boolean
+ */
+function notification_is_syncing() {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Core\\Sync::is_syncing' );
+
+	return Sync::is_syncing();
 }
 
 /**

@@ -44,7 +44,7 @@ class Sync {
 			'description' => __( 'Bulk actions for the table below.' ),
 		] );
 
-		if ( notification_is_syncing() ) {
+		if ( CoreSync::is_syncing() ) {
 			$sync_group->add_field( [
 				'name'     => __( 'Notifications', 'notification' ),
 				'slug'     => 'notifications',
@@ -65,13 +65,11 @@ class Sync {
 	 * @return string
 	 */
 	public function template_actions() {
-
-		if ( ! notification_is_syncing() ) {
+		if ( ! CoreSync::is_syncing() ) {
 			return Templates::get( 'sync/disabled' );
 		}
 
 		return Templates::get( 'sync/actions' );
-
 	}
 
 	/**

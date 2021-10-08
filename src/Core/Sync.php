@@ -15,6 +15,13 @@ use BracketSpace\Notification\Defaults\Adapter\WordPress;
 class Sync {
 
 	/**
+	 * Sync path
+	 *
+	 * @var string|null
+	 */
+	protected static $sync_path;
+
+	/**
 	 * Gets all Notifications from JSON files
 	 *
 	 * @since  6.0.0
@@ -22,11 +29,11 @@ class Sync {
 	 */
 	public static function get_all_json() {
 
-		if ( ! notification_is_syncing() ) {
+		if ( ! self::is_syncing() ) {
 			return [];
 		}
 
-		$path = untrailingslashit( notification_get_sync_path() );
+		$path = untrailingslashit( (string) self::get_sync_path() );
 		$dir  = opendir( $path );
 
 		if ( ! $dir ) {
@@ -65,7 +72,7 @@ class Sync {
 	 */
 	public function load_local_json() {
 
-		if ( ! notification_is_syncing() ) {
+		if ( ! self::is_syncing() ) {
 			return;
 		}
 
@@ -99,11 +106,11 @@ class Sync {
 	 */
 	public static function save_local_json( $wp_adapter ) {
 
-		if ( ! notification_is_syncing() ) {
+		if ( ! self::is_syncing() ) {
 			return;
 		}
 
-		$path = trailingslashit( notification_get_sync_path() );
+		$path = trailingslashit( (string) self::get_sync_path() );
 
 		if ( ! is_dir( $path ) ) {
 			return;
@@ -127,18 +134,81 @@ class Sync {
 	 */
 	public function delete_local_json( $post_id ) {
 
-		if ( ! notification_is_syncing() || 'notification' !== get_post_type( $post_id ) ) {
+		if ( ! self::is_syncing() || 'notification' !== get_post_type( $post_id ) ) {
 			return;
 		}
 
 		$adapter = notification_adapt_from( 'WordPress', $post_id );
-		$path    = trailingslashit( notification_get_sync_path() );
+		$path    = trailingslashit( (string) self::get_sync_path() );
 		$file    = $adapter->get_hash() . '.json';
 
 		if ( file_exists( $path . '/' . $file ) ) {
 			unlink( $path . '/' . $file );
 		}
 
+	}
+
+	/**
+	 * Enables the notification syncing
+	 * By default path used is current theme's `notifiations` dir.
+	 *
+	 * @since  [Next]
+	 * @throws \Exception If provided path is not a directory.
+	 * @param  string $path full json directory path or null to use default.
+	 * @return void
+	 */
+	public static function enable( string $path = null ) : void {
+		if ( ! $path ) {
+			$path = trailingslashit( get_stylesheet_directory() ) . 'notifications';
+		}
+
+		if ( ! file_exists( $path ) ) {
+			mkdir( $path );
+		}
+
+		if ( ! is_dir( $path ) ) {
+			throw new \Exception( 'Synchronization path must be a directory.' );
+		}
+
+		if ( self::is_syncing() ) {
+			throw new \Exception( sprintf( 'Synchronization has been already enabled and it\'s syncing to: %s', self::get_sync_path() ) );
+		}
+
+		if ( ! file_exists( trailingslashit( $path ) . 'index.php' ) ) {
+			file_put_contents( trailingslashit( $path ) . 'index.php', '<?php' . "\r\n" . '// Keep this file here.' . "\r\n" ); // phpcs:ignore
+		}
+
+		static::$sync_path = $path;
+	}
+
+	/**
+	 * Disables the synchronization.
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public static function disable() {
+		static::$sync_path = null;
+	}
+
+	/**
+	 * Gets the synchronization path.
+	 *
+	 * @since  [Next]
+	 * @return string|null
+	 */
+	public static function get_sync_path() : ?string {
+		return static::$sync_path;
+	}
+
+	/**
+	 * Gets the synchronization path.
+	 *
+	 * @since  [Next]
+	 * @return bool
+	 */
+	public static function is_syncing() : bool {
+		return null !== static::$sync_path;
 	}
 
 }
