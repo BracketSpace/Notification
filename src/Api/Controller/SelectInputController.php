@@ -7,6 +7,9 @@
 
 namespace BracketSpace\Notification\Api\Controller;
 
+use BracketSpace\Notification\Store\Recipient as RecipientStore;
+use BracketSpace\Notification\Vendor\Micropackage\Ajax\Response;
+
 /**
  * RepeaterHandler class
  *
@@ -25,7 +28,8 @@ class SelectInputController {
 		$params    = $request->get_params();
 		$carrier   = $params['carrier'];
 		$type      = $params['type'];
-		$recipient = notification_get_recipient( $carrier, $type );
+		$recipient = RecipientStore::get( $carrier, $type );
+		$response  = new Response();
 
 		if ( $recipient ) {
 			$input = $recipient->input();
@@ -44,9 +48,9 @@ class SelectInputController {
 			$data['type']           = strtolower( str_replace( 'Field', '', $input->field_type_html ) );
 			$data['value']          = $input->value;
 
-			notification_ajax_handler()->send( $data );
+			$response->send( $data );
 		} else {
-			notification_ajax_handler()->send( [ 'message' => 'no recipient' ] );
+			$response->send( [ 'message' => 'no recipient' ] );
 		}
 
 	}

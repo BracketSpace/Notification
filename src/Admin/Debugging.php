@@ -7,6 +7,7 @@
 
 namespace BracketSpace\Notification\Admin;
 
+use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Utils\Settings\CoreFields;
 
 /**
@@ -117,12 +118,12 @@ class Debugging {
 			];
 		}
 
-		$html = notification_get_template( 'debug/notification-log', [
+		$html = Templates::get( 'debug/notification-log', [
 			'datetime_format' => get_option( 'date_format' ) . ' ' . get_option( 'time_format' ),
 			'logs'            => $logs,
 		] );
 
-		$html .= notification_get_template( 'debug/pagination', [
+		$html .= Templates::get( 'debug/pagination', [
 			'query_arg' => 'notification_log_page',
 			'total'     => $debug->get_logs_count( 'pages' ),
 			'current'   => $page,
@@ -143,12 +144,12 @@ class Debugging {
 		$debug = \Notification::component( 'core_debugging' );
 		$page  = isset( $_GET['error_log_page'] ) ? intval( $_GET['error_log_page'] ) : 1; // phpcs:ignore
 
-		$html = notification_get_template( 'debug/error-log', [
+		$html = Templates::get( 'debug/error-log', [
 			'datetime_format' => get_option( 'date_format' ) . ' ' . get_option( 'time_format' ),
 			'logs'            => $debug->get_logs( $page, [ 'error', 'warning' ] ),
 		] );
 
-		$html .= notification_get_template( 'debug/pagination', [
+		$html .= Templates::get( 'debug/pagination', [
 			'query_arg' => 'error_log_page',
 			'total'     => $debug->get_logs_count( 'pages' ),
 			'current'   => $page,

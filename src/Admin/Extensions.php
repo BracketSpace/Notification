@@ -8,6 +8,8 @@
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\License;
+use BracketSpace\Notification\Core\Templates;
+use BracketSpace\Notification\Core\Whitelabel;
 use BracketSpace\Notification\ErrorHandler;
 use BracketSpace\Notification\Utils\EDDUpdater;
 use BracketSpace\Notification\Utils\Cache\Transient as TransientCache;
@@ -177,7 +179,7 @@ class Extensions {
 	 * @return void
 	 */
 	public function extensions_page() {
-		notification_template( 'extension/page', [
+		Templates::render( 'extension/page', [
 			'premium_extensions' => $this->premium_extensions,
 			'extensions'         => $this->extensions,
 		] );
@@ -398,7 +400,7 @@ class Extensions {
 				break;
 		}
 
-		notification_template( sprintf( 'extension/activation-%s', $view ), [ 'message' => $message ] );
+		Templates::render( sprintf( 'extension/activation-%s', $view ), [ 'message' => $message ] );
 
 	}
 
@@ -411,7 +413,7 @@ class Extensions {
 	 */
 	public function activation_nag() {
 
-		if ( notification_is_whitelabeled() ) {
+		if ( Whitelabel::is_whitelabeled() ) {
 			return;
 		}
 
@@ -442,7 +444,7 @@ class Extensions {
 						'<a href="' . admin_url( 'edit.php?post_type=notification&page=extensions' ) . '">' . __( 'Go to Extensions', 'notification' ) . '</a>'
 					);
 
-					notification_template( 'extension/activation-error', [
+					Templates::render( 'extension/activation-error', [
 						'message' => $message,
 					] );
 

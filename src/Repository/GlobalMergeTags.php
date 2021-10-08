@@ -5,12 +5,13 @@
  * @package notification
  */
 
-namespace BracketSpace\Notification\Register;
+namespace BracketSpace\Notification\Repository;
 
 use BracketSpace\Notification\Defaults\MergeTag;
+use BracketSpace\Notification\Register;
 
 /**
- * Register global merge tags.
+ * Global Merge Tags Repository.
  */
 class GlobalMergeTags {
 
@@ -19,7 +20,7 @@ class GlobalMergeTags {
 	 */
 	public static function register() {
 
-		notification_add_global_merge_tag( new MergeTag\UrlTag( [
+		Register::global_merge_tag( new MergeTag\UrlTag( [
 			'slug'        => 'home_url',
 			'name'        => __( 'Site homepage URL', 'notification' ),
 			'description' => home_url(),
@@ -29,7 +30,7 @@ class GlobalMergeTags {
 			},
 		] ) );
 
-		notification_add_global_merge_tag( new MergeTag\StringTag( [
+		Register::global_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'site_title',
 			'name'        => __( 'Site title', 'notification' ),
 			'description' => get_bloginfo( 'name' ),
@@ -39,7 +40,7 @@ class GlobalMergeTags {
 			},
 		] ) );
 
-		notification_add_global_merge_tag( new MergeTag\StringTag( [
+		Register::global_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'site_tagline',
 			'name'        => __( 'Site tagline', 'notification' ),
 			'description' => get_bloginfo( 'description' ),
@@ -49,7 +50,7 @@ class GlobalMergeTags {
 			},
 		] ) );
 
-		notification_add_global_merge_tag( new MergeTag\StringTag( [
+		Register::global_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'site_theme_name',
 			'name'        => __( 'Site theme name', 'notification' ),
 			'description' => wp_get_theme()->name,
@@ -59,7 +60,7 @@ class GlobalMergeTags {
 			},
 		] ) );
 
-		notification_add_global_merge_tag( new MergeTag\StringTag( [
+		Register::global_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'site_theme_version',
 			'name'        => __( 'Site theme version', 'notification' ),
 			'description' => wp_get_theme()->version,
@@ -69,7 +70,7 @@ class GlobalMergeTags {
 			},
 		] ) );
 
-		notification_add_global_merge_tag( new MergeTag\StringTag( [
+		Register::global_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'wordpress_version',
 			'name'        => __( 'Current WordPress version', 'notification' ),
 			'description' => get_bloginfo( 'version' ),
@@ -79,7 +80,7 @@ class GlobalMergeTags {
 			},
 		] ) );
 
-		notification_add_global_merge_tag( new MergeTag\EmailTag( [
+		Register::global_merge_tag( new MergeTag\EmailTag( [
 			'slug'        => 'admin_email',
 			'name'        => __( 'Admin email', 'notification' ),
 			'description' => get_option( 'admin_email' ),
@@ -89,7 +90,7 @@ class GlobalMergeTags {
 			},
 		] ) );
 
-		notification_add_global_merge_tag( new MergeTag\User\Avatar( [
+		Register::global_merge_tag( new MergeTag\User\Avatar( [
 			'slug'        => 'admin_avatar',
 			'name'        => __( 'Admin avatar', 'notification' ),
 			'description' => __( 'HTML img tag with avatar', 'notification' ),
@@ -99,7 +100,7 @@ class GlobalMergeTags {
 			},
 		] ) );
 
-		notification_add_global_merge_tag( new MergeTag\StringTag( [
+		Register::global_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'trigger_name',
 			'name'        => __( 'Trigger name', 'notification' ),
 			'description' => __( 'User login', 'notification' ),
@@ -110,7 +111,7 @@ class GlobalMergeTags {
 			},
 		] ) );
 
-		notification_add_global_merge_tag( new MergeTag\StringTag( [
+		Register::global_merge_tag( new MergeTag\StringTag( [
 			'slug'        => 'trigger_slug',
 			'name'        => __( 'Trigger slug', 'notification' ),
 			'description' => 'wordpress/user_login',
@@ -121,21 +122,21 @@ class GlobalMergeTags {
 			},
 		] ) );
 
-		notification_add_global_merge_tag( new MergeTag\DateTime\Date( [
+		Register::global_merge_tag( new MergeTag\DateTime\Date( [
 			'slug'      => 'date',
 			'name'      => __( 'Trigger execution date', 'notification' ),
 			'hidden'    => true,
 			'timestamp' => current_time( 'timestamp' ), // phpcs:ignore
 		] ) );
 
-		notification_add_global_merge_tag( new MergeTag\DateTime\DateTime( [
+		Register::global_merge_tag( new MergeTag\DateTime\DateTime( [
 			'slug'      => 'date_time',
 			'name'      => __( 'Trigger execution date and time', 'notification' ),
 			'hidden'    => true,
 			'timestamp' => current_time( 'timestamp' ), // phpcs:ignore
 		] ) );
 
-		notification_add_global_merge_tag( new MergeTag\DateTime\Time( [
+		Register::global_merge_tag( new MergeTag\DateTime\Time( [
 			'slug'      => 'time',
 			'name'      => __( 'Trigger execution time', 'notification' ),
 			'hidden'    => true,

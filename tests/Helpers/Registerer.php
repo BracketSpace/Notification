@@ -9,6 +9,7 @@ namespace BracketSpace\Notification\Tests\Helpers;
 
 use BracketSpace\Notification\Tests\Helpers\Objects;
 use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Store;
 
 /**
@@ -33,7 +34,7 @@ class Registerer {
 			$trigger = new Objects\SimpleTrigger( $trigger_tag );
 		}
 
-		notification_register_trigger( $trigger );
+		Register::trigger( $trigger );
 
 		return $trigger;
 
@@ -57,7 +58,7 @@ class Registerer {
 	 */
 	public static function register_carrier( $carrier_slug = 'dummmy'  ) {
 		$carrier = new Objects\Carrier( $carrier_slug );
-		notification_register_carrier( $carrier );
+		Register::carrier( $carrier );
 		return $carrier;
 	}
 
@@ -119,7 +120,7 @@ class Registerer {
 	 */
 	public static function register_resolver() {
 		$resolver = new Objects\Resolver();
-		notification_register_resolver( $resolver );
+		Register::resolver( $resolver );
 		return $resolver;
 	}
 
@@ -142,7 +143,7 @@ class Registerer {
 	 */
 	public static function register_recipient( $carrier_slug = 'dummy_carrier' ) {
 		$recipient = new Objects\Recipient();
-		notification_register_recipient( $carrier_slug, $recipient );
+		Register::recipient( $carrier_slug, $recipient );
 		return $recipient;
 	}
 

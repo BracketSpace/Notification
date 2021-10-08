@@ -9,7 +9,10 @@
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Store;
+use BracketSpace\Notification\Vendor\Micropackage\Ajax\Response;
 
 /**
  * Screen class
@@ -60,7 +63,7 @@ class Screen {
 	 */
 	public function render_trigger_select( $notification_post ) {
 
-		$grouped_triggers = notification_get_triggers_grouped();
+		$grouped_triggers = Store\Trigger::grouped();
 		$trigger          = $notification_post->get_trigger();
 
 		// Add merge tags.
@@ -68,7 +71,7 @@ class Screen {
 			$trigger->setup_merge_tags();
 		}
 
-		notification_template( 'trigger/metabox', [
+		Templates::render( 'trigger/metabox', [
 			'selected'     => $trigger ? $trigger->get_slug() : '',
 			'triggers'     => $grouped_triggers,
 			'has_triggers' => ! empty( $grouped_triggers ),
@@ -99,7 +102,7 @@ class Screen {
 
 		echo '<div id="carrier-boxes">';
 
-		foreach ( notification_get_carriers() as $_carrier ) {
+		foreach ( Store\Carrier::all() as $_carrier ) {
 
 			$carrier = $notification_post->get_carrier( $_carrier->get_slug() );
 
@@ -114,7 +117,7 @@ class Screen {
 				$carrier->activate();
 			}
 
-			notification_template( 'box', [
+			Templates::render( 'box', [
 				'slug'        => $carrier->get_slug(),
 				'carrier'     => $carrier,
 				'id'          => 'notification-carrier-' . $carrier->get_slug() . '-box',
@@ -148,10 +151,10 @@ class Screen {
 	 */
 	public function render_carriers_widget( $notification_post ) {
 
-		$carriers = notification_get_carriers();
+		$carriers = Store\Carrier::all();
 		$exists   = $notification_post->get_carriers();
 
-		notification_template( 'carriers/widget-add', [
+		Templates::render( 'carriers/widget-add', [
 			'carriers_added_count'  => count( $carriers ),
 			'carriers_exists_count' => count( $exists ),
 			'carriers'              => $carriers,
@@ -169,17 +172,16 @@ class Screen {
 	 */
 	public function get_carrier_form( Interfaces\Sendable $carrier ) {
 
-		$fields       = $carrier->get_form_fields();
-		$carrier_slug = $carrier->get_slug();
+		$fields = $carrier->get_form_fields();
+
 		// No fields available so return the default view.
-		if ( empty( $fields ) ) {
-			return notification_get_template( 'form/empty-form' );
+		if ( empty( $fields ) && ! $carrier->has_recipients_field() ) {
+			return Templates::get( 'form/empty-form' );
 		}
 
 		// Setup the fields and return form.
-		return notification_get_template( 'form/table', [
-			'fields'  => $fields,
-			'carrier' => $carrier_slug,
+		return Templates::get( 'form/table', [
+			'carrier' => $carrier,
 		] );
 
 	}
@@ -224,7 +226,7 @@ class Screen {
 		// New posts has the status auto-draft and in this case the Notification should be enabled.
 		$enabled = 'draft' !== get_post_status( $post->ID );
 
-		notification_template( 'save-metabox', [
+		Templates::render( 'save-metabox', [
 			'enabled'           => $enabled,
 			'post_id'           => $post->ID,
 			'delete_link_label' => $delete_text,
@@ -268,7 +270,7 @@ class Screen {
 		$trigger_slug = $trigger ? $trigger->get_slug() : false;
 
 		if ( ! $trigger_slug ) {
-			notification_template( 'mergetag/metabox-notrigger' );
+			Templates::render( 'mergetag/metabox-notrigger' );
 			return;
 		}
 
@@ -284,17 +286,17 @@ class Screen {
 	 */
 	public function render_merge_tags_list( $trigger_slug ) {
 
-		$trigger = notification_get_trigger( $trigger_slug );
+		$trigger = Store\Trigger::get( $trigger_slug );
 
 		if ( empty( $trigger ) ) {
-			notification_template( 'mergetag/metabox-nomergetags' );
+			Templates::render( 'mergetag/metabox-nomergetags' );
 			return;
 		}
 
 		$tag_groups = $this->prepare_merge_tag_groups( $trigger );
 
 		if ( empty( $tag_groups ) ) {
-			notification_template( 'mergetag/metabox-nomergetags' );
+			Templates::render( 'mergetag/metabox-nomergetags' );
 			return;
 		}
 
@@ -305,9 +307,9 @@ class Screen {
 		];
 
 		if ( count( $tag_groups ) > 1 ) {
-			notification_template( 'mergetag/metabox-accordion', $vars );
+			Templates::render( 'mergetag/metabox-accordion', $vars );
 		} else {
-			notification_template( 'mergetag/metabox-list', $vars );
+			Templates::render( 'mergetag/metabox-list', $vars );
 		}
 	}
 
@@ -400,12 +402,12 @@ class Screen {
 		$screen->add_help_tab( [
 			'id'      => 'notification_global_merge_tags',
 			'title'   => __( 'Global Merge Tags', 'notification' ),
-			'content' => notification_get_template( 'help/global-merge-tags', [
-				'tags' => notification_get_global_merge_tags(),
+			'content' => Templates::get( 'help/global-merge-tags', [
+				'tags' => Store\GlobalMergeTag::all(),
 			] ),
 		] );
 
-		$screen->set_help_sidebar( notification_get_template( 'help/sidebar' ) );
+		$screen->set_help_sidebar( Templates::get( 'help/sidebar' ) );
 
 	}
 
@@ -424,7 +426,7 @@ class Screen {
 	 */
 	public function ajax_render_merge_tags() {
 
-		$ajax = notification_ajax_handler();
+		$ajax = new Response();
 
 		if ( ! isset( $_POST['trigger_slug'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$ajax->error();

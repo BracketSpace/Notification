@@ -15,7 +15,7 @@ use BracketSpace\Notification\Traits;
  */
 abstract class MergeTag implements Interfaces\Taggable {
 
-	use Traits\ClassUtils, Traits\HasName, Traits\HasSlug;
+	use Traits\ClassUtils, Traits\HasDescription, Traits\HasGroup,  Traits\HasName, Traits\HasSlug;
 
 	/**
 	 * MergeTag resolved value
@@ -30,21 +30,6 @@ abstract class MergeTag implements Interfaces\Taggable {
 	 * @var string
 	 */
 	protected $value_type;
-
-	/**
-	 * Group
-	 *
-	 * @var string
-	 */
-	protected $group = '';
-
-	/**
-	 * Short description
-	 * No html tags allowed. Keep it tweet-short.
-	 *
-	 * @var string
-	 */
-	protected $description = '';
 
 	/**
 	 * Function which resolve the merge tag value
@@ -102,7 +87,9 @@ abstract class MergeTag implements Interfaces\Taggable {
 			$this->set_name( $params['name'] );
 		}
 
-		$this->group = ( isset( $params['group'] ) ) ? $params['group'] : '';
+		if ( ! empty( $params['group'] ) ) {
+			$this->set_group( $params['group'] );
+		}
 
 		// Change resolver context to static.
 		if ( $params['resolver'] instanceof \Closure ) {
@@ -113,7 +100,7 @@ abstract class MergeTag implements Interfaces\Taggable {
 
 		if ( isset( $params['description'] ) ) {
 			$this->description_example = isset( $params['example'] ) && $params['example'];
-			$this->description         = sanitize_text_field( $params['description'] );
+			$this->set_description( sanitize_text_field( $params['description'] ) );
 		}
 
 		if ( isset( $params['hidden'] ) ) {
@@ -137,35 +124,6 @@ abstract class MergeTag implements Interfaces\Taggable {
 	 * @return mixed        sanitized value
 	 */
 	abstract public function sanitize( $value );
-
-	/**
-	 * Gets description
-	 *
-	 * @return string description
-	 */
-	public function get_description() {
-		return $this->description;
-	}
-
-	/**
-	 * Sets group
-	 *
-	 * @param string $group group name.
-	 *
-	 * @return void
-	 */
-	public function set_group( $group ) {
-		$this->group = $group;
-	}
-
-	/**
-	 * Gets group
-	 *
-	 * @return string group
-	 */
-	public function get_group() {
-		return $this->group;
-	}
 
 	/**
 	 * Resolves the merge tag value

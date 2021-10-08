@@ -9,11 +9,13 @@
  * @var BracketSpace\Notification\Vendor\Micropackage\Templates\Template $this Template instance.
  */
 
+use BracketSpace\Notification\Core\Templates;
+
 do_action( 'notification/metabox/trigger/tags/before', $get( 'trigger' ) );
 
 $tags = $get( 'tags' );
 
-notification_template( 'mergetag/searchbox' );
+Templates::render( 'mergetag/searchbox' );
 
 ?>
 
@@ -21,7 +23,7 @@ notification_template( 'mergetag/searchbox' );
 	<?php do_action( 'notification/metabox/trigger/tags/list/before', $get( 'trigger' ) ); ?>
 	<?php foreach ( $tags as $tag ) : ?>
 		<li>
-			<?php notification_template( 'mergetag/tag', [ 'tag' => $tag ] ); ?>
+			<?php Templates::render( 'mergetag/tag', [ 'tag' => $tag ] ); ?>
 		</li>
 	<?php endforeach ?>
 	<?php do_action( 'notification/metabox/trigger/tags/list/after', $get( 'trigger' ) ); ?>

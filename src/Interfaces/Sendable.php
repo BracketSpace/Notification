@@ -7,6 +7,8 @@
 
 namespace BracketSpace\Notification\Interfaces;
 
+use BracketSpace\Notification\Defaults\Field\RecipientsField;
+
 /**
  * Sendable interface
  */
@@ -77,5 +79,22 @@ interface Sendable extends Nameable {
 	 * @return mixed              Field object or null.
 	 */
 	public function get_form_field( $field_name );
+
+	/**
+	 * Gets the recipients field
+	 * Calls the field closure.
+	 *
+	 * @since  [Next]
+	 * @return RecipientsField|null
+	 */
+	public function get_recipients_field();
+
+	/**
+	 * Checks if the recipients field was added
+	 *
+	 * @since  [Next]
+	 * @return bool
+	 */
+	public function has_recipients_field();
 
 }

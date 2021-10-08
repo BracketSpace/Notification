@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Api\Controller;
 
 use BracketSpace\Notification\Interfaces\Fillable;
+use BracketSpace\Notification\Store;
 
 /**
  * RepeaterHandler class
@@ -101,10 +102,17 @@ class RepeaterController {
 	 */
 	public function get_values( $post_id, $carrier, $field ) {
 		$notification = notification_adapt_from( 'WordPress', $post_id );
-
-		$carrier = $notification->get_carrier( $carrier );
+		$carrier      = $notification->get_carrier( $carrier );
 
 		if ( $carrier ) {
+			if ( $carrier->has_recipients_field() ) {
+				$recipients_field = $carrier->get_recipients_field();
+
+				if ( $field === $recipients_field->get_raw_name() ) {
+					return $carrier->get_recipients();
+				}
+			}
+
 			return $carrier->get_field_value( $field );
 		}
 
@@ -118,13 +126,22 @@ class RepeaterController {
 	 * @return array<mixed>
 	 */
 	public function get_carrier_fields() {
-		$carrier = notification_get_carrier( $this->carrier );
+		$carrier        = Store\Carrier::get( $this->carrier );
+		$carrier_fields = [];
 
 		if ( null === $carrier ) {
-			return [];
+			return $carrier_fields;
 		}
 
-		$carrier_fields = $carrier->get_form_field( $this->field );
+		if ( $carrier->has_recipients_field() ) {
+			$rf = $carrier->get_recipients_field();
+
+			if ( $rf && $rf->get_raw_name() === $this->field ) {
+				$carrier_fields = $carrier->get_recipients_field();
+			}
+		} else {
+			$carrier_fields = $carrier->get_form_field( $this->field );
+		}
 
 		return $carrier_fields;
 	}
@@ -188,9 +205,7 @@ class RepeaterController {
 	 * @return void
 	 */
 	public function send_response( \WP_REST_Request $request ) {
-
 		$this->parse_params( $request->get_params() );
-
 		wp_send_json( $this->form_data() );
 	}
 

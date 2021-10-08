@@ -9,7 +9,10 @@ namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Admin\PostType;
 use BracketSpace\Notification\Core\Sync as CoreSync;
+use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Utils\Settings\CoreFields;
+use BracketSpace\Notification\Vendor\Micropackage\Ajax\Response;
+use BracketSpace\Notification\Queries\NotificationQueries;
 
 /**
  * Sync class
@@ -41,7 +44,7 @@ class Sync {
 			'description' => __( 'Bulk actions for the table below.' ),
 		] );
 
-		if ( notification_is_syncing() ) {
+		if ( CoreSync::is_syncing() ) {
 			$sync_group->add_field( [
 				'name'     => __( 'Notifications', 'notification' ),
 				'slug'     => 'notifications',
@@ -62,13 +65,11 @@ class Sync {
 	 * @return string
 	 */
 	public function template_actions() {
-
-		if ( ! notification_is_syncing() ) {
-			return notification_get_template( 'sync/disabled' );
+		if ( ! CoreSync::is_syncing() ) {
+			return Templates::get( 'sync/disabled' );
 		}
 
-		return notification_get_template( 'sync/actions' );
-
+		return Templates::get( 'sync/actions' );
 	}
 
 	/**
@@ -95,11 +96,17 @@ class Sync {
 				continue;
 			}
 
+			$notification_adapter = NotificationQueries::with_hash( $notification->get_hash() );
+
+			if ( null === $notification_adapter ) {
+				continue;
+			}
+
 			$collection[ $notification->get_hash() ] = [
 				'source'       => 'WordPress',
 				'has_json'     => false,
 				'up_to_date'   => false,
-				'post_id'      => notification_get_post_by_hash( $notification->get_hash() )->get_id(),
+				'post_id'      => $notification_adapter->get_id(),
 				'notification' => $notification,
 			];
 
@@ -142,10 +149,10 @@ class Sync {
 		}
 
 		if ( empty( $collection ) ) {
-			return notification_get_template( 'sync/notifications-empty' );
+			return Templates::get( 'sync/notifications-empty' );
 		}
 
-		return notification_get_template( 'sync/notifications', [
+		return Templates::get( 'sync/notifications', [
 			'collection' => array_reverse( $collection ),
 		] );
 
@@ -160,7 +167,7 @@ class Sync {
 	 */
 	public function ajax_sync() {
 
-		$ajax = notification_ajax_handler();
+		$ajax = new Response();
 		$data = $_POST; // phpcs:ignore
 
 		$ajax->verify_nonce( 'notification_sync_' . $data['hash'] );
@@ -187,7 +194,13 @@ class Sync {
 	 * @return void
 	 */
 	public function load_notification_to_json( $hash ) {
-		CoreSync::save_local_json( notification_get_post_by_hash( $hash ) );
+		$notification = NotificationQueries::with_hash( $hash );
+
+		if ( null === $notification ) {
+			return;
+		}
+
+		CoreSync::save_local_json( $notification );
 	}
 
 	/**

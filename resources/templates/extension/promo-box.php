@@ -9,7 +9,9 @@
  * @var BracketSpace\Notification\Vendor\Micropackage\Templates\Template $this Template instance.
  */
 
-if ( notification_is_whitelabeled() ) {
+use BracketSpace\Notification\Core\Whitelabel;
+
+if ( Whitelabel::is_whitelabeled() ) {
 	return;
 }
 

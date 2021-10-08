@@ -10,6 +10,8 @@ namespace BracketSpace\Notification\Core;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Admin\PostType;
 use BracketSpace\Notification\Utils\WpObjectHelper;
+use BracketSpace\Notification\Store;
+use BracketSpace\Notification\Queries\NotificationQueries;
 
 /**
  * Upgrade class
@@ -144,7 +146,7 @@ class Upgrade {
 	protected function populate_carrier( $carrier, $post_id ) {
 
 		if ( ! $carrier instanceof Interfaces\Sendable ) {
-			$carrier = notification_get_carrier( $carrier );
+			$carrier = Store\Carrier::get( $carrier );
 		}
 
 		if ( ! $carrier ) {
@@ -218,7 +220,7 @@ class Upgrade {
 	public function upgrade_to_v1() {
 
 		// 1. Save the Notification cache in post_content field.
-		$notifications = notification_get_posts( null, true );
+		$notifications = NotificationQueries::all( true );
 		foreach ( $notifications as $adapter ) {
 
 			$post = $adapter->get_post();
@@ -228,14 +230,14 @@ class Upgrade {
 
 			// Trigger.
 			$trigger_slug = get_post_meta( $adapter->get_id(), '_trigger', true );
-			$trigger      = notification_get_trigger( $trigger_slug );
+			$trigger      = Store\Trigger::get( $trigger_slug );
 
 			if ( ! empty( $trigger ) ) {
 				$adapter->set_trigger( $trigger );
 			}
 
 			// Carriers.
-			$raw_carriers = (array) notification_get_carriers();
+			$raw_carriers = (array) Store\Carrier::all();
 			$carriers     = [];
 
 			foreach ( $raw_carriers as $carrier ) {

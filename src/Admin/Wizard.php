@@ -8,6 +8,8 @@
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Core\Templates;
+use BracketSpace\Notification\Core\Whitelabel;
 use BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem;
 
 /**
@@ -75,7 +77,7 @@ class Wizard {
 	 */
 	public function maybe_redirect() {
 
-		if ( ! notification_display_wizard() ) {
+		if ( ! self::should_display() ) {
 			return;
 		}
 
@@ -94,7 +96,7 @@ class Wizard {
 	 * @return void
 	 */
 	public function wizard_page() {
-		notification_template( 'wizard', [
+		Templates::render( 'wizard', [
 			'sections' => $this->get_settings(),
 		] );
 	}
@@ -328,6 +330,21 @@ class Wizard {
 			add_option( $this->dismissed_option, true, '', 'no' );
 		}
 
+	}
+
+	/**
+	 * Checks if wizard should be displayed
+	 *
+	 * @since  [Next]
+	 * @return bool
+	 */
+	public static function should_display() {
+		$counter = wp_count_posts( 'notification' );
+		$count   = 0;
+		$count  += isset( $counter->publish ) ? $counter->publish : 0;
+		$count  += isset( $counter->draft ) ? $counter->draft : 0;
+
+		return ! Whitelabel::is_whitelabeled() && ! get_option( 'notification_wizard_dismissed' ) && ( 0 === $count );
 	}
 
 }

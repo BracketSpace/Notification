@@ -301,6 +301,8 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 5. `notification/carrier/sent` action doesn't have the Notification context anymore, so there's no 3rd parameter.
 6. Store classes now live under `BracketSpace\Notification\Store` namespace rather than `BracketSpace\Notification\Defaults\Store`.
 7. Plugin doesn't cache anything anymore, the loading process is more streamlined and things like Post Types are lazy loaded when needed
+8. Registration functions has been replaced with `Register` class and its static methods.
+9. Multiple functions has been replaced with their static method equivalents.
 
 Removed deprecated hooks:
 - `notification/notification/pre-send`, use `notification/carrier/pre-send`
@@ -308,6 +310,9 @@ Removed deprecated hooks:
 - `notification/value/strip_empty_mergetags`, use `notification/resolve/strip_empty_mergetags`
 - `notification/value/strip_shortcodes`, use `notification/carrier/field/value/strip_shortcodes`
 - `notificaiton/notification/field/resolved`, use `notification/carrier/field/value/resolved`
+- `notificaiton/merge_tag/value/resolved`, use `notification/merge_tag/value/resolved`
+- `notification/webhook/remote_args/{$method}`, use `notification/carrier/webhook/remote_args/{$method}`
+- `notification/webhook/called/{$method}`, use `notification/carrier/webhook/called/{$method}`
 
 **Full changelog**
 
@@ -317,13 +322,28 @@ Removed deprecated hooks:
 * [Changed] Stores with plugin objects, now they are much simpler and don't use WP filters.
 * [Changed] Plugin loading stack, [see docs](https://docs.bracketspace.com/notification/developer/general/plugin-loading-chain) for more details.
 * [Changed] Plugin settings now are initialized on `notification/init 5` action.
+* [Changed] Recipients now can be loaded anytime, not only before Carriers get registered.
 * [Removed] `Common` Abstract that has been replaced by HasName and HasSlug Traits.
 * [Removed] Cache class and all caching mechanism for post types, taxonomies and comment types.
+* [Removed] Trait Users. This is replaced with `BracketSpace\Notification\Queries\UserQueries` class.
+* [Removed] Deprecated hooks for actions and filters.
+* [Removed] Carrier helper functions: `notification_register_carrier`, `notification_get_carriers`, `notification_get_carrier`.
+* [Removed] Recipient helper functions: `notification_register_recipient`, `notification_get_recipients`, `notification_get_carrier_recipients`, `notification_get_recipient`, `notification_parse_recipient`.
+* [Removed] Resolver helper functions: `notification_register_resolver`, `notification_resolve`, `notification_clear_tags`.
+* [Removed] Trigger helper functions: `notification_register_trigger`, `notification_get_triggers`, `notification_get_trigger`, `notification_get_triggers_grouped`.
+* [Removed] GLobal Merge Tags helper functions: `notification_add_global_merge_tag`, `notification_get_global_merge_tags`.
+* [Removed] Misc functions: `notification_display_wizard`, `notification_ajax_handler`, `notification_filesystem`.
+* [Removed] Template functions: `notification_template`, `notification_get_template`.
+* [Removed] Notification post functions: `notification_get_posts`, `notification_get_post_by_hash`, `notification_post_is_new`.
+* [Removed] Syncing functions: `notification_sync`, `notification_get_sync_path`, `notification_is_syncing`.
+* [Removed] Whitelabeling functions: `notification_whitelabel`, `notification_is_whitelabeled`.
 * [Removed] Editor and Code Editor fields sanitizers to allow for HTML usage, ie. email templates.
 * [Added] Runner class that processes the Triggers.
 * [Added] ErrorHandler class that helps handle errors. It can throw an exception when NOTIFICATION_DEBUG is enabled or save a warning to error_log when it's disabled.
 * [Added] Plugin settings value lazy loading.
 * [Added] Email error catcher.
+* [Added] `Notification::fs()` helper that returns plugin filesystem.
+* [Added] Core\Templates wrapper for Templates provider.
 
 == Upgrade Notice ==
 

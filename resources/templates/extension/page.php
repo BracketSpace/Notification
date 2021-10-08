@@ -9,6 +9,8 @@
  * @var BracketSpace\Notification\Vendor\Micropackage\Templates\Template $this Template instance.
  */
 
+use BracketSpace\Notification\Core\Templates;
+
 /** @var array $premium_extensions */
 $premium_extensions = (array) $get( 'premium_extensions' );
 
@@ -24,7 +26,7 @@ $premium_extensions = (array) $get( 'premium_extensions' );
 
 		<div id="the-list">
 			<?php foreach ( $premium_extensions as $extension ) : ?>
-				<?php notification_template( 'extension/extension-box-premium', [ 'extension' => $extension ] ); ?>
+				<?php Templates::render( 'extension/extension-box-premium', [ 'extension' => $extension ] ); ?>
 			<?php endforeach; ?>
 		</div>
 
@@ -35,7 +37,7 @@ $premium_extensions = (array) $get( 'premium_extensions' );
 	<h2><?php esc_html_e( 'All Access', 'notification' ); ?></h2>
 
 	<div id="the-list">
-		<?php notification_template( 'extension/upsell-all-extensions' ); ?>
+		<?php Templates::render( 'extension/upsell-all-extensions' ); ?>
 	</div>
 
 	<div class="clear"></div>
@@ -44,9 +46,9 @@ $premium_extensions = (array) $get( 'premium_extensions' );
 
 	<div id="the-list">
 		<?php foreach ( (array) $get( 'extensions' ) as $extension ) : ?>
-			<?php notification_template( 'extension/extension-box', [ 'extension' => $extension ] ); ?>
+			<?php Templates::render( 'extension/extension-box', [ 'extension' => $extension ] ); ?>
 		<?php endforeach; ?>
-		<?php notification_template( 'extension/promo-box' ); ?>
+		<?php Templates::render( 'extension/promo-box' ); ?>
 	</div>
 
 </div>
