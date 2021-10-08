@@ -403,7 +403,7 @@ class Screen {
 			'id'      => 'notification_global_merge_tags',
 			'title'   => __( 'Global Merge Tags', 'notification' ),
 			'content' => Templates::get( 'help/global-merge-tags', [
-				'tags' => notification_get_global_merge_tags(),
+				'tags' => Store\GlobalMergeTag::all(),
 			] ),
 		] );
 

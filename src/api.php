@@ -217,37 +217,3 @@ function notification_get_setting( $setting ) {
 	return \Notification::component( 'core_settings' )->get_setting( $setting );
 
 }
-
-/**
- * Adds global Merge Tags for all Triggers
- *
- * @since  5.1.3
- * @param  Interfaces\Taggable $merge_tag Merge Tag object.
- * @return void
- */
-function notification_add_global_merge_tag( Interfaces\Taggable $merge_tag ) {
-
-	// Add to collection so we could use it later in the Screen Help.
-	add_filter( 'notification/global_merge_tags', function( $merge_tags ) use ( $merge_tag ) {
-		$merge_tags[] = $merge_tag;
-		return $merge_tags;
-	} );
-
-	do_action( 'notification/global_merge_tag/registered', $merge_tag );
-
-	// Register the Merge Tag.
-	add_action( 'notification/trigger/merge_tags', function( $trigger ) use ( $merge_tag ) {
-		$trigger->add_merge_tag( clone $merge_tag );
-	} );
-
-}
-
-/**
- * Gets all global Merge Tags
- *
- * @since  5.1.3
- * @return array Merge Tags
- */
-function notification_get_global_merge_tags() {
-	return apply_filters( 'notification/global_merge_tags', array() );
-}

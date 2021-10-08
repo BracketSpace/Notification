@@ -643,3 +643,30 @@ function notification_get_triggers_grouped() {
 
 	return Store\Trigger::grouped();
 }
+
+/**
+ * Adds global Merge Tags for all Triggers
+ *
+ * @since      5.1.3
+ * @deprecated [Next]
+ * @param      Interfaces\Taggable $merge_tag Merge Tag object.
+ * @return     Interfaces\Taggable
+ */
+function notification_add_global_merge_tag( Interfaces\Taggable $merge_tag ) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Register::global_merge_tag' );
+
+	return Register::global_merge_tag( $merge_tag );
+}
+
+/**
+ * Gets all global Merge Tags
+ *
+ * @since      5.1.3
+ * @deprecated [Next]
+ * @return     array<string,Interfaces\Taggable>
+ */
+function notification_get_global_merge_tags() {
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Store\\GlobalMergeTag::all' );
+
+	return Store\GlobalMergeTag::all();
+}

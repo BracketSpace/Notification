@@ -69,4 +69,24 @@ class Register {
 		return $trigger;
 	}
 
+	/**
+	 * Registers Global Merge Tag
+	 *
+	 * @since  [Next]
+	 * @param  Interfaces\Taggable $merge_tag MergeTag object.
+	 * @return Interfaces\Taggable
+	 */
+	public static function global_merge_tag( Interfaces\Taggable $merge_tag ) {
+		Store\GlobalMergeTag::insert( $merge_tag->get_slug(), $merge_tag );
+
+		do_action( 'notification/global_merge_tag/registered', $merge_tag );
+
+		// Register the Merge Tag.
+		add_action( 'notification/trigger/merge_tags', function( $trigger ) use ( $merge_tag ) {
+			$trigger->add_merge_tag( clone $merge_tag );
+		} );
+
+		return $merge_tag;
+	}
+
 }

@@ -2700,8 +2700,3 @@ parameters:
 			count: 1
 			path: src/api.php
 
-		-
-			message: "#^Function notification_get_global_merge_tags\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/api.php
-

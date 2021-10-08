@@ -332,6 +332,7 @@ Removed deprecated hooks:
 * [Removed] Recipient helper functions: `notification_register_recipient`, `notification_get_recipients`, `notification_get_carrier_recipients`, `notification_get_recipient`, `notification_parse_recipient`.
 * [Removed] Resolver helper functions: `notification_register_resolver`, `notification_resolve`, `notification_clear_tags`.
 * [Removed] Trigger helper functions: `notification_register_trigger`, `notification_get_triggers`, `notification_get_trigger`, `notification_get_triggers_grouped`.
+* [Removed] GLobal Merge Tags helper functions: `notification_add_global_merge_tag`, `notification_get_global_merge_tags`.
 * [Removed] Misc functions: `notification_display_wizard`, `notification_ajax_handler`, `notification_filesystem`.
 * [Removed] Template functions: `notification_template`, `notification_get_template`.
 * [Removed] Notification post functions: `notification_get_posts`, `notification_get_post_by_hash`, `notification_post_is_new`.
