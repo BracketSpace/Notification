@@ -318,6 +318,7 @@ Removed deprecated hooks:
 
 * [Fixed] Code issues from not using static analysis.
 * [Fixed] WordPress' balanceTags filter which was breaking the Notification content.
+* [Fixed] Setting fields escaping.
 * [Changed] Always return the single root filesystem in Runtime.
 * [Changed] Stores with plugin objects, now they are much simpler and don't use WP filters.
 * [Changed] Plugin loading stack, [see docs](https://docs.bracketspace.com/notification/developer/general/plugin-loading-chain) for more details.
@@ -348,7 +349,7 @@ Removed deprecated hooks:
 == Upgrade Notice ==
 
 = 8.0.0 =
-Compatibility breaking changes. Please make sure to review the changelog before upgrading and adjust your customizations.
+Compatibility breaking changes and security fixes. Please make sure to review the changelog before upgrading and adjust your customizations.
 The premium plugins won't work with Notification v8 unless updated.
 
 = 7.0.0 =

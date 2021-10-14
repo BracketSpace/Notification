@@ -23,12 +23,11 @@ class Select {
 	 * @return void
 	 */
 	public function input( $field ) {
-
 		$multiple = $field->addon( 'multiple' ) ? 'multiple="multiple"' : '';
 		$name     = $field->addon( 'multiple' ) ? $field->input_name() . '[]' : $field->input_name();
 		$pretty   = $field->addon( 'pretty' ) ? 'pretty-select' : '';
 
-		echo '<select ' . esc_attr( $multiple ) . ' name="' . esc_attr( $name ) . '" id="' . $field->input_id() . '" class="' . esc_attr( $pretty ) . '">'; // phpcs:ignore
+		echo '<select ' . esc_attr( $multiple ) . ' name="' . esc_attr( $name ) . '" id="' . esc_attr( $field->input_id() ) . '" class="' . esc_attr( $pretty ) . '">'; // phpcs:ignore
 
 		$options = is_callable( $field->addon( 'options' ) ) ? $field->addon( 'options' )() : $field->addon( 'options' );
 
@@ -38,7 +37,6 @@ class Select {
 		}
 
 		echo '</select>';
-
 	}
 
 	/**
@@ -49,9 +47,7 @@ class Select {
 	 * @return mixed          sanitized value
 	 */
 	public function sanitize( $value ) {
-
 		if ( is_array( $value ) ) {
-
 			foreach ( $value as $i => $v ) {
 				$value[ $i ] = sanitize_text_field( $v );
 			}
@@ -60,7 +56,6 @@ class Select {
 		}
 
 		return $value;
-
 	}
 
 }

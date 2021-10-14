@@ -22,9 +22,15 @@ class Number {
 	 * @return void
 	 */
 	public function input( $field ) {
-
-		echo '<label><input type="number" id="' . $field->input_id() . '" name="' . $field->input_name() . '" value="' . $field->value() . '" min="' . $field->addon( 'min' ) . '" max="' . $field->addon( 'max' ) . '" step="' . $field->addon( 'step' ) . '" class="widefat"></label>'; // phpcs:ignore
-
+		printf(
+			'<label><input type="number" id="%s" name="%s" value="%s" min="%s" max="%s" step="%s" class="widefat"></label>',
+			esc_attr( $field->input_id() ),
+			esc_attr( $field->input_name() ),
+			esc_attr( $field->value() ),
+			esc_attr( $field->addon( 'min' ) ),
+			esc_attr( $field->addon( 'max' ) ),
+			esc_attr( $field->addon( 'step' ) )
+		);
 	}
 
 	/**
@@ -34,13 +40,11 @@ class Number {
 	 * @return int|float     sanitized number
 	 */
 	public function sanitize( $value ) {
-
 		if ( ! is_numeric( $value ) ) {
 			return 0;
 		}
 
 		return floatval( $value );
-
 	}
 
 }

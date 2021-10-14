@@ -21,7 +21,6 @@ class Editor {
 	 * @return void
 	 */
 	public function input( $field ) {
-
 		$wpautop       = $field->addon( 'wpautop' ) ? $field->addon( 'wpautop' ) : true;
 		$media_buttons = $field->addon( 'media_buttons' ) ? $field->addon( 'media_buttons' ) : false;
 		$textarea_rows = $field->addon( 'textarea_rows' ) ? $field->addon( 'textarea_rows' ) : 10;
@@ -37,7 +36,6 @@ class Editor {
 		];
 
 		wp_editor( $field->value(), $field->input_id(), $settings );
-
 	}
 
 	/**
@@ -47,9 +45,7 @@ class Editor {
 	 * @return string        Sanitized content
 	 */
 	public function sanitize( $value ) {
-
 		return wp_kses_post( $value );
-
 	}
 
 }
