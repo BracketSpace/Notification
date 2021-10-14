@@ -12,6 +12,7 @@
 ?>
 <div class="notification-carriers" data-nt-widget <?php echo ( $get( 'carriers_added_count' ) === $get( 'carriers_exists_count' ) ) ? 'data-nt-hidden' : ''; ?>>
 	<ul class="notification-carriers__carriers" data-nt-buttons data-nt-hidden>
+		<?php do_action( 'notification/carrier/list/before' ); ?>
 		<?php foreach ( $get( 'carriers' ) as $carrier ) : ?>
 			<li class="notification-carriers__carrier"
 				data-nt-button="<?php echo esc_attr( $carrier->get_slug() ); ?>"
@@ -30,6 +31,7 @@
 				</a>
 			</li>
 		<?php endforeach; ?>
+		<?php do_action( 'notification/carrier/list/after' ); ?>
 	</ul>
 
 	<div class="notification-carriers__button">
