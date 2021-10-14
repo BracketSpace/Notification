@@ -69,4 +69,20 @@ class Upsell {
 		Templates::render( 'upsell/custom-fields-mergetag-group' );
 	}
 
+	/**
+	 * Renders review queue switch
+	 *
+	 * @action notification/admin/metabox/save/post
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function review_queue_switch() {
+		if ( class_exists( 'NotificationReviewQueue' ) ) {
+			return;
+		}
+
+		Templates::render( 'upsell/review-queue-switch' );
+	}
+
 }
