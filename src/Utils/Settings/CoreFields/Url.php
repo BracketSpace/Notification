@@ -21,9 +21,12 @@ class Url {
 	 * @return void
 	 */
 	public function input( $field ) {
-
-		echo '<label><input type="url" id="' . $field->input_id() . '" name="' . $field->input_name() . '" value="' . $field->value() . '" class="widefat"></label>'; // phpcs:ignore
-
+		printf(
+			'<label><input type="url" id="%s" name="%s" value="%s" class="widefat"></label>',
+			esc_attr( $field->input_id() ),
+			esc_attr( $field->input_name() ),
+			esc_attr( $field->value() )
+		);
 	}
 
 	/**

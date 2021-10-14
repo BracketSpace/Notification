@@ -23,7 +23,6 @@ class Image {
 	 * @return void
 	 */
 	public function input( $field ) {
-
 		$uploaded_image = esc_url( wp_get_attachment_url( (int) $field->value() ) );
 
 		if ( $uploaded_image ) {
@@ -46,7 +45,6 @@ class Image {
 						<img class="preview" src="' . esc_url( $image ) . '">
 					</div>
 				</div>';
-
 	}
 
 	/**

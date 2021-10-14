@@ -22,11 +22,15 @@ class Checkbox {
 	 * @return void
 	 */
 	public function input( $field ) {
-
 		$checked = in_array( $field->value(), [ 'true', true ], true );
 
-		echo '<label><input type="checkbox" id="' . $field->input_id() . '" name="' . $field->input_name() . '" value="true" ' . checked( $checked, true, false ) . '> ' . $field->addon( 'label' ) . '</label>'; // phpcs:ignore
-
+		printf(
+			'<label><input type="checkbox" id="%s" name="%s" value="true" %s> %s</label>',
+			esc_attr( $field->input_id() ),
+			esc_attr( $field->input_name() ),
+			checked( $checked, true, false ),
+			esc_html( $field->addon( 'label' ) )
+		);
 	}
 
 	/**
@@ -37,9 +41,7 @@ class Checkbox {
 	 * @return string        empty string or 'true'
 	 */
 	public function sanitize( $value ) {
-
 		return ( 'true' !== $value ) ? '' : $value;
-
 	}
 
 }

@@ -21,7 +21,6 @@ class Message {
 	 * @return void
 	 */
 	public function input( $field ) {
-
 		if ( $field->addon( 'code' ) ) {
 			echo '<pre><code>';
 		}
@@ -33,7 +32,6 @@ class Message {
 		if ( $field->addon( 'code' ) ) {
 			echo '</code></pre>';
 		}
-
 	}
 
 	/**
