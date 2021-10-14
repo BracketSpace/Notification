@@ -133,6 +133,10 @@ class Triggers {
 	 */
 	public static function register_wp_triggers() {
 		Register::trigger( new Trigger\WordPress\UpdatesAvailable() );
+
+		if ( notification_get_setting( 'triggers/wordpress/email_address_change_request' ) ) {
+			Register::trigger( new Trigger\WordPress\EmailChangeRequest() );
+		}
 	}
 
 	/**
