@@ -182,7 +182,34 @@ class Extensions {
 		Templates::render( 'extension/page', [
 			'premium_extensions' => $this->premium_extensions,
 			'extensions'         => $this->extensions,
+			'bundles'            => static::get_bundles(),
 		] );
+	}
+
+	/**
+	 * Gets bundles
+	 *
+	 * @since  [Next]
+	 * @return array<int, array{name: string, description: string, price: int}>
+	 */
+	public static function get_bundles() {
+		return [
+			[
+				'name'        => 'All-In',
+				'description' => __( 'Every available Notification extension and all the <strong>future extensions</strong> at a static price! You get the whole package and the price will never change even if a new add-on will be released.', 'notification' ),
+				'price'       => 249,
+			],
+			[
+				'name'        => 'Standard',
+				'description' => esc_html__( 'All extensions from Essential bundle plus much needed Carriers: Discord, Mailgun, Slack and Twilio. Use multiple notification channels!', 'notification' ),
+				'price'       => 199,
+			],
+			[
+				'name'        => 'Essential',
+				'description' => esc_html__( 'Crucial extensions including Conditionals, Custom Fields and File Log', 'notification' ),
+				'price'       => 99,
+			],
+		];
 	}
 
 	/**

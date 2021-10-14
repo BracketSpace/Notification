@@ -34,10 +34,14 @@ $premium_extensions = (array) $get( 'premium_extensions' );
 
 	<?php endif ?>
 
-	<h2><?php esc_html_e( 'All Access', 'notification' ); ?></h2>
+	<h2><?php esc_html_e( 'Bundles', 'notification' ); ?></h2>
 
 	<div id="the-list">
-		<?php Templates::render( 'extension/upsell-all-extensions' ); ?>
+		<?php
+		foreach ( $get( 'bundles' ) as $bundle ) {
+			Templates::render( 'extension/bundle', $bundle );
+		}
+		?>
 	</div>
 
 	<div class="clear"></div>
