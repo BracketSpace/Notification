@@ -345,6 +345,7 @@ Removed deprecated hooks:
 * [Added] ErrorHandler class that helps handle errors. It can throw an exception when NOTIFICATION_DEBUG is enabled or save a warning to error_log when it's disabled.
 * [Added] Plugin settings value lazy loading.
 * [Added] Email error catcher.
+* [Added] Free and Premium extensions upselling.
 * [Added] `Notification::fs()` helper that returns plugin filesystem.
 * [Added] Core\Templates wrapper for Templates provider.
 
