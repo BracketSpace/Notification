@@ -41,7 +41,7 @@ trait Storage {
 	 * @return void
 	 */
 	public static function insert( $index, $item ) : void {
-		if ( array_key_exists( $index, static::$items ) ) {
+		if ( static::has( $index ) ) {
 			ErrorHandler::error(
 				sprintf(
 					'Item at index %s in %s Store already exists.',
@@ -84,7 +84,7 @@ trait Storage {
 	 * @return mixed
 	 */
 	public static function get( $index ) {
-		if ( ! array_key_exists( $index, static::$items ) ) {
+		if ( ! static::has( $index ) ) {
 			ErrorHandler::error(
 				sprintf(
 					'Item %s in %s Store doesn\'t exists.',
@@ -97,6 +97,17 @@ trait Storage {
 		}
 
 		return static::$items[ $index ];
+	}
+
+	/**
+	 * Checks if the Storage has item
+	 *
+	 * @since  [Next]
+	 * @param  mixed $index Intex of an item.
+	 * @return bool
+	 */
+	public static function has( $index ) : bool {
+		return array_key_exists( $index, static::$items );
 	}
 
 }
