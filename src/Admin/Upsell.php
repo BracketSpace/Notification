@@ -24,7 +24,6 @@ class Upsell {
 	 * @return void
 	 */
 	public function add_conditionals_meta_box() {
-
 		if ( class_exists( 'NotificationConditionals' ) ) {
 			return;
 		}
@@ -40,7 +39,6 @@ class Upsell {
 
 		// Enable metabox.
 		add_filter( 'notification/admin/allow_metabox/notification_conditionals', '__return_true' );
-
 	}
 
 	/**
@@ -52,6 +50,23 @@ class Upsell {
 	 */
 	public function conditionals_metabox( $post ) {
 		Templates::render( 'upsell/conditionals-metabox' );
+	}
+
+	/**
+	 * Prints additional Merge Tag group in Merge Tags metabox
+	 * Note: Used when there are Merge Tag groups
+	 *
+	 * @action notification/metabox/trigger/tags/groups/after
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function custom_fields_merge_tag_group() {
+		if ( class_exists( 'NotificationCustomFields' ) ) {
+			return;
+		}
+
+		Templates::render( 'upsell/custom-fields-mergetag-group' );
 	}
 
 }
