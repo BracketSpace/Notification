@@ -77,6 +77,7 @@
 			event.preventDefault();
 
 			const data = new FormData();
+
 			$.each(files, function(key, value) {
 				data.append(key, value);
 			});

@@ -318,6 +318,7 @@ Removed deprecated hooks:
 
 * [Fixed] Code issues from not using static analysis.
 * [Fixed] WordPress' balanceTags filter which was breaking the Notification content.
+* [Fixed] Notification importing.
 * [Fixed] Setting fields escaping.
 * [Changed] Always return the single root filesystem in Runtime.
 * [Changed] Stores with plugin objects, now they are much simpler and don't use WP filters.
