@@ -77,7 +77,12 @@ class PostUpdated extends PostTrigger {
 		// Filter the post statuses for which the notification should be sent. By default it will be send only if you update already published post.
 		$updated_post_statuses = apply_filters( 'notification/trigger/wordpress/post/updated/statuses', [ 'publish' ], $this->post_type );
 
-		if ( empty( $post->post_name ) || ! in_array( $post_before->post_status, $updated_post_statuses, true ) || 'trash' === $post->post_status ) {
+		// Pending posts doesn't have the slug, otherwise we should bail.
+		if ( 'pending' !== $post->post_status && empty( $post->post_name ) ) {
+			return false;
+		}
+
+		if ( ! in_array( $post_before->post_status, $updated_post_statuses, true ) || 'trash' === $post->post_status ) {
 			return false;
 		}
 

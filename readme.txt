@@ -320,6 +320,7 @@ Removed deprecated hooks:
 * [Fixed] WordPress' balanceTags filter which was breaking the Notification content.
 * [Fixed] Notification importing.
 * [Fixed] Setting fields escaping.
+* [Fixed] Post Updated Trigger which failed for updating pending posts, that doesn't have the slug yet.
 * [Changed] Always return the single root filesystem in Runtime.
 * [Changed] Stores with plugin objects, now they are much simpler and don't use WP filters.
 * [Changed] Plugin loading stack, [see docs](https://docs.bracketspace.com/notification/developer/general/plugin-loading-chain) for more details.
