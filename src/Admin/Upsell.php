@@ -116,4 +116,28 @@ class Upsell {
 
 	}
 
+	/**
+	 * Adds Trigger upselling.
+	 *
+	 * @action notification/settings/section/triggers/before
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function triggers_settings_upsell() {
+		Templates::render( 'upsell/triggers-upsell' );
+	}
+
+	/**
+	 * Adds Carrier upselling.
+	 *
+	 * @action notification/settings/section/carriers/before
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function carriers_settings_upsell() {
+		Templates::render( 'upsell/carriers-upsell' );
+	}
+
 }
