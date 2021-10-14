@@ -18,7 +18,7 @@ $extension_link = sprintf(
 	<option value="dont" disabled><?php esc_html_e( 'Don\'t process this Trigger if', 'notification' ); ?></option>
 </select>
 
-<span class="dashicons dashicons-editor-help"></span>
+<span class="label-pro">PRO</span>
 <?php
 // Translators: Link to extension.
 printf( __( 'Install %s to control when the Notification is sent.', 'notification' ), $extension_link ); // phpcs:ignore
