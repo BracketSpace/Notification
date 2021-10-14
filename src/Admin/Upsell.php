@@ -8,7 +8,9 @@
 
 namespace BracketSpace\Notification\Admin;
 
+use BracketSpace\Notification\Core\Settings;
 use BracketSpace\Notification\Core\Templates;
+use BracketSpace\Notification\Utils\Settings\CoreFields;
 
 /**
  * Upsell class
@@ -83,6 +85,35 @@ class Upsell {
 		}
 
 		Templates::render( 'upsell/review-queue-switch' );
+	}
+
+	/**
+	 * Registers Scheduled Triggers settings
+	 *
+	 * @action notification/settings/register 200
+	 *
+	 * @since  [Next]
+	 * @param  Settings $settings Settings API object.
+	 * @return void
+	 */
+	public function scheduled_triggers_settings( $settings ) {
+		if ( class_exists( 'NotificationScheduledTriggers' ) ) {
+			return;
+		}
+
+		$section = $settings->add_section( __( 'Triggers', 'notification' ), 'triggers' );
+
+		$section->add_group( __( 'Scheduled Triggers', 'notification' ), 'scheduled_triggers' )
+			->add_field( [
+				'name'     => __( 'Features', 'notification' ),
+				'slug'     => 'upsell',
+				'addons'   => [
+					'message' => Templates::get( 'upsell/scheduled-triggers-setting' ),
+				],
+				'render'   => [ new CoreFields\Message(), 'input' ],
+				'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
+			] );
+
 	}
 
 }
