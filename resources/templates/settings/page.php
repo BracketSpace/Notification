@@ -43,7 +43,7 @@ if ( ! isset( $current_section ) ) {
 
 		<?php $section = $this->get_section( $current_section ); ?>
 
-		<div class="setting-col box section-<?php echo esc_attr( $section->slug() ); ?>">
+		<div id="notification-settings-section-<?php echo esc_attr( $section->slug() ); ?>" class="setting-col box section-<?php echo esc_attr( $section->slug() ); ?>">
 
 			<?php do_action( $this->handle . '/settings/section/' . $section->slug() . '/before' ); ?>
 
@@ -65,7 +65,7 @@ if ( ! isset( $current_section ) ) {
 
 				<?php foreach ( $groups as $group ) : ?>
 
-					<div class="setting-group group-<?php echo esc_attr( $group->slug() ); ?>">
+					<div id="notification-settings-group-<?php echo esc_attr( $group->slug() ); ?>" class="setting-group group-<?php echo esc_attr( $group->slug() ); ?>">
 						<div class="setting-group-header <?php echo esc_attr( ( $group->collapsed() ) ? '' : 'open' ); ?>">
 							<h3><?php echo esc_html( $group->name() ); ?></h3>
 
@@ -81,7 +81,7 @@ if ( ! isset( $current_section ) ) {
 
 							<?php foreach ( $group->get_fields() as $field ) : ?>
 
-								<tr class="field-<?php echo esc_attr( $field->slug() ); ?>">
+								<tr id="notification-settings-field-<?php echo esc_attr( $group->slug() ); ?>-<?php echo esc_attr( $field->slug() ); ?>" class="field-<?php echo esc_attr( $field->slug() ); ?>">
 									<th><label for="<?php echo esc_attr( $field->input_id() ); ?>"><?php echo esc_html( $field->name() ); ?></label></th>
 									<td>
 										<?php
