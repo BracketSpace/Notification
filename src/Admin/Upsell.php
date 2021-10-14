@@ -25,6 +25,10 @@ class Upsell {
 	 */
 	public function add_conditionals_meta_box() {
 
+		if ( class_exists( 'NotificationConditionals' ) ) {
+			return;
+		}
+
 		add_meta_box(
 			'notification_conditionals',
 			__( 'Conditionals', 'notification' ),
