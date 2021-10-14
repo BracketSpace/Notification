@@ -172,4 +172,10 @@
 	font-size: 10px;
 	font-weight: 800;
 	padding: 4px 12px;
+	text-decoration: none;
+
+	&:hover {
+		color: #fff;
+		text-decoration: none;
+	}
 }
