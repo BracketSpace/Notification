@@ -581,6 +581,11 @@ parameters:
 			path: src/Admin/ImportExport.php
 
 		-
+			message: "#^Offset 0 does not exist on array\\<string, mixed\\>\\.$#"
+			count: 3
+			path: src/Admin/ImportExport.php
+
+		-
 			message: "#^Parameter \\#1 \\$fp of function fclose expects resource, resource\\|false given\\.$#"
 			count: 1
 			path: src/Admin/ImportExport.php

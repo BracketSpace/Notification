@@ -179,15 +179,15 @@ class ImportExport {
 			wp_send_json_error( __( 'Wrong import type' ) );
 		}
 
-		if ( ! isset( $_FILES['notification_import_file'] ) ) {
+		if ( empty( $_FILES ) ) {
 			wp_send_json_error( __( 'Please select file for import' ) );
 		}
 
 		// phpcs:disable
-		$file = fopen( $_FILES['notification_import_file']['tmp_name'], 'rb' );
-		$json = fread( $file, filesize( $_FILES['notification_import_file']['tmp_name'] ) );
+		$file = fopen( $_FILES[0]['tmp_name'], 'rb' );
+		$json = fread( $file, filesize( $_FILES[0]['tmp_name'] ) );
 		fclose( $file );
-		unlink( $_FILES['notification_import_file']['tmp_name'] );
+		unlink( $_FILES[0]['tmp_name'] );
 		// phpcs:enable
 
 		$data = json_decode( $json, true );
