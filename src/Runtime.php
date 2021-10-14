@@ -225,7 +225,10 @@ class Runtime {
 		$this->add_component( 'admin_wizard', new Admin\Wizard( $this->get_filesystem() ) );
 		$this->add_component( 'admin_sync', new Admin\Sync() );
 		$this->add_component( 'admin_debugging', new Admin\Debugging() );
-		$this->add_component( 'admin_upsell', new Admin\Upsell() );
+
+		if ( apply_filters( 'notification/upselling', true ) ) {
+			$this->add_component( 'admin_upsell', new Admin\Upsell() );
+		}
 
 		$this->add_component( 'integration_wp', new Integration\WordPress() );
 		$this->add_component( 'integration_wp_emails', new Integration\WordPressEmails() );

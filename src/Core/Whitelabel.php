@@ -46,6 +46,9 @@ class Whitelabel {
 	public static function enable( array $args = [] ) {
 		static::$is_whitelabeled = true;
 
+		// Upselling.
+		add_filter( 'notification/upselling', '__return_false' );
+
 		// Change Notification CPT page.
 		if ( isset( $args['page_hook'] ) && ! empty( $args['page_hook'] ) ) {
 			add_filter( 'notification/whitelabel/cpt/parent', function( $hook ) use ( $args ) {
