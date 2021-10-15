@@ -11,9 +11,9 @@ use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Defaults\Trigger;
 
 /**
- * Triggers Repository.
+ * Trigger Repository.
  */
-class TriggersRepository {
+class TriggerRepository {
 
 	/**
 	 * @return void

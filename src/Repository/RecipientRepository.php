@@ -11,9 +11,9 @@ use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Defaults\Recipient;
 
 /**
- * Recipients Repository.
+ * Recipient Repository.
  */
-class RecipientsRepository {
+class RecipientRepository {
 
 	/**
 	 * Webhook recipient types.

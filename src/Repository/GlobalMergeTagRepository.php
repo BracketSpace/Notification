@@ -11,9 +11,9 @@ use BracketSpace\Notification\Defaults\MergeTag;
 use BracketSpace\Notification\Register;
 
 /**
- * Global Merge Tags Repository.
+ * Global Merge Tag Repository.
  */
-class GlobalMergeTagsRepository {
+class GlobalMergeTagRepository {
 
 	/**
 	 * @return void

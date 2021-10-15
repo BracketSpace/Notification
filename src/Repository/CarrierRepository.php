@@ -12,9 +12,9 @@ use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Vendor\Micropackage\DocHooks\Helper as DocHooksHelper;
 
 /**
- * Carriers Repository.
+ * Carrier Repository.
  */
-class CarriersRepository {
+class CarrierRepository {
 
 	/**
 	 * @return void

@@ -2593,12 +2593,12 @@ parameters:
 		-
 			message: "#^Access to property \\$name on an unknown class \\\\WP_Theme\\.$#"
 			count: 2
-			path: src/Repository/GlobalMergeTags.php
+			path: src/Repository/GlobalMergeTagRepository.php
 
 		-
 			message: "#^Access to property \\$version on an unknown class \\\\WP_Theme\\.$#"
 			count: 2
-			path: src/Repository/GlobalMergeTags.php
+			path: src/Repository/GlobalMergeTagRepository.php
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Runtime\\:\\:components\\(\\) return type has no value type specified in iterable type array\\.$#"

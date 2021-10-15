@@ -11,9 +11,9 @@ use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Defaults\Resolver;
 
 /**
- * Resolvers Repository.
+ * Resolver Repository.
  */
-class ResolversRepository {
+class ResolverRepository {
 
 	/**
 	 * @return void

@@ -267,11 +267,11 @@ class Runtime {
 				'triggers',
 			],
 			[
-				Repository\GlobalMergeTagsRepository::class,
-				Repository\ResolversRepository::class,
-				Repository\CarriersRepository::class,
-				Repository\RecipientsRepository::class,
-				Repository\TriggersRepository::class,
+				Repository\GlobalMergeTagRepository::class,
+				Repository\ResolverRepository::class,
+				Repository\CarrierRepository::class,
+				Repository\RecipientRepository::class,
+				Repository\TriggerRepository::class,
 			]
 		);
 	}
