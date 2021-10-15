@@ -92,14 +92,10 @@ class Runtime {
 			return;
 		}
 
-		// Support WP-CLI.
-		if ( defined( 'WP_CLI' ) && \WP_CLI === true ) {
-			WP_CLI::add_command( 'notification dump-hooks', DumpHooks::class );
-		}
-
-		$this->filesystem();
+		$this->filesystem = new Filesystem( dirname( $this->plugin_file ) );
 		Templates::register_storage();
 		$this->singletons();
+		$this->cli_commands();
 		$this->actions();
 
 		$this->load_bundled_extensions();
@@ -115,31 +111,31 @@ class Runtime {
 	}
 
 	/**
+	 * Registers WP CLI commands
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function cli_commands() {
+		if ( ! defined( 'WP_CLI' ) || \WP_CLI !== true ) {
+			return;
+		}
+
+		WP_CLI::add_command( 'notification dump-hooks', DumpHooks::class );
+	}
+
+	/**
 	 * Registers all the hooks with DocHooks
 	 *
 	 * @since  6.1.0
 	 * @return void
 	 */
 	public function register_hooks() {
-
 		foreach ( $this->components as $component ) {
 			if ( is_object( $component ) ) {
 				$this->add_hooks( $component );
 			}
 		}
-
-	}
-
-	/**
-	 * Sets up the plugin filesystem
-	 *
-	 * @since  7.0.0
-	 * @return void
-	 */
-	public function filesystem() {
-
-		$this->filesystem = new Filesystem( dirname( $this->plugin_file ) );
-
 	}
 
 	/**
@@ -164,7 +160,6 @@ class Runtime {
 	 * @return $this
 	 */
 	public function add_component( $name, $component ) {
-
 		if ( isset( $this->components[ $name ] ) ) {
 			throw new \Exception( sprintf( 'Component %s is already added.', $name ) );
 		}
@@ -172,7 +167,6 @@ class Runtime {
 		$this->components[ $name ] = $component;
 
 		return $this;
-
 	}
 
 	/**
@@ -204,7 +198,6 @@ class Runtime {
 	 * @return void
 	 */
 	public function singletons() {
-
 		$this->add_component( 'core_cron', new Core\Cron() );
 		$this->add_component( 'core_whitelabel', new Core\Whitelabel() );
 		$this->add_component( 'core_debugging', new Core\Debugging() );
@@ -235,7 +228,6 @@ class Runtime {
 		$this->add_component( 'integration_2fa', new Integration\TwoFactor() );
 
 		$this->add_component( 'repeater_api', new Api\Api() );
-
 	}
 
 	/**
@@ -245,7 +237,6 @@ class Runtime {
 	 * @return void
 	 */
 	public function actions() {
-
 		$this->register_hooks();
 
 		notification_register_settings( [ $this->component( 'admin_settings' ), 'general_settings' ] );
@@ -260,7 +251,6 @@ class Runtime {
 		if ( ! DocHooksHelper::is_enabled() && $this->get_filesystem()->exists( 'compat/register-hooks.php' ) ) {
 			include_once $this->get_filesystem()->path( 'compat/register-hooks.php' );
 		}
-
 	}
 
 	/**
@@ -312,7 +302,6 @@ class Runtime {
 	 * @return void
 	 */
 	public function load_bundled_extensions() {
-
 		$extensions         = $this->get_filesystem()->dirlist( 'extensions', false );
 		$extension_template = 'extensions/%s/load.php';
 
@@ -328,7 +317,6 @@ class Runtime {
 				}
 			}
 		}
-
 	}
 
 }
