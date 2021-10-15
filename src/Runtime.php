@@ -7,13 +7,10 @@
 
 namespace BracketSpace\Notification;
 
-use BracketSpace\Notification\Cli\DumpHooks;
-use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Vendor\Micropackage\Requirements\Requirements;
 use BracketSpace\Notification\Vendor\Micropackage\DocHooks\HookTrait;
 use BracketSpace\Notification\Vendor\Micropackage\DocHooks\Helper as DocHooksHelper;
 use BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem;
-use WP_CLI;
 
 /**
  * Runtime class
@@ -93,7 +90,7 @@ class Runtime {
 		}
 
 		$this->filesystem = new Filesystem( dirname( $this->plugin_file ) );
-		Templates::register_storage();
+		Core\Templates::register_storage();
 		$this->singletons();
 		$this->cli_commands();
 		$this->actions();
@@ -121,7 +118,7 @@ class Runtime {
 			return;
 		}
 
-		WP_CLI::add_command( 'notification dump-hooks', DumpHooks::class );
+		\WP_CLI::add_command( 'notification dump-hooks', Cli\DumpHooks::class );
 	}
 
 	/**
