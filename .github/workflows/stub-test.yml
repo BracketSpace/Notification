@@ -23,5 +23,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
         run: composer install --no-progress
-      - name: Coding Standards
+      - name: Create Stubs
         run: composer generate-stubs
+      - name: Print stubs
+        run: cat tests/stubs.php
