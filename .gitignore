@@ -107,3 +107,4 @@ Session.vim
 *~
 # auto-generated tag files
 tags
+/tests/stubs.php

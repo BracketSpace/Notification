@@ -21,7 +21,8 @@
 		"szepeviktor/phpstan-wordpress": "^0.7.2",
 		"wp-coding-standards/wpcs": "^2.0",
 		"wp-phpunit/wp-phpunit": "^5.6",
-		"php-stubs/wp-cli-stubs": "^2.4"
+		"php-stubs/wp-cli-stubs": "^2.4",
+		"php-stubs/generator": "^0.6.0"
 	},
 	"config": {
 		"platform-check": false
@@ -60,6 +61,7 @@
 		"phplint": "parallel-lint --exclude node_modules --exclude vendor --exclude dist .",
 		"phpstan": "phpstan analyze",
 		"phpunit": "phpunit",
-		"phpunit-coverage": "phpunit --coverage-text"
+		"phpunit-coverage": "phpunit --coverage-text",
+		"generate-stubs": "generate-stubs --force --out=tests/stubs.php notification.php src/"
 	}
 }
