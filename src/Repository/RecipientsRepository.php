@@ -13,7 +13,7 @@ use BracketSpace\Notification\Defaults\Recipient;
 /**
  * Recipients Repository.
  */
-class Recipients {
+class RecipientsRepository {
 
 	/**
 	 * Webhook recipient types.

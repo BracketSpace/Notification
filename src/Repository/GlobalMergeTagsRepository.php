@@ -13,7 +13,7 @@ use BracketSpace\Notification\Register;
 /**
  * Global Merge Tags Repository.
  */
-class GlobalMergeTags {
+class GlobalMergeTagsRepository {
 
 	/**
 	 * @return void

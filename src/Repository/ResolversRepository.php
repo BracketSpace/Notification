@@ -13,7 +13,7 @@ use BracketSpace\Notification\Defaults\Resolver;
 /**
  * Resolvers Repository.
  */
-class Resolvers {
+class ResolversRepository {
 
 	/**
 	 * @return void

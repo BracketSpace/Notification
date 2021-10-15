@@ -14,7 +14,7 @@ use BracketSpace\Notification\Vendor\Micropackage\DocHooks\Helper as DocHooksHel
 /**
  * Carriers Repository.
  */
-class Carriers {
+class CarriersRepository {
 
 	/**
 	 * @return void

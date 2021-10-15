@@ -13,7 +13,7 @@ use BracketSpace\Notification\Defaults\Trigger;
 /**
  * Triggers Repository.
  */
-class Triggers {
+class TriggersRepository {
 
 	/**
 	 * @return void
