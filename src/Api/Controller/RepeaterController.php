@@ -133,12 +133,11 @@ class RepeaterController {
 			return $carrier_fields;
 		}
 
-		if ( $carrier->has_recipients_field() ) {
-			$rf = $carrier->get_recipients_field();
+		// Recipients field.
+		$rf = $carrier->has_recipients_field() ? $carrier->get_recipients_field() : false;
 
-			if ( $rf && $rf->get_raw_name() === $this->field ) {
-				$carrier_fields = $carrier->get_recipients_field();
-			}
+		if ( $rf && $rf->get_raw_name() === $this->field ) {
+			$carrier_fields = $carrier->get_recipients_field();
 		} else {
 			$carrier_fields = $carrier->get_form_field( $this->field );
 		}
