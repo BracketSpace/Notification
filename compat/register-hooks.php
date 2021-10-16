@@ -10,18 +10,21 @@
 /** @var \BracketSpace\Notification\Runtime $this */
 
 // phpcs:disable
-add_action( 'wp_loaded', [ $this->component( 'core_cache' ), 'auto_cache_objects' ], 20, 0 );
+add_action( 'notification/init', [ $this, 'defaults' ], 8, 0 );
 add_filter( 'cron_schedules', [ $this->component( 'core_cron' ), 'register_intervals' ], 10, 1 );
 add_action( 'admin_init', [ $this->component( 'core_cron' ), 'register_check_updates_event' ], 10, 0 );
-add_action( 'init', [ $this->component( 'core_whitelabel' ), 'remove_defaults' ], 50, 0 );
+add_action( 'notification/init', [ $this->component( 'core_whitelabel' ), 'remove_defaults' ], 1000, 0 );
 add_action( 'notification/carrier/pre-send', [ $this->component( 'core_debugging' ), 'catch_notification' ], 1000000, 3 );
 add_action( 'admin_menu', [ $this->component( 'core_settings' ), 'register_page' ], 20, 0 );
-add_action( 'wp_loaded', [ $this->component( 'core_settings' ), 'register_settings' ], 10, 0 );
+add_action( 'notification/init', [ $this->component( 'core_settings' ), 'register_settings' ], 5, 0 );
 add_action( 'admin_init', [ $this->component( 'core_upgrade' ), 'check_upgrade' ], 10, 0 );
 add_action( 'notification/init', [ $this->component( 'core_upgrade' ), 'upgrade_db' ], 10, 0 );
-add_action( 'notification/elements', [ $this->component( 'core_sync' ), 'load_local_json' ], 10, 0 );
+add_action( 'notification/init', [ $this->component( 'core_sync' ), 'load_local_json' ], 10, 0 );
 add_action( 'notification/data/save/after', [ $this->component( 'core_sync' ), 'save_local_json' ], 10, 1 );
 add_action( 'delete_post', [ $this->component( 'core_sync' ), 'delete_local_json' ], 10, 1 );
+add_action( 'notification/trigger/registered', [ $this->component( 'core_binder' ), 'bind' ], 100, 1 );
+add_action( 'shutdown', [ $this->component( 'core_processor' ), 'process_queue' ], 10, 0 );
+add_action( 'notification_background_processing', [ $this->component( 'core_processor' ), 'handle_cron' ], 10, 2 );
 add_action( 'admin_post_notification_export', [ $this->component( 'admin_impexp' ), 'export_request' ], 10, 0 );
 add_action( 'wp_ajax_notification_import_json', [ $this->component( 'admin_impexp' ), 'import_request' ], 10, 0 );
 add_filter( 'notification/settings/triggers/valid_post_types', [ $this->component( 'admin_settings' ), 'filter_post_types' ], 10, 1 );
@@ -35,7 +38,7 @@ add_action( 'wp_trash_post', [ $this->component( 'admin_post_type' ), 'bypass_tr
 add_filter( 'wp_insert_post_data', [ $this->component( 'admin_post_type' ), 'create_notification_hash' ], 100, 2 );
 add_action( 'save_post_notification', [ $this->component( 'admin_post_type' ), 'save' ], 10, 3 );
 add_action( 'wp_ajax_change_notification_status', [ $this->component( 'admin_post_type' ), 'ajax_change_notification_status' ], 10, 0 );
-add_action( 'notification/elements', [ $this->component( 'admin_post_type' ), 'setup_notifications' ], 9999999, 0 );
+add_action( 'notification/init', [ $this->component( 'admin_post_type' ), 'setup_notifications' ], 9999999, 0 );
 add_filter( 'manage_notification_posts_columns', [ $this->component( 'admin_post_table' ), 'table_columns' ], 10, 1 );
 add_action( 'manage_notification_posts_custom_column', [ $this->component( 'admin_post_table' ), 'table_column_content' ], 10, 2 );
 add_filter( 'display_post_states', [ $this->component( 'admin_post_table' ), 'remove_status_display' ], 10, 2 );
@@ -67,8 +70,16 @@ add_action( 'admin_post_save_notification_wizard', [ $this->component( 'admin_wi
 add_action( 'wp_ajax_notification_sync', [ $this->component( 'admin_sync' ), 'ajax_sync' ], 10, 0 );
 add_action( 'admin_notices', [ $this->component( 'admin_debugging' ), 'debug_warning' ], 10, 0 );
 add_action( 'admin_post_notification_clear_logs', [ $this->component( 'admin_debugging' ), 'action_clear_logs' ], 10, 0 );
+add_action( 'add_meta_boxes', [ $this->component( 'admin_upsell' ), 'add_conditionals_meta_box' ], 10, 0 );
+add_action( 'notification/metabox/trigger/tags/groups/after', [ $this->component( 'admin_upsell' ), 'custom_fields_merge_tag_group' ], 10, 0 );
+add_action( 'notification/admin/metabox/save/post', [ $this->component( 'admin_upsell' ), 'review_queue_switch' ], 10, 0 );
+add_action( 'notification/settings/register', [ $this->component( 'admin_upsell' ), 'scheduled_triggers_settings' ], 200, 1 );
+add_action( 'notification/settings/section/triggers/before', [ $this->component( 'admin_upsell' ), 'triggers_settings_upsell' ], 10, 0 );
+add_action( 'notification/settings/section/carriers/before', [ $this->component( 'admin_upsell' ), 'carriers_settings_upsell' ], 10, 0 );
+add_action( 'notification/carrier/list/after', [ $this->component( 'admin_upsell' ), 'carriers_list' ], 10, 0 );
 add_filter( 'wp_mail_from_name', [ $this->component( 'integration_wp' ), 'filter_email_from_name' ], 1000, 1 );
 add_filter( 'wp_mail_from', [ $this->component( 'integration_wp' ), 'filter_email_from_email' ], 1000, 1 );
+add_filter( 'notification/background_processing/trigger_key', [ $this->component( 'integration_wp' ), 'identify_trigger' ], 10, 2 );
 add_action( 'wp_insert_comment', [ $this->component( 'integration_wp' ), 'proxy_comment_reply' ], 10, 2 );
 add_action( 'comment_post', [ $this->component( 'integration_wp' ), 'proxy_post_comment_to_published' ], 10, 2 );
 add_action( 'transition_comment_status', [ $this->component( 'integration_wp' ), 'proxy_transition_comment_status_to_published' ], 10, 3 );
@@ -82,9 +93,6 @@ add_filter( 'send_password_change_email', [ $this->component( 'integration_wp_em
 add_filter( 'retrieve_password_message', [ $this->component( 'integration_wp_emails' ), 'disable_password_reset_notify_to_user' ], 100, 1 );
 add_filter( 'send_email_change_email', [ $this->component( 'integration_wp_emails' ), 'disable_email_change_notify_to_user' ], 10, 3 );
 add_filter( 'auto_core_update_send_email', [ $this->component( 'integration_wp_emails' ), 'disable_automatic_wp_core_update_notify' ], 10, 4 );
-add_action( 'notification/trigger/action/did', [ $this->component( 'integration_gb' ), 'maybe_postpone_action' ], 5, 1 );
-add_action( 'notification/trigger/action/did', [ $this->component( 'integration_cf' ), 'maybe_postpone_action' ], 10, 1 );
-add_action( 'notification/trigger/action/did', [ $this->component( 'integration_bp' ), 'load_to_cron' ], 1, 2 );
 add_action( 'notification/trigger/registered', [ $this->component( 'integration_2fa' ), 'add_trigger_action' ], 10, 1 );
 add_action( 'two_factor_user_authenticated', [ $this->component( 'integration_2fa' ), 'user_login_with_2fa' ], 10, 1 );
 add_action( 'rest_api_init', [ $this->component( 'repeater_api' ), 'rest_api_init' ], 10, 0 );
