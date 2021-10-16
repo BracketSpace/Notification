@@ -34,7 +34,11 @@ class Recipient implements Interfaces\Storable {
 	 * @return void
 	 */
 	public static function insert( string $carrier_slug, string $slug, Interfaces\Receivable $recipient ) : void {
-		if ( array_key_exists( $slug, static::$items ) ) {
+		if ( ! isset( static::$items[ $carrier_slug ] ) ) {
+			static::$items[ $carrier_slug ] = [];
+		}
+
+		if ( array_key_exists( $slug, static::$items[ $carrier_slug ] ) ) {
 			ErrorHandler::error(
 				sprintf(
 					'Recipient with %s slug for %s Carrier in %s Store already exists.',
@@ -45,10 +49,6 @@ class Recipient implements Interfaces\Storable {
 			);
 
 			return;
-		}
-
-		if ( ! isset( static::$items[ $carrier_slug ] ) ) {
-			static::$items[ $carrier_slug ] = [];
 		}
 
 		static::$items[ $carrier_slug ][ $slug ] = $recipient;
