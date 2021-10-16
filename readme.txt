@@ -303,6 +303,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 7. Plugin doesn't cache anything anymore, the loading process is more streamlined and things like Post Types are lazy loaded when needed
 8. Registration functions has been replaced with `Register` class and its static methods.
 9. Multiple functions has been replaced with their static method equivalents.
+10. `notification/elements` action has been deprecated, use `notification/init` instead.
 
 Removed deprecated hooks:
 - `notification/notification/pre-send`, use `notification/carrier/pre-send`
@@ -313,6 +314,8 @@ Removed deprecated hooks:
 - `notificaiton/merge_tag/value/resolved`, use `notification/merge_tag/value/resolved`
 - `notification/webhook/remote_args/{$method}`, use `notification/carrier/webhook/remote_args/{$method}`
 - `notification/webhook/called/{$method}`, use `notification/carrier/webhook/called/{$method}`
+- `notification/boot/initial`, use `notification/init`
+- `notification/boot`, use `notification/init`
 
 **Full changelog**
 
@@ -341,6 +344,7 @@ Removed deprecated hooks:
 * [Removed] Syncing functions: `notification_sync`, `notification_get_sync_path`, `notification_is_syncing`.
 * [Removed] Whitelabeling functions: `notification_whitelabel`, `notification_is_whitelabeled`.
 * [Removed] Editor and Code Editor fields sanitizers to allow for HTML usage, ie. email templates.
+* [Removed] `notification/elements` action hoook, use `notification/init` instead.
 * [Added] Runner class that processes the Triggers.
 * [Added] ErrorHandler class that helps handle errors. It can throw an exception when NOTIFICATION_DEBUG is enabled or save a warning to error_log when it's disabled.
 * [Added] Plugin settings value lazy loading.

@@ -24,7 +24,7 @@ class Whitelabel {
 	 * Removes defaults:
 	 * - triggers
 	 *
-	 * @action notification/elements
+	 * @action notification/init 1000
 	 *
 	 * @return void
 	 */

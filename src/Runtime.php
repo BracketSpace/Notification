@@ -97,13 +97,8 @@ class Runtime {
 
 		$this->load_bundled_extensions();
 
-		do_action_deprecated( 'notification/boot/initial', [], '7.0.0', 'notification/init' );
-		do_action_deprecated( 'notification/boot', [], '7.0.0', 'notification/init' );
 		do_action( 'notification/init' );
-
-		$this->defaults();
-
-		do_action( 'notification/elements' );
+		do_action_deprecated( 'notification/elements', [], '[Next]', 'notification/init' );
 
 	}
 
@@ -128,6 +123,10 @@ class Runtime {
 	 * @return void
 	 */
 	public function register_hooks() {
+		// Hook Runtime class.
+		$this->add_hooks();
+
+		// Hook components.
 		foreach ( $this->components as $component ) {
 			if ( is_object( $component ) ) {
 				$this->add_hooks( $component );
@@ -253,7 +252,10 @@ class Runtime {
 	/**
 	 * Loads defaults
 	 *
+	 * @action notification/init
+	 *
 	 * @since  6.0.0
+	 * @since  [Next] Is hooked to notification/init action.
 	 * @return void
 	 */
 	public function defaults() {
