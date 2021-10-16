@@ -252,7 +252,7 @@ class Runtime {
 	/**
 	 * Loads defaults
 	 *
-	 * @action notification/init
+	 * @action notification/init 8
 	 *
 	 * @since  6.0.0
 	 * @since  [Next] Is hooked to notification/init action.
