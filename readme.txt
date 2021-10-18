@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.7
-Stable tag: 7.2.4
+Stable tag: 8.0.0
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -304,6 +304,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 8. Registration functions has been replaced with `Register` class and its static methods.
 9. Multiple functions has been replaced with their static method equivalents.
 10. `notification/elements` action has been deprecated, use `notification/init` instead.
+11. `NOTIFICATION_VERSION` constant has been removed, use `Notification::version()` instead
 
 Removed deprecated hooks:
 - `notification/notification/pre-send`, use `notification/carrier/pre-send`
@@ -344,7 +345,8 @@ Removed deprecated hooks:
 * [Removed] Syncing functions: `notification_sync`, `notification_get_sync_path`, `notification_is_syncing`.
 * [Removed] Whitelabeling functions: `notification_whitelabel`, `notification_is_whitelabeled`.
 * [Removed] Editor and Code Editor fields sanitizers to allow for HTML usage, ie. email templates.
-* [Removed] `notification/elements` action hoook, use `notification/init` instead.
+* [Removed] `notification/elements` action hoook.
+* [Removed] NOTIFICATION_VERSION constant.
 * [Added] Runner class that processes the Triggers.
 * [Added] ErrorHandler class that helps handle errors. It can throw an exception when NOTIFICATION_DEBUG is enabled or save a warning to error_log when it's disabled.
 * [Added] Plugin settings value lazy loading.
