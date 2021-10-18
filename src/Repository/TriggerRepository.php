@@ -33,9 +33,7 @@ class TriggerRepository {
 
 		self::register_comment_triggers();
 
-		if ( notification_get_setting( 'triggers/wordpress/updates' ) ) {
-			self::register_wp_triggers();
-		}
+		self::register_wp_triggers();
 
 		if ( notification_get_setting( 'triggers/plugin/enable' ) ) {
 			self::register_plugin_triggers();
@@ -132,7 +130,9 @@ class TriggerRepository {
 	 * @return void
 	 */
 	public static function register_wp_triggers() {
-		Register::trigger( new Trigger\WordPress\UpdatesAvailable() );
+		if ( notification_get_setting( 'triggers/wordpress/updates' ) ) {
+			Register::trigger( new Trigger\WordPress\UpdatesAvailable() );
+		}
 
 		if ( notification_get_setting( 'triggers/wordpress/email_address_change_request' ) ) {
 			Register::trigger( new Trigger\WordPress\EmailChangeRequest() );
