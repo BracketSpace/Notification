@@ -24,7 +24,7 @@ trait HasDescription {
 	 *
 	 * @return string|null Description
 	 */
-	public function get_description() : ?string {
+	public function get_description() {
 		return $this->description;
 	}
 

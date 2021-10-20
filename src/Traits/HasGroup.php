@@ -24,7 +24,7 @@ trait HasGroup {
 	 *
 	 * @return string|null Group name
 	 */
-	public function get_group() : ?string {
+	public function get_group() {
 		return $this->group;
 	}
 
