@@ -297,13 +297,11 @@ abstract class Carrier implements Interfaces\Sendable {
 	 * @return mixed              value or null if field not available
 	 */
 	public function get_field_value( $field_slug ) {
-
 		if ( ! isset( $this->form_fields[ $field_slug ] ) ) {
 			return null;
 		}
 
 		return $this->form_fields[ $field_slug ]->get_value();
-
 	}
 
 	/**
@@ -314,18 +312,14 @@ abstract class Carrier implements Interfaces\Sendable {
 	 * @return void
 	 */
 	public function resolve_fields( Triggerable $trigger ) {
-
 		foreach ( $this->get_form_fields() as $field ) {
-
 			if ( ! $field->is_resolvable() ) {
 				continue;
 			}
 
 			$resolved = $this->resolve_value( $field->get_value(), $trigger );
 			$field->set_value( $resolved );
-
 		}
-
 	}
 
 	/**
@@ -337,7 +331,6 @@ abstract class Carrier implements Interfaces\Sendable {
 	 * @return mixed
 	 */
 	protected function resolve_value( $value, Triggerable $trigger ) {
-
 		if ( is_array( $value ) ) {
 			$resolved = [];
 
@@ -380,7 +373,6 @@ abstract class Carrier implements Interfaces\Sendable {
 		$resolved = str_replace( '!{', '{', $resolved );
 
 		return apply_filters( 'notification/carrier/field/value/resolved', $resolved, null );
-
 	}
 
 	/**
@@ -398,24 +390,44 @@ abstract class Carrier implements Interfaces\Sendable {
 		if ( $this->has_recipients_field() ) {
 			$recipients_field = $this->get_recipients_field();
 
-			if ( ! $recipients_field ) {
-				return;
+			if ( $recipients_field ) {
+				$this->data[ 'parsed_' . $recipients_field->get_raw_name() ] = $this->parse_recipients();
 			}
-
-			$parsed_recipients = [];
-
-			$raw_recipients = $this->get_field_value( $recipients_field->get_raw_name() );
-
-			foreach ( $this->get_recipients() as $recipient ) {
-				$parsed_recipients = array_merge(
-					$parsed_recipients,
-					(array) RecipientStore::get( $this->get_slug(), $recipient['type'] )->parse_value( $recipient['recipient'] ) ?? []
-				);
-			}
-
-			// Remove duplicates and save to data property.
-			$this->data[ 'parsed_' . $recipients_field->get_raw_name() ] = array_unique( $parsed_recipients );
 		}
+	}
+
+	/**
+	 * Parses the recipients to a flat array.
+	 *
+	 * @since  [Next]
+	 * @return array<int,mixed>
+	 */
+	public function parse_recipients() {
+		$this->data = $this->get_data();
+
+		if ( ! $this->has_recipients_field() ) {
+			return [];
+		}
+
+		$recipients_field = $this->get_recipients_field();
+
+		if ( ! $recipients_field ) {
+			return [];
+		}
+
+		$parsed_recipients = [];
+
+		$raw_recipients = $this->get_field_value( $recipients_field->get_raw_name() );
+
+		foreach ( $this->get_recipients() as $recipient ) {
+			$parsed_recipients = array_merge(
+				$parsed_recipients,
+				(array) RecipientStore::get( $this->get_slug(), $recipient['type'] )->parse_value( $recipient['recipient'] ) ?? []
+			);
+		}
+
+		// Remove duplicates.
+		return array_unique( $parsed_recipients );
 	}
 
 	/**
