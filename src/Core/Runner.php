@@ -118,13 +118,9 @@ class Runner {
 	 * @return void
 	 */
 	public function set_notifications() {
-
-		$notifications = new NotificationStore();
-
-		foreach ( $notifications->with_trigger( $this->trigger->get_slug() ) as $notification ) {
+		foreach ( NotificationStore::with_trigger( $this->trigger->get_slug() ) as $notification ) {
 			$this->attach_notification( $notification );
 		}
-
 	}
 
 	/**
