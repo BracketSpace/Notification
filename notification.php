@@ -89,7 +89,7 @@ if ( ! class_exists( 'Notification' ) ) :
 		 *
 		 * @since  [Next]
 		 * @throws \Exception When runtime wasn't invoked yet.
-		 * @return \BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem
+		 * @return \BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem
 		 */
 		public static function fs() {
 			if ( ! isset( self::$runtime ) ) {
