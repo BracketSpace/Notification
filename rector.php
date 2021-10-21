@@ -18,6 +18,16 @@ return static function ( ContainerConfigurator $container_configurator ) {
 	$container_configurator->import( DowngradeSetList::PHP_72 );
 	$container_configurator->import( DowngradeSetList::PHP_71 );
 
+	$services = $container_configurator->services();
+
+	$services->set( DowngradeParameterTypeWideningRector::class )
+		->call( 'configure', [
+			[
+				DowngradeParameterTypeWideningRector::SAFE_TYPES => [],
+				DowngradeParameterTypeWideningRector::SAFE_TYPES_TO_METHODS => [],
+			],
+		] );
+
 	$parameters = $container_configurator->parameters();
 
 	$parameters->set( Option::PATHS, [
