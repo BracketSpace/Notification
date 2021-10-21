@@ -3,7 +3,6 @@
 .wordpress-org
 node_modules
 tests
-vendor
 .build-excludes
 .editorconfig
 .gitattributes

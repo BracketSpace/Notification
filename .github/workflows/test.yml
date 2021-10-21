@@ -93,7 +93,10 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
-        run: composer install --no-progress
+        run: |
+          composer install --no-progress
+          composer compose
+          composer install --no-dev --no-progress
       - name: Run Rector
         run: |
           composer require -W --no-progress rector/rector-prefixed
