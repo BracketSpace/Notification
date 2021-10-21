@@ -75,7 +75,7 @@ jobs:
       - name: Lint
         run: composer phplint
   phpcompat:
-    name: PHP Compatibility
+    name: PHP Compatibility (7.0)
     runs-on: ubuntu-latest
     steps:
       - name: Set PHP version
