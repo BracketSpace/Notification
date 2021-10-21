@@ -9,7 +9,7 @@ namespace BracketSpace\Notification\Repository;
 
 use BracketSpace\Notification\Defaults\Carrier;
 use BracketSpace\Notification\Register;
-use BracketSpace\Notification\Vendor\Micropackage\DocHooks\Helper as DocHooksHelper;
+use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\Helper as DocHooksHelper;
 
 /**
  * Carrier Repository.

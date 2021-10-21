@@ -10,7 +10,7 @@ namespace BracketSpace\Notification\Admin;
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Utils\Cache\ObjectCache;
 use BracketSpace\Notification\Store;
-use BracketSpace\Notification\Vendor\Micropackage\Ajax\Response;
+use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
 
 /**
  * PostType class

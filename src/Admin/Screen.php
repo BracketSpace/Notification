@@ -12,7 +12,7 @@ use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Store;
-use BracketSpace\Notification\Vendor\Micropackage\Ajax\Response;
+use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
 
 /**
  * Screen class

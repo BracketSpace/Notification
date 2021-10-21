@@ -10,7 +10,7 @@ namespace BracketSpace\Notification\Admin;
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Core\Whitelabel;
-use BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem;
+use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
 
 /**
  * Wizard class

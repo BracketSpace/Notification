@@ -7,7 +7,7 @@
 
 namespace BracketSpace\Notification\Admin;
 
-use BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem;
+use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
 
 /**
  * Scripts class

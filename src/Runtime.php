@@ -7,10 +7,10 @@
 
 namespace BracketSpace\Notification;
 
-use BracketSpace\Notification\Vendor\Micropackage\Requirements\Requirements;
-use BracketSpace\Notification\Vendor\Micropackage\DocHooks\HookTrait;
-use BracketSpace\Notification\Vendor\Micropackage\DocHooks\Helper as DocHooksHelper;
-use BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem;
+use BracketSpace\Notification\Dependencies\Micropackage\Requirements\Requirements;
+use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\HookTrait;
+use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\Helper as DocHooksHelper;
+use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
 
 /**
  * Runtime class

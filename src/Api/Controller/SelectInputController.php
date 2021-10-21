@@ -8,7 +8,7 @@
 namespace BracketSpace\Notification\Api\Controller;
 
 use BracketSpace\Notification\Store\Recipient as RecipientStore;
-use BracketSpace\Notification\Vendor\Micropackage\Ajax\Response;
+use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
 
 /**
  * RepeaterHandler class
