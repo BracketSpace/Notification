@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c89cf4aa10ac0a684e2aa7e88e4683d",
+    "content-hash": "18c647adb1caca2974b87d279141aaa4",
     "packages": [
         {
             "name": "coenjacobs/mozart",
@@ -2433,16 +2433,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "6.5.14",
+            "version": "6.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "bac23fe7ff13dbdb461481f706f0e9fe746334b7"
+                "reference": "9582244325db2dda80ee8bd920c3f353b0b6329d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/bac23fe7ff13dbdb461481f706f0e9fe746334b7",
-                "reference": "bac23fe7ff13dbdb461481f706f0e9fe746334b7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9582244325db2dda80ee8bd920c3f353b0b6329d",
+                "reference": "9582244325db2dda80ee8bd920c3f353b0b6329d",
                 "shasum": ""
             },
             "require": {
@@ -2456,11 +2456,11 @@
                 "phar-io/version": "^1.0",
                 "php": "^7.0",
                 "phpspec/prophecy": "^1.7",
-                "phpunit/php-code-coverage": "^5.3",
+                "phpunit/php-code-coverage": "^5.2.3",
                 "phpunit/php-file-iterator": "^1.4.3",
                 "phpunit/php-text-template": "^1.2.1",
                 "phpunit/php-timer": "^1.0.9",
-                "phpunit/phpunit-mock-objects": "^5.0.9",
+                "phpunit/phpunit-mock-objects": "^5.0",
                 "sebastian/comparator": "^2.1",
                 "sebastian/diff": "^2.0",
                 "sebastian/environment": "^3.1",
@@ -2515,9 +2515,9 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/6.5.14"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/6.5.0"
             },
-            "time": "2019-02-01T05:22:47+00:00"
+            "time": "2017-11-30T16:20:46+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

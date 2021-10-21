@@ -16,13 +16,13 @@
 	"require-dev": {
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
 		"jakub-onderka/php-parallel-lint": "^1.0",
+		"php-stubs/wp-cli-stubs": "^2.4",
 		"phpcompatibility/php-compatibility": "^9.3",
-		"phpunit/phpunit": "^6.5",
+		"phpunit/phpunit": "6.5",
 		"roots/wordpress": "*",
 		"szepeviktor/phpstan-wordpress": "^0.7.2",
 		"wp-coding-standards/wpcs": "^2.0",
-		"wp-phpunit/wp-phpunit": "^5.8",
-		"php-stubs/wp-cli-stubs": "^2.4"
+		"wp-phpunit/wp-phpunit": "^5.8"
 	},
 	"config": {
 		"optimize-autoloader": true,
