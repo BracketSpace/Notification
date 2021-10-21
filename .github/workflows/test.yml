@@ -149,7 +149,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['7.1', '7.2', '7.3']
+        php: ['7.0', '7.1', '7.2', '7.3']
     services:
       mysql:
         image: mysql:5.7
@@ -179,12 +179,16 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
-        run: composer install --no-progress
+        run: |
+          composer install --no-progress
+          composer compose
       - name: Run Rector
         run: |
           composer require -W --no-progress rector/rector-prefixed
           vendor/bin/rector process --verbose
           composer remove --no-progress rector/rector-prefixed
+      - name: Remove obsolete packages
+        run: composer remove --dev --no-progress coenjacobs/mozart
       - name: Setup PHP ${{ matrix.php }}
         # https://github.com/shivammathur/setup-php/issues/446#issuecomment-824001225
         uses: shivammathur/setup-php@develop
