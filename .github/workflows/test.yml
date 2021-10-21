@@ -1,11 +1,6 @@
 name: Test
 
-on:
-  pull_request: null
-  push:
-    branches:
-      - develop
-      - 'release/*'
+on: push
 
 jobs:
   phpcs:
@@ -28,8 +23,6 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
         run: composer install --no-progress
-      - name: Compose dependencies
-        run: composer compose
       - name: Coding Standards
         run: composer phpcs
   phpstan:
@@ -51,10 +44,7 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
-        run: |
-          composer install --no-progress
-      - name: Compose dependencies
-        run: composer compose
+        run: composer install --no-progress
       - name: Analyze
         run: composer phpstan
   phplint:
@@ -76,8 +66,7 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
-        run: |
-          composer install --no-progress
+        run: composer install --no-progress
       - name: Compose dependencies
         run: composer compose
       - name: Lint
@@ -101,15 +90,13 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
-        run: |
-          composer install --no-progress
+        run: composer install --no-progress
+      - name: Install Composer build dependencies
+        run: composer bin build install --no-progress
       - name: Compose dependencies
         run: composer compose
       - name: Run Rector
-        run: |
-          composer require -W --no-progress rector/rector-prefixed
-          vendor/bin/rector process --verbose
-          composer remove --no-progress rector/rector-prefixed
+        run: composer downgrade-php
       - name: Check compatibility
         run: composer phpcompat
   phpunit:
@@ -147,14 +134,13 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
-        run: |
-          composer install --no-progress
+        run: composer install --no-dev --no-progress
       - name: Compose dependencies
         run: composer compose
       - name: PHPUnit
         env:
           WP_DB_HOST: 127.0.0.1:${{ job.services.mysql.ports['3306'] }}
-        run: vendor/bin/phpunit
+        run: composer phpunit
   phpunit-rector:
     name: PHPUnit with Rector
     runs-on: ubuntu-latest
@@ -190,17 +176,13 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
-        run: |
-          composer install --no-progress
+        run: composer install --no-progress
+      - name: Install Composer build dependencies
+        run: composer bin build install --no-progress
       - name: Compose dependencies
         run: composer compose
       - name: Run Rector
-        run: |
-          composer require -W --no-progress rector/rector-prefixed
-          vendor/bin/rector process --verbose
-          composer remove --no-progress rector/rector-prefixed
-      - name: Remove obsolete packages
-        run: composer remove --dev --no-progress coenjacobs/mozart szepeviktor/phpstan-wordpress
+        run: composer downgrade-php
       - name: Setup PHP ${{ matrix.php }}
         # https://github.com/shivammathur/setup-php/issues/446#issuecomment-824001225
         uses: shivammathur/setup-php@develop
@@ -212,7 +194,7 @@ jobs:
       - name: PHPUnit
         env:
           WP_DB_HOST: 127.0.0.1:${{ job.services.mysql.ports['3306'] }}
-        run: vendor/bin/phpunit --verbose
+        run: composer phpunit
   css:
     name: CSS Lint
     runs-on: ubuntu-latest
