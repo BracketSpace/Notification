@@ -76,7 +76,7 @@ class Debugging {
 				'name'     => __( 'Log', 'notification' ),
 				'slug'     => 'log',
 				'addons'   => [
-					'message' => $this->get_notification_log(),
+					'message' => [ $this, 'get_notification_log' ],
 				],
 				'render'   => [ new CoreFields\Message(), 'input' ],
 				'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
@@ -87,7 +87,7 @@ class Debugging {
 				'name'     => __( 'Log', 'notification' ),
 				'slug'     => 'log',
 				'addons'   => [
-					'message' => $this->get_error_log(),
+					'message' => [ $this, 'get_error_log' ],
 				],
 				'render'   => [ new CoreFields\Message(), 'input' ],
 				'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
