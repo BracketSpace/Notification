@@ -17,6 +17,7 @@ return static function ( ContainerConfigurator $container_configurator ) {
 		DowngradeSetList::PHP_73,
 		DowngradeSetList::PHP_72,
 		DowngradeSetList::PHP_71,
+		DowngradeSetList::PHP_70,
 	] );
 	$parameters->set( Option::PATHS, [
 		__DIR__ . '/resources/templates',
