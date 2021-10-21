@@ -12,6 +12,7 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 return static function ( ContainerConfigurator $container_configurator ) {
 	$parameters = $container_configurator->parameters();
 	$parameters->set( Option::SETS, [
+		DowngradeSetList::PHP_80,
 		DowngradeSetList::PHP_74,
 		DowngradeSetList::PHP_73,
 		DowngradeSetList::PHP_72,
