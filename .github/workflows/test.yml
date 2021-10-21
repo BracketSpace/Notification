@@ -143,6 +143,8 @@ jobs:
         run: composer bin build install --no-progress
       - name: Compose dependencies
         run: composer compose
+      - name: Remove unused dependencies
+        run: composer remove --dev szepeviktor/phpstan-wordpress
       - name: Setup PHP ${{ matrix.php }}
         # https://github.com/shivammathur/setup-php/issues/446#issuecomment-824001225
         uses: shivammathur/setup-php@develop
