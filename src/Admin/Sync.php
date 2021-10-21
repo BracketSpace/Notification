@@ -11,7 +11,7 @@ use BracketSpace\Notification\Admin\PostType;
 use BracketSpace\Notification\Core\Sync as CoreSync;
 use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Utils\Settings\CoreFields;
-use BracketSpace\Notification\Vendor\Micropackage\Ajax\Response;
+use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
 use BracketSpace\Notification\Queries\NotificationQueries;
 
 /**

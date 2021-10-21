@@ -304,7 +304,8 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 8. Registration functions has been replaced with `Register` class and its static methods.
 9. Multiple functions has been replaced with their static method equivalents.
 10. `notification/elements` action has been deprecated, use `notification/init` instead.
-11. `NOTIFICATION_VERSION` constant has been removed, use `Notification::version()` instead
+11. `NOTIFICATION_VERSION` constant has been removed, use `Notification::version()` instead.
+12. `BracketSpace\Notification\Vendor` namespace is replaced with `BracketSpace\Notification\Dependencies`.
 
 Removed deprecated hooks:
 - `notification/notification/pre-send`, use `notification/carrier/pre-send`
@@ -330,6 +331,7 @@ Removed deprecated hooks:
 * [Changed] Plugin loading stack, [see docs](https://docs.bracketspace.com/notification/developer/general/plugin-loading-chain) for more details.
 * [Changed] Plugin settings now are initialized on `notification/init 5` action.
 * [Changed] Recipients now can be loaded anytime, not only before Carriers get registered.
+* [Changed] PHP Dependency handling, now all the PHP dependencies lives in src/Dependencies dir.
 * [Removed] `Common` Abstract that has been replaced by HasName and HasSlug Traits.
 * [Removed] Cache class and all caching mechanism for post types, taxonomies and comment types.
 * [Removed] Trait Users. This is replaced with `BracketSpace\Notification\Queries\UserQueries` class.

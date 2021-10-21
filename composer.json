@@ -4,35 +4,38 @@
 	"license": "GPL-3.0-or-later",
 	"description": "Notification plugin for WordPress",
 	"require": {
+		"composer-runtime-api": "^2.0",
 		"php": "^7.0",
 		"micropackage/ajax": "^1.0",
 		"micropackage/dochooks": "1.0.2",
 		"micropackage/filesystem": "^1.1",
 		"micropackage/requirements": "^1.0",
-		"micropackage/templates": "^1.1",
-		"typisttech/imposter-plugin": "^0.6.2"
+		"micropackage/templates": "^1.1"
 	},
 	"require-dev": {
+		"coenjacobs/mozart": "^0.7.1",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
 		"jakub-onderka/php-parallel-lint": "^1.0",
+		"php-stubs/wp-cli-stubs": "^2.4",
 		"phpcompatibility/php-compatibility": "^9.3",
-		"phpunit/phpunit": "^6.5",
-		"roots/wordpress": "^5.6",
+		"phpunit/phpunit": "6.5",
+		"roots/wordpress": "*",
 		"szepeviktor/phpstan-wordpress": "^0.7.2",
 		"wp-coding-standards/wpcs": "^2.0",
-		"wp-phpunit/wp-phpunit": "^5.6",
-		"php-stubs/wp-cli-stubs": "^2.4"
+		"wp-phpunit/wp-phpunit": "^5.8"
 	},
 	"config": {
-		"platform-check": false
+		"optimize-autoloader": true,
+		"preferred-install": "dist",
+		"sort-packages": true
 	},
 	"extra": {
-		"imposter": {
-			"excludes": [
-				"roots/wordpress",
-				"wp-phpunit/wp-phpunit"
-			],
-			"namespace": "BracketSpace\\Notification\\Vendor"
+		"mozart": {
+		    "dep_namespace": "BracketSpace\\Notification\\Dependencies\\",
+		    "dep_directory": "/src/Dependencies/",
+		    "classmap_directory": "/classes/dependencies/",
+		    "classmap_prefix": "BRSET_",
+		    "delete_vendor_directories": true
 		},
 		"wordpress-install-dir": "tests/_wordpress"
 	},
@@ -57,10 +60,17 @@
 		"phpcbf": "phpcbf",
 		"phpcs": "phpcs",
 		"phpcompat": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.0 notification.php load.php uninstall.php src/ resources/templates/",
-		"phpcompat-vendor": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.0 notification.php load.php uninstall.php src/ resources/templates/ vendor/",
 		"phplint": "parallel-lint --exclude node_modules --exclude vendor .",
 		"phpstan": "phpstan analyze",
 		"phpunit": "phpunit",
-		"phpunit-coverage": "phpunit --coverage-text"
+		"phpunit-coverage": "phpunit --coverage-text",
+        "post-install-cmd": [
+            "\"vendor/bin/mozart\" compose",
+            "composer dump-autoload"
+        ],
+        "post-update-cmd": [
+            "\"vendor/bin/mozart\" compose",
+            "composer dump-autoload"
+        ]
 	}
 }

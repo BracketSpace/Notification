@@ -1,10 +1,12 @@
 
 ### Project ###
 *.log
+/classes/
 node_modules/
 /vendor/
-dist/
 package-lock.json
+/resources/*/dist/
+/src/Dependencies/
 /tests/_wordpress/
 
 ### Windows ###

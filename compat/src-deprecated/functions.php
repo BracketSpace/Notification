@@ -13,7 +13,7 @@ use BracketSpace\Notification\Core\Whitelabel;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Store;
-use BracketSpace\Notification\Vendor\Micropackage\DocHooks\Helper as DocHooksHelper;
+use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\Helper as DocHooksHelper;
 use BracketSpace\Notification\Queries\NotificationQueries;
 
 /**
@@ -252,12 +252,12 @@ function notification_display_wizard() {
  * @since      6.0.0
  * @since      7.0.0 Using Ajax Micropackage.
  * @deprecated [Next]
- * @return     BracketSpace\Notification\Vendor\Micropackage\Ajax\Response
+ * @return     BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response
  */
 function notification_ajax_handler() {
 	_deprecated_function( __FUNCTION__, '[Next]' );
 
-	return new BracketSpace\Notification\Vendor\Micropackage\Ajax\Response();
+	return new BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response();
 }
 
 /**
@@ -266,7 +266,7 @@ function notification_ajax_handler() {
  * @since      7.0.0
  * @deprecated [Next]
  * @param      string $deprecated Filesystem name.
- * @return     BracketSpace\Notification\Vendor\Micropackage\Filesystem\Filesystem
+ * @return     BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem
  */
 function notification_filesystem( $deprecated ) {
 	_deprecated_function( __FUNCTION__, '[Next]', 'Notification::fs()' );

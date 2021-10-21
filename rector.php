@@ -12,6 +12,7 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 return static function ( ContainerConfigurator $container_configurator ) {
 	$parameters = $container_configurator->parameters();
 	$parameters->set( Option::SETS, [
+		DowngradeSetList::PHP_80,
 		DowngradeSetList::PHP_74,
 		DowngradeSetList::PHP_73,
 		DowngradeSetList::PHP_72,
@@ -21,7 +22,6 @@ return static function ( ContainerConfigurator $container_configurator ) {
 		__DIR__ . '/resources/templates',
 		__DIR__ . '/src',
 		__DIR__ . '/tests',
-		__DIR__ . '/vendor',
 	] );
 	$parameters->set( Option::SKIP, [
 		__DIR__ . '/tests/_wordpress',

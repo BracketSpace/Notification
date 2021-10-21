@@ -7,8 +7,8 @@
 
 namespace BracketSpace\Notification\Core;
 
-use BracketSpace\Notification\Vendor\Micropackage\Templates\Storage;
-use BracketSpace\Notification\Vendor\Micropackage\Templates\Template;
+use BracketSpace\Notification\Dependencies\Micropackage\Templates\Storage;
+use BracketSpace\Notification\Dependencies\Micropackage\Templates\Template;
 
 /**
  * Templates class
