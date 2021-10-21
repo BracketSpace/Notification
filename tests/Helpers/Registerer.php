@@ -9,6 +9,8 @@ namespace BracketSpace\Notification\Tests\Helpers;
 
 use BracketSpace\Notification\Tests\Helpers\Objects;
 use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Register;
+use BracketSpace\Notification\Store;
 
 /**
  * Registerer helper class
@@ -32,10 +34,20 @@ class Registerer {
 			$trigger = new Objects\SimpleTrigger( $trigger_tag );
 		}
 
-		notification_register_trigger( $trigger );
+		Register::trigger( $trigger );
 
 		return $trigger;
 
+	}
+
+	/**
+	 * Clears all Triggers
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public static function clear_triggers() {
+		Store\Trigger::clear();
 	}
 
 	/**
@@ -46,8 +58,18 @@ class Registerer {
 	 */
 	public static function register_carrier( $carrier_slug = 'dummmy'  ) {
 		$carrier = new Objects\Carrier( $carrier_slug );
-		notification_register_carrier( $carrier );
+		Register::carrier( $carrier );
 		return $carrier;
+	}
+
+	/**
+	 * Clears all Carriers
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public static function clear_carriers() {
+		Store\Carrier::clear();
 	}
 
 	/**
@@ -81,6 +103,16 @@ class Registerer {
 	}
 
 	/**
+	 * Clears all Notifications
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public static function clear_notifications() {
+		Store\Notification::clear();
+	}
+
+	/**
 	 * Register Resolver
 	 *
 	 * @since 6.3.0
@@ -88,8 +120,18 @@ class Registerer {
 	 */
 	public static function register_resolver() {
 		$resolver = new Objects\Resolver();
-		notification_register_resolver( $resolver );
+		Register::resolver( $resolver );
 		return $resolver;
+	}
+
+	/**
+	 * Clears all Resolvers
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public static function clear_resolvers() {
+		Store\Resolver::clear();
 	}
 
 	/**
@@ -101,7 +143,31 @@ class Registerer {
 	 */
 	public static function register_recipient( $carrier_slug = 'dummy_carrier' ) {
 		$recipient = new Objects\Recipient();
-		notification_register_recipient( $carrier_slug, $recipient );
+		Register::recipient( $carrier_slug, $recipient );
 		return $recipient;
+	}
+
+	/**
+	 * Clears all Recipients
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public static function clear_recipients() {
+		Store\Recipient::clear();
+	}
+
+	/**
+	 * Clears all registered items
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public static function clear() {
+		static::clear_triggers();
+		static::clear_carriers();
+		static::clear_notifications();
+		static::clear_resolvers();
+		static::clear_recipients();
 	}
 }

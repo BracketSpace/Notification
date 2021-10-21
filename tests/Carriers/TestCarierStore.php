@@ -6,7 +6,9 @@
  */
 
 namespace BracketSpace\Notification\Tests\Carriers;
+
 use BracketSpace\Notification\Tests\Helpers\Registerer;
+use BracketSpace\Notification\Store\Carrier as CarrierStore;
 
 class TestCarierStore extends \WP_UnitTestCase {
 
@@ -34,7 +36,7 @@ class TestCarierStore extends \WP_UnitTestCase {
 			'dummy_2' => $carrier_2,
 		];
 
-		$this->assertSame( $excpected_array, notification_get_carriers() );
+		$this->assertSame( $excpected_array, CarrierStore::all() );
 	}
 
 	/**
@@ -46,7 +48,17 @@ class TestCarierStore extends \WP_UnitTestCase {
 		$carrier = Registerer::register_carrier();
 		$carrier_slug = $carrier->get_slug();
 
-		$this->assertSame( $carrier, notification_get_carrier( $carrier_slug ) );
+		$this->assertSame( $carrier, CarrierStore::get( $carrier_slug ) );
 	}
+
+	/**
+	 * Clears after the test
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function tearDown() {
+        Registerer::clear();
+    }
 
 }

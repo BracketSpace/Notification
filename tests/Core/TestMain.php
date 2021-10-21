@@ -39,7 +39,6 @@ class TestMain extends \WP_UnitTestCase {
 	public function test_boot() {
 
 		// Instances.
-		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Cache', \Notification::component( 'core_cache' ) );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Cron', \Notification::component( 'core_cron' ) );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Whitelabel', \Notification::component( 'core_whitelabel' ) );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Core\Debugging', \Notification::component( 'core_debugging' ) );
@@ -61,9 +60,6 @@ class TestMain extends \WP_UnitTestCase {
 
 		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\WordPress', \Notification::component( 'integration_wp' ) );
 		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\WordPressEmails', \Notification::component( 'integration_wp_emails' ) );
-		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\Gutenberg', \Notification::component( 'integration_gb' ) );
-		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\CustomFields', \Notification::component( 'integration_cf' ) );
-		$this->assertInstanceOf( 'BracketSpace\Notification\Integration\BackgroundProcessing', \Notification::component( 'integration_bp' ) );
 
 	}
 

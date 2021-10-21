@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - develop
+      - 'release/*'
 
 jobs:
   phpcs:
@@ -73,12 +74,39 @@ jobs:
         run: composer install --no-progress
       - name: Lint
         run: composer phplint
+  phpcompat:
+    name: PHP Compatibility (7.0)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set PHP version
+        run: sudo update-alternatives --set php /usr/bin/php7.4
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup variables
+        id: vars
+        run: |
+          echo "::set-output name=composer-cache-path::$(composer config cache-files-dir)"
+      - name: Cache Composer
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.vars.outputs.composer-cache-path }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+      - name: Install Composer dependencies
+        run: composer install --no-progress
+      - name: Run Rector
+        run: |
+          composer require -W --no-progress rector/rector-prefixed
+          vendor/bin/rector process --verbose
+          composer remove --no-progress rector/rector-prefixed
+      - name: Check compatibility
+        run: composer phpcompat
   phpunit:
     name: PHPUnit
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['7.3', '7.4']
+        php: ['7.4']
     services:
       mysql:
         image: mysql:5.7
@@ -113,6 +141,59 @@ jobs:
         env:
           WP_DB_HOST: 127.0.0.1:${{ job.services.mysql.ports['3306'] }}
         run: vendor/bin/phpunit
+  phpunit-rector:
+    name: PHPUnit with Rector
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.1', '7.2', '7.3']
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wp_phpunit_tests
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - name: Setup PHP 7.4
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
+          coverage: none
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup variables
+        id: vars
+        run: |
+          echo "::set-output name=composer-cache-path::$(composer config cache-files-dir)"
+      - name: Cache Composer
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.vars.outputs.composer-cache-path }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+      - name: Install Composer dependencies
+        run: composer install --no-progress
+      - name: Run Rector
+        run: |
+          composer require -W --no-progress rector/rector-prefixed
+          vendor/bin/rector process --verbose
+          composer remove --no-progress rector/rector-prefixed
+      - name: Setup PHP ${{ matrix.php }}
+        # https://github.com/shivammathur/setup-php/issues/446#issuecomment-824001225
+        uses: shivammathur/setup-php@develop
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
+          coverage: none
+          tools: none
+      - name: PHPUnit
+        env:
+          WP_DB_HOST: 127.0.0.1:${{ job.services.mysql.ports['3306'] }}
+        run: vendor/bin/phpunit --verbose
   css:
     name: CSS Lint
     runs-on: ubuntu-latest

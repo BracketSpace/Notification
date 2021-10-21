@@ -1,0 +1,263 @@
+[data-nt-hidden] {
+	display: none !important;
+}
+
+[data-nt-carrier-remove] {
+	position: relative;
+	float: left;
+	display: inline-block;
+	height: 36px;
+	margin: 0 2px;
+	padding: 8px;
+	background: none;
+	border: 0;
+	outline: none;
+	cursor: pointer;
+
+	&::before {
+		content: "\f182";
+		font-family: dashicons; // stylelint-disable-line
+		font-size: 20px;
+		line-height: 1;
+		color: #c5c5c5;
+		transition: color 0.2s;
+	}
+
+	&:hover {
+
+		&::before {
+			color: #dc3232;
+		}
+	}
+}
+
+.notification-carriers {
+	$root: &;
+	margin-bottom: 20px;
+
+	/**
+	 * Carriers list
+	 */
+	&__carriers {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin: -10px;
+	}
+
+	&__carrier {
+		display: flex;
+		width: 25%;
+		min-width: 258px;
+		margin: 0;
+		padding: 10px;
+		box-sizing: border-box;
+	}
+
+	&__carrier-link {
+		position: relative;
+		display: block;
+		width: 100%;
+		padding: 20px;
+		font-size: 0;
+		line-height: 0;
+		text-decoration: none;
+		background-color: #fff;
+		border: 1px solid #e5e5e5;
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04) !important;
+		outline: none;
+
+		.label-pro {
+			left: -10px;
+			position: relative;
+			z-index: 2;
+		}
+	}
+
+	&__carrier-media {
+		text-align: center;
+	}
+
+	&__carrier-icon {
+		display: inline-block;
+		height: 100px;
+
+		svg {
+			width: auto;
+			height: 100%;
+
+			path {
+				fill: #23282d;
+			}
+		}
+	}
+
+	&__carrier-title {
+		margin-top: 20px;
+		font-weight: 400;
+		font-size: 20px;
+		line-height: (34 / 20);
+		color: #23282d;
+		text-align: center;
+	}
+
+	&__carrier-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #7dcc4c;
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 0.2s, visibility 0.2s;
+
+		&.available {
+			background-color: #434343;
+		}
+
+		#{$root}__carrier-link:hover & {
+			opacity: 0.9;
+			visibility: visible;
+		}
+	}
+
+	&__carrier-overlay-inner {
+		padding: 20px 20px 10px 20px;
+		text-align: center;
+	}
+
+	&__carrier-overlay-icon {
+		position: relative;
+		display: inline-block;
+		width: 30px;
+		height: 30px;
+
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			background-color: #fff;
+		}
+
+		&::before {
+			top: 50%;
+			left: 0;
+			width: 100%;
+			height: 3px;
+			transform: translateY(-50%);
+		}
+
+		&::after {
+			top: 0;
+			left: 50%;
+			width: 3px;
+			height: 100%;
+			transform: translateX(-50%);
+		}
+	}
+
+	&__carrier-overlay-title {
+		margin-top: 10px;
+		font-weight: 400;
+		font-size: 20px;
+		line-height: (34 / 20);
+		color: #fff;
+	}
+
+	/**
+	 * Button
+	 */
+	&__button {
+		display: block;
+		margin-top: 20px;
+	}
+
+	&__button-link {
+		display: block;
+		width: 100%;
+		padding: 20px;
+		font-size: 0;
+		line-height: 0;
+		text-align: center;
+		text-decoration: none;
+		background-color: #fff;
+		border: 1px solid #e5e5e5;
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04) !important;
+		box-sizing: border-box;
+		outline: none;
+		transition: background-color 0.2s;
+
+		&:hover {
+			background-color: rgba(#fff, 0.75);
+		}
+
+		&--less {
+			padding: 10px 20px;
+			background-color: rgba(#fff, 0.5);
+		}
+	}
+
+	&__button-link-inner {
+		position: relative;
+		display: inline-block;
+		padding-left: 50px;
+
+		#{$root}__button-link--less & {
+			padding-left: 35px;
+		}
+	}
+
+	&__button-icon {
+		position: absolute;
+		top: calc(50% - 15px);
+		left: 0;
+		width: 30px;
+		height: 30px;
+
+		#{$root}__button-link--less & {
+			top: calc(50% - 10px);
+			width: 20px;
+			height: 20px;
+		}
+
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			background-color: #23282d;
+		}
+
+		&::before {
+			top: 50%;
+			left: 0;
+			width: 100%;
+			height: 3px;
+			transform: translateY(-50%);
+		}
+
+		&::after {
+			top: 0;
+			left: 50%;
+			width: 3px;
+			height: 100%;
+			transform: translateX(-50%);
+		}
+
+		&--close {
+			transform: rotate(45deg);
+		}
+	}
+
+	&__button-title {
+		font-weight: 400;
+		font-size: 20px;
+		line-height: (34 / 20);
+		color: #23282d;
+		text-align: center;
+		overflow: hidden;
+	}
+}
