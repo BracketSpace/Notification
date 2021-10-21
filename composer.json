@@ -62,7 +62,7 @@
 		"phpcbf": "phpcbf",
 		"phpcs": "phpcs",
 		"phpcompat": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.0 notification.php load.php uninstall.php src/ resources/templates/",
-		"phplint": "parallel-lint --exclude node_modules --exclude vendor .",
+		"phplint": "parallel-lint --exclude node_modules --exclude vendor  --exclude vendor-bin .",
 		"phpstan": "phpstan analyze",
 		"phpunit": "phpunit",
 		"phpunit-coverage": "phpunit --coverage-text"

@@ -44,6 +44,7 @@
 	<exclude-pattern>node_modules/*</exclude-pattern>
 	<exclude-pattern>tests/*</exclude-pattern>
 	<exclude-pattern>vendor/*</exclude-pattern>
+	<exclude-pattern>vendor-bin/*</exclude-pattern>
 	<exclude-pattern>src/Dependencies/*</exclude-pattern>
 	<exclude-pattern>src/Utils/EDDUpdater.php</exclude-pattern>
 	<exclude-pattern>resources/css/*</exclude-pattern>
