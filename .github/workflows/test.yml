@@ -100,7 +100,7 @@ jobs:
           vendor/bin/rector process --verbose
           composer remove --no-progress rector/rector-prefixed
       - name: Check compatibility
-        run: composer phpcompat-vendor
+        run: composer phpcompat
   phpunit:
     name: PHPUnit
     runs-on: ubuntu-latest
