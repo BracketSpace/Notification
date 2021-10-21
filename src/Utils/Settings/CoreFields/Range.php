@@ -29,7 +29,7 @@ class Range {
 			esc_attr( $field->value() ),
 			esc_attr( $field->addon( 'min' ) ),
 			esc_attr( $field->addon( 'max' ) ),
-			esc_attr( $field->addon( 'step' ) ),
+			esc_attr( $field->addon( 'step' ) )
 		);
 	}
 

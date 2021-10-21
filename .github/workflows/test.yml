@@ -101,8 +101,6 @@ jobs:
         run: composer bin build install --no-progress
       - name: Compose dependencies
         run: composer compose
-      - name: Run Rector
-        run: composer downgrade-php
       - name: Check compatibility
         run: composer phpcompat
   phpunit:
@@ -110,51 +108,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['7.4']
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: wp_phpunit_tests
-        ports:
-          - 3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-    steps:
-      - name: Setup PHP ${{ matrix.php }}
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
-          coverage: none
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup variables
-        id: vars
-        run: |
-          echo "::set-output name=composer-cache-path::$(composer config cache-files-dir)"
-      - name: Cache Composer
-        uses: actions/cache@v1
-        with:
-          path: ${{ steps.vars.outputs.composer-cache-path }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
-      - name: Install Composer dependencies
-        run: composer install --no-progress
-      - name: Install Composer build dependencies
-        run: composer bin build install --no-progress
-      - name: Compose dependencies
-        run: composer compose
-      - name: PHPUnit
-        env:
-          WP_DB_HOST: 127.0.0.1:${{ job.services.mysql.ports['3306'] }}
-        run: composer phpunit
-  phpunit-rector:
-    name: PHPUnit with Rector
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php: ['7.0', '7.1', '7.2', '7.3']
+        php: ['7.0', '7.1', '7.2', '7.3', '7.4']
     services:
       mysql:
         image: mysql:5.7
@@ -189,8 +143,6 @@ jobs:
         run: composer bin build install --no-progress
       - name: Compose dependencies
         run: composer compose
-      - name: Run Rector
-        run: composer downgrade-php
       - name: Setup PHP ${{ matrix.php }}
         # https://github.com/shivammathur/setup-php/issues/446#issuecomment-824001225
         uses: shivammathur/setup-php@develop

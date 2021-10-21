@@ -33,7 +33,7 @@ class Recipient implements Interfaces\Storable {
 	 * @param  Interfaces\Receivable $recipient    Recipient to add.
 	 * @return void
 	 */
-	public static function insert( string $carrier_slug, string $slug, Interfaces\Receivable $recipient ) : void {
+	public static function insert( string $carrier_slug, string $slug, Interfaces\Receivable $recipient ) {
 		if ( ! isset( static::$items[ $carrier_slug ] ) ) {
 			static::$items[ $carrier_slug ] = [];
 		}

@@ -28,7 +28,7 @@ trait Storage {
 	 * @param  mixed $item Item to add.
 	 * @return void
 	 */
-	public static function add( $item ) : void {
+	public static function add( $item ) {
 		static::$items[] = $item;
 	}
 
@@ -40,7 +40,7 @@ trait Storage {
 	 * @param  mixed      $item  Item to add.
 	 * @return void
 	 */
-	public static function insert( $index, $item ) : void {
+	public static function insert( $index, $item ) {
 		if ( static::has( $index ) ) {
 			ErrorHandler::error(
 				sprintf(

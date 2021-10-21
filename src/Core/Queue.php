@@ -23,7 +23,7 @@ class Queue {
 	 *
 	 * @var array<int, array{notification: CoreNotification, trigger: Triggerable}>
 	 */
-	protected static array $items = [];
+	protected static $items = [];
 
 	/**
 	 * Adds the item to the queue
@@ -34,7 +34,7 @@ class Queue {
 	 * @param int|null         $index        Index at which to put the item.
 	 * @return void
 	 */
-	public static function add( CoreNotification $notification, Triggerable $trigger, int $index = null ) : void {
+	public static function add( CoreNotification $notification, Triggerable $trigger, int $index = null ) {
 		$item = [
 			'notification' => $notification,
 			'trigger'      => $trigger,
@@ -56,7 +56,7 @@ class Queue {
 	 * @param Triggerable      $trigger      Trigger.
 	 * @return void
 	 */
-	public static function add_replace( CoreNotification $notification, Triggerable $trigger ) : void {
+	public static function add_replace( CoreNotification $notification, Triggerable $trigger ) {
 		// Check if item already exists.
 		foreach ( self::$items as $index => $item ) {
 			// phpcs:ignore.

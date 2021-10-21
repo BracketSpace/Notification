@@ -24,28 +24,28 @@ abstract class Trigger implements Triggerable {
 	 *
 	 * @var bool
 	 */
-	protected bool $stopped = false;
+	protected $stopped = false;
 
 	/**
 	 * Bound actions
 	 *
 	 * @var array<int, array{tag: string, priority: int, accepted_args: int}>
 	 */
-	protected array $actions = [];
+	protected $actions = [];
 
 	/**
 	 * Merge tags
 	 *
 	 * @var array
 	 */
-	protected array $merge_tags = [];
+	protected $merge_tags = [];
 
 	/**
 	 * Flag indicating that merge tags has been already added.
 	 *
 	 * @var bool
 	 */
-	protected bool $merge_tags_added = false;
+	protected $merge_tags_added = false;
 
 	/**
 	 * Trigger constructor

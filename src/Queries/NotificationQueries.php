@@ -57,7 +57,7 @@ class NotificationQueries {
 	 * @param  string $hash Notification hash.
 	 * @return BracketSpace\Notification\Interfaces\Adaptable|null
 	 */
-	public static function with_hash( string $hash ) : ?WordPressAdapter {
+	public static function with_hash( string $hash ) {
 		$post = get_page_by_path( $hash, OBJECT, 'notification' );
 
 		return empty( $post ) ? null : notification_adapt_from( 'WordPress', $post );

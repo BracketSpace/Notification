@@ -21,7 +21,7 @@ class WpObjectHelper {
 	 * @param  string $post_type_slug Post type slug.
 	 * @return \WP_Post_Type|null
 	 */
-	public static function get_post_type( $post_type_slug ) : ?\WP_Post_Type {
+	public static function get_post_type( $post_type_slug ) {
 		return get_post_type_object( $post_type_slug );
 	}
 
@@ -52,7 +52,7 @@ class WpObjectHelper {
 	 * @param  string $post_type_slug Post type slug.
 	 * @return string|null
 	 */
-	public static function get_post_type_name( $post_type_slug ) : ?string {
+	public static function get_post_type_name( $post_type_slug ) {
 		$post_type = self::get_post_type( $post_type_slug );
 		return $post_type->labels->singular_name ?? null;
 	}
@@ -64,7 +64,7 @@ class WpObjectHelper {
 	 * @param  string $taxonomy_slug Taxonomy slug.
 	 * @return \WP_Taxonomy|null
 	 */
-	public static function get_taxonomy( $taxonomy_slug ) : ?\WP_Taxonomy {
+	public static function get_taxonomy( $taxonomy_slug ) {
 		$taxonomy = get_taxonomy( $taxonomy_slug );
 		return $taxonomy ? $taxonomy : null;
 	}
@@ -97,7 +97,7 @@ class WpObjectHelper {
 	 * @param  string $taxonomy_slug Taxonomy slug.
 	 * @return string|null
 	 */
-	public static function get_taxonomy_name( $taxonomy_slug ) : ?string {
+	public static function get_taxonomy_name( $taxonomy_slug ) {
 		$taxonomy = self::get_taxonomy( $taxonomy_slug );
 		return $taxonomy->labels->singular_name ?? null;
 	}
@@ -109,7 +109,7 @@ class WpObjectHelper {
 	 * @param  string $comment_type_slug Comment type slug.
 	 * @return string|null
 	 */
-	public static function get_comment_type_name( $comment_type_slug ) : ?string {
+	public static function get_comment_type_name( $comment_type_slug ) {
 		$comment_types = self::get_comment_types();
 		return $comment_types[ $comment_type_slug ] ?? null;
 	}

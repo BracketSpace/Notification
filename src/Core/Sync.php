@@ -157,7 +157,7 @@ class Sync {
 	 * @param  string $path full json directory path or null to use default.
 	 * @return void
 	 */
-	public static function enable( string $path = null ) : void {
+	public static function enable( string $path = null ) {
 		if ( ! $path ) {
 			$path = trailingslashit( get_stylesheet_directory() ) . 'notifications';
 		}
@@ -197,7 +197,7 @@ class Sync {
 	 * @since  [Next]
 	 * @return string|null
 	 */
-	public static function get_sync_path() : ?string {
+	public static function get_sync_path() {
 		return static::$sync_path;
 	}
 

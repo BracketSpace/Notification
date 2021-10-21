@@ -29,7 +29,7 @@ class Runner {
 	 *
 	 * @var string
 	 */
-	protected string $id;
+	protected $id;
 
 	/**
 	 * Storage for Trigger's Notifications

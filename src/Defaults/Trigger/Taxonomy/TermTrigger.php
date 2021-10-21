@@ -57,7 +57,7 @@ abstract class TermTrigger extends Abstracts\Trigger {
 	 *
 	 * @return string|null Group name
 	 */
-	public function get_group() : ?string {
+	public function get_group() {
 		return WpObjectHelper::get_taxonomy_name( $this->taxonomy );
 	}
 
