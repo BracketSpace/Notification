@@ -23,7 +23,6 @@ return static function ( ContainerConfigurator $container_configurator ) {
 	$parameters->set( Option::PATHS, [
 		__DIR__ . '/resources/templates',
 		__DIR__ . '/src',
-		__DIR__ . '/tests',
 	] );
 	$parameters->set( Option::SKIP, [
 		__DIR__ . '/tests/_wordpress',
