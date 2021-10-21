@@ -43,6 +43,8 @@ jobs:
       run: composer install --no-dev --no-progress
     - name: Install Composer build dependencies
       run: composer bin build install --no-progress
+    - name: Remove dev depencencies
+      run: composer install --no-dev --no-progress
     - name: Compose dependencies
       run: composer compose
     - name: Run Rector
