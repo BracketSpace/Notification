@@ -40,7 +40,9 @@ jobs:
     - name: Install Node dependencies
       run: yarn install --no-progress
     - name: Install Composer dependencies
-      run: composer install --no-progress
+      run: |
+        composer install --no-progress
+        composer compose
     - name: Run Rector
       run: |
         composer require -W --no-progress rector/rector-prefixed
