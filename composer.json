@@ -57,7 +57,7 @@
 		}
 	},
 	"scripts": {
-		"compose": "mozart compose",
+		"compose": "mozart compose && composer dump-autoload",
 		"phpcbf": "phpcbf",
 		"phpcs": "phpcs",
 		"phpcompat": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.0 notification.php load.php uninstall.php src/ resources/templates/",

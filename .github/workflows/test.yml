@@ -29,9 +29,7 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-progress
       - name: Compose dependencies
-        run: |
-          composer compose
-          composer dump-autoload
+        run: composer compose
       - name: Coding Standards
         run: composer phpcs
   phpstan:
@@ -56,9 +54,7 @@ jobs:
         run: |
           composer install --no-progress
       - name: Compose dependencies
-        run: |
-          composer compose
-          composer dump-autoload
+        run: composer compose
       - name: Analyze
         run: composer phpstan
   phplint:
@@ -83,9 +79,7 @@ jobs:
         run: |
           composer install --no-progress
       - name: Compose dependencies
-        run: |
-          composer compose
-          composer dump-autoload
+        run: composer compose
       - name: Lint
         run: composer phplint
   phpcompat:
@@ -110,9 +104,7 @@ jobs:
         run: |
           composer install --no-progress
       - name: Compose dependencies
-        run: |
-          composer compose
-          composer dump-autoload
+        run: composer compose
       - name: Run Rector
         run: |
           composer require -W --no-progress rector/rector-prefixed
@@ -158,9 +150,7 @@ jobs:
         run: |
           composer install --no-progress
       - name: Compose dependencies
-        run: |
-          composer compose
-          composer dump-autoload
+        run: composer compose
       - name: PHPUnit
         env:
           WP_DB_HOST: 127.0.0.1:${{ job.services.mysql.ports['3306'] }}
@@ -203,9 +193,7 @@ jobs:
         run: |
           composer install --no-progress
       - name: Compose dependencies
-        run: |
-          composer compose
-          composer dump-autoload
+        run: composer compose
       - name: Run Rector
         run: |
           composer require -W --no-progress rector/rector-prefixed
