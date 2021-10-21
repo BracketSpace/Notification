@@ -6,7 +6,6 @@
 	"require": {
 		"composer-runtime-api": "^2.0",
 		"php": "^7.0",
-		"coenjacobs/mozart": "^0.7.1",
 		"micropackage/ajax": "^1.0",
 		"micropackage/dochooks": "1.0.2",
 		"micropackage/filesystem": "^1.1",
@@ -14,6 +13,7 @@
 		"micropackage/templates": "^1.1"
 	},
 	"require-dev": {
+		"coenjacobs/mozart": "^0.7.1",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
 		"jakub-onderka/php-parallel-lint": "^1.0",
 		"php-stubs/wp-cli-stubs": "^2.4",
@@ -35,10 +35,7 @@
 		    "dep_directory": "/src/Dependencies/",
 		    "classmap_directory": "/classes/dependencies/",
 		    "classmap_prefix": "BRSET_",
-		    "delete_vendor_directories": true,
-		    "excluded_packages": [
-				"coenjacobs/mozart"
-			]
+		    "delete_vendor_directories": true
 		},
 		"wordpress-install-dir": "tests/_wordpress"
 	},
