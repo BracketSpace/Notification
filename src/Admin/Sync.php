@@ -96,6 +96,9 @@ class Sync {
 				continue;
 			}
 
+			/**
+			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null
+			 */
 			$notification_adapter = NotificationQueries::with_hash( $notification->get_hash() );
 
 			if ( null === $notification_adapter ) {
@@ -194,6 +197,9 @@ class Sync {
 	 * @return void
 	 */
 	public function load_notification_to_json( $hash ) {
+		/**
+		 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null
+		 */
 		$notification = NotificationQueries::with_hash( $hash );
 
 		if ( null === $notification ) {

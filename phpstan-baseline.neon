@@ -2601,21 +2601,6 @@ parameters:
 			path: src/Queries/NotificationQueries.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Queries\\\\NotificationQueries\\:\\:with_hash\\(\\) should return BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\WordPress\\|null but returns BracketSpace\\\\Notification\\\\Interfaces\\\\Adaptable\\|null\\.$#"
-			count: 1
-			path: src/Queries/NotificationQueries.php
-
-		-
-			message: "#^PHPDoc tag @return with type BracketSpace\\\\Notification\\\\Queries\\\\BracketSpace\\\\Notification\\\\Interfaces\\\\Adaptable\\|null is not subtype of native type BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\WordPress\\|null\\.$#"
-			count: 1
-			path: src/Queries/NotificationQueries.php
-
-		-
-			message: "#^Return typehint of method BracketSpace\\\\Notification\\\\Queries\\\\NotificationQueries\\:\\:with_hash\\(\\) has invalid type BracketSpace\\\\Notification\\\\Queries\\\\BracketSpace\\\\Notification\\\\Interfaces\\\\Adaptable\\.$#"
-			count: 1
-			path: src/Queries/NotificationQueries.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Runtime\\:\\:components\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Runtime.php

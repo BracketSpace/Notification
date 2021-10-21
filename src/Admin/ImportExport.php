@@ -231,6 +231,9 @@ class ImportExport {
 			 */
 			$wp_adapter = notification_swap_adapter( 'WordPress', $json_adapter );
 
+			/**
+			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null
+			 */
 			$existing_notification = NotificationQueries::with_hash( $wp_adapter->get_hash() );
 
 			if ( null === $existing_notification ) {

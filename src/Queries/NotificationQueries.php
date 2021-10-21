@@ -55,7 +55,7 @@ class NotificationQueries {
 	 *
 	 * @since  [Next]
 	 * @param  string $hash Notification hash.
-	 * @return BracketSpace\Notification\Interfaces\Adaptable|null
+	 * @return \BracketSpace\Notification\Interfaces\Adaptable|null
 	 */
 	public static function with_hash( string $hash ) {
 		$post = get_page_by_path( $hash, OBJECT, 'notification' );

@@ -95,7 +95,7 @@ abstract class Trigger implements Triggerable {
 	 *
 	 * @return $this
 	 */
-	public function clear_merge_tags() : self {
+	public function clear_merge_tags() {
 		$this->merge_tags_added = false;
 		$this->merge_tags       = [];
 

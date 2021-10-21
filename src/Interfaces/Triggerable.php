@@ -35,7 +35,7 @@ interface Triggerable extends Nameable {
 	 *
 	 * @return $this
 	 */
-	public function clear_merge_tags() : self;
+	public function clear_merge_tags();
 
 	/**
 	 * Stops the trigger.
