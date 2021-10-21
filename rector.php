@@ -21,7 +21,6 @@ return static function ( ContainerConfigurator $container_configurator ) {
 		__DIR__ . '/resources/templates',
 		__DIR__ . '/src',
 		__DIR__ . '/tests',
-		__DIR__ . '/vendor',
 	] );
 	$parameters->set( Option::SKIP, [
 		__DIR__ . '/tests/_wordpress',

@@ -1,13 +1,8 @@
-.actionspanel
 .git
 .github
 .wordpress-org
-bin
-build
 node_modules
-src/assets
 tests
-vendor/typisttech
 .build-excludes
 .editorconfig
 .gitattributes
@@ -18,8 +13,11 @@ LICENSE
 package.json
 phpcs.xml
 phpmd.xml
+phpstan-baseline.neon
+phpstan.neon.dist
 phpunit.xml
 README.md
 rector.php
+webpack.config.js
 yarn-error.log
 yarn.lock
