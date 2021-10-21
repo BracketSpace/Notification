@@ -45,6 +45,10 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
         run: composer install --no-progress
+      - name: Install Composer build dependencies
+        run: composer bin build install --no-progress
+      - name: Compose dependencies
+        run: composer compose
       - name: Analyze
         run: composer phpstan
   phplint:
@@ -67,6 +71,8 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
         run: composer install --no-progress
+      - name: Install Composer build dependencies
+        run: composer bin build install --no-progress
       - name: Compose dependencies
         run: composer compose
       - name: Lint
@@ -135,6 +141,8 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
         run: composer install --no-dev --no-progress
+      - name: Install Composer build dependencies
+        run: composer bin build install --no-progress
       - name: Compose dependencies
         run: composer compose
       - name: PHPUnit
