@@ -28,6 +28,10 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
         run: composer install --no-progress
+      - name: Compose dependencies
+        run: |
+          composer compose
+          composer dump-autoload
       - name: Coding Standards
         run: composer phpcs
   phpstan:
@@ -51,7 +55,10 @@ jobs:
       - name: Install Composer dependencies
         run: |
           composer install --no-progress
+      - name: Compose dependencies
+        run: |
           composer compose
+          composer dump-autoload
       - name: Analyze
         run: composer phpstan
   phplint:
@@ -73,7 +80,12 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
-        run: composer install --no-progress
+        run: |
+          composer install --no-progress
+      - name: Compose dependencies
+        run: |
+          composer compose
+          composer dump-autoload
       - name: Lint
         run: composer phplint
   phpcompat:
@@ -97,8 +109,10 @@ jobs:
       - name: Install Composer dependencies
         run: |
           composer install --no-progress
+      - name: Compose dependencies
+        run: |
           composer compose
-          composer install --no-dev --no-progress
+          composer dump-autoload
       - name: Run Rector
         run: |
           composer require -W --no-progress rector/rector-prefixed
@@ -143,7 +157,10 @@ jobs:
       - name: Install Composer dependencies
         run: |
           composer install --no-progress
+      - name: Compose dependencies
+        run: |
           composer compose
+          composer dump-autoload
       - name: PHPUnit
         env:
           WP_DB_HOST: 127.0.0.1:${{ job.services.mysql.ports['3306'] }}
@@ -185,7 +202,10 @@ jobs:
       - name: Install Composer dependencies
         run: |
           composer install --no-progress
+      - name: Compose dependencies
+        run: |
           composer compose
+          composer dump-autoload
       - name: Run Rector
         run: |
           composer require -W --no-progress rector/rector-prefixed
