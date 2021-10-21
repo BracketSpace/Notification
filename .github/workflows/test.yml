@@ -146,7 +146,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['7.0', '7.1', '7.2', '7.3']
+        php: ['7.1', '7.2', '7.3']
     services:
       mysql:
         image: mysql:5.7
