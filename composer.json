@@ -56,8 +56,9 @@
 	"scripts": {
 		"phpcbf": "phpcbf",
 		"phpcs": "phpcs",
-		"phpcompat": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.0 notification.php load.php uninstall.php src/",
-		"phplint": "parallel-lint --exclude node_modules --exclude vendor --exclude dist .",
+		"phpcompat": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.0 notification.php load.php uninstall.php src/ resources/templates/",
+		"phpcompat-vendor": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.0 notification.php load.php uninstall.php src/ resources/templates/ vendor/",
+		"phplint": "parallel-lint --exclude node_modules --exclude vendor .",
 		"phpstan": "phpstan analyze",
 		"phpunit": "phpunit",
 		"phpunit-coverage": "phpunit --coverage-text"
