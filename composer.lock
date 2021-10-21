@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "27ed8383010be28f19f47aee9c5608fc",
+    "content-hash": "eab32c28353de807ee0ca8066a2744e1",
     "packages": [
         {
             "name": "micropackage/ajax",
