@@ -295,7 +295,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
-= [Next] =
+= 8.0.0 =
 
 **Compatibility Breaking Changes**
 

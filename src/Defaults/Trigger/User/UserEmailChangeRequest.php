@@ -57,7 +57,7 @@ class UserEmailChangeRequest extends UserTrigger {
 	/**
 	 * Sets trigger's context
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 * @param integer $user_id User ID.
 	 * @return mixed
 	 */
@@ -80,7 +80,7 @@ class UserEmailChangeRequest extends UserTrigger {
 	/**
 	 * Registers attached merge tags
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 * @return void
 	 */
 	public function merge_tags() {

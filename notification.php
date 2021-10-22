@@ -87,7 +87,7 @@ if ( ! class_exists( 'Notification' ) ) :
 		/**
 		 * Gets plugin filesystem
 		 *
-		 * @since  [Next]
+		 * @since  8.0.0
 		 * @throws \Exception When runtime wasn't invoked yet.
 		 * @return \BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem
 		 */

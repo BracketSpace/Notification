@@ -28,7 +28,7 @@ class Queue {
 	/**
 	 * Adds the item to the queue
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 * @param CoreNotification $notification Notification.
 	 * @param Triggerable      $trigger      Trigger.
 	 * @param int|null         $index        Index at which to put the item.
@@ -51,7 +51,7 @@ class Queue {
 	 * Replaces the items if they are already in the queue
 	 * or adds new queue item
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 * @param CoreNotification $notification Notification.
 	 * @param Triggerable      $trigger      Trigger.
 	 * @return void
@@ -72,7 +72,7 @@ class Queue {
 	/**
 	 * Checks if the items are already in the queue
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 * @param CoreNotification $notification Notification.
 	 * @param Triggerable      $trigger      Trigger.
 	 * @return bool
@@ -91,7 +91,7 @@ class Queue {
 	/**
 	 * Gets items added to the queue
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 * @return array<int, array{notification: CoreNotification, trigger: Triggerable}>
 	 */
 	public static function get() : array {
@@ -101,7 +101,7 @@ class Queue {
 	/**
 	 * Iterates over the queue items
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 * @param callable $callback Callback for each item.
 	 * @return void
 	 */

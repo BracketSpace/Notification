@@ -98,14 +98,14 @@ class Runtime {
 		$this->load_bundled_extensions();
 
 		do_action( 'notification/init' );
-		do_action_deprecated( 'notification/elements', [], '[Next]', 'notification/init' );
+		do_action_deprecated( 'notification/elements', [], '8.0.0', 'notification/init' );
 
 	}
 
 	/**
 	 * Registers WP CLI commands
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public function cli_commands() {
@@ -138,7 +138,7 @@ class Runtime {
 	 * Gets filesystem
 	 *
 	 * @since  7.0.0
-	 * @since  [Next] Always return the root filesystem.
+	 * @since  8.0.0 Always return the root filesystem.
 	 * @param  string $deprecated Filesystem name.
 	 * @return Filesystem
 	 */
@@ -255,7 +255,7 @@ class Runtime {
 	 * @action notification/init 8
 	 *
 	 * @since  6.0.0
-	 * @since  [Next] Is hooked to notification/init action.
+	 * @since  8.0.0 Is hooked to notification/init action.
 	 * @return void
 	 */
 	public function defaults() {

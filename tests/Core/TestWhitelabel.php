@@ -17,7 +17,7 @@ class TestWhitelabel extends \WP_UnitTestCase {
 	/**
 	 * Test enabling whitelabeling
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 */
 	public function test_enabling_whitelabeling() {
 		$this->assertFalse( Whitelabel::is_whitelabeled() );

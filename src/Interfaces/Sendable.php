@@ -84,7 +84,7 @@ interface Sendable extends Nameable {
 	 * Gets the recipients field
 	 * Calls the field closure.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return RecipientsField|null
 	 */
 	public function get_recipients_field();
@@ -92,7 +92,7 @@ interface Sendable extends Nameable {
 	/**
 	 * Checks if the recipients field was added
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return bool
 	 */
 	public function has_recipients_field();

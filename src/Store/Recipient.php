@@ -27,7 +27,7 @@ class Recipient implements Interfaces\Storable {
 	/**
 	 * Inserts a Recipient for specific Carrier.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string                $carrier_slug Carrier slug.
 	 * @param  string                $slug         Recipient slug.
 	 * @param  Interfaces\Receivable $recipient    Recipient to add.
@@ -57,7 +57,7 @@ class Recipient implements Interfaces\Storable {
 	/**
 	 * Gets all items
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return array<string,array<string,Interfaces\Receivable>>
 	 */
 	public static function all() : array {
@@ -67,7 +67,7 @@ class Recipient implements Interfaces\Storable {
 	/**
 	 * Removes all items from the store
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public static function clear() {
@@ -77,7 +77,7 @@ class Recipient implements Interfaces\Storable {
 	/**
 	 * Gets all Recipients for specific Carrier
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string $carrier_slug Carrier slug.
 	 * @return array<string,Interfaces\Receivable>
 	 */
@@ -100,7 +100,7 @@ class Recipient implements Interfaces\Storable {
 	/**
 	 * Gets Recipient for Carrier by a slug
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string $carrier_slug Carrier slug.
 	 * @param  string $slug         Recipient slug.
 	 * @return mixed

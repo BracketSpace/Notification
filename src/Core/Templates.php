@@ -23,7 +23,7 @@ class Templates {
 	/**
 	 * Renders the template
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string       $name Template name.
 	 * @param  array<mixed> $vars Template variables.
 	 * @return void
@@ -35,7 +35,7 @@ class Templates {
 	/**
 	 * Gets the template string
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string       $name Template name.
 	 * @param  array<mixed> $vars Template variables.
 	 * @return string
@@ -47,7 +47,7 @@ class Templates {
 	/**
 	 * Creates the Template object
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string       $name Template name.
 	 * @param  array<mixed> $vars Template variables.
 	 * @return Template
@@ -59,7 +59,7 @@ class Templates {
 	/**
 	 * Renders the template
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public static function register_storage() {

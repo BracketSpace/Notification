@@ -17,7 +17,7 @@ class WpObjectHelper {
 	/**
 	 * Gets post type object
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string $post_type_slug Post type slug.
 	 * @return \WP_Post_Type|null
 	 */
@@ -28,7 +28,7 @@ class WpObjectHelper {
 	/**
 	 * Gets registered post types in slug => name format
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  array<mixed> $args Query args.
 	 * @return array<string,string>
 	 */
@@ -48,7 +48,7 @@ class WpObjectHelper {
 	/**
 	 * Gets post type object name
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string $post_type_slug Post type slug.
 	 * @return string|null
 	 */
@@ -60,7 +60,7 @@ class WpObjectHelper {
 	/**
 	 * Gets taxonomy object
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string $taxonomy_slug Taxonomy slug.
 	 * @return \WP_Taxonomy|null
 	 */
@@ -72,7 +72,7 @@ class WpObjectHelper {
 	/**
 	 * Gets registered taxonomies in slug => name format
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  array<mixed> $args Query args.
 	 * @return array<string,\WP_Taxonomy>
 	 */
@@ -93,7 +93,7 @@ class WpObjectHelper {
 	/**
 	 * Gets taxonomy object name
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string $taxonomy_slug Taxonomy slug.
 	 * @return string|null
 	 */
@@ -105,7 +105,7 @@ class WpObjectHelper {
 	/**
 	 * Gets comment type name
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string $comment_type_slug Comment type slug.
 	 * @return string|null
 	 */
@@ -117,7 +117,7 @@ class WpObjectHelper {
 	/**
 	 * Gets comment types from database
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return array<string,string>
 	 */
 	public static function get_comment_types() : array {

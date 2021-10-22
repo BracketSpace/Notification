@@ -335,7 +335,7 @@ class Wizard {
 	/**
 	 * Checks if wizard should be displayed
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return bool
 	 */
 	public static function should_display() {
