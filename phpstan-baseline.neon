@@ -1,11 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, '\\S+'\\) given\\.$#"
-			count: 81
-			path: compat/register-hooks.php
-
-		-
 			message: "#^Function notification_get_notification_recipients\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: compat/src-deprecated/functions.php
