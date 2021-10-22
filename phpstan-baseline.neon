@@ -96,6 +96,11 @@ parameters:
 			path: compat/register-hooks.php
 
 		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'custom_development'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
 			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'custom_fields_merge…'\\) given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
