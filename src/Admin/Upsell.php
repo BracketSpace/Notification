@@ -156,6 +156,18 @@ class Upsell {
 	}
 
 	/**
+	 * Adds custom development CTA
+	 *
+	 * @action notification/settings/sidebar/after
+	 *
+	 * @since  [Next]
+	 * @return void
+	 */
+	public function custom_development() {
+		Templates::render( 'upsell/custom-development' );
+	}
+
+	/**
 	 * Gets the missing carriers
 	 *
 	 * @since  [Next]

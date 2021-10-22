@@ -21,23 +21,22 @@ if ( ! isset( $current_section ) ) {
 		<p><?php esc_html_e( 'No Settings available at the moment', $this->textdomain ); ?></p>
 	<?php else : ?>
 
-		<div class="menu-col box">
+		<div class="menu-col">
 
-			<ul class="menu-list">
+			<?php do_action( $this->handle . '/settings/sidebar/before' ); ?>
 
+			<ul class="menu-list box">
 				<?php foreach ( $this->get_sections() as $section_slug => $section ) : ?>
-
 					<?php
 					$class    = ( $section_slug === $current_section ) ? 'current' : '';
 					$page_url = remove_query_arg( 'updated' );
 					$url      = add_query_arg( 'section', $section_slug, $page_url );
 					?>
-
 					<li class="<?php echo esc_attr( $class ); ?>"><a href="<?php echo esc_attr( $url ); ?>"><?php echo esc_html( $section->name() ); ?></a></li>
-
 				<?php endforeach ?>
-
 			</ul>
+
+			<?php do_action( $this->handle . '/settings/sidebar/after' ); ?>
 
 		</div>
 

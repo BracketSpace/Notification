@@ -14,8 +14,12 @@
 		background: #fff;
 		color: #555;
 		padding: 15px;
-		margin: 0;
+		margin: 0 0 2rem 0;
 		box-sizing: border-box;
+
+		h3 {
+			margin-top: 0;
+		}
 	}
 
 	.setting-col {
@@ -125,7 +129,7 @@
 		}
 
 		.menu-list {
-			margin: 0;
+			padding: 15px 0;
 
 			li {
 				padding-left: 15px;
