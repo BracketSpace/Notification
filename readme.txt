@@ -2,7 +2,7 @@
 Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
-Tested up to: 5.7
+Tested up to: 5.8
 Stable tag: 8.0.0
 Requires PHP: 7.0
 License: GPLv3
@@ -53,7 +53,7 @@ This allows you to use the Notification plugin as a notification system in your 
 How easy extending the Notification plugin is? Let's see:
 
 * Adding another Merge Tag to existing trigger - 1 line of code
-* Creating custom Trigger - one intuitive class definition and registration with a single function call
+* Creating custom Trigger - one intuitive class definition and registration with a single method call
 * Defining Global Merge Tag - 1 line of code
 * Creating new Extension - we have a [Boilerplate](https://github.com/BracketSpace/Notification-Extension-Boilerplate/) ready for you to start hacking
 
@@ -63,6 +63,7 @@ How easy extending the Notification plugin is? Let's see:
 
 * Email
 * Webhook
+* Webhook JSON
 
 = DEFAULT RECIPIENTS =
 
@@ -174,25 +175,30 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 
 * [Conditionals](https://bracketspace.com/downloads/notification-conditionals/) - send Notifications in certain conditions
 * [Custom Fields](https://bracketspace.com/downloads/notification-custom-fields/) - use any meta value in your Notifications
-* [Review Queue](https://bracketspace.com/downloads/notification-review-queue/) - catch your Notifications into queue for a manual review
+* [Slack](https://bracketspace.com/downloads/notification-slack/) - post messages to Slack channel
+* [Push](https://bracketspace.com/downloads/notification-push/) - send push notifications via browser's native system
+* [Discord](https://bracketspace.com/downloads/notification-discord/) - post messages to Discord channel
+* [Twilio](https://bracketspace.com/downloads/notification-twilio/) - send bulk SMS messages from your Twilio registered phone number
 * [Scheduled Triggers](https://bracketspace.com/downloads/notification-scheduled-triggers/) - schedule your notifications based on events time
-* [Discord](https://bracketspace.com/downloads/notification-discord/) - post messages on Discord channel
-* [Slack](https://bracketspace.com/downloads/notification-slack/) - post messages on Slack channel
+* [Review Queue](https://bracketspace.com/downloads/notification-review-queue/) - catch your Notifications into queue for a manual review
+* [WooCommerce](https://bracketspace.com/downloads/notification-woocommerce/) - triggers specific to WooCommerce
 * [Pushbullet](https://bracketspace.com/downloads/notification-pushbullet/) - send Push and SMS Notifications via your phone
+* [Pushover](https://bracketspace.com/downloads/notification-pushover/) - send Push messages to devices registered in Pushover
 * [SendGrid](https://bracketspace.com/downloads/notification-sendgid/) - send emails using SendGrid service
 * [Mailgun](https://bracketspace.com/downloads/notification-mailgun/) - send emails using Mailgun service
 * [File Log](https://bracketspace.com/downloads/notification-file-log/) - save Notifications as file logs on the server
+* [bbPress](https://wordpress.org/plugins/notification-bbpress/) - bbPress triggers
+* [BuddyPress](https://wordpress.org/plugins/notification-buddypress/) - BuddyPress triggers and integration with their notification system
 * [Signature](https://wordpress.org/plugins/signature-notification/) - add a signature to all your emails automatically
-* [WooCommerce](https://bracketspace.com/downloads/notification-woocommerce/) - triggers specific to WooCommerce
+* [AppPresser](https://bracketspace.com/downloads/notification-apppresser) - push messages to your mobile app built with AppPresser
 
 *Coming soon* - vote for the extensions
 
+* [Email Attachments](https://bracketspace.com/downloads/notification-email-attachments/) - attach files to your notification
 * [Email Templates](https://bracketspace.com/downloads/notification-email-templates/) - use beautiful templates for your emails
 * [Facebook](https://bracketspace.com/downloads/notification-facebook/) - post messages to Facebook
 * [Twitter](https://bracketspace.com/downloads/notification-twitter/) - post messages to Twitter
 * [Zapier](https://bracketspace.com/downloads/notification-zapier/) - connect any WordPress event with Zapier
-* [Pushover](https://bracketspace.com/downloads/notification-pushover/) - send push notifications using Pushover service
-* [Email Attachments](https://bracketspace.com/downloads/notification-email-attachments/) - attach files to your notification
 * [WordPress Poster](https://bracketspace.com/downloads/notification-wordpress-poster/) - create WordPress posts
 
 = POSSIBLE USE CASES =
@@ -206,7 +212,6 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 = USEFUL LINKS =
 
 * [Documentation](https://docs.bracketspace.com/notification/)
-* [Support plugin developement](https://www.paypal.me/underDEV/)
 * [GitHub repository](https://github.com/BracketSpace/Notification)
 * [Report a bug](https://github.com/BracketSpace/Notification/issues/new)
 
