@@ -23,5 +23,13 @@
 		"clipboard": "^2.0.4",
 		"jquery-collapse": "^1.1.2",
 		"selectize": "^0.12.4"
+	},
+	"mpScriptsConfig": {
+		"paths": {
+			"src": "resources",
+			"scripts": "js/src",
+			"styles": "css/src",
+			"output": "resources"
+		}
 	}
 }

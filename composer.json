@@ -1,40 +1,54 @@
 {
 	"name": "bracketspace/notification",
 	"type": "wordpress-plugin",
-	"scripts": {
-		"phpcs": "phpcs",
-		"phpcbf": "phpcbf",
-		"phpunit": "phpunit",
-		"phpunit-coverage": "phpunit --coverage-text"
+	"license": "GPL-3.0-or-later",
+	"description": "Notification plugin for WordPress",
+	"require": {
+		"composer-runtime-api": "^2.0",
+		"php": "^7.0",
+		"micropackage/ajax": "^1.0",
+		"micropackage/dochooks": "1.0.2",
+		"micropackage/filesystem": "^1.1",
+		"micropackage/requirements": "^1.0",
+		"micropackage/templates": "^1.1"
 	},
 	"require-dev": {
+		"bamarni/composer-bin-plugin": "^1.4",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+		"jakub-onderka/php-parallel-lint": "^1.0",
+		"php-stubs/wp-cli-stubs": "^2.4",
 		"phpcompatibility/php-compatibility": "^9.3",
+		"phpunit/phpunit": "6.5",
+		"roots/wordpress": "*",
+		"szepeviktor/phpstan-wordpress": "^0.7.2",
 		"wp-coding-standards/wpcs": "^2.0",
-		"phpunit/phpunit": "^6.5",
-		"wp-phpunit/wp-phpunit": "^5.6",
-		"roots/wordpress": "^5.6"
+		"wp-phpunit/wp-phpunit": "^5.8"
+	},
+	"config": {
+		"optimize-autoloader": true,
+		"preferred-install": "dist",
+		"sort-packages": true
+	},
+	"extra": {
+		"mozart": {
+		    "dep_namespace": "BracketSpace\\Notification\\Dependencies\\",
+		    "dep_directory": "/src/Dependencies/",
+		    "classmap_directory": "/classes/dependencies/",
+		    "classmap_prefix": "BRSET_",
+		    "delete_vendor_directories": true
+		},
+		"wordpress-install-dir": "tests/_wordpress"
 	},
 	"autoload": {
 		"psr-4": {
-			"BracketSpace\\Notification\\": "src/classes"
+			"BracketSpace\\Notification\\": "src/"
 		},
 		"classmap": [
-			"src/includes/deprecated/class/"
+			"compat/src-deprecated/"
 		],
 		"files": [
-			"src/includes/deprecated/functions.php",
-			"src/includes/functions/general.php",
-			"src/includes/functions/settings.php",
-			"src/includes/functions/resolver.php",
-			"src/includes/functions/carrier.php",
-			"src/includes/functions/trigger.php",
-			"src/includes/functions/recipient.php",
-			"src/includes/functions/notification.php",
-			"src/includes/functions/notification-post.php",
-			"src/includes/functions/whitelabel.php",
-			"src/includes/functions/import-export.php",
-			"src/includes/functions/adapter.php"
+			"compat/src-deprecated/functions.php",
+			"src/api.php"
 		]
 	},
 	"autoload-dev": {
@@ -42,25 +56,14 @@
 			"BracketSpace\\Notification\\Tests\\": "tests"
 		}
 	},
-	"require": {
-		"micropackage/requirements": "^1.0",
-		"micropackage/dochooks": "^1.0",
-		"micropackage/filesystem": "^1.1",
-		"micropackage/templates": "^1.1",
-		"micropackage/ajax": "^1.0",
-		"typisttech/imposter-plugin": "^0.6.2"
-	},
-	"extra": {
-		"imposter": {
-			"namespace": "BracketSpace\\Notification\\Vendor",
-			"excludes": [
-				"roots/wordpress",
-				"wp-phpunit/wp-phpunit"
-			]
-		},
-		"wordpress-install-dir": "tests/_wordpress"
-	},
-	"config": {
-        "platform-check": false
-    }
+	"scripts": {
+		"compose": "mozart compose && composer dump-autoload",
+		"phpcbf": "phpcbf",
+		"phpcs": "phpcs",
+		"phpcompat": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.0 notification.php load.php uninstall.php src/ resources/templates/",
+		"phplint": "parallel-lint --exclude node_modules --exclude vendor  --exclude vendor-bin .",
+		"phpstan": "phpstan analyze",
+		"phpunit": "phpunit",
+		"phpunit-coverage": "phpunit --coverage-text"
+	}
 }

@@ -40,7 +40,15 @@ jobs:
     - name: Install Node dependencies
       run: yarn install --no-progress
     - name: Install Composer dependencies
-      run: composer install -o --no-dev --no-progress
+      run: composer install --no-progress
+    - name: Install Composer build dependencies
+      run: composer bin build install --no-progress
+    - name: Compose dependencies
+      run: composer compose
+    - name: Remove dev depencencies
+      run: |
+        rm -rf vendor
+        composer install --no-dev --no-progress
     - name: Build static assets
       run: yarn build
     - name: Create build dir

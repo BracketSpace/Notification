@@ -2,10 +2,11 @@
 /**
  * PHPUnit bootstrap file
  *
- * @package Sample_Plugin
+ * @package notification
  */
 
 define( 'NOTIFICATION_DOING_TESTS', true );
+define( 'NOTIFICATION_DEBUG', true );
 
 // Composer autoloader must be loaded before WP_PHPUNIT__DIR will be available
 require_once dirname( __DIR__ ) . '/vendor/autoload.php';
@@ -24,6 +25,7 @@ tests_add_filter( 'muplugins_loaded', function() {
  * Disable plugin defaults.
  */
 tests_add_filter( 'notification/load/default/recipients', '__return_false' );
+tests_add_filter( 'notification/load/default/carriers', '__return_false' );
 tests_add_filter( 'notification/load/default/resolvers', '__return_false' );
 
 // Start up the WP testing environment.

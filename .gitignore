@@ -1,11 +1,14 @@
 
 ### Project ###
 *.log
+/classes/
 node_modules/
 /vendor/
-dist/
 package-lock.json
+/resources/*/dist/
+/src/Dependencies/
 /tests/_wordpress/
+/vendor-bin/**/vendor/
 
 ### Windows ###
 # Windows image file caches
@@ -107,3 +110,4 @@ Session.vim
 *~
 # auto-generated tag files
 tags
+

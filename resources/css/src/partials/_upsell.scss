@@ -1,0 +1,19 @@
+/**
+ * Upsell styles
+ */
+
+/* stylelint-disable */
+#notification_conditionals.postbox .inside {
+	/* stylelint-enable */
+	margin-top: 12px;
+
+	.notification-pretty-select {
+		margin-bottom: 12px;
+	}
+}
+
+.notification-upsell-banner {
+	padding: 10px;
+	background: #d8eede;
+	border-radius: 10px;
+}
