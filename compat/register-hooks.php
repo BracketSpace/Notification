@@ -77,6 +77,7 @@ add_action( 'notification/settings/register', [ $this->component( 'admin_upsell'
 add_action( 'notification/settings/section/triggers/before', [ $this->component( 'admin_upsell' ), 'triggers_settings_upsell' ], 10, 0 );
 add_action( 'notification/settings/section/carriers/before', [ $this->component( 'admin_upsell' ), 'carriers_settings_upsell' ], 10, 0 );
 add_action( 'notification/carrier/list/after', [ $this->component( 'admin_upsell' ), 'carriers_list' ], 10, 0 );
+add_action( 'notification/settings/sidebar/after', [ $this->component( 'admin_upsell' ), 'custom_development' ], 10, 0 );
 add_filter( 'wp_mail_from_name', [ $this->component( 'integration_wp' ), 'filter_email_from_name' ], 1000, 1 );
 add_filter( 'wp_mail_from', [ $this->component( 'integration_wp' ), 'filter_email_from_email' ], 1000, 1 );
 add_filter( 'notification/background_processing/trigger_key', [ $this->component( 'integration_wp' ), 'identify_trigger' ], 10, 2 );
