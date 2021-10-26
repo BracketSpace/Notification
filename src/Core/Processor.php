@@ -23,7 +23,7 @@ class Processor {
 	 *
 	 * @action shutdown
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public function process_queue() {
@@ -50,7 +50,7 @@ class Processor {
 	/**
 	 * Scheduled the Notification submission in Cron.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  Notification $notification Notification object.
 	 * @param  Triggerable  $trigger      Trigger object.
 	 * @return void
@@ -94,7 +94,7 @@ class Processor {
 	/**
 	 * Dispatches all the Carriers attached for Notification.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  Notification $notification Notification object.
 	 * @param  Triggerable  $trigger      Trigger object.
 	 * @return void
@@ -123,7 +123,7 @@ class Processor {
 	 *
 	 * @action notification_background_processing
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string $notification_json Notification JSON.
 	 * @param  string $trigger_key       Trigger key.
 	 * @return void
@@ -150,7 +150,7 @@ class Processor {
 	/**
 	 * Sends the Carrier in context of Trigger
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  Sendable    $carrier Carrier object.
 	 * @param  Triggerable $trigger Trigger object.
 	 * @return void
@@ -163,7 +163,7 @@ class Processor {
 	/**
 	 * Sends the Carrier in context of Trigger
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string $trigger_key Trigger key.
 	 * @return string
 	 */

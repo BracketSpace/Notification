@@ -210,7 +210,7 @@ abstract class Carrier implements Interfaces\Sendable {
 	/**
 	 * Adds recipients form field
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @throws \Exception When recipients fields was already added.
 	 * @param  array<mixed> $params Recipients field params.
 	 * @return $this
@@ -232,7 +232,7 @@ abstract class Carrier implements Interfaces\Sendable {
 	/**
 	 * Checks if the recipients field was added
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return bool
 	 */
 	public function has_recipients_field() {
@@ -243,7 +243,7 @@ abstract class Carrier implements Interfaces\Sendable {
 	 * Gets the recipients field
 	 * Calls the field closure.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return RecipientsField|null
 	 */
 	public function get_recipients_field() {
@@ -399,7 +399,7 @@ abstract class Carrier implements Interfaces\Sendable {
 	/**
 	 * Parses the recipients to a flat array.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return array<int,mixed>
 	 */
 	public function parse_recipients() {
@@ -459,7 +459,7 @@ abstract class Carrier implements Interfaces\Sendable {
 	/**
 	 * Sets field data
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  Interfaces\Fillable $field Field.
 	 * @param  mixed               $data  Field data.
 	 * @return void

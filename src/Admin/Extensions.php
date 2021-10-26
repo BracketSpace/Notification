@@ -189,7 +189,7 @@ class Extensions {
 	/**
 	 * Gets bundles
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return array<int, array{name: string, description: string, price: int}>
 	 */
 	public static function get_bundles() {

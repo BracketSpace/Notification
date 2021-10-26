@@ -41,7 +41,7 @@ class Runner {
 	/**
 	 * Constructor
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 * @param Triggerable $trigger Trigger in subject.
 	 */
 	final public function __construct( Triggerable $trigger ) {
@@ -54,7 +54,7 @@ class Runner {
 	 * Adds the specific Carrier and corresponding Trigger
 	 * to the Queue for later execution.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  mixed[] ...$context Callback args setting context.
 	 * @return void
 	 */
@@ -74,7 +74,7 @@ class Runner {
 			$class = get_class( $this->trigger );
 			_deprecated_function(
 				sprintf( '%s::action()', esc_html( $class ) ),
-				'[Next]',
+				'8.0.0',
 				sprintf( '%s::context()', esc_html( $class ) )
 			);
 		} elseif ( method_exists( $this->trigger, 'context' ) ) {

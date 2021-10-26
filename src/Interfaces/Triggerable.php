@@ -54,7 +54,7 @@ interface Triggerable extends Nameable {
 	/**
 	 * Gets Trigger actions
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 * @return array<int, array{tag: string, priority: int, accepted_args: int}>
 	 */
 	public function get_actions() : array;

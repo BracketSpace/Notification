@@ -19,7 +19,7 @@ class Resolver implements Interfaces\Storable {
 	/**
 	 * Gets all Resolvers sorted by priority.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return array<string,Interfaces\Resolvable>
 	 */
 	public static function sorted() : array {

@@ -21,7 +21,7 @@ class Notification implements Storable {
 	 * Gets the Notifications with specific Trigger
 	 *
 	 * @since  6.0.0
-	 * @since  [Next] Is static method
+	 * @since  8.0.0 Is static method
 	 * @param  string $trigger_slug Trigger slug.
 	 * @return array<int,CoreNotification>
 	 */

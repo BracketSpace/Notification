@@ -152,7 +152,7 @@ class Sync {
 	 * Enables the notification syncing
 	 * By default path used is current theme's `notifiations` dir.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @throws \Exception If provided path is not a directory.
 	 * @param  string $path full json directory path or null to use default.
 	 * @return void
@@ -184,7 +184,7 @@ class Sync {
 	/**
 	 * Disables the synchronization.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public static function disable() {
@@ -194,7 +194,7 @@ class Sync {
 	/**
 	 * Gets the synchronization path.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return string|null
 	 */
 	public static function get_sync_path() {
@@ -204,7 +204,7 @@ class Sync {
 	/**
 	 * Gets the synchronization path.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return bool
 	 */
 	public static function is_syncing() : bool {

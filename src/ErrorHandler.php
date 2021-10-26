@@ -15,7 +15,7 @@ class ErrorHandler {
 	/**
 	 * Checks if debug is enabled.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return bool
 	 */
 	public static function debug_enabled() {
@@ -26,7 +26,7 @@ class ErrorHandler {
 	 * Handles error
 	 * When debug is disabled it converts to a Warning.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @throws \Exception If debug is enabled.
 	 * @param  string $message         Message.
 	 * @param  string $exception_class Exception class name.

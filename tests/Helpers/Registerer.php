@@ -43,7 +43,7 @@ class Registerer {
 	/**
 	 * Clears all Triggers
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public static function clear_triggers() {
@@ -65,7 +65,7 @@ class Registerer {
 	/**
 	 * Clears all Carriers
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public static function clear_carriers() {
@@ -105,7 +105,7 @@ class Registerer {
 	/**
 	 * Clears all Notifications
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public static function clear_notifications() {
@@ -127,7 +127,7 @@ class Registerer {
 	/**
 	 * Clears all Resolvers
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public static function clear_resolvers() {
@@ -150,7 +150,7 @@ class Registerer {
 	/**
 	 * Clears all Recipients
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public static function clear_recipients() {
@@ -160,7 +160,7 @@ class Registerer {
 	/**
 	 * Clears all registered items
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public static function clear() {

@@ -20,7 +20,7 @@ class Resolver {
 	 * Resolves value with all the resolvers
 	 *
 	 * @since  6.0.0
-	 * @since  [Next] Method is static
+	 * @since  8.0.0 Method is static
 	 * @param  string      $value   Unresolved string with tags.
 	 * @param  Triggerable $trigger Trigger object.
 	 * @return string               Resolved value
@@ -48,7 +48,7 @@ class Resolver {
 	 * Clears any Merge Tags
 	 *
 	 * @since  6.0.0
-	 * @since  [Next] Method is static
+	 * @since  8.0.0 Method is static
 	 * @param  string $value Unresolved string with tags.
 	 * @return string
 	 */

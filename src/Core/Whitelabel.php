@@ -39,7 +39,7 @@ class Whitelabel {
 	/**
 	 * Sets the plugin in white label mode.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  array<string,mixed> $args white label args.
 	 * @return void
 	 */
@@ -77,7 +77,7 @@ class Whitelabel {
 	/**
 	 * Checks if the plugin is in white label mode.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return bool
 	 */
 	public static function is_whitelabeled() : bool {

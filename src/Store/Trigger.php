@@ -22,7 +22,7 @@ class Trigger implements Interfaces\Storable {
 	/**
 	 * Gets all Triggers grouped.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return array<string,array<string, Interfaces\Triggerable>>
 	 */
 	public static function grouped() : array {

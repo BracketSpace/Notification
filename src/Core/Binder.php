@@ -17,7 +17,7 @@ class Binder {
 	 *
 	 * @action notification/trigger/registered 100
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 * @param Triggerable[]|Triggerable $triggers Array of Triggers or single Trigger.
 	 * @return void
 	 */

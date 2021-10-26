@@ -17,7 +17,7 @@ class NotificationQueries {
 	/**
 	 * Gets Notification posts.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  bool $including_disabled If should include disabled notifications as well.
 	 * @return array<int,WordPressAdapter>
 	 */
@@ -53,7 +53,7 @@ class NotificationQueries {
 	/**
 	 * Gets Notification post by hash.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string $hash Notification hash.
 	 * @return \BracketSpace\Notification\Interfaces\Adaptable|null
 	 */

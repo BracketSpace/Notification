@@ -113,7 +113,7 @@ class WordPressEmails {
 	 *
 	 * @action notification/init
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public function disable_send_confirmation_on_profile_email() {
@@ -133,7 +133,7 @@ class WordPressEmails {
 	 *
 	 * @action notification/init
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public function disable_send_confirmation_on_admin_email() {

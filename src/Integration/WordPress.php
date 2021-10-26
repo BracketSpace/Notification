@@ -68,7 +68,7 @@ class WordPress {
 	 *
 	 * @filter notification/background_processing/trigger_key
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string      $trigger_key Trigger unique key.
 	 * @param  Triggerable $trigger     Trigger object.
 	 * @return string

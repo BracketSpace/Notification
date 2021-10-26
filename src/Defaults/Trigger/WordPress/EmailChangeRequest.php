@@ -64,7 +64,7 @@ class EmailChangeRequest extends Abstracts\Trigger {
 	/**
 	 * Sets trigger's context
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 *
 	 * @param string $old_value Old email value.
 	 * @param string $value New email value.
@@ -88,7 +88,7 @@ class EmailChangeRequest extends Abstracts\Trigger {
 	/**
 	 * Registers attached merge tags
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 * @return void
 	 */
 	public function merge_tags() {
