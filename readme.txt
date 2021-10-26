@@ -295,6 +295,10 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+
+* [Changed] Field and Merge Tag description field is now escaped and cannot contain any HTML tags.
+
 = 8.0.0 =
 
 **Compatibility Breaking Changes**
