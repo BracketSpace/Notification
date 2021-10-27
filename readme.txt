@@ -298,6 +298,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 = [Next] =
 
 * [Changed] Field and Merge Tag description field is now escaped and cannot contain any HTML tags.
+* [Fixed] Recipients parser which didn't resolved Email Merge Tags.
 
 = 8.0.0 =
 
