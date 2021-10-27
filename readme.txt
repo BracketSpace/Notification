@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.8
-Stable tag: 8.0.0
+Stable tag: 8.0.1
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -294,6 +294,11 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 7. Default email disabler
 
 == Changelog ==
+
+= 8.0.1 =
+
+* [Changed] Field and Merge Tag description field is now escaped and cannot contain any HTML tags.
+* [Fixed] Recipients parser which didn't resolved Email Merge Tags.
 
 = 8.0.0 =
 

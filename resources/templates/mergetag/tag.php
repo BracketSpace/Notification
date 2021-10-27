@@ -28,7 +28,7 @@ $tag = $get( 'tag' );
 					<label><?php esc_html_e( 'Example:', 'notification' ); ?></label>
 				<?php endif ?>
 				<div class="description-content">
-					<?php echo $description; // phpcs:ignore ?>
+					<?php echo esc_html( $description ); ?>
 				</div>
 				<?php if ( $tag->is_description_example() ) : ?>
 					<i>(<?php echo esc_html( $tag->get_value_type() ); ?>)</i>

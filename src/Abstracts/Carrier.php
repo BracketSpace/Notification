@@ -51,6 +51,13 @@ abstract class Carrier implements Interfaces\Sendable {
 	public $recipients_data;
 
 	/**
+	 * Recipients form field resolved data
+	 *
+	 * @var mixed
+	 */
+	public $recipients_resolved_data;
+
+	/**
 	 * Fields data for send method
 	 *
 	 * @var array
@@ -312,6 +319,7 @@ abstract class Carrier implements Interfaces\Sendable {
 	 * @return void
 	 */
 	public function resolve_fields( Triggerable $trigger ) {
+		// Regular fields.
 		foreach ( $this->get_form_fields() as $field ) {
 			if ( ! $field->is_resolvable() ) {
 				continue;
@@ -319,6 +327,15 @@ abstract class Carrier implements Interfaces\Sendable {
 
 			$resolved = $this->resolve_value( $field->get_value(), $trigger );
 			$field->set_value( $resolved );
+		}
+
+		// Recipients field.
+		if ( $this->has_recipients_field() ) {
+			$recipients_field = $this->get_recipients_field();
+
+			if ( $recipients_field ) {
+				$this->recipients_resolved_data = $this->resolve_value( $recipients_field->get_value(), $trigger );
+			}
 		}
 	}
 
@@ -399,27 +416,20 @@ abstract class Carrier implements Interfaces\Sendable {
 	/**
 	 * Parses the recipients to a flat array.
 	 *
+	 * It needs recipients_resolved_data property so the
+	 * resolve_fields method needs to be called beforehand.
+	 *
 	 * @since  8.0.0
 	 * @return array<int,mixed>
 	 */
 	public function parse_recipients() {
-		$this->data = $this->get_data();
-
-		if ( ! $this->has_recipients_field() ) {
-			return [];
-		}
-
-		$recipients_field = $this->get_recipients_field();
-
-		if ( ! $recipients_field ) {
+		if ( ! $this->recipients_resolved_data ) {
 			return [];
 		}
 
 		$parsed_recipients = [];
 
-		$raw_recipients = $this->get_field_value( $recipients_field->get_raw_name() );
-
-		foreach ( $this->get_recipients() as $recipient ) {
+		foreach ( $this->recipients_resolved_data as $recipient ) {
 			$parsed_recipients = array_merge(
 				$parsed_recipients,
 				(array) RecipientStore::get( $this->get_slug(), $recipient['type'] )->parse_value( $recipient['recipient'] ) ?? []

@@ -43,7 +43,7 @@ $data_carrier = $carrier ? ' data-carrier=' . $carrier : '';
 		<?php echo $field->field(); // phpcs:ignore ?>
 		<?php $description = $field->get_description(); ?>
 		<?php if ( ! empty( $description ) ) : ?>
-			<p class="description"><?php echo $description; // phpcs:ignore ?></p>
+			<p class="description"><?php echo esc_html( $description ); ?></p>
 		<?php endif ?>
 		<?php do_action_deprecated( 'notification/notification/box/field/post', [ $this ], '6.0.0', 'notification/carrier/box/field/post' ); ?>
 		<?php do_action( 'notification/carrier/box/field/post', $this ); ?>
