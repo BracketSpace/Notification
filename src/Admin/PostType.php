@@ -389,7 +389,6 @@ class PostType {
 
 		foreach ( $notifications as $notification_json ) {
 			if ( ! empty( $notification_json ) ) {
-
 				// Check if Notification has valid JSON.
 				$json_check = json_decode( $notification_json, true );
 				if ( json_last_error() !== JSON_ERROR_NONE ) {
@@ -401,8 +400,10 @@ class PostType {
 				// Set source back to WordPress.
 				$adapter->set_source( 'WordPress' );
 
-				notification_add( $adapter->get_notification() );
-
+				// Check if the notification hasn't been added already ie. via Sync.
+				if ( ! Store\Notification::has( $adapter->get_hash() ) ) {
+					notification_add( $adapter->get_notification() );
+				}
 			}
 		}
 	}
