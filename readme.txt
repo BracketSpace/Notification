@@ -298,6 +298,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 = [Next] =
 
 * [Added] HTML escaping and nonce verifications.
+* [Changed] Notification file syncing is now using Filesystem methods.
 
 = 8.0.1 =
 
