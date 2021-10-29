@@ -299,6 +299,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 * [Added] HTML escaping and nonce verifications.
 * [Changed] Notification file syncing is now using Filesystem methods.
+* [Changed] Menu icon.
 
 = 8.0.1 =
 
