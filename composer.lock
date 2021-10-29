@@ -146,16 +146,16 @@
         },
         {
             "name": "micropackage/filesystem",
-            "version": "1.1.3",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/micropackage/filesystem.git",
-                "reference": "a686c7c2d7c7443c4cf6dc55dbd2283a6e219b06"
+                "reference": "fb643749ff282bf9d057caf9903ab17c5deceb33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/micropackage/filesystem/zipball/a686c7c2d7c7443c4cf6dc55dbd2283a6e219b06",
-                "reference": "a686c7c2d7c7443c4cf6dc55dbd2283a6e219b06",
+                "url": "https://api.github.com/repos/micropackage/filesystem/zipball/fb643749ff282bf9d057caf9903ab17c5deceb33",
+                "reference": "fb643749ff282bf9d057caf9903ab17c5deceb33",
                 "shasum": ""
             },
             "require": {
@@ -186,9 +186,9 @@
             "description": "Wrapper for WordPress' Filesystem for easier file manipulations.",
             "support": {
                 "issues": "https://github.com/micropackage/filesystem/issues",
-                "source": "https://github.com/micropackage/filesystem/tree/master"
+                "source": "https://github.com/micropackage/filesystem/tree/1.1.4"
             },
-            "time": "2020-06-15T11:06:50+00:00"
+            "time": "2021-10-29T14:01:09+00:00"
         },
         {
             "name": "micropackage/internationalization",
