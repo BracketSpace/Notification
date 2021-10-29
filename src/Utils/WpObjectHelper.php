@@ -9,6 +9,8 @@
 
 namespace BracketSpace\Notification\Utils;
 
+use BracketSpace\Notification\Utils\Cache\ObjectCache;
+
 /**
  * WpObjectHelper class
  */
@@ -123,25 +125,34 @@ class WpObjectHelper {
 	public static function get_comment_types() : array {
 		global $wpdb;
 
-		$comment_types = [
-			'comment'   => __( 'Comment', 'notification' ),
-			'pingback'  => __( 'Pingback', 'notification' ),
-			'trackback' => __( 'Trackback', 'notification' ),
-		];
+		$types_cache   = new ObjectCache( 'comment_types', 'notification' );
+		$comment_types = $types_cache->get();
 
-		$db_types = $wpdb->get_col( // phpcs:ignore
-			"SELECT DISTINCT comment_type
-			FROM $wpdb->comments
-			WHERE 1=1"
-		);
+		if ( false === $comment_types ) {
+			$comment_types = [
+				'comment'   => __( 'Comment', 'notification' ),
+				'pingback'  => __( 'Pingback', 'notification' ),
+				'trackback' => __( 'Trackback', 'notification' ),
+			];
 
-		foreach ( $db_types as $type ) {
-			if ( ! isset( $comment_types[ $type ] ) ) {
-				// Dynamically generated and translated name.
-				$name = ucfirst( str_replace( [ '_', '-' ], ' ', $type ) );
+			// There's no other way to get comment types and we're using the cache lib.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$db_types = $wpdb->get_col(
+				"SELECT DISTINCT comment_type
+				FROM $wpdb->comments
+				WHERE 1=1"
+			);
 
-				$comment_types[ (string) $type ] = __( $name );
+			foreach ( $db_types as $type ) {
+				if ( ! isset( $comment_types[ $type ] ) ) {
+					// Dynamically generated and translated name.
+					$name = ucfirst( str_replace( [ '_', '-' ], ' ', $type ) );
+
+					$comment_types[ (string) $type ] = __( $name );
+				}
 			}
+
+			$types_cache->set( $comment_types );
 		}
 
 		return $comment_types;

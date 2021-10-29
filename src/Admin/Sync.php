@@ -169,9 +169,10 @@ class Sync {
 	 * @return void
 	 */
 	public function ajax_sync() {
+		check_ajax_referer( 'notification_csrf' );
 
 		$ajax = new Response();
-		$data = $_POST; // phpcs:ignore
+		$data = $_POST;
 
 		$ajax->verify_nonce( 'notification_sync_' . $data['hash'] );
 
@@ -186,7 +187,6 @@ class Sync {
 		}
 
 		$ajax->send( $response );
-
 	}
 
 	/**

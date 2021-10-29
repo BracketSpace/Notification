@@ -8,6 +8,7 @@
 namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\Defaults\Adapter\WordPress;
+use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
 
 /**
  * Sync class
@@ -28,7 +29,6 @@ class Sync {
 	 * @return array
 	 */
 	public static function get_all_json() {
-
 		if ( ! self::is_syncing() ) {
 			return [];
 		}
@@ -42,24 +42,24 @@ class Sync {
 
 		$notifications = [];
 
-		while ( false !== ( $file = readdir( $dir ) ) ) { // phpcs:ignore
-
+		// phpcs:ignore WordPress.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
+		while ( false !== ( $file = readdir( $dir ) ) ) {
 			if ( pathinfo( $file, PATHINFO_EXTENSION ) !== 'json' ) {
 				continue;
 			}
 
-			$json = file_get_contents( $path . '/' . $file ); // phpcs:ignore
+			// We need to read the file contents.
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+			$json = file_get_contents( $path . '/' . $file );
 
 			if ( empty( $json ) ) {
 				continue;
 			}
 
 			$notifications[] = $json;
-
 		}
 
 		return $notifications;
-
 	}
 
 	/**
@@ -71,7 +71,6 @@ class Sync {
 	 * @return void
 	 */
 	public function load_local_json() {
-
 		if ( ! self::is_syncing() ) {
 			return;
 		}
@@ -92,7 +91,6 @@ class Sync {
 				return;
 			}
 		}
-
 	}
 
 	/**
@@ -105,7 +103,6 @@ class Sync {
 	 * @return void
 	 */
 	public static function save_local_json( $wp_adapter ) {
-
 		if ( ! self::is_syncing() ) {
 			return;
 		}
@@ -119,8 +116,8 @@ class Sync {
 		$file = $wp_adapter->get_hash() . '.json';
 		$json = notification_swap_adapter( 'JSON', $wp_adapter )->save();
 
-		file_put_contents( $path . '/' . $file, $json ); // phpcs:ignore
-
+		// phpcs:ignore
+		file_put_contents( $path . '/' . $file, $json );
 	}
 
 	/**
@@ -175,7 +172,8 @@ class Sync {
 		}
 
 		if ( ! file_exists( trailingslashit( $path ) . 'index.php' ) ) {
-			file_put_contents( trailingslashit( $path ) . 'index.php', '<?php' . "\r\n" . '// Keep this file here.' . "\r\n" ); // phpcs:ignore
+			// phpcs:ignore
+			file_put_contents( trailingslashit( $path ) . 'index.php', '<?php' . "\r\n" . '// Keep this file here.' . "\r\n" );
 		}
 
 		static::$sync_path = $path;
@@ -199,6 +197,20 @@ class Sync {
 	 */
 	public static function get_sync_path() {
 		return static::$sync_path;
+	}
+
+	/**
+	 * Gets the sync dir filesystem.
+	 *
+	 * @since  [Next]
+	 * @return Filesystem|null
+	 */
+	public static function get_sync_fs() {
+		if ( ! static::is_syncing() ) {
+			return null;
+		}
+
+		return new Filesystem( (string) static::get_sync_path() );
 	}
 
 	/**

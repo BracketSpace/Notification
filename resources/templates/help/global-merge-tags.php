@@ -25,7 +25,7 @@
 						<?php if ( $tag->is_description_example() ) : ?>
 							<strong><?php esc_html_e( 'Example:', 'notification' ); ?></strong>
 						<?php endif ?>
-						<?php echo $description; // phpcs:ignore ?>
+						<?php echo wp_kses_data( $description ); ?>
 					</p>
 				<?php endif ?>
 			</td>

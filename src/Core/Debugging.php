@@ -35,11 +35,9 @@ class Debugging {
 	 * @since 6.0.0
 	 */
 	public function __construct() {
-
 		global $wpdb;
 
 		$this->logs_table = $wpdb->prefix . 'notification_logs';
-
 	}
 
 	/**
@@ -51,7 +49,6 @@ class Debugging {
 	 * @return bool
 	 */
 	public function add_log( $log_data = [] ) {
-
 		global $wpdb;
 
 		$allowed_types = [
@@ -72,7 +69,8 @@ class Debugging {
 			throw new \Exception( 'Log message cannot be empty' );
 		}
 
-		return (bool) $wpdb->insert( // phpcs:ignore
+		// phpcs:ignore
+		return (bool) $wpdb->insert(
 			$this->logs_table,
 			[
 				'type'        => $log_data['type'],
@@ -87,7 +85,6 @@ class Debugging {
 				'%s',
 			]
 		);
-
 	}
 
 	/**
@@ -100,7 +97,6 @@ class Debugging {
 	 * @return array
 	 */
 	public function get_logs( $page = 1, $types = null, $component = null ) {
-
 		global $wpdb;
 
 		if ( empty( $types ) ) {
@@ -110,7 +106,7 @@ class Debugging {
 		$esc_types = [];
 
 		foreach ( (array) $types as $type ) {
-			$esc_types[] = $wpdb->prepare( is_numeric( $type ) ? '%d' : '%s', $type ); // phpcs:ignore
+			$esc_types[] = $wpdb->prepare( '%s', (string) $type );
 		}
 
 		$query = 'SELECT SQL_CALC_FOUND_ROWS * FROM ' . $this->logs_table . ' WHERE type IN(' . implode( ',', $esc_types ) . ')';
@@ -135,8 +131,9 @@ class Debugging {
 
 		$query .= ' LIMIT ' . $this->logs_per_page . ' ' . $offset;
 
-		return $wpdb->get_results( $query ); // phpcs:ignore
-
+		// We need to get the live results.
+		// phpcs:ignore
+		return $wpdb->get_results( $query );
 	}
 
 	/**
@@ -147,7 +144,6 @@ class Debugging {
 	 * @return void
 	 */
 	public function remove_logs( $types = null ) {
-
 		global $wpdb;
 
 		if ( empty( $types ) ) {
@@ -155,9 +151,9 @@ class Debugging {
 		}
 
 		foreach ( $types as $type ) {
-			$wpdb->delete( $this->logs_table, [ 'type' => $type ], [ '%s' ] ); // phpcs:ignore
+			// phpcs:ignore
+			$wpdb->delete( $this->logs_table, [ 'type' => $type ], [ '%s' ] );
 		}
-
 	}
 
 	/**
@@ -178,7 +174,6 @@ class Debugging {
 		}
 
 		return $total;
-
 	}
 
 	/**
@@ -194,7 +189,6 @@ class Debugging {
 	 * @return void
 	 */
 	public function catch_notification( $carrier, $trigger, $notification ) {
-
 		if ( ! notification_get_setting( 'debugging/settings/debug_log' ) ) {
 			return;
 		}
@@ -231,7 +225,6 @@ class Debugging {
 		if ( true === apply_filters( 'notification/debug/suppress', (bool) notification_get_setting( 'debugging/settings/debug_suppressing' ), $data['notification'], $data['carrier'], $data['trigger'] ) ) {
 			$carrier->suppress();
 		}
-
 	}
 
 }

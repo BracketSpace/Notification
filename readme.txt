@@ -295,6 +295,10 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+
+* [Added] HTML escaping and nonce verifications.
+
 = 8.0.1 =
 
 * [Changed] Field and Merge Tag description field is now escaped and cannot contain any HTML tags.

@@ -124,28 +124,21 @@ abstract class PostTrigger extends Abstracts\Trigger {
 		] ) );
 
 		if ( 'post' === $this->post_type ) {
-
 			$this->add_merge_tag( new MergeTag\StringTag( [
 				'slug'     => sprintf( '%s_sticky', $this->post_type ),
 				// translators: singular post name.
 				'name'     => sprintf( __( '%s sticky status', 'notification' ), $post_type_name ),
 				'group'    => $post_type_name,
 				'resolver' => function( $trigger ) {
-					if ( is_admin() ) {
-						return isset( $_POST['sticky'] ) && ! empty( $_POST['sticky'] ) ? __( 'Sticky', 'notification' ) : __( 'Not sticky', 'notification' ); // phpcs:ignore
-					} else {
-						return is_sticky( $trigger->{ $this->post_type }->ID ) ? __( 'Sticky', 'notification' ) : __( 'Not sticky', 'notification' );
-					}
+					return is_sticky( $trigger->{ $this->post_type }->ID ) ? __( 'Sticky', 'notification' ) : __( 'Not sticky', 'notification' );
 				},
 			] ) );
-
 		}
 
 		$taxonomies = get_object_taxonomies( $this->post_type, 'objects' );
 
 		if ( ! empty( $taxonomies ) ) {
 			foreach ( $taxonomies as $taxonomy ) {
-
 				// Post format special treatment.
 				if ( 'post_format' === $taxonomy->name ) {
 					$group = $post_type_name;
@@ -158,7 +151,6 @@ abstract class PostTrigger extends Abstracts\Trigger {
 					'taxonomy'  => $taxonomy,
 					'group'     => $group,
 				] ) );
-
 			}
 		}
 

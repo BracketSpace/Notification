@@ -40,7 +40,7 @@ $logs = $get( 'logs' );
 				</div>
 				<div class="log-body">
 					<div class="body-content">
-						<?php echo $log->message; // phpcs:ignore ?>
+						<?php echo wp_kses_post( $log->message ); ?>
 					</div>
 				</div>
 			</div>

@@ -103,8 +103,11 @@ class Debugging {
 	 */
 	public function get_notification_log() {
 
-		$debug    = \Notification::component( 'core_debugging' );
-		$page     = isset( $_GET['notification_log_page'] ) ? intval( $_GET['notification_log_page'] ) : 1; // phpcs:ignore
+		$debug = \Notification::component( 'core_debugging' );
+
+		// This is a simple pagination request.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$page     = isset( $_GET['notification_log_page'] ) ? intval( $_GET['notification_log_page'] ) : 1;
 		$raw_logs = $debug->get_logs( $page, 'notification' );
 
 		$logs = [];
@@ -142,7 +145,10 @@ class Debugging {
 	public function get_error_log() {
 
 		$debug = \Notification::component( 'core_debugging' );
-		$page  = isset( $_GET['error_log_page'] ) ? intval( $_GET['error_log_page'] ) : 1; // phpcs:ignore
+
+		// This is a simple pagination request.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$page = isset( $_GET['error_log_page'] ) ? intval( $_GET['error_log_page'] ) : 1;
 
 		$html = Templates::get( 'debug/error-log', [
 			'datetime_format' => get_option( 'date_format' ) . ' ' . get_option( 'time_format' ),
@@ -176,7 +182,7 @@ class Debugging {
 		$message        = esc_html__( 'Debug log is active and no notifications will be sent.', 'notification' );
 		$debug_log_link = '<a href="' . admin_url( 'edit.php?post_type=notification&page=settings&section=debugging' ) . '">' . esc_html__( 'See debug log', 'notification' ) . '</a>';
 
-		echo '<div class="notice notice-warning"><p>' . $message . ' ' . $debug_log_link . '</p></div>'; // phpcs:ignore
+		echo wp_kses_post( '<div class="notice notice-warning"><p>' . $message . ' ' . $debug_log_link . '</p></div>' );
 
 	}
 
@@ -189,11 +195,11 @@ class Debugging {
 	 * @return void
 	 */
 	public function action_clear_logs() {
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		check_admin_referer( 'notification_clear_log_' . wp_unslash( $_GET['log_type'] ?? '' ), 'nonce' );
 
-		$data     = $_GET; // phpcs:ignore
+		$data     = $_GET;
 		$log_type = isset( $data['log_type'] ) ? $data['log_type'] : '';
-
-		check_admin_referer( 'notification_clear_log_' . $log_type, 'nonce' );
 
 		$debug = \Notification::component( 'core_debugging' );
 
@@ -210,7 +216,6 @@ class Debugging {
 
 		wp_safe_redirect( wp_get_referer() );
 		exit;
-
 	}
 
 }

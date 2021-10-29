@@ -27,7 +27,10 @@ class Message {
 
 		$message = $field->addon( 'message' );
 
-		echo is_callable( $message ) ? $message() : $message; // phpcs:ignore
+		// We cannot escape message contents as it may use complicated HTML to render
+		// advanced setting sections.
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo is_callable( $message ) ? $message() : $message;
 
 		if ( $field->addon( 'code' ) ) {
 			echo '</code></pre>';
