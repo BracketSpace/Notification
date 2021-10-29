@@ -142,7 +142,7 @@ abstract class MergeTag implements Interfaces\Taggable {
 			$value = call_user_func( $this->resolver, $this->get_trigger() );
 		} catch ( \Throwable $t ) {
 			$value = null;
-			trigger_error( $t->getMessage(), E_USER_NOTICE ); // phpcs:ignore
+			trigger_error( esc_html( $t->getMessage() ), E_USER_NOTICE );
 		}
 
 		if ( ! empty( $value ) && ! $this->validate( $value ) ) {

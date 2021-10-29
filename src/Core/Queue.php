@@ -59,8 +59,7 @@ class Queue {
 	public static function add_replace( CoreNotification $notification, Triggerable $trigger ) {
 		// Check if item already exists.
 		foreach ( self::$items as $index => $item ) {
-			// phpcs:ignore.
-			if ( $item['notification'] == $notification && $item['trigger'] == $trigger ) {
+			if ( $item['notification'] === $notification && $item['trigger'] === $trigger ) {
 				self::add( $notification, $trigger, $index );
 				return;
 			}
@@ -79,8 +78,7 @@ class Queue {
 	 */
 	public static function has( CoreNotification $notification, Triggerable $trigger ) : bool {
 		foreach ( self::$items as $item ) {
-			// phpcs:ignore.
-			if ( $item['notification'] == $notification && $item['trigger'] == $trigger ) {
+			if ( $item['notification'] === $notification && $item['trigger'] === $trigger ) {
 				return true;
 			}
 		}

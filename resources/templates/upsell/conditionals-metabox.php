@@ -21,5 +21,6 @@ $extension_link = sprintf(
 <span class="label-pro">PRO</span>
 <?php
 // Translators: Link to extension.
-printf( __( 'Install %s to control when the Notification is sent.', 'notification' ), $extension_link ); // phpcs:ignore
+$description = sprintf( __( 'Install %s to control when the Notification is sent.', 'notification' ), $extension_link );
+echo wp_kses_post( $description );
 ?>

@@ -61,6 +61,7 @@
 
 			const data = {
 				action: "notification_sync",
+				_ajax_nonce: notification.csrfToken,
 				hash,
 				type: syncType,
 				nonce

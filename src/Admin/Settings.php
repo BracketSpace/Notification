@@ -22,7 +22,6 @@ class Settings {
 	 * @return void
 	 */
 	public function general_settings( $settings ) {
-
 		$general = $settings->add_section( __( 'General', 'notification' ), 'general' );
 
 		$general->add_group( __( 'Content', 'notification' ), 'content' )
@@ -106,7 +105,6 @@ class Settings {
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] )
 			->description( __( 'Choose what to remove upon plugin removal', 'notification' ) );
-
 	}
 
 	/**
@@ -116,7 +114,6 @@ class Settings {
 	 * @return void
 	 */
 	public function triggers_settings( $settings ) {
-
 		$triggers = $settings->add_section( __( 'Triggers', 'notification' ), 'triggers' );
 
 		$triggers->add_group( __( 'Post', 'notification' ), 'post_types' )
@@ -227,7 +224,8 @@ class Settings {
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] );
 
-		$triggers->add_group( __( 'WordPress', 'notification' ), 'wordpress' ) // phpcs:ignore
+		// phpcs:ignore WordPress.WP.CapitalPDangit.Misspelled
+		$triggers->add_group( __( 'WordPress', 'notification' ), 'wordpress' )
 			->add_field( [
 				'name'     => __( 'Updates', 'notification' ),
 				'slug'     => 'updates',
@@ -286,7 +284,6 @@ class Settings {
 				'render'   => [ new CoreFields\Checkbox(), 'input' ],
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] );
-
 	}
 
 	/**
@@ -296,7 +293,6 @@ class Settings {
 	 * @return void
 	 */
 	public function carriers_settings( $settings ) {
-
 		if ( ! empty( $_SERVER['SERVER_NAME'] ) ) {
 			$sitename = strtolower( sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) ) );
 			if ( substr( $sitename, 0, 4 ) === 'www.' ) {
@@ -395,7 +391,6 @@ class Settings {
 				'render'   => [ new CoreFields\Checkbox(), 'input' ],
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] );
-
 	}
 
 	/**
@@ -405,7 +400,6 @@ class Settings {
 	 * @return void
 	 */
 	public function emails_settings( $settings ) {
-
 		$general = $settings->add_section( __( 'Integration', 'notification' ), 'integration' );
 
 		$general->add_group( __( 'Default WordPress emails', 'notification' ), 'emails' )
@@ -531,7 +525,6 @@ class Settings {
 				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] )
 			->description( __( 'Disable each default emails by selecting the option.', 'notification' ) );
-
 	}
 
 	/**
@@ -544,13 +537,11 @@ class Settings {
 	 * @return array
 	 */
 	public function filter_post_types( $post_types ) {
-
 		if ( isset( $post_types['attachment'] ) ) {
 			unset( $post_types['attachment'] );
 		}
 
 		return $post_types;
-
 	}
 
 }

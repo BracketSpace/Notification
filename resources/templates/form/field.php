@@ -40,10 +40,14 @@ $data_carrier = $carrier ? ' data-carrier=' . $carrier : '';
 	<td>
 		<?php do_action_deprecated( 'notification/notification/box/field/pre', [ $this ], '6.0.0', 'notification/carrier/box/field/pre' ); ?>
 		<?php do_action( 'notification/carrier/box/field/pre', $this ); ?>
-		<?php echo $field->field(); // phpcs:ignore ?>
+		<?php
+		// Field is escaped in the called method.
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo $field->field();
+		?>
 		<?php $description = $field->get_description(); ?>
 		<?php if ( ! empty( $description ) ) : ?>
-			<p class="description"><?php echo esc_html( $description ); ?></p>
+			<p class="description"><?php echo wp_kses_data( $description ); ?></p>
 		<?php endif ?>
 		<?php do_action_deprecated( 'notification/notification/box/field/post', [ $this ], '6.0.0', 'notification/carrier/box/field/post' ); ?>
 		<?php do_action( 'notification/carrier/box/field/post', $this ); ?>

@@ -591,11 +591,6 @@ parameters:
 			path: src/Admin/Extensions.php
 
 		-
-			message: "#^Parameter \\#2 \\$now of function strtotime expects int, int\\|string given\\.$#"
-			count: 1
-			path: src/Admin/Extensions.php
-
-		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Admin\\\\Extensions\\:\\:\\$extensions type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Admin/Extensions.php
@@ -612,11 +607,6 @@ parameters:
 
 		-
 			message: "#^Call to an undefined method object\\:\\:add_section\\(\\)\\.$#"
-			count: 1
-			path: src/Admin/ImportExport.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\ImportExport\\:\\:prepare_notifications_export_data\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Admin/ImportExport.php
 
@@ -989,11 +979,6 @@ parameters:
 			message: "#^Parameter \\$triggers of method BracketSpace\\\\Notification\\\\Core\\\\Binder\\:\\:bind\\(\\) has invalid typehint type BracketSpace\\\\Notification\\\\Core\\\\Triggerable\\.$#"
 			count: 2
 			path: src/Core/Binder.php
-
-		-
-			message: "#^Binary operation \"\\+\" between int\\|string and 86400 results in an error\\.$#"
-			count: 1
-			path: src/Core/Cron.php
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Cron\\:\\:register_intervals\\(\\) has parameter \\$intervals with no value type specified in iterable type array\\.$#"

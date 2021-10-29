@@ -44,7 +44,6 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	 * @return mixed
 	 */
 	public function context() {
-
 		require_once ABSPATH . '/wp-admin/includes/update.php';
 
 		// Check if any updates are available.
@@ -60,7 +59,6 @@ class UpdatesAvailable extends Abstracts\Trigger {
 		if ( ! $has_updates && ! notification_get_setting( 'triggers/wordpress/updates_send_anyway' ) ) {
 			return false;
 		}
-
 	}
 
 	/**
@@ -178,7 +176,6 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	 * @return string
 	 */
 	public function get_core_updates_list() {
-
 		$updates = get_core_updates();
 
 		foreach ( $updates as $update_key => $update ) {
@@ -201,7 +198,6 @@ class UpdatesAvailable extends Abstracts\Trigger {
 		$html .= '</ul>';
 
 		return $html;
-
 	}
 
 	/**
@@ -211,7 +207,6 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	 * @return string
 	 */
 	public function get_plugin_updates_list() {
-
 		$updates = get_plugin_updates();
 
 		if ( empty( $updates ) ) {
@@ -221,8 +216,13 @@ class UpdatesAvailable extends Abstracts\Trigger {
 		$html = '<ul>';
 
 		foreach ( $updates as $update ) {
-			// translators: 1. Plugin name, 2. Current version, 3. Update version.
-			$html .= '<li>' . sprintf( __( '<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s', 'notification' ), $update->Name, $update->Version, $update->update->new_version ) . '</li>'; // phpcs:ignore
+			$html .= '<li>' . sprintf(
+				// translators: 1. Plugin name, 2. Current version, 3. Update version.
+				__( '<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s', 'notification' ),
+				$update->Name, // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+				$update->Version, // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+				$update->update->new_version
+			) . '</li>';
 		}
 
 		$html .= '</ul>';
@@ -238,7 +238,6 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	 * @return string
 	 */
 	public function get_theme_updates_list() {
-
 		$updates = get_theme_updates();
 
 		if ( empty( $updates ) ) {
@@ -248,14 +247,18 @@ class UpdatesAvailable extends Abstracts\Trigger {
 		$html = '<ul>';
 
 		foreach ( $updates as $update ) {
-			// translators: 1. Theme name, 2. Current version, 3. Update version.
-			$html .= '<li>' . sprintf( __( '<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s', 'notification' ), $update->Name, $update->Version, $update->update['new_version'] ) . '</li>'; // phpcs:ignore
+			$html .= '<li>' . sprintf(
+				// translators: 1. Theme name, 2. Current version, 3. Update version.
+				__( '<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s', 'notification' ),
+				$update->Name, // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+				$update->Version, // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+				$update->update['new_version']
+			) . '</li>';
 		}
 
 		$html .= '</ul>';
 
 		return $html;
-
 	}
 
 	/**
@@ -266,7 +269,6 @@ class UpdatesAvailable extends Abstracts\Trigger {
 	 * @return integer
 	 */
 	public function get_updates_count( $update_type = 'all' ) {
-
 		if ( 'all' !== $update_type ) {
 			$updates = call_user_func( 'get_' . $update_type . '_updates' );
 
@@ -288,7 +290,6 @@ class UpdatesAvailable extends Abstracts\Trigger {
 		}
 
 		return $count;
-
 	}
 
 }

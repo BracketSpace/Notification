@@ -126,21 +126,21 @@ class GlobalMergeTagRepository {
 			'slug'      => 'date',
 			'name'      => __( 'Trigger execution date', 'notification' ),
 			'hidden'    => true,
-			'timestamp' => current_time( 'timestamp' ), // phpcs:ignore
+			'timestamp' => time(),
 		] ) );
 
 		Register::global_merge_tag( new MergeTag\DateTime\DateTime( [
 			'slug'      => 'date_time',
 			'name'      => __( 'Trigger execution date and time', 'notification' ),
 			'hidden'    => true,
-			'timestamp' => current_time( 'timestamp' ), // phpcs:ignore
+			'timestamp' => time(),
 		] ) );
 
 		Register::global_merge_tag( new MergeTag\DateTime\Time( [
 			'slug'      => 'time',
 			'name'      => __( 'Trigger execution time', 'notification' ),
 			'hidden'    => true,
-			'timestamp' => current_time( 'timestamp' ), // phpcs:ignore
+			'timestamp' => time(),
 		] ) );
 
 	}
