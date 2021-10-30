@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "73d95408e7ddb8485b92b953cf7868d2",
+    "content-hash": "30e1e073ac4fa4f0689b9d33eecf768b",
     "packages": [
         {
             "name": "enshrined/svg-sanitize",
@@ -98,6 +98,52 @@
                 "source": "https://github.com/micropackage/ajax/tree/1.0.1"
             },
             "time": "2020-02-11T09:58:59+00:00"
+        },
+        {
+            "name": "micropackage/cache",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/micropackage/cache.git",
+                "reference": "4132b1de3036d72befc526ba4e78f50b5f23764c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/micropackage/cache/zipball/4132b1de3036d72befc526ba4e78f50b5f23764c",
+                "reference": "4132b1de3036d72befc526ba4e78f50b5f23764c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+                "phpcompatibility/php-compatibility": "^9.1",
+                "phpunit/phpunit": "^6.5.5",
+                "wp-coding-standards/wpcs": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Micropackage\\Cache\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jakub Mikita",
+                    "email": "jakub@bracketspace.com"
+                }
+            ],
+            "description": "WordPress Cache wrapper with Object and Transient drivers",
+            "support": {
+                "issues": "https://github.com/micropackage/cache/issues",
+                "source": "https://github.com/micropackage/cache/tree/1.0.3"
+            },
+            "time": "2021-10-30T17:44:14+00:00"
         },
         {
             "name": "micropackage/dochooks",
