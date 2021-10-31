@@ -8,6 +8,7 @@
 		"composer-runtime-api": "^2.0",
 		"enshrined/svg-sanitize": "^0.14.1",
 		"micropackage/ajax": "^1.0",
+		"micropackage/cache": "^1.0",
 		"micropackage/dochooks": "1.0.2",
 		"micropackage/filesystem": "^1.1",
 		"micropackage/requirements": "^1.0",

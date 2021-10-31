@@ -9,7 +9,8 @@
 
 namespace BracketSpace\Notification\Utils;
 
-use BracketSpace\Notification\Utils\Cache\ObjectCache;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 
 /**
  * WpObjectHelper class
@@ -123,12 +124,12 @@ class WpObjectHelper {
 	 * @return array<string,string>
 	 */
 	public static function get_comment_types() : array {
-		global $wpdb;
+		$driver = new CacheDriver\ObjectCache( 'notification' );
+		$cache  = new Cache( $driver, 'comment_types' );
 
-		$types_cache   = new ObjectCache( 'comment_types', 'notification' );
-		$comment_types = $types_cache->get();
+		return $cache->collect( function() {
+			global $wpdb;
 
-		if ( false === $comment_types ) {
 			$comment_types = [
 				'comment'   => __( 'Comment', 'notification' ),
 				'pingback'  => __( 'Pingback', 'notification' ),
@@ -152,10 +153,8 @@ class WpObjectHelper {
 				}
 			}
 
-			$types_cache->set( $comment_types );
-		}
-
-		return $comment_types;
+			return $comment_types;
+		} );
 	}
 
 }
