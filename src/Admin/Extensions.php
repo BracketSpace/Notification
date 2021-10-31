@@ -12,7 +12,8 @@ use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Core\Whitelabel;
 use BracketSpace\Notification\ErrorHandler;
 use BracketSpace\Notification\Utils\EDDUpdater;
-use BracketSpace\Notification\Utils\Cache\Transient as TransientCache;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 
 /**
  * Extensions class
@@ -134,26 +135,19 @@ class Extensions {
 	 * @return array
 	 */
 	public function get_raw_extensions() {
-		$extensions_cache = new TransientCache( 'notification_extensions', DAY_IN_SECONDS );
+		$driver = new CacheDriver\Transient( ErrorHandler::debug_enabled() ? DAY_IN_SECONDS : 1 );
+		$cache  = new Cache( $driver, 'notification_extensions' );
 
-		if ( ErrorHandler::debug_enabled() ) {
-			$extensions = false;
-		} else {
-			$extensions = $extensions_cache->get();
-		}
-
-		if ( false === $extensions ) {
-
+		return $cache->collect( function() {
 			$response   = wp_remote_get( $this->api_url );
 			$extensions = [];
 
 			if ( ! is_wp_error( $response ) && 200 === wp_remote_retrieve_response_code( $response ) ) {
 				$extensions = json_decode( wp_remote_retrieve_body( $response ), true );
-				$extensions_cache->set( $extensions );
 			}
-		}
 
-		return $extensions;
+			return $extensions;
+		} );
 	}
 
 	/**

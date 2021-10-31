@@ -10,8 +10,8 @@
 namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\ErrorHandler;
-use BracketSpace\Notification\Utils\Cache\ObjectCache;
-use BracketSpace\Notification\Utils\Cache\Transient as TransientCache;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 
 /**
  * License class
@@ -59,28 +59,19 @@ class License {
 	 * @return mixed license data or false
 	 */
 	public function get() {
+		$driver = new CacheDriver\ObjectCache( 'notification_license', ErrorHandler::debug_enabled() ? 0 : 1 );
+		$cache  = new Cache( $driver, $this->extension['slug'] );
 
-		$license_cache = new ObjectCache( $this->extension['slug'], 'notification_license' );
-
-		if ( ErrorHandler::debug_enabled() ) {
-			$license = false;
-		} else {
-			$license = $license_cache->get();
-		}
-
-		if ( empty( $license ) ) {
-
+		return $cache->collect( function() {
 			$licenses = $this->get_licenses();
 			$license  = false;
 
 			if ( isset( $licenses[ $this->extension['slug'] ] ) ) {
 				$license = $licenses[ $this->extension['slug'] ];
-				$license_cache->set( $license );
 			}
-		}
 
-		return $license;
-
+			return $license;
+		} );
 	}
 
 	/**
@@ -90,23 +81,16 @@ class License {
 	 * @return boolean
 	 */
 	public function is_valid() {
-
 		$license_data = $this->get();
 
 		if ( empty( $license_data ) ) {
 			return false;
 		}
 
-		$license_transient = new TransientCache( 'notification_checked_license' . $this->extension['slug'], DAY_IN_SECONDS );
+		$driver = new CacheDriver\Transient( ErrorHandler::debug_enabled() ? DAY_IN_SECONDS : 1 );
+		$cache  = new Cache( $driver, sprintf( 'notification_license_check_%s', $this->extension['slug'] ) );
 
-		if ( ErrorHandler::debug_enabled() ) {
-			$license = false;
-		} else {
-			$license = $license_transient->get();
-		}
-
-		if ( empty( $license ) ) {
-
+		return $cache->collect( function() use ( $license_data ) {
 			$license_check = $this->check( $license_data->license_key );
 
 			if ( is_wp_error( $license_check ) ) {
@@ -116,12 +100,9 @@ class License {
 			$license_check->license_key = $license_data->license_key;
 			$license_data               = $license_check;
 			$this->save( $license_data );
-			$license_transient->set( $license_data );
 
-		}
-
-		return 'valid' === $license_data->license;
-
+			return 'valid' === $license_data->license;
+		} );
 	}
 
 	/**
@@ -143,15 +124,14 @@ class License {
 	 * @return void
 	 */
 	public function save( $license_data ) {
-
-		$license_cache = new ObjectCache( $this->extension['slug'], 'notification_license' );
-		$license_cache->set( $license_data );
+		$driver = new CacheDriver\ObjectCache( 'notification_license' );
+		$cache  = new Cache( $driver, $this->extension['slug'] );
+		$cache->set( $license_data );
 
 		$licenses                             = $this->get_licenses();
 		$licenses[ $this->extension['slug'] ] = $license_data;
 
 		update_option( $this->license_storage, $licenses );
-
 	}
 
 	/**
@@ -161,9 +141,9 @@ class License {
 	 * @return void
 	 */
 	public function remove() {
-
-		$license_cache = new ObjectCache( $this->extension['slug'], 'notification_license' );
-		$license_cache->delete();
+		$driver = new CacheDriver\ObjectCache( 'notification_license' );
+		$cache  = new Cache( $driver, $this->extension['slug'] );
+		$cache->delete();
 
 		$licenses = $this->get_licenses();
 		if ( isset( $licenses[ $this->extension['slug'] ] ) ) {
@@ -171,7 +151,6 @@ class License {
 		}
 
 		update_option( $this->license_storage, $licenses );
-
 	}
 
 	/**

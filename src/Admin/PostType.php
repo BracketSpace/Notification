@@ -8,9 +8,10 @@
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Notification;
-use BracketSpace\Notification\Utils\Cache\ObjectCache;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 
 /**
  * PostType class
@@ -300,7 +301,8 @@ class PostType {
 
 		$notification_post->save();
 
-		$cache = new ObjectCache( 'notifications', 'notification' );
+		$cache = new CacheDriver\ObjectCache( 'notification' );
+		$cache->set_key( 'notifications' );
 		$cache->delete();
 
 		do_action( 'notification/data/save/after', $notification_post );
@@ -354,12 +356,12 @@ class PostType {
 	 * @return array
 	 */
 	public static function get_all_notifications() {
-		global $wpdb;
+		$driver = new CacheDriver\ObjectCache( 'notification' );
+		$cache  = new Cache( $driver, 'notifications' );
 
-		$cache         = new ObjectCache( 'notifications', 'notification' );
-		$notifications = $cache->get();
+		return $cache->collect( function() {
+			global $wpdb;
 
-		if ( empty( $notifications ) ) {
 			$sql = "SELECT p.post_content
 				FROM {$wpdb->posts} p
 				WHERE p.post_type = 'notification' AND p.post_status = 'publish'
@@ -367,12 +369,8 @@ class PostType {
 
 			// We're using direct db call for performance purposes - we only need the post_content field.
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
-			$notifications = $wpdb->get_col( $sql );
-
-			$cache->set( $notifications );
-		}
-
-		return $notifications;
+			return $wpdb->get_col( $sql );
+		} );
 	}
 
 	/**
