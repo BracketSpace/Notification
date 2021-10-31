@@ -43,7 +43,7 @@ class UserQueries {
 		$driver = new CacheDriver\ObjectCache( 'notification' );
 		$cache  = new Cache( $driver, sprintf( '%s_users', $role ) );
 
-		return $cache->collect( function() {
+		return $cache->collect( function() use ( $role ) {
 			global $wpdb;
 
 			// We're using direct db call for performance purposes - we only need the post_content field.
