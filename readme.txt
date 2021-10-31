@@ -300,6 +300,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Added] HTML escaping and nonce verifications.
 * [Changed] Notification file syncing is now using Filesystem methods.
 * [Changed] Internal cache classes with `micropackage/cache`.
+* [Changed] Menu icon.
 * [Removed] Internal cache classes `Bracketspace\Notification\Utils\Cache` and `Bracketspace\Notification\Utils\Interfaces` namespaces.
 
 = 8.0.1 =

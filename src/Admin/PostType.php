@@ -64,7 +64,7 @@ class PostType {
 			'show_ui'             => true,
 			'show_in_menu'        => apply_filters( 'notification/whitelabel/cpt/parent', true ),
 			'show_in_admin_bar'   => true,
-			'menu_icon'           => 'dashicons-megaphone',
+			'menu_icon'           => \Notification::fs()->image_to_base64( 'resources/images/menu-icon.svg' ),
 			'menu_position'       => 103,
 			'show_in_nav_menus'   => false,
 			'publicly_queryable'  => false,
