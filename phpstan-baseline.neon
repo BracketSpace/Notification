@@ -2641,11 +2641,6 @@ parameters:
 			path: src/Utils/Settings.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\:\\:\\$settings type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Utils/Settings.php
-
-		-
 			message: "#^Parameter \\#1 \\$url of function esc_url expects string, string\\|false given\\.$#"
 			count: 1
 			path: src/Utils/Settings/CoreFields/Image.php

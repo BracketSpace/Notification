@@ -198,6 +198,8 @@ class Settings {
 	 * @return array settings
 	 */
 	public function get_settings() {
+		$settings = [];
+
 		foreach ( $this->get_sections() as $section_slug => $section ) {
 			$setting = get_option( $this->handle . '_' . $section_slug );
 
