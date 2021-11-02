@@ -22,13 +22,6 @@ class Settings {
 	private $sections = [];
 
 	/**
-	 * All saved Settings
-	 *
-	 * @var array
-	 */
-	private $settings = [];
-
-	/**
 	 * Settings handle, used as a prefix for options
 	 *
 	 * @var string
@@ -208,12 +201,12 @@ class Settings {
 		foreach ( $this->get_sections() as $section_slug => $section ) {
 			$setting = get_option( $this->handle . '_' . $section_slug );
 
-			$this->settings[ $section_slug ] = [];
+			$settings[ $section_slug ] = [];
 
 			$groups = $section->get_groups();
 
 			foreach ( $groups as $group_slug => $group ) {
-				$this->settings[ $section_slug ][ $group_slug ] = [];
+				$settings[ $section_slug ][ $group_slug ] = [];
 
 				$fields = $group->get_fields();
 
@@ -224,12 +217,12 @@ class Settings {
 						$value = $field->default_value();
 					}
 
-					$this->settings[ $section_slug ][ $group_slug ][ $field_slug ] = $value;
+					$settings[ $section_slug ][ $group_slug ][ $field_slug ] = $value;
 				}
 			}
 		}
 
-		return apply_filters( $this->handle . '/settings/saved_settings', $this->settings, $this );
+		return apply_filters( $this->handle . '/settings/saved_settings', $settings, $this );
 	}
 
 	/**
