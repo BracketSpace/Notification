@@ -302,6 +302,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Internal cache classes with `micropackage/cache`.
 * [Changed] Menu icon.
 * [Removed] Internal cache classes `Bracketspace\Notification\Utils\Cache` and `Bracketspace\Notification\Utils\Interfaces` namespaces.
+* [Removed] Settings internal caching that couldn't wait for all the fields to be registered. Now we're relying on the get_option() core function caching.
 
 = 8.0.1 =
 

@@ -205,28 +205,26 @@ class Settings {
 	 * @return array settings
 	 */
 	public function get_settings() {
-		if ( empty( $this->settings ) ) {
-			foreach ( $this->get_sections() as $section_slug => $section ) {
-				$setting = get_option( $this->handle . '_' . $section_slug );
+		foreach ( $this->get_sections() as $section_slug => $section ) {
+			$setting = get_option( $this->handle . '_' . $section_slug );
 
-				$this->settings[ $section_slug ] = [];
+			$this->settings[ $section_slug ] = [];
 
-				$groups = $section->get_groups();
+			$groups = $section->get_groups();
 
-				foreach ( $groups as $group_slug => $group ) {
-					$this->settings[ $section_slug ][ $group_slug ] = [];
+			foreach ( $groups as $group_slug => $group ) {
+				$this->settings[ $section_slug ][ $group_slug ] = [];
 
-					$fields = $group->get_fields();
+				$fields = $group->get_fields();
 
-					foreach ( $fields as $field_slug => $field ) {
-						if ( isset( $setting[ $group_slug ][ $field_slug ] ) ) {
-							$value = $setting[ $group_slug ][ $field_slug ];
-						} else {
-							$value = $field->default_value();
-						}
-
-						$this->settings[ $section_slug ][ $group_slug ][ $field_slug ] = $value;
+				foreach ( $fields as $field_slug => $field ) {
+					if ( isset( $setting[ $group_slug ][ $field_slug ] ) ) {
+						$value = $setting[ $group_slug ][ $field_slug ];
+					} else {
+						$value = $field->default_value();
 					}
+
+					$this->settings[ $section_slug ][ $group_slug ][ $field_slug ] = $value;
 				}
 			}
 		}
