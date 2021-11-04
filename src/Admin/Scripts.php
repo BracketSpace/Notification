@@ -66,9 +66,7 @@ class Scripts {
 
 		wp_enqueue_media();
 
-		wp_enqueue_script( 'notification-vue', '//cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js', [], '2.6.11', true );
-
-		wp_enqueue_script( 'notification', $this->filesystem->url( 'resources/js/dist/scripts.js' ), [ 'jquery', 'wp-color-picker', 'wp-i18n', 'wp-hooks', 'jquery-ui-sortable', 'wp-polyfill', 'notification-vue', 'wp-tinymce', 'wplink' ], $this->filesystem->mtime( 'resources/js/dist/scripts.js' ), true );
+		wp_enqueue_script( 'notification', $this->filesystem->url( 'resources/js/dist/scripts.js' ), [ 'jquery', 'wp-color-picker', 'wp-i18n', 'wp-hooks', 'jquery-ui-sortable', 'wp-polyfill', 'wp-tinymce', 'wplink' ], $this->filesystem->mtime( 'resources/js/dist/scripts.js' ), true );
 
 		wp_enqueue_style( 'notification', $this->filesystem->url( 'resources/css/dist/style.css' ), [], $this->filesystem->mtime( 'resources/css/dist/style.css' ) );
 
@@ -78,6 +76,7 @@ class Scripts {
 			'ajaxurl'                   => admin_url( 'admin-ajax.php' ),
 			'postId'                    => get_the_ID(),
 			'rest_nonce'                => wp_create_nonce( 'wp_rest' ),
+			'csrfToken'                 => wp_create_nonce( 'notification_csrf' ),
 			'select_rest_url'           => get_rest_url( null, 'notification/v1/repeater-field/select/' ),
 			'repeater_rest_url'         => get_rest_url( null, 'notification/v1/repeater-field/' ),
 			'section_repeater_rest_url' => get_rest_url( null, 'notification/v1/section-repeater-field/' ),

@@ -31,7 +31,7 @@ class TermName extends StringTag {
 				'description' => 'Nature',
 				'example'     => true,
 				'group'       => __( 'Term', 'notification' ),
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					return $trigger->term->name;
 				},
 			]

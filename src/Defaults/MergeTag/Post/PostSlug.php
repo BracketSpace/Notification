@@ -50,7 +50,7 @@ class PostSlug extends StringTag {
 				'description' => __( 'hello-world', 'notification' ),
 				'example'     => true,
 				'group'       => $post_type_name,
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					return $trigger->{ $this->post_type }->post_name;
 				},
 			]

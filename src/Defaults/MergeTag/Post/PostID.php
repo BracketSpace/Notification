@@ -50,7 +50,7 @@ class PostID extends IntegerTag {
 				'description' => '35',
 				'example'     => true,
 				'group'       => $post_type_name,
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					return $trigger->{ $this->post_type }->ID;
 				},
 			]

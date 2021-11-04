@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.8
-Stable tag: 8.0.1
+Stable tag: 8.0.2
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -294,6 +294,16 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 7. Default email disabler
 
 == Changelog ==
+
+= 8.0.2 =
+
+* [Added] HTML escaping and nonce verifications.
+* [Changed] Notification file syncing is now using Filesystem methods.
+* [Changed] Internal cache classes with `micropackage/cache`.
+* [Changed] Menu icon.
+* [Changed] Vue is now loaded from within the plugin instead of CDN.
+* [Removed] Internal cache classes `Bracketspace\Notification\Utils\Cache` and `Bracketspace\Notification\Utils\Interfaces` namespaces.
+* [Removed] Settings internal caching that couldn't wait for all the fields to be registered. Now we're relying on the get_option() core function caching.
 
 = 8.0.1 =
 

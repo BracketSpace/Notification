@@ -406,6 +406,21 @@ parameters:
 			path: compat/register-hooks.php
 
 		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:add\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
+
+		-
 			message: "#^Function notification_get_notification_recipients\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: compat/src-deprecated/functions.php
@@ -434,6 +449,11 @@ parameters:
 			message: "#^Function notification_whitelabel\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: compat/src-deprecated/functions.php
+
+		-
+			message: "#^Call to static method create\\(\\) on an unknown class StubsGenerator\\\\Finder\\.$#"
+			count: 1
+			path: compat/stub-finder.php
 
 		-
 			message: "#^Method Notification\\:\\:components\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -591,11 +611,6 @@ parameters:
 			path: src/Admin/Extensions.php
 
 		-
-			message: "#^Parameter \\#2 \\$now of function strtotime expects int, int\\|string given\\.$#"
-			count: 1
-			path: src/Admin/Extensions.php
-
-		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Admin\\\\Extensions\\:\\:\\$extensions type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Admin/Extensions.php
@@ -612,11 +627,6 @@ parameters:
 
 		-
 			message: "#^Call to an undefined method object\\:\\:add_section\\(\\)\\.$#"
-			count: 1
-			path: src/Admin/ImportExport.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\ImportExport\\:\\:prepare_notifications_export_data\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Admin/ImportExport.php
 
@@ -991,11 +1001,6 @@ parameters:
 			path: src/Core/Binder.php
 
 		-
-			message: "#^Binary operation \"\\+\" between int\\|string and 86400 results in an error\\.$#"
-			count: 1
-			path: src/Core/Cron.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Cron\\:\\:register_intervals\\(\\) has parameter \\$intervals with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Core/Cron.php
@@ -1034,6 +1039,11 @@ parameters:
 			message: "#^Parameter \\#3 \\$message of function notification_log expects string, string\\|false given\\.$#"
 			count: 1
 			path: src/Core/Debugging.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$license\\.$#"
+			count: 1
+			path: src/Core/License.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$license_key\\.$#"
@@ -1124,11 +1134,6 @@ parameters:
 			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\:\\:\\$page_hook \\(string\\) does not accept string\\|false\\.$#"
 			count: 1
 			path: src/Core/Settings.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Sync\\:\\:get_all_json\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Core/Sync.php
 
 		-
 			message: "#^Cannot access property \\$post_modified_gmt on WP_Post\\|null\\.$#"
@@ -2621,21 +2626,6 @@ parameters:
 			path: src/Runtime.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:add\\(\\) has no return typehint specified\\.$#"
-			count: 1
-			path: src/Utils/Interfaces/Cacheable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:delete\\(\\) has no return typehint specified\\.$#"
-			count: 1
-			path: src/Utils/Interfaces/Cacheable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:set\\(\\) has no return typehint specified\\.$#"
-			count: 1
-			path: src/Utils/Interfaces/Cacheable.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Settings\\:\\:get_sections\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Utils/Settings.php
@@ -2647,11 +2637,6 @@ parameters:
 
 		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\:\\:\\$sections type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Utils/Settings.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\:\\:\\$settings type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Utils/Settings.php
 

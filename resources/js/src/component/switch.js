@@ -25,6 +25,7 @@
 
 			const data = {
 				action: "change_notification_status",
+				_ajax_nonce: notification.csrfToken,
 				post_id: postId,
 				status,
 				nonce: $switch.data("nonce")

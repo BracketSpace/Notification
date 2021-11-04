@@ -1,4 +1,5 @@
-/* global Vue, jQuery, notification */
+/* global jQuery, notification */
+import Vue from "vue/dist/vue.js";
 import { inputsHandler } from "../../mixins/inputsHandler";
 import { fieldHandler } from "../../mixins/fieldHandler";
 

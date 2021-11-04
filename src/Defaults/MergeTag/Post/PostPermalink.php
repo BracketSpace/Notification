@@ -50,7 +50,7 @@ class PostPermalink extends UrlTag {
 				'description' => __( 'https://example.com/hello-world/', 'notification' ),
 				'example'     => true,
 				'group'       => $post_type_name,
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					return get_permalink( $trigger->{ $this->post_type }->ID );
 				},
 			]

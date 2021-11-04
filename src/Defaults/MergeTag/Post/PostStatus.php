@@ -50,7 +50,7 @@ class PostStatus extends StringTag {
 				'description' => 'publish',
 				'example'     => true,
 				'group'       => $post_type_name,
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					return get_post_status( $trigger->{ $this->post_type }->ID );
 				},
 			]

@@ -61,7 +61,7 @@ class PostTerms extends StringTag {
 				'description' => __( 'General, Tech, Lifestyle', 'notification' ),
 				'example'     => true,
 				'group'       => $post_type_name,
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					$post_terms = get_the_terms( $trigger->{ $this->post_type }, $this->taxonomy->name );
 					if ( empty( $post_terms ) || is_wp_error( $post_terms ) ) {
 						return '';

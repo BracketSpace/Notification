@@ -91,7 +91,7 @@ class DataExported extends PrivacyTrigger {
 			'description' => __( 'https://example.com/wp-content/uploads/wp-personal-data-exports/wp-personal-data-file-f3563fe4.zip', 'notification' ),
 			'example'     => true,
 			'group'       => __( 'Archive', 'notification' ),
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return $trigger->archive_url;
 			},
 		] ) );
@@ -102,7 +102,7 @@ class DataExported extends PrivacyTrigger {
 			'description' => __( '/var/www/html/wp-content/uploads/wp-personal-data-exports/wp-personal-data-file-test.zip', 'notification' ),
 			'example'     => true,
 			'group'       => __( 'Archive', 'notification' ),
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return $trigger->archive_path;
 			},
 		] ) );
@@ -113,7 +113,7 @@ class DataExported extends PrivacyTrigger {
 			'description' => __( '/var/www/html/wp-content/uploads/wp-personal-data-exports/wp-personal-data-file-test.html', 'notification' ),
 			'example'     => true,
 			'group'       => __( 'Archive', 'notification' ),
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return $trigger->html_report_path;
 			},
 		] ) );
@@ -124,7 +124,7 @@ class DataExported extends PrivacyTrigger {
 			'description' => __( '/var/www/html/wp-content/uploads/wp-personal-data-exports/wp-personal-data-file-test.JSON', 'notification' ),
 			'example'     => true,
 			'group'       => __( 'Archive', 'notification' ),
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return $trigger->json_report_pathname;
 			},
 		] ) );

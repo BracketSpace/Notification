@@ -57,7 +57,7 @@ class CommentActionSpam extends UrlTag {
 				'name'     => sprintf( __( '%s mark as spam URL', 'notification' ), $comment_type_name ),
 				// Translators: comment type actions text.
 				'group'    => sprintf( __( '%s actions', 'notification' ), $comment_type_name ),
-				'resolver' => function( $trigger ) {
+				'resolver' => function ( $trigger ) {
 					return admin_url( "comment.php?action=spam&c={$trigger->{ $this->property_name }->comment_ID}#wpbody-content" );
 				},
 			]

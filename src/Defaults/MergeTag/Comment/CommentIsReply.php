@@ -58,7 +58,7 @@ class CommentIsReply extends StringTag {
 				'description' => __( 'Yes or No', 'notification' ),
 				'example'     => true,
 				'group'       => $comment_type_name,
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					$has_parent = $trigger->{ $this->property_name }->comment_parent;
 					return $has_parent ? __( 'Yes', 'notification' ) : __( 'No', 'notification' );
 				},

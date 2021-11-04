@@ -82,7 +82,7 @@ class Register {
 		do_action( 'notification/global_merge_tag/registered', $merge_tag );
 
 		// Register the Merge Tag.
-		add_action( 'notification/trigger/merge_tags', function( $trigger ) use ( $merge_tag ) {
+		add_action( 'notification/trigger/merge_tags', function ( $trigger ) use ( $merge_tag ) {
 			$trigger->add_merge_tag( clone $merge_tag );
 		} );
 

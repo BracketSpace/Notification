@@ -35,7 +35,7 @@ class Resolver {
 
 		// Loop over all resolvers.
 		foreach ( $resolvers as $resolver ) {
-			$value = preg_replace_callback( $resolver->get_pattern(), function( $match ) use ( $resolver, $trigger ) {
+			$value = preg_replace_callback( $resolver->get_pattern(), function ( $match ) use ( $resolver, $trigger ) {
 				return call_user_func( [ $resolver, 'resolve_merge_tag' ], $match, $trigger );
 			}, $value );
 		}

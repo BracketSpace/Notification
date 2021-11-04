@@ -1,4 +1,4 @@
-/* global Vue */
+import Vue from "vue/dist/vue.js";
 import { init } from "./mixins/init";
 import { fieldHandler } from "./mixins/fieldHandler";
 import { inputsHandler } from "./mixins/inputsHandler";

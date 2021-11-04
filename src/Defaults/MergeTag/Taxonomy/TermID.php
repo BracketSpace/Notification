@@ -31,7 +31,7 @@ class TermID extends IntegerTag {
 				'description' => '35',
 				'example'     => true,
 				'group'       => __( 'Term', 'notification' ),
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					return $trigger->term->term_id;
 				},
 			]

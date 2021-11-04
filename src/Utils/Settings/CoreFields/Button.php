@@ -22,7 +22,7 @@ class Button {
 	 */
 	public function input( $field ) {
 
-		echo '<a href="' . $this->sanitize( $field->addon( 'url' ) ) . '" class="button">' . $field->addon( 'label' ) . '</a>'; // phpcs:ignore
+		echo '<a href="' . esc_url_raw( $field->addon( 'url' ) ) . '" class="button">' . esc_html( $field->addon( 'label' ) ) . '</a>';
 
 	}
 

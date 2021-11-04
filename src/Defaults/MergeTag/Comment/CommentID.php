@@ -58,7 +58,7 @@ class CommentID extends IntegerTag {
 				'description' => '35',
 				'example'     => true,
 				'group'       => $comment_type_name,
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					return $trigger->{ $this->property_name }->comment_ID;
 				},
 			]

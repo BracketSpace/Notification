@@ -57,7 +57,7 @@ class CommentActionTrash extends UrlTag {
 				'name'     => sprintf( __( '%s trash URL', 'notification' ), $comment_type_name ),
 				// Translators: comment type actions text.
 				'group'    => sprintf( __( '%s actions', 'notification' ), $comment_type_name ),
-				'resolver' => function( $trigger ) {
+				'resolver' => function ( $trigger ) {
 					return admin_url( "comment.php?action=trash&c={$trigger->{ $this->property_name }->comment_ID}#wpbody-content" );
 				},
 			]

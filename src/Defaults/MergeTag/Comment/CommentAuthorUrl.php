@@ -59,7 +59,7 @@ class CommentAuthorUrl extends UrlTag {
 				'example'     => true,
 				// Translators: comment type author.
 				'group'       => sprintf( __( '%s author', 'notification' ), $comment_type_name ),
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					return $trigger->{ $this->property_name }->comment_author_url;
 				},
 			]

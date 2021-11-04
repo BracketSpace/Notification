@@ -37,7 +37,7 @@ class Sync {
 			'name'        => __( 'Actions', 'notification' ),
 			'slug'        => 'actions',
 			'addons'      => [
-				'message' => $this->template_actions(),
+				'message' => [ $this, 'template_actions' ],
 			],
 			'render'      => [ new CoreFields\Message(), 'input' ],
 			'sanitize'    => [ new CoreFields\Message(), 'sanitize' ],
@@ -49,7 +49,7 @@ class Sync {
 				'name'     => __( 'Notifications', 'notification' ),
 				'slug'     => 'notifications',
 				'addons'   => [
-					'message' => $this->template_notifications(),
+					'message' => [ $this, 'template_notifications' ],
 				],
 				'render'   => [ new CoreFields\Message(), 'input' ],
 				'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
@@ -79,7 +79,6 @@ class Sync {
 	 * @return string
 	 */
 	public function template_notifications() {
-
 		// Get all Notifications.
 		$wp_json_notifiactions = PostType::get_all_notifications();
 		$json_notifiactions    = CoreSync::get_all_json();
@@ -87,7 +86,6 @@ class Sync {
 
 		// Load the WP Notifications first.
 		foreach ( $wp_json_notifiactions as $json ) {
-
 			try {
 				$adapter      = notification_adapt_from( 'JSON', $json );
 				$notification = $adapter->get_notification();
@@ -112,7 +110,6 @@ class Sync {
 				'post_id'      => $notification_adapter->get_id(),
 				'notification' => $notification,
 			];
-
 		}
 
 		// Compare against JSON.
@@ -133,14 +130,12 @@ class Sync {
 					$collection[ $notification->get_hash() ]['up_to_date'] = true;
 				}
 			} else {
-
 				$collection[ $notification->get_hash() ] = [
 					'source'       => 'JSON',
 					'has_post'     => false,
 					'up_to_date'   => false,
 					'notification' => $notification,
 				];
-
 			}
 		}
 
@@ -158,7 +153,6 @@ class Sync {
 		return Templates::get( 'sync/notifications', [
 			'collection' => array_reverse( $collection ),
 		] );
-
 	}
 
 	/**
@@ -169,11 +163,10 @@ class Sync {
 	 * @return void
 	 */
 	public function ajax_sync() {
+		check_ajax_referer( 'notification_csrf' );
 
 		$ajax = new Response();
-		$data = $_POST; // phpcs:ignore
-
-		$ajax->verify_nonce( 'notification_sync_' . $data['hash'] );
+		$data = $_POST;
 
 		if ( method_exists( $this, 'load_notification_to_' . $data['type'] ) ) {
 			$response = call_user_func( [ $this, 'load_notification_to_' . $data['type'] ], $data['hash'] );
@@ -186,7 +179,6 @@ class Sync {
 		}
 
 		$ajax->send( $response );
-
 	}
 
 	/**

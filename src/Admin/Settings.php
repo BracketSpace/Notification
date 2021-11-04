@@ -22,7 +22,6 @@ class Settings {
 	 * @return void
 	 */
 	public function general_settings( $settings ) {
-
 		$general = $settings->add_section( __( 'General', 'notification' ), 'general' );
 
 		$general->add_group( __( 'Content', 'notification' ), 'content' )
@@ -106,7 +105,6 @@ class Settings {
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] )
 			->description( __( 'Choose what to remove upon plugin removal', 'notification' ) );
-
 	}
 
 	/**
@@ -116,7 +114,6 @@ class Settings {
 	 * @return void
 	 */
 	public function triggers_settings( $settings ) {
-
 		$triggers = $settings->add_section( __( 'Triggers', 'notification' ), 'triggers' );
 
 		$triggers->add_group( __( 'Post', 'notification' ), 'post_types' )
@@ -227,7 +224,8 @@ class Settings {
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] );
 
-		$triggers->add_group( __( 'WordPress', 'notification' ), 'wordpress' ) // phpcs:ignore
+		// phpcs:ignore WordPress.WP.CapitalPDangit.Misspelled
+		$triggers->add_group( __( 'WordPress', 'notification' ), 'wordpress' )
 			->add_field( [
 				'name'     => __( 'Updates', 'notification' ),
 				'slug'     => 'updates',
@@ -286,7 +284,6 @@ class Settings {
 				'render'   => [ new CoreFields\Checkbox(), 'input' ],
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] );
-
 	}
 
 	/**
@@ -296,7 +293,6 @@ class Settings {
 	 * @return void
 	 */
 	public function carriers_settings( $settings ) {
-
 		if ( ! empty( $_SERVER['SERVER_NAME'] ) ) {
 			$sitename = strtolower( sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) ) );
 			if ( substr( $sitename, 0, 4 ) === 'www.' ) {
@@ -395,7 +391,6 @@ class Settings {
 				'render'   => [ new CoreFields\Checkbox(), 'input' ],
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] );
-
 	}
 
 	/**
@@ -405,7 +400,6 @@ class Settings {
 	 * @return void
 	 */
 	public function emails_settings( $settings ) {
-
 		$general = $settings->add_section( __( 'Integration', 'notification' ), 'integration' );
 
 		$general->add_group( __( 'Default WordPress emails', 'notification' ), 'emails' )
@@ -425,7 +419,7 @@ class Settings {
 				'slug'        => 'new_user_to_user',
 				'default'     => false,
 				'addons'      => [
-					'label' => __( 'Disable account details email to user', 'notification' ),
+					'label' => __( 'Disable account details email to <strong>user</strong>', 'notification' ),
 				],
 				'description' => __( 'Email is sent after registration and contains password setup link.', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
@@ -436,7 +430,7 @@ class Settings {
 				'slug'        => 'post_author',
 				'default'     => false,
 				'addons'      => [
-					'label' => __( 'Disable email to post author about a new comment', 'notification' ),
+					'label' => __( 'Disable email to <strong>post author</strong> about a new comment', 'notification' ),
 				],
 				'description' => __( 'Email is sent after comment is published.', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
@@ -447,7 +441,7 @@ class Settings {
 				'slug'        => 'comment_moderator',
 				'default'     => false,
 				'addons'      => [
-					'label' => __( 'Disable email to moderator (admin) when new comment awaits moderation', 'notification' ),
+					'label' => __( 'Disable email to <strong>moderator (admin)</strong> when new comment awaits moderation', 'notification' ),
 				],
 				'description' => __( 'Email is sent when new comment is awaiting approval.', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
@@ -458,7 +452,7 @@ class Settings {
 				'slug'        => 'password_forgotten_to_user',
 				'default'     => false,
 				'addons'      => [
-					'label' => __( 'Disable email to user with password reset link', 'notification' ),
+					'label' => __( 'Disable email to <strong>user</strong> with password reset link', 'notification' ),
 				],
 				'description' => __( 'Email is sent when user fills out the password reset request.', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
@@ -469,7 +463,7 @@ class Settings {
 				'slug'        => 'password_change_to_admin',
 				'default'     => false,
 				'addons'      => [
-					'label' => __( 'Disable email to admin when user changed their password', 'notification' ),
+					'label' => __( 'Disable email to <strong>admin</strong> when user changed their password', 'notification' ),
 				],
 				'description' => __( 'Email is sent when user changes his password.', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
@@ -480,7 +474,7 @@ class Settings {
 				'slug'        => 'password_change_to_user',
 				'default'     => false,
 				'addons'      => [
-					'label' => __( 'Disable email to user when their password has been changed', 'notification' ),
+					'label' => __( 'Disable email to <strong>user</strong> when their password has been changed', 'notification' ),
 				],
 				'description' => __( 'Email is sent when user changes his password.', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
@@ -491,7 +485,7 @@ class Settings {
 				'slug'        => 'email_change_to_user',
 				'default'     => false,
 				'addons'      => [
-					'label' => __( 'Disable email to user about profile email address change', 'notification' ),
+					'label' => __( 'Disable email to <strong>user</strong> about profile email address change', 'notification' ),
 				],
 				'description' => __( 'Email is sent when user saves a new email address in his profile.', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
@@ -502,7 +496,7 @@ class Settings {
 				'slug'        => 'send_confirmation_on_profile_email',
 				'default'     => false,
 				'addons'      => [
-					'label' => __( 'Disable email to user about email address change request', 'notification' ),
+					'label' => __( 'Disable email to <strong>user</strong> about email address change request', 'notification' ),
 				],
 				'description' => __( 'Email is sent when user requests email address change.', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
@@ -513,7 +507,7 @@ class Settings {
 				'slug'        => 'send_confirmation_on_admin_email',
 				'default'     => false,
 				'addons'      => [
-					'label' => __( 'Disable email to admin about site email address change request', 'notification' ),
+					'label' => __( 'Disable email to <strong>admin</strong> about site email address change request', 'notification' ),
 				],
 				'description' => __( 'Email is sent when site email address change is requested.', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
@@ -524,14 +518,13 @@ class Settings {
 				'slug'        => 'automatic_wp_core_update',
 				'default'     => false,
 				'addons'      => [
-					'label' => __( 'Disable email to admin about successful background update', 'notification' ),
+					'label' => __( 'Disable email to <strong>admin</strong> about successful background update', 'notification' ),
 				],
 				'description' => __( 'Email is sent when background updates finishes successfully. "Failed update" email will always be sent to admin.', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
 				'sanitize'    => [ new CoreFields\Checkbox(), 'sanitize' ],
 			] )
 			->description( __( 'Disable each default emails by selecting the option.', 'notification' ) );
-
 	}
 
 	/**
@@ -544,13 +537,11 @@ class Settings {
 	 * @return array
 	 */
 	public function filter_post_types( $post_types ) {
-
 		if ( isset( $post_types['attachment'] ) ) {
 			unset( $post_types['attachment'] );
 		}
 
 		return $post_types;
-
 	}
 
 }

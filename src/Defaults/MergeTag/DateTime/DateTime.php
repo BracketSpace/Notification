@@ -47,7 +47,7 @@ class DateTime extends StringTag {
 		}
 
 		if ( ! isset( $args['resolver'] ) ) {
-			$args['resolver'] = function( $trigger ) use ( $args ) {
+			$args['resolver'] = function ( $trigger ) use ( $args ) {
 
 				if ( isset( $args['timestamp'] ) ) {
 					$timestamp = $args['timestamp'];

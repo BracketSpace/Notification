@@ -58,7 +58,7 @@ class CommentStatus extends StringTag {
 				'description' => __( 'Approved', 'notification' ),
 				'example'     => true,
 				'group'       => $comment_type_name,
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					if ( '1' === $trigger->{ $this->property_name }->comment_approved ) {
 						return __( 'Approved', 'notification' );
 					} elseif ( '0' === $trigger->{ $this->property_name }->comment_approved ) {

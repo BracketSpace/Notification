@@ -58,7 +58,7 @@ class CommentContent extends StringTag {
 				'description' => __( 'Great post!', 'notification' ),
 				'example'     => true,
 				'group'       => $comment_type_name,
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					return $trigger->{ $this->property_name }->comment_content;
 				},
 			]

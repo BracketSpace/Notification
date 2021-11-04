@@ -183,7 +183,7 @@ abstract class Trigger implements Triggerable {
 			'slug'     => $property_name,
 			'name'     => $label,
 			'group'    => $group,
-			'resolver' => function( $trigger ) use ( $property_name ) {
+			'resolver' => function ( $trigger ) use ( $property_name ) {
 				return $trigger->{ $property_name };
 			},
 		] ) );

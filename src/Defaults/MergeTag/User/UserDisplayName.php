@@ -45,7 +45,7 @@ class UserDisplayName extends StringTag {
 				'description' => __( 'John - fast finegrs - Doe', 'notification' ),
 				'example'     => true,
 				'group'       => __( 'User', 'notification' ),
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					return $trigger->{ $this->property_name }->display_name;
 				},
 			]

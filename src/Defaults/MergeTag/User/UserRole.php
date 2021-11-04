@@ -45,7 +45,7 @@ class UserRole extends StringTag {
 				'description' => __( 'Subscriber', 'notification' ),
 				'example'     => true,
 				'group'       => __( 'User', 'notification' ),
-				'resolver'    => function() {
+				'resolver'    => function () {
 					$roles = array_map(
 						function ( $role ) {
 							$role_object = get_role( $role );

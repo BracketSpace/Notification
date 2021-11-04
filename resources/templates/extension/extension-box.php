@@ -86,7 +86,7 @@ if ( isset( $ext['wporg'] ) && ! is_wp_error( $ext['wporg'] ) && ( current_user_
 		</div>
 		<div class="action-links">
 			<ul class="plugin-action-buttons">
-				<li><?php echo $action_button; // phpcs:ignore ?></li>
+				<li><?php echo wp_kses_data( $action_button ); ?></li>
 				<?php if ( $ext['official'] ) : ?>
 					<li><span class="official"><?php esc_html_e( 'Official', 'notification' ); ?></span></li>
 				<?php endif ?>

@@ -71,7 +71,7 @@ class Switched extends ThemeTrigger {
 			'name'        => __( 'Old theme name', 'notification' ),
 			'description' => __( 'Twenty Seventeen', 'notification' ),
 			'example'     => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return $trigger->old_theme->get( 'Name' );
 			},
 			'group'       => __( 'Old theme', 'notification' ),
@@ -82,7 +82,7 @@ class Switched extends ThemeTrigger {
 			'name'        => __( 'Old theme description', 'notification' ),
 			'description' => __( 'Twenty Seventeen brings your site to life with header video and immersive featured images', 'notification' ),
 			'example'     => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return $trigger->old_theme->get( 'Description' );
 			},
 			'group'       => __( 'Old theme', 'notification' ),
@@ -93,7 +93,7 @@ class Switched extends ThemeTrigger {
 			'name'        => __( 'Old theme version', 'notification' ),
 			'description' => __( '1.0.0', 'notification' ),
 			'example'     => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return $trigger->old_theme->get( 'Version' );
 			},
 			'group'       => __( 'Old theme', 'notification' ),
@@ -104,7 +104,7 @@ class Switched extends ThemeTrigger {
 			'name'        => __( 'Old theme URI', 'notification' ),
 			'description' => __( 'https://wordpress.org/themes/twentyseventeen/', 'notification' ),
 			'example'     => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return $trigger->old_theme->get( 'ThemeURI' );
 			},
 			'group'       => __( 'Old theme', 'notification' ),
@@ -115,7 +115,7 @@ class Switched extends ThemeTrigger {
 			'name'        => __( 'Old theme author', 'notification' ),
 			'description' => __( 'The WordPress team', 'notification' ),
 			'example'     => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return $trigger->old_theme->get( 'Author' );
 			},
 			'group'       => __( 'Old theme', 'notification' ),
@@ -126,7 +126,7 @@ class Switched extends ThemeTrigger {
 			'name'        => __( 'Old theme author URI', 'notification' ),
 			'description' => __( 'https://wordpress.org/', 'notification' ),
 			'example'     => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return $trigger->old_theme->get( 'AuthorURI' );
 			},
 			'group'       => __( 'Old theme', 'notification' ),

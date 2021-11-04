@@ -9,4 +9,6 @@
  * @var BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
-echo $get( 'current_field' )->field(); // phpcs:ignore
+// Field is escaped in the called method.
+// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+echo $get( 'current_field' )->field();

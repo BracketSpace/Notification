@@ -1,8 +1,0 @@
-<?php
-
-namespace BracketSpace\Notification\Dependencies\Micropackage\Filesystem;
-
-/**
- * @mixin \WP_Filesystem_Base
- */
-class Filesystem {}

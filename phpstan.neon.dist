@@ -6,8 +6,6 @@ parameters:
     inferPrivatePropertyTypeFromConstructor: true
     bootstrapFiles:
         - tests/phpstan/bootstrap.php
-    stubFiles:
-        - tests/phpstan/stubs/Filesystem.stub
     scanFiles:
         - vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
     paths:

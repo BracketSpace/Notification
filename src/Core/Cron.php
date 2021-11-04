@@ -22,7 +22,6 @@ class Cron {
 	 * @return array
 	 */
 	public function register_intervals( $intervals ) {
-
 		$intervals['ntfn_2days'] = [
 			'interval' => 2 * DAY_IN_SECONDS,
 			'display'  => __( 'Every two days', 'notification' ),
@@ -49,7 +48,6 @@ class Cron {
 		];
 
 		return $intervals;
-
 	}
 
 	/**
@@ -61,7 +59,6 @@ class Cron {
 	 * @return void
 	 */
 	public function register_check_updates_event() {
-
 		$event    = wp_get_schedule( 'notification_check_wordpress_updates' );
 		$schedule = notification_get_setting( 'triggers/wordpress/updates_cron_period' );
 
@@ -74,7 +71,6 @@ class Cron {
 			$this->unschedule( 'notification_check_wordpress_updates' );
 			$this->schedule( $schedule, 'notification_check_wordpress_updates' );
 		}
-
 	}
 
 	/**
@@ -87,12 +83,11 @@ class Cron {
 	 * @return void
 	 */
 	public function schedule( $schedule, $event_name, $once = false ) {
-
 		if ( $once && false !== wp_get_schedule( $event_name ) ) {
 			return;
 		}
 
-		wp_schedule_event( current_time( 'timestamp' ) + DAY_IN_SECONDS, $schedule, $event_name ); // phpcs:ignore
+		wp_schedule_event( time() + DAY_IN_SECONDS, $schedule, $event_name );
 	}
 
 	/**

@@ -8,9 +8,10 @@
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Notification;
-use BracketSpace\Notification\Utils\Cache\ObjectCache;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 
 /**
  * PostType class
@@ -41,7 +42,6 @@ class PostType {
 	 * @return void
 	 */
 	public function register() {
-
 		$labels = [
 			'name'               => __( 'Notifications', 'notification' ),
 			'singular_name'      => __( 'Notification', 'notification' ),
@@ -64,7 +64,7 @@ class PostType {
 			'show_ui'             => true,
 			'show_in_menu'        => apply_filters( 'notification/whitelabel/cpt/parent', true ),
 			'show_in_admin_bar'   => true,
-			'menu_icon'           => 'dashicons-megaphone',
+			'menu_icon'           => \Notification::fs()->image_to_base64( 'resources/images/menu-icon.svg' ),
 			'menu_position'       => 103,
 			'show_in_nav_menus'   => false,
 			'publicly_queryable'  => false,
@@ -85,7 +85,6 @@ class PostType {
 			] ),
 			'supports'            => [ 'title' ],
 		] );
-
 	}
 
 	/**
@@ -98,7 +97,6 @@ class PostType {
 	 * @return array
 	 */
 	public function post_updated_messages( $messages ) {
-
 		$messages['notification'] = [
 			'',
 			__( 'Notification updated.', 'notification' ),
@@ -114,7 +112,6 @@ class PostType {
 		];
 
 		return $messages;
-
 	}
 
 	/**
@@ -128,14 +125,12 @@ class PostType {
 	 * @return array
 	 */
 	public function bulk_action_messages( $bulk_messages, $bulk_counts ) {
-
 		$bulk_messages['notification'] = [
 			// translators: Number of Notifications.
 			'deleted' => _n( '%s notification removed.', '%s notifications removed.', $bulk_counts['trashed'] ),
 		];
 
 		return $bulk_messages;
-
 	}
 
 	/**
@@ -148,17 +143,15 @@ class PostType {
 	 * @return array
 	 */
 	public function change_post_statuses( $statuses ) {
-
 		if ( isset( $statuses['publish'] ) ) {
-			$statuses['publish'] = str_replace( __( 'Published', 'wordpress' ), __( 'Active', 'notification' ), $statuses['publish'] ); // phpcs:ignore
+			$statuses['publish'] = str_replace( __( 'Published', 'notification' ), __( 'Active', 'notification' ), $statuses['publish'] );
 		}
 
 		if ( isset( $statuses['draft'] ) ) {
-			$statuses['draft'] = str_replace( __( 'Draft', 'wordpress' ), __( 'Disabled', 'notification' ), $statuses['draft'] ); // phpcs:ignore
+			$statuses['draft'] = str_replace( __( 'Draft', 'notification' ), __( 'Disabled', 'notification' ), $statuses['draft'] );
 		}
 
 		return $statuses;
-
 	}
 
 	/**
@@ -177,13 +170,11 @@ class PostType {
 	 * @return void
 	 */
 	public function bypass_trash( $post_id ) {
-
 		if ( 'notification' !== get_post_type( $post_id ) ) {
 			return;
 		}
 
 		wp_delete_post( $post_id, true );
-
 	}
 
 	/**
@@ -203,7 +194,6 @@ class PostType {
 	 * @return array
 	 */
 	public function create_notification_hash( $data, $postarr ) {
-
 		// Another save process is in progress, abort.
 		if ( defined( 'DOING_NOTIFICATION_SAVE' ) && DOING_NOTIFICATION_SAVE ) {
 			return $data;
@@ -218,7 +208,6 @@ class PostType {
 		}
 
 		return $data;
-
 	}
 
 	/**
@@ -232,7 +221,6 @@ class PostType {
 	 * @return void
 	 */
 	public function save( $post_id, $post, $update ) {
-
 		// Another save process is in progress, abort.
 		if ( defined( 'DOING_NOTIFICATION_SAVE' ) && DOING_NOTIFICATION_SAVE ) {
 			return;
@@ -279,7 +267,6 @@ class PostType {
 		$carriers = [];
 
 		foreach ( Store\Carrier::all() as $carrier ) {
-
 			if ( ! isset( $data[ 'notification_carrier_' . $carrier->get_slug() ] ) ) {
 				continue;
 			}
@@ -305,7 +292,6 @@ class PostType {
 			}
 
 			$carriers[ $carrier->get_slug() ] = $carrier;
-
 		}
 
 		$notification_post->set_carriers( $carriers );
@@ -315,11 +301,11 @@ class PostType {
 
 		$notification_post->save();
 
-		$cache = new ObjectCache( 'notifications', 'notification' );
+		$cache = new CacheDriver\ObjectCache( 'notification' );
+		$cache->set_key( 'notifications' );
 		$cache->delete();
 
 		do_action( 'notification/data/save/after', $notification_post );
-
 	}
 
 	/**
@@ -336,9 +322,10 @@ class PostType {
 	 * @return void
 	 */
 	public function ajax_change_notification_status() {
+		check_ajax_referer( 'notification_csrf' );
 
 		$ajax  = new Response();
-		$data  = $_POST; // phpcs:ignore
+		$data  = $_POST;
 		$error = false;
 
 		$ajax->verify_nonce( 'change_notification_status_' . $data['post_id'] );
@@ -353,7 +340,6 @@ class PostType {
 		}
 
 		$ajax->send( true );
-
 	}
 
 	/**
@@ -370,27 +356,21 @@ class PostType {
 	 * @return array
 	 */
 	public static function get_all_notifications() {
+		$driver = new CacheDriver\ObjectCache( 'notification' );
+		$cache  = new Cache( $driver, 'notifications' );
 
-		global $wpdb;
-
-		$cache         = new ObjectCache( 'notifications', 'notification' );
-		$notifications = $cache->get();
-
-		if ( empty( $notifications ) ) {
+		return $cache->collect( function () {
+			global $wpdb;
 
 			$sql = "SELECT p.post_content
 				FROM {$wpdb->posts} p
 				WHERE p.post_type = 'notification' AND p.post_status = 'publish'
 				ORDER BY p.menu_order ASC, p.post_modified DESC";
 
-			$notifications = $wpdb->get_col( $sql ); // phpcs:ignore
-
-			$cache->set( $notifications );
-
-		}
-
-		return $notifications;
-
+			// We're using direct db call for performance purposes - we only need the post_content field.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+			return $wpdb->get_col( $sql );
+		} );
 	}
 
 	/**
@@ -403,12 +383,10 @@ class PostType {
 	 * @return void
 	 */
 	public function setup_notifications() {
-
 		$notifications = self::get_all_notifications();
 
 		foreach ( $notifications as $notification_json ) {
 			if ( ! empty( $notification_json ) ) {
-
 				// Check if Notification has valid JSON.
 				$json_check = json_decode( $notification_json, true );
 				if ( json_last_error() !== JSON_ERROR_NONE ) {
@@ -420,11 +398,12 @@ class PostType {
 				// Set source back to WordPress.
 				$adapter->set_source( 'WordPress' );
 
-				notification_add( $adapter->get_notification() );
-
+				// Check if the notification hasn't been added already ie. via Sync.
+				if ( ! Store\Notification::has( $adapter->get_hash() ) ) {
+					notification_add( $adapter->get_notification() );
+				}
 			}
 		}
-
 	}
 
 }

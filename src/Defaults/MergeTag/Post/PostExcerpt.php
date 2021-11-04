@@ -50,7 +50,7 @@ class PostExcerpt extends StringTag {
 				'description' => __( 'Welcome to WordPress...', 'notification' ),
 				'example'     => true,
 				'group'       => $post_type_name,
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					return get_the_excerpt( $trigger->{ $this->post_type } );
 				},
 			]
