@@ -205,7 +205,7 @@ class Sync {
 	/**
 	 * Gets the sync dir filesystem.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.2
 	 * @return Filesystem|null
 	 */
 	public static function get_sync_fs() {
