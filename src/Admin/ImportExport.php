@@ -120,7 +120,7 @@ class ImportExport {
 	 *
 	 * @throws \Exception When no items selected for export.
 	 * @since  6.0.0
-	 * @since  [Next] Accepts the items argument, instead reading it from GET.
+	 * @since  8.0.2 Accepts the items argument, instead reading it from GET.
 	 * @param  array<int,string> $items Items to export.
 	 * @return array<int,string>
 	 */

@@ -31,7 +31,7 @@ class Transient extends Cache implements Cacheable {
 	 * @param integer $expiration expiration in seconds.
 	 */
 	public function __construct( $key, $expiration = 0 ) {
-		notification_deprecated_class( __CLASS__, '[Next]', 'BracketSpace\\Notification\\Dependencies\\Micropackage\\Cache\\Driver\\Transient' );
+		notification_deprecated_class( __CLASS__, '8.0.2', 'BracketSpace\\Notification\\Dependencies\\Micropackage\\Cache\\Driver\\Transient' );
 
 		parent::__construct( $key );
 

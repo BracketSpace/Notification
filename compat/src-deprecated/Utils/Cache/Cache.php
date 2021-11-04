@@ -25,7 +25,7 @@ class Cache {
 	 * @param string $key cache unique key.
 	 */
 	public function __construct( $key ) {
-		notification_deprecated_class( __CLASS__, '[Next]', 'BracketSpace\\Notification\\Dependencies\\Micropackage\\Cache\\Cache' );
+		notification_deprecated_class( __CLASS__, '8.0.2', 'BracketSpace\\Notification\\Dependencies\\Micropackage\\Cache\\Cache' );
 
 		if ( empty( $key ) ) {
 			trigger_error( 'Cache key cannot be empty' );
