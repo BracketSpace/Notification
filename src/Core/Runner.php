@@ -72,7 +72,7 @@ class Runner {
 			$result = call_user_func_array( [ $this->trigger, 'action' ], $context );
 
 			$class = get_class( $this->trigger );
-			_deprecated_function (
+			_deprecated_function(
 				sprintf( '%s::action()', esc_html( $class ) ),
 				'8.0.0',
 				sprintf( '%s::context()', esc_html( $class ) )
