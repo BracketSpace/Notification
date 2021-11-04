@@ -50,7 +50,7 @@ class RevisionLink extends UrlTag {
 				'description' => __( 'https://example.com/wp-admin/revision.php?revision=id', 'notification' ),
 				'example'     => true,
 				'group'       => $post_type_name,
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					$revisions_id = wp_get_post_revisions(
 						$trigger->{ $this->post_type }->ID,
 						[

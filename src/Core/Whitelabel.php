@@ -51,7 +51,7 @@ class Whitelabel {
 
 		// Change Notification CPT page.
 		if ( isset( $args['page_hook'] ) && ! empty( $args['page_hook'] ) ) {
-			add_filter( 'notification/whitelabel/cpt/parent', function( $hook ) use ( $args ) {
+			add_filter( 'notification/whitelabel/cpt/parent', function ( $hook ) use ( $args ) {
 				return $args['page_hook'];
 			} );
 		}
@@ -68,7 +68,7 @@ class Whitelabel {
 
 		// Settings access.
 		if ( isset( $args['settings_access'] ) ) {
-			add_filter( 'notification/whitelabel/settings/access', function( $access ) use ( $args ) {
+			add_filter( 'notification/whitelabel/settings/access', function ( $access ) use ( $args ) {
 				return (array) $args['settings_access'];
 			} );
 		}

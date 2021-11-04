@@ -43,7 +43,7 @@ class AvatarUrl extends UrlTag {
 				'description' => __( 'http://0.gravatar.com/avatar/320eab812ab24ef3dbaa2e6dc6e024e0?s=96&d=mm&r=g', 'notification' ),
 				'example'     => true,
 				'group'       => __( 'User', 'notification' ),
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					if ( isset( $trigger->{ $this->property_name }->user_email ) ) {
 						return get_avatar_url( $trigger->{ $this->property_name }->user_email );
 					}

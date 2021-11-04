@@ -120,7 +120,7 @@ class WordPressEmails {
 
 		if ( 'true' === notification_get_setting( 'integration/emails/send_confirmation_on_profile_email' ) ) {
 
-			add_filter( 'new_user_email_content', function( $email_text = false, $new_user_email = false ) {
+			add_filter( 'new_user_email_content', function ( $email_text = false, $new_user_email = false ) {
 				$_POST['email'] = false;
 				return false;
 			});

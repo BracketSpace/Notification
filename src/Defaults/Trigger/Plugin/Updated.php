@@ -84,7 +84,7 @@ class Updated extends PluginTrigger {
 			'name'        => __( 'Plugin previous version', 'notification' ),
 			'description' => __( '1.0.0', 'notification' ),
 			'example'     => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return $trigger->previous_version;
 			},
 			'group'       => __( 'Plugin', 'notification' ),

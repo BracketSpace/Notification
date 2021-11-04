@@ -183,7 +183,7 @@ abstract class Trigger implements Triggerable {
 			'slug'     => $property_name,
 			'name'     => $label,
 			'group'    => $group,
-			'resolver' => function( $trigger ) use ( $property_name ) {
+			'resolver' => function ( $trigger ) use ( $property_name ) {
 				return $trigger->{ $property_name };
 			},
 		] ) );
@@ -286,7 +286,7 @@ abstract class Trigger implements Triggerable {
 	 * @return void
 	 */
 	public function postpone_action( $tag, $priority = 10, $accepted_args = 1 ) {
-		_deprecated_function( __METHOD__, '8.0.0' );
+		_deprecated_function ( __METHOD__, '8.0.0' );
 	}
 
 	/**
@@ -297,7 +297,7 @@ abstract class Trigger implements Triggerable {
 	 * @return boolean
 	 */
 	public function is_postponed() {
-		_deprecated_function( __METHOD__, '8.0.0' );
+		_deprecated_function ( __METHOD__, '8.0.0' );
 		return true;
 	}
 
@@ -309,7 +309,7 @@ abstract class Trigger implements Triggerable {
 	 * @return bool
 	 */
 	public function has_background_processing_enabled() {
-		_deprecated_function( __METHOD__, '8.0.0' );
+		_deprecated_function ( __METHOD__, '8.0.0' );
 
 		return apply_filters(
 			'notification/trigger/process_in_background',
@@ -326,7 +326,7 @@ abstract class Trigger implements Triggerable {
 	 * @return array
 	 */
 	public function get_action_args() {
-		_deprecated_function( __METHOD__, '8.0.0' );
+		_deprecated_function ( __METHOD__, '8.0.0' );
 
 		return [];
 	}
@@ -339,7 +339,7 @@ abstract class Trigger implements Triggerable {
 	 * @return array
 	 */
 	public function get_cache() {
-		_deprecated_function( __METHOD__, '8.0.0' );
+		_deprecated_function ( __METHOD__, '8.0.0' );
 
 		return [];
 	}
@@ -353,7 +353,7 @@ abstract class Trigger implements Triggerable {
 	 * @return $this
 	 */
 	public function set_cache( $cache ) {
-		_deprecated_function( __METHOD__, '8.0.0' );
+		_deprecated_function ( __METHOD__, '8.0.0' );
 
 		return $this;
 	}
@@ -368,7 +368,7 @@ abstract class Trigger implements Triggerable {
 	 * @return mixed
 	 */
 	public function cache( $key, $default = '' ) {
-		_deprecated_function( __METHOD__, '8.0.0' );
+		_deprecated_function ( __METHOD__, '8.0.0' );
 
 		return $default;
 	}

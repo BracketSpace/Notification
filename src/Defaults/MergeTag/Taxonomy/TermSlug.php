@@ -31,7 +31,7 @@ class TermSlug extends StringTag {
 				'description' => 'nature',
 				'example'     => true,
 				'group'       => __( 'Term', 'notification' ),
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					return $trigger->term->slug;
 				},
 			]

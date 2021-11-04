@@ -101,7 +101,7 @@ class EmailChangeRequest extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\StringTag([
 			'slug'     => 'admin_login',
 			'name'     => __( 'Admin login', 'notification' ),
-			'resolver' => function( $trigger ) {
+			'resolver' => function ( $trigger ) {
 				return $trigger->user_login;
 			},
 			'group'    => __( 'Site', 'notification' ),
@@ -110,7 +110,7 @@ class EmailChangeRequest extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\EmailTag( [
 			'slug'     => 'new_email',
 			'name'     => __( 'New email address', 'notification' ),
-			'resolver' => function( $trigger ) {
+			'resolver' => function ( $trigger ) {
 				return $trigger->new_admin_email;
 			},
 			'group'    => __( 'Site', 'notification' ),
@@ -119,7 +119,7 @@ class EmailChangeRequest extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\UrlTag( [
 			'slug'     => 'confirmation_url',
 			'name'     => __( 'Email change confirmation url', 'notification' ),
-			'resolver' => function( $trigger ) {
+			'resolver' => function ( $trigger ) {
 				return $trigger->confirmation_url;
 			},
 			'group'    => __( 'Site', 'notification' ),
@@ -128,7 +128,7 @@ class EmailChangeRequest extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\UrlTag( [
 			'slug'     => 'site_url',
 			'name'     => __( 'Site url', 'notification' ),
-			'resolver' => function( $trigger ) {
+			'resolver' => function ( $trigger ) {
 				return $trigger->site_url;
 			},
 			'group'    => __( 'Site', 'notification' ),

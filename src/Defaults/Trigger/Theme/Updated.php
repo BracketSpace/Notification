@@ -83,7 +83,7 @@ class Updated extends ThemeTrigger {
 			'name'        => __( 'Theme previous version', 'notification' ),
 			'description' => __( '1.0.0', 'notification' ),
 			'example'     => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return $trigger->theme_previous_version;
 			},
 			'group'       => __( 'Theme', 'notification' ),

@@ -42,7 +42,7 @@ class AttachmentDirectUrl extends UrlTag {
 				'description' => __( 'http://example.com/wp-content/uploads/2018/02/forest-landscape.jpg', 'notification' ),
 				'example'     => true,
 				'group'       => __( 'Attachment', 'notification' ),
-				'resolver'    => function() {
+				'resolver'    => function () {
 					return wp_get_attachment_url( $this->trigger->{ $this->property_name }->ID );
 				},
 			]

@@ -138,7 +138,7 @@ class Extensions {
 		$driver = new CacheDriver\Transient( ErrorHandler::debug_enabled() ? DAY_IN_SECONDS : 1 );
 		$cache  = new Cache( $driver, 'notification_extensions' );
 
-		return $cache->collect( function() {
+		return $cache->collect( function () {
 			$response   = wp_remote_get( $this->api_url );
 			$extensions = [];
 

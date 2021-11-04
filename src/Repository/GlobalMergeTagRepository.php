@@ -25,7 +25,7 @@ class GlobalMergeTagRepository {
 			'name'        => __( 'Site homepage URL', 'notification' ),
 			'description' => home_url(),
 			'hidden'      => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return home_url();
 			},
 		] ) );
@@ -35,7 +35,7 @@ class GlobalMergeTagRepository {
 			'name'        => __( 'Site title', 'notification' ),
 			'description' => get_bloginfo( 'name' ),
 			'hidden'      => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return get_bloginfo( 'name' );
 			},
 		] ) );
@@ -45,7 +45,7 @@ class GlobalMergeTagRepository {
 			'name'        => __( 'Site tagline', 'notification' ),
 			'description' => get_bloginfo( 'description' ),
 			'hidden'      => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return get_bloginfo( 'description' );
 			},
 		] ) );
@@ -55,7 +55,7 @@ class GlobalMergeTagRepository {
 			'name'        => __( 'Site theme name', 'notification' ),
 			'description' => wp_get_theme()->name,
 			'hidden'      => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return wp_get_theme()->name;
 			},
 		] ) );
@@ -65,7 +65,7 @@ class GlobalMergeTagRepository {
 			'name'        => __( 'Site theme version', 'notification' ),
 			'description' => wp_get_theme()->version,
 			'hidden'      => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return wp_get_theme()->version;
 			},
 		] ) );
@@ -75,7 +75,7 @@ class GlobalMergeTagRepository {
 			'name'        => __( 'Current WordPress version', 'notification' ),
 			'description' => get_bloginfo( 'version' ),
 			'hidden'      => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return get_bloginfo( 'version' );
 			},
 		] ) );
@@ -85,7 +85,7 @@ class GlobalMergeTagRepository {
 			'name'        => __( 'Admin email', 'notification' ),
 			'description' => get_option( 'admin_email' ),
 			'hidden'      => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return get_option( 'admin_email' );
 			},
 		] ) );
@@ -95,7 +95,7 @@ class GlobalMergeTagRepository {
 			'name'        => __( 'Admin avatar', 'notification' ),
 			'description' => __( 'HTML img tag with avatar', 'notification' ),
 			'hidden'      => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return get_avatar( get_option( 'admin_email' ) );
 			},
 		] ) );
@@ -106,7 +106,7 @@ class GlobalMergeTagRepository {
 			'description' => __( 'User login', 'notification' ),
 			'example'     => true,
 			'hidden'      => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return $trigger->get_name();
 			},
 		] ) );
@@ -117,7 +117,7 @@ class GlobalMergeTagRepository {
 			'description' => 'wordpress/user_login',
 			'example'     => true,
 			'hidden'      => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				return $trigger->get_slug();
 			},
 		] ) );

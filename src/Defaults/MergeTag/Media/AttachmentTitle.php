@@ -42,7 +42,7 @@ class AttachmentTitle extends StringTag {
 				'description' => __( 'Forest landscape', 'notification' ),
 				'example'     => true,
 				'group'       => __( 'Attachment', 'notification' ),
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					return $trigger->{ $this->property_name }->post_title;
 				},
 			]

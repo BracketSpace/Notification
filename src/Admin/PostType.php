@@ -359,7 +359,7 @@ class PostType {
 		$driver = new CacheDriver\ObjectCache( 'notification' );
 		$cache  = new Cache( $driver, 'notifications' );
 
-		return $cache->collect( function() {
+		return $cache->collect( function () {
 			global $wpdb;
 
 			$sql = "SELECT p.post_content

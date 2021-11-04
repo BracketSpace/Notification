@@ -25,7 +25,7 @@ class Resolver implements Interfaces\Storable {
 	public static function sorted() : array {
 		$resolvers = static::all();
 
-		usort( $resolvers, function( $a, $b ) {
+		usort( $resolvers, function ( $a, $b ) {
 			if ( $a->get_priority() === $b->get_priority() ) {
 				return 0;
 			}

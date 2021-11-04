@@ -55,7 +55,7 @@ class UserPasswordResetLink extends StringTag {
 				'description' => __( 'http://example.com/wp-login.php?action=rp&key=mm2sAR8jmIyjSiMsCJRm&login=admin', 'notification' ),
 				'example'     => true,
 				'group'       => __( 'User action', 'notification' ),
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					return network_site_url(
 						sprintf(
 							'wp-login.php?action=rp&key=%s&login=%s',

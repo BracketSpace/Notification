@@ -62,7 +62,7 @@ class License {
 		$driver = new CacheDriver\ObjectCache( 'notification_license', ErrorHandler::debug_enabled() ? 0 : 1 );
 		$cache  = new Cache( $driver, $this->extension['slug'] );
 
-		return $cache->collect( function() {
+		return $cache->collect( function () {
 			$licenses = $this->get_licenses();
 			$license  = false;
 
@@ -90,7 +90,7 @@ class License {
 		$driver = new CacheDriver\Transient( ErrorHandler::debug_enabled() ? DAY_IN_SECONDS : 1 );
 		$cache  = new Cache( $driver, sprintf( 'notification_license_check_%s', $this->extension['slug'] ) );
 
-		return $cache->collect( function() use ( $license_data ) {
+		return $cache->collect( function () use ( $license_data ) {
 			$license_check = $this->check( $license_data->license_key );
 
 			if ( is_wp_error( $license_check ) ) {

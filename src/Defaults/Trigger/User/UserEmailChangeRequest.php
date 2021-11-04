@@ -98,7 +98,7 @@ class UserEmailChangeRequest extends UserTrigger {
 		$this->add_merge_tag( new MergeTag\EmailTag( [
 			'slug'     => 'new_email',
 			'name'     => __( 'New email address', 'notification' ),
-			'resolver' => function( $trigger ) {
+			'resolver' => function ( $trigger ) {
 				return $trigger->new_user_email;
 			},
 			'group'    => __( 'User', 'notification' ),
@@ -107,7 +107,7 @@ class UserEmailChangeRequest extends UserTrigger {
 		$this->add_merge_tag( new MergeTag\UrlTag( [
 			'slug'     => 'confirmation_url',
 			'name'     => __( 'Email change confirmation url', 'notification' ),
-			'resolver' => function( $trigger ) {
+			'resolver' => function ( $trigger ) {
 				return $trigger->confirmation_url;
 			},
 			'group'    => __( 'Site', 'notification' ),

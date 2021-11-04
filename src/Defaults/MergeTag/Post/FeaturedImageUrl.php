@@ -50,7 +50,7 @@ class FeaturedImageUrl extends UrlTag {
 				'description' => __( 'https://example.com/wp-content/2019/01/image.jpg', 'notification' ),
 				'example'     => true,
 				'group'       => $post_type_name,
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					return wp_get_attachment_image_url( get_post_thumbnail_id( $trigger->{ $this->post_type }->ID ), 'full' );
 				},
 			]

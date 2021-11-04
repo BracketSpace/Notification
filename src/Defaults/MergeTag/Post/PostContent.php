@@ -50,7 +50,7 @@ class PostContent extends StringTag {
 				'description' => __( 'Welcome to WordPress. This is your first post. Edit or delete it, then start writing!', 'notification' ),
 				'example'     => true,
 				'group'       => $post_type_name,
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					return apply_filters( 'the_content', $trigger->{ $this->post_type }->post_content );
 				},
 			]

@@ -31,7 +31,7 @@ class TermPermalink extends UrlTag {
 				'description' => 'http://example.com/category/nature',
 				'example'     => true,
 				'group'       => __( 'Term', 'notification' ),
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					return $trigger->term_permalink;
 				},
 			]

@@ -72,7 +72,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 			'slug'        => 'updates_list',
 			'name'        => __( 'Updates list', 'notification' ),
 			'description' => __( 'The lists for core, plugins and themes updates.', 'notification' ),
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				$lists = [];
 
 				foreach ( $trigger->update_types as $update_type ) {
@@ -95,7 +95,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\IntegerTag( [
 			'slug'     => 'all_updates_count',
 			'name'     => __( 'Number of all updates', 'notification' ),
-			'resolver' => function( $trigger ) {
+			'resolver' => function ( $trigger ) {
 				return $trigger->get_updates_count( 'all' );
 			},
 		] ) );
@@ -103,7 +103,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\IntegerTag( [
 			'slug'     => 'core_updates_count',
 			'name'     => __( 'Number of core updates', 'notification' ),
-			'resolver' => function( $trigger ) {
+			'resolver' => function ( $trigger ) {
 				return $trigger->get_updates_count( 'core' );
 			},
 		] ) );
@@ -111,7 +111,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\IntegerTag( [
 			'slug'     => 'plugin_updates_count',
 			'name'     => __( 'Number of plugin updates', 'notification' ),
-			'resolver' => function( $trigger ) {
+			'resolver' => function ( $trigger ) {
 				return $trigger->get_updates_count( 'plugin' );
 			},
 		] ) );
@@ -119,7 +119,7 @@ class UpdatesAvailable extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\IntegerTag( [
 			'slug'     => 'theme_updates_count',
 			'name'     => __( 'Number of theme updates', 'notification' ),
-			'resolver' => function( $trigger ) {
+			'resolver' => function ( $trigger ) {
 				return $trigger->get_updates_count( 'theme' );
 			},
 		] ) );

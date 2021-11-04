@@ -54,7 +54,7 @@ class CommentType extends StringTag {
 				'name'        => __( 'Comment type', 'notification' ),
 				'description' => __( 'Comment or Pingback or Trackback or Custom', 'notification' ),
 				'group'       => WpObjectHelper::get_comment_type_name( $this->comment_type ),
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					return get_comment_type( $trigger->{ $this->property_name } );
 				},
 			]

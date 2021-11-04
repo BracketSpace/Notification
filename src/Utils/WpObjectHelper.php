@@ -127,7 +127,7 @@ class WpObjectHelper {
 		$driver = new CacheDriver\ObjectCache( 'notification' );
 		$cache  = new Cache( $driver, 'comment_types' );
 
-		return $cache->collect( function() {
+		return $cache->collect( function () {
 			global $wpdb;
 
 			$comment_types = [

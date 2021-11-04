@@ -50,7 +50,7 @@ class FeaturedImageId extends IntegerTag {
 				'description' => __( '123', 'notification' ),
 				'example'     => true,
 				'group'       => $post_type_name,
-				'resolver'    => function( $trigger ) {
+				'resolver'    => function ( $trigger ) {
 					$post_id = $trigger->{ $this->post_type }->ID;
 
 					return (int) get_post_thumbnail_id( $post_id );

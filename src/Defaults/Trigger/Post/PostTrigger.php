@@ -129,7 +129,7 @@ abstract class PostTrigger extends Abstracts\Trigger {
 				// translators: singular post name.
 				'name'     => sprintf( __( '%s sticky status', 'notification' ), $post_type_name ),
 				'group'    => $post_type_name,
-				'resolver' => function( $trigger ) {
+				'resolver' => function ( $trigger ) {
 					return is_sticky( $trigger->{ $this->post_type }->ID ) ? __( 'Sticky', 'notification' ) : __( 'Not sticky', 'notification' );
 				},
 			] ) );
