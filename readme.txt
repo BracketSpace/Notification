@@ -301,6 +301,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Notification file syncing is now using Filesystem methods.
 * [Changed] Internal cache classes with `micropackage/cache`.
 * [Changed] Menu icon.
+* [Changed] Vue is now loaded from within the plugin instead of CDN.
 * [Removed] Internal cache classes `Bracketspace\Notification\Utils\Cache` and `Bracketspace\Notification\Utils\Interfaces` namespaces.
 * [Removed] Settings internal caching that couldn't wait for all the fields to be registered. Now we're relying on the get_option() core function caching.
 

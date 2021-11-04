@@ -22,7 +22,8 @@
 	"dependencies": {
 		"clipboard": "^2.0.4",
 		"jquery-collapse": "^1.1.2",
-		"selectize": "^0.12.4"
+		"selectize": "^0.12.4",
+		"vue": "2.6.11"
 	},
 	"mpScriptsConfig": {
 		"paths": {
