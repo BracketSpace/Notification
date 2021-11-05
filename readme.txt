@@ -298,6 +298,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 = [Next] =
 
 * [Added] HTML Settings field.
+* [Added] Notification hash column in the Notification table.
 * [Changed] Some of the settings to HTML field instead of the Message field.
 * [Fixed] Broken Import/Export sections.
 

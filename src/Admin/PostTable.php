@@ -29,6 +29,7 @@ class PostTable {
 		// Custom columns.
 		$columns['switch']   = __( 'Status', 'notification' );
 		$columns['title']    = $title_column;
+		$columns['hash']     = __( 'Hash', 'notification' );
 		$columns['trigger']  = __( 'Trigger', 'notification' );
 		$columns['carriers'] = __( 'Carriers', 'notification' );
 		$columns['date']     = $date_column;
@@ -54,6 +55,10 @@ class PostTable {
 		$notification = notification_adapt_from( 'WordPress', $post_id );
 
 		switch ( $column ) {
+			case 'hash':
+				echo '<code>' . esc_html( $notification->get_hash() ) . '</code>';
+				break;
+
 			case 'trigger':
 				$trigger = $notification->get_trigger();
 				echo esc_html( null === $trigger ? __( 'No trigger selected', 'notification' ) : $trigger->get_name() );
