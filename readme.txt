@@ -295,6 +295,12 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+
+* [Added] HTML Settings field.
+* [Changed] Some of the settings to HTML field instead of the Message field.
+* [Fixed] Broken Import/Export sections.
+
 = 8.0.2 =
 
 * [Added] HTML escaping and nonce verifications.

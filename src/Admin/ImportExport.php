@@ -31,10 +31,10 @@ class ImportExport {
 					'name'     => __( 'Notifications', 'notification' ),
 					'slug'     => 'notifications',
 					'addons'   => [
-						'message' => [ $this, 'notification_import_form' ],
+						'field' => [ $this, 'notification_import_form' ],
 					],
-					'render'   => [ new CoreFields\Message(), 'input' ],
-					'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
+					'render'   => [ new CoreFields\HTML(), 'input' ],
+					'sanitize' => [ new CoreFields\HTML(), 'sanitize' ],
 				]
 			);
 
@@ -44,10 +44,10 @@ class ImportExport {
 					'name'     => __( 'Notifications', 'notification' ),
 					'slug'     => 'notifications',
 					'addons'   => [
-						'message' => [ $this, 'notification_export_form' ],
+						'field' => [ $this, 'notification_export_form' ],
 					],
-					'render'   => [ new CoreFields\Message(), 'input' ],
-					'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
+					'render'   => [ new CoreFields\HTML(), 'input' ],
+					'sanitize' => [ new CoreFields\HTML(), 'sanitize' ],
 				]
 			);
 	}
