@@ -10,6 +10,8 @@ namespace BracketSpace\Notification\Admin;
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Core\Whitelabel;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
 
 /**
@@ -284,6 +286,10 @@ class Wizard {
 	 * @return void
 	 */
 	private function add_notifications( $notifications ) {
+		if ( [] === $notifications ) {
+			return;
+		}
+
 		$json_path_tmpl = 'resources/wizard-data/%s.json';
 
 		foreach ( $notifications as $notification_slug ) {
@@ -301,6 +307,15 @@ class Wizard {
 			$wp_adapter = notification_swap_adapter( 'WordPress', $json_adapter );
 			$wp_adapter->save();
 		}
+
+		/**
+		 * @todo
+		 * This cache should be cleared in Adapter save method.
+		 * Now it's used in Admin\PostType::save() as well
+		 */
+		$cache = new CacheDriver\ObjectCache( 'notification' );
+		$cache->set_key( 'notifications' );
+		$cache->delete();
 	}
 
 	/**

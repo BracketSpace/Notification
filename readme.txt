@@ -299,8 +299,9 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 * [Added] HTML Settings field.
 * [Added] Notification hash column in the Notification table.
-* [Changed] Some of the settings to HTML field instead of the Message field.
+* [Changed] Some of the Settings to HTML field instead of the Message field.
 * [Fixed] Broken Import/Export sections.
+* [Fixed] Notifications cache is now cleared when creating notification via wizard.
 
 = 8.0.2 =
 
