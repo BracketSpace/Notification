@@ -76,10 +76,10 @@ class Debugging {
 				'name'     => __( 'Log', 'notification' ),
 				'slug'     => 'log',
 				'addons'   => [
-					'message' => [ $this, 'get_notification_log' ],
+					'field' => [ $this, 'get_notification_log' ],
 				],
-				'render'   => [ new CoreFields\Message(), 'input' ],
-				'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
+				'render'   => [ new CoreFields\HTML(), 'input' ],
+				'sanitize' => [ new CoreFields\HTML(), 'sanitize' ],
 			] );
 
 		$debugging->add_group( __( 'Error Log', 'notification' ), 'error_log' )
@@ -87,10 +87,10 @@ class Debugging {
 				'name'     => __( 'Log', 'notification' ),
 				'slug'     => 'log',
 				'addons'   => [
-					'message' => [ $this, 'get_error_log' ],
+					'field' => [ $this, 'get_error_log' ],
 				],
-				'render'   => [ new CoreFields\Message(), 'input' ],
-				'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
+				'render'   => [ new CoreFields\HTML(), 'input' ],
+				'sanitize' => [ new CoreFields\HTML(), 'sanitize' ],
 			] );
 
 	}

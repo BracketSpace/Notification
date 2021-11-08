@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.8
-Stable tag: 8.0.2
+Stable tag: 8.0.3
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -294,6 +294,14 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 7. Default email disabler
 
 == Changelog ==
+
+= 8.0.3 =
+
+* [Added] HTML Settings field.
+* [Added] Notification hash column in the Notification table.
+* [Changed] Some of the Settings to HTML field instead of the Message field.
+* [Fixed] Broken Import/Export sections.
+* [Fixed] Notifications cache is now cleared when creating notification via wizard.
 
 = 8.0.2 =
 

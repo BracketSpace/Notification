@@ -49,10 +49,10 @@ class Sync {
 				'name'     => __( 'Notifications', 'notification' ),
 				'slug'     => 'notifications',
 				'addons'   => [
-					'message' => [ $this, 'template_notifications' ],
+					'field' => [ $this, 'template_notifications' ],
 				],
-				'render'   => [ new CoreFields\Message(), 'input' ],
-				'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
+				'render'   => [ new CoreFields\HTML(), 'input' ],
+				'sanitize' => [ new CoreFields\HTML(), 'sanitize' ],
 			] );
 		}
 

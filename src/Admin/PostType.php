@@ -301,6 +301,11 @@ class PostType {
 
 		$notification_post->save();
 
+		/**
+		 * @todo
+		 * This cache should be cleared in Adapter save method.
+		 * Now it's used in Admin\Wizard::add_notifications() as well
+		 */
 		$cache = new CacheDriver\ObjectCache( 'notification' );
 		$cache->set_key( 'notifications' );
 		$cache->delete();
