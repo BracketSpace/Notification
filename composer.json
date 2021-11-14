@@ -11,7 +11,7 @@
 		"micropackage/cache": "^1.0",
 		"micropackage/dochooks": "1.0.2",
 		"micropackage/filesystem": "^1.1",
-		"micropackage/requirements": "^1.0",
+		"micropackage/requirements": "^1.1",
 		"micropackage/templates": "^1.1"
 	},
 	"require-dev": {
