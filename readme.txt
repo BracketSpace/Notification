@@ -297,6 +297,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = [Next] =
 
+* [Changed] Updated PHP dependencies.
 * [Changed] Extension license notice is now printed once and covers all the plugins.
 
 = 8.0.3 =
