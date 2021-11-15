@@ -469,26 +469,41 @@ class Extensions {
 			return;
 		}
 
+		$invalid_extensions = [];
+
 		foreach ( $extensions as $extension ) {
 			if ( isset( $extension['edd'] ) && is_plugin_active( $extension['slug'] ) ) {
 				$license = new License( $extension );
 
 				if ( ! $license->is_valid() ) {
-
-					$message = sprintf(
-						// Translators: 1. Plugin name, 2. Link.
-						__( 'Please activate the %1$s plugin to get the updates. %2$s', 'notification' ),
-						$extension['edd']['item_name'],
-						'<a href="' . admin_url( 'edit.php?post_type=notification&page=extensions' ) . '">' . __( 'Go to Extensions', 'notification' ) . '</a>'
-					);
-
-					Templates::render( 'extension/activation-error', [
-						'message' => $message,
-					] );
-
+					$invalid_extensions[] = $extension['edd']['item_name'];
 				}
 			}
 		}
+
+		if ( [] === $invalid_extensions ) {
+			return;
+		}
+
+		$message = _n(
+			'Please activate the following plugin to get the updates.',
+			'Please activate the following plugins to get the updates.',
+			count( $invalid_extensions ),
+			'notification'
+		);
+
+		$extensions_link = sprintf(
+			'<a href="%s">%s</a>',
+			admin_url( 'edit.php?post_type=notification&page=extensions' ),
+			__( 'Go to Extensions', 'notification' )
+		);
+
+		$message .= ' ' . $extensions_link;
+
+		Templates::render( 'extension/activation-error', [
+			'message'    => $message,
+			'extensions' => $invalid_extensions,
+		] );
 	}
 
 }

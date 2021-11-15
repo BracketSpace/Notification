@@ -295,6 +295,10 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= [Next] =
+
+* [Changed] Extension license notice is now printed once and covers all the plugins.
+
 = 8.0.3 =
 
 * [Added] HTML Settings field.
