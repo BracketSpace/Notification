@@ -18,7 +18,7 @@ class HTML {
 	 * Constructor
 	 */
 	public function __construct() {
-		notification_deprecated_class( __CLASS__, '[Next]' );
+		notification_deprecated_class( __CLASS__, '8.0.4' );
 	}
 
 	/**
