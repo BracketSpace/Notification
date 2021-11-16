@@ -331,16 +331,16 @@
         },
         {
             "name": "micropackage/templates",
-            "version": "1.1.5",
+            "version": "1.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/micropackage/templates.git",
-                "reference": "da80126bcd53c5fb76842e0d71326b8decc490de"
+                "reference": "c29a59437d5a027ac4dd80ef87c1350f5186986a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/micropackage/templates/zipball/da80126bcd53c5fb76842e0d71326b8decc490de",
-                "reference": "da80126bcd53c5fb76842e0d71326b8decc490de",
+                "url": "https://api.github.com/repos/micropackage/templates/zipball/c29a59437d5a027ac4dd80ef87c1350f5186986a",
+                "reference": "c29a59437d5a027ac4dd80ef87c1350f5186986a",
                 "shasum": ""
             },
             "require": {
@@ -376,9 +376,9 @@
             "description": "Simple PHP template engine which is easy to use",
             "support": {
                 "issues": "https://github.com/micropackage/templates/issues",
-                "source": "https://github.com/micropackage/templates/tree/1.1.5"
+                "source": "https://github.com/micropackage/templates/tree/1.1.6"
             },
-            "time": "2021-11-15T21:06:24+00:00"
+            "time": "2021-11-15T21:12:41+00:00"
         }
     ],
     "packages-dev": [

@@ -295,6 +295,10 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 == Changelog ==
 
+= 8.0.5 =
+
+* [Changed] Updated PHP dependencies.
+
 = 8.0.4 =
 
 * [Changed] Updated PHP dependencies.
