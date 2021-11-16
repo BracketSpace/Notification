@@ -15,6 +15,13 @@ use BracketSpace\Notification\Utils\Settings\Field;
 class HTML {
 
 	/**
+	 * Constructor
+	 */
+	public function __construct() {
+		notification_deprecated_class( __CLASS__, '8.0.4' );
+	}
+
+	/**
 	 * HTML field
 	 *
 	 * @param  Field $field Field instance.

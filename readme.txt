@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.8
-Stable tag: 8.0.3
+Stable tag: 8.0.4
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -294,6 +294,14 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 7. Default email disabler
 
 == Changelog ==
+
+= 8.0.4 =
+
+* [Changed] Updated PHP dependencies.
+* [Changed] Extension license notice is now printed once and covers all the plugins.
+* [Changed] Some of the core fields like Import/Export now have own setting classes.
+* [Fixed] Remaining template variable escaping.
+* [Removed] HTML Settings field, introduced in v8.0.3. Now it's required to create purpose-specific field classes.
 
 = 8.0.3 =
 

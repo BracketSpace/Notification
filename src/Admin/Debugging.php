@@ -7,8 +7,8 @@
 
 namespace BracketSpace\Notification\Admin;
 
-use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Utils\Settings\CoreFields;
+use BracketSpace\Notification\Utils\Settings\Fields as SpecificFields;
 
 /**
  * Debugging class
@@ -75,93 +75,17 @@ class Debugging {
 			->add_field( [
 				'name'     => __( 'Log', 'notification' ),
 				'slug'     => 'log',
-				'addons'   => [
-					'field' => [ $this, 'get_notification_log' ],
-				],
-				'render'   => [ new CoreFields\HTML(), 'input' ],
-				'sanitize' => [ new CoreFields\HTML(), 'sanitize' ],
+				'render'   => [ new SpecificFields\NotificationLog(), 'input' ],
+				'sanitize' => '__return_null',
 			] );
 
 		$debugging->add_group( __( 'Error Log', 'notification' ), 'error_log' )
 			->add_field( [
 				'name'     => __( 'Log', 'notification' ),
 				'slug'     => 'log',
-				'addons'   => [
-					'field' => [ $this, 'get_error_log' ],
-				],
-				'render'   => [ new CoreFields\HTML(), 'input' ],
-				'sanitize' => [ new CoreFields\HTML(), 'sanitize' ],
+				'render'   => [ new SpecificFields\ErrorLog(), 'input' ],
+				'sanitize' => '__return_null',
 			] );
-
-	}
-
-	/**
-	 * Gets Notification log output
-	 *
-	 * @since  6.0.0
-	 * @return string
-	 */
-	public function get_notification_log() {
-
-		$debug = \Notification::component( 'core_debugging' );
-
-		// This is a simple pagination request.
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$page     = isset( $_GET['notification_log_page'] ) ? intval( $_GET['notification_log_page'] ) : 1;
-		$raw_logs = $debug->get_logs( $page, 'notification' );
-
-		$logs = [];
-		foreach ( $raw_logs as $raw_log ) {
-			$log_data = json_decode( $raw_log->message, true );
-			$logs[]   = [
-				'time'         => $raw_log->time_logged,
-				'notification' => $log_data['notification'],
-				'trigger'      => $log_data['trigger'],
-				'carrier'      => $log_data['carrier'],
-			];
-		}
-
-		$html = Templates::get( 'debug/notification-log', [
-			'datetime_format' => get_option( 'date_format' ) . ' ' . get_option( 'time_format' ),
-			'logs'            => $logs,
-		] );
-
-		$html .= Templates::get( 'debug/pagination', [
-			'query_arg' => 'notification_log_page',
-			'total'     => $debug->get_logs_count( 'pages' ),
-			'current'   => $page,
-		] );
-
-		return $html;
-
-	}
-
-	/**
-	 * Gets Error log output
-	 *
-	 * @since  6.0.0
-	 * @return string
-	 */
-	public function get_error_log() {
-
-		$debug = \Notification::component( 'core_debugging' );
-
-		// This is a simple pagination request.
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$page = isset( $_GET['error_log_page'] ) ? intval( $_GET['error_log_page'] ) : 1;
-
-		$html = Templates::get( 'debug/error-log', [
-			'datetime_format' => get_option( 'date_format' ) . ' ' . get_option( 'time_format' ),
-			'logs'            => $debug->get_logs( $page, [ 'error', 'warning' ] ),
-		] );
-
-		$html .= Templates::get( 'debug/pagination', [
-			'query_arg' => 'error_log_page',
-			'total'     => $debug->get_logs_count( 'pages' ),
-			'current'   => $page,
-		] );
-
-		return $html;
 
 	}
 
@@ -174,7 +98,6 @@ class Debugging {
 	 * @return void
 	 */
 	public function debug_warning() {
-
 		if ( 'notification' !== get_post_type() || ! notification_get_setting( 'debugging/settings/debug_log' ) || ! notification_get_setting( 'debugging/settings/debug_suppressing' ) ) {
 			return;
 		}
@@ -183,7 +106,6 @@ class Debugging {
 		$debug_log_link = '<a href="' . admin_url( 'edit.php?post_type=notification&page=settings&section=debugging' ) . '">' . esc_html__( 'See debug log', 'notification' ) . '</a>';
 
 		echo wp_kses_post( '<div class="notice notice-warning"><p>' . $message . ' ' . $debug_log_link . '</p></div>' );
-
 	}
 
 	/**

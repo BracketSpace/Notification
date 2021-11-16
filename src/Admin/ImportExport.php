@@ -8,7 +8,7 @@
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Templates;
-use BracketSpace\Notification\Utils\Settings\CoreFields;
+use BracketSpace\Notification\Utils\Settings\Fields as SettingFields;
 use BracketSpace\Notification\Queries\NotificationQueries;
 
 /**
@@ -30,11 +30,8 @@ class ImportExport {
 				[
 					'name'     => __( 'Notifications', 'notification' ),
 					'slug'     => 'notifications',
-					'addons'   => [
-						'field' => [ $this, 'notification_import_form' ],
-					],
-					'render'   => [ new CoreFields\HTML(), 'input' ],
-					'sanitize' => [ new CoreFields\HTML(), 'sanitize' ],
+					'render'   => [ new SettingFields\Import(), 'input' ],
+					'sanitize' => '__return_null',
 				]
 			);
 
@@ -43,38 +40,10 @@ class ImportExport {
 				[
 					'name'     => __( 'Notifications', 'notification' ),
 					'slug'     => 'notifications',
-					'addons'   => [
-						'field' => [ $this, 'notification_export_form' ],
-					],
-					'render'   => [ new CoreFields\HTML(), 'input' ],
-					'sanitize' => [ new CoreFields\HTML(), 'sanitize' ],
+					'render'   => [ new SettingFields\Export(), 'input' ],
+					'sanitize' => '__return_null',
 				]
 			);
-	}
-
-	/**
-	 * Returns notifications import form
-	 *
-	 * @since  6.0.0
-	 * @return string
-	 */
-	public function notification_import_form() {
-		return Templates::get( 'import/notifications' );
-	}
-
-	/**
-	 * Returns notifications export form
-	 *
-	 * @since  6.0.0
-	 * @return string
-	 */
-	public function notification_export_form() {
-		$download_link = admin_url( 'admin-post.php?action=notification_export&nonce=' . wp_create_nonce( 'notification-export' ) . '&type=notifications&items=' );
-
-		return Templates::get( 'export/notifications', [
-			'notifications' => NotificationQueries::all( true ),
-			'download_link' => $download_link,
-		] );
 	}
 
 	/**
