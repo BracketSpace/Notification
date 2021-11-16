@@ -300,6 +300,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 * [Changed] Updated PHP dependencies.
 * [Changed] Extension license notice is now printed once and covers all the plugins.
 * [Changed] Some of the core fields like Import/Export now have own setting classes.
+* [Fixed] Remaining template variable escaping.
 * [Removed] HTML Settings field, introduced in v8.0.3. Now it's required to create purpose-specific field classes.
 
 = 8.0.3 =
