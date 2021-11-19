@@ -299,6 +299,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 * [Fixed] Extension activation notice link.
 * [Fixed] Extension activation process.
+* [Fixed] Incorrect empty merge tag cleaning which was misreading JSON format.
 
 = 8.0.5 =
 
