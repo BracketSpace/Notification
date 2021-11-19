@@ -288,7 +288,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 
 = Can you create a plugin for me? =
 
-Yes! We're offering a [custom plugin development](https://bracketspace.com/custom-development/) services. Feel free to contact us to find out if we can help you.
+Yes! We're offering a [custom plugin development](https://bracketspace.com/custom-development/) services. Feel free to contact us to find out how we can help you.
 
 == Screenshots ==
 
