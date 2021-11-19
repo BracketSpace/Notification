@@ -298,6 +298,7 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 = [Next] =
 
 * [Fixed] Extension activation notice link.
+* [Fixed] Extension activation process.
 
 = 8.0.5 =
 
