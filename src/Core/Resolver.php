@@ -53,7 +53,7 @@ class Resolver {
 	 * @return string
 	 */
 	public static function clear( $value ) {
-		return preg_replace( '/(?<!\!)\{(?:[^{}\s])*\}/', '', $value );
+		return preg_replace( '/(?<!\!)\{(?:[^{}\s\"\'])*\}/', '', $value );
 	}
 
 }
