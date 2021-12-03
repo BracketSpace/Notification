@@ -229,10 +229,6 @@ class Extensions {
 
 			$license = new License( $extension );
 
-			if ( ! $license->is_valid() ) {
-				continue;
-			}
-
 			$wp_plugin = $wp_plugins[ $extension['slug'] ];
 
 			new EDDUpdater(

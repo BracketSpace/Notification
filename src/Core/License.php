@@ -113,7 +113,7 @@ class License {
 	 */
 	public function get_key() {
 		$license_data = $this->get();
-		return $license_data->license_key;
+		return $license_data->license_key ?? '';
 	}
 
 	/**
