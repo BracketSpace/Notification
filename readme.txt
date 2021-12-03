@@ -302,6 +302,11 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+
+* [Changed] Extensions are now reporting updates even if they are not activated.
+* [Changed] Updated EDD Updater class.
+
 = 8.0.6 =
 
 * [Fixed] Extension activation notice link.
