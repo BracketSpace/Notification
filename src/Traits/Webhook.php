@@ -56,6 +56,18 @@ trait Webhook {
 			], true ) . '</pre>' );
 		}
 
+		$code = wp_remote_retrieve_response_code( $response );
+
+		if ( 200 > $code || 300 <= $code ) {
+			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
+			notification_log( $this->get_name(), 'warning', '<pre>' . print_r( [
+				'url'           => $url,
+				'args'          => $remote_args,
+				'response_code' => $code,
+				'message'       => wp_remote_retrieve_response_message( $response ),
+			], true ) . '</pre>' );
+		}
+
 		do_action( "notification/carrier/webhook/called/{$method}", $response, $url, $args, $remote_args, $this );
 	}
 

@@ -307,6 +307,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Fixed] Shortcode stripping regex that was matching JSON arrays.
 * [Changed] Extensions are now reporting updates even if they are not activated.
 * [Changed] Updated EDD Updater class.
+* [Added] Webhook warning logging when response is not valid.
 
 = 8.0.6 =
 
