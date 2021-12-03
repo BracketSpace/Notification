@@ -304,6 +304,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 
+* [Fixed] Shortcode stripping regex that was matching JSON arrays.
 * [Changed] Extensions are now reporting updates even if they are not activated.
 * [Changed] Updated EDD Updater class.
 
