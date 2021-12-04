@@ -14,9 +14,11 @@
 
 <div class="error">
 	<p><?php echo wp_kses_post( $get( 'message' ) ); ?></p>
-	<ul style="list-style: disc; padding-left: 20px;">
-		<?php foreach ( $get( 'extensions' ) as $extension ) : ?>
-			<li><?php echo esc_html( $extension ); ?></li>
-		<?php endforeach; ?>
-	</ul>
+	<?php if ( ! empty( $get( 'extensions' ) ) ) : ?>
+		<ul style="list-style: disc; padding-left: 20px;">
+			<?php foreach ( $get( 'extensions' ) as $extension ) : ?>
+				<li><?php echo esc_html( $extension ); ?></li>
+			<?php endforeach; ?>
+		</ul>
+	<?php endif ?>
 </div>

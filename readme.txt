@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.8
-Stable tag: 8.0.6
+Stable tag: 8.0.7
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -191,11 +191,10 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 * [BuddyPress](https://wordpress.org/plugins/notification-buddypress/) - BuddyPress triggers and integration with their notification system
 * [Signature](https://wordpress.org/plugins/signature-notification/) - add a signature to all your emails automatically
 * [AppPresser](https://bracketspace.com/downloads/notification-apppresser) - push messages to your mobile app built with AppPresser
+* [Email Attachments](https://bracketspace.com/downloads/notification-email-attachments/) - attach files to your notification
 
 *Coming soon* - vote for the extensions
 
-* [Email Attachments](https://bracketspace.com/downloads/notification-email-attachments/) - attach files to your notification
-* [Email Templates](https://bracketspace.com/downloads/notification-email-templates/) - use beautiful templates for your emails
 * [Facebook](https://bracketspace.com/downloads/notification-facebook/) - post messages to Facebook
 * [Twitter](https://bracketspace.com/downloads/notification-twitter/) - post messages to Twitter
 * [Zapier](https://bracketspace.com/downloads/notification-zapier/) - connect any WordPress event with Zapier
@@ -215,6 +214,10 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 * [GitHub repository](https://github.com/BracketSpace/Notification)
 * [Report a bug](https://github.com/BracketSpace/Notification/issues/new)
 
+= CUSTOM DEVELOPMENT =
+
+BracketSpace - the company behind this plugin provides [custom WordPress plugin development services](https://bracketspace.com/custom-development/). We can create any custom plugin for you.
+
 == Installation ==
 
 = Requirements =
@@ -233,10 +236,6 @@ Notification can be loaded also as a part of any plugin or theme. To do it just 
 
 == Frequently Asked Questions ==
 
-= How is this plugin different from Better Notifications for WordPress (BNFW)? =
-
-The Notification plugin works very similar to BNFW but it has better codebase and interface. You can read the full comparison in the [Notification vs Better Notifications for WordPress](https://bracketspace.com/notification-vs-better-notifications-for-wordpress/) article.
-
 = How can I test my notifications? =
 
 It's not needed to install 3rd-party plugins to catch your emails or other notifications. The Notification plugin comes with a logger which you can activate in the settings and see all the notification configuration parameters.
@@ -252,6 +251,10 @@ You can also try to activate the debug log in plugin settings to see if the emai
 Ofcourse it is! We are trying to make both parties happy - the Users and Developers. Users got their intuitive and beautiful panel in WordPress Admin and Developers got an awesome API by which they can extend the Notification plugin.
 
 So it doesn't matter if you don't have any coding skills, they are not required to setup the notifications with this plugin.
+
+= How is this plugin different from Better Notifications for WordPress (BNFW)? =
+
+The Notification plugin works very similar to BNFW but it has better codebase and interface. You can read the full comparison in the [Notification vs Better Notifications for WordPress](https://bracketspace.com/notification-vs-better-notifications-for-wordpress/) article.
 
 = How to register my own triggers? =
 
@@ -283,6 +286,10 @@ When using SMTP it's nearly impossible to send more than a dozen emails at once 
 
 Yes, just activate the debug log in the DEBUGGING section of the plugin settings. All notifications will be catched into log visible only to you.
 
+= Can you create a plugin for me? =
+
+Yes! We're offering a [custom plugin development](https://bracketspace.com/custom-development/) services. Feel free to contact us to find out how we can help you.
+
 == Screenshots ==
 
 1. Trigger edit screen
@@ -294,6 +301,13 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 7. Default email disabler
 
 == Changelog ==
+
+= 8.0.7 =
+
+* [Fixed] Shortcode stripping regex that was matching JSON arrays.
+* [Changed] Extensions are now reporting updates even if they are not activated.
+* [Changed] Updated EDD Updater class.
+* [Added] Webhook warning logging when response is not valid.
 
 = 8.0.6 =
 
