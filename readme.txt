@@ -302,6 +302,10 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+
+* [Fixed] Two or more same triggers processed in the same request overwriting each other data.
+
 = 8.0.7 =
 
 * [Fixed] Shortcode stripping regex that was matching JSON arrays.
