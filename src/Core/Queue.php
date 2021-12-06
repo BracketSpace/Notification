@@ -37,7 +37,7 @@ class Queue {
 	public static function add( CoreNotification $notification, Triggerable $trigger, int $index = null ) {
 		$item = [
 			'notification' => $notification,
-			'trigger'      => $trigger,
+			'trigger'      => clone $trigger,
 		];
 
 		if ( null !== $index ) {
