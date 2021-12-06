@@ -14,7 +14,7 @@ Customisable email and webhook notifications with powerful developer friendly AP
 
 Custom Notifications and Alerts without a hassle. Notify anyone about any action in your WordPress. With powerful Merge Tags, you can endlessly customize your messages. Set unlimited Notifications in your WordPress Admin via the beautiful and intuitive interface within 5 minutes.
 
-[youtube https://www.youtube.com/watch?v=UPqVBhLGTek]
+[youtube https://www.youtube.com/watch?v=gW2KHrT_a7U]
 
 = DEFAULT WORDPRESS EMAILS OVERWRITE =
 
