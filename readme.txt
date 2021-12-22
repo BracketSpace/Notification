@@ -302,6 +302,10 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+
+* [Added] New queue methods: `remove()` and `clear()`.
+
 = 8.0.8 =
 
 * [Fixed] Two or more same triggers processed in the same request overwriting each other data.
