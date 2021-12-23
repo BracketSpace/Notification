@@ -102,6 +102,10 @@ class Processor {
 	public static function process_notification( Notification $notification, Triggerable $trigger ) {
 		$trigger->setup_merge_tags();
 
+		if ( ! apply_filters( 'notification/should_send', true, $notification, $trigger ) ) {
+			return;
+		}
+
 		foreach ( $notification->get_enabled_carriers() as $carrier ) {
 			$carrier->resolve_fields( $trigger );
 			$carrier->prepare_data();

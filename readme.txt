@@ -305,6 +305,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 = [Next] =
 
 * [Fixed] Merge Tags resolver problem caused by overriding the processed trigger instance.
+* [Changed] `notification/should_send` filter is now executed when the queue is processed, not before the notification is added to the queue.
 * [Added] New queue methods: `remove()` and `clear()`.
 
 = 8.0.8 =

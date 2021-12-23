@@ -95,11 +95,6 @@ class Runner {
 
 		// Setup notifications and prepare the carriers.
 		foreach ( $this->get_notifications() as $notification ) {
-
-			if ( ! apply_filters( 'notification/should_send', true, $notification, $this->trigger ) ) {
-				continue;
-			}
-
 			/**
 			 * If an item already exists in the queue, we are replacing it with the new version.
 			 * This doesn't prevents the duplicates coming from two separate requests.
@@ -107,7 +102,6 @@ class Runner {
 			Queue::add_replace( $notification, $this->trigger );
 
 			do_action( 'notification/processed', $notification );
-
 		}
 
 	}
