@@ -109,4 +109,25 @@ class Queue {
 		}
 	}
 
+	/**
+	 * Clears the queue entirely
+	 *
+	 * @since 8.0.9
+	 * @return void
+	 */
+	public static function clear() {
+		self::$items = [];
+	}
+
+	/**
+	 * Removes an item from the queue
+	 *
+	 * @since 8.0.9
+	 * @param int $index Index of an item to remove.
+	 * @return void
+	 */
+	public static function remove( int $index ) {
+		unset( self::$items[ $index ] );
+	}
+
 }

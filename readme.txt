@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.8
-Stable tag: 8.0.8
+Stable tag: 8.0.9
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -14,7 +14,7 @@ Customisable email and webhook notifications with powerful developer friendly AP
 
 Custom Notifications and Alerts without a hassle. Notify anyone about any action in your WordPress. With powerful Merge Tags, you can endlessly customize your messages. Set unlimited Notifications in your WordPress Admin via the beautiful and intuitive interface within 5 minutes.
 
-[youtube https://www.youtube.com/watch?v=UPqVBhLGTek]
+[youtube https://www.youtube.com/watch?v=gW2KHrT_a7U]
 
 = DEFAULT WORDPRESS EMAILS OVERWRITE =
 
@@ -301,6 +301,12 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 7. Default email disabler
 
 == Changelog ==
+
+= 8.0.9 =
+
+* [Fixed] Merge Tags resolver problem caused by overriding the processed trigger instance.
+* [Changed] `notification/should_send` filter is now executed when the queue is processed, not before the notification is added to the queue.
+* [Added] New queue methods: `remove()` and `clear()`.
 
 = 8.0.8 =
 
