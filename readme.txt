@@ -304,6 +304,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 
+* [Fixed] Merge Tags resolver problem caused by overriding the processed trigger instance.
 * [Added] New queue methods: `remove()` and `clear()`.
 
 = 8.0.8 =
