@@ -112,7 +112,7 @@ class Queue {
 	/**
 	 * Clears the queue entirely
 	 *
-	 * @since [Next]
+	 * @since 8.0.9
 	 * @return void
 	 */
 	public static function clear() {
@@ -122,7 +122,7 @@ class Queue {
 	/**
 	 * Removes an item from the queue
 	 *
-	 * @since [Next]
+	 * @since 8.0.9
 	 * @param int $index Index of an item to remove.
 	 * @return void
 	 */

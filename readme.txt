@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.8
-Stable tag: 8.0.8
+Stable tag: 8.0.9
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -302,7 +302,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
-= [Next] =
+= 8.0.9 =
 
 * [Fixed] Merge Tags resolver problem caused by overriding the processed trigger instance.
 * [Changed] `notification/should_send` filter is now executed when the queue is processed, not before the notification is added to the queue.
