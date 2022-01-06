@@ -35,7 +35,7 @@ class UserLogout extends UserTrigger {
 
 		parent::__construct( 'user/logout', __( 'User logout', 'notification' ) );
 
-		$this->add_action( 'wp_logout', 10, 0 );
+		$this->add_action( 'wp_logout', 10, 1 );
 
 		$this->set_description( __( 'Fires when user log out from WordPress', 'notification' ) );
 
@@ -44,17 +44,20 @@ class UserLogout extends UserTrigger {
 	/**
 	 * Sets trigger's context
 	 *
+	 * @param int $user_id User ID.
 	 * @return void
 	 */
-	public function context() {
+	public function context( $user_id = 0 ) {
+		// Fix for WordPress <5.5 where the param is not available.
+		if ( 0 === $user_id ) {
+			$user_id = get_current_user_id();
+		}
 
-		$this->user_id     = get_current_user_id();
-		$this->user_object = get_userdata( $this->user_id );
-		$this->user_meta   = get_user_meta( $this->user_id );
+		$this->user_object = get_userdata( $user_id );
+		$this->user_meta   = get_user_meta( $user_id );
 
 		$this->user_registered_datetime = strtotime( $this->user_object->user_registered );
 		$this->user_logout_datetime     = time();
-
 	}
 
 	/**
