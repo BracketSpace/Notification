@@ -302,6 +302,10 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+
+* [Changed] Carrier's recipients field is not returned with resolved data if available.
+
 = 8.0.9 =
 
 * [Fixed] Merge Tags resolver problem caused by overriding the processed trigger instance.
