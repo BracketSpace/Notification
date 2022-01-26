@@ -986,21 +986,6 @@ parameters:
 			path: src/Cli/DumpHooks.php
 
 		-
-			message: "#^Call to method get_actions\\(\\) on an unknown class BracketSpace\\\\Notification\\\\Core\\\\Triggerable\\.$#"
-			count: 1
-			path: src/Core/Binder.php
-
-		-
-			message: "#^Parameter \\#1 \\$trigger of class BracketSpace\\\\Notification\\\\Core\\\\Runner constructor expects BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, BracketSpace\\\\Notification\\\\Core\\\\Triggerable given\\.$#"
-			count: 1
-			path: src/Core/Binder.php
-
-		-
-			message: "#^Parameter \\$triggers of method BracketSpace\\\\Notification\\\\Core\\\\Binder\\:\\:bind\\(\\) has invalid typehint type BracketSpace\\\\Notification\\\\Core\\\\Triggerable\\.$#"
-			count: 2
-			path: src/Core/Binder.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Cron\\:\\:register_intervals\\(\\) has parameter \\$intervals with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Core/Cron.php

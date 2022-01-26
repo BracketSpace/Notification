@@ -7,6 +7,8 @@
 
 namespace BracketSpace\Notification\Core;
 
+use BracketSpace\Notification\Interfaces\Triggerable;
+
 /**
  * Binder class
  */
