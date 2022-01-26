@@ -305,6 +305,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 = [Next] =
 
 * [Fixed] User logout trigger. In WordPress 5.5 the context is set properly.
+* [Fixed] Issue with persistent Trigger state if two or more actions assigned to the same trigger were called.
 * [Changed] Carrier's recipients field is now returned with resolved data if available.
 
 = 8.0.9 =

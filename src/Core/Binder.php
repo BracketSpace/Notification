@@ -31,7 +31,7 @@ class Binder {
 			foreach ( $trigger->get_actions() as $action ) {
 				add_action(
 					$action['tag'],
-					[ new Runner( $trigger ), 'run' ],
+					[ new Runner( clone $trigger ), 'run' ],
 					$action['priority'],
 					$action['accepted_args']
 				);
