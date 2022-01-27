@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.8
-Stable tag: 8.0.9
+Stable tag: 8.0.10
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -301,6 +301,13 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 7. Default email disabler
 
 == Changelog ==
+
+= 8.0.10 =
+
+* [Fixed] User logout trigger. In WordPress 5.5 the context is set properly.
+* [Fixed] Issue with persistent Trigger state if two or more actions assigned to the same trigger were called.
+* [Changed] Carrier's recipients field is now returned with resolved data if available.
+* [Added] Post Published privately trigger.
 
 = 8.0.9 =
 

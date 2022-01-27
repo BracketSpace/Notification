@@ -18,7 +18,7 @@ class PostApproved extends PostTrigger {
 	/**
 	 * Post approving user object
 	 *
-	 * @var \WP_User
+	 * @var \WP_User|false
 	 */
 	public $approving_user;
 
@@ -74,8 +74,8 @@ class PostApproved extends PostTrigger {
 
 		$this->{ $this->post_type } = $post;
 
-		$this->author         = get_userdata( $this->{ $this->post_type }->post_author );
-		$this->last_editor    = get_userdata( get_post_meta( $this->{ $this->post_type }->ID, '_edit_last', true ) );
+		$this->author         = get_userdata( (int) $this->{ $this->post_type }->post_author );
+		$this->last_editor    = get_userdata( (int) get_post_meta( $this->{ $this->post_type }->ID, '_edit_last', true ) );
 		$this->approving_user = get_userdata( get_current_user_id() );
 
 		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date_gmt );

@@ -26,14 +26,14 @@ abstract class PostTrigger extends Abstracts\Trigger {
 	/**
 	 * Post author user object
 	 *
-	 * @var \WP_User
+	 * @var \WP_User|false
 	 */
 	public $author;
 
 	/**
 	 * Post last editor user object
 	 *
-	 * @var \WP_User
+	 * @var \WP_User|false
 	 */
 	public $last_editor;
 

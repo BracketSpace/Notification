@@ -57,13 +57,14 @@ class TriggerRepository {
 		if ( $post_types ) {
 			foreach ( $post_types as $post_type ) {
 				Register::trigger( new Trigger\Post\PostAdded( $post_type ) );
+				Register::trigger( new Trigger\Post\PostApproved( $post_type ) );
 				Register::trigger( new Trigger\Post\PostDrafted( $post_type ) );
-				Register::trigger( new Trigger\Post\PostPublished( $post_type ) );
-				Register::trigger( new Trigger\Post\PostUpdated( $post_type ) );
 				Register::trigger( new Trigger\Post\PostPending( $post_type ) );
+				Register::trigger( new Trigger\Post\PostPublished( $post_type ) );
+				Register::trigger( new Trigger\Post\PostPublishedPrivately( $post_type ) );
 				Register::trigger( new Trigger\Post\PostScheduled( $post_type ) );
 				Register::trigger( new Trigger\Post\PostTrashed( $post_type ) );
-				Register::trigger( new Trigger\Post\PostApproved( $post_type ) );
+				Register::trigger( new Trigger\Post\PostUpdated( $post_type ) );
 			}
 		}
 	}

@@ -986,21 +986,6 @@ parameters:
 			path: src/Cli/DumpHooks.php
 
 		-
-			message: "#^Call to method get_actions\\(\\) on an unknown class BracketSpace\\\\Notification\\\\Core\\\\Triggerable\\.$#"
-			count: 1
-			path: src/Core/Binder.php
-
-		-
-			message: "#^Parameter \\#1 \\$trigger of class BracketSpace\\\\Notification\\\\Core\\\\Runner constructor expects BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, BracketSpace\\\\Notification\\\\Core\\\\Triggerable given\\.$#"
-			count: 1
-			path: src/Core/Binder.php
-
-		-
-			message: "#^Parameter \\$triggers of method BracketSpace\\\\Notification\\\\Core\\\\Binder\\:\\:bind\\(\\) has invalid typehint type BracketSpace\\\\Notification\\\\Core\\\\Triggerable\\.$#"
-			count: 2
-			path: src/Core/Binder.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Cron\\:\\:register_intervals\\(\\) has parameter \\$intervals with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Core/Cron.php
@@ -1911,21 +1896,6 @@ parameters:
 			path: src/Defaults/Trigger/Post/PostAdded.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostAdded\\:\\:\\$publishing_user \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostAdded.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$author \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostAdded.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$last_editor \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostAdded.php
-
-		-
 			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostApproved.php
@@ -1951,21 +1921,6 @@ parameters:
 			path: src/Defaults/Trigger/Post/PostApproved.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostApproved\\:\\:\\$approving_user \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostApproved.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$author \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostApproved.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$last_editor \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostApproved.php
-
-		-
 			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostDrafted.php
@@ -1991,21 +1946,6 @@ parameters:
 			path: src/Defaults/Trigger/Post/PostDrafted.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostDrafted\\:\\:\\$publishing_user \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostDrafted.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$author \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostDrafted.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$last_editor \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostDrafted.php
-
-		-
 			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostPending.php
@@ -2027,16 +1967,6 @@ parameters:
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPending.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$author \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPending.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$last_editor \\(WP_User\\) does not accept WP_User\\|false\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostPending.php
 
@@ -2066,21 +1996,6 @@ parameters:
 			path: src/Defaults/Trigger/Post/PostPublished.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostPublished\\:\\:\\$publishing_user \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPublished.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$author \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPublished.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$last_editor \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPublished.php
-
-		-
 			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostScheduled.php
@@ -2106,21 +2021,6 @@ parameters:
 			path: src/Defaults/Trigger/Post/PostScheduled.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostScheduled\\:\\:\\$scheduling_user \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostScheduled.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$author \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostScheduled.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$last_editor \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostScheduled.php
-
-		-
 			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostTrashed.php
@@ -2142,21 +2042,6 @@ parameters:
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostTrashed.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrashed\\:\\:\\$trashing_user \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostTrashed.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$author \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostTrashed.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$last_editor \\(WP_User\\) does not accept WP_User\\|false\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostTrashed.php
 
@@ -2169,21 +2054,6 @@ parameters:
 			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostTrigger.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$author \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostUpdated.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$last_editor \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostUpdated.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostUpdated\\:\\:\\$updating_user \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostUpdated.php
 
 		-
 			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"

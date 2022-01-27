@@ -1,6 +1,6 @@
 <?php
 /**
- * Post published trigger
+ * Post published privately trigger
  *
  * @package notification
  */
@@ -11,16 +11,16 @@ use BracketSpace\Notification\Defaults\MergeTag;
 use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
- * Post published trigger class
+ * Post published privately trigger class
  */
-class PostPublished extends PostTrigger {
+class PostPublishedPrivately extends PostTrigger {
 
 	/**
 	 * Status name of published post
 	 *
 	 * @var string
 	 */
-	protected static $publish_status = 'publish';
+	protected static $publish_status = 'private';
 
 	/**
 	 * Post publishing user object
@@ -37,7 +37,7 @@ class PostPublished extends PostTrigger {
 	public function __construct( $post_type = 'post' ) {
 		parent::__construct( [
 			'post_type' => $post_type,
-			'slug'      => 'post/' . $post_type . '/published',
+			'slug'      => 'post/' . $post_type . '/published-privately',
 		] );
 
 		$this->add_action( 'transition_post_status', 10, 3 );
@@ -50,7 +50,7 @@ class PostPublished extends PostTrigger {
 	 */
 	public function get_name() : string {
 		// translators: singular post name.
-		return sprintf( __( '%s published', 'notification' ), WpObjectHelper::get_post_type_name( $this->post_type ) );
+		return sprintf( __( '%s published privately', 'notification' ), WpObjectHelper::get_post_type_name( $this->post_type ) );
 	}
 
 	/**
@@ -61,7 +61,7 @@ class PostPublished extends PostTrigger {
 	public function get_description() : string {
 		return sprintf(
 			// translators: 1. singular post name, 2. post type slug.
-			__( 'Fires when %1$s (%2$s) is published', 'notification' ),
+			__( 'Fires when %1$s (%2$s) is published privately', 'notification' ),
 			WpObjectHelper::get_post_type_name( $this->post_type ),
 			$this->post_type
 		);
@@ -70,10 +70,10 @@ class PostPublished extends PostTrigger {
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param string $new_status New post status.
-	 * @param string $old_status Old post status.
-	 * @param object $post       Post object.
-	 * @return mixed void or false if no notifications should be sent
+	 * @param string   $new_status New post status.
+	 * @param string   $old_status Old post status.
+	 * @param \WP_Post $post       Post object.
+	 * @return false|void
 	 */
 	public function context( $new_status, $old_status, $post ) {
 
