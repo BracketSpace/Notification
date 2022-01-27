@@ -59,6 +59,7 @@ class TriggerRepository {
 				Register::trigger( new Trigger\Post\PostAdded( $post_type ) );
 				Register::trigger( new Trigger\Post\PostDrafted( $post_type ) );
 				Register::trigger( new Trigger\Post\PostPublished( $post_type ) );
+				Register::trigger( new Trigger\Post\PostPublishedPrivately( $post_type ) );
 				Register::trigger( new Trigger\Post\PostUpdated( $post_type ) );
 				Register::trigger( new Trigger\Post\PostPending( $post_type ) );
 				Register::trigger( new Trigger\Post\PostScheduled( $post_type ) );
