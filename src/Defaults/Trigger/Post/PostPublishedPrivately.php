@@ -25,7 +25,7 @@ class PostPublishedPrivately extends PostTrigger {
 	/**
 	 * Post publishing user object
 	 *
-	 * @var \WP_User
+	 * @var \WP_User|false
 	 */
 	public $publishing_user;
 
@@ -70,10 +70,10 @@ class PostPublishedPrivately extends PostTrigger {
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param string $new_status New post status.
-	 * @param string $old_status Old post status.
-	 * @param object $post       Post object.
-	 * @return mixed void or false if no notifications should be sent
+	 * @param string   $new_status New post status.
+	 * @param string   $old_status Old post status.
+	 * @param \WP_Post $post       Post object.
+	 * @return false|void
 	 */
 	public function context( $new_status, $old_status, $post ) {
 
@@ -87,8 +87,8 @@ class PostPublishedPrivately extends PostTrigger {
 
 		$this->{ $this->post_type } = $post;
 
-		$this->author          = get_userdata( $this->{ $this->post_type }->post_author );
-		$this->last_editor     = get_userdata( get_post_meta( $this->{ $this->post_type }->ID, '_edit_last', true ) );
+		$this->author          = get_userdata( (int) $this->{ $this->post_type }->post_author );
+		$this->last_editor     = get_userdata( (int) get_post_meta( $this->{ $this->post_type }->ID, '_edit_last', true ) );
 		$this->publishing_user = get_userdata( get_current_user_id() );
 
 		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date_gmt );
