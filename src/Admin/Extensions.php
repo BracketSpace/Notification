@@ -135,7 +135,7 @@ class Extensions {
 	 * @return array
 	 */
 	public function get_raw_extensions() {
-		$driver = new CacheDriver\Transient( ErrorHandler::debug_enabled() ? DAY_IN_SECONDS : 1 );
+		$driver = new CacheDriver\Transient( ErrorHandler::debug_enabled() ? 60 : DAY_IN_SECONDS );
 		$cache  = new Cache( $driver, 'notification_extensions' );
 
 		return $cache->collect( function () {

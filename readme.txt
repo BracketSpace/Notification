@@ -302,6 +302,10 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+
+* [Fixed] Improper caching expiration times.
+
 = 8.0.10 =
 
 * [Fixed] User logout trigger. In WordPress 5.5 the context is set properly.
