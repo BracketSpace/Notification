@@ -6,7 +6,7 @@
 	"require": {
 		"php": "^7.0",
 		"composer-runtime-api": "^2.0",
-		"enshrined/svg-sanitize": "^0.14.1",
+		"enshrined/svg-sanitize": "^0.15.0",
 		"micropackage/ajax": "^1.0",
 		"micropackage/cache": "^1.0",
 		"micropackage/dochooks": "1.0.2",
