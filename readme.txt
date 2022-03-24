@@ -305,6 +305,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 = [Next] =
 
 * [Fixed] Improper caching expiration times.
+* [Added] Trigger `resume()` method to reset the stopped state.
 
 = 8.0.10 =
 

@@ -261,6 +261,16 @@ abstract class Trigger implements Triggerable {
 	}
 
 	/**
+	 * Resumes the trigger.
+	 *
+	 * @since 6.2.0
+	 * @return void
+	 */
+	public function resume() {
+		$this->stopped = false;
+	}
+
+	/**
 	 * Checks if trigger has been stopped
 	 *
 	 * @return boolean
