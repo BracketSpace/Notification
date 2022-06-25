@@ -32,7 +32,7 @@ trait Webhook {
 	 * @param  string $method  HTTP request method.
 	 * @return void
 	 */
-	public function http_request( $url, $args = [], $headers = [], $method ) {
+	public function http_request( $url, $args = [], $headers = [], $method = 'GET' ) {
 		$remote_args = apply_filters(
 			"notification/carrier/webhook/remote_args/{$method}",
 			[
