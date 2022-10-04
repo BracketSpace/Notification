@@ -137,7 +137,7 @@ class Processor {
 	 */
 	public static function handle_cron( $notification_json, $trigger_key ) {
 		$notification = notification_adapt_from( 'JSON', $notification_json )->get_notification();
-		$trigger      = self::get_cache( $trigger_key )->get( $trigger );
+		$trigger      = self::get_cache( $trigger_key )->get();
 
 		if ( ! $trigger instanceof Triggerable ) {
 			ErrorHandler::error(
