@@ -309,6 +309,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Fixed] PHP 8.0 and 8.1 compatibility.
 * [Fixed] Improper caching expiration times.
 * [Fixed] Trigger keeping state between subsequent action runs.
+* [Fixed] Password reset trigger is not processed on user registration anymore.
 * [Added] Trigger `resume()` method to reset the stopped state.
 
 = 8.0.10 =
