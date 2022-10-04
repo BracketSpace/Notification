@@ -304,8 +304,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 
-* [Changed] Add php_xml to required php extensions
-* [Fixed] PHP 8.0 and 8.1 compatibility
+* [Changed] Add php_xml to required php extensions.
+* [Changed] Background processing cache is being stored in transient instead of an option.
+* [Fixed] PHP 8.0 and 8.1 compatibility.
 * [Fixed] Improper caching expiration times.
 * [Fixed] Trigger keeping state between subsequent action runs.
 * [Added] Trigger `resume()` method to reset the stopped state.
