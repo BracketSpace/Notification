@@ -9,6 +9,8 @@
 namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver\Transient;
 use BracketSpace\Notification\ErrorHandler;
 use BracketSpace\Notification\Interfaces\Sendable;
 use BracketSpace\Notification\Interfaces\Triggerable;
@@ -78,10 +80,10 @@ class Processor {
 			)
 		);
 
-		// Cache the trigger params in options.
-		update_option( self::get_trigger_cache_option_key( $trigger_key ), $trigger );
+		// Cache trigger params.
+		self::get_cache( $trigger_key )->set( $trigger );
 
-		wp_schedule_single_event(
+		$result = wp_schedule_single_event(
 			time() + apply_filters( 'notification/background_processing/delay', 30 ),
 			'notification_background_processing',
 			[
@@ -89,6 +91,7 @@ class Processor {
 				$trigger_key,
 			]
 		);
+
 	}
 
 	/**
@@ -134,7 +137,7 @@ class Processor {
 	 */
 	public static function handle_cron( $notification_json, $trigger_key ) {
 		$notification = notification_adapt_from( 'JSON', $notification_json )->get_notification();
-		$trigger      = get_option( self::get_trigger_cache_option_key( $trigger_key ) );
+		$trigger      = self::get_cache( $trigger_key )->get();
 
 		if ( ! $trigger instanceof Triggerable ) {
 			ErrorHandler::error(
@@ -146,7 +149,7 @@ class Processor {
 			return;
 		}
 
-		delete_option( self::get_trigger_cache_option_key( $trigger_key ) );
+		self::get_cache( $trigger_key )->delete();
 
 		self::process_notification( $notification, $trigger );
 	}
@@ -165,14 +168,17 @@ class Processor {
 	}
 
 	/**
-	 * Sends the Carrier in context of Trigger
+	 * Gets cache instance
 	 *
-	 * @since  8.0.0
+	 * @since  8.0.11
 	 * @param  string $trigger_key Trigger key.
-	 * @return string
+	 * @return Cache
 	 */
-	private static function get_trigger_cache_option_key( string $trigger_key ) : string {
-		return sprintf( '%s', $trigger_key );
+	public static function get_cache( $trigger_key ) {
+		return new Cache(
+			new Transient( 3 * DAY_IN_SECONDS ),
+			$trigger_key
+		);
 	}
 
 }

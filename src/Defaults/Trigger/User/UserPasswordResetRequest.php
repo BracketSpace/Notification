@@ -56,7 +56,7 @@ class UserPasswordResetRequest extends UserTrigger {
 		 * Use the filter to integrate with 3rd party code.
 		 */
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if ( ( isset( $_GET['action'] ) && 'register' === $_GET['action'] ) ||
+		if ( ( isset( $_REQUEST['action'] ) && 'register' === $_REQUEST['action'] ) ||
 			apply_filters( 'notification/trigger/wordpress/user_password_reset_request/bail_for_registration', false, $user ) ) {
 			return false;
 		}

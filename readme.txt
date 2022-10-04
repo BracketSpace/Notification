@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.8
-Stable tag: 8.0.10
+Stable tag: 8.0.11
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -301,6 +301,16 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 7. Default email disabler
 
 == Changelog ==
+
+= 8.0.11 =
+
+* [Changed] Add php_xml to required php extensions.
+* [Changed] Background processing cache is being stored in transient instead of an option.
+* [Fixed] PHP 8.0 and 8.1 compatibility.
+* [Fixed] Improper caching expiration times.
+* [Fixed] Trigger keeping state between subsequent action runs.
+* [Fixed] Password reset trigger is not processed on user registration anymore.
+* [Added] Trigger `resume()` method to reset the stopped state.
 
 = 8.0.10 =
 
