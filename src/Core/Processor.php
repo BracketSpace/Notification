@@ -170,7 +170,7 @@ class Processor {
 	/**
 	 * Gets cache instance
 	 *
-	 * @since  [Next]
+	 * @since  8.0.11
 	 * @param  string $trigger_key Trigger key.
 	 * @return Cache
 	 */
