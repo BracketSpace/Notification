@@ -34,9 +34,7 @@ class Avatar extends HtmlTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
-			$this->property_name = $params['property_name'];
-		}
+		$this->set_property_name($params, 'property_name', 'user_object');
 
 		$args = wp_parse_args(
 			$params,

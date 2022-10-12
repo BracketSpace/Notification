@@ -18,15 +18,24 @@ use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
 class TermPermalink extends UrlTag {
 
 	/**
+	 * Property name
+	 *
+	 * @var string
+	 */
+	protected $property_name;
+
+	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
+	 * @since 5.2.2
 	 */
-	public function __construct() {
+	public function __construct( $params = [] ) {
+
+		$this->set_property_name($params, 'property_name', 'term');
 
 		$args = wp_parse_args(
 			[
-				'slug'        => 'term_link',
+				'slug'        => sprintf('%s_link', $this->property_name),
 				'name'        => __( 'Term link', 'notification' ),
 				'description' => 'http://example.com/category/nature',
 				'example'     => true,

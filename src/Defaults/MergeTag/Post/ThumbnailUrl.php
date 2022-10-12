@@ -33,11 +33,7 @@ class ThumbnailUrl extends UrlTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		if ( isset( $params['post_type'] ) ) {
-			$this->post_type = $params['post_type'];
-		} else {
-			$this->post_type = 'post';
-		}
+		$this->set_property_name($params, 'post_type', 'post');
 
 		$post_type_name = WpObjectHelper::get_post_type_name( $this->post_type );
 

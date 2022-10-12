@@ -41,11 +41,7 @@ class CommentType extends StringTag {
 			$this->comment_type = $params['comment_type'];
 		}
 
-		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
-			$this->property_name = $params['property_name'];
-		} else {
-			$this->property_name = $this->comment_type;
-		}
+		$this->set_property_name($params, 'property_name', $this->comment_type);
 
 		$args = wp_parse_args(
 			$params,

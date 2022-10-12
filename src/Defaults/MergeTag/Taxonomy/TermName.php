@@ -18,21 +18,30 @@ use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 class TermName extends StringTag {
 
 	/**
+	 * Property name
+	 *
+	 * @var string
+	 */
+	protected $property_name;
+
+	/**
 	 * Merge tag constructor
 	 *
 	 * @since 5.2.2
 	 */
-	public function __construct() {
+	public function __construct( $params = [] ) {
+
+		$this->set_property_name($params, 'property_name', 'term');
 
 		$args = wp_parse_args(
 			[
-				'slug'        => 'term_name',
+				'slug'        => sprintf('%s_name', $this->property_name),
 				'name'        => __( 'Term name', 'notification' ),
 				'description' => 'Nature',
 				'example'     => true,
 				'group'       => __( 'Term', 'notification' ),
 				'resolver'    => function ( $trigger ) {
-					return $trigger->term->name;
+					return $trigger->{ $this->property_name }->name;
 				},
 			]
 		);
