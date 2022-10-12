@@ -217,10 +217,9 @@ abstract class MergeTag implements Interfaces\Taggable {
 	 *
 	 * @since 8.0.11
 	 *
-	 * @param array $params merge tag configuration params.
+	 * @param array  $params merge tag configuration params.
 	 * @param string $property_name merge tag property name.
 	 * @param string $fallback merge tag fallback property name.
-	 *
 	 */
 	public function set_property_name( array $params, string $property_name, string $fallback ) {
 
