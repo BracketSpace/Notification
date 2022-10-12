@@ -302,6 +302,10 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+[Next]
+* [Changed] Logic of assigning property name is moved to Abstract Merge Tag Class
+* [Added] Property names to Term Merge Tags
+
 = 8.0.11 =
 
 * [Changed] Add php_xml to required php extensions.
