@@ -41,7 +41,7 @@ class CommentContentHtml extends HtmlTag {
 			$this->comment_type = $params['comment_type'];
 		}
 
-		$this->set_property_name($params, 'property_name', $this->comment_type);
+		$this->set_property_name( $params, 'property_name', $this->comment_type );
 
 		$comment_type_name = WpObjectHelper::get_comment_type_name( $this->comment_type );
 

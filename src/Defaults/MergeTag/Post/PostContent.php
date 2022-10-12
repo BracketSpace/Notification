@@ -33,7 +33,7 @@ class PostContent extends StringTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		$this->set_property_name($params, 'post_type', 'post');
+		$this->set_property_name( $params, 'post_type', 'post' );
 
 		$post_type_name = WpObjectHelper::get_post_type_name( $this->post_type );
 

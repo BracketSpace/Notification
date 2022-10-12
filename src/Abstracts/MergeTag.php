@@ -212,10 +212,10 @@ abstract class MergeTag implements Interfaces\Taggable {
 
 	}
 
-	public function set_property_name($params, $property_name, $fallback) {
+	public function set_property_name( $params, $property_name, $fallback ) {
 
-		if ( isset( $params[$property_name] ) && ! empty( $params[$property_name] ) ) {
-			$this->{$property_name} = $params[$property_name];
+		if ( isset( $params[ $property_name ] ) && ! empty( $params[ $property_name ] ) ) {
+			$this->{$property_name} = $params[ $property_name ];
 		} else {
 			$this->{$property_name} = $fallback;
 		}

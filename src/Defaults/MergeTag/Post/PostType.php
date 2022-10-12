@@ -33,7 +33,7 @@ class PostType extends StringTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		$this->set_property_name($params, 'post_type', 'post');
+		$this->set_property_name( $params, 'post_type', 'post' );
 
 		$args = wp_parse_args(
 			$params,

@@ -33,7 +33,7 @@ class UserBio extends StringTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		$this->set_property_name($params, 'property_name', 'user_object');
+		$this->set_property_name( $params, 'property_name', 'user_object' );
 
 		$args = wp_parse_args(
 			$params,

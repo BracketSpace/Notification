@@ -40,7 +40,7 @@ class PostTerms extends StringTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		$this->set_property_name($params, 'post_type', 'post');
+		$this->set_property_name( $params, 'post_type', 'post' );
 
 		if ( isset( $params['taxonomy'] ) ) {
 			$this->taxonomy = is_string( $params['taxonomy'] ) ? get_taxonomy( $params['taxonomy'] ) : $params['taxonomy'];

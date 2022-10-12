@@ -31,11 +31,11 @@ class TermDescription extends StringTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		$this->set_property_name($params, 'property_name', 'term');
+		$this->set_property_name( $params, 'property_name', 'term' );
 
 		$args = wp_parse_args(
 			[
-				'slug'        => sprintf('%s_description', $this->property_name),
+				'slug'        => sprintf( '%s_description', $this->property_name ),
 				'name'        => __( 'Term description', 'notification' ),
 				'description' => 'Lorem ipsum sit dolor amet',
 				'example'     => true,

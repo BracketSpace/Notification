@@ -32,7 +32,7 @@ class TaxonomyName extends StringTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		$this->set_property_name($params, 'taxonomy', 'taxonomy');
+		$this->set_property_name( $params, 'taxonomy', 'taxonomy' );
 
 		$args = wp_parse_args(
 			$params,
