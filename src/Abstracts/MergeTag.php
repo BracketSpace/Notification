@@ -222,19 +222,23 @@ abstract class MergeTag implements Interfaces\Taggable {
 	/**
 	 * Sets resolver function
 	 *
-	 * @since 8.0.11
+	 * @since [Next]
 	 *
-	 * @param array  $params merge tag configuration params.
-	 * @param string $property_name merge tag property name.
-	 * @param string $fallback merge tag fallback property name.
+	 * @param string $trigger_property_name merge tag trigger property name.
 	 */
-	public function set_property_name( array $params, string $property_name, string $fallback ) {
+	public function set_trigger_prop( string $trigger_property_name ) {
+		$this->trigger_property_name = $trigger_property_name;
+	}
 
-		if ( isset( $params[ $property_name ] ) && ! empty( $params[ $property_name ] ) ) {
-			$this->{$property_name} = $params[ $property_name ];
-		} else {
-			$this->{$property_name} = $fallback;
-		}
+	/**
+	 * Get trigger property
+	 *
+	 * @since [Next]
+	 *
+	 * @return string
+	 */
+	public function get_trigger_prop(): string {
+		return $this->trigger_property_name;
 	}
 
 	/**
