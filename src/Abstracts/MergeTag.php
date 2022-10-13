@@ -225,6 +225,8 @@ abstract class MergeTag implements Interfaces\Taggable {
 	 * @since [Next]
 	 *
 	 * @param string $trigger_property_name merge tag trigger property name.
+	 *
+	 * @return void
 	 */
 	public function set_trigger_prop( string $trigger_property_name ) {
 		$this->trigger_property_name = $trigger_property_name;
