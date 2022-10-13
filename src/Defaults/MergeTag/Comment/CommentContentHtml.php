@@ -23,13 +23,6 @@ class CommentContentHtml extends HtmlTag {
 	protected $comment_type = 'comment';
 
 	/**
-	 * Trigger property name to get the comment data from
-	 *
-	 * @var string
-	 */
-	protected $property_name = '';
-
-	/**
 	 * Merge tag constructor
 	 *
 	 * @since 5.0.0
@@ -41,7 +34,7 @@ class CommentContentHtml extends HtmlTag {
 			$this->comment_type = $params['comment_type'];
 		}
 
-		$this->set_property_name( $params, 'property_name', $this->comment_type );
+		$this->set_trigger_prop( $params['property_name'] ?? $this->comment_type );
 
 		$comment_type_name = WpObjectHelper::get_comment_type_name( $this->comment_type );
 
@@ -55,7 +48,7 @@ class CommentContentHtml extends HtmlTag {
 				'example'     => true,
 				'group'       => $comment_type_name,
 				'resolver'    => function ( $trigger ) {
-					return $trigger->{ $this->property_name }->comment_content;
+					return $trigger->{ $this->get_trigger_prop() }->comment_content;
 				},
 			]
 		);

@@ -23,13 +23,6 @@ class CommentStatus extends StringTag {
 	protected $comment_type = 'comment';
 
 	/**
-	 * Trigger property name to get the comment data from
-	 *
-	 * @var string
-	 */
-	protected $property_name = '';
-
-	/**
 	 * Merge tag constructor
 	 *
 	 * @since 5.0.0
@@ -41,7 +34,7 @@ class CommentStatus extends StringTag {
 			$this->comment_type = $params['comment_type'];
 		}
 
-		$this->set_property_name( $params, 'property_name', $this->comment_type );
+		$this->set_trigger_prop( $params['property_name'] ?? $this->comment_type );
 
 		$comment_type_name = WpObjectHelper::get_comment_type_name( $this->comment_type );
 
@@ -55,13 +48,13 @@ class CommentStatus extends StringTag {
 				'example'     => true,
 				'group'       => $comment_type_name,
 				'resolver'    => function ( $trigger ) {
-					if ( '1' === $trigger->{ $this->property_name }->comment_approved ) {
+					if ( '1' === $trigger->{ $this->get_trigger_prop() }->comment_approved ) {
 						return __( 'Approved', 'notification' );
-					} elseif ( '0' === $trigger->{ $this->property_name }->comment_approved ) {
+					} elseif ( '0' === $trigger->{ $this->get_trigger_prop() }->comment_approved ) {
 						return __( 'Unapproved', 'notification' );
-					} elseif ( 'spam' === $trigger->{ $this->property_name }->comment_approved ) {
+					} elseif ( 'spam' === $trigger->{ $this->get_trigger_prop() }->comment_approved ) {
 						return __( 'Marked as spam', 'notification' );
-					} elseif ( 'trash' === $trigger->{ $this->property_name }->comment_approved ) {
+					} elseif ( 'trash' === $trigger->{ $this->get_trigger_prop() }->comment_approved ) {
 						return __( 'Trashed', 'notification' );
 					}
 				},

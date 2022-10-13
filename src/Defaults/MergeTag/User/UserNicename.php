@@ -17,14 +17,6 @@ use BracketSpace\Notification\Defaults\MergeTag\StringTag;
  * User nicename merge tag class
  */
 class UserNicename extends StringTag {
-
-	/**
-	 * Trigger property to get the user data from
-	 *
-	 * @var string
-	 */
-	protected $property_name = 'user_object';
-
 	/**
 	 * Merge tag constructor
 	 *
@@ -33,7 +25,7 @@ class UserNicename extends StringTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		$this->set_property_name( $params, 'property_name', 'user_object' );
+		$this->set_trigger_prop( $params['property_name'] ?? 'user_object' );
 
 		$args = wp_parse_args(
 			$params,
@@ -44,7 +36,7 @@ class UserNicename extends StringTag {
 				'example'     => true,
 				'group'       => __( 'User', 'notification' ),
 				'resolver'    => function ( $trigger ) {
-					return $trigger->{ $this->property_name }->user_nicename;
+					return $trigger->{ $this->get_trigger_prop() }->user_nicename;
 				},
 			]
 		);

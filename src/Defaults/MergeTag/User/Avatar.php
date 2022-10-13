@@ -18,14 +18,6 @@ use BracketSpace\Notification\Defaults\MergeTag\HtmlTag;
  * Avatar merge tag class
  */
 class Avatar extends HtmlTag {
-
-	/**
-	 * Trigger property to get the user data from
-	 *
-	 * @var string
-	 */
-	protected $property_name = 'user_object';
-
 	/**
 	 * Merge tag constructor
 	 *
@@ -34,7 +26,7 @@ class Avatar extends HtmlTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		$this->set_property_name( $params, 'property_name', 'user_object' );
+		$this->set_trigger_prop( $params['property_name'] ?? 'user_object' );
 
 		$args = wp_parse_args(
 			$params,
@@ -45,8 +37,8 @@ class Avatar extends HtmlTag {
 				'example'     => true,
 				'group'       => __( 'User', 'notification' ),
 				'resolver'    => function ( $trigger ) {
-					if ( isset( $trigger->{ $this->property_name }->user_email ) ) {
-						return get_avatar( $trigger->{ $this->property_name }->user_email );
+					if ( isset( $trigger->{ $this->get_trigger_prop() }->user_email ) ) {
+						return get_avatar( $trigger->{ $this->get_trigger_prop() }->user_email );
 					}
 
 					return '';

@@ -16,14 +16,6 @@ use BracketSpace\Notification\Defaults\MergeTag\IntegerTag;
  * Taxonomy term ID merge tag class
  */
 class TermID extends IntegerTag {
-
-	/**
-	 * Property name
-	 *
-	 * @var string
-	 */
-	protected $property_name;
-
 	/**
 	 * Merge tag constructor
 	 *
@@ -32,17 +24,17 @@ class TermID extends IntegerTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		$this->set_property_name( $params, 'property_name', 'term' );
+		$this->set_trigger_prop( $params['property_name'] ?? 'term' );
 
 		$args = wp_parse_args(
 			[
-				'slug'        => sprintf( '%s_ID', $this->property_name ),
+				'slug'        => sprintf( '%s_ID', $this->get_trigger_prop() ),
 				'name'        => __( 'Term ID', 'notification' ),
 				'description' => '35',
 				'example'     => true,
 				'group'       => __( 'Term', 'notification' ),
 				'resolver'    => function ( $trigger ) {
-					return $trigger->{ $this->property_name }->term_id;
+					return $trigger->{ $this->get_trigger_prop() }->term_id;
 				},
 			]
 		);

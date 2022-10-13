@@ -14,14 +14,6 @@ use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
  * Attachment direct URL merge tag class
  */
 class AttachmentDirectUrl extends UrlTag {
-
-	/**
-	 * Trigger property to get the attachment data from
-	 *
-	 * @var string
-	 */
-	protected $property_name = 'attachment';
-
 	/**
 	 * Merge tag constructor
 	 *
@@ -30,7 +22,7 @@ class AttachmentDirectUrl extends UrlTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		$this->set_property_name( $params, 'property_name', 'attachment' );
+		$this->set_trigger_prop( $params['property_name'] ?? 'attachment' );
 
 		$args = wp_parse_args(
 			$params,
@@ -41,7 +33,7 @@ class AttachmentDirectUrl extends UrlTag {
 				'example'     => true,
 				'group'       => __( 'Attachment', 'notification' ),
 				'resolver'    => function () {
-					return wp_get_attachment_url( $this->trigger->{ $this->property_name }->ID );
+					return wp_get_attachment_url( $this->trigger->{ $this->get_trigger_prop() }->ID );
 				},
 			]
 		);

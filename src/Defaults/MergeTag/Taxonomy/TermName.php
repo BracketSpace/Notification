@@ -16,14 +16,6 @@ use BracketSpace\Notification\Defaults\MergeTag\StringTag;
  * Taxonomy term name merge tag class
  */
 class TermName extends StringTag {
-
-	/**
-	 * Property name
-	 *
-	 * @var string
-	 */
-	protected $property_name;
-
 	/**
 	 * Merge tag constructor
 	 *
@@ -32,17 +24,17 @@ class TermName extends StringTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		$this->set_property_name( $params, 'property_name', 'term' );
+		$this->set_trigger_prop( $params['property_name'] ?? 'term' );
 
 		$args = wp_parse_args(
 			[
-				'slug'        => sprintf( '%s_name', $this->property_name ),
+				'slug'        => sprintf( '%s_name', $this->get_trigger_prop() ),
 				'name'        => __( 'Term name', 'notification' ),
 				'description' => 'Nature',
 				'example'     => true,
 				'group'       => __( 'Term', 'notification' ),
 				'resolver'    => function ( $trigger ) {
-					return $trigger->{ $this->property_name }->name;
+					return $trigger->{ $this->get_trigger_prop() }->name;
 				},
 			]
 		);

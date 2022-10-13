@@ -14,14 +14,6 @@ use BracketSpace\Notification\Defaults\MergeTag\IntegerTag;
  * Attachment ID merge tag class
  */
 class AttachmentID extends IntegerTag {
-
-	/**
-	 * Trigger property to get the attachment data from
-	 *
-	 * @var string
-	 */
-	protected $property_name = 'attachment';
-
 	/**
 	 * Merge tag constructor
 	 *
@@ -30,7 +22,7 @@ class AttachmentID extends IntegerTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		$this->set_property_name( $params, 'property_name', 'attachment' );
+		$this->set_trigger_prop( $params['property_name'] ?? 'attachment' );
 
 		$args = wp_parse_args(
 			$params,
@@ -41,7 +33,7 @@ class AttachmentID extends IntegerTag {
 				'example'     => true,
 				'group'       => __( 'Attachment', 'notification' ),
 				'resolver'    => function ( $trigger ) {
-					return $trigger->{ $this->property_name }->ID;
+					return $trigger->{ $this->get_trigger_prop() }->ID;
 				},
 			]
 		);

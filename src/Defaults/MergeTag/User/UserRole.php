@@ -17,14 +17,6 @@ use BracketSpace\Notification\Defaults\MergeTag\StringTag;
  * User role merge tag class
  */
 class UserRole extends StringTag {
-
-	/**
-	 * Trigger property to get the user data from
-	 *
-	 * @var string
-	 */
-	protected $property_name = 'user_object';
-
 	/**
 	 * Merge tag constructor
 	 *
@@ -33,7 +25,7 @@ class UserRole extends StringTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		$this->set_property_name( $params, 'property_name', 'user_object' );
+		$this->set_trigger_prop( $params['property_name'] ?? 'user_object' );
 
 		$args = wp_parse_args(
 			$params,
@@ -49,7 +41,7 @@ class UserRole extends StringTag {
 							$role_object = get_role( $role );
 							return translate_user_role( ucfirst( $role_object->name ) );
 						},
-						$this->trigger->{ $this->property_name }->roles
+						$this->trigger->{ $this->get_trigger_prop() }->roles
 					);
 
 					return implode( ', ', $roles );
