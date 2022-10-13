@@ -67,6 +67,13 @@ abstract class MergeTag implements Interfaces\Taggable {
 	protected $hidden = false;
 
 	/**
+	 * Trigger property name to get the comment data from
+	 *
+	 * @var string
+	 */
+	private $trigger_property_name;
+
+	/**
 	 * Merge tag constructor
 	 *
 	 * @since 5.0.0
