@@ -302,7 +302,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
-[Next]
+= [Next] =
 * [Added] 6h cache expire to the user queries
 
 = 8.0.11 =
