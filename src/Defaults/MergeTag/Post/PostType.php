@@ -36,7 +36,7 @@ class PostType extends StringTag {
 				'example'     => true,
 				'group'       => WpObjectHelper::get_post_type_name( $this->get_trigger_prop() ),
 				'resolver'    => function ( $trigger ) {
-					return $trigger->{ $this->get_trigger_prop() };
+					return $trigger->post_type;
 				},
 			]
 		);
