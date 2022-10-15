@@ -55,7 +55,7 @@ class Email extends Abstracts\Recipient {
 		$value = apply_filters( 'notification/recipient/email/' . $filter_id, $value );
 
 		$parsed_emails = [];
-		$emails        = is_array( $value ) ? $value : explode( ',', $value );
+		$emails        = is_array( $value ) ? $value : preg_split( '/[;|,]/', $value );
 
 		foreach ( $emails as $email ) {
 			$parsed_emails[] = sanitize_email( $email );
