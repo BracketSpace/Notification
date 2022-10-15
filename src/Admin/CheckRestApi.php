@@ -1,4 +1,9 @@
 <?php
+/**
+ * CheckRestApi class
+ *
+ * @package notification
+ */
 
 namespace BracketSpace\Notification\Admin;
 
@@ -21,7 +26,7 @@ class CheckRestApi {
 		$is_available = false;
 
 		if ( array_key_exists( 'data', $message ) ) {
-			$is_available = $message['data'] === 'RestApi';
+			$is_available = 'RestApi' === $message['data'];
 		}
 
 		if ( ! $is_available ) {

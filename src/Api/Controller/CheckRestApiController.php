@@ -1,4 +1,9 @@
 <?php
+/**
+ * REST api check controller class
+ *
+ * @package notification
+ */
 
 namespace BracketSpace\Notification\Api\Controller;
 
