@@ -21,7 +21,7 @@ class UserQueries {
 	 * @return array<int,array{ID: string, user_email: string, display_name: string}>
 	 */
 	public static function all() {
-		$driver = new CacheDriver\ObjectCache( 'notification' );
+		$driver = new CacheDriver\ObjectCache( 'notification', 6 * HOUR_IN_SECONDS );
 		$cache  = new Cache( $driver, 'users' );
 
 		return $cache->collect( function () {
@@ -40,7 +40,7 @@ class UserQueries {
 	 * @return array<int,array{ID: string, user_email: string, display_name: string}>
 	 */
 	public static function with_role( string $role ) {
-		$driver = new CacheDriver\ObjectCache( 'notification' );
+		$driver = new CacheDriver\ObjectCache( 'notification', 6 * HOUR_IN_SECONDS );
 		$cache  = new Cache( $driver, sprintf( '%s_users', $role ) );
 
 		return $cache->collect( function () use ( $role ) {
