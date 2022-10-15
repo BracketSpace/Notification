@@ -302,6 +302,10 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+
+* [Added] Endpoint to check whether the REST api is enabled
+
 = 8.0.11 =
 
 * [Changed] Add php_xml to required php extensions.
