@@ -11,8 +11,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
 
 /**
  * REST api check controller class
- *
- * @action
  */
 class CheckRestApiController {
 

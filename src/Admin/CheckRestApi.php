@@ -15,6 +15,8 @@ use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\HookTrait;
 class CheckRestApi {
 
 	/**
+	 * Method sends request to API, based on response checks whether REST API works correctly
+	 *
 	 * @since [Next]
 	 * @action admin_notices
 	 * @return void

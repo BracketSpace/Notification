@@ -65,6 +65,7 @@ class Api {
 				},
 			],
 		];
+
 		$this->routes[] = [
 			'path' => 'check',
 			'args' => [
