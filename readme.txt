@@ -308,6 +308,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Added] Property names to Term Merge Tags
 * [Added] 6h cache expire to the user queries
 * [Added] Email / Merge tag recipient now can also be separated with semicolon
+* [Added] Endpoint to check whether the REST api is enabled
 
 = 8.0.11 =
 

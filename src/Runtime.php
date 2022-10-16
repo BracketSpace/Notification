@@ -204,6 +204,7 @@ class Runtime {
 		$this->add_component( 'core_binder', new Core\Binder() );
 		$this->add_component( 'core_processor', new Core\Processor() );
 
+		$this->add_component( 'test_rest_api', new Admin\CheckRestApi() );
 		$this->add_component( 'admin_impexp', new Admin\ImportExport() );
 		$this->add_component( 'admin_settings', new Admin\Settings() );
 		$this->add_component( 'admin_duplicator', new Admin\NotificationDuplicator() );
