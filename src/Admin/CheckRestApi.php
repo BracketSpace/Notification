@@ -31,7 +31,7 @@ class CheckRestApi {
 
 		if ( ! $is_available ) {
 			$class = 'notice notice-error';
-			printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), 'For correct Notification plugin operations it is required to enable REST API' );
+			printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), 'The Notification plugin requires enabled REST API endpoint: notification/v1/. Please ensure your WP REST API works correctly.' );
 		}
 	}
 
