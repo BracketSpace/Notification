@@ -17,14 +17,6 @@ use BracketSpace\Notification\Defaults\MergeTag\StringTag;
  * User Bio merge tag class
  */
 class UserBio extends StringTag {
-
-	/**
-	 * Trigger property to get the user data from
-	 *
-	 * @var string
-	 */
-	protected $property_name = 'user_object';
-
 	/**
 	 * Merge tag constructor
 	 *
@@ -33,9 +25,7 @@ class UserBio extends StringTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
-			$this->property_name = $params['property_name'];
-		}
+		$this->set_trigger_prop( $params['property_name'] ?? 'user_object' );
 
 		$args = wp_parse_args(
 			$params,
@@ -46,7 +36,7 @@ class UserBio extends StringTag {
 				'example'     => true,
 				'group'       => __( 'User', 'notification' ),
 				'resolver'    => function ( $trigger ) {
-					return $trigger->{ $this->property_name }->description;
+					return $trigger->{ $this->get_trigger_prop() }->description;
 				},
 			]
 		);

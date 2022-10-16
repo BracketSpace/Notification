@@ -16,14 +16,6 @@ use BracketSpace\Notification\Defaults\MergeTag\StringTag;
  * Taxonomy name merge tag class
  */
 class TaxonomyName extends StringTag {
-
-	/**
-	 * Taxonomy slug
-	 *
-	 * @var string
-	 */
-	protected $taxonomy;
-
 	/**
 	 * Merge tag constructor
 	 *
@@ -32,22 +24,18 @@ class TaxonomyName extends StringTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		if ( isset( $params['taxonomy'] ) ) {
-			$this->taxonomy = $params['taxonomy'];
-		} else {
-			$this->taxonomy = 'category';
-		}
+		$this->set_trigger_prop( $params['taxonomy'] ?? 'taxonomy' );
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => sprintf( '%s_name', $this->taxonomy ),
+				'slug'        => sprintf( '%s_name', $this->get_trigger_prop() ),
 				'name'        => __( 'Taxonomy name', 'notification' ),
 				'description' => __( 'Hello World', 'notification' ),
 				'example'     => true,
 				'group'       => __( 'Taxonomy', 'notification' ),
 				'resolver'    => function ( $trigger ) {
-					return $trigger->taxonomy->labels->singular_name ?? '';
+					return $trigger->{ $this->get_trigger_prop() }->labels->singular_name ?? '';
 				},
 			]
 		);

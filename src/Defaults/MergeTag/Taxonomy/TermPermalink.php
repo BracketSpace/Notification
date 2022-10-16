@@ -16,17 +16,19 @@ use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
  * Taxonomy term permalink merge tag class
  */
 class TermPermalink extends UrlTag {
-
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
+	 * @since 5.2.2
+	 * @param array<mixed> $params merge tag configuration params.
 	 */
-	public function __construct() {
+	public function __construct( $params = [] ) {
+
+		$this->set_trigger_prop( $params['property_name'] ?? 'term' );
 
 		$args = wp_parse_args(
 			[
-				'slug'        => 'term_link',
+				'slug'        => sprintf( '%s_link', $this->get_trigger_prop() ),
 				'name'        => __( 'Term link', 'notification' ),
 				'description' => 'http://example.com/category/nature',
 				'example'     => true,

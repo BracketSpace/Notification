@@ -26,13 +26,6 @@ class UserPasswordResetLink extends StringTag {
 	protected $key_property_name = 'password_reset_key';
 
 	/**
-	 * Trigger property to get the user data from
-	 *
-	 * @var string
-	 */
-	protected $user_property_name = 'user_object';
-
-	/**
 	 * Merge tag constructor
 	 *
 	 * @since 5.2.2
@@ -44,9 +37,7 @@ class UserPasswordResetLink extends StringTag {
 			$this->key_property_name = $params['key_property_name'];
 		}
 
-		if ( isset( $params['user_property_name'] ) && ! empty( $params['user_property_name'] ) ) {
-			$this->user_property_name = $params['user_property_name'];
-		}
+		$this->set_trigger_prop( $params['user_property_name'] ?? 'user_object' );
 
 		$args = wp_parse_args(
 			[
@@ -60,7 +51,7 @@ class UserPasswordResetLink extends StringTag {
 						sprintf(
 							'wp-login.php?action=rp&key=%s&login=%s',
 							$trigger->{ $this->key_property_name },
-							$trigger->{ $this->user_property_name }->data->user_login
+							$trigger->{ $this->get_trigger_prop() }->data->user_login
 						)
 					);
 				},
