@@ -67,6 +67,13 @@ abstract class MergeTag implements Interfaces\Taggable {
 	protected $hidden = false;
 
 	/**
+	 * Trigger property name to get the comment data from
+	 *
+	 * @var string
+	 */
+	private $trigger_property_name;
+
+	/**
 	 * Merge tag constructor
 	 *
 	 * @since 5.0.0
@@ -210,6 +217,30 @@ abstract class MergeTag implements Interfaces\Taggable {
 
 		$this->resolver = $resolver;
 
+	}
+
+	/**
+	 * Sets resolver function
+	 *
+	 * @since [Next]
+	 *
+	 * @param string $trigger_property_name merge tag trigger property name.
+	 *
+	 * @return void
+	 */
+	public function set_trigger_prop( string $trigger_property_name ) {
+		$this->trigger_property_name = $trigger_property_name;
+	}
+
+	/**
+	 * Get trigger property
+	 *
+	 * @since [Next]
+	 *
+	 * @return string
+	 */
+	public function get_trigger_prop(): string {
+		return $this->trigger_property_name;
 	}
 
 	/**

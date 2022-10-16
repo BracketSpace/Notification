@@ -14,14 +14,6 @@ use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
  * Attachment page merge tag class
  */
 class AttachmentPage extends UrlTag {
-
-	/**
-	 * Trigger property to get the attachment data from
-	 *
-	 * @var string
-	 */
-	protected $property_name = 'attachment';
-
 	/**
 	 * Merge tag constructor
 	 *
@@ -30,9 +22,7 @@ class AttachmentPage extends UrlTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
-			$this->property_name = $params['property_name'];
-		}
+		$this->set_trigger_prop( $params['property_name'] ?? 'attachment' );
 
 		$args = wp_parse_args(
 			$params,
@@ -43,7 +33,7 @@ class AttachmentPage extends UrlTag {
 				'example'     => true,
 				'group'       => __( 'Attachment', 'notification' ),
 				'resolver'    => function () {
-					return get_permalink( $this->{ $this->property_name }->attachment->ID );
+					return get_permalink( $this->{ $this->get_trigger_prop() }->attachment->ID );
 				},
 			]
 		);
