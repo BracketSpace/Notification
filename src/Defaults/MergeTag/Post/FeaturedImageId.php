@@ -17,14 +17,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  * Post featured image id merge tag class
  */
 class FeaturedImageId extends IntegerTag {
-
-	/**
-	 * Post type slug
-	 *
-	 * @var string
-	 */
-	protected $post_type;
-
 	/**
 	 * Merge tag constructor
 	 *
@@ -33,25 +25,21 @@ class FeaturedImageId extends IntegerTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		if ( isset( $params['post_type'] ) ) {
-			$this->post_type = $params['post_type'];
-		} else {
-			$this->post_type = 'post';
-		}
+		$this->set_trigger_prop( $params['post_type'] ?? 'post' );
 
-		$post_type_name = WpObjectHelper::get_post_type_name( $this->post_type );
+		$post_type_name = WpObjectHelper::get_post_type_name( $this->get_trigger_prop() );
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => sprintf( '%s_featured_image_id', $this->post_type ),
+				'slug'        => sprintf( '%s_featured_image_id', $this->get_trigger_prop() ),
 				// translators: singular post name.
 				'name'        => sprintf( __( '%s featured image id', 'notification' ), $post_type_name ),
 				'description' => __( '123', 'notification' ),
 				'example'     => true,
 				'group'       => $post_type_name,
 				'resolver'    => function ( $trigger ) {
-					$post_id = $trigger->{ $this->post_type }->ID;
+					$post_id = $trigger->{ $this->get_trigger_prop() }->ID;
 
 					return (int) get_post_thumbnail_id( $post_id );
 				},

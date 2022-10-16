@@ -17,14 +17,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  * Post type merge tag class
  */
 class PostType extends StringTag {
-
-	/**
-	 * Post Type slug
-	 *
-	 * @var string
-	 */
-	protected $post_type;
-
 	/**
 	 * Merge tag constructor
 	 *
@@ -33,11 +25,7 @@ class PostType extends StringTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		if ( isset( $params['post_type'] ) ) {
-			$this->post_type = $params['post_type'];
-		} else {
-			$this->post_type = 'post';
-		}
+		$this->set_trigger_prop( $params['post_type'] ?? 'post' );
 
 		$args = wp_parse_args(
 			$params,
@@ -46,7 +34,7 @@ class PostType extends StringTag {
 				'name'        => __( 'Post Type', 'notification' ),
 				'description' => 'post',
 				'example'     => true,
-				'group'       => WpObjectHelper::get_post_type_name( $this->post_type ),
+				'group'       => WpObjectHelper::get_post_type_name( $this->get_trigger_prop() ),
 				'resolver'    => function ( $trigger ) {
 					return $trigger->post_type;
 				},
