@@ -49,13 +49,18 @@ class Email extends Abstracts\Recipient {
 
 		if ( preg_match( '/\bfilter-id:([\w-]*)/', $value, $matches ) ) {
 			$filter_id = $matches[1];
-			$value     = trim( preg_replace( '/\bfilter-id:[\w-]*/', '', $value ) );
+			$value     = preg_replace( '/\bfilter-id:[\w-]*/', '', $value );
+			$value     = $value ? trim( $value ) : '';
 		}
 
 		$value = apply_filters( 'notification/recipient/email/' . $filter_id, $value );
 
 		$parsed_emails = [];
 		$emails        = is_array( $value ) ? $value : preg_split( '/[;|,]/', $value );
+
+		if ( ! $emails ) {
+			return [];
+		}
 
 		foreach ( $emails as $email ) {
 			$parsed_emails[] = sanitize_email( $email );
