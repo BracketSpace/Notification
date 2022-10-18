@@ -128,7 +128,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run Composer
-        uses: php-actions/composer@v6
+        uses: php-actions/composer@v5
         with:
           version: 2.2
       - name: Install Composer build dependencies
