@@ -141,7 +141,6 @@ jobs:
         uses: php-actions/composer@v5
         with:
           version: 2.2
-          args: --profile --ignore-platform-reqs
       - name: Install Composer build dependencies
         run: composer bin build install --no-progress
       - name: Compose dependencies
