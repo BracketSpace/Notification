@@ -127,10 +127,17 @@ jobs:
           coverage: none
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Setup variables
+        id: vars
+        run: |
+          echo "::set-output name=composer-cache-path::$(composer config cache-files-dir)"
       - name: Run Composer
         uses: php-actions/composer@v5
         with:
           version: 2.2
+          path: ${{ steps.vars.outputs.composer-cache-path }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer build dependencies
         run: composer bin build install --no-progress
       - name: Compose dependencies
