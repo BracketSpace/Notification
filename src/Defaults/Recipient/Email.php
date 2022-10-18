@@ -46,16 +46,22 @@ class Email extends Abstracts\Recipient {
 		 * Defaults to 'default' (ie. filter 'notification/recipient/email/default'):
 		 */
 		$filter_id = 'default';
+		$pattern   = '/\bfilter-id:([\w-]*)/';
 
-		if ( preg_match( '/\bfilter-id:([\w-]*)/', $value, $matches ) ) {
+		if ( preg_match( $pattern, $value, $matches ) ) {
 			$filter_id = $matches[1];
-			$value     = trim( preg_replace( '/\bfilter-id:[\w-]*/', '', $value ) );
+			$value     = preg_replace( $pattern, '', $value );
+			$value     = is_string( $value ) ? trim( $value ) : '';
 		}
 
 		$value = apply_filters( 'notification/recipient/email/' . $filter_id, $value );
 
 		$parsed_emails = [];
-		$emails        = is_array( $value ) ? $value : explode( ',', $value );
+		$emails        = is_array( $value ) ? $value : preg_split( '/[;|,]/', $value );
+
+		if ( ! $emails ) {
+			return [];
+		}
 
 		foreach ( $emails as $email ) {
 			$parsed_emails[] = sanitize_email( $email );
