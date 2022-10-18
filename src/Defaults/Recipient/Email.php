@@ -46,11 +46,12 @@ class Email extends Abstracts\Recipient {
 		 * Defaults to 'default' (ie. filter 'notification/recipient/email/default'):
 		 */
 		$filter_id = 'default';
+		$pattern   = '/\bfilter-id:([\w-]*)/';
 
-		if ( preg_match( '/\bfilter-id:([\w-]*)/', $value, $matches ) ) {
+		if ( preg_match( $pattern, $value, $matches ) ) {
 			$filter_id = $matches[1];
-			$value     = preg_replace( '/\bfilter-id:[\w-]*/', '', $value );
-			$value     = $value ? trim( $value ) : '';
+			$value     = preg_replace( $pattern, '', $value );
+			$value     = is_string( $value ) ? trim( $value ) : '';
 		}
 
 		$value = apply_filters( 'notification/recipient/email/' . $filter_id, $value );
