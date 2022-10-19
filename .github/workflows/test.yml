@@ -137,10 +137,10 @@ jobs:
           path: ${{ steps.vars.outputs.composer-cache-path }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
-      - name: Run Composer
-        uses: php-actions/composer@v4
-        with:
-          version: 2.2
+      - name: Set Composer version
+        run: composer self-update --2.2
+      - name: Install Composer dependencies
+        run: composer install --no-progress
       - name: Install Composer build dependencies
         run: composer bin build install --no-progress
       - name: Compose dependencies
