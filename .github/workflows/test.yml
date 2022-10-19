@@ -138,7 +138,7 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Run Composer
-        uses: php-actions/composer@v5
+        uses: php-actions/composer@v6
         with:
           version: 2.2
       - name: Install Composer build dependencies
