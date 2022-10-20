@@ -71,9 +71,7 @@ class Api {
 			'args' => [
 				'methods'             => 'GET',
 				'callback'            => [ new Controller\CheckRestApiController(), 'send_response' ],
-				'permission_callback' => function () {
-					return current_user_can( 'manage_options' );
-				},
+				'permission_callback' => '__return_true',
 			],
 		];
 	}
