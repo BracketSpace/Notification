@@ -69,7 +69,20 @@ class TermDeleted extends TermTrigger {
 	 * @return mixed void or false if no notifications should be sent
 	 */
 	public function context( $term_id ) {
-		parent::context( $term_id );
+		$term = get_term( $term_id );
+
+		if ( ! ( $this->taxonomy instanceof \WP_Taxonomy ) || ! ( $term instanceof \WP_Term ) ) {
+			return false;
+		}
+
+		$this->term = $term;
+
+		if ( $this->taxonomy->name !== $this->term->taxonomy ) {
+			return false;
+		}
+
+		$term_link            = get_term_link( $this->term );
+		$this->term_permalink = is_string( $term_link ) ? $term_link : '';
 
 		$this->term_deletion_datetime = (string) time();
 	}

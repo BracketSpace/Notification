@@ -62,28 +62,6 @@ abstract class TermTrigger extends Abstracts\Trigger {
 	}
 
 	/**
-	 * Sets trigger's context
-	 *
-	 * @param integer $term_id Term ID used only due to lack of taxonomy param.
-	 * @return mixed void or false if no notifications should be sent
-	 */
-	public function context( $term_id ) {
-		$term = get_term( $term_id );
-
-		if ( $this->taxonomy instanceof \WP_Taxonomy && $term instanceof \WP_Term ) {
-
-			$this->term = $term;
-
-			if ( $this->taxonomy->name !== $this->term->taxonomy ) {
-				return false;
-			}
-			$term_link            = get_term_link( $this->term );
-			$this->term_permalink = is_string( $term_link ) ? $term_link : '';
-		}
-	}
-
-
-	/**
 	 * Registers attached merge tags
 	 *
 	 * @return void
