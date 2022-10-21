@@ -28,7 +28,7 @@ class TermDeleted extends TermTrigger {
 	 * @param string $taxonomy optional, default: category.
 	 */
 	public function __construct( $taxonomy = 'category' ) {
-		$this->taxonomy = $taxonomy;
+		$this->taxonomy = WpObjectHelper::get_taxonomy( $taxonomy );
 
 		parent::__construct( [
 			'taxonomy' => $taxonomy,
@@ -45,7 +45,7 @@ class TermDeleted extends TermTrigger {
 	 */
 	public function get_name() : string {
 		// Translators: taxonomy name.
-		return sprintf( __( '%s term deleted', 'notification' ), WpObjectHelper::get_taxonomy_name( $this->taxonomy ) );
+		return sprintf( __( '%s term deleted', 'notification' ), $this->taxonomy->label ?? '' );
 	}
 
 	/**
@@ -57,8 +57,8 @@ class TermDeleted extends TermTrigger {
 		return sprintf(
 			// Translators: 1. taxonomy name, 2. taxonomy slug.
 			__( 'Fires when %1$s (%2$s) is deleted', 'notification' ),
-			WpObjectHelper::get_taxonomy_name( $this->taxonomy ),
-			$this->taxonomy
+			$this->taxonomy->label ?? '',
+			$this->taxonomy->name ?? ''
 		);
 	}
 
@@ -69,19 +69,9 @@ class TermDeleted extends TermTrigger {
 	 * @return mixed void or false if no notifications should be sent
 	 */
 	public function context( $term_id ) {
+		parent::context( $term_id );
 
-		$term       = get_term( $term_id );
-		$this->term = $term;
-
-		if ( $this->taxonomy !== $this->term->taxonomy ) {
-			return false;
-		}
-
-		$this->taxonomy       = $this->term->taxonomy;
-		$this->term_permalink = get_term_link( $this->term );
-
-		$this->term_deletion_datetime = time();
-
+		$this->term_deletion_datetime = (string) time();
 	}
 
 	/**

@@ -19,7 +19,7 @@ abstract class TermTrigger extends Abstracts\Trigger {
 	/**
 	 * Taxonomy slug
 	 *
-	 * @var string
+	 * @var \WP_Taxonomy|null
 	 */
 	public $taxonomy;
 
@@ -35,19 +35,19 @@ abstract class TermTrigger extends Abstracts\Trigger {
 	 *
 	 * @var string
 	 */
-	public $term_permalink;
+	public $term_permalink = '';
 
 	/**
 	 * Constructor
 	 *
-	 * @param array $params trigger configuration params.
+	 * @param array<mixed> $params trigger configuration params.
 	 */
 	public function __construct( $params = [] ) {
 		if ( ! isset( $params['taxonomy'], $params['slug'] ) ) {
 			trigger_error( 'TaxonomyTrigger requires taxonomy slug and trigger slug.', E_USER_ERROR );
 		}
 
-		$this->taxonomy = $params['taxonomy'];
+		$this->taxonomy = WpObjectHelper::get_taxonomy( $params['taxonomy'] );
 
 		parent::__construct( $params['slug'] );
 	}
@@ -58,8 +58,30 @@ abstract class TermTrigger extends Abstracts\Trigger {
 	 * @return string|null Group name
 	 */
 	public function get_group() {
-		return WpObjectHelper::get_taxonomy_name( $this->taxonomy );
+		return $this->taxonomy->name ?? '';
 	}
+
+	/**
+	 * Sets trigger's context
+	 *
+	 * @param integer $term_id Term ID used only due to lack of taxonomy param.
+	 * @return mixed void or false if no notifications should be sent
+	 */
+	public function context( $term_id ) {
+		$term = get_term( $term_id );
+
+		if ( $this->taxonomy instanceof \WP_Taxonomy && $term instanceof \WP_Term ) {
+
+			$this->term = $term;
+
+			if ( $this->taxonomy->name !== $this->term->taxonomy ) {
+				return false;
+			}
+			$term_link            = get_term_link( $this->term );
+			$this->term_permalink = is_string( $term_link ) ? $term_link : '';
+		}
+	}
+
 
 	/**
 	 * Registers attached merge tags
