@@ -84,8 +84,6 @@ class TermUpdated extends TermTrigger {
 		$term_link            = get_term_link( $this->term );
 		$this->term_permalink = is_string( $term_link ) ? $term_link : '';
 
-
-
 		$this->term_modification_datetime = (string) time();
 	}
 
