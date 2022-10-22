@@ -58,7 +58,7 @@ abstract class TermTrigger extends Abstracts\Trigger {
 	 * @return string|null Group name
 	 */
 	public function get_group() {
-		return $this->taxonomy->name ?? '';
+		return $this->taxonomy->labels->singular_name ?? '';
 	}
 
 	/**

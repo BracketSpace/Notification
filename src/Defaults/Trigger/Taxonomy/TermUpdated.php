@@ -45,7 +45,7 @@ class TermUpdated extends TermTrigger {
 	 */
 	public function get_name() : string {
 		// Translators: taxonomy name.
-		return sprintf( __( '%s term updated', 'notification' ), $this->taxonomy->label ?? '' );
+		return sprintf( __( '%s term updated', 'notification' ), $this->taxonomy->labels->singular_name ?? '' );
 	}
 
 	/**
@@ -57,7 +57,7 @@ class TermUpdated extends TermTrigger {
 		return sprintf(
 			// Translators: 1. taxonomy name, 2. taxonomy slug.
 			__( 'Fires when %1$s (%2$s) is updated', 'notification' ),
-			$this->taxonomy->label ?? '',
+			$this->taxonomy->labels->singular_name ?? '',
 			$this->taxonomy->name ?? ''
 		);
 	}
