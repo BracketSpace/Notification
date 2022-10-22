@@ -74,14 +74,15 @@ abstract class TermTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\Taxonomy\TermSlug() );
 		$this->add_merge_tag( new MergeTag\Taxonomy\TermPermalink() );
 
-		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomyName( [
-			'taxonomy' => $this->taxonomy,
+		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomyName([
+			'tag_name'      => $this->taxonomy->name ?? '',
+			'property_name' => 'taxonomy',
 		] ) );
 
-		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomySlug( [
-			'taxonomy' => $this->taxonomy,
+		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomySlug([
+			'tag_name'      => $this->taxonomy->name ?? '',
+			'property_name' => 'taxonomy',
 		] ) );
-
 	}
 
 }
