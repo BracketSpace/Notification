@@ -286,6 +286,11 @@ parameters:
 			path: compat/register-hooks.php
 
 		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'test_rest_api'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
 			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'triggers_settings…'\\) given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
