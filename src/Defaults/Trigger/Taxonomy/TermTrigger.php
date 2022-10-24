@@ -19,7 +19,7 @@ abstract class TermTrigger extends Abstracts\Trigger {
 	/**
 	 * Taxonomy slug
 	 *
-	 * @var string
+	 * @var \WP_Taxonomy|null
 	 */
 	public $taxonomy;
 
@@ -35,19 +35,19 @@ abstract class TermTrigger extends Abstracts\Trigger {
 	 *
 	 * @var string
 	 */
-	public $term_permalink;
+	public $term_permalink = '';
 
 	/**
 	 * Constructor
 	 *
-	 * @param array $params trigger configuration params.
+	 * @param array<mixed> $params trigger configuration params.
 	 */
 	public function __construct( $params = [] ) {
 		if ( ! isset( $params['taxonomy'], $params['slug'] ) ) {
 			trigger_error( 'TaxonomyTrigger requires taxonomy slug and trigger slug.', E_USER_ERROR );
 		}
 
-		$this->taxonomy = $params['taxonomy'];
+		$this->taxonomy = WpObjectHelper::get_taxonomy( $params['taxonomy'] );
 
 		parent::__construct( $params['slug'] );
 	}
@@ -58,7 +58,7 @@ abstract class TermTrigger extends Abstracts\Trigger {
 	 * @return string|null Group name
 	 */
 	public function get_group() {
-		return WpObjectHelper::get_taxonomy_name( $this->taxonomy );
+		return $this->taxonomy->labels->singular_name ?? '';
 	}
 
 	/**
@@ -74,14 +74,15 @@ abstract class TermTrigger extends Abstracts\Trigger {
 		$this->add_merge_tag( new MergeTag\Taxonomy\TermSlug() );
 		$this->add_merge_tag( new MergeTag\Taxonomy\TermPermalink() );
 
-		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomyName( [
-			'taxonomy' => $this->taxonomy,
+		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomyName([
+			'tag_name'      => $this->taxonomy->name ?? '',
+			'property_name' => 'taxonomy',
 		] ) );
 
-		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomySlug( [
-			'taxonomy' => $this->taxonomy,
+		$this->add_merge_tag( new MergeTag\Taxonomy\TaxonomySlug([
+			'tag_name'      => $this->taxonomy->name ?? '',
+			'property_name' => 'taxonomy',
 		] ) );
-
 	}
 
 }

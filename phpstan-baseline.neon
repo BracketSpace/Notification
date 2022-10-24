@@ -286,6 +286,11 @@ parameters:
 			path: compat/register-hooks.php
 
 		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'test_rest_api'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
 			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'triggers_settings…'\\) given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
@@ -1526,16 +1531,6 @@ parameters:
 			path: src/Defaults/MergeTag/Post/ThumbnailUrl.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Taxonomy\\\\TaxonomyName\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Taxonomy/TaxonomyName.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Taxonomy\\\\TaxonomySlug\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Taxonomy/TaxonomySlug.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\User\\\\Avatar\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Defaults/MergeTag/User/Avatar.php
@@ -1607,11 +1602,6 @@ parameters:
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Recipient\\\\Email\\:\\:parse_value\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Recipient/Email.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function trim expects string, string\\|null given\\.$#"
 			count: 1
 			path: src/Defaults/Recipient/Email.php
 
@@ -2139,86 +2129,6 @@ parameters:
 			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Privacy/DataExported.php
-
-		-
-			message: "#^Cannot access property \\$taxonomy on array\\|WP_Error\\|WP_Term\\|null\\.$#"
-			count: 2
-			path: src/Defaults/Trigger/Taxonomy/TermAdded.php
-
-		-
-			message: "#^Parameter \\#1 \\$term of function get_term_link expects int\\|string\\|WP_Term, array\\|WP_Error\\|WP_Term\\|null given\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermAdded.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermAdded\\:\\:\\$term_creation_datetime \\(string\\) does not accept int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermAdded.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermTrigger\\:\\:\\$term \\(WP_Term\\) does not accept array\\|WP_Error\\|WP_Term\\|null\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermAdded.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermTrigger\\:\\:\\$term_permalink \\(string\\) does not accept string\\|WP_Error\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermAdded.php
-
-		-
-			message: "#^Cannot access property \\$taxonomy on array\\|WP_Error\\|WP_Term\\|null\\.$#"
-			count: 2
-			path: src/Defaults/Trigger/Taxonomy/TermDeleted.php
-
-		-
-			message: "#^Parameter \\#1 \\$term of function get_term_link expects int\\|string\\|WP_Term, array\\|WP_Error\\|WP_Term\\|null given\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermDeleted.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermDeleted\\:\\:\\$term_deletion_datetime \\(string\\) does not accept int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermDeleted.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermTrigger\\:\\:\\$term \\(WP_Term\\) does not accept array\\|WP_Error\\|WP_Term\\|null\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermDeleted.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermTrigger\\:\\:\\$term_permalink \\(string\\) does not accept string\\|WP_Error\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermDeleted.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermTrigger\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermTrigger.php
-
-		-
-			message: "#^Cannot access property \\$taxonomy on array\\|WP_Error\\|WP_Term\\|null\\.$#"
-			count: 2
-			path: src/Defaults/Trigger/Taxonomy/TermUpdated.php
-
-		-
-			message: "#^Parameter \\#1 \\$term of function get_term_link expects int\\|string\\|WP_Term, array\\|WP_Error\\|WP_Term\\|null given\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermUpdated.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermTrigger\\:\\:\\$term \\(WP_Term\\) does not accept array\\|WP_Error\\|WP_Term\\|null\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermUpdated.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermTrigger\\:\\:\\$term_permalink \\(string\\) does not accept string\\|WP_Error\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermUpdated.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermUpdated\\:\\:\\$term_modification_datetime \\(string\\) does not accept int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermUpdated.php
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Theme\\\\Installed\\:\\:context\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"

@@ -14,14 +14,6 @@ use BracketSpace\Notification\Defaults\MergeTag\StringTag;
  * Attachment MIME type merge tag class
  */
 class AttachmentMimeType extends StringTag {
-
-	/**
-	 * Trigger property to get the attachment data from
-	 *
-	 * @var string
-	 */
-	protected $property_name = 'attachment';
-
 	/**
 	 * Merge tag constructor
 	 *
@@ -30,9 +22,7 @@ class AttachmentMimeType extends StringTag {
 	 */
 	public function __construct( $params = [] ) {
 
-		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
-			$this->property_name = $params['property_name'];
-		}
+		$this->set_trigger_prop( $params['property_name'] ?? 'attachment' );
 
 		$args = wp_parse_args(
 			$params,
@@ -42,7 +32,7 @@ class AttachmentMimeType extends StringTag {
 				'description' => 'image/jpeg',
 				'example'     => true,
 				'resolver'    => function ( $trigger ) {
-					return $trigger->{ $this->property_name }->post_mime_type;
+					return $trigger->{ $this->get_trigger_prop() }->post_mime_type;
 				},
 				'group'       => __( 'Attachment', 'notification' ),
 			]

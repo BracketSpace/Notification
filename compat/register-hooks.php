@@ -25,6 +25,7 @@ add_action( 'delete_post', [ $this->component( 'core_sync' ), 'delete_local_json
 add_action( 'notification/trigger/registered', [ $this->component( 'core_binder' ), 'bind' ], 100, 1 );
 add_action( 'shutdown', [ $this->component( 'core_processor' ), 'process_queue' ], 10, 0 );
 add_action( 'notification_background_processing', [ $this->component( 'core_processor' ), 'handle_cron' ], 10, 2 );
+add_action( 'admin_notices', [ $this->component( 'test_rest_api' ), 'test_rest_api' ], 10, 0 );
 add_action( 'admin_post_notification_export', [ $this->component( 'admin_impexp' ), 'export_request' ], 10, 0 );
 add_action( 'wp_ajax_notification_import_json', [ $this->component( 'admin_impexp' ), 'import_request' ], 10, 0 );
 add_filter( 'notification/settings/triggers/valid_post_types', [ $this->component( 'admin_settings' ), 'filter_post_types' ], 10, 1 );
