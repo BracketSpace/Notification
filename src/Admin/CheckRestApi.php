@@ -17,7 +17,7 @@ class CheckRestApi {
 	/**
 	 * Method sends request to API, based on response checks whether REST API works correctly
 	 *
-	 * @since [Next]
+	 * @since 8.0.12
 	 * @action admin_notices
 	 * @return void
 	 */
