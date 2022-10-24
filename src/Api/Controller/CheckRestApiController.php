@@ -17,7 +17,7 @@ class CheckRestApiController {
 	/**
 	 * Sends response
 	 *
-	 * @since [Next]
+	 * @since 8.0.12
 	 * @return void
 	 */
 	public function send_response() {

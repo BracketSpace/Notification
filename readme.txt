@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.8
-Stable tag: 8.0.11
+Stable tag: 8.0.12
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -302,7 +302,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
-= [Next] =
+= 8.0.12 =
 
 * [Changed] Logic of assigning property name is moved to Abstract Merge Tag Class
 * [Added] Property names to Term Merge Tags

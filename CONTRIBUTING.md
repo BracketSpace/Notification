@@ -36,7 +36,7 @@ Create PRs as small as they can possibly be. Create as much of them as you need.
 
 We appreciate it if you keep the changelog for every change.
 
-Changelog usually lives in `readme.txt` files when it comes to a plugin, or it is in `CHANGELOG.md`. New sections (unreleased changes) can be marked as `[Next]`. It will be changed to the next version number when a new version is released.
+Changelog usually lives in `readme.txt` files when it comes to a plugin, or it is in `CHANGELOG.md`. New sections (unreleased changes) can be marked as `8.0.12`. It will be changed to the next version number when a new version is released.
 
 ***
 

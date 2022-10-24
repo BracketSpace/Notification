@@ -222,7 +222,7 @@ abstract class MergeTag implements Interfaces\Taggable {
 	/**
 	 * Sets resolver function
 	 *
-	 * @since [Next]
+	 * @since 8.0.12
 	 *
 	 * @param string $trigger_property_name merge tag trigger property name.
 	 *
@@ -235,7 +235,7 @@ abstract class MergeTag implements Interfaces\Taggable {
 	/**
 	 * Get trigger property
 	 *
-	 * @since [Next]
+	 * @since 8.0.12
 	 *
 	 * @return string
 	 */
