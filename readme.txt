@@ -302,13 +302,19 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+
+* [Fixed] Regression with REST API check.
+* [Changed] `repeater_api` internal runtime component to `api`.
+* [Added] `get_endpoint` method to the API class.
+
 = 8.0.12 =
 
-* [Changed] Logic of assigning property name is moved to Abstract Merge Tag Class
-* [Added] Property names to Term Merge Tags
-* [Added] 6h cache expire to the user queries
-* [Added] Email / Merge tag recipient now can also be separated with semicolon
-* [Added] Endpoint to check whether the REST api is enabled
+* [Changed] Logic of assigning property name is moved to Abstract Merge Tag Class.
+* [Added] Property names to Term Merge Tags.
+* [Added] 6h cache expire to the user queries.
+* [Added] Email / Merge tag recipient now can also be separated with semicolon.
+* [Added] Endpoint to check whether the REST api is enabled.
 
 = 8.0.11 =
 

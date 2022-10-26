@@ -225,7 +225,7 @@ class Runtime {
 		$this->add_component( 'integration_wp_emails', new Integration\WordPressEmails() );
 		$this->add_component( 'integration_2fa', new Integration\TwoFactor() );
 
-		$this->add_component( 'repeater_api', new Api\Api() );
+		$this->add_component( 'api', new Api\Api() );
 	}
 
 	/**

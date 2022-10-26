@@ -90,4 +90,21 @@ class Api {
 		}
 
 	}
+
+	/**
+	 * Gets API endpoint
+	 *
+	 * @since [Next]
+	 * @param string $endpoint Endopint name.
+	 * @return string
+	 */
+	public function get_endpoint( $endpoint ) {
+
+		return sprintf(
+			'%s/%s/',
+			$this->namespace,
+			untrailingslashit( $endpoint )
+		);
+
+	}
 }
