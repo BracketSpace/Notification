@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 5.8
-Stable tag: 8.0.12
+Stable tag: 8.0.13
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -302,13 +302,19 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= 8.0.13 =
+
+* [Fixed] Regression with REST API check.
+* [Changed] `repeater_api` internal runtime component to `api`.
+* [Added] `get_endpoint` method to the API class.
+
 = 8.0.12 =
 
-* [Changed] Logic of assigning property name is moved to Abstract Merge Tag Class
-* [Added] Property names to Term Merge Tags
-* [Added] 6h cache expire to the user queries
-* [Added] Email / Merge tag recipient now can also be separated with semicolon
-* [Added] Endpoint to check whether the REST api is enabled
+* [Changed] Logic of assigning property name is moved to Abstract Merge Tag Class.
+* [Added] Property names to Term Merge Tags.
+* [Added] 6h cache expire to the user queries.
+* [Added] Email / Merge tag recipient now can also be separated with semicolon.
+* [Added] Endpoint to check whether the REST api is enabled.
 
 = 8.0.11 =
 
