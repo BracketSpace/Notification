@@ -94,7 +94,7 @@ class Api {
 	/**
 	 * Gets API endpoint
 	 *
-	 * @since [Next]
+	 * @since 8.0.13
 	 * @param string $endpoint Endopint name.
 	 * @return string
 	 */
