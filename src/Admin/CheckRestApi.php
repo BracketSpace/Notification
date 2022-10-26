@@ -22,11 +22,6 @@ class CheckRestApi {
 	 * @return void
 	 */
 	public function test_rest_api() {
-		$error = sprintf(
-			'<div class="notice notice-error"><p>%1$s</p></div>',
-			'The Notification plugin requires enabled REST API endpoint: notification/v1/. Please ensure your WP REST API works correctly.'
-		);
-
 		$is_edit        = false;
 		$current_screen = get_current_screen();
 
@@ -35,8 +30,7 @@ class CheckRestApi {
 		}
 
 		if ( ! $is_edit ) {
-			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo $error;
+			return;
 		}
 
 		$response = wp_remote_get( get_rest_url(
@@ -49,8 +43,10 @@ class CheckRestApi {
 		$is_available = false;
 
 		if ( ! is_array( $message ) || ! array_key_exists( 'data', $message ) || 'RestApi' !== $message['data'] ) {
-			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo $error;
+			printf(
+				'<div class="notice notice-error"><p>%1$s</p></div>',
+				'The Notification plugin requires enabled REST API endpoint: notification/v1/. Please ensure your WP REST API works correctly.'
+			);
 		}
 	}
 
