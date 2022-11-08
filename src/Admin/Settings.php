@@ -507,7 +507,7 @@ class Settings {
 				'slug'        => 'send_confirmation_on_admin_email',
 				'default'     => false,
 				'addons'      => [
-					'label' => __( 'Disable email to <strong>admin</strong> about site email address change request', 'notification' ),
+					'label' => __( 'Disable email to <strong>new admin</strong> about site email address change request.', 'notification' ),
 				],
 				'description' => __( 'Email is sent when site email address change is requested.', 'notification' ),
 				'render'      => [ new CoreFields\Checkbox(), 'input' ],
