@@ -93,6 +93,7 @@ class TriggerRepository {
 		Register::trigger( new Trigger\User\UserRegistered() );
 		Register::trigger( new Trigger\User\UserProfileUpdated() );
 		Register::trigger( new Trigger\User\UserDeleted() );
+		Register::trigger( new Trigger\User\UserEmailChangeRequest() );
 		Register::trigger( new Trigger\User\UserPasswordChanged() );
 		Register::trigger( new Trigger\User\UserPasswordResetRequest() );
 		Register::trigger( new Trigger\User\UserLoginFailed() );

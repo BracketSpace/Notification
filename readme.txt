@@ -302,6 +302,10 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+
+* [Added] User email change request Trigger.
+
 = 8.0.13 =
 
 * [Fixed] Regression with REST API check.
