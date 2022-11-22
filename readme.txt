@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 6.1
-Stable tag: 8.0.13
+Stable tag: 8.0.14
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -302,7 +302,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
-= [Next] =
+= 8.0.14 =
 
 * [Fixed] Outdated dochoooks compatibility file, causing a fatal error while adding new post in some environments.
 
