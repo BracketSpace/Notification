@@ -12,8 +12,6 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Set PHP version
-        run: sudo update-alternatives --set php /usr/bin/php7.4
       - name: Checkout master
         uses: actions/checkout@v1
         with:

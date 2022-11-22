@@ -97,4 +97,4 @@ add_filter( 'send_email_change_email', [ $this->component( 'integration_wp_email
 add_filter( 'auto_core_update_send_email', [ $this->component( 'integration_wp_emails' ), 'disable_automatic_wp_core_update_notify' ], 10, 4 );
 add_action( 'notification/trigger/registered', [ $this->component( 'integration_2fa' ), 'add_trigger_action' ], 10, 1 );
 add_action( 'two_factor_user_authenticated', [ $this->component( 'integration_2fa' ), 'user_login_with_2fa' ], 10, 1 );
-add_action( 'rest_api_init', [ $this->component( 'repeater_api' ), 'rest_api_init' ], 10, 0 );
+add_action( 'rest_api_init', [ $this->component( 'api' ), 'rest_api_init' ], 10, 0 );
