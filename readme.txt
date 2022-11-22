@@ -302,7 +302,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
-= 8.0.14 =
+= [Next] =
 
 * [Fixed] Outdated dochoooks compatibility file, causing a fatal error while adding new post in some environments.
 
