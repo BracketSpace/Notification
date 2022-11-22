@@ -302,6 +302,10 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+
+* [Fixed] Outdated dochoooks compatibility file, causing a fatal error while adding new post in some environments.
+
 = 8.0.13 =
 
 * [Fixed] Regression with REST API check.
