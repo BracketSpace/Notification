@@ -42,7 +42,7 @@ class TermUpdated extends TermTrigger
 			]
 		);
 
-		$this->add_action('edited_term', 100, 2);
+		$this->addAction('edited_term', 100, 2);
 	}
 
 	/**
@@ -53,7 +53,7 @@ class TermUpdated extends TermTrigger
 	public function get_name(): string
 	{
 		// Translators: taxonomy name.
-		return sprintf(__('%s term updated', 'notification'), $this->taxonomy->labels->singular_name ?? '');
+		return sprintf(__('%s term updated', 'notification'), $this->taxonomy->labels->singularName ?? '');
 	}
 
 	/**
@@ -66,7 +66,7 @@ class TermUpdated extends TermTrigger
 		return sprintf(
 			// Translators: 1. taxonomy name, 2. taxonomy slug.
 			__('Fires when %1$s (%2$s) is updated', 'notification'),
-			$this->taxonomy->labels->singular_name ?? '',
+			$this->taxonomy->labels->singularName ?? '',
 			$this->taxonomy->name ?? ''
 		);
 	}
@@ -92,9 +92,9 @@ class TermUpdated extends TermTrigger
 		}
 
 		$termLink = get_term_link($this->term);
-		$this->term_permalink = is_string($termLink) ? $termLink : '';
+		$this->termPermalink = is_string($termLink) ? $termLink : '';
 
-		$this->term_modification_datetime = (string)time();
+		$this->termModificationDatetime = (string)time();
 	}
 
 	/**
@@ -107,7 +107,7 @@ class TermUpdated extends TermTrigger
 
 		parent::merge_tags();
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 				'slug' => 'term_modification_datetime',

@@ -39,7 +39,7 @@ trait Webhook
 	 */
 	public function http_request( $url, $args = [], $headers = [], $method = 'GET' )
 	{
-		$remote_args = apply_filters(
+		$remoteArgs = apply_filters(
 			"notification/carrier/webhook/remote_args/{$method}",
 			[
 				'body' => $args,
@@ -51,18 +51,18 @@ trait Webhook
 			$this
 		);
 
-		$response = wp_remote_request($url, $remote_args);
+		$response = wp_remote_request($url, $remoteArgs);
 
 		if (is_wp_error($response)) {
 			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
 			notification_log(
-				$this->get_name(),
+				$this->getName(),
 				'error',
 				'<pre>' . print_r(
 					[
 					'url' => $url,
-					'args' => $remote_args,
-					'errors' => $response->get_error_messages(),
+					'args' => $remoteArgs,
+					'errors' => $response->getErrorMessages(),
 					],
 					true
 				) . '</pre>'
@@ -74,12 +74,12 @@ trait Webhook
 		if (200 > $code || 300 <= $code) {
 			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
 			notification_log(
-				$this->get_name(),
+				$this->getName(),
 				'warning',
 				'<pre>' . print_r(
 					[
 					'url' => $url,
-					'args' => $remote_args,
+					'args' => $remoteArgs,
 					'response_code' => $code,
 					'message' => wp_remote_retrieve_response_message($response),
 					],
@@ -88,7 +88,7 @@ trait Webhook
 			);
 		}
 
-		do_action("notification/carrier/webhook/called/{$method}", $response, $url, $args, $remote_args, $this);
+		do_action("notification/carrier/webhook/called/{$method}", $response, $url, $args, $remoteArgs, $this);
 	}
 
 	/**
@@ -100,10 +100,10 @@ trait Webhook
 	 */
 	private function parse_args( $args )
 	{
-		$parsed_args = [];
+		$parsedArgs = [];
 
 		if (empty($args)) {
-			return $parsed_args;
+			return $parsedArgs;
 		}
 
 		foreach ($args as $arg) {
@@ -111,9 +111,9 @@ trait Webhook
 				continue;
 			}
 
-			$parsed_args[$arg['key']] = $arg['value'];
+			$parsedArgs[$arg['key']] = $arg['value'];
 		}
 
-		return $parsed_args;
+		return $parsedArgs;
 	}
 }

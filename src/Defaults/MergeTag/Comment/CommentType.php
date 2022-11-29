@@ -36,10 +36,10 @@ class CommentType extends StringTag
 	{
 
 		if (isset($params['comment_type']) && ! empty($params['comment_type'])) {
-			$this->comment_type = $params['comment_type'];
+			$this->commentType = $params['comment_type'];
 		}
 
-		$this->set_trigger_prop($params['property_name'] ?? $this->comment_type);
+		$this->setTriggerProp($params['property_name'] ?? $this->commentType);
 
 		$args = wp_parse_args(
 			$params,
@@ -47,9 +47,9 @@ class CommentType extends StringTag
 				'slug' => 'comment_type',
 				'name' => __('Comment type', 'notification'),
 				'description' => __('Comment or Pingback or Trackback or Custom', 'notification'),
-				'group' => WpObjectHelper::get_comment_type_name($this->comment_type),
+				'group' => WpObjectHelper::get_comment_type_name($this->commentType),
 				'resolver' => function ( $trigger ) {
-					return get_comment_type($trigger->{ $this->get_trigger_prop() });
+					return get_comment_type($trigger->{ $this->getTriggerProp() });
 				},
 			]
 		);

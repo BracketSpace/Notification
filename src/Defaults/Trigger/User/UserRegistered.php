@@ -33,9 +33,9 @@ class UserRegistered extends UserTrigger
 
 		parent::__construct('user/registered', __('User registration', 'notification'));
 
-		$this->add_action('user_register', 1000);
+		$this->addAction('user_register', 1000);
 
-		$this->set_description(__('Fires when user registers new account', 'notification'));
+		$this->setDescription(__('Fires when user registers new account', 'notification'));
 	}
 
 	/**
@@ -47,11 +47,11 @@ class UserRegistered extends UserTrigger
 	public function context( $userId )
 	{
 
-		$this->user_id = $userId;
-		$this->user_object = get_userdata($this->user_id);
-		$this->user_meta = get_user_meta($this->user_id);
+		$this->userId = $userId;
+		$this->userObject = get_userdata($this->userId);
+		$this->userMeta = get_user_meta($this->userId);
 
-		$this->user_registered_datetime = strtotime($this->user_object->user_registered);
+		$this->userRegisteredDatetime = strtotime($this->userObject->userRegistered);
 	}
 
 	/**
@@ -64,7 +64,7 @@ class UserRegistered extends UserTrigger
 
 		parent::merge_tags();
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\UrlTag(
 				[
 				'slug' => 'user_password_setup_link',
@@ -73,7 +73,7 @@ class UserRegistered extends UserTrigger
 							__('After using this Merge Tag, no other password setup links will work.', 'notification'),
 				'example' => true,
 				'resolver' => static function ( $trigger ) {
-					return network_site_url('wp-login.php?action=rp&key=' . $trigger->get_password_reset_key() . '&login=' . rawurlencode($trigger->user_object->user_login), 'login');
+					return network_site_url('wp-login.php?action=rp&key=' . $trigger->getPasswordResetKey() . '&login=' . rawurlencode($trigger->userObject->userLogin), 'login');
 				},
 				'group' => __('User', 'notification'),
 				]
@@ -92,12 +92,12 @@ class UserRegistered extends UserTrigger
 
 		add_filter('allow_password_reset', '__return_true', 999999999);
 		add_filter('notification/trigger/wordpress/user_password_reset_request/bail_for_registration', '__return_true', 999999999);
-		$resetKey = get_password_reset_key($this->user_object);
+		$resetKey = get_password_reset_key($this->userObject);
 		remove_filter('allow_password_reset', '__return_true', 999999999);
 		remove_filter('notification/trigger/wordpress/user_password_reset_request/bail_for_registration', '__return_true', 999999999);
 
 		if (is_wp_error($resetKey)) {
-			notification_log('Core', 'error', 'User registration trigger error: ' . $resetKey->get_error_message());
+			notification_log('Core', 'error', 'User registration trigger error: ' . $resetKey->getErrorMessage());
 			return '';
 		}
 

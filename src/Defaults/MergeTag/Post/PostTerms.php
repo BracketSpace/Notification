@@ -37,25 +37,25 @@ class PostTerms extends StringTag
 	public function __construct( $params = [] )
 	{
 
-		$this->set_trigger_prop($params['post_type'] ?? 'post');
+		$this->setTriggerProp($params['post_type'] ?? 'post');
 
 		if (isset($params['taxonomy'])) {
 			$this->taxonomy = is_string($params['taxonomy']) ? get_taxonomy($params['taxonomy']) : $params['taxonomy'];
 		}
 
-		$postTypeName = WpObjectHelper::get_post_type_name($this->get_trigger_prop());
+		$postTypeName = WpObjectHelper::get_post_type_name($this->getTriggerProp());
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf('%s_%s', $this->get_trigger_prop(), $this->taxonomy->name),
+				'slug' => sprintf('%s_%s', $this->getTriggerProp(), $this->taxonomy->name),
 				// translators: 1. Post Type 2. Taxonomy name.
 				'name' => sprintf(__('%1$s %2$s', 'notification'), $postTypeName, $this->taxonomy->label),
 				'description' => __('General, Tech, Lifestyle', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ( $trigger ) {
-					$postTerms = get_the_terms($trigger->{ $this->get_trigger_prop() }, $this->taxonomy->name);
+					$postTerms = get_the_terms($trigger->{ $this->getTriggerProp() }, $this->taxonomy->name);
 					if (empty($postTerms) || is_wp_error($postTerms)) {
 						return '';
 					}

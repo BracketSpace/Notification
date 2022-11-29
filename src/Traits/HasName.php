@@ -34,7 +34,7 @@ trait HasName
 	public function get_name()
 	{
 		if ($this->name === null) {
-			return $this->get_nice_class_name();
+			return $this->getNiceClassName();
 		}
 
 		return $this->name;

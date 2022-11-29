@@ -30,14 +30,14 @@ class RevisionLink extends UrlTag
 	public function __construct( $params = [] )
 	{
 
-		$this->set_trigger_prop($params['post_type'] ?? 'post');
+		$this->setTriggerProp($params['post_type'] ?? 'post');
 
-		$postTypeName = WpObjectHelper::get_post_type_name($this->get_trigger_prop());
+		$postTypeName = WpObjectHelper::get_post_type_name($this->getTriggerProp());
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf('%s_revision_link', $this->get_trigger_prop()),
+				'slug' => sprintf('%s_revision_link', $this->getTriggerProp()),
 				// translators: singular post name.
 				'name' => sprintf(__('%s revision link', 'notification'), $postTypeName),
 				'description' => __('https://example.com/wp-admin/revision.php?revision=id', 'notification'),
@@ -45,7 +45,7 @@ class RevisionLink extends UrlTag
 				'group' => $postTypeName,
 				'resolver' => function ( $trigger ) {
 					$revisionsId = wp_get_post_revisions(
-						$trigger->{ $this->get_trigger_prop() }->ID,
+						$trigger->{ $this->getTriggerProp() }->ID,
 						[
 							'orderby' => 'ID',
 							'order' => 'DESC',

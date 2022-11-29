@@ -31,10 +31,10 @@ class Installed extends PluginTrigger
 
 		parent::__construct('plugin/installed', __('Plugin installed', 'notification'));
 
-		$this->add_action('upgrader_process_complete', 1000, 2);
+		$this->addAction('upgrader_process_complete', 1000, 2);
 
-		$this->set_group(__('Plugin', 'notification'));
-		$this->set_description(__('Fires when plugin is installed', 'notification'));
+		$this->setGroup(__('Plugin', 'notification'));
+		$this->setDescription(__('Fires when plugin is installed', 'notification'));
 	}
 
 	/**
@@ -51,9 +51,9 @@ class Installed extends PluginTrigger
 			return false;
 		}
 
-		$pluginDir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $upgrader->plugin_info();
+		$pluginDir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $upgrader->pluginInfo();
 		$this->plugin = get_plugin_data($pluginDir, false);
-		$this->plugin_installation_date_time = time();
+		$this->pluginInstallationDateTime = time();
 	}
 
 	/**
@@ -66,7 +66,7 @@ class Installed extends PluginTrigger
 
 		parent::merge_tags();
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 				'slug' => 'plugin_installation_date_time',

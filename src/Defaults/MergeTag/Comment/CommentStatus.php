@@ -36,12 +36,12 @@ class CommentStatus extends StringTag
 	{
 
 		if (isset($params['comment_type']) && ! empty($params['comment_type'])) {
-			$this->comment_type = $params['comment_type'];
+			$this->commentType = $params['comment_type'];
 		}
 
-		$this->set_trigger_prop($params['property_name'] ?? $this->comment_type);
+		$this->setTriggerProp($params['property_name'] ?? $this->commentType);
 
-		$commentTypeName = WpObjectHelper::get_comment_type_name($this->comment_type);
+		$commentTypeName = WpObjectHelper::get_comment_type_name($this->commentType);
 
 		$args = wp_parse_args(
 			$params,
@@ -53,19 +53,19 @@ class CommentStatus extends StringTag
 				'example' => true,
 				'group' => $commentTypeName,
 				'resolver' => function ( $trigger ) {
-					if ($trigger->{ $this->get_trigger_prop() === '1' }->comment_approved) {
+					if ($trigger->{ $this->getTriggerProp() === '1' }->commentApproved) {
 						return __('Approved', 'notification');
 					}
 
-					if ($trigger->{ $this->get_trigger_prop() === '0' }->comment_approved) {
+					if ($trigger->{ $this->getTriggerProp() === '0' }->commentApproved) {
 						return __('Unapproved', 'notification');
 					}
 
-					if ($trigger->{ $this->get_trigger_prop() === 'spam' }->comment_approved) {
+					if ($trigger->{ $this->getTriggerProp() === 'spam' }->commentApproved) {
 						return __('Marked as spam', 'notification');
 					}
 
-					if ($trigger->{ $this->get_trigger_prop() === 'trash' }->comment_approved) {
+					if ($trigger->{ $this->getTriggerProp() === 'trash' }->commentApproved) {
 						return __('Trashed', 'notification');
 					}
 				},

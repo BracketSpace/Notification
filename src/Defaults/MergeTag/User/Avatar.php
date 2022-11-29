@@ -31,7 +31,7 @@ class Avatar extends HtmlTag
 	public function __construct( $params = [] )
 	{
 
-		$this->set_trigger_prop($params['property_name'] ?? 'user_object');
+		$this->setTriggerProp($params['property_name'] ?? 'user_object');
 
 		$args = wp_parse_args(
 			$params,
@@ -42,8 +42,8 @@ class Avatar extends HtmlTag
 				'example' => true,
 				'group' => __('User', 'notification'),
 				'resolver' => function ( $trigger ) {
-					if (isset($trigger->{ $this->get_trigger_prop() }->user_email)) {
-						return get_avatar($trigger->{ $this->get_trigger_prop() }->user_email);
+					if (isset($trigger->{ $this->getTriggerProp() }->userEmail)) {
+						return get_avatar($trigger->{ $this->getTriggerProp() }->userEmail);
 					}
 
 					return '';

@@ -62,17 +62,17 @@ class PostTable
 
 		switch ($column) {
 			case 'hash':
-				echo '<code>' . esc_html($notification->get_hash()) . '</code>';
+				echo '<code>' . esc_html($notification->getHash()) . '</code>';
 				break;
 
 			case 'trigger':
-				$trigger = $notification->get_trigger();
-				echo esc_html($trigger === null ? __('No trigger selected', 'notification') : $trigger->get_name());
+				$trigger = $notification->getTrigger();
+				echo esc_html($trigger === null ? __('No trigger selected', 'notification') : $trigger->getName());
 				break;
 
 			case 'switch':
 				echo '<div class="onoffswitch" data-postid="' . esc_attr((string)$postId) . '" data-nonce="' . esc_attr(wp_create_nonce('change_notification_status_' . $postId)) . '">';
-					echo '<input type="checkbox" name="notification_onoff_switch" class="onoffswitch-checkbox" value="1" id="onoffswitch-' . esc_attr((string)$postId) . '" ' . checked($notification->is_enabled(), true, false) . '>';
+					echo '<input type="checkbox" name="notification_onoff_switch" class="onoffswitch-checkbox" value="1" id="onoffswitch-' . esc_attr((string)$postId) . '" ' . checked($notification->isEnabled(), true, false) . '>';
 					echo '<label class="onoffswitch-label" for="onoffswitch-' . esc_attr((string)$postId) . '">';
 						echo '<span class="onoffswitch-inner"></span>';
 						echo '<span class="onoffswitch-switch"></span>';
@@ -81,8 +81,8 @@ class PostTable
 				break;
 
 			case 'carriers':
-				foreach ($notification->get_enabled_carriers() as $carrier) {
-					echo esc_html($carrier->get_name());
+				foreach ($notification->getEnabledCarriers() as $carrier) {
+					echo esc_html($carrier->getName());
 					echo '<br>';
 				}
 				break;
@@ -100,7 +100,7 @@ class PostTable
 	 */
 	public function remove_status_display( $postStates, $post )
 	{
-		if ($post->post_type === 'notification') {
+		if ($post->postType === 'notification') {
 			return [];
 		}
 
@@ -118,7 +118,7 @@ class PostTable
 	 */
 	public function remove_quick_edit( $rowActions, $post )
 	{
-		if ($post->post_type === 'notification') {
+		if ($post->postType === 'notification') {
 			if (isset($rowActions['inline hide-if-no-js'])) {
 				unset($rowActions['inline hide-if-no-js']);
 			}
@@ -142,7 +142,7 @@ class PostTable
 	 */
 	public function adjust_trash_link( $rowActions, $post )
 	{
-		if ($post->post_type !== 'notification') {
+		if ($post->postType !== 'notification') {
 			return $rowActions;
 		}
 
@@ -192,7 +192,7 @@ class PostTable
 
 		foreach ($postIds as $postId) {
 			$notification = notification_adapt_from('WordPress', $postId);
-			$notification->set_enabled($doaction === 'enable');
+			$notification->setEnabled($doaction === 'enable');
 			$notification->save();
 		}
 

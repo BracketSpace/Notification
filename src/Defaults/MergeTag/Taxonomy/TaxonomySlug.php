@@ -29,7 +29,7 @@ class TaxonomySlug extends StringTag
 	public function __construct( $params = [] )
 	{
 
-		$this->set_trigger_prop($params['property_name'] ?? 'taxonomy');
+		$this->setTriggerProp($params['property_name'] ?? 'taxonomy');
 
 		$args = wp_parse_args(
 			$params,
@@ -40,7 +40,7 @@ class TaxonomySlug extends StringTag
 				'example' => true,
 				'group' => __('Taxonomy', 'notification'),
 				'resolver' => function ( $trigger ) {
-					return $trigger->{ $this->get_trigger_prop() }->name ?? '';
+					return $trigger->{ $this->getTriggerProp() }->name ?? '';
 				},
 			]
 		);

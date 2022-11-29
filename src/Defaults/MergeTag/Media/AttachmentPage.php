@@ -26,7 +26,7 @@ class AttachmentPage extends UrlTag
 	public function __construct( $params = [] )
 	{
 
-		$this->set_trigger_prop($params['property_name'] ?? 'attachment');
+		$this->setTriggerProp($params['property_name'] ?? 'attachment');
 
 		$args = wp_parse_args(
 			$params,
@@ -37,7 +37,7 @@ class AttachmentPage extends UrlTag
 				'example' => true,
 				'group' => __('Attachment', 'notification'),
 				'resolver' => function () {
-					return get_permalink($this->{ $this->get_trigger_prop() }->attachment->ID);
+					return get_permalink($this->{ $this->getTriggerProp() }->attachment->ID);
 				},
 			]
 		);

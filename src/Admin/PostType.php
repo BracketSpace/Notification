@@ -71,7 +71,7 @@ class PostType
 			'show_ui' => true,
 			'show_in_menu' => apply_filters('notification/whitelabel/cpt/parent', true),
 			'show_in_admin_bar' => true,
-			'menu_icon' => \Notification::fs()->image_to_base64('resources/images/menu-icon.svg'),
+			'menu_icon' => \Notification::fs()->imageToBase64('resources/images/menu-icon.svg'),
 			'menu_position' => 103,
 			'show_in_nav_menus' => false,
 			'publicly_queryable' => false,
@@ -265,18 +265,18 @@ class PostType
 
 		// Title.
 		if (isset($data['post_title'])) {
-			$notificationPost->set_title($data['post_title']);
+			$notificationPost->setTitle($data['post_title']);
 		}
 
 		// Status.
 		$status = ( isset($data['notification_onoff_switch']) && $data['notification_onoff_switch'] === '1' );
-		$notificationPost->set_enabled($status);
+		$notificationPost->setEnabled($status);
 
 		// Trigger.
 		if (! empty($data['notification_trigger'])) {
 			$trigger = Store\Trigger::get($data['notification_trigger']);
 			if (! empty($trigger)) {
-				$notificationPost->set_trigger($trigger);
+				$notificationPost->setTrigger($trigger);
 			}
 		}
 
@@ -284,34 +284,34 @@ class PostType
 		$carriers = [];
 
 		foreach (Store\Carrier::all() as $carrier) {
-			if (! isset($data['notification_carrier_' . $carrier->get_slug()])) {
+			if (! isset($data['notification_carrier_' . $carrier->getSlug()])) {
 				continue;
 			}
 
-			$carrierData = $data['notification_carrier_' . $carrier->get_slug()];
+			$carrierData = $data['notification_carrier_' . $carrier->getSlug()];
 
 			if (! $carrierData['activated']) {
 				continue;
 			}
 
 			// If nonce not set or false, ignore this form.
-			if (! wp_verify_nonce($carrierData['_nonce'], $carrier->get_slug() . '_carrier_security')) {
+			if (! wp_verify_nonce($carrierData['_nonce'], $carrier->getSlug() . '_carrier_security')) {
 				continue;
 			}
 
 			// @todo #h1kf7 `enabled` key is overwritten below.
-			$carrier->set_data($carrierData);
+			$carrier->setData($carrierData);
 
-			if (isset($data['notification_carrier_' . $carrier->get_slug() . '_enable'])) {
+			if (isset($data['notification_carrier_' . $carrier->getSlug() . '_enable'])) {
 				$carrier->enable();
 			} else {
 				$carrier->disable();
 			}
 
-			$carriers[$carrier->get_slug()] = $carrier;
+			$carriers[$carrier->getSlug()] = $carrier;
 		}
 
-		$notificationPost->set_carriers($carriers);
+		$notificationPost->setCarriers($carriers);
 
 		// Hook into this action if you want to save any Notification Post data.
 		do_action('notification/data/save', $notificationPost);
@@ -324,7 +324,7 @@ class PostType
 		 * Now it's used in Admin\Wizard::add_notifications() as well
 		 */
 		$cache = new CacheDriver\ObjectCache('notification');
-		$cache->set_key('notifications');
+		$cache->setKey('notifications');
 		$cache->delete();
 
 		do_action('notification/data/save/after', $notificationPost);
@@ -351,10 +351,10 @@ class PostType
 		$data = $_POST;
 		$error = false;
 
-		$ajax->verify_nonce('change_notification_status_' . $data['post_id']);
+		$ajax->verifyNonce('change_notification_status_' . $data['post_id']);
 
 		$adapter = notification_adapt_from('WordPress', (int)$data['post_id']);
-		$adapter->set_enabled($data['status'] === 'true');
+		$adapter->setEnabled($data['status'] === 'true');
 
 		$result = $adapter->save();
 
@@ -394,7 +394,7 @@ class PostType
 
 				// We're using direct db call for performance purposes - we only need the post_content field.
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
-				return $wpdb->get_col($sql);
+				return $wpdb->getCol($sql);
 			}
 		);
 	}
@@ -426,14 +426,14 @@ class PostType
 			$adapter = notification_adapt_from('JSON', $notificationJson);
 
 			// Set source back to WordPress.
-			$adapter->set_source('WordPress');
+			$adapter->setSource('WordPress');
 
 			// Check if the notification hasn't been added already ie. via Sync.
-			if (Store\Notification::has($adapter->get_hash())) {
+			if (Store\Notification::has($adapter->getHash())) {
 				continue;
 			}
 
-			notification_add($adapter->get_notification());
+			notification_add($adapter->getNotification());
 		}
 	}
 }

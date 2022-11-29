@@ -30,21 +30,21 @@ class FeaturedImageId extends IntegerTag
 	public function __construct( $params = [] )
 	{
 
-		$this->set_trigger_prop($params['post_type'] ?? 'post');
+		$this->setTriggerProp($params['post_type'] ?? 'post');
 
-		$postTypeName = WpObjectHelper::get_post_type_name($this->get_trigger_prop());
+		$postTypeName = WpObjectHelper::get_post_type_name($this->getTriggerProp());
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf('%s_featured_image_id', $this->get_trigger_prop()),
+				'slug' => sprintf('%s_featured_image_id', $this->getTriggerProp()),
 				// translators: singular post name.
 				'name' => sprintf(__('%s featured image id', 'notification'), $postTypeName),
 				'description' => __('123', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ( $trigger ) {
-					$postId = $trigger->{ $this->get_trigger_prop() }->ID;
+					$postId = $trigger->{ $this->getTriggerProp() }->ID;
 
 					return (int)get_post_thumbnail_id($postId);
 				},

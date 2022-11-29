@@ -30,7 +30,7 @@ class PostType extends StringTag
 	public function __construct( $params = [] )
 	{
 
-		$this->set_trigger_prop($params['post_type'] ?? 'post');
+		$this->setTriggerProp($params['post_type'] ?? 'post');
 
 		$args = wp_parse_args(
 			$params,
@@ -39,9 +39,9 @@ class PostType extends StringTag
 				'name' => __('Post Type', 'notification'),
 				'description' => 'post',
 				'example' => true,
-				'group' => WpObjectHelper::get_post_type_name($this->get_trigger_prop()),
+				'group' => WpObjectHelper::get_post_type_name($this->getTriggerProp()),
 				'resolver' => static function ( $trigger ) {
-					return $trigger->post_type;
+					return $trigger->postType;
 				},
 			]
 		);

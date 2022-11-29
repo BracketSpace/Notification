@@ -30,21 +30,21 @@ class PostExcerpt extends StringTag
 	public function __construct( $params = [] )
 	{
 
-		$this->set_trigger_prop($params['post_type'] ?? 'post');
+		$this->setTriggerProp($params['post_type'] ?? 'post');
 
-		$postTypeName = WpObjectHelper::get_post_type_name($this->get_trigger_prop());
+		$postTypeName = WpObjectHelper::get_post_type_name($this->getTriggerProp());
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf('%s_excerpt', $this->get_trigger_prop()),
+				'slug' => sprintf('%s_excerpt', $this->getTriggerProp()),
 				// translators: singular post name.
 				'name' => sprintf(__('%s excerpt', 'notification'), $postTypeName),
 				'description' => __('Welcome to WordPress...', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ( $trigger ) {
-					return get_the_excerpt($trigger->{ $this->get_trigger_prop() });
+					return get_the_excerpt($trigger->{ $this->getTriggerProp() });
 				},
 			]
 		);

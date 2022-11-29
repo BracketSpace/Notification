@@ -29,7 +29,7 @@ class Notification implements Storable {
 	 */
 	public static function with_trigger( $triggerSlug ) {
 		return array_filter( static::all(), function ( $notification ) use ( $triggerSlug ) {
-			return ! empty( $notification->get_trigger() ) && $notification->get_trigger()->get_slug() === $triggerSlug;
+			return ! empty( $notification->getTrigger() ) && $notification->getTrigger()->getSlug() === $triggerSlug;
 		} );
 	}
 }

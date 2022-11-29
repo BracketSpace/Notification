@@ -33,9 +33,9 @@ class UserLoginFailed extends UserTrigger
 
 		parent::__construct('user/login_failed', __('User login failed', 'notification'));
 
-		$this->add_action('wp_login_failed', 10, 1);
+		$this->addAction('wp_login_failed', 10, 1);
 
-		$this->set_description(__('Fires when user login failed', 'notification'));
+		$this->setDescription(__('Fires when user login failed', 'notification'));
 	}
 
 	/**
@@ -54,11 +54,11 @@ class UserLoginFailed extends UserTrigger
 			return false;
 		}
 
-		$this->user_id = $user->ID;
-		$this->user_object = get_userdata($this->user_id);
+		$this->userId = $user->ID;
+		$this->userObject = get_userdata($this->userId);
 
-		$this->user_registered_datetime = strtotime($this->user_object->user_registered);
-		$this->user_login_failed_datetime = time();
+		$this->userRegisteredDatetime = strtotime($this->userObject->userRegistered);
+		$this->userLoginFailedDatetime = time();
 	}
 
 	/**
@@ -71,13 +71,13 @@ class UserLoginFailed extends UserTrigger
 
 		parent::merge_tags();
 
-		$this->add_merge_tag(new MergeTag\User\UserNicename());
-		$this->add_merge_tag(new MergeTag\User\UserDisplayName());
-		$this->add_merge_tag(new MergeTag\User\UserFirstName());
-		$this->add_merge_tag(new MergeTag\User\UserLastName());
-		$this->add_merge_tag(new MergeTag\User\UserBio());
+		$this->addMergeTag(new MergeTag\User\UserNicename());
+		$this->addMergeTag(new MergeTag\User\UserDisplayName());
+		$this->addMergeTag(new MergeTag\User\UserFirstName());
+		$this->addMergeTag(new MergeTag\User\UserLastName());
+		$this->addMergeTag(new MergeTag\User\UserBio());
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 				'slug' => 'user_login_failed_datetime',

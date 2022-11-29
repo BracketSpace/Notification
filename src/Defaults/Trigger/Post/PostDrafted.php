@@ -39,7 +39,7 @@ class PostDrafted extends PostTrigger
 			]
 		);
 
-		$this->add_action('transition_post_status', 10, 3);
+		$this->addAction('transition_post_status', 10, 3);
 	}
 
 	/**
@@ -50,7 +50,7 @@ class PostDrafted extends PostTrigger
 	public function get_name(): string
 	{
 		// translators: singular post name.
-		return sprintf(__('%s saved as a draft', 'notification'), WpObjectHelper::get_post_type_name($this->post_type));
+		return sprintf(__('%s saved as a draft', 'notification'), WpObjectHelper::get_post_type_name($this->postType));
 	}
 
 	/**
@@ -63,8 +63,8 @@ class PostDrafted extends PostTrigger
 		return sprintf(
 			// translators: 1. singular post name, 2. post type slug.
 			__('Fires when %1$s (%2$s) is saved as a draft', 'notification'),
-			WpObjectHelper::get_post_type_name($this->post_type),
-			$this->post_type
+			WpObjectHelper::get_post_type_name($this->postType),
+			$this->postType
 		);
 	}
 
@@ -79,7 +79,7 @@ class PostDrafted extends PostTrigger
 	public function context( $newStatus, $oldStatus, $post )
 	{
 
-		if ($post->post_type !== $this->post_type) {
+		if ($post->postType !== $this->postType) {
 			return false;
 		}
 
@@ -91,13 +91,13 @@ class PostDrafted extends PostTrigger
 			return false;
 		}
 
-		$this->{ $this->post_type } = $post;
+		$this->{ $this->postType } = $post;
 
-		$this->author = get_userdata((int)$this->{ $this->post_type }->post_author);
-		$this->last_editor = get_userdata((int)get_post_meta($this->{ $this->post_type }->ID, '_edit_last', true));
-		$this->publishing_user = get_userdata(get_current_user_id());
+		$this->author = get_userdata((int)$this->{ $this->postType }->postAuthor);
+		$this->lastEditor = get_userdata((int)get_post_meta($this->{ $this->postType }->ID, '_edit_last', true));
+		$this->publishingUser = get_userdata(get_current_user_id());
 
-		$this->{ $this->post_type . '_creation_datetime' } = strtotime($this->{ $this->post_type }->post_date_gmt);
-		$this->{ $this->post_type . '_modification_datetime' } = strtotime($this->{ $this->post_type }->post_modified_gmt);
+		$this->{ $this->postType . '_creation_datetime' } = strtotime($this->{ $this->postType }->postDateGmt);
+		$this->{ $this->postType . '_modification_datetime' } = strtotime($this->{ $this->postType }->postModifiedGmt);
 	}
 }

@@ -62,7 +62,7 @@ function notification_adapt_from( $adapterName, $data )
  */
 function notification_swap_adapter( $newAdapterName, Interfaces\Adaptable $adapter )
 {
-	return notification_adapt($newAdapterName, $adapter->get_notification());
+	return notification_adapt($newAdapterName, $adapter->getNotification());
 }
 
 /**
@@ -90,7 +90,7 @@ function notification_log( $component, $type, $message )
 	];
 
 	try {
-		return $debugger->add_log($logData);
+		return $debugger->addLog($logData);
 	} catch (\Throwable $e) {
 		return new \WP_Error('wrong_log_data', $e->getMessage());
 	}
@@ -126,7 +126,7 @@ function notification( $data = [] )
  */
 function notification_add( Notification $notification )
 {
-	Store\Notification::insert($notification->get_hash(), $notification);
+	Store\Notification::insert($notification->getHash(), $notification);
 	do_action('notification/notification/registered', $notification);
 }
 
@@ -165,7 +165,7 @@ function notification_convert_data( $data = [] )
 			}
 
 			$carrier = clone $registeredCarrier;
-			$carrier->set_data($carrierData);
+			$carrier->setData($carrierData);
 			$carriers[$carrierSlug] = $carrier;
 		}
 
@@ -201,7 +201,7 @@ function notification_register_settings( $callback, $priority = 10 )
  */
 function notification_get_settings()
 {
-	return \Notification::component('core_settings')->get_settings();
+	return \Notification::component('core_settings')->getSettings();
 }
 
 /**
@@ -223,7 +223,7 @@ function notification_get_setting( $setting )
 		$setting = implode('/', $parts);
 	}
 
-	return \Notification::component('core_settings')->get_setting($setting);
+	return \Notification::component('core_settings')->getSetting($setting);
 }
 
 /**
@@ -235,5 +235,5 @@ function notification_get_setting( $setting )
  */
 function notification_update_setting( $setting, $value )
 {
-	return \Notification::component('core_settings')->update_setting($setting, $value);
+	return \Notification::component('core_settings')->updateSetting($setting, $value);
 }

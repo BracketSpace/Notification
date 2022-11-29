@@ -29,17 +29,17 @@ class TermName extends StringTag
 	public function __construct( $params = [] )
 	{
 
-		$this->set_trigger_prop($params['property_name'] ?? 'term');
+		$this->setTriggerProp($params['property_name'] ?? 'term');
 
 		$args = wp_parse_args(
 			[
-				'slug' => sprintf('%s_name', $this->get_trigger_prop()),
+				'slug' => sprintf('%s_name', $this->getTriggerProp()),
 				'name' => __('Term name', 'notification'),
 				'description' => 'Nature',
 				'example' => true,
 				'group' => __('Term', 'notification'),
 				'resolver' => function ( $trigger ) {
-					return $trigger->{ $this->get_trigger_prop() }->name;
+					return $trigger->{ $this->getTriggerProp() }->name;
 				},
 			]
 		);

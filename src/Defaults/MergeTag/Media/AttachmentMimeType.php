@@ -26,7 +26,7 @@ class AttachmentMimeType extends StringTag
 	public function __construct( $params = [] )
 	{
 
-		$this->set_trigger_prop($params['property_name'] ?? 'attachment');
+		$this->setTriggerProp($params['property_name'] ?? 'attachment');
 
 		$args = wp_parse_args(
 			$params,
@@ -36,7 +36,7 @@ class AttachmentMimeType extends StringTag
 				'description' => 'image/jpeg',
 				'example' => true,
 				'resolver' => function ( $trigger ) {
-					return $trigger->{ $this->get_trigger_prop() }->post_mime_type;
+					return $trigger->{ $this->getTriggerProp() }->postMimeType;
 				},
 				'group' => __('Attachment', 'notification'),
 			]

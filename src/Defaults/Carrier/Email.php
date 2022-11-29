@@ -39,14 +39,14 @@ class Email extends Abstracts\Carrier
 
 	/**
 	 * Used to register Carrier form fields
-	 * Uses $this->add_form_field();
+	 * Uses $this->addFormField();
 	 *
 	 * @return void
 	 */
 	public function form_fields()
 	{
 
-		$this->add_form_field(
+		$this->addFormField(
 			new Field\InputField(
 				[
 				'label' => __('Subject', 'notification'),
@@ -75,15 +75,15 @@ class Email extends Abstracts\Carrier
 					]
 		);
 
-		$this->add_form_field($bodyField);
+		$this->addFormField($bodyField);
 
-		$this->add_recipients_field();
+		$this->addRecipientsField();
 
 		if (!notification_get_setting('carriers/email/headers')) {
 			return;
 		}
 
-		$this->add_form_field(
+		$this->addFormField(
 			new Field\RepeaterField(
 				[
 				'label' => __('Headers', 'notification'),
@@ -196,13 +196,13 @@ class Email extends Abstracts\Carrier
 		foreach ($errors as $error => $errorData) {
 			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
 			notification_log(
-				$this->get_name(),
+				$this->getName(),
 				'error',
 				'<pre>' . print_r(
 					[
 					'error' => $error,
 					'recipients_affected' => $errorData['recipients'],
-					'trigger' => sprintf('%s (%s)', $trigger->get_name(), $trigger->get_slug()),
+					'trigger' => sprintf('%s (%s)', $trigger->getName(), $trigger->getSlug()),
 					'email_subject' => $subject,
 					],
 					true

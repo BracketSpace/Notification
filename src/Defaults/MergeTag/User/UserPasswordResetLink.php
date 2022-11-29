@@ -39,10 +39,10 @@ class UserPasswordResetLink extends StringTag
 	{
 
 		if (isset($params['key_property_name']) && ! empty($params['key_property_name'])) {
-			$this->key_property_name = $params['key_property_name'];
+			$this->keyPropertyName = $params['key_property_name'];
 		}
 
-		$this->set_trigger_prop($params['user_property_name'] ?? 'user_object');
+		$this->setTriggerProp($params['user_property_name'] ?? 'user_object');
 
 		$args = wp_parse_args(
 			[
@@ -55,8 +55,8 @@ class UserPasswordResetLink extends StringTag
 					return network_site_url(
 						sprintf(
 							'wp-login.php?action=rp&key=%s&login=%s',
-							$trigger->{ $this->key_property_name },
-							$trigger->{ $this->get_trigger_prop() }->data->user_login
+							$trigger->{ $this->keyPropertyName },
+							$trigger->{ $this->getTriggerProp() }->data->userLogin
 						)
 					);
 				},

@@ -68,7 +68,7 @@ class Extensions
 		// change settings position if white labelled.
 		$pageMenuLabel = apply_filters('notification/whitelabel/cpt/parent', true) !== true ? __('Notification extensions', 'notification') : __('Extensions', 'notification');
 
-		$this->page_hook = add_submenu_page(
+		$this->pageHook = add_submenu_page(
 			apply_filters('notification/whitelabel/cpt/parent', 'edit.php?post_type=notification'),
 			__('Extensions', 'notification'),
 			$pageMenuLabel,
@@ -77,7 +77,7 @@ class Extensions
 			[ $this, 'extensions_page' ]
 		);
 
-		add_action('load-' . $this->page_hook, [ $this, 'load_extensions' ]);
+		add_action('load-' . $this->pageHook, [ $this, 'load_extensions' ]);
 	}
 
 	/**
@@ -97,7 +97,7 @@ class Extensions
 			require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
 		}
 
-		$extensions = $this->get_raw_extensions();
+		$extensions = $this->getRawExtensions();
 
 		if (empty($extensions)) {
 			return;
@@ -123,7 +123,7 @@ class Extensions
 
 			if (isset($extension['edd']) && $proInstalled) {
 				$extension['license'] = new License($extension);
-				$this->premium_extensions[] = $extension;
+				$this->premiumExtensions[] = $extension;
 			} else {
 				$this->extensions[] = $extension;
 			}
@@ -142,7 +142,7 @@ class Extensions
 
 		return $cache->collect(
 			function () {
-				$response = wp_remote_get($this->api_url);
+				$response = wp_remote_get($this->apiUrl);
 				$extensions = [];
 
 				if (! is_wp_error($response) && wp_remote_retrieve_response_code($response) === 200) {
@@ -162,7 +162,7 @@ class Extensions
 	 */
 	public function get_raw_extension( $slug )
 	{
-		$extensions = $this->get_raw_extensions();
+		$extensions = $this->getRawExtensions();
 		return $extensions[$slug] ?? false;
 	}
 
@@ -176,7 +176,7 @@ class Extensions
 		Templates::render(
 			'extension/page',
 			[
-			'premium_extensions' => $this->premium_extensions,
+			'premium_extensions' => $this->premiumExtensions,
 			'extensions' => $this->extensions,
 			'bundles' => static::get_bundles(),
 			]
@@ -223,7 +223,7 @@ class Extensions
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 
-		$extensions = $this->get_raw_extensions();
+		$extensions = $this->getRawExtensions();
 		$premium = [];
 		$wpPlugins = get_plugins();
 		$pluginSlugs = array_keys($wpPlugins);
@@ -246,7 +246,7 @@ class Extensions
 				$extension['slug'],
 				[
 					'version' => $wpPlugin['Version'],
-					'license' => $license->get_key(),
+					'license' => $license->getKey(),
 					'item_name' => $extension['edd']['item_name'],
 					'author' => $extension['author'],
 					'beta' => false,
@@ -280,7 +280,7 @@ class Extensions
 
 		$data = $_POST;
 
-		$extension = $this->get_raw_extension($data['extension']);
+		$extension = $this->getRawExtension($data['extension']);
 
 		if ($extension === false) {
 			wp_safe_redirect(add_query_arg('activation-status', 'wrong-extension', $data['_wp_http_referer']));
@@ -291,13 +291,13 @@ class Extensions
 		$activation = $license->activate($data['license-key']);
 
 		if (is_wp_error($activation)) {
-			$licenseData = $activation->get_error_data();
+			$licenseData = $activation->getErrorData();
 			$params = [
-				'activation-status' => $activation->get_error_message(),
-				'extension' => rawurlencode($licenseData->item_name),
+				'activation-status' => $activation->getErrorMessage(),
+				'extension' => rawurlencode($licenseData->itemName),
 			];
 
-			if ($activation->get_error_message() === 'expired') {
+			if ($activation->getErrorMessage() === 'expired') {
 				$params['expiration'] = $licenseData->expires;
 			}
 
@@ -334,7 +334,7 @@ class Extensions
 
 		$data = $_POST;
 
-		$extension = $this->get_raw_extension($data['extension']);
+		$extension = $this->getRawExtension($data['extension']);
 
 		if ($extension === false) {
 			wp_safe_redirect(add_query_arg('activation-status', 'wrong-extension', $data['_wp_http_referer']));
@@ -345,10 +345,10 @@ class Extensions
 		$activation = $license->deactivate();
 
 		if (is_wp_error($activation)) {
-			$licenseData = $activation->get_error_data();
+			$licenseData = $activation->getErrorData();
 			$params = [
-				'activation-status' => $activation->get_error_message(),
-				'extension' => rawurlencode($licenseData->item_name),
+				'activation-status' => $activation->getErrorMessage(),
+				'extension' => rawurlencode($licenseData->itemName),
 			];
 
 			wp_safe_redirect(add_query_arg($params, $data['_wp_http_referer']));
@@ -464,11 +464,11 @@ class Extensions
 			return;
 		}
 
-		if (get_current_screen()->id === $this->page_hook) {
+		if (get_current_screen()->id === $this->pageHook) {
 			return;
 		}
 
-		$extensions = $this->get_raw_extensions();
+		$extensions = $this->getRawExtensions();
 
 		if (empty($extensions)) {
 			return;
@@ -483,7 +483,7 @@ class Extensions
 
 			$license = new License($extension);
 
-			if ($license->is_valid()) {
+			if ($license->isValid()) {
 				continue;
 			}
 

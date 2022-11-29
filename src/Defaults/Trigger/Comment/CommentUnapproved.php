@@ -35,10 +35,10 @@ class CommentUnapproved extends CommentTrigger
 			]
 		);
 
-		$this->add_action('transition_comment_status', 10, 3);
+		$this->addAction('transition_comment_status', 10, 3);
 
 		// translators: comment type.
-		$this->set_description(sprintf(__('Fires when %s is marked as unapproved', 'notification'), WpObjectHelper::get_comment_type_name($commentType), 'notification'));
+		$this->setDescription(sprintf(__('Fires when %s is marked as unapproved', 'notification'), WpObjectHelper::get_comment_type_name($commentType), 'notification'));
 	}
 
 	/**
@@ -54,11 +54,11 @@ class CommentUnapproved extends CommentTrigger
 
 		$this->comment = $comment;
 
-		if ($this->comment->comment_approved === 'spam' && notification_get_setting('triggers/comment/akismet')) {
+		if ($this->comment->commentApproved === 'spam' && notification_get_setting('triggers/comment/akismet')) {
 			return false;
 		}
 
-		if (! $this->is_correct_type($this->comment)) {
+		if (! $this->isCorrectType($this->comment)) {
 			return false;
 		}
 

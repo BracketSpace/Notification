@@ -40,9 +40,9 @@ class UserPasswordResetRequest extends UserTrigger
 
 		parent::__construct('user/password_reset_request', __('User password reset request', 'notification'));
 
-		$this->add_action('retrieve_password_key', 10, 2);
+		$this->addAction('retrieve_password_key', 10, 2);
 
-		$this->set_description(__('Fires when user requests password change', 'notification'));
+		$this->setDescription(__('Fires when user requests password change', 'notification'));
 	}
 
 	/**
@@ -68,13 +68,13 @@ class UserPasswordResetRequest extends UserTrigger
 			return false;
 		}
 
-		$this->user_id = $user->data->ID;
-		$this->user_object = get_userdata($this->user_id);
+		$this->userId = $user->data->ID;
+		$this->userObject = get_userdata($this->userId);
 
-		$this->password_reset_key = $resetKey;
+		$this->passwordResetKey = $resetKey;
 
-		$this->user_registered_datetime = strtotime($this->user_object->user_registered);
-		$this->password_reset_request_datetime = time();
+		$this->userRegisteredDatetime = strtotime($this->userObject->userRegistered);
+		$this->passwordResetRequestDatetime = time();
 	}
 
 	/**
@@ -87,14 +87,14 @@ class UserPasswordResetRequest extends UserTrigger
 
 		parent::merge_tags();
 
-		$this->add_merge_tag(new MergeTag\User\UserNicename());
-		$this->add_merge_tag(new MergeTag\User\UserDisplayName());
-		$this->add_merge_tag(new MergeTag\User\UserFirstName());
-		$this->add_merge_tag(new MergeTag\User\UserLastName());
-		$this->add_merge_tag(new MergeTag\User\UserPasswordResetLink());
-		$this->add_merge_tag(new MergeTag\User\UserBio());
+		$this->addMergeTag(new MergeTag\User\UserNicename());
+		$this->addMergeTag(new MergeTag\User\UserDisplayName());
+		$this->addMergeTag(new MergeTag\User\UserFirstName());
+		$this->addMergeTag(new MergeTag\User\UserLastName());
+		$this->addMergeTag(new MergeTag\User\UserPasswordResetLink());
+		$this->addMergeTag(new MergeTag\User\UserBio());
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 				'slug' => 'password_reset_request_datetime',

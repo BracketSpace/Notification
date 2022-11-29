@@ -110,7 +110,7 @@ abstract class Field implements Interfaces\Fillable
 			trigger_error('Field requires label and name', E_USER_ERROR);
 		}
 
-		$this->field_type_html = substr(strrchr(static::class, '\\'), 1);
+		$this->fieldTypeHtml = substr(strrchr(static::class, '\\'), 1);
 
 		$this->label = $params['label'];
 		$this->name = $params['name'];
@@ -125,7 +125,7 @@ abstract class Field implements Interfaces\Fillable
 		}
 
 		if (isset($params['value'])) {
-			$this->set_value($params['value']);
+			$this->setValue($params['value']);
 		}
 
 		if (isset($params['disabled']) && $params['disabled']) {
@@ -133,14 +133,14 @@ abstract class Field implements Interfaces\Fillable
 		}
 
 		if (isset($params['css_class'])) {
-			$this->css_class .= $params['css_class'];
+			$this->cssClass .= $params['css_class'];
 		}
 
 		if (!isset($params['multiple_section'])) {
 			return;
 		}
 
-		$this->multiple_section = $params['multiple_section'];
+		$this->multipleSection = $params['multiple_section'];
 	}
 
 	/**
@@ -188,7 +188,7 @@ abstract class Field implements Interfaces\Fillable
 	public function get_value()
 	{
 		$value = is_string($this->value) ? stripslashes($this->value) : $this->value;
-		return apply_filters('notification/field/' . $this->get_raw_name() . '/value', $value, $this);
+		return apply_filters('notification/field/' . $this->getRawName() . '/value', $value, $this);
 	}
 
 	/**
@@ -269,7 +269,7 @@ abstract class Field implements Interfaces\Fillable
 	 */
 	public function maybe_disable()
 	{
-		return $this->is_disabled() ? 'disabled="disabled"' : '';
+		return $this->isDisabled() ? 'disabled="disabled"' : '';
 	}
 
 	/**
@@ -279,7 +279,7 @@ abstract class Field implements Interfaces\Fillable
 	 */
 	public function css_class()
 	{
-		return $this->css_class;
+		return $this->cssClass;
 	}
 
 	/**

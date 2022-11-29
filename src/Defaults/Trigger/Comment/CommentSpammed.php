@@ -35,10 +35,10 @@ class CommentSpammed extends CommentTrigger
 			]
 		);
 
-		$this->add_action('spammed_comment', 100, 2);
+		$this->addAction('spammed_comment', 100, 2);
 
 		// translators: comment type.
-		$this->set_description(sprintf(__('Fires when %s is marked as spam', 'notification'), WpObjectHelper::get_comment_type_name($commentType)));
+		$this->setDescription(sprintf(__('Fires when %s is marked as spam', 'notification'), WpObjectHelper::get_comment_type_name($commentType)));
 	}
 
 	/**
@@ -53,16 +53,16 @@ class CommentSpammed extends CommentTrigger
 
 		$this->comment = $comment;
 
-		if ($this->comment->comment_approved === 'spam' && notification_get_setting('triggers/comment/akismet')) {
+		if ($this->comment->commentApproved === 'spam' && notification_get_setting('triggers/comment/akismet')) {
 			return false;
 		}
 
-		if (! $this->is_correct_type($this->comment)) {
+		if (! $this->isCorrectType($this->comment)) {
 			return false;
 		}
 
 		// fix for action being called too early, before WP marks the comment as spam.
-		$this->comment->comment_approved = 'spam';
+		$this->comment->commentApproved = 'spam';
 
 		parent::assign_properties();
 	}

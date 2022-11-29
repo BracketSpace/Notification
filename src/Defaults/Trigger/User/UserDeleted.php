@@ -40,9 +40,9 @@ class UserDeleted extends UserTrigger
 
 		parent::__construct('user/deleted', __('User deleted', 'notification'));
 
-		$this->add_action('delete_user', 10, 1);
+		$this->addAction('delete_user', 10, 1);
 
-		$this->set_description(__('Fires when user account is deleted', 'notification'));
+		$this->setDescription(__('Fires when user account is deleted', 'notification'));
 	}
 
 	/**
@@ -54,12 +54,12 @@ class UserDeleted extends UserTrigger
 	public function context( $userId )
 	{
 
-		$this->user_id = $userId;
-		$this->user_object = get_userdata($this->user_id);
-		$this->user_meta = get_user_meta($this->user_id);
+		$this->userId = $userId;
+		$this->userObject = get_userdata($this->userId);
+		$this->userMeta = get_user_meta($this->userId);
 
-		$this->user_registered_datetime = strtotime($this->user_object->user_registered);
-		$this->user_deleted_datetime = time();
+		$this->userRegisteredDatetime = strtotime($this->userObject->userRegistered);
+		$this->userDeletedDatetime = time();
 	}
 
 	/**
@@ -72,13 +72,13 @@ class UserDeleted extends UserTrigger
 
 		parent::merge_tags();
 
-		$this->add_merge_tag(new MergeTag\User\UserNicename());
-		$this->add_merge_tag(new MergeTag\User\UserDisplayName());
-		$this->add_merge_tag(new MergeTag\User\UserFirstName());
-		$this->add_merge_tag(new MergeTag\User\UserLastName());
-		$this->add_merge_tag(new MergeTag\User\UserBio());
+		$this->addMergeTag(new MergeTag\User\UserNicename());
+		$this->addMergeTag(new MergeTag\User\UserDisplayName());
+		$this->addMergeTag(new MergeTag\User\UserFirstName());
+		$this->addMergeTag(new MergeTag\User\UserLastName());
+		$this->addMergeTag(new MergeTag\User\UserBio());
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 				'slug' => 'user_deleted_datetime',

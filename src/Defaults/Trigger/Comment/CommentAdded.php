@@ -36,10 +36,10 @@ class CommentAdded extends CommentTrigger
 			]
 		);
 
-		$this->add_action('wp_insert_comment', 10, 2);
+		$this->addAction('wp_insert_comment', 10, 2);
 
 		// Translators: comment type.
-		$this->set_description(sprintf(__('Fires when new %s is added to database and awaits moderation or is published. Includes comment replies.', 'notification'), WpObjectHelper::get_comment_type_name($commentType)));
+		$this->setDescription(sprintf(__('Fires when new %s is added to database and awaits moderation or is published. Includes comment replies.', 'notification'), WpObjectHelper::get_comment_type_name($commentType)));
 	}
 
 	/**
@@ -54,11 +54,11 @@ class CommentAdded extends CommentTrigger
 
 		$this->comment = $comment;
 
-		if ($this->comment->comment_approved === 'spam' && notification_get_setting('triggers/comment/akismet')) {
+		if ($this->comment->commentApproved === 'spam' && notification_get_setting('triggers/comment/akismet')) {
 			return false;
 		}
 
-		if (! $this->is_correct_type($this->comment)) {
+		if (! $this->isCorrectType($this->comment)) {
 			return false;
 		}
 
@@ -75,34 +75,34 @@ class CommentAdded extends CommentTrigger
 
 		parent::merge_tags();
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentActionApprove(
 				[
-				'comment_type' => $this->comment_type,
+				'comment_type' => $this->commentType,
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentActionTrash(
 				[
-				'comment_type' => $this->comment_type,
+				'comment_type' => $this->commentType,
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentActionDelete(
 				[
-				'comment_type' => $this->comment_type,
+				'comment_type' => $this->commentType,
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentActionSpam(
 				[
-				'comment_type' => $this->comment_type,
+				'comment_type' => $this->commentType,
 				]
 			)
 		);

@@ -33,7 +33,7 @@ class DumpHooks
 	{
 
 		$runtime = Notification::runtime();
-		$filesystem = $runtime->get_filesystem();
+		$filesystem = $runtime->getFilesystem();
 		$hooksFile = 'compat/register-hooks.php';
 
 		// Build an array of searchable instances.
@@ -49,7 +49,7 @@ class DumpHooks
 		$hookFunctions = [];
 
 		// Loop over each class registering hooks.
-		foreach ($runtime->get_calls() as $className => $hooks) {
+		foreach ($runtime->getCalls() as $className => $hooks) {
 			$count = 0;
 
 			if ($className === 'BracketSpace\\Notification\\Runtime') {
@@ -102,7 +102,7 @@ declare(strict_types=1);
 ';
 
 		// Save the content.
-		$filesystem->put_contents($hooksFile, $fileHeader . implode("\n", $hookFunctions) . "\n");
+		$filesystem->putContents($hooksFile, $fileHeader . implode("\n", $hookFunctions) . "\n");
 
 		WP_CLI::success('All hooks dumped!');
 	}

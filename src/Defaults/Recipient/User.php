@@ -46,13 +46,13 @@ class User extends Abstracts\Recipient
 	{
 
 		if (empty($value)) {
-			$value = $this->get_default_value();
+			$value = $this->getDefaultValue();
 		}
 
 		$user = get_userdata((int)$value);
 
 		if ($user) {
-			return [ $user->user_email ];
+			return [ $user->userEmail ];
 		}
 
 		return [];
@@ -76,7 +76,7 @@ class User extends Abstracts\Recipient
 			'label' => __('Recipient', 'notification'), // don't edit this!
 			'name' => 'recipient',                       // don't edit this!
 			'css_class' => 'recipient-value',                 // don't edit this!
-			'value' => $this->get_default_value(),
+			'value' => $this->getDefaultValue(),
 			'pretty' => true,
 			'options' => $opts,
 			]

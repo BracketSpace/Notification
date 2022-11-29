@@ -26,7 +26,7 @@ class AttachmentDirectUrl extends UrlTag
 	public function __construct( $params = [] )
 	{
 
-		$this->set_trigger_prop($params['property_name'] ?? 'attachment');
+		$this->setTriggerProp($params['property_name'] ?? 'attachment');
 
 		$args = wp_parse_args(
 			$params,
@@ -37,13 +37,13 @@ class AttachmentDirectUrl extends UrlTag
 				'example' => true,
 				'group' => __('Attachment', 'notification'),
 				'resolver' => function () {
-					return wp_get_attachment_url($this->trigger->{ $this->get_trigger_prop() }->ID);
+					return wp_get_attachment_url($this->trigger->{ $this->getTriggerProp() }->ID);
 				},
 			]
 		);
 
 		parent::__construct($args);
 
-		$this->set_group(__('Attachment', 'notification'));
+		$this->setGroup(__('Attachment', 'notification'));
 	}
 }

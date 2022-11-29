@@ -66,17 +66,17 @@ class Screen
 	public function render_trigger_select( $notificationPost )
 	{
 		$groupedTriggers = Store\Trigger::grouped();
-		$trigger = $notificationPost->get_trigger();
+		$trigger = $notificationPost->getTrigger();
 
 		// Add merge tags.
 		if ($trigger) {
-			$trigger->setup_merge_tags();
+			$trigger->setupMergeTags();
 		}
 
 		Templates::render(
 			'trigger/metabox',
 			[
-			'selected' => $trigger ? $trigger->get_slug() : '',
+			'selected' => $trigger ? $trigger->getSlug() : '',
 			'triggers' => $groupedTriggers,
 			'has_triggers' => ! empty($groupedTriggers),
 			'select_name' => 'notification_trigger',
@@ -112,7 +112,7 @@ class Screen
 		echo '<div id="carrier-boxes">';
 
 		foreach (Store\Carrier::all() as $_carrier) {
-			$carrier = $notificationPost->get_carrier($_carrier->get_slug());
+			$carrier = $notificationPost->getCarrier($_carrier->getSlug());
 
 			// If Carrier wasn't set before, use the blank one.
 			if (! $carrier) {
@@ -121,22 +121,22 @@ class Screen
 
 			// If Carrier is enabled then it must be activated as well.
 			// Fix for previous versions when enabled but not activated Carrier was just wiped out.
-			if ($carrier->is_enabled()) {
+			if ($carrier->isEnabled()) {
 				$carrier->activate();
 			}
 
 			Templates::render(
 				'box',
 				[
-				'slug' => $carrier->get_slug(),
+				'slug' => $carrier->getSlug(),
 				'carrier' => $carrier,
-				'id' => 'notification-carrier-' . $carrier->get_slug() . '-box',
-				'name' => 'notification_carrier_' . $carrier->get_slug() . '_enable',
-				'active_name' => 'notification_carrier_' . $carrier->get_slug() . '_active',
-				'title' => $carrier->get_name(),
-				'content' => $this->get_carrier_form($carrier),
-				'open' => $carrier->is_enabled(),
-				'active' => $carrier->is_active(),
+				'id' => 'notification-carrier-' . $carrier->getSlug() . '-box',
+				'name' => 'notification_carrier_' . $carrier->getSlug() . '_enable',
+				'active_name' => 'notification_carrier_' . $carrier->getSlug() . '_active',
+				'title' => $carrier->getName(),
+				'content' => $this->getCarrierForm($carrier),
+				'open' => $carrier->isEnabled(),
+				'active' => $carrier->isActive(),
 				]
 			);
 		}
@@ -166,7 +166,7 @@ class Screen
 	public function render_carriers_widget( $notificationPost )
 	{
 		$carriers = Store\Carrier::all();
-		$exists = $notificationPost->get_carriers();
+		$exists = $notificationPost->getCarriers();
 
 		Templates::render(
 			'carriers/widget-add',
@@ -188,10 +188,10 @@ class Screen
 	 */
 	public function get_carrier_form( Interfaces\Sendable $carrier )
 	{
-		$fields = $carrier->get_form_fields();
+		$fields = $carrier->getFormFields();
 
 		// No fields available so return the default view.
-		if (empty($fields) && ! $carrier->has_recipients_field()) {
+		if (empty($fields) && ! $carrier->hasRecipientsField()) {
 			return Templates::get('form/empty-form');
 		}
 
@@ -280,15 +280,15 @@ class Screen
 	public function render_merge_tags_metabox( $post )
 	{
 		$notification = notification_adapt_from('WordPress', $post);
-		$trigger = $notification->get_trigger();
-		$triggerSlug = $trigger ? $trigger->get_slug() : false;
+		$trigger = $notification->getTrigger();
+		$triggerSlug = $trigger ? $trigger->getSlug() : false;
 
 		if (! $triggerSlug) {
 			Templates::render('mergetag/metabox-notrigger');
 			return;
 		}
 
-		$this->render_merge_tags_list($triggerSlug);
+		$this->renderMergeTagsList($triggerSlug);
 	}
 
 	/**
@@ -306,7 +306,7 @@ class Screen
 			return;
 		}
 
-		$tagGroups = $this->prepare_merge_tag_groups($trigger);
+		$tagGroups = $this->prepareMergeTagGroups($trigger);
 
 		if (empty($tagGroups)) {
 			Templates::render('mergetag/metabox-nomergetags');
@@ -315,7 +315,7 @@ class Screen
 
 		$vars = [
 			'trigger' => $trigger,
-			'tags' => $trigger->get_merge_tags('visible'),
+			'tags' => $trigger->getMergeTags('visible'),
 			'tag_groups' => $tagGroups,
 		];
 
@@ -335,7 +335,7 @@ class Screen
 	public function prepare_merge_tag_groups( $trigger )
 	{
 		$groups = [];
-		$tags = $trigger->get_merge_tags('visible');
+		$tags = $trigger->getMergeTags('visible');
 
 		if (empty($tags)) {
 			return $groups;
@@ -344,8 +344,8 @@ class Screen
 		$otherKey = __('Other', 'notification');
 
 		foreach ($tags as $tag) {
-			if ($tag->get_group()) {
-				$groups[$tag->get_group()][] = $tag;
+			if ($tag->getGroup()) {
+				$groups[$tag->getGroup()][] = $tag;
 			} else {
 				$groups[$otherKey][] = $tag;
 			}
@@ -408,11 +408,11 @@ class Screen
 	 */
 	public function add_help( $screen )
 	{
-		if ($screen->post_type !== 'notification') {
+		if ($screen->postType !== 'notification') {
 			return;
 		}
 
-		$screen->add_help_tab(
+		$screen->addHelpTab(
 			[
 			'id' => 'notification_global_merge_tags',
 			'title' => __('Global Merge Tags', 'notification'),
@@ -425,7 +425,7 @@ class Screen
 			]
 		);
 
-		$screen->set_help_sidebar(Templates::get('help/sidebar'));
+		$screen->setHelpSidebar(Templates::get('help/sidebar'));
 	}
 
 	/**
@@ -453,7 +453,7 @@ class Screen
 
 		ob_start();
 
-		$this->render_merge_tags_list(sanitize_text_field(wp_unslash($_POST['trigger_slug'])));
+		$this->renderMergeTagsList(sanitize_text_field(wp_unslash($_POST['trigger_slug'])));
 
 		$ajax->send(ob_get_clean());
 	}

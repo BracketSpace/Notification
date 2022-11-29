@@ -24,9 +24,9 @@ class DataExportRequest extends PrivacyTrigger
 
 		parent::__construct('privacy/data-export-request', __('Personal Data Export Request', 'notification'));
 
-		$this->add_action('user_request_action_confirmed', 10, 1);
+		$this->addAction('user_request_action_confirmed', 10, 1);
 
-		$this->set_description(__('Fires when user requests privacy data export', 'notification'));
+		$this->setDescription(__('Fires when user requests privacy data export', 'notification'));
 	}
 
 	/**
@@ -38,7 +38,7 @@ class DataExportRequest extends PrivacyTrigger
 	{
 
 		$this->request = wp_get_user_request($requestId);
-		$this->user_object = get_userdata($this->request->user_id);
-		$this->data_operation_time = time();
+		$this->userObject = get_userdata($this->request->userId);
+		$this->dataOperationTime = time();
 	}
 }

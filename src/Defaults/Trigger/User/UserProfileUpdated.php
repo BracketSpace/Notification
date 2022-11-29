@@ -40,9 +40,9 @@ class UserProfileUpdated extends UserTrigger
 
 		parent::__construct('user/profile_updated', __('User profile updated', 'notification'));
 
-		$this->add_action('profile_update', 10, 2);
+		$this->addAction('profile_update', 10, 2);
 
-		$this->set_description(__('Fires when user updates his profile', 'notification'));
+		$this->setDescription(__('Fires when user updates his profile', 'notification'));
 	}
 
 	/**
@@ -54,12 +54,12 @@ class UserProfileUpdated extends UserTrigger
 	public function context( $userId )
 	{
 
-		$this->user_id = $userId;
-		$this->user_object = get_userdata($this->user_id);
-		$this->user_meta = get_user_meta($this->user_id);
+		$this->userId = $userId;
+		$this->userObject = get_userdata($this->userId);
+		$this->userMeta = get_user_meta($this->userId);
 
-		$this->user_registered_datetime = strtotime($this->user_object->user_registered);
-		$this->user_profile_updated_datetime = time();
+		$this->userRegisteredDatetime = strtotime($this->userObject->userRegistered);
+		$this->userProfileUpdatedDatetime = time();
 	}
 
 	/**
@@ -72,13 +72,13 @@ class UserProfileUpdated extends UserTrigger
 
 		parent::merge_tags();
 
-		$this->add_merge_tag(new MergeTag\User\UserNicename());
-		$this->add_merge_tag(new MergeTag\User\UserDisplayName());
-		$this->add_merge_tag(new MergeTag\User\UserFirstName());
-		$this->add_merge_tag(new MergeTag\User\UserLastName());
-		$this->add_merge_tag(new MergeTag\User\UserBio());
+		$this->addMergeTag(new MergeTag\User\UserNicename());
+		$this->addMergeTag(new MergeTag\User\UserDisplayName());
+		$this->addMergeTag(new MergeTag\User\UserFirstName());
+		$this->addMergeTag(new MergeTag\User\UserLastName());
+		$this->addMergeTag(new MergeTag\User\UserBio());
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 				'slug' => 'user_profile_updated_datetime',

@@ -39,18 +39,18 @@ abstract class Recipient implements Interfaces\Receivable
 	{
 
 		if (! empty($params['slug'])) {
-			$this->set_slug($params['slug']);
+			$this->setSlug($params['slug']);
 		}
 
 		if (! empty($params['name'])) {
-			$this->set_name($params['name']);
+			$this->setName($params['name']);
 		}
 
 		if (! isset($params['default_value'])) {
 			trigger_error('Recipient requires default_value', E_USER_ERROR);
 		}
 
-		$this->default_value = $params['default_value'];
+		$this->defaultValue = $params['default_value'];
 	}
 
 	/**
@@ -75,6 +75,6 @@ abstract class Recipient implements Interfaces\Receivable
 	 */
 	public function get_default_value()
 	{
-		return $this->default_value;
+		return $this->defaultValue;
 	}
 }

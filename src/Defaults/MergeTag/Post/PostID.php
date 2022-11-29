@@ -30,21 +30,21 @@ class PostID extends IntegerTag
 	public function __construct( $params = [] )
 	{
 
-		$this->set_trigger_prop($params['post_type'] ?? 'post');
+		$this->setTriggerProp($params['post_type'] ?? 'post');
 
-		$postTypeName = WpObjectHelper::get_post_type_name($this->get_trigger_prop());
+		$postTypeName = WpObjectHelper::get_post_type_name($this->getTriggerProp());
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf('%s_ID', $this->get_trigger_prop()),
+				'slug' => sprintf('%s_ID', $this->getTriggerProp()),
 				// translators: singular post name.
 				'name' => sprintf(__('%s ID', 'notification'), $postTypeName),
 				'description' => '35',
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ( $trigger ) {
-					return $trigger->{ $this->get_trigger_prop() }->ID;
+					return $trigger->{ $this->getTriggerProp() }->ID;
 				},
 			]
 		);

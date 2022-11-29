@@ -46,26 +46,26 @@ class WordPress extends Abstracts\Adapter
 	{
 
 		if ($input instanceof \WP_Post) {
-			$this->set_post($input);
+			$this->setPost($input);
 		} elseif (is_integer($input)) {
-			$this->set_post(get_post($input));
+			$this->setPost(get_post($input));
 		} else {
 			throw new \Exception('Read method of WordPress adapter expects the post ID or WP_Post object');
 		}
 
 		try {
-			$jsonAdapter = notification_adapt_from('JSON', wp_specialchars_decode($this->post->post_content, ENT_COMPAT));
-			$this->setup_notification(notification_convert_data($jsonAdapter->get_notification()->to_array()));
+			$jsonAdapter = notification_adapt_from('JSON', wp_specialchars_decode($this->post->postContent, ENT_COMPAT));
+			$this->setupNotification(notification_convert_data($jsonAdapter->getNotification()->toArray()));
 		} catch (\Throwable $e) {
 			$doNothing = true;
 		}
 
 		// Hash sync with WordPress post.
-		$this->set_hash($this->post->post_name);
+		$this->setHash($this->post->postName);
 
 		// Source.
-		$this->set_source('WordPress');
-		$this->set_source_post_id($this->get_id());
+		$this->setSource('WordPress');
+		$this->setSourcePostId($this->getId());
 
 		return $this;
 	}
@@ -79,10 +79,10 @@ class WordPress extends Abstracts\Adapter
 	{
 
 		// Update version as WordPress automatically does this while updating the post.
-		$versionBackup = $this->get_version();
-		$this->set_version(time());
+		$versionBackup = $this->getVersion();
+		$this->setVersion(time());
 
-		$data = $this->get_notification()->to_array();
+		$data = $this->getNotification()->toArray();
 
 		/** @var \BracketSpace\Notification\Defaults\Adapter\JSON */
 		$jsonAdapter = notification_swap_adapter('JSON', $this);
@@ -99,9 +99,9 @@ class WordPress extends Abstracts\Adapter
 		// WordPress post related: Title, Hash, Status, Version.
 		$postId = wp_insert_post(
 			[
-			'ID' => $this->get_id(),
+			'ID' => $this->getId(),
 			'post_content' => wp_slash($json), // Cache.
-			'post_type' => $this->post_type,
+			'post_type' => $this->postType,
 			'post_title' => $data['title'],
 			'post_name' => $data['hash'],
 			'post_status' => $data['enabled'] ? 'publish' : 'draft',
@@ -112,12 +112,12 @@ class WordPress extends Abstracts\Adapter
 		add_filter('content_save_pre', 'balanceTags', 50);
 
 		if (is_wp_error($postId)) {
-			$this->set_version($versionBackup);
+			$this->setVersion($versionBackup);
 			return $postId;
 		}
 
-		if (! $this->has_post()) {
-			$this->set_post(get_post($postId));
+		if (! $this->hasPost()) {
+			$this->setPost(get_post($postId));
 		}
 
 		return $this;
@@ -131,7 +131,7 @@ class WordPress extends Abstracts\Adapter
 	 */
 	public function is_new()
 	{
-		return empty($this->post) || $this->post->post_date_gmt === '0000-00-00 00:00:00';
+		return empty($this->post) || $this->post->postDateGmt === '0000-00-00 00:00:00';
 	}
 
 	/**
@@ -178,7 +178,7 @@ class WordPress extends Abstracts\Adapter
 	 */
 	public function set_post_type( $postType )
 	{
-		$this->post_type = $postType;
+		$this->postType = $postType;
 		return $this;
 	}
 
@@ -190,6 +190,6 @@ class WordPress extends Abstracts\Adapter
 	 */
 	public function has_post()
 	{
-		return ! empty($this->get_post());
+		return ! empty($this->getPost());
 	}
 }

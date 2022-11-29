@@ -30,7 +30,7 @@ class SelectInputController
 	 */
 	public function send_response( \WP_REST_Request $request )
 	{
-		$params = $request->get_params();
+		$params = $request->getParams();
 		$carrier = $params['carrier'];
 		$type = $params['type'];
 		$recipient = RecipientStore::get($carrier, $type);
@@ -42,15 +42,15 @@ class SelectInputController
 			$data['options'] = $input->options;
 			$data['pretty'] = $input->pretty;
 			$data['label'] = $input->label;
-			$data['checkbox_label'] = $input->checkbox_label;
+			$data['checkbox_label'] = $input->checkboxLabel;
 			$data['name'] = $input->name;
 			$data['description'] = $input->description;
 			$data['section'] = $input->section;
 			$data['disabled'] = $input->disabled;
-			$data['css_class'] = $input->css_class;
+			$data['css_class'] = $input->cssClass;
 			$data['id'] = $input->id;
 			$data['placeholder'] = $input->placeholder;
-			$data['type'] = strtolower(str_replace('Field', '', $input->field_type_html));
+			$data['type'] = strtolower(str_replace('Field', '', $input->fieldTypeHtml));
 			$data['value'] = $input->value;
 
 			$response->send($data);

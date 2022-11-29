@@ -34,7 +34,7 @@ trait HasSlug
 	public function get_slug()
 	{
 		if ($this->slug === null) {
-			return $this->get_class_slug();
+			return $this->getClassSlug();
 		}
 
 		return $this->slug;

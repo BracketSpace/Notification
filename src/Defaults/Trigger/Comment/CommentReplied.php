@@ -50,11 +50,11 @@ class CommentReplied extends CommentTrigger
 			]
 		);
 
-		$this->add_action('transition_comment_status', 10, 3);
-		$this->add_action('notification_insert_comment_proxy', 10, 3);
+		$this->addAction('transition_comment_status', 10, 3);
+		$this->addAction('notification_insert_comment_proxy', 10, 3);
 
 		// translators: comment type.
-		$this->set_description(sprintf(__('Fires when %s is replied and the reply is approved', 'notification'), WpObjectHelper::get_comment_type_name($commentType)));
+		$this->setDescription(sprintf(__('Fires when %s is replied and the reply is approved', 'notification'), WpObjectHelper::get_comment_type_name($commentType)));
 	}
 
 	/**
@@ -70,7 +70,7 @@ class CommentReplied extends CommentTrigger
 
 		$this->comment = $comment;
 
-		if ($this->comment->comment_approved === 'spam' && notification_get_setting('triggers/comment/akismet')) {
+		if ($this->comment->commentApproved === 'spam' && notification_get_setting('triggers/comment/akismet')) {
 			return false;
 		}
 
@@ -79,20 +79,20 @@ class CommentReplied extends CommentTrigger
 		}
 
 		// Bail if comment is not a reply.
-		if (empty($this->comment->comment_parent)) {
+		if (empty($this->comment->commentParent)) {
 			return false;
 		}
 
-		if (! $this->is_correct_type($this->comment)) {
+		if (! $this->isCorrectType($this->comment)) {
 			return false;
 		}
 
-		$this->parent_comment = get_comment($this->comment->comment_parent);
+		$this->parentComment = get_comment($this->comment->commentParent);
 
-		$this->parent_comment_user_object = new \StdClass();
-		$this->parent_comment_user_object->ID = ( $this->parent_comment->user_id ) ? $this->parent_comment->user_id : 0;
-		$this->parent_comment_user_object->display_name = $this->parent_comment->comment_author;
-		$this->parent_comment_user_object->user_email = $this->parent_comment->comment_author_email;
+		$this->parentCommentUserObject = new \StdClass();
+		$this->parentCommentUserObject->ID = ( $this->parentComment->userId ) ? $this->parentComment->userId : 0;
+		$this->parentCommentUserObject->displayName = $this->parentComment->commentAuthor;
+		$this->parentCommentUserObject->userEmail = $this->parentComment->commentAuthorEmail;
 
 		parent::assign_properties();
 	}
@@ -107,40 +107,40 @@ class CommentReplied extends CommentTrigger
 
 		parent::merge_tags();
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentActionApprove(
 				[
-				'comment_type' => $this->comment_type,
+				'comment_type' => $this->commentType,
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentActionTrash(
 				[
-				'comment_type' => $this->comment_type,
+				'comment_type' => $this->commentType,
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentActionDelete(
 				[
-				'comment_type' => $this->comment_type,
+				'comment_type' => $this->commentType,
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentActionSpam(
 				[
-				'comment_type' => $this->comment_type,
+				'comment_type' => $this->commentType,
 				]
 			)
 		);
 
 		// Parent comment.
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentID(
 				[
 				'slug' => 'parent_comment_ID',
@@ -151,7 +151,7 @@ class CommentReplied extends CommentTrigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentContent(
 				[
 				'slug' => 'parent_comment_content',
@@ -162,7 +162,7 @@ class CommentReplied extends CommentTrigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentStatus(
 				[
 				'slug' => 'parent_comment_status',
@@ -173,7 +173,7 @@ class CommentReplied extends CommentTrigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentType(
 				[
 				'slug' => 'parent_comment_type',
@@ -185,7 +185,7 @@ class CommentReplied extends CommentTrigger
 		);
 
 		// Parent comment author.
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentAuthorIP(
 				[
 				'slug' => 'parent_comment_author_IP',
@@ -196,7 +196,7 @@ class CommentReplied extends CommentTrigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentAuthorUserAgent(
 				[
 				'slug' => 'parent_comment_user_agent',
@@ -207,7 +207,7 @@ class CommentReplied extends CommentTrigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentAuthorUrl(
 				[
 				'slug' => 'parent_comment_author_url',
@@ -218,7 +218,7 @@ class CommentReplied extends CommentTrigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserID(
 				[
 				'slug' => 'parent_comment_author_user_ID',
@@ -229,7 +229,7 @@ class CommentReplied extends CommentTrigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserEmail(
 				[
 				'slug' => 'parent_comment_author_user_email',
@@ -240,7 +240,7 @@ class CommentReplied extends CommentTrigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserDisplayName(
 				[
 				'slug' => 'parent_comment_author_user_display_name',
@@ -251,7 +251,7 @@ class CommentReplied extends CommentTrigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\Avatar(
 				[
 				'slug' => 'parent_comment_author_user_avatar',
@@ -262,7 +262,7 @@ class CommentReplied extends CommentTrigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\AvatarUrl(
 				[
 				'slug' => 'parent_comment_author_user_avatar_url',

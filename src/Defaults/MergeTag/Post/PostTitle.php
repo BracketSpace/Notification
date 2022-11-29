@@ -30,21 +30,21 @@ class PostTitle extends StringTag
 	public function __construct( $params = [] )
 	{
 
-		$this->set_trigger_prop($params['post_type'] ?? 'post');
+		$this->setTriggerProp($params['post_type'] ?? 'post');
 
-		$postTypeName = WpObjectHelper::get_post_type_name($this->get_trigger_prop());
+		$postTypeName = WpObjectHelper::get_post_type_name($this->getTriggerProp());
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf('%s_title', $this->get_trigger_prop()),
+				'slug' => sprintf('%s_title', $this->getTriggerProp()),
 				// translators: singular post name.
 				'name' => sprintf(__('%s title', 'notification'), $postTypeName),
 				'description' => __('Hello World', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ( $trigger ) {
-					return html_entity_decode(get_the_title($trigger->{ $this->get_trigger_prop() }));
+					return html_entity_decode(get_the_title($trigger->{ $this->getTriggerProp() }));
 				},
 			]
 		);

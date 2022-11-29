@@ -34,7 +34,7 @@ abstract class PluginTrigger extends Abstracts\Trigger
 	public function merge_tags()
 	{
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'plugin_name',
@@ -49,7 +49,7 @@ abstract class PluginTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'plugin_author_name',
@@ -64,7 +64,7 @@ abstract class PluginTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'plugin_version',
@@ -79,7 +79,7 @@ abstract class PluginTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'plugin_url',

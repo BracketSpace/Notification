@@ -53,7 +53,7 @@ class RepeaterController
 
 		if (empty($data)) {
 			/** @var \BracketSpace\Notification\Defaults\Field\RepeaterField */
-			$carrierFields = $this->get_carrier_fields();
+			$carrierFields = $this->getCarrierFields();
 			$data = $carrierFields->fields;
 		}
 
@@ -65,24 +65,24 @@ class RepeaterController
 			$subField['options'] = $field->options;
 			$subField['pretty'] = $field->pretty;
 			$subField['label'] = $field->label;
-			$subField['checkbox_label'] = $field->checkbox_label;
+			$subField['checkbox_label'] = $field->checkboxLabel;
 			$subField['name'] = $field->name;
 			$subField['description'] = $field->description;
 			$subField['section'] = $field->section;
 			$subField['disabled'] = $field->disabled;
-			$subField['css_class'] = $field->css_class;
+			$subField['css_class'] = $field->cssClass;
 			$subField['id'] = $field->id;
 			$subField['placeholder'] = $field->placeholder;
 			$subField['nested'] = $field->nested;
-			$subField['type'] = strtolower(str_replace('Field', '', $field->field_type_html));
+			$subField['type'] = strtolower(str_replace('Field', '', $field->fieldTypeHtml));
 			$subField['sections'] = $field->sections;
 			$subField['message'] = $field->message;
 			$subField['value'] = '';
 			$subField['rows'] = $field->rows;
-			$subField['multiple'] = $field->multiple_section;
+			$subField['multiple'] = $field->multipleSection;
 
 			if ($field->fields) {
-				$subField['fields'] = $this->form_field_data($field->fields);
+				$subField['fields'] = $this->formFieldData($field->fields);
 			}
 
 			array_push($fields, $subField);
@@ -103,18 +103,18 @@ class RepeaterController
 	public function get_values( $postId, $carrier, $field )
 	{
 		$notification = notification_adapt_from('WordPress', $postId);
-		$carrier = $notification->get_carrier($carrier);
+		$carrier = $notification->getCarrier($carrier);
 
 		if ($carrier) {
-			if ($carrier->has_recipients_field()) {
-				$recipientsField = $carrier->get_recipients_field();
+			if ($carrier->hasRecipientsField()) {
+				$recipientsField = $carrier->getRecipientsField();
 
-				if ($field === $recipientsField->get_raw_name()) {
-					return $carrier->get_recipients();
+				if ($field === $recipientsField->getRawName()) {
+					return $carrier->getRecipients();
 				}
 			}
 
-			return $carrier->get_field_value($field);
+			return $carrier->getFieldValue($field);
 		}
 
 		return [];
@@ -136,9 +136,9 @@ class RepeaterController
 		}
 
 		// Recipients field.
-		$rf = $carrier->has_recipients_field() ? $carrier->get_recipients_field() : false;
+		$rf = $carrier->hasRecipientsField() ? $carrier->getRecipientsField() : false;
 
-		return $rf && $rf->get_raw_name() === $this->field ? $carrier->get_recipients_field() : $carrier->get_form_field($this->field);
+		return $rf && $rf->getRawName() === $this->field ? $carrier->getRecipientsField() : $carrier->getFormField($this->field);
 	}
 
 	/**
@@ -171,7 +171,7 @@ class RepeaterController
 	 */
 	public function parse_params( $params )
 	{
-		$this->post_id = intval($params['id']);
+		$this->postId = intval($params['id']);
 		$this->carrier = $params['fieldCarrier'];
 		$this->field = $params['fieldType'];
 	}
@@ -184,12 +184,12 @@ class RepeaterController
 	 */
 	public function form_data()
 	{
-		$values = $this->get_values($this->post_id, $this->carrier, $this->field) ?? [];
-		$populatedFields = $this->form_field_data();
+		$values = $this->getValues($this->postId, $this->carrier, $this->field) ?? [];
+		$populatedFields = $this->formFieldData();
 
 		return [
 			'field' => $populatedFields,
-			'values' => $this->normalize_values($values),
+			'values' => $this->normalizeValues($values),
 		];
 	}
 
@@ -202,7 +202,7 @@ class RepeaterController
 	 */
 	public function send_response( \WP_REST_Request $request )
 	{
-		$this->parse_params($request->get_params());
-		wp_send_json($this->form_data());
+		$this->parseParams($request->getParams());
+		wp_send_json($this->formData());
 	}
 }

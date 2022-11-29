@@ -65,7 +65,7 @@ class Processor
 	public static function schedule( Notification $notification, Triggerable $trigger )
 	{
 		// Optimize Trigger.
-		$trigger->clear_merge_tags();
+		$trigger->clearMergeTags();
 
 		/**
 		 * Identifies the Trigger by its values. This serves two purposes:
@@ -77,8 +77,8 @@ class Processor
 		 */
 		$triggerKey = sprintf(
 			'%s_%s_%s',
-			$notification->get_hash(),
-			$trigger->get_slug(),
+			$notification->getHash(),
+			$trigger->getSlug(),
 			apply_filters(
 				'notification/background_processing/trigger_key',
 				md5((string)wp_json_encode($trigger)),
@@ -109,19 +109,19 @@ class Processor
 	 */
 	public static function process_notification( Notification $notification, Triggerable $trigger )
 	{
-		$trigger->setup_merge_tags();
+		$trigger->setupMergeTags();
 
 		if (! apply_filters('notification/should_send', true, $notification, $trigger)) {
 			return;
 		}
 
-		foreach ($notification->get_enabled_carriers() as $carrier) {
-			$carrier->resolve_fields($trigger);
-			$carrier->prepare_data();
+		foreach ($notification->getEnabledCarriers() as $carrier) {
+			$carrier->resolveFields($trigger);
+			$carrier->prepareData();
 
 			do_action('notification/carrier/pre-send', $carrier, $trigger, $notification);
 
-			if ($carrier->is_suppressed()) {
+			if ($carrier->isSuppressed()) {
 				continue;
 			}
 
@@ -143,7 +143,7 @@ class Processor
 	 */
 	public static function handle_cron( $notificationJson, $triggerKey )
 	{
-		$notification = notification_adapt_from('JSON', $notificationJson)->get_notification();
+		$notification = notification_adapt_from('JSON', $notificationJson)->getNotification();
 		$trigger = self::get_cache($triggerKey)->get();
 
 		if (! $trigger instanceof Triggerable) {

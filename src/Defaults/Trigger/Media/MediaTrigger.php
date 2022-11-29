@@ -56,7 +56,7 @@ abstract class MediaTrigger extends Abstracts\Trigger
 	public function __construct( $slug, $name )
 	{
 		parent::__construct($slug, $name);
-		$this->set_group(__('Media', 'notification'));
+		$this->setGroup(__('Media', 'notification'));
 	}
 
 	/**
@@ -67,13 +67,13 @@ abstract class MediaTrigger extends Abstracts\Trigger
 	public function merge_tags()
 	{
 
-		$this->add_merge_tag(new MergeTag\Media\AttachmentID());
-		$this->add_merge_tag(new MergeTag\Media\AttachmentPage());
-		$this->add_merge_tag(new MergeTag\Media\AttachmentTitle());
-		$this->add_merge_tag(new MergeTag\Media\AttachmentMimeType());
-		$this->add_merge_tag(new MergeTag\Media\AttachmentDirectUrl());
+		$this->addMergeTag(new MergeTag\Media\AttachmentID());
+		$this->addMergeTag(new MergeTag\Media\AttachmentPage());
+		$this->addMergeTag(new MergeTag\Media\AttachmentTitle());
+		$this->addMergeTag(new MergeTag\Media\AttachmentMimeType());
+		$this->addMergeTag(new MergeTag\Media\AttachmentDirectUrl());
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 				'slug' => 'attachment_creation_date',
@@ -84,7 +84,7 @@ abstract class MediaTrigger extends Abstracts\Trigger
 		);
 
 		// Author.
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserID(
 				[
 				'slug' => 'attachment_author_user_ID',
@@ -94,7 +94,7 @@ abstract class MediaTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserLogin(
 				[
 				'slug' => 'attachment_author_user_login',
@@ -104,7 +104,7 @@ abstract class MediaTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserEmail(
 				[
 				'slug' => 'attachment_author_user_email',
@@ -114,7 +114,7 @@ abstract class MediaTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserNicename(
 				[
 				'slug' => 'attachment_author_user_nicename',
@@ -124,7 +124,7 @@ abstract class MediaTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserDisplayName(
 				[
 				'slug' => 'attachment_author_user_display_name',
@@ -134,7 +134,7 @@ abstract class MediaTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserFirstName(
 				[
 				'slug' => 'attachment_author_user_firstname',
@@ -144,7 +144,7 @@ abstract class MediaTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserLastName(
 				[
 				'slug' => 'attachment_author_user_lastname',
@@ -154,7 +154,7 @@ abstract class MediaTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\Avatar(
 				[
 				'slug' => 'attachment_author_user_avatar',

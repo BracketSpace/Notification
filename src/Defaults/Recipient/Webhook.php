@@ -47,7 +47,7 @@ class Webhook extends Abstracts\Recipient
 	{
 
 		if (empty($value)) {
-			$value = $this->get_default_value();
+			$value = $this->getDefaultValue();
 		}
 
 		return [ esc_url($value) ];

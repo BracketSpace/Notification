@@ -40,10 +40,10 @@ class Switched extends ThemeTrigger
 
 		parent::__construct('theme/switched', __('Theme switched', 'notification'));
 
-		$this->add_action('switch_theme', 1000, 3);
+		$this->addAction('switch_theme', 1000, 3);
 
-		$this->set_group(__('Theme', 'notification'));
-		$this->set_description(__('Fires when theme is switched', 'notification'));
+		$this->setGroup(__('Theme', 'notification'));
+		$this->setDescription(__('Fires when theme is switched', 'notification'));
 	}
 
 	/**
@@ -57,8 +57,8 @@ class Switched extends ThemeTrigger
 	public function context( $name, $theme, $oldTheme )
 	{
 		$this->theme = $theme;
-		$this->old_theme = $oldTheme;
-		$this->theme_switch_date_time = time();
+		$this->oldTheme = $oldTheme;
+		$this->themeSwitchDateTime = time();
 	}
 
 	/**
@@ -71,7 +71,7 @@ class Switched extends ThemeTrigger
 
 		parent::merge_tags();
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'old_theme_name',
@@ -79,14 +79,14 @@ class Switched extends ThemeTrigger
 				'description' => __('Twenty Seventeen', 'notification'),
 				'example' => true,
 				'resolver' => static function ( $trigger ) {
-					return $trigger->old_theme->get('Name');
+					return $trigger->oldTheme->get('Name');
 				},
 				'group' => __('Old theme', 'notification'),
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'old_theme_description',
@@ -94,14 +94,14 @@ class Switched extends ThemeTrigger
 				'description' => __('Twenty Seventeen brings your site to life with header video and immersive featured images', 'notification'),
 				'example' => true,
 				'resolver' => static function ( $trigger ) {
-					return $trigger->old_theme->get('Description');
+					return $trigger->oldTheme->get('Description');
 				},
 				'group' => __('Old theme', 'notification'),
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'old_theme_version',
@@ -109,14 +109,14 @@ class Switched extends ThemeTrigger
 				'description' => __('1.0.0', 'notification'),
 				'example' => true,
 				'resolver' => static function ( $trigger ) {
-					return $trigger->old_theme->get('Version');
+					return $trigger->oldTheme->get('Version');
 				},
 				'group' => __('Old theme', 'notification'),
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\UrlTag(
 				[
 				'slug' => 'old_theme_uri',
@@ -124,14 +124,14 @@ class Switched extends ThemeTrigger
 				'description' => __('https://wordpress.org/themes/twentyseventeen/', 'notification'),
 				'example' => true,
 				'resolver' => static function ( $trigger ) {
-					return $trigger->old_theme->get('ThemeURI');
+					return $trigger->oldTheme->get('ThemeURI');
 				},
 				'group' => __('Old theme', 'notification'),
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'old_theme_author',
@@ -139,14 +139,14 @@ class Switched extends ThemeTrigger
 				'description' => __('The WordPress team', 'notification'),
 				'example' => true,
 				'resolver' => static function ( $trigger ) {
-					return $trigger->old_theme->get('Author');
+					return $trigger->oldTheme->get('Author');
 				},
 				'group' => __('Old theme', 'notification'),
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\UrlTag(
 				[
 				'slug' => 'old_theme_author_uri',
@@ -154,14 +154,14 @@ class Switched extends ThemeTrigger
 				'description' => __('https://wordpress.org/', 'notification'),
 				'example' => true,
 				'resolver' => static function ( $trigger ) {
-					return $trigger->old_theme->get('AuthorURI');
+					return $trigger->oldTheme->get('AuthorURI');
 				},
 				'group' => __('Old theme', 'notification'),
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 				'slug' => 'theme_switch_date_time',

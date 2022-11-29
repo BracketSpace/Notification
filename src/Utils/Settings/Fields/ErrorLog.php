@@ -36,7 +36,7 @@ class ErrorLog
 			'debug/error-log',
 			[
 			'datetime_format' => get_option('date_format') . ' ' . get_option('time_format'),
-			'logs' => $debug->get_logs($page, [ 'error', 'warning' ]),
+			'logs' => $debug->getLogs($page, [ 'error', 'warning' ]),
 			]
 		);
 
@@ -44,7 +44,7 @@ class ErrorLog
 			'debug/pagination',
 			[
 			'query_arg' => 'error_log_page',
-			'total' => $debug->get_logs_count('pages'),
+			'total' => $debug->getLogsCount('pages'),
 			'current' => $page,
 			]
 		);

@@ -36,12 +36,12 @@ class CommentIsReply extends StringTag
 	{
 
 		if (isset($params['comment_type']) && ! empty($params['comment_type'])) {
-			$this->comment_type = $params['comment_type'];
+			$this->commentType = $params['comment_type'];
 		}
 
-		$this->set_trigger_prop($params['property_name'] ?? $this->comment_type);
+		$this->setTriggerProp($params['property_name'] ?? $this->commentType);
 
-		$commentTypeName = WpObjectHelper::get_comment_type_name($this->comment_type);
+		$commentTypeName = WpObjectHelper::get_comment_type_name($this->commentType);
 
 		$args = wp_parse_args(
 			$params,
@@ -53,7 +53,7 @@ class CommentIsReply extends StringTag
 				'example' => true,
 				'group' => $commentTypeName,
 				'resolver' => function ( $trigger ) {
-					$hasParent = $trigger->{ $this->get_trigger_prop() }->comment_parent;
+					$hasParent = $trigger->{ $this->getTriggerProp() }->commentParent;
 					return $hasParent ? __('Yes', 'notification') : __('No', 'notification');
 				},
 			]

@@ -40,9 +40,9 @@ class UserLogin extends UserTrigger
 
 		parent::__construct('user/login', __('User login', 'notification'));
 
-		$this->add_action('wp_login', 10, 2);
+		$this->addAction('wp_login', 10, 2);
 
-		$this->set_description(__('Fires when user log into WordPress', 'notification'));
+		$this->setDescription(__('Fires when user log into WordPress', 'notification'));
 	}
 
 	/**
@@ -55,12 +55,12 @@ class UserLogin extends UserTrigger
 	public function context( $userLogin, $user )
 	{
 
-		$this->user_id = $user->ID;
-		$this->user_object = get_userdata($this->user_id);
-		$this->user_meta = get_user_meta($this->user_id);
+		$this->userId = $user->ID;
+		$this->userObject = get_userdata($this->userId);
+		$this->userMeta = get_user_meta($this->userId);
 
-		$this->user_registered_datetime = strtotime($this->user_object->user_registered);
-		$this->user_logged_in_datetime = time();
+		$this->userRegisteredDatetime = strtotime($this->userObject->userRegistered);
+		$this->userLoggedInDatetime = time();
 	}
 
 	/**
@@ -73,13 +73,13 @@ class UserLogin extends UserTrigger
 
 		parent::merge_tags();
 
-		$this->add_merge_tag(new MergeTag\User\UserNicename());
-		$this->add_merge_tag(new MergeTag\User\UserDisplayName());
-		$this->add_merge_tag(new MergeTag\User\UserFirstName());
-		$this->add_merge_tag(new MergeTag\User\UserLastName());
-		$this->add_merge_tag(new MergeTag\User\UserBio());
+		$this->addMergeTag(new MergeTag\User\UserNicename());
+		$this->addMergeTag(new MergeTag\User\UserDisplayName());
+		$this->addMergeTag(new MergeTag\User\UserFirstName());
+		$this->addMergeTag(new MergeTag\User\UserLastName());
+		$this->addMergeTag(new MergeTag\User\UserBio());
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 				'slug' => 'user_logged_in_datetime',
@@ -88,7 +88,7 @@ class UserLogin extends UserTrigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\IPTag(
 				[
 				'slug' => 'user_IP',

@@ -63,19 +63,19 @@ abstract class Trigger implements Triggerable
 	public function __construct( $slug = null, $name = null )
 	{
 		if ($slug !== null) {
-			$this->set_slug($slug);
+			$this->setSlug($slug);
 		}
 
 		if ($name === null) {
 			return;
 		}
 
-		$this->set_name($name);
+		$this->setName($name);
 	}
 
 	/**
 	 * Used to register trigger merge tags
-	 * Uses $this->add_merge_tag();
+	 * Uses $this->addMergeTag();
 	 *
 	 * @return void
 	 */
@@ -89,13 +89,13 @@ abstract class Trigger implements Triggerable
 	public function setup_merge_tags()
 	{
 
-		if ($this->merge_tags_added) {
+		if ($this->mergeTagsAdded) {
 			return;
 		}
 
-		$this->merge_tags();
+		$this->mergeTags();
 
-		$this->merge_tags_added = true;
+		$this->mergeTagsAdded = true;
 
 		do_action('notification/trigger/merge_tags', $this);
 	}
@@ -107,8 +107,8 @@ abstract class Trigger implements Triggerable
 	 */
 	public function clear_merge_tags()
 	{
-		$this->merge_tags_added = false;
-		$this->merge_tags = [];
+		$this->mergeTagsAdded = false;
+		$this->mergeTags = [];
 
 		return $this;
 	}
@@ -182,8 +182,8 @@ abstract class Trigger implements Triggerable
 	 */
 	public function add_merge_tag( Taggable $mergeTag )
 	{
-		$mergeTag->set_trigger($this);
-		array_push($this->merge_tags, $mergeTag);
+		$mergeTag->setTrigger($this);
+		array_push($this->mergeTags, $mergeTag);
 		return $this;
 	}
 
@@ -197,7 +197,7 @@ abstract class Trigger implements Triggerable
 	 */
 	public function add_quick_merge_tag( $propertyName, $label, $group = null )
 	{
-		return $this->add_merge_tag(
+		return $this->addMergeTag(
 			new \BracketSpace\Notification\Defaults\MergeTag\StringTag(
 				[
 				'slug' => $propertyName,
@@ -220,9 +220,9 @@ abstract class Trigger implements Triggerable
 	public function remove_merge_tag( $mergeTagSlug )
 	{
 
-		foreach ($this->merge_tags as $index => $mergeTag) {
-			if ($mergeTag->get_slug() === $mergeTagSlug) {
-				unset($this->merge_tags[$index]);
+		foreach ($this->mergeTags as $index => $mergeTag) {
+			if ($mergeTag->getSlug() === $mergeTagSlug) {
+				unset($this->mergeTags[$index]);
 				break;
 			}
 		}
@@ -242,19 +242,19 @@ abstract class Trigger implements Triggerable
 	public function get_merge_tags( $type = 'all', $grouped = false )
 	{
 
-		if (! $this->merge_tags_added) {
-			$this->setup_merge_tags();
+		if (! $this->mergeTagsAdded) {
+			$this->setupMergeTags();
 		}
 
 		if ($type === 'all') {
-			$tags = $this->merge_tags;
+			$tags = $this->mergeTags;
 		} else {
 			$tags = [];
 
-			foreach ($this->merge_tags as $mergeTag) {
-				if ($type === 'visible' && ! $mergeTag->is_hidden()) {
+			foreach ($this->mergeTags as $mergeTag) {
+				if ($type === 'visible' && ! $mergeTag->isHidden()) {
 					array_push($tags, $mergeTag);
-				} elseif ($type === 'hidden' && $mergeTag->is_hidden()) {
+				} elseif ($type === 'hidden' && $mergeTag->isHidden()) {
 					array_push($tags, $mergeTag);
 				}
 			}
@@ -264,7 +264,7 @@ abstract class Trigger implements Triggerable
 		if ($grouped) {
 			$groupedTags = [];
 			foreach ($tags as $mergeTag) {
-				$groupedTags[$mergeTag->get_slug()] = $mergeTag;
+				$groupedTags[$mergeTag->getSlug()] = $mergeTag;
 			}
 			return $groupedTags;
 		}

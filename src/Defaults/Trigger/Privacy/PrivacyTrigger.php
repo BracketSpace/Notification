@@ -51,7 +51,7 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 
 		parent::__construct($slug, $name);
 
-		$this->set_group(__('Privacy', 'notification'));
+		$this->setGroup(__('Privacy', 'notification'));
 	}
 
 	/**
@@ -63,7 +63,7 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 	{
 
 		// Data owner.
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserID(
 				[
 				'slug' => 'data_owner_ID',
@@ -73,7 +73,7 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserEmail(
 				[
 				'slug' => 'data_owner_email',
@@ -83,7 +83,7 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserLogin(
 				[
 				'slug' => 'data_owner_login',
@@ -93,7 +93,7 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserFirstName(
 				[
 				'slug' => 'data_owner_first_name',
@@ -103,7 +103,7 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserLastName(
 				[
 				'slug' => 'data_owner_last_name',
@@ -113,7 +113,7 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserNicename(
 				[
 				'slug' => 'data_owner_nicename',
@@ -123,7 +123,7 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserDisplayName(
 				[
 				'slug' => 'data_owner_display_name',
@@ -133,7 +133,7 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserRole(
 				[
 				'slug' => 'data_owner_role',
@@ -143,7 +143,7 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\Avatar(
 				[
 				'slug' => 'data_owner_avatar',
@@ -153,7 +153,7 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\AvatarUrl(
 				[
 				'slug' => 'data_owner_avatar_url',
@@ -163,7 +163,7 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserBio(
 				[
 				'slug' => 'data_owner_bio',
@@ -174,7 +174,7 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 		);
 
 		// Date and time.
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 				'slug' => 'data_operation_time',

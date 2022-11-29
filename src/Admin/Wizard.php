@@ -62,7 +62,7 @@ class Wizard
 	 */
 	public function register_page()
 	{
-		$this->page_hook = add_submenu_page(
+		$this->pageHook = add_submenu_page(
 			'',
 			__('Wizard', 'notification'),
 			__('Wizard', 'notification'),
@@ -87,7 +87,7 @@ class Wizard
 
 		$screen = get_current_screen();
 
-		if (isset($screen->post_type) && $screen->post_type === 'notification' && $screen->id !== 'notification_page_wizard') {
+		if (isset($screen->postType) && $screen->postType === 'notification' && $screen->id !== 'notification_page_wizard') {
 			wp_safe_redirect(admin_url('edit.php?post_type=notification&page=wizard'));
 			exit;
 		}
@@ -103,7 +103,7 @@ class Wizard
 		Templates::render(
 			'wizard',
 			[
-			'sections' => $this->get_settings(),
+			'sections' => $this->getSettings(),
 			]
 		);
 	}
@@ -279,10 +279,10 @@ class Wizard
 
 		if (! isset($data['skip-wizard'])) {
 			$notifications = $data['notification_wizard'] ?? [];
-			$this->add_notifications($notifications);
+			$this->addNotifications($notifications);
 		}
 
-		$this->save_option_to_dismiss_wizard();
+		$this->saveOptionToDismissWizard();
 
 		wp_safe_redirect(admin_url('edit.php?post_type=notification'));
 		exit;
@@ -307,14 +307,14 @@ class Wizard
 		foreach ($notifications as $notificationSlug) {
 			$jsonPath = sprintf($jsonPathTmpl, $notificationSlug);
 
-			if (! $this->filesystem->is_readable($jsonPath)) {
+			if (! $this->filesystem->isReadable($jsonPath)) {
 				continue;
 			}
 
-			$json = $this->filesystem->get_contents($jsonPath);
+			$json = $this->filesystem->getContents($jsonPath);
 
 			$jsonAdapter = notification_adapt_from('JSON', $json);
-			$jsonAdapter->refresh_hash();
+			$jsonAdapter->refreshHash();
 
 			$wpAdapter = notification_swap_adapter('WordPress', $jsonAdapter);
 			$wpAdapter->save();
@@ -326,7 +326,7 @@ class Wizard
 		 * Now it's used in Admin\PostType::save() as well
 		 */
 		$cache = new CacheDriver\ObjectCache('notification');
-		$cache->set_key('notifications');
+		$cache->setKey('notifications');
 		$cache->delete();
 	}
 
@@ -337,10 +337,10 @@ class Wizard
 	 */
 	private function save_option_to_dismiss_wizard()
 	{
-		if (get_option($this->dismissed_option) !== false) {
-			update_option($this->dismissed_option, true);
+		if (get_option($this->dismissedOption) !== false) {
+			update_option($this->dismissedOption, true);
 		} else {
-			add_option($this->dismissed_option, true, '', 'no');
+			add_option($this->dismissedOption, true, '', 'no');
 		}
 	}
 

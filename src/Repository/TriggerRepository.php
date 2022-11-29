@@ -60,22 +60,22 @@ class TriggerRepository
 	 */
 	public static function register_post_triggers()
 	{
-		$post_types = notification_get_setting('triggers/post_types/types');
+		$postTypes = notification_get_setting('triggers/post_types/types');
 
-		if (!$post_types) {
+		if (!$postTypes) {
 			return;
 		}
 
-		foreach ($post_types as $post_type) {
-			Register::trigger(new Trigger\Post\PostAdded($post_type));
-			Register::trigger(new Trigger\Post\PostApproved($post_type));
-			Register::trigger(new Trigger\Post\PostDrafted($post_type));
-			Register::trigger(new Trigger\Post\PostPending($post_type));
-			Register::trigger(new Trigger\Post\PostPublished($post_type));
-			Register::trigger(new Trigger\Post\PostPublishedPrivately($post_type));
-			Register::trigger(new Trigger\Post\PostScheduled($post_type));
-			Register::trigger(new Trigger\Post\PostTrashed($post_type));
-			Register::trigger(new Trigger\Post\PostUpdated($post_type));
+		foreach ($postTypes as $postType) {
+			Register::trigger(new Trigger\Post\PostAdded($postType));
+			Register::trigger(new Trigger\Post\PostApproved($postType));
+			Register::trigger(new Trigger\Post\PostDrafted($postType));
+			Register::trigger(new Trigger\Post\PostPending($postType));
+			Register::trigger(new Trigger\Post\PostPublished($postType));
+			Register::trigger(new Trigger\Post\PostPublishedPrivately($postType));
+			Register::trigger(new Trigger\Post\PostScheduled($postType));
+			Register::trigger(new Trigger\Post\PostTrashed($postType));
+			Register::trigger(new Trigger\Post\PostUpdated($postType));
 		}
 	}
 
@@ -128,20 +128,20 @@ class TriggerRepository
 	 */
 	public static function register_comment_triggers()
 	{
-		$comment_types = notification_get_setting('triggers/comment/types');
+		$commentTypes = notification_get_setting('triggers/comment/types');
 
-		if (!$comment_types) {
+		if (!$commentTypes) {
 			return;
 		}
 
-		foreach ($comment_types as $comment_type) {
-			Register::trigger(new Trigger\Comment\CommentPublished($comment_type));
-			Register::trigger(new Trigger\Comment\CommentAdded($comment_type));
-			Register::trigger(new Trigger\Comment\CommentReplied($comment_type));
-			Register::trigger(new Trigger\Comment\CommentApproved($comment_type));
-			Register::trigger(new Trigger\Comment\CommentUnapproved($comment_type));
-			Register::trigger(new Trigger\Comment\CommentSpammed($comment_type));
-			Register::trigger(new Trigger\Comment\CommentTrashed($comment_type));
+		foreach ($commentTypes as $commentType) {
+			Register::trigger(new Trigger\Comment\CommentPublished($commentType));
+			Register::trigger(new Trigger\Comment\CommentAdded($commentType));
+			Register::trigger(new Trigger\Comment\CommentReplied($commentType));
+			Register::trigger(new Trigger\Comment\CommentApproved($commentType));
+			Register::trigger(new Trigger\Comment\CommentUnapproved($commentType));
+			Register::trigger(new Trigger\Comment\CommentSpammed($commentType));
+			Register::trigger(new Trigger\Comment\CommentTrashed($commentType));
 		}
 	}
 

@@ -30,7 +30,7 @@ class UserRole extends StringTag
 	public function __construct( $params = [] )
 	{
 
-		$this->set_trigger_prop($params['property_name'] ?? 'user_object');
+		$this->setTriggerProp($params['property_name'] ?? 'user_object');
 
 		$args = wp_parse_args(
 			$params,
@@ -46,7 +46,7 @@ class UserRole extends StringTag
 							$roleObject = get_role($role);
 							return translate_user_role(ucfirst($roleObject->name));
 						},
-						$this->trigger->{ $this->get_trigger_prop() }->roles
+						$this->trigger->{ $this->getTriggerProp() }->roles
 					);
 
 					return implode(', ', $roles);

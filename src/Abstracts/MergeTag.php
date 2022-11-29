@@ -95,15 +95,15 @@ abstract class MergeTag implements Interfaces\Taggable
 		}
 
 		if (! empty($params['slug'])) {
-			$this->set_slug($params['slug']);
+			$this->setSlug($params['slug']);
 		}
 
 		if (! empty($params['name'])) {
-			$this->set_name($params['name']);
+			$this->setName($params['name']);
 		}
 
 		if (! empty($params['group'])) {
-			$this->set_group($params['group']);
+			$this->setGroup($params['group']);
 		}
 
 		// Change resolver context to static.
@@ -111,11 +111,11 @@ abstract class MergeTag implements Interfaces\Taggable
 			$params['resolver']->bindTo($this);
 		}
 
-		$this->set_resolver($params['resolver']);
+		$this->setResolver($params['resolver']);
 
 		if (isset($params['description'])) {
-			$this->description_example = isset($params['example']) && $params['example'];
-			$this->set_description(sanitize_text_field($params['description']));
+			$this->descriptionExample = isset($params['example']) && $params['example'];
+			$this->setDescription(sanitize_text_field($params['description']));
 		}
 
 		if (!isset($params['hidden'])) {
@@ -151,12 +151,12 @@ abstract class MergeTag implements Interfaces\Taggable
 	public function resolve()
 	{
 
-		if ($this->is_resolved()) {
-			return $this->get_value();
+		if ($this->isResolved()) {
+			return $this->getValue();
 		}
 
 		try {
-			$value = call_user_func($this->resolver, $this->get_trigger());
+			$value = call_user_func($this->resolver, $this->getTrigger());
 		} catch (\Throwable $t) {
 			$value = null;
 			trigger_error(esc_html($t->getMessage()), E_USER_NOTICE);
@@ -171,7 +171,7 @@ abstract class MergeTag implements Interfaces\Taggable
 
 		$this->value = apply_filters('notification/merge_tag/value/resolve', $this->sanitize($value));
 
-		return $this->get_value();
+		return $this->getValue();
 	}
 
 	/**
@@ -192,7 +192,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 */
 	public function is_description_example()
 	{
-		return $this->description_example;
+		return $this->descriptionExample;
 	}
 
 	/**
@@ -202,7 +202,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 */
 	public function get_value()
 	{
-		return apply_filters('notification/merge_tag/' . $this->get_slug() . '/value', $this->value, $this);
+		return apply_filters('notification/merge_tag/' . $this->getSlug() . '/value', $this->value, $this);
 	}
 
 	/**
@@ -243,7 +243,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 */
 	public function set_trigger_prop( string $triggerPropertyName )
 	{
-		$this->trigger_property_name = $triggerPropertyName;
+		$this->triggerPropertyName = $triggerPropertyName;
 	}
 
 	/**
@@ -255,7 +255,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 */
 	public function get_trigger_prop(): string
 	{
-		return $this->trigger_property_name;
+		return $this->triggerPropertyName;
 	}
 
 	/**
@@ -277,7 +277,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 */
 	public function get_value_type()
 	{
-		return $this->value_type;
+		return $this->valueType;
 	}
 
 	/**

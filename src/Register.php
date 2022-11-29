@@ -24,7 +24,7 @@ class Register
 	 */
 	public static function carrier( Interfaces\Sendable $carrier )
 	{
-		Store\Carrier::insert($carrier->get_slug(), $carrier);
+		Store\Carrier::insert($carrier->getSlug(), $carrier);
 		do_action('notification/carrier/registered', $carrier);
 
 		return $carrier;
@@ -40,7 +40,7 @@ class Register
 	 */
 	public static function recipient( string $carrierSlug, Interfaces\Receivable $recipient )
 	{
-		Store\Recipient::insert($carrierSlug, $recipient->get_slug(), $recipient);
+		Store\Recipient::insert($carrierSlug, $recipient->getSlug(), $recipient);
 		do_action('notification/recipient/registered', $recipient, $carrierSlug);
 
 		return $recipient;
@@ -55,7 +55,7 @@ class Register
 	 */
 	public static function resolver( Interfaces\Resolvable $resolver )
 	{
-		Store\Resolver::insert($resolver->get_slug(), $resolver);
+		Store\Resolver::insert($resolver->getSlug(), $resolver);
 		do_action('notification/resolver/registered', $resolver);
 
 		return $resolver;
@@ -70,7 +70,7 @@ class Register
 	 */
 	public static function trigger( Interfaces\Triggerable $trigger )
 	{
-		Store\Trigger::insert($trigger->get_slug(), $trigger);
+		Store\Trigger::insert($trigger->getSlug(), $trigger);
 		do_action('notification/trigger/registered', $trigger);
 
 		return $trigger;
@@ -85,7 +85,7 @@ class Register
 	 */
 	public static function global_merge_tag( Interfaces\Taggable $mergeTag )
 	{
-		Store\GlobalMergeTag::insert($mergeTag->get_slug(), $mergeTag);
+		Store\GlobalMergeTag::insert($mergeTag->getSlug(), $mergeTag);
 
 		do_action('notification/global_merge_tag/registered', $mergeTag);
 
@@ -93,7 +93,7 @@ class Register
 		add_action(
 			'notification/trigger/merge_tags',
 			static function ( $trigger ) use ( $mergeTag ) {
-				$trigger->add_merge_tag(clone $mergeTag);
+				$trigger->addMergeTag(clone $mergeTag);
 			}
 		);
 

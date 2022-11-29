@@ -46,7 +46,7 @@ class Basic extends Abstracts\Resolver
 	public function resolve_merge_tag( $match, Triggerable $trigger )
 	{
 
-		$mergeTags = $trigger->get_merge_tags('all', true);
+		$mergeTags = $trigger->getMergeTags('all', true);
 		$tagSlug = trim(str_replace([ '{', '}' ], '', $match[0]));
 
 		if (! isset($mergeTags[$tagSlug])) {

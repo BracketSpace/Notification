@@ -36,12 +36,12 @@ class CommentActionTrash extends UrlTag
 	{
 
 		if (isset($params['comment_type']) && ! empty($params['comment_type'])) {
-			$this->comment_type = $params['comment_type'];
+			$this->commentType = $params['comment_type'];
 		}
 
-		$this->set_trigger_prop($params['property_name'] ?? $this->comment_type);
+		$this->setTriggerProp($params['property_name'] ?? $this->commentType);
 
-		$commentTypeName = WpObjectHelper::get_comment_type_name($this->comment_type);
+		$commentTypeName = WpObjectHelper::get_comment_type_name($this->commentType);
 
 		$args = wp_parse_args(
 			$params,
@@ -52,7 +52,7 @@ class CommentActionTrash extends UrlTag
 				// Translators: comment type actions text.
 				'group' => sprintf(__('%s actions', 'notification'), $commentTypeName),
 				'resolver' => function ( $trigger ) {
-					return admin_url("comment.php?action=trash&c={$trigger->{ $this->get_trigger_prop() }->comment_ID}#wpbody-content");
+					return admin_url("comment.php?action=trash&c={$trigger->{ $this->getTriggerProp() }->commentID}#wpbody-content");
 				},
 			]
 		);

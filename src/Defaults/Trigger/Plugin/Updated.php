@@ -38,10 +38,10 @@ class Updated extends PluginTrigger
 
 		parent::__construct('plugin/updated', __('Plugin updated', 'notification'));
 
-		$this->add_action('upgrader_process_complete', 1000, 2);
+		$this->addAction('upgrader_process_complete', 1000, 2);
 
-		$this->set_group(__('Plugin', 'notification'));
-		$this->set_description(__('Fires when plugin is updated', 'notification'));
+		$this->setGroup(__('Plugin', 'notification'));
+		$this->setDescription(__('Fires when plugin is updated', 'notification'));
 	}
 
 	/**
@@ -61,10 +61,10 @@ class Updated extends PluginTrigger
 		/** @var \stdClass */
 		$skin = $upgrader->skin;
 
-		$this->previous_version = $skin->plugin_info['Version'];
-		$pluginDir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $upgrader->plugin_info();
+		$this->previousVersion = $skin->pluginInfo['Version'];
+		$pluginDir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $upgrader->pluginInfo();
 		$this->plugin = get_plugin_data($pluginDir, false);
-		$this->plugin_update_date_time = time();
+		$this->pluginUpdateDateTime = time();
 	}
 
 	/**
@@ -77,7 +77,7 @@ class Updated extends PluginTrigger
 
 		parent::merge_tags();
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 				'slug' => 'plugin_update_date_time',
@@ -86,7 +86,7 @@ class Updated extends PluginTrigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'plugin_previous_version',
@@ -94,7 +94,7 @@ class Updated extends PluginTrigger
 				'description' => __('1.0.0', 'notification'),
 				'example' => true,
 				'resolver' => static function ( $trigger ) {
-					return $trigger->previous_version;
+					return $trigger->previousVersion;
 				},
 				'group' => __('Plugin', 'notification'),
 				]

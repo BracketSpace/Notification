@@ -32,14 +32,14 @@ class UpdatesAvailable extends Abstracts\Trigger
 	public function __construct()
 	{
 
-		$this->update_types = [ 'core', 'plugin', 'theme' ];
+		$this->updateTypes = [ 'core', 'plugin', 'theme' ];
 
 		parent::__construct('wordpress/updates_available', __('Available updates', 'notification'));
 
-		$this->add_action('notification_check_wordpress_updates');
+		$this->addAction('notification_check_wordpress_updates');
 
-		$this->set_group(__('WordPress', 'notification'));
-		$this->set_description(__('Fires periodically when new updates are available', 'notification'));
+		$this->setGroup(__('WordPress', 'notification'));
+		$this->setDescription(__('Fires periodically when new updates are available', 'notification'));
 	}
 
 	/**
@@ -54,8 +54,8 @@ class UpdatesAvailable extends Abstracts\Trigger
 		// Check if any updates are available.
 		$hasUpdates = false;
 
-		foreach ($this->update_types as $updateType) {
-			if (!$this->has_updates($updateType)) {
+		foreach ($this->updateTypes as $updateType) {
+			if (!$this->hasUpdates($updateType)) {
 				continue;
 			}
 
@@ -76,7 +76,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 	public function merge_tags()
 	{
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\HtmlTag(
 				[
 				'slug' => 'updates_list',
@@ -85,12 +85,12 @@ class UpdatesAvailable extends Abstracts\Trigger
 				'resolver' => static function ( $trigger ) {
 					$lists = [];
 
-					foreach ($trigger->update_types as $updateType) {
-						if (!$trigger->has_updates($updateType)) {
+					foreach ($trigger->updateTypes as $updateType) {
+						if (!$trigger->hasUpdates($updateType)) {
 							continue;
 						}
 
-						$html = '<h3>' . $trigger->get_list_title($updateType) . '</h3>';
+						$html = '<h3>' . $trigger->getListTitle($updateType) . '</h3>';
 						$html   .= call_user_func([ $trigger, 'get_' . $updateType . '_updates_list' ]);
 						$lists[] = $html;
 					}
@@ -106,49 +106,49 @@ class UpdatesAvailable extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\IntegerTag(
 				[
 				'slug' => 'all_updates_count',
 				'name' => __('Number of all updates', 'notification'),
 				'resolver' => static function ( $trigger ) {
-					return $trigger->get_updates_count('all');
+					return $trigger->getUpdatesCount('all');
 				},
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\IntegerTag(
 				[
 				'slug' => 'core_updates_count',
 				'name' => __('Number of core updates', 'notification'),
 				'resolver' => static function ( $trigger ) {
-					return $trigger->get_updates_count('core');
+					return $trigger->getUpdatesCount('core');
 				},
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\IntegerTag(
 				[
 				'slug' => 'plugin_updates_count',
 				'name' => __('Number of plugin updates', 'notification'),
 				'resolver' => static function ( $trigger ) {
-					return $trigger->get_updates_count('plugin');
+					return $trigger->getUpdatesCount('plugin');
 				},
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\IntegerTag(
 				[
 				'slug' => 'theme_updates_count',
 				'name' => __('Number of theme updates', 'notification'),
 				'resolver' => static function ( $trigger ) {
-					return $trigger->get_updates_count('theme');
+					return $trigger->getUpdatesCount('theme');
 				},
 				]
 			)
@@ -164,7 +164,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 	 */
 	public function has_updates( $updateType )
 	{
-		$updates = $this->get_updates_count($updateType);
+		$updates = $this->getUpdatesCount($updateType);
 		return $updates > 0;
 	}
 
@@ -255,7 +255,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 				__('<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s', 'notification'),
 				$update->Name, // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 				$update->Version, // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
-				$update->update->new_version
+				$update->update->newVersion
 			) . '</li>';
 		}
 
@@ -322,8 +322,8 @@ class UpdatesAvailable extends Abstracts\Trigger
 
 		$count = 0;
 
-		foreach ($this->update_types as $updateType) {
-			$count += $this->get_updates_count($updateType);
+		foreach ($this->updateTypes as $updateType) {
+			$count += $this->getUpdatesCount($updateType);
 		}
 
 		return $count;

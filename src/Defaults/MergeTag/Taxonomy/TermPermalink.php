@@ -29,17 +29,17 @@ class TermPermalink extends UrlTag
 	public function __construct( $params = [] )
 	{
 
-		$this->set_trigger_prop($params['property_name'] ?? 'term');
+		$this->setTriggerProp($params['property_name'] ?? 'term');
 
 		$args = wp_parse_args(
 			[
-				'slug' => sprintf('%s_link', $this->get_trigger_prop()),
+				'slug' => sprintf('%s_link', $this->getTriggerProp()),
 				'name' => __('Term link', 'notification'),
 				'description' => 'http://example.com/category/nature',
 				'example' => true,
 				'group' => __('Term', 'notification'),
 				'resolver' => static function ( $trigger ) {
-					return $trigger->term_permalink;
+					return $trigger->termPermalink;
 				},
 			]
 		);

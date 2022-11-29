@@ -34,7 +34,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger
 	public function merge_tags()
 	{
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'theme_name',
@@ -49,7 +49,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'theme_description',
@@ -64,7 +64,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'theme_version',
@@ -79,7 +79,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'theme_uri',
@@ -94,7 +94,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'theme_author',
@@ -109,7 +109,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'theme_author_uri',
@@ -124,7 +124,7 @@ abstract class ThemeTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'theme_textdomain',

@@ -33,10 +33,10 @@ class Installed extends ThemeTrigger
 
 		parent::__construct('theme/installed', __('Theme installed', 'notification'));
 
-		$this->add_action('upgrader_process_complete', 1000, 2);
+		$this->addAction('upgrader_process_complete', 1000, 2);
 
-		$this->set_group(__('Theme', 'notification'));
-		$this->set_description(__('Fires when theme is installed', 'notification'));
+		$this->setGroup(__('Theme', 'notification'));
+		$this->setDescription(__('Fires when theme is installed', 'notification'));
 	}
 
 	/**
@@ -53,7 +53,7 @@ class Installed extends ThemeTrigger
 			return false;
 		}
 
-		$theme = $upgrader->theme_info();
+		$theme = $upgrader->themeInfo();
 
 		if ($theme === false) {
 			return false;
@@ -61,7 +61,7 @@ class Installed extends ThemeTrigger
 
 		$this->theme = $theme;
 
-		$this->theme_installation_date_time = time();
+		$this->themeInstallationDateTime = time();
 	}
 
 	/**
@@ -74,7 +74,7 @@ class Installed extends ThemeTrigger
 
 		parent::merge_tags();
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 				'slug' => 'theme_installation_date_time',

@@ -30,21 +30,21 @@ class FeaturedImageUrl extends UrlTag
 	public function __construct( $params = [] )
 	{
 
-		$this->set_trigger_prop($params['post_type'] ?? 'post');
+		$this->setTriggerProp($params['post_type'] ?? 'post');
 
-		$postTypeName = WpObjectHelper::get_post_type_name($this->get_trigger_prop());
+		$postTypeName = WpObjectHelper::get_post_type_name($this->getTriggerProp());
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf('%s_featured_image_url', $this->get_trigger_prop()),
+				'slug' => sprintf('%s_featured_image_url', $this->getTriggerProp()),
 				// translators: singular post name.
 				'name' => sprintf(__('%s featured image url', 'notification'), $postTypeName),
 				'description' => __('https://example.com/wp-content/2019/01/image.jpg', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ( $trigger ) {
-					return wp_get_attachment_image_url(get_post_thumbnail_id($trigger->{ $this->get_trigger_prop() }->ID), 'full');
+					return wp_get_attachment_image_url(get_post_thumbnail_id($trigger->{ $this->getTriggerProp() }->ID), 'full');
 				},
 			]
 		);

@@ -151,16 +151,16 @@ class Notification {
 	 */
 	public function __clone() {
 
-		$trigger = $this->get_trigger();
+		$trigger = $this->getTrigger();
 		if ( ! empty( $trigger ) ) {
-			$this->set_trigger( clone $trigger );
+			$this->setTrigger( clone $trigger );
 		}
 
 		$carriers = [];
-		foreach ( $this->get_carriers() as $key => $carrier ) {
+		foreach ( $this->getCarriers() as $key => $carrier ) {
 			$carriers[ $key ] = clone $carrier;
 		}
-		$this->set_carriers( $carriers );
+		$this->setCarriers( $carriers );
 
 	}
 
@@ -176,17 +176,17 @@ class Notification {
 
 		// Hash. If not provided will be generated automatically.
 		$hash = isset( $data['hash'] ) && ! empty( $data['hash'] ) ? $data['hash'] : self::create_hash();
-		$this->set_hash( $hash );
+		$this->setHash( $hash );
 
 		// Title.
 		if ( isset( $data['title'] ) && ! empty( $data['title'] ) ) {
-			$this->set_title( sanitize_text_field( $data['title'] ) );
+			$this->setTitle( sanitize_text_field( $data['title'] ) );
 		}
 
 		// Trigger.
 		if ( isset( $data['trigger'] ) && ! empty( $data['trigger'] ) ) {
 			if ( $data['trigger'] instanceof Interfaces\Triggerable ) {
-				$this->set_trigger( $data['trigger'] );
+				$this->setTrigger( $data['trigger'] );
 			} else {
 				throw new \Exception( 'Trigger must implement Triggerable interface' );
 			}
@@ -198,18 +198,18 @@ class Notification {
 
 			foreach ( $data['carriers'] as $carrier ) {
 				if ( $carrier instanceof Interfaces\Sendable ) {
-					$carriers[ $carrier->get_slug() ] = $carrier;
+					$carriers[ $carrier->getSlug() ] = $carrier;
 				} else {
 					throw new \Exception( 'Each Carrier object must implement Sendable interface' );
 				}
 			}
 
-			$this->set_carriers( $carriers );
+			$this->setCarriers( $carriers );
 		}
 
 		// Status.
 		if ( isset( $data['enabled'] ) ) {
-			$this->set_enabled( (bool) $data['enabled'] );
+			$this->setEnabled( (bool) $data['enabled'] );
 		}
 
 		// Extras.
@@ -224,12 +224,12 @@ class Notification {
 				}
 			}
 
-			$this->set_extras( $extras );
+			$this->setExtras( $extras );
 		}
 
 		// Version. If none provided, the current most recent version is used.
 		$version = isset( $data['version'] ) && ! empty( $data['version'] ) ? $data['version'] : time();
-		$this->set_version( $version );
+		$this->setVersion( $version );
 
 		return $this;
 
@@ -245,21 +245,21 @@ class Notification {
 	public function to_array( $onlyEnabledCarriers = false ) {
 
 		$carriers  = [];
-		$_carriers = $onlyEnabledCarriers ? $this->get_enabled_carriers() : $this->get_carriers();
+		$_carriers = $onlyEnabledCarriers ? $this->getEnabledCarriers() : $this->getCarriers();
 		foreach ( $_carriers as $carrierSlug => $carrier ) {
-			$carriers[ $carrierSlug ] = $carrier->get_data();
+			$carriers[ $carrierSlug ] = $carrier->getData();
 		}
 
-		$trigger = $this->get_trigger();
+		$trigger = $this->getTrigger();
 
 		return [
-			'hash'     => $this->get_hash(),
-			'title'    => $this->get_title(),
-			'trigger'  => $trigger ? $trigger->get_slug() : '',
+			'hash'     => $this->getHash(),
+			'title'    => $this->getTitle(),
+			'trigger'  => $trigger ? $trigger->getSlug() : '',
 			'carriers' => $carriers,
-			'enabled'  => $this->is_enabled(),
-			'extras'   => $this->get_extras(),
-			'version'  => $this->get_version(),
+			'enabled'  => $this->isEnabled(),
+			'extras'   => $this->getExtras(),
+			'version'  => $this->getVersion(),
 		];
 
 	}
@@ -272,7 +272,7 @@ class Notification {
 	 * @return boolean
 	 */
 	public function is_enabled() {
-		return (bool) $this->get_enabled();
+		return (bool) $this->getEnabled();
 	}
 
 	/**
@@ -293,7 +293,7 @@ class Notification {
 	 * @return mixed                Carrier object or null.
 	 */
 	public function get_carrier( $carrierSlug ) {
-		$carriers = $this->get_carriers();
+		$carriers = $this->getCarriers();
 		return isset( $carriers[ $carrierSlug ] ) ? $carriers[ $carrierSlug ] : null;
 	}
 
@@ -304,8 +304,8 @@ class Notification {
 	 * @return array
 	 */
 	public function get_enabled_carriers() {
-		return array_filter( $this->get_carriers(), function ( $carrier ) {
-			return $carrier->is_enabled();
+		return array_filter( $this->getCarriers(), function ( $carrier ) {
+			return $carrier->isEnabled();
 		} );
 	}
 
@@ -328,14 +328,14 @@ class Notification {
 			throw new \Exception( 'Carrier hasn\'t been found' );
 		}
 
-		$carriers = $this->get_carriers();
+		$carriers = $this->getCarriers();
 
-		if ( isset( $carriers[ $carrier->get_slug() ] ) ) {
-			throw new \Exception( sprintf( 'Carrier %s already exists', $carrier->get_name() ) );
+		if ( isset( $carriers[ $carrier->getSlug() ] ) ) {
+			throw new \Exception( sprintf( 'Carrier %s already exists', $carrier->getName() ) );
 		}
 
-		$carriers[ $carrier->get_slug() ] = $carrier;
-		$this->set_carriers( $carriers );
+		$carriers[ $carrier->getSlug() ] = $carrier;
+		$this->setCarriers( $carriers );
 
 		return $carrier;
 
@@ -350,10 +350,10 @@ class Notification {
 	 */
 	public function enable_carrier( $carrierSlug ) {
 
-		$carrier = $this->get_carrier( $carrierSlug );
+		$carrier = $this->getCarrier( $carrierSlug );
 
 		if ( null === $carrier ) {
-			$carrier = $this->add_carrier( $carrierSlug );
+			$carrier = $this->addCarrier( $carrierSlug );
 		}
 
 		$carrier->enable();
@@ -368,7 +368,7 @@ class Notification {
 	 * @return void
 	 */
 	public function disable_carrier( $carrierSlug ) {
-		$carrier = $this->get_carrier( $carrierSlug );
+		$carrier = $this->getCarrier( $carrierSlug );
 		if ( null !== $carrier ) {
 			$carrier->disable();
 		}
@@ -387,7 +387,7 @@ class Notification {
 		$savedCarriers = [];
 
 		foreach ( $carriers as $carrier ) {
-			$savedCarriers[ $carrier->get_slug() ] = $carrier;
+			$savedCarriers[ $carrier->getSlug() ] = $carrier;
 		}
 
 		$this->carriers = $savedCarriers;
@@ -403,9 +403,9 @@ class Notification {
 	 * @return void
 	 */
 	public function set_carrier_data( $carrierSlug, $data ) {
-		$carrier = $this->get_carrier( $carrierSlug );
+		$carrier = $this->getCarrier( $carrierSlug );
 		if ( null !== $carrier ) {
-			$carrier->set_data( $data );
+			$carrier->setData( $data );
 		}
 	}
 
@@ -417,9 +417,9 @@ class Notification {
 	 * @return void
 	 */
 	public function get_carrier_data( $carrierSlug ) {
-		$carrier = $this->get_carrier( $carrierSlug );
+		$carrier = $this->getCarrier( $carrierSlug );
 		if ( null !== $carrier ) {
-			$carrier->get_data();
+			$carrier->getData();
 		}
 	}
 
@@ -431,7 +431,7 @@ class Notification {
 	 * @return mixed       Extra data value or null
 	 */
 	public function get_extra( $key ) {
-		$extras = $this->get_extras();
+		$extras = $this->getExtras();
 		return isset( $extras[ $key ] ) ? $extras[ $key ] : null;
 	}
 
@@ -444,13 +444,13 @@ class Notification {
 	 */
 	public function remove_extra( $key ) {
 
-		$extras = $this->get_extras();
+		$extras = $this->getExtras();
 
 		if ( isset( $extras[ $key ] ) ) {
 			unset( $extras[ $key ] );
 		}
 
-		$this->set_extras( $extras );
+		$this->setExtras( $extras );
 
 	}
 
@@ -469,12 +469,12 @@ class Notification {
 			throw new \Exception( 'Extra data must be an array or string or number.' );
 		}
 
-		$extras = $this->get_extras();
+		$extras = $this->getExtras();
 
 		// Create or update key.
 		$extras[ $key ] = $value;
 
-		$this->set_extras( $extras );
+		$this->setExtras( $extras );
 
 		return $this;
 
@@ -487,7 +487,7 @@ class Notification {
 	 * @return $this
 	 */
 	public function refresh_hash() {
-		$this->set_hash( self::create_hash() );
+		$this->setHash( self::create_hash() );
 		return $this;
 	}
 

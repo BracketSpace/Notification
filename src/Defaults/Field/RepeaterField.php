@@ -94,12 +94,12 @@ class RepeaterField extends Field
 			$this->fields = $params['fields'];
 		}
 
-		$this->add_button_label = $params['add_button_label'] ?? __('Add new', 'notification');
+		$this->addButtonLabel = $params['add_button_label'] ?? __('Add new', 'notification');
 
 		// additional data tags for repeater table. key => value array.
 		// will be transformed to data-key="value".
 		if (isset($params['data_attr'])) {
-			$this->data_attr = $params['data_attr'];
+			$this->dataAttr = $params['data_attr'];
 		}
 
 		if (isset($params['sortable']) && ! $params['sortable']) {
@@ -122,13 +122,13 @@ class RepeaterField extends Field
 	{
 
 		$dataAttr = '';
-		foreach ($this->data_attr as $key => $value) {
+		foreach ($this->dataAttr as $key => $value) {
 			$dataAttr .= 'data-' . $key . '="' . esc_attr($value) . '" ';
 		}
 
 		$this->headers = [];
 
-		$html = '<table class="fields-repeater ' . $this->css_class() . '" id="' . $this->get_id() . '" ' . $dataAttr . '>';
+		$html = '<table class="fields-repeater ' . $this->cssClass() . '" id="' . $this->getId() . '" ' . $dataAttr . '>';
 
 		$html .= '<thead>';
 		$html .= '<tr class="row header">';
@@ -141,15 +141,15 @@ class RepeaterField extends Field
 				continue;
 			}
 
-			$html .= '<th class="' . esc_attr($subField->get_raw_name()) . '">';
+			$html .= '<th class="' . esc_attr($subField->getRawName()) . '">';
 
-			$this->headers[$subField->get_raw_name()] = $subField->get_label();
+			$this->headers[$subField->getRawName()] = $subField->getLabel();
 
-			$html .= esc_html($subField->get_label());
+			$html .= esc_html($subField->getLabel());
 
-			$description = $subField->get_description();
+			$description = $subField->getDescription();
 
-			if ($this->print_header_description && ! empty($description)) {
+			if ($this->printHeaderDescription && ! empty($description)) {
 				$html .= '<small class="description">' . $description . '</small>';
 			}
 
@@ -170,11 +170,11 @@ class RepeaterField extends Field
 
 		$html .= '<template v-if="repeaterError">
 					<div class="repeater-error">'
-					. $this->rest_api_error() .
+					. $this->restApiError() .
 					'</div>
 				  </template>';
 
-		$html .= '<a href="#" class="button button-secondary add-new-repeater-field" @click="addField">' . esc_html($this->add_button_label) . '</a>';
+		$html .= '<a href="#" class="button button-secondary add-new-repeater-field" @click="addField">' . esc_html($this->addButtonLabel) . '</a>';
 
 		return $html;
 	}
@@ -223,7 +223,7 @@ class RepeaterField extends Field
 			$sanitized[$rowId] = [];
 
 			foreach ($this->fields as $subField) {
-				$subkey = $subField->get_raw_name();
+				$subkey = $subField->getRawName();
 
 				$sanitizedValue = isset($row[$subkey]) ? $subField->sanitize($row[$subkey]) : '';
 

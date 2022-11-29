@@ -34,11 +34,11 @@ class Trigger implements Interfaces\Storable
 		$groups = [];
 
 		foreach (static::all() as $trigger) {
-			if (! isset($groups[$trigger->get_group()])) {
-				$groups[(string)$trigger->get_group()] = [];
+			if (! isset($groups[$trigger->getGroup()])) {
+				$groups[(string)$trigger->getGroup()] = [];
 			}
 
-			$groups[(string)$trigger->get_group()][$trigger->get_slug()] = $trigger;
+			$groups[(string)$trigger->getGroup()][$trigger->getSlug()] = $trigger;
 		}
 
 		return $groups;

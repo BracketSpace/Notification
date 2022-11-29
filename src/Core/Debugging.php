@@ -39,7 +39,7 @@ class Debugging
 	{
 		global $wpdb;
 
-		$this->logs_table = $wpdb->prefix . 'notification_logs';
+		$this->logsTable = $wpdb->prefix . 'notification_logs';
 	}
 
 	/**
@@ -74,7 +74,7 @@ class Debugging
 
 		// phpcs:ignore
 		return (bool) $wpdb->insert(
-			$this->logs_table,
+			$this->logsTable,
 			[
 				'type' => $logData['type'],
 				'message' => $logData['message'],
@@ -113,7 +113,7 @@ class Debugging
 			$escTypes[] = $wpdb->prepare('%s', (string)$type);
 		}
 
-		$query = 'SELECT SQL_CALC_FOUND_ROWS * FROM ' . $this->logs_table . ' WHERE type IN(' . implode(',', $escTypes) . ')';
+		$query = 'SELECT SQL_CALC_FOUND_ROWS * FROM ' . $this->logsTable . ' WHERE type IN(' . implode(',', $escTypes) . ')';
 
 		// Component.
 		if (! empty($component)) {
@@ -127,13 +127,13 @@ class Debugging
 		$query .= ' ORDER BY time_logged DESC';
 
 		// Pagination.
-		$offset = $page > 1 ? 'OFFSET ' . ( $page - 1 ) * $this->logs_per_page : '';
+		$offset = $page > 1 ? 'OFFSET ' . ( $page - 1 ) * $this->logsPerPage : '';
 
-		$query .= ' LIMIT ' . $this->logs_per_page . ' ' . $offset;
+		$query .= ' LIMIT ' . $this->logsPerPage . ' ' . $offset;
 
 		// We need to get the live results.
 		// phpcs:ignore
-		return $wpdb->get_results( $query );
+		return $wpdb->getResults( $query );
 	}
 
 	/**
@@ -153,7 +153,7 @@ class Debugging
 
 		foreach ($types as $type) {
 			// phpcs:ignore
-			$wpdb->delete( $this->logs_table, [ 'type' => $type ], [ '%s' ] );
+			$wpdb->delete( $this->logsTable, [ 'type' => $type ], [ '%s' ] );
 		}
 	}
 
@@ -169,10 +169,10 @@ class Debugging
 	{
 		global $wpdb;
 
-		$total = $wpdb->get_var( 'SELECT FOUND_ROWS();' ); //phpcs:ignore
+		$total = $wpdb->getVar( 'SELECT FOUND_ROWS();' ); //phpcs:ignore
 
 		if ($type === 'pages') {
-			return (int)ceil($total / $this->logs_per_page);
+			return (int)ceil($total / $this->logsPerPage);
 		}
 
 		return $total;
@@ -196,7 +196,7 @@ class Debugging
 			return;
 		}
 
-		if ($carrier->is_suppressed()) {
+		if ($carrier->isSuppressed()) {
 			return;
 		}
 
@@ -207,19 +207,19 @@ class Debugging
 
 		$data = [
 			'notification' => [
-				'title' => $notification->get_title(),
-				'hash' => $notification->get_hash(),
-				'source' => $notification->get_source(),
-				'extras' => $notification->get_extras(),
+				'title' => $notification->getTitle(),
+				'hash' => $notification->getHash(),
+				'source' => $notification->getSource(),
+				'extras' => $notification->getExtras(),
 			],
 			'carrier' => [
-				'slug' => $carrier->get_slug(),
-				'name' => $carrier->get_name(),
+				'slug' => $carrier->getSlug(),
+				'name' => $carrier->getName(),
 				'data' => $carrierData,
 			],
 			'trigger' => [
-				'slug' => $trigger->get_slug(),
-				'name' => $trigger->get_name(),
+				'slug' => $trigger->getSlug(),
+				'name' => $trigger->getName(),
 			],
 		];
 		notification_log('Core', 'notification', wp_json_encode($data));

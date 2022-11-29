@@ -159,23 +159,23 @@ class Upgrade
 		// Set enabled state.
 		$enabledCarriers = (array)get_post_meta($postId, '_enabled_notification', false);
 
-		if (in_array($carrier->get_slug(), $enabledCarriers, true)) {
+		if (in_array($carrier->getSlug(), $enabledCarriers, true)) {
 			$carrier->enable();
 		} else {
 			$carrier->disable();
 		}
 
 		// Set data.
-		$data = get_post_meta($postId, '_notification_type_' . $carrier->get_slug(), true);
+		$data = get_post_meta($postId, '_notification_type_' . $carrier->getSlug(), true);
 		$fieldValues = apply_filters_deprecated('notification/notification/form_fields/values', [ $data, $carrier ], '6.0.0', 'notification/carrier/fields/values');
 		$fieldValues = apply_filters('notification/carrier/fields/values', $fieldValues, $carrier);
 
-		foreach ($carrier->get_form_fields() as $field) {
-			if (!isset($fieldValues[$field->get_raw_name()])) {
+		foreach ($carrier->getFormFields() as $field) {
+			if (!isset($fieldValues[$field->getRawName()])) {
 				continue;
 			}
 
-			$field->set_value($fieldValues[$field->get_raw_name()]);
+			$field->setValue($fieldValues[$field->getRawName()]);
 		}
 
 		return $carrier;
@@ -225,17 +225,17 @@ class Upgrade
 		// 1. Save the Notification cache in post_content field.
 		$notifications = NotificationQueries::all(true);
 		foreach ($notifications as $adapter) {
-			$post = $adapter->get_post();
+			$post = $adapter->getPost();
 
-			$adapter->set_hash($post->post_name);
-			$adapter->set_title($post->post_title);
+			$adapter->setHash($post->postName);
+			$adapter->setTitle($post->postTitle);
 
 			// Trigger.
-			$triggerSlug = get_post_meta($adapter->get_id(), '_trigger', true);
+			$triggerSlug = get_post_meta($adapter->getId(), '_trigger', true);
 			$trigger = Store\Trigger::get($triggerSlug);
 
 			if (! empty($trigger)) {
-				$adapter->set_trigger($trigger);
+				$adapter->setTrigger($trigger);
 			}
 
 			// Carriers.
@@ -247,15 +247,15 @@ class Upgrade
 					continue;
 				}
 
-				$carriers[$carrier->get_slug()] = $this->populate_carrier(clone $carrier, $adapter->get_id());
+				$carriers[$carrier->getSlug()] = $this->populateCarrier(clone $carrier, $adapter->getId());
 			}
 
 			if (! empty($carriers)) {
-				$adapter->set_carriers($carriers);
+				$adapter->setCarriers($carriers);
 			}
 
-			$adapter->set_enabled($post->post_status === 'publish');
-			$adapter->set_version(strtotime($post->post_modified_gmt));
+			$adapter->setEnabled($post->postStatus === 'publish');
+			$adapter->setVersion(strtotime($post->postModifiedGmt));
 
 			$adapter->save();
 		}
@@ -291,18 +291,18 @@ class Upgrade
 		// 1. Changes the Trigger slugs.
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-		$notifications = $wpdb->get_results(
+		$notifications = $wpdb->getResults(
 			"SELECT p.ID, p.post_content
 			FROM {$wpdb->posts} p
 			WHERE p.post_type = 'notification'"
 		);
 
 		foreach ($notifications as $notifiationRaw) {
-			$data = json_decode($notifiationRaw->post_content, true);
+			$data = json_decode($notifiationRaw->postContent, true);
 
 			$data['trigger'] = preg_replace(
-				array_keys($this->trigger_slug_replacements()),
-				array_values($this->trigger_slug_replacements()),
+				array_keys($this->triggerSlugReplacements()),
+				array_values($this->triggerSlugReplacements()),
 				$data['trigger']
 			);
 

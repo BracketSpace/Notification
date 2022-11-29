@@ -107,18 +107,18 @@ class SectionRepeater extends Field
 
 		$this->sections = $params['sections'];
 
-		$this->section_labels = $params['section_labels'];
+		$this->sectionLabels = $params['section_labels'];
 
 		if (isset($params['fields'])) {
 			$this->fields = $params['fields'];
 		}
 
-		$this->add_button_label = $params['add_button_label'] ?? __('Add new', 'notification');
+		$this->addButtonLabel = $params['add_button_label'] ?? __('Add new', 'notification');
 
 		// additional data tags for repeater table. key => value array.
 		// will be transformed to data-key="value".
 		if (isset($params['data_attr'])) {
-			$this->data_attr = $params['data_attr'];
+			$this->dataAttr = $params['data_attr'];
 		}
 
 		if (isset($params['sortable']) && ! $params['sortable']) {
@@ -141,20 +141,20 @@ class SectionRepeater extends Field
 	{
 
 		$dataAttr = '';
-		foreach ($this->data_attr as $key => $value) {
+		foreach ($this->dataAttr as $key => $value) {
 			$dataAttr .= 'data-' . $key . '="' . esc_attr($value) . '" ';
 		}
 
 		$this->headers = [];
 
-		$html = '<table class="section-repeater fields-repeater ' . $this->css_class() . '" id="' . $this->get_id() . '" ' . $dataAttr . '>';
+		$html = '<table class="section-repeater fields-repeater ' . $this->cssClass() . '" id="' . $this->getId() . '" ' . $dataAttr . '>';
 
 		$html .= '<thead>';
 		$html .= '<tr class="row header">';
 
 		$html .= '<th class="handle"></th>';
 
-		foreach ($this->section_labels as $label) {
+		foreach ($this->sectionLabels as $label) {
 			$html .= '<th class="section-repeater-label">';
 
 			$html .= esc_html($label);
@@ -176,12 +176,12 @@ class SectionRepeater extends Field
 
 		$html .= '<template v-if="repeaterError">
 					<div class="repeater-error">'
-					. $this->rest_api_error() .
+					. $this->restApiError() .
 					'</div>
 				  </template>';
 
 		$html .= '<a href="#" class="button button-secondary add-new-repeater-field add-new-sections-field" @click="addSection">';
-		$html .= esc_html($this->add_button_label);
+		$html .= esc_html($this->addButtonLabel);
 		$html .= '
 			<div class="section-modal"
 			v-show="modalOpen"

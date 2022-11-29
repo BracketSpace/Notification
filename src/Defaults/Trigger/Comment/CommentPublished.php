@@ -35,10 +35,10 @@ class CommentPublished extends CommentTrigger
 			]
 		);
 
-		$this->add_action('notification_comment_published_proxy', 10, 1);
+		$this->addAction('notification_comment_published_proxy', 10, 1);
 
 		// Translators: comment type.
-		$this->set_description(sprintf(__('Fires when new %s is published on the website. Includes comment replies.', 'notification'), WpObjectHelper::get_comment_type_name($commentType)));
+		$this->setDescription(sprintf(__('Fires when new %s is published on the website. Includes comment replies.', 'notification'), WpObjectHelper::get_comment_type_name($commentType)));
 	}
 
 	/**
@@ -50,11 +50,11 @@ class CommentPublished extends CommentTrigger
 	public function context( $comment )
 	{
 
-		if ($comment->comment_approved !== '1') {
+		if ($comment->commentApproved !== '1') {
 			return false;
 		}
 
-		if (! $this->is_correct_type($comment)) {
+		if (! $this->isCorrectType($comment)) {
 			return false;
 		}
 

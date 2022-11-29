@@ -33,8 +33,8 @@ class MediaUpdated extends MediaTrigger
 
 		parent::__construct('media/updated', __('Media updated', 'notification'));
 
-		$this->add_action('attachment_updated', 10, 1);
-		$this->set_description(__('Fires when attachment is updated', 'notification'));
+		$this->addAction('attachment_updated', 10, 1);
+		$this->setDescription(__('Fires when attachment is updated', 'notification'));
 	}
 
 	/**
@@ -48,12 +48,12 @@ class MediaUpdated extends MediaTrigger
 
 		$this->attachment = get_post($attachmentId);
 
-		$this->user_id = get_current_user_id();
+		$this->userId = get_current_user_id();
 
-		$this->user_object = get_userdata($this->user_id);
-		$this->updating_user = get_userdata($this->user_id);
+		$this->userObject = get_userdata($this->userId);
+		$this->updatingUser = get_userdata($this->userId);
 
-		$this->attachment_creation_date = strtotime($this->attachment->post_date_gmt);
+		$this->attachmentCreationDate = strtotime($this->attachment->postDateGmt);
 	}
 
 	/**
@@ -67,7 +67,7 @@ class MediaUpdated extends MediaTrigger
 		parent::merge_tags();
 
 		// Updating user.
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserID(
 				[
 				'slug' => 'attachment_updating_user_ID',
@@ -78,7 +78,7 @@ class MediaUpdated extends MediaTrigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserLogin(
 				[
 				'slug' => 'attachment_updating_user_login',
@@ -89,7 +89,7 @@ class MediaUpdated extends MediaTrigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserEmail(
 				[
 				'slug' => 'attachment_updating_user_email',
@@ -100,7 +100,7 @@ class MediaUpdated extends MediaTrigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserNicename(
 				[
 				'slug' => 'attachment_updating_user_nicename',
@@ -111,7 +111,7 @@ class MediaUpdated extends MediaTrigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserFirstName(
 				[
 				'slug' => 'attachment_updating_user_firstname',
@@ -122,7 +122,7 @@ class MediaUpdated extends MediaTrigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserLastName(
 				[
 				'slug' => 'attachment_updating_user_lastname',

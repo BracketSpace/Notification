@@ -31,14 +31,14 @@ class Webhook extends Abstracts\Carrier
 
 	/**
 	 * Used to register Carrier form fields
-	 * Uses $this->add_form_field();
+	 * Uses $this->addFormField();
 	 *
 	 * @return void
 	 */
 	public function form_fields()
 	{
 
-		$this->add_recipients_field(
+		$this->addRecipientsField(
 			[
 			'label' => __('URLs', 'notification'),
 			'name' => 'urls',
@@ -46,7 +46,7 @@ class Webhook extends Abstracts\Carrier
 			]
 		);
 
-		$this->add_form_field(
+		$this->addFormField(
 			new Field\RepeaterField(
 				[
 				'label' => __('Arguments', 'notification'),
@@ -82,7 +82,7 @@ class Webhook extends Abstracts\Carrier
 			)
 		);
 
-		$this->add_form_field(
+		$this->addFormField(
 			new Field\CheckboxField(
 				[
 				'label' => __('JSON', 'notification'),
@@ -96,7 +96,7 @@ class Webhook extends Abstracts\Carrier
 			return;
 		}
 
-		$this->add_form_field(
+		$this->addFormField(
 			new Field\RepeaterField(
 				[
 				'label' => __('Headers', 'notification'),
@@ -143,7 +143,7 @@ class Webhook extends Abstracts\Carrier
 
 		$data = $this->data;
 
-		$args = $this->parse_args($data['args']);
+		$args = $this->parseArgs($data['args']);
 		$args = apply_filters_deprecated('notification/webhook/args', [ $args, $this, $trigger ], '6.0.0', 'notification/carrier/webhook/args');
 		$args = apply_filters('notification/carrier/webhook/args', $args, $this, $trigger);
 
@@ -155,7 +155,7 @@ class Webhook extends Abstracts\Carrier
 		$headers = $data['json'] ? [ 'Content-Type' => 'application/json' ] : [];
 
 		if (notification_get_setting('carriers/webhook/headers')) {
-			$headers = array_merge($headers, $this->parse_args($data['headers']));
+			$headers = array_merge($headers, $this->parseArgs($data['headers']));
 		}
 
 		// Call each URL separately.
@@ -163,7 +163,7 @@ class Webhook extends Abstracts\Carrier
 			$filteredArgs = apply_filters_deprecated('notification/webhook/args/' . $url['type'], [ $args, $this, $trigger ], '6.0.0', 'notification/carrier/webhook/args/' . $url['type']);
 			$filteredArgs = apply_filters('notification/carrier/webhook/args/' . $url['type'], $filteredArgs, $this, $trigger);
 
-			$this->http_request($url['recipient'], $filteredArgs, $headers, $url['type']);
+			$this->httpRequest($url['recipient'], $filteredArgs, $headers, $url['type']);
 		}
 	}
 }

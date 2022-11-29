@@ -48,7 +48,7 @@ abstract class Adapter implements Interfaces\Adaptable
 	 */
 	public function __call( $methodName, $arguments )
 	{
-		return call_user_func_array([ $this->get_notification(), $methodName ], $arguments);
+		return call_user_func_array([ $this->getNotification(), $methodName ], $arguments);
 	}
 
 	/**
@@ -71,7 +71,7 @@ abstract class Adapter implements Interfaces\Adaptable
 	 */
 	public function setup_notification( $data = [] )
 	{
-		return $this->get_notification()->setup($data);
+		return $this->getNotification()->setup($data);
 	}
 
 	/**
@@ -82,7 +82,7 @@ abstract class Adapter implements Interfaces\Adaptable
 	 */
 	public function is_enabled()
 	{
-		return $this->get_notification()->is_enabled();
+		return $this->getNotification()->isEnabled();
 	}
 
 	/**
@@ -93,6 +93,6 @@ abstract class Adapter implements Interfaces\Adaptable
 	 */
 	public function register_notification()
 	{
-		notification_add($this->get_notification());
+		notification_add($this->getNotification());
 	}
 }

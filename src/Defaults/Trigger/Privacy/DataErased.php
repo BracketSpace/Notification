@@ -24,9 +24,9 @@ class DataErased extends PrivacyTrigger
 
 		parent::__construct('privacy/data-erased', __('Personal Data Erased', 'notification'));
 
-		$this->add_action('wp_privacy_personal_data_erased', 10, 1);
+		$this->addAction('wp_privacy_personal_data_erased', 10, 1);
 
-		$this->set_description(__('Fires when user personal data is erased', 'notification'));
+		$this->setDescription(__('Fires when user personal data is erased', 'notification'));
 	}
 
 	/**
@@ -38,7 +38,7 @@ class DataErased extends PrivacyTrigger
 	{
 
 		$this->request = wp_get_user_request($requestId);
-		$this->user_object = get_userdata($this->request->user_id);
-		$this->data_operation_time = time();
+		$this->userObject = get_userdata($this->request->userId);
+		$this->dataOperationTime = time();
 	}
 }

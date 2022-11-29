@@ -33,11 +33,11 @@ class Resolver implements Interfaces\Storable
 		usort(
 			$resolvers,
 			static function ( $a, $b ) {
-				if ($a->get_priority() === $b->get_priority()) {
+				if ($a->getPriority() === $b->getPriority()) {
 					return 0;
 				}
 
-				return $a->get_priority() < $b->get_priority() ? -1 : 1;
+				return $a->getPriority() < $b->getPriority() ? -1 : 1;
 			}
 		);
 

@@ -30,21 +30,21 @@ class PostStatus extends StringTag
 	public function __construct( $params = [] )
 	{
 
-		$this->set_trigger_prop($params['post_type'] ?? 'post');
+		$this->setTriggerProp($params['post_type'] ?? 'post');
 
-		$postTypeName = WpObjectHelper::get_post_type_name($this->get_trigger_prop());
+		$postTypeName = WpObjectHelper::get_post_type_name($this->getTriggerProp());
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf('%s_status', $this->get_trigger_prop()),
+				'slug' => sprintf('%s_status', $this->getTriggerProp()),
 				// translators: singular post name.
 				'name' => sprintf(__('%s status', 'notification'), $postTypeName),
 				'description' => 'publish',
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ( $trigger ) {
-					return get_post_status($trigger->{ $this->get_trigger_prop() }->ID);
+					return get_post_status($trigger->{ $this->getTriggerProp() }->ID);
 				},
 			]
 		);

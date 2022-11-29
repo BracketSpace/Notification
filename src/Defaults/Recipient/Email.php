@@ -45,7 +45,7 @@ class Email extends Abstracts\Recipient
 	{
 
 		if (empty($value)) {
-			$value = $this->get_default_value();
+			$value = $this->getDefaultValue();
 		}
 
 		/**

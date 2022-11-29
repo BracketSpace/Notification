@@ -81,13 +81,13 @@ class WordPress
 	{
 		$coveredTriggers = [
 			'BracketSpace\Notification\Defaults\Trigger\Post\PostTrigger' => static function ( $trigger ) {
-				return $trigger->{ $trigger->get_post_type() }->ID;
+				return $trigger->{ $trigger->getPostType() }->ID;
 			},
 			'BracketSpace\Notification\Defaults\Trigger\User\UserTrigger' => static function ( $trigger ) {
-				return $trigger->user_id;
+				return $trigger->userId;
 			},
 			'BracketSpace\Notification\Defaults\Trigger\Comment\CommentTrigger' => static function ( $trigger ) {
-				return $trigger->comment->comment_ID;
+				return $trigger->comment->commentID;
 			},
 		];
 
@@ -119,7 +119,7 @@ class WordPress
 	 */
 	public function proxy_comment_reply( $commentId, $comment )
 	{
-		$status = $comment->comment_approved === '1' ? 'approved' : 'unapproved';
+		$status = $comment->commentApproved === '1' ? 'approved' : 'unapproved';
 		do_action('notification_insert_comment_proxy', $status, 'insert', $comment);
 	}
 
@@ -162,7 +162,7 @@ class WordPress
 	public function proxy_transition_comment_status_to_published( $commentNewStatus, $commentOldStatus, $comment )
 	{
 
-		if ($comment->comment_approved === 'spam' && notification_get_setting('triggers/comment/akismet')) {
+		if ($comment->commentApproved === 'spam' && notification_get_setting('triggers/comment/akismet')) {
 			return;
 		}
 

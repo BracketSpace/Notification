@@ -50,8 +50,8 @@ class SectionRepeaterController extends RepeaterController
 
 		foreach ($sections as $section => $value) {
 			$sectionFields[$section]['name'] = ucfirst($section);
-			$baseFields = $this->form_field_data($value['fields']);
-			$grouppedFields = $this->group_fields($baseFields);
+			$baseFields = $this->formFieldData($value['fields']);
+			$grouppedFields = $this->groupFields($baseFields);
 			$sectionFields[$section]['fields'] = $grouppedFields;
 
 			foreach ($sectionFields[$section]['fields'] as &$field) {
@@ -66,8 +66,8 @@ class SectionRepeaterController extends RepeaterController
 					$sectionField['name'] = $section['name'];
 					$sectionField['multiple'] = $section['multiple_section'] ?? false;
 					$sectionField['special'] = $section['special_section'] ?? false;
-					$baseSubFields = $this->form_field_data($section['fields']);
-					$grouppedSubFields = $this->group_fields($baseSubFields);
+					$baseSubFields = $this->formFieldData($section['fields']);
+					$grouppedSubFields = $this->groupFields($baseSubFields);
 					$sectionField['fields'] = $grouppedSubFields;
 					$sections = array_merge($sections, $sectionField);
 				}
@@ -87,16 +87,16 @@ class SectionRepeaterController extends RepeaterController
 	 */
 	public function form_data()
 	{
-		$values = $this->get_values($this->post_id, $this->carrier, $this->field) ?? [];
+		$values = $this->getValues($this->postId, $this->carrier, $this->field) ?? [];
 
 		/** @var \BracketSpace\Notification\Defaults\Field\SectionRepeater */
-		$field = $this->get_carrier_fields();
+		$field = $this->getCarrierFields();
 
-		$populatedSections = $this->get_sections_fields($field->sections);
+		$populatedSections = $this->getSectionsFields($field->sections);
 
 		return [
 			'sections' => $populatedSections,
-			'values' => $this->normalize_values($values),
+			'values' => $this->normalizeValues($values),
 		];
 	}
 }

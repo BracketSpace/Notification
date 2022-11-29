@@ -30,7 +30,7 @@ class UserBio extends StringTag
 	public function __construct( $params = [] )
 	{
 
-		$this->set_trigger_prop($params['property_name'] ?? 'user_object');
+		$this->setTriggerProp($params['property_name'] ?? 'user_object');
 
 		$args = wp_parse_args(
 			$params,
@@ -41,7 +41,7 @@ class UserBio extends StringTag
 				'example' => true,
 				'group' => __('User', 'notification'),
 				'resolver' => function ( $trigger ) {
-					return $trigger->{ $this->get_trigger_prop() }->description;
+					return $trigger->{ $this->getTriggerProp() }->description;
 				},
 			]
 		);

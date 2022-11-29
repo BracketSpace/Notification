@@ -40,9 +40,9 @@ class UserLogout extends UserTrigger
 
 		parent::__construct('user/logout', __('User logout', 'notification'));
 
-		$this->add_action('wp_logout', 10, 1);
+		$this->addAction('wp_logout', 10, 1);
 
-		$this->set_description(__('Fires when user log out from WordPress', 'notification'));
+		$this->setDescription(__('Fires when user log out from WordPress', 'notification'));
 	}
 
 	/**
@@ -58,11 +58,11 @@ class UserLogout extends UserTrigger
 			$userId = get_current_user_id();
 		}
 
-		$this->user_object = get_userdata($userId);
-		$this->user_meta = get_user_meta($userId);
+		$this->userObject = get_userdata($userId);
+		$this->userMeta = get_user_meta($userId);
 
-		$this->user_registered_datetime = strtotime($this->user_object->user_registered);
-		$this->user_logout_datetime = time();
+		$this->userRegisteredDatetime = strtotime($this->userObject->userRegistered);
+		$this->userLogoutDatetime = time();
 	}
 
 	/**
@@ -75,13 +75,13 @@ class UserLogout extends UserTrigger
 
 		parent::merge_tags();
 
-		$this->add_merge_tag(new MergeTag\User\UserNicename());
-		$this->add_merge_tag(new MergeTag\User\UserDisplayName());
-		$this->add_merge_tag(new MergeTag\User\UserFirstName());
-		$this->add_merge_tag(new MergeTag\User\UserLastName());
-		$this->add_merge_tag(new MergeTag\User\UserBio());
+		$this->addMergeTag(new MergeTag\User\UserNicename());
+		$this->addMergeTag(new MergeTag\User\UserDisplayName());
+		$this->addMergeTag(new MergeTag\User\UserFirstName());
+		$this->addMergeTag(new MergeTag\User\UserLastName());
+		$this->addMergeTag(new MergeTag\User\UserBio());
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 				'slug' => 'user_logout_datetime',

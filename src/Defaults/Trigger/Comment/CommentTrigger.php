@@ -95,11 +95,11 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			trigger_error('CommentTrigger requires comment_type, slug and name params.', E_USER_ERROR);
 		}
 
-		$this->comment_type = $params['comment_type'];
+		$this->commentType = $params['comment_type'];
 
 		parent::__construct($params['slug'], $params['name']);
 
-		$this->set_group((string)WpObjectHelper::get_comment_type_name($this->comment_type));
+		$this->setGroup((string)WpObjectHelper::get_comment_type_name($this->commentType));
 	}
 
 	/**
@@ -110,19 +110,19 @@ abstract class CommentTrigger extends Abstracts\Trigger
 	public function assign_properties()
 	{
 
-		$this->user_object = new \StdClass();
-		$this->user_object->ID = ( $this->comment->user_id ) ? $this->comment->user_id : 0;
-		$this->user_object->display_name = $this->comment->comment_author;
-		$this->user_object->user_email = $this->comment->comment_author_email;
+		$this->userObject = new \StdClass();
+		$this->userObject->ID = ( $this->comment->userId ) ? $this->comment->userId : 0;
+		$this->userObject->displayName = $this->comment->commentAuthor;
+		$this->userObject->userEmail = $this->comment->commentAuthorEmail;
 
-		$this->post = get_post((int)$this->comment->comment_post_ID);
-		$this->post_type = $this->post->post_type;
+		$this->post = get_post((int)$this->comment->commentPostID);
+		$this->postType = $this->post->postType;
 
-		$this->post_creation_datetime = strtotime($this->post->post_date_gmt);
-		$this->post_modification_datetime = strtotime($this->post->post_modified_gmt);
-		$this->comment_datetime = strtotime($this->comment->comment_date_gmt);
+		$this->postCreationDatetime = strtotime($this->post->postDateGmt);
+		$this->postModificationDatetime = strtotime($this->post->postModifiedGmt);
+		$this->commentDatetime = strtotime($this->comment->commentDateGmt);
 
-		$this->post_author = get_userdata((int)$this->post->post_author);
+		$this->postAuthor = get_userdata((int)$this->post->postAuthor);
 	}
 
 	/**
@@ -133,7 +133,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 	 */
 	public function is_correct_type( $comment )
 	{
-		return get_comment_type($comment) === $this->comment_type;
+		return get_comment_type($comment) === $this->commentType;
 	}
 
 	/**
@@ -144,58 +144,58 @@ abstract class CommentTrigger extends Abstracts\Trigger
 	public function merge_tags()
 	{
 
-		$commentTypeName = WpObjectHelper::get_comment_type_name($this->comment_type);
+		$commentTypeName = WpObjectHelper::get_comment_type_name($this->commentType);
 		$postTypeName = WpObjectHelper::get_post_type_name('post');
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentID(
 				[
-				'comment_type' => $this->comment_type,
+				'comment_type' => $this->commentType,
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentContent(
 				[
-				'comment_type' => $this->comment_type,
+				'comment_type' => $this->commentType,
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentContentHtml(
 				[
-				'comment_type' => $this->comment_type,
+				'comment_type' => $this->commentType,
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentStatus(
 				[
-				'comment_type' => $this->comment_type,
+				'comment_type' => $this->commentType,
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentType(
 				[
-				'comment_type' => $this->comment_type,
+				'comment_type' => $this->commentType,
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentIsReply(
 				[
-				'comment_type' => $this->comment_type,
+				'comment_type' => $this->commentType,
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 				'slug' => 'comment_datetime',
@@ -207,31 +207,31 @@ abstract class CommentTrigger extends Abstracts\Trigger
 		);
 
 		// Author.
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentAuthorIP(
 				[
-				'comment_type' => $this->comment_type,
+				'comment_type' => $this->commentType,
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentAuthorUserAgent(
 				[
-				'comment_type' => $this->comment_type,
+				'comment_type' => $this->commentType,
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\Comment\CommentAuthorUrl(
 				[
-				'comment_type' => $this->comment_type,
+				'comment_type' => $this->commentType,
 				]
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserID(
 				[
 				'slug' => 'comment_author_user_ID',
@@ -243,7 +243,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserEmail(
 				[
 				'slug' => 'comment_author_user_email',
@@ -255,7 +255,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserDisplayName(
 				[
 				'slug' => 'comment_author_user_display_name',
@@ -267,7 +267,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\Avatar(
 				[
 				'slug' => 'comment_author_user_avatar',
@@ -279,7 +279,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\AvatarUrl(
 				[
 				'slug' => 'comment_author_user_avatar_url',
@@ -292,16 +292,16 @@ abstract class CommentTrigger extends Abstracts\Trigger
 		);
 
 		// Post.
-		$this->add_merge_tag(new MergeTag\Post\PostID());
-		$this->add_merge_tag(new MergeTag\Post\PostPermalink());
-		$this->add_merge_tag(new MergeTag\Post\PostTitle());
-		$this->add_merge_tag(new MergeTag\Post\PostSlug());
-		$this->add_merge_tag(new MergeTag\Post\PostContent());
-		$this->add_merge_tag(new MergeTag\Post\PostExcerpt());
-		$this->add_merge_tag(new MergeTag\Post\PostStatus());
-		$this->add_merge_tag(new MergeTag\Post\PostType());
+		$this->addMergeTag(new MergeTag\Post\PostID());
+		$this->addMergeTag(new MergeTag\Post\PostPermalink());
+		$this->addMergeTag(new MergeTag\Post\PostTitle());
+		$this->addMergeTag(new MergeTag\Post\PostSlug());
+		$this->addMergeTag(new MergeTag\Post\PostContent());
+		$this->addMergeTag(new MergeTag\Post\PostExcerpt());
+		$this->addMergeTag(new MergeTag\Post\PostStatus());
+		$this->addMergeTag(new MergeTag\Post\PostType());
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 				'slug' => 'post_creation_datetime',
@@ -312,7 +312,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 				'slug' => 'post_modification_datetime',
@@ -324,7 +324,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 		);
 
 		// Post Author.
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserID(
 				[
 				'slug' => 'post_author_user_ID',
@@ -337,7 +337,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserLogin(
 				[
 				'slug' => 'post_author_user_login',
@@ -350,7 +350,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserEmail(
 				[
 				'slug' => 'post_author_user_email',
@@ -363,7 +363,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserNicename(
 				[
 				'slug' => 'post_author_user_nicename',
@@ -376,7 +376,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserDisplayName(
 				[
 				'slug' => 'post_author_user_display_name',
@@ -389,7 +389,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserFirstName(
 				[
 				'slug' => 'post_author_user_firstname',
@@ -402,7 +402,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			)
 		);
 
-		$this->add_merge_tag(
+		$this->addMergeTag(
 			new MergeTag\User\UserLastName(
 				[
 				'slug' => 'post_author_user_lastname',
