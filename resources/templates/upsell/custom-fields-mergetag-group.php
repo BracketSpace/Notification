@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @package notification
  */
 
-$extension_link = sprintf(
+$extensionLink = sprintf(
 	'<a href="https://bracketspace.com/downloads/notification-custom-fields/?utm_source=wp&utm_medium=notification-edit&utm_id=upsell" target="_blank">%s</a>',
 	__('Custom Fields extension', 'notification')
 );
@@ -23,7 +23,7 @@ $extension_link = sprintf(
 	printf(
 		// Translators: Link to extension.
 		__( 'Install %s to use merge tags like: %s', 'notification' ),
-		$extension_link,
+		$extensionLink,
 		'<code>{postmeta …}</code>, <code>{usermeta …}</code>, <code>{commentmeta …}</code>, or <code>{acf …}</code>'
 	);
 	// phpcs:enable

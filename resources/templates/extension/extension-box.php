@@ -7,16 +7,16 @@ declare(strict_types=1);
  *
  * @package notification
  *
- * @var callable(string $var_name, string $default=): mixed $get Variable getter.
- * @var callable(string $var_name, string $default=): void $the Variable printer.
- * @var callable(string $var_name, string $default=): void $the_esc Escaped variable printer.
+ * @var callable(string $varName, string $default=): mixed $get Variable getter.
+ * @var callable(string $varName, string $default=): void $the Variable printer.
+ * @var callable(string $varName, string $default=): void $theEsc Escaped variable printer.
  * @var \BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
 $ext = $get('extension');
 \assert(\is_array($ext));
 
-$action_button = '';
+$actionButton = '';
 
 // fragment forked from wp-admin/includes/class-wp-plugin-install-list-table.php.
 if (isset($ext['wporg']) && ! is_wp_error($ext['wporg']) && ( current_user_can('install_plugins') || current_user_can('update_plugins') )) {
@@ -26,26 +26,26 @@ if (isset($ext['wporg']) && ! is_wp_error($ext['wporg']) && ( current_user_can('
 		case 'install':
 			if ($status['url']) {
 				/* translators: 1: Plugin name and version. */
-				$action_button = '<a class="install-now button" data-slug="' . esc_attr($ext['slug']) . '" href="' . esc_url($status['url']) . '" aria-label="' . esc_attr(sprintf(__('Install %s now', 'notification'), $ext['name'])) . '" data-name="' . esc_attr($ext['name']) . '">' . __('Install Now', 'notification') . '</a>';
+				$actionButton = '<a class="install-now button" data-slug="' . esc_attr($ext['slug']) . '" href="' . esc_url($status['url']) . '" aria-label="' . esc_attr(sprintf(__('Install %s now', 'notification'), $ext['name'])) . '" data-name="' . esc_attr($ext['name']) . '">' . __('Install Now', 'notification') . '</a>';
 			}
 			break;
 
 		case 'update_available':
 			if ($status['url']) {
 				/* translators: 1: Plugin name and version */
-				$action_button = '<a class="update-now button aria-button-if-js" data-plugin="' . esc_attr($status['file']) . '" data-slug="' . esc_attr($ext['slug']) . '" href="' . esc_url($status['url']) . '" aria-label="' . esc_attr(sprintf(__('Update %s now', 'notification'), $ext['name'])) . '" data-name="' . esc_attr($ext['name']) . '">' . __('Update Now', 'notification') . '</a>';
+				$actionButton = '<a class="update-now button aria-button-if-js" data-plugin="' . esc_attr($status['file']) . '" data-slug="' . esc_attr($ext['slug']) . '" href="' . esc_url($status['url']) . '" aria-label="' . esc_attr(sprintf(__('Update %s now', 'notification'), $ext['name'])) . '" data-name="' . esc_attr($ext['name']) . '">' . __('Update Now', 'notification') . '</a>';
 			}
 			break;
 
 		case 'latest_installed':
 		case 'newer_installed':
 			if (is_plugin_active($status['file'])) {
-				$action_button = '<button type="button" class="button button-disabled" disabled="disabled">' . _x('Active', 'plugin', 'notification') . '</button>';
+				$actionButton = '<button type="button" class="button button-disabled" disabled="disabled">' . _x('Active', 'plugin', 'notification') . '</button>';
 			} elseif (current_user_can('activate_plugins')) {
-				$button_text = __('Activate', 'notification');
+				$buttonText = __('Activate', 'notification');
 				/* translators: %s: Plugin name */
-				$button_label = _x('Activate %s', 'plugin', 'notification');
-				$activate_url = add_query_arg(
+				$buttonLabel = _x('Activate %s', 'plugin', 'notification');
+				$activateUrl = add_query_arg(
 					[
 						'_wpnonce' => wp_create_nonce('activate-plugin_' . $status['file']),
 						'action' => 'activate',
@@ -55,25 +55,25 @@ if (isset($ext['wporg']) && ! is_wp_error($ext['wporg']) && ( current_user_can('
 				);
 
 				if (is_network_admin()) {
-					$button_text = __('Network Activate', 'notification');
+					$buttonText = __('Network Activate', 'notification');
 					/* translators: %s: Plugin name */
-					$button_label = _x('Network Activate %s', 'plugin', 'notification');
-					$activate_url = add_query_arg([ 'networkwide' => 1 ], $activate_url);
+					$buttonLabel = _x('Network Activate %s', 'plugin', 'notification');
+					$activateUrl = add_query_arg([ 'networkwide' => 1 ], $activateUrl);
 				}
 
-				$action_button = sprintf(
+				$actionButton = sprintf(
 					'<a href="%1$s" class="button activate-now" aria-label="%2$s">%3$s</a>',
-					esc_url($activate_url),
-					esc_attr(sprintf($button_label, $ext['name'])),
-					$button_text
+					esc_url($activateUrl),
+					esc_attr(sprintf($buttonLabel, $ext['name'])),
+					$buttonText
 				);
 			} else {
-				$action_button = '<button type="button" class="button button-disabled" disabled="disabled">' . _x('Installed', 'plugin', 'notification') . '</button>';
+				$actionButton = '<button type="button" class="button button-disabled" disabled="disabled">' . _x('Installed', 'plugin', 'notification') . '</button>';
 			}
 			break;
 	}
 } else {
-	$action_button = '<a href="' . esc_url($ext['url']) . '" class="button" target="_blank">' . __('More Details', 'notification') . '</a>';
+	$actionButton = '<a href="' . esc_url($ext['url']) . '" class="button" target="_blank">' . __('More Details', 'notification') . '</a>';
 }
 
 ?>
@@ -88,7 +88,7 @@ if (isset($ext['wporg']) && ! is_wp_error($ext['wporg']) && ( current_user_can('
 		</div>
 		<div class="action-links">
 			<ul class="plugin-action-buttons">
-				<li><?php echo wp_kses_data($action_button); ?></li>
+				<li><?php echo wp_kses_data($actionButton); ?></li>
 				<?php if ($ext['official']) : ?>
 					<li><span class="official"><?php esc_html_e('Official', 'notification'); ?></span></li>
 				<?php endif ?>

@@ -7,9 +7,9 @@ declare(strict_types=1);
  *
  * @package notification
  *
- * @var callable(string $var_name, string $default=): mixed $get Variable getter.
- * @var callable(string $var_name, string $default=): void $the Variable printer.
- * @var callable(string $var_name, string $default=): void $the_esc Escaped variable printer.
+ * @var callable(string $varName, string $default=): mixed $get Variable getter.
+ * @var callable(string $varName, string $default=): void $the Variable printer.
+ * @var callable(string $varName, string $default=): void $theEsc Escaped variable printer.
  * @var \BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
@@ -21,23 +21,23 @@ $carrier = $get('carrier');
 
 $type = false;
 $id = '';
-$vue_class = '';
+$vueClass = '';
 
 if (isset($field->field_type)) {
 	$type = $field->field_type;
 	$id = 'id=' . $field->id . '';
 	if ($type === 'repeater') {
-		$vue_class = ' vue-repeater';
+		$vueClass = ' vue-repeater';
 	} elseif ($type === 'section-repeater') {
-		$vue_class = ' vue-section-repeater';
+		$vueClass = ' vue-section-repeater';
 	}
 }
 
-$data_carrier = $carrier ? ' data-carrier=' . $carrier : '';
+$dataCarrier = $carrier ? ' data-carrier=' . $carrier : '';
 
 ?>
 
-<tr <?php echo esc_attr($id); ?> class="<?php echo esc_attr($field->get_raw_name()) . esc_attr($vue_class); ?>" data-field-name=<?php echo esc_attr($field->get_raw_name()) . esc_attr($data_carrier); ?> >
+<tr <?php echo esc_attr($id); ?> class="<?php echo esc_attr($field->get_raw_name()) . esc_attr($vueClass); ?>" data-field-name=<?php echo esc_attr($field->get_raw_name()) . esc_attr($dataCarrier); ?> >
 	<th>
 		<label for="<?php echo esc_attr($field->get_id()); ?>"><?php echo esc_html($field->get_label()); ?></label>
 	</th>

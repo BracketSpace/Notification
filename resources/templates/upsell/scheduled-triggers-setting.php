@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @package notification
  */
 
-$extension_link = sprintf(
+$extensionLink = sprintf(
 	'<a href="https://bracketspace.com/downloads/notification-scheduled-triggers/?utm_source=wp&utm_medium=notification-settings&utm_id=upsell" target="_blank">%s</a>',
 	__('Scheduled Triggers extension', 'notification')
 );
@@ -19,7 +19,7 @@ $extension_link = sprintf(
 	<span class="label-pro">PRO</span>
 	<?php
 	// Translators: Link to extension.
-	$description = sprintf(__('Use %s to define notifications based on time, rather than on action.', 'notification'), $extension_link);
+	$description = sprintf(__('Use %s to define notifications based on time, rather than on action.', 'notification'), $extensionLink);
 	echo wp_kses_post($description);
 	?>
 </p>

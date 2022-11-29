@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @package notification
  */
 
-$extension_link = sprintf(
+$extensionLink = sprintf(
 	'<a href="https://bracketspace.com/downloads/notification-conditionals/?utm_source=wp&utm_medium=notification-edit&utm_id=upsell" target="_blank">%s</a>',
 	__('Conditionals extension', 'notification')
 );
@@ -24,6 +24,6 @@ $extension_link = sprintf(
 <span class="label-pro">PRO</span>
 <?php
 // Translators: Link to extension.
-$description = sprintf(__('Install %s to control when the Notification is sent.', 'notification'), $extension_link);
+$description = sprintf(__('Install %s to control when the Notification is sent.', 'notification'), $extensionLink);
 echo wp_kses_post($description);
 ?>

@@ -7,9 +7,9 @@ declare(strict_types=1);
  *
  * @package notification
  *
- * @var callable(string $var_name, string $default=): mixed $get Variable getter.
- * @var callable(string $var_name, string $default=): void $the Variable printer.
- * @var callable(string $var_name, string $default=): void $the_esc Escaped variable printer.
+ * @var callable(string $varName, string $default=): mixed $get Variable getter.
+ * @var callable(string $varName, string $default=): void $the Variable printer.
+ * @var callable(string $varName, string $default=): void $theEsc Escaped variable printer.
  * @var \BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
@@ -32,9 +32,9 @@ declare(strict_types=1);
 
 	<div id="major-publishing-actions">
 		<div id="delete-action">
-			<?php $delete_link = get_delete_post_link($get('post_id'), '', true); ?>
-			<?php if (current_user_can('delete_post', $get('post_id')) && $delete_link) : ?>
-				<a class="submitdelete deletion notification-delete-post" href="<?php echo esc_url($delete_link); ?>"><?php echo esc_html__('Remove', 'notification'); ?></a>
+			<?php $deleteLink = get_delete_post_link($get('post_id'), '', true); ?>
+			<?php if (current_user_can('delete_post', $get('post_id')) && $deleteLink) : ?>
+				<a class="submitdelete deletion notification-delete-post" href="<?php echo esc_url($deleteLink); ?>"><?php echo esc_html__('Remove', 'notification'); ?></a>
 			<?php endif; ?>
 		</div>
 		<div id="publishing-action">

@@ -10,8 +10,8 @@ declare(strict_types=1);
  * @var \BracketSpace\Notification\Utils\Settings $this Settings instance.
  */
 
-if (! isset($current_section)) {
-	$current_section = '';
+if (! isset($currentSection)) {
+	$currentSection = '';
 }
 
 ?>
@@ -28,11 +28,11 @@ if (! isset($current_section)) {
 			<?php do_action($this->handle . '/settings/sidebar/before'); ?>
 
 			<ul class="menu-list box">
-				<?php foreach ($this->get_sections() as $section_slug => $section) : ?>
+				<?php foreach ($this->get_sections() as $sectionSlug => $section) : ?>
 					<?php
-					$class = ( $section_slug === $current_section ) ? 'current' : '';
-					$page_url = remove_query_arg('updated');
-					$url = add_query_arg('section', $section_slug, $page_url);
+					$class = ( $sectionSlug === $currentSection ) ? 'current' : '';
+					$pageUrl = remove_query_arg('updated');
+					$url = add_query_arg('section', $sectionSlug, $pageUrl);
 					?>
 					<li class="<?php echo esc_attr($class); ?>"><a href="<?php echo esc_attr($url); ?>"><?php echo esc_html($section->name()); ?></a></li>
 				<?php endforeach ?>
@@ -42,7 +42,7 @@ if (! isset($current_section)) {
 
 		</div>
 
-		<?php $section = $this->get_section($current_section); ?>
+		<?php $section = $this->get_section($currentSection); ?>
 
 		<div id="notification-settings-section-<?php echo esc_attr($section->slug()); ?>" class="setting-col box section-<?php echo esc_attr($section->slug()); ?>">
 
@@ -85,10 +85,10 @@ if (! isset($current_section)) {
 									<td>
 										<?php
 										$field->render();
-										$field_description = $field->description();
+										$fieldDescription = $field->description();
 										?>
-										<?php if (! empty($field_description)) : ?>
-											<small class="description"><?php echo wp_kses_data($field_description); ?></small>
+										<?php if (! empty($fieldDescription)) : ?>
+											<small class="description"><?php echo wp_kses_data($fieldDescription); ?></small>
 										<?php endif ?>
 									</td>
 								</tr>

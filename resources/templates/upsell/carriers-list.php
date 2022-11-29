@@ -7,15 +7,15 @@ declare(strict_types=1);
  *
  * @package notification
  *
- * @var callable(string $var_name, string $default=): mixed $get Variable getter.
- * @var callable(string $var_name, string $default=): void $the Variable printer.
- * @var callable(string $var_name, string $default=): void $the_esc Escaped variable printer.
+ * @var callable(string $varName, string $default=): mixed $get Variable getter.
+ * @var callable(string $varName, string $default=): void $the Variable printer.
+ * @var callable(string $varName, string $default=): void $theEsc Escaped variable printer.
  * @var \BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
 use BracketSpace\Notification\Dependencies\enshrined\svgSanitize\Sanitizer;
 
-$svg_sanitizer = new Sanitizer();
+$svgSanitizer = new Sanitizer();
 
 ?>
 
@@ -27,7 +27,7 @@ $svg_sanitizer = new Sanitizer();
 				<div class="notification-carriers__carrier-icon">
 					<?php
 					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					echo $svg_sanitizer->sanitize($carrier['icon']);
+					echo $svgSanitizer->sanitize($carrier['icon']);
 					?>
 				</div>
 			</div>

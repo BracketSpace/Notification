@@ -7,16 +7,16 @@ declare(strict_types=1);
  *
  * @package notification
  *
- * @var callable(string $var_name, string $default=): mixed $get Variable getter.
- * @var callable(string $var_name, string $default=): void $the Variable printer.
- * @var callable(string $var_name, string $default=): void $the_esc Escaped variable printer.
+ * @var callable(string $varName, string $default=): mixed $get Variable getter.
+ * @var callable(string $varName, string $default=): void $the Variable printer.
+ * @var callable(string $varName, string $default=): void $theEsc Escaped variable printer.
  * @var \BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
 use BracketSpace\Notification\Core\Templates;
 
-$premium_extensions = (array)$get('premium_extensions');
-\assert(\is_array($premium_extensions));
+$premiumExtensions = (array)$get('premium_extensions');
+\assert(\is_array($premiumExtensions));
 
 ?>
 
@@ -24,11 +24,11 @@ $premium_extensions = (array)$get('premium_extensions');
 
 	<h1><?php esc_html_e('Extensions', 'notification'); ?></h1>
 
-	<?php if (! empty($premium_extensions)) : ?>
+	<?php if (! empty($premiumExtensions)) : ?>
 		<h2><?php esc_html_e('Premium extensions', 'notification'); ?></h2>
 
 		<div id="the-list">
-			<?php foreach ($premium_extensions as $extension) : ?>
+			<?php foreach ($premiumExtensions as $extension) : ?>
 				<?php Templates::render('extension/extension-box-premium', [ 'extension' => $extension ]); ?>
 			<?php endforeach; ?>
 		</div>
