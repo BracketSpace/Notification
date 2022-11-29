@@ -30,7 +30,7 @@ abstract class Carrier implements Interfaces\Sendable
 	/**
 	 * Form fields
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $formFields = [];
 
@@ -65,14 +65,14 @@ abstract class Carrier implements Interfaces\Sendable
 	/**
 	 * Fields data for send method
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $data = [];
 
 	/**
 	 * Restricted form field keys
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $restrictedFields = ['_nonce', 'activated', 'enabled'];
 

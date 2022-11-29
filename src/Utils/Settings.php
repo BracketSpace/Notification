@@ -344,7 +344,7 @@ class Settings
 		$section = $this->getSection($sectionSlug);
 
 		if ($section === false) {
-			throw new \Exception("Cannot find \"${section_slug}\" settings section.");
+			throw new \Exception("Cannot find \"${sectionSlug}\" settings section.");
 		}
 
 		$sanitized = false;

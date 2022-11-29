@@ -195,7 +195,7 @@ class PostPublishedPrivately extends PostTrigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-					__(
+						__(
 							'%s publishing user email',
 							'notification'
 						),

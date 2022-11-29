@@ -10,55 +10,69 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Utils;
 
+use stdClass;
+
 /**
  * Allows plugins to use their own update API.
  *
  * @author Easy Digital Downloads
- * @version 1.9.1
+ * @version Release: 1.9.1
  */
 class EDDUpdater
 {
-
+	/** @var string */
 	private $apiUrl = '';
+
+	/** @var array<mixed>|null */
 	private $apiData = [];
+
+	/** @var string */
 	private $pluginFile = '';
+
+	/** @var string */
 	private $name = '';
+
+	/** @var string */
 	private $slug = '';
+
+	/** @var mixed */
 	private $version = '';
+
+	/** @var bool */
 	private $wpOverride = false;
+
+	/** @var bool */
 	private $beta = false;
+
+	/** @var string */
 	private $failedRequestCacheKey;
 
 	/**
 	 * Class constructor.
 	 *
-	 * @param string $_api_url The URL pointing to the custom API endpoint.
-	 * @param string $_plugin_file Path to the plugin file.
-	 * @param array $_api_data Optional data to send with API calls.
+	 * @param string $apiUrl The URL pointing to the custom API endpoint.
+	 * @param string $pluginFile Path to the plugin file.
+	 * @param array $apiData Optional data to send with API calls.
 	 * @uses hook()
 	 *
 	 * @uses plugin_basename()
 	 */
-	public function __construct($_api_url, $_plugin_file, $_api_data = null)
+	public function __construct($apiUrl, $pluginFile, $apiData = null)
 	{
 
 		global $eddPluginData;
 
-		$this->apiUrl = trailingslashit($_api_url);
-		$this->apiData = $_api_data;
-		$this->pluginFile = $_plugin_file;
-		$this->name = plugin_basename($_plugin_file);
+		$this->apiUrl = trailingslashit($apiUrl);
+		$this->apiData = $apiData;
+		$this->pluginFile = $pluginFile;
+		$this->name = plugin_basename($pluginFile);
 		$this->slug = basename(
-			$_plugin_file,
+			$pluginFile,
 			'.php'
 		);
-		$this->version = $_api_data['version'];
-		$this->wpOverride = isset($_api_data['wp_override'])
-			? (bool)$_api_data['wp_override']
-			: false;
-		$this->beta = !empty($this->apiData['beta'])
-			? true
-			: false;
+		$this->version = $apiData['version'];
+		$this->wpOverride = isset($apiData['wp_override']) && $apiData['wp_override'];
+		$this->beta = !empty($this->apiData['beta']);
 		$this->failedRequestCacheKey = 'edd_sl_failed_http_' . md5($this->apiUrl);
 
 		$eddPluginData[$this->slug] = $this->apiData;
@@ -119,26 +133,26 @@ class EDDUpdater
 	 * It is reassembled from parts of the native WordPress plugin update code.
 	 * See wp-includes/update.php line 121 for the original wp_update_plugins() function.
 	 *
-	 * @param array $_transient_data Update array build by WordPress.
+	 * @param array $transientData Update array build by WordPress.
 	 * @return array Modified update array with custom plugin data.
 	 * @uses api_request()
 	 *
 	 */
-	public function checkUpdate($_transient_data)
+	public function checkUpdate($transientData)
 	{
 
 		global $pagenow;
 
-		if (!is_object($_transient_data)) {
-			$_transient_data = new stdClass();
+		if (!is_object($transientData)) {
+			$transientData = new stdClass();
 		}
 
 		if (
-			!empty($_transient_data->response) &&
-			!empty($_transient_data->response[$this->name]) &&
+			!empty($transientData->response) &&
+			!empty($transientData->response[$this->name]) &&
 			$this->wpOverride === false
 		) {
-			return $_transient_data;
+			return $transientData;
 		}
 
 		$current = $this->getRepoApiData();
@@ -150,23 +164,23 @@ class EDDUpdater
 					'<'
 				)
 			) {
-				$_transient_data->response[$this->name] = $current;
+				$transientData->response[$this->name] = $current;
 			} else {
 				// Populating the no_update information is required to support auto-updates in WordPress 5.5.
-				$_transient_data->noUpdate[$this->name] = $current;
+				$transientData->noUpdate[$this->name] = $current;
 			}
 		}
-		$_transient_data->lastChecked = time();
-		$_transient_data->checked[$this->name] = $this->version;
+		$transientData->lastChecked = time();
+		$transientData->checked[$this->name] = $this->version;
 
-		return $_transient_data;
+		return $transientData;
 	}
 
 	/**
 	 * Get repo API data from store.
 	 * Save to cache.
 	 *
-	 * @return \stdClass
+	 * @return \stdClass|bool
 	 */
 	public function getRepoApiData()
 	{
@@ -260,8 +274,8 @@ class EDDUpdater
 			$changelogLink = add_query_arg(
 				[
 					'edd_sl_action' => 'view_plugin_changelog',
-					'plugin' => urlencode($this->name),
-					'slug' => urlencode($this->slug),
+					'plugin' => rawurlencode($this->name),
+					'slug' => rawurlencode($this->slug),
 					'TB_iframe' => 'true',
 					'width' => 77,
 					'height' => 911,
@@ -272,7 +286,7 @@ class EDDUpdater
 		$updateLink = add_query_arg(
 			[
 				'action' => 'upgrade-plugin',
-				'plugin' => urlencode($this->name),
+				'plugin' => rawurlencode($this->name),
 			],
 			self_admin_url('update.php')
 		);
@@ -295,7 +309,11 @@ class EDDUpdater
 		} elseif (empty($updateCache->response[$this->name]->package) && !empty($changelogLink)) {
 			echo ' ';
 			printf(
-			/* translators: 1. opening anchor tag, do not translate 2. the new plugin version 3. closing anchor tag, do not translate. */
+			/* translators:
+				1. opening anchor tag, do not translate
+				2. the new plugin version
+				3. closing anchor tag, do not translate.
+			*/
 				__(
 					'%1$sView version %2$s details%3$s.',
 					'easy-digital-downloads'
@@ -307,6 +325,7 @@ class EDDUpdater
 		} elseif (!empty($changelogLink)) {
 			echo ' ';
 			printf(
+				/* Translators: @todo */
 				__(
 					'%1$sView version %2$s details%3$s or %4$supdate now%5$s.',
 					'easy-digital-downloads'
@@ -754,6 +773,7 @@ class EDDUpdater
 		);
 
 		// Delete the duplicate option
+		//phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_serialize
 		delete_option('edd_api_request_' . md5(serialize($this->slug . $this->apiData['license'] . $this->beta)));
 	}
 
@@ -782,6 +802,7 @@ class EDDUpdater
 	{
 		$string = $this->slug . $this->apiData['license'] . $this->beta;
 
+		//phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_serialize
 		return 'edd_sl_' . md5(serialize($string));
 	}
 }

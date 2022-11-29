@@ -10,6 +10,9 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Traits;
 
+/**
+ * Webhook trait
+ */
 trait Webhook
 {
 
@@ -77,7 +80,7 @@ trait Webhook
 					[
 						'url' => $url,
 						'args' => $remoteArgs,
-						'errors' => $response->getErrorMessages(),
+						'errors' => $response->get_error_messages(),
 					],
 					true
 				) . '</pre>'
@@ -86,7 +89,7 @@ trait Webhook
 
 		$code = wp_remote_retrieve_response_code($response);
 
-		if (200 > $code || 300 <= $code) {
+		if ($code < 200 || $code >= 300) {
 			notification_log(
 				$this->getName(),
 				'warning',

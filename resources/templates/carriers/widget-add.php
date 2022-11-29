@@ -20,8 +20,9 @@ $svgSanitizer = new Sanitizer();
 ?>
 <div
 	class="notification-carriers"
-	data-nt-widget 
+	data-nt-widget
 	<?php
+	//phpcs:ignore Generic.ControlStructures.DisallowYodaConditions.Found
 	echo ($get('carriers_added_count') === $get('carriers_exists_count'))
 	? 'data-nt-hidden'
 	: '';

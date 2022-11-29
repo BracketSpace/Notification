@@ -48,7 +48,7 @@ class TwoFactor
 	 * @return void
 	 * @since  7.0.0
 	 */
-	public function userLoginWith_2fa($user)
+	public function userLoginWith2fa($user)
 	{
 		do_action(
 			'ntfn_proxy_two_factor_user_authenticated',

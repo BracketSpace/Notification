@@ -318,10 +318,11 @@ class UpdatesAvailable extends Abstracts\Trigger
 					'<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s',
 					'notification'
 				),
-				$update->Name,
-					// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+					$update->Name,
+					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 					$update->Version,
-					// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 					$update->update->newVersion
 			) . '</li>';
 		}
@@ -354,10 +355,11 @@ class UpdatesAvailable extends Abstracts\Trigger
 					'<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s',
 					'notification'
 				),
-				$update->Name,
-					// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+					$update->Name,
+					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 					$update->Version,
-					// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 					$update->update['new_version']
 			) . '</li>';
 		}

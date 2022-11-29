@@ -47,8 +47,6 @@ class BooleanTag extends MergeTag
 	 */
 	public function sanitize($value)
 	{
-		return $value
-			? true
-			: false;
+		return (bool)$value;
 	}
 }

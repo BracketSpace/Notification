@@ -15,9 +15,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 global $wpdb;
 
-$general_settings = get_option('notification_general');
+$generalSettings = get_option('notification_general');
 
-$un = $general_settings['uninstallation'];
+$un = $generalSettings['uninstallation'];
 
 // Remove notifications.
 if (isset($un['notifications']) && $un['notifications'] === 'true') {
@@ -26,11 +26,11 @@ if (isset($un['notifications']) && $un['notifications'] === 'true') {
 
 // Remove settings.
 if (isset($un['settings']) && $un['settings'] === 'true') {
-	$settings_config = get_option('_transient_notification_settings_config');
+	$settingsConfig = get_option('_transient_notification_settings_config');
 
-	foreach ($settings_config as $section_slug => $section) {
-		delete_option('notification_' . $section_slug);
-		delete_site_option('notification_' . $section_slug);
+	foreach ($settingsConfig as $sectionSlug => $section) {
+		delete_option('notification_' . $sectionSlug);
+		delete_site_option('notification_' . $sectionSlug);
 	}
 
 	delete_option('_notification_settings_config');
@@ -39,14 +39,14 @@ if (isset($un['settings']) && $un['settings'] === 'true') {
 
 // Remove licenses.
 if (isset($un['licenses']) && $un['licenses'] === 'true') {
-	$extensions_class = new BracketSpace\Notification\Admin\Extensions();
+	$extensionsClass = new BracketSpace\Notification\Admin\Extensions();
 
-	$extensions_class->load_extensions();
-	$premium_extensions = $extensions_class->premium_extensions;
+	$extensionsClass->loadExtensions();
+	$premiumExtensions = $extensionsClass->premiumExtensions;
 
-	foreach ($premium_extensions as $extension) {
+	foreach ($premiumExtensions as $extension) {
 		$license = $extension['license'];
-		if (!$license->is_valid()) {
+		if (!$license->isValid()) {
 			continue;
 		}
 
@@ -57,8 +57,8 @@ if (isset($un['licenses']) && $un['licenses'] === 'true') {
 }
 
 // Remove logs table.
-$logs_table = $wpdb->prefix . 'notification_logs';
-$wpdb->query( "DROP TABLE IF EXISTS ${logs_table}"  ); // phpcs:ignore
+$logsTable = $wpdb->prefix . 'notification_logs';
+$wpdb->query( "DROP TABLE IF EXISTS ${logsTable}"  ); // phpcs:ignore
 
 // Remove other things.
 delete_option('notification_story_dismissed');
