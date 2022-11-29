@@ -142,8 +142,8 @@ $logs = $get('logs');
 											<pre><code>
 												<?php
 												// print_r is used to display debug info.
-												// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
 												echo wp_kses_post(
+													// phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
 													print_r(
 														$value,
 														true

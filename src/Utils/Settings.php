@@ -338,6 +338,7 @@ class Settings
 			throw new \Exception('You must provide exactly 3 parts as the setting name');
 		}
 
+		// phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
 		list($sectionSlug, $groupSlug, $fieldSlug) = $parts;
 
 		$section = $this->getSection($sectionSlug);

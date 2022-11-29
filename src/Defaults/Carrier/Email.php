@@ -321,10 +321,10 @@ class Email extends Abstracts\Carrier
 		}
 
 		foreach ($errors as $error => $errorData) {
-			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
 			notification_log(
 				$this->getName(),
 				'error',
+				// phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
 				'<pre>' . print_r(
 					[
 						'error' => $error,

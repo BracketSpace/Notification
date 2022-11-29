@@ -349,6 +349,7 @@ class PostType
 
 		// Prevent infinite loops.
 		if (!defined('DOING_NOTIFICATION_SAVE')) {
+			// phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
 			define(
 				'DOING_NOTIFICATION_SAVE',
 				true

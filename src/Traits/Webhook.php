@@ -69,10 +69,10 @@ trait Webhook
 		);
 
 		if (is_wp_error($response)) {
-			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
 			notification_log(
 				$this->getName(),
 				'error',
+				// phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
 				'<pre>' . print_r(
 					[
 						'url' => $url,
@@ -87,10 +87,10 @@ trait Webhook
 		$code = wp_remote_retrieve_response_code($response);
 
 		if (200 > $code || 300 <= $code) {
-			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
 			notification_log(
 				$this->getName(),
 				'warning',
+				// phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
 				'<pre>' . print_r(
 					[
 						'url' => $url,
