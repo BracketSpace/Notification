@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 use BracketSpace\Notification\Core\Whitelabel;
 
-if (Whitelabel::is_whitelabeled()) {
+if (Whitelabel::isWhitelabeled()) {
 	return;
 }
 
