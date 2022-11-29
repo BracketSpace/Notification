@@ -114,6 +114,7 @@ class DataExported extends PrivacyTrigger
 						'notification'
 					),
 					'description' => __(
+						//phpcs:ignore Generic.Files.LineLength.TooLong
 						'https://example.com/wp-content/uploads/wp-personal-data-exports/wp-personal-data-file-f3563fe4.zip',
 						'notification'
 					),

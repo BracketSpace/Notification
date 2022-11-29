@@ -68,7 +68,8 @@ if (Whitelabel::isWhitelabeled()) {
 					'See the %s for more information how to release an extension.',
 					'notification'
 				),
-				'<a href="https://docs.bracketspace.com/docs/how-to-create-public-extension/" target="_blank">' . esc_html__(
+				'<a href="https://docs.bracketspace.com/docs/how-to-create-public-extension/" target="_blank">' .
+				esc_html__(
 					'documentation',
 					'notification'
 				) . '</a>'

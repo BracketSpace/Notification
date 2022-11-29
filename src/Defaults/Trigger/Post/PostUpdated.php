@@ -97,7 +97,8 @@ class PostUpdated extends PostTrigger
 			return false;
 		}
 
-		// Filter the post statuses for which the notification should be sent. By default it will be send only if you update already published post.
+		// Filter the post statuses for which the notification should be sent.
+		// By default it will be send only if you update already published post.
 		$updatedPostStatuses = apply_filters(
 			'notification/trigger/wordpress/post/updated/statuses',
 			['publish'],

@@ -52,7 +52,8 @@ class CommentAdded extends CommentTrigger
 			sprintf(
 			// Translators: comment type.
 				__(
-					'Fires when new %s is added to database and awaits moderation or is published. Includes comment replies.',
+					'Fires when new %s is added to database and awaits moderation or is published.
+					Includes comment replies.',
 					'notification'
 				),
 				WpObjectHelper::getCommentTypeName($commentType)

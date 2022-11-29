@@ -102,8 +102,9 @@ if (!isset($currentSection)) {
 
 				<?php
 				/**
-				 * When you have only checkboxed in the section, no data in POST is returned. This fields adds a dummy value
-				 * for form handler so it could grab the section name and parse all defined fields
+				 * When you have only checkboxed in the section, no data in POST is returned.
+				 * This fields adds a dummy value for form handler so
+				 * it could grab the section name and parse all defined fields
 				 */
 				?>
 				<input
@@ -120,7 +121,7 @@ if (!isset($currentSection)) {
 						class="setting-group group-<?php echo esc_attr($group->slug()); ?>"
 					>
 						<div
-							class="setting-group-header 
+							class="setting-group-header
 							<?php
 							echo esc_attr(
 								($group->collapsed())

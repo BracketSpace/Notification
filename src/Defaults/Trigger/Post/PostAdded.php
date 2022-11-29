@@ -73,7 +73,8 @@ class PostAdded extends PostTrigger
 		return sprintf(
 		// translators: 1. singular post name, 2. post type slug.
 			__(
-				'Fires when %1$s (%2$s) is added to database. Useful when adding posts programatically or for 3rd party integration',
+				'Fires when %1$s (%2$s) is added to database.
+				Useful when adding posts programatically or for 3rd party integration',
 				'notification'
 			),
 			WpObjectHelper::getPostTypeName($this->postType),
@@ -98,7 +99,8 @@ class PostAdded extends PostTrigger
 			return false;
 		}
 
-		// Controls if notification should be aborted if post is added from the admin. If disabled, the notification will be
+		// Controls if notification should be aborted if post is added from the admin.
+		// If disabled, the notification will be
 		// executed every time someone click the "Add new" button in the WordPress admin.
 		$bailAutoDraft = apply_filters(
 			'notification/trigger/wordpress/' . $this->postType . '/added/bail_auto_draft',
