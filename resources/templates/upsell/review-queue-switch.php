@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Review Queue switch
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 ?>
 

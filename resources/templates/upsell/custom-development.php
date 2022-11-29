@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Custom Development CTA
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 ?>
 

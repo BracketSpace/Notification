@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Custom Fields Merge Tags metabox content
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 $extensionLink = sprintf(
 //phpcs:ignore Generic.Files.LineLength.TooLong

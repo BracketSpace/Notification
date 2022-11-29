@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Carriers Upselling
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 ?>
 

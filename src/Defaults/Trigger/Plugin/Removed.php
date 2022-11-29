@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * WordPress plugin removed trigger.
  *
  * @package notification.
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Trigger\Plugin;
 

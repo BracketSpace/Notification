@@ -39,6 +39,9 @@
 		<exclude name="VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable"/>
 
 		<exclude name="Generic.WhiteSpace.DisallowTabIndent.TabsUsed"/>
+
+		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralDomain"/>
+		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralText"/>
 	</rule>
 
 	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent" />
