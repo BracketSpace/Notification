@@ -23,14 +23,14 @@ class UserLogout extends UserTrigger
 	 *
 	 * @var array
 	 */
-	public $user_meta;
+	public $userMeta;
 
 	/**
 	 * User logout date and time
 	 *
 	 * @var int|false
 	 */
-	public $user_logout_datetime;
+	public $userLogoutDatetime;
 
 	/**
 	 * Constructor
@@ -48,18 +48,18 @@ class UserLogout extends UserTrigger
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param int $user_id User ID.
+	 * @param int $userId User ID.
 	 * @return void
 	 */
-	public function context( $user_id = 0 )
+	public function context( $userId = 0 )
 	{
 		// Fix for WordPress <5.5 where the param is not available.
-		if ($user_id === 0) {
-			$user_id = get_current_user_id();
+		if ($userId === 0) {
+			$userId = get_current_user_id();
 		}
 
-		$this->user_object = get_userdata($user_id);
-		$this->user_meta = get_user_meta($user_id);
+		$this->user_object = get_userdata($userId);
+		$this->user_meta = get_user_meta($userId);
 
 		$this->user_registered_datetime = strtotime($this->user_object->user_registered);
 		$this->user_logout_datetime = time();

@@ -23,7 +23,7 @@ class MediaTrashed extends MediaTrigger
 	 *
 	 * @var \WP_User
 	 */
-	public $trashing_user;
+	public $trashingUser;
 
 	/**
 	 * Constructor
@@ -40,13 +40,13 @@ class MediaTrashed extends MediaTrigger
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param int $attachment_id Attachment Post ID.
+	 * @param int $attachmentId Attachment Post ID.
 	 * @return void
 	 */
-	public function context( $attachment_id )
+	public function context( $attachmentId )
 	{
 
-		$this->attachment = get_post($attachment_id);
+		$this->attachment = get_post($attachmentId);
 
 		$this->user_id = get_current_user_id();
 

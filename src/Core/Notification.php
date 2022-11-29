@@ -112,15 +112,15 @@ class Notification {
 	 *
 	 * @since  6.0.0
 	 * @throws \Exception If no property has been found.
-	 * @param  string $method_name Method name.
+	 * @param  string $methodName Method name.
 	 * @param  array  $arguments   Arguments.
 	 * @return mixed
 	 */
-	public function __call( $method_name, $arguments ) {
+	public function __call( $methodName, $arguments ) {
 
 		// Getter.
-		if ( 0 === strpos( $method_name, 'get_' ) ) {
-			$property = str_replace( 'get_', '', $method_name );
+		if ( 0 === strpos( $methodName, 'get_' ) ) {
+			$property = str_replace( 'get_', '', $methodName );
 
 			if ( property_exists( $this, $property ) ) {
 				return $this->$property;
@@ -130,8 +130,8 @@ class Notification {
 		}
 
 		// Setter.
-		if ( 0 === strpos( $method_name, 'set_' ) ) {
-			$property = str_replace( 'set_', '', $method_name );
+		if ( 0 === strpos( $methodName, 'set_' ) ) {
+			$property = str_replace( 'set_', '', $methodName );
 
 			if ( isset( $arguments[0] ) ) {
 				$this->$property = $arguments[0];
@@ -239,15 +239,15 @@ class Notification {
 	 * Dumps the object to array
 	 *
 	 * @since  6.0.0
-	 * @param  bool $only_enabled_carriers If only enabled Carriers should be saved.
+	 * @param  bool $onlyEnabledCarriers If only enabled Carriers should be saved.
 	 * @return array
 	 */
-	public function to_array( $only_enabled_carriers = false ) {
+	public function to_array( $onlyEnabledCarriers = false ) {
 
 		$carriers  = [];
-		$_carriers = $only_enabled_carriers ? $this->get_enabled_carriers() : $this->get_carriers();
-		foreach ( $_carriers as $carrier_slug => $carrier ) {
-			$carriers[ $carrier_slug ] = $carrier->get_data();
+		$_carriers = $onlyEnabledCarriers ? $this->get_enabled_carriers() : $this->get_carriers();
+		foreach ( $_carriers as $carrierSlug => $carrier ) {
+			$carriers[ $carrierSlug ] = $carrier->get_data();
 		}
 
 		$trigger = $this->get_trigger();
@@ -289,12 +289,12 @@ class Notification {
 	 * Gets single Carrier object
 	 *
 	 * @since  6.0.0
-	 * @param  string $carrier_slug Carrier slug.
+	 * @param  string $carrierSlug Carrier slug.
 	 * @return mixed                Carrier object or null.
 	 */
-	public function get_carrier( $carrier_slug ) {
+	public function get_carrier( $carrierSlug ) {
 		$carriers = $this->get_carriers();
-		return isset( $carriers[ $carrier_slug ] ) ? $carriers[ $carrier_slug ] : null;
+		return isset( $carriers[ $carrierSlug ] ) ? $carriers[ $carrierSlug ] : null;
 	}
 
 	/**
@@ -345,15 +345,15 @@ class Notification {
 	 * Enables Carrier
 	 *
 	 * @since  6.0.0
-	 * @param  string $carrier_slug Carrier slug.
+	 * @param  string $carrierSlug Carrier slug.
 	 * @return void
 	 */
-	public function enable_carrier( $carrier_slug ) {
+	public function enable_carrier( $carrierSlug ) {
 
-		$carrier = $this->get_carrier( $carrier_slug );
+		$carrier = $this->get_carrier( $carrierSlug );
 
 		if ( null === $carrier ) {
-			$carrier = $this->add_carrier( $carrier_slug );
+			$carrier = $this->add_carrier( $carrierSlug );
 		}
 
 		$carrier->enable();
@@ -364,11 +364,11 @@ class Notification {
 	 * Disables Carrier
 	 *
 	 * @since  6.0.0
-	 * @param  string $carrier_slug Carrier slug.
+	 * @param  string $carrierSlug Carrier slug.
 	 * @return void
 	 */
-	public function disable_carrier( $carrier_slug ) {
-		$carrier = $this->get_carrier( $carrier_slug );
+	public function disable_carrier( $carrierSlug ) {
+		$carrier = $this->get_carrier( $carrierSlug );
 		if ( null !== $carrier ) {
 			$carrier->disable();
 		}
@@ -384,13 +384,13 @@ class Notification {
 	 */
 	public function set_carriers( $carriers = [] ) {
 
-		$saved_carriers = [];
+		$savedCarriers = [];
 
 		foreach ( $carriers as $carrier ) {
-			$saved_carriers[ $carrier->get_slug() ] = $carrier;
+			$savedCarriers[ $carrier->get_slug() ] = $carrier;
 		}
 
-		$this->carriers = $saved_carriers;
+		$this->carriers = $savedCarriers;
 
 	}
 
@@ -398,12 +398,12 @@ class Notification {
 	 * Sets Carrier data
 	 *
 	 * @since  6.0.0
-	 * @param  string $carrier_slug Carrier slug.
+	 * @param  string $carrierSlug Carrier slug.
 	 * @param  array  $data         Carrier data.
 	 * @return void
 	 */
-	public function set_carrier_data( $carrier_slug, $data ) {
-		$carrier = $this->get_carrier( $carrier_slug );
+	public function set_carrier_data( $carrierSlug, $data ) {
+		$carrier = $this->get_carrier( $carrierSlug );
 		if ( null !== $carrier ) {
 			$carrier->set_data( $data );
 		}
@@ -413,11 +413,11 @@ class Notification {
 	 * Gets Carrier data
 	 *
 	 * @since  6.0.0
-	 * @param  string $carrier_slug Carrier slug.
+	 * @param  string $carrierSlug Carrier slug.
 	 * @return void
 	 */
-	public function get_carrier_data( $carrier_slug ) {
-		$carrier = $this->get_carrier( $carrier_slug );
+	public function get_carrier_data( $carrierSlug ) {
+		$carrier = $this->get_carrier( $carrierSlug );
 		if ( null !== $carrier ) {
 			$carrier->get_data();
 		}

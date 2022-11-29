@@ -27,7 +27,7 @@ abstract class Recipient implements Interfaces\Receivable
 	 *
 	 * @var string
 	 */
-	protected $default_value;
+	protected $defaultValue;
 
 	/**
 	 * Recipient constructor

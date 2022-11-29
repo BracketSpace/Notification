@@ -42,13 +42,13 @@ abstract class Adapter implements Interfaces\Adaptable
 	 * Pass the method calls to Notification object
 	 *
 	 * @since  6.0.0
-	 * @param  string $method_name Method name.
+	 * @param  string $methodName Method name.
 	 * @param  array  $arguments   Arguments.
 	 * @return mixed
 	 */
-	public function __call( $method_name, $arguments )
+	public function __call( $methodName, $arguments )
 	{
-		return call_user_func_array([ $this->get_notification(), $method_name ], $arguments);
+		return call_user_func_array([ $this->get_notification(), $methodName ], $arguments);
 	}
 
 	/**

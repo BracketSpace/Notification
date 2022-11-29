@@ -32,17 +32,17 @@ class PostSlug extends StringTag
 
 		$this->set_trigger_prop($params['post_type'] ?? 'post');
 
-		$post_type_name = WpObjectHelper::get_post_type_name($this->get_trigger_prop());
+		$postTypeName = WpObjectHelper::get_post_type_name($this->get_trigger_prop());
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug' => sprintf('%s_slug', $this->get_trigger_prop()),
 				// translators: singular post name.
-				'name' => sprintf(__('%s slug', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s slug', 'notification'), $postTypeName),
 				'description' => __('hello-world', 'notification'),
 				'example' => true,
-				'group' => $post_type_name,
+				'group' => $postTypeName,
 				'resolver' => function ( $trigger ) {
 					return $trigger->{ $this->get_trigger_prop() }->post_name;
 				},

@@ -40,24 +40,24 @@ class Settings extends SettingsAPI
 			return;
 		}
 
-		$settings_access = apply_filters('notification/whitelabel/settings/access', false);
-		if ($settings_access !== false && ! in_array(get_current_user_id(), $settings_access, true)) {
+		$settingsAccess = apply_filters('notification/whitelabel/settings/access', false);
+		if ($settingsAccess !== false && ! in_array(get_current_user_id(), $settingsAccess, true)) {
 			return;
 		}
 
 		// Change settings position if white labelled.
 		if (apply_filters('notification/whitelabel/cpt/parent', true) !== true) {
-			$parent_hook = apply_filters('notification/whitelabel/cpt/parent', 'edit.php?post_type=notification');
-			$page_menu_label = __('Notification settings', 'notification');
+			$parentHook = apply_filters('notification/whitelabel/cpt/parent', 'edit.php?post_type=notification');
+			$pageMenuLabel = __('Notification settings', 'notification');
 		} else {
-			$parent_hook = 'edit.php?post_type=notification';
-			$page_menu_label = __('Settings', 'notification');
+			$parentHook = 'edit.php?post_type=notification';
+			$pageMenuLabel = __('Settings', 'notification');
 		}
 
 		$this->page_hook = add_submenu_page(
-			$parent_hook,
+			$parentHook,
 			__('Notification settings', 'notification'),
-			$page_menu_label,
+			$pageMenuLabel,
 			'manage_options',
 			'settings',
 			[ $this, 'settings_page' ]

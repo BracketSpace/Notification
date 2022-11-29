@@ -34,13 +34,13 @@ class ErrorHandler
 	 * @since  8.0.0
 	 * @throws \Exception If debug is enabled.
 	 * @param  string $message         Message.
-	 * @param  string $exception_class Exception class name.
+	 * @param  string $exceptionClass Exception class name.
 	 * @return void
 	 */
-	public static function error( string $message, string $exception_class = 'Exception' )
+	public static function error( string $message, string $exceptionClass = 'Exception' )
 	{
 		if (self::debug_enabled()) {
-			throw new $exception_class($message);
+			throw new $exceptionClass($message);
 		}
 
 		trigger_error(esc_html($message), E_USER_WARNING);

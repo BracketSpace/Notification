@@ -21,35 +21,35 @@ class CommentApproved extends CommentTrigger
 	/**
 	 * Constructor
 	 *
-	 * @param string $comment_type optional, default: comment.
+	 * @param string $commentType optional, default: comment.
 	 */
-	public function __construct( $comment_type = 'comment' )
+	public function __construct( $commentType = 'comment' )
 	{
 
 		parent::__construct(
 			[
-			'slug' => 'comment/' . $comment_type . '/approved',
+			'slug' => 'comment/' . $commentType . '/approved',
 			// Translators: %s comment type.
-			'name' => sprintf(__('%s approved', 'notification'), WpObjectHelper::get_comment_type_name($comment_type)),
-			'comment_type' => $comment_type,
+			'name' => sprintf(__('%s approved', 'notification'), WpObjectHelper::get_comment_type_name($commentType)),
+			'comment_type' => $commentType,
 			]
 		);
 
 		$this->add_action('transition_comment_status', 10, 3);
 
 		// translators: comment type.
-		$this->set_description(sprintf(__('Fires when %s is approved', 'notification'), WpObjectHelper::get_comment_type_name($comment_type)));
+		$this->set_description(sprintf(__('Fires when %s is approved', 'notification'), WpObjectHelper::get_comment_type_name($commentType)));
 	}
 
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param string $comment_new_status New comment status.
-	 * @param string $comment_old_status Old comment status.
+	 * @param string $commentNewStatus New comment status.
+	 * @param string $commentOldStatus Old comment status.
 	 * @param object $comment            Comment object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $comment_new_status, $comment_old_status, $comment )
+	public function context( $commentNewStatus, $commentOldStatus, $comment )
 	{
 
 		$this->comment = $comment;
@@ -62,7 +62,7 @@ class CommentApproved extends CommentTrigger
 			return false;
 		}
 
-		if ($comment_new_status === $comment_old_status || $comment_new_status !== 'approved') {
+		if ($commentNewStatus === $commentOldStatus || $commentNewStatus !== 'approved') {
 			return false;
 		}
 

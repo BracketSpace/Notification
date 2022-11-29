@@ -21,14 +21,14 @@ class Debugging
 	 *
 	 * @var string
 	 */
-	private $logs_table;
+	private $logsTable;
 
 	/**
 	 * How many logs per page
 	 *
 	 * @var int
 	 */
-	private $logs_per_page = 10;
+	private $logsPerPage = 10;
 
 	/**
 	 * Constructor
@@ -47,28 +47,28 @@ class Debugging
 	 *
 	 * @since 6.0.0
 	 * @throws \Exception If any of the arguments is wrong.
-	 * @param array $log_data Log data, must contain keys: type, component and message.
+	 * @param array $logData Log data, must contain keys: type, component and message.
 	 * @return bool
 	 */
-	public function add_log( $log_data = [] )
+	public function add_log( $logData = [] )
 	{
 		global $wpdb;
 
-		$allowed_types = [
+		$allowedTypes = [
 			'notification',
 			'error',
 			'warning',
 		];
 
-		if (! isset($log_data['type']) || ! in_array($log_data['type'], $allowed_types, true)) {
-			throw new \Exception('Log type must be a one of the following types: ' . implode(', ', $allowed_types));
+		if (! isset($logData['type']) || ! in_array($logData['type'], $allowedTypes, true)) {
+			throw new \Exception('Log type must be a one of the following types: ' . implode(', ', $allowedTypes));
 		}
 
-		if (! isset($log_data['component'])) {
+		if (! isset($logData['component'])) {
 			throw new \Exception('Log must belong to a component');
 		}
 
-		if (! isset($log_data['message'])) {
+		if (! isset($logData['message'])) {
 			throw new \Exception('Log message cannot be empty');
 		}
 
@@ -76,9 +76,9 @@ class Debugging
 		return (bool) $wpdb->insert(
 			$this->logs_table,
 			[
-				'type' => $log_data['type'],
-				'message' => $log_data['message'],
-				'component' => $log_data['component'],
+				'type' => $logData['type'],
+				'message' => $logData['message'],
+				'component' => $logData['component'],
 				'time_logged' => gmdate('Y-m-d H:i:s'),
 			],
 			[
@@ -107,13 +107,13 @@ class Debugging
 			$types = [ 'notification', 'error', 'warning' ];
 		}
 
-		$esc_types = [];
+		$escTypes = [];
 
 		foreach ((array)$types as $type) {
-			$esc_types[] = $wpdb->prepare('%s', (string)$type);
+			$escTypes[] = $wpdb->prepare('%s', (string)$type);
 		}
 
-		$query = 'SELECT SQL_CALC_FOUND_ROWS * FROM ' . $this->logs_table . ' WHERE type IN(' . implode(',', $esc_types) . ')';
+		$query = 'SELECT SQL_CALC_FOUND_ROWS * FROM ' . $this->logs_table . ' WHERE type IN(' . implode(',', $escTypes) . ')';
 
 		// Component.
 		if (! empty($component)) {
@@ -201,9 +201,9 @@ class Debugging
 		}
 
 		// Remove unneccessary carrier keys.
-		$carrier_data = $carrier->data;
-		unset($carrier_data['activated']);
-		unset($carrier_data['enabled']);
+		$carrierData = $carrier->data;
+		unset($carrierData['activated']);
+		unset($carrierData['enabled']);
 
 		$data = [
 			'notification' => [
@@ -215,7 +215,7 @@ class Debugging
 			'carrier' => [
 				'slug' => $carrier->get_slug(),
 				'name' => $carrier->get_name(),
-				'data' => $carrier_data,
+				'data' => $carrierData,
 			],
 			'trigger' => [
 				'slug' => $trigger->get_slug(),

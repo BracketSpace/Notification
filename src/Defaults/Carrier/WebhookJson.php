@@ -129,10 +129,10 @@ class WebhookJson extends Abstracts\Carrier
 
 		// Call each URL separately.
 		foreach ($data['urls'] as $url) {
-			$filtered_args = apply_filters_deprecated('notification/webhook/args/' . $url['type'], [ $args, $this, $trigger ], '6.0.0', 'notification/carrier/webhook/args/' . $url['type']);
-			$filtered_args = apply_filters('notification/carrier/webhook/args/' . $url['type'], $filtered_args, $this, $trigger);
+			$filteredArgs = apply_filters_deprecated('notification/webhook/args/' . $url['type'], [ $args, $this, $trigger ], '6.0.0', 'notification/carrier/webhook/args/' . $url['type']);
+			$filteredArgs = apply_filters('notification/carrier/webhook/args/' . $url['type'], $filteredArgs, $this, $trigger);
 
-			$this->http_request($url['recipient'], $filtered_args, $headers, $url['type']);
+			$this->http_request($url['recipient'], $filteredArgs, $headers, $url['type']);
 		}
 	}
 }

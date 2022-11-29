@@ -32,12 +32,12 @@ class DataEraseRequest extends PrivacyTrigger
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param int $request_id Request id.
+	 * @param int $requestId Request id.
 	 */
-	public function context( $request_id )
+	public function context( $requestId )
 	{
 
-		$this->request = wp_get_user_request($request_id);
+		$this->request = wp_get_user_request($requestId);
 		$this->user_object = get_userdata($this->request->user_id);
 		$this->data_operation_time = time();
 	}

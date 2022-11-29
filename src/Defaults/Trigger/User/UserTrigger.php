@@ -24,21 +24,21 @@ abstract class UserTrigger extends Abstracts\Trigger
 	 *
 	 * @var int
 	 */
-	public $user_id;
+	public $userId;
 
 	/**
 	 * User object
 	 *
 	 * @var \WP_User
 	 */
-	public $user_object;
+	public $userObject;
 
 	/**
 	 * User registration date and time
 	 *
 	 * @var int|false
 	 */
-	public $user_registered_datetime;
+	public $userRegisteredDatetime;
 
 	/**
 	 * Constructor

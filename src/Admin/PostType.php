@@ -132,18 +132,18 @@ class PostType
 	 * @filter bulk_post_updated_messages
 	 *
 	 * @since  6.0.0
-	 * @param  array $bulk_messages Messages.
-	 * @param  array $bulk_counts   Counters.
+	 * @param  array $bulkMessages Messages.
+	 * @param  array $bulkCounts   Counters.
 	 * @return array
 	 */
-	public function bulk_action_messages( $bulk_messages, $bulk_counts )
+	public function bulk_action_messages( $bulkMessages, $bulkCounts )
 	{
-		$bulk_messages['notification'] = [
+		$bulkMessages['notification'] = [
 			// translators: Number of Notifications.
-			'deleted' => _n('%s notification removed.', '%s notifications removed.', $bulk_counts['trashed']),
+			'deleted' => _n('%s notification removed.', '%s notifications removed.', $bulkCounts['trashed']),
 		];
 
-		return $bulk_messages;
+		return $bulkMessages;
 	}
 
 	/**
@@ -180,16 +180,16 @@ class PostType
 	 * @action wp_trash_post 100
 	 *
 	 * @since  6.0.0
-	 * @param int $post_id Post ID.
+	 * @param int $postId Post ID.
 	 * @return void
 	 */
-	public function bypass_trash( $post_id )
+	public function bypass_trash( $postId )
 	{
-		if (get_post_type($post_id) !== 'notification') {
+		if (get_post_type($postId) !== 'notification') {
 			return;
 		}
 
-		wp_delete_post($post_id, true);
+		wp_delete_post($postId, true);
 	}
 
 	/**
@@ -231,12 +231,12 @@ class PostType
 	 *
 	 * @action save_post_notification
 	 *
-	 * @param int $post_id Current post ID.
+	 * @param int $postId Current post ID.
 	 * @param  object  $post    WP_Post object.
 	 * @param bool $update If existing notification is updated.
 	 * @return void
 	 */
-	public function save( $post_id, $post, $update )
+	public function save( $postId, $post, $update )
 	{
 		// Another save process is in progress, abort.
 		if (defined('DOING_NOTIFICATION_SAVE') && DOING_NOTIFICATION_SAVE) {
@@ -261,22 +261,22 @@ class PostType
 		}
 
 		$data = $_POST;
-		$notification_post = notification_adapt_from('WordPress', $post);
+		$notificationPost = notification_adapt_from('WordPress', $post);
 
 		// Title.
 		if (isset($data['post_title'])) {
-			$notification_post->set_title($data['post_title']);
+			$notificationPost->set_title($data['post_title']);
 		}
 
 		// Status.
 		$status = ( isset($data['notification_onoff_switch']) && $data['notification_onoff_switch'] === '1' );
-		$notification_post->set_enabled($status);
+		$notificationPost->set_enabled($status);
 
 		// Trigger.
 		if (! empty($data['notification_trigger'])) {
 			$trigger = Store\Trigger::get($data['notification_trigger']);
 			if (! empty($trigger)) {
-				$notification_post->set_trigger($trigger);
+				$notificationPost->set_trigger($trigger);
 			}
 		}
 
@@ -288,19 +288,19 @@ class PostType
 				continue;
 			}
 
-			$carrier_data = $data['notification_carrier_' . $carrier->get_slug()];
+			$carrierData = $data['notification_carrier_' . $carrier->get_slug()];
 
-			if (! $carrier_data['activated']) {
+			if (! $carrierData['activated']) {
 				continue;
 			}
 
 			// If nonce not set or false, ignore this form.
-			if (! wp_verify_nonce($carrier_data['_nonce'], $carrier->get_slug() . '_carrier_security')) {
+			if (! wp_verify_nonce($carrierData['_nonce'], $carrier->get_slug() . '_carrier_security')) {
 				continue;
 			}
 
 			// @todo #h1kf7 `enabled` key is overwritten below.
-			$carrier->set_data($carrier_data);
+			$carrier->set_data($carrierData);
 
 			if (isset($data['notification_carrier_' . $carrier->get_slug() . '_enable'])) {
 				$carrier->enable();
@@ -311,12 +311,12 @@ class PostType
 			$carriers[$carrier->get_slug()] = $carrier;
 		}
 
-		$notification_post->set_carriers($carriers);
+		$notificationPost->set_carriers($carriers);
 
 		// Hook into this action if you want to save any Notification Post data.
-		do_action('notification/data/save', $notification_post);
+		do_action('notification/data/save', $notificationPost);
 
-		$notification_post->save();
+		$notificationPost->save();
 
 		/**
 		 * @todo
@@ -327,7 +327,7 @@ class PostType
 		$cache->set_key('notifications');
 		$cache->delete();
 
-		do_action('notification/data/save/after', $notification_post);
+		do_action('notification/data/save/after', $notificationPost);
 	}
 
 	/**
@@ -412,18 +412,18 @@ class PostType
 	{
 		$notifications = self::get_all_notifications();
 
-		foreach ($notifications as $notification_json) {
-			if (empty($notification_json)) {
+		foreach ($notifications as $notificationJson) {
+			if (empty($notificationJson)) {
 				continue;
 			}
 
 			// Check if Notification has valid JSON.
-			$json_check = json_decode($notification_json, true);
+			$jsonCheck = json_decode($notificationJson, true);
 			if (json_last_error() !== JSON_ERROR_NONE) {
 				continue;
 			}
 
-			$adapter = notification_adapt_from('JSON', $notification_json);
+			$adapter = notification_adapt_from('JSON', $notificationJson);
 
 			// Set source back to WordPress.
 			$adapter->set_source('WordPress');

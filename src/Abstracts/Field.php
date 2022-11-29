@@ -81,21 +81,21 @@ abstract class Field implements Interfaces\Fillable
 	 *
 	 * @var string
 	 */
-	public $css_class = 'widefat notification-field '; // space here on purpose.
+	public $cssClass = 'widefat notification-field '; // space here on purpose.
 
 	/**
 	 * If field can be used multiple times in Section Repeater row
 	 *
 	 * @var bool
 	 */
-	public $multiple_section = false;
+	public $multipleSection = false;
 
 	/**
 	 * Field type used in HTML attribute.
 	 *
 	 * @var string
 	 */
-	public $field_type_html = '';
+	public $fieldTypeHtml = '';
 
 	/**
 	 * Field constructor

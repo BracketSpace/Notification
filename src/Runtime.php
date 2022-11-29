@@ -32,14 +32,14 @@ class Runtime
 	 *
 	 * @var string
 	 */
-	protected $plugin_file;
+	protected $pluginFile;
 
 	/**
 	 * Flag for unmet requirements
 	 *
 	 * @var bool
 	 */
-	protected $requirements_unmet;
+	protected $requirementsUnmet;
 
 	/**
 	 * Filesystems
@@ -59,11 +59,11 @@ class Runtime
 	 * Class constructor
 	 *
 	 * @since 5.0.0
-	 * @param string $plugin_file plugin main file full path.
+	 * @param string $pluginFile plugin main file full path.
 	 */
-	public function __construct( $plugin_file )
+	public function __construct( $pluginFile )
 	{
-		$this->plugin_file = $plugin_file;
+		$this->plugin_file = $pluginFile;
 	}
 
 	/**
@@ -305,20 +305,20 @@ class Runtime
 	 *
 	 * @since  6.0.0
 	 * @param  string       $default    Default file slug.
-	 * @param  class-string $class_name Default class name.
+	 * @param  class-string $className Default class name.
 	 * @return void
 	 */
-	public function load_default( $default, $class_name )
+	public function load_default( $default, $className )
 	{
 		if (!apply_filters('notification/load/default/' . $default, true)) {
 			return;
 		}
 
-		if (!is_callable([ $class_name, 'register' ])) {
+		if (!is_callable([ $className, 'register' ])) {
 			return;
 		}
 
-		$class_name::register();
+		$className::register();
 	}
 
 	/**
@@ -330,7 +330,7 @@ class Runtime
 	public function load_bundled_extensions()
 	{
 		$extensions = $this->get_filesystem()->dirlist('extensions', false);
-		$extension_template = 'extensions/%s/load.php';
+		$extensionTemplate = 'extensions/%s/load.php';
 
 		if (empty($extensions)) {
 			return;
@@ -341,12 +341,12 @@ class Runtime
 				continue;
 			}
 
-			$extension_file = sprintf($extension_template, $extension['name']);
-			if (!$this->get_filesystem()->exists($extension_file)) {
+			$extensionFile = sprintf($extensionTemplate, $extension['name']);
+			if (!$this->get_filesystem()->exists($extensionFile)) {
 				continue;
 			}
 
-			require_once $this->get_filesystem()->path($extension_file);
+			require_once $this->get_filesystem()->path($extensionFile);
 		}
 	}
 }

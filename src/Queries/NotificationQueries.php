@@ -20,26 +20,26 @@ class NotificationQueries
 	 * Gets Notification posts.
 	 *
 	 * @since  8.0.0
-	 * @param  bool $including_disabled If should include disabled notifications as well.
+	 * @param  bool $includingDisabled If should include disabled notifications as well.
 	 * @return array<int, \BracketSpace\Notification\Defaults\Adapter\WordPress>
 	 */
-	public static function all( bool $including_disabled = false ): array
+	public static function all( bool $includingDisabled = false ): array
 	{
-		$query_args = [
+		$queryArgs = [
 			'posts_per_page' => -1,
 			'post_type' => 'notification',
 		];
 
-		if ($including_disabled) {
-			$query_args['post_status'] = [ 'publish', 'draft' ];
+		if ($includingDisabled) {
+			$queryArgs['post_status'] = [ 'publish', 'draft' ];
 		}
 
 		// WPML compat.
 		if (defined('ICL_LANGUAGE_CODE')) {
-			$query_args['suppress_filters'] = 0;
+			$queryArgs['suppress_filters'] = 0;
 		}
 
-		$wpposts = get_posts($query_args);
+		$wpposts = get_posts($queryArgs);
 		$posts = [];
 
 		if (empty($wpposts)) {

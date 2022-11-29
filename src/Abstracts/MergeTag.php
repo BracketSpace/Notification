@@ -36,7 +36,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 *
 	 * @var string
 	 */
-	protected $value_type;
+	protected $valueType;
 
 	/**
 	 * Function which resolve the merge tag value
@@ -64,7 +64,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 *
 	 * @var bool
 	 */
-	protected $description_example = false;
+	protected $descriptionExample = false;
 
 	/**
 	 * If merge tag is hidden
@@ -78,7 +78,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 *
 	 * @var string
 	 */
-	private $trigger_property_name;
+	private $triggerPropertyName;
 
 	/**
 	 * Merge tag constructor
@@ -163,8 +163,8 @@ abstract class MergeTag implements Interfaces\Taggable
 		}
 
 		if (! empty($value) && ! $this->validate($value)) {
-			$error_type = ( defined('WP_DEBUG') && WP_DEBUG ) ? E_USER_ERROR : E_USER_NOTICE;
-			trigger_error('Resolved value is a wrong type', $error_type);
+			$errorType = ( defined('WP_DEBUG') && WP_DEBUG ) ? E_USER_ERROR : E_USER_NOTICE;
+			trigger_error('Resolved value is a wrong type', $errorType);
 		}
 
 		$this->resolved = true;
@@ -237,13 +237,13 @@ abstract class MergeTag implements Interfaces\Taggable
 	 *
 	 * @since 8.0.12
 	 *
-	 * @param string $trigger_property_name merge tag trigger property name.
+	 * @param string $triggerPropertyName merge tag trigger property name.
 	 *
 	 * @return void
 	 */
-	public function set_trigger_prop( string $trigger_property_name )
+	public function set_trigger_prop( string $triggerPropertyName )
 	{
-		$this->trigger_property_name = $trigger_property_name;
+		$this->trigger_property_name = $triggerPropertyName;
 	}
 
 	/**

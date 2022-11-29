@@ -23,14 +23,14 @@ class UserPasswordChanged extends UserTrigger
 	 *
 	 * @var array
 	 */
-	public $user_meta;
+	public $userMeta;
 
 	/**
 	 * Password change date and time
 	 *
 	 * @var int|false
 	 */
-	public $password_change_datetime;
+	public $passwordChangeDatetime;
 
 	/**
 	 * Constructor

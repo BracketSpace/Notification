@@ -37,7 +37,7 @@ class TextareaField extends Field
 	 *
 	 * @var bool
 	 */
-	protected $allowed_unfiltered = false;
+	protected $allowedUnfiltered = false;
 
 	/**
 	 * Field constructor

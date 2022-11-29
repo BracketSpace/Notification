@@ -24,7 +24,7 @@ class CommentAuthorUrl extends UrlTag
 	 *
 	 * @var string
 	 */
-	protected $comment_type = 'comment';
+	protected $commentType = 'comment';
 
 	/**
 	 * Merge tag constructor
@@ -41,18 +41,18 @@ class CommentAuthorUrl extends UrlTag
 
 		$this->set_trigger_prop($params['property_name'] ?? $this->comment_type);
 
-		$comment_type_name = WpObjectHelper::get_comment_type_name($this->comment_type);
+		$commentTypeName = WpObjectHelper::get_comment_type_name($this->comment_type);
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug' => 'comment_author_url',
 				// Translators: Comment type name.
-				'name' => sprintf(__('%s author URL', 'notification'), $comment_type_name),
+				'name' => sprintf(__('%s author URL', 'notification'), $commentTypeName),
 				'description' => __('http://mywebsite.com', 'notification'),
 				'example' => true,
 				// Translators: comment type author.
-				'group' => sprintf(__('%s author', 'notification'), $comment_type_name),
+				'group' => sprintf(__('%s author', 'notification'), $commentTypeName),
 				'resolver' => function ( $trigger ) {
 					return $trigger->{ $this->get_trigger_prop() }->comment_author_url;
 				},

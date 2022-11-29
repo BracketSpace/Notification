@@ -24,7 +24,7 @@ class CommentType extends StringTag
 	 *
 	 * @var string
 	 */
-	protected $comment_type = 'comment';
+	protected $commentType = 'comment';
 
 	/**
 	 * Merge tag constructor

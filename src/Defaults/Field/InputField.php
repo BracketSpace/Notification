@@ -46,7 +46,7 @@ class InputField extends Field
 	 * @since 6.3.1
 	 * @var bool
 	 */
-	protected $allow_linebreaks = false;
+	protected $allowLinebreaks = false;
 
 	/**
 	 * Field constructor

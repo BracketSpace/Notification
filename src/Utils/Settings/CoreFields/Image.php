@@ -26,10 +26,10 @@ class Image
 	 */
 	public function input( $field )
 	{
-		$uploaded_image = esc_url(wp_get_attachment_url((int)$field->value()));
+		$uploadedImage = esc_url(wp_get_attachment_url((int)$field->value()));
 
-		if ($uploaded_image) {
-			$image = $uploaded_image;
+		if ($uploadedImage) {
+			$image = $uploadedImage;
 			$class = 'selected';
 		} elseif ($field->default_value()) {
 			$image = $field->default_value();

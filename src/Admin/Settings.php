@@ -294,8 +294,8 @@ class Settings
 				'addons' => [
 					'options' => static function () {
 						$options = [];
-						foreach (wp_get_schedules() as $schedule_name => $schedule) {
-							$options[$schedule_name] = $schedule['display'];
+						foreach (wp_get_schedules() as $scheduleName => $schedule) {
+							$options[$scheduleName] = $schedule['display'];
 						}
 						return $options;
 					},
@@ -349,7 +349,7 @@ class Settings
 			$sitename = 'example.com';
 		}
 
-		$default_from_email = 'wordpress@' . $sitename;
+		$defaultFromEmail = 'wordpress@' . $sitename;
 
 		$carriers = $settings->add_section(__('Carriers', 'notification'), 'carriers');
 
@@ -413,7 +413,7 @@ class Settings
 				'render' => [ new CoreFields\Text(), 'input' ],
 				'sanitize' => [ new CoreFields\Text(), 'sanitize' ],
 				// Translators: %s default value.
-				'description' => sprintf(__('Leave blank to use default value: %s', 'notification'), '<code>' . $default_from_email . '</code>'),
+				'description' => sprintf(__('Leave blank to use default value: %s', 'notification'), '<code>' . $defaultFromEmail . '</code>'),
 				]
 			)
 			->add_field(
@@ -619,15 +619,15 @@ class Settings
 	 * @filter notification/settings/triggers/valid_post_types
 	 *
 	 * @since  5.0.0
-	 * @param  array $post_types post types.
+	 * @param  array $postTypes post types.
 	 * @return array
 	 */
-	public function filter_post_types( $post_types )
+	public function filter_post_types( $postTypes )
 	{
-		if (isset($post_types['attachment'])) {
-			unset($post_types['attachment']);
+		if (isset($postTypes['attachment'])) {
+			unset($postTypes['attachment']);
 		}
 
-		return $post_types;
+		return $postTypes;
 	}
 }

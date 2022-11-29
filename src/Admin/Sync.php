@@ -33,12 +33,12 @@ class Sync
 	public function settings( $settings )
 	{
 
-		$import_export = $settings->add_section(__('Import / Export', 'notification'), 'import_export');
-		$sync_group = $import_export->add_group(__('Synchronization', 'notification'), 'sync');
+		$importExport = $settings->add_section(__('Import / Export', 'notification'), 'import_export');
+		$syncGroup = $importExport->add_group(__('Synchronization', 'notification'), 'sync');
 
-		$sync_group->description('Synchronization allow to export or load the Notifications from JSON files.');
+		$syncGroup->description('Synchronization allow to export or load the Notifications from JSON files.');
 
-		$sync_group->add_field(
+		$syncGroup->add_field(
 			[
 			'name' => __('Actions', 'notification'),
 			'slug' => 'actions',
@@ -55,7 +55,7 @@ class Sync
 			return;
 		}
 
-		$sync_group->add_field(
+		$syncGroup->add_field(
 			[
 			'name' => __('Notifications', 'notification'),
 			'slug' => 'notifications',
@@ -134,26 +134,26 @@ class Sync
 	public function load_notification_to_wordpress( $hash )
 	{
 
-		$json_notifications = CoreSync::get_all_json();
+		$jsonNotifications = CoreSync::get_all_json();
 
-		foreach ($json_notifications as $json) {
+		foreach ($jsonNotifications as $json) {
 			try {
 				/**
 				 * JSON Adapter
 				 *
 				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 				 */
-				$json_adapter = notification_adapt_from('JSON', $json);
+				$jsonAdapter = notification_adapt_from('JSON', $json);
 
-				if ($json_adapter->get_hash() === $hash) {
+				if ($jsonAdapter->get_hash() === $hash) {
 					/**
 					 * WordPress Adapter
 					 *
 					 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
 					 */
-					$wp_adapter = notification_swap_adapter('WordPress', $json_adapter);
-					$wp_adapter->save();
-					return get_edit_post_link($wp_adapter->get_id(), 'admin');
+					$wpAdapter = notification_swap_adapter('WordPress', $jsonAdapter);
+					$wpAdapter->save();
+					return get_edit_post_link($wpAdapter->get_id(), 'admin');
 				}
 			} catch (\Throwable $e) {
 				// Do nothing.

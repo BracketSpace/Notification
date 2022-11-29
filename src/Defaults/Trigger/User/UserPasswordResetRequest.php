@@ -23,14 +23,14 @@ class UserPasswordResetRequest extends UserTrigger
 	 *
 	 * @var int|false
 	 */
-	public $password_reset_request_datetime;
+	public $passwordResetRequestDatetime;
 
 	/**
 	 * Password reset key
 	 *
 	 * @var string
 	 */
-	public $password_reset_key;
+	public $passwordResetKey;
 
 	/**
 	 * Constructor
@@ -49,10 +49,10 @@ class UserPasswordResetRequest extends UserTrigger
 	 * Sets trigger's context
 	 *
 	 * @param string $username  username.
-	 * @param string $reset_key password reset key.
+	 * @param string $resetKey password reset key.
 	 * @return mixed
 	 */
-	public function context( $username, $reset_key )
+	public function context( $username, $resetKey )
 	{
 		$user = get_user_by('login', $username);
 
@@ -71,7 +71,7 @@ class UserPasswordResetRequest extends UserTrigger
 		$this->user_id = $user->data->ID;
 		$this->user_object = get_userdata($this->user_id);
 
-		$this->password_reset_key = $reset_key;
+		$this->password_reset_key = $resetKey;
 
 		$this->user_registered_datetime = strtotime($this->user_object->user_registered);
 		$this->password_reset_request_datetime = time();

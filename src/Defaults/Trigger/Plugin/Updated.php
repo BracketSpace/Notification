@@ -21,14 +21,14 @@ class Updated extends PluginTrigger
 	 *
 	 * @var string
 	 */
-	public $previous_version;
+	public $previousVersion;
 
 	/**
 	 * Plugin update date and time
 	 *
 	 * @var string
 	 */
-	public $plugin_update_date_time;
+	public $pluginUpdateDateTime;
 
 	/**
 	 * Constructor.
@@ -62,8 +62,8 @@ class Updated extends PluginTrigger
 		$skin = $upgrader->skin;
 
 		$this->previous_version = $skin->plugin_info['Version'];
-		$plugin_dir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $upgrader->plugin_info();
-		$this->plugin = get_plugin_data($plugin_dir, false);
+		$pluginDir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $upgrader->plugin_info();
+		$this->plugin = get_plugin_data($pluginDir, false);
 		$this->plugin_update_date_time = time();
 	}
 

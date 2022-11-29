@@ -16,7 +16,7 @@ use BracketSpace\Notification\Core\Notification;
 /**
  * WordPress Adapter class
  *
- * @method void set_source_post_id( int $post_id )
+ * @method void set_source_post_id( int $postId )
  */
 class WordPress extends Abstracts\Adapter
 {
@@ -33,7 +33,7 @@ class WordPress extends Abstracts\Adapter
 	 *
 	 * @var string
 	 */
-	protected $post_type = 'notification';
+	protected $postType = 'notification';
 
 	/**
 	 * {@inheritdoc}
@@ -54,10 +54,10 @@ class WordPress extends Abstracts\Adapter
 		}
 
 		try {
-			$json_adapter = notification_adapt_from('JSON', wp_specialchars_decode($this->post->post_content, ENT_COMPAT));
-			$this->setup_notification(notification_convert_data($json_adapter->get_notification()->to_array()));
+			$jsonAdapter = notification_adapt_from('JSON', wp_specialchars_decode($this->post->post_content, ENT_COMPAT));
+			$this->setup_notification(notification_convert_data($jsonAdapter->get_notification()->to_array()));
 		} catch (\Throwable $e) {
-			$do_nothing = true;
+			$doNothing = true;
 		}
 
 		// Hash sync with WordPress post.
@@ -79,14 +79,14 @@ class WordPress extends Abstracts\Adapter
 	{
 
 		// Update version as WordPress automatically does this while updating the post.
-		$version_backup = $this->get_version();
+		$versionBackup = $this->get_version();
 		$this->set_version(time());
 
 		$data = $this->get_notification()->to_array();
 
 		/** @var \BracketSpace\Notification\Defaults\Adapter\JSON */
-		$json_adapter = notification_swap_adapter('JSON', $this);
-		$json = $json_adapter->save(JSON_UNESCAPED_UNICODE);
+		$jsonAdapter = notification_swap_adapter('JSON', $this);
+		$json = $jsonAdapter->save(JSON_UNESCAPED_UNICODE);
 
 		// Update the hash.
 		if (! preg_match('/notification_[a-z0-9]{13}/', $data['hash'])) {
@@ -97,7 +97,7 @@ class WordPress extends Abstracts\Adapter
 		remove_filter('content_save_pre', 'balanceTags', 50);
 
 		// WordPress post related: Title, Hash, Status, Version.
-		$post_id = wp_insert_post(
+		$postId = wp_insert_post(
 			[
 			'ID' => $this->get_id(),
 			'post_content' => wp_slash($json), // Cache.
@@ -111,13 +111,13 @@ class WordPress extends Abstracts\Adapter
 
 		add_filter('content_save_pre', 'balanceTags', 50);
 
-		if (is_wp_error($post_id)) {
-			$this->set_version($version_backup);
-			return $post_id;
+		if (is_wp_error($postId)) {
+			$this->set_version($versionBackup);
+			return $postId;
 		}
 
 		if (! $this->has_post()) {
-			$this->set_post(get_post($post_id));
+			$this->set_post(get_post($postId));
 		}
 
 		return $this;
@@ -173,12 +173,12 @@ class WordPress extends Abstracts\Adapter
 	 * Sets post type
 	 *
 	 * @since 6.0.0
-	 * @param string $post_type WP Post Type.
+	 * @param string $postType WP Post Type.
 	 * @return $this
 	 */
-	public function set_post_type( $post_type )
+	public function set_post_type( $postType )
 	{
-		$this->post_type = $post_type;
+		$this->post_type = $postType;
 		return $this;
 	}
 

@@ -21,15 +21,15 @@ class PostPending extends PostTrigger
 	/**
 	 * Constructor
 	 *
-	 * @param string $post_type optional, default: post.
+	 * @param string $postType optional, default: post.
 	 */
-	public function __construct( $post_type = 'post' )
+	public function __construct( $postType = 'post' )
 	{
 
 		parent::__construct(
 			[
-			'post_type' => $post_type,
-			'slug' => 'post/' . $post_type . '/pending',
+			'post_type' => $postType,
+			'slug' => 'post/' . $postType . '/pending',
 			]
 		);
 
@@ -65,19 +65,19 @@ class PostPending extends PostTrigger
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param string $new_status New post status.
-	 * @param string $old_status Old post status.
+	 * @param string $newStatus New post status.
+	 * @param string $oldStatus Old post status.
 	 * @param object $post       Post object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $new_status, $old_status, $post )
+	public function context( $newStatus, $oldStatus, $post )
 	{
 
 		if ($post->post_type !== $this->post_type) {
 			return false;
 		}
 
-		if ($old_status === 'pending' || $new_status !== 'pending') {
+		if ($oldStatus === 'pending' || $newStatus !== 'pending') {
 			return false;
 		}
 

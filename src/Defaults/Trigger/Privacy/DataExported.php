@@ -23,28 +23,28 @@ class DataExported extends PrivacyTrigger
 	 *
 	 * @var string
 	 */
-	public $archive_path;
+	public $archivePath;
 
 	/**
 	 * Archive package URL
 	 *
 	 * @var string
 	 */
-	public $archive_url;
+	public $archiveUrl;
 
 	/**
 	 * HTML report path
 	 *
 	 * @var string
 	 */
-	public $html_report_path;
+	public $htmlReportPath;
 
 	/**
 	 * JSON report pathname
 	 *
 	 * @var string
 	 */
-	public $json_report_pathname;
+	public $jsonReportPathname;
 
 	/**
 	 * Constructor
@@ -62,21 +62,21 @@ class DataExported extends PrivacyTrigger
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param string  $archive_pathname Archive pathname.
-	 * @param string  $archive_url Archive url.
-	 * @param string  $html_report_pathname Html report pathname.
-	 * @param int $request_id Request id.
-	 * @param string  $json_report_pathname Json report pathname.
+	 * @param string  $archivePathname Archive pathname.
+	 * @param string  $archiveUrl Archive url.
+	 * @param string  $htmlReportPathname Html report pathname.
+	 * @param int $requestId Request id.
+	 * @param string  $jsonReportPathname Json report pathname.
 	 */
-	public function context( $archive_pathname, $archive_url, $html_report_pathname, $request_id, $json_report_pathname = null )
+	public function context( $archivePathname, $archiveUrl, $htmlReportPathname, $requestId, $jsonReportPathname = null )
 	{
 
-		$this->request = wp_get_user_request($request_id);
+		$this->request = wp_get_user_request($requestId);
 		$this->user_object = get_userdata($this->request->user_id);
-		$this->archive_path = $archive_pathname;
-		$this->archive_url = $archive_url;
-		$this->html_report_path = $html_report_pathname;
-		$this->json_report_pathname = $json_report_pathname;
+		$this->archive_path = $archivePathname;
+		$this->archive_url = $archiveUrl;
+		$this->html_report_path = $htmlReportPathname;
+		$this->json_report_pathname = $jsonReportPathname;
 		$this->data_operation_time = time();
 	}
 

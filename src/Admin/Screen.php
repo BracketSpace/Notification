@@ -50,9 +50,9 @@ class Screen
 			return;
 		}
 
-		$notification_post = notification_adapt_from('WordPress', $post);
+		$notificationPost = notification_adapt_from('WordPress', $post);
 
-		do_action('notification/post/column/main', $notification_post);
+		do_action('notification/post/column/main', $notificationPost);
 	}
 
 	/**
@@ -60,13 +60,13 @@ class Screen
 	 *
 	 * @action notification/post/column/main
 	 *
-	 * @param \BracketSpace\Notification\Core\Notification $notification_post Notification Post object.
+	 * @param \BracketSpace\Notification\Core\Notification $notificationPost Notification Post object.
 	 * @return void
 	 */
-	public function render_trigger_select( $notification_post )
+	public function render_trigger_select( $notificationPost )
 	{
-		$grouped_triggers = Store\Trigger::grouped();
-		$trigger = $notification_post->get_trigger();
+		$groupedTriggers = Store\Trigger::grouped();
+		$trigger = $notificationPost->get_trigger();
 
 		// Add merge tags.
 		if ($trigger) {
@@ -77,10 +77,10 @@ class Screen
 			'trigger/metabox',
 			[
 			'selected' => $trigger ? $trigger->get_slug() : '',
-			'triggers' => $grouped_triggers,
-			'has_triggers' => ! empty($grouped_triggers),
+			'triggers' => $groupedTriggers,
+			'has_triggers' => ! empty($groupedTriggers),
 			'select_name' => 'notification_trigger',
-			'notification' => $notification_post,
+			'notification' => $notificationPost,
 			]
 		);
 	}
@@ -91,28 +91,28 @@ class Screen
 	 *
 	 * @action notification/post/column/main 20
 	 *
-	 * @param \BracketSpace\Notification\Core\Notification $notification_post Notification Post object.
+	 * @param \BracketSpace\Notification\Core\Notification $notificationPost Notification Post object.
 	 * @return void
 	 */
-	public function render_carrier_boxes( $notification_post )
+	public function render_carrier_boxes( $notificationPost )
 	{
 		echo '<h3 class="carriers-section-title">' . esc_html__('Carriers', 'notification') . '</h3>';
 
 		do_action_deprecated(
 			'notitication/admin/notifications/pre',
 			[
-			$notification_post,
+			$notificationPost,
 			],
 			'6.0.0',
 			'notification/admin/carriers/pre'
 		);
 
-		do_action('notification/admin/carriers/pre', $notification_post);
+		do_action('notification/admin/carriers/pre', $notificationPost);
 
 		echo '<div id="carrier-boxes">';
 
 		foreach (Store\Carrier::all() as $_carrier) {
-			$carrier = $notification_post->get_carrier($_carrier->get_slug());
+			$carrier = $notificationPost->get_carrier($_carrier->get_slug());
 
 			// If Carrier wasn't set before, use the blank one.
 			if (! $carrier) {
@@ -146,13 +146,13 @@ class Screen
 		do_action_deprecated(
 			'notitication/admin/notifications',
 			[
-			$notification_post,
+			$notificationPost,
 			],
 			'6.0.0',
 			'notification/admin/carriers'
 		);
 
-		do_action('notification/admin/carriers', $notification_post);
+		do_action('notification/admin/carriers', $notificationPost);
 	}
 
 	/**
@@ -160,13 +160,13 @@ class Screen
 	 *
 	 * @action notification/admin/carriers
 	 *
-	 * @param  object $notification_post Notification Post object.
+	 * @param  object $notificationPost Notification Post object.
 	 * @return void
 	 */
-	public function render_carriers_widget( $notification_post )
+	public function render_carriers_widget( $notificationPost )
 	{
 		$carriers = Store\Carrier::all();
-		$exists = $notification_post->get_carriers();
+		$exists = $notificationPost->get_carriers();
 
 		Templates::render(
 			'carriers/widget-add',
@@ -234,7 +234,7 @@ class Screen
 	 */
 	public function render_save_metabox( $post )
 	{
-		$delete_text = ! EMPTY_TRASH_DAYS ? __('Delete Permanently', 'notification') : __('Move to Trash', 'notification');
+		$deleteText = ! EMPTY_TRASH_DAYS ? __('Delete Permanently', 'notification') : __('Move to Trash', 'notification');
 
 		// New posts has the status auto-draft and in this case the Notification should be enabled.
 		$enabled = get_post_status($post->ID) !== 'draft';
@@ -244,7 +244,7 @@ class Screen
 			[
 			'enabled' => $enabled,
 			'post_id' => $post->ID,
-			'delete_link_label' => $delete_text,
+			'delete_link_label' => $deleteText,
 			]
 		);
 	}
@@ -281,34 +281,34 @@ class Screen
 	{
 		$notification = notification_adapt_from('WordPress', $post);
 		$trigger = $notification->get_trigger();
-		$trigger_slug = $trigger ? $trigger->get_slug() : false;
+		$triggerSlug = $trigger ? $trigger->get_slug() : false;
 
-		if (! $trigger_slug) {
+		if (! $triggerSlug) {
 			Templates::render('mergetag/metabox-notrigger');
 			return;
 		}
 
-		$this->render_merge_tags_list($trigger_slug);
+		$this->render_merge_tags_list($triggerSlug);
 	}
 
 	/**
 	 * Renders Merge Tags list
 	 *
-	 * @param  string $trigger_slug Trigger slug.
+	 * @param  string $triggerSlug Trigger slug.
 	 * @return void
 	 */
-	public function render_merge_tags_list( $trigger_slug )
+	public function render_merge_tags_list( $triggerSlug )
 	{
-		$trigger = Store\Trigger::get($trigger_slug);
+		$trigger = Store\Trigger::get($triggerSlug);
 
 		if (empty($trigger)) {
 			Templates::render('mergetag/metabox-nomergetags');
 			return;
 		}
 
-		$tag_groups = $this->prepare_merge_tag_groups($trigger);
+		$tagGroups = $this->prepare_merge_tag_groups($trigger);
 
-		if (empty($tag_groups)) {
+		if (empty($tagGroups)) {
 			Templates::render('mergetag/metabox-nomergetags');
 			return;
 		}
@@ -316,10 +316,10 @@ class Screen
 		$vars = [
 			'trigger' => $trigger,
 			'tags' => $trigger->get_merge_tags('visible'),
-			'tag_groups' => $tag_groups,
+			'tag_groups' => $tagGroups,
 		];
 
-		if (count($tag_groups) > 1) {
+		if (count($tagGroups) > 1) {
 			Templates::render('mergetag/metabox-accordion', $vars);
 		} else {
 			Templates::render('mergetag/metabox-list', $vars);
@@ -341,22 +341,22 @@ class Screen
 			return $groups;
 		}
 
-		$other_key = __('Other', 'notification');
+		$otherKey = __('Other', 'notification');
 
 		foreach ($tags as $tag) {
 			if ($tag->get_group()) {
 				$groups[$tag->get_group()][] = $tag;
 			} else {
-				$groups[$other_key][] = $tag;
+				$groups[$otherKey][] = $tag;
 			}
 		}
 
 		ksort($groups);
 
-		if (isset($groups[$other_key])) {
-			$others = $groups[$other_key];
-			unset($groups[$other_key]);
-			$groups[$other_key] = $others;
+		if (isset($groups[$otherKey])) {
+			$others = $groups[$otherKey];
+			unset($groups[$otherKey]);
+			$groups[$otherKey] = $others;
 		}
 
 		return apply_filters('notification/trigger/tags/groups', $groups, $trigger);
@@ -371,22 +371,22 @@ class Screen
 	 */
 	public function metabox_cleanup()
 	{
-		global $wp_meta_boxes;
+		global $wpMetaBoxes;
 
-		if (! isset($wp_meta_boxes['notification'])) {
+		if (! isset($wpMetaBoxes['notification'])) {
 			return;
 		}
 
-		foreach ($wp_meta_boxes['notification'] as $context_name => $context) {
+		foreach ($wpMetaBoxes['notification'] as $contextName => $context) {
 			foreach ($context as $priority => $boxes) {
-				foreach ($boxes as $box_id => $box) {
-					$allow_box = apply_filters('notification/admin/allow_metabox/' . $box_id, false);
+				foreach ($boxes as $boxId => $box) {
+					$allowBox = apply_filters('notification/admin/allow_metabox/' . $boxId, false);
 
-					if ($allow_box) {
+					if ($allowBox) {
 						continue;
 					}
 
-					unset($wp_meta_boxes['notification'][$context_name][$priority][$box_id]);
+					unset($wpMetaBoxes['notification'][$contextName][$priority][$boxId]);
 				}
 			}
 		}

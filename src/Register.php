@@ -34,14 +34,14 @@ class Register
 	 * Registers Recipient
 	 *
 	 * @since  8.0.0
-	 * @param  string                $carrier_slug Carrier slug.
+	 * @param  string                $carrierSlug Carrier slug.
 	 * @param \BracketSpace\Notification\Interfaces\Receivable $recipient Recipient object.
 	 * @return \BracketSpace\Notification\Interfaces\Receivable
 	 */
-	public static function recipient( string $carrier_slug, Interfaces\Receivable $recipient )
+	public static function recipient( string $carrierSlug, Interfaces\Receivable $recipient )
 	{
-		Store\Recipient::insert($carrier_slug, $recipient->get_slug(), $recipient);
-		do_action('notification/recipient/registered', $recipient, $carrier_slug);
+		Store\Recipient::insert($carrierSlug, $recipient->get_slug(), $recipient);
+		do_action('notification/recipient/registered', $recipient, $carrierSlug);
 
 		return $recipient;
 	}
@@ -80,23 +80,23 @@ class Register
 	 * Registers Global Merge Tag
 	 *
 	 * @since  8.0.0
-	 * @param \BracketSpace\Notification\Interfaces\Taggable $merge_tag MergeTag object.
+	 * @param \BracketSpace\Notification\Interfaces\Taggable $mergeTag MergeTag object.
 	 * @return \BracketSpace\Notification\Interfaces\Taggable
 	 */
-	public static function global_merge_tag( Interfaces\Taggable $merge_tag )
+	public static function global_merge_tag( Interfaces\Taggable $mergeTag )
 	{
-		Store\GlobalMergeTag::insert($merge_tag->get_slug(), $merge_tag);
+		Store\GlobalMergeTag::insert($mergeTag->get_slug(), $mergeTag);
 
-		do_action('notification/global_merge_tag/registered', $merge_tag);
+		do_action('notification/global_merge_tag/registered', $mergeTag);
 
 		// Register the Merge Tag.
 		add_action(
 			'notification/trigger/merge_tags',
-			static function ( $trigger ) use ( $merge_tag ) {
-				$trigger->add_merge_tag(clone $merge_tag);
+			static function ( $trigger ) use ( $mergeTag ) {
+				$trigger->add_merge_tag(clone $mergeTag);
 			}
 		);
 
-		return $merge_tag;
+		return $mergeTag;
 	}
 }

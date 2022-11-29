@@ -23,7 +23,7 @@ class BooleanTag extends MergeTag
 	 *
 	 * @var string
 	 */
-	protected $value_type = 'boolean';
+	protected $valueType = 'boolean';
 
 	/**
 	 * Check the merge tag value type

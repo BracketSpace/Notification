@@ -41,13 +41,13 @@ class Scripts
 	 *
 	 * @action admin_enqueue_scripts
 	 *
-	 * @param  string $page_hook current page hook.
+	 * @param  string $pageHook current page hook.
 	 * @return void
 	 */
-	public function enqueue_scripts( $page_hook )
+	public function enqueue_scripts( $pageHook )
 	{
 
-		$allowed_hooks = apply_filters(
+		$allowedHooks = apply_filters(
 			'notification/scripts/allowed_hooks',
 			[
 			\Notification::component('admin_extensions')->page_hook,
@@ -60,19 +60,19 @@ class Scripts
 			]
 		);
 
-		$allowed_post_types = apply_filters(
+		$allowedPostTypes = apply_filters(
 			'notification/scripts/allowed_post_types',
 			[
 			'notification',
 			]
 		);
 
-		if (! in_array($page_hook, $allowed_hooks, true)) {
+		if (! in_array($pageHook, $allowedHooks, true)) {
 			return;
 		}
 
 		// Check if we are on a correct post type if we edit the post.
-		if (in_array($page_hook, [ 'post-new.php', 'post.php', 'edit.php' ], true) && ! in_array(get_post_type(), $allowed_post_types, true)) {
+		if (in_array($pageHook, [ 'post-new.php', 'post.php', 'edit.php' ], true) && ! in_array(get_post_type(), $allowedPostTypes, true)) {
 			return;
 		}
 
@@ -101,6 +101,6 @@ class Scripts
 		// Remove TinyMCE styles as they are not applied to any frontend content.
 		remove_editor_styles();
 
-		do_action('notification/scripts', $page_hook);
+		do_action('notification/scripts', $pageHook);
 	}
 }

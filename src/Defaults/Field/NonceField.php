@@ -23,7 +23,7 @@ class NonceField extends Field
 	 *
 	 * @var string
 	 */
-	protected $nonce_key = '';
+	protected $nonceKey = '';
 
 	/**
 	 * Field constructor

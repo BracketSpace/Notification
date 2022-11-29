@@ -23,7 +23,7 @@ class RepeaterField extends Field
 	 *
 	 * @var int
 	 */
-	protected $current_row = 0;
+	protected $currentRow = 0;
 
 	/**
 	 * Fields to repeat
@@ -37,14 +37,14 @@ class RepeaterField extends Field
 	 *
 	 * @var string
 	 */
-	protected $add_button_label = '';
+	protected $addButtonLabel = '';
 
 	/**
 	 * Data attributes
 	 *
 	 * @var array
 	 */
-	protected $data_attr = [];
+	protected $dataAttr = [];
 
 	/**
 	 * Row headers
@@ -65,7 +65,7 @@ class RepeaterField extends Field
 	 *
 	 * @var string
 	 */
-	public $field_type = 'repeater';
+	public $fieldType = 'repeater';
 
 	/**
 	 * Carrier object
@@ -79,7 +79,7 @@ class RepeaterField extends Field
 	 *
 	 * @var bool
 	 */
-	public $print_header_description = true;
+	public $printHeaderDescription = true;
 
 	/**
 	 * Field constructor
@@ -121,33 +121,33 @@ class RepeaterField extends Field
 	public function field()
 	{
 
-		$data_attr = '';
+		$dataAttr = '';
 		foreach ($this->data_attr as $key => $value) {
-			$data_attr .= 'data-' . $key . '="' . esc_attr($value) . '" ';
+			$dataAttr .= 'data-' . $key . '="' . esc_attr($value) . '" ';
 		}
 
 		$this->headers = [];
 
-		$html = '<table class="fields-repeater ' . $this->css_class() . '" id="' . $this->get_id() . '" ' . $data_attr . '>';
+		$html = '<table class="fields-repeater ' . $this->css_class() . '" id="' . $this->get_id() . '" ' . $dataAttr . '>';
 
 		$html .= '<thead>';
 		$html .= '<tr class="row header">';
 
 		$html .= '<th class="handle"></th>';
 
-		foreach ($this->fields as $sub_field) {
+		foreach ($this->fields as $subField) {
 			// don't print header for hidden field.
-			if (isset($sub_field->type) && $sub_field->type === 'hidden') {
+			if (isset($subField->type) && $subField->type === 'hidden') {
 				continue;
 			}
 
-			$html .= '<th class="' . esc_attr($sub_field->get_raw_name()) . '">';
+			$html .= '<th class="' . esc_attr($subField->get_raw_name()) . '">';
 
-			$this->headers[$sub_field->get_raw_name()] = $sub_field->get_label();
+			$this->headers[$subField->get_raw_name()] = $subField->get_label();
 
-			$html .= esc_html($sub_field->get_label());
+			$html .= esc_html($subField->get_label());
 
-			$description = $sub_field->get_description();
+			$description = $subField->get_description();
 
 			if ($this->print_header_description && ! empty($description)) {
 				$html .= '<small class="description">' . $description . '</small>';
@@ -219,15 +219,15 @@ class RepeaterField extends Field
 
 		$sanitized = [];
 
-		foreach ($value as $row_id => $row) {
-			$sanitized[$row_id] = [];
+		foreach ($value as $rowId => $row) {
+			$sanitized[$rowId] = [];
 
-			foreach ($this->fields as $sub_field) {
-				$subkey = $sub_field->get_raw_name();
+			foreach ($this->fields as $subField) {
+				$subkey = $subField->get_raw_name();
 
-				$sanitized_value = isset($row[$subkey]) ? $sub_field->sanitize($row[$subkey]) : '';
+				$sanitizedValue = isset($row[$subkey]) ? $subField->sanitize($row[$subkey]) : '';
 
-				$sanitized[$row_id][$subkey] = $sanitized_value;
+				$sanitized[$rowId][$subkey] = $sanitizedValue;
 			}
 		}
 

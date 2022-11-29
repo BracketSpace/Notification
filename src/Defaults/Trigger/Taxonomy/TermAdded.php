@@ -24,7 +24,7 @@ class TermAdded extends TermTrigger
 	 *
 	 * @var string
 	 */
-	public $term_creation_datetime;
+	public $termCreationDatetime;
 
 	/**
 	 * Constructor
@@ -75,12 +75,12 @@ class TermAdded extends TermTrigger
 	 * Sets trigger's context
 	 * Return `false` if you want to abort the trigger execution
 	 *
-	 * @param int $term_id Term ID.
+	 * @param int $termId Term ID.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $term_id )
+	public function context( $termId )
 	{
-		$term = get_term($term_id);
+		$term = get_term($termId);
 
 		if (! ( $this->taxonomy instanceof \WP_Taxonomy ) || ! ( $term instanceof \WP_Term )) {
 			return false;
@@ -92,8 +92,8 @@ class TermAdded extends TermTrigger
 			return false;
 		}
 
-		$term_link = get_term_link($this->term);
-		$this->term_permalink = is_string($term_link) ? $term_link : '';
+		$termLink = get_term_link($this->term);
+		$this->term_permalink = is_string($termLink) ? $termLink : '';
 
 		$this->term_creation_datetime = (string)time();
 	}

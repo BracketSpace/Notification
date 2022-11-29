@@ -24,7 +24,7 @@ class CommentAuthorUserAgent extends StringTag
 	 *
 	 * @var string
 	 */
-	protected $comment_type = 'comment';
+	protected $commentType = 'comment';
 
 	/**
 	 * Merge tag constructor
@@ -41,18 +41,18 @@ class CommentAuthorUserAgent extends StringTag
 
 		$this->set_trigger_prop($params['property_name'] ?? $this->comment_type);
 
-		$comment_type_name = WpObjectHelper::get_comment_type_name($this->comment_type);
+		$commentTypeName = WpObjectHelper::get_comment_type_name($this->comment_type);
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug' => 'comment_author_user_agent',
 				// Translators: Comment type name.
-				'name' => sprintf(__('%s author user browser agent', 'notification'), $comment_type_name),
+				'name' => sprintf(__('%s author user browser agent', 'notification'), $commentTypeName),
 				'description' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
 				'example' => true,
 				// Translators: comment type author.
-				'group' => sprintf(__('%s author', 'notification'), $comment_type_name),
+				'group' => sprintf(__('%s author', 'notification'), $commentTypeName),
 				'resolver' => function ( $trigger ) {
 					return $trigger->{ $this->get_trigger_prop() }->comment_agent;
 				},

@@ -32,23 +32,23 @@ class Recipient implements Interfaces\Storable
 	 * Inserts a Recipient for specific Carrier.
 	 *
 	 * @since  8.0.0
-	 * @param  string                $carrier_slug Carrier slug.
+	 * @param  string                $carrierSlug Carrier slug.
 	 * @param  string                $slug         Recipient slug.
 	 * @param \BracketSpace\Notification\Interfaces\Receivable $recipient Recipient to add.
 	 * @return void
 	 */
-	public static function insert( string $carrier_slug, string $slug, Interfaces\Receivable $recipient )
+	public static function insert( string $carrierSlug, string $slug, Interfaces\Receivable $recipient )
 	{
-		if (! isset(static::$items[$carrier_slug])) {
-			static::$items[$carrier_slug] = [];
+		if (! isset(static::$items[$carrierSlug])) {
+			static::$items[$carrierSlug] = [];
 		}
 
-		if (array_key_exists($slug, static::$items[$carrier_slug])) {
+		if (array_key_exists($slug, static::$items[$carrierSlug])) {
 			ErrorHandler::error(
 				sprintf(
 					'Recipient with %s slug for %s Carrier in %s Store already exists.',
 					$slug,
-					$carrier_slug,
+					$carrierSlug,
 					self::class
 				)
 			);
@@ -56,7 +56,7 @@ class Recipient implements Interfaces\Storable
 			return;
 		}
 
-		static::$items[$carrier_slug][$slug] = $recipient;
+		static::$items[$carrierSlug][$slug] = $recipient;
 	}
 
 	/**
@@ -85,16 +85,16 @@ class Recipient implements Interfaces\Storable
 	 * Gets all Recipients for specific Carrier
 	 *
 	 * @since  8.0.0
-	 * @param  string $carrier_slug Carrier slug.
+	 * @param  string $carrierSlug Carrier slug.
 	 * @return array<string, \BracketSpace\Notification\Interfaces\Receivable>
 	 */
-	public static function all_for_carrier( string $carrier_slug ): array
+	public static function all_for_carrier( string $carrierSlug ): array
 	{
-		if (! array_key_exists($carrier_slug, static::$items)) {
+		if (! array_key_exists($carrierSlug, static::$items)) {
 			ErrorHandler::error(
 				sprintf(
 					'Carrier %s in %s Store doesn\'t have any Recipients.',
-					$carrier_slug,
+					$carrierSlug,
 					self::class
 				)
 			);
@@ -102,26 +102,26 @@ class Recipient implements Interfaces\Storable
 			return [];
 		}
 
-		return static::$items[$carrier_slug];
+		return static::$items[$carrierSlug];
 	}
 
 	/**
 	 * Gets Recipient for Carrier by a slug
 	 *
 	 * @since  8.0.0
-	 * @param  string $carrier_slug Carrier slug.
+	 * @param  string $carrierSlug Carrier slug.
 	 * @param  string $slug         Recipient slug.
 	 * @return mixed
 	 */
-	public static function get( string $carrier_slug, $slug )
+	public static function get( string $carrierSlug, $slug )
 	{
-		$carrier_recipients = static::all_for_carrier($carrier_slug);
+		$carrierRecipients = static::all_for_carrier($carrierSlug);
 
-		if (! array_key_exists($slug, $carrier_recipients)) {
+		if (! array_key_exists($slug, $carrierRecipients)) {
 			ErrorHandler::error(
 				sprintf(
 					'Carrier %s in %s Store doesn\'t have %s Recipient.',
-					$carrier_slug,
+					$carrierSlug,
 					self::class,
 					$slug
 				)
@@ -130,6 +130,6 @@ class Recipient implements Interfaces\Storable
 			return;
 		}
 
-		return $carrier_recipients[$slug];
+		return $carrierRecipients[$slug];
 	}
 }

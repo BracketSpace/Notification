@@ -117,15 +117,15 @@ class ImportExport
 		);
 
 		foreach ($posts as $wppost) {
-			$wp_adapter = notification_adapt_from('WordPress', $wppost);
+			$wpAdapter = notification_adapt_from('WordPress', $wppost);
 
 			/**
 			 * JSON Adapter
 			 *
 			 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 			 */
-			$json_adapter = notification_swap_adapter('JSON', $wp_adapter);
-			$json = $json_adapter->save(null, false);
+			$jsonAdapter = notification_swap_adapter('JSON', $wpAdapter);
+			$json = $jsonAdapter->save(null, false);
 
 			// Decode because it's encoded in the last step of export.
 			$data[] = json_decode($json);
@@ -197,29 +197,29 @@ class ImportExport
 		$skipped = 0;
 		$updated = 0;
 
-		foreach ($data as $notification_data) {
-			$json_adapter = notification_adapt_from('JSON', wp_json_encode($notification_data));
+		foreach ($data as $notificationData) {
+			$jsonAdapter = notification_adapt_from('JSON', wp_json_encode($notificationData));
 
 			/**
 			 * WordPress Adapter
 			 *
 			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
 			 */
-			$wp_adapter = notification_swap_adapter('WordPress', $json_adapter);
+			$wpAdapter = notification_swap_adapter('WordPress', $jsonAdapter);
 
 			/**
 			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null
 			 */
-			$existing_notification = NotificationQueries::with_hash($wp_adapter->get_hash());
+			$existingNotification = NotificationQueries::with_hash($wpAdapter->get_hash());
 
-			if ($existing_notification === null) {
-				$wp_adapter->save();
+			if ($existingNotification === null) {
+				$wpAdapter->save();
 				$added++;
 			} else {
-				if ($existing_notification->get_version() >= $wp_adapter->get_version()) {
+				if ($existingNotification->get_version() >= $wpAdapter->get_version()) {
 					$skipped++;
 				} else {
-					$wp_adapter->set_post($existing_notification->get_post())->save();
+					$wpAdapter->set_post($existingNotification->get_post())->save();
 					$updated++;
 				}
 			}

@@ -72,7 +72,7 @@ class Field
 	 *
 	 * @var mixed
 	 */
-	private $default_value = '';
+	private $defaultValue = '';
 
 	/**
 	 * Section slug
@@ -233,14 +233,14 @@ class Field
 	/**
 	 * Set or get default value
 	 *
-	 * @param mixed $default_value field default value or null to get current.
+	 * @param mixed $defaultValue field default value or null to get current.
 	 * @return string              default value
 	 */
-	public function default_value( $default_value = null )
+	public function default_value( $defaultValue = null )
 	{
 
-		if ($default_value !== null) {
-			$this->default_value = $default_value;
+		if ($defaultValue !== null) {
+			$this->default_value = $defaultValue;
 		}
 
 		return apply_filters($this->handle . '/settings/field/default_value', $this->default_value, $this);

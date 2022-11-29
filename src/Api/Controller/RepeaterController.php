@@ -25,7 +25,7 @@ class RepeaterController
 	 *
 	 * @var int
 	 */
-	public $post_id;
+	public $postId;
 
 	/**
 	 * Carrier slug
@@ -53,39 +53,39 @@ class RepeaterController
 
 		if (empty($data)) {
 			/** @var \BracketSpace\Notification\Defaults\Field\RepeaterField */
-			$carrier_fields = $this->get_carrier_fields();
-			$data = $carrier_fields->fields;
+			$carrierFields = $this->get_carrier_fields();
+			$data = $carrierFields->fields;
 		}
 
 		$fields = [];
 
 		foreach ($data as $field) {
-			$sub_field = [];
+			$subField = [];
 
-			$sub_field['options'] = $field->options;
-			$sub_field['pretty'] = $field->pretty;
-			$sub_field['label'] = $field->label;
-			$sub_field['checkbox_label'] = $field->checkbox_label;
-			$sub_field['name'] = $field->name;
-			$sub_field['description'] = $field->description;
-			$sub_field['section'] = $field->section;
-			$sub_field['disabled'] = $field->disabled;
-			$sub_field['css_class'] = $field->css_class;
-			$sub_field['id'] = $field->id;
-			$sub_field['placeholder'] = $field->placeholder;
-			$sub_field['nested'] = $field->nested;
-			$sub_field['type'] = strtolower(str_replace('Field', '', $field->field_type_html));
-			$sub_field['sections'] = $field->sections;
-			$sub_field['message'] = $field->message;
-			$sub_field['value'] = '';
-			$sub_field['rows'] = $field->rows;
-			$sub_field['multiple'] = $field->multiple_section;
+			$subField['options'] = $field->options;
+			$subField['pretty'] = $field->pretty;
+			$subField['label'] = $field->label;
+			$subField['checkbox_label'] = $field->checkbox_label;
+			$subField['name'] = $field->name;
+			$subField['description'] = $field->description;
+			$subField['section'] = $field->section;
+			$subField['disabled'] = $field->disabled;
+			$subField['css_class'] = $field->css_class;
+			$subField['id'] = $field->id;
+			$subField['placeholder'] = $field->placeholder;
+			$subField['nested'] = $field->nested;
+			$subField['type'] = strtolower(str_replace('Field', '', $field->field_type_html));
+			$subField['sections'] = $field->sections;
+			$subField['message'] = $field->message;
+			$subField['value'] = '';
+			$subField['rows'] = $field->rows;
+			$subField['multiple'] = $field->multiple_section;
 
 			if ($field->fields) {
-				$sub_field['fields'] = $this->form_field_data($field->fields);
+				$subField['fields'] = $this->form_field_data($field->fields);
 			}
 
-			array_push($fields, $sub_field);
+			array_push($fields, $subField);
 		}
 
 		return $fields;
@@ -95,21 +95,21 @@ class RepeaterController
 	 * Gets field values
 	 *
 	 * @since 7.0.0
-	 * @param int    $post_id Post id.
+	 * @param int    $postId Post id.
 	 * @param string $carrier Carrier slug.
 	 * @param string $field Field slug.
 	 * @return array
 	 */
-	public function get_values( $post_id, $carrier, $field )
+	public function get_values( $postId, $carrier, $field )
 	{
-		$notification = notification_adapt_from('WordPress', $post_id);
+		$notification = notification_adapt_from('WordPress', $postId);
 		$carrier = $notification->get_carrier($carrier);
 
 		if ($carrier) {
 			if ($carrier->has_recipients_field()) {
-				$recipients_field = $carrier->get_recipients_field();
+				$recipientsField = $carrier->get_recipients_field();
 
-				if ($field === $recipients_field->get_raw_name()) {
+				if ($field === $recipientsField->get_raw_name()) {
 					return $carrier->get_recipients();
 				}
 			}
@@ -129,10 +129,10 @@ class RepeaterController
 	public function get_carrier_fields()
 	{
 		$carrier = Store\Carrier::get($this->carrier);
-		$carrier_fields = [];
+		$carrierFields = [];
 
 		if ($carrier === null) {
-			return $carrier_fields;
+			return $carrierFields;
 		}
 
 		// Recipients field.
@@ -185,10 +185,10 @@ class RepeaterController
 	public function form_data()
 	{
 		$values = $this->get_values($this->post_id, $this->carrier, $this->field) ?? [];
-		$populated_fields = $this->form_field_data();
+		$populatedFields = $this->form_field_data();
 
 		return [
-			'field' => $populated_fields,
+			'field' => $populatedFields,
 			'values' => $this->normalize_values($values),
 		];
 	}

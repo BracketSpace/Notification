@@ -27,7 +27,7 @@ class UserPasswordResetLink extends StringTag
 	 *
 	 * @var string
 	 */
-	protected $key_property_name = 'password_reset_key';
+	protected $keyPropertyName = 'password_reset_key';
 
 	/**
 	 * Merge tag constructor

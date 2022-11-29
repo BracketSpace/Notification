@@ -24,29 +24,29 @@ class CommentReplied extends CommentTrigger
 	 *
 	 * @var \WP_Comment
 	 */
-	public $parent_comment;
+	public $parentComment;
 
 	/**
 	 * Parent comment user object
 	 *
 	 * @var \stdClass
 	 */
-	public $parent_comment_user_object;
+	public $parentCommentUserObject;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $comment_type optional, default: comment.
+	 * @param string $commentType optional, default: comment.
 	 */
-	public function __construct( $comment_type = 'comment' )
+	public function __construct( $commentType = 'comment' )
 	{
 
 		parent::__construct(
 			[
-			'slug' => 'comment/' . $comment_type . '/replied',
+			'slug' => 'comment/' . $commentType . '/replied',
 			// Translators: %s comment type.
-			'name' => sprintf(__('%s replied', 'notification'), WpObjectHelper::get_comment_type_name($comment_type)),
-			'comment_type' => $comment_type,
+			'name' => sprintf(__('%s replied', 'notification'), WpObjectHelper::get_comment_type_name($commentType)),
+			'comment_type' => $commentType,
 			]
 		);
 
@@ -54,18 +54,18 @@ class CommentReplied extends CommentTrigger
 		$this->add_action('notification_insert_comment_proxy', 10, 3);
 
 		// translators: comment type.
-		$this->set_description(sprintf(__('Fires when %s is replied and the reply is approved', 'notification'), WpObjectHelper::get_comment_type_name($comment_type)));
+		$this->set_description(sprintf(__('Fires when %s is replied and the reply is approved', 'notification'), WpObjectHelper::get_comment_type_name($commentType)));
 	}
 
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param string $comment_new_status New comment status.
-	 * @param string $comment_old_status Old comment status.
+	 * @param string $commentNewStatus New comment status.
+	 * @param string $commentOldStatus Old comment status.
 	 * @param object $comment            Comment object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $comment_new_status, $comment_old_status, $comment )
+	public function context( $commentNewStatus, $commentOldStatus, $comment )
 	{
 
 		$this->comment = $comment;
@@ -74,7 +74,7 @@ class CommentReplied extends CommentTrigger
 			return false;
 		}
 
-		if ($comment_new_status === $comment_old_status || $comment_new_status !== 'approved') {
+		if ($commentNewStatus === $commentOldStatus || $commentNewStatus !== 'approved') {
 			return false;
 		}
 

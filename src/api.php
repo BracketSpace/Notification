@@ -18,20 +18,20 @@ use BracketSpace\Notification\Interfaces;
  *
  * @since  6.0.0
  * @throws \Exception If adapter wasn't found.
- * @param  string       $adapter_name Adapter class name.
+ * @param  string       $adapterName Adapter class name.
  * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
  * @return \BracketSpace\Notification\Interfaces\Adaptable
  */
-function notification_adapt( $adapter_name, Notification $notification )
+function notification_adapt( $adapterName, Notification $notification )
 {
 
-	if (class_exists($adapter_name)) {
-		$adapter = new $adapter_name($notification);
-	} elseif (class_exists('BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapter_name)) {
-		$adapter_name = 'BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapter_name;
-		$adapter = new $adapter_name($notification);
+	if (class_exists($adapterName)) {
+		$adapter = new $adapterName($notification);
+	} elseif (class_exists('BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapterName)) {
+		$adapterName = 'BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapterName;
+		$adapter = new $adapterName($notification);
 	} else {
-		throw new \Exception(sprintf('Couldn\'t find %s adapter', $adapter_name));
+		throw new \Exception(sprintf('Couldn\'t find %s adapter', $adapterName));
 	}
 
 	return $adapter;
@@ -42,13 +42,13 @@ function notification_adapt( $adapter_name, Notification $notification )
  * Default adapters are: WordPress || JSON
  *
  * @since  6.0.0
- * @param  string $adapter_name Adapter class name.
+ * @param  string $adapterName Adapter class name.
  * @param  mixed  $data         Input data needed by adapter.
  * @return \BracketSpace\Notification\Interfaces\Adaptable
  */
-function notification_adapt_from( $adapter_name, $data )
+function notification_adapt_from( $adapterName, $data )
 {
-	$adapter = notification_adapt($adapter_name, new Notification());
+	$adapter = notification_adapt($adapterName, new Notification());
 	return $adapter->read($data);
 }
 
@@ -56,13 +56,13 @@ function notification_adapt_from( $adapter_name, $data )
  * Changes one adapter to another
  *
  * @since  6.0.0
- * @param  string               $new_adapter_name Adapter class name.
+ * @param  string               $newAdapterName Adapter class name.
  * @param \BracketSpace\Notification\Interfaces\Adaptable $adapter Adapter.
  * @return \BracketSpace\Notification\Interfaces\Adaptable
  */
-function notification_swap_adapter( $new_adapter_name, Interfaces\Adaptable $adapter )
+function notification_swap_adapter( $newAdapterName, Interfaces\Adaptable $adapter )
 {
-	return notification_adapt($new_adapter_name, $adapter->get_notification());
+	return notification_adapt($newAdapterName, $adapter->get_notification());
 }
 
 /**
@@ -83,14 +83,14 @@ function notification_log( $component, $type, $message )
 
 	$debugger = \Notification::component('core_debugging');
 
-	$log_data = [
+	$logData = [
 		'component' => $component,
 		'type' => $type,
 		'message' => $message,
 	];
 
 	try {
-		return $debugger->add_log($log_data);
+		return $debugger->add_log($logData);
 	} catch (\Throwable $e) {
 		return new \WP_Error('wrong_log_data', $e->getMessage());
 	}
@@ -152,21 +152,21 @@ function notification_convert_data( $data = [] )
 	if (isset($data['carriers'])) {
 		$carriers = [];
 
-		foreach ($data['carriers'] as $carrier_slug => $carrier_data) {
-			if ($carrier_data instanceof Interfaces\Sendable) {
-				$carriers[$carrier_slug] = $carrier_data;
+		foreach ($data['carriers'] as $carrierSlug => $carrierData) {
+			if ($carrierData instanceof Interfaces\Sendable) {
+				$carriers[$carrierSlug] = $carrierData;
 				continue;
 			}
 
-			$registered_carrier = Store\Carrier::get($carrier_slug);
+			$registeredCarrier = Store\Carrier::get($carrierSlug);
 
-			if (empty($registered_carrier)) {
+			if (empty($registeredCarrier)) {
 				continue;
 			}
 
-			$carrier = clone $registered_carrier;
-			$carrier->set_data($carrier_data);
-			$carriers[$carrier_slug] = $carrier;
+			$carrier = clone $registeredCarrier;
+			$carrier->set_data($carrierData);
+			$carriers[$carrierSlug] = $carrier;
 		}
 
 		$data['carriers'] = $carriers;

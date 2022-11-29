@@ -24,7 +24,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 	 *
 	 * @var array
 	 */
-	public $update_types;
+	public $updateTypes;
 
 	/**
 	 * Constructor
@@ -52,18 +52,18 @@ class UpdatesAvailable extends Abstracts\Trigger
 		require_once ABSPATH . '/wp-admin/includes/update.php';
 
 		// Check if any updates are available.
-		$has_updates = false;
+		$hasUpdates = false;
 
-		foreach ($this->update_types as $update_type) {
-			if (!$this->has_updates($update_type)) {
+		foreach ($this->update_types as $updateType) {
+			if (!$this->has_updates($updateType)) {
 				continue;
 			}
 
-			$has_updates = true;
+			$hasUpdates = true;
 		}
 
 		// Don't send any empty notifications unless the Setting is enabled.
-		if (! $has_updates && ! notification_get_setting('triggers/wordpress/updates_send_anyway')) {
+		if (! $hasUpdates && ! notification_get_setting('triggers/wordpress/updates_send_anyway')) {
 			return false;
 		}
 	}
@@ -85,13 +85,13 @@ class UpdatesAvailable extends Abstracts\Trigger
 				'resolver' => static function ( $trigger ) {
 					$lists = [];
 
-					foreach ($trigger->update_types as $update_type) {
-						if (!$trigger->has_updates($update_type)) {
+					foreach ($trigger->update_types as $updateType) {
+						if (!$trigger->has_updates($updateType)) {
 							continue;
 						}
 
-						$html = '<h3>' . $trigger->get_list_title($update_type) . '</h3>';
-						$html   .= call_user_func([ $trigger, 'get_' . $update_type . '_updates_list' ]);
+						$html = '<h3>' . $trigger->get_list_title($updateType) . '</h3>';
+						$html   .= call_user_func([ $trigger, 'get_' . $updateType . '_updates_list' ]);
 						$lists[] = $html;
 					}
 
@@ -159,12 +159,12 @@ class UpdatesAvailable extends Abstracts\Trigger
 	 * Checks if specific updates are available
 	 *
 	 * @since  5.1.5
-	 * @param  string $update_type update type, core | plugin | theme.
+	 * @param  string $updateType update type, core | plugin | theme.
 	 * @return bool
 	 */
-	public function has_updates( $update_type )
+	public function has_updates( $updateType )
 	{
-		$updates = $this->get_updates_count($update_type);
+		$updates = $this->get_updates_count($updateType);
 		return $updates > 0;
 	}
 
@@ -172,13 +172,13 @@ class UpdatesAvailable extends Abstracts\Trigger
 	 * Gets specific update type title
 	 *
 	 * @since  5.1.5
-	 * @param  string $update_type update type, core | plugin | theme.
+	 * @param  string $updateType update type, core | plugin | theme.
 	 * @return string
 	 */
-	public function get_list_title( $update_type )
+	public function get_list_title( $updateType )
 	{
 
-		switch ($update_type) {
+		switch ($updateType) {
 			case 'core':
 				$title = __('Core updates', 'notification');
 				break;
@@ -209,12 +209,12 @@ class UpdatesAvailable extends Abstracts\Trigger
 	{
 		$updates = get_core_updates();
 
-		foreach ($updates as $update_key => $update) {
+		foreach ($updates as $updateKey => $update) {
 			if ($update->current !== $update->version) {
 				continue;
 			}
 
-			unset($updates[$update_key]);
+			unset($updates[$updateKey]);
 		}
 
 		if (empty($updates)) {
@@ -299,21 +299,21 @@ class UpdatesAvailable extends Abstracts\Trigger
 	 * Gets updates count
 	 *
 	 * @since  5.1.5
-	 * @param  string $update_type optional, update type, core | plugin | theme | all, default: all.
+	 * @param  string $updateType optional, update type, core | plugin | theme | all, default: all.
 	 * @return int
 	 */
-	public function get_updates_count( $update_type = 'all' )
+	public function get_updates_count( $updateType = 'all' )
 	{
-		if ($update_type !== 'all') {
-			$updates = call_user_func('get_' . $update_type . '_updates');
+		if ($updateType !== 'all') {
+			$updates = call_user_func('get_' . $updateType . '_updates');
 
-			if ($update_type === 'core') {
-				foreach ($updates as $update_key => $update) {
+			if ($updateType === 'core') {
+				foreach ($updates as $updateKey => $update) {
 					if ($update->current !== $update->version) {
 						continue;
 					}
 
-					unset($updates[$update_key]);
+					unset($updates[$updateKey]);
 				}
 			}
 
@@ -322,8 +322,8 @@ class UpdatesAvailable extends Abstracts\Trigger
 
 		$count = 0;
 
-		foreach ($this->update_types as $update_type) {
-			$count += $this->get_updates_count($update_type);
+		foreach ($this->update_types as $updateType) {
+			$count += $this->get_updates_count($updateType);
 		}
 
 		return $count;

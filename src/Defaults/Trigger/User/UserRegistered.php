@@ -23,7 +23,7 @@ class UserRegistered extends UserTrigger
 	 *
 	 * @var array
 	 */
-	public $user_meta;
+	public $userMeta;
 
 	/**
 	 * Constructor
@@ -41,13 +41,13 @@ class UserRegistered extends UserTrigger
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param int $user_id User ID.
+	 * @param int $userId User ID.
 	 * @return void
 	 */
-	public function context( $user_id )
+	public function context( $userId )
 	{
 
-		$this->user_id = $user_id;
+		$this->user_id = $userId;
 		$this->user_object = get_userdata($this->user_id);
 		$this->user_meta = get_user_meta($this->user_id);
 
@@ -92,15 +92,15 @@ class UserRegistered extends UserTrigger
 
 		add_filter('allow_password_reset', '__return_true', 999999999);
 		add_filter('notification/trigger/wordpress/user_password_reset_request/bail_for_registration', '__return_true', 999999999);
-		$reset_key = get_password_reset_key($this->user_object);
+		$resetKey = get_password_reset_key($this->user_object);
 		remove_filter('allow_password_reset', '__return_true', 999999999);
 		remove_filter('notification/trigger/wordpress/user_password_reset_request/bail_for_registration', '__return_true', 999999999);
 
-		if (is_wp_error($reset_key)) {
-			notification_log('Core', 'error', 'User registration trigger error: ' . $reset_key->get_error_message());
+		if (is_wp_error($resetKey)) {
+			notification_log('Core', 'error', 'User registration trigger error: ' . $resetKey->get_error_message());
 			return '';
 		}
 
-		return $reset_key;
+		return $resetKey;
 	}
 }

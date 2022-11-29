@@ -30,15 +30,15 @@ class WordPress
 	 * @filter wp_mail_from_name 1000
 	 *
 	 * @since  5.2.2
-	 * @param  string $from_name Default From Name.
+	 * @param  string $fromName Default From Name.
 	 * @return string
 	 */
-	public function filter_email_from_name( $from_name )
+	public function filter_email_from_name( $fromName )
 	{
 
 		$setting = notification_get_setting('carriers/email/from_name');
 
-		return empty($setting) ? $from_name : $setting;
+		return empty($setting) ? $fromName : $setting;
 	}
 
 	/**
@@ -47,15 +47,15 @@ class WordPress
 	 * @filter wp_mail_from 1000
 	 *
 	 * @since  5.2.2
-	 * @param  string $from_email Default From Email.
+	 * @param  string $fromEmail Default From Email.
 	 * @return string
 	 */
-	public function filter_email_from_email( $from_email )
+	public function filter_email_from_email( $fromEmail )
 	{
 
 		$setting = notification_get_setting('carriers/email/from_email');
 
-		return empty($setting) ? $from_email : $setting;
+		return empty($setting) ? $fromEmail : $setting;
 	}
 
 	/**
@@ -73,13 +73,13 @@ class WordPress
 	 * @filter notification/background_processing/trigger_key
 	 *
 	 * @since  8.0.0
-	 * @param  string      $trigger_key Trigger unique key.
+	 * @param  string      $triggerKey Trigger unique key.
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return string
 	 */
-	public function identify_trigger( $trigger_key, Triggerable $trigger )
+	public function identify_trigger( $triggerKey, Triggerable $trigger )
 	{
-		$covered_triggers = [
+		$coveredTriggers = [
 			'BracketSpace\Notification\Defaults\Trigger\Post\PostTrigger' => static function ( $trigger ) {
 				return $trigger->{ $trigger->get_post_type() }->ID;
 			},
@@ -91,13 +91,13 @@ class WordPress
 			},
 		];
 
-		foreach ($covered_triggers as $class_name => $callback) {
-			if ($trigger instanceof $class_name) {
+		foreach ($coveredTriggers as $className => $callback) {
+			if ($trigger instanceof $className) {
 				return $callback($trigger);
 			}
 		}
 
-		return $trigger_key;
+		return $triggerKey;
 	}
 
 	/**
@@ -113,11 +113,11 @@ class WordPress
 	 * @action wp_insert_comment
 	 *
 	 * @since 5.3.1
-	 * @param int $comment_id Comment ID.
+	 * @param int $commentId Comment ID.
 	 * @param object  $comment    Comment object.
 	 * @return void
 	 */
-	public function proxy_comment_reply( $comment_id, $comment )
+	public function proxy_comment_reply( $commentId, $comment )
 	{
 		$status = $comment->comment_approved === '1' ? 'approved' : 'unapproved';
 		do_action('notification_insert_comment_proxy', $status, 'insert', $comment);
@@ -135,17 +135,17 @@ class WordPress
 	 * @action comment_post
 	 *
 	 * @since 6.2.0
-	 * @param int $comment_id Comment ID.
+	 * @param int $commentId Comment ID.
 	 * @param int|string $approved   1 if the comment is approved, 0 if not, 'spam' if spam.
 	 * @return void
 	 */
-	public function proxy_post_comment_to_published( $comment_id, $approved )
+	public function proxy_post_comment_to_published( $commentId, $approved )
 	{
 		if ($approved !== 1) {
 			return;
 		}
 
-		do_action('notification_comment_published_proxy', get_comment($comment_id));
+		do_action('notification_comment_published_proxy', get_comment($commentId));
 	}
 
 	/**
@@ -154,19 +154,19 @@ class WordPress
 	 * @action transition_comment_status
 	 *
 	 * @since 6.2.0
-	 * @param string $comment_new_status New comment status.
-	 * @param string $comment_old_status Old comment status.
+	 * @param string $commentNewStatus New comment status.
+	 * @param string $commentOldStatus Old comment status.
 	 * @param object $comment            Comment object.
 	 * @return void
 	 */
-	public function proxy_transition_comment_status_to_published( $comment_new_status, $comment_old_status, $comment )
+	public function proxy_transition_comment_status_to_published( $commentNewStatus, $commentOldStatus, $comment )
 	{
 
 		if ($comment->comment_approved === 'spam' && notification_get_setting('triggers/comment/akismet')) {
 			return;
 		}
 
-		if ($comment_new_status === $comment_old_status || $comment_new_status !== 'approved') {
+		if ($commentNewStatus === $commentOldStatus || $commentNewStatus !== 'approved') {
 			return;
 		}
 

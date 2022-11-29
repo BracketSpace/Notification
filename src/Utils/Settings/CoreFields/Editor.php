@@ -25,16 +25,16 @@ class Editor
 	public function input( $field )
 	{
 		$wpautop = $field->addon('wpautop') ? $field->addon('wpautop') : true;
-		$media_buttons = $field->addon('media_buttons') ? $field->addon('media_buttons') : false;
-		$textarea_rows = $field->addon('textarea_rows') ? $field->addon('textarea_rows') : 10;
+		$mediaButtons = $field->addon('media_buttons') ? $field->addon('media_buttons') : false;
+		$textareaRows = $field->addon('textarea_rows') ? $field->addon('textarea_rows') : 10;
 		$teeny = $field->addon('teeny') ? $field->addon('teeny') : false;
 
 		$settings = [
 			'textarea_name' => $field->input_name(),
 			'editor_css' => null,
 			'wpautop' => $wpautop,
-			'media_buttons' => $media_buttons,
-			'textarea_rows' => $textarea_rows,
+			'media_buttons' => $mediaButtons,
+			'textarea_rows' => $textareaRows,
 			'teeny' => $teeny,
 		];
 

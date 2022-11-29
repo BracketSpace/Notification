@@ -86,29 +86,29 @@ class Cron
 	 *
 	 * @since  5.1.5
 	 * @param  string  $schedule   schedule name.
-	 * @param  string  $event_name event name.
+	 * @param  string  $eventName event name.
 	 * @param bool $once if schedule only one.
 	 * @return void
 	 */
-	public function schedule( $schedule, $event_name, $once = false )
+	public function schedule( $schedule, $eventName, $once = false )
 	{
-		if ($once && wp_get_schedule($event_name) !== false) {
+		if ($once && wp_get_schedule($eventName) !== false) {
 			return;
 		}
 
-		wp_schedule_event(time() + DAY_IN_SECONDS, $schedule, $event_name);
+		wp_schedule_event(time() + DAY_IN_SECONDS, $schedule, $eventName);
 	}
 
 	/**
 	 * Unschedules the event
 	 *
 	 * @since  5.1.5
-	 * @param  string $event_name event name.
+	 * @param  string $eventName event name.
 	 * @return void
 	 */
-	public function unschedule( $event_name )
+	public function unschedule( $eventName )
 	{
-		$timestamp = wp_next_scheduled($event_name);
-		wp_unschedule_event($timestamp, $event_name);
+		$timestamp = wp_next_scheduled($eventName);
+		wp_unschedule_event($timestamp, $eventName);
 	}
 }

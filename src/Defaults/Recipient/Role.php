@@ -71,13 +71,13 @@ class Role extends Abstracts\Recipient
 		$roles = get_editable_roles();
 		$opts = [];
 
-		foreach ($roles as $role_slug => $role) {
-			$num_users = count(UserQueries::with_role($role_slug));
+		foreach ($roles as $roleSlug => $role) {
+			$numUsers = count(UserQueries::with_role($roleSlug));
 
 			// Translators: %s numer of users.
-			$label = translate_user_role($role['name']) . ' (' . sprintf(_n('%s user', '%s users', $num_users, 'notification'), $num_users) . ')';
+			$label = translate_user_role($role['name']) . ' (' . sprintf(_n('%s user', '%s users', $numUsers, 'notification'), $numUsers) . ')';
 
-			$opts[$role_slug] = esc_html($label);
+			$opts[$roleSlug] = esc_html($label);
 		}
 
 		return new Field\SelectField(

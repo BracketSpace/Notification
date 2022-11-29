@@ -48,24 +48,24 @@ class WordPressEmails
 	 * Disables send the new user notification
 	 *
 	 * @since  6.1.0
-	 * @param  int    $user_id ID of the newly registered user.
+	 * @param  int    $userId ID of the newly registered user.
 	 * @param  string $notify  Optional. Type of notification that should happen. Accepts 'admin'
 	 *                         or an empty string (admin only), 'user', or 'both' (admin and user).
 	 * @return void
 	 */
-	public function disable_new_user_notify( $user_id, $notify = 'both' )
+	public function disable_new_user_notify( $userId, $notify = 'both' )
 	{
-		$is_admin_notify = in_array($notify, [ '', 'admin', 'both' ], true);
-		$is_user_notify = in_array($notify, [ 'user', 'both' ], true);
+		$isAdminNotify = in_array($notify, [ '', 'admin', 'both' ], true);
+		$isUserNotify = in_array($notify, [ 'user', 'both' ], true);
 
-		if ($is_admin_notify && ( notification_get_setting('integration/emails/new_user_to_admin') !== 'true' )) {
-			wp_new_user_notification($user_id, null, 'admin');
+		if ($isAdminNotify && ( notification_get_setting('integration/emails/new_user_to_admin') !== 'true' )) {
+			wp_new_user_notification($userId, null, 'admin');
 		}
-		if (!$is_user_notify || ( notification_get_setting('integration/emails/new_user_to_user') === 'true' )) {
+		if (!$isUserNotify || ( notification_get_setting('integration/emails/new_user_to_user') === 'true' )) {
 			return;
 		}
 
-		wp_new_user_notification($user_id, null, 'user');
+		wp_new_user_notification($userId, null, 'user');
 	}
 
 	/**
@@ -74,16 +74,16 @@ class WordPressEmails
 	 * @filter notify_post_author
 	 *
 	 * @since  6.1.0
-	 * @param  bool $maybe_notify Whether to notify the post author about the new comment.
-	 * @param  int  $comment_id   The ID of the comment for the notification.
-	 * @return bool $maybe_notify
+	 * @param  bool $maybeNotify Whether to notify the post author about the new comment.
+	 * @param  int  $commentId   The ID of the comment for the notification.
+	 * @return bool $maybeNotify
 	 */
-	public function disable_post_author_notify( $maybe_notify, $comment_id )
+	public function disable_post_author_notify( $maybeNotify, $commentId )
 	{
 		if (notification_get_setting('integration/emails/post_author') === 'true') {
-			$maybe_notify = false;
+			$maybeNotify = false;
 		}
-		return $maybe_notify;
+		return $maybeNotify;
 	}
 
 	/**
@@ -92,16 +92,16 @@ class WordPressEmails
 	 * @filter notify_moderator
 	 *
 	 * @since  6.1.0
-	 * @param  bool $maybe_notify Whether to notify blog moderator.
-	 * @param  int  $comment_id   The id of the comment for the notification.
-	 * @return bool $maybe_notify
+	 * @param  bool $maybeNotify Whether to notify blog moderator.
+	 * @param  int  $commentId   The id of the comment for the notification.
+	 * @return bool $maybeNotify
 	 */
-	public function disable_comment_moderator_notify( $maybe_notify, $comment_id )
+	public function disable_comment_moderator_notify( $maybeNotify, $commentId )
 	{
 		if (notification_get_setting('integration/emails/comment_moderator') === 'true') {
-			$maybe_notify = false;
+			$maybeNotify = false;
 		}
-		return $maybe_notify;
+		return $maybeNotify;
 	}
 
 	/**
@@ -138,7 +138,7 @@ class WordPressEmails
 
 		add_filter(
 			'new_user_email_content',
-			static function ( $email_text = false, $new_user_email = false ) {
+			static function ( $emailText = false, $newUserEmail = false ) {
 				$_POST['email'] = false;
 				return false;
 			}
@@ -226,11 +226,11 @@ class WordPressEmails
 	 * @since  6.1.0
 	 * @param  bool   $send        Whether to send the email. Default true.
 	 * @param  string $type        The type of email to send. Can be one of 'success', 'fail', 'critical'.
-	 * @param  object $core_update The update offer that was attempted.
+	 * @param  object $coreUpdate The update offer that was attempted.
 	 * @param  mixed  $result      The result for the core update. Can be WP_Error.
 	 * @return bool   $send
 	 */
-	public function disable_automatic_wp_core_update_notify( $send, $type, $core_update, $result )
+	public function disable_automatic_wp_core_update_notify( $send, $type, $coreUpdate, $result )
 	{
 		if (( $type === 'success' ) && ( notification_get_setting('integration/emails/automatic_wp_core_update') === 'true' )) {
 			$send = false;
@@ -243,16 +243,16 @@ class WordPressEmails
 	 *
 	 * @since  6.1.0
 	 * @param  mixed  $value   Default value of setting.
-	 * @param  int    $user_id ID of the user.
+	 * @param  int    $userId ID of the user.
 	 * @param  string $slug    Slug prefix of setting.
 	 * @return mixed  $value
 	 */
-	private function get_setting_for_user_role( $value, $user_id, $slug )
+	private function get_setting_for_user_role( $value, $userId, $slug )
 	{
-		$user = get_userdata($user_id);
-		$is_admin = ( $user && is_array($user->roles) && in_array('administrator', $user->roles, true) );
+		$user = get_userdata($userId);
+		$isAdmin = ( $user && is_array($user->roles) && in_array('administrator', $user->roles, true) );
 
-		$value = $is_admin ? notification_get_setting('integration/emails/' . $slug . '_to_admin') : notification_get_setting('integration/emails/' . $slug . '_to_user');
+		$value = $isAdmin ? notification_get_setting('integration/emails/' . $slug . '_to_admin') : notification_get_setting('integration/emails/' . $slug . '_to_user');
 		return $value;
 	}
 }

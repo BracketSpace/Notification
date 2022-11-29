@@ -23,14 +23,14 @@ class Switched extends ThemeTrigger
 	 *
 	 * @var \WP_Theme
 	 */
-	public $old_theme;
+	public $oldTheme;
 
 	/**
 	 * Theme switch date and time
 	 *
 	 * @var string
 	 */
-	public $theme_switch_date_time;
+	public $themeSwitchDateTime;
 
 	/**
 	 * Constructor
@@ -51,13 +51,13 @@ class Switched extends ThemeTrigger
 	 *
 	 * @param  string    $name       Name of the new theme.
 	 * @param  \WP_Theme $theme     Instance of the new theme.
-	 * @param  \WP_Theme $old_theme Instance of the old theme.
+	 * @param  \WP_Theme $oldTheme Instance of the old theme.
 	 * @return mixed                Void or false if no notifications should be sent.
 	 */
-	public function context( $name, $theme, $old_theme )
+	public function context( $name, $theme, $oldTheme )
 	{
 		$this->theme = $theme;
-		$this->old_theme = $old_theme;
+		$this->old_theme = $oldTheme;
 		$this->theme_switch_date_time = time();
 	}
 

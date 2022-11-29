@@ -24,23 +24,23 @@ class PostTrashed extends PostTrigger
 	 *
 	 * @var \WP_User|false
 	 */
-	public $trashing_user;
+	public $trashingUser;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $post_type optional, default: post.
+	 * @param string $postType optional, default: post.
 	 */
-	public function __construct( $post_type = 'post' )
+	public function __construct( $postType = 'post' )
 	{
 		parent::__construct(
 			[
-			'post_type' => $post_type,
-			'slug' => 'post/' . $post_type . '/trashed',
+			'post_type' => $postType,
+			'slug' => 'post/' . $postType . '/trashed',
 			]
 		);
 
-		$this->add_action('trash_' . $post_type, 10, 2);
+		$this->add_action('trash_' . $postType, 10, 2);
 	}
 
 	/**
@@ -72,11 +72,11 @@ class PostTrashed extends PostTrigger
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param int $post_id Post ID.
+	 * @param int $postId Post ID.
 	 * @param object  $post    Post object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $post_id, $post )
+	public function context( $postId, $post )
 	{
 
 		if ($post->post_type !== $this->post_type) {
@@ -101,7 +101,7 @@ class PostTrashed extends PostTrigger
 	public function merge_tags()
 	{
 
-		$post_type_name = WpObjectHelper::get_post_type_name($this->post_type);
+		$postTypeName = WpObjectHelper::get_post_type_name($this->post_type);
 
 		parent::merge_tags();
 
@@ -111,7 +111,7 @@ class PostTrashed extends PostTrigger
 				[
 				'slug' => sprintf('%s_trashing_user_ID', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s trashing user ID', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s trashing user ID', 'notification'), $postTypeName),
 				'property_name' => 'trashing_user',
 				'group' => __('Trashing user', 'notification'),
 				]
@@ -123,7 +123,7 @@ class PostTrashed extends PostTrigger
 				[
 				'slug' => sprintf('%s_trashing_user_login', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s trashing user login', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s trashing user login', 'notification'), $postTypeName),
 				'property_name' => 'trashing_user',
 				'group' => __('Trashing user', 'notification'),
 				]
@@ -135,7 +135,7 @@ class PostTrashed extends PostTrigger
 				[
 				'slug' => sprintf('%s_trashing_user_email', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s trashing user email', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s trashing user email', 'notification'), $postTypeName),
 				'property_name' => 'trashing_user',
 				'group' => __('Trashing user', 'notification'),
 				]
@@ -147,7 +147,7 @@ class PostTrashed extends PostTrigger
 				[
 				'slug' => sprintf('%s_trashing_user_nicename', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s trashing user nicename', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s trashing user nicename', 'notification'), $postTypeName),
 				'property_name' => 'trashing_user',
 				'group' => __('Trashing user', 'notification'),
 				]
@@ -159,7 +159,7 @@ class PostTrashed extends PostTrigger
 				[
 				'slug' => sprintf('%s_trashing_user_display_name', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s trashing user display name', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s trashing user display name', 'notification'), $postTypeName),
 				'property_name' => 'trashing_user',
 				'group' => __('Trashing user', 'notification'),
 				]
@@ -171,7 +171,7 @@ class PostTrashed extends PostTrigger
 				[
 				'slug' => sprintf('%s_trashing_user_firstname', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s trashing user first name', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s trashing user first name', 'notification'), $postTypeName),
 				'property_name' => 'trashing_user',
 				'group' => __('Trashing user', 'notification'),
 				]
@@ -183,7 +183,7 @@ class PostTrashed extends PostTrigger
 				[
 				'slug' => sprintf('%s_trashing_user_lastname', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s trashing user last name', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s trashing user last name', 'notification'), $postTypeName),
 				'property_name' => 'trashing_user',
 				'group' => __('Trashing user', 'notification'),
 				]
@@ -195,7 +195,7 @@ class PostTrashed extends PostTrigger
 				[
 				'slug' => sprintf('%s_trashing_user_avatar', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s trashing user avatar', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s trashing user avatar', 'notification'), $postTypeName),
 				'property_name' => 'trashing_user',
 				'group' => __('Trashing user', 'notification'),
 				]
@@ -207,7 +207,7 @@ class PostTrashed extends PostTrigger
 				[
 				'slug' => sprintf('%s_trashing_user_role', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s trashing user role', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s trashing user role', 'notification'), $postTypeName),
 				'property_name' => 'trashing_user',
 				'group' => __('Trashing user', 'notification'),
 				]

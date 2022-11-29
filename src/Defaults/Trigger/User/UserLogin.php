@@ -23,14 +23,14 @@ class UserLogin extends UserTrigger
 	 *
 	 * @var array
 	 */
-	public $user_meta;
+	public $userMeta;
 
 	/**
 	 * User login date and time
 	 *
 	 * @var int|false
 	 */
-	public $user_logged_in_datetime;
+	public $userLoggedInDatetime;
 
 	/**
 	 * Constructor
@@ -48,11 +48,11 @@ class UserLogin extends UserTrigger
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param string $user_login Logged in user login.
+	 * @param string $userLogin Logged in user login.
 	 * @param object $user       User object.
 	 * @return void
 	 */
-	public function context( $user_login, $user )
+	public function context( $userLogin, $user )
 	{
 
 		$this->user_id = $user->ID;

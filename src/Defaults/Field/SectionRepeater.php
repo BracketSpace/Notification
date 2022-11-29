@@ -23,7 +23,7 @@ class SectionRepeater extends Field
 	 *
 	 * @var int
 	 */
-	protected $current_row = 0;
+	protected $currentRow = 0;
 
 	/**
 	 * Fields to repeat
@@ -37,14 +37,14 @@ class SectionRepeater extends Field
 	 *
 	 * @var string
 	 */
-	protected $add_button_label = '';
+	protected $addButtonLabel = '';
 
 	/**
 	 * Data attributes
 	 *
 	 * @var array
 	 */
-	protected $data_attr = [];
+	protected $dataAttr = [];
 
 	/**
 	 * Row headers
@@ -65,7 +65,7 @@ class SectionRepeater extends Field
 	 *
 	 * @var string
 	 */
-	public $field_type = 'section-repeater';
+	public $fieldType = 'section-repeater';
 
 	/**
 	 * Carrier object
@@ -86,7 +86,7 @@ class SectionRepeater extends Field
 	 *
 	 * @var array
 	 */
-	protected $section_labels = [];
+	protected $sectionLabels = [];
 
 	/**
 	 * Field constructor
@@ -140,14 +140,14 @@ class SectionRepeater extends Field
 	public function field()
 	{
 
-		$data_attr = '';
+		$dataAttr = '';
 		foreach ($this->data_attr as $key => $value) {
-			$data_attr .= 'data-' . $key . '="' . esc_attr($value) . '" ';
+			$dataAttr .= 'data-' . $key . '="' . esc_attr($value) . '" ';
 		}
 
 		$this->headers = [];
 
-		$html = '<table class="section-repeater fields-repeater ' . $this->css_class() . '" id="' . $this->get_id() . '" ' . $data_attr . '>';
+		$html = '<table class="section-repeater fields-repeater ' . $this->css_class() . '" id="' . $this->get_id() . '" ' . $dataAttr . '>';
 
 		$html .= '<thead>';
 		$html .= '<tr class="row header">';

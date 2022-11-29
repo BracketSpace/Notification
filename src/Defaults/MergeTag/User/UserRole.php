@@ -43,8 +43,8 @@ class UserRole extends StringTag
 				'resolver' => function () {
 					$roles = array_map(
 						static function ( $role ) {
-							$role_object = get_role($role);
-							return translate_user_role(ucfirst($role_object->name));
+							$roleObject = get_role($role);
+							return translate_user_role(ucfirst($roleObject->name));
 						},
 						$this->trigger->{ $this->get_trigger_prop() }->roles
 					);

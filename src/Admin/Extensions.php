@@ -29,7 +29,7 @@ class Extensions
 	 *
 	 * @var string
 	 */
-	private $api_url = 'https://bracketspace.com/extras/notification/extensions.php';
+	private $apiUrl = 'https://bracketspace.com/extras/notification/extensions.php';
 
 	/**
 	 * Extensions list
@@ -43,14 +43,14 @@ class Extensions
 	 *
 	 * @var array
 	 */
-	public $premium_extensions = [];
+	public $premiumExtensions = [];
 
 	/**
 	 * Extensions admin page hook
 	 *
 	 * @var string
 	 */
-	public $page_hook = 'none';
+	public $pageHook = 'none';
 
 	/**
 	 * Register Extensions page under plugin's menu
@@ -66,12 +66,12 @@ class Extensions
 		}
 
 		// change settings position if white labelled.
-		$page_menu_label = apply_filters('notification/whitelabel/cpt/parent', true) !== true ? __('Notification extensions', 'notification') : __('Extensions', 'notification');
+		$pageMenuLabel = apply_filters('notification/whitelabel/cpt/parent', true) !== true ? __('Notification extensions', 'notification') : __('Extensions', 'notification');
 
 		$this->page_hook = add_submenu_page(
 			apply_filters('notification/whitelabel/cpt/parent', 'edit.php?post_type=notification'),
 			__('Extensions', 'notification'),
-			$page_menu_label,
+			$pageMenuLabel,
 			'manage_options',
 			'extensions',
 			[ $this, 'extensions_page' ]
@@ -118,10 +118,10 @@ class Extensions
 			}
 
 			// Fix for the PRO extension having a version number in the directory name.
-			$glob_slug = wp_normalize_path(trailingslashit(WP_PLUGIN_DIR)) . str_replace('/', '-*/', $extension['slug']);
-			$pro_installed = is_plugin_active($extension['slug']) || ! empty(glob($glob_slug));
+			$globSlug = wp_normalize_path(trailingslashit(WP_PLUGIN_DIR)) . str_replace('/', '-*/', $extension['slug']);
+			$proInstalled = is_plugin_active($extension['slug']) || ! empty(glob($globSlug));
 
-			if (isset($extension['edd']) && $pro_installed) {
+			if (isset($extension['edd']) && $proInstalled) {
 				$extension['license'] = new License($extension);
 				$this->premium_extensions[] = $extension;
 			} else {
@@ -225,27 +225,27 @@ class Extensions
 
 		$extensions = $this->get_raw_extensions();
 		$premium = [];
-		$wp_plugins = get_plugins();
-		$plugin_slugs = array_keys($wp_plugins);
+		$wpPlugins = get_plugins();
+		$pluginSlugs = array_keys($wpPlugins);
 
 		if (empty($extensions)) {
 			return;
 		}
 
 		foreach ($extensions as $extension) {
-			if (! isset($extension['edd']) || ! in_array($extension['slug'], $plugin_slugs, true)) {
+			if (! isset($extension['edd']) || ! in_array($extension['slug'], $pluginSlugs, true)) {
 				continue;
 			}
 
 			$license = new License($extension);
 
-			$wp_plugin = $wp_plugins[$extension['slug']];
+			$wpPlugin = $wpPlugins[$extension['slug']];
 
 			new EDDUpdater(
 				$extension['edd']['store_url'],
 				$extension['slug'],
 				[
-					'version' => $wp_plugin['Version'],
+					'version' => $wpPlugin['Version'],
 					'license' => $license->get_key(),
 					'item_name' => $extension['edd']['item_name'],
 					'author' => $extension['author'],
@@ -291,14 +291,14 @@ class Extensions
 		$activation = $license->activate($data['license-key']);
 
 		if (is_wp_error($activation)) {
-			$license_data = $activation->get_error_data();
+			$licenseData = $activation->get_error_data();
 			$params = [
 				'activation-status' => $activation->get_error_message(),
-				'extension' => rawurlencode($license_data->item_name),
+				'extension' => rawurlencode($licenseData->item_name),
 			];
 
 			if ($activation->get_error_message() === 'expired') {
-				$params['expiration'] = $license_data->expires;
+				$params['expiration'] = $licenseData->expires;
 			}
 
 			wp_safe_redirect(add_query_arg($params, $data['_wp_http_referer']));
@@ -345,10 +345,10 @@ class Extensions
 		$activation = $license->deactivate();
 
 		if (is_wp_error($activation)) {
-			$license_data = $activation->get_error_data();
+			$licenseData = $activation->get_error_data();
 			$params = [
 				'activation-status' => $activation->get_error_message(),
-				'extension' => rawurlencode($license_data->item_name),
+				'extension' => rawurlencode($licenseData->item_name),
 			];
 
 			wp_safe_redirect(add_query_arg($params, $data['_wp_http_referer']));
@@ -379,7 +379,7 @@ class Extensions
 		$status = sanitize_key($_GET['activation-status']);
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$extension_slug = sanitize_title_with_dashes(wp_unslash($_GET['extension'] ?? ''));
+		$extensionSlug = sanitize_title_with_dashes(wp_unslash($_GET['extension'] ?? ''));
 
 		switch ($status) {
 			case 'success':
@@ -418,7 +418,7 @@ class Extensions
 			case 'missing':
 				$view = 'error';
 				// Translators: Extension slug.
-				$message = sprintf(__('Invalid license key for %s.', 'notification'), $extension_slug);
+				$message = sprintf(__('Invalid license key for %s.', 'notification'), $extensionSlug);
 				break;
 
 			case 'invalid':
@@ -430,7 +430,7 @@ class Extensions
 			case 'item_name_mismatch':
 				$view = 'error';
 				// translators: 1. Extension name.
-				$message = sprintf(__('This appears to be an invalid license key for %s.', 'notification'), $extension_slug);
+				$message = sprintf(__('This appears to be an invalid license key for %s.', 'notification'), $extensionSlug);
 				break;
 
 			case 'no_activations_left':
@@ -474,7 +474,7 @@ class Extensions
 			return;
 		}
 
-		$invalid_extensions = [];
+		$invalidExtensions = [];
 
 		foreach ($extensions as $extension) {
 			if (!isset($extension['edd']) || !is_plugin_active($extension['slug'])) {
@@ -487,33 +487,33 @@ class Extensions
 				continue;
 			}
 
-			$invalid_extensions[] = $extension['edd']['item_name'];
+			$invalidExtensions[] = $extension['edd']['item_name'];
 		}
 
-		if ($invalid_extensions === []) {
+		if ($invalidExtensions === []) {
 			return;
 		}
 
 		$message = _n(
 			'Please activate the following plugin to get the updates.',
 			'Please activate the following plugins to get the updates.',
-			count($invalid_extensions),
+			count($invalidExtensions),
 			'notification'
 		);
 
-		$extensions_link = sprintf(
+		$extensionsLink = sprintf(
 			'<a href="%s">%s</a>',
 			admin_url('edit.php?post_type=notification&page=extensions'),
 			__('Go to Extensions', 'notification')
 		);
 
-		$message .= ' ' . $extensions_link;
+		$message .= ' ' . $extensionsLink;
 
 		Templates::render(
 			'extension/activation-error',
 			[
 			'message' => $message,
-			'extensions' => $invalid_extensions,
+			'extensions' => $invalidExtensions,
 			]
 		);
 	}

@@ -23,7 +23,7 @@ class StringTag extends MergeTag
 	 *
 	 * @var string
 	 */
-	protected $value_type = 'string';
+	protected $valueType = 'string';
 
 	/**
 	 * Check the merge tag value type

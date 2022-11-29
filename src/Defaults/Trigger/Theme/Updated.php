@@ -23,14 +23,14 @@ class Updated extends ThemeTrigger
 	 *
 	 * @var string
 	 */
-	public $theme_update_date_time;
+	public $themeUpdateDateTime;
 
 	/**
 	 * Theme previous version
 	 *
 	 * @var string
 	 */
-	public $theme_previous_version;
+	public $themePreviousVersion;
 
 	/**
 	 * Constructor

@@ -22,28 +22,28 @@ class UserEmailChangeRequest extends UserTrigger
 	 *
 	 * @var array
 	 */
-	public $user_meta;
+	public $userMeta;
 
 	/**
 	 * New user email
 	 *
 	 * @var string
 	 */
-	public $new_user_email;
+	public $newUserEmail;
 
 	/**
 	 * Email change confirmation URL
 	 *
 	 * @var string
 	 */
-	public $confirmation_url;
+	public $confirmationUrl;
 
 	/**
 	 * Email change datetime
 	 *
 	 * @var int
 	 */
-	public $email_change_datetime;
+	public $emailChangeDatetime;
 
 	/**
 	 * Constructor
@@ -62,23 +62,23 @@ class UserEmailChangeRequest extends UserTrigger
 	 * Sets trigger's context
 	 *
 	 * @since 8.0.0
-	 * @param int $user_id User ID.
+	 * @param int $userId User ID.
 	 * @return mixed
 	 */
-	public function context( $user_id )
+	public function context( $userId )
 	{
 
-		$new_email = get_user_meta($user_id, '_new_email', true);
+		$newEmail = get_user_meta($userId, '_new_email', true);
 
-		if (! $new_email) {
+		if (! $newEmail) {
 			return false;
 		}
 
-		$this->user_id = $user_id;
+		$this->user_id = $userId;
 		$this->user_object = get_userdata($this->user_id);
 		$this->user_meta = get_user_meta($this->user_id);
-		$this->new_user_email = $new_email['newemail'];
-		$this->confirmation_url = esc_url(admin_url('profile.php?newuseremail=' . $new_email['hash']));
+		$this->new_user_email = $newEmail['newemail'];
+		$this->confirmation_url = esc_url(admin_url('profile.php?newuseremail=' . $newEmail['hash']));
 		$this->email_change_datetime = time();
 	}
 

@@ -24,19 +24,19 @@ class PostApproved extends PostTrigger
 	 *
 	 * @var \WP_User|false
 	 */
-	public $approving_user;
+	public $approvingUser;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $post_type optional, default: post.
+	 * @param string $postType optional, default: post.
 	 */
-	public function __construct( $post_type = 'post' )
+	public function __construct( $postType = 'post' )
 	{
 		parent::__construct(
 			[
-			'post_type' => $post_type,
-			'slug' => 'post/' . $post_type . '/approved',
+			'post_type' => $postType,
+			'slug' => 'post/' . $postType . '/approved',
 			]
 		);
 
@@ -101,7 +101,7 @@ class PostApproved extends PostTrigger
 	public function merge_tags()
 	{
 
-		$post_type_name = WpObjectHelper::get_post_type_name($this->post_type);
+		$postTypeName = WpObjectHelper::get_post_type_name($this->post_type);
 
 		parent::merge_tags();
 
@@ -111,7 +111,7 @@ class PostApproved extends PostTrigger
 				[
 				'slug' => sprintf('%s_approving_user_ID', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s approving user ID', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s approving user ID', 'notification'), $postTypeName),
 				'property_name' => 'approving_user',
 				'group' => __('Approving user', 'notification'),
 				]
@@ -123,7 +123,7 @@ class PostApproved extends PostTrigger
 				[
 				'slug' => sprintf('%s_approving_user_login', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s approving user login', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s approving user login', 'notification'), $postTypeName),
 				'property_name' => 'approving_user',
 				'group' => __('Approving user', 'notification'),
 				]
@@ -135,7 +135,7 @@ class PostApproved extends PostTrigger
 				[
 				'slug' => sprintf('%s_approving_user_email', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s approving user email', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s approving user email', 'notification'), $postTypeName),
 				'property_name' => 'approving_user',
 				'group' => __('Approving user', 'notification'),
 				]
@@ -147,7 +147,7 @@ class PostApproved extends PostTrigger
 				[
 				'slug' => sprintf('%s_approving_user_nicename', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s approving user nicename', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s approving user nicename', 'notification'), $postTypeName),
 				'property_name' => 'approving_user',
 				'group' => __('Approving user', 'notification'),
 				]
@@ -159,7 +159,7 @@ class PostApproved extends PostTrigger
 				[
 				'slug' => sprintf('%s_approving_user_display_name', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s approving user display name', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s approving user display name', 'notification'), $postTypeName),
 				'property_name' => 'approving_user',
 				'group' => __('Approving user', 'notification'),
 				]
@@ -171,7 +171,7 @@ class PostApproved extends PostTrigger
 				[
 				'slug' => sprintf('%s_approving_user_firstname', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s approving user first name', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s approving user first name', 'notification'), $postTypeName),
 				'property_name' => 'approving_user',
 				'group' => __('Approving user', 'notification'),
 				]
@@ -183,7 +183,7 @@ class PostApproved extends PostTrigger
 				[
 				'slug' => sprintf('%s_approving_user_lastname', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s approving user last name', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s approving user last name', 'notification'), $postTypeName),
 				'property_name' => 'approving_user',
 				'group' => __('Approving user', 'notification'),
 				]
@@ -195,7 +195,7 @@ class PostApproved extends PostTrigger
 				[
 				'slug' => sprintf('%s_approving_user_avatar', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s approving user avatar', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s approving user avatar', 'notification'), $postTypeName),
 				'property_name' => 'approving_user',
 				'group' => __('Approving user', 'notification'),
 				]
@@ -207,7 +207,7 @@ class PostApproved extends PostTrigger
 				[
 				'slug' => sprintf('%s_approving_user_role', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s approving user role', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s approving user role', 'notification'), $postTypeName),
 				'property_name' => 'approving_user',
 				'group' => __('Approving user', 'notification'),
 				]
@@ -219,7 +219,7 @@ class PostApproved extends PostTrigger
 				[
 				'slug' => sprintf('%s_approving_datetime', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s approving date and time', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s approving date and time', 'notification'), $postTypeName),
 				]
 			)
 		);

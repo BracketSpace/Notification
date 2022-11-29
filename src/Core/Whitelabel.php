@@ -22,7 +22,7 @@ class Whitelabel
 	 *
 	 * @var bool
 	 */
-	protected static $is_whitelabeled = false;
+	protected static $isWhitelabeled = false;
 
 	/**
 	 * Removes defaults:
@@ -50,7 +50,7 @@ class Whitelabel
 	 */
 	public static function enable( array $args = [] )
 	{
-		static::$is_whitelabeled = true;
+		static::$isWhitelabeled = true;
 
 		// Upselling.
 		add_filter('notification/upselling', '__return_false');
@@ -96,6 +96,6 @@ class Whitelabel
 	 */
 	public static function is_whitelabeled(): bool
 	{
-		return static::$is_whitelabeled;
+		return static::$isWhitelabeled;
 	}
 }

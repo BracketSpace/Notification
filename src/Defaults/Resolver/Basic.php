@@ -46,17 +46,17 @@ class Basic extends Abstracts\Resolver
 	public function resolve_merge_tag( $match, Triggerable $trigger )
 	{
 
-		$merge_tags = $trigger->get_merge_tags('all', true);
-		$tag_slug = trim(str_replace([ '{', '}' ], '', $match[0]));
+		$mergeTags = $trigger->get_merge_tags('all', true);
+		$tagSlug = trim(str_replace([ '{', '}' ], '', $match[0]));
 
-		if (! isset($merge_tags[$tag_slug])) {
+		if (! isset($mergeTags[$tagSlug])) {
 			return $match[0];
 		}
 
 		return apply_filters(
 			'notification/merge_tag/value/resolved',
-			$merge_tags[$tag_slug]->resolve(),
-			$merge_tags[$tag_slug]
+			$mergeTags[$tagSlug]->resolve(),
+			$mergeTags[$tagSlug]
 		);
 	}
 }

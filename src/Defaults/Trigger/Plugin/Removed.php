@@ -21,7 +21,7 @@ class Removed extends PluginTrigger
 	 *
 	 * @var string
 	 */
-	public $plugin_deletion_date_time;
+	public $pluginDeletionDateTime;
 
 	/**
 	 * Constructor.
@@ -40,14 +40,14 @@ class Removed extends PluginTrigger
 	/**
 	 * Trigger action.
 	 *
-	 * @param  string $plugin_rel_path Plugin path.
+	 * @param  string $pluginRelPath Plugin path.
 	 * @return mixed void or false if no notifications should be sent.
 	 */
-	public function context( $plugin_rel_path )
+	public function context( $pluginRelPath )
 	{
 
-		$plugin_dir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin_rel_path;
-		$this->plugin = get_plugin_data($plugin_dir, false);
+		$pluginDir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $pluginRelPath;
+		$this->plugin = get_plugin_data($pluginDir, false);
 		$this->plugin_deletion_date_time = time();
 	}
 

@@ -21,17 +21,17 @@ class NotificationDuplicator
 	 *
 	 * @filter post_row_actions 50
 	 *
-	 * @param  array  $row_actions array with action links.
+	 * @param  array  $rowActions array with action links.
 	 * @param  object $post        WP_Post object.
 	 * @return array               filtered actions
 	 */
-	public function add_duplicate_row_action( $row_actions, $post )
+	public function add_duplicate_row_action( $rowActions, $post )
 	{
 		if ($post->post_type !== 'notification') {
-			return $row_actions;
+			return $rowActions;
 		}
 
-		$row_actions['duplicate'] = sprintf(
+		$rowActions['duplicate'] = sprintf(
 			'<a href="%s">%s</a>',
 			admin_url(
 				sprintf(
@@ -43,7 +43,7 @@ class NotificationDuplicator
 			__('Duplicate', 'notification')
 		);
 
-		return $row_actions;
+		return $rowActions;
 	}
 
 	/**
@@ -80,7 +80,7 @@ class NotificationDuplicator
 			wp_die('You cannot duplicate post that\'s not Notification post');
 		}
 
-		$new_id = wp_insert_post(
+		$newId = wp_insert_post(
 			[
 			'post_title' => sprintf('(%s) %s', __('Duplicate', 'notification'), $source->post_title),
 			'post_content' => wp_slash($json->save(JSON_UNESCAPED_UNICODE)),
@@ -89,7 +89,7 @@ class NotificationDuplicator
 			]
 		);
 
-		wp_safe_redirect(html_entity_decode(get_edit_post_link($new_id)));
+		wp_safe_redirect(html_entity_decode(get_edit_post_link($newId)));
 		exit;
 	}
 }

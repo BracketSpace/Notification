@@ -25,14 +25,14 @@ class CheckRestApi
 	 */
 	public function test_rest_api()
 	{
-		$is_edit = false;
-		$current_screen = get_current_screen();
+		$isEdit = false;
+		$currentScreen = get_current_screen();
 
-		if ($current_screen instanceof \WP_Screen) {
-			$is_edit = $current_screen->base === 'post' && $current_screen->post_type === 'notification';
+		if ($currentScreen instanceof \WP_Screen) {
+			$isEdit = $currentScreen->base === 'post' && $currentScreen->post_type === 'notification';
 		}
 
-		if (! $is_edit) {
+		if (! $isEdit) {
 			return;
 		}
 
@@ -45,7 +45,7 @@ class CheckRestApi
 
 		$message = json_decode(wp_remote_retrieve_body($response), true);
 
-		$is_available = false;
+		$isAvailable = false;
 
 		if (is_array($message) && array_key_exists('data', $message) && $message['data'] === 'RestApi') {
 			return;

@@ -43,24 +43,24 @@ class PostTerms extends StringTag
 			$this->taxonomy = is_string($params['taxonomy']) ? get_taxonomy($params['taxonomy']) : $params['taxonomy'];
 		}
 
-		$post_type_name = WpObjectHelper::get_post_type_name($this->get_trigger_prop());
+		$postTypeName = WpObjectHelper::get_post_type_name($this->get_trigger_prop());
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug' => sprintf('%s_%s', $this->get_trigger_prop(), $this->taxonomy->name),
 				// translators: 1. Post Type 2. Taxonomy name.
-				'name' => sprintf(__('%1$s %2$s', 'notification'), $post_type_name, $this->taxonomy->label),
+				'name' => sprintf(__('%1$s %2$s', 'notification'), $postTypeName, $this->taxonomy->label),
 				'description' => __('General, Tech, Lifestyle', 'notification'),
 				'example' => true,
-				'group' => $post_type_name,
+				'group' => $postTypeName,
 				'resolver' => function ( $trigger ) {
-					$post_terms = get_the_terms($trigger->{ $this->get_trigger_prop() }, $this->taxonomy->name);
-					if (empty($post_terms) || is_wp_error($post_terms)) {
+					$postTerms = get_the_terms($trigger->{ $this->get_trigger_prop() }, $this->taxonomy->name);
+					if (empty($postTerms) || is_wp_error($postTerms)) {
 						return '';
 					}
 
-					return implode(', ', wp_list_pluck($post_terms, 'name'));
+					return implode(', ', wp_list_pluck($postTerms, 'name'));
 				},
 			]
 		);

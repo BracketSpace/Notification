@@ -77,10 +77,10 @@ interface Sendable extends Nameable
 	/**
 	 * Gets form fields array
 	 *
-	 * @param  string $field_name Field name.
+	 * @param  string $fieldName Field name.
 	 * @return mixed              Field object or null.
 	 */
-	public function get_form_field( $field_name );
+	public function get_form_field( $fieldName );
 
 	/**
 	 * Gets the recipients field

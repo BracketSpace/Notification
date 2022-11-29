@@ -45,14 +45,14 @@ abstract class Trigger implements Triggerable
 	 *
 	 * @var array
 	 */
-	protected $merge_tags = [];
+	protected $mergeTags = [];
 
 	/**
 	 * Flag indicating that merge tags has been already added.
 	 *
 	 * @var bool
 	 */
-	protected $merge_tags_added = false;
+	protected $mergeTagsAdded = false;
 
 	/**
 	 * Trigger constructor
@@ -122,9 +122,9 @@ abstract class Trigger implements Triggerable
 	 *
 	 * @param string  $tag           action hook.
 	 * @param int $priority action priority, default 10.
-	 * @param int $accepted_args how many args the action accepts, default 1.
+	 * @param int $acceptedArgs how many args the action accepts, default 1.
 	 */
-	public function add_action( $tag, $priority = 10, $accepted_args = 1 )
+	public function add_action( $tag, $priority = 10, $acceptedArgs = 1 )
 	{
 		if (empty($tag)) {
 			trigger_error('Action tag cannot be empty', E_USER_ERROR);
@@ -135,7 +135,7 @@ abstract class Trigger implements Triggerable
 			[
 			'tag' => $tag,
 			'priority' => $priority,
-			'accepted_args' => $accepted_args,
+			'accepted_args' => $acceptedArgs,
 			]
 		);
 	}
@@ -155,9 +155,9 @@ abstract class Trigger implements Triggerable
 			trigger_error('Action tag cannot be empty', E_USER_ERROR);
 		}
 
-		foreach ($this->actions as $action_index => $action) {
+		foreach ($this->actions as $actionIndex => $action) {
 			if ($action['tag'] === $tag && $action['priority'] === $priority) {
-				unset($this->actions[$action_index]);
+				unset($this->actions[$actionIndex]);
 				break;
 			}
 		}
@@ -177,13 +177,13 @@ abstract class Trigger implements Triggerable
 	/**
 	 * Adds Trigger's Merge Tag
 	 *
-	 * @param \BracketSpace\Notification\Interfaces\Taggable $merge_tag merge tag object.
+	 * @param \BracketSpace\Notification\Interfaces\Taggable $mergeTag merge tag object.
 	 * @return $this
 	 */
-	public function add_merge_tag( Taggable $merge_tag )
+	public function add_merge_tag( Taggable $mergeTag )
 	{
-		$merge_tag->set_trigger($this);
-		array_push($this->merge_tags, $merge_tag);
+		$mergeTag->set_trigger($this);
+		array_push($this->merge_tags, $mergeTag);
 		return $this;
 	}
 
@@ -191,20 +191,20 @@ abstract class Trigger implements Triggerable
 	 * Quickly adds new Merge Tag
 	 *
 	 * @since 6.0.0
-	 * @param string $property_name Trigger property name.
+	 * @param string $propertyName Trigger property name.
 	 * @param string $label         Nice, translatable Merge Tag label.
 	 * @param string $group         Optional, translatable group name.
 	 */
-	public function add_quick_merge_tag( $property_name, $label, $group = null )
+	public function add_quick_merge_tag( $propertyName, $label, $group = null )
 	{
 		return $this->add_merge_tag(
 			new \BracketSpace\Notification\Defaults\MergeTag\StringTag(
 				[
-				'slug' => $property_name,
+				'slug' => $propertyName,
 				'name' => $label,
 				'group' => $group,
-				'resolver' => static function ( $trigger ) use ( $property_name ) {
-					return $trigger->{ $property_name };
+				'resolver' => static function ( $trigger ) use ( $propertyName ) {
+					return $trigger->{ $propertyName };
 				},
 				]
 			)
@@ -214,14 +214,14 @@ abstract class Trigger implements Triggerable
 	/**
 	 * Removes Trigger's merge tag
 	 *
-	 * @param string $merge_tag_slug Merge Tag slug.
+	 * @param string $mergeTagSlug Merge Tag slug.
 	 * @return $this
 	 */
-	public function remove_merge_tag( $merge_tag_slug )
+	public function remove_merge_tag( $mergeTagSlug )
 	{
 
-		foreach ($this->merge_tags as $index => $merge_tag) {
-			if ($merge_tag->get_slug() === $merge_tag_slug) {
+		foreach ($this->merge_tags as $index => $mergeTag) {
+			if ($mergeTag->get_slug() === $mergeTagSlug) {
 				unset($this->merge_tags[$index]);
 				break;
 			}
@@ -251,22 +251,22 @@ abstract class Trigger implements Triggerable
 		} else {
 			$tags = [];
 
-			foreach ($this->merge_tags as $merge_tag) {
-				if ($type === 'visible' && ! $merge_tag->is_hidden()) {
-					array_push($tags, $merge_tag);
-				} elseif ($type === 'hidden' && $merge_tag->is_hidden()) {
-					array_push($tags, $merge_tag);
+			foreach ($this->merge_tags as $mergeTag) {
+				if ($type === 'visible' && ! $mergeTag->is_hidden()) {
+					array_push($tags, $mergeTag);
+				} elseif ($type === 'hidden' && $mergeTag->is_hidden()) {
+					array_push($tags, $mergeTag);
 				}
 			}
 		}
 
 		// Group the tags if needed.
 		if ($grouped) {
-			$grouped_tags = [];
-			foreach ($tags as $merge_tag) {
-				$grouped_tags[$merge_tag->get_slug()] = $merge_tag;
+			$groupedTags = [];
+			foreach ($tags as $mergeTag) {
+				$groupedTags[$mergeTag->get_slug()] = $mergeTag;
 			}
-			return $grouped_tags;
+			return $groupedTags;
 		}
 
 		return $tags;
@@ -317,10 +317,10 @@ abstract class Trigger implements Triggerable
 	 * @since 8.0.0 Deprecated
 	 * @param string  $tag           action hook.
 	 * @param int $priority action priority, default 10.
-	 * @param int $accepted_args how many args the action accepts, default 1.
+	 * @param int $acceptedArgs how many args the action accepts, default 1.
 	 * @return void
 	 */
-	public function postpone_action( $tag, $priority = 10, $accepted_args = 1 )
+	public function postpone_action( $tag, $priority = 10, $acceptedArgs = 1 )
 	{
 		_deprecated_function(__METHOD__, '8.0.0');
 	}

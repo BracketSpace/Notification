@@ -24,7 +24,7 @@ class TermUpdated extends TermTrigger
 	 *
 	 * @var string
 	 */
-	public $term_modification_datetime;
+	public $termModificationDatetime;
 
 	/**
 	 * Constructor
@@ -74,12 +74,12 @@ class TermUpdated extends TermTrigger
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param int $term_id Term ID used only due to lack of taxonomy param.
+	 * @param int $termId Term ID used only due to lack of taxonomy param.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $term_id )
+	public function context( $termId )
 	{
-		$term = get_term($term_id);
+		$term = get_term($termId);
 
 		if (! ( $this->taxonomy instanceof \WP_Taxonomy ) || ! ( $term instanceof \WP_Term )) {
 			return false;
@@ -91,8 +91,8 @@ class TermUpdated extends TermTrigger
 			return false;
 		}
 
-		$term_link = get_term_link($this->term);
-		$this->term_permalink = is_string($term_link) ? $term_link : '';
+		$termLink = get_term_link($this->term);
+		$this->term_permalink = is_string($termLink) ? $termLink : '';
 
 		$this->term_modification_datetime = (string)time();
 	}

@@ -23,7 +23,7 @@ class FloatTag extends MergeTag
 	 *
 	 * @var string
 	 */
-	protected $value_type = 'float';
+	protected $valueType = 'float';
 
 	/**
 	 * Check the merge tag value type

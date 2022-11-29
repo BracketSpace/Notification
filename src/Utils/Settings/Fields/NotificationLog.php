@@ -31,16 +31,16 @@ class NotificationLog
 		// This is a simple pagination request.
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$page = isset($_GET['notification_log_page']) ? intval($_GET['notification_log_page']) : 1;
-		$raw_logs = $debug->get_logs($page, 'notification');
+		$rawLogs = $debug->get_logs($page, 'notification');
 
 		$logs = [];
-		foreach ($raw_logs as $raw_log) {
-			$log_data = json_decode($raw_log->message, true);
+		foreach ($rawLogs as $rawLog) {
+			$logData = json_decode($rawLog->message, true);
 			$logs[] = [
-				'time' => $raw_log->time_logged,
-				'notification' => $log_data['notification'],
-				'trigger' => $log_data['trigger'],
-				'carrier' => $log_data['carrier'],
+				'time' => $rawLog->time_logged,
+				'notification' => $logData['notification'],
+				'trigger' => $logData['trigger'],
+				'carrier' => $logData['carrier'],
 			];
 		}
 

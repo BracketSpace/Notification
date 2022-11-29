@@ -31,21 +31,21 @@ abstract class MediaTrigger extends Abstracts\Trigger
 	 *
 	 * @var int
 	 */
-	public $user_id;
+	public $userId;
 
 	/**
 	 * User object
 	 *
 	 * @var \WP_User
 	 */
-	public $user_object;
+	public $userObject;
 
 	/**
 	 * Attachment creation date and time
 	 *
 	 * @var int|false
 	 */
-	public $attachment_creation_date;
+	public $attachmentCreationDate;
 
 	/**
 	 * Constructor

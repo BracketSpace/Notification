@@ -21,7 +21,7 @@ class Installed extends PluginTrigger
 	 *
 	 * @var string
 	 */
-	public $plugin_installation_date_time;
+	public $pluginInstallationDateTime;
 
 	/**
 	 * Constructor.
@@ -51,8 +51,8 @@ class Installed extends PluginTrigger
 			return false;
 		}
 
-		$plugin_dir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $upgrader->plugin_info();
-		$this->plugin = get_plugin_data($plugin_dir, false);
+		$pluginDir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $upgrader->plugin_info();
+		$this->plugin = get_plugin_data($pluginDir, false);
 		$this->plugin_installation_date_time = time();
 	}
 

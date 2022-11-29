@@ -43,18 +43,18 @@ class JSON extends Abstracts\Adapter
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @param int|null $json_options          JSON options, pass null to use default as well.
-	 * @param bool     $only_enabled_carriers If only enabled Carriers should be saved.
+	 * @param int|null $jsonOptions          JSON options, pass null to use default as well.
+	 * @param bool     $onlyEnabledCarriers If only enabled Carriers should be saved.
 	 * @return mixed
 	 */
-	public function save( $json_options = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE, $only_enabled_carriers = false )
+	public function save( $jsonOptions = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE, $onlyEnabledCarriers = false )
 	{
 
-		if ($json_options === null) {
-			$json_options = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE;
+		if ($jsonOptions === null) {
+			$jsonOptions = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE;
 		}
 
-		$data = $this->get_notification()->to_array($only_enabled_carriers);
-		return wp_json_encode($data, $json_options);
+		$data = $this->get_notification()->to_array($onlyEnabledCarriers);
+		return wp_json_encode($data, $jsonOptions);
 	}
 }

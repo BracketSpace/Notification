@@ -23,7 +23,7 @@ class RecipientsField extends RepeaterField
 	 *
 	 * @var bool
 	 */
-	public $print_header_description = false;
+	public $printHeaderDescription = false;
 
 	/**
 	 * Field constructor
@@ -62,11 +62,11 @@ class RecipientsField extends RepeaterField
 		$recipients = RecipientStore::all_for_carrier($this->carrier);
 
 		if (! empty($recipients)) {
-			$first_recipient = array_values($recipients)[0];
-			$recipient_types = [];
+			$firstRecipient = array_values($recipients)[0];
+			$recipientTypes = [];
 
 			foreach ((array)$recipients as $recipient) {
-				$recipient_types[$recipient->get_slug()] = $recipient->get_name();
+				$recipientTypes[$recipient->get_slug()] = $recipient->get_name();
 			}
 
 			$params['fields'] = [
@@ -75,12 +75,12 @@ class RecipientsField extends RepeaterField
 					'label' => __('Type', 'notification'),
 					'name' => 'type',
 					'css_class' => 'recipient-type',
-					'options' => $recipient_types,
+					'options' => $recipientTypes,
 					]
 				),
 			];
 
-			$params['fields'][] = $first_recipient->input();
+			$params['fields'][] = $firstRecipient->input();
 		}
 
 		parent::__construct($params);

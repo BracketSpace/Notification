@@ -37,14 +37,14 @@ class Processor
 		Queue::iterate(
 			static function ( $index, $notification, $trigger ) {
 
-				$bp_enabled = apply_filters(
+				$bpEnabled = apply_filters(
 					'notification/trigger/process_in_background',
 					notification_get_setting('general/advanced/background_processing'),
 					$trigger
 				);
 
 				// If Background Processing is enabled we load the execution to Cron and stop processing.
-				if ($bp_enabled) {
+				if ($bpEnabled) {
 					self::schedule($notification, $trigger);
 					return;
 				}
@@ -75,7 +75,7 @@ class Processor
 		 * By default all Trigger props are taken and whole trigger is unique.
 		 * This can be overriden by specific extensions.
 		 */
-		$trigger_key = sprintf(
+		$triggerKey = sprintf(
 			'%s_%s_%s',
 			$notification->get_hash(),
 			$trigger->get_slug(),
@@ -87,14 +87,14 @@ class Processor
 		);
 
 		// Cache trigger params.
-		self::get_cache($trigger_key)->set($trigger);
+		self::get_cache($triggerKey)->set($trigger);
 
 		$result = wp_schedule_single_event(
 			time() + apply_filters('notification/background_processing/delay', 30),
 			'notification_background_processing',
 			[
 				notification_adapt('JSON', $notification)->save(JSON_UNESCAPED_UNICODE, true),
-				$trigger_key,
+				$triggerKey,
 			]
 		);
 	}
@@ -137,26 +137,26 @@ class Processor
 	 * @action notification_background_processing
 	 *
 	 * @since  8.0.0
-	 * @param  string $notification_json Notification JSON.
-	 * @param  string $trigger_key       Trigger key.
+	 * @param  string $notificationJson Notification JSON.
+	 * @param  string $triggerKey       Trigger key.
 	 * @return void
 	 */
-	public static function handle_cron( $notification_json, $trigger_key )
+	public static function handle_cron( $notificationJson, $triggerKey )
 	{
-		$notification = notification_adapt_from('JSON', $notification_json)->get_notification();
-		$trigger = self::get_cache($trigger_key)->get();
+		$notification = notification_adapt_from('JSON', $notificationJson)->get_notification();
+		$trigger = self::get_cache($triggerKey)->get();
 
 		if (! $trigger instanceof Triggerable) {
 			ErrorHandler::error(
 				sprintf(
 					'Trigger key %s doesn\'t seem to exist in cache anymore',
-					$trigger_key
+					$triggerKey
 				)
 			);
 			return;
 		}
 
-		self::get_cache($trigger_key)->delete();
+		self::get_cache($triggerKey)->delete();
 
 		self::process_notification($notification, $trigger);
 	}
@@ -179,14 +179,14 @@ class Processor
 	 * Gets cache instance
 	 *
 	 * @since  8.0.11
-	 * @param  string $trigger_key Trigger key.
+	 * @param  string $triggerKey Trigger key.
 	 * @return \BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache
 	 */
-	public static function get_cache( $trigger_key )
+	public static function get_cache( $triggerKey )
 	{
 		return new Cache(
 			new Transient(3 * DAY_IN_SECONDS),
-			$trigger_key
+			$triggerKey
 		);
 	}
 }

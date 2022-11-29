@@ -24,7 +24,7 @@ class CommentContentHtml extends HtmlTag
 	 *
 	 * @var string
 	 */
-	protected $comment_type = 'comment';
+	protected $commentType = 'comment';
 
 	/**
 	 * Merge tag constructor
@@ -41,17 +41,17 @@ class CommentContentHtml extends HtmlTag
 
 		$this->set_trigger_prop($params['property_name'] ?? $this->comment_type);
 
-		$comment_type_name = WpObjectHelper::get_comment_type_name($this->comment_type);
+		$commentTypeName = WpObjectHelper::get_comment_type_name($this->comment_type);
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug' => 'comment_content_html',
 				// Translators: Comment type name.
-				'name' => sprintf(__('%s HTML content', 'notification'), $comment_type_name),
+				'name' => sprintf(__('%s HTML content', 'notification'), $commentTypeName),
 				'description' => __('Great post!', 'notification'),
 				'example' => true,
-				'group' => $comment_type_name,
+				'group' => $commentTypeName,
 				'resolver' => function ( $trigger ) {
 					return $trigger->{ $this->get_trigger_prop() }->comment_content;
 				},

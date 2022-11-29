@@ -39,7 +39,7 @@ abstract class TermTrigger extends Abstracts\Trigger
 	 *
 	 * @var string
 	 */
-	public $term_permalink = '';
+	public $termPermalink = '';
 
 	/**
 	 * Constructor

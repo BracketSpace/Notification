@@ -22,34 +22,34 @@ class CommentAdded extends CommentTrigger
 	/**
 	 * Constructor
 	 *
-	 * @param string $comment_type optional, default: comment.
+	 * @param string $commentType optional, default: comment.
 	 */
-	public function __construct( $comment_type = 'comment' )
+	public function __construct( $commentType = 'comment' )
 	{
 
 		parent::__construct(
 			[
-			'slug' => 'comment/' . $comment_type . '/added',
+			'slug' => 'comment/' . $commentType . '/added',
 			// Translators: %s comment type.
-			'name' => sprintf(__('%s added', 'notification'), WpObjectHelper::get_comment_type_name($comment_type)),
-			'comment_type' => $comment_type,
+			'name' => sprintf(__('%s added', 'notification'), WpObjectHelper::get_comment_type_name($commentType)),
+			'comment_type' => $commentType,
 			]
 		);
 
 		$this->add_action('wp_insert_comment', 10, 2);
 
 		// Translators: comment type.
-		$this->set_description(sprintf(__('Fires when new %s is added to database and awaits moderation or is published. Includes comment replies.', 'notification'), WpObjectHelper::get_comment_type_name($comment_type)));
+		$this->set_description(sprintf(__('Fires when new %s is added to database and awaits moderation or is published. Includes comment replies.', 'notification'), WpObjectHelper::get_comment_type_name($commentType)));
 	}
 
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param int $comment_id Comment ID.
+	 * @param int $commentId Comment ID.
 	 * @param object  $comment    Comment object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $comment_id, $comment )
+	public function context( $commentId, $comment )
 	{
 
 		$this->comment = $comment;

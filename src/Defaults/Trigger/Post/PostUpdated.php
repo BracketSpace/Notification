@@ -24,19 +24,19 @@ class PostUpdated extends PostTrigger
 	 *
 	 * @var \WP_User|false
 	 */
-	public $updating_user;
+	public $updatingUser;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $post_type optional, default: post.
+	 * @param string $postType optional, default: post.
 	 */
-	public function __construct( $post_type = 'post' )
+	public function __construct( $postType = 'post' )
 	{
 		parent::__construct(
 			[
-			'post_type' => $post_type,
-			'slug' => 'post/' . $post_type . '/updated',
+			'post_type' => $postType,
+			'slug' => 'post/' . $postType . '/updated',
 			]
 		);
 
@@ -72,12 +72,12 @@ class PostUpdated extends PostTrigger
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param int $post_id Post ID.
+	 * @param int $postId Post ID.
 	 * @param \WP_Post $post        Post object.
-	 * @param \WP_Post $post_before Post before object.
+	 * @param \WP_Post $postBefore Post before object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $post_id, $post, $post_before )
+	public function context( $postId, $post, $postBefore )
 	{
 
 		if ($post->post_type !== $this->post_type) {
@@ -85,24 +85,24 @@ class PostUpdated extends PostTrigger
 		}
 
 		// Filter the post statuses for which the notification should be sent. By default it will be send only if you update already published post.
-		$updated_post_statuses = apply_filters('notification/trigger/wordpress/post/updated/statuses', [ 'publish' ], $this->post_type);
+		$updatedPostStatuses = apply_filters('notification/trigger/wordpress/post/updated/statuses', [ 'publish' ], $this->post_type);
 
 		// Pending posts doesn't have the slug, otherwise we should bail.
 		if ($post->post_status !== 'pending' && empty($post->post_name)) {
 			return false;
 		}
 
-		if (! in_array($post_before->post_status, $updated_post_statuses, true) || $post->post_status === 'trash') {
+		if (! in_array($postBefore->post_status, $updatedPostStatuses, true) || $post->post_status === 'trash') {
 			return false;
 		}
 
 		$this->{ $this->post_type } = $post;
 
-		$updating_user_id = get_current_user_id();
+		$updatingUserId = get_current_user_id();
 
 		$this->author = get_userdata((int)$this->{ $this->post_type }->post_author);
 		$this->last_editor = get_userdata((int)get_post_meta($this->{ $this->post_type }->ID, '_edit_last', true));
-		$this->updating_user = get_userdata($updating_user_id);
+		$this->updating_user = get_userdata($updatingUserId);
 
 		$this->{ $this->post_type . '_creation_datetime' } = strtotime($this->{ $this->post_type }->post_date_gmt);
 		$this->{ $this->post_type . '_modification_datetime' } = strtotime($this->{ $this->post_type }->post_modified_gmt);
@@ -116,7 +116,7 @@ class PostUpdated extends PostTrigger
 	public function merge_tags()
 	{
 
-		$post_type_name = WpObjectHelper::get_post_type_name($this->post_type);
+		$postTypeName = WpObjectHelper::get_post_type_name($this->post_type);
 
 		parent::merge_tags();
 
@@ -126,7 +126,7 @@ class PostUpdated extends PostTrigger
 				[
 				'slug' => sprintf('%s_updating_user_ID', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s updating user ID', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s updating user ID', 'notification'), $postTypeName),
 				'property_name' => 'updating_user',
 				'group' => __('Updating user', 'notification'),
 				]
@@ -138,7 +138,7 @@ class PostUpdated extends PostTrigger
 				[
 				'slug' => sprintf('%s_updating_user_login', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s updating user login', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s updating user login', 'notification'), $postTypeName),
 				'property_name' => 'updating_user',
 				'group' => __('Updating user', 'notification'),
 				]
@@ -150,7 +150,7 @@ class PostUpdated extends PostTrigger
 				[
 				'slug' => sprintf('%s_updating_user_email', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s updating user email', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s updating user email', 'notification'), $postTypeName),
 				'property_name' => 'updating_user',
 				'group' => __('Updating user', 'notification'),
 				]
@@ -162,7 +162,7 @@ class PostUpdated extends PostTrigger
 				[
 				'slug' => sprintf('%s_updating_user_nicename', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s updating user nicename', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s updating user nicename', 'notification'), $postTypeName),
 				'property_name' => 'updating_user',
 				'group' => __('Updating user', 'notification'),
 				]
@@ -174,7 +174,7 @@ class PostUpdated extends PostTrigger
 				[
 				'slug' => sprintf('%s_updating_user_display_name', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s updating user display name', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s updating user display name', 'notification'), $postTypeName),
 				'property_name' => 'updating_user',
 				'group' => __('Updating user', 'notification'),
 				]
@@ -186,7 +186,7 @@ class PostUpdated extends PostTrigger
 				[
 				'slug' => sprintf('%s_updating_user_firstname', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s updating user first name', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s updating user first name', 'notification'), $postTypeName),
 				'property_name' => 'updating_user',
 				'group' => __('Updating user', 'notification'),
 				]
@@ -198,7 +198,7 @@ class PostUpdated extends PostTrigger
 				[
 				'slug' => sprintf('%s_updating_user_lastname', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s updating user last name', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s updating user last name', 'notification'), $postTypeName),
 				'property_name' => 'updating_user',
 				'group' => __('Updating user', 'notification'),
 				]
@@ -210,7 +210,7 @@ class PostUpdated extends PostTrigger
 				[
 				'slug' => sprintf('%s_updating_user_avatar', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s updating user email', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s updating user email', 'notification'), $postTypeName),
 				'property_name' => 'updating_user',
 				'group' => __('Updating user', 'notification'),
 				]
@@ -222,7 +222,7 @@ class PostUpdated extends PostTrigger
 				[
 				'slug' => sprintf('%s_updating_user_role', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s updating user role', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s updating user role', 'notification'), $postTypeName),
 				'property_name' => 'updating_user',
 				'group' => __('Updating user', 'notification'),
 				]

@@ -33,14 +33,14 @@ class Wizard
 	 *
 	 * @var string
 	 */
-	public $page_hook = 'none';
+	public $pageHook = 'none';
 
 	/**
 	 * Option name for dismissed Wizard.
 	 *
 	 * @var string
 	 */
-	protected $dismissed_option = 'notification_wizard_dismissed';
+	protected $dismissedOption = 'notification_wizard_dismissed';
 
 	/**
 	 * Wizard constructor
@@ -302,22 +302,22 @@ class Wizard
 			return;
 		}
 
-		$json_path_tmpl = 'resources/wizard-data/%s.json';
+		$jsonPathTmpl = 'resources/wizard-data/%s.json';
 
-		foreach ($notifications as $notification_slug) {
-			$json_path = sprintf($json_path_tmpl, $notification_slug);
+		foreach ($notifications as $notificationSlug) {
+			$jsonPath = sprintf($jsonPathTmpl, $notificationSlug);
 
-			if (! $this->filesystem->is_readable($json_path)) {
+			if (! $this->filesystem->is_readable($jsonPath)) {
 				continue;
 			}
 
-			$json = $this->filesystem->get_contents($json_path);
+			$json = $this->filesystem->get_contents($jsonPath);
 
-			$json_adapter = notification_adapt_from('JSON', $json);
-			$json_adapter->refresh_hash();
+			$jsonAdapter = notification_adapt_from('JSON', $json);
+			$jsonAdapter->refresh_hash();
 
-			$wp_adapter = notification_swap_adapter('WordPress', $json_adapter);
-			$wp_adapter->save();
+			$wpAdapter = notification_swap_adapter('WordPress', $jsonAdapter);
+			$wpAdapter->save();
 		}
 
 		/**

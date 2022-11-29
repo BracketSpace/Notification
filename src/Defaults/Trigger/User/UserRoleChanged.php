@@ -23,28 +23,28 @@ class UserRoleChanged extends UserTrigger
 	 *
 	 * @var array
 	 */
-	public $user_meta;
+	public $userMeta;
 
 	/**
 	 * New role
 	 *
 	 * @var string
 	 */
-	public $new_role;
+	public $newRole;
 
 	/**
 	 * Old role
 	 *
 	 * @var string
 	 */
-	public $old_role;
+	public $oldRole;
 
 	/**
 	 * User role change date and time
 	 *
 	 * @var int|false
 	 */
-	public $user_role_change_datetime;
+	public $userRoleChangeDatetime;
 
 	/**
 	 * Constructor
@@ -62,23 +62,23 @@ class UserRoleChanged extends UserTrigger
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param int $user_id User ID.
+	 * @param int $userId User ID.
 	 * @param string  $role      User new role.
-	 * @param array   $old_roles User previous roles.
+	 * @param array   $oldRoles User previous roles.
 	 * @return mixed
 	 */
-	public function context( $user_id, $role, $old_roles )
+	public function context( $userId, $role, $oldRoles )
 	{
 
-		if (empty($old_roles)) {
+		if (empty($oldRoles)) {
 			return false;
 		}
 
-		$this->user_id = $user_id;
+		$this->user_id = $userId;
 		$this->user_object = get_userdata($this->user_id);
 		$this->user_meta = get_user_meta($this->user_id);
 		$this->new_role = $role;
-		$this->old_role = implode(', ', $old_roles);
+		$this->old_role = implode(', ', $oldRoles);
 
 		$this->user_registered_datetime = strtotime($this->user_object->user_registered);
 		$this->user_role_change_datetime = time();

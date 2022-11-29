@@ -62,12 +62,12 @@ class SelectField extends Field
 	public function field()
 	{
 
-		$css_classes = $this->pretty . ' ' . $this->css_class();
+		$cssClasses = $this->pretty . ' ' . $this->css_class();
 
-		$html = '<select name="' . esc_attr($this->get_name()) . '" id="' . esc_attr($this->get_id()) . '" class="' . $css_classes . '" ' . $this->maybe_disable() . '>';
+		$html = '<select name="' . esc_attr($this->get_name()) . '" id="' . esc_attr($this->get_id()) . '" class="' . $cssClasses . '" ' . $this->maybe_disable() . '>';
 
-		foreach ($this->options as $option_value => $option_label) {
-			$html .= '<option value="' . esc_attr($option_value) . '" ' . selected($this->get_value(), $option_value, false) . '>' . esc_html($option_label) . '</option>';
+		foreach ($this->options as $optionValue => $optionLabel) {
+			$html .= '<option value="' . esc_attr($optionValue) . '" ' . selected($this->get_value(), $optionValue, false) . '>' . esc_html($optionLabel) . '</option>';
 		}
 
 		$html .= '</select>';

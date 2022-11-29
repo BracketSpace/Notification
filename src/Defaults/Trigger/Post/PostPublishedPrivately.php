@@ -24,26 +24,26 @@ class PostPublishedPrivately extends PostTrigger
 	 *
 	 * @var string
 	 */
-	protected static $publish_status = 'private';
+	protected static $publishStatus = 'private';
 
 	/**
 	 * Post publishing user object
 	 *
 	 * @var \WP_User|false
 	 */
-	public $publishing_user;
+	public $publishingUser;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $post_type optional, default: post.
+	 * @param string $postType optional, default: post.
 	 */
-	public function __construct( $post_type = 'post' )
+	public function __construct( $postType = 'post' )
 	{
 		parent::__construct(
 			[
-			'post_type' => $post_type,
-			'slug' => 'post/' . $post_type . '/published-privately',
+			'post_type' => $postType,
+			'slug' => 'post/' . $postType . '/published-privately',
 			]
 		);
 
@@ -79,19 +79,19 @@ class PostPublishedPrivately extends PostTrigger
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param string   $new_status New post status.
-	 * @param string   $old_status Old post status.
+	 * @param string   $newStatus New post status.
+	 * @param string   $oldStatus Old post status.
 	 * @param \WP_Post $post       Post object.
 	 * @return false|void
 	 */
-	public function context( $new_status, $old_status, $post )
+	public function context( $newStatus, $oldStatus, $post )
 	{
 
 		if ($post->post_type !== $this->post_type) {
 			return false;
 		}
 
-		if (self::$publish_status === $old_status || self::$publish_status !== $new_status) {
+		if (self::$publishStatus === $oldStatus || self::$publishStatus !== $newStatus) {
 			return false;
 		}
 
@@ -114,7 +114,7 @@ class PostPublishedPrivately extends PostTrigger
 	public function merge_tags()
 	{
 
-		$post_type_name = WpObjectHelper::get_post_type_name($this->post_type);
+		$postTypeName = WpObjectHelper::get_post_type_name($this->post_type);
 
 		parent::merge_tags();
 
@@ -124,7 +124,7 @@ class PostPublishedPrivately extends PostTrigger
 				[
 				'slug' => sprintf('%s_publishing_user_ID', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s publishing user ID', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s publishing user ID', 'notification'), $postTypeName),
 				'property_name' => 'publishing_user',
 				'group' => __('Publishing user', 'notification'),
 				]
@@ -136,7 +136,7 @@ class PostPublishedPrivately extends PostTrigger
 				[
 				'slug' => sprintf('%s_publishing_user_login', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s publishing user login', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s publishing user login', 'notification'), $postTypeName),
 				'property_name' => 'publishing_user',
 				'group' => __('Publishing user', 'notification'),
 				]
@@ -148,7 +148,7 @@ class PostPublishedPrivately extends PostTrigger
 				[
 				'slug' => sprintf('%s_publishing_user_email', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s publishing user email', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s publishing user email', 'notification'), $postTypeName),
 				'property_name' => 'publishing_user',
 				'group' => __('Publishing user', 'notification'),
 				]
@@ -160,7 +160,7 @@ class PostPublishedPrivately extends PostTrigger
 				[
 				'slug' => sprintf('%s_publishing_user_nicename', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s publishing user nicename', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s publishing user nicename', 'notification'), $postTypeName),
 				'property_name' => 'publishing_user',
 				'group' => __('Publishing user', 'notification'),
 				]
@@ -172,7 +172,7 @@ class PostPublishedPrivately extends PostTrigger
 				[
 				'slug' => sprintf('%s_publishing_user_display_name', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s publishing user display name', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s publishing user display name', 'notification'), $postTypeName),
 				'property_name' => 'publishing_user',
 				'group' => __('Publishing user', 'notification'),
 				]
@@ -184,7 +184,7 @@ class PostPublishedPrivately extends PostTrigger
 				[
 				'slug' => sprintf('%s_publishing_user_firstname', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s publishing user first name', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s publishing user first name', 'notification'), $postTypeName),
 				'property_name' => 'publishing_user',
 				'group' => __('Publishing user', 'notification'),
 				]
@@ -196,7 +196,7 @@ class PostPublishedPrivately extends PostTrigger
 				[
 				'slug' => sprintf('%s_publishing_user_lastname', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s publishing user last name', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s publishing user last name', 'notification'), $postTypeName),
 				'property_name' => 'publishing_user',
 				'group' => __('Publishing user', 'notification'),
 				]
@@ -208,7 +208,7 @@ class PostPublishedPrivately extends PostTrigger
 				[
 				'slug' => sprintf('%s_publishing_user_avatar', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s publishing user avatar', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s publishing user avatar', 'notification'), $postTypeName),
 				'property_name' => 'publishing_user',
 				'group' => __('Publishing user', 'notification'),
 				]
@@ -220,7 +220,7 @@ class PostPublishedPrivately extends PostTrigger
 				[
 				'slug' => sprintf('%s_publishing_user_role', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s publishing user role', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s publishing user role', 'notification'), $postTypeName),
 				'property_name' => 'publishing_user',
 				'group' => __('Publishing user', 'notification'),
 				]
@@ -232,7 +232,7 @@ class PostPublishedPrivately extends PostTrigger
 				[
 				'slug' => sprintf('%s_publication_datetime', $this->post_type),
 				// translators: singular post name.
-				'name' => sprintf(__('%s publication date and time', 'notification'), $post_type_name),
+				'name' => sprintf(__('%s publication date and time', 'notification'), $postTypeName),
 				]
 			)
 		);

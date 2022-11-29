@@ -23,7 +23,7 @@ class IntegerTag extends MergeTag
 	 *
 	 * @var string
 	 */
-	protected $value_type = 'integer';
+	protected $valueType = 'integer';
 
 	/**
 	 * Check the merge tag value type

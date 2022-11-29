@@ -120,9 +120,9 @@ class Debugging
 		}
 
 		$message = esc_html__('Debug log is active and no notifications will be sent.', 'notification');
-		$debug_log_link = '<a href="' . admin_url('edit.php?post_type=notification&page=settings&section=debugging') . '">' . esc_html__('See debug log', 'notification') . '</a>';
+		$debugLogLink = '<a href="' . admin_url('edit.php?post_type=notification&page=settings&section=debugging') . '">' . esc_html__('See debug log', 'notification') . '</a>';
 
-		echo wp_kses_post('<div class="notice notice-warning"><p>' . $message . ' ' . $debug_log_link . '</p></div>');
+		echo wp_kses_post('<div class="notice notice-warning"><p>' . $message . ' ' . $debugLogLink . '</p></div>');
 	}
 
 	/**
@@ -139,20 +139,20 @@ class Debugging
 		check_admin_referer('notification_clear_log_' . wp_unslash($_GET['log_type'] ?? ''), 'nonce');
 
 		$data = $_GET;
-		$log_type = $data['log_type'] ?? '';
+		$logType = $data['log_type'] ?? '';
 
 		$debug = \Notification::component('core_debugging');
 
-		$remove_types = [];
+		$removeTypes = [];
 
-		if ($log_type === 'notification') {
-			$remove_types[] = 'notification';
-		} elseif ($log_type === 'error') {
-			$remove_types[] = 'error';
-			$remove_types[] = 'warning';
+		if ($logType === 'notification') {
+			$removeTypes[] = 'notification';
+		} elseif ($logType === 'error') {
+			$removeTypes[] = 'error';
+			$removeTypes[] = 'warning';
 		}
 
-		$debug->remove_logs($remove_types);
+		$debug->remove_logs($removeTypes);
 
 		wp_safe_redirect(wp_get_referer());
 		exit;

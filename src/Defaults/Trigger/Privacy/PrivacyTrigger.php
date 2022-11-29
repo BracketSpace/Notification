@@ -31,14 +31,14 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 	 *
 	 * @var \WP_User|false
 	 */
-	public $user_object;
+	public $userObject;
 
 	/**
 	 * Data operation date and time
 	 *
 	 * @var string
 	 */
-	public $data_operation_time;
+	public $dataOperationTime;
 
 	/**
 	 * Constructor

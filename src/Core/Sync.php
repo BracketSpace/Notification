@@ -23,7 +23,7 @@ class Sync
 	 *
 	 * @var string|null
 	 */
-	protected static $sync_path;
+	protected static $syncPath;
 
 	/**
 	 * Gets all Notifications from JSON files
@@ -103,10 +103,10 @@ class Sync
 	 * @action notification/data/save/after
 	 *
 	 * @since  6.0.0
-	 * @param \BracketSpace\Notification\Defaults\Adapter\WordPress $wp_adapter WordPress adapter.
+	 * @param \BracketSpace\Notification\Defaults\Adapter\WordPress $wpAdapter WordPress adapter.
 	 * @return void
 	 */
-	public static function save_local_json( $wp_adapter )
+	public static function save_local_json( $wpAdapter )
 	{
 		if (! self::is_syncing()) {
 			return;
@@ -118,8 +118,8 @@ class Sync
 			return;
 		}
 
-		$file = $wp_adapter->get_hash() . '.json';
-		$json = notification_swap_adapter('JSON', $wp_adapter)->save();
+		$file = $wpAdapter->get_hash() . '.json';
+		$json = notification_swap_adapter('JSON', $wpAdapter)->save();
 
 		$fs->put_contents($file, $json);
 	}
@@ -130,12 +130,12 @@ class Sync
 	 * @action delete_post
 	 *
 	 * @since  6.0.0
-	 * @param int $post_id Deleted Post ID.
+	 * @param int $postId Deleted Post ID.
 	 * @return void
 	 */
-	public function delete_local_json( $post_id )
+	public function delete_local_json( $postId )
 	{
-		if (! self::is_syncing() || get_post_type($post_id) !== 'notification') {
+		if (! self::is_syncing() || get_post_type($postId) !== 'notification') {
 			return;
 		}
 
@@ -145,7 +145,7 @@ class Sync
 			return;
 		}
 
-		$adapter = notification_adapt_from('WordPress', $post_id);
+		$adapter = notification_adapt_from('WordPress', $postId);
 		$file = $adapter->get_hash() . '.json';
 
 		if (!$fs->exists($file)) {
@@ -174,7 +174,7 @@ class Sync
 			throw new \Exception(sprintf('Synchronization has been already enabled and it\'s syncing to: %s', self::get_sync_path()));
 		}
 
-		static::$sync_path = $path;
+		static::$syncPath = $path;
 
 		$fs = static::get_sync_fs();
 
@@ -202,7 +202,7 @@ class Sync
 	 */
 	public static function disable()
 	{
-		static::$sync_path = null;
+		static::$syncPath = null;
 	}
 
 	/**
@@ -213,7 +213,7 @@ class Sync
 	 */
 	public static function get_sync_path()
 	{
-		return static::$sync_path;
+		return static::$syncPath;
 	}
 
 	/**
@@ -239,6 +239,6 @@ class Sync
 	 */
 	public static function is_syncing(): bool
 	{
-		return static::$sync_path !== null;
+		return static::$syncPath !== null;
 	}
 }

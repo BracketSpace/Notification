@@ -24,7 +24,7 @@ class RecipientRepository
 	 *
 	 * @var array<string,string>
 	 */
-	public static $webhook_recipient_types = [
+	public static $webhookRecipientTypes = [
 		'post' => 'POST',
 		'get' => 'GET',
 		'put' => 'PUT',
@@ -43,7 +43,7 @@ class RecipientRepository
 		Register::recipient('email', new Recipient\UserID());
 		Register::recipient('email', new Recipient\Role());
 
-		foreach (self::$webhook_recipient_types as $type => $name) {
+		foreach (self::$webhookRecipientTypes as $type => $name) {
 			$recipient = new Recipient\Webhook($type, $name);
 
 			Register::recipient('webhook', $recipient);

@@ -24,7 +24,7 @@ class CheckboxField extends Field
 	 *
 	 * @var string
 	 */
-	protected $checkbox_label = '';
+	protected $checkboxLabel = '';
 
 	/**
 	 * Field constructor

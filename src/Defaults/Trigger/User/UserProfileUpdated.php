@@ -23,14 +23,14 @@ class UserProfileUpdated extends UserTrigger
 	 *
 	 * @var array
 	 */
-	public $user_meta;
+	public $userMeta;
 
 	/**
 	 * User profile update date and time
 	 *
 	 * @var int|false
 	 */
-	public $user_profile_updated_datetime;
+	public $userProfileUpdatedDatetime;
 
 	/**
 	 * Constructor
@@ -48,13 +48,13 @@ class UserProfileUpdated extends UserTrigger
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param int $user_id User ID.
+	 * @param int $userId User ID.
 	 * @return void
 	 */
-	public function context( $user_id )
+	public function context( $userId )
 	{
 
-		$this->user_id = $user_id;
+		$this->user_id = $userId;
 		$this->user_object = get_userdata($this->user_id);
 		$this->user_meta = get_user_meta($this->user_id);
 

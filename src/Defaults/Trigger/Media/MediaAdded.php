@@ -31,13 +31,13 @@ class MediaAdded extends MediaTrigger
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param int $attachment_id Attachment Post ID.
+	 * @param int $attachmentId Attachment Post ID.
 	 * @return void
 	 */
-	public function context( $attachment_id )
+	public function context( $attachmentId )
 	{
 
-		$this->attachment = get_post($attachment_id);
+		$this->attachment = get_post($attachmentId);
 		$this->user_id = (int)$this->attachment->post_author;
 		$this->user_object = get_userdata($this->user_id);
 

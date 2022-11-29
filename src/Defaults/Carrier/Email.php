@@ -55,7 +55,7 @@ class Email extends Abstracts\Carrier
 			)
 		);
 
-		$body_field = notification_get_setting('carriers/email/type') === 'html' && ! notification_get_setting('carriers/email/unfiltered_html') ? new Field\EditorField(
+		$bodyField = notification_get_setting('carriers/email/type') === 'html' && ! notification_get_setting('carriers/email/unfiltered_html') ? new Field\EditorField(
 			[
 				'label' => __('Body', 'notification'),
 				'name' => 'body',
@@ -75,7 +75,7 @@ class Email extends Abstracts\Carrier
 					]
 		);
 
-		$this->add_form_field($body_field);
+		$this->add_form_field($bodyField);
 
 		$this->add_recipients_field();
 
@@ -130,11 +130,11 @@ class Email extends Abstracts\Carrier
 	 */
 	public function send( Triggerable $trigger )
 	{
-		$default_html_mime = notification_get_setting('carriers/email/type') === 'html';
-		$html_mime = apply_filters_deprecated('notification/email/use_html_mime', [ $default_html_mime, $this, $trigger ], '6.0.0', 'notification/carrier/email/use_html_mime');
-		$html_mime = apply_filters('notification/carrier/email/use_html_mime', $html_mime, $this, $trigger);
+		$defaultHtmlMime = notification_get_setting('carriers/email/type') === 'html';
+		$htmlMime = apply_filters_deprecated('notification/email/use_html_mime', [ $defaultHtmlMime, $this, $trigger ], '6.0.0', 'notification/carrier/email/use_html_mime');
+		$htmlMime = apply_filters('notification/carrier/email/use_html_mime', $htmlMime, $this, $trigger);
 
-		if ($html_mime) {
+		if ($htmlMime) {
 			add_filter('wp_mail_content_type', [ $this, 'set_mail_type' ]);
 		}
 
@@ -149,9 +149,9 @@ class Email extends Abstracts\Carrier
 		$message = apply_filters_deprecated('notification/email/message/pre', [ $data['body'], $this, $trigger ], '6.0.0', 'notification/carrier/email/message/pre');
 		$message = apply_filters('notification/carrier/email/message/pre', $message, $this, $trigger);
 
-		$use_autop = apply_filters_deprecated('notification/email/message/use_autop', [ $html_mime, $this, $trigger ], '6.0.0', 'notification/carrier/email/message/use_autop');
-		$use_autop = apply_filters('notification/carrier/email/message/use_autop', $use_autop, $this, $trigger);
-		if ($use_autop) {
+		$useAutop = apply_filters_deprecated('notification/email/message/use_autop', [ $htmlMime, $this, $trigger ], '6.0.0', 'notification/carrier/email/message/use_autop');
+		$useAutop = apply_filters('notification/carrier/email/message/use_autop', $useAutop, $this, $trigger);
+		if ($useAutop) {
 			$message = wpautop($message);
 		}
 
@@ -193,7 +193,7 @@ class Email extends Abstracts\Carrier
 			}
 		}
 
-		foreach ($errors as $error => $error_data) {
+		foreach ($errors as $error => $errorData) {
 			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
 			notification_log(
 				$this->get_name(),
@@ -201,7 +201,7 @@ class Email extends Abstracts\Carrier
 				'<pre>' . print_r(
 					[
 					'error' => $error,
-					'recipients_affected' => $error_data['recipients'],
+					'recipients_affected' => $errorData['recipients'],
 					'trigger' => sprintf('%s (%s)', $trigger->get_name(), $trigger->get_slug()),
 					'email_subject' => $subject,
 					],
@@ -210,7 +210,7 @@ class Email extends Abstracts\Carrier
 			);
 		}
 
-		if (!$html_mime) {
+		if (!$htmlMime) {
 			return;
 		}
 
@@ -222,16 +222,16 @@ class Email extends Abstracts\Carrier
 	 *
 	 * @filter notification/carrier/form/data/values
 	 *
-	 * @param  array $carrier_data      Carrier data from PostData.
-	 * @param  array $raw_data          Raw data from PostData, it contains the unfiltered message body.
+	 * @param  array $carrierData      Carrier data from PostData.
+	 * @param  array $rawData          Raw data from PostData, it contains the unfiltered message body.
 	 * @return array                    Carrier data with the unfiltered body, if notifications/email/unfiltered_html setting is true.
 	 **/
-	public function allow_unfiltered_html_body( $carrier_data, $raw_data )
+	public function allow_unfiltered_html_body( $carrierData, $rawData )
 	{
 		if (notification_get_setting('carriers/email/unfiltered_html')) {
-			$carrier_data['body'] = $raw_data['body'];
+			$carrierData['body'] = $rawData['body'];
 		}
 
-		return $carrier_data;
+		return $carrierData;
 	}
 }

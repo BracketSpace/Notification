@@ -25,12 +25,12 @@ class WpObjectHelper
 	 * Gets post type object
 	 *
 	 * @since  8.0.0
-	 * @param  string $post_type_slug Post type slug.
+	 * @param  string $postTypeSlug Post type slug.
 	 * @return \WP_Post_Type|null
 	 */
-	public static function get_post_type( $post_type_slug )
+	public static function get_post_type( $postTypeSlug )
 	{
-		return get_post_type_object($post_type_slug);
+		return get_post_type_object($postTypeSlug);
 	}
 
 	/**
@@ -42,41 +42,41 @@ class WpObjectHelper
 	 */
 	public static function get_post_types( $args = [] ): array
 	{
-		$post_types = [];
-		foreach (get_post_types($args, 'objects') as $post_type) {
-			if (! $post_type instanceof \WP_Post_Type) {
+		$postTypes = [];
+		foreach (get_post_types($args, 'objects') as $postType) {
+			if (! $postType instanceof \WP_Post_Type) {
 				continue;
 			}
 
-			$post_types[$post_type->name] = $post_type->labels->singular_name;
+			$postTypes[$postType->name] = $postType->labels->singular_name;
 		}
 
-		return $post_types;
+		return $postTypes;
 	}
 
 	/**
 	 * Gets post type object name
 	 *
 	 * @since  8.0.0
-	 * @param  string $post_type_slug Post type slug.
+	 * @param  string $postTypeSlug Post type slug.
 	 * @return string|null
 	 */
-	public static function get_post_type_name( $post_type_slug )
+	public static function get_post_type_name( $postTypeSlug )
 	{
-		$post_type = self::get_post_type($post_type_slug);
-		return $post_type->labels->singular_name ?? null;
+		$postType = self::get_post_type($postTypeSlug);
+		return $postType->labels->singular_name ?? null;
 	}
 
 	/**
 	 * Gets taxonomy object
 	 *
 	 * @since  8.0.0
-	 * @param  string $taxonomy_slug Taxonomy slug.
+	 * @param  string $taxonomySlug Taxonomy slug.
 	 * @return \WP_Taxonomy|null
 	 */
-	public static function get_taxonomy( $taxonomy_slug )
+	public static function get_taxonomy( $taxonomySlug )
 	{
-		$taxonomy = get_taxonomy($taxonomy_slug);
+		$taxonomy = get_taxonomy($taxonomySlug);
 		return $taxonomy ? $taxonomy : null;
 	}
 
@@ -106,12 +106,12 @@ class WpObjectHelper
 	 * Gets taxonomy object name
 	 *
 	 * @since  8.0.0
-	 * @param  string $taxonomy_slug Taxonomy slug.
+	 * @param  string $taxonomySlug Taxonomy slug.
 	 * @return string|null
 	 */
-	public static function get_taxonomy_name( $taxonomy_slug )
+	public static function get_taxonomy_name( $taxonomySlug )
 	{
-		$taxonomy = self::get_taxonomy($taxonomy_slug);
+		$taxonomy = self::get_taxonomy($taxonomySlug);
 		return $taxonomy->labels->singular_name ?? null;
 	}
 
@@ -119,13 +119,13 @@ class WpObjectHelper
 	 * Gets comment type name
 	 *
 	 * @since  8.0.0
-	 * @param  string $comment_type_slug Comment type slug.
+	 * @param  string $commentTypeSlug Comment type slug.
 	 * @return string|null
 	 */
-	public static function get_comment_type_name( $comment_type_slug )
+	public static function get_comment_type_name( $commentTypeSlug )
 	{
-		$comment_types = self::get_comment_types();
-		return $comment_types[$comment_type_slug] ?? null;
+		$commentTypes = self::get_comment_types();
+		return $commentTypes[$commentTypeSlug] ?? null;
 	}
 
 	/**
@@ -143,7 +143,7 @@ class WpObjectHelper
 			static function () {
 				global $wpdb;
 
-				$comment_types = [
+				$commentTypes = [
 				'comment' => __('Comment', 'notification'),
 				'pingback' => __('Pingback', 'notification'),
 				'trackback' => __('Trackback', 'notification'),
@@ -151,24 +151,24 @@ class WpObjectHelper
 
 				// There's no other way to get comment types and we're using the cache lib.
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-				$db_types = $wpdb->get_col(
+				$dbTypes = $wpdb->get_col(
 					"SELECT DISTINCT comment_type
 				FROM $wpdb->comments
 				WHERE 1=1"
 				);
 
-				foreach ($db_types as $type) {
-					if (isset($comment_types[$type])) {
+				foreach ($dbTypes as $type) {
+					if (isset($commentTypes[$type])) {
 						continue;
 					}
 
 					// Dynamically generated and translated name.
 					$name = ucfirst(str_replace([ '_', '-' ], ' ', $type));
 
-					$comment_types[(string)$type] = __($name);
+					$commentTypes[(string)$type] = __($name);
 				}
 
-				return $comment_types;
+				return $commentTypes;
 			}
 		);
 	}

@@ -34,11 +34,11 @@ class Select
 
 		$options = is_callable($field->addon('options')) ? $field->addon('options')() : $field->addon('options');
 
-		foreach ($options as $option_value => $option_label) {
-			$selected = in_array($option_value, (array)$field->value(), true) ? 'selected="selected"' : '';
+		foreach ($options as $optionValue => $optionLabel) {
+			$selected = in_array($optionValue, (array)$field->value(), true) ? 'selected="selected"' : '';
 			// We're printing safe variable here.
 			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo '<option value="' . esc_attr($option_value) . '" ' . $selected . '>' . esc_html($option_label) . '</option>';
+			echo '<option value="' . esc_attr($optionValue) . '" ' . $selected . '>' . esc_html($optionLabel) . '</option>';
 		}
 
 		echo '</select>';

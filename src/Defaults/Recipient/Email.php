@@ -53,18 +53,18 @@ class Email extends Abstracts\Recipient
 		 *
 		 * Defaults to 'default' (ie. filter 'notification/recipient/email/default'):
 		 */
-		$filter_id = 'default';
+		$filterId = 'default';
 		$pattern = '/\bfilter-id:([\w-]*)/';
 
 		if (preg_match($pattern, $value, $matches)) {
-			$filter_id = $matches[1];
+			$filterId = $matches[1];
 			$value = preg_replace($pattern, '', $value);
 			$value = is_string($value) ? trim($value) : '';
 		}
 
-		$value = apply_filters('notification/recipient/email/' . $filter_id, $value);
+		$value = apply_filters('notification/recipient/email/' . $filterId, $value);
 
-		$parsed_emails = [];
+		$parsedEmails = [];
 		$emails = is_array($value) ? $value : preg_split('/[;|,]/', $value);
 
 		if (! $emails) {
@@ -72,10 +72,10 @@ class Email extends Abstracts\Recipient
 		}
 
 		foreach ($emails as $email) {
-			$parsed_emails[] = sanitize_email($email);
+			$parsedEmails[] = sanitize_email($email);
 		}
 
-		return $parsed_emails;
+		return $parsedEmails;
 	}
 
 	/**

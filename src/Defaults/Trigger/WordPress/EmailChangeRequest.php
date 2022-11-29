@@ -24,28 +24,28 @@ class EmailChangeRequest extends Abstracts\Trigger
 	 *
 	 * @var string
 	 */
-	public $user_login;
+	public $userLogin;
 
 	/**
 	 * New admin email
 	 *
 	 * @var string
 	 */
-	public $new_admin_email;
+	public $newAdminEmail;
 
 	/**
 	 * Confirmation email
 	 *
 	 * @var string
 	 */
-	public $confirmation_url;
+	public $confirmationUrl;
 
 	/**
 	 * Email change timestamp
 	 *
 	 * @var int
 	 */
-	public $email_change_datetime;
+	public $emailChangeDatetime;
 
 	/**
 	 * [description]
@@ -70,21 +70,21 @@ class EmailChangeRequest extends Abstracts\Trigger
 	 *
 	 * @since 8.0.0
 	 *
-	 * @param string $old_value Old email value.
+	 * @param string $oldValue Old email value.
 	 * @param string $value New email value.
 	 *
 	 * @return mixed
 	 */
-	public function context( $old_value, $value )
+	public function context( $oldValue, $value )
 	{
 
-		if ($old_value === $value) {
+		if ($oldValue === $value) {
 			return false;
 		}
 
 		$data = get_option('adminhash');
-		$current_user = wp_get_current_user();
-		$this->user_login = $current_user->user_login;
+		$currentUser = wp_get_current_user();
+		$this->user_login = $currentUser->user_login;
 		$this->new_admin_email = $data['newemail'];
 		$this->confirmation_url = esc_url(admin_url('options.php?adminhash=' . $data['hash']));
 		$this->email_change_datetime = time();

@@ -24,7 +24,7 @@ class CommentActionDelete extends UrlTag
 	 *
 	 * @var string
 	 */
-	protected $comment_type = 'comment';
+	protected $commentType = 'comment';
 
 	/**
 	 * Merge tag constructor
@@ -41,16 +41,16 @@ class CommentActionDelete extends UrlTag
 
 		$this->set_trigger_prop($params['property_name'] ?? $this->comment_type);
 
-		$comment_type_name = WpObjectHelper::get_comment_type_name($this->comment_type);
+		$commentTypeName = WpObjectHelper::get_comment_type_name($this->comment_type);
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug' => 'comment_delete_action_url',
 				// Translators: Comment type name.
-				'name' => sprintf(__('%s delete URL', 'notification'), $comment_type_name),
+				'name' => sprintf(__('%s delete URL', 'notification'), $commentTypeName),
 				// Translators: comment type actions text.
-				'group' => sprintf(__('%s actions', 'notification'), $comment_type_name),
+				'group' => sprintf(__('%s actions', 'notification'), $commentTypeName),
 				'resolver' => function ( $trigger ) {
 					return admin_url("comment.php?action=delete&c={$trigger->{ $this->get_trigger_prop() }->comment_ID}#wpbody-content");
 				},

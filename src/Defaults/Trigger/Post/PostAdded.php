@@ -23,19 +23,19 @@ class PostAdded extends PostTrigger
 	 *
 	 * @var \WP_User|false
 	 */
-	public $publishing_user;
+	public $publishingUser;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $post_type optional, default: post.
+	 * @param string $postType optional, default: post.
 	 */
-	public function __construct( $post_type = 'post' )
+	public function __construct( $postType = 'post' )
 	{
 		parent::__construct(
 			[
-			'post_type' => $post_type,
-			'slug' => 'post/' . $post_type . '/added',
+			'post_type' => $postType,
+			'slug' => 'post/' . $postType . '/added',
 			]
 		);
 
@@ -72,12 +72,12 @@ class PostAdded extends PostTrigger
 	 * Sets trigger's context
 	 * Return `false` if you want to abort the trigger execution
 	 *
-	 * @param int $post_id Post ID.
+	 * @param int $postId Post ID.
 	 * @param object  $post    Post object.
 	 * @param bool    $update  Whether this is an existing post being updated or not.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $post_id, $post, $update )
+	public function context( $postId, $post, $update )
 	{
 
 		// Bail if post has been already added.
@@ -87,8 +87,8 @@ class PostAdded extends PostTrigger
 
 		// Controls if notification should be aborted if post is added from the admin. If disabled, the notification will be
 		// executed every time someone click the "Add new" button in the WordPress admin.
-		$bail_auto_draft = apply_filters('notification/trigger/wordpress/' . $this->post_type . '/added/bail_auto_draft', true);
-		if ($bail_auto_draft && $post->post_status === 'auto-draft') {
+		$bailAutoDraft = apply_filters('notification/trigger/wordpress/' . $this->post_type . '/added/bail_auto_draft', true);
+		if ($bailAutoDraft && $post->post_status === 'auto-draft') {
 			return false;
 		}
 
