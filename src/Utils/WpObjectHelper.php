@@ -63,7 +63,7 @@ class WpObjectHelper
 	 */
 	public static function getPostTypeName( $postTypeSlug )
 	{
-		$postType = self::get_post_type($postTypeSlug);
+		$postType = self::getPostType($postTypeSlug);
 		return $postType->labels->singularName ?? null;
 	}
 
@@ -111,7 +111,7 @@ class WpObjectHelper
 	 */
 	public static function getTaxonomyName( $taxonomySlug )
 	{
-		$taxonomy = self::get_taxonomy($taxonomySlug);
+		$taxonomy = self::getTaxonomy($taxonomySlug);
 		return $taxonomy->labels->singularName ?? null;
 	}
 
@@ -124,7 +124,7 @@ class WpObjectHelper
 	 */
 	public static function getCommentTypeName( $commentTypeSlug )
 	{
-		$commentTypes = self::get_comment_types();
+		$commentTypes = self::getCommentTypes();
 		return $commentTypes[$commentTypeSlug] ?? null;
 	}
 

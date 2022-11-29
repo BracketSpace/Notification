@@ -49,7 +49,7 @@ class Processor
 					return;
 				}
 
-				self::process_notification($notification, $trigger);
+				self::processNotification($notification, $trigger);
 			}
 		);
 	}
@@ -87,7 +87,7 @@ class Processor
 		);
 
 		// Cache trigger params.
-		self::get_cache($triggerKey)->set($trigger);
+		self::getCache($triggerKey)->set($trigger);
 
 		$result = wp_schedule_single_event(
 			time() + apply_filters('notification/background_processing/delay', 30),
@@ -144,7 +144,7 @@ class Processor
 	public static function handleCron( $notificationJson, $triggerKey )
 	{
 		$notification = notification_adapt_from('JSON', $notificationJson)->getNotification();
-		$trigger = self::get_cache($triggerKey)->get();
+		$trigger = self::getCache($triggerKey)->get();
 
 		if (! $trigger instanceof Triggerable) {
 			ErrorHandler::error(
@@ -156,9 +156,9 @@ class Processor
 			return;
 		}
 
-		self::get_cache($triggerKey)->delete();
+		self::getCache($triggerKey)->delete();
 
-		self::process_notification($notification, $trigger);
+		self::processNotification($notification, $trigger);
 	}
 
 	/**

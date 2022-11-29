@@ -34,7 +34,7 @@ class Whitelabel
 	 */
 	public function removeDefaults()
 	{
-		if (! self::is_whitelabeled()) {
+		if (! self::isWhitelabeled()) {
 			return;
 		}
 

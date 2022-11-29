@@ -61,7 +61,7 @@ class Deactivated extends PluginTrigger
 	public function mergeTags()
 	{
 
-		parent::merge_tags();
+		parent::mergeTags();
 
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(

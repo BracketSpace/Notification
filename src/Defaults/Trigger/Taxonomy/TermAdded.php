@@ -33,7 +33,7 @@ class TermAdded extends TermTrigger
 	 */
 	public function __construct( $taxonomy = 'category' )
 	{
-		$this->taxonomy = WpObjectHelper::get_taxonomy($taxonomy);
+		$this->taxonomy = WpObjectHelper::getTaxonomy($taxonomy);
 
 		parent::__construct(
 			[
@@ -106,7 +106,7 @@ class TermAdded extends TermTrigger
 	public function mergeTags()
 	{
 
-		parent::merge_tags();
+		parent::mergeTags();
 
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(

@@ -71,7 +71,7 @@ class UserLogin extends UserTrigger
 	public function mergeTags()
 	{
 
-		parent::merge_tags();
+		parent::mergeTags();
 
 		$this->addMergeTag(new MergeTag\User\UserNicename());
 		$this->addMergeTag(new MergeTag\User\UserDisplayName());

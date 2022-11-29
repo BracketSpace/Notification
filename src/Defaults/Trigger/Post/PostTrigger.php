@@ -64,7 +64,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 	 */
 	public function getGroup()
 	{
-		return WpObjectHelper::get_post_type_name($this->postType);
+		return WpObjectHelper::getPostTypeName($this->postType);
 	}
 
 	/**
@@ -85,7 +85,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 	public function mergeTags()
 	{
 
-		$postTypeName = WpObjectHelper::get_post_type_name($this->postType);
+		$postTypeName = WpObjectHelper::getPostTypeName($this->postType);
 
 		$this->addMergeTag(
 			new MergeTag\Post\PostID(

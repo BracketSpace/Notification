@@ -247,6 +247,6 @@ class RepeaterField extends Field
 			$classes .= 'fields-repeater-sortable ';
 		}
 
-		return $classes . parent::css_class();
+		return $classes . parent::cssClass();
 	}
 }

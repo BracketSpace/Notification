@@ -51,7 +51,7 @@ class Sync
 			]
 		);
 
-		if (!CoreSync::is_syncing()) {
+		if (!CoreSync::isSyncing()) {
 			return;
 		}
 
@@ -73,7 +73,7 @@ class Sync
 	 */
 	public function templateActions()
 	{
-		if (! CoreSync::is_syncing()) {
+		if (! CoreSync::isSyncing()) {
 			return Templates::get('sync/disabled');
 		}
 
@@ -115,13 +115,13 @@ class Sync
 		/**
 		 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null
 		 */
-		$notification = NotificationQueries::with_hash($hash);
+		$notification = NotificationQueries::withHash($hash);
 
 		if ($notification === null) {
 			return;
 		}
 
-		CoreSync::save_local_json($notification);
+		CoreSync::saveLocalJson($notification);
 	}
 
 	/**
@@ -134,7 +134,7 @@ class Sync
 	public function loadNotificationToWordpress( $hash )
 	{
 
-		$jsonNotifications = CoreSync::get_all_json();
+		$jsonNotifications = CoreSync::getAllJson();
 
 		foreach ($jsonNotifications as $json) {
 			try {

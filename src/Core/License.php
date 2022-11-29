@@ -97,7 +97,7 @@ class License
 			return false;
 		}
 
-		$driver = new CacheDriver\Transient(ErrorHandler::debug_enabled() ? 60 : DAY_IN_SECONDS);
+		$driver = new CacheDriver\Transient(ErrorHandler::debugEnabled() ? 60 : DAY_IN_SECONDS);
 		$cache = new Cache($driver, sprintf('notification_license_check_%s', $this->extension['slug']));
 
 		return $cache->collect(

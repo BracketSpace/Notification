@@ -64,7 +64,7 @@ class MediaUpdated extends MediaTrigger
 	public function mergeTags()
 	{
 
-		parent::merge_tags();
+		parent::mergeTags();
 
 		// Updating user.
 		$this->addMergeTag(

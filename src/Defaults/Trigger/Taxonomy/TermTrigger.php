@@ -52,7 +52,7 @@ abstract class TermTrigger extends Abstracts\Trigger
 			trigger_error('TaxonomyTrigger requires taxonomy slug and trigger slug.', E_USER_ERROR);
 		}
 
-		$this->taxonomy = WpObjectHelper::get_taxonomy($params['taxonomy']);
+		$this->taxonomy = WpObjectHelper::getTaxonomy($params['taxonomy']);
 
 		parent::__construct($params['slug']);
 	}

@@ -99,7 +99,7 @@ class Runtime
 		}
 
 		$this->filesystem = new Filesystem(dirname($this->pluginFile));
-		Core\Templates::register_storage();
+		Core\Templates::registerStorage();
 		$this->singletons();
 		$this->cliCommands();
 		$this->actions();
@@ -122,7 +122,7 @@ class Runtime
 			return;
 		}
 
-		\WP_CLI::add_command('notification dump-hooks', Cli\DumpHooks::class);
+		\WP_CLI::addCommand('notification dump-hooks', Cli\DumpHooks::class);
 	}
 
 	/**
@@ -263,7 +263,7 @@ class Runtime
 		notification_register_settings([ $this->component('admin_debugging'), 'debugging_settings' ], 70);
 
 		// DocHooks compatibility.
-		if (DocHooksHelper::is_enabled() || !$this->getFilesystem()->exists('compat/register-hooks.php')) {
+		if (DocHooksHelper::isEnabled() || !$this->getFilesystem()->exists('compat/register-hooks.php')) {
 			return;
 		}
 

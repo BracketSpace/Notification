@@ -137,7 +137,7 @@ class Extensions
 	 */
 	public function getRawExtensions()
 	{
-		$driver = new CacheDriver\Transient(ErrorHandler::debug_enabled() ? 60 : DAY_IN_SECONDS);
+		$driver = new CacheDriver\Transient(ErrorHandler::debugEnabled() ? 60 : DAY_IN_SECONDS);
 		$cache = new Cache($driver, 'notification_extensions');
 
 		return $cache->collect(
@@ -178,7 +178,7 @@ class Extensions
 			[
 			'premium_extensions' => $this->premiumExtensions,
 			'extensions' => $this->extensions,
-			'bundles' => static::get_bundles(),
+			'bundles' => static::getBundles(),
 			]
 		);
 	}
@@ -456,7 +456,7 @@ class Extensions
 	 */
 	public function activationNag()
 	{
-		if (Whitelabel::is_whitelabeled()) {
+		if (Whitelabel::isWhitelabeled()) {
 			return;
 		}
 

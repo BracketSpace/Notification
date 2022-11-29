@@ -58,7 +58,7 @@ class PostPublishedPrivately extends PostTrigger
 	public function getName(): string
 	{
 		// translators: singular post name.
-		return sprintf(__('%s published privately', 'notification'), WpObjectHelper::get_post_type_name($this->postType));
+		return sprintf(__('%s published privately', 'notification'), WpObjectHelper::getPostTypeName($this->postType));
 	}
 
 	/**
@@ -71,7 +71,7 @@ class PostPublishedPrivately extends PostTrigger
 		return sprintf(
 			// translators: 1. singular post name, 2. post type slug.
 			__('Fires when %1$s (%2$s) is published privately', 'notification'),
-			WpObjectHelper::get_post_type_name($this->postType),
+			WpObjectHelper::getPostTypeName($this->postType),
 			$this->postType
 		);
 	}
@@ -114,9 +114,9 @@ class PostPublishedPrivately extends PostTrigger
 	public function mergeTags()
 	{
 
-		$postTypeName = WpObjectHelper::get_post_type_name($this->postType);
+		$postTypeName = WpObjectHelper::getPostTypeName($this->postType);
 
-		parent::merge_tags();
+		parent::mergeTags();
 
 		// Publishing user.
 		$this->addMergeTag(

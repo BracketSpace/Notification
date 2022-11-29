@@ -31,7 +31,7 @@ class CommentAdded extends CommentTrigger
 			[
 			'slug' => 'comment/' . $commentType . '/added',
 			// Translators: %s comment type.
-			'name' => sprintf(__('%s added', 'notification'), WpObjectHelper::get_comment_type_name($commentType)),
+			'name' => sprintf(__('%s added', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 			'comment_type' => $commentType,
 			]
 		);
@@ -39,7 +39,7 @@ class CommentAdded extends CommentTrigger
 		$this->addAction('wp_insert_comment', 10, 2);
 
 		// Translators: comment type.
-		$this->setDescription(sprintf(__('Fires when new %s is added to database and awaits moderation or is published. Includes comment replies.', 'notification'), WpObjectHelper::get_comment_type_name($commentType)));
+		$this->setDescription(sprintf(__('Fires when new %s is added to database and awaits moderation or is published. Includes comment replies.', 'notification'), WpObjectHelper::getCommentTypeName($commentType)));
 	}
 
 	/**
@@ -62,7 +62,7 @@ class CommentAdded extends CommentTrigger
 			return false;
 		}
 
-		parent::assign_properties();
+		parent::assignProperties();
 	}
 
 	/**
@@ -73,7 +73,7 @@ class CommentAdded extends CommentTrigger
 	public function mergeTags()
 	{
 
-		parent::merge_tags();
+		parent::mergeTags();
 
 		$this->addMergeTag(
 			new MergeTag\Comment\CommentActionApprove(

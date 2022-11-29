@@ -99,7 +99,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 
 		parent::__construct($params['slug'], $params['name']);
 
-		$this->setGroup((string)WpObjectHelper::get_comment_type_name($this->commentType));
+		$this->setGroup((string)WpObjectHelper::getCommentTypeName($this->commentType));
 	}
 
 	/**
@@ -144,8 +144,8 @@ abstract class CommentTrigger extends Abstracts\Trigger
 	public function mergeTags()
 	{
 
-		$commentTypeName = WpObjectHelper::get_comment_type_name($this->commentType);
-		$postTypeName = WpObjectHelper::get_post_type_name('post');
+		$commentTypeName = WpObjectHelper::getCommentTypeName($this->commentType);
+		$postTypeName = WpObjectHelper::getPostTypeName('post');
 
 		$this->addMergeTag(
 			new MergeTag\Comment\CommentID(

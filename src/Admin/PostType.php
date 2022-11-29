@@ -220,7 +220,7 @@ class PostType
 		}
 
 		if (! preg_match('/notification_[a-z0-9]{13}/', $data['post_name'])) {
-			$data['post_name'] = Notification::create_hash();
+			$data['post_name'] = Notification::createHash();
 		}
 
 		return $data;
@@ -321,7 +321,7 @@ class PostType
 		/**
 		 * @todo
 		 * This cache should be cleared in Adapter save method.
-		 * Now it's used in Admin\Wizard::add_notifications() as well
+		 * Now it's used in Admin\Wizard::addNotifications() as well
 		 */
 		$cache = new CacheDriver\ObjectCache('notification');
 		$cache->setKey('notifications');
@@ -410,7 +410,7 @@ class PostType
 	 */
 	public function setupNotifications()
 	{
-		$notifications = self::get_all_notifications();
+		$notifications = self::getAllNotifications();
 
 		foreach ($notifications as $notificationJson) {
 			if (empty($notificationJson)) {

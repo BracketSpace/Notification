@@ -30,7 +30,7 @@ class CommentUnapproved extends CommentTrigger
 			[
 			'slug' => 'comment/' . $commentType . '/unapproved',
 			// Translators: %s comment type.
-			'name' => sprintf(__('%s unapproved', 'notification'), WpObjectHelper::get_comment_type_name($commentType)),
+			'name' => sprintf(__('%s unapproved', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 			'comment_type' => $commentType,
 			]
 		);
@@ -38,7 +38,7 @@ class CommentUnapproved extends CommentTrigger
 		$this->addAction('transition_comment_status', 10, 3);
 
 		// translators: comment type.
-		$this->setDescription(sprintf(__('Fires when %s is marked as unapproved', 'notification'), WpObjectHelper::get_comment_type_name($commentType), 'notification'));
+		$this->setDescription(sprintf(__('Fires when %s is marked as unapproved', 'notification'), WpObjectHelper::getCommentTypeName($commentType), 'notification'));
 	}
 
 	/**
@@ -66,6 +66,6 @@ class CommentUnapproved extends CommentTrigger
 			return false;
 		}
 
-		parent::assign_properties();
+		parent::assignProperties();
 	}
 }

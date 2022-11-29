@@ -146,7 +146,7 @@ class Settings
 					'multiple' => true,
 					'pretty' => true,
 					'options' => static function () {
-						return apply_filters('notification/settings/triggers/valid_post_types', WpObjectHelper::get_post_types([ 'public' => true ]));
+						return apply_filters('notification/settings/triggers/valid_post_types', WpObjectHelper::getPostTypes([ 'public' => true ]));
 					},
 				],
 				'render' => [ new CoreFields\Select(), 'input' ],
@@ -165,7 +165,7 @@ class Settings
 					'multiple' => true,
 					'pretty' => true,
 					'options' => static function () {
-						return apply_filters('notification/settings/triggers/valid_taxonomies', WpObjectHelper::get_taxonomies([ 'public' => true ]));
+						return apply_filters('notification/settings/triggers/valid_taxonomies', WpObjectHelper::getTaxonomies([ 'public' => true ]));
 					},
 				],
 				'render' => [ new CoreFields\Select(), 'input' ],
@@ -184,7 +184,7 @@ class Settings
 					'multiple' => true,
 					'pretty' => true,
 					'options' => static function () {
-						return WpObjectHelper::get_comment_types();
+						return WpObjectHelper::getCommentTypes();
 					},
 				],
 				'render' => [ new CoreFields\Select(), 'input' ],

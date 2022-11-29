@@ -90,7 +90,7 @@ class WordPress extends Abstracts\Adapter
 
 		// Update the hash.
 		if (! preg_match('/notification_[a-z0-9]{13}/', $data['hash'])) {
-			$data['hash'] = Notification::create_hash();
+			$data['hash'] = Notification::createHash();
 		}
 
 		// Fix WordPress balance tags filter.

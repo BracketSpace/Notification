@@ -210,7 +210,7 @@ class ImportExport
 			/**
 			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null
 			 */
-			$existingNotification = NotificationQueries::with_hash($wpAdapter->getHash());
+			$existingNotification = NotificationQueries::withHash($wpAdapter->getHash());
 
 			if ($existingNotification === null) {
 				$wpAdapter->save();

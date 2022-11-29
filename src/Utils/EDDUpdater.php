@@ -466,7 +466,7 @@ class EDDUpdater
 	 * will be allowed again. This way if the site is down for some reason we don't bombard
 	 * it with failed API requests.
 	 *
-	 * @see EDD_SL_Plugin_Updater::request_recently_failed
+	 * @see EDD_SL_Plugin_Updater::requestRecentlyFailed
 	 *
 	 * @since 1.9.1
 	 */

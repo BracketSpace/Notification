@@ -32,7 +32,7 @@ class PostID extends IntegerTag
 
 		$this->setTriggerProp($params['post_type'] ?? 'post');
 
-		$postTypeName = WpObjectHelper::get_post_type_name($this->getTriggerProp());
+		$postTypeName = WpObjectHelper::getPostTypeName($this->getTriggerProp());
 
 		$args = wp_parse_args(
 			$params,

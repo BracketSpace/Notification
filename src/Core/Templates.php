@@ -60,7 +60,7 @@ class Templates
 	 */
 	public static function create( string $name, array $vars = [] ): Template
 	{
-		return new Template(self::TEMPLATE_STORAGE, $name, $vars);
+		return new Template(self::TEMPLATESTORAGE, $name, $vars);
 	}
 
 	/**
@@ -71,6 +71,6 @@ class Templates
 	 */
 	public static function registerStorage()
 	{
-		Storage::add(self::TEMPLATE_STORAGE, \Notification::fs()->path('resources/templates'));
+		Storage::add(self::TEMPLATESTORAGE, \Notification::fs()->path('resources/templates'));
 	}
 }

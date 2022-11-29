@@ -50,7 +50,7 @@ class PostAdded extends PostTrigger
 	public function getName(): string
 	{
 		// translators: singular post name.
-		return sprintf(__('%s added', 'notification'), WpObjectHelper::get_post_type_name($this->postType));
+		return sprintf(__('%s added', 'notification'), WpObjectHelper::getPostTypeName($this->postType));
 	}
 
 	/**
@@ -63,7 +63,7 @@ class PostAdded extends PostTrigger
 		return sprintf(
 			// translators: 1. singular post name, 2. post type slug.
 			__('Fires when %1$s (%2$s) is added to database. Useful when adding posts programatically or for 3rd party integration', 'notification'),
-			WpObjectHelper::get_post_type_name($this->postType),
+			WpObjectHelper::getPostTypeName($this->postType),
 			$this->postType
 		);
 	}

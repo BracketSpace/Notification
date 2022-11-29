@@ -30,8 +30,8 @@ class SyncTable
 	public function input( $field )
 	{
 		// Get all Notifications.
-		$wpJsonNotifiactions = PostType::get_all_notifications();
-		$jsonNotifiactions = CoreSync::get_all_json();
+		$wpJsonNotifiactions = PostType::getAllNotifications();
+		$jsonNotifiactions = CoreSync::getAllJson();
 		$collection = [];
 
 		// Load the WP Notifications first.
@@ -47,7 +47,7 @@ class SyncTable
 			/**
 			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null
 			 */
-			$notificationAdapter = NotificationQueries::with_hash($notification->getHash());
+			$notificationAdapter = NotificationQueries::withHash($notification->getHash());
 
 			if ($notificationAdapter === null) {
 				continue;

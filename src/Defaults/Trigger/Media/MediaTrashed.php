@@ -64,7 +64,7 @@ class MediaTrashed extends MediaTrigger
 	public function mergeTags()
 	{
 
-		parent::merge_tags();
+		parent::mergeTags();
 
 		// Trashing user.
 		$this->addMergeTag(

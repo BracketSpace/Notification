@@ -25,7 +25,7 @@ class GlobalMergeTagRepository
 	public static function register()
 	{
 
-		Register::global_merge_tag(
+		Register::globalMergeTag(
 			new MergeTag\UrlTag(
 				[
 				'slug' => 'home_url',
@@ -39,7 +39,7 @@ class GlobalMergeTagRepository
 			)
 		);
 
-		Register::global_merge_tag(
+		Register::globalMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'site_title',
@@ -53,7 +53,7 @@ class GlobalMergeTagRepository
 			)
 		);
 
-		Register::global_merge_tag(
+		Register::globalMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'site_tagline',
@@ -67,7 +67,7 @@ class GlobalMergeTagRepository
 			)
 		);
 
-		Register::global_merge_tag(
+		Register::globalMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'site_theme_name',
@@ -81,7 +81,7 @@ class GlobalMergeTagRepository
 			)
 		);
 
-		Register::global_merge_tag(
+		Register::globalMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'site_theme_version',
@@ -95,7 +95,7 @@ class GlobalMergeTagRepository
 			)
 		);
 
-		Register::global_merge_tag(
+		Register::globalMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'wordpress_version',
@@ -109,7 +109,7 @@ class GlobalMergeTagRepository
 			)
 		);
 
-		Register::global_merge_tag(
+		Register::globalMergeTag(
 			new MergeTag\EmailTag(
 				[
 				'slug' => 'admin_email',
@@ -123,7 +123,7 @@ class GlobalMergeTagRepository
 			)
 		);
 
-		Register::global_merge_tag(
+		Register::globalMergeTag(
 			new MergeTag\User\Avatar(
 				[
 				'slug' => 'admin_avatar',
@@ -137,7 +137,7 @@ class GlobalMergeTagRepository
 			)
 		);
 
-		Register::global_merge_tag(
+		Register::globalMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'trigger_name',
@@ -152,7 +152,7 @@ class GlobalMergeTagRepository
 			)
 		);
 
-		Register::global_merge_tag(
+		Register::globalMergeTag(
 			new MergeTag\StringTag(
 				[
 				'slug' => 'trigger_slug',
@@ -167,7 +167,7 @@ class GlobalMergeTagRepository
 			)
 		);
 
-		Register::global_merge_tag(
+		Register::globalMergeTag(
 			new MergeTag\DateTime\Date(
 				[
 				'slug' => 'date',
@@ -178,7 +178,7 @@ class GlobalMergeTagRepository
 			)
 		);
 
-		Register::global_merge_tag(
+		Register::globalMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 				'slug' => 'date_time',
@@ -189,7 +189,7 @@ class GlobalMergeTagRepository
 			)
 		);
 
-		Register::global_merge_tag(
+		Register::globalMergeTag(
 			new MergeTag\DateTime\Time(
 				[
 				'slug' => 'time',

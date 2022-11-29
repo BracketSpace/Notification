@@ -30,7 +30,7 @@ class CommentSpammed extends CommentTrigger
 			[
 			'slug' => 'comment/' . $commentType . '/spammed',
 			// Translators: %s comment type.
-			'name' => sprintf(__('%s spammed', 'notification'), WpObjectHelper::get_comment_type_name($commentType)),
+			'name' => sprintf(__('%s spammed', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 			'comment_type' => $commentType,
 			]
 		);
@@ -38,7 +38,7 @@ class CommentSpammed extends CommentTrigger
 		$this->addAction('spammed_comment', 100, 2);
 
 		// translators: comment type.
-		$this->setDescription(sprintf(__('Fires when %s is marked as spam', 'notification'), WpObjectHelper::get_comment_type_name($commentType)));
+		$this->setDescription(sprintf(__('Fires when %s is marked as spam', 'notification'), WpObjectHelper::getCommentTypeName($commentType)));
 	}
 
 	/**
@@ -64,6 +64,6 @@ class CommentSpammed extends CommentTrigger
 		// fix for action being called too early, before WP marks the comment as spam.
 		$this->comment->commentApproved = 'spam';
 
-		parent::assign_properties();
+		parent::assignProperties();
 	}
 }

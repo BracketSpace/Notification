@@ -107,7 +107,7 @@ class Runner
 			 * If an item already exists in the queue, we are replacing it with the new version.
 			 * This doesn't prevents the duplicates coming from two separate requests.
 			 */
-			Queue::add_replace($notification, $trigger);
+			Queue::addReplace($notification, $trigger);
 
 			do_action('notification/processed', $notification);
 		}
@@ -120,7 +120,7 @@ class Runner
 	 */
 	public function setNotifications()
 	{
-		foreach (NotificationStore::with_trigger($this->trigger->getSlug()) as $notification) {
+		foreach (NotificationStore::withTrigger($this->trigger->getSlug()) as $notification) {
 			$this->attachNotification($notification);
 		}
 	}

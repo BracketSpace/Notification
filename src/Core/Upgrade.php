@@ -189,7 +189,7 @@ class Upgrade
 	 */
 	public function triggerSlugReplacements()
 	{
-		$taxonomies = '(' . implode('|', array_keys(WpObjectHelper::get_taxonomies())) . ')';
+		$taxonomies = '(' . implode('|', array_keys(WpObjectHelper::getTaxonomies())) . ')';
 
 		// phpcs:disable
 		return [

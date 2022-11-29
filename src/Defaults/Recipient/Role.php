@@ -50,7 +50,7 @@ class Role extends Abstracts\Recipient
 
 		$emails = [];
 
-		foreach (UserQueries::with_role($value) as $user) {
+		foreach (UserQueries::withRole($value) as $user) {
 			$emails[] = $user['user_email'];
 		}
 
@@ -72,7 +72,7 @@ class Role extends Abstracts\Recipient
 		$opts = [];
 
 		foreach ($roles as $roleSlug => $role) {
-			$numUsers = count(UserQueries::with_role($roleSlug));
+			$numUsers = count(UserQueries::withRole($roleSlug));
 
 			// Translators: %s numer of users.
 			$label = translate_user_role($role['name']) . ' (' . sprintf(_n('%s user', '%s users', $numUsers, 'notification'), $numUsers) . ')';

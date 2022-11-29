@@ -30,7 +30,7 @@ class CommentTrashed extends CommentTrigger
 			[
 			'slug' => 'comment/' . $commentType . '/trashed',
 			// Translators: %s comment type.
-			'name' => sprintf(__('%s trashed', 'notification'), WpObjectHelper::get_comment_type_name($commentType)),
+			'name' => sprintf(__('%s trashed', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 			'comment_type' => $commentType,
 			]
 		);
@@ -38,7 +38,7 @@ class CommentTrashed extends CommentTrigger
 		$this->addAction('trashed_comment', 10, 2);
 
 		// translators: comment type.
-		$this->setDescription(sprintf(__('Fires when %s is trashed', 'notification'), WpObjectHelper::get_comment_type_name($commentType)));
+		$this->setDescription(sprintf(__('Fires when %s is trashed', 'notification'), WpObjectHelper::getCommentTypeName($commentType)));
 	}
 
 	/**
@@ -64,6 +64,6 @@ class CommentTrashed extends CommentTrigger
 		// fix for action being called too early, before WP marks the comment as trashed.
 		$this->comment->commentApproved = 'trash';
 
-		parent::assign_properties();
+		parent::assignProperties();
 	}
 }

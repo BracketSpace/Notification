@@ -41,7 +41,7 @@ class CommentContentHtml extends HtmlTag
 
 		$this->setTriggerProp($params['property_name'] ?? $this->commentType);
 
-		$commentTypeName = WpObjectHelper::get_comment_type_name($this->commentType);
+		$commentTypeName = WpObjectHelper::getCommentTypeName($this->commentType);
 
 		$args = wp_parse_args(
 			$params,

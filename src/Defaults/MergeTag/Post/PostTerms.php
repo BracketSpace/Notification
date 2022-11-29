@@ -43,7 +43,7 @@ class PostTerms extends StringTag
 			$this->taxonomy = is_string($params['taxonomy']) ? get_taxonomy($params['taxonomy']) : $params['taxonomy'];
 		}
 
-		$postTypeName = WpObjectHelper::get_post_type_name($this->getTriggerProp());
+		$postTypeName = WpObjectHelper::getPostTypeName($this->getTriggerProp());
 
 		$args = wp_parse_args(
 			$params,

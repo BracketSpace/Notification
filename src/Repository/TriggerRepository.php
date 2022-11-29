@@ -24,35 +24,35 @@ class TriggerRepository
 	 */
 	public static function register()
 	{
-		self::register_post_triggers();
+		self::registerPostTriggers();
 
-		self::register_taxonomy_triggers();
+		self::registerTaxonomyTriggers();
 
 		if (notification_get_setting('triggers/user/enable')) {
-			self::register_user_triggers();
+			self::registerUserTriggers();
 		}
 
 		if (notification_get_setting('triggers/media/enable')) {
-			self::register_media_triggers();
+			self::registerMediaTriggers();
 		}
 
-		self::register_comment_triggers();
+		self::registerCommentTriggers();
 
-		self::register_wp_triggers();
+		self::registerWpTriggers();
 
 		if (notification_get_setting('triggers/plugin/enable')) {
-			self::register_plugin_triggers();
+			self::registerPluginTriggers();
 		}
 
 		if (notification_get_setting('triggers/theme/enable')) {
-			self::register_theme_triggers();
+			self::registerThemeTriggers();
 		}
 
 		if (!notification_get_setting('triggers/privacy/enable')) {
 			return;
 		}
 
-		self::register_privacy_triggers();
+		self::registerPrivacyTriggers();
 	}
 
 	/**

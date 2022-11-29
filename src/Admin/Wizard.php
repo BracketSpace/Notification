@@ -81,7 +81,7 @@ class Wizard
 	 */
 	public function maybeRedirect()
 	{
-		if (! self::should_display()) {
+		if (! self::shouldDisplay()) {
 			return;
 		}
 
@@ -357,6 +357,6 @@ class Wizard
 		$count  += $counter->publish ?? 0;
 		$count  += $counter->draft ?? 0;
 
-		return ! Whitelabel::is_whitelabeled() && ! get_option('notification_wizard_dismissed') && ( $count === 0 );
+		return ! Whitelabel::isWhitelabeled() && ! get_option('notification_wizard_dismissed') && ( $count === 0 );
 	}
 }

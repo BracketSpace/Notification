@@ -33,11 +33,11 @@ class Sync
 	 */
 	public static function getAllJson()
 	{
-		if (! self::is_syncing()) {
+		if (! self::isSyncing()) {
 			return [];
 		}
 
-		$fs = static::get_sync_fs();
+		$fs = static::getSyncFs();
 
 		$notifications = [];
 
@@ -72,11 +72,11 @@ class Sync
 	 */
 	public function loadLocalJson()
 	{
-		if (! self::is_syncing()) {
+		if (! self::isSyncing()) {
 			return;
 		}
 
-		$notifications = self::get_all_json();
+		$notifications = self::getAllJson();
 
 		foreach ($notifications as $json) {
 			try {
@@ -108,11 +108,11 @@ class Sync
 	 */
 	public static function saveLocalJson( $wpAdapter )
 	{
-		if (! self::is_syncing()) {
+		if (! self::isSyncing()) {
 			return;
 		}
 
-		$fs = static::get_sync_fs();
+		$fs = static::getSyncFs();
 
 		if (! $fs) {
 			return;
@@ -135,11 +135,11 @@ class Sync
 	 */
 	public function deleteLocalJson( $postId )
 	{
-		if (! self::is_syncing() || get_post_type($postId) !== 'notification') {
+		if (! self::isSyncing() || get_post_type($postId) !== 'notification') {
 			return;
 		}
 
-		$fs = static::get_sync_fs();
+		$fs = static::getSyncFs();
 
 		if (! $fs) {
 			return;
@@ -170,13 +170,13 @@ class Sync
 			$path = trailingslashit(get_stylesheet_directory()) . 'notifications';
 		}
 
-		if (self::is_syncing()) {
-			throw new \Exception(sprintf('Synchronization has been already enabled and it\'s syncing to: %s', self::get_sync_path()));
+		if (self::isSyncing()) {
+			throw new \Exception(sprintf('Synchronization has been already enabled and it\'s syncing to: %s', self::getSyncPath()));
 		}
 
 		static::$syncPath = $path;
 
-		$fs = static::get_sync_fs();
+		$fs = static::getSyncFs();
 
 		if (! $fs) {
 			return;
@@ -224,11 +224,11 @@ class Sync
 	 */
 	public static function getSyncFs()
 	{
-		if (! static::is_syncing()) {
+		if (! static::isSyncing()) {
 			return null;
 		}
 
-		return new Filesystem((string)static::get_sync_path());
+		return new Filesystem((string)static::getSyncPath());
 	}
 
 	/**

@@ -59,7 +59,7 @@ class RecipientsField extends RepeaterField
 			'carrier' => $this->carrier,
 		];
 
-		$recipients = RecipientStore::all_for_carrier($this->carrier);
+		$recipients = RecipientStore::allForCarrier($this->carrier);
 
 		if (! empty($recipients)) {
 			$firstRecipient = array_values($recipients)[0];

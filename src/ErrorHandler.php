@@ -39,7 +39,7 @@ class ErrorHandler
 	 */
 	public static function error( string $message, string $exceptionClass = 'Exception' )
 	{
-		if (self::debug_enabled()) {
+		if (self::debugEnabled()) {
 			throw new $exceptionClass($message);
 		}
 

@@ -175,7 +175,7 @@ class Notification {
 	public function setup( $data = [] ) {
 
 		// Hash. If not provided will be generated automatically.
-		$hash = isset( $data['hash'] ) && ! empty( $data['hash'] ) ? $data['hash'] : self::create_hash();
+		$hash = isset( $data['hash'] ) && ! empty( $data['hash'] ) ? $data['hash'] : self::createHash();
 		$this->setHash( $hash );
 
 		// Title.
@@ -487,7 +487,7 @@ class Notification {
 	 * @return $this
 	 */
 	public function refreshHash() {
-		$this->setHash( self::create_hash() );
+		$this->setHash( self::createHash() );
 		return $this;
 	}
 

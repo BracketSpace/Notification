@@ -165,7 +165,7 @@ class Upsell
 		Templates::render(
 			'upsell/carriers-list',
 			[
-			'carriers' => self::get_missing_carriers(),
+			'carriers' => self::getMissingCarriers(),
 			]
 		);
 	}

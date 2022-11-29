@@ -39,7 +39,7 @@ class PostType extends StringTag
 				'name' => __('Post Type', 'notification'),
 				'description' => 'post',
 				'example' => true,
-				'group' => WpObjectHelper::get_post_type_name($this->getTriggerProp()),
+				'group' => WpObjectHelper::getPostTypeName($this->getTriggerProp()),
 				'resolver' => static function ( $trigger ) {
 					return $trigger->postType;
 				},

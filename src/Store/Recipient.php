@@ -115,7 +115,7 @@ class Recipient implements Interfaces\Storable
 	 */
 	public static function get( string $carrierSlug, $slug )
 	{
-		$carrierRecipients = static::all_for_carrier($carrierSlug);
+		$carrierRecipients = static::allForCarrier($carrierSlug);
 
 		if (! array_key_exists($slug, $carrierRecipients)) {
 			ErrorHandler::error(

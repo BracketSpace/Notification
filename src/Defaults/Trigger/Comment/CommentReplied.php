@@ -45,7 +45,7 @@ class CommentReplied extends CommentTrigger
 			[
 			'slug' => 'comment/' . $commentType . '/replied',
 			// Translators: %s comment type.
-			'name' => sprintf(__('%s replied', 'notification'), WpObjectHelper::get_comment_type_name($commentType)),
+			'name' => sprintf(__('%s replied', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 			'comment_type' => $commentType,
 			]
 		);
@@ -54,7 +54,7 @@ class CommentReplied extends CommentTrigger
 		$this->addAction('notification_insert_comment_proxy', 10, 3);
 
 		// translators: comment type.
-		$this->setDescription(sprintf(__('Fires when %s is replied and the reply is approved', 'notification'), WpObjectHelper::get_comment_type_name($commentType)));
+		$this->setDescription(sprintf(__('Fires when %s is replied and the reply is approved', 'notification'), WpObjectHelper::getCommentTypeName($commentType)));
 	}
 
 	/**
@@ -94,7 +94,7 @@ class CommentReplied extends CommentTrigger
 		$this->parentCommentUserObject->displayName = $this->parentComment->commentAuthor;
 		$this->parentCommentUserObject->userEmail = $this->parentComment->commentAuthorEmail;
 
-		parent::assign_properties();
+		parent::assignProperties();
 	}
 
 	/**
@@ -105,7 +105,7 @@ class CommentReplied extends CommentTrigger
 	public function mergeTags()
 	{
 
-		parent::merge_tags();
+		parent::mergeTags();
 
 		$this->addMergeTag(
 			new MergeTag\Comment\CommentActionApprove(

@@ -30,7 +30,7 @@ class CommentPublished extends CommentTrigger
 			[
 			'slug' => 'comment/' . $commentType . '/published',
 			// Translators: %s comment type.
-			'name' => sprintf(__('%s published', 'notification'), WpObjectHelper::get_comment_type_name($commentType)),
+			'name' => sprintf(__('%s published', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 			'comment_type' => $commentType,
 			]
 		);
@@ -38,7 +38,7 @@ class CommentPublished extends CommentTrigger
 		$this->addAction('notification_comment_published_proxy', 10, 1);
 
 		// Translators: comment type.
-		$this->setDescription(sprintf(__('Fires when new %s is published on the website. Includes comment replies.', 'notification'), WpObjectHelper::get_comment_type_name($commentType)));
+		$this->setDescription(sprintf(__('Fires when new %s is published on the website. Includes comment replies.', 'notification'), WpObjectHelper::getCommentTypeName($commentType)));
 	}
 
 	/**
@@ -60,6 +60,6 @@ class CommentPublished extends CommentTrigger
 
 		$this->comment = $comment;
 
-		parent::assign_properties();
+		parent::assignProperties();
 	}
 }
