@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Uninstall plugin file
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 /**
  * Load the vendor autoload.
