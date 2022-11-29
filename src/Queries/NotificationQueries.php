@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Notification Queries
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Queries;
 

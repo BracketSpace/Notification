@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Post updated trigger
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Trigger\Post;
 

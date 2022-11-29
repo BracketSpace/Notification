@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Whitelabel class
  * Removes unused plugin things
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 

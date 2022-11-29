@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Resolver class
  * Connects all resolvers together
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 

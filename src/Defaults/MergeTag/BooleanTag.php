@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Boolean merge tag class
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\MergeTag;
 

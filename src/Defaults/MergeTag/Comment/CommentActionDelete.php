@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Comment action delete URL merge tag
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 

@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * WordPress theme updated trigger
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Trigger\Theme;
 

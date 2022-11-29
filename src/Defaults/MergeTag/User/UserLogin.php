@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * User login merge tag
  *
@@ -11,6 +9,8 @@ declare(strict_types=1);
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\MergeTag\User;
 

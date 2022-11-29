@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Import field class
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Utils\Settings\Fields;
 

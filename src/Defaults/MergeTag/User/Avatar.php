@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Avatar merge tag class
  *
@@ -12,6 +10,8 @@ declare(strict_types=1);
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\MergeTag\User;
 

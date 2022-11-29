@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Public API.
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Store;

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * License class
  * Used by paid extensions to save and retrieve license from database
@@ -9,6 +7,8 @@ declare(strict_types=1);
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 

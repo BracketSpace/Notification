@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Post featured image url merge tag
  *
@@ -10,6 +8,8 @@ declare(strict_types=1);
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 

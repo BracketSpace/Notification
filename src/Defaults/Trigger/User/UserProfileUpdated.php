@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * User profile updated trigger
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Trigger\User;
 

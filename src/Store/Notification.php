@@ -5,6 +5,8 @@
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Store;
 
 use BracketSpace\Notification\Core\Notification as CoreNotification;

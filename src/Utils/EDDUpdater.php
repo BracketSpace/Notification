@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * EDD Plugin updater class
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Utils;
 

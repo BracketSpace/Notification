@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Screen class
  * Renders the Notification screens.
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 

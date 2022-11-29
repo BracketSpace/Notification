@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * User recipient
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Recipient;
 

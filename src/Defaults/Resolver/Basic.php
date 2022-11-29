@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Basic resolver
  * Resolves Merge Tag values as is
@@ -13,6 +11,8 @@ declare(strict_types=1);
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Resolver;
 

@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * REST api check controller class
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Api\Controller;
 

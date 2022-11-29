@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * User logout trigger
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Trigger\User;
 

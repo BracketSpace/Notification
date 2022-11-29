@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Dump all the Dochooks to an external file: /inc/hooks.php
  *
@@ -11,6 +9,8 @@ declare(strict_types=1);
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Cli;
 
@@ -93,6 +93,8 @@ class DumpHooks
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 /** @var \BracketSpace\Notification\Runtime $this */
 

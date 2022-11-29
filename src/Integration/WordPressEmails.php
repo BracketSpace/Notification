@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * WordPress integration class
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Integration;
 

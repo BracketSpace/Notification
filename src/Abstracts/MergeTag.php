@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * MergeTag abstract class
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Abstracts;
 

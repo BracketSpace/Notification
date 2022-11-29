@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Runner class
  * Responsible for running Triggers and executing Carriers.
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 

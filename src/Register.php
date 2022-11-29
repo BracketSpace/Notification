@@ -1,12 +1,11 @@
 <?php
 
-declare(strict_types=1);
-
-/**
- * Register class
+/**Register class
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification;
 

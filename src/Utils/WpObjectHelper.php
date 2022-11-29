@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * WordPress Object Helper class
  *
@@ -9,6 +7,8 @@ declare(strict_types=1);
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Utils;
 

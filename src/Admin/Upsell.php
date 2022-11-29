@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Upsell class
  * Used to promote free and paid extensions.
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 
