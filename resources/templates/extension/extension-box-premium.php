@@ -45,10 +45,10 @@ $license = $ext['license']->get();
 					</p>
 			<?php else : ?>
 				<?php if ($license->expires !== 'lifetime') : ?>
-					<?php // translators: 1. Expiration date. ?>
 					<p>
 					<?php
 					printf(
+						// translators: 1. Expiration date.
 						esc_html__(
 							'Your license expires on %s.',
 							'notification'

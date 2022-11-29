@@ -54,8 +54,8 @@ class PostScheduled extends PostTrigger
 	 */
 	public function getName(): string
 	{
-		// translators: singular post name.
 		return sprintf(
+		// translators: singular post name.
 			__(
 				'%s scheduled',
 				'notification'
@@ -139,8 +139,8 @@ class PostScheduled extends PostTrigger
 						'%s_publication_datetime',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s publication date and time',
 							'notification'
@@ -159,8 +159,8 @@ class PostScheduled extends PostTrigger
 						'%s_scheduling_user_ID',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s scheduling user ID',
 							'notification'
@@ -183,8 +183,8 @@ class PostScheduled extends PostTrigger
 						'%s_scheduling_user_login',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s scheduling user login',
 							'notification'
@@ -207,8 +207,8 @@ class PostScheduled extends PostTrigger
 						'%s_scheduling_user_email',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s scheduling user email',
 							'notification'
@@ -231,8 +231,8 @@ class PostScheduled extends PostTrigger
 						'%s_scheduling_user_nicename',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s scheduling user nicename',
 							'notification'
@@ -255,8 +255,8 @@ class PostScheduled extends PostTrigger
 						'%s_scheduling_user_display_name',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s scheduling user display name',
 							'notification'
@@ -279,8 +279,8 @@ class PostScheduled extends PostTrigger
 						'%s_scheduling_user_firstname',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s scheduling user first name',
 							'notification'
@@ -303,8 +303,8 @@ class PostScheduled extends PostTrigger
 						'%s_scheduling_user_lastname',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s scheduling user last name',
 							'notification'
@@ -327,8 +327,8 @@ class PostScheduled extends PostTrigger
 						'%s_scheduling_user_avatar',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s scheduling user email',
 							'notification'
@@ -351,8 +351,8 @@ class PostScheduled extends PostTrigger
 						'%s_scheduling_user_role',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s scheduling user role',
 							'notification'

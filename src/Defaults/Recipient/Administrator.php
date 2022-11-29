@@ -72,8 +72,8 @@ class Administrator extends Abstracts\Recipient
 				'css_class' => 'recipient-value',                 // don't edit this!
 				'value' => $this->getDefaultValue(),
 				'placeholder' => $this->getDefaultValue(),
-				// Translators: %s settings URL.
 				'description' => sprintf(
+				// Translators: %s settings URL.
 					__(
 						'You can edit this email in <a href="%s">General Settings</a>',
 						'notification'

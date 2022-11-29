@@ -47,8 +47,8 @@ class PostPending extends PostTrigger
 	 */
 	public function getName(): string
 	{
-		// translators: singular post name.
 		return sprintf(
+		// translators: singular post name.
 			__(
 				'%s sent for review',
 				'notification'

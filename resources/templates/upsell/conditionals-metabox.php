@@ -57,8 +57,8 @@ $extensionLink = sprintf(
 
 <span class="label-pro">PRO</span>
 <?php
-// Translators: Link to extension.
 $description = sprintf(
+// Translators: Link to extension.
 	__(
 		'Install %s to control when the Notification is sent.',
 		'notification'

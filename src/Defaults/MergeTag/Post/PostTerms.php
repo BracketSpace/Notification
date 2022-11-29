@@ -55,8 +55,8 @@ class PostTerms extends StringTag
 					$this->getTriggerProp(),
 					$this->taxonomy->name
 				),
-				// translators: 1. Post Type 2. Taxonomy name.
 				'name' => sprintf(
+				// translators: 1. Post Type 2. Taxonomy name.
 					__(
 						'%1$s %2$s',
 						'notification'

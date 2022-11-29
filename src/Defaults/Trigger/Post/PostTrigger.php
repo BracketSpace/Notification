@@ -186,8 +186,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 							'%s_sticky',
 							$this->postType
 						),
-						// translators: singular post name.
 						'name' => sprintf(
+						// translators: singular post name.
 							__(
 								'%s sticky status',
 								'notification'
@@ -245,8 +245,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_creation_datetime',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s creation date and time',
 							'notification'
@@ -264,8 +264,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_modification_datetime',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s modification date and time',
 							'notification'
@@ -284,8 +284,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_author_user_ID',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s author user ID',
 							'notification'
@@ -308,8 +308,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_author_user_login',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s author user login',
 							'notification'
@@ -332,8 +332,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_author_user_email',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s author user email',
 							'notification'
@@ -356,8 +356,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_author_user_nicename',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s author user nicename',
 							'notification'
@@ -380,8 +380,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_author_user_display_name',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s author user display name',
 							'notification'
@@ -404,8 +404,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_author_user_firstname',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s author user first name',
 							'notification'
@@ -428,8 +428,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_author_user_lastname',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s author user last name',
 							'notification'
@@ -452,8 +452,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_author_user_avatar',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s author user avatar',
 							'notification'
@@ -476,8 +476,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_author_user_role',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s author user role',
 							'notification'
@@ -501,8 +501,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_last_editor_ID',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s last editor ID',
 							'notification'
@@ -525,8 +525,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_last_editor_login',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s last editor login',
 							'notification'
@@ -549,8 +549,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_last_editor_email',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s last editor email',
 							'notification'
@@ -573,8 +573,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_last_editor_nicename',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s last editor nicename',
 							'notification'
@@ -597,8 +597,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_last_editor_display_name',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s last editor display name',
 							'notification'
@@ -621,8 +621,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_last_editor_firstname',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s last editor first name',
 							'notification'
@@ -645,8 +645,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_last_editor_lastname',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s last editor last name',
 							'notification'
@@ -669,8 +669,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_last_editor_avatar',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s last editor avatar',
 							'notification'
@@ -693,8 +693,8 @@ abstract class PostTrigger extends Abstracts\Trigger
 						'%s_last_editor_role',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s last editor role',
 							'notification'

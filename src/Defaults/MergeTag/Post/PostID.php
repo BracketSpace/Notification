@@ -41,8 +41,8 @@ class PostID extends IntegerTag
 					'%s_ID',
 					$this->getTriggerProp()
 				),
-				// translators: singular post name.
 				'name' => sprintf(
+				// translators: singular post name.
 					__(
 						'%s ID',
 						'notification'

@@ -41,8 +41,8 @@ class PostTitle extends StringTag
 					'%s_title',
 					$this->getTriggerProp()
 				),
-				// translators: singular post name.
 				'name' => sprintf(
+				// translators: singular post name.
 					__(
 						'%s title',
 						'notification'

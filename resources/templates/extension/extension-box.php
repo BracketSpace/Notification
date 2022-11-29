@@ -29,12 +29,12 @@ if (
 	switch ($status['status']) {
 		case 'install':
 			if ($status['url']) {
-				/* translators: 1: Plugin name and version. */
 				$actionButton =
 					'<a class="install-now button" data-slug="' . esc_attr($ext['slug']) . '" href="' . esc_url(
 						$status['url']
 					) . '" aria-label="' . esc_attr(
 						sprintf(
+						/* translators: 1: Plugin name and version. */
 							__(
 								'Install %s now',
 								'notification'
@@ -50,13 +50,13 @@ if (
 
 		case 'update_available':
 			if ($status['url']) {
-				/* translators: 1: Plugin name and version */
 				$actionButton = '<a class="update-now button aria-button-if-js" data-plugin="' . esc_attr(
 					$status['file']
 				) . '" data-slug="' . esc_attr($ext['slug']) . '" href="' . esc_url(
 					$status['url']
 				) . '" aria-label="' . esc_attr(
 					sprintf(
+					/* translators: 1: Plugin name and version */
 						__(
 							'Update %s now',
 							'notification'

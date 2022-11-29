@@ -47,16 +47,16 @@ class CommentActionDelete extends UrlTag
 			$params,
 			[
 				'slug' => 'comment_delete_action_url',
-				// Translators: Comment type name.
 				'name' => sprintf(
+					// Translators: Comment type name.
 					__(
 						'%s delete URL',
 						'notification'
 					),
 					$commentTypeName
 				),
-				// Translators: comment type actions text.
 				'group' => sprintf(
+				// Translators: comment type actions text.
 					__(
 						'%s actions',
 						'notification'

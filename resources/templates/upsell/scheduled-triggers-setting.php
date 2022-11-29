@@ -22,8 +22,8 @@ $extensionLink = sprintf(
 <p>
 	<span class="label-pro">PRO</span>
 	<?php
-	// Translators: Link to extension.
 	$description = sprintf(
+	// Translators: Link to extension.
 		__(
 			'Use %s to define notifications based on time, rather than on action.',
 			'notification'

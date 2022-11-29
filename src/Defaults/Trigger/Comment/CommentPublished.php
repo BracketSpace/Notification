@@ -29,8 +29,8 @@ class CommentPublished extends CommentTrigger
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/published',
-				// Translators: %s comment type.
 				'name' => sprintf(
+				// Translators: %s comment type.
 					__(
 						'%s published',
 						'notification'
@@ -47,9 +47,9 @@ class CommentPublished extends CommentTrigger
 			1
 		);
 
-		// Translators: comment type.
 		$this->setDescription(
 			sprintf(
+			// Translators: comment type.
 				__(
 					'Fires when new %s is published on the website. Includes comment replies.',
 					'notification'

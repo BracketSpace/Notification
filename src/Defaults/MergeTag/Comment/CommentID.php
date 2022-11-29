@@ -47,8 +47,8 @@ class CommentID extends IntegerTag
 			$params,
 			[
 				'slug' => 'comment_ID',
-				// Translators: Comment type name.
 				'name' => sprintf(
+				// Translators: Comment type name.
 					__(
 						'%s ID',
 						'notification'

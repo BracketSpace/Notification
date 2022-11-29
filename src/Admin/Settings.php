@@ -692,8 +692,8 @@ class Settings
 					'default' => '',
 					'render' => [new CoreFields\Text(), 'input'],
 					'sanitize' => [new CoreFields\Text(), 'sanitize'],
-					// Translators: %s default value.
 					'description' => sprintf(
+					// Translators: %s default value.
 						__(
 							'Leave blank to use default value: %s',
 							'notification'
@@ -712,8 +712,8 @@ class Settings
 					'default' => '',
 					'render' => [new CoreFields\Text(), 'input'],
 					'sanitize' => [new CoreFields\Text(), 'sanitize'],
-					// Translators: %s default value.
 					'description' => sprintf(
+					// Translators: %s default value.
 						__(
 							'Leave blank to use default value: %s',
 							'notification'

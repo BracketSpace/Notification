@@ -41,8 +41,8 @@ class FeaturedImageUrl extends UrlTag
 					'%s_featured_image_url',
 					$this->getTriggerProp()
 				),
-				// translators: singular post name.
 				'name' => sprintf(
+				// translators: singular post name.
 					__(
 						'%s featured image url',
 						'notification'

@@ -295,8 +295,8 @@ class ImportExport
 			}
 		}
 
-		// translators: number and number and number of notifications.
 		return sprintf(
+		// translators: number and number and number of notifications.
 			__('%1$d notifications imported successfully. %2$d updated. %3$d skipped.'),
 			($added + $updated),
 			$updated,

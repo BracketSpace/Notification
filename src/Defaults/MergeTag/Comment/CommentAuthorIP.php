@@ -47,8 +47,8 @@ class CommentAuthorIP extends IPTag
 			$params,
 			[
 				'slug' => 'comment_author_IP',
-				// Translators: Comment type name.
 				'name' => sprintf(
+				// Translators: Comment type name.
 					__(
 						'%s author IP',
 						'notification'
@@ -57,8 +57,8 @@ class CommentAuthorIP extends IPTag
 				),
 				'description' => '127.0.0.1',
 				'example' => true,
-				// Translators: comment type author.
 				'group' => sprintf(
+				// Translators: comment type author.
 					__(
 						'%s author',
 						'notification'

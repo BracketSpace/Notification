@@ -47,16 +47,16 @@ class CommentActionApprove extends UrlTag
 			$params,
 			[
 				'slug' => 'comment_approve_action_url',
-				// Translators: Comment type name.
 				'name' => sprintf(
+					// Translators: Comment type name.
 					__(
 						'%s approve URL',
 						'notification'
 					),
 					$commentTypeName
 				),
-				// Translators: comment type actions text.
 				'group' => sprintf(
+					// Translators: comment type actions text.
 					__(
 						'%s actions',
 						'notification'

@@ -61,8 +61,8 @@ class PostPublished extends PostTrigger
 	 */
 	public function getName(): string
 	{
-		// translators: singular post name.
 		return sprintf(
+		// translators: singular post name.
 			__(
 				'%s published',
 				'notification'
@@ -145,8 +145,8 @@ class PostPublished extends PostTrigger
 						'%s_publishing_user_ID',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s publishing user ID',
 							'notification'
@@ -169,8 +169,8 @@ class PostPublished extends PostTrigger
 						'%s_publishing_user_login',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s publishing user login',
 							'notification'
@@ -193,8 +193,8 @@ class PostPublished extends PostTrigger
 						'%s_publishing_user_email',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s publishing user email',
 							'notification'
@@ -217,8 +217,8 @@ class PostPublished extends PostTrigger
 						'%s_publishing_user_nicename',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s publishing user nicename',
 							'notification'
@@ -241,8 +241,8 @@ class PostPublished extends PostTrigger
 						'%s_publishing_user_display_name',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s publishing user display name',
 							'notification'
@@ -265,8 +265,8 @@ class PostPublished extends PostTrigger
 						'%s_publishing_user_firstname',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s publishing user first name',
 							'notification'
@@ -289,8 +289,8 @@ class PostPublished extends PostTrigger
 						'%s_publishing_user_lastname',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s publishing user last name',
 							'notification'
@@ -313,8 +313,8 @@ class PostPublished extends PostTrigger
 						'%s_publishing_user_avatar',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s publishing user avatar',
 							'notification'
@@ -337,8 +337,8 @@ class PostPublished extends PostTrigger
 						'%s_publishing_user_role',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s publishing user role',
 							'notification'
@@ -361,8 +361,8 @@ class PostPublished extends PostTrigger
 						'%s_publication_datetime',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s publication date and time',
 							'notification'

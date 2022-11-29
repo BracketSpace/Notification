@@ -54,8 +54,8 @@ class PostUpdated extends PostTrigger
 	 */
 	public function getName(): string
 	{
-		// translators: singular post name.
 		return sprintf(
+		// translators: singular post name.
 			__(
 				'%s updated',
 				'notification'
@@ -157,8 +157,8 @@ class PostUpdated extends PostTrigger
 						'%s_updating_user_ID',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s updating user ID',
 							'notification'
@@ -181,8 +181,8 @@ class PostUpdated extends PostTrigger
 						'%s_updating_user_login',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s updating user login',
 							'notification'
@@ -205,8 +205,8 @@ class PostUpdated extends PostTrigger
 						'%s_updating_user_email',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s updating user email',
 							'notification'
@@ -229,8 +229,8 @@ class PostUpdated extends PostTrigger
 						'%s_updating_user_nicename',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s updating user nicename',
 							'notification'
@@ -253,8 +253,8 @@ class PostUpdated extends PostTrigger
 						'%s_updating_user_display_name',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s updating user display name',
 							'notification'
@@ -277,8 +277,8 @@ class PostUpdated extends PostTrigger
 						'%s_updating_user_firstname',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s updating user first name',
 							'notification'
@@ -301,8 +301,8 @@ class PostUpdated extends PostTrigger
 						'%s_updating_user_lastname',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s updating user last name',
 							'notification'
@@ -325,8 +325,8 @@ class PostUpdated extends PostTrigger
 						'%s_updating_user_avatar',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s updating user email',
 							'notification'
@@ -349,8 +349,8 @@ class PostUpdated extends PostTrigger
 						'%s_updating_user_role',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s updating user role',
 							'notification'

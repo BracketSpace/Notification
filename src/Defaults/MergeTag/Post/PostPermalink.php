@@ -41,8 +41,8 @@ class PostPermalink extends UrlTag
 					'%s_permalink',
 					$this->getTriggerProp()
 				),
-				// translators: singular post name.
 				'name' => sprintf(
+				// translators: singular post name.
 					__(
 						'%s permalink',
 						'notification'

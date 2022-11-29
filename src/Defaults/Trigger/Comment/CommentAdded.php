@@ -30,8 +30,8 @@ class CommentAdded extends CommentTrigger
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/added',
-				// Translators: %s comment type.
 				'name' => sprintf(
+				// Translators: %s comment type.
 					__(
 						'%s added',
 						'notification'
@@ -48,9 +48,9 @@ class CommentAdded extends CommentTrigger
 			2
 		);
 
-		// Translators: comment type.
 		$this->setDescription(
 			sprintf(
+			// Translators: comment type.
 				__(
 					'Fires when new %s is added to database and awaits moderation or is published. Includes comment replies.',
 					'notification'

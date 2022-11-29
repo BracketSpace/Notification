@@ -41,8 +41,8 @@ class PostExcerpt extends StringTag
 					'%s_excerpt',
 					$this->getTriggerProp()
 				),
-				// translators: singular post name.
 				'name' => sprintf(
+				// translators: singular post name.
 					__(
 						'%s excerpt',
 						'notification'

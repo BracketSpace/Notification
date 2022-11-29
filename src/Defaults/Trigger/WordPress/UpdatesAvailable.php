@@ -279,8 +279,8 @@ class UpdatesAvailable extends Abstracts\Trigger
 		$html = '<ul>';
 
 		foreach ($updates as $update) {
-			// translators: 1. Update type, 2. Version.
 			$html .= '<li>' . sprintf(
+				// translators: 1. Update type, 2. Version.
 				__(
 					'<strong>WordPress</strong> <i>(%1$s)</i>: %2$s',
 					'notification'

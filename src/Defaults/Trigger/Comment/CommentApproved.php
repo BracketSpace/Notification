@@ -29,8 +29,8 @@ class CommentApproved extends CommentTrigger
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/approved',
-				// Translators: %s comment type.
 				'name' => sprintf(
+				// Translators: %s comment type.
 					__(
 						'%s approved',
 						'notification'
@@ -47,9 +47,9 @@ class CommentApproved extends CommentTrigger
 			3
 		);
 
-		// translators: comment type.
 		$this->setDescription(
 			sprintf(
+			// translators: comment type.
 				__(
 					'Fires when %s is approved',
 					'notification'

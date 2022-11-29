@@ -29,8 +29,8 @@ class CommentSpammed extends CommentTrigger
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/spammed',
-				// Translators: %s comment type.
 				'name' => sprintf(
+				// Translators: %s comment type.
 					__(
 						'%s spammed',
 						'notification'
@@ -47,9 +47,9 @@ class CommentSpammed extends CommentTrigger
 			2
 		);
 
-		// translators: comment type.
 		$this->setDescription(
 			sprintf(
+			// translators: comment type.
 				__(
 					'Fires when %s is marked as spam',
 					'notification'

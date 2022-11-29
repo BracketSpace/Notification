@@ -29,8 +29,8 @@ class CommentTrashed extends CommentTrigger
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/trashed',
-				// Translators: %s comment type.
 				'name' => sprintf(
+				// Translators: %s comment type.
 					__(
 						'%s trashed',
 						'notification'
@@ -47,9 +47,9 @@ class CommentTrashed extends CommentTrigger
 			2
 		);
 
-		// translators: comment type.
 		$this->setDescription(
 			sprintf(
+			// translators: comment type.
 				__(
 					'Fires when %s is trashed',
 					'notification'

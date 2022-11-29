@@ -53,8 +53,8 @@ class PostDrafted extends PostTrigger
 	 */
 	public function getName(): string
 	{
-		// translators: singular post name.
 		return sprintf(
+		// translators: singular post name.
 			__(
 				'%s saved as a draft',
 				'notification'

@@ -54,8 +54,8 @@ class PostTrashed extends PostTrigger
 	 */
 	public function getName(): string
 	{
-		// translators: singular post name.
 		return sprintf(
+		// translators: singular post name.
 			__(
 				'%s trashed',
 				'notification'
@@ -132,8 +132,8 @@ class PostTrashed extends PostTrigger
 						'%s_trashing_user_ID',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s trashing user ID',
 							'notification'
@@ -156,8 +156,8 @@ class PostTrashed extends PostTrigger
 						'%s_trashing_user_login',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s trashing user login',
 							'notification'
@@ -180,8 +180,8 @@ class PostTrashed extends PostTrigger
 						'%s_trashing_user_email',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s trashing user email',
 							'notification'
@@ -204,8 +204,8 @@ class PostTrashed extends PostTrigger
 						'%s_trashing_user_nicename',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s trashing user nicename',
 							'notification'
@@ -228,8 +228,8 @@ class PostTrashed extends PostTrigger
 						'%s_trashing_user_display_name',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s trashing user display name',
 							'notification'
@@ -252,8 +252,8 @@ class PostTrashed extends PostTrigger
 						'%s_trashing_user_firstname',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s trashing user first name',
 							'notification'
@@ -276,8 +276,8 @@ class PostTrashed extends PostTrigger
 						'%s_trashing_user_lastname',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s trashing user last name',
 							'notification'
@@ -300,8 +300,8 @@ class PostTrashed extends PostTrigger
 						'%s_trashing_user_avatar',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s trashing user avatar',
 							'notification'
@@ -324,8 +324,8 @@ class PostTrashed extends PostTrigger
 						'%s_trashing_user_role',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s trashing user role',
 							'notification'

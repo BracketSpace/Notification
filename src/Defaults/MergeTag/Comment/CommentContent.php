@@ -47,8 +47,8 @@ class CommentContent extends StringTag
 			$params,
 			[
 				'slug' => 'comment_content',
-				// Translators: Comment type name.
 				'name' => sprintf(
+				// Translators: Comment type name.
 					__(
 						'%s content',
 						'notification'

@@ -56,8 +56,8 @@ class TermUpdated extends TermTrigger
 	 */
 	public function getName(): string
 	{
-		// Translators: taxonomy name.
 		return sprintf(
+		// Translators: taxonomy name.
 			__(
 				'%s term updated',
 				'notification'

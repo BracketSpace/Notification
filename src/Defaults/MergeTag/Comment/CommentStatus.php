@@ -47,8 +47,8 @@ class CommentStatus extends StringTag
 			$params,
 			[
 				'slug' => 'comment_status',
-				// Translators: Comment type name.
 				'name' => sprintf(
+				// Translators: Comment type name.
 					__(
 						'%s status',
 						'notification'

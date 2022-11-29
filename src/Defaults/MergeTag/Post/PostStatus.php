@@ -41,8 +41,8 @@ class PostStatus extends StringTag
 					'%s_status',
 					$this->getTriggerProp()
 				),
-				// translators: singular post name.
 				'name' => sprintf(
+				// translators: singular post name.
 					__(
 						'%s status',
 						'notification'

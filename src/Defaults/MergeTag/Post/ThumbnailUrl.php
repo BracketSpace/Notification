@@ -41,8 +41,9 @@ class ThumbnailUrl extends UrlTag
 					'%s_thumbnail_url',
 					$this->getTriggerProp()
 				),
-				// translators: singular post name.
 				'name' => sprintf(
+				// translators: singular post name.
+
 					__(
 						'%s thumbnail url',
 						'notification'

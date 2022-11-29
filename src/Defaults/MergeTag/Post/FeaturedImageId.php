@@ -41,8 +41,8 @@ class FeaturedImageId extends IntegerTag
 					'%s_featured_image_id',
 					$this->getTriggerProp()
 				),
-				// translators: singular post name.
 				'name' => sprintf(
+				// translators: singular post name.
 					__(
 						'%s featured image id',
 						'notification'

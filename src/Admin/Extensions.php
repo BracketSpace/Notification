@@ -240,10 +240,10 @@ class Extensions
 			[
 				'name' => 'All-In',
 				'description' => __(
-					'Every available Notification extension and all the 
+					'Every available Notification extension and all the
 					<strong>future extensions</strong>
-					at a static price! 
-					You get the whole package and the price will never 
+					at a static price!
+					You get the whole package and the price will never
 					change even if a new add-on will be released.',
 					'notification'
 				),
@@ -547,8 +547,8 @@ class Extensions
 
 			case 'missing':
 				$view = 'error';
-				// Translators: Extension slug.
 				$message = sprintf(
+				// Translators: Extension slug.
 					__(
 						'Invalid license key for %s.',
 						'notification'
@@ -568,8 +568,8 @@ class Extensions
 
 			case 'item_name_mismatch':
 				$view = 'error';
-				// translators: 1. Extension name.
 				$message = sprintf(
+				// translators: 1. Extension name.
 					__(
 						'This appears to be an invalid license key for %s.',
 						'notification'

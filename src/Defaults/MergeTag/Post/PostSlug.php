@@ -41,8 +41,8 @@ class PostSlug extends StringTag
 					'%s_slug',
 					$this->getTriggerProp()
 				),
-				// translators: singular post name.
 				'name' => sprintf(
+				// translators: singular post name.
 					__(
 						'%s slug',
 						'notification'

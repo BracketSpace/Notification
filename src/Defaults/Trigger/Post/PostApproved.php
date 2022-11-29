@@ -53,8 +53,8 @@ class PostApproved extends PostTrigger
 	 */
 	public function getName(): string
 	{
-		// translators: singular post name.
 		return sprintf(
+		// translators: singular post name.
 			__(
 				'%s approved',
 				'notification'
@@ -131,8 +131,8 @@ class PostApproved extends PostTrigger
 						'%s_approving_user_ID',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s approving user ID',
 							'notification'
@@ -155,8 +155,8 @@ class PostApproved extends PostTrigger
 						'%s_approving_user_login',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s approving user login',
 							'notification'
@@ -179,8 +179,8 @@ class PostApproved extends PostTrigger
 						'%s_approving_user_email',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s approving user email',
 							'notification'
@@ -203,8 +203,8 @@ class PostApproved extends PostTrigger
 						'%s_approving_user_nicename',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s approving user nicename',
 							'notification'
@@ -227,8 +227,8 @@ class PostApproved extends PostTrigger
 						'%s_approving_user_display_name',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s approving user display name',
 							'notification'
@@ -251,8 +251,8 @@ class PostApproved extends PostTrigger
 						'%s_approving_user_firstname',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s approving user first name',
 							'notification'
@@ -275,8 +275,8 @@ class PostApproved extends PostTrigger
 						'%s_approving_user_lastname',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s approving user last name',
 							'notification'
@@ -299,8 +299,8 @@ class PostApproved extends PostTrigger
 						'%s_approving_user_avatar',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s approving user avatar',
 							'notification'
@@ -323,8 +323,8 @@ class PostApproved extends PostTrigger
 						'%s_approving_user_role',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s approving user role',
 							'notification'
@@ -347,8 +347,8 @@ class PostApproved extends PostTrigger
 						'%s_approving_datetime',
 						$this->postType
 					),
-					// translators: singular post name.
 					'name' => sprintf(
+					// translators: singular post name.
 						__(
 							'%s approving date and time',
 							'notification'

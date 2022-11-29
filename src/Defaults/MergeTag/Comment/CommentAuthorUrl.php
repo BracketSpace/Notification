@@ -47,8 +47,8 @@ class CommentAuthorUrl extends UrlTag
 			$params,
 			[
 				'slug' => 'comment_author_url',
-				// Translators: Comment type name.
 				'name' => sprintf(
+				// Translators: Comment type name.
 					__(
 						'%s author URL',
 						'notification'
@@ -60,8 +60,8 @@ class CommentAuthorUrl extends UrlTag
 					'notification'
 				),
 				'example' => true,
-				// Translators: comment type author.
 				'group' => sprintf(
+				// Translators: comment type author.
 					__(
 						'%s author',
 						'notification'

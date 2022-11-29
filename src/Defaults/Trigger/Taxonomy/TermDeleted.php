@@ -56,8 +56,8 @@ class TermDeleted extends TermTrigger
 	 */
 	public function getName(): string
 	{
-		// Translators: taxonomy name.
 		return sprintf(
+		// Translators: taxonomy name.
 			__(
 				'%s term deleted',
 				'notification'

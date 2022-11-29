@@ -44,8 +44,8 @@ class CommentReplied extends CommentTrigger
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/replied',
-				// Translators: %s comment type.
 				'name' => sprintf(
+				// Translators: %s comment type.
 					__(
 						'%s replied',
 						'notification'
@@ -67,9 +67,9 @@ class CommentReplied extends CommentTrigger
 			3
 		);
 
-		// translators: comment type.
 		$this->setDescription(
 			sprintf(
+			// translators: comment type.
 				__(
 					'Fires when %s is replied and the reply is approved',
 					'notification'

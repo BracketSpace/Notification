@@ -13,8 +13,9 @@ declare(strict_types=1);
  * @var \BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
+//phpcs:ignore WordPress.WP.I18n.MissingTranslatorsComment
 echo wp_kses_data(
-// Translators: Function name.
+	// Translators: %s Function name.
 	__(
 		sprintf(
 			'Synchronization is disabled. You can enable it with %s function',

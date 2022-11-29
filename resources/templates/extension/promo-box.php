@@ -60,10 +60,10 @@ if (Whitelabel::isWhitelabeled()) {
 			);
 			?>
 				</p>
-			<?php // translators: 1. Link to documentation. ?>
 			<p>
 			<?php
 			printf(
+				// translators: 1. Link to documentation.
 				esc_html__(
 					'See the %s for more information how to release an extension.',
 					'notification'

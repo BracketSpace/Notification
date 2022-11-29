@@ -47,8 +47,8 @@ class CommentContentHtml extends HtmlTag
 			$params,
 			[
 				'slug' => 'comment_content_html',
-				// Translators: Comment type name.
 				'name' => sprintf(
+				// Translators: Comment type name.
 					__(
 						'%s HTML content',
 						'notification'

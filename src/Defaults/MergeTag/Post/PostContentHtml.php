@@ -41,8 +41,8 @@ class PostContentHtml extends HtmlTag
 					'%s_content_html',
 					$this->getTriggerProp()
 				),
-				// translators: singular post name.
 				'name' => sprintf(
+				// translators: singular post name.
 					__(
 						'%s content HTML',
 						'notification'

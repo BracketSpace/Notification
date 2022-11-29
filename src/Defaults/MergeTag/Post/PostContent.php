@@ -41,8 +41,8 @@ class PostContent extends StringTag
 					'%s_content',
 					$this->getTriggerProp()
 				),
-				// translators: singular post name.
 				'name' => sprintf(
+				// translators: singular post name.
 					__(
 						'%s content',
 						'notification'

@@ -47,8 +47,8 @@ class CommentIsReply extends StringTag
 			$params,
 			[
 				'slug' => 'comment_is_reply',
-				// Translators: Comment type name.
 				'name' => sprintf(
+				// Translators: Comment type name.
 					__(
 						'Is %s a reply?',
 						'notification'
