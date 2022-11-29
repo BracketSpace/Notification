@@ -58,8 +58,8 @@ $license = $ext['license']->get();
 			<div class="column-submit"><input type="submit" name="" class="button button-secondary widefat" value="<?php esc_attr_e('Save and activate license', 'notification'); ?>"></div>
 		<?php else : ?>
 			<input type="hidden" name="action" value="notification_deactivate_extension">
-			<input type="hidden" name="license-key" value="<?php echo esc_attr($license->license_key); ?>">
-			<div class="column-license"><input type="text" name="placeholder" disabled="disabled" value="<?php echo esc_attr($license->license_key); ?>" class="widefat"></div>
+			<input type="hidden" name="license-key" value="<?php echo esc_attr($license->licenseKey); ?>">
+			<div class="column-license"><input type="text" name="placeholder" disabled="disabled" value="<?php echo esc_attr($license->licenseKey); ?>" class="widefat"></div>
 			<div class="column-submit"><input type="submit" name="" class="button button-secondary widefat" value="<?php esc_attr_e('Deactivate license', 'notification'); ?>"></div>
 		<?php endif ?>
 	</form>

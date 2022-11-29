@@ -35,9 +35,9 @@ $logs = $get('logs');
 					<span class="excerpt"><?php echo esc_html(preg_replace('/\s+/', ' ', wp_strip_all_tags($log->message))); ?></span>
 					<span class="indicator dashicons dashicons-arrow-down"></span>
 					<span class="date">
-						<abbr title="<?php echo esc_html(date_i18n($get('datetime_format'), strtotime($log->time_logged))); ?>">
+						<abbr title="<?php echo esc_html(date_i18n($get('datetime_format'), strtotime($log->timeLogged))); ?>">
 							<?php // translators: Time ago. ?>
-							<?php esc_html_e(sprintf(__('%s ago'), human_time_diff(strtotime($log->time_logged)))); ?>
+							<?php esc_html_e(sprintf(__('%s ago'), human_time_diff(strtotime($log->timeLogged)))); ?>
 						</abbr>
 					</span>
 				</div>

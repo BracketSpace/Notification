@@ -23,8 +23,8 @@ $type = false;
 $id = '';
 $vueClass = '';
 
-if (isset($field->field_type)) {
-	$type = $field->field_type;
+if (isset($field->fieldType)) {
+	$type = $field->fieldType;
 	$id = 'id=' . $field->id . '';
 	if ($type === 'repeater') {
 		$vueClass = ' vue-repeater';
@@ -37,9 +37,9 @@ $dataCarrier = $carrier ? ' data-carrier=' . $carrier : '';
 
 ?>
 
-<tr <?php echo esc_attr($id); ?> class="<?php echo esc_attr($field->get_raw_name()) . esc_attr($vueClass); ?>" data-field-name=<?php echo esc_attr($field->get_raw_name()) . esc_attr($dataCarrier); ?> >
+<tr <?php echo esc_attr($id); ?> class="<?php echo esc_attr($field->getRawName()) . esc_attr($vueClass); ?>" data-field-name=<?php echo esc_attr($field->getRawName()) . esc_attr($dataCarrier); ?> >
 	<th>
-		<label for="<?php echo esc_attr($field->get_id()); ?>"><?php echo esc_html($field->get_label()); ?></label>
+		<label for="<?php echo esc_attr($field->getId()); ?>"><?php echo esc_html($field->getLabel()); ?></label>
 	</th>
 	<td>
 		<?php do_action_deprecated('notification/notification/box/field/pre', [ $this ], '6.0.0', 'notification/carrier/box/field/pre'); ?>
@@ -49,7 +49,7 @@ $dataCarrier = $carrier ? ' data-carrier=' . $carrier : '';
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $field->field();
 		?>
-		<?php $description = $field->get_description(); ?>
+		<?php $description = $field->getDescription(); ?>
 		<?php if (! empty($description)) : ?>
 			<p class="description"><?php echo wp_kses_data($description); ?></p>
 		<?php endif ?>

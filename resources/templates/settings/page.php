@@ -28,7 +28,7 @@ if (! isset($currentSection)) {
 			<?php do_action($this->handle . '/settings/sidebar/before'); ?>
 
 			<ul class="menu-list box">
-				<?php foreach ($this->get_sections() as $sectionSlug => $section) : ?>
+				<?php foreach ($this->getSections() as $sectionSlug => $section) : ?>
 					<?php
 					$class = ( $sectionSlug === $currentSection ) ? 'current' : '';
 					$pageUrl = remove_query_arg('updated');
@@ -42,7 +42,7 @@ if (! isset($currentSection)) {
 
 		</div>
 
-		<?php $section = $this->get_section($currentSection); ?>
+		<?php $section = $this->getSection($currentSection); ?>
 
 		<div id="notification-settings-section-<?php echo esc_attr($section->slug()); ?>" class="setting-col box section-<?php echo esc_attr($section->slug()); ?>">
 
@@ -62,7 +62,7 @@ if (! isset($currentSection)) {
 				?>
 				<input type="hidden" name="<?php echo esc_attr($this->handle) . '_settings[' . esc_attr($section->slug()) . ']'; ?>" value="section_buster">
 
-				<?php $groups = $section->get_groups(); ?>
+				<?php $groups = $section->getGroups(); ?>
 
 				<?php foreach ($groups as $group) : ?>
 					<div id="notification-settings-group-<?php echo esc_attr($group->slug()); ?>" class="setting-group group-<?php echo esc_attr($group->slug()); ?>">
@@ -79,9 +79,9 @@ if (! isset($currentSection)) {
 						<?php do_action($this->handle . '/settings/group/' . $group->slug() . '/before'); ?>
 						<table class="form-table">
 
-							<?php foreach ($group->get_fields() as $field) : ?>
+							<?php foreach ($group->getFields() as $field) : ?>
 								<tr id="notification-settings-field-<?php echo esc_attr($group->slug()); ?>-<?php echo esc_attr($field->slug()); ?>" class="field-<?php echo esc_attr($field->slug()); ?>">
-									<th><label for="<?php echo esc_attr($field->input_id()); ?>"><?php echo esc_html($field->name()); ?></label></th>
+									<th><label for="<?php echo esc_attr($field->inputId()); ?>"><?php echo esc_html($field->name()); ?></label></th>
 									<td>
 										<?php
 										$field->render();

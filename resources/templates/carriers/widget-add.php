@@ -23,8 +23,8 @@ $svgSanitizer = new Sanitizer();
 		<?php do_action('notification/carrier/list/before'); ?>
 		<?php foreach ($get('carriers') as $carrier) : ?>
 			<li class="notification-carriers__carrier"
-				data-nt-button="<?php echo esc_attr($carrier->get_slug()); ?>"
-				<?php echo ( array_key_exists($carrier->get_slug(), $get('carriers_exists')) ) ? 'data-nt-hidden' : ''; ?>>
+				data-nt-button="<?php echo esc_attr($carrier->getSlug()); ?>"
+				<?php echo ( array_key_exists($carrier->getSlug(), $get('carriers_exists')) ) ? 'data-nt-hidden' : ''; ?>>
 				<a href="#" class="notification-carriers__carrier-link" data-nt-button-link>
 					<div class="notification-carriers__carrier-media">
 						<div class="notification-carriers__carrier-icon">
@@ -34,7 +34,7 @@ $svgSanitizer = new Sanitizer();
 							?>
 						</div>
 					</div>
-					<div class="notification-carriers__carrier-title"><?php echo esc_html($carrier->get_name()); ?></div>
+					<div class="notification-carriers__carrier-title"><?php echo esc_html($carrier->getName()); ?></div>
 					<div class="notification-carriers__carrier-overlay">
 						<div class="notification-carriers__carrier-overlay-inner">
 							<div class="notification-carriers__carrier-overlay-icon"></div>

@@ -25,7 +25,7 @@ use BracketSpace\Notification\Core\Templates;
 <?php else : ?>
 	<?php do_action('notification/metabox/trigger/before', $get('triggers'), $get('selected'), $get('notification')); ?>
 
-	<?php Templates::render('trigger/select', $this->get_vars()); ?>
+	<?php Templates::render('trigger/select', $this->getVars()); ?>
 
 	<?php do_action('notification/metabox/trigger/after', $get('triggers'), $get('selected'), $get('notification')); ?>
 

@@ -25,14 +25,14 @@ $recipientFieldPrinted = false;
 <table class="form-table">
 
 	<?php
-	foreach ($carrier->get_form_fields() as $field) {
+	foreach ($carrier->getFormFields() as $field) {
 		// Check if this is the right moment to print recipients field.
-		if (! $recipientFieldPrinted && $carrier->has_recipients_field() && $currentIndex === $carrier->recipients_field_index) {
+		if (! $recipientFieldPrinted && $carrier->hasRecipientsField() && $currentIndex === $carrier->recipientsFieldIndex) {
 			Templates::render(
 				'form/field',
 				[
-				'current_field' => $carrier->get_recipients_field(),
-				'carrier' => $carrier->get_slug(),
+				'current_field' => $carrier->getRecipientsField(),
+				'carrier' => $carrier->getSlug(),
 				]
 			);
 			$recipientFieldPrinted = true;
@@ -40,10 +40,10 @@ $recipientFieldPrinted = false;
 
 		$vars = [
 			'current_field' => $field,
-			'carrier' => $carrier->get_slug(),
+			'carrier' => $carrier->getSlug(),
 		];
 
-		if (empty($field->get_label())) {
+		if (empty($field->getLabel())) {
 			Templates::render('form/field-hidden', $vars);
 		} else {
 			Templates::render('form/field', $vars);
@@ -52,12 +52,12 @@ $recipientFieldPrinted = false;
 	}
 
 	// Check if the recipients field should be printed as a last field.
-	if ($carrier->has_recipients_field() && $currentIndex === $carrier->recipients_field_index) {
+	if ($carrier->hasRecipientsField() && $currentIndex === $carrier->recipientsFieldIndex) {
 		Templates::render(
 			'form/field',
 			[
-			'current_field' => $carrier->get_recipients_field(),
-			'carrier' => $carrier->get_slug(),
+			'current_field' => $carrier->getRecipientsField(),
+			'carrier' => $carrier->getSlug(),
 			]
 		);
 	}

@@ -25,13 +25,13 @@ declare(strict_types=1);
 		</tr>
 	</thead>
 	<?php foreach ($get('collection') as $item) : ?>
-		<?php $hash = $item['notification']->get_hash(); ?>
+		<?php $hash = $item['notification']->getHash(); ?>
 		<tr>
 			<td class="title">
 				<?php if (isset($item['post_id'])) : ?>
 					<a href="<?php echo esc_url((string)get_edit_post_link($item['post_id'], 'admin')); ?>">
 				<?php endif ?>
-				<?php echo esc_html($item['notification']->get_title()); ?>
+				<?php echo esc_html($item['notification']->getTitle()); ?>
 				<?php if (isset($item['post_id'])) : ?>
 					</a>
 				<?php endif ?>
