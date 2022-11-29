@@ -15,4 +15,11 @@ declare(strict_types=1);
 
 ?>
 
-<p><?php esc_html_e('No merge tags available for this trigger', 'notification'); ?></p>
+<p>
+<?php
+esc_html_e(
+	'No merge tags available for this trigger',
+	'notification'
+);
+?>
+	</p>

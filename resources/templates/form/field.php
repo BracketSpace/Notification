@@ -33,27 +33,54 @@ if (isset($field->fieldType)) {
 	}
 }
 
-$dataCarrier = $carrier ? ' data-carrier=' . $carrier : '';
+$dataCarrier = $carrier
+	? ' data-carrier=' . $carrier
+	: '';
 
 ?>
 
-<tr <?php echo esc_attr($id); ?> class="<?php echo esc_attr($field->getRawName()) . esc_attr($vueClass); ?>" data-field-name=<?php echo esc_attr($field->getRawName()) . esc_attr($dataCarrier); ?> >
+<tr <?php echo esc_attr($id); ?> class="<?php echo esc_attr($field->getRawName()) . esc_attr($vueClass); ?>"
+								 data-field-name=<?php echo esc_attr($field->getRawName()) . esc_attr($dataCarrier); ?>>
 	<th>
 		<label for="<?php echo esc_attr($field->getId()); ?>"><?php echo esc_html($field->getLabel()); ?></label>
 	</th>
 	<td>
-		<?php do_action_deprecated('notification/notification/box/field/pre', [ $this ], '6.0.0', 'notification/carrier/box/field/pre'); ?>
-		<?php do_action('notification/carrier/box/field/pre', $this); ?>
+		<?php
+		do_action_deprecated(
+			'notification/notification/box/field/pre',
+			[$this],
+			'6.0.0',
+			'notification/carrier/box/field/pre'
+		);
+		?>
+		<?php
+		do_action(
+			'notification/carrier/box/field/pre',
+			$this
+		);
+		?>
 		<?php
 		// Field is escaped in the called method.
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $field->field();
 		?>
 		<?php $description = $field->getDescription(); ?>
-		<?php if (! empty($description)) : ?>
+		<?php if (!empty($description)) : ?>
 			<p class="description"><?php echo wp_kses_data($description); ?></p>
 		<?php endif ?>
-		<?php do_action_deprecated('notification/notification/box/field/post', [ $this ], '6.0.0', 'notification/carrier/box/field/post'); ?>
-		<?php do_action('notification/carrier/box/field/post', $this); ?>
+		<?php
+		do_action_deprecated(
+			'notification/notification/box/field/post',
+			[$this],
+			'6.0.0',
+			'notification/carrier/box/field/post'
+		);
+		?>
+		<?php
+		do_action(
+			'notification/carrier/box/field/post',
+			$this
+		);
+		?>
 	</td>
 </tr>

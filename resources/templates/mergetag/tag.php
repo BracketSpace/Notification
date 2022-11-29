@@ -20,16 +20,27 @@ $tag = $get('tag');
 
 <div class="intro">
 	<label><?php echo esc_html($tag->getName()); ?></label>
-	<code class="notification-merge-tag" data-clipboard-text="{<?php echo esc_attr($tag->getSlug()); ?>}">{<?php echo esc_attr($tag->getSlug()); ?>}</code>
+	<code
+		class="notification-merge-tag"
+		data-clipboard-text="{<?php echo esc_attr($tag->getSlug()); ?>}"
+	>{<?php echo esc_attr($tag->getSlug()); ?>
+		}</code>
 </div>
 <?php $description = $tag->getDescription(); ?>
-<?php if (! empty($description)) : ?>
+<?php if (!empty($description)) : ?>
 	<span class="question-mark">
 		?
 		<div class="description">
 			<div class="description-container">
 				<?php if ($tag->isDescriptionExample()) : ?>
-					<label><?php esc_html_e('Example:', 'notification'); ?></label>
+					<label>
+					<?php
+					esc_html_e(
+						'Example:',
+						'notification'
+					);
+					?>
+						</label>
 				<?php endif ?>
 				<div class="description-content">
 					<?php echo esc_html($description); ?>

@@ -22,8 +22,28 @@ declare(strict_types=1);
 		</div>
 		<div class="action-links">
 			<ul class="plugin-action-buttons">
-				<li><a href="https://bracketspace.com/pricing/?utm_source=wp&utm_medium=extensions&utm_id=upsell" target="_blank" class="button"><?php esc_html_e('More Details', 'notification'); ?></a></li>
-				<li><span class="official"><?php esc_html_e('Official', 'notification'); ?></span></li>
+				<li>
+					<a
+						href="https://bracketspace.com/pricing/?utm_source=wp&utm_medium=extensions&utm_id=upsell"
+						target="_blank"
+						class="button"
+					>
+					<?php
+					esc_html_e(
+						'More Details',
+						'notification'
+					);
+					?>
+					</a>
+				</li>
+				<li><span class="official">
+				<?php
+				esc_html_e(
+					'Official',
+					'notification'
+				);
+				?>
+						</span></li>
 				<li><span class="discount">$<?php $theEsc('price'); ?></span></li>
 			</ul>
 		</div>

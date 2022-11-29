@@ -17,16 +17,49 @@ use BracketSpace\Notification\Core\Templates;
 
 ?>
 
-<h3 class="trigger-section-title"><?php esc_html_e('Trigger', 'notification'); ?></h3>
+<h3 class="trigger-section-title">
+<?php
+esc_html_e(
+	'Trigger',
+	'notification'
+);
+?>
+</h3>
 
-<?php if (! $get('has_triggers')) : ?>
-	<p><?php esc_html_e('No Triggers defined yet', 'notification'); ?></p>
+<?php if (!$get('has_triggers')) : ?>
+	<p>
+	<?php
+	esc_html_e(
+		'No Triggers defined yet',
+		'notification'
+	);
+	?>
+		</p>
 
 <?php else : ?>
-	<?php do_action('notification/metabox/trigger/before', $get('triggers'), $get('selected'), $get('notification')); ?>
+	<?php
+	do_action(
+		'notification/metabox/trigger/before',
+		$get('triggers'),
+		$get('selected'),
+		$get('notification')
+	);
+	?>
 
-	<?php Templates::render('trigger/select', $this->getVars()); ?>
+	<?php
+	Templates::render(
+		'trigger/select',
+		$this->getVars()
+	);
+	?>
 
-	<?php do_action('notification/metabox/trigger/after', $get('triggers'), $get('selected'), $get('notification')); ?>
+	<?php
+	do_action(
+		'notification/metabox/trigger/after',
+		$get('triggers'),
+		$get('selected'),
+		$get('notification')
+	);
+	?>
 
 <?php endif ?>

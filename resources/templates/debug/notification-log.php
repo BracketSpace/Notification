@@ -20,7 +20,7 @@ $logs = $get('logs');
 
 <div class="notification-logs log-container">
 
-	<?php if (! empty($logs)) : ?>
+	<?php if (!empty($logs)) : ?>
 		<?php foreach ($logs as $log) : ?>
 			<div class="log-item">
 				<div class="log-handle">
@@ -29,35 +29,107 @@ $logs = $get('logs');
 					<span class="source-label"><?php echo esc_html($log['notification']['source']); ?></span>
 					<span class="indicator dashicons dashicons-arrow-down"></span>
 					<span class="date">
-						<abbr title="<?php echo esc_html(date_i18n($get('datetime_format'), strtotime($log['time']))); ?>">
+						<abbr
+							title="
+							<?php
+							echo esc_html(
+								date_i18n(
+									$get('datetime_format'),
+									strtotime($log['time'])
+								)
+							);
+							?>
+									"
+						>
 							<?php // translators: Time ago. ?>
-							<?php esc_html_e(sprintf(__('%s ago'), human_time_diff(strtotime($log['time'])))); ?>
+							<?php
+							esc_html_e(
+								sprintf(
+									__('%s ago'),
+									human_time_diff(strtotime($log['time']))
+								)
+							);
+							?>
 						</abbr>
 					</span>
 				</div>
 				<div class="log-body">
 					<div class="body-content">
 						<table class="form-table">
-							<caption><?php esc_html_e('Notification', 'notification'); ?></caption>
+							<caption>
+							<?php
+							esc_html_e(
+								'Notification',
+								'notification'
+							);
+							?>
+								</caption>
 							<tr>
-								<th><?php esc_html_e('Source', 'notification'); ?></th>
+								<th>
+								<?php
+								esc_html_e(
+									'Source',
+									'notification'
+								);
+								?>
+									</th>
 								<td><?php echo esc_html($log['notification']['source']); ?></td>
 							</tr>
 							<tr>
-								<th><?php esc_html_e('Title', 'notification'); ?></th>
+								<th>
+								<?php
+								esc_html_e(
+									'Title',
+									'notification'
+								);
+								?>
+									</th>
 								<td><?php echo esc_html($log['notification']['title']); ?></td>
 							</tr>
 							<tr>
-								<th><?php esc_html_e('Hash', 'notification'); ?></th>
+								<th>
+								<?php
+								esc_html_e(
+									'Hash',
+									'notification'
+								);
+								?>
+									</th>
 								<td><code><?php echo esc_html($log['notification']['hash']); ?></code></td>
 							</tr>
 							<tr>
-								<th><?php esc_html_e('Trigger', 'notification'); ?></th>
-								<td><?php echo esc_html($log['trigger']['name']); ?> - <code><?php echo esc_html($log['trigger']['slug']); ?></code></td>
+								<th>
+								<?php
+								esc_html_e(
+									'Trigger',
+									'notification'
+								);
+								?>
+									</th>
+								<td><?php echo esc_html($log['trigger']['name']); ?> - <code>
+											   <?php
+												echo esc_html(
+													$log['trigger']['slug']
+												);
+												?>
+										</code></td>
 							</tr>
 							<tr>
-								<th><?php esc_html_e('Carrier', 'notification'); ?></th>
-								<td><?php echo esc_html($log['carrier']['name']); ?> - <code><?php echo esc_html($log['carrier']['slug']); ?></code></td>
+								<th>
+								<?php
+								esc_html_e(
+									'Carrier',
+									'notification'
+								);
+								?>
+									</th>
+								<td><?php echo esc_html($log['carrier']['name']); ?> - <code>
+											   <?php
+												echo esc_html(
+													$log['carrier']['slug']
+												);
+												?>
+										</code></td>
 							</tr>
 						</table>
 						<table class="form-table">
@@ -71,7 +143,12 @@ $logs = $get('logs');
 												<?php
 												// print_r is used to display debug info.
 												// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
-												echo wp_kses_post(print_r($value, true));
+												echo wp_kses_post(
+													print_r(
+														$value,
+														true
+													)
+												);
 												?>
 											</code></pre>
 										<?php else : ?>
@@ -81,12 +158,33 @@ $logs = $get('logs');
 								</tr>
 							<?php endforeach ?>
 						</table>
-						<?php if (! empty($log['notification']['extras'])) : ?>
+						<?php if (!empty($log['notification']['extras'])) : ?>
 							<table class="form-table">
-								<caption><?php esc_html_e('Notification extras', 'notification'); ?></caption>
+								<caption>
+								<?php
+								esc_html_e(
+									'Notification extras',
+									'notification'
+								);
+								?>
+									</caption>
 								<tr>
-									<th><?php esc_html_e('Key', 'notification'); ?></th>
-									<td><?php esc_html_e('Value', 'notification'); ?></td>
+									<th>
+									<?php
+									esc_html_e(
+										'Key',
+										'notification'
+									);
+									?>
+										</th>
+									<td>
+									<?php
+									esc_html_e(
+										'Value',
+										'notification'
+									);
+									?>
+										</td>
 								</tr>
 								<?php foreach ($log['notification']['extras'] as $key => $value) : ?>
 									<tr>
@@ -97,7 +195,12 @@ $logs = $get('logs');
 													<?php
 													// print_r is used to display debug info.
 													// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
-													echo wp_kses_post(print_r($value, true));
+													echo wp_kses_post(
+														print_r(
+															$value,
+															true
+														)
+													);
 													?>
 												</code></pre>
 											<?php else : ?>
@@ -115,7 +218,14 @@ $logs = $get('logs');
 
 
 	<?php else : ?>
-		<p><?php esc_html_e('The Notification log is empty.', 'notification'); ?></p>
+		<p>
+		<?php
+		esc_html_e(
+			'The Notification log is empty.',
+			'notification'
+		);
+		?>
+			</p>
 	<?php endif ?>
 
 </div>

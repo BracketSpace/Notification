@@ -20,7 +20,7 @@ $logs = $get('logs');
 
 <div class="error-logs log-container">
 
-	<?php if (! empty($logs)) : ?>
+	<?php if (!empty($logs)) : ?>
 		<?php foreach ($logs as $log) : ?>
 			<div class="log-item <?php echo esc_attr($log->type); ?>-log">
 				<div class="log-handle">
@@ -32,12 +32,40 @@ $logs = $get('logs');
 						<?php endif ?>
 					</span>
 					<span class="component"><?php echo esc_html($log->component); ?></span>
-					<span class="excerpt"><?php echo esc_html(preg_replace('/\s+/', ' ', wp_strip_all_tags($log->message))); ?></span>
+					<span class="excerpt">
+					<?php
+					echo esc_html(
+						preg_replace(
+							'/\s+/',
+							' ',
+							wp_strip_all_tags($log->message)
+						)
+					);
+					?>
+						</span>
 					<span class="indicator dashicons dashicons-arrow-down"></span>
 					<span class="date">
-						<abbr title="<?php echo esc_html(date_i18n($get('datetime_format'), strtotime($log->timeLogged))); ?>">
+						<abbr
+							title="
+							<?php
+							echo esc_html(
+								date_i18n(
+									$get('datetime_format'),
+									strtotime($log->timeLogged)
+								)
+							);
+							?>
+							"
+						>
 							<?php // translators: Time ago. ?>
-							<?php esc_html_e(sprintf(__('%s ago'), human_time_diff(strtotime($log->timeLogged)))); ?>
+							<?php
+							esc_html_e(
+								sprintf(
+									__('%s ago'),
+									human_time_diff(strtotime($log->timeLogged))
+								)
+							);
+							?>
 						</abbr>
 					</span>
 				</div>

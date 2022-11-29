@@ -19,32 +19,76 @@ $ext = $get('extension');
 $actionButton = '';
 
 // fragment forked from wp-admin/includes/class-wp-plugin-install-list-table.php.
-if (isset($ext['wporg']) && ! is_wp_error($ext['wporg']) && ( current_user_can('install_plugins') || current_user_can('update_plugins') )) {
+if (
+	isset($ext['wporg']) && !is_wp_error($ext['wporg']) && (current_user_can('install_plugins') || current_user_can(
+		'update_plugins'
+	))
+) {
 	$status = install_plugin_install_status($ext['wporg']);
 
 	switch ($status['status']) {
 		case 'install':
 			if ($status['url']) {
 				/* translators: 1: Plugin name and version. */
-				$actionButton = '<a class="install-now button" data-slug="' . esc_attr($ext['slug']) . '" href="' . esc_url($status['url']) . '" aria-label="' . esc_attr(sprintf(__('Install %s now', 'notification'), $ext['name'])) . '" data-name="' . esc_attr($ext['name']) . '">' . __('Install Now', 'notification') . '</a>';
+				$actionButton =
+					'<a class="install-now button" data-slug="' . esc_attr($ext['slug']) . '" href="' . esc_url(
+						$status['url']
+					) . '" aria-label="' . esc_attr(
+						sprintf(
+							__(
+								'Install %s now',
+								'notification'
+							),
+							$ext['name']
+						)
+					) . '" data-name="' . esc_attr($ext['name']) . '">' . __(
+						'Install Now',
+						'notification'
+					) . '</a>';
 			}
 			break;
 
 		case 'update_available':
 			if ($status['url']) {
 				/* translators: 1: Plugin name and version */
-				$actionButton = '<a class="update-now button aria-button-if-js" data-plugin="' . esc_attr($status['file']) . '" data-slug="' . esc_attr($ext['slug']) . '" href="' . esc_url($status['url']) . '" aria-label="' . esc_attr(sprintf(__('Update %s now', 'notification'), $ext['name'])) . '" data-name="' . esc_attr($ext['name']) . '">' . __('Update Now', 'notification') . '</a>';
+				$actionButton = '<a class="update-now button aria-button-if-js" data-plugin="' . esc_attr(
+					$status['file']
+				) . '" data-slug="' . esc_attr($ext['slug']) . '" href="' . esc_url(
+					$status['url']
+				) . '" aria-label="' . esc_attr(
+					sprintf(
+						__(
+							'Update %s now',
+							'notification'
+						),
+						$ext['name']
+					)
+				) . '" data-name="' . esc_attr($ext['name']) . '">' . __(
+					'Update Now',
+					'notification'
+				) . '</a>';
 			}
 			break;
 
 		case 'latest_installed':
 		case 'newer_installed':
 			if (is_plugin_active($status['file'])) {
-				$actionButton = '<button type="button" class="button button-disabled" disabled="disabled">' . _x('Active', 'plugin', 'notification') . '</button>';
+				$actionButton = '<button type="button" class="button button-disabled" disabled="disabled">' . _x(
+					'Active',
+					'plugin',
+					'notification'
+				) . '</button>';
 			} elseif (current_user_can('activate_plugins')) {
-				$buttonText = __('Activate', 'notification');
+				$buttonText = __(
+					'Activate',
+					'notification'
+				);
 				/* translators: %s: Plugin name */
-				$buttonLabel = _x('Activate %s', 'plugin', 'notification');
+				$buttonLabel = _x(
+					'Activate %s',
+					'plugin',
+					'notification'
+				);
 				$activateUrl = add_query_arg(
 					[
 						'_wpnonce' => wp_create_nonce('activate-plugin_' . $status['file']),
@@ -55,25 +99,47 @@ if (isset($ext['wporg']) && ! is_wp_error($ext['wporg']) && ( current_user_can('
 				);
 
 				if (is_network_admin()) {
-					$buttonText = __('Network Activate', 'notification');
+					$buttonText = __(
+						'Network Activate',
+						'notification'
+					);
 					/* translators: %s: Plugin name */
-					$buttonLabel = _x('Network Activate %s', 'plugin', 'notification');
-					$activateUrl = add_query_arg([ 'networkwide' => 1 ], $activateUrl);
+					$buttonLabel = _x(
+						'Network Activate %s',
+						'plugin',
+						'notification'
+					);
+					$activateUrl = add_query_arg(
+						['networkwide' => 1],
+						$activateUrl
+					);
 				}
 
 				$actionButton = sprintf(
 					'<a href="%1$s" class="button activate-now" aria-label="%2$s">%3$s</a>',
 					esc_url($activateUrl),
-					esc_attr(sprintf($buttonLabel, $ext['name'])),
+					esc_attr(
+						sprintf(
+							$buttonLabel,
+							$ext['name']
+						)
+					),
 					$buttonText
 				);
 			} else {
-				$actionButton = '<button type="button" class="button button-disabled" disabled="disabled">' . _x('Installed', 'plugin', 'notification') . '</button>';
+				$actionButton = '<button type="button" class="button button-disabled" disabled="disabled">' . _x(
+					'Installed',
+					'plugin',
+					'notification'
+				) . '</button>';
 			}
 			break;
 	}
 } else {
-	$actionButton = '<a href="' . esc_url($ext['url']) . '" class="button" target="_blank">' . __('More Details', 'notification') . '</a>';
+	$actionButton = '<a href="' . esc_url($ext['url']) . '" class="button" target="_blank">' . __(
+		'More Details',
+		'notification'
+	) . '</a>';
 }
 
 ?>
@@ -83,20 +149,49 @@ if (isset($ext['wporg']) && ! is_wp_error($ext['wporg']) && ( current_user_can('
 		<div class="name column-name">
 			<h3>
 				<?php echo esc_html($ext['name']); ?>
-				<img src="<?php echo esc_attr($ext['icon']); ?>" class="plugin-icon" alt="<?php echo esc_attr($ext['name']); ?>">
+				<img
+					src="<?php echo esc_attr($ext['icon']); ?>"
+					class="plugin-icon"
+					alt="<?php echo esc_attr($ext['name']); ?>"
+				>
 			</h3>
 		</div>
 		<div class="action-links">
 			<ul class="plugin-action-buttons">
 				<li><?php echo wp_kses_data($actionButton); ?></li>
 				<?php if ($ext['official']) : ?>
-					<li><span class="official"><?php esc_html_e('Official', 'notification'); ?></span></li>
+					<li><span class="official">
+					<?php
+					esc_html_e(
+						'Official',
+						'notification'
+					);
+					?>
+							</span></li>
 				<?php endif ?>
 			</ul>
 		</div>
 		<div class="desc column-description">
-			<p><?php echo esc_html(mb_strimwidth($ext['desc'], 0, 117, '...')); ?></p>
-			<p class="authors"><?php esc_html_e('Author', 'notification'); ?>: <?php echo esc_html($ext['author']); ?></p>
+			<p>
+			<?php
+			echo esc_html(
+				mb_strimwidth(
+					$ext['desc'],
+					0,
+					117,
+					'...'
+				)
+			);
+			?>
+				</p>
+			<p class="authors">
+			<?php
+			esc_html_e(
+				'Author',
+				'notification'
+			);
+			?>
+				: <?php echo esc_html($ext['author']); ?></p>
 		</div>
 	</div>
 </div>

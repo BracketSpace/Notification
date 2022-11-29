@@ -17,14 +17,41 @@ declare(strict_types=1);
 
 <div id="notifications-wizard">
 
-	<form action="<?php echo esc_attr(admin_url('admin-post.php')); ?>" method="post">
+	<form
+		action="<?php echo esc_attr(admin_url('admin-post.php')); ?>"
+		method="post"
+	>
 		<?php wp_nonce_field('notification_wizard'); ?>
-		<input type="hidden" name="action" value="save_notification_wizard">
+		<input
+			type="hidden"
+			name="action"
+			value="save_notification_wizard"
+		>
 
 		<div class="content">
-			<h1><?php esc_html_e('Notification Wizard', 'notification'); ?></h1>
-			<h3><?php esc_html_e('Quickly setup the Notifications you need.', 'notification'); ?><br/>
-			<?php esc_html_e('You\'ll be able to edit them later.', 'notification'); ?></h3>
+			<h1>
+			<?php
+			esc_html_e(
+				'Notification Wizard',
+				'notification'
+			);
+			?>
+				</h1>
+			<h3>
+			<?php
+			esc_html_e(
+				'Quickly setup the Notifications you need.',
+				'notification'
+			);
+			?>
+				<br/>
+				<?php
+				esc_html_e(
+					'You\'ll be able to edit them later.',
+					'notification'
+				);
+				?>
+				</h3>
 
 			<?php foreach ((array)$get('sections') as $section) : ?>
 				<div class="notifications-group">
@@ -38,7 +65,11 @@ declare(strict_types=1);
 									<div class="content">
 										<h2 class="hndle">
 											<label>
-												<input type="checkbox" name="notification_wizard[]" value="<?php esc_html_e($item['slug']); ?>">
+												<input
+													type="checkbox"
+													name="notification_wizard[]"
+													value="<?php esc_html_e($item['slug']); ?>"
+												>
 												<?php esc_html_e($item['name']); ?>
 											</label>
 										</h2>
@@ -50,10 +81,23 @@ declare(strict_types=1);
 											</div>
 										<?php endforeach; ?>
 									</div>
-									<div class="carrier-type"><?php esc_html_e('Email', 'notification'); ?></div>
+									<div class="carrier-type">
+									<?php
+									esc_html_e(
+										'Email',
+										'notification'
+									);
+									?>
+										</div>
 								</div>
 								<div class="notifications-tile-hover">
-									<span class="dashicons dashicons-plus"></span><?php esc_html_e('Add this notification', 'notification'); ?>
+									<span class="dashicons dashicons-plus"></span>
+									<?php
+									esc_html_e(
+										'Add this notification',
+										'notification'
+									);
+									?>
 								</div>
 							</div>
 						<?php endforeach; ?>
@@ -65,18 +109,55 @@ declare(strict_types=1);
 		<aside class="sidebar">
 			<div class="sidebar-content">
 				<h3>Useful links</h3>
-				<a href="https://docs.bracketspace.com/notification/user-guide/who-can-use-this-plugin" target="_blank">
-					<?php esc_html_e('Who can use this plugin', 'notification'); ?>
+				<a
+					href="https://docs.bracketspace.com/notification/user-guide/who-can-use-this-plugin"
+					target="_blank"
+				>
+					<?php
+					esc_html_e(
+						'Who can use this plugin',
+						'notification'
+					);
+					?>
 				</a>
-				<a href="https://docs.bracketspace.com/notification/user-guide/how-notification-plugin-works" target="_blank">
-					<?php esc_html_e('How Notification plugin works', 'notification'); ?>
+				<a
+					href="https://docs.bracketspace.com/notification/user-guide/how-notification-plugin-works"
+					target="_blank"
+				>
+					<?php
+					esc_html_e(
+						'How Notification plugin works',
+						'notification'
+					);
+					?>
 				</a>
-				<a href="https://docs.bracketspace.com/notification/developer/general/extension-possibilities" target="_blank">
-					<?php esc_html_e('Extension possibilities', 'notification'); ?>
+				<a
+					href="https://docs.bracketspace.com/notification/developer/general/extension-possibilities"
+					target="_blank"
+				>
+					<?php
+					esc_html_e(
+						'Extension possibilities',
+						'notification'
+					);
+					?>
 				</a>
-				<button type="submit" name="submit" class="button button-primary button-large create-notifications hidden"></button>
-				<button type="submit" name="skip-wizard" class="button button-secondary skip-wizard">
-					<?php esc_html_e('Skip the Wizard', 'notification'); ?>
+				<button
+					type="submit"
+					name="submit"
+					class="button button-primary button-large create-notifications hidden"
+				></button>
+				<button
+					type="submit"
+					name="skip-wizard"
+					class="button button-secondary skip-wizard"
+				>
+					<?php
+					esc_html_e(
+						'Skip the Wizard',
+						'notification'
+					);
+					?>
 				</button>
 			</div>
 		</aside>

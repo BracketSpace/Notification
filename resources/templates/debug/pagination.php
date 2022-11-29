@@ -15,9 +15,11 @@ declare(strict_types=1);
 
 $links = paginate_links(
 	[
-	'base' => admin_url('edit.php?post_type=notification&page=settings&section=debugging&' . $get('query_arg') . '=%#%'),
-	'current' => $get('current'),
-	'total' => $get('total'),
+		'base' => admin_url(
+			'edit.php?post_type=notification&page=settings&section=debugging&' . $get('query_arg') . '=%#%'
+		),
+		'current' => $get('current'),
+		'total' => $get('total'),
 	]
 );
 

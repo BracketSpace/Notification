@@ -15,7 +15,19 @@ declare(strict_types=1);
 
 ?>
 
-<select id="<?php $theEsc('select_name'); ?>_select" name="<?php $theEsc('select_name'); ?>" class="pretty-select" data-placeholder="<?php esc_attr_e('Select trigger', 'notification'); ?>">
+<select
+	id="<?php $theEsc('select_name'); ?>_select"
+	name="<?php $theEsc('select_name'); ?>"
+	class="pretty-select"
+	data-placeholder="
+	<?php
+	esc_attr_e(
+		'Select trigger',
+		'notification'
+	);
+	?>
+	"
+>
 
 	<option value=""></option>
 
@@ -23,12 +35,18 @@ declare(strict_types=1);
 		<optgroup label="<?php echo esc_attr($group); ?>">
 
 			<?php foreach ($subtriggers as $slug => $trigger) : ?>
-				<?php $selected = selected($get('selected'), $slug, false); ?>
+				<?php
+				$selected = selected(
+					$get('selected'),
+					$slug,
+					false
+				);
+				?>
 
 				<option value="<?php echo esc_attr($slug); ?>" <?php echo esc_html($selected); ?>>
 					<?php echo esc_html($trigger->getName()); ?>
 					<?php $description = $trigger->getDescription(); ?>
-					<?php if (! empty($description)) : ?>
+					<?php if (!empty($description)) : ?>
 						[[<?php echo esc_html($description); ?>]]
 					<?php endif ?>
 				</option>

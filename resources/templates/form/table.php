@@ -27,12 +27,15 @@ $recipientFieldPrinted = false;
 	<?php
 	foreach ($carrier->getFormFields() as $field) {
 		// Check if this is the right moment to print recipients field.
-		if (! $recipientFieldPrinted && $carrier->hasRecipientsField() && $currentIndex === $carrier->recipientsFieldIndex) {
+		if (
+			!$recipientFieldPrinted && $carrier->hasRecipientsField(
+			) && $currentIndex === $carrier->recipientsFieldIndex
+		) {
 			Templates::render(
 				'form/field',
 				[
-				'current_field' => $carrier->getRecipientsField(),
-				'carrier' => $carrier->getSlug(),
+					'current_field' => $carrier->getRecipientsField(),
+					'carrier' => $carrier->getSlug(),
 				]
 			);
 			$recipientFieldPrinted = true;
@@ -44,9 +47,15 @@ $recipientFieldPrinted = false;
 		];
 
 		if (empty($field->getLabel())) {
-			Templates::render('form/field-hidden', $vars);
+			Templates::render(
+				'form/field-hidden',
+				$vars
+			);
 		} else {
-			Templates::render('form/field', $vars);
+			Templates::render(
+				'form/field',
+				$vars
+			);
 			$currentIndex++;
 		}
 	}
@@ -56,8 +65,8 @@ $recipientFieldPrinted = false;
 		Templates::render(
 			'form/field',
 			[
-			'current_field' => $carrier->getRecipientsField(),
-			'carrier' => $carrier->getSlug(),
+				'current_field' => $carrier->getRecipientsField(),
+				'carrier' => $carrier->getSlug(),
 			]
 		);
 	}

@@ -14,7 +14,7 @@ declare(strict_types=1);
  */
 
 echo wp_kses_data(
-	// Translators: Function name.
+// Translators: Function name.
 	__(
 		sprintf(
 			'Synchronization is disabled. You can enable it with %s function',
