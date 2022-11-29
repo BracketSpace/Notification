@@ -28,7 +28,7 @@ trait HasGroup
 	 *
 	 * @return string|null Group name
 	 */
-	public function get_group()
+	public function getGroup()
 	{
 		return $this->group;
 	}
@@ -39,7 +39,7 @@ trait HasGroup
 	 * @param  string $group Group name.
 	 * @return $this
 	 */
-	public function set_group( string $group )
+	public function setGroup( string $group )
 	{
 		$this->group = $group;
 

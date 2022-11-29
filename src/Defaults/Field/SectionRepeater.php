@@ -252,7 +252,7 @@ class SectionRepeater extends Field
 	 *
 	 * @return string
 	 */
-	public function css_class()
+	public function cssClass()
 	{
 
 		$classes = '';

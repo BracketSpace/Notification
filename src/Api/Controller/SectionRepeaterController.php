@@ -25,7 +25,7 @@ class SectionRepeaterController extends RepeaterController
 	 * @param array $fields Fields data.
 	 * @return  array  Modified fields data.
 	 */
-	public function group_fields( $fields )
+	public function groupFields( $fields )
 	{
 
 		$grouppedFields = [];
@@ -43,7 +43,7 @@ class SectionRepeaterController extends RepeaterController
 	 * @param array $sections Sections data.
 	 * @return array
 	 */
-	public function get_sections_fields( $sections )
+	public function getSectionsFields( $sections )
 	{
 
 		$sectionFields = [];
@@ -85,7 +85,7 @@ class SectionRepeaterController extends RepeaterController
 	 * @since 7.0.0
 	 * @return array
 	 */
-	public function form_data()
+	public function formData()
 	{
 		$values = $this->getValues($this->postId, $this->carrier, $this->field) ?? [];
 

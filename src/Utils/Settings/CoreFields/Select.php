@@ -27,10 +27,10 @@ class Select
 	public function input( $field )
 	{
 		$multiple = $field->addon('multiple') ? 'multiple="multiple"' : '';
-		$name = $field->addon('multiple') ? $field->input_name() . '[]' : $field->input_name();
+		$name = $field->addon('multiple') ? $field->inputName() . '[]' : $field->inputName();
 		$pretty = $field->addon('pretty') ? 'pretty-select' : '';
 
-		echo '<select ' . esc_attr($multiple) . ' name="' . esc_attr($name) . '" id="' . esc_attr($field->input_id()) . '" class="' . esc_attr($pretty) . '">';
+		echo '<select ' . esc_attr($multiple) . ' name="' . esc_attr($name) . '" id="' . esc_attr($field->inputId()) . '" class="' . esc_attr($pretty) . '">';
 
 		$options = is_callable($field->addon('options')) ? $field->addon('options')() : $field->addon('options');
 

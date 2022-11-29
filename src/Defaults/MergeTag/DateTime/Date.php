@@ -55,8 +55,8 @@ class Date extends StringTag
 
 				if (isset($args['timestamp'])) {
 					$timestamp = $args['timestamp'];
-				} elseif (isset($trigger->{ $this->get_slug() })) {
-					$timestamp = $trigger->{ $this->get_slug() };
+				} elseif (isset($trigger->{ $this->getSlug() })) {
+					$timestamp = $trigger->{ $this->getSlug() };
 				} else {
 					$timestamp = null;
 				}

@@ -36,21 +36,21 @@ interface Sendable extends Nameable
 	 *
 	 * @return array<\BracketSpace\Notification\Interfaces\Fillable> fields
 	 */
-	public function get_form_fields();
+	public function getFormFields();
 
 	/**
 	 * Checks if Carrier is enabled
 	 *
 	 * @return bool
 	 */
-	public function is_enabled();
+	public function isEnabled();
 
 	/**
 	 * Checks if Carrier is active
 	 *
 	 * @return bool
 	 */
-	public function is_active();
+	public function isActive();
 
 	/**
 	 * Sets data from array
@@ -58,7 +58,7 @@ interface Sendable extends Nameable
 	 * @param  array<string,mixed> $data Data with keys matched with Field names.
 	 * @return $this
 	 */
-	public function set_data( $data );
+	public function setData( $data );
 
 	/**
 	 * Enables the Carrier
@@ -80,7 +80,7 @@ interface Sendable extends Nameable
 	 * @param  string $fieldName Field name.
 	 * @return mixed              Field object or null.
 	 */
-	public function get_form_field( $fieldName );
+	public function getFormField( $fieldName );
 
 	/**
 	 * Gets the recipients field
@@ -89,7 +89,7 @@ interface Sendable extends Nameable
 	 * @since  8.0.0
 	 * @return \BracketSpace\Notification\Defaults\Field\RecipientsField|null
 	 */
-	public function get_recipients_field();
+	public function getRecipientsField();
 
 	/**
 	 * Checks if the recipients field was added
@@ -97,5 +97,5 @@ interface Sendable extends Nameable
 	 * @since  8.0.0
 	 * @return bool
 	 */
-	public function has_recipients_field();
+	public function hasRecipientsField();
 }

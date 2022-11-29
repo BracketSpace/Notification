@@ -46,7 +46,7 @@ class Time extends StringTag
 		);
 
 		if (! isset($args['group'])) {
-			$this->set_group(__('Date', 'notification'));
+			$this->setGroup(__('Date', 'notification'));
 		}
 
 		if (! isset($args['description'])) {
@@ -59,8 +59,8 @@ class Time extends StringTag
 
 				if (isset($args['timestamp'])) {
 					$timestamp = $args['timestamp'];
-				} elseif (isset($trigger->{ $this->get_slug() })) {
-					$timestamp = $trigger->{ $this->get_slug() };
+				} elseif (isset($trigger->{ $this->getSlug() })) {
+					$timestamp = $trigger->{ $this->getSlug() };
 				} else {
 					$timestamp = null;
 				}

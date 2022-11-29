@@ -114,7 +114,7 @@ class Section
 	 * @param string $slug Group slug.
 	 * @return \BracketSpace\Notification\Utils\Settings\Group
 	 */
-	public function add_group( $name, $slug )
+	public function addGroup( $name, $slug )
 	{
 
 		if (empty($name) || empty($slug)) {
@@ -134,7 +134,7 @@ class Section
 	 *
 	 * @return array
 	 */
-	public function get_groups()
+	public function getGroups()
 	{
 
 		return apply_filters($this->handle . '/settings/section/groups', $this->groups, $this);
@@ -146,7 +146,7 @@ class Section
 	 * @param  string $slug group slug.
 	 * @return mixed        group object or false if no group defined
 	 */
-	public function get_group( $slug = '' )
+	public function getGroup( $slug = '' )
 	{
 
 		if (isset($this->groups[$slug])) {

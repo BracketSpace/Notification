@@ -25,9 +25,9 @@ class NotificationDuplicator
 	 * @param  object $post        WP_Post object.
 	 * @return array               filtered actions
 	 */
-	public function add_duplicate_row_action( $rowActions, $post )
+	public function addDuplicateRowAction( $rowActions, $post )
 	{
-		if ($post->post_type !== 'notification') {
+		if ($post->postType !== 'notification') {
 			return $rowActions;
 		}
 
@@ -54,7 +54,7 @@ class NotificationDuplicator
 	 * @since  5.2.3
 	 * @return void
 	 */
-	public function notification_duplicate()
+	public function notificationDuplicate()
 	{
 		check_admin_referer('duplicate_notification', 'nonce');
 
@@ -73,8 +73,8 @@ class NotificationDuplicator
 		 */
 		$json = notification_swap_adapter('JSON', $wp);
 
-		$json->refresh_hash();
-		$json->set_enabled(false);
+		$json->refreshHash();
+		$json->setEnabled(false);
 
 		if (get_post_type($source) !== 'notification') {
 			wp_die('You cannot duplicate post that\'s not Notification post');
@@ -82,7 +82,7 @@ class NotificationDuplicator
 
 		$newId = wp_insert_post(
 			[
-			'post_title' => sprintf('(%s) %s', __('Duplicate', 'notification'), $source->post_title),
+			'post_title' => sprintf('(%s) %s', __('Duplicate', 'notification'), $source->postTitle),
 			'post_content' => wp_slash($json->save(JSON_UNESCAPED_UNICODE)),
 			'post_status' => 'draft',
 			'post_type' => 'notification',

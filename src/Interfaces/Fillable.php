@@ -23,7 +23,7 @@ interface Fillable
 	 *
 	 * @return mixed
 	 */
-	public function get_value();
+	public function getValue();
 
 	/**
 	 * Sets field value
@@ -31,56 +31,56 @@ interface Fillable
 	 * @param  mixed $value value from DB.
 	 * @return void
 	 */
-	public function set_value( $value );
+	public function setValue( $value );
 
 	/**
 	 * Gets field name
 	 *
 	 * @return string
 	 */
-	public function get_name();
+	public function getName();
 
 	/**
 	 * Gets raw field name
 	 *
 	 * @return string
 	 */
-	public function get_raw_name();
+	public function getRawName();
 
 	/**
 	 * Gets field label
 	 *
 	 * @return string
 	 */
-	public function get_label();
+	public function getLabel();
 
 	/**
 	 * Gets field ID
 	 *
 	 * @return string
 	 */
-	public function get_id();
+	public function getId();
 
 	/**
 	 * Gets field description
 	 *
 	 * @return string
 	 */
-	public function get_description();
+	public function getDescription();
 
 	/**
 	 * Returns the additional field's css classes
 	 *
 	 * @return string
 	 */
-	public function css_class();
+	public function cssClass();
 
 	/**
 	 * Cheks if field should be resolved with merge tags
 	 *
 	 * @return bool
 	 */
-	public function is_resolvable();
+	public function isResolvable();
 
 	/**
 	 * Sanitizes the value sent by user

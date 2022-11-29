@@ -66,7 +66,7 @@ class RecipientsField extends RepeaterField
 			$recipientTypes = [];
 
 			foreach ((array)$recipients as $recipient) {
-				$recipientTypes[$recipient->get_slug()] = $recipient->get_name();
+				$recipientTypes[$recipient->getSlug()] = $recipient->getName();
 			}
 
 			$params['fields'] = [

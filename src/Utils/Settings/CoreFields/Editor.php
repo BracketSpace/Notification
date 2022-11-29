@@ -30,7 +30,7 @@ class Editor
 		$teeny = $field->addon('teeny') ? $field->addon('teeny') : false;
 
 		$settings = [
-			'textarea_name' => $field->input_name(),
+			'textarea_name' => $field->inputName(),
 			'editor_css' => null,
 			'wpautop' => $wpautop,
 			'media_buttons' => $mediaButtons,
@@ -38,7 +38,7 @@ class Editor
 			'teeny' => $teeny,
 		];
 
-		wp_editor($field->value(), $field->input_id(), $settings);
+		wp_editor($field->value(), $field->inputId(), $settings);
 	}
 
 	/**

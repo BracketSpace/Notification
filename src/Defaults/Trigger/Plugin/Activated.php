@@ -58,7 +58,7 @@ class Activated extends PluginTrigger
 	 *
 	 * @return void
 	 */
-	public function merge_tags()
+	public function mergeTags()
 	{
 
 		parent::merge_tags();

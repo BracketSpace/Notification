@@ -62,7 +62,7 @@ abstract class TermTrigger extends Abstracts\Trigger
 	 *
 	 * @return string|null Group name
 	 */
-	public function get_group()
+	public function getGroup()
 	{
 		return $this->taxonomy->labels->singularName ?? '';
 	}
@@ -72,7 +72,7 @@ abstract class TermTrigger extends Abstracts\Trigger
 	 *
 	 * @return void
 	 */
-	public function merge_tags()
+	public function mergeTags()
 	{
 
 		$this->addMergeTag(new MergeTag\Taxonomy\TermID());

@@ -98,7 +98,7 @@ class EDDUpdater
 	 * @param array   $_transient_data Update array build by WordPress.
 	 * @return array Modified update array with custom plugin data.
 	 */
-	public function check_update( $_transient_data )
+	public function checkUpdate( $_transient_data )
 	{
 
 		global $pagenow;
@@ -132,7 +132,7 @@ class EDDUpdater
 	 *
 	 * @return \stdClass
 	 */
-	public function get_repo_api_data()
+	public function getRepoApiData()
 	{
 		$versionInfo = $this->getCachedVersionInfo();
 
@@ -164,7 +164,7 @@ class EDDUpdater
 	 * @param string  $file
 	 * @param array   $plugin
 	 */
-	public function show_update_notification( $file, $plugin )
+	public function showUpdateNotification( $file, $plugin )
 	{
 
 		// Return early if in the network admin, or if this is not a multisite install.
@@ -275,7 +275,7 @@ class EDDUpdater
 	 *
 	 * @return array
 	 */
-	private function get_active_plugins()
+	private function getActivePlugins()
 	{
 		$activePlugins = (array)get_option('active_plugins');
 		$activeNetworkPlugins = (array)get_site_option('active_sitewide_plugins');
@@ -293,7 +293,7 @@ class EDDUpdater
 	 * @param object  $_args
 	 * @return object $_data
 	 */
-	public function plugins_api_filter( $_data, $_action = '', $_args = null )
+	public function pluginsApiFilter( $_data, $_action = '', $_args = null )
 	{
 
 		if ($_action !== 'plugin_information') {
@@ -370,7 +370,7 @@ class EDDUpdater
 	 *
 	 * @return array
 	 */
-	private function convert_object_to_array( $data )
+	private function convertObjectToArray( $data )
 	{
 		if (! is_array($data) && ! is_object($data)) {
 			return [];
@@ -390,7 +390,7 @@ class EDDUpdater
 	 * @param string  $url
 	 * @return object $array
 	 */
-	public function http_request_args( $args, $url )
+	public function httpRequestArgs( $args, $url )
 	{
 
 		if (strpos($url, 'https://') !== false && strpos($url, 'edd_action=package_download')) {
@@ -410,7 +410,7 @@ class EDDUpdater
 	 * @param array   $_data   Parameters for the API action.
 	 * @return false|object|void
 	 */
-	private function api_request( $_action, $_data )
+	private function apiRequest( $_action, $_data )
 	{
 		$data = array_merge($this->apiData, $_data);
 
@@ -437,7 +437,7 @@ class EDDUpdater
 	 *
 	 * @return bool
 	 */
-	private function request_recently_failed()
+	private function requestRecentlyFailed()
 	{
 		$failedRequestDetails = get_option($this->failedRequestCacheKey);
 
@@ -470,7 +470,7 @@ class EDDUpdater
 	 *
 	 * @since 1.9.1
 	 */
-	private function log_failed_request()
+	private function logFailedRequest()
 	{
 		update_option($this->failedRequestCacheKey, strtotime('+1 hour'));
 	}
@@ -478,7 +478,7 @@ class EDDUpdater
 	/**
 	 * If available, show the changelog for sites in a multisite install.
 	 */
-	public function show_changelog()
+	public function showChangelog()
 	{
 
 		if (empty($_REQUEST['edd_sl_action']) || $_REQUEST['edd_sl_action'] !== 'view_plugin_changelog') {
@@ -513,7 +513,7 @@ class EDDUpdater
 	 *
 	 * @return array|false
 	 */
-	private function get_version_from_remote()
+	private function getVersionFromRemote()
 	{
 		$apiParams = [
 			'edd_action' => 'get_version',
@@ -584,7 +584,7 @@ class EDDUpdater
 	 * @param string $cacheKey
 	 * @return object
 	 */
-	public function get_cached_version_info( $cacheKey = '' )
+	public function getCachedVersionInfo( $cacheKey = '' )
 	{
 
 		if (empty($cacheKey)) {
@@ -613,7 +613,7 @@ class EDDUpdater
 	 * @param string $value
 	 * @param string $cacheKey
 	 */
-	public function set_version_info_cache( $value = '', $cacheKey = '' )
+	public function setVersionInfoCache( $value = '', $cacheKey = '' )
 	{
 
 		if (empty($cacheKey)) {
@@ -637,7 +637,7 @@ class EDDUpdater
 	 * @since  1.6.13
 	 * @return bool
 	 */
-	private function verify_ssl()
+	private function verifySsl()
 	{
 		return (bool)apply_filters('edd_sl_api_request_verify_ssl', true, $this);
 	}
@@ -648,7 +648,7 @@ class EDDUpdater
 	 * @since 1.9.0
 	 * @return string
 	 */
-	private function get_cache_key()
+	private function getCacheKey()
 	{
 		$string = $this->slug . $this->apiData['license'] . $this->beta;
 

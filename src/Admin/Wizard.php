@@ -60,7 +60,7 @@ class Wizard
 	 *
 	 * @return void
 	 */
-	public function register_page()
+	public function registerPage()
 	{
 		$this->pageHook = add_submenu_page(
 			'',
@@ -79,7 +79,7 @@ class Wizard
 	 *
 	 * @return void
 	 */
-	public function maybe_redirect()
+	public function maybeRedirect()
 	{
 		if (! self::should_display()) {
 			return;
@@ -98,7 +98,7 @@ class Wizard
 	 *
 	 * @return void
 	 */
-	public function wizard_page()
+	public function wizardPage()
 	{
 		Templates::render(
 			'wizard',
@@ -113,7 +113,7 @@ class Wizard
 	 *
 	 * @return array List of settings groups.
 	 */
-	public function get_settings()
+	public function getSettings()
 	{
 		return [
 			[
@@ -269,7 +269,7 @@ class Wizard
 	 *
 	 * @return void
 	 */
-	public function save_settings()
+	public function saveSettings()
 	{
 		if (wp_verify_nonce(sanitize_key($_POST['_wpnonce'] ?? ''), 'notification_wizard') === false) {
 			wp_die('Can\'t touch this');
@@ -296,7 +296,7 @@ class Wizard
 	 * @param  array $notifications List of notifications template slugs.
 	 * @return void
 	 */
-	private function add_notifications( $notifications )
+	private function addNotifications( $notifications )
 	{
 		if ($notifications === []) {
 			return;
@@ -335,7 +335,7 @@ class Wizard
 	 *
 	 * @return void
 	 */
-	private function save_option_to_dismiss_wizard()
+	private function saveOptionToDismissWizard()
 	{
 		if (get_option($this->dismissedOption) !== false) {
 			update_option($this->dismissedOption, true);
@@ -350,7 +350,7 @@ class Wizard
 	 * @since  8.0.0
 	 * @return bool
 	 */
-	public static function should_display()
+	public static function shouldDisplay()
 	{
 		$counter = wp_count_posts('notification');
 		$count = 0;

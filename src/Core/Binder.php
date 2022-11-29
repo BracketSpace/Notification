@@ -33,7 +33,7 @@ class Binder
 		}
 
 		foreach ($triggers as $trigger) {
-			foreach ($trigger->get_actions() as $action) {
+			foreach ($trigger->getActions() as $action) {
 				add_action(
 					$action['tag'],
 					[ new Runner($trigger), 'run' ],

@@ -22,7 +22,7 @@ use BracketSpace\Notification\Interfaces;
  * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
  * @return \BracketSpace\Notification\Interfaces\Adaptable
  */
-function notification_adapt( $adapterName, Notification $notification )
+function notificationAdapt( $adapterName, Notification $notification )
 {
 
 	if (class_exists($adapterName)) {
@@ -46,7 +46,7 @@ function notification_adapt( $adapterName, Notification $notification )
  * @param  mixed  $data         Input data needed by adapter.
  * @return \BracketSpace\Notification\Interfaces\Adaptable
  */
-function notification_adapt_from( $adapterName, $data )
+function notificationAdaptFrom( $adapterName, $data )
 {
 	$adapter = notification_adapt($adapterName, new Notification());
 	return $adapter->read($data);
@@ -60,7 +60,7 @@ function notification_adapt_from( $adapterName, $data )
  * @param \BracketSpace\Notification\Interfaces\Adaptable $adapter Adapter.
  * @return \BracketSpace\Notification\Interfaces\Adaptable
  */
-function notification_swap_adapter( $newAdapterName, Interfaces\Adaptable $adapter )
+function notificationSwapAdapter( $newAdapterName, Interfaces\Adaptable $adapter )
 {
 	return notification_adapt($newAdapterName, $adapter->getNotification());
 }
@@ -74,7 +74,7 @@ function notification_swap_adapter( $newAdapterName, Interfaces\Adaptable $adapt
  * @param  string $message   Log formatted message.
  * @return bool|\WP_Error
  */
-function notification_log( $component, $type, $message )
+function notificationLog( $component, $type, $message )
 {
 
 	if ($type !== 'notification' && ! notification_get_setting('debugging/settings/error_log')) {
@@ -124,7 +124,7 @@ function notification( $data = [] )
  * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
  * @return void
  */
-function notification_add( Notification $notification )
+function notificationAdd( Notification $notification )
 {
 	Store\Notification::insert($notification->getHash(), $notification);
 	do_action('notification/notification/registered', $notification);
@@ -140,7 +140,7 @@ function notification_add( Notification $notification )
  * @param  array $data Notification static data.
  * @return array       Converted data.
  */
-function notification_convert_data( $data = [] )
+function notificationConvertData( $data = [] )
 {
 
 	// Trigger conversion.
@@ -183,7 +183,7 @@ function notification_convert_data( $data = [] )
  * @param int $priority Action priority.
  * @return void
  */
-function notification_register_settings( $callback, $priority = 10 )
+function notificationRegisterSettings( $callback, $priority = 10 )
 {
 
 	if (! is_callable($callback)) {
@@ -199,7 +199,7 @@ function notification_register_settings( $callback, $priority = 10 )
  * @since 5.0.0
  * @return mixed
  */
-function notification_get_settings()
+function notificationGetSettings()
 {
 	return \Notification::component('core_settings')->getSettings();
 }
@@ -212,7 +212,7 @@ function notification_get_settings()
  * @param  string $setting setting name in `a/b/c` format.
  * @return mixed
  */
-function notification_get_setting( $setting )
+function notificationGetSetting( $setting )
 {
 
 	$parts = explode('/', $setting);
@@ -233,7 +233,7 @@ function notification_get_setting( $setting )
  * @param   mixed  $value setting value.
  * @return  mixed
  */
-function notification_update_setting( $setting, $value )
+function notificationUpdateSetting( $setting, $value )
 {
 	return \Notification::component('core_settings')->updateSetting($setting, $value);
 }

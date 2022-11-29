@@ -96,7 +96,7 @@ class EmailChangeRequest extends Abstracts\Trigger
 	 * @since 8.0.0
 	 * @return void
 	 */
-	public function merge_tags()
+	public function mergeTags()
 	{
 
 		$this->addMergeTag(

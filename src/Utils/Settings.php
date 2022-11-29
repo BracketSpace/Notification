@@ -82,7 +82,7 @@ class Settings
 			$this->textdomain = $this->handle;
 		}
 
-		$this->set_variables();
+		$this->setVariables();
 
 		// settings autoload on admin side.
 		add_action('admin_init', [ $this, 'setup_field_values' ], 10);
@@ -94,13 +94,13 @@ class Settings
 	 *
 	 * @return void
 	 */
-	public function settings_page()
+	public function settingsPage()
 	{
 		// We're using the GET variable only to get the section name.
 		// phpcs:disable WordPress.Security.NonceVerification
-		$sections = $this->get_sections();
+		$sections = $this->getSections();
 
-		$currentSection = isset($_GET['section']) && ! empty($_GET['section']) ? sanitize_text_field(wp_unslash($_GET['section'])) : key($this->get_sections());
+		$currentSection = isset($_GET['section']) && ! empty($_GET['section']) ? sanitize_text_field(wp_unslash($_GET['section'])) : key($this->getSections());
 
 		include $this->path . '/resources/templates/settings/page.php';
 		// phpcs:enable
@@ -113,7 +113,7 @@ class Settings
 	 * @param string $slug Section slug.
 	 * @return \BracketSpace\Notification\Utils\Settings\Section
 	 */
-	public function add_section( $name, $slug )
+	public function addSection( $name, $slug )
 	{
 
 		if (! isset($this->sections[$slug])) {
@@ -128,7 +128,7 @@ class Settings
 	 *
 	 * @return array
 	 */
-	public function get_sections()
+	public function getSections()
 	{
 
 		return apply_filters($this->handle . '/settings/sections', $this->sections, $this);
@@ -140,10 +140,10 @@ class Settings
 	 * @param  string $slug section slug.
 	 * @return mixed        section object or false if no section defined
 	 */
-	public function get_section( $slug = '' )
+	public function getSection( $slug = '' )
 	{
 
-		$sections = $this->get_sections();
+		$sections = $this->getSections();
 
 		if (isset($sections[$slug])) {
 			return apply_filters($this->handle . '/settings/section', $sections[$slug], $this);
@@ -157,7 +157,7 @@ class Settings
 	 *
 	 * @return void
 	 */
-	public function save_settings()
+	public function saveSettings()
 	{
 		if (
 			wp_verify_nonce(
@@ -175,8 +175,8 @@ class Settings
 		$toSave = [];
 
 		foreach ($settings as $sectionSlug => $groupsValues) {
-			foreach ($this->get_section($sectionSlug)->get_groups() as $group) {
-				foreach ($group->get_fields() as $field) {
+			foreach ($this->getSection($sectionSlug)->getGroups() as $group) {
+				foreach ($group->getFields() as $field) {
 					$value = isset($groupsValues[$field->group()][$field->slug()]) ? $field->sanitize($groupsValues[$field->group()][$field->slug()]) : '';
 
 					$toSave[$field->section()][$field->group()][$field->slug()] = $value;
@@ -198,24 +198,24 @@ class Settings
 	 *
 	 * @return array settings
 	 */
-	public function get_settings()
+	public function getSettings()
 	{
 		$settings = [];
 
-		foreach ($this->get_sections() as $sectionSlug => $section) {
+		foreach ($this->getSections() as $sectionSlug => $section) {
 			$setting = get_option($this->handle . '_' . $sectionSlug);
 
 			$settings[$sectionSlug] = [];
 
-			$groups = $section->get_groups();
+			$groups = $section->getGroups();
 
 			foreach ($groups as $groupSlug => $group) {
 				$settings[$sectionSlug][$groupSlug] = [];
 
-				$fields = $group->get_fields();
+				$fields = $group->getFields();
 
 				foreach ($fields as $fieldSlug => $field) {
-					$value = $setting[$groupSlug][$fieldSlug] ?? $field->default_value();
+					$value = $setting[$groupSlug][$fieldSlug] ?? $field->defaultValue();
 
 					$settings[$sectionSlug][$groupSlug][$fieldSlug] = $value;
 				}
@@ -231,13 +231,13 @@ class Settings
 	 * @since  5.0.0
 	 * @return void
 	 */
-	public function setup_field_values()
+	public function setupFieldValues()
 	{
-		foreach ($this->get_sections() as $sectionSlug => $section) {
-			foreach ($section->get_groups() as $groupSlug => $group) {
-				foreach ($group->get_fields() as $fieldSlug => $field) {
+		foreach ($this->getSections() as $sectionSlug => $section) {
+			foreach ($section->getGroups() as $groupSlug => $group) {
+				foreach ($group->getFields() as $fieldSlug => $field) {
 					$settingName = implode('/', [ $sectionSlug, $groupSlug, $fieldSlug ]);
-					$field->value($this->get_setting($settingName));
+					$field->value($this->getSetting($settingName));
 				}
 			}
 		}
@@ -250,7 +250,7 @@ class Settings
 	 * @param  string $setting setting section/group/field separated with /.
 	 * @return mixed           field value or null if name not found
 	 */
-	public function get_setting( $setting )
+	public function getSetting( $setting )
 	{
 		$parts = explode('/', $setting);
 
@@ -258,7 +258,7 @@ class Settings
 			throw new \Exception('You must provide exactly 3 parts as the setting name');
 		}
 
-		$settings = $this->get_settings();
+		$settings = $this->getSettings();
 
 		if (! isset($settings[$parts[0]], $settings[$parts[0]][$parts[1]], $settings[$parts[0]][$parts[1]][$parts[2]])) {
 			return null;
@@ -277,7 +277,7 @@ class Settings
 	 * @param   mixed  $value setting value.
 	 * @return  mixed
 	 */
-	public function update_setting( $setting, $value )
+	public function updateSetting( $setting, $value )
 	{
 		$parts = explode('/', $setting);
 
@@ -287,7 +287,7 @@ class Settings
 
 		list($sectionSlug, $groupSlug, $fieldSlug) = $parts;
 
-		$section = $this->get_section($sectionSlug);
+		$section = $this->getSection($sectionSlug);
 
 		if ($section === false) {
 			throw new \Exception("Cannot find \"${section_slug}\" settings section.");
@@ -295,12 +295,12 @@ class Settings
 
 		$sanitized = false;
 
-		foreach ($section->get_groups() as $group) {
+		foreach ($section->getGroups() as $group) {
 			if ($group->slug() !== $groupSlug) {
 				continue;
 			}
 
-			foreach ($group->get_fields() as $field) {
+			foreach ($group->getFields() as $field) {
 				if ($field->slug() !== $fieldSlug) {
 					continue;
 				}
@@ -314,7 +314,7 @@ class Settings
 			throw new \Exception("Cannot update \"${setting}\" setting.");
 		}
 
-		$settings = $this->get_settings();
+		$settings = $this->getSettings();
 
 		if (! is_array($settings)) {
 			$settings = [];
@@ -338,7 +338,7 @@ class Settings
 	 *
 	 * @return void
 	 */
-	public function set_variables()
+	public function setVariables()
 	{
 		// path.
 		$this->path = dirname(dirname(dirname(__FILE__)));

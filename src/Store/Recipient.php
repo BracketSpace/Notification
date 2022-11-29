@@ -88,7 +88,7 @@ class Recipient implements Interfaces\Storable
 	 * @param  string $carrierSlug Carrier slug.
 	 * @return array<string, \BracketSpace\Notification\Interfaces\Receivable>
 	 */
-	public static function all_for_carrier( string $carrierSlug ): array
+	public static function allForCarrier( string $carrierSlug ): array
 	{
 		if (! array_key_exists($carrierSlug, static::$items)) {
 			ErrorHandler::error(

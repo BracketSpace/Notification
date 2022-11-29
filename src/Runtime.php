@@ -116,7 +116,7 @@ class Runtime
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public function cli_commands()
+	public function cliCommands()
 	{
 		if (! defined('WP_CLI') || \WP_CLI !== true) {
 			return;
@@ -131,7 +131,7 @@ class Runtime
 	 * @since  6.1.0
 	 * @return void
 	 */
-	public function register_hooks()
+	public function registerHooks()
 	{
 		// Hook Runtime class.
 		$this->addHooks();
@@ -154,7 +154,7 @@ class Runtime
 	 * @param  string $deprecated Filesystem name.
 	 * @return \BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem
 	 */
-	public function get_filesystem( $deprecated = 'root' )
+	public function getFilesystem( $deprecated = 'root' )
 	{
 		return $this->filesystem;
 	}
@@ -168,7 +168,7 @@ class Runtime
 	 * @param  mixed  $component Component.
 	 * @return $this
 	 */
-	public function add_component( $name, $component )
+	public function addComponent( $name, $component )
 	{
 		if (isset($this->components[$name])) {
 			throw new \Exception(sprintf('Component %s is already added.', $name));
@@ -308,7 +308,7 @@ class Runtime
 	 * @param  class-string $className Default class name.
 	 * @return void
 	 */
-	public function load_default( $default, $className )
+	public function loadDefault( $default, $className )
 	{
 		if (!apply_filters('notification/load/default/' . $default, true)) {
 			return;
@@ -327,7 +327,7 @@ class Runtime
 	 * @since  7.0.0
 	 * @return void
 	 */
-	public function load_bundled_extensions()
+	public function loadBundledExtensions()
 	{
 		$extensions = $this->getFilesystem()->dirlist('extensions', false);
 		$extensionTemplate = 'extensions/%s/load.php';

@@ -41,7 +41,7 @@ class Administrator extends Abstracts\Recipient
 	 * @param  string $value raw value saved by the user.
 	 * @return array         array of resolved values
 	 */
-	public function parse_value( $value = '' )
+	public function parseValue( $value = '' )
 	{
 
 		if (empty($value)) {

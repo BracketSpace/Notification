@@ -38,7 +38,7 @@ class NonceField extends Field
 			trigger_error('NonceField requires nonce_key param', E_USER_ERROR);
 		}
 
-		$this->nonce_key = $params['nonce_key'];
+		$this->nonceKey = $params['nonce_key'];
 
 		parent::__construct($params);
 	}
@@ -50,7 +50,7 @@ class NonceField extends Field
 	 */
 	public function field()
 	{
-		return wp_nonce_field($this->nonce_key, $this->get_name(), true, false);
+		return wp_nonce_field($this->nonceKey, $this->getName(), true, false);
 	}
 
 	/**

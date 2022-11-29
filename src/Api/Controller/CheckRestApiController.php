@@ -24,7 +24,7 @@ class CheckRestApiController
 	 * @since 8.0.12
 	 * @return void
 	 */
-	public function send_response()
+	public function sendResponse()
 	{
 		$response = new Response();
 		$response->send('RestApi');

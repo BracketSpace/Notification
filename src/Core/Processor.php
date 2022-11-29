@@ -31,7 +31,7 @@ class Processor
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public function process_queue()
+	public function processQueue()
 	{
 
 		Queue::iterate(
@@ -107,7 +107,7 @@ class Processor
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return void
 	 */
-	public static function process_notification( Notification $notification, Triggerable $trigger )
+	public static function processNotification( Notification $notification, Triggerable $trigger )
 	{
 		$trigger->setupMergeTags();
 
@@ -141,7 +141,7 @@ class Processor
 	 * @param  string $triggerKey       Trigger key.
 	 * @return void
 	 */
-	public static function handle_cron( $notificationJson, $triggerKey )
+	public static function handleCron( $notificationJson, $triggerKey )
 	{
 		$notification = notification_adapt_from('JSON', $notificationJson)->getNotification();
 		$trigger = self::get_cache($triggerKey)->get();
@@ -182,7 +182,7 @@ class Processor
 	 * @param  string $triggerKey Trigger key.
 	 * @return \BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache
 	 */
-	public static function get_cache( $triggerKey )
+	public static function getCache( $triggerKey )
 	{
 		return new Cache(
 			new Transient(3 * DAY_IN_SECONDS),

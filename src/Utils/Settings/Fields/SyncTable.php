@@ -38,7 +38,7 @@ class SyncTable
 		foreach ($wpJsonNotifiactions as $json) {
 			try {
 				$adapter = notification_adapt_from('JSON', $json);
-				$notification = $adapter->get_notification();
+				$notification = $adapter->getNotification();
 			} catch (\Throwable $e) {
 				// Do nothing.
 				continue;
@@ -47,17 +47,17 @@ class SyncTable
 			/**
 			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null
 			 */
-			$notificationAdapter = NotificationQueries::with_hash($notification->get_hash());
+			$notificationAdapter = NotificationQueries::with_hash($notification->getHash());
 
 			if ($notificationAdapter === null) {
 				continue;
 			}
 
-			$collection[$notification->get_hash()] = [
+			$collection[$notification->getHash()] = [
 				'source' => 'WordPress',
 				'has_json' => false,
 				'up_to_date' => false,
-				'post_id' => $notificationAdapter->get_id(),
+				'post_id' => $notificationAdapter->getId(),
 				'notification' => $notification,
 			];
 		}
@@ -66,22 +66,22 @@ class SyncTable
 		foreach ($jsonNotifiactions as $json) {
 			try {
 				$adapter = notification_adapt_from('JSON', $json);
-				$notification = $adapter->get_notification();
+				$notification = $adapter->getNotification();
 			} catch (\Throwable $e) {
 				// Do nothing.
 				continue;
 			}
 
-			if (isset($collection[$notification->get_hash()])) {
-				$collection[$notification->get_hash()]['has_json'] = true;
+			if (isset($collection[$notification->getHash()])) {
+				$collection[$notification->getHash()]['has_json'] = true;
 
-				$wpNotification = $collection[$notification->get_hash()]['notification'];
+				$wpNotification = $collection[$notification->getHash()]['notification'];
 
-				if (version_compare((string)$wpNotification->get_version(), (string)$notification->get_version(), '>=')) {
-					$collection[$notification->get_hash()]['up_to_date'] = true;
+				if (version_compare((string)$wpNotification->getVersion(), (string)$notification->getVersion(), '>=')) {
+					$collection[$notification->getHash()]['up_to_date'] = true;
 				}
 			} else {
-				$collection[$notification->get_hash()] = [
+				$collection[$notification->getHash()] = [
 					'source' => 'JSON',
 					'has_post' => false,
 					'up_to_date' => false,

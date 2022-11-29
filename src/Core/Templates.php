@@ -69,7 +69,7 @@ class Templates
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public static function register_storage()
+	public static function registerStorage()
 	{
 		Storage::add(self::TEMPLATE_STORAGE, \Notification::fs()->path('resources/templates'));
 	}

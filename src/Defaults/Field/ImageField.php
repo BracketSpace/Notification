@@ -26,14 +26,14 @@ class ImageField extends Field
 	public function field()
 	{
 
-		$class = $this->get_value() > 0 ? 'selected' : '';
+		$class = $this->getValue() > 0 ? 'selected' : '';
 
 		return '<div class="notification-image-field ' . esc_attr($class) . '">
-			<input type="text" name="' . esc_attr($this->get_name()) . '" id="' . esc_attr($this->get_id()) . '" value="' . esc_attr($this->get_value()) . '" class="image-input ' . esc_attr($this->css_class()) . '" ' . $this->maybe_disable() . ' readonly>
+			<input type="text" name="' . esc_attr($this->getName()) . '" id="' . esc_attr($this->getId()) . '" value="' . esc_attr($this->getValue()) . '" class="image-input ' . esc_attr($this->cssClass()) . '" ' . $this->maybeDisable() . ' readonly>
 			<button class="select-image button button-secondary">' . esc_html__('Select image', 'notification') . '</button>
 			<div class="image">
 				<span class="clear dashicons dashicons-dismiss"></span>
-				<img class="preview" src="' . wp_get_attachment_thumb_url($this->get_value()) . '">
+				<img class="preview" src="' . wp_get_attachment_thumb_url($this->getValue()) . '">
 			</div>
 		</div>';
 	}

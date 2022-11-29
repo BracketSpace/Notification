@@ -28,33 +28,33 @@ interface Taggable extends Nameable
 	 *
 	 * @return mixed
 	 */
-	public function get_value();
+	public function getValue();
 
 	/**
 	 * Cleans merge tag value
 	 *
 	 * @return void
 	 */
-	public function clean_value();
+	public function cleanValue();
 
 	/**
 	 * Checks if merge tag is already resolved
 	 *
 	 * @return bool
 	 */
-	public function is_resolved();
+	public function isResolved();
 
 	/**
 	 * Gets value type
 	 *
 	 * @return string
 	 */
-	public function get_value_type();
+	public function getValueType();
 
 	/**
 	 * Sets trigger object
 	 *
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 */
-	public function set_trigger( Triggerable $trigger );
+	public function setTrigger( Triggerable $trigger );
 }

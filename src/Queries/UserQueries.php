@@ -46,7 +46,7 @@ class UserQueries
 	 * @param string $role user role.
 	 * @return array<int,array{ID: string, user_email: string, display_name: string}>
 	 */
-	public static function with_role( string $role )
+	public static function withRole( string $role )
 	{
 		$driver = new CacheDriver\ObjectCache('notification', 6 * HOUR_IN_SECONDS);
 		$cache = new Cache($driver, sprintf('%s_users', $role));

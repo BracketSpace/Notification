@@ -71,7 +71,7 @@ class InputField extends Field
 		}
 
 		if (isset($params['allow_linebreaks'])) {
-			$this->allow_linebreaks = $params['allow_linebreaks'];
+			$this->allowLinebreaks = $params['allow_linebreaks'];
 		}
 
 		parent::__construct($params);
@@ -84,7 +84,7 @@ class InputField extends Field
 	 */
 	public function field()
 	{
-		return '<input type="' . esc_attr($this->type) . '" name="' . esc_attr($this->get_name()) . '" id="' . esc_attr($this->get_id()) . '" value="' . esc_attr($this->get_value()) . '" placeholder="' . esc_attr($this->placeholder) . '" class="widefat ' . esc_attr($this->css_class()) . '" ' . $this->maybe_disable() . ' ' . esc_attr($this->atts) . '>';
+		return '<input type="' . esc_attr($this->type) . '" name="' . esc_attr($this->getName()) . '" id="' . esc_attr($this->getId()) . '" value="' . esc_attr($this->getValue()) . '" placeholder="' . esc_attr($this->placeholder) . '" class="widefat ' . esc_attr($this->cssClass()) . '" ' . $this->maybeDisable() . ' ' . esc_attr($this->atts) . '>';
 	}
 
 	/**
@@ -96,7 +96,7 @@ class InputField extends Field
 	public function sanitize( $value )
 	{
 		$value = preg_replace('@<(script|style)[^>]*?>.*?</\\1>@si', '', $value); // Remove script and style tags.
-		if ($this->allow_linebreaks !== true) {
+		if ($this->allowLinebreaks !== true) {
 			$value = preg_replace('/[\r\n\t ]+/', ' ', $value); // Remove line breaks.
 		}
 		$value = trim($value); // Remove whitespace.

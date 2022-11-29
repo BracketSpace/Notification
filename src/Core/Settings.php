@@ -33,7 +33,7 @@ class Settings extends SettingsAPI
 	 *
 	 * @return void
 	 */
-	public function register_page()
+	public function registerPage()
 	{
 
 		if (! apply_filters('notification/whitelabel/settings', true)) {
@@ -54,7 +54,7 @@ class Settings extends SettingsAPI
 			$pageMenuLabel = __('Settings', 'notification');
 		}
 
-		$this->page_hook = add_submenu_page(
+		$this->pageHook = add_submenu_page(
 			$parentHook,
 			__('Notification settings', 'notification'),
 			$pageMenuLabel,
@@ -71,7 +71,7 @@ class Settings extends SettingsAPI
 	 *
 	 * @return void
 	 */
-	public function register_settings()
+	public function registerSettings()
 	{
 		do_action('notification/settings/register', $this);
 	}

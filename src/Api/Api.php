@@ -88,7 +88,7 @@ class Api
 	 * @since 7.0.0
 	 * @return void
 	 */
-	public function rest_api_init()
+	public function restApiInit()
 	{
 
 		foreach ($this->routes as $route) {
@@ -103,7 +103,7 @@ class Api
 	 * @param string $endpoint Endopint name.
 	 * @return string
 	 */
-	public function get_endpoint( $endpoint )
+	public function getEndpoint( $endpoint )
 	{
 
 		return sprintf(

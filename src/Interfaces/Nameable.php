@@ -21,12 +21,12 @@ interface Nameable
 	 *
 	 * @return string name
 	 */
-	public function get_name();
+	public function getName();
 
 	/**
 	 * Gets slug
 	 *
 	 * @return string slug
 	 */
-	public function get_slug();
+	public function getSlug();
 }

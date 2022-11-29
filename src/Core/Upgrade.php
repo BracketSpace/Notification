@@ -57,7 +57,7 @@ class Upgrade
 	 * @since  6.0.0
 	 * @return void
 	 */
-	public function check_upgrade()
+	public function checkUpgrade()
 	{
 		$dataVersion = get_option(static::$dataSettingName, 0);
 
@@ -91,7 +91,7 @@ class Upgrade
 	 * @action notification/init
 	 * @return void
 	 */
-	public function upgrade_db()
+	public function upgradeDb()
 	{
 		$currentVersion = get_option(static::$dbSettingName);
 
@@ -146,7 +146,7 @@ class Upgrade
 	 * @param int $postId Notification post ID.
 	 * @return \BracketSpace\Notification\Interfaces\Sendable
 	 */
-	protected function populate_carrier( $carrier, $postId )
+	protected function populateCarrier( $carrier, $postId )
 	{
 		if (! $carrier instanceof Interfaces\Sendable) {
 			$carrier = Store\Carrier::get($carrier);
@@ -187,7 +187,7 @@ class Upgrade
 	 * @since  7.0.0
 	 * @return array
 	 */
-	public function trigger_slug_replacements()
+	public function triggerSlugReplacements()
 	{
 		$taxonomies = '(' . implode('|', array_keys(WpObjectHelper::get_taxonomies())) . ')';
 
@@ -220,7 +220,7 @@ class Upgrade
 	 * @since  6.0.0
 	 * @return void
 	 */
-	public function upgrade_to_v1()
+	public function upgradeToV1()
 	{
 		// 1. Save the Notification cache in post_content field.
 		$notifications = NotificationQueries::all(true);
@@ -284,7 +284,7 @@ class Upgrade
 	 * @since  6.0.0
 	 * @return void
 	 */
-	public function upgrade_to_v2()
+	public function upgradeToV2()
 	{
 		global $wpdb;
 

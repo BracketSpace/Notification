@@ -59,7 +59,7 @@ class Extensions
 	 *
 	 * @return void
 	 */
-	public function register_page()
+	public function registerPage()
 	{
 		if (! apply_filters('notification/whitelabel/extensions', true)) {
 			return;
@@ -87,7 +87,7 @@ class Extensions
 	 *
 	 * @return void
 	 */
-	public function load_extensions()
+	public function loadExtensions()
 	{
 		if (! function_exists('is_plugin_active')) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -135,7 +135,7 @@ class Extensions
 	 *
 	 * @return array
 	 */
-	public function get_raw_extensions()
+	public function getRawExtensions()
 	{
 		$driver = new CacheDriver\Transient(ErrorHandler::debug_enabled() ? 60 : DAY_IN_SECONDS);
 		$cache = new Cache($driver, 'notification_extensions');
@@ -160,7 +160,7 @@ class Extensions
 	 * @param string $slug extension slug.
 	 * @return array|false
 	 */
-	public function get_raw_extension( $slug )
+	public function getRawExtension( $slug )
 	{
 		$extensions = $this->getRawExtensions();
 		return $extensions[$slug] ?? false;
@@ -171,7 +171,7 @@ class Extensions
 	 *
 	 * @return void
 	 */
-	public function extensions_page()
+	public function extensionsPage()
 	{
 		Templates::render(
 			'extension/page',
@@ -189,7 +189,7 @@ class Extensions
 	 * @since  8.0.0
 	 * @return array<int, array{name: string, description: string, price: int}>
 	 */
-	public static function get_bundles()
+	public static function getBundles()
 	{
 		return [
 			[
@@ -366,7 +366,7 @@ class Extensions
 	 *
 	 * @return void
 	 */
-	public function activation_notices()
+	public function activationNotices()
 	{
 
 		// We're just checking for the status slug.
@@ -454,7 +454,7 @@ class Extensions
 	 *
 	 * @return void
 	 */
-	public function activation_nag()
+	public function activationNag()
 	{
 		if (Whitelabel::is_whitelabeled()) {
 			return;

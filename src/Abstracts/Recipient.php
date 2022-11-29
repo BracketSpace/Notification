@@ -59,7 +59,7 @@ abstract class Recipient implements Interfaces\Receivable
 	 * @param  string $value raw value saved by the user.
 	 * @return array         array of resolved values
 	 */
-	abstract public function parse_value( $value = '' );
+	abstract public function parseValue( $value = '' );
 
 	/**
 	 * Returns input object
@@ -73,7 +73,7 @@ abstract class Recipient implements Interfaces\Receivable
 	 *
 	 * @return string
 	 */
-	public function get_default_value()
+	public function getDefaultValue()
 	{
 		return $this->defaultValue;
 	}

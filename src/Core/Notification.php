@@ -242,7 +242,7 @@ class Notification {
 	 * @param  bool $onlyEnabledCarriers If only enabled Carriers should be saved.
 	 * @return array
 	 */
-	public function to_array( $onlyEnabledCarriers = false ) {
+	public function toArray( $onlyEnabledCarriers = false ) {
 
 		$carriers  = [];
 		$_carriers = $onlyEnabledCarriers ? $this->getEnabledCarriers() : $this->getCarriers();
@@ -271,7 +271,7 @@ class Notification {
 	 * @since  6.0.0
 	 * @return boolean
 	 */
-	public function is_enabled() {
+	public function isEnabled() {
 		return (bool) $this->getEnabled();
 	}
 
@@ -281,7 +281,7 @@ class Notification {
 	 * @since  6.0.0
 	 * @return string hash
 	 */
-	public static function create_hash() {
+	public static function createHash() {
 		return uniqid( 'notification_' );
 	}
 
@@ -292,7 +292,7 @@ class Notification {
 	 * @param  string $carrierSlug Carrier slug.
 	 * @return mixed                Carrier object or null.
 	 */
-	public function get_carrier( $carrierSlug ) {
+	public function getCarrier( $carrierSlug ) {
 		$carriers = $this->getCarriers();
 		return isset( $carriers[ $carrierSlug ] ) ? $carriers[ $carrierSlug ] : null;
 	}
@@ -303,7 +303,7 @@ class Notification {
 	 * @since  6.0.0
 	 * @return array
 	 */
-	public function get_enabled_carriers() {
+	public function getEnabledCarriers() {
 		return array_filter( $this->getCarriers(), function ( $carrier ) {
 			return $carrier->isEnabled();
 		} );
@@ -318,7 +318,7 @@ class Notification {
 	 * @param  Interfaces\Sendable|string $carrier Carrier object or slug.
 	 * @return Interfaces\Sendable
 	 */
-	public function add_carrier( $carrier ) {
+	public function addCarrier( $carrier ) {
 
 		if ( ! $carrier instanceof Interfaces\Sendable ) {
 			$carrier = Store\Carrier::get( $carrier );
@@ -348,7 +348,7 @@ class Notification {
 	 * @param  string $carrierSlug Carrier slug.
 	 * @return void
 	 */
-	public function enable_carrier( $carrierSlug ) {
+	public function enableCarrier( $carrierSlug ) {
 
 		$carrier = $this->getCarrier( $carrierSlug );
 
@@ -367,7 +367,7 @@ class Notification {
 	 * @param  string $carrierSlug Carrier slug.
 	 * @return void
 	 */
-	public function disable_carrier( $carrierSlug ) {
+	public function disableCarrier( $carrierSlug ) {
 		$carrier = $this->getCarrier( $carrierSlug );
 		if ( null !== $carrier ) {
 			$carrier->disable();
@@ -382,7 +382,7 @@ class Notification {
 	 * @param  array $carriers Array of Carriers.
 	 * @return void
 	 */
-	public function set_carriers( $carriers = [] ) {
+	public function setCarriers( $carriers = [] ) {
 
 		$savedCarriers = [];
 
@@ -402,7 +402,7 @@ class Notification {
 	 * @param  array  $data         Carrier data.
 	 * @return void
 	 */
-	public function set_carrier_data( $carrierSlug, $data ) {
+	public function setCarrierData( $carrierSlug, $data ) {
 		$carrier = $this->getCarrier( $carrierSlug );
 		if ( null !== $carrier ) {
 			$carrier->setData( $data );
@@ -416,7 +416,7 @@ class Notification {
 	 * @param  string $carrierSlug Carrier slug.
 	 * @return void
 	 */
-	public function get_carrier_data( $carrierSlug ) {
+	public function getCarrierData( $carrierSlug ) {
 		$carrier = $this->getCarrier( $carrierSlug );
 		if ( null !== $carrier ) {
 			$carrier->getData();
@@ -430,7 +430,7 @@ class Notification {
 	 * @param  string $key Extra data key.
 	 * @return mixed       Extra data value or null
 	 */
-	public function get_extra( $key ) {
+	public function getExtra( $key ) {
 		$extras = $this->getExtras();
 		return isset( $extras[ $key ] ) ? $extras[ $key ] : null;
 	}
@@ -442,7 +442,7 @@ class Notification {
 	 * @param  string $key Extra data key.
 	 * @return void
 	 */
-	public function remove_extra( $key ) {
+	public function removeExtra( $key ) {
 
 		$extras = $this->getExtras();
 
@@ -463,7 +463,7 @@ class Notification {
 	 * @param  mixed  $value Extra data value.
 	 * @return $this
 	 */
-	public function add_extra( $key, $value ) {
+	public function addExtra( $key, $value ) {
 
 		if ( ! is_array( $value ) && ! is_string( $value ) && ! is_numeric( $value ) && ! is_bool( $value ) ) {
 			throw new \Exception( 'Extra data must be an array or string or number.' );
@@ -486,7 +486,7 @@ class Notification {
 	 * @since  6.1.4
 	 * @return $this
 	 */
-	public function refresh_hash() {
+	public function refreshHash() {
 		$this->setHash( self::create_hash() );
 		return $this;
 	}

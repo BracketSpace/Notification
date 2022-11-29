@@ -25,13 +25,13 @@ class Debugging
 	 * @param object $settings Settings API object.
 	 * @return void
 	 */
-	public function debugging_settings( $settings )
+	public function debuggingSettings( $settings )
 	{
 
-		$debugging = $settings->add_section(__('Debugging', 'notification'), 'debugging');
+		$debugging = $settings->addSection(__('Debugging', 'notification'), 'debugging');
 
-		$debugging->add_group(__('Settings', 'notification'), 'settings')
-			->add_field(
+		$debugging->addGroup(__('Settings', 'notification'), 'settings')
+			->addField(
 				[
 				'name' => __('Notification log', 'notification'),
 				'slug' => 'debug_log',
@@ -43,7 +43,7 @@ class Debugging
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 				]
 			)
-			->add_field(
+			->addField(
 				[
 				'name' => __('Suppress Notifications', 'notification'),
 				'slug' => 'debug_suppressing',
@@ -56,7 +56,7 @@ class Debugging
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 				]
 			)
-			->add_field(
+			->addField(
 				[
 				'name' => __('Error log', 'notification'),
 				'slug' => 'error_log',
@@ -68,7 +68,7 @@ class Debugging
 				'sanitize' => [ new CoreFields\Checkbox(), 'sanitize' ],
 				]
 			)
-			->add_field(
+			->addField(
 				[
 				'name' => __('Clear', 'notification'),
 				'slug' => 'clear',
@@ -84,8 +84,8 @@ class Debugging
 				]
 			);
 
-		$debugging->add_group(__('Notification Log', 'notification'), 'notification_log')
-			->add_field(
+		$debugging->addGroup(__('Notification Log', 'notification'), 'notification_log')
+			->addField(
 				[
 				'name' => __('Log', 'notification'),
 				'slug' => 'log',
@@ -94,8 +94,8 @@ class Debugging
 				]
 			);
 
-		$debugging->add_group(__('Error Log', 'notification'), 'error_log')
-			->add_field(
+		$debugging->addGroup(__('Error Log', 'notification'), 'error_log')
+			->addField(
 				[
 				'name' => __('Log', 'notification'),
 				'slug' => 'log',
@@ -113,7 +113,7 @@ class Debugging
 	 * @since  5.3.0
 	 * @return void
 	 */
-	public function debug_warning()
+	public function debugWarning()
 	{
 		if (get_post_type() !== 'notification' || ! notification_get_setting('debugging/settings/debug_log') || ! notification_get_setting('debugging/settings/debug_suppressing')) {
 			return;
@@ -133,7 +133,7 @@ class Debugging
 	 * @since  6.0.0
 	 * @return void
 	 */
-	public function action_clear_logs()
+	public function actionClearLogs()
 	{
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		check_admin_referer('notification_clear_log_' . wp_unslash($_GET['log_type'] ?? ''), 'nonce');
@@ -152,7 +152,7 @@ class Debugging
 			$removeTypes[] = 'warning';
 		}
 
-		$debug->remove_logs($removeTypes);
+		$debug->removeLogs($removeTypes);
 
 		wp_safe_redirect(wp_get_referer());
 		exit;

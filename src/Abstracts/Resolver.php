@@ -37,7 +37,7 @@ abstract class Resolver implements Interfaces\Resolvable
 	 * @since  6.0.0
 	 * @return string
 	 */
-	public function get_slug()
+	public function getSlug()
 	{
 		$prepared = str_replace('\\', '-', static::class);
 		$prepared = str_replace('BracketSpace-Notification-', '', $prepared);
@@ -50,7 +50,7 @@ abstract class Resolver implements Interfaces\Resolvable
 	 * @since  6.0.0
 	 * @return string
 	 */
-	public function get_pattern()
+	public function getPattern()
 	{
 		return self::PATTERN;
 	}
@@ -61,7 +61,7 @@ abstract class Resolver implements Interfaces\Resolvable
 	 * @since  6.0.0
 	 * @return int
 	 */
-	public function get_priority()
+	public function getPriority()
 	{
 		return self::PRIORITY;
 	}
@@ -73,5 +73,5 @@ abstract class Resolver implements Interfaces\Resolvable
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return string              Resolved value
 	 */
-	abstract public function resolve_merge_tag( $match, Triggerable $trigger );
+	abstract public function resolveMergeTag( $match, Triggerable $trigger );
 }

@@ -53,9 +53,9 @@ class License
 	 * @since  5.1.0
 	 * @return array licenses
 	 */
-	public function get_licenses()
+	public function getLicenses()
 	{
-		return get_option($this->license_storage, []);
+		return get_option($this->licenseStorage, []);
 	}
 
 	/**
@@ -71,7 +71,7 @@ class License
 
 		return $cache->collect(
 			function () {
-				$licenses = $this->get_licenses();
+				$licenses = $this->getLicenses();
 				$license = false;
 
 				if (isset($licenses[$this->extension['slug']])) {
@@ -89,7 +89,7 @@ class License
 	 * @since  5.1.0
 	 * @return bool
 	 */
-	public function is_valid()
+	public function isValid()
 	{
 		$licenseData = $this->get();
 
@@ -102,13 +102,13 @@ class License
 
 		return $cache->collect(
 			function () use ( $licenseData ) {
-				$licenseCheck = $this->check($licenseData->license_key);
+				$licenseCheck = $this->check($licenseData->licenseKey);
 
 				if (is_wp_error($licenseCheck)) {
 					return $licenseData->license === 'valid';
 				}
 
-				$licenseCheck->license_key = $licenseData->license_key;
+				$licenseCheck->licenseKey = $licenseData->licenseKey;
 				$licenseData = $licenseCheck;
 				$this->save($licenseData);
 
@@ -123,10 +123,10 @@ class License
 	 * @since  7.1.1
 	 * @return string
 	 */
-	public function get_key()
+	public function getKey()
 	{
 		$licenseData = $this->get();
-		return $licenseData->license_key ?? '';
+		return $licenseData->licenseKey ?? '';
 	}
 
 	/**
@@ -142,10 +142,10 @@ class License
 		$cache = new Cache($driver, $this->extension['slug']);
 		$cache->set($licenseData);
 
-		$licenses = $this->get_licenses();
+		$licenses = $this->getLicenses();
 		$licenses[$this->extension['slug']] = $licenseData;
 
-		update_option($this->license_storage, $licenses);
+		update_option($this->licenseStorage, $licenses);
 	}
 
 	/**
@@ -160,12 +160,12 @@ class License
 		$cache = new Cache($driver, $this->extension['slug']);
 		$cache->delete();
 
-		$licenses = $this->get_licenses();
+		$licenses = $this->getLicenses();
 		if (isset($licenses[$this->extension['slug']])) {
 			unset($licenses[$this->extension['slug']]);
 		}
 
-		update_option($this->license_storage, $licenses);
+		update_option($this->licenseStorage, $licenses);
 	}
 
 	/**
@@ -206,7 +206,7 @@ class License
 			return new \WP_Error('notification_license_error', $licenseData->error, $licenseData);
 		}
 
-		$licenseData->license_key = $licenseKey;
+		$licenseData->licenseKey = $licenseKey;
 		$this->save($licenseData);
 
 		return $licenseData;
@@ -231,7 +231,7 @@ class License
 				'timeout' => 15,
 				'body' => [
 					'edd_action' => 'deactivate_license',
-					'license' => trim($licenseData->license_key),
+					'license' => trim($licenseData->licenseKey),
 					'item_name' => rawurlencode($this->extension['edd']['item_name']),
 					'url' => home_url(),
 				],

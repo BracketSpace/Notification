@@ -27,7 +27,7 @@ class Notification implements Storable {
 	 * @param  string $triggerSlug Trigger slug.
 	 * @return array<int,CoreNotification>
 	 */
-	public static function with_trigger( $triggerSlug ) {
+	public static function withTrigger( $triggerSlug ) {
 		return array_filter( static::all(), function ( $notification ) use ( $triggerSlug ) {
 			return ! empty( $notification->getTrigger() ) && $notification->getTrigger()->getSlug() === $triggerSlug;
 		} );

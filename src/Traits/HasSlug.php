@@ -31,7 +31,7 @@ trait HasSlug
 	 *
 	 * @return string slug
 	 */
-	public function get_slug()
+	public function getSlug()
 	{
 		if ($this->slug === null) {
 			return $this->getClassSlug();
@@ -46,7 +46,7 @@ trait HasSlug
 	 * @param  string $slug Slug.
 	 * @return $this
 	 */
-	public function set_slug( string $slug )
+	public function setSlug( string $slug )
 	{
 		$this->slug = $slug;
 

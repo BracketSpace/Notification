@@ -73,7 +73,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 	 *
 	 * @return void
 	 */
-	public function merge_tags()
+	public function mergeTags()
 	{
 
 		$this->addMergeTag(
@@ -162,7 +162,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 	 * @param  string $updateType update type, core | plugin | theme.
 	 * @return bool
 	 */
-	public function has_updates( $updateType )
+	public function hasUpdates( $updateType )
 	{
 		$updates = $this->getUpdatesCount($updateType);
 		return $updates > 0;
@@ -175,7 +175,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 	 * @param  string $updateType update type, core | plugin | theme.
 	 * @return string
 	 */
-	public function get_list_title( $updateType )
+	public function getListTitle( $updateType )
 	{
 
 		switch ($updateType) {
@@ -205,7 +205,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 	 * @since  5.1.5
 	 * @return string
 	 */
-	public function get_core_updates_list()
+	public function getCoreUpdatesList()
 	{
 		$updates = get_core_updates();
 
@@ -239,7 +239,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 	 * @since  5.1.5
 	 * @return string
 	 */
-	public function get_plugin_updates_list()
+	public function getPluginUpdatesList()
 	{
 		$updates = get_plugin_updates();
 
@@ -270,7 +270,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 	 * @since  5.1.5
 	 * @return string
 	 */
-	public function get_theme_updates_list()
+	public function getThemeUpdatesList()
 	{
 		$updates = get_theme_updates();
 
@@ -302,7 +302,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 	 * @param  string $updateType optional, update type, core | plugin | theme | all, default: all.
 	 * @return int
 	 */
-	public function get_updates_count( $updateType = 'all' )
+	public function getUpdatesCount( $updateType = 'all' )
 	{
 		if ($updateType !== 'all') {
 			$updates = call_user_func('get_' . $updateType . '_updates');

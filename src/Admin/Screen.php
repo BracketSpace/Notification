@@ -44,7 +44,7 @@ class Screen
 	 * @param  \WP_Post $post Post object.
 	 * @return void
 	 */
-	public function render_main_column( $post )
+	public function renderMainColumn( $post )
 	{
 		if (get_post_type($post) !== 'notification') {
 			return;
@@ -63,7 +63,7 @@ class Screen
 	 * @param \BracketSpace\Notification\Core\Notification $notificationPost Notification Post object.
 	 * @return void
 	 */
-	public function render_trigger_select( $notificationPost )
+	public function renderTriggerSelect( $notificationPost )
 	{
 		$groupedTriggers = Store\Trigger::grouped();
 		$trigger = $notificationPost->getTrigger();
@@ -94,7 +94,7 @@ class Screen
 	 * @param \BracketSpace\Notification\Core\Notification $notificationPost Notification Post object.
 	 * @return void
 	 */
-	public function render_carrier_boxes( $notificationPost )
+	public function renderCarrierBoxes( $notificationPost )
 	{
 		echo '<h3 class="carriers-section-title">' . esc_html__('Carriers', 'notification') . '</h3>';
 
@@ -163,7 +163,7 @@ class Screen
 	 * @param  object $notificationPost Notification Post object.
 	 * @return void
 	 */
-	public function render_carriers_widget( $notificationPost )
+	public function renderCarriersWidget( $notificationPost )
 	{
 		$carriers = Store\Carrier::all();
 		$exists = $notificationPost->getCarriers();
@@ -186,7 +186,7 @@ class Screen
 	 * @param \BracketSpace\Notification\Interfaces\Sendable $carrier Carrier object.
 	 * @return string                       Form HTML.
 	 */
-	public function get_carrier_form( Interfaces\Sendable $carrier )
+	public function getCarrierForm( Interfaces\Sendable $carrier )
 	{
 		$fields = $carrier->getFormFields();
 
@@ -211,7 +211,7 @@ class Screen
 	 *
 	 * @return void
 	 */
-	public function add_save_meta_box()
+	public function addSaveMetaBox()
 	{
 		add_meta_box(
 			'notification_save',
@@ -232,7 +232,7 @@ class Screen
 	 * @param  object $post current WP_Post.
 	 * @return void
 	 */
-	public function render_save_metabox( $post )
+	public function renderSaveMetabox( $post )
 	{
 		$deleteText = ! EMPTY_TRASH_DAYS ? __('Delete Permanently', 'notification') : __('Move to Trash', 'notification');
 
@@ -256,7 +256,7 @@ class Screen
 	 *
 	 * @return void
 	 */
-	public function add_merge_tags_meta_box()
+	public function addMergeTagsMetaBox()
 	{
 		add_meta_box(
 			'notification_merge_tags',
@@ -277,7 +277,7 @@ class Screen
 	 * @param  object $post current WP_Post.
 	 * @return void
 	 */
-	public function render_merge_tags_metabox( $post )
+	public function renderMergeTagsMetabox( $post )
 	{
 		$notification = notification_adapt_from('WordPress', $post);
 		$trigger = $notification->getTrigger();
@@ -297,7 +297,7 @@ class Screen
 	 * @param  string $triggerSlug Trigger slug.
 	 * @return void
 	 */
-	public function render_merge_tags_list( $triggerSlug )
+	public function renderMergeTagsList( $triggerSlug )
 	{
 		$trigger = Store\Trigger::get($triggerSlug);
 
@@ -332,7 +332,7 @@ class Screen
 	 * @param  object $trigger Trigger object.
 	 * @return array  $groups  Grouped tags.
 	 */
-	public function prepare_merge_tag_groups( $trigger )
+	public function prepareMergeTagGroups( $trigger )
 	{
 		$groups = [];
 		$tags = $trigger->getMergeTags('visible');
@@ -369,7 +369,7 @@ class Screen
 	 *
 	 * @return void
 	 */
-	public function metabox_cleanup()
+	public function metaboxCleanup()
 	{
 		global $wpMetaBoxes;
 
@@ -406,7 +406,7 @@ class Screen
 	 * @param  object $screen current WP_Screen.
 	 * @return void
 	 */
-	public function add_help( $screen )
+	public function addHelp( $screen )
 	{
 		if ($screen->postType !== 'notification') {
 			return;
@@ -441,7 +441,7 @@ class Screen
 	 *
 	 * @return void
 	 */
-	public function ajax_render_merge_tags()
+	public function ajaxRenderMergeTags()
 	{
 		check_ajax_referer('notification_csrf');
 

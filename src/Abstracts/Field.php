@@ -175,7 +175,7 @@ abstract class Field implements Interfaces\Fillable
 	 *
 	 * @return string description
 	 */
-	public function get_description()
+	public function getDescription()
 	{
 		return $this->description;
 	}
@@ -185,7 +185,7 @@ abstract class Field implements Interfaces\Fillable
 	 *
 	 * @return mixed
 	 */
-	public function get_value()
+	public function getValue()
 	{
 		$value = is_string($this->value) ? stripslashes($this->value) : $this->value;
 		return apply_filters('notification/field/' . $this->getRawName() . '/value', $value, $this);
@@ -197,7 +197,7 @@ abstract class Field implements Interfaces\Fillable
 	 * @param  mixed $value value from DB.
 	 * @return void
 	 */
-	public function set_value( $value )
+	public function setValue( $value )
 	{
 		$this->value = $value;
 	}
@@ -207,7 +207,7 @@ abstract class Field implements Interfaces\Fillable
 	 *
 	 * @return string
 	 */
-	public function get_name()
+	public function getName()
 	{
 		return $this->section . '[' . $this->name . ']';
 	}
@@ -217,7 +217,7 @@ abstract class Field implements Interfaces\Fillable
 	 *
 	 * @return string
 	 */
-	public function get_raw_name()
+	public function getRawName()
 	{
 		return $this->name;
 	}
@@ -227,7 +227,7 @@ abstract class Field implements Interfaces\Fillable
 	 *
 	 * @return string
 	 */
-	public function get_label()
+	public function getLabel()
 	{
 		return $this->label;
 	}
@@ -237,7 +237,7 @@ abstract class Field implements Interfaces\Fillable
 	 *
 	 * @return string
 	 */
-	public function get_id()
+	public function getId()
 	{
 		return $this->id;
 	}
@@ -247,7 +247,7 @@ abstract class Field implements Interfaces\Fillable
 	 *
 	 * @return bool
 	 */
-	public function is_resolvable()
+	public function isResolvable()
 	{
 		return $this->resolvable;
 	}
@@ -257,7 +257,7 @@ abstract class Field implements Interfaces\Fillable
 	 *
 	 * @return bool
 	 */
-	public function is_disabled()
+	public function isDisabled()
 	{
 		return $this->disabled;
 	}
@@ -267,7 +267,7 @@ abstract class Field implements Interfaces\Fillable
 	 *
 	 * @return string
 	 */
-	public function maybe_disable()
+	public function maybeDisable()
 	{
 		return $this->isDisabled() ? 'disabled="disabled"' : '';
 	}
@@ -277,7 +277,7 @@ abstract class Field implements Interfaces\Fillable
 	 *
 	 * @return string
 	 */
-	public function css_class()
+	public function cssClass()
 	{
 		return $this->cssClass;
 	}
@@ -288,7 +288,7 @@ abstract class Field implements Interfaces\Fillable
 	 * @since 7.1.0
 	 * @return string
 	 */
-	public function rest_api_error()
+	public function restApiError()
 	{
 		return esc_html__('The REST API is required to display this field, but it has been blocked. Please unlock the /notification REST API endpoint.', 'notification');
 	}

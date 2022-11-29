@@ -62,12 +62,12 @@ class CodeEditorField extends Field
 		wp_enqueue_style('code-editor');
 
 		return '<textarea
-			id="' . esc_attr($this->get_id()) . '"
+			id="' . esc_attr($this->getId()) . '"
 			class="widefat notification-field notification-code-editor-field"
 			data-settings="' . esc_attr(wp_json_encode($settings)) . '"
 			rows="10"
-			name="' . esc_attr($this->get_name()) . '"
-		>' . esc_attr($this->get_value()) . '</textarea>';
+			name="' . esc_attr($this->getName()) . '"
+		>' . esc_attr($this->getValue()) . '</textarea>';
 	}
 
 	/**

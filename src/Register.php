@@ -83,7 +83,7 @@ class Register
 	 * @param \BracketSpace\Notification\Interfaces\Taggable $mergeTag MergeTag object.
 	 * @return \BracketSpace\Notification\Interfaces\Taggable
 	 */
-	public static function global_merge_tag( Interfaces\Taggable $mergeTag )
+	public static function globalMergeTag( Interfaces\Taggable $mergeTag )
 	{
 		Store\GlobalMergeTag::insert($mergeTag->getSlug(), $mergeTag);
 

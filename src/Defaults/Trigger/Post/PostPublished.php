@@ -55,7 +55,7 @@ class PostPublished extends PostTrigger
 	 *
 	 * @return string name
 	 */
-	public function get_name(): string
+	public function getName(): string
 	{
 		// translators: singular post name.
 		return sprintf(__('%s published', 'notification'), WpObjectHelper::get_post_type_name($this->postType));
@@ -66,7 +66,7 @@ class PostPublished extends PostTrigger
 	 *
 	 * @return string description
 	 */
-	public function get_description(): string
+	public function getDescription(): string
 	{
 		return sprintf(
 			// translators: 1. singular post name, 2. post type slug.
@@ -111,7 +111,7 @@ class PostPublished extends PostTrigger
 	 *
 	 * @return void
 	 */
-	public function merge_tags()
+	public function mergeTags()
 	{
 
 		$postTypeName = WpObjectHelper::get_post_type_name($this->postType);

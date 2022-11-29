@@ -43,7 +43,7 @@ class Email extends Abstracts\Carrier
 	 *
 	 * @return void
 	 */
-	public function form_fields()
+	public function formFields()
 	{
 
 		$this->addFormField(
@@ -117,7 +117,7 @@ class Email extends Abstracts\Carrier
 	 *
 	 * @return string mail type
 	 */
-	public function set_mail_type()
+	public function setMailType()
 	{
 		return 'text/html';
 	}
@@ -226,7 +226,7 @@ class Email extends Abstracts\Carrier
 	 * @param  array $rawData          Raw data from PostData, it contains the unfiltered message body.
 	 * @return array                    Carrier data with the unfiltered body, if notifications/email/unfiltered_html setting is true.
 	 **/
-	public function allow_unfiltered_html_body( $carrierData, $rawData )
+	public function allowUnfilteredHtmlBody( $carrierData, $rawData )
 	{
 		if (notification_get_setting('carriers/email/unfiltered_html')) {
 			$carrierData['body'] = $rawData['body'];

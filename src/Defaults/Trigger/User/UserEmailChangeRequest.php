@@ -88,7 +88,7 @@ class UserEmailChangeRequest extends UserTrigger
 	 * @since 8.0.0
 	 * @return void
 	 */
-	public function merge_tags()
+	public function mergeTags()
 	{
 
 		$this->addMergeTag(new MergeTag\User\UserNicename());

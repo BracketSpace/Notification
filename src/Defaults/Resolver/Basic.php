@@ -43,7 +43,7 @@ class Basic extends Abstracts\Resolver
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return mixed               Resolved value
 	 */
-	public function resolve_merge_tag( $match, Triggerable $trigger )
+	public function resolveMergeTag( $match, Triggerable $trigger )
 	{
 
 		$mergeTags = $trigger->getMergeTags('all', true);

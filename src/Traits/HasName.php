@@ -31,7 +31,7 @@ trait HasName
 	 *
 	 * @return string name
 	 */
-	public function get_name()
+	public function getName()
 	{
 		if ($this->name === null) {
 			return $this->getNiceClassName();
@@ -46,7 +46,7 @@ trait HasName
 	 * @param  string $name Name.
 	 * @return $this
 	 */
-	public function set_name( string $name )
+	public function setName( string $name )
 	{
 		$this->name = $name;
 

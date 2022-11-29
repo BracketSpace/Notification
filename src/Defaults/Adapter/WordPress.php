@@ -129,7 +129,7 @@ class WordPress extends Abstracts\Adapter
 	 * @since 6.0.0
 	 * @return bool
 	 */
-	public function is_new()
+	public function isNew()
 	{
 		return empty($this->post) || $this->post->postDateGmt === '0000-00-00 00:00:00';
 	}
@@ -140,7 +140,7 @@ class WordPress extends Abstracts\Adapter
 	 * @since 6.0.0
 	 * @return int post ID
 	 */
-	public function get_id()
+	public function getId()
 	{
 		return ! empty($this->post) ? $this->post->ID : 0;
 	}
@@ -151,7 +151,7 @@ class WordPress extends Abstracts\Adapter
 	 * @since 6.0.0
 	 * @return \WP_Post|null
 	 */
-	public function get_post()
+	public function getPost()
 	{
 		return $this->post;
 	}
@@ -163,7 +163,7 @@ class WordPress extends Abstracts\Adapter
 	 * @param \WP_Post $post WP Post to set.
 	 * @return $this
 	 */
-	public function set_post( \WP_Post $post )
+	public function setPost( \WP_Post $post )
 	{
 		$this->post = $post;
 		return $this;
@@ -176,7 +176,7 @@ class WordPress extends Abstracts\Adapter
 	 * @param string $postType WP Post Type.
 	 * @return $this
 	 */
-	public function set_post_type( $postType )
+	public function setPostType( $postType )
 	{
 		$this->postType = $postType;
 		return $this;
@@ -188,7 +188,7 @@ class WordPress extends Abstracts\Adapter
 	 * @since 6.0.0
 	 * @return bool
 	 */
-	public function has_post()
+	public function hasPost()
 	{
 		return ! empty($this->getPost());
 	}

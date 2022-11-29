@@ -201,7 +201,7 @@ class Group
 	 * @param array $args field args.
 	 * @return \BracketSpace\Notification\Utils\Settings\Group $this
 	 */
-	public function add_field( $args )
+	public function addField( $args )
 	{
 
 		if (! isset($args['name'], $args['slug'], $args['render'])) {
@@ -210,14 +210,14 @@ class Group
 
 		$field = new Field($this->handle, $args['name'], $args['slug'], $this->section, $this->slug());
 
-		$field->set_renderer($args['render']);
+		$field->setRenderer($args['render']);
 
 		if (isset($args['sanitize'])) {
-			$field->set_sanitizer($args['sanitize']);
+			$field->setSanitizer($args['sanitize']);
 		}
 
 		if (isset($args['default'])) {
-			$field->default_value($args['default']);
+			$field->defaultValue($args['default']);
 		}
 
 		if (isset($args['description'])) {
@@ -240,7 +240,7 @@ class Group
 	 *
 	 * @return array
 	 */
-	public function get_fields()
+	public function getFields()
 	{
 
 		return apply_filters($this->handle . '/settings/group/fields', $this->fields);

@@ -28,7 +28,7 @@ trait HasDescription
 	 *
 	 * @return string|null Description
 	 */
-	public function get_description()
+	public function getDescription()
 	{
 		return $this->description;
 	}
@@ -39,7 +39,7 @@ trait HasDescription
 	 * @param  string $description Description.
 	 * @return $this
 	 */
-	public function set_description( string $description )
+	public function setDescription( string $description )
 	{
 		$this->description = $description;
 

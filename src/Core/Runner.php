@@ -66,14 +66,14 @@ class Runner
 	public function run( ...$context )
 	{
 
-		$this->set_notifications();
+		$this->setNotifications();
 
 		// If no Notifications use the Trigger, bail.
-		if (! $this->has_notifications()) {
+		if (! $this->hasNotifications()) {
 			return;
 		}
 
-		$trigger = $this->get_trigger();
+		$trigger = $this->getTrigger();
 
 		// Setup the Trigger context.
 		if (method_exists($trigger, 'action')) {
@@ -97,12 +97,12 @@ class Runner
 
 		do_action('notification/trigger/action/did', $trigger, current_action());
 
-		if ($trigger->is_stopped()) {
+		if ($trigger->isStopped()) {
 			return;
 		}
 
 		// Setup notifications and prepare the carriers.
-		foreach ($this->get_notifications() as $notification) {
+		foreach ($this->getNotifications() as $notification) {
 			/**
 			 * If an item already exists in the queue, we are replacing it with the new version.
 			 * This doesn't prevents the duplicates coming from two separate requests.
@@ -118,10 +118,10 @@ class Runner
 	 *
 	 * @return void
 	 */
-	public function set_notifications()
+	public function setNotifications()
 	{
-		foreach (NotificationStore::with_trigger($this->trigger->get_slug()) as $notification) {
-			$this->attach_notification($notification);
+		foreach (NotificationStore::with_trigger($this->trigger->getSlug()) as $notification) {
+			$this->attachNotification($notification);
 		}
 	}
 
@@ -130,7 +130,7 @@ class Runner
 	 *
 	 * @return array<\BracketSpace\Notification\Core\Notification>
 	 */
-	public function get_notifications()
+	public function getNotifications()
 	{
 		return $this->notifications;
 	}
@@ -140,7 +140,7 @@ class Runner
 	 *
 	 * @return \BracketSpace\Notification\Interfaces\Triggerable
 	 */
-	public function get_trigger()
+	public function getTrigger()
 	{
 		return clone $this->trigger;
 	}
@@ -150,9 +150,9 @@ class Runner
 	 *
 	 * @return bool
 	 */
-	public function has_notifications()
+	public function hasNotifications()
 	{
-		return $this->get_notifications() !== [];
+		return $this->getNotifications() !== [];
 	}
 
 	/**
@@ -161,9 +161,9 @@ class Runner
 	 * @param \BracketSpace\Notification\Core\Notification $notification Notification class.
 	 * @return void
 	 */
-	public function attach_notification( CoreNotification $notification )
+	public function attachNotification( CoreNotification $notification )
 	{
-		$this->notifications[$notification->get_hash()] = clone $notification;
+		$this->notifications[$notification->getHash()] = clone $notification;
 	}
 
 	/**
@@ -172,13 +172,13 @@ class Runner
 	 * @param \BracketSpace\Notification\Core\Notification $notification Notification class.
 	 * @return void
 	 */
-	public function detach_notification( CoreNotification $notification )
+	public function detachNotification( CoreNotification $notification )
 	{
-		if (!isset($this->notifications[$notification->get_hash()])) {
+		if (!isset($this->notifications[$notification->getHash()])) {
 			return;
 		}
 
-		unset($this->notifications[$notification->get_hash()]);
+		unset($this->notifications[$notification->getHash()]);
 	}
 
 	/**
@@ -186,7 +186,7 @@ class Runner
 	 *
 	 * @return $this
 	 */
-	public function detach_all_notifications()
+	public function detachAllNotifications()
 	{
 		$this->notifications = [];
 		return $this;

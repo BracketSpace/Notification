@@ -25,14 +25,14 @@ class TwoFactor
 	 * @param  object $trigger Trigger instance.
 	 * @return void
 	 */
-	public function add_trigger_action( $trigger )
+	public function addTriggerAction( $trigger )
 	{
 
-		if ($trigger->get_slug() !== 'user/login') {
+		if ($trigger->getSlug() !== 'user/login') {
 			return;
 		}
 
-		$trigger->add_action('ntfn_proxy_two_factor_user_authenticated', 10, 2);
+		$trigger->addAction('ntfn_proxy_two_factor_user_authenticated', 10, 2);
 	}
 
 	/**
@@ -44,8 +44,8 @@ class TwoFactor
 	 * @param  \WP_User $user User instance.
 	 * @return void
 	 */
-	public function user_login_with_2fa( $user )
+	public function userLoginWith_2fa( $user )
 	{
-		do_action('ntfn_proxy_two_factor_user_authenticated', $user->user_login, $user);
+		do_action('ntfn_proxy_two_factor_user_authenticated', $user->userLogin, $user);
 	}
 }

@@ -146,7 +146,7 @@ class GlobalMergeTagRepository
 				'example' => true,
 				'hidden' => true,
 				'resolver' => static function ( $trigger ) {
-					return $trigger->get_name();
+					return $trigger->getName();
 				},
 				]
 			)
@@ -161,7 +161,7 @@ class GlobalMergeTagRepository
 				'example' => true,
 				'hidden' => true,
 				'resolver' => static function ( $trigger ) {
-					return $trigger->get_slug();
+					return $trigger->getSlug();
 				},
 				]
 			)

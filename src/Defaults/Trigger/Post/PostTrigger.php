@@ -62,7 +62,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 	 *
 	 * @return string|null Group name
 	 */
-	public function get_group()
+	public function getGroup()
 	{
 		return WpObjectHelper::get_post_type_name($this->postType);
 	}
@@ -72,7 +72,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 	 *
 	 * @return string Post Type slug
 	 */
-	public function get_post_type(): string
+	public function getPostType(): string
 	{
 		return $this->postType;
 	}
@@ -82,7 +82,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 	 *
 	 * @return void
 	 */
-	public function merge_tags()
+	public function mergeTags()
 	{
 
 		$postTypeName = WpObjectHelper::get_post_type_name($this->postType);

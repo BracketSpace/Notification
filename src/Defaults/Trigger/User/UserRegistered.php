@@ -59,7 +59,7 @@ class UserRegistered extends UserTrigger
 	 *
 	 * @return void
 	 */
-	public function merge_tags()
+	public function mergeTags()
 	{
 
 		parent::merge_tags();
@@ -87,7 +87,7 @@ class UserRegistered extends UserTrigger
 	 * @since  5.1.5
 	 * @return string
 	 */
-	public function get_password_reset_key()
+	public function getPasswordResetKey()
 	{
 
 		add_filter('allow_password_reset', '__return_true', 999999999);

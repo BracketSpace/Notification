@@ -22,7 +22,7 @@ class ErrorHandler
 	 * @since  8.0.0
 	 * @return bool
 	 */
-	public static function debug_enabled()
+	public static function debugEnabled()
 	{
 		return defined('NOTIFICATION_DEBUG') && NOTIFICATION_DEBUG;
 	}

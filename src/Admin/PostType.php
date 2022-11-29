@@ -107,7 +107,7 @@ class PostType
 	 * @param  array $messages Messages.
 	 * @return array
 	 */
-	public function post_updated_messages( $messages )
+	public function postUpdatedMessages( $messages )
 	{
 		$messages['notification'] = [
 			'',
@@ -136,7 +136,7 @@ class PostType
 	 * @param  array $bulkCounts   Counters.
 	 * @return array
 	 */
-	public function bulk_action_messages( $bulkMessages, $bulkCounts )
+	public function bulkActionMessages( $bulkMessages, $bulkCounts )
 	{
 		$bulkMessages['notification'] = [
 			// translators: Number of Notifications.
@@ -155,7 +155,7 @@ class PostType
 	 * @param  array $statuses Statuses array.
 	 * @return array
 	 */
-	public function change_post_statuses( $statuses )
+	public function changePostStatuses( $statuses )
 	{
 		if (isset($statuses['publish'])) {
 			$statuses['publish'] = str_replace(__('Published', 'notification'), __('Active', 'notification'), $statuses['publish']);
@@ -183,7 +183,7 @@ class PostType
 	 * @param int $postId Post ID.
 	 * @return void
 	 */
-	public function bypass_trash( $postId )
+	public function bypassTrash( $postId )
 	{
 		if (get_post_type($postId) !== 'notification') {
 			return;
@@ -208,7 +208,7 @@ class PostType
 	 * @param  array $postarr saved data.
 	 * @return array
 	 */
-	public function create_notification_hash( $data, $postarr )
+	public function createNotificationHash( $data, $postarr )
 	{
 		// Another save process is in progress, abort.
 		if (defined('DOING_NOTIFICATION_SAVE') && DOING_NOTIFICATION_SAVE) {
@@ -343,7 +343,7 @@ class PostType
 	 *
 	 * @return void
 	 */
-	public function ajax_change_notification_status()
+	public function ajaxChangeNotificationStatus()
 	{
 		check_ajax_referer('notification_csrf');
 
@@ -378,7 +378,7 @@ class PostType
 	 * @since  6.0.0
 	 * @return array
 	 */
-	public static function get_all_notifications()
+	public static function getAllNotifications()
 	{
 		$driver = new CacheDriver\ObjectCache('notification');
 		$cache = new Cache($driver, 'notifications');
@@ -408,7 +408,7 @@ class PostType
 	 * @since  6.0.0
 	 * @return void
 	 */
-	public function setup_notifications()
+	public function setupNotifications()
 	{
 		$notifications = self::get_all_notifications();
 

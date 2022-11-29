@@ -60,7 +60,7 @@ class Queue
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger.
 	 * @return void
 	 */
-	public static function add_replace( CoreNotification $notification, Triggerable $trigger )
+	public static function addReplace( CoreNotification $notification, Triggerable $trigger )
 	{
 		// Check if item already exists.
 		foreach (self::$items as $index => $item) {

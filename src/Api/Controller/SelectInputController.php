@@ -28,7 +28,7 @@ class SelectInputController
 	 * @param \WP_REST_Request $request WP request instance.
 	 * @return void
 	 */
-	public function send_response( \WP_REST_Request $request )
+	public function sendResponse( \WP_REST_Request $request )
 	{
 		$params = $request->getParams();
 		$carrier = $params['carrier'];

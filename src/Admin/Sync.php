@@ -33,12 +33,12 @@ class Sync
 	public function settings( $settings )
 	{
 
-		$importExport = $settings->add_section(__('Import / Export', 'notification'), 'import_export');
-		$syncGroup = $importExport->add_group(__('Synchronization', 'notification'), 'sync');
+		$importExport = $settings->addSection(__('Import / Export', 'notification'), 'import_export');
+		$syncGroup = $importExport->addGroup(__('Synchronization', 'notification'), 'sync');
 
 		$syncGroup->description('Synchronization allow to export or load the Notifications from JSON files.');
 
-		$syncGroup->add_field(
+		$syncGroup->addField(
 			[
 			'name' => __('Actions', 'notification'),
 			'slug' => 'actions',
@@ -55,7 +55,7 @@ class Sync
 			return;
 		}
 
-		$syncGroup->add_field(
+		$syncGroup->addField(
 			[
 			'name' => __('Notifications', 'notification'),
 			'slug' => 'notifications',
@@ -71,7 +71,7 @@ class Sync
 	 * @since  6.0.0
 	 * @return string
 	 */
-	public function template_actions()
+	public function templateActions()
 	{
 		if (! CoreSync::is_syncing()) {
 			return Templates::get('sync/disabled');
@@ -87,7 +87,7 @@ class Sync
 	 *
 	 * @return void
 	 */
-	public function ajax_sync()
+	public function ajaxSync()
 	{
 		check_ajax_referer('notification_csrf');
 
@@ -110,7 +110,7 @@ class Sync
 	 * @param  string $hash Notification hash.
 	 * @return void
 	 */
-	public function load_notification_to_json( $hash )
+	public function loadNotificationToJson( $hash )
 	{
 		/**
 		 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null
@@ -131,7 +131,7 @@ class Sync
 	 * @param  string $hash Notification hash.
 	 * @return mixed
 	 */
-	public function load_notification_to_wordpress( $hash )
+	public function loadNotificationToWordpress( $hash )
 	{
 
 		$jsonNotifications = CoreSync::get_all_json();
@@ -145,7 +145,7 @@ class Sync
 				 */
 				$jsonAdapter = notification_adapt_from('JSON', $json);
 
-				if ($jsonAdapter->get_hash() === $hash) {
+				if ($jsonAdapter->getHash() === $hash) {
 					/**
 					 * WordPress Adapter
 					 *
@@ -153,7 +153,7 @@ class Sync
 					 */
 					$wpAdapter = notification_swap_adapter('WordPress', $jsonAdapter);
 					$wpAdapter->save();
-					return get_edit_post_link($wpAdapter->get_id(), 'admin');
+					return get_edit_post_link($wpAdapter->getId(), 'admin');
 				}
 			} catch (\Throwable $e) {
 				// Do nothing.

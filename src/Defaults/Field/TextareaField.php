@@ -57,7 +57,7 @@ class TextareaField extends Field
 		}
 
 		if (isset($params['allowed_unfiltered']) && $params['allowed_unfiltered']) {
-			$this->allowed_unfiltered = true;
+			$this->allowedUnfiltered = true;
 		}
 
 		parent::__construct($params);
@@ -70,7 +70,7 @@ class TextareaField extends Field
 	 */
 	public function field()
 	{
-		return '<textarea name="' . esc_attr($this->get_name()) . '" rows="' . esc_attr((string)$this->rows) . '" id="' . esc_attr($this->get_id()) . '" placeholder="' . esc_attr($this->placeholder) . '" class="widefat ' . esc_attr($this->css_class()) . '" ' . $this->maybe_disable() . '>' . $this->get_value() . '</textarea>';
+		return '<textarea name="' . esc_attr($this->getName()) . '" rows="' . esc_attr((string)$this->rows) . '" id="' . esc_attr($this->getId()) . '" placeholder="' . esc_attr($this->placeholder) . '" class="widefat ' . esc_attr($this->cssClass()) . '" ' . $this->maybeDisable() . '>' . $this->getValue() . '</textarea>';
 	}
 
 	/**
@@ -81,6 +81,6 @@ class TextareaField extends Field
 	 */
 	public function sanitize( $value )
 	{
-		return ( $this->allowed_unfiltered ) ? $value : sanitize_textarea_field($value);
+		return ( $this->allowedUnfiltered ) ? $value : sanitize_textarea_field($value);
 	}
 }

@@ -32,7 +32,7 @@ class Whitelabel
 	 *
 	 * @return void
 	 */
-	public function remove_defaults()
+	public function removeDefaults()
 	{
 		if (! self::is_whitelabeled()) {
 			return;
@@ -94,7 +94,7 @@ class Whitelabel
 	 * @since  8.0.0
 	 * @return bool
 	 */
-	public static function is_whitelabeled(): bool
+	public static function isWhitelabeled(): bool
 	{
 		return static::$isWhitelabeled;
 	}

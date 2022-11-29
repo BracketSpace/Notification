@@ -35,7 +35,7 @@ class CheckboxField extends Field
 	public function __construct( $params = [] )
 	{
 
-		$this->checkbox_label = $params['checkbox_label'] ?? __('Enable', 'notification');
+		$this->checkboxLabel = $params['checkbox_label'] ?? __('Enable', 'notification');
 
 		parent::__construct($params);
 	}
@@ -47,7 +47,7 @@ class CheckboxField extends Field
 	 */
 	public function field()
 	{
-		return '<label><input type="checkbox" name="' . esc_attr($this->get_name()) . '" id="' . esc_attr($this->get_id()) . '" value="1" ' . checked($this->get_value(), '1', false) . ' class="widefat ' . esc_attr($this->css_class()) . '" ' . $this->maybe_disable() . '> ' . esc_html($this->checkbox_label) . '</label>';
+		return '<label><input type="checkbox" name="' . esc_attr($this->getName()) . '" id="' . esc_attr($this->getId()) . '" value="1" ' . checked($this->getValue(), '1', false) . ' class="widefat ' . esc_attr($this->cssClass()) . '" ' . $this->maybeDisable() . '> ' . esc_html($this->checkboxLabel) . '</label>';
 	}
 
 	/**

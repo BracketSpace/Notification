@@ -29,7 +29,7 @@ class Upsell
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public function add_conditionals_meta_box()
+	public function addConditionalsMetaBox()
 	{
 		if (class_exists('NotificationConditionals')) {
 			return;
@@ -55,7 +55,7 @@ class Upsell
 	 * @param  object $post current WP_Post.
 	 * @return void
 	 */
-	public function conditionals_metabox( $post )
+	public function conditionalsMetabox( $post )
 	{
 		Templates::render('upsell/conditionals-metabox');
 	}
@@ -69,7 +69,7 @@ class Upsell
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public function custom_fields_merge_tag_group()
+	public function customFieldsMergeTagGroup()
 	{
 		if (class_exists('NotificationCustomFields')) {
 			return;
@@ -86,7 +86,7 @@ class Upsell
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public function review_queue_switch()
+	public function reviewQueueSwitch()
 	{
 		if (class_exists('NotificationReviewQueue')) {
 			return;
@@ -104,16 +104,16 @@ class Upsell
 	 * @param \BracketSpace\Notification\Core\Settings $settings Settings API object.
 	 * @return void
 	 */
-	public function scheduled_triggers_settings( $settings )
+	public function scheduledTriggersSettings( $settings )
 	{
 		if (class_exists('NotificationScheduledTriggers')) {
 			return;
 		}
 
-		$section = $settings->add_section(__('Triggers', 'notification'), 'triggers');
+		$section = $settings->addSection(__('Triggers', 'notification'), 'triggers');
 
-		$section->add_group(__('Scheduled Triggers', 'notification'), 'scheduled_triggers')
-			->add_field(
+		$section->addGroup(__('Scheduled Triggers', 'notification'), 'scheduled_triggers')
+			->addField(
 				[
 				'name' => __('Features', 'notification'),
 				'slug' => 'upsell',
@@ -134,7 +134,7 @@ class Upsell
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public function triggers_settings_upsell()
+	public function triggersSettingsUpsell()
 	{
 		Templates::render('upsell/triggers-upsell');
 	}
@@ -147,7 +147,7 @@ class Upsell
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public function carriers_settings_upsell()
+	public function carriersSettingsUpsell()
 	{
 		Templates::render('upsell/carriers-upsell');
 	}
@@ -160,7 +160,7 @@ class Upsell
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public function carriers_list()
+	public function carriersList()
 	{
 		Templates::render(
 			'upsell/carriers-list',
@@ -178,7 +178,7 @@ class Upsell
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public function custom_development()
+	public function customDevelopment()
 	{
 		Templates::render('upsell/custom-development');
 	}
@@ -189,7 +189,7 @@ class Upsell
 	 * @since  8.0.0
 	 * @return array<string,array{name: string, pro: bool, link: string, icon: string}>
 	 */
-	public static function get_missing_carriers()
+	public static function getMissingCarriers()
 	{
 		$carriers = [];
 

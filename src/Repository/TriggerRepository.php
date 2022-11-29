@@ -58,7 +58,7 @@ class TriggerRepository
 	/**
 	 * @return void
 	 */
-	public static function register_post_triggers()
+	public static function registerPostTriggers()
 	{
 		$postTypes = notification_get_setting('triggers/post_types/types');
 
@@ -82,7 +82,7 @@ class TriggerRepository
 	/**
 	 * @return void
 	 */
-	public static function register_taxonomy_triggers()
+	public static function registerTaxonomyTriggers()
 	{
 		$taxonomies = notification_get_setting('triggers/taxonomies/types');
 
@@ -100,7 +100,7 @@ class TriggerRepository
 	/**
 	 * @return void
 	 */
-	public static function register_user_triggers()
+	public static function registerUserTriggers()
 	{
 		Register::trigger(new Trigger\User\UserLogin());
 		Register::trigger(new Trigger\User\UserLogout());
@@ -116,7 +116,7 @@ class TriggerRepository
 	/**
 	 * @return void
 	 */
-	public static function register_media_triggers()
+	public static function registerMediaTriggers()
 	{
 		Register::trigger(new Trigger\Media\MediaAdded());
 		Register::trigger(new Trigger\Media\MediaUpdated());
@@ -126,7 +126,7 @@ class TriggerRepository
 	/**
 	 * @return void
 	 */
-	public static function register_comment_triggers()
+	public static function registerCommentTriggers()
 	{
 		$commentTypes = notification_get_setting('triggers/comment/types');
 
@@ -148,7 +148,7 @@ class TriggerRepository
 	/**
 	 * @return void
 	 */
-	public static function register_wp_triggers()
+	public static function registerWpTriggers()
 	{
 		if (notification_get_setting('triggers/wordpress/updates')) {
 			Register::trigger(new Trigger\WordPress\UpdatesAvailable());
@@ -164,7 +164,7 @@ class TriggerRepository
 	/**
 	 * @return void
 	 */
-	public static function register_plugin_triggers()
+	public static function registerPluginTriggers()
 	{
 		Register::trigger(new Trigger\Plugin\Activated());
 		Register::trigger(new Trigger\Plugin\Deactivated());
@@ -176,7 +176,7 @@ class TriggerRepository
 	/**
 	 * @return void
 	 */
-	public static function register_theme_triggers()
+	public static function registerThemeTriggers()
 	{
 		Register::trigger(new Trigger\Theme\Switched());
 		Register::trigger(new Trigger\Theme\Updated());
@@ -186,7 +186,7 @@ class TriggerRepository
 	/**
 	 * @return void
 	 */
-	public static function register_privacy_triggers()
+	public static function registerPrivacyTriggers()
 	{
 		Register::trigger(new Trigger\Privacy\DataEraseRequest());
 		Register::trigger(new Trigger\Privacy\DataErased());

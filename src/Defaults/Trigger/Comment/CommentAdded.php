@@ -70,7 +70,7 @@ class CommentAdded extends CommentTrigger
 	 *
 	 * @return void
 	 */
-	public function merge_tags()
+	public function mergeTags()
 	{
 
 		parent::merge_tags();

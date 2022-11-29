@@ -33,7 +33,7 @@ class WordPress
 	 * @param  string $fromName Default From Name.
 	 * @return string
 	 */
-	public function filter_email_from_name( $fromName )
+	public function filterEmailFromName( $fromName )
 	{
 
 		$setting = notification_get_setting('carriers/email/from_name');
@@ -50,7 +50,7 @@ class WordPress
 	 * @param  string $fromEmail Default From Email.
 	 * @return string
 	 */
-	public function filter_email_from_email( $fromEmail )
+	public function filterEmailFromEmail( $fromEmail )
 	{
 
 		$setting = notification_get_setting('carriers/email/from_email');
@@ -77,7 +77,7 @@ class WordPress
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return string
 	 */
-	public function identify_trigger( $triggerKey, Triggerable $trigger )
+	public function identifyTrigger( $triggerKey, Triggerable $trigger )
 	{
 		$coveredTriggers = [
 			'BracketSpace\Notification\Defaults\Trigger\Post\PostTrigger' => static function ( $trigger ) {
@@ -117,7 +117,7 @@ class WordPress
 	 * @param object  $comment    Comment object.
 	 * @return void
 	 */
-	public function proxy_comment_reply( $commentId, $comment )
+	public function proxyCommentReply( $commentId, $comment )
 	{
 		$status = $comment->commentApproved === '1' ? 'approved' : 'unapproved';
 		do_action('notification_insert_comment_proxy', $status, 'insert', $comment);
@@ -139,7 +139,7 @@ class WordPress
 	 * @param int|string $approved   1 if the comment is approved, 0 if not, 'spam' if spam.
 	 * @return void
 	 */
-	public function proxy_post_comment_to_published( $commentId, $approved )
+	public function proxyPostCommentToPublished( $commentId, $approved )
 	{
 		if ($approved !== 1) {
 			return;
@@ -159,7 +159,7 @@ class WordPress
 	 * @param object $comment            Comment object.
 	 * @return void
 	 */
-	public function proxy_transition_comment_status_to_published( $commentNewStatus, $commentOldStatus, $comment )
+	public function proxyTransitionCommentStatusToPublished( $commentNewStatus, $commentOldStatus, $comment )
 	{
 
 		if ($comment->commentApproved === 'spam' && notification_get_setting('triggers/comment/akismet')) {

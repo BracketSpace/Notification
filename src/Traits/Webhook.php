@@ -37,7 +37,7 @@ trait Webhook
 	 * @param  string $method  HTTP request method.
 	 * @return void
 	 */
-	public function http_request( $url, $args = [], $headers = [], $method = 'GET' )
+	public function httpRequest( $url, $args = [], $headers = [], $method = 'GET' )
 	{
 		$remoteArgs = apply_filters(
 			"notification/carrier/webhook/remote_args/{$method}",
@@ -98,7 +98,7 @@ trait Webhook
 	 * @param  array $args Args from saved fields.
 	 * @return array       Parsed args as key => value array
 	 */
-	private function parse_args( $args )
+	private function parseArgs( $args )
 	{
 		$parsedArgs = [];
 

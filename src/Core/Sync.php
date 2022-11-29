@@ -31,7 +31,7 @@ class Sync
 	 * @since  6.0.0
 	 * @return array<int,string>
 	 */
-	public static function get_all_json()
+	public static function getAllJson()
 	{
 		if (! self::is_syncing()) {
 			return [];
@@ -50,7 +50,7 @@ class Sync
 				continue;
 			}
 
-			$json = $fs->get_contents($filename);
+			$json = $fs->getContents($filename);
 
 			if (empty($json)) {
 				continue;
@@ -70,7 +70,7 @@ class Sync
 	 * @since  6.0.0
 	 * @return void
 	 */
-	public function load_local_json()
+	public function loadLocalJson()
 	{
 		if (! self::is_syncing()) {
 			return;
@@ -87,8 +87,8 @@ class Sync
 				 */
 				$adapter = notification_adapt_from('JSON', $json);
 
-				if ($adapter->is_enabled()) {
-					$adapter->register_notification();
+				if ($adapter->isEnabled()) {
+					$adapter->registerNotification();
 				}
 			} catch (\Throwable $e) {
 				// Do nothing.
@@ -106,7 +106,7 @@ class Sync
 	 * @param \BracketSpace\Notification\Defaults\Adapter\WordPress $wpAdapter WordPress adapter.
 	 * @return void
 	 */
-	public static function save_local_json( $wpAdapter )
+	public static function saveLocalJson( $wpAdapter )
 	{
 		if (! self::is_syncing()) {
 			return;
@@ -118,10 +118,10 @@ class Sync
 			return;
 		}
 
-		$file = $wpAdapter->get_hash() . '.json';
+		$file = $wpAdapter->getHash() . '.json';
 		$json = notification_swap_adapter('JSON', $wpAdapter)->save();
 
-		$fs->put_contents($file, $json);
+		$fs->putContents($file, $json);
 	}
 
 	/**
@@ -133,7 +133,7 @@ class Sync
 	 * @param int $postId Deleted Post ID.
 	 * @return void
 	 */
-	public function delete_local_json( $postId )
+	public function deleteLocalJson( $postId )
 	{
 		if (! self::is_syncing() || get_post_type($postId) !== 'notification') {
 			return;
@@ -146,7 +146,7 @@ class Sync
 		}
 
 		$adapter = notification_adapt_from('WordPress', $postId);
-		$file = $adapter->get_hash() . '.json';
+		$file = $adapter->getHash() . '.json';
 
 		if (!$fs->exists($file)) {
 			return;
@@ -182,7 +182,7 @@ class Sync
 			return;
 		}
 
-		if (! $fs->exists('') || ! $fs->is_dir('')) {
+		if (! $fs->exists('') || ! $fs->isDir('')) {
 			$fs->mkdir('');
 		}
 
@@ -191,7 +191,7 @@ class Sync
 		}
 
 		$fs->touch('index.php');
-		$fs->put_contents('index.php', '<?php' . "\r\n" . '// Keep this file here.' . "\r\n");
+		$fs->putContents('index.php', '<?php' . "\r\n" . '// Keep this file here.' . "\r\n");
 	}
 
 	/**
@@ -211,7 +211,7 @@ class Sync
 	 * @since  8.0.0
 	 * @return string|null
 	 */
-	public static function get_sync_path()
+	public static function getSyncPath()
 	{
 		return static::$syncPath;
 	}
@@ -222,7 +222,7 @@ class Sync
 	 * @since  8.0.2
 	 * @return \BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem|null
 	 */
-	public static function get_sync_fs()
+	public static function getSyncFs()
 	{
 		if (! static::is_syncing()) {
 			return null;
@@ -237,7 +237,7 @@ class Sync
 	 * @since  8.0.0
 	 * @return bool
 	 */
-	public static function is_syncing(): bool
+	public static function isSyncing(): bool
 	{
 		return static::$syncPath !== null;
 	}

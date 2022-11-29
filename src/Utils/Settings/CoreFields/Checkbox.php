@@ -29,8 +29,8 @@ class Checkbox
 
 		printf(
 			'<label><input type="checkbox" id="%s" name="%s" value="true" %s> %s</label>',
-			esc_attr($field->input_id()),
-			esc_attr($field->input_name()),
+			esc_attr($field->inputId()),
+			esc_attr($field->inputName()),
 			checked($checked, true, false),
 			wp_kses_data($field->addon('label'))
 		);

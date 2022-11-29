@@ -53,15 +53,15 @@ class EditorField extends Field
 		$settings = wp_parse_args(
 			$this->settings,
 			[
-				'textarea_name' => $this->get_name(),
+				'textarea_name' => $this->getName(),
 				'textarea_rows' => 20,
-				'editor_class' => $this->css_class(),
+				'editor_class' => $this->cssClass(),
 			]
 		);
 
 		ob_start();
 
-		wp_editor($this->get_value(), $this->get_id(), $settings);
+		wp_editor($this->getValue(), $this->getId(), $settings);
 
 		return ob_get_clean();
 	}

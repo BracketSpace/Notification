@@ -27,10 +27,10 @@ class ImportExport
 	 */
 	public function settings( $settings )
 	{
-		$importexport = $settings->add_section(__('Import / Export', 'notification'), 'import_export');
+		$importexport = $settings->addSection(__('Import / Export', 'notification'), 'import_export');
 
-		$importexport->add_group(__('Import', 'notification'), 'import')
-			->add_field(
+		$importexport->addGroup(__('Import', 'notification'), 'import')
+			->addField(
 				[
 					'name' => __('Notifications', 'notification'),
 					'slug' => 'notifications',
@@ -39,8 +39,8 @@ class ImportExport
 				]
 			);
 
-		$importexport->add_group(__('Export', 'notification'), 'export')
-			->add_field(
+		$importexport->addGroup(__('Export', 'notification'), 'export')
+			->addField(
 				[
 					'name' => __('Notifications', 'notification'),
 					'slug' => 'notifications',
@@ -58,7 +58,7 @@ class ImportExport
 	 * @since  6.0.0
 	 * @return void
 	 */
-	public function export_request()
+	public function exportRequest()
 	{
 		check_admin_referer('notification-export', 'nonce');
 
@@ -100,7 +100,7 @@ class ImportExport
 	 * @param  array<int,string> $items Items to export.
 	 * @return array<int,string>
 	 */
-	public function prepare_notifications_export_data( array $items = [] )
+	public function prepareNotificationsExportData( array $items = [] )
 	{
 		if (empty($items)) {
 			throw new \Exception(__('No items selected for export'));
@@ -142,7 +142,7 @@ class ImportExport
 	 * @since  6.0.0
 	 * @return void
 	 */
-	public function import_request()
+	public function importRequest()
 	{
 		if (check_ajax_referer('import-notifications', 'nonce', false) === false) {
 			wp_send_json_error(__('Security check failed. Please refresh the page and try again'));
@@ -191,7 +191,7 @@ class ImportExport
 	 * @param  array $data Notifications data.
 	 * @return string
 	 */
-	public function process_notifications_import_request( $data )
+	public function processNotificationsImportRequest( $data )
 	{
 		$added = 0;
 		$skipped = 0;
@@ -210,16 +210,16 @@ class ImportExport
 			/**
 			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null
 			 */
-			$existingNotification = NotificationQueries::with_hash($wpAdapter->get_hash());
+			$existingNotification = NotificationQueries::with_hash($wpAdapter->getHash());
 
 			if ($existingNotification === null) {
 				$wpAdapter->save();
 				$added++;
 			} else {
-				if ($existingNotification->get_version() >= $wpAdapter->get_version()) {
+				if ($existingNotification->getVersion() >= $wpAdapter->getVersion()) {
 					$skipped++;
 				} else {
-					$wpAdapter->set_post($existingNotification->get_post())->save();
+					$wpAdapter->setPost($existingNotification->getPost())->save();
 					$updated++;
 				}
 			}

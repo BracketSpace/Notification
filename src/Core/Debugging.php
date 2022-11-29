@@ -50,7 +50,7 @@ class Debugging
 	 * @param array $logData Log data, must contain keys: type, component and message.
 	 * @return bool
 	 */
-	public function add_log( $logData = [] )
+	public function addLog( $logData = [] )
 	{
 		global $wpdb;
 
@@ -99,7 +99,7 @@ class Debugging
 	 * @param  string  $component Component name, default: all.
 	 * @return array
 	 */
-	public function get_logs( $page = 1, $types = null, $component = null )
+	public function getLogs( $page = 1, $types = null, $component = null )
 	{
 		global $wpdb;
 
@@ -143,7 +143,7 @@ class Debugging
 	 * @param  array $types Array of log types to remove, default: all.
 	 * @return void
 	 */
-	public function remove_logs( $types = null )
+	public function removeLogs( $types = null )
 	{
 		global $wpdb;
 
@@ -165,7 +165,7 @@ class Debugging
 	 * @param  string $type Type of count, values: total|pages.
 	 * @return int
 	 */
-	public function get_logs_count( $type = 'total' )
+	public function getLogsCount( $type = 'total' )
 	{
 		global $wpdb;
 
@@ -190,7 +190,7 @@ class Debugging
 	 * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
 	 * @return void
 	 */
-	public function catch_notification( $carrier, $trigger, $notification )
+	public function catchNotification( $carrier, $trigger, $notification )
 	{
 		if (! notification_get_setting('debugging/settings/debug_log')) {
 			return;

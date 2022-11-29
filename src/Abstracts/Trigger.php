@@ -79,14 +79,14 @@ abstract class Trigger implements Triggerable
 	 *
 	 * @return void
 	 */
-	abstract public function merge_tags();
+	abstract public function mergeTags();
 
 	/**
 	 * Sets up the merge tags
 	 *
 	 * @return void
 	 */
-	public function setup_merge_tags()
+	public function setupMergeTags()
 	{
 
 		if ($this->mergeTagsAdded) {
@@ -105,7 +105,7 @@ abstract class Trigger implements Triggerable
 	 *
 	 * @return $this
 	 */
-	public function clear_merge_tags()
+	public function clearMergeTags()
 	{
 		$this->mergeTagsAdded = false;
 		$this->mergeTags = [];
@@ -124,7 +124,7 @@ abstract class Trigger implements Triggerable
 	 * @param int $priority action priority, default 10.
 	 * @param int $acceptedArgs how many args the action accepts, default 1.
 	 */
-	public function add_action( $tag, $priority = 10, $acceptedArgs = 1 )
+	public function addAction( $tag, $priority = 10, $acceptedArgs = 1 )
 	{
 		if (empty($tag)) {
 			trigger_error('Action tag cannot be empty', E_USER_ERROR);
@@ -148,7 +148,7 @@ abstract class Trigger implements Triggerable
 	 * @param mixed   $deprecated deprecated.
 	 * @return void
 	 */
-	public function remove_action( $tag, $priority = 10, $deprecated = null )
+	public function removeAction( $tag, $priority = 10, $deprecated = null )
 	{
 
 		if (empty($tag)) {
@@ -169,7 +169,7 @@ abstract class Trigger implements Triggerable
 	 * @since 8.0.0
 	 * @return array<int, array{tag: string, priority: int, accepted_args: int}>
 	 */
-	public function get_actions(): array
+	public function getActions(): array
 	{
 		return $this->actions;
 	}
@@ -180,7 +180,7 @@ abstract class Trigger implements Triggerable
 	 * @param \BracketSpace\Notification\Interfaces\Taggable $mergeTag merge tag object.
 	 * @return $this
 	 */
-	public function add_merge_tag( Taggable $mergeTag )
+	public function addMergeTag( Taggable $mergeTag )
 	{
 		$mergeTag->setTrigger($this);
 		array_push($this->mergeTags, $mergeTag);
@@ -195,7 +195,7 @@ abstract class Trigger implements Triggerable
 	 * @param string $label         Nice, translatable Merge Tag label.
 	 * @param string $group         Optional, translatable group name.
 	 */
-	public function add_quick_merge_tag( $propertyName, $label, $group = null )
+	public function addQuickMergeTag( $propertyName, $label, $group = null )
 	{
 		return $this->addMergeTag(
 			new \BracketSpace\Notification\Defaults\MergeTag\StringTag(
@@ -217,7 +217,7 @@ abstract class Trigger implements Triggerable
 	 * @param string $mergeTagSlug Merge Tag slug.
 	 * @return $this
 	 */
-	public function remove_merge_tag( $mergeTagSlug )
+	public function removeMergeTag( $mergeTagSlug )
 	{
 
 		foreach ($this->mergeTags as $index => $mergeTag) {
@@ -239,7 +239,7 @@ abstract class Trigger implements Triggerable
 	 * @param bool   $grouped Optional, default: false.
 	 * @return array<\BracketSpace\Notification\Interfaces\Taggable>
 	 */
-	public function get_merge_tags( $type = 'all', $grouped = false )
+	public function getMergeTags( $type = 'all', $grouped = false )
 	{
 
 		if (! $this->mergeTagsAdded) {
@@ -299,7 +299,7 @@ abstract class Trigger implements Triggerable
 	 *
 	 * @return bool
 	 */
-	public function is_stopped(): bool
+	public function isStopped(): bool
 	{
 		return (bool)$this->stopped;
 	}
@@ -320,7 +320,7 @@ abstract class Trigger implements Triggerable
 	 * @param int $acceptedArgs how many args the action accepts, default 1.
 	 * @return void
 	 */
-	public function postpone_action( $tag, $priority = 10, $acceptedArgs = 1 )
+	public function postponeAction( $tag, $priority = 10, $acceptedArgs = 1 )
 	{
 		_deprecated_function(__METHOD__, '8.0.0');
 	}
@@ -332,7 +332,7 @@ abstract class Trigger implements Triggerable
 	 * @since 8.0.0 Deprecated
 	 * @return bool
 	 */
-	public function is_postponed()
+	public function isPostponed()
 	{
 		_deprecated_function(__METHOD__, '8.0.0');
 		return true;
@@ -345,7 +345,7 @@ abstract class Trigger implements Triggerable
 	 * @since 8.0.0 Deprecated
 	 * @return bool
 	 */
-	public function has_background_processing_enabled()
+	public function hasBackgroundProcessingEnabled()
 	{
 		_deprecated_function(__METHOD__, '8.0.0');
 
@@ -363,7 +363,7 @@ abstract class Trigger implements Triggerable
 	 * @since 8.0.0 Deprecated
 	 * @return array
 	 */
-	public function get_action_args()
+	public function getActionArgs()
 	{
 		_deprecated_function(__METHOD__, '8.0.0');
 
@@ -377,7 +377,7 @@ abstract class Trigger implements Triggerable
 	 * @since 8.0.0 Deprecated
 	 * @return array
 	 */
-	public function get_cache()
+	public function getCache()
 	{
 		_deprecated_function(__METHOD__, '8.0.0');
 
@@ -392,7 +392,7 @@ abstract class Trigger implements Triggerable
 	 * @param  array $cache Array with cached vars.
 	 * @return $this
 	 */
-	public function set_cache( $cache )
+	public function setCache( $cache )
 	{
 		_deprecated_function(__METHOD__, '8.0.0');
 

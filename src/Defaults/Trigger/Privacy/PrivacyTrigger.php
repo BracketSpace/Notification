@@ -59,7 +59,7 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 	 *
 	 * @return void
 	 */
-	public function merge_tags()
+	public function mergeTags()
 	{
 
 		// Data owner.

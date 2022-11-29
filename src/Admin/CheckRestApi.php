@@ -23,13 +23,13 @@ class CheckRestApi
 	 * @action admin_notices
 	 * @return void
 	 */
-	public function test_rest_api()
+	public function testRestApi()
 	{
 		$isEdit = false;
 		$currentScreen = get_current_screen();
 
 		if ($currentScreen instanceof \WP_Screen) {
-			$isEdit = $currentScreen->base === 'post' && $currentScreen->post_type === 'notification';
+			$isEdit = $currentScreen->base === 'post' && $currentScreen->postType === 'notification';
 		}
 
 		if (! $isEdit) {
@@ -39,7 +39,7 @@ class CheckRestApi
 		$response = wp_remote_get(
 			get_rest_url(
 				null,
-				\Notification::component('api')->get_endpoint('check')
+				\Notification::component('api')->getEndpoint('check')
 			)
 		);
 

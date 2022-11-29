@@ -25,7 +25,7 @@ class Cron
 	 * @param  array $intervals intervals.
 	 * @return array
 	 */
-	public function register_intervals( $intervals )
+	public function registerIntervals( $intervals )
 	{
 		$intervals['ntfn_2days'] = [
 			'interval' => 2 * DAY_IN_SECONDS,
@@ -63,7 +63,7 @@ class Cron
 	 * @since  5.1.5
 	 * @return void
 	 */
-	public function register_check_updates_event()
+	public function registerCheckUpdatesEvent()
 	{
 		$event = wp_get_schedule('notification_check_wordpress_updates');
 		$schedule = notification_get_setting('triggers/wordpress/updates_cron_period');

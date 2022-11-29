@@ -24,7 +24,7 @@ class PostTable
 	 * @param  array $columns current columns.
 	 * @return array          filtered columns
 	 */
-	public function table_columns( $columns )
+	public function tableColumns( $columns )
 	{
 		$dateColumn = $columns['date'];
 		$titleColumn = $columns['title'];
@@ -51,7 +51,7 @@ class PostTable
 	 * @param int $postId Post ID.
 	 * @return void
 	 */
-	public function table_column_content( $column, $postId )
+	public function tableColumnContent( $column, $postId )
 	{
 		/**
 		 * WordPress Adapter
@@ -98,7 +98,7 @@ class PostTable
 	 * @param \WP_Post $post        the current post object.
 	 * @return array               filtered states
 	 */
-	public function remove_status_display( $postStates, $post )
+	public function removeStatusDisplay( $postStates, $post )
 	{
 		if ($post->postType === 'notification') {
 			return [];
@@ -116,7 +116,7 @@ class PostTable
 	 * @param  object $post        WP_Post object.
 	 * @return array               filtered actions
 	 */
-	public function remove_quick_edit( $rowActions, $post )
+	public function removeQuickEdit( $rowActions, $post )
 	{
 		if ($post->postType === 'notification') {
 			if (isset($rowActions['inline hide-if-no-js'])) {
@@ -140,7 +140,7 @@ class PostTable
 	 * @param  object $post        WP_Post object.
 	 * @return array               filtered actions
 	 */
-	public function adjust_trash_link( $rowActions, $post )
+	public function adjustTrashLink( $rowActions, $post )
 	{
 		if ($post->postType !== 'notification') {
 			return $rowActions;
@@ -159,7 +159,7 @@ class PostTable
 	 * @param  array $actions Bulk actions array.
 	 * @return array          Filtered actions
 	 */
-	public function adjust_bulk_actions( $actions )
+	public function adjustBulkActions( $actions )
 	{
 		unset($actions['edit']);
 		unset($actions['trash']);
@@ -182,7 +182,7 @@ class PostTable
 	 * @param  array  $postIds    Array with post ids.
 	 * @return string              Redirect link.
 	 */
-	public function handle_status_bulk_actions( $redirectTo, $doaction, $postIds )
+	public function handleStatusBulkActions( $redirectTo, $doaction, $postIds )
 	{
 		if (! in_array($doaction, [ 'enable', 'disable' ], true)) {
 			return $redirectTo;
@@ -215,7 +215,7 @@ class PostTable
 	 * @since 7.1.0
 	 * @return void
 	 */
-	public function display_bulk_actions_admin_notices()
+	public function displayBulkActionsAdminNotices()
 	{
 		if (! isset($_GET['bulk_disable_notifications'], $_GET['bulk_enable_notifications'])) {
 			return;

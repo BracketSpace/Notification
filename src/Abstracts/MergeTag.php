@@ -179,7 +179,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 *
 	 * @return bool
 	 */
-	public function is_resolved()
+	public function isResolved()
 	{
 		return $this->resolved;
 	}
@@ -190,7 +190,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 *
 	 * @return bool
 	 */
-	public function is_description_example()
+	public function isDescriptionExample()
 	{
 		return $this->descriptionExample;
 	}
@@ -200,7 +200,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 *
 	 * @return mixed
 	 */
-	public function get_value()
+	public function getValue()
 	{
 		return apply_filters('notification/merge_tag/' . $this->getSlug() . '/value', $this->value, $this);
 	}
@@ -211,7 +211,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 * @since 5.0.0
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 */
-	public function set_trigger( Interfaces\Triggerable $trigger )
+	public function setTrigger( Interfaces\Triggerable $trigger )
 	{
 		$this->trigger = $trigger;
 	}
@@ -222,7 +222,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 * @since 5.2.2
 	 * @param mixed $resolver Resolver, can be either a closure or array or string.
 	 */
-	public function set_resolver( $resolver )
+	public function setResolver( $resolver )
 	{
 
 		if (! is_callable($resolver)) {
@@ -241,7 +241,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 *
 	 * @return void
 	 */
-	public function set_trigger_prop( string $triggerPropertyName )
+	public function setTriggerProp( string $triggerPropertyName )
 	{
 		$this->triggerPropertyName = $triggerPropertyName;
 	}
@@ -253,7 +253,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 *
 	 * @return string
 	 */
-	public function get_trigger_prop(): string
+	public function getTriggerProp(): string
 	{
 		return $this->triggerPropertyName;
 	}
@@ -264,7 +264,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 * @since 5.0.0
 	 * @return \BracketSpace\Notification\Interfaces\Triggerable|null
 	 */
-	public function get_trigger()
+	public function getTrigger()
 	{
 		return $this->trigger;
 	}
@@ -275,7 +275,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 * @since 5.0.0
 	 * @return string
 	 */
-	public function get_value_type()
+	public function getValueType()
 	{
 		return $this->valueType;
 	}
@@ -286,7 +286,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 * @since 5.1.3
 	 * @return bool
 	 */
-	public function is_hidden()
+	public function isHidden()
 	{
 		return $this->hidden;
 	}
@@ -297,7 +297,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 * @since  5.2.2
 	 * @return void
 	 */
-	public function clean_value()
+	public function cleanValue()
 	{
 		$this->resolved = false;
 		$this->value = '';

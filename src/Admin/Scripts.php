@@ -44,15 +44,15 @@ class Scripts
 	 * @param  string $pageHook current page hook.
 	 * @return void
 	 */
-	public function enqueue_scripts( $pageHook )
+	public function enqueueScripts( $pageHook )
 	{
 
 		$allowedHooks = apply_filters(
 			'notification/scripts/allowed_hooks',
 			[
-			\Notification::component('admin_extensions')->page_hook,
-			\Notification::component('core_settings')->page_hook,
-			\Notification::component('admin_wizard')->page_hook,
+			\Notification::component('admin_extensions')->pageHook,
+			\Notification::component('core_settings')->pageHook,
+			\Notification::component('admin_wizard')->pageHook,
 			'plugins.php',
 			'post-new.php',
 			'post.php',

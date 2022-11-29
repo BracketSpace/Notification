@@ -236,14 +236,14 @@ class Field
 	 * @param mixed $defaultValue field default value or null to get current.
 	 * @return string              default value
 	 */
-	public function default_value( $defaultValue = null )
+	public function defaultValue( $defaultValue = null )
 	{
 
 		if ($defaultValue !== null) {
-			$this->default_value = $defaultValue;
+			$this->defaultValue = $defaultValue;
 		}
 
-		return apply_filters($this->handle . '/settings/field/default_value', $this->default_value, $this);
+		return apply_filters($this->handle . '/settings/field/default_value', $this->defaultValue, $this);
 	}
 
 	/**
@@ -285,7 +285,7 @@ class Field
 	 *
 	 * @return string name
 	 */
-	public function input_name()
+	public function inputName()
 	{
 
 		$name = $this->handle . '_settings[' . $this->section() . '][' . $this->group() . '][' . $this->slug() . ']';
@@ -298,7 +298,7 @@ class Field
 	 *
 	 * @return string id
 	 */
-	public function input_id()
+	public function inputId()
 	{
 
 		$id = $this->handle . '-setting-' . $this->section() . '-' . $this->group() . '-' . $this->slug();
@@ -313,7 +313,7 @@ class Field
 	 * @param mixed $renderer array or string.
 	 * @return \BracketSpace\Notification\Utils\Settings\Field
 	 */
-	public function set_renderer( $renderer )
+	public function setRenderer( $renderer )
 	{
 
 		if (! is_callable($renderer)) {
@@ -332,7 +332,7 @@ class Field
 	 * @param mixed $sanitizer array or string.
 	 * @return \BracketSpace\Notification\Utils\Settings\Field
 	 */
-	public function set_sanitizer( $sanitizer )
+	public function setSanitizer( $sanitizer )
 	{
 
 		if (! is_callable($sanitizer)) {

@@ -50,7 +50,7 @@ class TermAdded extends TermTrigger
 	 *
 	 * @return string name
 	 */
-	public function get_name(): string
+	public function getName(): string
 	{
 		// Translators: taxonomy name.
 		return sprintf(__('%s term created', 'notification'), $this->taxonomy->labels->singularName ?? '');
@@ -61,7 +61,7 @@ class TermAdded extends TermTrigger
 	 *
 	 * @return string description
 	 */
-	public function get_description(): string
+	public function getDescription(): string
 	{
 		return sprintf(
 			// Translators: 1. taxonomy name, 2. taxonomy slug.
@@ -103,7 +103,7 @@ class TermAdded extends TermTrigger
 	 *
 	 * @return void
 	 */
-	public function merge_tags()
+	public function mergeTags()
 	{
 
 		parent::merge_tags();

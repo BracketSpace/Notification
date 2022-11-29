@@ -34,8 +34,8 @@ class JSON extends Abstracts\Adapter
 			throw new \Exception('Read method of JSON adapter expects valid JSON string');
 		}
 
-		$this->setup_notification(notification_convert_data($data));
-		$this->set_source('JSON');
+		$this->setupNotification(notification_convert_data($data));
+		$this->setSource('JSON');
 
 		return $this;
 	}
@@ -54,7 +54,7 @@ class JSON extends Abstracts\Adapter
 			$jsonOptions = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE;
 		}
 
-		$data = $this->get_notification()->to_array($onlyEnabledCarriers);
+		$data = $this->getNotification()->toArray($onlyEnabledCarriers);
 		return wp_json_encode($data, $jsonOptions);
 	}
 }

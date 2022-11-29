@@ -35,7 +35,7 @@ class Webhook extends Abstracts\Carrier
 	 *
 	 * @return void
 	 */
-	public function form_fields()
+	public function formFields()
 	{
 
 		$this->addRecipientsField(

@@ -31,8 +31,8 @@ class Image
 		if ($uploadedImage) {
 			$image = $uploadedImage;
 			$class = 'selected';
-		} elseif ($field->default_value()) {
-			$image = $field->default_value();
+		} elseif ($field->defaultValue()) {
+			$image = $field->defaultValue();
 			$class = 'selected';
 		} else {
 			$image = '';
@@ -41,7 +41,7 @@ class Image
 
 		echo '
 				<div class="notification-image-field ' . esc_attr($class) . '">
-					<input type="text" name="' . esc_attr($field->input_name()) . '" id="' . esc_attr($field->input_id()) . '" value="' . esc_url($image) . '" class="image-input ' . esc_attr($class) . '" readonly>
+					<input type="text" name="' . esc_attr($field->inputName()) . '" id="' . esc_attr($field->inputId()) . '" value="' . esc_url($image) . '" class="image-input ' . esc_attr($class) . '" readonly>
 					<button class="select-image button button-secondary">' . esc_html__('Select image', 'notification') . '</button>
 					<div class="image">
 						<span class="clear dashicons dashicons-dismiss"></span>

@@ -38,5 +38,5 @@ interface Adaptable
 	 *
 	 * @return \BracketSpace\Notification\Core\Notification
 	 */
-	public function get_notification();
+	public function getNotification();
 }

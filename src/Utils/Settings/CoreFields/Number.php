@@ -27,8 +27,8 @@ class Number
 	{
 		printf(
 			'<label><input type="number" id="%s" name="%s" value="%s" min="%s" max="%s" step="%s" class="widefat"></label>',
-			esc_attr($field->input_id()),
-			esc_attr($field->input_name()),
+			esc_attr($field->inputId()),
+			esc_attr($field->inputName()),
 			esc_attr($field->value()),
 			esc_attr($field->addon('min')),
 			esc_attr($field->addon('max')),

@@ -107,7 +107,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 	 *
 	 * @return void
 	 */
-	public function assign_properties()
+	public function assignProperties()
 	{
 
 		$this->userObject = new \StdClass();
@@ -131,7 +131,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 	 * @param mixed $comment Comment object or Comment ID.
 	 * @return bool
 	 */
-	public function is_correct_type( $comment )
+	public function isCorrectType( $comment )
 	{
 		return get_comment_type($comment) === $this->commentType;
 	}
@@ -141,7 +141,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 	 *
 	 * @return void
 	 */
-	public function merge_tags()
+	public function mergeTags()
 	{
 
 		$commentTypeName = WpObjectHelper::get_comment_type_name($this->commentType);

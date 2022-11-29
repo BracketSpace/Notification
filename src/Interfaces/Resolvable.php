@@ -21,21 +21,21 @@ interface Resolvable
 	 *
 	 * @return string Slug
 	 */
-	public function get_slug();
+	public function getSlug();
 
 	/**
 	 * Gets merge tag pattern
 	 *
 	 * @return string Pattern
 	 */
-	public function get_pattern();
+	public function getPattern();
 
 	/**
 	 * Gets resolver priority
 	 *
 	 * @return int Priority
 	 */
-	public function get_priority();
+	public function getPriority();
 
 	/**
 	 * Resolves single matched merge tag
@@ -44,5 +44,5 @@ interface Resolvable
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return string              Resolved value
 	 */
-	public function resolve_merge_tag( $match, Triggerable $trigger );
+	public function resolveMergeTag( $match, Triggerable $trigger );
 }

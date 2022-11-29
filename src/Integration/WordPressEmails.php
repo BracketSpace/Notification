@@ -24,7 +24,7 @@ class WordPressEmails
 	 * @since  6.1.0
 	 * @return void
 	 */
-	public function replace_new_user_notify_hooks()
+	public function replaceNewUserNotifyHooks()
 	{
 		remove_action('register_new_user', 'wp_send_new_user_notifications');
 		remove_action('edit_user_created_user', 'wp_send_new_user_notifications');
@@ -53,7 +53,7 @@ class WordPressEmails
 	 *                         or an empty string (admin only), 'user', or 'both' (admin and user).
 	 * @return void
 	 */
-	public function disable_new_user_notify( $userId, $notify = 'both' )
+	public function disableNewUserNotify( $userId, $notify = 'both' )
 	{
 		$isAdminNotify = in_array($notify, [ '', 'admin', 'both' ], true);
 		$isUserNotify = in_array($notify, [ 'user', 'both' ], true);
@@ -78,7 +78,7 @@ class WordPressEmails
 	 * @param  int  $commentId   The ID of the comment for the notification.
 	 * @return bool $maybeNotify
 	 */
-	public function disable_post_author_notify( $maybeNotify, $commentId )
+	public function disablePostAuthorNotify( $maybeNotify, $commentId )
 	{
 		if (notification_get_setting('integration/emails/post_author') === 'true') {
 			$maybeNotify = false;
@@ -96,7 +96,7 @@ class WordPressEmails
 	 * @param  int  $commentId   The id of the comment for the notification.
 	 * @return bool $maybeNotify
 	 */
-	public function disable_comment_moderator_notify( $maybeNotify, $commentId )
+	public function disableCommentModeratorNotify( $maybeNotify, $commentId )
 	{
 		if (notification_get_setting('integration/emails/comment_moderator') === 'true') {
 			$maybeNotify = false;
@@ -112,7 +112,7 @@ class WordPressEmails
 	 * @since  6.1.0
 	 * @return void
 	 */
-	public function disable_password_change_notify_to_admin()
+	public function disablePasswordChangeNotifyToAdmin()
 	{
 		if (notification_get_setting('integration/emails/password_change_to_admin') !== 'true') {
 			return;
@@ -129,7 +129,7 @@ class WordPressEmails
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public function disable_send_confirmation_on_profile_email()
+	public function disableSendConfirmationOnProfileEmail()
 	{
 
 		if (notification_get_setting('integration/emails/send_confirmation_on_profile_email') !== 'true') {
@@ -153,7 +153,7 @@ class WordPressEmails
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public function disable_send_confirmation_on_admin_email()
+	public function disableSendConfirmationOnAdminEmail()
 	{
 
 		if (notification_get_setting('integration/emails/send_confirmation_on_admin_email') !== 'true') {
@@ -174,7 +174,7 @@ class WordPressEmails
 	 * @param  array $userdata The updated user array.
 	 * @return bool  $send
 	 */
-	public function disable_password_change_notify_to_user( $send, $user, $userdata )
+	public function disablePasswordChangeNotifyToUser( $send, $user, $userdata )
 	{
 		if (notification_get_setting('integration/emails/password_change_to_user') === 'true') {
 			$send = false;
@@ -191,7 +191,7 @@ class WordPressEmails
 	 * @param string $message Message send to user.
 	 * @return string
 	 */
-	public function disable_password_reset_notify_to_user( $message )
+	public function disablePasswordResetNotifyToUser( $message )
 	{
 		if (notification_get_setting('integration/emails/password_forgotten_to_user') === 'true') {
 			return '';
@@ -210,7 +210,7 @@ class WordPressEmails
 	 * @param  array $userdata The updated user array.
 	 * @return bool  $send
 	 */
-	public function disable_email_change_notify_to_user( $send, $user, $userdata )
+	public function disableEmailChangeNotifyToUser( $send, $user, $userdata )
 	{
 		if (notification_get_setting('integration/emails/email_change_to_user') === 'true') {
 			$send = false;
@@ -230,7 +230,7 @@ class WordPressEmails
 	 * @param  mixed  $result      The result for the core update. Can be WP_Error.
 	 * @return bool   $send
 	 */
-	public function disable_automatic_wp_core_update_notify( $send, $type, $coreUpdate, $result )
+	public function disableAutomaticWpCoreUpdateNotify( $send, $type, $coreUpdate, $result )
 	{
 		if (( $type === 'success' ) && ( notification_get_setting('integration/emails/automatic_wp_core_update') === 'true' )) {
 			$send = false;
@@ -247,7 +247,7 @@ class WordPressEmails
 	 * @param  string $slug    Slug prefix of setting.
 	 * @return mixed  $value
 	 */
-	private function get_setting_for_user_role( $value, $userId, $slug )
+	private function getSettingForUserRole( $value, $userId, $slug )
 	{
 		$user = get_userdata($userId);
 		$isAdmin = ( $user && is_array($user->roles) && in_array('administrator', $user->roles, true) );
