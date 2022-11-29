@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Has Description Trait.
  *
@@ -10,7 +13,8 @@ namespace BracketSpace\Notification\Traits;
 /**
  * HasDescription trait
  */
-trait HasDescription {
+trait HasDescription
+{
 
 	/**
 	 * Human readable, translated description
@@ -24,7 +28,8 @@ trait HasDescription {
 	 *
 	 * @return string|null Description
 	 */
-	public function get_description() {
+	public function get_description()
+	{
 		return $this->description;
 	}
 
@@ -34,10 +39,10 @@ trait HasDescription {
 	 * @param  string $description Description.
 	 * @return $this
 	 */
-	public function set_description( string $description ) {
+	public function set_description( string $description )
+	{
 		$this->description = $description;
 
 		return $this;
 	}
-
 }

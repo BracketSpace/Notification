@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Role recipient
  *
@@ -14,19 +17,23 @@ use BracketSpace\Notification\Queries\UserQueries;
 /**
  * Role recipient
  */
-class Role extends Abstracts\Recipient {
+class Role extends Abstracts\Recipient
+{
 
 	/**
 	 * Recipient constructor
 	 *
 	 * @since 5.0.0
 	 */
-	public function __construct() {
-		parent::__construct( [
-			'slug'          => 'role',
-			'name'          => __( 'Role', 'notification' ),
+	public function __construct()
+	{
+		parent::__construct(
+			[
+			'slug' => 'role',
+			'name' => __('Role', 'notification'),
 			'default_value' => 'administrator',
-		] );
+			]
+		);
 	}
 
 	/**
@@ -35,14 +42,15 @@ class Role extends Abstracts\Recipient {
 	 * @param  string $value raw value saved by the user.
 	 * @return array         array of resolved values
 	 */
-	public function parse_value( $value = '' ) {
-		if ( empty( $value ) ) {
+	public function parse_value( $value = '' )
+	{
+		if (empty($value)) {
 			$value = $this->get_default_value();
 		}
 
 		$emails = [];
 
-		foreach ( UserQueries::with_role( $value ) as $user ) {
+		foreach (UserQueries::with_role($value) as $user) {
 			$emails[] = $user['user_email'];
 		}
 
@@ -54,31 +62,33 @@ class Role extends Abstracts\Recipient {
 	 *
 	 * @return object
 	 */
-	public function input() {
-		if ( ! function_exists( 'get_editable_roles' ) ) {
+	public function input()
+	{
+		if (! function_exists('get_editable_roles')) {
 			require_once ABSPATH . 'wp-admin/includes/user.php';
 		}
 
 		$roles = get_editable_roles();
-		$opts  = [];
+		$opts = [];
 
-		foreach ( $roles as $role_slug => $role ) {
-			$num_users = count( UserQueries::with_role( $role_slug ) );
+		foreach ($roles as $role_slug => $role) {
+			$num_users = count(UserQueries::with_role($role_slug));
 
 			// Translators: %s numer of users.
-			$label = translate_user_role( $role['name'] ) . ' (' . sprintf( _n( '%s user', '%s users', $num_users, 'notification' ), $num_users ) . ')';
+			$label = translate_user_role($role['name']) . ' (' . sprintf(_n('%s user', '%s users', $num_users, 'notification'), $num_users) . ')';
 
-			$opts[ $role_slug ] = esc_html( $label );
+			$opts[$role_slug] = esc_html($label);
 		}
 
-		return new Field\SelectField( [
-			'label'     => __( 'Recipient', 'notification' ), // don't edit this!
-			'name'      => 'recipient',                       // don't edit this!
+		return new Field\SelectField(
+			[
+			'label' => __('Recipient', 'notification'), // don't edit this!
+			'name' => 'recipient',                       // don't edit this!
 			'css_class' => 'recipient-value',                 // don't edit this!
-			'value'     => $this->get_default_value(),
-			'pretty'    => true,
-			'options'   => $opts,
-		] );
+			'value' => $this->get_default_value(),
+			'pretty' => true,
+			'options' => $opts,
+			]
+		);
 	}
-
 }

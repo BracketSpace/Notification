@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Resolver abstract class
  *
@@ -13,7 +16,8 @@ use BracketSpace\Notification\Interfaces\Triggerable;
 /**
  * Resolver class
  */
-abstract class Resolver implements Interfaces\Resolvable {
+abstract class Resolver implements Interfaces\Resolvable
+{
 
 	/**
 	 * Resolver priority
@@ -33,10 +37,11 @@ abstract class Resolver implements Interfaces\Resolvable {
 	 * @since  6.0.0
 	 * @return string
 	 */
-	public function get_slug() {
-		$prepared = str_replace( '\\', '-', get_class( $this ) );
-		$prepared = str_replace( 'BracketSpace-Notification-', '', $prepared );
-		return sanitize_title_with_dashes( $prepared );
+	public function get_slug()
+	{
+		$prepared = str_replace('\\', '-', static::class);
+		$prepared = str_replace('BracketSpace-Notification-', '', $prepared);
+		return sanitize_title_with_dashes($prepared);
 	}
 
 	/**
@@ -45,8 +50,9 @@ abstract class Resolver implements Interfaces\Resolvable {
 	 * @since  6.0.0
 	 * @return string
 	 */
-	public function get_pattern() {
-		return static::PATTERN;
+	public function get_pattern()
+	{
+		return self::PATTERN;
 	}
 
 	/**
@@ -55,17 +61,17 @@ abstract class Resolver implements Interfaces\Resolvable {
 	 * @since  6.0.0
 	 * @return int
 	 */
-	public function get_priority() {
-		return static::PRIORITY;
+	public function get_priority()
+	{
+		return self::PRIORITY;
 	}
 
 	/**
 	 * {@inheritdoc}
 	 *
 	 * @param array       $match   Match array.
-	 * @param Triggerable $trigger Trigger object.
+	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return string              Resolved value
 	 */
 	abstract public function resolve_merge_tag( $match, Triggerable $trigger );
-
 }

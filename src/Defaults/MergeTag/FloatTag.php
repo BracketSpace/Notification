@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Float merge tag class
  *
@@ -12,7 +15,8 @@ use BracketSpace\Notification\Abstracts\MergeTag;
 /**
  * Float merge tag class
  */
-class FloatTag extends MergeTag {
+class FloatTag extends MergeTag
+{
 
 	/**
 	 * MergeTag value type
@@ -25,10 +29,11 @@ class FloatTag extends MergeTag {
 	 * Check the merge tag value type
 	 *
 	 * @param  mixed $value value.
-	 * @return boolean
+	 * @return bool
 	 */
-	public function validate( $value ) {
-		return filter_var( $value, FILTER_VALIDATE_FLOAT ) !== false;
+	public function validate( $value )
+	{
+		return filter_var($value, FILTER_VALIDATE_FLOAT) !== false;
 	}
 
 	/**
@@ -37,8 +42,8 @@ class FloatTag extends MergeTag {
 	 * @param  mixed $value value.
 	 * @return mixed
 	 */
-	public function sanitize( $value ) {
-		return floatval( $value );
+	public function sanitize( $value )
+	{
+		return floatval($value);
 	}
-
 }

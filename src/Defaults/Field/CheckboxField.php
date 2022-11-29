@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Checkbox field class
  *
@@ -12,7 +15,8 @@ use BracketSpace\Notification\Abstracts\Field;
 /**
  * Checkbox field class
  */
-class CheckboxField extends Field {
+class CheckboxField extends Field
+{
 
 	/**
 	 * Checkbox label text
@@ -28,16 +32,12 @@ class CheckboxField extends Field {
 	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct( $params = [] )
+	{
 
-		if ( isset( $params['checkbox_label'] ) ) {
-			$this->checkbox_label = $params['checkbox_label'];
-		} else {
-			$this->checkbox_label = __( 'Enable', 'notification' );
-		}
+		$this->checkbox_label = $params['checkbox_label'] ?? __('Enable', 'notification');
 
-		parent::__construct( $params );
-
+		parent::__construct($params);
 	}
 
 	/**
@@ -45,8 +45,9 @@ class CheckboxField extends Field {
 	 *
 	 * @return string html
 	 */
-	public function field() {
-		return '<label><input type="checkbox" name="' . esc_attr( $this->get_name() ) . '" id="' . esc_attr( $this->get_id() ) . '" value="1" ' . checked( $this->get_value(), '1', false ) . ' class="widefat ' . esc_attr( $this->css_class() ) . '" ' . $this->maybe_disable() . '> ' . esc_html( $this->checkbox_label ) . '</label>';
+	public function field()
+	{
+		return '<label><input type="checkbox" name="' . esc_attr($this->get_name()) . '" id="' . esc_attr($this->get_id()) . '" value="1" ' . checked($this->get_value(), '1', false) . ' class="widefat ' . esc_attr($this->css_class()) . '" ' . $this->maybe_disable() . '> ' . esc_html($this->checkbox_label) . '</label>';
 	}
 
 	/**
@@ -55,8 +56,8 @@ class CheckboxField extends Field {
 	 * @param  mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value ) {
+	public function sanitize( $value )
+	{
 		return $value ? 1 : 0;
 	}
-
 }

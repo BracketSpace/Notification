@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * URL merge tag class
  *
@@ -12,7 +15,8 @@ use BracketSpace\Notification\Abstracts\MergeTag;
 /**
  * URL merge tag class
  */
-class UrlTag extends MergeTag {
+class UrlTag extends MergeTag
+{
 
 	/**
 	 * MergeTag value type
@@ -25,10 +29,11 @@ class UrlTag extends MergeTag {
 	 * Check the merge tag value type
 	 *
 	 * @param  mixed $value value.
-	 * @return boolean
+	 * @return bool
 	 */
-	public function validate( $value ) {
-		return empty( $value ) || filter_var( $value, FILTER_VALIDATE_URL ) !== false;
+	public function validate( $value )
+	{
+		return empty($value) || filter_var($value, FILTER_VALIDATE_URL) !== false;
 	}
 
 	/**
@@ -37,8 +42,8 @@ class UrlTag extends MergeTag {
 	 * @param  mixed $value value.
 	 * @return mixed
 	 */
-	public function sanitize( $value ) {
-		return esc_url( $value );
+	public function sanitize( $value )
+	{
+		return esc_url($value);
 	}
-
 }

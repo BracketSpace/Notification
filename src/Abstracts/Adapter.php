@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Adapter abstract class
  *
@@ -13,23 +16,25 @@ use BracketSpace\Notification\Core\Notification;
 /**
  * Adapter class
  *
- * @mixin Notification
+ * @mixin \BracketSpace\Notification\Core\Notification
  */
-abstract class Adapter implements Interfaces\Adaptable {
+abstract class Adapter implements Interfaces\Adaptable
+{
 
 	/**
 	 * Notification object
 	 *
-	 * @var Notification
+	 * @var \BracketSpace\Notification\Core\Notification
 	 */
 	protected $notification;
 
 	/**
 	 * Class constructor
 	 *
-	 * @param Notification $notification Notification object.
+	 * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
 	 */
-	public function __construct( Notification $notification ) {
+	public function __construct( Notification $notification )
+	{
 		$this->notification = $notification;
 	}
 
@@ -41,17 +46,19 @@ abstract class Adapter implements Interfaces\Adaptable {
 	 * @param  array  $arguments   Arguments.
 	 * @return mixed
 	 */
-	public function __call( $method_name, $arguments ) {
-		return call_user_func_array( [ $this->get_notification(), $method_name ], $arguments );
+	public function __call( $method_name, $arguments )
+	{
+		return call_user_func_array([ $this->get_notification(), $method_name ], $arguments);
 	}
 
 	/**
 	 * Gets Notification object
 	 *
 	 * @since  6.0.0
-	 * @return Notification
+	 * @return \BracketSpace\Notification\Core\Notification
 	 */
-	public function get_notification() {
+	public function get_notification()
+	{
 		return $this->notification;
 	}
 
@@ -60,19 +67,21 @@ abstract class Adapter implements Interfaces\Adaptable {
 	 *
 	 * @since  6.0.0
 	 * @param  array $data Data array.
-	 * @return Notification
+	 * @return \BracketSpace\Notification\Core\Notification
 	 */
-	public function setup_notification( $data = [] ) {
-		return $this->get_notification()->setup( $data );
+	public function setup_notification( $data = [] )
+	{
+		return $this->get_notification()->setup($data);
 	}
 
 	/**
 	 * Checks if enabled
 	 *
 	 * @since  6.0.0
-	 * @return boolean
+	 * @return bool
 	 */
-	public function is_enabled() {
+	public function is_enabled()
+	{
 		return $this->get_notification()->is_enabled();
 	}
 
@@ -82,8 +91,8 @@ abstract class Adapter implements Interfaces\Adaptable {
 	 * @since  6.0.0
 	 * @return void
 	 */
-	public function register_notification() {
-		notification_add( $this->get_notification() );
+	public function register_notification()
+	{
+		notification_add($this->get_notification());
 	}
-
 }

@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * WordPress theme installed trigger
  *
@@ -8,12 +11,12 @@
 namespace BracketSpace\Notification\Defaults\Trigger\Theme;
 
 use BracketSpace\Notification\Defaults\MergeTag;
-use BracketSpace\Notification\Abstracts;
 
 /**
  * Installed theme trigger class
  */
-class Installed extends ThemeTrigger {
+class Installed extends ThemeTrigger
+{
 
 	/**
 	 * Theme installation date and time
@@ -25,15 +28,15 @@ class Installed extends ThemeTrigger {
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 
-		parent::__construct( 'theme/installed', __( 'Theme installed', 'notification' ) );
+		parent::__construct('theme/installed', __('Theme installed', 'notification'));
 
-		$this->add_action( 'upgrader_process_complete', 1000, 2 );
+		$this->add_action('upgrader_process_complete', 1000, 2);
 
-		$this->set_group( __( 'Theme', 'notification' ) );
-		$this->set_description( __( 'Fires when theme is installed', 'notification' ) );
-
+		$this->set_group(__('Theme', 'notification'));
+		$this->set_description(__('Fires when theme is installed', 'notification'));
 	}
 
 	/**
@@ -43,22 +46,22 @@ class Installed extends ThemeTrigger {
 	 * @param  array           $data     Update data information.
 	 * @return mixed                     Void or false if no notifications should be sent.
 	 */
-	public function context( $upgrader, $data ) {
+	public function context( $upgrader, $data )
+	{
 
-		if ( ! isset( $data['type'], $data['action'] ) || 'theme' !== $data['type'] || 'install' !== $data['action'] ) {
+		if (! isset($data['type'], $data['action']) || $data['type'] !== 'theme' || $data['action'] !== 'install') {
 			return false;
 		}
 
 		$theme = $upgrader->theme_info();
 
-		if ( false === $theme ) {
+		if ($theme === false) {
 			return false;
 		}
 
 		$this->theme = $theme;
 
 		$this->theme_installation_date_time = time();
-
 	}
 
 	/**
@@ -66,15 +69,18 @@ class Installed extends ThemeTrigger {
 	 *
 	 * @return void
 	 */
-	public function merge_tags() {
+	public function merge_tags()
+	{
 
 		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
-			'slug' => 'theme_installation_date_time',
-			'name' => __( 'Theme installation date and time', 'notification' ),
-		] ) );
-
+		$this->add_merge_tag(
+			new MergeTag\DateTime\DateTime(
+				[
+				'slug' => 'theme_installation_date_time',
+				'name' => __('Theme installation date and time', 'notification'),
+				]
+			)
+		);
 	}
-
 }

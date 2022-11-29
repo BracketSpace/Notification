@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Button field class
  *
@@ -7,23 +10,22 @@
 
 namespace BracketSpace\Notification\Utils\Settings\CoreFields;
 
-use BracketSpace\Notification\Utils\Settings\Field;
-
 /**
  * Button class
  */
-class Button {
+class Button
+{
 
 	/**
 	 * Button field
 	 *
-	 * @param  Field $field Field instance.
+	 * @param \BracketSpace\Notification\Utils\Settings\Field $field Field instance.
 	 * @return void
 	 */
-	public function input( $field ) {
+	public function input( $field )
+	{
 
-		echo '<a href="' . esc_url_raw( $field->addon( 'url' ) ) . '" class="button">' . esc_html( $field->addon( 'label' ) ) . '</a>';
-
+		echo '<a href="' . esc_url_raw($field->addon('url')) . '" class="button">' . esc_html($field->addon('label')) . '</a>';
 	}
 
 	/**
@@ -32,8 +34,8 @@ class Button {
 	 * @param  string $value URL.
 	 * @return string       Sanitized URL
 	 */
-	public function sanitize( $value ) {
-		return esc_url_raw( $value );
+	public function sanitize( $value )
+	{
+		return esc_url_raw($value);
 	}
-
 }

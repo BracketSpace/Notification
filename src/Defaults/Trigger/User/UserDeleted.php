@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * User deleted trigger
  *
@@ -8,12 +11,12 @@
 namespace BracketSpace\Notification\Defaults\Trigger\User;
 
 use BracketSpace\Notification\Defaults\MergeTag;
-use BracketSpace\Notification\Abstracts;
 
 /**
  * User deleted trigger class
  */
-class UserDeleted extends UserTrigger {
+class UserDeleted extends UserTrigger
+{
 
 	/**
 	 * User meta data
@@ -32,31 +35,31 @@ class UserDeleted extends UserTrigger {
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 
-		parent::__construct( 'user/deleted', __( 'User deleted', 'notification' ) );
+		parent::__construct('user/deleted', __('User deleted', 'notification'));
 
-		$this->add_action( 'delete_user', 10, 1 );
+		$this->add_action('delete_user', 10, 1);
 
-		$this->set_description( __( 'Fires when user account is deleted', 'notification' ) );
-
+		$this->set_description(__('Fires when user account is deleted', 'notification'));
 	}
 
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param integer $user_id User ID.
+	 * @param int $user_id User ID.
 	 * @return void
 	 */
-	public function context( $user_id ) {
+	public function context( $user_id )
+	{
 
-		$this->user_id     = $user_id;
-		$this->user_object = get_userdata( $this->user_id );
-		$this->user_meta   = get_user_meta( $this->user_id );
+		$this->user_id = $user_id;
+		$this->user_object = get_userdata($this->user_id);
+		$this->user_meta = get_user_meta($this->user_id);
 
-		$this->user_registered_datetime = strtotime( $this->user_object->user_registered );
-		$this->user_deleted_datetime    = time();
-
+		$this->user_registered_datetime = strtotime($this->user_object->user_registered);
+		$this->user_deleted_datetime = time();
 	}
 
 	/**
@@ -64,21 +67,24 @@ class UserDeleted extends UserTrigger {
 	 *
 	 * @return void
 	 */
-	public function merge_tags() {
+	public function merge_tags()
+	{
 
 		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\User\UserNicename() );
-		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
-		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
-		$this->add_merge_tag( new MergeTag\User\UserLastName() );
-		$this->add_merge_tag( new MergeTag\User\UserBio() );
+		$this->add_merge_tag(new MergeTag\User\UserNicename());
+		$this->add_merge_tag(new MergeTag\User\UserDisplayName());
+		$this->add_merge_tag(new MergeTag\User\UserFirstName());
+		$this->add_merge_tag(new MergeTag\User\UserLastName());
+		$this->add_merge_tag(new MergeTag\User\UserBio());
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
-			'slug' => 'user_deleted_datetime',
-			'name' => __( 'User deletion time', 'notification' ),
-		] ) );
-
+		$this->add_merge_tag(
+			new MergeTag\DateTime\DateTime(
+				[
+				'slug' => 'user_deleted_datetime',
+				'name' => __('User deletion time', 'notification'),
+				]
+			)
+		);
 	}
-
 }

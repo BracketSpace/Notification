@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Taxonomy name merge tag
  *
@@ -15,34 +18,34 @@ use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 /**
  * Taxonomy name merge tag class
  */
-class TaxonomyName extends StringTag {
+class TaxonomyName extends StringTag
+{
 	/**
 	 * Merge tag constructor
 	 *
 	 * @since 5.2.2
 	 * @param array<mixed> $params merge tag configuration params.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct( $params = [] )
+	{
 
-		$this->set_trigger_prop( $params['property_name'] ?? 'taxonomy' );
+		$this->set_trigger_prop($params['property_name'] ?? 'taxonomy');
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => sprintf( '%s_name', $params['tag_name'] ?? 'taxonomy' ),
-				'name'        => __( 'Taxonomy name', 'notification' ),
-				'description' => __( 'Hello World', 'notification' ),
-				'example'     => true,
-				'group'       => __( 'Taxonomy', 'notification' ),
-				'resolver'    => function ( $trigger ) {
+				'slug' => sprintf('%s_name', $params['tag_name'] ?? 'taxonomy'),
+				'name' => __('Taxonomy name', 'notification'),
+				'description' => __('Hello World', 'notification'),
+				'example' => true,
+				'group' => __('Taxonomy', 'notification'),
+				'resolver' => function ( $trigger ) {
 
 					return $trigger->{ $this->get_trigger_prop() }->labels->singular_name ?? '';
 				},
 			]
 		);
 
-		parent::__construct( $args );
-
+		parent::__construct($args);
 	}
-
 }

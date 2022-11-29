@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * WordPress integration class
  *
@@ -10,7 +13,8 @@ namespace BracketSpace\Notification\Integration;
 /**
  * WordPress integration class
  */
-class WordPressEmails {
+class WordPressEmails
+{
 
 	/**
 	 * Replaces the default hooks for the new user notification
@@ -20,21 +24,24 @@ class WordPressEmails {
 	 * @since  6.1.0
 	 * @return void
 	 */
-	public function replace_new_user_notify_hooks() {
-		remove_action( 'register_new_user', 'wp_send_new_user_notifications' );
-		remove_action( 'edit_user_created_user', 'wp_send_new_user_notifications' );
-		remove_action( 'network_site_new_created_user', 'wp_send_new_user_notifications' );
-		remove_action( 'network_site_users_created_user', 'wp_send_new_user_notifications' );
-		remove_action( 'network_user_new_created_user', 'wp_send_new_user_notifications' );
+	public function replace_new_user_notify_hooks()
+	{
+		remove_action('register_new_user', 'wp_send_new_user_notifications');
+		remove_action('edit_user_created_user', 'wp_send_new_user_notifications');
+		remove_action('network_site_new_created_user', 'wp_send_new_user_notifications');
+		remove_action('network_site_users_created_user', 'wp_send_new_user_notifications');
+		remove_action('network_user_new_created_user', 'wp_send_new_user_notifications');
 
-		add_action( 'register_new_user', [ $this, 'disable_new_user_notify' ] );
-		add_action( 'edit_user_created_user', [ $this, 'disable_new_user_notify' ], 10, 2 );
+		add_action('register_new_user', [ $this, 'disable_new_user_notify' ]);
+		add_action('edit_user_created_user', [ $this, 'disable_new_user_notify' ], 10, 2);
 
-		if ( is_multisite() ) {
-			add_action( 'network_site_new_created_user', [ $this, 'disable_new_user_notify' ] );
-			add_action( 'network_site_users_created_user', [ $this, 'disable_new_user_notify' ] );
-			add_action( 'network_user_new_created_user', [ $this, 'disable_new_user_notify' ] );
+		if (!is_multisite()) {
+			return;
 		}
+
+		add_action('network_site_new_created_user', [ $this, 'disable_new_user_notify' ]);
+		add_action('network_site_users_created_user', [ $this, 'disable_new_user_notify' ]);
+		add_action('network_user_new_created_user', [ $this, 'disable_new_user_notify' ]);
 	}
 
 	/**
@@ -46,16 +53,19 @@ class WordPressEmails {
 	 *                         or an empty string (admin only), 'user', or 'both' (admin and user).
 	 * @return void
 	 */
-	public function disable_new_user_notify( $user_id, $notify = 'both' ) {
-		$is_admin_notify = in_array( $notify, [ '', 'admin', 'both' ], true );
-		$is_user_notify  = in_array( $notify, [ 'user', 'both' ], true );
+	public function disable_new_user_notify( $user_id, $notify = 'both' )
+	{
+		$is_admin_notify = in_array($notify, [ '', 'admin', 'both' ], true);
+		$is_user_notify = in_array($notify, [ 'user', 'both' ], true);
 
-		if ( $is_admin_notify && ( 'true' !== notification_get_setting( 'integration/emails/new_user_to_admin' ) ) ) {
-			wp_new_user_notification( $user_id, null, 'admin' );
+		if ($is_admin_notify && ( notification_get_setting('integration/emails/new_user_to_admin') !== 'true' )) {
+			wp_new_user_notification($user_id, null, 'admin');
 		}
-		if ( $is_user_notify && ( 'true' !== notification_get_setting( 'integration/emails/new_user_to_user' ) ) ) {
-			wp_new_user_notification( $user_id, null, 'user' );
+		if (!$is_user_notify || ( notification_get_setting('integration/emails/new_user_to_user') === 'true' )) {
+			return;
 		}
+
+		wp_new_user_notification($user_id, null, 'user');
 	}
 
 	/**
@@ -68,8 +78,9 @@ class WordPressEmails {
 	 * @param  int  $comment_id   The ID of the comment for the notification.
 	 * @return bool $maybe_notify
 	 */
-	public function disable_post_author_notify( $maybe_notify, $comment_id ) {
-		if ( 'true' === notification_get_setting( 'integration/emails/post_author' ) ) {
+	public function disable_post_author_notify( $maybe_notify, $comment_id )
+	{
+		if (notification_get_setting('integration/emails/post_author') === 'true') {
 			$maybe_notify = false;
 		}
 		return $maybe_notify;
@@ -85,8 +96,9 @@ class WordPressEmails {
 	 * @param  int  $comment_id   The id of the comment for the notification.
 	 * @return bool $maybe_notify
 	 */
-	public function disable_comment_moderator_notify( $maybe_notify, $comment_id ) {
-		if ( 'true' === notification_get_setting( 'integration/emails/comment_moderator' ) ) {
+	public function disable_comment_moderator_notify( $maybe_notify, $comment_id )
+	{
+		if (notification_get_setting('integration/emails/comment_moderator') === 'true') {
 			$maybe_notify = false;
 		}
 		return $maybe_notify;
@@ -100,12 +112,13 @@ class WordPressEmails {
 	 * @since  6.1.0
 	 * @return void
 	 */
-	public function disable_password_change_notify_to_admin() {
-		if ( 'true' !== notification_get_setting( 'integration/emails/password_change_to_admin' ) ) {
+	public function disable_password_change_notify_to_admin()
+	{
+		if (notification_get_setting('integration/emails/password_change_to_admin') !== 'true') {
 			return;
 		}
-		add_filter( 'woocommerce_disable_password_change_notification', '__return_true' );
-		remove_action( 'after_password_reset', 'wp_password_change_notification' );
+		add_filter('woocommerce_disable_password_change_notification', '__return_true');
+		remove_action('after_password_reset', 'wp_password_change_notification');
 	}
 
 	/**
@@ -116,16 +129,20 @@ class WordPressEmails {
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public function disable_send_confirmation_on_profile_email() {
+	public function disable_send_confirmation_on_profile_email()
+	{
 
-		if ( 'true' === notification_get_setting( 'integration/emails/send_confirmation_on_profile_email' ) ) {
+		if (notification_get_setting('integration/emails/send_confirmation_on_profile_email') !== 'true') {
+			return;
+		}
 
-			add_filter( 'new_user_email_content', function ( $email_text = false, $new_user_email = false ) {
+		add_filter(
+			'new_user_email_content',
+			static function ( $email_text = false, $new_user_email = false ) {
 				$_POST['email'] = false;
 				return false;
-			});
-
-		}
+			}
+		);
 	}
 
 	/**
@@ -136,13 +153,14 @@ class WordPressEmails {
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public function disable_send_confirmation_on_admin_email() {
+	public function disable_send_confirmation_on_admin_email()
+	{
 
-		if ( 'true' === notification_get_setting( 'integration/emails/send_confirmation_on_admin_email' ) ) {
-
-			add_filter( 'new_admin_email_content', '__return_false' );
+		if (notification_get_setting('integration/emails/send_confirmation_on_admin_email') !== 'true') {
+			return;
 		}
 
+		add_filter('new_admin_email_content', '__return_false');
 	}
 
 	/**
@@ -156,8 +174,9 @@ class WordPressEmails {
 	 * @param  array $userdata The updated user array.
 	 * @return bool  $send
 	 */
-	public function disable_password_change_notify_to_user( $send, $user, $userdata ) {
-		if ( 'true' === notification_get_setting( 'integration/emails/password_change_to_user' ) ) {
+	public function disable_password_change_notify_to_user( $send, $user, $userdata )
+	{
+		if (notification_get_setting('integration/emails/password_change_to_user') === 'true') {
 			$send = false;
 		}
 		return $send;
@@ -172,8 +191,9 @@ class WordPressEmails {
 	 * @param string $message Message send to user.
 	 * @return string
 	 */
-	public function disable_password_reset_notify_to_user( $message ) {
-		if ( 'true' === notification_get_setting( 'integration/emails/password_forgotten_to_user' ) ) {
+	public function disable_password_reset_notify_to_user( $message )
+	{
+		if (notification_get_setting('integration/emails/password_forgotten_to_user') === 'true') {
 			return '';
 		}
 		return $message;
@@ -190,8 +210,9 @@ class WordPressEmails {
 	 * @param  array $userdata The updated user array.
 	 * @return bool  $send
 	 */
-	public function disable_email_change_notify_to_user( $send, $user, $userdata ) {
-		if ( 'true' === notification_get_setting( 'integration/emails/email_change_to_user' ) ) {
+	public function disable_email_change_notify_to_user( $send, $user, $userdata )
+	{
+		if (notification_get_setting('integration/emails/email_change_to_user') === 'true') {
 			$send = false;
 		}
 		return $send;
@@ -209,8 +230,9 @@ class WordPressEmails {
 	 * @param  mixed  $result      The result for the core update. Can be WP_Error.
 	 * @return bool   $send
 	 */
-	public function disable_automatic_wp_core_update_notify( $send, $type, $core_update, $result ) {
-		if ( ( 'success' === $type ) && ( 'true' === notification_get_setting( 'integration/emails/automatic_wp_core_update' ) ) ) {
+	public function disable_automatic_wp_core_update_notify( $send, $type, $core_update, $result )
+	{
+		if (( $type === 'success' ) && ( notification_get_setting('integration/emails/automatic_wp_core_update') === 'true' )) {
 			$send = false;
 		}
 		return $send;
@@ -225,16 +247,12 @@ class WordPressEmails {
 	 * @param  string $slug    Slug prefix of setting.
 	 * @return mixed  $value
 	 */
-	private function get_setting_for_user_role( $value, $user_id, $slug ) {
-		$user     = get_userdata( $user_id );
-		$is_admin = ( $user && is_array( $user->roles ) && in_array( 'administrator', $user->roles, true ) );
+	private function get_setting_for_user_role( $value, $user_id, $slug )
+	{
+		$user = get_userdata($user_id);
+		$is_admin = ( $user && is_array($user->roles) && in_array('administrator', $user->roles, true) );
 
-		if ( $is_admin ) {
-			$value = notification_get_setting( 'integration/emails/' . $slug . '_to_admin' );
-		} else {
-			$value = notification_get_setting( 'integration/emails/' . $slug . '_to_user' );
-		}
+		$value = $is_admin ? notification_get_setting('integration/emails/' . $slug . '_to_admin') : notification_get_setting('integration/emails/' . $slug . '_to_user');
 		return $value;
 	}
-
 }

@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * User profile updated trigger
  *
@@ -12,7 +15,8 @@ use BracketSpace\Notification\Defaults\MergeTag;
 /**
  * User profile updated trigger class
  */
-class UserProfileUpdated extends UserTrigger {
+class UserProfileUpdated extends UserTrigger
+{
 
 	/**
 	 * User meta data
@@ -31,31 +35,31 @@ class UserProfileUpdated extends UserTrigger {
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 
-		parent::__construct( 'user/profile_updated', __( 'User profile updated', 'notification' ) );
+		parent::__construct('user/profile_updated', __('User profile updated', 'notification'));
 
-		$this->add_action( 'profile_update', 10, 2 );
+		$this->add_action('profile_update', 10, 2);
 
-		$this->set_description( __( 'Fires when user updates his profile', 'notification' ) );
-
+		$this->set_description(__('Fires when user updates his profile', 'notification'));
 	}
 
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param integer $user_id User ID.
+	 * @param int $user_id User ID.
 	 * @return void
 	 */
-	public function context( $user_id ) {
+	public function context( $user_id )
+	{
 
-		$this->user_id     = $user_id;
-		$this->user_object = get_userdata( $this->user_id );
-		$this->user_meta   = get_user_meta( $this->user_id );
+		$this->user_id = $user_id;
+		$this->user_object = get_userdata($this->user_id);
+		$this->user_meta = get_user_meta($this->user_id);
 
-		$this->user_registered_datetime      = strtotime( $this->user_object->user_registered );
+		$this->user_registered_datetime = strtotime($this->user_object->user_registered);
 		$this->user_profile_updated_datetime = time();
-
 	}
 
 	/**
@@ -63,21 +67,24 @@ class UserProfileUpdated extends UserTrigger {
 	 *
 	 * @return void
 	 */
-	public function merge_tags() {
+	public function merge_tags()
+	{
 
 		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\User\UserNicename() );
-		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
-		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
-		$this->add_merge_tag( new MergeTag\User\UserLastName() );
-		$this->add_merge_tag( new MergeTag\User\UserBio() );
+		$this->add_merge_tag(new MergeTag\User\UserNicename());
+		$this->add_merge_tag(new MergeTag\User\UserDisplayName());
+		$this->add_merge_tag(new MergeTag\User\UserFirstName());
+		$this->add_merge_tag(new MergeTag\User\UserLastName());
+		$this->add_merge_tag(new MergeTag\User\UserBio());
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
-			'slug' => 'user_profile_updated_datetime',
-			'name' => __( 'User profile update time', 'notification' ),
-		] ) );
-
+		$this->add_merge_tag(
+			new MergeTag\DateTime\DateTime(
+				[
+				'slug' => 'user_profile_updated_datetime',
+				'name' => __('User profile update time', 'notification'),
+				]
+			)
+		);
 	}
-
 }

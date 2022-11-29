@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * String merge tag class
  *
@@ -12,7 +15,8 @@ use BracketSpace\Notification\Abstracts\MergeTag;
 /**
  * String merge tag class
  */
-class StringTag extends MergeTag {
+class StringTag extends MergeTag
+{
 
 	/**
 	 * MergeTag value type
@@ -25,10 +29,11 @@ class StringTag extends MergeTag {
 	 * Check the merge tag value type
 	 *
 	 * @param  mixed $value value.
-	 * @return boolean
+	 * @return bool
 	 */
-	public function validate( $value ) {
-		return ! is_array( $value ) && ! is_object( $value );
+	public function validate( $value )
+	{
+		return ! is_array($value) && ! is_object($value);
 	}
 
 	/**
@@ -37,8 +42,8 @@ class StringTag extends MergeTag {
 	 * @param  mixed $value value.
 	 * @return mixed
 	 */
-	public function sanitize( $value ) {
-		return (string) sanitize_text_field( $value );
+	public function sanitize( $value )
+	{
+		return (string)sanitize_text_field($value);
 	}
-
 }

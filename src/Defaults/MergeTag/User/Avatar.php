@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Avatar merge tag class
  *
@@ -17,28 +20,30 @@ use BracketSpace\Notification\Defaults\MergeTag\HtmlTag;
 /**
  * Avatar merge tag class
  */
-class Avatar extends HtmlTag {
+class Avatar extends HtmlTag
+{
 	/**
 	 * Merge tag constructor
 	 *
 	 * @since 6.3.0
 	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct( $params = [] )
+	{
 
-		$this->set_trigger_prop( $params['property_name'] ?? 'user_object' );
+		$this->set_trigger_prop($params['property_name'] ?? 'user_object');
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => 'user_avatar',
-				'name'        => __( 'User avatar', 'notification' ),
-				'description' => __( 'HTML img tag with avatar', 'notification' ),
-				'example'     => true,
-				'group'       => __( 'User', 'notification' ),
-				'resolver'    => function ( $trigger ) {
-					if ( isset( $trigger->{ $this->get_trigger_prop() }->user_email ) ) {
-						return get_avatar( $trigger->{ $this->get_trigger_prop() }->user_email );
+				'slug' => 'user_avatar',
+				'name' => __('User avatar', 'notification'),
+				'description' => __('HTML img tag with avatar', 'notification'),
+				'example' => true,
+				'group' => __('User', 'notification'),
+				'resolver' => function ( $trigger ) {
+					if (isset($trigger->{ $this->get_trigger_prop() }->user_email)) {
+						return get_avatar($trigger->{ $this->get_trigger_prop() }->user_email);
 					}
 
 					return '';
@@ -46,8 +51,6 @@ class Avatar extends HtmlTag {
 			]
 		);
 
-		parent::__construct( $args );
-
+		parent::__construct($args);
 	}
-
 }

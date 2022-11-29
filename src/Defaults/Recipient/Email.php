@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Email recipient
  *
@@ -13,19 +16,23 @@ use BracketSpace\Notification\Defaults\Field;
 /**
  * Email recipient
  */
-class Email extends Abstracts\Recipient {
+class Email extends Abstracts\Recipient
+{
 
 	/**
 	 * Recipient constructor
 	 *
 	 * @since 5.0.0
 	 */
-	public function __construct() {
-		parent::__construct( [
-			'slug'          => 'email',
-			'name'          => __( 'Email / Merge tag', 'notification' ),
+	public function __construct()
+	{
+		parent::__construct(
+			[
+			'slug' => 'email',
+			'name' => __('Email / Merge tag', 'notification'),
 			'default_value' => '',
-		] );
+			]
+		);
 	}
 
 	/**
@@ -34,9 +41,10 @@ class Email extends Abstracts\Recipient {
 	 * @param  string $value raw value saved by the user.
 	 * @return array         array of resolved values
 	 */
-	public function parse_value( $value = '' ) {
+	public function parse_value( $value = '' )
+	{
 
-		if ( empty( $value ) ) {
+		if (empty($value)) {
 			$value = $this->get_default_value();
 		}
 
@@ -46,29 +54,28 @@ class Email extends Abstracts\Recipient {
 		 * Defaults to 'default' (ie. filter 'notification/recipient/email/default'):
 		 */
 		$filter_id = 'default';
-		$pattern   = '/\bfilter-id:([\w-]*)/';
+		$pattern = '/\bfilter-id:([\w-]*)/';
 
-		if ( preg_match( $pattern, $value, $matches ) ) {
+		if (preg_match($pattern, $value, $matches)) {
 			$filter_id = $matches[1];
-			$value     = preg_replace( $pattern, '', $value );
-			$value     = is_string( $value ) ? trim( $value ) : '';
+			$value = preg_replace($pattern, '', $value);
+			$value = is_string($value) ? trim($value) : '';
 		}
 
-		$value = apply_filters( 'notification/recipient/email/' . $filter_id, $value );
+		$value = apply_filters('notification/recipient/email/' . $filter_id, $value);
 
 		$parsed_emails = [];
-		$emails        = is_array( $value ) ? $value : preg_split( '/[;|,]/', $value );
+		$emails = is_array($value) ? $value : preg_split('/[;|,]/', $value);
 
-		if ( ! $emails ) {
+		if (! $emails) {
 			return [];
 		}
 
-		foreach ( $emails as $email ) {
-			$parsed_emails[] = sanitize_email( $email );
+		foreach ($emails as $email) {
+			$parsed_emails[] = sanitize_email($email);
 		}
 
 		return $parsed_emails;
-
 	}
 
 	/**
@@ -76,17 +83,18 @@ class Email extends Abstracts\Recipient {
 	 *
 	 * @return object
 	 */
-	public function input() {
+	public function input()
+	{
 
-		return new Field\InputField( [
-			'label'       => __( 'Recipient', 'notification' ), // don't edit this!
-			'name'        => 'recipient',                       // don't edit this!
-			'css_class'   => 'recipient-value',                 // don't edit this!
-			'placeholder' => __( 'email@domain.com or {email}', 'notification' ),
-			'description' => __( 'You can use any valid email merge tag.', 'notification' ),
-			'resolvable'  => true,
-		] );
-
+		return new Field\InputField(
+			[
+			'label' => __('Recipient', 'notification'), // don't edit this!
+			'name' => 'recipient',                       // don't edit this!
+			'css_class' => 'recipient-value',                 // don't edit this!
+			'placeholder' => __('email@domain.com or {email}', 'notification'),
+			'description' => __('You can use any valid email merge tag.', 'notification'),
+			'resolvable' => true,
+			]
+		);
 	}
-
 }

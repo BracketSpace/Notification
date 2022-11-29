@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Taggable interface class
  *
@@ -7,13 +10,11 @@
 
 namespace BracketSpace\Notification\Interfaces;
 
-use BracketSpace\Notification\Interfaces\Nameable;
-use BracketSpace\Notification\Interfaces\Triggerable;
-
 /**
  * Taggable interface
  */
-interface Taggable extends Nameable {
+interface Taggable extends Nameable
+{
 
 	/**
 	 * Resolves the merge tag value
@@ -39,7 +40,7 @@ interface Taggable extends Nameable {
 	/**
 	 * Checks if merge tag is already resolved
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function is_resolved();
 
@@ -53,8 +54,7 @@ interface Taggable extends Nameable {
 	/**
 	 * Sets trigger object
 	 *
-	 * @param Triggerable $trigger Trigger object.
+	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 */
 	public function set_trigger( Triggerable $trigger );
-
 }

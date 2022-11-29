@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Sendable interface class
  *
@@ -7,17 +10,16 @@
 
 namespace BracketSpace\Notification\Interfaces;
 
-use BracketSpace\Notification\Defaults\Field\RecipientsField;
-
 /**
  * Sendable interface
  */
-interface Sendable extends Nameable {
+interface Sendable extends Nameable
+{
 
 	/**
 	 * Sends the carrier
 	 *
-	 * @param  Triggerable $trigger trigger object.
+	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger trigger object.
 	 * @return void
 	 */
 	public function send( Triggerable $trigger );
@@ -32,7 +34,7 @@ interface Sendable extends Nameable {
 	/**
 	 * Gets form fields array
 	 *
-	 * @return Fillable[] fields
+	 * @return array<\BracketSpace\Notification\Interfaces\Fillable> fields
 	 */
 	public function get_form_fields();
 
@@ -85,7 +87,7 @@ interface Sendable extends Nameable {
 	 * Calls the field closure.
 	 *
 	 * @since  8.0.0
-	 * @return RecipientsField|null
+	 * @return \BracketSpace\Notification\Defaults\Field\RecipientsField|null
 	 */
 	public function get_recipients_field();
 
@@ -96,5 +98,4 @@ interface Sendable extends Nameable {
 	 * @return bool
 	 */
 	public function has_recipients_field();
-
 }

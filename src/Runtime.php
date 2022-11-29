@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Runtime
  *
@@ -15,8 +18,8 @@ use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
 /**
  * Runtime class
  */
-class Runtime {
-
+class Runtime
+{
 	use HookTrait;
 
 	/**
@@ -41,7 +44,7 @@ class Runtime {
 	/**
 	 * Filesystems
 	 *
-	 * @var Filesystem
+	 * @var \BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem
 	 */
 	protected $filesystem;
 
@@ -58,7 +61,8 @@ class Runtime {
 	 * @since 5.0.0
 	 * @param string $plugin_file plugin main file full path.
 	 */
-	public function __construct( $plugin_file ) {
+	public function __construct( $plugin_file )
+	{
 		$this->plugin_file = $plugin_file;
 	}
 
@@ -70,27 +74,31 @@ class Runtime {
 	 * @since  7.0.0 All the defaults and init action are called on initialization.
 	 * @return void
 	 */
-	public function init() {
+	public function init()
+	{
 
 		// Plugin has been already initialized.
-		if ( did_action( 'notification/init' ) || $this->requirements_unmet ) {
+		if (did_action('notification/init') || $this->requirements_unmet) {
 			return;
 		}
 
 		// Requirements check.
-		$requirements = new Requirements( __( 'Notification', 'notification' ), [
-			'php'            => '7.0',
+		$requirements = new Requirements(
+			__('Notification', 'notification'),
+			[
+			'php' => '7.0',
 			'php_extensions' => [ 'xml' ],
-			'wp'             => '5.3',
-		] );
+			'wp' => '5.3',
+			]
+		);
 
-		if ( ! $requirements->satisfied() ) {
+		if (! $requirements->satisfied()) {
 			$requirements->print_notice();
 			$this->requirements_unmet = true;
 			return;
 		}
 
-		$this->filesystem = new Filesystem( dirname( $this->plugin_file ) );
+		$this->filesystem = new Filesystem(dirname($this->plugin_file));
 		Core\Templates::register_storage();
 		$this->singletons();
 		$this->cli_commands();
@@ -98,9 +106,8 @@ class Runtime {
 
 		$this->load_bundled_extensions();
 
-		do_action( 'notification/init' );
-		do_action_deprecated( 'notification/elements', [], '8.0.0', 'notification/init' );
-
+		do_action('notification/init');
+		do_action_deprecated('notification/elements', [], '8.0.0', 'notification/init');
 	}
 
 	/**
@@ -109,12 +116,13 @@ class Runtime {
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public function cli_commands() {
-		if ( ! defined( 'WP_CLI' ) || \WP_CLI !== true ) {
+	public function cli_commands()
+	{
+		if (! defined('WP_CLI') || \WP_CLI !== true) {
 			return;
 		}
 
-		\WP_CLI::add_command( 'notification dump-hooks', Cli\DumpHooks::class );
+		\WP_CLI::add_command('notification dump-hooks', Cli\DumpHooks::class);
 	}
 
 	/**
@@ -123,15 +131,18 @@ class Runtime {
 	 * @since  6.1.0
 	 * @return void
 	 */
-	public function register_hooks() {
+	public function register_hooks()
+	{
 		// Hook Runtime class.
 		$this->add_hooks();
 
 		// Hook components.
-		foreach ( $this->components as $component ) {
-			if ( is_object( $component ) ) {
-				$this->add_hooks( $component );
+		foreach ($this->components as $component) {
+			if (!is_object($component)) {
+				continue;
 			}
+
+			$this->add_hooks($component);
 		}
 	}
 
@@ -141,9 +152,10 @@ class Runtime {
 	 * @since  7.0.0
 	 * @since  8.0.0 Always return the root filesystem.
 	 * @param  string $deprecated Filesystem name.
-	 * @return Filesystem
+	 * @return \BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem
 	 */
-	public function get_filesystem( $deprecated = 'root' ) {
+	public function get_filesystem( $deprecated = 'root' )
+	{
 		return $this->filesystem;
 	}
 
@@ -156,12 +168,13 @@ class Runtime {
 	 * @param  mixed  $component Component.
 	 * @return $this
 	 */
-	public function add_component( $name, $component ) {
-		if ( isset( $this->components[ $name ] ) ) {
-			throw new \Exception( sprintf( 'Component %s is already added.', $name ) );
+	public function add_component( $name, $component )
+	{
+		if (isset($this->components[$name])) {
+			throw new \Exception(sprintf('Component %s is already added.', $name));
 		}
 
-		$this->components[ $name ] = $component;
+		$this->components[$name] = $component;
 
 		return $this;
 	}
@@ -173,8 +186,9 @@ class Runtime {
 	 * @param  string $name Component name.
 	 * @return mixed        Component or null
 	 */
-	public function component( $name ) {
-		return isset( $this->components[ $name ] ) ? $this->components[ $name ] : null;
+	public function component( $name )
+	{
+		return $this->components[$name] ?? null;
 	}
 
 	/**
@@ -183,7 +197,8 @@ class Runtime {
 	 * @since  7.0.0
 	 * @return array
 	 */
-	public function components() {
+	public function components()
+	{
 		return $this->components;
 	}
 
@@ -194,38 +209,39 @@ class Runtime {
 	 * @since  5.0.0
 	 * @return void
 	 */
-	public function singletons() {
-		$this->add_component( 'core_cron', new Core\Cron() );
-		$this->add_component( 'core_whitelabel', new Core\Whitelabel() );
-		$this->add_component( 'core_debugging', new Core\Debugging() );
-		$this->add_component( 'core_settings', new Core\Settings() );
-		$this->add_component( 'core_upgrade', new Core\Upgrade() );
-		$this->add_component( 'core_sync', new Core\Sync() );
-		$this->add_component( 'core_binder', new Core\Binder() );
-		$this->add_component( 'core_processor', new Core\Processor() );
+	public function singletons()
+	{
+		$this->add_component('core_cron', new Core\Cron());
+		$this->add_component('core_whitelabel', new Core\Whitelabel());
+		$this->add_component('core_debugging', new Core\Debugging());
+		$this->add_component('core_settings', new Core\Settings());
+		$this->add_component('core_upgrade', new Core\Upgrade());
+		$this->add_component('core_sync', new Core\Sync());
+		$this->add_component('core_binder', new Core\Binder());
+		$this->add_component('core_processor', new Core\Processor());
 
-		$this->add_component( 'test_rest_api', new Admin\CheckRestApi() );
-		$this->add_component( 'admin_impexp', new Admin\ImportExport() );
-		$this->add_component( 'admin_settings', new Admin\Settings() );
-		$this->add_component( 'admin_duplicator', new Admin\NotificationDuplicator() );
-		$this->add_component( 'admin_post_type', new Admin\PostType() );
-		$this->add_component( 'admin_post_table', new Admin\PostTable() );
-		$this->add_component( 'admin_extensions', new Admin\Extensions() );
-		$this->add_component( 'admin_scripts', new Admin\Scripts( $this->get_filesystem() ) );
-		$this->add_component( 'admin_screen', new Admin\Screen() );
-		$this->add_component( 'admin_wizard', new Admin\Wizard( $this->get_filesystem() ) );
-		$this->add_component( 'admin_sync', new Admin\Sync() );
-		$this->add_component( 'admin_debugging', new Admin\Debugging() );
+		$this->add_component('test_rest_api', new Admin\CheckRestApi());
+		$this->add_component('admin_impexp', new Admin\ImportExport());
+		$this->add_component('admin_settings', new Admin\Settings());
+		$this->add_component('admin_duplicator', new Admin\NotificationDuplicator());
+		$this->add_component('admin_post_type', new Admin\PostType());
+		$this->add_component('admin_post_table', new Admin\PostTable());
+		$this->add_component('admin_extensions', new Admin\Extensions());
+		$this->add_component('admin_scripts', new Admin\Scripts($this->get_filesystem()));
+		$this->add_component('admin_screen', new Admin\Screen());
+		$this->add_component('admin_wizard', new Admin\Wizard($this->get_filesystem()));
+		$this->add_component('admin_sync', new Admin\Sync());
+		$this->add_component('admin_debugging', new Admin\Debugging());
 
-		if ( apply_filters( 'notification/upselling', true ) ) {
-			$this->add_component( 'admin_upsell', new Admin\Upsell() );
+		if (apply_filters('notification/upselling', true)) {
+			$this->add_component('admin_upsell', new Admin\Upsell());
 		}
 
-		$this->add_component( 'integration_wp', new Integration\WordPress() );
-		$this->add_component( 'integration_wp_emails', new Integration\WordPressEmails() );
-		$this->add_component( 'integration_2fa', new Integration\TwoFactor() );
+		$this->add_component('integration_wp', new Integration\WordPress());
+		$this->add_component('integration_wp_emails', new Integration\WordPressEmails());
+		$this->add_component('integration_2fa', new Integration\TwoFactor());
 
-		$this->add_component( 'api', new Api\Api() );
+		$this->add_component('api', new Api\Api());
 	}
 
 	/**
@@ -234,21 +250,24 @@ class Runtime {
 	 * @since  5.0.0
 	 * @return void
 	 */
-	public function actions() {
+	public function actions()
+	{
 		$this->register_hooks();
 
-		notification_register_settings( [ $this->component( 'admin_settings' ), 'general_settings' ] );
-		notification_register_settings( [ $this->component( 'admin_settings' ), 'triggers_settings' ], 20 );
-		notification_register_settings( [ $this->component( 'admin_settings' ), 'carriers_settings' ], 30 );
-		notification_register_settings( [ $this->component( 'admin_settings' ), 'emails_settings' ], 40 );
-		notification_register_settings( [ $this->component( 'admin_sync' ), 'settings' ], 50 );
-		notification_register_settings( [ $this->component( 'admin_impexp' ), 'settings' ], 60 );
-		notification_register_settings( [ $this->component( 'admin_debugging' ), 'debugging_settings' ], 70 );
+		notification_register_settings([ $this->component('admin_settings'), 'general_settings' ]);
+		notification_register_settings([ $this->component('admin_settings'), 'triggers_settings' ], 20);
+		notification_register_settings([ $this->component('admin_settings'), 'carriers_settings' ], 30);
+		notification_register_settings([ $this->component('admin_settings'), 'emails_settings' ], 40);
+		notification_register_settings([ $this->component('admin_sync'), 'settings' ], 50);
+		notification_register_settings([ $this->component('admin_impexp'), 'settings' ], 60);
+		notification_register_settings([ $this->component('admin_debugging'), 'debugging_settings' ], 70);
 
 		// DocHooks compatibility.
-		if ( ! DocHooksHelper::is_enabled() && $this->get_filesystem()->exists( 'compat/register-hooks.php' ) ) {
-			include_once $this->get_filesystem()->path( 'compat/register-hooks.php' );
+		if (DocHooksHelper::is_enabled() || !$this->get_filesystem()->exists('compat/register-hooks.php')) {
+			return;
 		}
+
+		include_once $this->get_filesystem()->path('compat/register-hooks.php');
 	}
 
 	/**
@@ -260,7 +279,8 @@ class Runtime {
 	 * @since  8.0.0 Is hooked to notification/init action.
 	 * @return void
 	 */
-	public function defaults() {
+	public function defaults()
+	{
 		array_map(
 			[ $this, 'load_default' ],
 			[
@@ -288,12 +308,17 @@ class Runtime {
 	 * @param  class-string $class_name Default class name.
 	 * @return void
 	 */
-	public function load_default( $default, $class_name ) {
-		if ( apply_filters( 'notification/load/default/' . $default, true ) ) {
-			if ( is_callable( [ $class_name, 'register' ] ) ) {
-				$class_name::register();
-			}
+	public function load_default( $default, $class_name )
+	{
+		if (!apply_filters('notification/load/default/' . $default, true)) {
+			return;
 		}
+
+		if (!is_callable([ $class_name, 'register' ])) {
+			return;
+		}
+
+		$class_name::register();
 	}
 
 	/**
@@ -302,22 +327,26 @@ class Runtime {
 	 * @since  7.0.0
 	 * @return void
 	 */
-	public function load_bundled_extensions() {
-		$extensions         = $this->get_filesystem()->dirlist( 'extensions', false );
+	public function load_bundled_extensions()
+	{
+		$extensions = $this->get_filesystem()->dirlist('extensions', false);
 		$extension_template = 'extensions/%s/load.php';
 
-		if ( empty( $extensions ) ) {
+		if (empty($extensions)) {
 			return;
 		}
 
-		foreach ( $extensions as $extension ) {
-			if ( 'd' === $extension['type'] ) {
-				$extension_file = sprintf( $extension_template, $extension['name'] );
-				if ( $this->get_filesystem()->exists( $extension_file ) ) {
-					require_once $this->get_filesystem()->path( $extension_file );
-				}
+		foreach ($extensions as $extension) {
+			if ($extension['type'] !== 'd') {
+				continue;
 			}
+
+			$extension_file = sprintf($extension_template, $extension['name']);
+			if (!$this->get_filesystem()->exists($extension_file)) {
+				continue;
+			}
+
+			require_once $this->get_filesystem()->path($extension_file);
 		}
 	}
-
 }

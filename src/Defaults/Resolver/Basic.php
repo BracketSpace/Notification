@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Basic resolver
  * Resolves Merge Tag values as is
@@ -19,7 +22,8 @@ use BracketSpace\Notification\Interfaces\Triggerable;
 /**
  * Basic resolver
  */
-class Basic extends Abstracts\Resolver {
+class Basic extends Abstracts\Resolver
+{
 
 	/**
 	 * Resolver priority
@@ -36,26 +40,23 @@ class Basic extends Abstracts\Resolver {
 	 * {@inheritdoc}
 	 *
 	 * @param array       $match   Match array.
-	 * @param Triggerable $trigger Trigger object.
+	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return mixed               Resolved value
 	 */
-	public function resolve_merge_tag( $match, Triggerable $trigger ) {
+	public function resolve_merge_tag( $match, Triggerable $trigger )
+	{
 
-		$merge_tags = $trigger->get_merge_tags( 'all', true );
-		$tag_slug   = trim( str_replace( [ '{', '}' ], '', $match[0] ) );
+		$merge_tags = $trigger->get_merge_tags('all', true);
+		$tag_slug = trim(str_replace([ '{', '}' ], '', $match[0]));
 
-		if ( ! isset( $merge_tags[ $tag_slug ] ) ) {
+		if (! isset($merge_tags[$tag_slug])) {
 			return $match[0];
 		}
 
-		$resolved = apply_filters(
+		return apply_filters(
 			'notification/merge_tag/value/resolved',
-			$merge_tags[ $tag_slug ]->resolve(),
-			$merge_tags[ $tag_slug ]
+			$merge_tags[$tag_slug]->resolve(),
+			$merge_tags[$tag_slug]
 		);
-
-		return $resolved;
-
 	}
-
 }

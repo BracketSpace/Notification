@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Field abstract class
  *
@@ -12,7 +15,8 @@ use BracketSpace\Notification\Interfaces;
 /**
  * Field abstract class
  */
-abstract class Field implements Interfaces\Fillable {
+abstract class Field implements Interfaces\Fillable
+{
 
 	/**
 	 * Field unique ID
@@ -54,7 +58,7 @@ abstract class Field implements Interfaces\Fillable {
 	 * If field is resolvable with merge tags
 	 * Default: true
 	 *
-	 * @var boolean
+	 * @var bool
 	 */
 	protected $resolvable = true;
 
@@ -68,7 +72,7 @@ abstract class Field implements Interfaces\Fillable {
 	/**
 	 * If field is disabled
 	 *
-	 * @var boolean
+	 * @var bool
 	 */
 	public $disabled = false;
 
@@ -82,7 +86,7 @@ abstract class Field implements Interfaces\Fillable {
 	/**
 	 * If field can be used multiple times in Section Repeater row
 	 *
-	 * @var  boolean
+	 * @var bool
 	 */
 	public $multiple_section = false;
 
@@ -99,42 +103,44 @@ abstract class Field implements Interfaces\Fillable {
 	 * @since 5.0.0
 	 * @param array $params field configuration params.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct( $params = [] )
+	{
 
-		if ( ! isset( $params['label'], $params['name'] ) ) {
-			trigger_error( 'Field requires label and name', E_USER_ERROR );
+		if (! isset($params['label'], $params['name'])) {
+			trigger_error('Field requires label and name', E_USER_ERROR);
 		}
 
-		$this->field_type_html = substr( strrchr( get_called_class(), '\\' ), 1 );
+		$this->field_type_html = substr(strrchr(static::class, '\\'), 1);
 
 		$this->label = $params['label'];
-		$this->name  = $params['name'];
-		$this->id    = $this->name . '_' . uniqid();
+		$this->name = $params['name'];
+		$this->id = $this->name . '_' . uniqid();
 
-		if ( isset( $params['description'] ) ) {
-			$this->description = wp_kses( $params['description'], wp_kses_allowed_html( 'data' ) );
+		if (isset($params['description'])) {
+			$this->description = wp_kses($params['description'], wp_kses_allowed_html('data'));
 		}
 
-		if ( isset( $params['resolvable'] ) ) {
-			$this->resolvable = (bool) $params['resolvable'];
+		if (isset($params['resolvable'])) {
+			$this->resolvable = (bool)$params['resolvable'];
 		}
 
-		if ( isset( $params['value'] ) ) {
-			$this->set_value( $params['value'] );
+		if (isset($params['value'])) {
+			$this->set_value($params['value']);
 		}
 
-		if ( isset( $params['disabled'] ) && $params['disabled'] ) {
+		if (isset($params['disabled']) && $params['disabled']) {
 			$this->disabled = true;
 		}
 
-		if ( isset( $params['css_class'] ) ) {
+		if (isset($params['css_class'])) {
 			$this->css_class .= $params['css_class'];
 		}
 
-		if ( isset( $params['multiple_section'] ) ) {
-			$this->multiple_section = $params['multiple_section'];
+		if (!isset($params['multiple_section'])) {
+			return;
 		}
 
+		$this->multiple_section = $params['multiple_section'];
 	}
 
 	/**
@@ -144,7 +150,8 @@ abstract class Field implements Interfaces\Fillable {
 	 * @param string $param Field data name.
 	 * @return  array
 	 */
-	public function __get( $param ) {
+	public function __get( $param )
+	{
 		return $this->$param ?? null;
 	}
 
@@ -168,7 +175,8 @@ abstract class Field implements Interfaces\Fillable {
 	 *
 	 * @return string description
 	 */
-	public function get_description() {
+	public function get_description()
+	{
 		return $this->description;
 	}
 
@@ -177,9 +185,10 @@ abstract class Field implements Interfaces\Fillable {
 	 *
 	 * @return mixed
 	 */
-	public function get_value() {
-		$value = is_string( $this->value ) ? stripslashes( $this->value ) : $this->value;
-		return apply_filters( 'notification/field/' . $this->get_raw_name() . '/value', $value, $this );
+	public function get_value()
+	{
+		$value = is_string($this->value) ? stripslashes($this->value) : $this->value;
+		return apply_filters('notification/field/' . $this->get_raw_name() . '/value', $value, $this);
 	}
 
 	/**
@@ -188,7 +197,8 @@ abstract class Field implements Interfaces\Fillable {
 	 * @param  mixed $value value from DB.
 	 * @return void
 	 */
-	public function set_value( $value ) {
+	public function set_value( $value )
+	{
 		$this->value = $value;
 	}
 
@@ -197,7 +207,8 @@ abstract class Field implements Interfaces\Fillable {
 	 *
 	 * @return string
 	 */
-	public function get_name() {
+	public function get_name()
+	{
 		return $this->section . '[' . $this->name . ']';
 	}
 
@@ -206,7 +217,8 @@ abstract class Field implements Interfaces\Fillable {
 	 *
 	 * @return string
 	 */
-	public function get_raw_name() {
+	public function get_raw_name()
+	{
 		return $this->name;
 	}
 
@@ -215,7 +227,8 @@ abstract class Field implements Interfaces\Fillable {
 	 *
 	 * @return string
 	 */
-	public function get_label() {
+	public function get_label()
+	{
 		return $this->label;
 	}
 
@@ -224,7 +237,8 @@ abstract class Field implements Interfaces\Fillable {
 	 *
 	 * @return string
 	 */
-	public function get_id() {
+	public function get_id()
+	{
 		return $this->id;
 	}
 
@@ -233,7 +247,8 @@ abstract class Field implements Interfaces\Fillable {
 	 *
 	 * @return bool
 	 */
-	public function is_resolvable() {
+	public function is_resolvable()
+	{
 		return $this->resolvable;
 	}
 
@@ -242,7 +257,8 @@ abstract class Field implements Interfaces\Fillable {
 	 *
 	 * @return bool
 	 */
-	public function is_disabled() {
+	public function is_disabled()
+	{
 		return $this->disabled;
 	}
 
@@ -251,7 +267,8 @@ abstract class Field implements Interfaces\Fillable {
 	 *
 	 * @return string
 	 */
-	public function maybe_disable() {
+	public function maybe_disable()
+	{
 		return $this->is_disabled() ? 'disabled="disabled"' : '';
 	}
 
@@ -260,7 +277,8 @@ abstract class Field implements Interfaces\Fillable {
 	 *
 	 * @return string
 	 */
-	public function css_class() {
+	public function css_class()
+	{
 		return $this->css_class;
 	}
 
@@ -270,8 +288,8 @@ abstract class Field implements Interfaces\Fillable {
 	 * @since 7.1.0
 	 * @return string
 	 */
-	public function rest_api_error() {
-		return esc_html__( 'The REST API is required to display this field, but it has been blocked. Please unlock the /notification REST API endpoint.', 'notification' );
+	public function rest_api_error()
+	{
+		return esc_html__('The REST API is required to display this field, but it has been blocked. Please unlock the /notification REST API endpoint.', 'notification');
 	}
-
 }

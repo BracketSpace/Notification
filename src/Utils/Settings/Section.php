@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Settings Section class
  *
@@ -10,7 +13,8 @@ namespace BracketSpace\Notification\Utils\Settings;
 /**
  * Settings class
  */
-class Section {
+class Section
+{
 
 	/**
 	 * Settings handle
@@ -48,26 +52,26 @@ class Section {
 	 * @param string $name   Section name.
 	 * @param string $slug   Section slug.
 	 */
-	public function __construct( $handle, $name, $slug ) {
+	public function __construct( $handle, $name, $slug )
+	{
 
-		if ( empty( $handle ) ) {
-			throw new \Exception( 'Setting handle in Section instance cannot be empty' );
+		if (empty($handle)) {
+			throw new \Exception('Setting handle in Section instance cannot be empty');
 		}
 
 		$this->handle = $handle;
 
-		if ( empty( $name ) ) {
-			throw new \Exception( 'Section name cannot be empty' );
+		if (empty($name)) {
+			throw new \Exception('Section name cannot be empty');
 		}
 
-		$this->name( $name );
+		$this->name($name);
 
-		if ( empty( $slug ) ) {
-			throw new \Exception( 'Section slug cannot be empty' );
+		if (empty($slug)) {
+			throw new \Exception('Section slug cannot be empty');
 		}
 
-		$this->slug( sanitize_title( $slug ) );
-
+		$this->slug(sanitize_title($slug));
 	}
 
 	/**
@@ -76,14 +80,14 @@ class Section {
 	 * @param  string $name Name. Do not pass anything to get current value.
 	 * @return string name
 	 */
-	public function name( $name = null ) {
+	public function name( $name = null )
+	{
 
-		if ( null !== $name ) {
+		if ($name !== null) {
 			$this->name = $name;
 		}
 
-		return apply_filters( $this->handle . '/settings/section/name', $this->name, $this );
-
+		return apply_filters($this->handle . '/settings/section/name', $this->name, $this);
 	}
 
 	/**
@@ -92,14 +96,14 @@ class Section {
 	 * @param  string $slug Slug. Do not pass anything to get current value.
 	 * @return string slug
 	 */
-	public function slug( $slug = null ) {
+	public function slug( $slug = null )
+	{
 
-		if ( null !== $slug ) {
+		if ($slug !== null) {
 			$this->slug = $slug;
 		}
 
-		return apply_filters( $this->handle . '/settings/section/slug', $this->slug, $this );
-
+		return apply_filters($this->handle . '/settings/section/slug', $this->slug, $this);
 	}
 
 	/**
@@ -108,21 +112,21 @@ class Section {
 	 * @throws \Exception Exception.
 	 * @param string $name Group name.
 	 * @param string $slug Group slug.
-	 * @return Group
+	 * @return \BracketSpace\Notification\Utils\Settings\Group
 	 */
-	public function add_group( $name, $slug ) {
+	public function add_group( $name, $slug )
+	{
 
-		if ( empty( $name ) || empty( $slug ) ) {
-			throw new \Exception( 'Group name and slug cannot be empty' );
+		if (empty($name) || empty($slug)) {
+			throw new \Exception('Group name and slug cannot be empty');
 		}
 
-		if ( ! isset( $this->groups[ $slug ] ) ) {
-			$this->groups[ $slug ] = new Group( $this->handle, $name, $slug, $this->slug() );
-			do_action( $this->handle . '/settings/group/added', $this->groups[ $slug ], $this );
+		if (! isset($this->groups[$slug])) {
+			$this->groups[$slug] = new Group($this->handle, $name, $slug, $this->slug());
+			do_action($this->handle . '/settings/group/added', $this->groups[$slug], $this);
 		}
 
-		return $this->groups[ $slug ];
-
+		return $this->groups[$slug];
 	}
 
 	/**
@@ -130,10 +134,10 @@ class Section {
 	 *
 	 * @return array
 	 */
-	public function get_groups() {
+	public function get_groups()
+	{
 
-		return apply_filters( $this->handle . '/settings/section/groups', $this->groups, $this );
-
+		return apply_filters($this->handle . '/settings/section/groups', $this->groups, $this);
 	}
 
 	/**
@@ -142,14 +146,13 @@ class Section {
 	 * @param  string $slug group slug.
 	 * @return mixed        group object or false if no group defined
 	 */
-	public function get_group( $slug = '' ) {
+	public function get_group( $slug = '' )
+	{
 
-		if ( isset( $this->groups[ $slug ] ) ) {
-			return apply_filters( $this->handle . '/settings/group', $this->groups[ $slug ], $this );
+		if (isset($this->groups[$slug])) {
+			return apply_filters($this->handle . '/settings/group', $this->groups[$slug], $this);
 		}
 
 		return false;
-
 	}
-
 }

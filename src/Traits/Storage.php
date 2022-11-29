@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Storage trait
  *
@@ -12,7 +15,8 @@ use BracketSpace\Notification\ErrorHandler;
 /**
  * Storage trait
  */
-trait Storage {
+trait Storage
+{
 
 	/**
 	 * Stored items
@@ -28,7 +32,8 @@ trait Storage {
 	 * @param  mixed $item Item to add.
 	 * @return void
 	 */
-	public static function add( $item ) {
+	public static function add( $item )
+	{
 		static::$items[] = $item;
 	}
 
@@ -40,20 +45,21 @@ trait Storage {
 	 * @param  mixed      $item  Item to add.
 	 * @return void
 	 */
-	public static function insert( $index, $item ) {
-		if ( static::has( $index ) ) {
+	public static function insert( $index, $item )
+	{
+		if (static::has($index)) {
 			ErrorHandler::error(
 				sprintf(
 					'Item at index %s in %s Store already exists.',
 					$index,
-					__CLASS__
+					self::class
 				)
 			);
 
 			return;
 		}
 
-		static::$items[ $index ] = $item;
+		static::$items[$index] = $item;
 	}
 
 	/**
@@ -62,7 +68,8 @@ trait Storage {
 	 * @since  8.0.0
 	 * @return array<mixed>
 	 */
-	public static function all() : array {
+	public static function all(): array
+	{
 		return static::$items;
 	}
 
@@ -72,7 +79,8 @@ trait Storage {
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public static function clear() {
+	public static function clear()
+	{
 		static::$items = [];
 	}
 
@@ -83,20 +91,21 @@ trait Storage {
 	 * @param  mixed $index Intex of an item.
 	 * @return mixed
 	 */
-	public static function get( $index ) {
-		if ( ! static::has( $index ) ) {
+	public static function get( $index )
+	{
+		if (! static::has($index)) {
 			ErrorHandler::error(
 				sprintf(
 					'Item %s in %s Store doesn\'t exists.',
 					$index,
-					__CLASS__
+					self::class
 				)
 			);
 
 			return;
 		}
 
-		return static::$items[ $index ];
+		return static::$items[$index];
 	}
 
 	/**
@@ -106,8 +115,8 @@ trait Storage {
 	 * @param  mixed $index Intex of an item.
 	 * @return bool
 	 */
-	public static function has( $index ) : bool {
-		return array_key_exists( $index, static::$items );
+	public static function has( $index ): bool
+	{
+		return array_key_exists($index, static::$items);
 	}
-
 }

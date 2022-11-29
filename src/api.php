@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Public API.
  *
@@ -6,7 +9,6 @@
  */
 
 use BracketSpace\Notification\Core\Notification;
-use BracketSpace\Notification\Defaults\Adapter;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Interfaces;
 
@@ -17,22 +19,22 @@ use BracketSpace\Notification\Interfaces;
  * @since  6.0.0
  * @throws \Exception If adapter wasn't found.
  * @param  string       $adapter_name Adapter class name.
- * @param  Notification $notification Notification object.
- * @return Interfaces\Adaptable
+ * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
+ * @return \BracketSpace\Notification\Interfaces\Adaptable
  */
-function notification_adapt( $adapter_name, Notification $notification ) {
+function notification_adapt( $adapter_name, Notification $notification )
+{
 
-	if ( class_exists( $adapter_name ) ) {
-		$adapter = new $adapter_name( $notification );
-	} elseif ( class_exists( 'BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapter_name ) ) {
+	if (class_exists($adapter_name)) {
+		$adapter = new $adapter_name($notification);
+	} elseif (class_exists('BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapter_name)) {
 		$adapter_name = 'BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapter_name;
-		$adapter      = new $adapter_name( $notification );
+		$adapter = new $adapter_name($notification);
 	} else {
-		throw new \Exception( sprintf( 'Couldn\'t find %s adapter', $adapter_name ) );
+		throw new \Exception(sprintf('Couldn\'t find %s adapter', $adapter_name));
 	}
 
 	return $adapter;
-
 }
 
 /**
@@ -42,11 +44,12 @@ function notification_adapt( $adapter_name, Notification $notification ) {
  * @since  6.0.0
  * @param  string $adapter_name Adapter class name.
  * @param  mixed  $data         Input data needed by adapter.
- * @return Interfaces\Adaptable
+ * @return \BracketSpace\Notification\Interfaces\Adaptable
  */
-function notification_adapt_from( $adapter_name, $data ) {
-	$adapter = notification_adapt( $adapter_name, new Notification() );
-	return $adapter->read( $data );
+function notification_adapt_from( $adapter_name, $data )
+{
+	$adapter = notification_adapt($adapter_name, new Notification());
+	return $adapter->read($data);
 }
 
 /**
@@ -54,11 +57,12 @@ function notification_adapt_from( $adapter_name, $data ) {
  *
  * @since  6.0.0
  * @param  string               $new_adapter_name Adapter class name.
- * @param  Interfaces\Adaptable $adapter          Adapter.
- * @return Interfaces\Adaptable
+ * @param \BracketSpace\Notification\Interfaces\Adaptable $adapter Adapter.
+ * @return \BracketSpace\Notification\Interfaces\Adaptable
  */
-function notification_swap_adapter( $new_adapter_name, Interfaces\Adaptable $adapter ) {
-	return notification_adapt( $new_adapter_name, $adapter->get_notification() );
+function notification_swap_adapter( $new_adapter_name, Interfaces\Adaptable $adapter )
+{
+	return notification_adapt($new_adapter_name, $adapter->get_notification());
 }
 
 /**
@@ -70,26 +74,26 @@ function notification_swap_adapter( $new_adapter_name, Interfaces\Adaptable $ada
  * @param  string $message   Log formatted message.
  * @return bool|\WP_Error
  */
-function notification_log( $component, $type, $message ) {
+function notification_log( $component, $type, $message )
+{
 
-	if ( 'notification' !== $type && ! notification_get_setting( 'debugging/settings/error_log' ) ) {
+	if ($type !== 'notification' && ! notification_get_setting('debugging/settings/error_log')) {
 		return false;
 	}
 
-	$debugger = \Notification::component( 'core_debugging' );
+	$debugger = \Notification::component('core_debugging');
 
 	$log_data = [
 		'component' => $component,
-		'type'      => $type,
-		'message'   => $message,
+		'type' => $type,
+		'message' => $message,
 	];
 
 	try {
-		return $debugger->add_log( $log_data );
-	} catch ( \Exception $e ) {
-		return new \WP_Error( 'wrong_log_data', $e->getMessage() );
+		return $debugger->add_log($log_data);
+	} catch (\Throwable $e) {
+		return new \WP_Error('wrong_log_data', $e->getMessage());
 	}
-
 }
 
 /**
@@ -101,28 +105,29 @@ function notification_log( $component, $type, $message ) {
  * @param  array $data Notification data.
  * @return \WP_Error | true
  */
-function notification( $data = [] ) {
+function notification( $data = [] )
+{
 
 	try {
-		notification_add( new Notification( notification_convert_data( $data ) ) );
-	} catch ( \Exception $e ) {
-		return new \WP_Error( 'notification_error', $e->getMessage() );
+		notification_add(new Notification(notification_convert_data($data)));
+	} catch (\Throwable $e) {
+		return new \WP_Error('notification_error', $e->getMessage());
 	}
 
 	return true;
-
 }
 
 /**
  * Adds Notification to Store
  *
  * @since  6.0.0
- * @param  Notification $notification Notification object.
+ * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
  * @return void
  */
-function notification_add( Notification $notification ) {
-	Store\Notification::insert( $notification->get_hash(), $notification );
-	do_action( 'notification/notification/registered', $notification );
+function notification_add( Notification $notification )
+{
+	Store\Notification::insert($notification->get_hash(), $notification);
+	do_action('notification/notification/registered', $notification);
 }
 
 /**
@@ -135,37 +140,39 @@ function notification_add( Notification $notification ) {
  * @param  array $data Notification static data.
  * @return array       Converted data.
  */
-function notification_convert_data( $data = [] ) {
+function notification_convert_data( $data = [] )
+{
 
 	// Trigger conversion.
-	if ( ! empty( $data['trigger'] ) && ! ( $data['trigger'] instanceof Interfaces\Triggerable ) ) {
-		$data['trigger'] = Store\Trigger::get( $data['trigger'] );
+	if (! empty($data['trigger']) && ! ( $data['trigger'] instanceof Interfaces\Triggerable )) {
+		$data['trigger'] = Store\Trigger::get($data['trigger']);
 	}
 
 	// Carriers conversion.
-	if ( isset( $data['carriers'] ) ) {
+	if (isset($data['carriers'])) {
 		$carriers = [];
 
-		foreach ( $data['carriers'] as $carrier_slug => $carrier_data ) {
-			if ( $carrier_data instanceof Interfaces\Sendable ) {
-				$carriers[ $carrier_slug ] = $carrier_data;
+		foreach ($data['carriers'] as $carrier_slug => $carrier_data) {
+			if ($carrier_data instanceof Interfaces\Sendable) {
+				$carriers[$carrier_slug] = $carrier_data;
 				continue;
 			}
 
-			$registered_carrier = Store\Carrier::get( $carrier_slug );
+			$registered_carrier = Store\Carrier::get($carrier_slug);
 
-			if ( ! empty( $registered_carrier ) ) {
-				$carrier = clone $registered_carrier;
-				$carrier->set_data( $carrier_data );
-				$carriers[ $carrier_slug ] = $carrier;
+			if (empty($registered_carrier)) {
+				continue;
 			}
+
+			$carrier = clone $registered_carrier;
+			$carrier->set_data($carrier_data);
+			$carriers[$carrier_slug] = $carrier;
 		}
 
 		$data['carriers'] = $carriers;
 	}
 
 	return $data;
-
 }
 
 /**
@@ -173,17 +180,17 @@ function notification_convert_data( $data = [] ) {
  *
  * @since  5.0.0
  * @param  mixed   $callback Callback for settings registration, array of string.
- * @param  integer $priority Action priority.
+ * @param int $priority Action priority.
  * @return void
  */
-function notification_register_settings( $callback, $priority = 10 ) {
+function notification_register_settings( $callback, $priority = 10 )
+{
 
-	if ( ! is_callable( $callback ) ) {
-		trigger_error( 'You have to pass callable while registering the settings', E_USER_ERROR );
+	if (! is_callable($callback)) {
+		trigger_error('You have to pass callable while registering the settings', E_USER_ERROR);
 	}
 
-	add_action( 'notification/settings/register', $callback, $priority );
-
+	add_action('notification/settings/register', $callback, $priority);
 }
 
 /**
@@ -192,8 +199,9 @@ function notification_register_settings( $callback, $priority = 10 ) {
  * @since 5.0.0
  * @return mixed
  */
-function notification_get_settings() {
-	return \Notification::component( 'core_settings' )->get_settings();
+function notification_get_settings()
+{
+	return \Notification::component('core_settings')->get_settings();
 }
 
 /**
@@ -204,18 +212,18 @@ function notification_get_settings() {
  * @param  string $setting setting name in `a/b/c` format.
  * @return mixed
  */
-function notification_get_setting( $setting ) {
+function notification_get_setting( $setting )
+{
 
-	$parts = explode( '/', $setting );
+	$parts = explode('/', $setting);
 
-	if ( 'notifications' === $parts[0] ) {
-		_deprecated_argument( __FUNCTION__, '7.0.0', 'The `notifications` section has been changed to `carriers`, adjust the first part of the setting.' );
+	if ($parts[0] === 'notifications') {
+		_deprecated_argument(__FUNCTION__, '7.0.0', 'The `notifications` section has been changed to `carriers`, adjust the first part of the setting.');
 		$parts[0] = 'carriers';
-		$setting  = implode( '/', $parts );
+		$setting = implode('/', $parts);
 	}
 
-	return \Notification::component( 'core_settings' )->get_setting( $setting );
-
+	return \Notification::component('core_settings')->get_setting($setting);
 }
 
 /**
@@ -225,6 +233,7 @@ function notification_get_setting( $setting ) {
  * @param   mixed  $value setting value.
  * @return  mixed
  */
-function notification_update_setting( $setting, $value ) {
-	return \Notification::component( 'core_settings' )->update_setting( $setting, $value );
+function notification_update_setting( $setting, $value )
+{
+	return \Notification::component('core_settings')->update_setting($setting, $value);
 }

@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Custom Fields Merge Tags metabox content
  *
@@ -7,12 +10,12 @@
 
 $extension_link = sprintf(
 	'<a href="https://bracketspace.com/downloads/notification-custom-fields/?utm_source=wp&utm_medium=notification-edit&utm_id=upsell" target="_blank">%s</a>',
-	__( 'Custom Fields extension', 'notification' )
+	__('Custom Fields extension', 'notification')
 );
 
 ?>
 
-<h2 data-group="custom-fields"><?php esc_html_e( 'Custom Fields', 'notification' ); ?></h2>
+<h2 data-group="custom-fields"><?php esc_html_e('Custom Fields', 'notification'); ?></h2>
 <ul class="tags-group" data-group="custom-fields">
 	<span class="label-pro">PRO</span>
 	<?php

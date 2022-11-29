@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Review Queue switch
  *
@@ -8,7 +11,7 @@
 ?>
 
 <label class="row-label" for="queue-switch">
-	<strong><?php esc_html_e( 'Catch in review queue', 'notification' ); ?></strong>
+	<strong><?php esc_html_e('Catch in review queue', 'notification'); ?></strong>
 	<a href="https://bracketspace.com/downloads/notification-review-queue/?utm_source=wp&utm_medium=notification-edit&utm_id=upsell" target="_blank" class="label-pro">PRO</a>
 </label>
 <div class="onoffswitch">

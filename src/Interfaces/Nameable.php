@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Nameable interface class
  *
@@ -10,7 +13,8 @@ namespace BracketSpace\Notification\Interfaces;
 /**
  * Nameable interface
  */
-interface Nameable {
+interface Nameable
+{
 
 	/**
 	 * Gets name
@@ -25,5 +29,4 @@ interface Nameable {
 	 * @return string slug
 	 */
 	public function get_slug();
-
 }

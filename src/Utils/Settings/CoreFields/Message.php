@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Message field class
  *
@@ -7,31 +10,33 @@
 
 namespace BracketSpace\Notification\Utils\Settings\CoreFields;
 
-use BracketSpace\Notification\Utils\Settings\Field;
-
 /**
  * Message class
  */
-class Message {
+class Message
+{
 
 	/**
 	 * Message field
 	 *
-	 * @param  Field $field Field instance.
+	 * @param \BracketSpace\Notification\Utils\Settings\Field $field Field instance.
 	 * @return void
 	 */
-	public function input( $field ) {
-		if ( $field->addon( 'code' ) ) {
+	public function input( $field )
+	{
+		if ($field->addon('code')) {
 			echo '<pre><code>';
 		}
 
-		$message = $field->addon( 'message' );
+		$message = $field->addon('message');
 
-		echo wp_kses_post( is_callable( $message ) ? $message() : $message );
+		echo wp_kses_post(is_callable($message) ? $message() : $message);
 
-		if ( $field->addon( 'code' ) ) {
-			echo '</code></pre>';
+		if (!$field->addon('code')) {
+			return;
 		}
+
+		echo '</code></pre>';
 	}
 
 	/**
@@ -40,8 +45,8 @@ class Message {
 	 * @param  string $value Saved value.
 	 * @return string        Sanitized text
 	 */
-	public function sanitize( $value ) {
+	public function sanitize( $value )
+	{
 		return $value;
 	}
-
 }

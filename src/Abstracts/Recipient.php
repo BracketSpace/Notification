@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Recipient abstract class
  *
@@ -13,9 +16,11 @@ use BracketSpace\Notification\Traits;
 /**
  * Recipient abstract class
  */
-abstract class Recipient implements Interfaces\Receivable {
-
-	use Traits\ClassUtils, Traits\HasName, Traits\HasSlug;
+abstract class Recipient implements Interfaces\Receivable
+{
+	use Traits\ClassUtils;
+	use Traits\HasName;
+	use Traits\HasSlug;
 
 	/**
 	 * Recipient input default value
@@ -30,22 +35,22 @@ abstract class Recipient implements Interfaces\Receivable {
 	 * @since 5.0.0
 	 * @param array $params recipient configuration params.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct( $params = [] )
+	{
 
-		if ( ! empty( $params['slug'] ) ) {
-			$this->set_slug( $params['slug'] );
+		if (! empty($params['slug'])) {
+			$this->set_slug($params['slug']);
 		}
 
-		if ( ! empty( $params['name'] ) ) {
-			$this->set_name( $params['name'] );
+		if (! empty($params['name'])) {
+			$this->set_name($params['name']);
 		}
 
-		if ( ! isset( $params['default_value'] ) ) {
-			trigger_error( 'Recipient requires default_value', E_USER_ERROR );
+		if (! isset($params['default_value'])) {
+			trigger_error('Recipient requires default_value', E_USER_ERROR);
 		}
 
 		$this->default_value = $params['default_value'];
-
 	}
 
 	/**
@@ -59,7 +64,7 @@ abstract class Recipient implements Interfaces\Receivable {
 	/**
 	 * Returns input object
 	 *
-	 * @return Interfaces\Fillable
+	 * @return \BracketSpace\Notification\Interfaces\Fillable
 	 */
 	abstract public function input();
 
@@ -68,8 +73,8 @@ abstract class Recipient implements Interfaces\Receivable {
 	 *
 	 * @return string
 	 */
-	public function get_default_value() {
+	public function get_default_value()
+	{
 		return $this->default_value;
 	}
-
 }

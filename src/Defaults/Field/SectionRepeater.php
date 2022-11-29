@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Repeater field class
  *
@@ -8,24 +11,24 @@
 namespace BracketSpace\Notification\Defaults\Field;
 
 use BracketSpace\Notification\Abstracts\Field;
-use BracketSpace\Notification\Interfaces\Sendable;
 
 /**
  * Repeater field class
  */
-class SectionRepeater extends Field {
+class SectionRepeater extends Field
+{
 
 	/**
 	 * Current repeater row
 	 *
-	 * @var integer
+	 * @var int
 	 */
 	protected $current_row = 0;
 
 	/**
 	 * Fields to repeat
 	 *
-	 * @var Field[]
+	 * @var array<\BracketSpace\Notification\Abstracts\Field>
 	 */
 	public $fields = [];
 
@@ -67,7 +70,7 @@ class SectionRepeater extends Field {
 	/**
 	 * Carrier object
 	 *
-	 * @var Sendable
+	 * @var \BracketSpace\Notification\Interfaces\Sendable
 	 */
 	protected $carrier;
 
@@ -91,46 +94,42 @@ class SectionRepeater extends Field {
 	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct( $params = [] )
+	{
 
-		if ( ! isset( $params['sections'] ) ) {
-			trigger_error( 'SectionsRepeater requires sections param', E_USER_ERROR );
+		if (! isset($params['sections'])) {
+			trigger_error('SectionsRepeater requires sections param', E_USER_ERROR);
 		}
 
-		if ( ! isset( $params['section_labels'] ) ) {
-			trigger_error( 'SectionsRepeater requires section labels param', E_USER_ERROR );
+		if (! isset($params['section_labels'])) {
+			trigger_error('SectionsRepeater requires section labels param', E_USER_ERROR);
 		}
 
 		$this->sections = $params['sections'];
 
 		$this->section_labels = $params['section_labels'];
 
-		if ( isset( $params['fields'] ) ) {
+		if (isset($params['fields'])) {
 			$this->fields = $params['fields'];
 		}
 
-		if ( isset( $params['add_button_label'] ) ) {
-			$this->add_button_label = $params['add_button_label'];
-		} else {
-			$this->add_button_label = __( 'Add new', 'notification' );
-		}
+		$this->add_button_label = $params['add_button_label'] ?? __('Add new', 'notification');
 
 		// additional data tags for repeater table. key => value array.
 		// will be transformed to data-key="value".
-		if ( isset( $params['data_attr'] ) ) {
+		if (isset($params['data_attr'])) {
 			$this->data_attr = $params['data_attr'];
 		}
 
-		if ( isset( $params['sortable'] ) && ! $params['sortable'] ) {
+		if (isset($params['sortable']) && ! $params['sortable']) {
 			$this->sortable = false;
 		}
 
-		if ( isset( $params['carrier'] ) ) {
+		if (isset($params['carrier'])) {
 			$this->carrier = $params['carrier'];
 		}
 
-		parent::__construct( $params );
-
+		parent::__construct($params);
 	}
 
 	/**
@@ -138,11 +137,12 @@ class SectionRepeater extends Field {
 	 *
 	 * @return string html
 	 */
-	public function field() {
+	public function field()
+	{
 
 		$data_attr = '';
-		foreach ( $this->data_attr as $key => $value ) {
-			$data_attr .= 'data-' . $key . '="' . esc_attr( $value ) . '" ';
+		foreach ($this->data_attr as $key => $value) {
+			$data_attr .= 'data-' . $key . '="' . esc_attr($value) . '" ';
 		}
 
 		$this->headers = [];
@@ -154,14 +154,12 @@ class SectionRepeater extends Field {
 
 		$html .= '<th class="handle"></th>';
 
-		foreach ( $this->section_labels as $label ) {
-
+		foreach ($this->section_labels as $label) {
 			$html .= '<th class="section-repeater-label">';
 
-			$html .= esc_html( $label );
+			$html .= esc_html($label);
 
 			$html .= '</th>';
-
 		}
 
 		$html .= '<th class="trash"></th>';
@@ -183,7 +181,7 @@ class SectionRepeater extends Field {
 				  </template>';
 
 		$html .= '<a href="#" class="button button-secondary add-new-repeater-field add-new-sections-field" @click="addSection">';
-		$html .= esc_html( $this->add_button_label );
+		$html .= esc_html($this->add_button_label);
 		$html .= '
 			<div class="section-modal"
 			v-show="modalOpen"
@@ -198,7 +196,6 @@ class SectionRepeater extends Field {
 		$html .= '</a>';
 
 		return $html;
-
 	}
 
 	/**
@@ -207,8 +204,9 @@ class SectionRepeater extends Field {
 	 * @since  5.0.0
 	 * @return string          row HTML
 	 */
-	public function row() {
-		$html = '<template v-if="!repeaterError">
+	public function row()
+	{
+		return '<template v-if="!repeaterError">
 					<template v-for="( row, key, index ) in rows">
 						<sections-row
 						:key="key"
@@ -227,9 +225,6 @@ class SectionRepeater extends Field {
 					</template>
 				</template>
 				';
-
-		return $html;
-
 	}
 
 	/**
@@ -238,18 +233,18 @@ class SectionRepeater extends Field {
 	 * @param  mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value ) {
+	public function sanitize( $value )
+	{
 
-		if ( empty( $value ) ) {
+		if (empty($value)) {
 			return [];
 		}
 
-		if ( array_keys( $value ) !== range( 0, count( $value ) - 1 ) ) {
+		if (array_keys($value) !== range(0, count($value) - 1)) {
 			return;
 		}
 
 		return $value;
-
 	}
 
 	/**
@@ -257,15 +252,14 @@ class SectionRepeater extends Field {
 	 *
 	 * @return string
 	 */
-	public function css_class() {
+	public function css_class()
+	{
 
 		$classes = '';
-		if ( $this->sortable ) {
+		if ($this->sortable) {
 			$classes .= 'fields-repeater-sortable ';
 		}
 
 		return $classes . parent::css_class();
-
 	}
-
 }

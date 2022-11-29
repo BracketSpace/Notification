@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Nonce field class
  *
@@ -12,7 +15,8 @@ use BracketSpace\Notification\Abstracts\Field;
 /**
  * Nonce field class
  */
-class NonceField extends Field {
+class NonceField extends Field
+{
 
 	/**
 	 * Nonce key
@@ -27,16 +31,16 @@ class NonceField extends Field {
 	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct( $params = [] )
+	{
 
-		if ( ! isset( $params['nonce_key'] ) ) {
-			trigger_error( 'NonceField requires nonce_key param', E_USER_ERROR );
+		if (! isset($params['nonce_key'])) {
+			trigger_error('NonceField requires nonce_key param', E_USER_ERROR);
 		}
 
 		$this->nonce_key = $params['nonce_key'];
 
-		parent::__construct( $params );
-
+		parent::__construct($params);
 	}
 
 	/**
@@ -44,8 +48,9 @@ class NonceField extends Field {
 	 *
 	 * @return string html
 	 */
-	public function field() {
-		return wp_nonce_field( $this->nonce_key, $this->get_name(), true, false );
+	public function field()
+	{
+		return wp_nonce_field($this->nonce_key, $this->get_name(), true, false);
 	}
 
 	/**
@@ -54,8 +59,8 @@ class NonceField extends Field {
 	 * @param  mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value ) {
+	public function sanitize( $value )
+	{
 		return null;
 	}
-
 }

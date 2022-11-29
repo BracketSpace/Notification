@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Storable interface class
  *
@@ -10,4 +13,6 @@ namespace BracketSpace\Notification\Interfaces;
 /**
  * Storable interface
  */
-interface Storable {}
+interface Storable
+{
+}

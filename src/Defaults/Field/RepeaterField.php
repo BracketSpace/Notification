@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Repeater field class
  *
@@ -8,24 +11,24 @@
 namespace BracketSpace\Notification\Defaults\Field;
 
 use BracketSpace\Notification\Abstracts\Field;
-use BracketSpace\Notification\Interfaces\Sendable;
 
 /**
  * Repeater field class
  */
-class RepeaterField extends Field {
+class RepeaterField extends Field
+{
 
 	/**
 	 * Current repeater row
 	 *
-	 * @var integer
+	 * @var int
 	 */
 	protected $current_row = 0;
 
 	/**
 	 * Fields to repeat
 	 *
-	 * @var Field[]
+	 * @var array<\BracketSpace\Notification\Abstracts\Field>
 	 */
 	public $fields = [];
 
@@ -67,7 +70,7 @@ class RepeaterField extends Field {
 	/**
 	 * Carrier object
 	 *
-	 * @var Sendable
+	 * @var \BracketSpace\Notification\Interfaces\Sendable
 	 */
 	protected $carrier;
 
@@ -84,34 +87,30 @@ class RepeaterField extends Field {
 	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct( $params = [] )
+	{
 
-		if ( isset( $params['fields'] ) ) {
+		if (isset($params['fields'])) {
 			$this->fields = $params['fields'];
 		}
 
-		if ( isset( $params['add_button_label'] ) ) {
-			$this->add_button_label = $params['add_button_label'];
-		} else {
-			$this->add_button_label = __( 'Add new', 'notification' );
-		}
+		$this->add_button_label = $params['add_button_label'] ?? __('Add new', 'notification');
 
 		// additional data tags for repeater table. key => value array.
 		// will be transformed to data-key="value".
-		if ( isset( $params['data_attr'] ) ) {
+		if (isset($params['data_attr'])) {
 			$this->data_attr = $params['data_attr'];
 		}
 
-		if ( isset( $params['sortable'] ) && ! $params['sortable'] ) {
+		if (isset($params['sortable']) && ! $params['sortable']) {
 			$this->sortable = false;
 		}
 
-		if ( isset( $params['carrier'] ) ) {
+		if (isset($params['carrier'])) {
 			$this->carrier = $params['carrier'];
 		}
 
-		parent::__construct( $params );
-
+		parent::__construct($params);
 	}
 
 	/**
@@ -119,11 +118,12 @@ class RepeaterField extends Field {
 	 *
 	 * @return string html
 	 */
-	public function field() {
+	public function field()
+	{
 
 		$data_attr = '';
-		foreach ( $this->data_attr as $key => $value ) {
-			$data_attr .= 'data-' . $key . '="' . esc_attr( $value ) . '" ';
+		foreach ($this->data_attr as $key => $value) {
+			$data_attr .= 'data-' . $key . '="' . esc_attr($value) . '" ';
 		}
 
 		$this->headers = [];
@@ -135,27 +135,25 @@ class RepeaterField extends Field {
 
 		$html .= '<th class="handle"></th>';
 
-		foreach ( $this->fields as $sub_field ) {
-
+		foreach ($this->fields as $sub_field) {
 			// don't print header for hidden field.
-			if ( isset( $sub_field->type ) && 'hidden' === $sub_field->type ) {
+			if (isset($sub_field->type) && $sub_field->type === 'hidden') {
 				continue;
 			}
 
-			$html .= '<th class="' . esc_attr( $sub_field->get_raw_name() ) . '">';
+			$html .= '<th class="' . esc_attr($sub_field->get_raw_name()) . '">';
 
-			$this->headers[ $sub_field->get_raw_name() ] = $sub_field->get_label();
+			$this->headers[$sub_field->get_raw_name()] = $sub_field->get_label();
 
-			$html .= esc_html( $sub_field->get_label() );
+			$html .= esc_html($sub_field->get_label());
 
 			$description = $sub_field->get_description();
 
-			if ( $this->print_header_description && ! empty( $description ) ) {
+			if ($this->print_header_description && ! empty($description)) {
 				$html .= '<small class="description">' . $description . '</small>';
 			}
 
 			$html .= '</th>';
-
 		}
 
 		$html .= '<th class="trash"></th>';
@@ -176,10 +174,9 @@ class RepeaterField extends Field {
 					'</div>
 				  </template>';
 
-		$html .= '<a href="#" class="button button-secondary add-new-repeater-field" @click="addField">' . esc_html( $this->add_button_label ) . '</a>';
+		$html .= '<a href="#" class="button button-secondary add-new-repeater-field" @click="addField">' . esc_html($this->add_button_label) . '</a>';
 
 		return $html;
-
 	}
 
 	/**
@@ -188,8 +185,9 @@ class RepeaterField extends Field {
 	 * @since  5.0.0
 	 * @return string          row HTML
 	 */
-	public function row() {
-		$html = '<template v-if="!repeaterError">
+	public function row()
+	{
+		return '<template v-if="!repeaterError">
 					<template v-for="( field, key ) in fields">
 						<repeater-row
 						:field="field"
@@ -204,9 +202,6 @@ class RepeaterField extends Field {
 						</repeater-row>
 					</template>
 				</template>';
-
-		return $html;
-
 	}
 
 	/**
@@ -215,35 +210,28 @@ class RepeaterField extends Field {
 	 * @param  mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value ) {
+	public function sanitize( $value )
+	{
 
-		if ( empty( $value ) ) {
+		if (empty($value)) {
 			return [];
 		}
 
 		$sanitized = [];
 
-		foreach ( $value as $row_id => $row ) {
+		foreach ($value as $row_id => $row) {
+			$sanitized[$row_id] = [];
 
-			$sanitized[ $row_id ] = [];
-
-			foreach ( $this->fields as $sub_field ) {
-
+			foreach ($this->fields as $sub_field) {
 				$subkey = $sub_field->get_raw_name();
 
-				if ( isset( $row[ $subkey ] ) ) {
-					$sanitized_value = $sub_field->sanitize( $row[ $subkey ] );
-				} else {
-					$sanitized_value = '';
-				}
+				$sanitized_value = isset($row[$subkey]) ? $sub_field->sanitize($row[$subkey]) : '';
 
-				$sanitized[ $row_id ][ $subkey ] = $sanitized_value;
-
+				$sanitized[$row_id][$subkey] = $sanitized_value;
 			}
 		}
 
 		return $sanitized;
-
 	}
 
 	/**
@@ -251,15 +239,14 @@ class RepeaterField extends Field {
 	 *
 	 * @return string
 	 */
-	public function css_class() {
+	public function css_class()
+	{
 
 		$classes = '';
-		if ( $this->sortable ) {
+		if ($this->sortable) {
 			$classes .= 'fields-repeater-sortable ';
 		}
 
 		return $classes . parent::css_class();
-
 	}
-
 }

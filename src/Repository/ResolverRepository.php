@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Register defaults.
  *
@@ -13,13 +16,14 @@ use BracketSpace\Notification\Defaults\Resolver;
 /**
  * Resolver Repository.
  */
-class ResolverRepository {
+class ResolverRepository
+{
 
 	/**
 	 * @return void
 	 */
-	public static function register() {
-		Register::resolver( new Resolver\Basic() );
+	public static function register()
+	{
+		Register::resolver(new Resolver\Basic());
 	}
-
 }

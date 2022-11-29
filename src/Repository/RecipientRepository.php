@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Register defaults.
  *
@@ -13,7 +16,8 @@ use BracketSpace\Notification\Defaults\Recipient;
 /**
  * Recipient Repository.
  */
-class RecipientRepository {
+class RecipientRepository
+{
 
 	/**
 	 * Webhook recipient types.
@@ -21,29 +25,29 @@ class RecipientRepository {
 	 * @var array<string,string>
 	 */
 	public static $webhook_recipient_types = [
-		'post'   => 'POST',
-		'get'    => 'GET',
-		'put'    => 'PUT',
+		'post' => 'POST',
+		'get' => 'GET',
+		'put' => 'PUT',
 		'delete' => 'DELETE',
-		'patch'  => 'PATCH',
+		'patch' => 'PATCH',
 	];
 
 	/**
 	 * @return void
 	 */
-	public static function register() {
-		Register::recipient( 'email', new Recipient\Email() );
-		Register::recipient( 'email', new Recipient\Administrator() );
-		Register::recipient( 'email', new Recipient\User() );
-		Register::recipient( 'email', new Recipient\UserID() );
-		Register::recipient( 'email', new Recipient\Role() );
+	public static function register()
+	{
+		Register::recipient('email', new Recipient\Email());
+		Register::recipient('email', new Recipient\Administrator());
+		Register::recipient('email', new Recipient\User());
+		Register::recipient('email', new Recipient\UserID());
+		Register::recipient('email', new Recipient\Role());
 
-		foreach ( self::$webhook_recipient_types as $type => $name ) {
-			$recipient = new Recipient\Webhook( $type, $name );
+		foreach (self::$webhook_recipient_types as $type => $name) {
+			$recipient = new Recipient\Webhook($type, $name);
 
-			Register::recipient( 'webhook', $recipient );
-			Register::recipient( 'webhook_json', $recipient );
+			Register::recipient('webhook', $recipient);
+			Register::recipient('webhook_json', $recipient);
 		}
 	}
-
 }

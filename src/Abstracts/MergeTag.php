@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * MergeTag abstract class
  *
@@ -13,9 +16,13 @@ use BracketSpace\Notification\Traits;
 /**
  * MergeTag abstract class
  */
-abstract class MergeTag implements Interfaces\Taggable {
-
-	use Traits\ClassUtils, Traits\HasDescription, Traits\HasGroup,  Traits\HasName, Traits\HasSlug;
+abstract class MergeTag implements Interfaces\Taggable
+{
+	use Traits\ClassUtils;
+	use Traits\HasDescription;
+	use Traits\HasGroup;
+	use Traits\HasName;
+	use Traits\HasSlug;
 
 	/**
 	 * MergeTag resolved value
@@ -41,28 +48,28 @@ abstract class MergeTag implements Interfaces\Taggable {
 	/**
 	 * Resolving status
 	 *
-	 * @var boolean
+	 * @var bool
 	 */
 	protected $resolved = false;
 
 	/**
 	 * Trigger object, the Merge tag is assigned to
 	 *
-	 * @var Interfaces\Triggerable
+	 * @var \BracketSpace\Notification\Interfaces\Triggerable
 	 */
 	protected $trigger;
 
 	/**
 	 * If description is an example
 	 *
-	 * @var boolean
+	 * @var bool
 	 */
 	protected $description_example = false;
 
 	/**
 	 * If merge tag is hidden
 	 *
-	 * @var boolean
+	 * @var bool
 	 */
 	protected $hidden = false;
 
@@ -80,47 +87,49 @@ abstract class MergeTag implements Interfaces\Taggable {
 	 * @since 7.0.0 The resolver closure context is static.
 	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct( $params = [] )
+	{
 
-		if ( ! isset( $params['slug'], $params['name'], $params['resolver'] ) ) {
-			trigger_error( 'Merge tag requires resolver', E_USER_ERROR );
+		if (! isset($params['slug'], $params['name'], $params['resolver'])) {
+			trigger_error('Merge tag requires resolver', E_USER_ERROR);
 		}
 
-		if ( ! empty( $params['slug'] ) ) {
-			$this->set_slug( $params['slug'] );
+		if (! empty($params['slug'])) {
+			$this->set_slug($params['slug']);
 		}
 
-		if ( ! empty( $params['name'] ) ) {
-			$this->set_name( $params['name'] );
+		if (! empty($params['name'])) {
+			$this->set_name($params['name']);
 		}
 
-		if ( ! empty( $params['group'] ) ) {
-			$this->set_group( $params['group'] );
+		if (! empty($params['group'])) {
+			$this->set_group($params['group']);
 		}
 
 		// Change resolver context to static.
-		if ( $params['resolver'] instanceof \Closure ) {
-			$params['resolver']->bindTo( $this );
+		if ($params['resolver'] instanceof \Closure) {
+			$params['resolver']->bindTo($this);
 		}
 
-		$this->set_resolver( $params['resolver'] );
+		$this->set_resolver($params['resolver']);
 
-		if ( isset( $params['description'] ) ) {
-			$this->description_example = isset( $params['example'] ) && $params['example'];
-			$this->set_description( sanitize_text_field( $params['description'] ) );
+		if (isset($params['description'])) {
+			$this->description_example = isset($params['example']) && $params['example'];
+			$this->set_description(sanitize_text_field($params['description']));
 		}
 
-		if ( isset( $params['hidden'] ) ) {
-			$this->hidden = (bool) $params['hidden'];
+		if (!isset($params['hidden'])) {
+			return;
 		}
 
+		$this->hidden = (bool)$params['hidden'];
 	}
 
 	/**
 	 * Checks if the value is the correct type
 	 *
 	 * @param  mixed $value tag value.
-	 * @return boolean
+	 * @return bool
 	 */
 	abstract public function validate( $value );
 
@@ -139,38 +148,39 @@ abstract class MergeTag implements Interfaces\Taggable {
 	 *
 	 * @return mixed the resolved value
 	 */
-	public function resolve() {
+	public function resolve()
+	{
 
-		if ( $this->is_resolved() ) {
+		if ($this->is_resolved()) {
 			return $this->get_value();
 		}
 
 		try {
-			$value = call_user_func( $this->resolver, $this->get_trigger() );
-		} catch ( \Throwable $t ) {
+			$value = call_user_func($this->resolver, $this->get_trigger());
+		} catch (\Throwable $t) {
 			$value = null;
-			trigger_error( esc_html( $t->getMessage() ), E_USER_NOTICE );
+			trigger_error(esc_html($t->getMessage()), E_USER_NOTICE);
 		}
 
-		if ( ! empty( $value ) && ! $this->validate( $value ) ) {
-			$error_type = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? E_USER_ERROR : E_USER_NOTICE;
-			trigger_error( 'Resolved value is a wrong type', $error_type );
+		if (! empty($value) && ! $this->validate($value)) {
+			$error_type = ( defined('WP_DEBUG') && WP_DEBUG ) ? E_USER_ERROR : E_USER_NOTICE;
+			trigger_error('Resolved value is a wrong type', $error_type);
 		}
 
 		$this->resolved = true;
 
-		$this->value = apply_filters( 'notification/merge_tag/value/resolve', $this->sanitize( $value ) );
+		$this->value = apply_filters('notification/merge_tag/value/resolve', $this->sanitize($value));
 
 		return $this->get_value();
-
 	}
 
 	/**
 	 * Checks if merge tag is already resolved
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
-	public function is_resolved() {
+	public function is_resolved()
+	{
 		return $this->resolved;
 	}
 
@@ -178,9 +188,10 @@ abstract class MergeTag implements Interfaces\Taggable {
 	 * Checks if description is an example
 	 * If yes, there will be displayed additional label and type
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
-	public function is_description_example() {
+	public function is_description_example()
+	{
 		return $this->description_example;
 	}
 
@@ -189,17 +200,19 @@ abstract class MergeTag implements Interfaces\Taggable {
 	 *
 	 * @return mixed
 	 */
-	public function get_value() {
-		return apply_filters( 'notification/merge_tag/' . $this->get_slug() . '/value', $this->value, $this );
+	public function get_value()
+	{
+		return apply_filters('notification/merge_tag/' . $this->get_slug() . '/value', $this->value, $this);
 	}
 
 	/**
 	 * Sets trigger object
 	 *
 	 * @since 5.0.0
-	 * @param Interfaces\Triggerable $trigger Trigger object.
+	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 */
-	public function set_trigger( Interfaces\Triggerable $trigger ) {
+	public function set_trigger( Interfaces\Triggerable $trigger )
+	{
 		$this->trigger = $trigger;
 	}
 
@@ -209,14 +222,14 @@ abstract class MergeTag implements Interfaces\Taggable {
 	 * @since 5.2.2
 	 * @param mixed $resolver Resolver, can be either a closure or array or string.
 	 */
-	public function set_resolver( $resolver ) {
+	public function set_resolver( $resolver )
+	{
 
-		if ( ! is_callable( $resolver ) ) {
-			trigger_error( 'Merge tag resolver has to be callable', E_USER_ERROR );
+		if (! is_callable($resolver)) {
+			trigger_error('Merge tag resolver has to be callable', E_USER_ERROR);
 		}
 
 		$this->resolver = $resolver;
-
 	}
 
 	/**
@@ -228,7 +241,8 @@ abstract class MergeTag implements Interfaces\Taggable {
 	 *
 	 * @return void
 	 */
-	public function set_trigger_prop( string $trigger_property_name ) {
+	public function set_trigger_prop( string $trigger_property_name )
+	{
 		$this->trigger_property_name = $trigger_property_name;
 	}
 
@@ -239,7 +253,8 @@ abstract class MergeTag implements Interfaces\Taggable {
 	 *
 	 * @return string
 	 */
-	public function get_trigger_prop(): string {
+	public function get_trigger_prop(): string
+	{
 		return $this->trigger_property_name;
 	}
 
@@ -247,9 +262,10 @@ abstract class MergeTag implements Interfaces\Taggable {
 	 * Gets trigger object
 	 *
 	 * @since 5.0.0
-	 * @return Interfaces\Triggerable|null
+	 * @return \BracketSpace\Notification\Interfaces\Triggerable|null
 	 */
-	public function get_trigger() {
+	public function get_trigger()
+	{
 		return $this->trigger;
 	}
 
@@ -259,7 +275,8 @@ abstract class MergeTag implements Interfaces\Taggable {
 	 * @since 5.0.0
 	 * @return string
 	 */
-	public function get_value_type() {
+	public function get_value_type()
+	{
 		return $this->value_type;
 	}
 
@@ -267,9 +284,10 @@ abstract class MergeTag implements Interfaces\Taggable {
 	 * Checks if merge tag is hidden
 	 *
 	 * @since 5.1.3
-	 * @return boolean
+	 * @return bool
 	 */
-	public function is_hidden() {
+	public function is_hidden()
+	{
 		return $this->hidden;
 	}
 
@@ -279,9 +297,9 @@ abstract class MergeTag implements Interfaces\Taggable {
 	 * @since  5.2.2
 	 * @return void
 	 */
-	public function clean_value() {
+	public function clean_value()
+	{
 		$this->resolved = false;
-		$this->value    = '';
+		$this->value = '';
 	}
-
 }

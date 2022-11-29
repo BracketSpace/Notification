@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * IP merge tag class
  *
@@ -12,7 +15,8 @@ use BracketSpace\Notification\Abstracts\MergeTag;
 /**
  * IP merge tag class
  */
-class IPTag extends MergeTag {
+class IPTag extends MergeTag
+{
 
 	/**
 	 * MergeTag value type
@@ -25,10 +29,11 @@ class IPTag extends MergeTag {
 	 * Check the merge tag value type
 	 *
 	 * @param  mixed $value value.
-	 * @return boolean
+	 * @return bool
 	 */
-	public function validate( $value ) {
-		return filter_var( $value, FILTER_VALIDATE_IP ) !== false;
+	public function validate( $value )
+	{
+		return filter_var($value, FILTER_VALIDATE_IP) !== false;
 	}
 
 	/**
@@ -37,8 +42,8 @@ class IPTag extends MergeTag {
 	 * @param  mixed $value value.
 	 * @return mixed
 	 */
-	public function sanitize( $value ) {
+	public function sanitize( $value )
+	{
 		return $value;
 	}
-
 }

@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Resolvable interface class
  *
@@ -10,7 +13,8 @@ namespace BracketSpace\Notification\Interfaces;
 /**
  * Resolvable interface
  */
-interface Resolvable {
+interface Resolvable
+{
 
 	/**
 	 * Gets slug
@@ -37,9 +41,8 @@ interface Resolvable {
 	 * Resolves single matched merge tag
 	 *
 	 * @param array       $match   Match array.
-	 * @param Triggerable $trigger Trigger object.
+	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return string              Resolved value
 	 */
 	public function resolve_merge_tag( $match, Triggerable $trigger );
-
 }

@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Error Handler class
  *
@@ -10,7 +13,8 @@ namespace BracketSpace\Notification;
 /**
  * Error Handler class
  */
-class ErrorHandler {
+class ErrorHandler
+{
 
 	/**
 	 * Checks if debug is enabled.
@@ -18,8 +22,9 @@ class ErrorHandler {
 	 * @since  8.0.0
 	 * @return bool
 	 */
-	public static function debug_enabled() {
-		return defined( 'NOTIFICATION_DEBUG' ) && NOTIFICATION_DEBUG;
+	public static function debug_enabled()
+	{
+		return defined('NOTIFICATION_DEBUG') && NOTIFICATION_DEBUG;
 	}
 
 	/**
@@ -32,12 +37,12 @@ class ErrorHandler {
 	 * @param  string $exception_class Exception class name.
 	 * @return void
 	 */
-	public static function error( string $message, string $exception_class = 'Exception' ) {
-		if ( self::debug_enabled() ) {
-			throw new $exception_class( $message );
-		} else {
-			trigger_error( esc_html( $message ), E_USER_WARNING );
+	public static function error( string $message, string $exception_class = 'Exception' )
+	{
+		if (self::debug_enabled()) {
+			throw new $exception_class($message);
 		}
-	}
 
+		trigger_error(esc_html($message), E_USER_WARNING);
+	}
 }

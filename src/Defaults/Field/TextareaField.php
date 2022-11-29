@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Textarea field class
  *
@@ -12,7 +15,8 @@ use BracketSpace\Notification\Abstracts\Field;
 /**
  * Textarea field class
  */
-class TextareaField extends Field {
+class TextareaField extends Field
+{
 
 	/**
 	 * Field placeholder
@@ -24,14 +28,14 @@ class TextareaField extends Field {
 	/**
 	 * Textarea rows
 	 *
-	 * @var integer
+	 * @var int
 	 */
 	protected $rows = 10;
 
 	/**
 	 * If unfiltered value is allowed
 	 *
-	 * @var boolean
+	 * @var bool
 	 */
 	protected $allowed_unfiltered = false;
 
@@ -41,22 +45,22 @@ class TextareaField extends Field {
 	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct( $params = [] )
+	{
 
-		if ( isset( $params['placeholder'] ) ) {
+		if (isset($params['placeholder'])) {
 			$this->placeholder = $params['placeholder'];
 		}
 
-		if ( isset( $params['rows'] ) ) {
+		if (isset($params['rows'])) {
 			$this->rows = $params['rows'];
 		}
 
-		if ( isset( $params['allowed_unfiltered'] ) && $params['allowed_unfiltered'] ) {
+		if (isset($params['allowed_unfiltered']) && $params['allowed_unfiltered']) {
 			$this->allowed_unfiltered = true;
 		}
 
-		parent::__construct( $params );
-
+		parent::__construct($params);
 	}
 
 	/**
@@ -64,8 +68,9 @@ class TextareaField extends Field {
 	 *
 	 * @return string html
 	 */
-	public function field() {
-		return '<textarea name="' . esc_attr( $this->get_name() ) . '" rows="' . esc_attr( (string) $this->rows ) . '" id="' . esc_attr( $this->get_id() ) . '" placeholder="' . esc_attr( $this->placeholder ) . '" class="widefat ' . esc_attr( $this->css_class() ) . '" ' . $this->maybe_disable() . '>' . $this->get_value() . '</textarea>';
+	public function field()
+	{
+		return '<textarea name="' . esc_attr($this->get_name()) . '" rows="' . esc_attr((string)$this->rows) . '" id="' . esc_attr($this->get_id()) . '" placeholder="' . esc_attr($this->placeholder) . '" class="widefat ' . esc_attr($this->css_class()) . '" ' . $this->maybe_disable() . '>' . $this->get_value() . '</textarea>';
 	}
 
 	/**
@@ -74,8 +79,8 @@ class TextareaField extends Field {
 	 * @param  mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value ) {
-		return ( $this->allowed_unfiltered ) ? $value : sanitize_textarea_field( $value );
+	public function sanitize( $value )
+	{
+		return ( $this->allowed_unfiltered ) ? $value : sanitize_textarea_field($value);
 	}
-
 }

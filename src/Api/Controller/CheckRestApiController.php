@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * REST api check controller class
  *
@@ -12,7 +15,8 @@ use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
 /**
  * REST api check controller class
  */
-class CheckRestApiController {
+class CheckRestApiController
+{
 
 	/**
 	 * Sends response
@@ -20,8 +24,9 @@ class CheckRestApiController {
 	 * @since 8.0.12
 	 * @return void
 	 */
-	public function send_response() {
+	public function send_response()
+	{
 		$response = new Response();
-		$response->send( 'RestApi' );
+		$response->send('RestApi');
 	}
 }

@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Integer merge tag class
  *
@@ -12,7 +15,8 @@ use BracketSpace\Notification\Abstracts\MergeTag;
 /**
  * Integer merge tag class
  */
-class IntegerTag extends MergeTag {
+class IntegerTag extends MergeTag
+{
 
 	/**
 	 * MergeTag value type
@@ -25,10 +29,11 @@ class IntegerTag extends MergeTag {
 	 * Check the merge tag value type
 	 *
 	 * @param  mixed $value value.
-	 * @return boolean
+	 * @return bool
 	 */
-	public function validate( $value ) {
-		return filter_var( (int) $value, FILTER_VALIDATE_INT ) !== false;
+	public function validate( $value )
+	{
+		return filter_var((int)$value, FILTER_VALIDATE_INT) !== false;
 	}
 
 	/**
@@ -37,8 +42,8 @@ class IntegerTag extends MergeTag {
 	 * @param  mixed $value value.
 	 * @return mixed
 	 */
-	public function sanitize( $value ) {
-		return intval( $value );
+	public function sanitize( $value )
+	{
+		return intval($value);
 	}
-
 }

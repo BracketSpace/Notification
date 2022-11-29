@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Input field class
  *
@@ -12,7 +15,8 @@ use BracketSpace\Notification\Abstracts\Field;
 /**
  * Input field class
  */
-class MessageField extends Field {
+class MessageField extends Field
+{
 
 	/**
 	 * Message
@@ -49,24 +53,24 @@ class MessageField extends Field {
 	 * @since 6.3.1 Allow for whitespace characters.
 	 * @param array $params field configuration parameters.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct( $params = [] )
+	{
 
-		if ( ! isset( $params['message'] ) ) {
-			trigger_error( 'MessageField requires message param', E_USER_ERROR );
+		if (! isset($params['message'])) {
+			trigger_error('MessageField requires message param', E_USER_ERROR);
 		}
 
 		$this->message = $params['message'];
 
-		if ( isset( $params['type'] ) ) {
+		if (isset($params['type'])) {
 			$this->type = $params['type'];
 		}
 
-		if ( isset( $params['name'] ) ) {
+		if (isset($params['name'])) {
 			$this->name = $params['name'];
 		}
 
-		parent::__construct( $params );
-
+		parent::__construct($params);
 	}
 
 	/**
@@ -74,8 +78,9 @@ class MessageField extends Field {
 	 *
 	 * @return string html
 	 */
-	public function field() {
-		return '<input type="' . esc_attr( $this->type ) . '" name="' . esc_attr( $this->get_name() ) . '" id="' . esc_attr( $this->get_id() ) . '" value="' . esc_attr( $this->get_value() ) . '" placeholder="' . esc_attr( $this->placeholder ) . '" class="widefat ' . esc_attr( $this->css_class() ) . '" ' . $this->maybe_disable() . ' ' . esc_attr( $this->atts ) . '>';
+	public function field()
+	{
+		return '<input type="' . esc_attr($this->type) . '" name="' . esc_attr($this->get_name()) . '" id="' . esc_attr($this->get_id()) . '" value="' . esc_attr($this->get_value()) . '" placeholder="' . esc_attr($this->placeholder) . '" class="widefat ' . esc_attr($this->css_class()) . '" ' . $this->maybe_disable() . ' ' . esc_attr($this->atts) . '>';
 	}
 
 	/**
@@ -84,12 +89,12 @@ class MessageField extends Field {
 	 * @param  mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value ) {
+	public function sanitize( $value )
+	{
 
-		$value = preg_replace( '@<(script|style)[^>]*?>.*?</\\1>@si', '', $value ); // Remove script and style tags.
+		$value = preg_replace('@<(script|style)[^>]*?>.*?</\\1>@si', '', $value); // Remove script and style tags.
 
-		$value = trim( $value ); // Remove whitespace.
+		$value = trim($value); // Remove whitespace.
 		return $value;
 	}
-
 }

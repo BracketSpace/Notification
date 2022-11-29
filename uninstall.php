@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Uninstall plugin file
  *
@@ -12,47 +15,45 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 global $wpdb;
 
-$general_settings = get_option( 'notification_general' );
+$general_settings = get_option('notification_general');
 
 $un = $general_settings['uninstallation'];
 
 // Remove notifications.
-if ( isset( $un['notifications'] ) && 'true' === $un['notifications'] ) {
+if (isset($un['notifications']) && $un['notifications'] === 'true') {
 	$wpdb->query( "DELETE FROM {$wpdb->posts} WHERE post_type = 'notification'" ); // phpcs:ignore
 }
 
 // Remove settings.
-if ( isset( $un['settings'] ) && 'true' === $un['settings'] ) {
+if (isset($un['settings']) && $un['settings'] === 'true') {
+	$settings_config = get_option('_transient_notification_settings_config');
 
-	$settings_config = get_option( '_transient_notification_settings_config' );
-
-	foreach ( $settings_config as $section_slug => $section ) {
-		delete_option( 'notification_' . $section_slug );
-		delete_site_option( 'notification_' . $section_slug );
+	foreach ($settings_config as $section_slug => $section) {
+		delete_option('notification_' . $section_slug);
+		delete_site_option('notification_' . $section_slug);
 	}
 
-	delete_option( '_notification_settings_config' );
-	delete_option( '_notification_settings_hash' );
-
+	delete_option('_notification_settings_config');
+	delete_option('_notification_settings_hash');
 }
 
 // Remove licenses.
-if ( isset( $un['licenses'] ) && 'true' === $un['licenses'] ) {
-
+if (isset($un['licenses']) && $un['licenses'] === 'true') {
 	$extensions_class = new BracketSpace\Notification\Admin\Extensions();
 
 	$extensions_class->load_extensions();
 	$premium_extensions = $extensions_class->premium_extensions;
 
-	foreach ( $premium_extensions as $extension ) {
+	foreach ($premium_extensions as $extension) {
 		$license = $extension['license'];
-		if ( $license->is_valid() ) {
-			$license->deactivate();
+		if (!$license->is_valid()) {
+			continue;
 		}
+
+		$license->deactivate();
 	}
 
-	delete_option( 'notification_licenses' );
-
+	delete_option('notification_licenses');
 }
 
 // Remove logs table.
@@ -60,8 +61,8 @@ $logs_table = $wpdb->prefix . 'notification_logs';
 $wpdb->query( "DROP TABLE IF EXISTS ${logs_table}"  ); // phpcs:ignore
 
 // Remove other things.
-delete_option( 'notification_story_dismissed' );
-delete_option( 'notification_wizard_dismissed' );
-delete_option( 'notification_debug_log' );
-delete_option( 'notification_data_version' );
-delete_option( 'notification_db_version' );
+delete_option('notification_story_dismissed');
+delete_option('notification_wizard_dismissed');
+delete_option('notification_debug_log');
+delete_option('notification_data_version');
+delete_option('notification_db_version');

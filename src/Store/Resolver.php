@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Resolver Store
  *
@@ -13,25 +16,30 @@ use BracketSpace\Notification\Traits\Storage;
 /**
  * Resolver Store
  */
-class Resolver implements Interfaces\Storable {
+class Resolver implements Interfaces\Storable
+{
 	use Storage;
 
 	/**
 	 * Gets all Resolvers sorted by priority.
 	 *
 	 * @since  8.0.0
-	 * @return array<string,Interfaces\Resolvable>
+	 * @return array<string, \BracketSpace\Notification\Interfaces\Resolvable>
 	 */
-	public static function sorted() : array {
+	public static function sorted(): array
+	{
 		$resolvers = static::all();
 
-		usort( $resolvers, function ( $a, $b ) {
-			if ( $a->get_priority() === $b->get_priority() ) {
-				return 0;
-			}
+		usort(
+			$resolvers,
+			static function ( $a, $b ) {
+				if ($a->get_priority() === $b->get_priority()) {
+					return 0;
+				}
 
-			return $a->get_priority() < $b->get_priority() ? -1 : 1;
-		} );
+				return $a->get_priority() < $b->get_priority() ? -1 : 1;
+			}
+		);
 
 		return $resolvers;
 	}

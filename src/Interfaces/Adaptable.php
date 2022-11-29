@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Adaptable interface class
  *
@@ -7,14 +10,13 @@
 
 namespace BracketSpace\Notification\Interfaces;
 
-use BracketSpace\Notification\Core\Notification;
-
 /**
  * Adaptable interface
  *
- * @mixin Notification
+ * @mixin \BracketSpace\Notification\Core\Notification
  */
-interface Adaptable {
+interface Adaptable
+{
 
 	/**
 	 * Reads the data
@@ -34,8 +36,7 @@ interface Adaptable {
 	/**
 	 * Gets Notification object
 	 *
-	 * @return Notification
+	 * @return \BracketSpace\Notification\Core\Notification
 	 */
 	public function get_notification();
-
 }

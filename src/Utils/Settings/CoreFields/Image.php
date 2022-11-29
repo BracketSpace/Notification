@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Image field class
  *
@@ -7,28 +10,28 @@
 
 namespace BracketSpace\Notification\Utils\Settings\CoreFields;
 
-use BracketSpace\Notification\Utils\Settings\Field;
-
 /**
  * Image field class
  */
-class Image {
+class Image
+{
 
 	/**
 	 * Image Field field
 	 * Requires 'label' addon
 	 *
 	 * @since 7.0.0
-	 * @param  Field $field Field instance.
+	 * @param \BracketSpace\Notification\Utils\Settings\Field $field Field instance.
 	 * @return void
 	 */
-	public function input( $field ) {
-		$uploaded_image = esc_url( wp_get_attachment_url( (int) $field->value() ) );
+	public function input( $field )
+	{
+		$uploaded_image = esc_url(wp_get_attachment_url((int)$field->value()));
 
-		if ( $uploaded_image ) {
+		if ($uploaded_image) {
 			$image = $uploaded_image;
 			$class = 'selected';
-		} elseif ( $field->default_value() ) {
+		} elseif ($field->default_value()) {
 			$image = $field->default_value();
 			$class = 'selected';
 		} else {
@@ -37,12 +40,12 @@ class Image {
 		}
 
 		echo '
-				<div class="notification-image-field ' . esc_attr( $class ) . '">
-					<input type="text" name="' . esc_attr( $field->input_name() ) . '" id="' . esc_attr( $field->input_id() ) . '" value="' . esc_url( $image ) . '" class="image-input ' . esc_attr( $class ) . '" readonly>
-					<button class="select-image button button-secondary">' . esc_html__( 'Select image', 'notification' ) . '</button>
+				<div class="notification-image-field ' . esc_attr($class) . '">
+					<input type="text" name="' . esc_attr($field->input_name()) . '" id="' . esc_attr($field->input_id()) . '" value="' . esc_url($image) . '" class="image-input ' . esc_attr($class) . '" readonly>
+					<button class="select-image button button-secondary">' . esc_html__('Select image', 'notification') . '</button>
 					<div class="image">
 						<span class="clear dashicons dashicons-dismiss"></span>
-						<img class="preview" src="' . esc_url( $image ) . '">
+						<img class="preview" src="' . esc_url($image) . '">
 					</div>
 				</div>';
 	}
@@ -55,8 +58,8 @@ class Image {
 	 * @param  string $value saved value.
 	 * @return string        empty string or 'true'
 	 */
-	public function sanitize( $value ) {
+	public function sanitize( $value )
+	{
 		return $value;
 	}
-
 }

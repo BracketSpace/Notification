@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Webhook recipient
  *
@@ -13,7 +16,8 @@ use BracketSpace\Notification\Defaults\Field;
 /**
  * Webhook recipient
  */
-class Webhook extends Abstracts\Recipient {
+class Webhook extends Abstracts\Recipient
+{
 
 	/**
 	 * Recipient constructor
@@ -22,12 +26,15 @@ class Webhook extends Abstracts\Recipient {
 	 * @param string $slug webook type slug.
 	 * @param string $name webook type name.
 	 */
-	public function __construct( $slug, $name ) {
-		parent::__construct( [
-			'slug'          => $slug,
-			'name'          => $name,
+	public function __construct( $slug, $name )
+	{
+		parent::__construct(
+			[
+			'slug' => $slug,
+			'name' => $name,
 			'default_value' => '',
-		] );
+			]
+		);
 	}
 
 	/**
@@ -36,14 +43,14 @@ class Webhook extends Abstracts\Recipient {
 	 * @param  string $value raw value saved by the user.
 	 * @return array         array of resolved values
 	 */
-	public function parse_value( $value = '' ) {
+	public function parse_value( $value = '' )
+	{
 
-		if ( empty( $value ) ) {
+		if (empty($value)) {
 			$value = $this->get_default_value();
 		}
 
-		return [ esc_url( $value ) ];
-
+		return [ esc_url($value) ];
 	}
 
 	/**
@@ -51,17 +58,18 @@ class Webhook extends Abstracts\Recipient {
 	 *
 	 * @return object
 	 */
-	public function input() {
+	public function input()
+	{
 
-		return new Field\InputField( [
-			'label'       => __( 'URL', 'notification' ), // don't edit this!
-			'name'        => 'recipient',                 // don't edit this!
-			'css_class'   => 'recipient-value',           // don't edit this!
+		return new Field\InputField(
+			[
+			'label' => __('URL', 'notification'), // don't edit this!
+			'name' => 'recipient',                 // don't edit this!
+			'css_class' => 'recipient-value',           // don't edit this!
 			'placeholder' => site_url(),
-			'description' => __( 'You can use any valid email merge tag.', 'notification' ),
-			'resolvable'  => true,
-		] );
-
+			'description' => __('You can use any valid email merge tag.', 'notification'),
+			'resolvable' => true,
+			]
+		);
 	}
-
 }

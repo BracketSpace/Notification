@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Input field class
  *
@@ -12,7 +15,8 @@ use BracketSpace\Notification\Abstracts\Field;
 /**
  * Input field class
  */
-class InputField extends Field {
+class InputField extends Field
+{
 
 	/**
 	 * Field type
@@ -51,26 +55,26 @@ class InputField extends Field {
 	 * @since 6.3.1 Allow for whitespace characters.
 	 * @param array $params field configuration parameters.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct( $params = [] )
+	{
 
-		if ( isset( $params['type'] ) ) {
+		if (isset($params['type'])) {
 			$this->type = $params['type'];
 		}
 
-		if ( isset( $params['placeholder'] ) ) {
+		if (isset($params['placeholder'])) {
 			$this->placeholder = $params['placeholder'];
 		}
 
-		if ( isset( $params['atts'] ) ) {
+		if (isset($params['atts'])) {
 			$this->atts = $params['atts'];
 		}
 
-		if ( isset( $params['allow_linebreaks'] ) ) {
+		if (isset($params['allow_linebreaks'])) {
 			$this->allow_linebreaks = $params['allow_linebreaks'];
 		}
 
-		parent::__construct( $params );
-
+		parent::__construct($params);
 	}
 
 	/**
@@ -78,8 +82,9 @@ class InputField extends Field {
 	 *
 	 * @return string html
 	 */
-	public function field() {
-		return '<input type="' . esc_attr( $this->type ) . '" name="' . esc_attr( $this->get_name() ) . '" id="' . esc_attr( $this->get_id() ) . '" value="' . esc_attr( $this->get_value() ) . '" placeholder="' . esc_attr( $this->placeholder ) . '" class="widefat ' . esc_attr( $this->css_class() ) . '" ' . $this->maybe_disable() . ' ' . esc_attr( $this->atts ) . '>';
+	public function field()
+	{
+		return '<input type="' . esc_attr($this->type) . '" name="' . esc_attr($this->get_name()) . '" id="' . esc_attr($this->get_id()) . '" value="' . esc_attr($this->get_value()) . '" placeholder="' . esc_attr($this->placeholder) . '" class="widefat ' . esc_attr($this->css_class()) . '" ' . $this->maybe_disable() . ' ' . esc_attr($this->atts) . '>';
 	}
 
 	/**
@@ -88,13 +93,13 @@ class InputField extends Field {
 	 * @param  mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value ) {
-		$value = preg_replace( '@<(script|style)[^>]*?>.*?</\\1>@si', '', $value ); // Remove script and style tags.
-		if ( true !== $this->allow_linebreaks ) {
-			$value = preg_replace( '/[\r\n\t ]+/', ' ', $value ); // Remove line breaks.
+	public function sanitize( $value )
+	{
+		$value = preg_replace('@<(script|style)[^>]*?>.*?</\\1>@si', '', $value); // Remove script and style tags.
+		if ($this->allow_linebreaks !== true) {
+			$value = preg_replace('/[\r\n\t ]+/', ' ', $value); // Remove line breaks.
 		}
-		$value = trim( $value ); // Remove whitespace.
+		$value = trim($value); // Remove whitespace.
 		return $value;
 	}
-
 }

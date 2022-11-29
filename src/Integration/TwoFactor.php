@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Two Factor plugin integration class
  *
@@ -10,7 +13,8 @@ namespace BracketSpace\Notification\Integration;
 /**
  * Two Factor plugin integration class
  */
-class TwoFactor {
+class TwoFactor
+{
 
 	/**
 	 * Adds another authentication action
@@ -21,14 +25,14 @@ class TwoFactor {
 	 * @param  object $trigger Trigger instance.
 	 * @return void
 	 */
-	public function add_trigger_action( $trigger ) {
+	public function add_trigger_action( $trigger )
+	{
 
-		if ( 'user/login' !== $trigger->get_slug() ) {
+		if ($trigger->get_slug() !== 'user/login') {
 			return;
 		}
 
-		$trigger->add_action( 'ntfn_proxy_two_factor_user_authenticated', 10, 2 );
-
+		$trigger->add_action('ntfn_proxy_two_factor_user_authenticated', 10, 2);
 	}
 
 	/**
@@ -40,8 +44,8 @@ class TwoFactor {
 	 * @param  \WP_User $user User instance.
 	 * @return void
 	 */
-	public function user_login_with_2fa( $user ) {
-		do_action( 'ntfn_proxy_two_factor_user_authenticated', $user->user_login, $user );
+	public function user_login_with_2fa( $user )
+	{
+		do_action('ntfn_proxy_two_factor_user_authenticated', $user->user_login, $user);
 	}
-
 }

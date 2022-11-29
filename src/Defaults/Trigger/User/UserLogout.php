@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * User logout trigger
  *
@@ -12,7 +15,8 @@ use BracketSpace\Notification\Defaults\MergeTag;
 /**
  * User logout trigger class
  */
-class UserLogout extends UserTrigger {
+class UserLogout extends UserTrigger
+{
 
 	/**
 	 * User meta data
@@ -31,14 +35,14 @@ class UserLogout extends UserTrigger {
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 
-		parent::__construct( 'user/logout', __( 'User logout', 'notification' ) );
+		parent::__construct('user/logout', __('User logout', 'notification'));
 
-		$this->add_action( 'wp_logout', 10, 1 );
+		$this->add_action('wp_logout', 10, 1);
 
-		$this->set_description( __( 'Fires when user log out from WordPress', 'notification' ) );
-
+		$this->set_description(__('Fires when user log out from WordPress', 'notification'));
 	}
 
 	/**
@@ -47,17 +51,18 @@ class UserLogout extends UserTrigger {
 	 * @param int $user_id User ID.
 	 * @return void
 	 */
-	public function context( $user_id = 0 ) {
+	public function context( $user_id = 0 )
+	{
 		// Fix for WordPress <5.5 where the param is not available.
-		if ( 0 === $user_id ) {
+		if ($user_id === 0) {
 			$user_id = get_current_user_id();
 		}
 
-		$this->user_object = get_userdata( $user_id );
-		$this->user_meta   = get_user_meta( $user_id );
+		$this->user_object = get_userdata($user_id);
+		$this->user_meta = get_user_meta($user_id);
 
-		$this->user_registered_datetime = strtotime( $this->user_object->user_registered );
-		$this->user_logout_datetime     = time();
+		$this->user_registered_datetime = strtotime($this->user_object->user_registered);
+		$this->user_logout_datetime = time();
 	}
 
 	/**
@@ -65,21 +70,24 @@ class UserLogout extends UserTrigger {
 	 *
 	 * @return void
 	 */
-	public function merge_tags() {
+	public function merge_tags()
+	{
 
 		parent::merge_tags();
 
-		$this->add_merge_tag( new MergeTag\User\UserNicename() );
-		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
-		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
-		$this->add_merge_tag( new MergeTag\User\UserLastName() );
-		$this->add_merge_tag( new MergeTag\User\UserBio() );
+		$this->add_merge_tag(new MergeTag\User\UserNicename());
+		$this->add_merge_tag(new MergeTag\User\UserDisplayName());
+		$this->add_merge_tag(new MergeTag\User\UserFirstName());
+		$this->add_merge_tag(new MergeTag\User\UserLastName());
+		$this->add_merge_tag(new MergeTag\User\UserBio());
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
-			'slug' => 'user_logout_datetime',
-			'name' => __( 'User logout time', 'notification' ),
-		] ) );
-
+		$this->add_merge_tag(
+			new MergeTag\DateTime\DateTime(
+				[
+				'slug' => 'user_logout_datetime',
+				'name' => __('User logout time', 'notification'),
+				]
+			)
+		);
 	}
-
 }

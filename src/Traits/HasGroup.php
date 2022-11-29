@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Has Group Trait.
  *
@@ -10,7 +13,8 @@ namespace BracketSpace\Notification\Traits;
 /**
  * HasGroup trait
  */
-trait HasGroup {
+trait HasGroup
+{
 
 	/**
 	 * Human readable, translated group name
@@ -24,7 +28,8 @@ trait HasGroup {
 	 *
 	 * @return string|null Group name
 	 */
-	public function get_group() {
+	public function get_group()
+	{
 		return $this->group;
 	}
 
@@ -34,10 +39,10 @@ trait HasGroup {
 	 * @param  string $group Group name.
 	 * @return $this
 	 */
-	public function set_group( string $group ) {
+	public function set_group( string $group )
+	{
 		$this->group = $group;
 
 		return $this;
 	}
-
 }

@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Checkbox field class
  *
@@ -7,29 +10,29 @@
 
 namespace BracketSpace\Notification\Utils\Settings\CoreFields;
 
-use BracketSpace\Notification\Utils\Settings\Field;
-
 /**
  * Checkbox class
  */
-class Checkbox {
+class Checkbox
+{
 
 	/**
 	 * Checkbox field
 	 * Requires 'label' addon
 	 *
-	 * @param  Field $field Field instance.
+	 * @param \BracketSpace\Notification\Utils\Settings\Field $field Field instance.
 	 * @return void
 	 */
-	public function input( $field ) {
-		$checked = in_array( $field->value(), [ 'true', true ], true );
+	public function input( $field )
+	{
+		$checked = in_array($field->value(), [ 'true', true ], true);
 
 		printf(
 			'<label><input type="checkbox" id="%s" name="%s" value="true" %s> %s</label>',
-			esc_attr( $field->input_id() ),
-			esc_attr( $field->input_name() ),
-			checked( $checked, true, false ),
-			wp_kses_data( $field->addon( 'label' ) )
+			esc_attr($field->input_id()),
+			esc_attr($field->input_name()),
+			checked($checked, true, false),
+			wp_kses_data($field->addon('label'))
 		);
 	}
 
@@ -40,8 +43,8 @@ class Checkbox {
 	 * @param  string $value saved value.
 	 * @return string        empty string or 'true'
 	 */
-	public function sanitize( $value ) {
-		return ( 'true' !== $value ) ? '' : $value;
+	public function sanitize( $value )
+	{
+		return ( $value !== 'true' ) ? '' : $value;
 	}
-
 }

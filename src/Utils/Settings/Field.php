@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Settings Field class
  *
@@ -10,7 +13,8 @@ namespace BracketSpace\Notification\Utils\Settings;
 /**
  * Field class
  */
-class Field {
+class Field
+{
 
 	/**
 	 * Settings handle
@@ -101,33 +105,33 @@ class Field {
 	 * @param string $section Section slug.
 	 * @param string $group   Group slug.
 	 */
-	public function __construct( $handle, $name, $slug, $section, $group ) {
+	public function __construct( $handle, $name, $slug, $section, $group )
+	{
 
-		if ( empty( $handle ) ) {
-			throw new \Exception( 'Setting handle in Section instance cannot be empty' );
+		if (empty($handle)) {
+			throw new \Exception('Setting handle in Section instance cannot be empty');
 		}
 
 		$this->handle = $handle;
 
-		if ( empty( $name ) ) {
-			throw new \Exception( 'Field name cannot be empty' );
+		if (empty($name)) {
+			throw new \Exception('Field name cannot be empty');
 		}
 
-		$this->name( $name );
+		$this->name($name);
 
-		if ( empty( $slug ) ) {
-			throw new \Exception( 'Field slug cannot be empty' );
+		if (empty($slug)) {
+			throw new \Exception('Field slug cannot be empty');
 		}
 
-		$this->slug( sanitize_title( $slug ) );
+		$this->slug(sanitize_title($slug));
 
-		if ( empty( $section ) || empty( $group ) ) {
-			throw new \Exception( 'Field must belong to Section and Group' );
+		if (empty($section) || empty($group)) {
+			throw new \Exception('Field must belong to Section and Group');
 		}
 
-		$this->section( $section );
-		$this->group( $group );
-
+		$this->section($section);
+		$this->group($group);
 	}
 
 	/**
@@ -136,14 +140,14 @@ class Field {
 	 * @param  string $name Name. Do not pass anything to get current value.
 	 * @return string name
 	 */
-	public function name( $name = null ) {
+	public function name( $name = null )
+	{
 
-		if ( null !== $name ) {
+		if ($name !== null) {
 			$this->name = $name;
 		}
 
-		return apply_filters( $this->handle . '/settings/field/name', $this->name, $this );
-
+		return apply_filters($this->handle . '/settings/field/name', $this->name, $this);
 	}
 
 	/**
@@ -152,14 +156,14 @@ class Field {
 	 * @param  string $slug Slug. Do not pass anything to get current value.
 	 * @return string slug
 	 */
-	public function slug( $slug = null ) {
+	public function slug( $slug = null )
+	{
 
-		if ( null !== $slug ) {
+		if ($slug !== null) {
 			$this->slug = $slug;
 		}
 
-		return apply_filters( $this->handle . '/settings/field/slug', $this->slug, $this );
-
+		return apply_filters($this->handle . '/settings/field/slug', $this->slug, $this);
 	}
 
 	/**
@@ -168,14 +172,14 @@ class Field {
 	 * @param  string $section Section. Do not pass anything to get current value.
 	 * @return string section
 	 */
-	public function section( $section = null ) {
+	public function section( $section = null )
+	{
 
-		if ( null !== $section ) {
+		if ($section !== null) {
 			$this->section = $section;
 		}
 
-		return apply_filters( $this->handle . '/settings/field/section', $this->section, $this );
-
+		return apply_filters($this->handle . '/settings/field/section', $this->section, $this);
 	}
 
 	/**
@@ -184,14 +188,14 @@ class Field {
 	 * @param  string $group Group. Do not pass anything to get current value.
 	 * @return string group
 	 */
-	public function group( $group = null ) {
+	public function group( $group = null )
+	{
 
-		if ( null !== $group ) {
+		if ($group !== null) {
 			$this->group = $group;
 		}
 
-		return apply_filters( $this->handle . '/settings/field/group', $this->group, $this );
-
+		return apply_filters($this->handle . '/settings/field/group', $this->group, $this);
 	}
 
 	/**
@@ -200,14 +204,14 @@ class Field {
 	 * @param  mixed $description string to set description, null to get it.
 	 * @return string description
 	 */
-	public function description( $description = null ) {
+	public function description( $description = null )
+	{
 
-		if ( null !== $description ) {
+		if ($description !== null) {
 			$this->description = $description;
 		}
 
-		return apply_filters( $this->handle . '/settings/field/description', $this->description, $this );
-
+		return apply_filters($this->handle . '/settings/field/description', $this->description, $this);
 	}
 
 	/**
@@ -216,14 +220,14 @@ class Field {
 	 * @param mixed $value field value or null to get current.
 	 * @return string value
 	 */
-	public function value( $value = null ) {
+	public function value( $value = null )
+	{
 
-		if ( null !== $value ) {
+		if ($value !== null) {
 			$this->value = $value;
 		}
 
-		return apply_filters( $this->handle . '/settings/field/value', $this->value, $this );
-
+		return apply_filters($this->handle . '/settings/field/value', $this->value, $this);
 	}
 
 	/**
@@ -232,14 +236,14 @@ class Field {
 	 * @param mixed $default_value field default value or null to get current.
 	 * @return string              default value
 	 */
-	public function default_value( $default_value = null ) {
+	public function default_value( $default_value = null )
+	{
 
-		if ( null !== $default_value ) {
+		if ($default_value !== null) {
 			$this->default_value = $default_value;
 		}
 
-		return apply_filters( $this->handle . '/settings/field/default_value', $this->default_value, $this );
-
+		return apply_filters($this->handle . '/settings/field/default_value', $this->default_value, $this);
 	}
 
 	/**
@@ -248,14 +252,14 @@ class Field {
 	 * @param mixed $addons field additional settings or null to get them.
 	 * @return array addons
 	 */
-	public function addons( $addons = null ) {
+	public function addons( $addons = null )
+	{
 
-		if ( null !== $addons ) {
+		if ($addons !== null) {
 			$this->addons = $addons;
 		}
 
-		return apply_filters( $this->handle . '/settings/field/addons', $this->addons, $this );
-
+		return apply_filters($this->handle . '/settings/field/addons', $this->addons, $this);
 	}
 
 	/**
@@ -264,16 +268,16 @@ class Field {
 	 * @param mixed $addon field additional settings or null to get them.
 	 * @return mixed addon value or null
 	 */
-	public function addon( $addon = null ) {
+	public function addon( $addon = null )
+	{
 
 		$addons = $this->addons();
 
-		if ( isset( $addons[ $addon ] ) ) {
-			return apply_filters( $this->handle . '/settings/field/addon', $addons[ $addon ], $this );
+		if (isset($addons[$addon])) {
+			return apply_filters($this->handle . '/settings/field/addon', $addons[$addon], $this);
 		}
 
 		return null;
-
 	}
 
 	/**
@@ -281,12 +285,12 @@ class Field {
 	 *
 	 * @return string name
 	 */
-	public function input_name() {
+	public function input_name()
+	{
 
 		$name = $this->handle . '_settings[' . $this->section() . '][' . $this->group() . '][' . $this->slug() . ']';
 
-		return apply_filters( $this->handle . '/settings/field/input/name', $name, $this );
-
+		return apply_filters($this->handle . '/settings/field/input/name', $name, $this);
 	}
 
 	/**
@@ -294,12 +298,12 @@ class Field {
 	 *
 	 * @return string id
 	 */
-	public function input_id() {
+	public function input_id()
+	{
 
 		$id = $this->handle . '-setting-' . $this->section() . '-' . $this->group() . '-' . $this->slug();
 
-		return apply_filters( $this->handle . '/settings/field/input/id', $id, $this );
-
+		return apply_filters($this->handle . '/settings/field/input/id', $id, $this);
 	}
 
 	/**
@@ -307,18 +311,18 @@ class Field {
 	 *
 	 * @throws \Exception Exception.
 	 * @param mixed $renderer array or string.
-	 * @return Field
+	 * @return \BracketSpace\Notification\Utils\Settings\Field
 	 */
-	public function set_renderer( $renderer ) {
+	public function set_renderer( $renderer )
+	{
 
-		if ( ! is_callable( $renderer ) ) {
-			throw new \Exception( 'Field renderer is not callable' );
+		if (! is_callable($renderer)) {
+			throw new \Exception('Field renderer is not callable');
 		}
 
 		$this->renderer = $renderer;
 
 		return $this;
-
 	}
 
 	/**
@@ -326,18 +330,18 @@ class Field {
 	 *
 	 * @throws \Exception Exception.
 	 * @param mixed $sanitizer array or string.
-	 * @return Field
+	 * @return \BracketSpace\Notification\Utils\Settings\Field
 	 */
-	public function set_sanitizer( $sanitizer ) {
+	public function set_sanitizer( $sanitizer )
+	{
 
-		if ( ! is_callable( $sanitizer ) ) {
-			throw new \Exception( 'Field sanitizer is not callable' );
+		if (! is_callable($sanitizer)) {
+			throw new \Exception('Field sanitizer is not callable');
 		}
 
 		$this->sanitizer = $sanitizer;
 
 		return $this;
-
 	}
 
 	/**
@@ -345,10 +349,10 @@ class Field {
 	 *
 	 * @return void
 	 */
-	public function render() {
+	public function render()
+	{
 
-		call_user_func( $this->renderer, $this );
-
+		call_user_func($this->renderer, $this);
 	}
 
 	/**
@@ -357,14 +361,13 @@ class Field {
 	 * @param  mixed $value    raw value for sanitization.
 	 * @return string sanitized value
 	 */
-	public function sanitize( $value ) {
+	public function sanitize( $value )
+	{
 
-		if ( $this->sanitizer ) {
-			$this->value = call_user_func( $this->sanitizer, $value, $this );
+		if ($this->sanitizer) {
+			$this->value = call_user_func($this->sanitizer, $value, $this);
 		}
 
 		return $this->value;
-
 	}
-
 }

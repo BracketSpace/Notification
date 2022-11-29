@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Email merge tag class
  *
@@ -12,7 +15,8 @@ use BracketSpace\Notification\Abstracts\MergeTag;
 /**
  * Email merge tag class
  */
-class EmailTag extends MergeTag {
+class EmailTag extends MergeTag
+{
 
 	/**
 	 * MergeTag value type
@@ -25,10 +29,11 @@ class EmailTag extends MergeTag {
 	 * Check the merge tag value type
 	 *
 	 * @param  mixed $value value.
-	 * @return boolean
+	 * @return bool
 	 */
-	public function validate( $value ) {
-		return filter_var( $value, FILTER_VALIDATE_EMAIL ) !== false;
+	public function validate( $value )
+	{
+		return filter_var($value, FILTER_VALIDATE_EMAIL) !== false;
 	}
 
 	/**
@@ -37,8 +42,8 @@ class EmailTag extends MergeTag {
 	 * @param  mixed $value value.
 	 * @return mixed
 	 */
-	public function sanitize( $value ) {
-		return sanitize_email( $value );
+	public function sanitize( $value )
+	{
+		return sanitize_email($value);
 	}
-
 }

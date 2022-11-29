@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Receivable interface class
  *
@@ -7,12 +10,11 @@
 
 namespace BracketSpace\Notification\Interfaces;
 
-use BracketSpace\Notification\Interfaces\Nameable;
-
 /**
  * Receivable interface
  */
-interface Receivable extends Nameable {
+interface Receivable extends Nameable
+{
 
 	/**
 	 * Parses saved value something understood by notification
@@ -37,5 +39,4 @@ interface Receivable extends Nameable {
 	 * @return string
 	 */
 	public function get_default_value();
-
 }

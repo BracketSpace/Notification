@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Fillable interface class
  *
@@ -7,14 +10,13 @@
 
 namespace BracketSpace\Notification\Interfaces;
 
-use BracketSpace\Notification\Interfaces\Nameable;
-
 /**
  * Fillable interface
  *
  * @property string $section Field section name.
  */
-interface Fillable {
+interface Fillable
+{
 
 	/**
 	 * Gets field value
@@ -87,5 +89,4 @@ interface Fillable {
 	 * @return mixed        sanitized value
 	 */
 	public function sanitize( $value );
-
 }

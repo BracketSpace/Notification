@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Carrier Store
  *
@@ -7,16 +10,16 @@
 
 namespace BracketSpace\Notification\Store;
 
-use BracketSpace\Notification\Interfaces\Sendable;
 use BracketSpace\Notification\Interfaces\Storable;
 use BracketSpace\Notification\Traits\Storage;
 
 /**
  * Carrier Store
  *
- * @method static array<string,Sendable> all() Gets all registered Carriers
- * @method static Sendable|null get(string $index) Gets registered Carrier
+ * @method static array<string, \BracketSpace\Notification\Interfaces\Sendable> all() Gets all registered Carriers
+ * @method static \BracketSpace\Notification\Interfaces\Sendable|null get(string $index) Gets registered Carrier
  */
-class Carrier implements Storable {
+class Carrier implements Storable
+{
 	use Storage;
 }

@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * JSON Adapter class
  *
@@ -12,7 +15,8 @@ use BracketSpace\Notification\Abstracts;
 /**
  * JSON Adapter class
  */
-class JSON extends Abstracts\Adapter {
+class JSON extends Abstracts\Adapter
+{
 
 	/**
 	 * {@inheritdoc}
@@ -21,19 +25,19 @@ class JSON extends Abstracts\Adapter {
 	 * @param string $input JSON string.
 	 * @return $this
 	 */
-	public function read( $input = null ) {
+	public function read( $input = null )
+	{
 
-		$data = json_decode( $input, true );
+		$data = json_decode($input, true);
 
-		if ( json_last_error() !== JSON_ERROR_NONE ) {
-			throw new \Exception( 'Read method of JSON adapter expects valid JSON string' );
+		if (json_last_error() !== JSON_ERROR_NONE) {
+			throw new \Exception('Read method of JSON adapter expects valid JSON string');
 		}
 
-		$this->setup_notification( notification_convert_data( $data ) );
-		$this->set_source( 'JSON' );
+		$this->setup_notification(notification_convert_data($data));
+		$this->set_source('JSON');
 
 		return $this;
-
 	}
 
 	/**
@@ -43,15 +47,14 @@ class JSON extends Abstracts\Adapter {
 	 * @param bool     $only_enabled_carriers If only enabled Carriers should be saved.
 	 * @return mixed
 	 */
-	public function save( $json_options = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE, $only_enabled_carriers = false ) {
+	public function save( $json_options = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE, $only_enabled_carriers = false )
+	{
 
-		if ( null === $json_options ) {
+		if ($json_options === null) {
 			$json_options = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE;
 		}
 
-		$data = $this->get_notification()->to_array( $only_enabled_carriers );
-		return wp_json_encode( $data, $json_options );
-
+		$data = $this->get_notification()->to_array($only_enabled_carriers);
+		return wp_json_encode($data, $json_options);
 	}
-
 }

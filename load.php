@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Load file
  *
@@ -13,6 +16,10 @@ require_once __DIR__ . '/notification.php';
 /**
  * Initialize early.
  */
-add_action( 'init', function() {
-	Notification::init( __FILE__ )->init();
-}, 4 );
+add_action(
+	'init',
+	static function () {
+		Notification::init(__FILE__)->init();
+	},
+	4
+);
