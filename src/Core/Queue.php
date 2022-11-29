@@ -24,7 +24,10 @@ class Queue
 	/**
 	 * Items
 	 *
-	 * @var array<int, array{notification: \BracketSpace\Notification\Core\Notification, trigger: \BracketSpace\Notification\Interfaces\Triggerable}>
+	 * @var array<int, array{
+	 * notification: \BracketSpace\Notification\Core\Notification,
+	 * trigger: \BracketSpace\Notification\Interfaces\Triggerable}
+	 * >
 	 */
 	protected static $items = [];
 
@@ -102,7 +105,10 @@ class Queue
 	/**
 	 * Gets items added to the queue
 	 *
-	 * @return array<int, array{notification: \BracketSpace\Notification\Core\Notification, trigger: \BracketSpace\Notification\Interfaces\Triggerable}>
+	 * @return array<int,array{
+	 * notification: \BracketSpace\Notification\Core\Notification,
+	 * trigger: \BracketSpace\Notification\Interfaces\Triggerable}
+	 * >
 	 * @since 8.0.0
 	 */
 	public static function get(): array

@@ -311,7 +311,8 @@ abstract class Field implements Interfaces\Fillable
 	public function restApiError()
 	{
 		return esc_html__(
-			'The REST API is required to display this field, but it has been blocked. Please unlock the /notification REST API endpoint.',
+			'The REST API is required to display this field, but it has been blocked.
+			Please unlock the /notification REST API endpoint.',
 			'notification'
 		);
 	}

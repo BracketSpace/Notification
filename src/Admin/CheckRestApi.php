@@ -61,7 +61,8 @@ class CheckRestApi
 
 		printf(
 			'<div class="notice notice-error"><p>%1$s</p></div>',
-			'The Notification plugin requires enabled REST API endpoint: notification/v1/. Please ensure your WP REST API works correctly.'
+			'The Notification plugin requires enabled REST API endpoint:notification/v1/.
+			Please ensure your WP REST API works correctly.'
 		);
 	}
 }

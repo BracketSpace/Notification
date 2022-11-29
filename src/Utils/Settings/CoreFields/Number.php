@@ -26,6 +26,7 @@ class Number
 	public function input($field)
 	{
 		printf(
+		//phpcs:ignore Generic.Files.LineLength.TooLong
 			'<label><input type="number" id="%s" name="%s" value="%s" min="%s" max="%s" step="%s" class="widefat"></label>',
 			esc_attr($field->inputId()),
 			esc_attr($field->inputName()),

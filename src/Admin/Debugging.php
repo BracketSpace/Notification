@@ -112,15 +112,19 @@ class Debugging
 					'addons' => [
 						'message' => '
 						<a href="' . admin_url(
-							'admin-post.php?action=notification_clear_logs&log_type=notification&nonce=' . wp_create_nonce(
+							'admin-post.php?action=notification_clear_logs&log_type=notification&nonce=' .
+							wp_create_nonce(
 								'notification_clear_log_notification'
 							)
-						) . '" class="button button-secondary">' . esc_html__('Clear Notification logs') . '</a>
+						) . '" class="button button-secondary">' . esc_html__('Clear Notification logs') .
+									'</a>
 						<a href="' . admin_url(
-							'admin-post.php?action=notification_clear_logs&log_type=error&nonce=' . wp_create_nonce(
-								'notification_clear_log_error'
-							)
-						) . '" class="button button-secondary">' . esc_html__('Clear Error logs') . '</a>
+										'admin-post.php?action=notification_clear_logs&log_type=error&nonce=' .
+										wp_create_nonce(
+											'notification_clear_log_error'
+										)
+									) . '" class="button button-secondary">' . esc_html__('Clear Error logs') .
+									 '</a>
 					',
 					],
 					'render' => [new CoreFields\Message(), 'input'],

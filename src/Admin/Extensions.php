@@ -130,7 +130,9 @@ class Extensions
 
 		/**
 		 * Fix for changed Custom Fields slug:
-		 * notification-customfields/notification-customfields.php -> notification-custom-fields/notification-customfields.php
+		 * notification-customfields/notification-customfields.php
+		 *  ->
+		 * notification-custom-fields/notification-customfields.php
 		 */
 		if (is_plugin_active('notification-custom-fields/notification-customfields.php')) {
 			$extensions['notification-customfields/notification-customfields.php']['slug'] =
@@ -238,7 +240,11 @@ class Extensions
 			[
 				'name' => 'All-In',
 				'description' => __(
-					'Every available Notification extension and all the <strong>future extensions</strong> at a static price! You get the whole package and the price will never change even if a new add-on will be released.',
+					'Every available Notification extension and all the 
+					<strong>future extensions</strong>
+					at a static price! 
+					You get the whole package and the price will never 
+					change even if a new add-on will be released.',
 					'notification'
 				),
 				'price' => 249,
@@ -246,7 +252,9 @@ class Extensions
 			[
 				'name' => 'Standard',
 				'description' => esc_html__(
-					'All extensions from Essential bundle plus much needed Carriers: Discord, Mailgun, Slack and Twilio. Use multiple notification channels!',
+					'All extensions from Essential bundle plus much needed Carriers:
+					Discord, Mailgun, Slack and Twilio.
+					Use multiple notification channels!',
 					'notification'
 				),
 				'price' => 199,

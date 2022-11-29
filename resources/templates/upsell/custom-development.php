@@ -29,6 +29,7 @@ declare(strict_types=1);
 		</p>
 	<?php
 	$description = sprintf(
+		//phpcs:ignore Generic.Files.LineLength.TooLong
 		'<a href="https://bracketspace.com/custom-development/?utm_source=wp&utm_medium=settings&utm_id=upsell" class="button button-secondary" target="_blank">%s</a>',
 		esc_html__(
 			'Find out more',

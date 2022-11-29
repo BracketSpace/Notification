@@ -190,7 +190,10 @@ class SectionRepeater extends Field
 				 '</div>
 				  </template>';
 
-		$html .= '<a href="#" class="button button-secondary add-new-repeater-field add-new-sections-field" @click="addSection">';
+		$html .= '<a 
+		href="#" 
+		class="button button-secondary add-new-repeater-field add-new-sections-field"
+		@click="addSection">';
 		$html .= esc_html($this->addButtonLabel);
 		$html .= '
 			<div class="section-modal"

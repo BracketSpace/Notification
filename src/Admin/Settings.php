@@ -147,7 +147,11 @@ class Settings
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 					'description' => __(
-						'By enabling this setting, no Trigger will be executed immediately. Instead the execution will be saved into WP Cron system and executed in a few minutes. This can be helpful when the execution is spread over a few requests, ie. using Gutenberg editor.',
+						'By enabling this setting, no Trigger will be executed immediately.
+						Instead the execution will be saved into
+						WP Cron system and executed in a few minutes.
+						This can be helpful when the execution is spread over a few requests, ie.
+						using Gutenberg editor.',
 						'notification'
 					),
 				]
@@ -269,7 +273,8 @@ class Settings
 			)
 			->description(
 				__(
-					'For these post types you will be able to define published, updated, pending moderation etc. notifications',
+					'For these post types you will be able to define published,
+					updated, pending moderation etc. notifications',
 					'notification'
 				)
 			);
@@ -1039,7 +1044,8 @@ class Settings
 						),
 					],
 					'description' => __(
-						'Email is sent when background updates finishes successfully. "Failed update" email will always be sent to admin.',
+						'Email is sent when background updates finishes successfully.
+						"Failed update" email will always be sent to admin.',
 						'notification'
 					),
 					'render' => [new CoreFields\Checkbox(), 'input'],

@@ -21,6 +21,7 @@ class Binder
 	 *
 	 * @action notification/trigger/registered 100
 	 *
+	 * //phpcs:ignore Generic.Files.LineLength.TooLong
 	 * @param array<\BracketSpace\Notification\Core\Triggerable>|\BracketSpace\Notification\Core\Triggerable $triggers Array of Triggers or single Trigger.
 	 * @return void
 	 * @since 8.0.0

@@ -166,7 +166,8 @@ class Group
 	 * Set or get description
 	 *
 	 * @param mixed $description string to set description, null to get it.
-	 * @return string|\BracketSpace\Notification\Utils\Settings\Group String when using getter and Group when using setter
+	 * @return string|\BracketSpace\Notification\Utils\Settings\Group
+	 * String when using getter and Group when using setter
 	 */
 	public function description($description = null)
 	{

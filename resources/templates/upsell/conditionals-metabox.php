@@ -9,6 +9,7 @@ declare(strict_types=1);
  */
 
 $extensionLink = sprintf(
+	//phpcs:ignore Generic.Files.LineLength.TooLong
 	'<a href="https://bracketspace.com/downloads/notification-conditionals/?utm_source=wp&utm_medium=notification-edit&utm_id=upsell" target="_blank">%s</a>',
 	__(
 		'Conditionals extension',

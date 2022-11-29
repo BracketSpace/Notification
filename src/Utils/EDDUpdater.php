@@ -133,7 +133,11 @@ class EDDUpdater
 			$_transient_data = new stdClass();
 		}
 
-		if (!empty($_transient_data->response) && !empty($_transient_data->response[$this->name]) && $this->wpOverride === false) {
+		if (
+			!empty($_transient_data->response) &&
+			!empty($_transient_data->response[$this->name]) &&
+			$this->wpOverride === false
+		) {
 			return $_transient_data;
 		}
 
@@ -223,7 +227,8 @@ class EDDUpdater
 			$updateCache->response[$this->name] = $this->getRepoApiData();
 		}
 
-		// Return early if this plugin isn't in the transient->response or if the site is running the current or newer version of the plugin.
+		// Return early if this plugin isn't in the transient->response or
+		//if the site is running the current or newer version of the plugin.
 		if (
 			empty($updateCache->response[$this->name]) || version_compare(
 				$this->version,
@@ -393,7 +398,9 @@ class EDDUpdater
 		// Get the transient where we store the api request for this plugin for 24 hours
 		$eddApiRequestTransient = $this->getCachedVersionInfo();
 
-		//If we have no transient-saved value, run the API, set a fresh transient with the API value, and return that value too right now.
+		//If we have no transient-saved value, run the API,
+		//set a fresh transient with the API value,
+		//and return that value too right now.
 		if (empty($eddApiRequestTransient)) {
 			$apiResponse = $this->apiRequest(
 				'plugin_information',

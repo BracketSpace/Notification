@@ -23,6 +23,7 @@ declare(strict_types=1);
 	?>
 		</strong>
 	<a
+		<?php //phpcs:ignore Generic.Files.LineLength.TooLong ?>
 		href="https://bracketspace.com/downloads/notification-review-queue/?utm_source=wp&utm_medium=notification-edit&utm_id=upsell"
 		target="_blank"
 		class="label-pro"

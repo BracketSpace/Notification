@@ -96,7 +96,12 @@ class PostTable
 				echo '<div class="onoffswitch" data-postid="' . esc_attr(
 					(string)$postId
 				) . '" data-nonce="' . esc_attr(wp_create_nonce('change_notification_status_' . $postId)) . '">';
-				echo '<input type="checkbox" name="notification_onoff_switch" class="onoffswitch-checkbox" value="1" id="onoffswitch-' . esc_attr(
+				echo '<input
+					type="checkbox"
+					name="notification_onoff_switch"
+					class="onoffswitch-checkbox"
+					value="1"
+					id="onoffswitch-' . esc_attr(
 					(string)$postId
 				) . '" ' . checked(
 					$notification->isEnabled(),
