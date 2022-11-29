@@ -42,14 +42,14 @@ class RepeaterField extends Field
 	/**
 	 * Data attributes
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	protected $dataAttr = [];
 
 	/**
 	 * Row headers
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	protected $headers = [];
 

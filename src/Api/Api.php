@@ -26,7 +26,7 @@ class Api
 	/**
 	 * Route configuration
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $routes = [];
 

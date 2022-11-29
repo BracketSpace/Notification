@@ -40,7 +40,7 @@ class Section
 	/**
 	 * Section groups
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	private $groups = [];
 

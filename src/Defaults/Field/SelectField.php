@@ -22,7 +22,7 @@ class SelectField extends Field
 	 * Field options
 	 * value => label array
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	protected $options = [];
 

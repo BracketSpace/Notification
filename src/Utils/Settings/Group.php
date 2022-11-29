@@ -40,7 +40,7 @@ class Group
 	/**
 	 * Group fields
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	private $fields = [];
 

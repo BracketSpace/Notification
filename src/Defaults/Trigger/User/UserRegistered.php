@@ -21,7 +21,7 @@ class UserRegistered extends UserTrigger
 	/**
 	 * User meta data
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $userMeta;
 

@@ -34,14 +34,14 @@ class Extensions
 	/**
 	 * Extensions list
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	private $extensions = [];
 
 	/**
 	 * Premium Extensions list
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $premiumExtensions = [];
 

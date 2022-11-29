@@ -35,6 +35,7 @@
 		<exclude name="SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostIncrementOperator"/>
 		<exclude name="SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter"/>
 		<exclude name="SlevomatCodingStandard.Variables.UnusedVariable.UnusedVariable"/>
+		<exclude name="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation.ImplicitArrayCreationUsed"/>
 		<exclude name="VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable"/>
 
 		<exclude name="Generic.WhiteSpace.DisallowTabIndent.TabsUsed"/>

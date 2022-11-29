@@ -51,7 +51,7 @@ class Runtime
 	/**
 	 * Components
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	protected $components = [];
 

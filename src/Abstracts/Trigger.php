@@ -43,7 +43,7 @@ abstract class Trigger implements Triggerable
 	/**
 	 * Merge tags
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	protected $mergeTags = [];
 

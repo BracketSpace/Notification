@@ -21,7 +21,7 @@ class Settings
 	/**
 	 * Setting sections (ones in the Settings menu)
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	private $sections = [];
 

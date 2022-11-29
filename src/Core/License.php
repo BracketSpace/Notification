@@ -25,7 +25,7 @@ class License
 	/**
 	 * Extension data
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	protected $extension;
 

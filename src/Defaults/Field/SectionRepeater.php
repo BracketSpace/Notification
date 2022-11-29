@@ -42,14 +42,14 @@ class SectionRepeater extends Field
 	/**
 	 * Data attributes
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	protected $dataAttr = [];
 
 	/**
 	 * Row headers
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	protected $headers = [];
 
@@ -77,14 +77,14 @@ class SectionRepeater extends Field
 	/**
 	 * Sections
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $sections = [];
 
 	/**
 	 * Section labels
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	protected $sectionLabels = [];
 

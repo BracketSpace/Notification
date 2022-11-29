@@ -66,7 +66,7 @@ class Notification
 	/**
 	 * Carriers
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	protected $carriers = [];
 
@@ -80,7 +80,7 @@ class Notification
 	/**
 	 * Extras
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	protected $extras = [];
 

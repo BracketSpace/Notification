@@ -22,7 +22,7 @@ abstract class PluginTrigger extends Abstracts\Trigger
 	/**
 	 * Plugin details array
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $plugin;
 

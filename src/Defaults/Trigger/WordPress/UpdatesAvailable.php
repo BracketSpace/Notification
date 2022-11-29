@@ -22,7 +22,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 	/**
 	 * Update types
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $updateTypes;
 

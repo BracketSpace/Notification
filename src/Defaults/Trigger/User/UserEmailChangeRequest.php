@@ -20,7 +20,7 @@ class UserEmailChangeRequest extends UserTrigger
 	/**
 	 * User meta
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $userMeta;
 

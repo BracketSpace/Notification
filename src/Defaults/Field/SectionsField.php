@@ -19,7 +19,7 @@ class SectionsField extends InputField
 	/**
 	 * Possible values
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	protected $sections = [];
 
