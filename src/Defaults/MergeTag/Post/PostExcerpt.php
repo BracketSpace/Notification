@@ -24,10 +24,10 @@ class PostExcerpt extends StringTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		$this->setTriggerProp($params['post_type'] ?? 'post');
@@ -37,14 +37,26 @@ class PostExcerpt extends StringTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf('%s_excerpt', $this->getTriggerProp()),
+				'slug' => sprintf(
+					'%s_excerpt',
+					$this->getTriggerProp()
+				),
 				// translators: singular post name.
-				'name' => sprintf(__('%s excerpt', 'notification'), $postTypeName),
-				'description' => __('Welcome to WordPress...', 'notification'),
+				'name' => sprintf(
+					__(
+						'%s excerpt',
+						'notification'
+					),
+					$postTypeName
+				),
+				'description' => __(
+					'Welcome to WordPress...',
+					'notification'
+				),
 				'example' => true,
 				'group' => $postTypeName,
-				'resolver' => function ( $trigger ) {
-					return get_the_excerpt($trigger->{ $this->getTriggerProp() });
+				'resolver' => function ($trigger) {
+					return get_the_excerpt($trigger->{$this->getTriggerProp()});
 				},
 			]
 		);

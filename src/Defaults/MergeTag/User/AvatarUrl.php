@@ -23,10 +23,10 @@ class AvatarUrl extends UrlTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
+	 * @since 5.0.0
 	 */
-	public function __construct( array $params = [] )
+	public function __construct(array $params = [])
 	{
 
 		$this->setTriggerProp($params['property_name'] ?? 'user_object');
@@ -35,13 +35,22 @@ class AvatarUrl extends UrlTag
 			$params,
 			[
 				'slug' => 'user_avatar_url',
-				'name' => __('User avatar url', 'notification'),
-				'description' => __('http://0.gravatar.com/avatar/320eab812ab24ef3dbaa2e6dc6e024e0?s=96&d=mm&r=g', 'notification'),
+				'name' => __(
+					'User avatar url',
+					'notification'
+				),
+				'description' => __(
+					'http://0.gravatar.com/avatar/320eab812ab24ef3dbaa2e6dc6e024e0?s=96&d=mm&r=g',
+					'notification'
+				),
 				'example' => true,
-				'group' => __('User', 'notification'),
-				'resolver' => function ( $trigger ) {
-					if (isset($trigger->{ $this->getTriggerProp() }->userEmail)) {
-						return get_avatar_url($trigger->{ $this->getTriggerProp() }->userEmail);
+				'group' => __(
+					'User',
+					'notification'
+				),
+				'resolver' => function ($trigger) {
+					if (isset($trigger->{$this->getTriggerProp()}->userEmail)) {
+						return get_avatar_url($trigger->{$this->getTriggerProp()}->userEmail);
 					}
 
 					return '';

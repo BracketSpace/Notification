@@ -28,11 +28,11 @@ trait Storage
 	/**
 	 * Adds an item to the Store
 	 *
-	 * @since  8.0.0
-	 * @param  mixed $item Item to add.
+	 * @param mixed $item Item to add.
 	 * @return void
+	 * @since  8.0.0
 	 */
-	public static function add( $item )
+	public static function add($item)
 	{
 		static::$items[] = $item;
 	}
@@ -40,12 +40,12 @@ trait Storage
 	/**
 	 * Inserts an item at a specifc index.
 	 *
-	 * @since  8.0.0
-	 * @param  int|string $index Item index.
-	 * @param  mixed      $item  Item to add.
+	 * @param int|string $index Item index.
+	 * @param mixed $item Item to add.
 	 * @return void
+	 * @since  8.0.0
 	 */
-	public static function insert( $index, $item )
+	public static function insert($index, $item)
 	{
 		if (static::has($index)) {
 			ErrorHandler::error(
@@ -65,8 +65,8 @@ trait Storage
 	/**
 	 * Gets all items
 	 *
-	 * @since  8.0.0
 	 * @return array<mixed>
+	 * @since  8.0.0
 	 */
 	public static function all(): array
 	{
@@ -76,8 +76,8 @@ trait Storage
 	/**
 	 * Removes all items from the store
 	 *
-	 * @since  8.0.0
 	 * @return void
+	 * @since  8.0.0
 	 */
 	public static function clear()
 	{
@@ -87,13 +87,13 @@ trait Storage
 	/**
 	 * Get item by index
 	 *
-	 * @since  8.0.0
-	 * @param  mixed $index Intex of an item.
+	 * @param mixed $index Intex of an item.
 	 * @return mixed
+	 * @since  8.0.0
 	 */
-	public static function get( $index )
+	public static function get($index)
 	{
-		if (! static::has($index)) {
+		if (!static::has($index)) {
 			ErrorHandler::error(
 				sprintf(
 					'Item %s in %s Store doesn\'t exists.',
@@ -111,12 +111,15 @@ trait Storage
 	/**
 	 * Checks if the Storage has item
 	 *
-	 * @since  8.0.0
-	 * @param  mixed $index Intex of an item.
+	 * @param mixed $index Intex of an item.
 	 * @return bool
+	 * @since  8.0.0
 	 */
-	public static function has( $index ): bool
+	public static function has($index): bool
 	{
-		return array_key_exists($index, static::$items);
+		return array_key_exists(
+			$index,
+			static::$items
+		);
 	}
 }

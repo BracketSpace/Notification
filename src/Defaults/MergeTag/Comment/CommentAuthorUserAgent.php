@@ -29,13 +29,13 @@ class CommentAuthorUserAgent extends StringTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
-		if (isset($params['comment_type']) && ! empty($params['comment_type'])) {
+		if (isset($params['comment_type']) && !empty($params['comment_type'])) {
 			$this->commentType = $params['comment_type'];
 		}
 
@@ -48,13 +48,25 @@ class CommentAuthorUserAgent extends StringTag
 			[
 				'slug' => 'comment_author_user_agent',
 				// Translators: Comment type name.
-				'name' => sprintf(__('%s author user browser agent', 'notification'), $commentTypeName),
+				'name' => sprintf(
+					__(
+						'%s author user browser agent',
+						'notification'
+					),
+					$commentTypeName
+				),
 				'description' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
 				'example' => true,
 				// Translators: comment type author.
-				'group' => sprintf(__('%s author', 'notification'), $commentTypeName),
-				'resolver' => function ( $trigger ) {
-					return $trigger->{ $this->getTriggerProp() }->commentAgent;
+				'group' => sprintf(
+					__(
+						'%s author',
+						'notification'
+					),
+					$commentTypeName
+				),
+				'resolver' => function ($trigger) {
+					return $trigger->{$this->getTriggerProp()}->commentAgent;
 				},
 			]
 		);

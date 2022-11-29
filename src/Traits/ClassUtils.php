@@ -23,7 +23,7 @@ trait ClassUtils
 	 */
 	public function getShortClassName()
 	{
-		return ( new \ReflectionClass($this) )->getShortName();
+		return (new \ReflectionClass($this))->getShortName();
 	}
 
 	/**
@@ -33,7 +33,11 @@ trait ClassUtils
 	 */
 	public function getNiceClassName()
 	{
-		return (string)preg_replace('/(.)(?=[A-Z])/u', '$1 ', $this->getShortClassName());
+		return (string)preg_replace(
+			'/(.)(?=[A-Z])/u',
+			'$1 ',
+			$this->getShortClassName()
+		);
 	}
 
 	/**
@@ -43,6 +47,12 @@ trait ClassUtils
 	 */
 	public function getClassSlug()
 	{
-		return strtolower((string)preg_replace('/(.)(?=[A-Z])/u', '$1-', $this->getShortClassName()));
+		return strtolower(
+			(string)preg_replace(
+				'/(.)(?=[A-Z])/u',
+				'$1-',
+				$this->getShortClassName()
+			)
+		);
 	}
 }

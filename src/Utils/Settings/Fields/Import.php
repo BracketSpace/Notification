@@ -24,7 +24,7 @@ class Import
 	 * @param \BracketSpace\Notification\Utils\Settings\Field $field Field instance.
 	 * @return void
 	 */
-	public function input( $field )
+	public function input($field)
 	{
 		Templates::render('import/notifications');
 	}

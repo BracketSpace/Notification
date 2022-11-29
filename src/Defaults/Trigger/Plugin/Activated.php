@@ -31,25 +31,47 @@ class Activated extends PluginTrigger
 	public function __construct()
 	{
 
-		parent::__construct('plugin/activated', __('Plugin activated', 'notification'));
+		parent::__construct(
+			'plugin/activated',
+			__(
+				'Plugin activated',
+				'notification'
+			)
+		);
 
-		$this->addAction('activated_plugin', 1000);
+		$this->addAction(
+			'activated_plugin',
+			1000
+		);
 
-		$this->setGroup(__('Plugin', 'notification'));
-		$this->setDescription(__('Fires when plugin is activated', 'notification'));
+		$this->setGroup(
+			__(
+				'Plugin',
+				'notification'
+			)
+		);
+		$this->setDescription(
+			__(
+				'Fires when plugin is activated',
+				'notification'
+			)
+		);
 	}
 
 	/**
 	 * Trigger action
 	 *
-	 * @param  string $pluginRelPath Plugin path.
+	 * @param string $pluginRelPath Plugin path.
 	 * @return void
 	 */
-	public function context( $pluginRelPath )
+	public function context($pluginRelPath)
 	{
 
 		$pluginDir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $pluginRelPath;
-		$this->plugin = get_plugin_data($pluginDir, false);
+		$this->plugin = get_plugin_data(
+			$pluginDir,
+			false
+		);
 		$this->pluginActivationDateTime = time();
 	}
 
@@ -66,8 +88,11 @@ class Activated extends PluginTrigger
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
-				'slug' => 'plugin_activation_date_time',
-				'name' => __('Plugin activation date and time', 'notification'),
+					'slug' => 'plugin_activation_date_time',
+					'name' => __(
+						'Plugin activation date and time',
+						'notification'
+					),
 				]
 			)
 		);

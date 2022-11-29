@@ -24,10 +24,10 @@ class PostContent extends StringTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		$this->setTriggerProp($params['post_type'] ?? 'post');
@@ -37,14 +37,29 @@ class PostContent extends StringTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf('%s_content', $this->getTriggerProp()),
+				'slug' => sprintf(
+					'%s_content',
+					$this->getTriggerProp()
+				),
 				// translators: singular post name.
-				'name' => sprintf(__('%s content', 'notification'), $postTypeName),
-				'description' => __('Welcome to WordPress. This is your first post. Edit or delete it, then start writing!', 'notification'),
+				'name' => sprintf(
+					__(
+						'%s content',
+						'notification'
+					),
+					$postTypeName
+				),
+				'description' => __(
+					'Welcome to WordPress. This is your first post. Edit or delete it, then start writing!',
+					'notification'
+				),
 				'example' => true,
 				'group' => $postTypeName,
-				'resolver' => function ( $trigger ) {
-					return apply_filters('the_content', $trigger->{ $this->getTriggerProp() }->postContent);
+				'resolver' => function ($trigger) {
+					return apply_filters(
+						'the_content',
+						$trigger->{$this->getTriggerProp()}->postContent
+					);
 				},
 			]
 		);

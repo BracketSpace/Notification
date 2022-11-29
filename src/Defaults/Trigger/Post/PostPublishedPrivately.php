@@ -38,16 +38,20 @@ class PostPublishedPrivately extends PostTrigger
 	 *
 	 * @param string $postType optional, default: post.
 	 */
-	public function __construct( $postType = 'post' )
+	public function __construct($postType = 'post')
 	{
 		parent::__construct(
 			[
-			'post_type' => $postType,
-			'slug' => 'post/' . $postType . '/published-privately',
+				'post_type' => $postType,
+				'slug' => 'post/' . $postType . '/published-privately',
 			]
 		);
 
-		$this->addAction('transition_post_status', 10, 3);
+		$this->addAction(
+			'transition_post_status',
+			10,
+			3
+		);
 	}
 
 	/**
@@ -58,7 +62,13 @@ class PostPublishedPrivately extends PostTrigger
 	public function getName(): string
 	{
 		// translators: singular post name.
-		return sprintf(__('%s published privately', 'notification'), WpObjectHelper::getPostTypeName($this->postType));
+		return sprintf(
+			__(
+				'%s published privately',
+				'notification'
+			),
+			WpObjectHelper::getPostTypeName($this->postType)
+		);
 	}
 
 	/**
@@ -69,8 +79,11 @@ class PostPublishedPrivately extends PostTrigger
 	public function getDescription(): string
 	{
 		return sprintf(
-			// translators: 1. singular post name, 2. post type slug.
-			__('Fires when %1$s (%2$s) is published privately', 'notification'),
+		// translators: 1. singular post name, 2. post type slug.
+			__(
+				'Fires when %1$s (%2$s) is published privately',
+				'notification'
+			),
 			WpObjectHelper::getPostTypeName($this->postType),
 			$this->postType
 		);
@@ -79,12 +92,12 @@ class PostPublishedPrivately extends PostTrigger
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param string   $newStatus New post status.
-	 * @param string   $oldStatus Old post status.
-	 * @param \WP_Post $post       Post object.
+	 * @param string $newStatus New post status.
+	 * @param string $oldStatus Old post status.
+	 * @param \WP_Post $post Post object.
 	 * @return false|void
 	 */
-	public function context( $newStatus, $oldStatus, $post )
+	public function context($newStatus, $oldStatus, $post)
 	{
 
 		if ($post->postType !== $this->postType) {
@@ -95,15 +108,21 @@ class PostPublishedPrivately extends PostTrigger
 			return false;
 		}
 
-		$this->{ $this->postType } = $post;
+		$this->{$this->postType} = $post;
 
-		$this->author = get_userdata((int)$this->{ $this->postType }->postAuthor);
-		$this->lastEditor = get_userdata((int)get_post_meta($this->{ $this->postType }->ID, '_edit_last', true));
+		$this->author = get_userdata((int)$this->{$this->postType}->postAuthor);
+		$this->lastEditor = get_userdata(
+			(int)get_post_meta(
+				$this->{$this->postType}->ID,
+				'_edit_last',
+				true
+			)
+		);
 		$this->publishingUser = get_userdata(get_current_user_id());
 
-		$this->{ $this->postType . '_creation_datetime' } = strtotime($this->{ $this->postType }->postDateGmt);
-		$this->{ $this->postType . '_publication_datetime' } = strtotime($this->{ $this->postType }->postDateGmt);
-		$this->{ $this->postType . '_modification_datetime' } = strtotime($this->{ $this->postType }->postModifiedGmt);
+		$this->{$this->postType . '_creation_datetime'} = strtotime($this->{$this->postType}->postDateGmt);
+		$this->{$this->postType . '_publication_datetime'} = strtotime($this->{$this->postType}->postDateGmt);
+		$this->{$this->postType . '_modification_datetime'} = strtotime($this->{$this->postType}->postModifiedGmt);
 	}
 
 	/**
@@ -122,11 +141,23 @@ class PostPublishedPrivately extends PostTrigger
 		$this->addMergeTag(
 			new MergeTag\User\UserID(
 				[
-				'slug' => sprintf('%s_publishing_user_ID', $this->postType),
-				// translators: singular post name.
-				'name' => sprintf(__('%s publishing user ID', 'notification'), $postTypeName),
-				'property_name' => 'publishing_user',
-				'group' => __('Publishing user', 'notification'),
+					'slug' => sprintf(
+						'%s_publishing_user_ID',
+						$this->postType
+					),
+					// translators: singular post name.
+					'name' => sprintf(
+						__(
+							'%s publishing user ID',
+							'notification'
+						),
+						$postTypeName
+					),
+					'property_name' => 'publishing_user',
+					'group' => __(
+						'Publishing user',
+						'notification'
+					),
 				]
 			)
 		);
@@ -134,11 +165,23 @@ class PostPublishedPrivately extends PostTrigger
 		$this->addMergeTag(
 			new MergeTag\User\UserLogin(
 				[
-				'slug' => sprintf('%s_publishing_user_login', $this->postType),
-				// translators: singular post name.
-				'name' => sprintf(__('%s publishing user login', 'notification'), $postTypeName),
-				'property_name' => 'publishing_user',
-				'group' => __('Publishing user', 'notification'),
+					'slug' => sprintf(
+						'%s_publishing_user_login',
+						$this->postType
+					),
+					// translators: singular post name.
+					'name' => sprintf(
+						__(
+							'%s publishing user login',
+							'notification'
+						),
+						$postTypeName
+					),
+					'property_name' => 'publishing_user',
+					'group' => __(
+						'Publishing user',
+						'notification'
+					),
 				]
 			)
 		);
@@ -146,11 +189,23 @@ class PostPublishedPrivately extends PostTrigger
 		$this->addMergeTag(
 			new MergeTag\User\UserEmail(
 				[
-				'slug' => sprintf('%s_publishing_user_email', $this->postType),
-				// translators: singular post name.
-				'name' => sprintf(__('%s publishing user email', 'notification'), $postTypeName),
-				'property_name' => 'publishing_user',
-				'group' => __('Publishing user', 'notification'),
+					'slug' => sprintf(
+						'%s_publishing_user_email',
+						$this->postType
+					),
+					// translators: singular post name.
+					'name' => sprintf(
+						__(
+							'%s publishing user email',
+							'notification'
+						),
+						$postTypeName
+					),
+					'property_name' => 'publishing_user',
+					'group' => __(
+						'Publishing user',
+						'notification'
+					),
 				]
 			)
 		);
@@ -158,11 +213,23 @@ class PostPublishedPrivately extends PostTrigger
 		$this->addMergeTag(
 			new MergeTag\User\UserNicename(
 				[
-				'slug' => sprintf('%s_publishing_user_nicename', $this->postType),
-				// translators: singular post name.
-				'name' => sprintf(__('%s publishing user nicename', 'notification'), $postTypeName),
-				'property_name' => 'publishing_user',
-				'group' => __('Publishing user', 'notification'),
+					'slug' => sprintf(
+						'%s_publishing_user_nicename',
+						$this->postType
+					),
+					// translators: singular post name.
+					'name' => sprintf(
+						__(
+							'%s publishing user nicename',
+							'notification'
+						),
+						$postTypeName
+					),
+					'property_name' => 'publishing_user',
+					'group' => __(
+						'Publishing user',
+						'notification'
+					),
 				]
 			)
 		);
@@ -170,11 +237,23 @@ class PostPublishedPrivately extends PostTrigger
 		$this->addMergeTag(
 			new MergeTag\User\UserDisplayName(
 				[
-				'slug' => sprintf('%s_publishing_user_display_name', $this->postType),
-				// translators: singular post name.
-				'name' => sprintf(__('%s publishing user display name', 'notification'), $postTypeName),
-				'property_name' => 'publishing_user',
-				'group' => __('Publishing user', 'notification'),
+					'slug' => sprintf(
+						'%s_publishing_user_display_name',
+						$this->postType
+					),
+					// translators: singular post name.
+					'name' => sprintf(
+						__(
+							'%s publishing user display name',
+							'notification'
+						),
+						$postTypeName
+					),
+					'property_name' => 'publishing_user',
+					'group' => __(
+						'Publishing user',
+						'notification'
+					),
 				]
 			)
 		);
@@ -182,11 +261,23 @@ class PostPublishedPrivately extends PostTrigger
 		$this->addMergeTag(
 			new MergeTag\User\UserFirstName(
 				[
-				'slug' => sprintf('%s_publishing_user_firstname', $this->postType),
-				// translators: singular post name.
-				'name' => sprintf(__('%s publishing user first name', 'notification'), $postTypeName),
-				'property_name' => 'publishing_user',
-				'group' => __('Publishing user', 'notification'),
+					'slug' => sprintf(
+						'%s_publishing_user_firstname',
+						$this->postType
+					),
+					// translators: singular post name.
+					'name' => sprintf(
+						__(
+							'%s publishing user first name',
+							'notification'
+						),
+						$postTypeName
+					),
+					'property_name' => 'publishing_user',
+					'group' => __(
+						'Publishing user',
+						'notification'
+					),
 				]
 			)
 		);
@@ -194,11 +285,23 @@ class PostPublishedPrivately extends PostTrigger
 		$this->addMergeTag(
 			new MergeTag\User\UserLastName(
 				[
-				'slug' => sprintf('%s_publishing_user_lastname', $this->postType),
-				// translators: singular post name.
-				'name' => sprintf(__('%s publishing user last name', 'notification'), $postTypeName),
-				'property_name' => 'publishing_user',
-				'group' => __('Publishing user', 'notification'),
+					'slug' => sprintf(
+						'%s_publishing_user_lastname',
+						$this->postType
+					),
+					// translators: singular post name.
+					'name' => sprintf(
+						__(
+							'%s publishing user last name',
+							'notification'
+						),
+						$postTypeName
+					),
+					'property_name' => 'publishing_user',
+					'group' => __(
+						'Publishing user',
+						'notification'
+					),
 				]
 			)
 		);
@@ -206,11 +309,23 @@ class PostPublishedPrivately extends PostTrigger
 		$this->addMergeTag(
 			new MergeTag\User\Avatar(
 				[
-				'slug' => sprintf('%s_publishing_user_avatar', $this->postType),
-				// translators: singular post name.
-				'name' => sprintf(__('%s publishing user avatar', 'notification'), $postTypeName),
-				'property_name' => 'publishing_user',
-				'group' => __('Publishing user', 'notification'),
+					'slug' => sprintf(
+						'%s_publishing_user_avatar',
+						$this->postType
+					),
+					// translators: singular post name.
+					'name' => sprintf(
+						__(
+							'%s publishing user avatar',
+							'notification'
+						),
+						$postTypeName
+					),
+					'property_name' => 'publishing_user',
+					'group' => __(
+						'Publishing user',
+						'notification'
+					),
 				]
 			)
 		);
@@ -218,11 +333,23 @@ class PostPublishedPrivately extends PostTrigger
 		$this->addMergeTag(
 			new MergeTag\User\UserRole(
 				[
-				'slug' => sprintf('%s_publishing_user_role', $this->postType),
-				// translators: singular post name.
-				'name' => sprintf(__('%s publishing user role', 'notification'), $postTypeName),
-				'property_name' => 'publishing_user',
-				'group' => __('Publishing user', 'notification'),
+					'slug' => sprintf(
+						'%s_publishing_user_role',
+						$this->postType
+					),
+					// translators: singular post name.
+					'name' => sprintf(
+						__(
+							'%s publishing user role',
+							'notification'
+						),
+						$postTypeName
+					),
+					'property_name' => 'publishing_user',
+					'group' => __(
+						'Publishing user',
+						'notification'
+					),
 				]
 			)
 		);
@@ -230,9 +357,18 @@ class PostPublishedPrivately extends PostTrigger
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
-				'slug' => sprintf('%s_publication_datetime', $this->postType),
-				// translators: singular post name.
-				'name' => sprintf(__('%s publication date and time', 'notification'), $postTypeName),
+					'slug' => sprintf(
+						'%s_publication_datetime',
+						$this->postType
+					),
+					// translators: singular post name.
+					'name' => sprintf(
+						__(
+							'%s publication date and time',
+							'notification'
+						),
+						$postTypeName
+					),
 				]
 			)
 		);

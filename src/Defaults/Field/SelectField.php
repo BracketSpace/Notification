@@ -37,10 +37,10 @@ class SelectField extends Field
 	/**
 	 * Field constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		if (isset($params['options'])) {
@@ -64,10 +64,16 @@ class SelectField extends Field
 
 		$cssClasses = $this->pretty . ' ' . $this->cssClass();
 
-		$html = '<select name="' . esc_attr($this->getName()) . '" id="' . esc_attr($this->getId()) . '" class="' . $cssClasses . '" ' . $this->maybeDisable() . '>';
+		$html = '<select name="' . esc_attr($this->getName()) . '" id="' . esc_attr(
+			$this->getId()
+		) . '" class="' . $cssClasses . '" ' . $this->maybeDisable() . '>';
 
 		foreach ($this->options as $optionValue => $optionLabel) {
-			$html .= '<option value="' . esc_attr($optionValue) . '" ' . selected($this->getValue(), $optionValue, false) . '>' . esc_html($optionLabel) . '</option>';
+			$html .= '<option value="' . esc_attr($optionValue) . '" ' . selected(
+				$this->getValue(),
+				$optionValue,
+				false
+			) . '>' . esc_html($optionLabel) . '</option>';
 		}
 
 		$html .= '</select>';
@@ -78,10 +84,10 @@ class SelectField extends Field
 	/**
 	 * Sanitizes the value sent by user
 	 *
-	 * @param  mixed $value value to sanitize.
+	 * @param mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value )
+	public function sanitize($value)
 	{
 		return sanitize_text_field($value);
 	}

@@ -20,10 +20,10 @@ class AttachmentDirectUrl extends UrlTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		$this->setTriggerProp($params['property_name'] ?? 'attachment');
@@ -32,18 +32,32 @@ class AttachmentDirectUrl extends UrlTag
 			$params,
 			[
 				'slug' => 'attachment_direct_url',
-				'name' => __('Attachment direct URL', 'notification'),
-				'description' => __('http://example.com/wp-content/uploads/2018/02/forest-landscape.jpg', 'notification'),
+				'name' => __(
+					'Attachment direct URL',
+					'notification'
+				),
+				'description' => __(
+					'http://example.com/wp-content/uploads/2018/02/forest-landscape.jpg',
+					'notification'
+				),
 				'example' => true,
-				'group' => __('Attachment', 'notification'),
+				'group' => __(
+					'Attachment',
+					'notification'
+				),
 				'resolver' => function () {
-					return wp_get_attachment_url($this->trigger->{ $this->getTriggerProp() }->ID);
+					return wp_get_attachment_url($this->trigger->{$this->getTriggerProp()}->ID);
 				},
 			]
 		);
 
 		parent::__construct($args);
 
-		$this->setGroup(__('Attachment', 'notification'));
+		$this->setGroup(
+			__(
+				'Attachment',
+				'notification'
+			)
+		);
 	}
 }

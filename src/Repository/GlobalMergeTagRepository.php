@@ -28,13 +28,16 @@ class GlobalMergeTagRepository
 		Register::globalMergeTag(
 			new MergeTag\UrlTag(
 				[
-				'slug' => 'home_url',
-				'name' => __('Site homepage URL', 'notification'),
-				'description' => home_url(),
-				'hidden' => true,
-				'resolver' => static function ( $trigger ) {
-					return home_url();
-				},
+					'slug' => 'home_url',
+					'name' => __(
+						'Site homepage URL',
+						'notification'
+					),
+					'description' => home_url(),
+					'hidden' => true,
+					'resolver' => static function ($trigger) {
+						return home_url();
+					},
 				]
 			)
 		);
@@ -42,13 +45,16 @@ class GlobalMergeTagRepository
 		Register::globalMergeTag(
 			new MergeTag\StringTag(
 				[
-				'slug' => 'site_title',
-				'name' => __('Site title', 'notification'),
-				'description' => get_bloginfo('name'),
-				'hidden' => true,
-				'resolver' => static function ( $trigger ) {
-					return get_bloginfo('name');
-				},
+					'slug' => 'site_title',
+					'name' => __(
+						'Site title',
+						'notification'
+					),
+					'description' => get_bloginfo('name'),
+					'hidden' => true,
+					'resolver' => static function ($trigger) {
+						return get_bloginfo('name');
+					},
 				]
 			)
 		);
@@ -56,13 +62,16 @@ class GlobalMergeTagRepository
 		Register::globalMergeTag(
 			new MergeTag\StringTag(
 				[
-				'slug' => 'site_tagline',
-				'name' => __('Site tagline', 'notification'),
-				'description' => get_bloginfo('description'),
-				'hidden' => true,
-				'resolver' => static function ( $trigger ) {
-					return get_bloginfo('description');
-				},
+					'slug' => 'site_tagline',
+					'name' => __(
+						'Site tagline',
+						'notification'
+					),
+					'description' => get_bloginfo('description'),
+					'hidden' => true,
+					'resolver' => static function ($trigger) {
+						return get_bloginfo('description');
+					},
 				]
 			)
 		);
@@ -70,13 +79,16 @@ class GlobalMergeTagRepository
 		Register::globalMergeTag(
 			new MergeTag\StringTag(
 				[
-				'slug' => 'site_theme_name',
-				'name' => __('Site theme name', 'notification'),
-				'description' => wp_get_theme()->name,
-				'hidden' => true,
-				'resolver' => static function ( $trigger ) {
-					return wp_get_theme()->name;
-				},
+					'slug' => 'site_theme_name',
+					'name' => __(
+						'Site theme name',
+						'notification'
+					),
+					'description' => wp_get_theme()->name,
+					'hidden' => true,
+					'resolver' => static function ($trigger) {
+						return wp_get_theme()->name;
+					},
 				]
 			)
 		);
@@ -84,13 +96,16 @@ class GlobalMergeTagRepository
 		Register::globalMergeTag(
 			new MergeTag\StringTag(
 				[
-				'slug' => 'site_theme_version',
-				'name' => __('Site theme version', 'notification'),
-				'description' => wp_get_theme()->version,
-				'hidden' => true,
-				'resolver' => static function ( $trigger ) {
-					return wp_get_theme()->version;
-				},
+					'slug' => 'site_theme_version',
+					'name' => __(
+						'Site theme version',
+						'notification'
+					),
+					'description' => wp_get_theme()->version,
+					'hidden' => true,
+					'resolver' => static function ($trigger) {
+						return wp_get_theme()->version;
+					},
 				]
 			)
 		);
@@ -98,13 +113,16 @@ class GlobalMergeTagRepository
 		Register::globalMergeTag(
 			new MergeTag\StringTag(
 				[
-				'slug' => 'wordpress_version',
-				'name' => __('Current WordPress version', 'notification'),
-				'description' => get_bloginfo('version'),
-				'hidden' => true,
-				'resolver' => static function ( $trigger ) {
-					return get_bloginfo('version');
-				},
+					'slug' => 'wordpress_version',
+					'name' => __(
+						'Current WordPress version',
+						'notification'
+					),
+					'description' => get_bloginfo('version'),
+					'hidden' => true,
+					'resolver' => static function ($trigger) {
+						return get_bloginfo('version');
+					},
 				]
 			)
 		);
@@ -112,13 +130,16 @@ class GlobalMergeTagRepository
 		Register::globalMergeTag(
 			new MergeTag\EmailTag(
 				[
-				'slug' => 'admin_email',
-				'name' => __('Admin email', 'notification'),
-				'description' => get_option('admin_email'),
-				'hidden' => true,
-				'resolver' => static function ( $trigger ) {
-					return get_option('admin_email');
-				},
+					'slug' => 'admin_email',
+					'name' => __(
+						'Admin email',
+						'notification'
+					),
+					'description' => get_option('admin_email'),
+					'hidden' => true,
+					'resolver' => static function ($trigger) {
+						return get_option('admin_email');
+					},
 				]
 			)
 		);
@@ -126,13 +147,19 @@ class GlobalMergeTagRepository
 		Register::globalMergeTag(
 			new MergeTag\User\Avatar(
 				[
-				'slug' => 'admin_avatar',
-				'name' => __('Admin avatar', 'notification'),
-				'description' => __('HTML img tag with avatar', 'notification'),
-				'hidden' => true,
-				'resolver' => static function ( $trigger ) {
-					return get_avatar(get_option('admin_email'));
-				},
+					'slug' => 'admin_avatar',
+					'name' => __(
+						'Admin avatar',
+						'notification'
+					),
+					'description' => __(
+						'HTML img tag with avatar',
+						'notification'
+					),
+					'hidden' => true,
+					'resolver' => static function ($trigger) {
+						return get_avatar(get_option('admin_email'));
+					},
 				]
 			)
 		);
@@ -140,14 +167,20 @@ class GlobalMergeTagRepository
 		Register::globalMergeTag(
 			new MergeTag\StringTag(
 				[
-				'slug' => 'trigger_name',
-				'name' => __('Trigger name', 'notification'),
-				'description' => __('User login', 'notification'),
-				'example' => true,
-				'hidden' => true,
-				'resolver' => static function ( $trigger ) {
-					return $trigger->getName();
-				},
+					'slug' => 'trigger_name',
+					'name' => __(
+						'Trigger name',
+						'notification'
+					),
+					'description' => __(
+						'User login',
+						'notification'
+					),
+					'example' => true,
+					'hidden' => true,
+					'resolver' => static function ($trigger) {
+						return $trigger->getName();
+					},
 				]
 			)
 		);
@@ -155,14 +188,17 @@ class GlobalMergeTagRepository
 		Register::globalMergeTag(
 			new MergeTag\StringTag(
 				[
-				'slug' => 'trigger_slug',
-				'name' => __('Trigger slug', 'notification'),
-				'description' => 'wordpress/user_login',
-				'example' => true,
-				'hidden' => true,
-				'resolver' => static function ( $trigger ) {
-					return $trigger->getSlug();
-				},
+					'slug' => 'trigger_slug',
+					'name' => __(
+						'Trigger slug',
+						'notification'
+					),
+					'description' => 'wordpress/user_login',
+					'example' => true,
+					'hidden' => true,
+					'resolver' => static function ($trigger) {
+						return $trigger->getSlug();
+					},
 				]
 			)
 		);
@@ -170,10 +206,13 @@ class GlobalMergeTagRepository
 		Register::globalMergeTag(
 			new MergeTag\DateTime\Date(
 				[
-				'slug' => 'date',
-				'name' => __('Trigger execution date', 'notification'),
-				'hidden' => true,
-				'timestamp' => time(),
+					'slug' => 'date',
+					'name' => __(
+						'Trigger execution date',
+						'notification'
+					),
+					'hidden' => true,
+					'timestamp' => time(),
 				]
 			)
 		);
@@ -181,10 +220,13 @@ class GlobalMergeTagRepository
 		Register::globalMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
-				'slug' => 'date_time',
-				'name' => __('Trigger execution date and time', 'notification'),
-				'hidden' => true,
-				'timestamp' => time(),
+					'slug' => 'date_time',
+					'name' => __(
+						'Trigger execution date and time',
+						'notification'
+					),
+					'hidden' => true,
+					'timestamp' => time(),
 				]
 			)
 		);
@@ -192,10 +234,13 @@ class GlobalMergeTagRepository
 		Register::globalMergeTag(
 			new MergeTag\DateTime\Time(
 				[
-				'slug' => 'time',
-				'name' => __('Trigger execution time', 'notification'),
-				'hidden' => true,
-				'timestamp' => time(),
+					'slug' => 'time',
+					'name' => __(
+						'Trigger execution time',
+						'notification'
+					),
+					'hidden' => true,
+					'timestamp' => time(),
 				]
 			)
 		);

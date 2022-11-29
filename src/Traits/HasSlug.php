@@ -43,10 +43,10 @@ trait HasSlug
 	/**
 	 * Sets slug
 	 *
-	 * @param  string $slug Slug.
+	 * @param string $slug Slug.
 	 * @return $this
 	 */
-	public function setSlug( string $slug )
+	public function setSlug(string $slug)
 	{
 		$this->slug = $slug;
 

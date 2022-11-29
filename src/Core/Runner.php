@@ -45,10 +45,10 @@ class Runner
 	/**
 	 * Constructor
 	 *
-	 * @since 8.0.0
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger in subject.
+	 * @since 8.0.0
 	 */
-	final public function __construct( Triggerable $trigger )
+	final public function __construct(Triggerable $trigger)
 	{
 		$this->trigger = $trigger;
 	}
@@ -59,34 +59,56 @@ class Runner
 	 * Adds the specific Carrier and corresponding Trigger
 	 * to the Queue for later execution.
 	 *
-	 * @since  8.0.0
 	 * @param array<mixed> ...$context Callback args setting context.
 	 * @return void
+	 * @since  8.0.0
 	 */
-	public function run( ...$context )
+	public function run(...$context)
 	{
 
 		$this->setNotifications();
 
 		// If no Notifications use the Trigger, bail.
-		if (! $this->hasNotifications()) {
+		if (!$this->hasNotifications()) {
 			return;
 		}
 
 		$trigger = $this->getTrigger();
 
 		// Setup the Trigger context.
-		if (method_exists($trigger, 'action')) {
-			$result = call_user_func_array([ $trigger, 'action' ], $context);
+		if (
+			method_exists(
+				$trigger,
+				'action'
+			)
+		) {
+			$result = call_user_func_array(
+				[$trigger, 'action'],
+				$context
+			);
 
 			$class = get_class($trigger);
 			_deprecated_function(
-				sprintf('%s::action()', esc_html($class)),
+				sprintf(
+					'%s::action()',
+					esc_html($class)
+				),
 				'8.0.0',
-				sprintf('%s::context()', esc_html($class))
+				sprintf(
+					'%s::context()',
+					esc_html($class)
+				)
 			);
-		} elseif (method_exists($trigger, 'context')) {
-			$result = call_user_func_array([ $trigger, 'context' ], $context);
+		} elseif (
+			method_exists(
+				$trigger,
+				'context'
+			)
+		) {
+			$result = call_user_func_array(
+				[$trigger, 'context'],
+				$context
+			);
 		} else {
 			$result = null;
 		}
@@ -95,7 +117,11 @@ class Runner
 			$trigger->stop();
 		}
 
-		do_action('notification/trigger/action/did', $trigger, current_action());
+		do_action(
+			'notification/trigger/action/did',
+			$trigger,
+			current_action()
+		);
 
 		if ($trigger->isStopped()) {
 			return;
@@ -107,9 +133,15 @@ class Runner
 			 * If an item already exists in the queue, we are replacing it with the new version.
 			 * This doesn't prevents the duplicates coming from two separate requests.
 			 */
-			Queue::addReplace($notification, $trigger);
+			Queue::addReplace(
+				$notification,
+				$trigger
+			);
 
-			do_action('notification/processed', $notification);
+			do_action(
+				'notification/processed',
+				$notification
+			);
 		}
 	}
 
@@ -161,7 +193,7 @@ class Runner
 	 * @param \BracketSpace\Notification\Core\Notification $notification Notification class.
 	 * @return void
 	 */
-	public function attachNotification( CoreNotification $notification )
+	public function attachNotification(CoreNotification $notification)
 	{
 		$this->notifications[$notification->getHash()] = clone $notification;
 	}
@@ -172,7 +204,7 @@ class Runner
 	 * @param \BracketSpace\Notification\Core\Notification $notification Notification class.
 	 * @return void
 	 */
-	public function detachNotification( CoreNotification $notification )
+	public function detachNotification(CoreNotification $notification)
 	{
 		if (!isset($this->notifications[$notification->getHash()])) {
 			return;

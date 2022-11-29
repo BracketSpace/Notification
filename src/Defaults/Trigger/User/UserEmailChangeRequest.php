@@ -51,26 +51,45 @@ class UserEmailChangeRequest extends UserTrigger
 	public function __construct()
 	{
 
-		parent::__construct('user/email_change_request', __('User email change request', 'notification'));
+		parent::__construct(
+			'user/email_change_request',
+			__(
+				'User email change request',
+				'notification'
+			)
+		);
 
-		$this->addAction('personal_options_update', 10, 1);
+		$this->addAction(
+			'personal_options_update',
+			10,
+			1
+		);
 
-		$this->setDescription(__('Fires when user requests change of his email address', 'notification'));
+		$this->setDescription(
+			__(
+				'Fires when user requests change of his email address',
+				'notification'
+			)
+		);
 	}
 
 	/**
 	 * Sets trigger's context
 	 *
-	 * @since 8.0.0
 	 * @param int $userId User ID.
 	 * @return mixed
+	 * @since 8.0.0
 	 */
-	public function context( $userId )
+	public function context($userId)
 	{
 
-		$newEmail = get_user_meta($userId, '_new_email', true);
+		$newEmail = get_user_meta(
+			$userId,
+			'_new_email',
+			true
+		);
 
-		if (! $newEmail) {
+		if (!$newEmail) {
 			return false;
 		}
 
@@ -85,8 +104,8 @@ class UserEmailChangeRequest extends UserTrigger
 	/**
 	 * Registers attached merge tags
 	 *
-	 * @since 8.0.0
 	 * @return void
+	 * @since 8.0.0
 	 */
 	public function mergeTags()
 	{
@@ -99,8 +118,11 @@ class UserEmailChangeRequest extends UserTrigger
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
-				'slug' => 'user_email_change_datetime',
-				'name' => __('User email change time', 'notification'),
+					'slug' => 'user_email_change_datetime',
+					'name' => __(
+						'User email change time',
+						'notification'
+					),
 				]
 			)
 		);
@@ -108,12 +130,18 @@ class UserEmailChangeRequest extends UserTrigger
 		$this->addMergeTag(
 			new MergeTag\EmailTag(
 				[
-				'slug' => 'new_email',
-				'name' => __('New email address', 'notification'),
-				'resolver' => static function ( $trigger ) {
-					return $trigger->newUserEmail;
-				},
-				'group' => __('User', 'notification'),
+					'slug' => 'new_email',
+					'name' => __(
+						'New email address',
+						'notification'
+					),
+					'resolver' => static function ($trigger) {
+						return $trigger->newUserEmail;
+					},
+					'group' => __(
+						'User',
+						'notification'
+					),
 				]
 			)
 		);
@@ -121,12 +149,18 @@ class UserEmailChangeRequest extends UserTrigger
 		$this->addMergeTag(
 			new MergeTag\UrlTag(
 				[
-				'slug' => 'confirmation_url',
-				'name' => __('Email change confirmation url', 'notification'),
-				'resolver' => static function ( $trigger ) {
-					return $trigger->confirmationUrl;
-				},
-				'group' => __('Site', 'notification'),
+					'slug' => 'confirmation_url',
+					'name' => __(
+						'Email change confirmation url',
+						'notification'
+					),
+					'resolver' => static function ($trigger) {
+						return $trigger->confirmationUrl;
+					},
+					'group' => __(
+						'Site',
+						'notification'
+					),
 				]
 			)
 		);

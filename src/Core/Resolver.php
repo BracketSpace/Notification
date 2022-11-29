@@ -23,13 +23,13 @@ class Resolver
 	/**
 	 * Resolves value with all the resolvers
 	 *
-	 * @since  6.0.0
-	 * @since  8.0.0 Method is static
-	 * @param  string      $value   Unresolved string with tags.
+	 * @param string $value Unresolved string with tags.
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return string               Resolved value
+	 * @since  8.0.0 Method is static
+	 * @since  6.0.0
 	 */
-	public static function resolve( $value, Triggerable $trigger )
+	public static function resolve($value, Triggerable $trigger)
 	{
 
 		$resolvers = ResolverStore::sorted();
@@ -42,8 +42,12 @@ class Resolver
 		foreach ($resolvers as $resolver) {
 			$value = preg_replace_callback(
 				$resolver->getPattern(),
-				static function ( $match ) use ( $resolver, $trigger ) {
-					return call_user_func([ $resolver, 'resolve_merge_tag' ], $match, clone $trigger);
+				static function ($match) use ($resolver, $trigger) {
+					return call_user_func(
+						[$resolver, 'resolve_merge_tag'],
+						$match,
+						clone $trigger
+					);
 				},
 				$value
 			);
@@ -55,13 +59,17 @@ class Resolver
 	/**
 	 * Clears any Merge Tags
 	 *
+	 * @param string $value Unresolved string with tags.
+	 * @return string
 	 * @since  6.0.0
 	 * @since  8.0.0 Method is static
-	 * @param  string $value Unresolved string with tags.
-	 * @return string
 	 */
-	public static function clear( $value )
+	public static function clear($value)
 	{
-		return preg_replace('/(?<!\!)\{(?:[^{}\s\"\'])*\}/', '', $value);
+		return preg_replace(
+			'/(?<!\!)\{(?:[^{}\s\"\'])*\}/',
+			'',
+			$value
+		);
 	}
 }

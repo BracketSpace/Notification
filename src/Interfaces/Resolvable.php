@@ -40,9 +40,9 @@ interface Resolvable
 	/**
 	 * Resolves single matched merge tag
 	 *
-	 * @param array       $match   Match array.
+	 * @param array $match Match array.
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return string              Resolved value
 	 */
-	public function resolveMergeTag( $match, Triggerable $trigger );
+	public function resolveMergeTag($match, Triggerable $trigger);
 }

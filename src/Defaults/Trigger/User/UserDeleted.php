@@ -38,11 +38,26 @@ class UserDeleted extends UserTrigger
 	public function __construct()
 	{
 
-		parent::__construct('user/deleted', __('User deleted', 'notification'));
+		parent::__construct(
+			'user/deleted',
+			__(
+				'User deleted',
+				'notification'
+			)
+		);
 
-		$this->addAction('delete_user', 10, 1);
+		$this->addAction(
+			'delete_user',
+			10,
+			1
+		);
 
-		$this->setDescription(__('Fires when user account is deleted', 'notification'));
+		$this->setDescription(
+			__(
+				'Fires when user account is deleted',
+				'notification'
+			)
+		);
 	}
 
 	/**
@@ -51,7 +66,7 @@ class UserDeleted extends UserTrigger
 	 * @param int $userId User ID.
 	 * @return void
 	 */
-	public function context( $userId )
+	public function context($userId)
 	{
 
 		$this->userId = $userId;
@@ -81,8 +96,11 @@ class UserDeleted extends UserTrigger
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
-				'slug' => 'user_deleted_datetime',
-				'name' => __('User deletion time', 'notification'),
+					'slug' => 'user_deleted_datetime',
+					'name' => __(
+						'User deletion time',
+						'notification'
+					),
 				]
 			)
 		);

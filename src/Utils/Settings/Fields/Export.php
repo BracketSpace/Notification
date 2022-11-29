@@ -25,15 +25,19 @@ class Export
 	 * @param \BracketSpace\Notification\Utils\Settings\Field $field Field instance.
 	 * @return void
 	 */
-	public function input( $field )
+	public function input($field)
 	{
-		$downloadLink = admin_url('admin-post.php?action=notification_export&nonce=' . wp_create_nonce('notification-export') . '&type=notifications&items=');
+		$downloadLink = admin_url(
+			'admin-post.php?action=notification_export&nonce=' . wp_create_nonce(
+				'notification-export'
+			) . '&type=notifications&items='
+		);
 
 		Templates::render(
 			'export/notifications',
 			[
-			'notifications' => NotificationQueries::all(true),
-			'download_link' => $downloadLink,
+				'notifications' => NotificationQueries::all(true),
+				'download_link' => $downloadLink,
 			]
 		);
 	}

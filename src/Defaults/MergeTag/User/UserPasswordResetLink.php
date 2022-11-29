@@ -32,13 +32,13 @@ class UserPasswordResetLink extends StringTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.2.2
 	 * @param array $params merge tag configuration params.
+	 * @since 5.2.2
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
-		if (isset($params['key_property_name']) && ! empty($params['key_property_name'])) {
+		if (isset($params['key_property_name']) && !empty($params['key_property_name'])) {
 			$this->keyPropertyName = $params['key_property_name'];
 		}
 
@@ -47,16 +47,25 @@ class UserPasswordResetLink extends StringTag
 		$args = wp_parse_args(
 			[
 				'slug' => 'user_password_reset_link',
-				'name' => __('Password reset link', 'notification'),
-				'description' => __('http://example.com/wp-login.php?action=rp&key=mm2sAR8jmIyjSiMsCJRm&login=admin', 'notification'),
+				'name' => __(
+					'Password reset link',
+					'notification'
+				),
+				'description' => __(
+					'http://example.com/wp-login.php?action=rp&key=mm2sAR8jmIyjSiMsCJRm&login=admin',
+					'notification'
+				),
 				'example' => true,
-				'group' => __('User action', 'notification'),
-				'resolver' => function ( $trigger ) {
+				'group' => __(
+					'User action',
+					'notification'
+				),
+				'resolver' => function ($trigger) {
 					return network_site_url(
 						sprintf(
 							'wp-login.php?action=rp&key=%s&login=%s',
-							$trigger->{ $this->keyPropertyName },
-							$trigger->{ $this->getTriggerProp() }->data->userLogin
+							$trigger->{$this->keyPropertyName},
+							$trigger->{$this->getTriggerProp()}->data->userLogin
 						)
 					);
 				},

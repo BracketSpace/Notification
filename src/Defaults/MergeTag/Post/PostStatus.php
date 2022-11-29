@@ -24,10 +24,10 @@ class PostStatus extends StringTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		$this->setTriggerProp($params['post_type'] ?? 'post');
@@ -37,14 +37,23 @@ class PostStatus extends StringTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf('%s_status', $this->getTriggerProp()),
+				'slug' => sprintf(
+					'%s_status',
+					$this->getTriggerProp()
+				),
 				// translators: singular post name.
-				'name' => sprintf(__('%s status', 'notification'), $postTypeName),
+				'name' => sprintf(
+					__(
+						'%s status',
+						'notification'
+					),
+					$postTypeName
+				),
 				'description' => 'publish',
 				'example' => true,
 				'group' => $postTypeName,
-				'resolver' => function ( $trigger ) {
-					return get_post_status($trigger->{ $this->getTriggerProp() }->ID);
+				'resolver' => function ($trigger) {
+					return get_post_status($trigger->{$this->getTriggerProp()}->ID);
 				},
 			]
 		);

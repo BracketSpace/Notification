@@ -24,10 +24,10 @@ class UserRole extends StringTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		$this->setTriggerProp($params['property_name'] ?? 'user_object');
@@ -36,20 +36,32 @@ class UserRole extends StringTag
 			$params,
 			[
 				'slug' => 'user_role',
-				'name' => __('User role', 'notification'),
-				'description' => __('Subscriber', 'notification'),
+				'name' => __(
+					'User role',
+					'notification'
+				),
+				'description' => __(
+					'Subscriber',
+					'notification'
+				),
 				'example' => true,
-				'group' => __('User', 'notification'),
+				'group' => __(
+					'User',
+					'notification'
+				),
 				'resolver' => function () {
 					$roles = array_map(
-						static function ( $role ) {
+						static function ($role) {
 							$roleObject = get_role($role);
 							return translate_user_role(ucfirst($roleObject->name));
 						},
-						$this->trigger->{ $this->getTriggerProp() }->roles
+						$this->trigger->{$this->getTriggerProp()}->roles
 					);
 
-					return implode(', ', $roles);
+					return implode(
+						', ',
+						$roles
+					);
 				},
 			]
 		);

@@ -33,8 +33,8 @@ class Api
 	/**
 	 * Constructor method
 	 *
-	 * @since 7.0.0
 	 * @return void
+	 * @since 7.0.0
 	 */
 	public function __construct()
 	{
@@ -42,7 +42,7 @@ class Api
 			'path' => '/repeater-field/(?P<id>\d+)',
 			'args' => [
 				'methods' => 'POST',
-				'callback' => [ new Controller\RepeaterController(), 'send_response' ],
+				'callback' => [new Controller\RepeaterController(), 'send_response'],
 				'permission_callback' => static function () {
 					return current_user_can('manage_options');
 				},
@@ -53,7 +53,7 @@ class Api
 			'path' => '/section-repeater-field/(?P<id>\d+)',
 			'args' => [
 				'methods' => 'POST',
-				'callback' => [ new Controller\SectionRepeaterController(), 'send_response' ],
+				'callback' => [new Controller\SectionRepeaterController(), 'send_response'],
 				'permission_callback' => static function () {
 					return current_user_can('manage_options');
 				},
@@ -64,7 +64,7 @@ class Api
 			'path' => 'repeater-field/select',
 			'args' => [
 				'methods' => 'POST',
-				'callback' => [ new Controller\SelectInputController(), 'send_response' ],
+				'callback' => [new Controller\SelectInputController(), 'send_response'],
 				'permission_callback' => static function () {
 					return current_user_can('manage_options');
 				},
@@ -75,7 +75,7 @@ class Api
 			'path' => 'check',
 			'args' => [
 				'methods' => 'GET',
-				'callback' => [ new Controller\CheckRestApiController(), 'send_response' ],
+				'callback' => [new Controller\CheckRestApiController(), 'send_response'],
 				'permission_callback' => '__return_true',
 			],
 		];
@@ -85,25 +85,29 @@ class Api
 	 * Registers rest api route.
 	 *
 	 * @action rest_api_init
-	 * @since 7.0.0
 	 * @return void
+	 * @since 7.0.0
 	 */
 	public function restApiInit()
 	{
 
 		foreach ($this->routes as $route) {
-			register_rest_route($this->namespace, $route['path'], $route['args']);
+			register_rest_route(
+				$this->namespace,
+				$route['path'],
+				$route['args']
+			);
 		}
 	}
 
 	/**
 	 * Gets API endpoint
 	 *
-	 * @since 8.0.13
 	 * @param string $endpoint Endopint name.
 	 * @return string
+	 * @since 8.0.13
 	 */
-	public function getEndpoint( $endpoint )
+	public function getEndpoint($endpoint)
 	{
 
 		return sprintf(

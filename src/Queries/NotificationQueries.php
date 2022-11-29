@@ -19,11 +19,11 @@ class NotificationQueries
 	/**
 	 * Gets Notification posts.
 	 *
-	 * @since  8.0.0
-	 * @param  bool $includingDisabled If should include disabled notifications as well.
+	 * @param bool $includingDisabled If should include disabled notifications as well.
 	 * @return array<int, \BracketSpace\Notification\Defaults\Adapter\WordPress>
+	 * @since  8.0.0
 	 */
-	public static function all( bool $includingDisabled = false ): array
+	public static function all(bool $includingDisabled = false): array
 	{
 		$queryArgs = [
 			'posts_per_page' => -1,
@@ -31,7 +31,7 @@ class NotificationQueries
 		];
 
 		if ($includingDisabled) {
-			$queryArgs['post_status'] = [ 'publish', 'draft' ];
+			$queryArgs['post_status'] = ['publish', 'draft'];
 		}
 
 		// WPML compat.
@@ -47,7 +47,10 @@ class NotificationQueries
 		}
 
 		foreach ($wpposts as $wppost) {
-			$posts[] = notification_adapt_from('WordPress', $wppost);
+			$posts[] = notification_adapt_from(
+				'WordPress',
+				$wppost
+			);
 		}
 
 		return $posts;
@@ -56,14 +59,23 @@ class NotificationQueries
 	/**
 	 * Gets Notification post by hash.
 	 *
-	 * @since  8.0.0
-	 * @param  string $hash Notification hash.
+	 * @param string $hash Notification hash.
 	 * @return \BracketSpace\Notification\Interfaces\Adaptable|null
+	 * @since  8.0.0
 	 */
-	public static function withHash( string $hash )
+	public static function withHash(string $hash)
 	{
-		$post = get_page_by_path($hash, OBJECT, 'notification');
+		$post = get_page_by_path(
+			$hash,
+			OBJECT,
+			'notification'
+		);
 
-		return empty($post) ? null : notification_adapt_from('WordPress', $post);
+		return empty($post)
+			? null
+			: notification_adapt_from(
+				'WordPress',
+				$post
+			);
 	}
 }

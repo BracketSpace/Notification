@@ -28,24 +28,33 @@ class RecipientsField extends RepeaterField
 	/**
 	 * Field constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
-		if (! isset($params['carrier'])) {
-			trigger_error('RecipientsField requires carrier param', E_USER_ERROR);
+		if (!isset($params['carrier'])) {
+			trigger_error(
+				'RecipientsField requires carrier param',
+				E_USER_ERROR
+			);
 		}
 
 		$params = wp_parse_args(
 			$params,
 			[
-			'carrier' => '',
-			'label' => __('Recipients', 'notification'),
-			'name' => 'recipients',
-			'add_button_label' => __('Add recipient', 'notification'),
-			'css_class' => '',
+				'carrier' => '',
+				'label' => __(
+					'Recipients',
+					'notification'
+				),
+				'name' => 'recipients',
+				'add_button_label' => __(
+					'Add recipient',
+					'notification'
+				),
+				'css_class' => '',
 			]
 		);
 
@@ -61,7 +70,7 @@ class RecipientsField extends RepeaterField
 
 		$recipients = RecipientStore::allForCarrier($this->carrier);
 
-		if (! empty($recipients)) {
+		if (!empty($recipients)) {
 			$firstRecipient = array_values($recipients)[0];
 			$recipientTypes = [];
 
@@ -72,10 +81,13 @@ class RecipientsField extends RepeaterField
 			$params['fields'] = [
 				new SelectField(
 					[
-					'label' => __('Type', 'notification'),
-					'name' => 'type',
-					'css_class' => 'recipient-type',
-					'options' => $recipientTypes,
+						'label' => __(
+							'Type',
+							'notification'
+						),
+						'name' => 'type',
+						'css_class' => 'recipient-type',
+						'options' => $recipientTypes,
 					]
 				),
 			];
@@ -89,9 +101,9 @@ class RecipientsField extends RepeaterField
 	/**
 	 * Prints repeater row
 	 *
-	 * @since 7.0.0 Added vue template.
-	 * @since  5.0.0
 	 * @return string
+	 * @since  5.0.0
+	 * @since 7.0.0 Added vue template.
 	 */
 	public function row()
 	{

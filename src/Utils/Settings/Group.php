@@ -68,13 +68,13 @@ class Group
 	/**
 	 * Group constructor
 	 *
-	 * @throws \Exception Exception.
-	 * @param string $handle  Settings handle.
-	 * @param string $name    Group name.
-	 * @param string $slug    Group slug.
+	 * @param string $handle Settings handle.
+	 * @param string $name Group name.
+	 * @param string $slug Group slug.
 	 * @param string $section Section slug.
+	 * @throws \Exception Exception.
 	 */
-	public function __construct( $handle, $name, $slug, $section )
+	public function __construct($handle, $name, $slug, $section)
 	{
 
 		if (empty($handle)) {
@@ -105,58 +105,70 @@ class Group
 	/**
 	 * Get or set name
 	 *
-	 * @param  string $name Name. Do not pass anything to get current value.
+	 * @param string $name Name. Do not pass anything to get current value.
 	 * @return string name
 	 */
-	public function name( $name = null )
+	public function name($name = null)
 	{
 
 		if ($name !== null) {
 			$this->name = $name;
 		}
 
-		return apply_filters($this->handle . '/settings/group/name', $this->name, $this);
+		return apply_filters(
+			$this->handle . '/settings/group/name',
+			$this->name,
+			$this
+		);
 	}
 
 	/**
 	 * Get or set slug
 	 *
-	 * @param  string $slug Slug. Do not pass anything to get current value.
+	 * @param string $slug Slug. Do not pass anything to get current value.
 	 * @return string slug
 	 */
-	public function slug( $slug = null )
+	public function slug($slug = null)
 	{
 
 		if ($slug !== null) {
 			$this->slug = $slug;
 		}
 
-		return apply_filters($this->handle . '/settings/group/slug', $this->slug, $this);
+		return apply_filters(
+			$this->handle . '/settings/group/slug',
+			$this->slug,
+			$this
+		);
 	}
 
 	/**
 	 * Get or set section
 	 *
-	 * @param  string $section Section. Do not pass anything to get current value.
+	 * @param string $section Section. Do not pass anything to get current value.
 	 * @return string section
 	 */
-	public function section( $section = null )
+	public function section($section = null)
 	{
 
 		if ($section !== null) {
 			$this->section = $section;
 		}
 
-		return apply_filters($this->handle . '/settings/group/section', $this->section, $this);
+		return apply_filters(
+			$this->handle . '/settings/group/section',
+			$this->section,
+			$this
+		);
 	}
 
 	/**
 	 * Set or get description
 	 *
-	 * @param   mixed $description string to set description, null to get it.
+	 * @param mixed $description string to set description, null to get it.
 	 * @return string|\BracketSpace\Notification\Utils\Settings\Group String when using getter and Group when using setter
 	 */
-	public function description( $description = null )
+	public function description($description = null)
 	{
 
 		if ($description !== null) {
@@ -164,16 +176,20 @@ class Group
 			return $this;
 		}
 
-		return apply_filters($this->handle . '/settings/group/description', $this->description, $this);
+		return apply_filters(
+			$this->handle . '/settings/group/description',
+			$this->description,
+			$this
+		);
 	}
 
 	/**
 	 * Set or get collapsed
 	 *
-	 * @param   bool|null $collapsed Bool to set collapsed, null to get it.
+	 * @param bool|null $collapsed Bool to set collapsed, null to get it.
 	 * @return bool|\BracketSpace\Notification\Utils\Settings\Group String when using getter and Group when using setter
 	 */
-	public function collapsed( $collapsed = null )
+	public function collapsed($collapsed = null)
 	{
 
 		if ($collapsed !== null) {
@@ -181,7 +197,11 @@ class Group
 			return $this;
 		}
 
-		return apply_filters($this->handle . '/settings/group/collapsed', $this->collapsed, $this);
+		return apply_filters(
+			$this->handle . '/settings/group/collapsed',
+			$this->collapsed,
+			$this
+		);
 	}
 
 	/**
@@ -197,18 +217,24 @@ class Group
 	/**
 	 * Add Field to the Group
 	 *
-	 * @throws \Exception Exception.
 	 * @param array $args field args.
 	 * @return \BracketSpace\Notification\Utils\Settings\Group $this
+	 * @throws \Exception Exception.
 	 */
-	public function addField( $args )
+	public function addField($args)
 	{
 
-		if (! isset($args['name'], $args['slug'], $args['render'])) {
+		if (!isset($args['name'], $args['slug'], $args['render'])) {
 			throw new \Exception('You must define field name, slug and render callback');
 		}
 
-		$field = new Field($this->handle, $args['name'], $args['slug'], $this->section, $this->slug());
+		$field = new Field(
+			$this->handle,
+			$args['name'],
+			$args['slug'],
+			$this->section,
+			$this->slug()
+		);
 
 		$field->setRenderer($args['render']);
 
@@ -230,7 +256,11 @@ class Group
 
 		$this->fields[$args['slug']] = $field;
 
-		do_action($this->handle . '/settings/field/added', $this->fields[$args['slug']], $this);
+		do_action(
+			$this->handle . '/settings/field/added',
+			$this->fields[$args['slug']],
+			$this
+		);
 
 		return $this;
 	}
@@ -243,6 +273,9 @@ class Group
 	public function getFields()
 	{
 
-		return apply_filters($this->handle . '/settings/group/fields', $this->fields);
+		return apply_filters(
+			$this->handle . '/settings/group/fields',
+			$this->fields
+		);
 	}
 }

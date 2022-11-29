@@ -24,10 +24,10 @@ class UserFirstName extends StringTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		$this->setTriggerProp($params['property_name'] ?? 'user_object');
@@ -36,12 +36,21 @@ class UserFirstName extends StringTag
 			$params,
 			[
 				'slug' => 'user_first_name',
-				'name' => __('User first name', 'notification'),
-				'description' => __('John', 'notification'),
+				'name' => __(
+					'User first name',
+					'notification'
+				),
+				'description' => __(
+					'John',
+					'notification'
+				),
 				'example' => true,
-				'group' => __('User', 'notification'),
-				'resolver' => function ( $trigger ) {
-					return $trigger->{ $this->getTriggerProp() }->firstName;
+				'group' => __(
+					'User',
+					'notification'
+				),
+				'resolver' => function ($trigger) {
+					return $trigger->{$this->getTriggerProp()}->firstName;
 				},
 			]
 		);

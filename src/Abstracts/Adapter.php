@@ -33,7 +33,7 @@ abstract class Adapter implements Interfaces\Adaptable
 	 *
 	 * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
 	 */
-	public function __construct( Notification $notification )
+	public function __construct(Notification $notification)
 	{
 		$this->notification = $notification;
 	}
@@ -41,21 +41,24 @@ abstract class Adapter implements Interfaces\Adaptable
 	/**
 	 * Pass the method calls to Notification object
 	 *
-	 * @since  6.0.0
-	 * @param  string $methodName Method name.
-	 * @param  array  $arguments   Arguments.
+	 * @param string $methodName Method name.
+	 * @param array $arguments Arguments.
 	 * @return mixed
+	 * @since  6.0.0
 	 */
-	public function __call( $methodName, $arguments )
+	public function __call($methodName, $arguments)
 	{
-		return call_user_func_array([ $this->getNotification(), $methodName ], $arguments);
+		return call_user_func_array(
+			[$this->getNotification(), $methodName],
+			$arguments
+		);
 	}
 
 	/**
 	 * Gets Notification object
 	 *
-	 * @since  6.0.0
 	 * @return \BracketSpace\Notification\Core\Notification
+	 * @since  6.0.0
 	 */
 	public function getNotification()
 	{
@@ -65,11 +68,11 @@ abstract class Adapter implements Interfaces\Adaptable
 	/**
 	 * Sets up Notification object with data.
 	 *
-	 * @since  6.0.0
-	 * @param  array $data Data array.
+	 * @param array $data Data array.
 	 * @return \BracketSpace\Notification\Core\Notification
+	 * @since  6.0.0
 	 */
-	public function setupNotification( $data = [] )
+	public function setupNotification($data = [])
 	{
 		return $this->getNotification()->setup($data);
 	}
@@ -77,8 +80,8 @@ abstract class Adapter implements Interfaces\Adaptable
 	/**
 	 * Checks if enabled
 	 *
-	 * @since  6.0.0
 	 * @return bool
+	 * @since  6.0.0
 	 */
 	public function isEnabled()
 	{
@@ -88,8 +91,8 @@ abstract class Adapter implements Interfaces\Adaptable
 	/**
 	 * Registers Notification
 	 *
-	 * @since  6.0.0
 	 * @return void
+	 * @since  6.0.0
 	 */
 	public function registerNotification()
 	{

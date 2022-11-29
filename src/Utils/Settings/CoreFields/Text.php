@@ -22,7 +22,7 @@ class Text
 	 * @param \BracketSpace\Notification\Utils\Settings\Field $field Field instance.
 	 * @return void
 	 */
-	public function input( $field )
+	public function input($field)
 	{
 		printf(
 			'<label><input type="text" id="%s" name="%s" value="%s" class="widefat"></label>',
@@ -35,10 +35,10 @@ class Text
 	/**
 	 * Sanitize input value
 	 *
-	 * @param  string $value Saved value.
+	 * @param string $value Saved value.
 	 * @return string        Sanitized text
 	 */
-	public function sanitize( $value )
+	public function sanitize($value)
 	{
 		return sanitize_text_field($value);
 	}

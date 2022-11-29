@@ -24,10 +24,10 @@ class UserID extends IntegerTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		$this->setTriggerProp($params['property_name'] ?? 'user_object');
@@ -36,12 +36,18 @@ class UserID extends IntegerTag
 			$params,
 			[
 				'slug' => 'user_ID',
-				'name' => __('User ID', 'notification'),
+				'name' => __(
+					'User ID',
+					'notification'
+				),
 				'description' => '25',
 				'example' => true,
-				'group' => __('User', 'notification'),
-				'resolver' => function ( $trigger ) {
-					return $trigger->{ $this->getTriggerProp() }->ID;
+				'group' => __(
+					'User',
+					'notification'
+				),
+				'resolver' => function ($trigger) {
+					return $trigger->{$this->getTriggerProp()}->ID;
 				},
 			]
 		);

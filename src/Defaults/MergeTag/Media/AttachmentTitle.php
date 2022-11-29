@@ -20,10 +20,10 @@ class AttachmentTitle extends StringTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		$this->setTriggerProp($params['property_name'] ?? 'attachment');
@@ -32,12 +32,21 @@ class AttachmentTitle extends StringTag
 			$params,
 			[
 				'slug' => 'attachment_title',
-				'name' => __('Attachment title', 'notification'),
-				'description' => __('Forest landscape', 'notification'),
+				'name' => __(
+					'Attachment title',
+					'notification'
+				),
+				'description' => __(
+					'Forest landscape',
+					'notification'
+				),
 				'example' => true,
-				'group' => __('Attachment', 'notification'),
-				'resolver' => function ( $trigger ) {
-					return $trigger->{ $this->getTriggerProp() }->postTitle;
+				'group' => __(
+					'Attachment',
+					'notification'
+				),
+				'resolver' => function ($trigger) {
+					return $trigger->{$this->getTriggerProp()}->postTitle;
 				},
 			]
 		);

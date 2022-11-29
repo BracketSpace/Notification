@@ -41,18 +41,24 @@ class Screen
 	 *
 	 * @action edit_form_after_title 1
 	 *
-	 * @param  \WP_Post $post Post object.
+	 * @param \WP_Post $post Post object.
 	 * @return void
 	 */
-	public function renderMainColumn( $post )
+	public function renderMainColumn($post)
 	{
 		if (get_post_type($post) !== 'notification') {
 			return;
 		}
 
-		$notificationPost = notification_adapt_from('WordPress', $post);
+		$notificationPost = notification_adapt_from(
+			'WordPress',
+			$post
+		);
 
-		do_action('notification/post/column/main', $notificationPost);
+		do_action(
+			'notification/post/column/main',
+			$notificationPost
+		);
 	}
 
 	/**
@@ -63,7 +69,7 @@ class Screen
 	 * @param \BracketSpace\Notification\Core\Notification $notificationPost Notification Post object.
 	 * @return void
 	 */
-	public function renderTriggerSelect( $notificationPost )
+	public function renderTriggerSelect($notificationPost)
 	{
 		$groupedTriggers = Store\Trigger::grouped();
 		$trigger = $notificationPost->getTrigger();
@@ -76,11 +82,13 @@ class Screen
 		Templates::render(
 			'trigger/metabox',
 			[
-			'selected' => $trigger ? $trigger->getSlug() : '',
-			'triggers' => $groupedTriggers,
-			'has_triggers' => ! empty($groupedTriggers),
-			'select_name' => 'notification_trigger',
-			'notification' => $notificationPost,
+				'selected' => $trigger
+					? $trigger->getSlug()
+					: '',
+				'triggers' => $groupedTriggers,
+				'has_triggers' => !empty($groupedTriggers),
+				'select_name' => 'notification_trigger',
+				'notification' => $notificationPost,
 			]
 		);
 	}
@@ -94,20 +102,26 @@ class Screen
 	 * @param \BracketSpace\Notification\Core\Notification $notificationPost Notification Post object.
 	 * @return void
 	 */
-	public function renderCarrierBoxes( $notificationPost )
+	public function renderCarrierBoxes($notificationPost)
 	{
-		echo '<h3 class="carriers-section-title">' . esc_html__('Carriers', 'notification') . '</h3>';
+		echo '<h3 class="carriers-section-title">' . esc_html__(
+			'Carriers',
+			'notification'
+		) . '</h3>';
 
 		do_action_deprecated(
 			'notitication/admin/notifications/pre',
 			[
-			$notificationPost,
+				$notificationPost,
 			],
 			'6.0.0',
 			'notification/admin/carriers/pre'
 		);
 
-		do_action('notification/admin/carriers/pre', $notificationPost);
+		do_action(
+			'notification/admin/carriers/pre',
+			$notificationPost
+		);
 
 		echo '<div id="carrier-boxes">';
 
@@ -115,7 +129,7 @@ class Screen
 			$carrier = $notificationPost->getCarrier($_carrier->getSlug());
 
 			// If Carrier wasn't set before, use the blank one.
-			if (! $carrier) {
+			if (!$carrier) {
 				$carrier = $_carrier;
 			}
 
@@ -128,15 +142,15 @@ class Screen
 			Templates::render(
 				'box',
 				[
-				'slug' => $carrier->getSlug(),
-				'carrier' => $carrier,
-				'id' => 'notification-carrier-' . $carrier->getSlug() . '-box',
-				'name' => 'notification_carrier_' . $carrier->getSlug() . '_enable',
-				'active_name' => 'notification_carrier_' . $carrier->getSlug() . '_active',
-				'title' => $carrier->getName(),
-				'content' => $this->getCarrierForm($carrier),
-				'open' => $carrier->isEnabled(),
-				'active' => $carrier->isActive(),
+					'slug' => $carrier->getSlug(),
+					'carrier' => $carrier,
+					'id' => 'notification-carrier-' . $carrier->getSlug() . '-box',
+					'name' => 'notification_carrier_' . $carrier->getSlug() . '_enable',
+					'active_name' => 'notification_carrier_' . $carrier->getSlug() . '_active',
+					'title' => $carrier->getName(),
+					'content' => $this->getCarrierForm($carrier),
+					'open' => $carrier->isEnabled(),
+					'active' => $carrier->isActive(),
 				]
 			);
 		}
@@ -146,13 +160,16 @@ class Screen
 		do_action_deprecated(
 			'notitication/admin/notifications',
 			[
-			$notificationPost,
+				$notificationPost,
 			],
 			'6.0.0',
 			'notification/admin/carriers'
 		);
 
-		do_action('notification/admin/carriers', $notificationPost);
+		do_action(
+			'notification/admin/carriers',
+			$notificationPost
+		);
 	}
 
 	/**
@@ -160,10 +177,10 @@ class Screen
 	 *
 	 * @action notification/admin/carriers
 	 *
-	 * @param  object $notificationPost Notification Post object.
+	 * @param object $notificationPost Notification Post object.
 	 * @return void
 	 */
-	public function renderCarriersWidget( $notificationPost )
+	public function renderCarriersWidget($notificationPost)
 	{
 		$carriers = Store\Carrier::all();
 		$exists = $notificationPost->getCarriers();
@@ -171,10 +188,10 @@ class Screen
 		Templates::render(
 			'carriers/widget-add',
 			[
-			'carriers_added_count' => count($carriers),
-			'carriers_exists_count' => count($exists),
-			'carriers' => $carriers,
-			'carriers_exists' => (array)$exists,
+				'carriers_added_count' => count($carriers),
+				'carriers_exists_count' => count($exists),
+				'carriers' => $carriers,
+				'carriers_exists' => (array)$exists,
 			]
 		);
 	}
@@ -182,16 +199,16 @@ class Screen
 	/**
 	 * Gets Carrier config form
 	 *
-	 * @since  6.0.0
 	 * @param \BracketSpace\Notification\Interfaces\Sendable $carrier Carrier object.
 	 * @return string                       Form HTML.
+	 * @since  6.0.0
 	 */
-	public function getCarrierForm( Interfaces\Sendable $carrier )
+	public function getCarrierForm(Interfaces\Sendable $carrier)
 	{
 		$fields = $carrier->getFormFields();
 
 		// No fields available so return the default view.
-		if (empty($fields) && ! $carrier->hasRecipientsField()) {
+		if (empty($fields) && !$carrier->hasRecipientsField()) {
 			return Templates::get('form/empty-form');
 		}
 
@@ -199,7 +216,7 @@ class Screen
 		return Templates::get(
 			'form/table',
 			[
-			'carrier' => $carrier,
+				'carrier' => $carrier,
 			]
 		);
 	}
@@ -215,26 +232,40 @@ class Screen
 	{
 		add_meta_box(
 			'notification_save',
-			__('Save', 'notification'),
-			[ $this, 'render_save_metabox' ],
+			__(
+				'Save',
+				'notification'
+			),
+			[$this, 'render_save_metabox'],
 			'notification',
 			'side',
 			'high'
 		);
 
 		// enable metabox.
-		add_filter('notification/admin/allow_metabox/notification_save', '__return_true');
+		add_filter(
+			'notification/admin/allow_metabox/notification_save',
+			'__return_true'
+		);
 	}
 
 	/**
 	 * Renders Save metabox
 	 *
-	 * @param  object $post current WP_Post.
+	 * @param object $post current WP_Post.
 	 * @return void
 	 */
-	public function renderSaveMetabox( $post )
+	public function renderSaveMetabox($post)
 	{
-		$deleteText = ! EMPTY_TRASH_DAYS ? __('Delete Permanently', 'notification') : __('Move to Trash', 'notification');
+		$deleteText = !EMPTY_TRASH_DAYS
+			? __(
+				'Delete Permanently',
+				'notification'
+			)
+			: __(
+				'Move to Trash',
+				'notification'
+			);
 
 		// New posts has the status auto-draft and in this case the Notification should be enabled.
 		$enabled = get_post_status($post->ID) !== 'draft';
@@ -242,9 +273,9 @@ class Screen
 		Templates::render(
 			'save-metabox',
 			[
-			'enabled' => $enabled,
-			'post_id' => $post->ID,
-			'delete_link_label' => $deleteText,
+				'enabled' => $enabled,
+				'post_id' => $post->ID,
+				'delete_link_label' => $deleteText,
 			]
 		);
 	}
@@ -260,30 +291,41 @@ class Screen
 	{
 		add_meta_box(
 			'notification_merge_tags',
-			__('Merge Tags', 'notification'),
-			[ $this, 'render_merge_tags_metabox' ],
+			__(
+				'Merge Tags',
+				'notification'
+			),
+			[$this, 'render_merge_tags_metabox'],
 			'notification',
 			'side',
 			'default'
 		);
 
 		// enable metabox.
-		add_filter('notification/admin/allow_metabox/notification_merge_tags', '__return_true');
+		add_filter(
+			'notification/admin/allow_metabox/notification_merge_tags',
+			'__return_true'
+		);
 	}
 
 	/**
 	 * Renders Merge Tags metabox
 	 *
-	 * @param  object $post current WP_Post.
+	 * @param object $post current WP_Post.
 	 * @return void
 	 */
-	public function renderMergeTagsMetabox( $post )
+	public function renderMergeTagsMetabox($post)
 	{
-		$notification = notification_adapt_from('WordPress', $post);
+		$notification = notification_adapt_from(
+			'WordPress',
+			$post
+		);
 		$trigger = $notification->getTrigger();
-		$triggerSlug = $trigger ? $trigger->getSlug() : false;
+		$triggerSlug = $trigger
+			? $trigger->getSlug()
+			: false;
 
-		if (! $triggerSlug) {
+		if (!$triggerSlug) {
 			Templates::render('mergetag/metabox-notrigger');
 			return;
 		}
@@ -294,10 +336,10 @@ class Screen
 	/**
 	 * Renders Merge Tags list
 	 *
-	 * @param  string $triggerSlug Trigger slug.
+	 * @param string $triggerSlug Trigger slug.
 	 * @return void
 	 */
-	public function renderMergeTagsList( $triggerSlug )
+	public function renderMergeTagsList($triggerSlug)
 	{
 		$trigger = Store\Trigger::get($triggerSlug);
 
@@ -320,19 +362,25 @@ class Screen
 		];
 
 		if (count($tagGroups) > 1) {
-			Templates::render('mergetag/metabox-accordion', $vars);
+			Templates::render(
+				'mergetag/metabox-accordion',
+				$vars
+			);
 		} else {
-			Templates::render('mergetag/metabox-list', $vars);
+			Templates::render(
+				'mergetag/metabox-list',
+				$vars
+			);
 		}
 	}
 
 	/**
 	 * Prepates merge tag groups for provided Trigger.
 	 *
-	 * @param  object $trigger Trigger object.
+	 * @param object $trigger Trigger object.
 	 * @return array  $groups  Grouped tags.
 	 */
-	public function prepareMergeTagGroups( $trigger )
+	public function prepareMergeTagGroups($trigger)
 	{
 		$groups = [];
 		$tags = $trigger->getMergeTags('visible');
@@ -341,7 +389,10 @@ class Screen
 			return $groups;
 		}
 
-		$otherKey = __('Other', 'notification');
+		$otherKey = __(
+			'Other',
+			'notification'
+		);
 
 		foreach ($tags as $tag) {
 			if ($tag->getGroup()) {
@@ -359,7 +410,11 @@ class Screen
 			$groups[$otherKey] = $others;
 		}
 
-		return apply_filters('notification/trigger/tags/groups', $groups, $trigger);
+		return apply_filters(
+			'notification/trigger/tags/groups',
+			$groups,
+			$trigger
+		);
 	}
 
 	/**
@@ -373,14 +428,17 @@ class Screen
 	{
 		global $wpMetaBoxes;
 
-		if (! isset($wpMetaBoxes['notification'])) {
+		if (!isset($wpMetaBoxes['notification'])) {
 			return;
 		}
 
 		foreach ($wpMetaBoxes['notification'] as $contextName => $context) {
 			foreach ($context as $priority => $boxes) {
 				foreach ($boxes as $boxId => $box) {
-					$allowBox = apply_filters('notification/admin/allow_metabox/' . $boxId, false);
+					$allowBox = apply_filters(
+						'notification/admin/allow_metabox/' . $boxId,
+						false
+					);
 
 					if ($allowBox) {
 						continue;
@@ -403,10 +461,10 @@ class Screen
 	 *
 	 * @action current_screen
 	 *
-	 * @param  object $screen current WP_Screen.
+	 * @param object $screen current WP_Screen.
 	 * @return void
 	 */
-	public function addHelp( $screen )
+	public function addHelp($screen)
 	{
 		if ($screen->postType !== 'notification') {
 			return;
@@ -414,14 +472,17 @@ class Screen
 
 		$screen->addHelpTab(
 			[
-			'id' => 'notification_global_merge_tags',
-			'title' => __('Global Merge Tags', 'notification'),
-			'content' => Templates::get(
-				'help/global-merge-tags',
-				[
-				'tags' => Store\GlobalMergeTag::all(),
-				]
-			),
+				'id' => 'notification_global_merge_tags',
+				'title' => __(
+					'Global Merge Tags',
+					'notification'
+				),
+				'content' => Templates::get(
+					'help/global-merge-tags',
+					[
+						'tags' => Store\GlobalMergeTag::all(),
+					]
+				),
 			]
 		);
 
@@ -447,7 +508,7 @@ class Screen
 
 		$ajax = new Response();
 
-		if (! isset($_POST['trigger_slug'])) {
+		if (!isset($_POST['trigger_slug'])) {
 			$ajax->error();
 		}
 

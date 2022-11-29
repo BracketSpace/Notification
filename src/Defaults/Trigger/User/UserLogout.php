@@ -38,11 +38,26 @@ class UserLogout extends UserTrigger
 	public function __construct()
 	{
 
-		parent::__construct('user/logout', __('User logout', 'notification'));
+		parent::__construct(
+			'user/logout',
+			__(
+				'User logout',
+				'notification'
+			)
+		);
 
-		$this->addAction('wp_logout', 10, 1);
+		$this->addAction(
+			'wp_logout',
+			10,
+			1
+		);
 
-		$this->setDescription(__('Fires when user log out from WordPress', 'notification'));
+		$this->setDescription(
+			__(
+				'Fires when user log out from WordPress',
+				'notification'
+			)
+		);
 	}
 
 	/**
@@ -51,7 +66,7 @@ class UserLogout extends UserTrigger
 	 * @param int $userId User ID.
 	 * @return void
 	 */
-	public function context( $userId = 0 )
+	public function context($userId = 0)
 	{
 		// Fix for WordPress <5.5 where the param is not available.
 		if ($userId === 0) {
@@ -84,8 +99,11 @@ class UserLogout extends UserTrigger
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
-				'slug' => 'user_logout_datetime',
-				'name' => __('User logout time', 'notification'),
+					'slug' => 'user_logout_datetime',
+					'name' => __(
+						'User logout time',
+						'notification'
+					),
 				]
 			)
 		);

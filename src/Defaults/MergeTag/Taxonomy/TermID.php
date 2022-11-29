@@ -23,23 +23,32 @@ class TermID extends IntegerTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.2.2
 	 * @param array<mixed> $params merge tag configuration params.
+	 * @since 5.2.2
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		$this->setTriggerProp($params['property_name'] ?? 'term');
 
 		$args = wp_parse_args(
 			[
-				'slug' => sprintf('%s_ID', $this->getTriggerProp()),
-				'name' => __('Term ID', 'notification'),
+				'slug' => sprintf(
+					'%s_ID',
+					$this->getTriggerProp()
+				),
+				'name' => __(
+					'Term ID',
+					'notification'
+				),
 				'description' => '35',
 				'example' => true,
-				'group' => __('Term', 'notification'),
-				'resolver' => function ( $trigger ) {
-					return $trigger->{ $this->getTriggerProp() }->termId;
+				'group' => __(
+					'Term',
+					'notification'
+				),
+				'resolver' => function ($trigger) {
+					return $trigger->{$this->getTriggerProp()}->termId;
 				},
 			]
 		);

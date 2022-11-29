@@ -51,11 +51,11 @@ class InputField extends Field
 	/**
 	 * Field constructor
 	 *
-	 * @since 5.0.0
-	 * @since 6.3.1 Allow for whitespace characters.
 	 * @param array $params field configuration parameters.
+	 * @since 6.3.1 Allow for whitespace characters.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		if (isset($params['type'])) {
@@ -84,20 +84,34 @@ class InputField extends Field
 	 */
 	public function field()
 	{
-		return '<input type="' . esc_attr($this->type) . '" name="' . esc_attr($this->getName()) . '" id="' . esc_attr($this->getId()) . '" value="' . esc_attr($this->getValue()) . '" placeholder="' . esc_attr($this->placeholder) . '" class="widefat ' . esc_attr($this->cssClass()) . '" ' . $this->maybeDisable() . ' ' . esc_attr($this->atts) . '>';
+		return '<input type="' . esc_attr($this->type) . '" name="' . esc_attr($this->getName()) . '" id="' . esc_attr(
+			$this->getId()
+		) . '" value="' . esc_attr($this->getValue()) . '" placeholder="' . esc_attr(
+			$this->placeholder
+		) . '" class="widefat ' . esc_attr($this->cssClass()) . '" ' . $this->maybeDisable() . ' ' . esc_attr(
+			$this->atts
+		) . '>';
 	}
 
 	/**
 	 * Sanitizes the value sent by user
 	 *
-	 * @param  mixed $value value to sanitize.
+	 * @param mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value )
+	public function sanitize($value)
 	{
-		$value = preg_replace('@<(script|style)[^>]*?>.*?</\\1>@si', '', $value); // Remove script and style tags.
+		$value = preg_replace(
+			'@<(script|style)[^>]*?>.*?</\\1>@si',
+			'',
+			$value
+		); // Remove script and style tags.
 		if ($this->allowLinebreaks !== true) {
-			$value = preg_replace('/[\r\n\t ]+/', ' ', $value); // Remove line breaks.
+			$value = preg_replace(
+				'/[\r\n\t ]+/',
+				' ',
+				$value
+			); // Remove line breaks.
 		}
 		$value = trim($value); // Remove whitespace.
 		return $value;

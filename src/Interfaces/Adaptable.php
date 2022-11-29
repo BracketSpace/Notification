@@ -24,7 +24,7 @@ interface Adaptable
 	 * @param mixed $input Input data.
 	 * @return $this
 	 */
-	public function read( $input = null );
+	public function read($input = null);
 
 	/**
 	 * Saves the data

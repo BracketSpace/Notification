@@ -24,22 +24,25 @@ class SelectInputController
 	/**
 	 * Sends response
 	 *
-	 * @since 7.0.0
 	 * @param \WP_REST_Request $request WP request instance.
 	 * @return void
+	 * @since 7.0.0
 	 */
-	public function sendResponse( \WP_REST_Request $request )
+	public function sendResponse(\WP_REST_Request $request)
 	{
 		$params = $request->getParams();
 		$carrier = $params['carrier'];
 		$type = $params['type'];
-		$recipient = RecipientStore::get($carrier, $type);
+		$recipient = RecipientStore::get(
+			$carrier,
+			$type
+		);
 		$response = new Response();
 
 		if ($recipient) {
 			$input = $recipient->input();
 
-			$data['options'] = $input->options;
+			$data['optiocns'] = $input->options;
 			$data['pretty'] = $input->pretty;
 			$data['label'] = $input->label;
 			$data['checkbox_label'] = $input->checkboxLabel;
@@ -50,12 +53,18 @@ class SelectInputController
 			$data['css_class'] = $input->cssClass;
 			$data['id'] = $input->id;
 			$data['placeholder'] = $input->placeholder;
-			$data['type'] = strtolower(str_replace('Field', '', $input->fieldTypeHtml));
+			$data['type'] = strtolower(
+				str_replace(
+					'Field',
+					'',
+					$input->fieldTypeHtml
+				)
+			);
 			$data['value'] = $input->value;
 
 			$response->send($data);
 		} else {
-			$response->send([ 'message' => 'no recipient' ]);
+			$response->send(['message' => 'no recipient']);
 		}
 	}
 }

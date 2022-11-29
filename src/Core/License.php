@@ -39,10 +39,10 @@ class License
 	/**
 	 * Class constructor
 	 *
-	 * @since 5.1.0
 	 * @param array $extension extension data.
+	 * @since 5.1.0
 	 */
-	public function __construct( array $extension )
+	public function __construct(array $extension)
 	{
 		$this->extension = $extension;
 	}
@@ -50,24 +50,30 @@ class License
 	/**
 	 * Gets all licenses from database
 	 *
-	 * @since  5.1.0
 	 * @return array licenses
+	 * @since  5.1.0
 	 */
 	public function getLicenses()
 	{
-		return get_option($this->licenseStorage, []);
+		return get_option(
+			$this->licenseStorage,
+			[]
+		);
 	}
 
 	/**
 	 * Gets single license info
 	 *
-	 * @since  5.1.0
 	 * @return mixed license data or false
+	 * @since  5.1.0
 	 */
 	public function get()
 	{
 		$driver = new CacheDriver\ObjectCache('notification_license');
-		$cache = new Cache($driver, $this->extension['slug']);
+		$cache = new Cache(
+			$driver,
+			$this->extension['slug']
+		);
 
 		return $cache->collect(
 			function () {
@@ -86,8 +92,8 @@ class License
 	/**
 	 * Checks if license is valid
 	 *
-	 * @since  5.1.0
 	 * @return bool
+	 * @since  5.1.0
 	 */
 	public function isValid()
 	{
@@ -97,11 +103,21 @@ class License
 			return false;
 		}
 
-		$driver = new CacheDriver\Transient(ErrorHandler::debugEnabled() ? 60 : DAY_IN_SECONDS);
-		$cache = new Cache($driver, sprintf('notification_license_check_%s', $this->extension['slug']));
+		$driver = new CacheDriver\Transient(
+			ErrorHandler::debugEnabled()
+				? 60
+				: DAY_IN_SECONDS
+		);
+		$cache = new Cache(
+			$driver,
+			sprintf(
+				'notification_license_check_%s',
+				$this->extension['slug']
+			)
+		);
 
 		return $cache->collect(
-			function () use ( $licenseData ) {
+			function () use ($licenseData) {
 				$licenseCheck = $this->check($licenseData->licenseKey);
 
 				if (is_wp_error($licenseCheck)) {
@@ -120,8 +136,8 @@ class License
 	/**
 	 * Gets the license key
 	 *
-	 * @since  7.1.1
 	 * @return string
+	 * @since  7.1.1
 	 */
 	public function getKey()
 	{
@@ -132,32 +148,41 @@ class License
 	/**
 	 * Saves single license info
 	 *
-	 * @since  5.1.0
 	 * @param object $licenseData license data from API.
 	 * @return void
+	 * @since  5.1.0
 	 */
-	public function save( $licenseData )
+	public function save($licenseData)
 	{
 		$driver = new CacheDriver\ObjectCache('notification_license');
-		$cache = new Cache($driver, $this->extension['slug']);
+		$cache = new Cache(
+			$driver,
+			$this->extension['slug']
+		);
 		$cache->set($licenseData);
 
 		$licenses = $this->getLicenses();
 		$licenses[$this->extension['slug']] = $licenseData;
 
-		update_option($this->licenseStorage, $licenses);
+		update_option(
+			$this->licenseStorage,
+			$licenses
+		);
 	}
 
 	/**
 	 * Removes single license from database
 	 *
-	 * @since  5.1.0
 	 * @return void
+	 * @since  5.1.0
 	 */
 	public function remove()
 	{
 		$driver = new CacheDriver\ObjectCache('notification_license');
-		$cache = new Cache($driver, $this->extension['slug']);
+		$cache = new Cache(
+			$driver,
+			$this->extension['slug']
+		);
 		$cache->delete();
 
 		$licenses = $this->getLicenses();
@@ -165,17 +190,20 @@ class License
 			unset($licenses[$this->extension['slug']]);
 		}
 
-		update_option($this->licenseStorage, $licenses);
+		update_option(
+			$this->licenseStorage,
+			$licenses
+		);
 	}
 
 	/**
 	 * Activates the license
 	 *
-	 * @since  5.1.0
-	 * @param  string $licenseKey license key.
+	 * @param string $licenseKey license key.
 	 * @return mixed               WP_Error or License data
+	 * @since  5.1.0
 	 */
-	public function activate( $licenseKey = '' )
+	public function activate($licenseKey = '')
 	{
 
 		$licenseKey = trim($licenseKey);
@@ -197,13 +225,20 @@ class License
 
 		// Make sure the response came back okay.
 		if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
-			return new \WP_Error('notification_license_error', 'http-error');
+			return new \WP_Error(
+				'notification_license_error',
+				'http-error'
+			);
 		}
 
 		$licenseData = json_decode(wp_remote_retrieve_body($response));
 
 		if ($licenseData->success === false) {
-			return new \WP_Error('notification_license_error', $licenseData->error, $licenseData);
+			return new \WP_Error(
+				'notification_license_error',
+				$licenseData->error,
+				$licenseData
+			);
 		}
 
 		$licenseData->licenseKey = $licenseKey;
@@ -215,8 +250,8 @@ class License
 	/**
 	 * Deactivates the license
 	 *
-	 * @since  5.1.0
 	 * @return mixed WP_Error or License data
+	 * @since  5.1.0
 	 */
 	public function deactivate()
 	{
@@ -240,13 +275,25 @@ class License
 
 		// Make sure the response came back okay.
 		if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
-			return new \WP_Error('notification_license_error', 'http-error');
+			return new \WP_Error(
+				'notification_license_error',
+				'http-error'
+			);
 		}
 
 		$licenseData = json_decode(wp_remote_retrieve_body($response));
 
-		if (! in_array($licenseData->license, [ 'deactivated', 'failed' ], true)) {
-			return new \WP_Error('notification_license_error', 'deactivation-error');
+		if (
+			!in_array(
+				$licenseData->license,
+				['deactivated', 'failed'],
+				true
+			)
+		) {
+			return new \WP_Error(
+				'notification_license_error',
+				'deactivation-error'
+			);
 		}
 
 		$this->remove();
@@ -257,11 +304,11 @@ class License
 	/**
 	 * Checks the license
 	 *
-	 * @since  5.1.0
-	 * @param  string $licenseKey license key.
+	 * @param string $licenseKey license key.
 	 * @return object              WP_Error or license object
+	 * @since  5.1.0
 	 */
-	public function check( $licenseKey = '' )
+	public function check($licenseKey = '')
 	{
 
 		$licenseKey = trim($licenseKey);
@@ -283,7 +330,10 @@ class License
 
 		// Make sure the response came back okay.
 		if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
-			return new \WP_Error('notification_license_error', 'http-error');
+			return new \WP_Error(
+				'notification_license_error',
+				'http-error'
+			);
 		}
 
 		return json_decode(wp_remote_retrieve_body($response));

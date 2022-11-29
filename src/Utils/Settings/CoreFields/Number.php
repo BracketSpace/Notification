@@ -23,7 +23,7 @@ class Number
 	 * @param \BracketSpace\Notification\Utils\Settings\Field $field Field instance.
 	 * @return void
 	 */
-	public function input( $field )
+	public function input($field)
 	{
 		printf(
 			'<label><input type="number" id="%s" name="%s" value="%s" min="%s" max="%s" step="%s" class="widefat"></label>',
@@ -39,12 +39,12 @@ class Number
 	/**
 	 * Sanitize input value
 	 *
-	 * @param  string $value saved value.
+	 * @param string $value saved value.
 	 * @return int|float     sanitized number
 	 */
-	public function sanitize( $value )
+	public function sanitize($value)
 	{
-		if (! is_numeric($value)) {
+		if (!is_numeric($value)) {
 			return 0;
 		}
 

@@ -37,17 +37,41 @@ class RecipientRepository
 	 */
 	public static function register()
 	{
-		Register::recipient('email', new Recipient\Email());
-		Register::recipient('email', new Recipient\Administrator());
-		Register::recipient('email', new Recipient\User());
-		Register::recipient('email', new Recipient\UserID());
-		Register::recipient('email', new Recipient\Role());
+		Register::recipient(
+			'email',
+			new Recipient\Email()
+		);
+		Register::recipient(
+			'email',
+			new Recipient\Administrator()
+		);
+		Register::recipient(
+			'email',
+			new Recipient\User()
+		);
+		Register::recipient(
+			'email',
+			new Recipient\UserID()
+		);
+		Register::recipient(
+			'email',
+			new Recipient\Role()
+		);
 
 		foreach (self::$webhookRecipientTypes as $type => $name) {
-			$recipient = new Recipient\Webhook($type, $name);
+			$recipient = new Recipient\Webhook(
+				$type,
+				$name
+			);
 
-			Register::recipient('webhook', $recipient);
-			Register::recipient('webhook_json', $recipient);
+			Register::recipient(
+				'webhook',
+				$recipient
+			);
+			Register::recipient(
+				'webhook_json',
+				$recipient
+			);
 		}
 	}
 }

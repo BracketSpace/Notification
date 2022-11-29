@@ -28,10 +28,10 @@ interface Fillable
 	/**
 	 * Sets field value
 	 *
-	 * @param  mixed $value value from DB.
+	 * @param mixed $value value from DB.
 	 * @return void
 	 */
-	public function setValue( $value );
+	public function setValue($value);
 
 	/**
 	 * Gets field name
@@ -85,8 +85,8 @@ interface Fillable
 	/**
 	 * Sanitizes the value sent by user
 	 *
-	 * @param  mixed $value value to sanitize.
+	 * @param mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value );
+	public function sanitize($value);
 }

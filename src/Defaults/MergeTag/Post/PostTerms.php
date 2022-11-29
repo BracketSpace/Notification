@@ -31,16 +31,18 @@ class PostTerms extends StringTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.1.3
 	 * @param array $params merge tag configuration params.
+	 * @since 5.1.3
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		$this->setTriggerProp($params['post_type'] ?? 'post');
 
 		if (isset($params['taxonomy'])) {
-			$this->taxonomy = is_string($params['taxonomy']) ? get_taxonomy($params['taxonomy']) : $params['taxonomy'];
+			$this->taxonomy = is_string($params['taxonomy'])
+				? get_taxonomy($params['taxonomy'])
+				: $params['taxonomy'];
 		}
 
 		$postTypeName = WpObjectHelper::getPostTypeName($this->getTriggerProp());
@@ -48,19 +50,42 @@ class PostTerms extends StringTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf('%s_%s', $this->getTriggerProp(), $this->taxonomy->name),
+				'slug' => sprintf(
+					'%s_%s',
+					$this->getTriggerProp(),
+					$this->taxonomy->name
+				),
 				// translators: 1. Post Type 2. Taxonomy name.
-				'name' => sprintf(__('%1$s %2$s', 'notification'), $postTypeName, $this->taxonomy->label),
-				'description' => __('General, Tech, Lifestyle', 'notification'),
+				'name' => sprintf(
+					__(
+						'%1$s %2$s',
+						'notification'
+					),
+					$postTypeName,
+					$this->taxonomy->label
+				),
+				'description' => __(
+					'General, Tech, Lifestyle',
+					'notification'
+				),
 				'example' => true,
 				'group' => $postTypeName,
-				'resolver' => function ( $trigger ) {
-					$postTerms = get_the_terms($trigger->{ $this->getTriggerProp() }, $this->taxonomy->name);
+				'resolver' => function ($trigger) {
+					$postTerms = get_the_terms(
+						$trigger->{$this->getTriggerProp()},
+						$this->taxonomy->name
+					);
 					if (empty($postTerms) || is_wp_error($postTerms)) {
 						return '';
 					}
 
-					return implode(', ', wp_list_pluck($postTerms, 'name'));
+					return implode(
+						', ',
+						wp_list_pluck(
+							$postTerms,
+							'name'
+						)
+					);
 				},
 			]
 		);

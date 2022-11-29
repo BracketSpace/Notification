@@ -31,18 +31,22 @@ class TermAdded extends TermTrigger
 	 *
 	 * @param string $taxonomy optional default category.
 	 */
-	public function __construct( $taxonomy = 'category' )
+	public function __construct($taxonomy = 'category')
 	{
 		$this->taxonomy = WpObjectHelper::getTaxonomy($taxonomy);
 
 		parent::__construct(
 			[
-			'taxonomy' => $taxonomy,
-			'slug' => 'taxonomy/' . $taxonomy . '/created',
+				'taxonomy' => $taxonomy,
+				'slug' => 'taxonomy/' . $taxonomy . '/created',
 			]
 		);
 
-		$this->addAction('created_' . $taxonomy, 100, 2);
+		$this->addAction(
+			'created_' . $taxonomy,
+			100,
+			2
+		);
 	}
 
 	/**
@@ -53,7 +57,13 @@ class TermAdded extends TermTrigger
 	public function getName(): string
 	{
 		// Translators: taxonomy name.
-		return sprintf(__('%s term created', 'notification'), $this->taxonomy->labels->singularName ?? '');
+		return sprintf(
+			__(
+				'%s term created',
+				'notification'
+			),
+			$this->taxonomy->labels->singularName ?? ''
+		);
 	}
 
 	/**
@@ -64,8 +74,11 @@ class TermAdded extends TermTrigger
 	public function getDescription(): string
 	{
 		return sprintf(
-			// Translators: 1. taxonomy name, 2. taxonomy slug.
-			__('Fires when %1$s (%2$s) is created', 'notification'),
+		// Translators: 1. taxonomy name, 2. taxonomy slug.
+			__(
+				'Fires when %1$s (%2$s) is created',
+				'notification'
+			),
 			$this->taxonomy->labels->singularName ?? '',
 			$this->taxonomy->name ?? ''
 		);
@@ -78,11 +91,11 @@ class TermAdded extends TermTrigger
 	 * @param int $termId Term ID.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $termId )
+	public function context($termId)
 	{
 		$term = get_term($termId);
 
-		if (! ( $this->taxonomy instanceof \WP_Taxonomy ) || ! ( $term instanceof \WP_Term )) {
+		if (!($this->taxonomy instanceof \WP_Taxonomy) || !($term instanceof \WP_Term)) {
 			return false;
 		}
 
@@ -93,7 +106,9 @@ class TermAdded extends TermTrigger
 		}
 
 		$termLink = get_term_link($this->term);
-		$this->termPermalink = is_string($termLink) ? $termLink : '';
+		$this->termPermalink = is_string($termLink)
+			? $termLink
+			: '';
 
 		$this->termCreationDatetime = (string)time();
 	}
@@ -111,9 +126,15 @@ class TermAdded extends TermTrigger
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
-				'slug' => 'term_creation_datetime',
-				'name' => __('Term creation date and time', 'notification'),
-				'group' => __('Term', 'notification'),
+					'slug' => 'term_creation_datetime',
+					'name' => __(
+						'Term creation date and time',
+						'notification'
+					),
+					'group' => __(
+						'Term',
+						'notification'
+					),
 				]
 			)
 		);

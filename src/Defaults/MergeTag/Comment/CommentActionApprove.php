@@ -29,13 +29,13 @@ class CommentActionApprove extends UrlTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
-		if (isset($params['comment_type']) && ! empty($params['comment_type'])) {
+		if (isset($params['comment_type']) && !empty($params['comment_type'])) {
 			$this->commentType = $params['comment_type'];
 		}
 
@@ -48,11 +48,25 @@ class CommentActionApprove extends UrlTag
 			[
 				'slug' => 'comment_approve_action_url',
 				// Translators: Comment type name.
-				'name' => sprintf(__('%s approve URL', 'notification'), $commentTypeName),
+				'name' => sprintf(
+					__(
+						'%s approve URL',
+						'notification'
+					),
+					$commentTypeName
+				),
 				// Translators: comment type actions text.
-				'group' => sprintf(__('%s actions', 'notification'), $commentTypeName),
-				'resolver' => function ( $trigger ) {
-					return admin_url("comment.php?action=approve&c={$trigger->{ $this->getTriggerProp() }->commentID}#wpbody-content");
+				'group' => sprintf(
+					__(
+						'%s actions',
+						'notification'
+					),
+					$commentTypeName
+				),
+				'resolver' => function ($trigger) {
+					return admin_url(
+						"comment.php?action=approve&c={$trigger->{ $this->getTriggerProp() }->commentID}#wpbody-content"
+					);
 				},
 			]
 		);

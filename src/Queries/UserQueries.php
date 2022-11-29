@@ -26,16 +26,25 @@ class UserQueries
 	 */
 	public static function all()
 	{
-		$driver = new CacheDriver\ObjectCache('notification', 6 * HOUR_IN_SECONDS);
-		$cache = new Cache($driver, 'users');
+		$driver = new CacheDriver\ObjectCache(
+			'notification',
+			6 * HOUR_IN_SECONDS
+		);
+		$cache = new Cache(
+			$driver,
+			'users'
+		);
 
 		return $cache->collect(
 			static function () {
 				global $wpdb;
 
 				// We're using direct db call for performance purposes - we only need the post_content field.
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
-				return $wpdb->getResults("SELECT ID, user_email, display_name FROM $wpdb->users", 'ARRAY_A');
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+				return $wpdb->getResults(
+					"SELECT ID, user_email, display_name FROM $wpdb->users",
+					'ARRAY_A'
+				);
 			}
 		);
 	}
@@ -46,17 +55,26 @@ class UserQueries
 	 * @param string $role user role.
 	 * @return array<int,array{ID: string, user_email: string, display_name: string}>
 	 */
-	public static function withRole( string $role )
+	public static function withRole(string $role)
 	{
-		$driver = new CacheDriver\ObjectCache('notification', 6 * HOUR_IN_SECONDS);
-		$cache = new Cache($driver, sprintf('%s_users', $role));
+		$driver = new CacheDriver\ObjectCache(
+			'notification',
+			6 * HOUR_IN_SECONDS
+		);
+		$cache = new Cache(
+			$driver,
+			sprintf(
+				'%s_users',
+				$role
+			)
+		);
 
 		return $cache->collect(
-			static function () use ( $role ) {
+			static function () use ($role) {
 				global $wpdb;
 
 				// We're using direct db call for performance purposes - we only need the post_content field.
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 				return $wpdb->getResults(
 					$wpdb->prepare(
 						"SELECT u.ID, u.user_email, u.display_name

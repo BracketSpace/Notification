@@ -27,7 +27,7 @@ class SyncTable
 	 * @param \BracketSpace\Notification\Utils\Settings\Field $field Field instance.
 	 * @return void
 	 */
-	public function input( $field )
+	public function input($field)
 	{
 		// Get all Notifications.
 		$wpJsonNotifiactions = PostType::getAllNotifications();
@@ -37,7 +37,10 @@ class SyncTable
 		// Load the WP Notifications first.
 		foreach ($wpJsonNotifiactions as $json) {
 			try {
-				$adapter = notification_adapt_from('JSON', $json);
+				$adapter = notification_adapt_from(
+					'JSON',
+					$json
+				);
 				$notification = $adapter->getNotification();
 			} catch (\Throwable $e) {
 				// Do nothing.
@@ -65,7 +68,10 @@ class SyncTable
 		// Compare against JSON.
 		foreach ($jsonNotifiactions as $json) {
 			try {
-				$adapter = notification_adapt_from('JSON', $json);
+				$adapter = notification_adapt_from(
+					'JSON',
+					$json
+				);
 				$notification = $adapter->getNotification();
 			} catch (\Throwable $e) {
 				// Do nothing.
@@ -77,7 +83,13 @@ class SyncTable
 
 				$wpNotification = $collection[$notification->getHash()]['notification'];
 
-				if (version_compare((string)$wpNotification->getVersion(), (string)$notification->getVersion(), '>=')) {
+				if (
+					version_compare(
+						(string)$wpNotification->getVersion(),
+						(string)$notification->getVersion(),
+						'>='
+					)
+				) {
 					$collection[$notification->getHash()]['up_to_date'] = true;
 				}
 			} else {
@@ -107,7 +119,7 @@ class SyncTable
 		Templates::render(
 			'sync/notifications',
 			[
-			'collection' => array_reverse($collection),
+				'collection' => array_reverse($collection),
 			]
 		);
 	}

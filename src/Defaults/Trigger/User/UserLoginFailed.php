@@ -31,11 +31,26 @@ class UserLoginFailed extends UserTrigger
 	public function __construct()
 	{
 
-		parent::__construct('user/login_failed', __('User login failed', 'notification'));
+		parent::__construct(
+			'user/login_failed',
+			__(
+				'User login failed',
+				'notification'
+			)
+		);
 
-		$this->addAction('wp_login_failed', 10, 1);
+		$this->addAction(
+			'wp_login_failed',
+			10,
+			1
+		);
 
-		$this->setDescription(__('Fires when user login failed', 'notification'));
+		$this->setDescription(
+			__(
+				'Fires when user login failed',
+				'notification'
+			)
+		);
 	}
 
 	/**
@@ -44,13 +59,16 @@ class UserLoginFailed extends UserTrigger
 	 * @param string $username username.
 	 * @return mixed
 	 */
-	public function context( $username )
+	public function context($username)
 	{
 
-		$user = get_user_by('login', $username);
+		$user = get_user_by(
+			'login',
+			$username
+		);
 
 		// Bail if no user has been found to limit the spam login notifications.
-		if (! $user) {
+		if (!$user) {
 			return false;
 		}
 
@@ -80,8 +98,11 @@ class UserLoginFailed extends UserTrigger
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
-				'slug' => 'user_login_failed_datetime',
-				'name' => __('User login failed datetime', 'notification'),
+					'slug' => 'user_login_failed_datetime',
+					'name' => __(
+						'User login failed datetime',
+						'notification'
+					),
 				]
 			)
 		);

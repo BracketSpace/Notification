@@ -20,10 +20,10 @@ class AttachmentID extends IntegerTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		$this->setTriggerProp($params['property_name'] ?? 'attachment');
@@ -32,12 +32,18 @@ class AttachmentID extends IntegerTag
 			$params,
 			[
 				'slug' => 'attachment_ID',
-				'name' => __('Attachment ID', 'notification'),
+				'name' => __(
+					'Attachment ID',
+					'notification'
+				),
 				'description' => '35',
 				'example' => true,
-				'group' => __('Attachment', 'notification'),
-				'resolver' => function ( $trigger ) {
-					return $trigger->{ $this->getTriggerProp() }->ID;
+				'group' => __(
+					'Attachment',
+					'notification'
+				),
+				'resolver' => function ($trigger) {
+					return $trigger->{$this->getTriggerProp()}->ID;
 				},
 			]
 		);

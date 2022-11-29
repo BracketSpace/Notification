@@ -25,26 +25,50 @@ class ImportExport
 	 * @param object $settings Settings API object.
 	 * @return void
 	 */
-	public function settings( $settings )
+	public function settings($settings)
 	{
-		$importexport = $settings->addSection(__('Import / Export', 'notification'), 'import_export');
+		$importexport = $settings->addSection(
+			__(
+				'Import / Export',
+				'notification'
+			),
+			'import_export'
+		);
 
-		$importexport->addGroup(__('Import', 'notification'), 'import')
+		$importexport->addGroup(
+			__(
+				'Import',
+				'notification'
+			),
+			'import'
+		)
 			->addField(
 				[
-					'name' => __('Notifications', 'notification'),
+					'name' => __(
+						'Notifications',
+						'notification'
+					),
 					'slug' => 'notifications',
-					'render' => [ new SettingFields\Import(), 'input' ],
+					'render' => [new SettingFields\Import(), 'input'],
 					'sanitize' => '__return_null',
 				]
 			);
 
-		$importexport->addGroup(__('Export', 'notification'), 'export')
+		$importexport->addGroup(
+			__(
+				'Export',
+				'notification'
+			),
+			'export'
+		)
 			->addField(
 				[
-					'name' => __('Notifications', 'notification'),
+					'name' => __(
+						'Notifications',
+						'notification'
+					),
 					'slug' => 'notifications',
-					'render' => [ new SettingFields\Export(), 'input' ],
+					'render' => [new SettingFields\Export(), 'input'],
 					'sanitize' => '__return_null',
 				]
 			);
@@ -55,14 +79,17 @@ class ImportExport
 	 *
 	 * @action admin_post_notification_export
 	 *
-	 * @since  6.0.0
 	 * @return void
+	 * @since  6.0.0
 	 */
 	public function exportRequest()
 	{
-		check_admin_referer('notification-export', 'nonce');
+		check_admin_referer(
+			'notification-export',
+			'nonce'
+		);
 
-		if (! isset($_GET['type'])) {
+		if (!isset($_GET['type'])) {
 			wp_die('Wrong export type. Please go back and try again.');
 		}
 
@@ -70,11 +97,18 @@ class ImportExport
 
 		try {
 			$data = call_user_func(
-				[ $this, 'prepare_' . $type . '_export_data' ],
-				explode(',', sanitize_text_field(wp_unslash($_GET['items'] ?? '')))
+				[$this, 'prepare_' . $type . '_export_data'],
+				explode(
+					',',
+					sanitize_text_field(wp_unslash($_GET['items'] ?? ''))
+				)
 			);
 		} catch (\Throwable $e) {
-			wp_die(esc_html($e->getMessage()), '', [ 'back_link' => true ]);
+			wp_die(
+				esc_html($e->getMessage()),
+				'',
+				['back_link' => true]
+			);
 		}
 
 		header('Content-Description: File Transfer');
@@ -87,20 +121,23 @@ class ImportExport
 			)
 		);
 
-		echo wp_json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+		echo wp_json_encode(
+			$data,
+			JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+		);
 		die;
 	}
 
 	/**
 	 * Prepares notifications data for export
 	 *
+	 * @param array<int,string> $items Items to export.
+	 * @return array<int,string>
 	 * @throws \Exception When no items selected for export.
 	 * @since  6.0.0
 	 * @since  8.0.2 Accepts the items argument, instead reading it from GET.
-	 * @param  array<int,string> $items Items to export.
-	 * @return array<int,string>
 	 */
-	public function prepareNotificationsExportData( array $items = [] )
+	public function prepareNotificationsExportData(array $items = [])
 	{
 		if (empty($items)) {
 			throw new \Exception(__('No items selected for export'));
@@ -109,23 +146,32 @@ class ImportExport
 		$data = [];
 		$posts = get_posts(
 			[
-			'post_type' => 'notification',
-			'post_status' => [ 'publish', 'draft' ],
-			'posts_per_page' => -1,
-			'post__in' => $items,
+				'post_type' => 'notification',
+				'post_status' => ['publish', 'draft'],
+				'posts_per_page' => -1,
+				'post__in' => $items,
 			]
 		);
 
 		foreach ($posts as $wppost) {
-			$wpAdapter = notification_adapt_from('WordPress', $wppost);
+			$wpAdapter = notification_adapt_from(
+				'WordPress',
+				$wppost
+			);
 
 			/**
 			 * JSON Adapter
 			 *
 			 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 			 */
-			$jsonAdapter = notification_swap_adapter('JSON', $wpAdapter);
-			$json = $jsonAdapter->save(null, false);
+			$jsonAdapter = notification_swap_adapter(
+				'JSON',
+				$wpAdapter
+			);
+			$json = $jsonAdapter->save(
+				null,
+				false
+			);
 
 			// Decode because it's encoded in the last step of export.
 			$data[] = json_decode($json);
@@ -139,20 +185,26 @@ class ImportExport
 	 *
 	 * @action wp_ajax_notification_import_json
 	 *
-	 * @since  6.0.0
 	 * @return void
+	 * @since  6.0.0
 	 */
 	public function importRequest()
 	{
-		if (check_ajax_referer('import-notifications', 'nonce', false) === false) {
+		if (
+			check_ajax_referer(
+				'import-notifications',
+				'nonce',
+				false
+			) === false
+		) {
 			wp_send_json_error(__('Security check failed. Please refresh the page and try again'));
 		}
 
-		if (! current_user_can('manage_options')) {
+		if (!current_user_can('manage_options')) {
 			wp_send_json_error(__('You are not allowed to import notifications'));
 		}
 
-		if (! isset($_POST['type'])) {
+		if (!isset($_POST['type'])) {
 			wp_send_json_error(__('Wrong import type'));
 		}
 
@@ -161,22 +213,34 @@ class ImportExport
 		}
 
 		// phpcs:disable
-		$file = fopen( $_FILES[0]['tmp_name'], 'rb' );
-		$json = fread( $file, filesize( $_FILES[0]['tmp_name'] ) );
-		fclose( $file );
-		unlink( $_FILES[0]['tmp_name'] );
+		$file = fopen(
+			$_FILES[0]['tmp_name'],
+			'rb'
+		);
+		$json = fread(
+			$file,
+			filesize($_FILES[0]['tmp_name'])
+		);
+		fclose($file);
+		unlink($_FILES[0]['tmp_name']);
 		// phpcs:enable
 
-		$data = json_decode($json, true);
+		$data = json_decode(
+			$json,
+			true
+		);
 		$type = sanitize_text_field(wp_unslash($_POST['type']));
 
 		// Wrap the singular notification into a collection.
 		if (isset($data['hash'])) {
-			$data = [ $data ];
+			$data = [$data];
 		}
 
 		try {
-			$result = call_user_func([ $this, 'process_' . $type . '_import_request' ], $data);
+			$result = call_user_func(
+				[$this, 'process_' . $type . '_import_request'],
+				$data
+			);
 		} catch (\Throwable $e) {
 			wp_send_json_error($e->getMessage());
 		}
@@ -187,25 +251,31 @@ class ImportExport
 	/**
 	 * Imports notifications
 	 *
-	 * @since  6.0.0
-	 * @param  array $data Notifications data.
+	 * @param array $data Notifications data.
 	 * @return string
+	 * @since  6.0.0
 	 */
-	public function processNotificationsImportRequest( $data )
+	public function processNotificationsImportRequest($data)
 	{
 		$added = 0;
 		$skipped = 0;
 		$updated = 0;
 
 		foreach ($data as $notificationData) {
-			$jsonAdapter = notification_adapt_from('JSON', wp_json_encode($notificationData));
+			$jsonAdapter = notification_adapt_from(
+				'JSON',
+				wp_json_encode($notificationData)
+			);
 
 			/**
 			 * WordPress Adapter
 			 *
 			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
 			 */
-			$wpAdapter = notification_swap_adapter('WordPress', $jsonAdapter);
+			$wpAdapter = notification_swap_adapter(
+				'WordPress',
+				$jsonAdapter
+			);
 
 			/**
 			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null
@@ -226,6 +296,11 @@ class ImportExport
 		}
 
 		// translators: number and number and number of notifications.
-		return sprintf(__('%1$d notifications imported successfully. %2$d updated. %3$d skipped.'), ( $added + $updated ), $updated, $skipped);
+		return sprintf(
+			__('%1$d notifications imported successfully. %2$d updated. %3$d skipped.'),
+			($added + $updated),
+			$updated,
+			$skipped
+		);
 	}
 }

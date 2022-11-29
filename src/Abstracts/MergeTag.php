@@ -83,26 +83,29 @@ abstract class MergeTag implements Interfaces\Taggable
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
-	 * @since 7.0.0 The resolver closure context is static.
 	 * @param array $params merge tag configuration params.
+	 * @since 7.0.0 The resolver closure context is static.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
-		if (! isset($params['slug'], $params['name'], $params['resolver'])) {
-			trigger_error('Merge tag requires resolver', E_USER_ERROR);
+		if (!isset($params['slug'], $params['name'], $params['resolver'])) {
+			trigger_error(
+				'Merge tag requires resolver',
+				E_USER_ERROR
+			);
 		}
 
-		if (! empty($params['slug'])) {
+		if (!empty($params['slug'])) {
 			$this->setSlug($params['slug']);
 		}
 
-		if (! empty($params['name'])) {
+		if (!empty($params['name'])) {
 			$this->setName($params['name']);
 		}
 
-		if (! empty($params['group'])) {
+		if (!empty($params['group'])) {
 			$this->setGroup($params['group']);
 		}
 
@@ -128,18 +131,18 @@ abstract class MergeTag implements Interfaces\Taggable
 	/**
 	 * Checks if the value is the correct type
 	 *
-	 * @param  mixed $value tag value.
+	 * @param mixed $value tag value.
 	 * @return bool
 	 */
-	abstract public function validate( $value );
+	abstract public function validate($value);
 
 	/**
 	 * Sanitizes the merge tag value
 	 *
-	 * @param  mixed $value tag value.
+	 * @param mixed $value tag value.
 	 * @return mixed        sanitized value
 	 */
-	abstract public function sanitize( $value );
+	abstract public function sanitize($value);
 
 	/**
 	 * Resolves the merge tag value
@@ -156,20 +159,34 @@ abstract class MergeTag implements Interfaces\Taggable
 		}
 
 		try {
-			$value = call_user_func($this->resolver, $this->getTrigger());
+			$value = call_user_func(
+				$this->resolver,
+				$this->getTrigger()
+			);
 		} catch (\Throwable $t) {
 			$value = null;
-			trigger_error(esc_html($t->getMessage()), E_USER_NOTICE);
+			trigger_error(
+				esc_html($t->getMessage()),
+				E_USER_NOTICE
+			);
 		}
 
-		if (! empty($value) && ! $this->validate($value)) {
-			$errorType = ( defined('WP_DEBUG') && WP_DEBUG ) ? E_USER_ERROR : E_USER_NOTICE;
-			trigger_error('Resolved value is a wrong type', $errorType);
+		if (!empty($value) && !$this->validate($value)) {
+			$errorType = (defined('WP_DEBUG') && WP_DEBUG)
+				? E_USER_ERROR
+				: E_USER_NOTICE;
+			trigger_error(
+				'Resolved value is a wrong type',
+				$errorType
+			);
 		}
 
 		$this->resolved = true;
 
-		$this->value = apply_filters('notification/merge_tag/value/resolve', $this->sanitize($value));
+		$this->value = apply_filters(
+			'notification/merge_tag/value/resolve',
+			$this->sanitize($value)
+		);
 
 		return $this->getValue();
 	}
@@ -202,16 +219,20 @@ abstract class MergeTag implements Interfaces\Taggable
 	 */
 	public function getValue()
 	{
-		return apply_filters('notification/merge_tag/' . $this->getSlug() . '/value', $this->value, $this);
+		return apply_filters(
+			'notification/merge_tag/' . $this->getSlug() . '/value',
+			$this->value,
+			$this
+		);
 	}
 
 	/**
 	 * Sets trigger object
 	 *
-	 * @since 5.0.0
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
+	 * @since 5.0.0
 	 */
-	public function setTrigger( Interfaces\Triggerable $trigger )
+	public function setTrigger(Interfaces\Triggerable $trigger)
 	{
 		$this->trigger = $trigger;
 	}
@@ -219,14 +240,17 @@ abstract class MergeTag implements Interfaces\Taggable
 	/**
 	 * Sets resolver function
 	 *
-	 * @since 5.2.2
 	 * @param mixed $resolver Resolver, can be either a closure or array or string.
+	 * @since 5.2.2
 	 */
-	public function setResolver( $resolver )
+	public function setResolver($resolver)
 	{
 
-		if (! is_callable($resolver)) {
-			trigger_error('Merge tag resolver has to be callable', E_USER_ERROR);
+		if (!is_callable($resolver)) {
+			trigger_error(
+				'Merge tag resolver has to be callable',
+				E_USER_ERROR
+			);
 		}
 
 		$this->resolver = $resolver;
@@ -235,13 +259,13 @@ abstract class MergeTag implements Interfaces\Taggable
 	/**
 	 * Sets resolver function
 	 *
-	 * @since 8.0.12
-	 *
 	 * @param string $triggerPropertyName merge tag trigger property name.
 	 *
 	 * @return void
+	 * @since 8.0.12
+	 *
 	 */
-	public function setTriggerProp( string $triggerPropertyName )
+	public function setTriggerProp(string $triggerPropertyName)
 	{
 		$this->triggerPropertyName = $triggerPropertyName;
 	}
@@ -249,9 +273,9 @@ abstract class MergeTag implements Interfaces\Taggable
 	/**
 	 * Get trigger property
 	 *
+	 * @return string
 	 * @since 8.0.12
 	 *
-	 * @return string
 	 */
 	public function getTriggerProp(): string
 	{
@@ -261,8 +285,8 @@ abstract class MergeTag implements Interfaces\Taggable
 	/**
 	 * Gets trigger object
 	 *
-	 * @since 5.0.0
 	 * @return \BracketSpace\Notification\Interfaces\Triggerable|null
+	 * @since 5.0.0
 	 */
 	public function getTrigger()
 	{
@@ -272,8 +296,8 @@ abstract class MergeTag implements Interfaces\Taggable
 	/**
 	 * Gets value type
 	 *
-	 * @since 5.0.0
 	 * @return string
+	 * @since 5.0.0
 	 */
 	public function getValueType()
 	{
@@ -283,8 +307,8 @@ abstract class MergeTag implements Interfaces\Taggable
 	/**
 	 * Checks if merge tag is hidden
 	 *
-	 * @since 5.1.3
 	 * @return bool
+	 * @since 5.1.3
 	 */
 	public function isHidden()
 	{
@@ -294,8 +318,8 @@ abstract class MergeTag implements Interfaces\Taggable
 	/**
 	 * Cleans the value
 	 *
-	 * @since  5.2.2
 	 * @return void
+	 * @since  5.2.2
 	 */
 	public function cleanValue()
 	{

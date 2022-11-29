@@ -23,22 +23,41 @@ class CommentUnapproved extends CommentTrigger
 	 *
 	 * @param string $commentType optional, default: comment.
 	 */
-	public function __construct( $commentType = 'comment' )
+	public function __construct($commentType = 'comment')
 	{
 
 		parent::__construct(
 			[
-			'slug' => 'comment/' . $commentType . '/unapproved',
-			// Translators: %s comment type.
-			'name' => sprintf(__('%s unapproved', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
-			'comment_type' => $commentType,
+				'slug' => 'comment/' . $commentType . '/unapproved',
+				// Translators: %s comment type.
+				'name' => sprintf(
+					__(
+						'%s unapproved',
+						'notification'
+					),
+					WpObjectHelper::getCommentTypeName($commentType)
+				),
+				'comment_type' => $commentType,
 			]
 		);
 
-		$this->addAction('transition_comment_status', 10, 3);
+		$this->addAction(
+			'transition_comment_status',
+			10,
+			3
+		);
 
 		// translators: comment type.
-		$this->setDescription(sprintf(__('Fires when %s is marked as unapproved', 'notification'), WpObjectHelper::getCommentTypeName($commentType), 'notification'));
+		$this->setDescription(
+			sprintf(
+				__(
+					'Fires when %s is marked as unapproved',
+					'notification'
+				),
+				WpObjectHelper::getCommentTypeName($commentType),
+				'notification'
+			)
+		);
 	}
 
 	/**
@@ -46,10 +65,10 @@ class CommentUnapproved extends CommentTrigger
 	 *
 	 * @param string $commentNewStatus New comment status.
 	 * @param string $commentOldStatus Old comment status.
-	 * @param object $comment            Comment object.
+	 * @param object $comment Comment object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $commentNewStatus, $commentOldStatus, $comment )
+	public function context($commentNewStatus, $commentOldStatus, $comment)
 	{
 
 		$this->comment = $comment;
@@ -58,7 +77,7 @@ class CommentUnapproved extends CommentTrigger
 			return false;
 		}
 
-		if (! $this->isCorrectType($this->comment)) {
+		if (!$this->isCorrectType($this->comment)) {
 			return false;
 		}
 

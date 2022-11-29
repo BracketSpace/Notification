@@ -54,12 +54,15 @@ class Upgrade
 	 *
 	 * @action admin_init
 	 *
-	 * @since  6.0.0
 	 * @return void
+	 * @since  6.0.0
 	 */
 	public function checkUpgrade()
 	{
-		$dataVersion = get_option(static::$dataSettingName, 0);
+		$dataVersion = get_option(
+			static::$dataSettingName,
+			0
+		);
 
 		if ($dataVersion >= static::$dataVersion) {
 			return;
@@ -69,14 +72,22 @@ class Upgrade
 			$dataVersion++;
 			$upgradeMethod = 'upgrade_to_v' . $dataVersion;
 
-			if (!method_exists($this, $upgradeMethod)) {
+			if (
+				!method_exists(
+					$this,
+					$upgradeMethod
+				)
+			) {
 				continue;
 			}
 
-			call_user_func([ $this, $upgradeMethod ]);
+			call_user_func([$this, $upgradeMethod]);
 		}
 
-		update_option(static::$dataSettingName, static::$dataVersion);
+		update_option(
+			static::$dataSettingName,
+			static::$dataVersion
+		);
 	}
 
 	/**
@@ -103,11 +114,11 @@ class Upgrade
 
 		$charsetCollate = '';
 
-		if (! empty($wpdb->charset)) {
+		if (!empty($wpdb->charset)) {
 			$charsetCollate = "DEFAULT CHARACTER SET {$wpdb->charset}";
 		}
 
-		if (! empty($wpdb->collate)) {
+		if (!empty($wpdb->collate)) {
 			$charsetCollate .= " COLLATE {$wpdb->collate}";
 		}
 
@@ -128,7 +139,10 @@ class Upgrade
 
 		dbDelta($sql);
 
-		update_option(static::$dbSettingName, static::$dbVersion);
+		update_option(
+			static::$dbSettingName,
+			static::$dbVersion
+		);
 	}
 
 	/**
@@ -140,35 +154,58 @@ class Upgrade
 	/**
 	 * Populates Carrier with field values pulled from meta
 	 *
-	 * @since  6.0.0
-	 * @throws \Exception If Carrier hasn't been found.
 	 * @param string|\BracketSpace\Notification\Interfaces\Sendable $carrier Sendable object or Carrier slug.
 	 * @param int $postId Notification post ID.
 	 * @return \BracketSpace\Notification\Interfaces\Sendable
+	 * @throws \Exception If Carrier hasn't been found.
+	 * @since  6.0.0
 	 */
-	protected function populateCarrier( $carrier, $postId )
+	protected function populateCarrier($carrier, $postId)
 	{
-		if (! $carrier instanceof Interfaces\Sendable) {
+		if (!$carrier instanceof Interfaces\Sendable) {
 			$carrier = Store\Carrier::get($carrier);
 		}
 
-		if (! $carrier) {
+		if (!$carrier) {
 			throw new \Exception('Wrong Carrier slug');
 		}
 
 		// Set enabled state.
-		$enabledCarriers = (array)get_post_meta($postId, '_enabled_notification', false);
+		$enabledCarriers = (array)get_post_meta(
+			$postId,
+			'_enabled_notification',
+			false
+		);
 
-		if (in_array($carrier->getSlug(), $enabledCarriers, true)) {
+		if (
+			in_array(
+				$carrier->getSlug(),
+				$enabledCarriers,
+				true
+			)
+		) {
 			$carrier->enable();
 		} else {
 			$carrier->disable();
 		}
 
 		// Set data.
-		$data = get_post_meta($postId, '_notification_type_' . $carrier->getSlug(), true);
-		$fieldValues = apply_filters_deprecated('notification/notification/form_fields/values', [ $data, $carrier ], '6.0.0', 'notification/carrier/fields/values');
-		$fieldValues = apply_filters('notification/carrier/fields/values', $fieldValues, $carrier);
+		$data = get_post_meta(
+			$postId,
+			'_notification_type_' . $carrier->getSlug(),
+			true
+		);
+		$fieldValues = apply_filters_deprecated(
+			'notification/notification/form_fields/values',
+			[$data, $carrier],
+			'6.0.0',
+			'notification/carrier/fields/values'
+		);
+		$fieldValues = apply_filters(
+			'notification/carrier/fields/values',
+			$fieldValues,
+			$carrier
+		);
 
 		foreach ($carrier->getFormFields() as $field) {
 			if (!isset($fieldValues[$field->getRawName()])) {
@@ -184,12 +221,15 @@ class Upgrade
 	/**
 	 * Gets new trigger slug replacements
 	 *
-	 * @since  7.0.0
 	 * @return array
+	 * @since  7.0.0
 	 */
 	public function triggerSlugReplacements()
 	{
-		$taxonomies = '(' . implode('|', array_keys(WpObjectHelper::getTaxonomies())) . ')';
+		$taxonomies = '(' . implode(
+			'|',
+			array_keys(WpObjectHelper::getTaxonomies())
+		) . ')';
 
 		// phpcs:disable
 		return [
@@ -217,8 +257,8 @@ class Upgrade
 	 * - 2. Deletes trashed Notifications.
 	 * - 3. Removes old debug log.
 	 *
-	 * @since  6.0.0
 	 * @return void
+	 * @since  6.0.0
 	 */
 	public function upgradeToV1()
 	{
@@ -231,10 +271,14 @@ class Upgrade
 			$adapter->setTitle($post->postTitle);
 
 			// Trigger.
-			$triggerSlug = get_post_meta($adapter->getId(), '_trigger', true);
+			$triggerSlug = get_post_meta(
+				$adapter->getId(),
+				'_trigger',
+				true
+			);
 			$trigger = Store\Trigger::get($triggerSlug);
 
-			if (! empty($trigger)) {
+			if (!empty($trigger)) {
 				$adapter->setTrigger($trigger);
 			}
 
@@ -247,10 +291,13 @@ class Upgrade
 					continue;
 				}
 
-				$carriers[$carrier->getSlug()] = $this->populateCarrier(clone $carrier, $adapter->getId());
+				$carriers[$carrier->getSlug()] = $this->populateCarrier(
+					clone $carrier,
+					$adapter->getId()
+				);
 			}
 
-			if (! empty($carriers)) {
+			if (!empty($carriers)) {
 				$adapter->setCarriers($carriers);
 			}
 
@@ -263,13 +310,16 @@ class Upgrade
 		// 2. Delete trashed Notifications.
 		$trashedNotifications = get_posts(
 			[
-			'post_type' => 'notification',
-			'posts_per_page' => -1,
-			'post_status' => 'trash',
+				'post_type' => 'notification',
+				'posts_per_page' => -1,
+				'post_status' => 'trash',
 			]
 		);
 		foreach ($trashedNotifications as $trashedNotification) {
-			wp_delete_post($trashedNotification->ID, true);
+			wp_delete_post(
+				$trashedNotification->ID,
+				true
+			);
 		}
 
 		// 3. Remove old debug log
@@ -281,8 +331,8 @@ class Upgrade
 	 * - 1. Changes the Trigger slugs.
 	 * - 2. Changes the settings section `notifications` to `carriers`.
 	 *
-	 * @since  6.0.0
 	 * @return void
+	 * @since  6.0.0
 	 */
 	public function upgradeToV2()
 	{
@@ -298,7 +348,10 @@ class Upgrade
 		);
 
 		foreach ($notifications as $notifiationRaw) {
-			$data = json_decode($notifiationRaw->postContent, true);
+			$data = json_decode(
+				$notifiationRaw->postContent,
+				true
+			);
 
 			$data['trigger'] = preg_replace(
 				array_keys($this->triggerSlugReplacements()),
@@ -310,13 +363,16 @@ class Upgrade
 			$wpdb->update(
 				$wpdb->posts,
 				[
-					'post_content' => wp_json_encode($data, JSON_UNESCAPED_UNICODE),
+					'post_content' => wp_json_encode(
+						$data,
+						JSON_UNESCAPED_UNICODE
+					),
 				],
 				[
 					'ID' => $notifiationRaw->ID,
 				],
-				[ '%s' ],
-				[ '%d' ]
+				['%s'],
+				['%d']
 			);
 		}
 
@@ -325,10 +381,10 @@ class Upgrade
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$wpdb->update(
 			$wpdb->options,
-			[ 'option_name' => 'notification_carriers' ],
-			[ 'option_name' => 'notification_notifications' ],
-			[ '%s' ],
-			[ '%s' ]
+			['option_name' => 'notification_carriers'],
+			['option_name' => 'notification_notifications'],
+			['%s'],
+			['%s']
 		);
 	}
 }

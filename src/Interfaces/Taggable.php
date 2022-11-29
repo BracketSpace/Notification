@@ -56,5 +56,5 @@ interface Taggable extends Nameable
 	 *
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 */
-	public function setTrigger( Triggerable $trigger );
+	public function setTrigger(Triggerable $trigger);
 }

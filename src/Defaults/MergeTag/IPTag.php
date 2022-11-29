@@ -28,21 +28,24 @@ class IPTag extends MergeTag
 	/**
 	 * Check the merge tag value type
 	 *
-	 * @param  mixed $value value.
+	 * @param mixed $value value.
 	 * @return bool
 	 */
-	public function validate( $value )
+	public function validate($value)
 	{
-		return filter_var($value, FILTER_VALIDATE_IP) !== false;
+		return filter_var(
+			$value,
+			FILTER_VALIDATE_IP
+		) !== false;
 	}
 
 	/**
 	 * Sanitizes the merge tag value
 	 *
-	 * @param  mixed $value value.
+	 * @param mixed $value value.
 	 * @return mixed
 	 */
-	public function sanitize( $value )
+	public function sanitize($value)
 	{
 		return $value;
 	}

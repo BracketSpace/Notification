@@ -23,22 +23,31 @@ class TermPermalink extends UrlTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.2.2
 	 * @param array<mixed> $params merge tag configuration params.
+	 * @since 5.2.2
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		$this->setTriggerProp($params['property_name'] ?? 'term');
 
 		$args = wp_parse_args(
 			[
-				'slug' => sprintf('%s_link', $this->getTriggerProp()),
-				'name' => __('Term link', 'notification'),
+				'slug' => sprintf(
+					'%s_link',
+					$this->getTriggerProp()
+				),
+				'name' => __(
+					'Term link',
+					'notification'
+				),
 				'description' => 'http://example.com/category/nature',
 				'example' => true,
-				'group' => __('Term', 'notification'),
-				'resolver' => static function ( $trigger ) {
+				'group' => __(
+					'Term',
+					'notification'
+				),
+				'resolver' => static function ($trigger) {
 					return $trigger->termPermalink;
 				},
 			]

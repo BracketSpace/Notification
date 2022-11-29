@@ -28,21 +28,21 @@ class StringTag extends MergeTag
 	/**
 	 * Check the merge tag value type
 	 *
-	 * @param  mixed $value value.
+	 * @param mixed $value value.
 	 * @return bool
 	 */
-	public function validate( $value )
+	public function validate($value)
 	{
-		return ! is_array($value) && ! is_object($value);
+		return !is_array($value) && !is_object($value);
 	}
 
 	/**
 	 * Sanitizes the merge tag value
 	 *
-	 * @param  mixed $value value.
+	 * @param mixed $value value.
 	 * @return mixed
 	 */
-	public function sanitize( $value )
+	public function sanitize($value)
 	{
 		return (string)sanitize_text_field($value);
 	}

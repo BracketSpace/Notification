@@ -32,22 +32,25 @@ abstract class Recipient implements Interfaces\Receivable
 	/**
 	 * Recipient constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params recipient configuration params.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
-		if (! empty($params['slug'])) {
+		if (!empty($params['slug'])) {
 			$this->setSlug($params['slug']);
 		}
 
-		if (! empty($params['name'])) {
+		if (!empty($params['name'])) {
 			$this->setName($params['name']);
 		}
 
-		if (! isset($params['default_value'])) {
-			trigger_error('Recipient requires default_value', E_USER_ERROR);
+		if (!isset($params['default_value'])) {
+			trigger_error(
+				'Recipient requires default_value',
+				E_USER_ERROR
+			);
 		}
 
 		$this->defaultValue = $params['default_value'];
@@ -56,10 +59,10 @@ abstract class Recipient implements Interfaces\Receivable
 	/**
 	 * Parses saved value something understood by the Carrier
 	 *
-	 * @param  string $value raw value saved by the user.
+	 * @param string $value raw value saved by the user.
 	 * @return array         array of resolved values
 	 */
-	abstract public function parseValue( $value = '' );
+	abstract public function parseValue($value = '');
 
 	/**
 	 * Returns input object

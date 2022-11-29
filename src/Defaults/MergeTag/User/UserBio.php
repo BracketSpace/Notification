@@ -24,10 +24,10 @@ class UserBio extends StringTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		$this->setTriggerProp($params['property_name'] ?? 'user_object');
@@ -36,12 +36,21 @@ class UserBio extends StringTag
 			$params,
 			[
 				'slug' => 'user_bio',
-				'name' => __('User bio', 'notification'),
-				'description' => __('Developer based in Ontario, Canada', 'notification'),
+				'name' => __(
+					'User bio',
+					'notification'
+				),
+				'description' => __(
+					'Developer based in Ontario, Canada',
+					'notification'
+				),
 				'example' => true,
-				'group' => __('User', 'notification'),
-				'resolver' => function ( $trigger ) {
-					return $trigger->{ $this->getTriggerProp() }->description;
+				'group' => __(
+					'User',
+					'notification'
+				),
+				'resolver' => function ($trigger) {
+					return $trigger->{$this->getTriggerProp()}->description;
 				},
 			]
 		);

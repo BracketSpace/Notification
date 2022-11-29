@@ -24,18 +24,26 @@ class NotificationLog
 	 * @param \BracketSpace\Notification\Utils\Settings\Field $field Field instance.
 	 * @return void
 	 */
-	public function input( $field )
+	public function input($field)
 	{
 		$debug = \Notification::component('core_debugging');
 
 		// This is a simple pagination request.
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$page = isset($_GET['notification_log_page']) ? intval($_GET['notification_log_page']) : 1;
-		$rawLogs = $debug->getLogs($page, 'notification');
+		$page = isset($_GET['notification_log_page'])
+			? intval($_GET['notification_log_page'])
+			: 1;
+		$rawLogs = $debug->getLogs(
+			$page,
+			'notification'
+		);
 
 		$logs = [];
 		foreach ($rawLogs as $rawLog) {
-			$logData = json_decode($rawLog->message, true);
+			$logData = json_decode(
+				$rawLog->message,
+				true
+			);
 			$logs[] = [
 				'time' => $rawLog->timeLogged,
 				'notification' => $logData['notification'],
@@ -47,17 +55,17 @@ class NotificationLog
 		Templates::render(
 			'debug/notification-log',
 			[
-			'datetime_format' => get_option('date_format') . ' ' . get_option('time_format'),
-			'logs' => $logs,
+				'datetime_format' => get_option('date_format') . ' ' . get_option('time_format'),
+				'logs' => $logs,
 			]
 		);
 
 		Templates::render(
 			'debug/pagination',
 			[
-			'query_arg' => 'notification_log_page',
-			'total' => $debug->getLogsCount('pages'),
-			'current' => $page,
+				'query_arg' => 'notification_log_page',
+				'total' => $debug->getLogsCount('pages'),
+				'current' => $page,
 			]
 		);
 	}

@@ -38,25 +38,45 @@ class Updated extends ThemeTrigger
 	public function __construct()
 	{
 
-		parent::__construct('theme/updated', __('Theme updated', 'notification'));
+		parent::__construct(
+			'theme/updated',
+			__(
+				'Theme updated',
+				'notification'
+			)
+		);
 
-		$this->addAction('upgrader_process_complete', 1000, 2);
+		$this->addAction(
+			'upgrader_process_complete',
+			1000,
+			2
+		);
 
-		$this->setGroup(__('Theme', 'notification'));
-		$this->setDescription(__('Fires when theme is updated', 'notification'));
+		$this->setGroup(
+			__(
+				'Theme',
+				'notification'
+			)
+		);
+		$this->setDescription(
+			__(
+				'Fires when theme is updated',
+				'notification'
+			)
+		);
 	}
 
 	/**
 	 * Trigger action.
 	 *
-	 * @param  \Theme_Upgrader $upgrader Theme_Upgrader class.
-	 * @param  array           $data     Update data information.
+	 * @param \Theme_Upgrader $upgrader Theme_Upgrader class.
+	 * @param array $data Update data information.
 	 * @return mixed                     Void or false if no notifications should be sent.
 	 */
-	public function context( $upgrader, $data )
+	public function context($upgrader, $data)
 	{
 
-		if (! isset($data['type'], $data['action']) || $data['type'] !== 'theme' || $data['action'] !== 'update') {
+		if (!isset($data['type'], $data['action']) || $data['type'] !== 'theme' || $data['action'] !== 'update') {
 			return false;
 		}
 
@@ -69,7 +89,12 @@ class Updated extends ThemeTrigger
 		$this->theme = $theme;
 
 		$this->themeUpdateDateTime = time();
-		$this->themePreviousVersion = ( ! property_exists($upgrader->skin, 'theme_info') || $upgrader->skin->themeInfo === null ) ? __('NA') : $upgrader->skin->themeInfo->get('Version');
+		$this->themePreviousVersion = (!property_exists(
+			$upgrader->skin,
+			'theme_info'
+		) || $upgrader->skin->themeInfo === null)
+			? __('NA')
+			: $upgrader->skin->themeInfo->get('Version');
 	}
 
 	/**
@@ -85,14 +110,23 @@ class Updated extends ThemeTrigger
 		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[
-				'slug' => 'theme_previous_version',
-				'name' => __('Theme previous version', 'notification'),
-				'description' => __('1.0.0', 'notification'),
-				'example' => true,
-				'resolver' => static function ( $trigger ) {
-					return $trigger->themePreviousVersion;
-				},
-				'group' => __('Theme', 'notification'),
+					'slug' => 'theme_previous_version',
+					'name' => __(
+						'Theme previous version',
+						'notification'
+					),
+					'description' => __(
+						'1.0.0',
+						'notification'
+					),
+					'example' => true,
+					'resolver' => static function ($trigger) {
+						return $trigger->themePreviousVersion;
+					},
+					'group' => __(
+						'Theme',
+						'notification'
+					),
 				]
 			)
 		);
@@ -100,8 +134,11 @@ class Updated extends ThemeTrigger
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
-				'slug' => 'theme_update_date_time',
-				'name' => __('Theme update date and time', 'notification'),
+					'slug' => 'theme_update_date_time',
+					'name' => __(
+						'Theme update date and time',
+						'notification'
+					),
 				]
 			)
 		);

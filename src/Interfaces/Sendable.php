@@ -22,7 +22,7 @@ interface Sendable extends Nameable
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger trigger object.
 	 * @return void
 	 */
-	public function send( Triggerable $trigger );
+	public function send(Triggerable $trigger);
 
 	/**
 	 * Generates an unique hash for carrier instance
@@ -55,10 +55,10 @@ interface Sendable extends Nameable
 	/**
 	 * Sets data from array
 	 *
-	 * @param  array<string,mixed> $data Data with keys matched with Field names.
+	 * @param array<string,mixed> $data Data with keys matched with Field names.
 	 * @return $this
 	 */
-	public function setData( $data );
+	public function setData($data);
 
 	/**
 	 * Enables the Carrier
@@ -77,25 +77,25 @@ interface Sendable extends Nameable
 	/**
 	 * Gets form fields array
 	 *
-	 * @param  string $fieldName Field name.
+	 * @param string $fieldName Field name.
 	 * @return mixed              Field object or null.
 	 */
-	public function getFormField( $fieldName );
+	public function getFormField($fieldName);
 
 	/**
 	 * Gets the recipients field
 	 * Calls the field closure.
 	 *
-	 * @since  8.0.0
 	 * @return \BracketSpace\Notification\Defaults\Field\RecipientsField|null
+	 * @since  8.0.0
 	 */
 	public function getRecipientsField();
 
 	/**
 	 * Checks if the recipients field was added
 	 *
-	 * @since  8.0.0
 	 * @return bool
+	 * @since  8.0.0
 	 */
 	public function hasRecipientsField();
 }

@@ -28,14 +28,17 @@ class NonceField extends Field
 	/**
 	 * Field constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
-		if (! isset($params['nonce_key'])) {
-			trigger_error('NonceField requires nonce_key param', E_USER_ERROR);
+		if (!isset($params['nonce_key'])) {
+			trigger_error(
+				'NonceField requires nonce_key param',
+				E_USER_ERROR
+			);
 		}
 
 		$this->nonceKey = $params['nonce_key'];
@@ -50,16 +53,21 @@ class NonceField extends Field
 	 */
 	public function field()
 	{
-		return wp_nonce_field($this->nonceKey, $this->getName(), true, false);
+		return wp_nonce_field(
+			$this->nonceKey,
+			$this->getName(),
+			true,
+			false
+		);
 	}
 
 	/**
 	 * Sanitizes the value sent by user
 	 *
-	 * @param  mixed $value value to sanitize.
+	 * @param mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value )
+	public function sanitize($value)
 	{
 		return null;
 	}

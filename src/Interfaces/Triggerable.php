@@ -26,11 +26,11 @@ interface Triggerable extends Nameable
 	/**
 	 * Gets Trigger's merge tags
 	 *
-	 * @param string $type    Optional, all|visible|hidden, default: all.
-	 * @param bool   $grouped Optional, default: false.
+	 * @param string $type Optional, all|visible|hidden, default: all.
+	 * @param bool $grouped Optional, default: false.
 	 * @return array<\BracketSpace\Notification\Interfaces\Taggable>
 	 */
-	public function getMergeTags( $type = 'all', $grouped = false );
+	public function getMergeTags($type = 'all', $grouped = false);
 
 	/**
 	 * Clears the merge tags
@@ -56,8 +56,8 @@ interface Triggerable extends Nameable
 	/**
 	 * Gets Trigger actions
 	 *
-	 * @since 8.0.0
 	 * @return array<int, array{tag: string, priority: int, accepted_args: int}>
+	 * @since 8.0.0
 	 */
 	public function getActions(): array;
 

@@ -21,22 +21,22 @@ class Binder
 	 *
 	 * @action notification/trigger/registered 100
 	 *
-	 * @since 8.0.0
 	 * @param array<\BracketSpace\Notification\Core\Triggerable>|\BracketSpace\Notification\Core\Triggerable $triggers Array of Triggers or single Trigger.
 	 * @return void
+	 * @since 8.0.0
 	 */
-	public static function bind( $triggers )
+	public static function bind($triggers)
 	{
 
-		if (! is_array($triggers)) {
-			$triggers = [ $triggers ];
+		if (!is_array($triggers)) {
+			$triggers = [$triggers];
 		}
 
 		foreach ($triggers as $trigger) {
 			foreach ($trigger->getActions() as $action) {
 				add_action(
 					$action['tag'],
-					[ new Runner($trigger), 'run' ],
+					[new Runner($trigger), 'run'],
 					$action['priority'],
 					$action['accepted_args']
 				);

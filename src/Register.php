@@ -18,14 +18,20 @@ class Register
 	/**
 	 * Registers Carrier
 	 *
-	 * @since  8.0.0
 	 * @param \BracketSpace\Notification\Interfaces\Sendable $carrier Carrier object.
 	 * @return \BracketSpace\Notification\Interfaces\Sendable
+	 * @since  8.0.0
 	 */
-	public static function carrier( Interfaces\Sendable $carrier )
+	public static function carrier(Interfaces\Sendable $carrier)
 	{
-		Store\Carrier::insert($carrier->getSlug(), $carrier);
-		do_action('notification/carrier/registered', $carrier);
+		Store\Carrier::insert(
+			$carrier->getSlug(),
+			$carrier
+		);
+		do_action(
+			'notification/carrier/registered',
+			$carrier
+		);
 
 		return $carrier;
 	}
@@ -33,15 +39,23 @@ class Register
 	/**
 	 * Registers Recipient
 	 *
-	 * @since  8.0.0
-	 * @param  string                $carrierSlug Carrier slug.
+	 * @param string $carrierSlug Carrier slug.
 	 * @param \BracketSpace\Notification\Interfaces\Receivable $recipient Recipient object.
 	 * @return \BracketSpace\Notification\Interfaces\Receivable
+	 * @since  8.0.0
 	 */
-	public static function recipient( string $carrierSlug, Interfaces\Receivable $recipient )
+	public static function recipient(string $carrierSlug, Interfaces\Receivable $recipient)
 	{
-		Store\Recipient::insert($carrierSlug, $recipient->getSlug(), $recipient);
-		do_action('notification/recipient/registered', $recipient, $carrierSlug);
+		Store\Recipient::insert(
+			$carrierSlug,
+			$recipient->getSlug(),
+			$recipient
+		);
+		do_action(
+			'notification/recipient/registered',
+			$recipient,
+			$carrierSlug
+		);
 
 		return $recipient;
 	}
@@ -49,14 +63,20 @@ class Register
 	/**
 	 * Registers Recipient
 	 *
-	 * @since  8.0.0
 	 * @param \BracketSpace\Notification\Interfaces\Resolvable $resolver Resolver object.
 	 * @return \BracketSpace\Notification\Interfaces\Resolvable
+	 * @since  8.0.0
 	 */
-	public static function resolver( Interfaces\Resolvable $resolver )
+	public static function resolver(Interfaces\Resolvable $resolver)
 	{
-		Store\Resolver::insert($resolver->getSlug(), $resolver);
-		do_action('notification/resolver/registered', $resolver);
+		Store\Resolver::insert(
+			$resolver->getSlug(),
+			$resolver
+		);
+		do_action(
+			'notification/resolver/registered',
+			$resolver
+		);
 
 		return $resolver;
 	}
@@ -64,14 +84,20 @@ class Register
 	/**
 	 * Registers Trigger
 	 *
-	 * @since  8.0.0
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return \BracketSpace\Notification\Interfaces\Triggerable
+	 * @since  8.0.0
 	 */
-	public static function trigger( Interfaces\Triggerable $trigger )
+	public static function trigger(Interfaces\Triggerable $trigger)
 	{
-		Store\Trigger::insert($trigger->getSlug(), $trigger);
-		do_action('notification/trigger/registered', $trigger);
+		Store\Trigger::insert(
+			$trigger->getSlug(),
+			$trigger
+		);
+		do_action(
+			'notification/trigger/registered',
+			$trigger
+		);
 
 		return $trigger;
 	}
@@ -79,20 +105,26 @@ class Register
 	/**
 	 * Registers Global Merge Tag
 	 *
-	 * @since  8.0.0
 	 * @param \BracketSpace\Notification\Interfaces\Taggable $mergeTag MergeTag object.
 	 * @return \BracketSpace\Notification\Interfaces\Taggable
+	 * @since  8.0.0
 	 */
-	public static function globalMergeTag( Interfaces\Taggable $mergeTag )
+	public static function globalMergeTag(Interfaces\Taggable $mergeTag)
 	{
-		Store\GlobalMergeTag::insert($mergeTag->getSlug(), $mergeTag);
+		Store\GlobalMergeTag::insert(
+			$mergeTag->getSlug(),
+			$mergeTag
+		);
 
-		do_action('notification/global_merge_tag/registered', $mergeTag);
+		do_action(
+			'notification/global_merge_tag/registered',
+			$mergeTag
+		);
 
 		// Register the Merge Tag.
 		add_action(
 			'notification/trigger/merge_tags',
-			static function ( $trigger ) use ( $mergeTag ) {
+			static function ($trigger) use ($mergeTag) {
 				$trigger->addMergeTag(clone $mergeTag);
 			}
 		);

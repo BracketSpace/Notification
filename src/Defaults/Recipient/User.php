@@ -29,9 +29,12 @@ class User extends Abstracts\Recipient
 	{
 		parent::__construct(
 			[
-			'slug' => 'user',
-			'name' => __('User', 'notification'),
-			'default_value' => get_current_user_id(),
+				'slug' => 'user',
+				'name' => __(
+					'User',
+					'notification'
+				),
+				'default_value' => get_current_user_id(),
 			]
 		);
 	}
@@ -39,10 +42,10 @@ class User extends Abstracts\Recipient
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @param  string $value raw value saved by the user.
+	 * @param string $value raw value saved by the user.
 	 * @return array         array of resolved values
 	 */
-	public function parseValue( $value = '' )
+	public function parseValue($value = '')
 	{
 
 		if (empty($value)) {
@@ -52,7 +55,7 @@ class User extends Abstracts\Recipient
 		$user = get_userdata((int)$value);
 
 		if ($user) {
-			return [ $user->userEmail ];
+			return [$user->userEmail];
 		}
 
 		return [];
@@ -73,12 +76,15 @@ class User extends Abstracts\Recipient
 
 		return new Field\SelectField(
 			[
-			'label' => __('Recipient', 'notification'), // don't edit this!
-			'name' => 'recipient',                       // don't edit this!
-			'css_class' => 'recipient-value',                 // don't edit this!
-			'value' => $this->getDefaultValue(),
-			'pretty' => true,
-			'options' => $opts,
+				'label' => __(
+					'Recipient',
+					'notification'
+				), // don't edit this!
+				'name' => 'recipient',                       // don't edit this!
+				'css_class' => 'recipient-value',                 // don't edit this!
+				'value' => $this->getDefaultValue(),
+				'pretty' => true,
+				'options' => $opts,
 			]
 		);
 	}

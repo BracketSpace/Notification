@@ -29,13 +29,13 @@ class CommentAuthorIP extends IPTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
-		if (isset($params['comment_type']) && ! empty($params['comment_type'])) {
+		if (isset($params['comment_type']) && !empty($params['comment_type'])) {
 			$this->commentType = $params['comment_type'];
 		}
 
@@ -48,13 +48,25 @@ class CommentAuthorIP extends IPTag
 			[
 				'slug' => 'comment_author_IP',
 				// Translators: Comment type name.
-				'name' => sprintf(__('%s author IP', 'notification'), $commentTypeName),
+				'name' => sprintf(
+					__(
+						'%s author IP',
+						'notification'
+					),
+					$commentTypeName
+				),
 				'description' => '127.0.0.1',
 				'example' => true,
 				// Translators: comment type author.
-				'group' => sprintf(__('%s author', 'notification'), $commentTypeName),
-				'resolver' => function ( $trigger ) {
-					return $trigger->{ $this->getTriggerProp() }->commentAuthorIP;
+				'group' => sprintf(
+					__(
+						'%s author',
+						'notification'
+					),
+					$commentTypeName
+				),
+				'resolver' => function ($trigger) {
+					return $trigger->{$this->getTriggerProp()}->commentAuthorIP;
 				},
 			]
 		);

@@ -34,32 +34,38 @@ class Whitelabel
 	 */
 	public function removeDefaults()
 	{
-		if (! self::isWhitelabeled()) {
+		if (!self::isWhitelabeled()) {
 			return;
 		}
 
-		add_filter('notification/load/default/triggers', '__return_false');
+		add_filter(
+			'notification/load/default/triggers',
+			'__return_false'
+		);
 	}
 
 	/**
 	 * Sets the plugin in white label mode.
 	 *
-	 * @since  8.0.0
-	 * @param  array<string,mixed> $args white label args.
+	 * @param array<string,mixed> $args white label args.
 	 * @return void
+	 * @since  8.0.0
 	 */
-	public static function enable( array $args = [] )
+	public static function enable(array $args = [])
 	{
 		static::$isWhitelabeled = true;
 
 		// Upselling.
-		add_filter('notification/upselling', '__return_false');
+		add_filter(
+			'notification/upselling',
+			'__return_false'
+		);
 
 		// Change Notification CPT page.
-		if (isset($args['page_hook']) && ! empty($args['page_hook'])) {
+		if (isset($args['page_hook']) && !empty($args['page_hook'])) {
 			add_filter(
 				'notification/whitelabel/cpt/parent',
-				static function ( $hook ) use ( $args ) {
+				static function ($hook) use ($args) {
 					return $args['page_hook'];
 				}
 			);
@@ -67,12 +73,18 @@ class Whitelabel
 
 		// Remove extensions.
 		if (isset($args['extensions']) && $args['extensions'] === false) {
-			add_filter('notification/whitelabel/extensions', '__return_false');
+			add_filter(
+				'notification/whitelabel/extensions',
+				'__return_false'
+			);
 		}
 
 		// Remove settings.
 		if (isset($args['settings']) && $args['settings'] === false) {
-			add_filter('notification/whitelabel/settings', '__return_false');
+			add_filter(
+				'notification/whitelabel/settings',
+				'__return_false'
+			);
 		}
 
 		// Settings access.
@@ -82,7 +94,7 @@ class Whitelabel
 
 		add_filter(
 			'notification/whitelabel/settings/access',
-			static function ( $access ) use ( $args ) {
+			static function ($access) use ($args) {
 				return (array)$args['settings_access'];
 			}
 		);
@@ -91,8 +103,8 @@ class Whitelabel
 	/**
 	 * Checks if the plugin is in white label mode.
 	 *
-	 * @since  8.0.0
 	 * @return bool
+	 * @since  8.0.0
 	 */
 	public static function isWhitelabeled(): bool
 	{

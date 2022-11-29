@@ -26,15 +26,15 @@ class Trigger implements Interfaces\Storable
 	/**
 	 * Gets all Triggers grouped.
 	 *
-	 * @since  8.0.0
 	 * @return array<string, array<string, \BracketSpace\Notification\Interfaces\Triggerable>>
+	 * @since  8.0.0
 	 */
 	public static function grouped(): array
 	{
 		$groups = [];
 
 		foreach (static::all() as $trigger) {
-			if (! isset($groups[$trigger->getGroup()])) {
+			if (!isset($groups[$trigger->getGroup()])) {
 				$groups[(string)$trigger->getGroup()] = [];
 			}
 

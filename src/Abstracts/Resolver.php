@@ -34,21 +34,29 @@ abstract class Resolver implements Interfaces\Resolvable
 	 * Gets resolver slug
 	 * Note: it's automatically generated from the class name.
 	 *
-	 * @since  6.0.0
 	 * @return string
+	 * @since  6.0.0
 	 */
 	public function getSlug()
 	{
-		$prepared = str_replace('\\', '-', static::class);
-		$prepared = str_replace('BracketSpace-Notification-', '', $prepared);
+		$prepared = str_replace(
+			'\\',
+			'-',
+			static::class
+		);
+		$prepared = str_replace(
+			'BracketSpace-Notification-',
+			'',
+			$prepared
+		);
 		return sanitize_title_with_dashes($prepared);
 	}
 
 	/**
 	 * Gets merge tag pattern
 	 *
-	 * @since  6.0.0
 	 * @return string
+	 * @since  6.0.0
 	 */
 	public function getPattern()
 	{
@@ -58,8 +66,8 @@ abstract class Resolver implements Interfaces\Resolvable
 	/**
 	 * Gets resolver priority
 	 *
-	 * @since  6.0.0
 	 * @return int
+	 * @since  6.0.0
 	 */
 	public function getPriority()
 	{
@@ -69,9 +77,9 @@ abstract class Resolver implements Interfaces\Resolvable
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @param array       $match   Match array.
+	 * @param array $match Match array.
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return string              Resolved value
 	 */
-	abstract public function resolveMergeTag( $match, Triggerable $trigger );
+	abstract public function resolveMergeTag($match, Triggerable $trigger);
 }

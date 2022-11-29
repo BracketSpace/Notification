@@ -28,14 +28,14 @@ class Processor
 	 *
 	 * @action shutdown
 	 *
-	 * @since  8.0.0
 	 * @return void
+	 * @since  8.0.0
 	 */
 	public function processQueue()
 	{
 
 		Queue::iterate(
-			static function ( $index, $notification, $trigger ) {
+			static function ($index, $notification, $trigger) {
 
 				$bpEnabled = apply_filters(
 					'notification/trigger/process_in_background',
@@ -45,11 +45,17 @@ class Processor
 
 				// If Background Processing is enabled we load the execution to Cron and stop processing.
 				if ($bpEnabled) {
-					self::schedule($notification, $trigger);
+					self::schedule(
+						$notification,
+						$trigger
+					);
 					return;
 				}
 
-				self::processNotification($notification, $trigger);
+				self::processNotification(
+					$notification,
+					$trigger
+				);
 			}
 		);
 	}
@@ -57,12 +63,12 @@ class Processor
 	/**
 	 * Scheduled the Notification submission in Cron.
 	 *
-	 * @since  8.0.0
 	 * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return void
+	 * @since  8.0.0
 	 */
-	public static function schedule( Notification $notification, Triggerable $trigger )
+	public static function schedule(Notification $notification, Triggerable $trigger)
 	{
 		// Optimize Trigger.
 		$trigger->clearMergeTags();
@@ -90,10 +96,19 @@ class Processor
 		self::getCache($triggerKey)->set($trigger);
 
 		$result = wp_schedule_single_event(
-			time() + apply_filters('notification/background_processing/delay', 30),
+			time() + apply_filters(
+				'notification/background_processing/delay',
+				30
+			),
 			'notification_background_processing',
 			[
-				notification_adapt('JSON', $notification)->save(JSON_UNESCAPED_UNICODE, true),
+				notification_adapt(
+					'JSON',
+					$notification
+				)->save(
+					JSON_UNESCAPED_UNICODE,
+					true
+				),
 				$triggerKey,
 			]
 		);
@@ -102,16 +117,23 @@ class Processor
 	/**
 	 * Dispatches all the Carriers attached for Notification.
 	 *
-	 * @since  8.0.0
 	 * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return void
+	 * @since  8.0.0
 	 */
-	public static function processNotification( Notification $notification, Triggerable $trigger )
+	public static function processNotification(Notification $notification, Triggerable $trigger)
 	{
 		$trigger->setupMergeTags();
 
-		if (! apply_filters('notification/should_send', true, $notification, $trigger)) {
+		if (
+			!apply_filters(
+				'notification/should_send',
+				true,
+				$notification,
+				$trigger
+			)
+		) {
 			return;
 		}
 
@@ -119,16 +141,28 @@ class Processor
 			$carrier->resolveFields($trigger);
 			$carrier->prepareData();
 
-			do_action('notification/carrier/pre-send', $carrier, $trigger, $notification);
+			do_action(
+				'notification/carrier/pre-send',
+				$carrier,
+				$trigger,
+				$notification
+			);
 
 			if ($carrier->isSuppressed()) {
 				continue;
 			}
 
-			self::send($carrier, $trigger);
+			self::send(
+				$carrier,
+				$trigger
+			);
 		}
 
-		do_action('notification/sent', $notification, $trigger);
+		do_action(
+			'notification/sent',
+			$notification,
+			$trigger
+		);
 	}
 
 	/**
@@ -136,17 +170,20 @@ class Processor
 	 *
 	 * @action notification_background_processing
 	 *
-	 * @since  8.0.0
-	 * @param  string $notificationJson Notification JSON.
-	 * @param  string $triggerKey       Trigger key.
+	 * @param string $notificationJson Notification JSON.
+	 * @param string $triggerKey Trigger key.
 	 * @return void
+	 * @since  8.0.0
 	 */
-	public static function handleCron( $notificationJson, $triggerKey )
+	public static function handleCron($notificationJson, $triggerKey)
 	{
-		$notification = notification_adapt_from('JSON', $notificationJson)->getNotification();
+		$notification = notification_adapt_from(
+			'JSON',
+			$notificationJson
+		)->getNotification();
 		$trigger = self::getCache($triggerKey)->get();
 
-		if (! $trigger instanceof Triggerable) {
+		if (!$trigger instanceof Triggerable) {
 			ErrorHandler::error(
 				sprintf(
 					'Trigger key %s doesn\'t seem to exist in cache anymore',
@@ -158,31 +195,38 @@ class Processor
 
 		self::getCache($triggerKey)->delete();
 
-		self::processNotification($notification, $trigger);
+		self::processNotification(
+			$notification,
+			$trigger
+		);
 	}
 
 	/**
 	 * Sends the Carrier in context of Trigger
 	 *
-	 * @since  8.0.0
 	 * @param \BracketSpace\Notification\Interfaces\Sendable $carrier Carrier object.
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return void
+	 * @since  8.0.0
 	 */
-	public static function send( Sendable $carrier, Triggerable $trigger )
+	public static function send(Sendable $carrier, Triggerable $trigger)
 	{
 		$carrier->send($trigger);
-		do_action('notification/carrier/sent', $carrier, $trigger);
+		do_action(
+			'notification/carrier/sent',
+			$carrier,
+			$trigger
+		);
 	}
 
 	/**
 	 * Gets cache instance
 	 *
-	 * @since  8.0.11
-	 * @param  string $triggerKey Trigger key.
+	 * @param string $triggerKey Trigger key.
 	 * @return \BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache
+	 * @since  8.0.11
 	 */
-	public static function getCache( $triggerKey )
+	public static function getCache($triggerKey)
 	{
 		return new Cache(
 			new Transient(3 * DAY_IN_SECONDS),

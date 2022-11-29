@@ -27,50 +27,63 @@ class Templates
 	/**
 	 * Renders the template
 	 *
-	 * @since  8.0.0
-	 * @param  string       $name Template name.
-	 * @param  array<mixed> $vars Template variables.
+	 * @param string $name Template name.
+	 * @param array<mixed> $vars Template variables.
 	 * @return void
+	 * @since  8.0.0
 	 */
-	public static function render( string $name, array $vars = [] )
+	public static function render(string $name, array $vars = [])
 	{
-		self::create($name, $vars)->render();
+		self::create(
+			$name,
+			$vars
+		)->render();
 	}
 
 	/**
 	 * Gets the template string
 	 *
-	 * @since  8.0.0
-	 * @param  string       $name Template name.
-	 * @param  array<mixed> $vars Template variables.
+	 * @param string $name Template name.
+	 * @param array<mixed> $vars Template variables.
 	 * @return string
+	 * @since  8.0.0
 	 */
-	public static function get( string $name, array $vars = [] )
+	public static function get(string $name, array $vars = [])
 	{
-		return self::create($name, $vars)->output();
+		return self::create(
+			$name,
+			$vars
+		)->output();
 	}
 
 	/**
 	 * Creates the Template object
 	 *
-	 * @since  8.0.0
-	 * @param  string       $name Template name.
-	 * @param  array<mixed> $vars Template variables.
+	 * @param string $name Template name.
+	 * @param array<mixed> $vars Template variables.
 	 * @return \BracketSpace\Notification\Dependencies\Micropackage\Templates\Template
+	 * @since  8.0.0
 	 */
-	public static function create( string $name, array $vars = [] ): Template
+	public static function create(string $name, array $vars = []): Template
 	{
-		return new Template(self::TEMPLATESTORAGE, $name, $vars);
+		return new Template(
+			self::TEMPLATESTORAGE,
+			$name,
+			$vars
+		);
 	}
 
 	/**
 	 * Renders the template
 	 *
-	 * @since  8.0.0
 	 * @return void
+	 * @since  8.0.0
 	 */
 	public static function registerStorage()
 	{
-		Storage::add(self::TEMPLATESTORAGE, \Notification::fs()->path('resources/templates'));
+		Storage::add(
+			self::TEMPLATESTORAGE,
+			\Notification::fs()->path('resources/templates')
+		);
 	}
 }

@@ -23,7 +23,7 @@ class Range
 	 * @param \BracketSpace\Notification\Utils\Settings\Field $field Field instance.
 	 * @return void
 	 */
-	public function input( $field )
+	public function input($field)
 	{
 		printf(
 			'<label><input type="range" id="%s" name="%s" value="%s" min="%s" max="%s" step="%s" class="widefat"></label>',
@@ -39,13 +39,13 @@ class Range
 	/**
 	 * Sanitize input value
 	 *
-	 * @param  mixed $value Saved value.
+	 * @param mixed $value Saved value.
 	 * @return float        Sanitized number
 	 */
-	public function sanitize( $value )
+	public function sanitize($value)
 	{
 
-		if (! is_numeric($value)) {
+		if (!is_numeric($value)) {
 			return 0;
 		}
 

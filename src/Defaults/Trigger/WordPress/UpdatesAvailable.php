@@ -32,14 +32,30 @@ class UpdatesAvailable extends Abstracts\Trigger
 	public function __construct()
 	{
 
-		$this->updateTypes = [ 'core', 'plugin', 'theme' ];
+		$this->updateTypes = ['core', 'plugin', 'theme'];
 
-		parent::__construct('wordpress/updates_available', __('Available updates', 'notification'));
+		parent::__construct(
+			'wordpress/updates_available',
+			__(
+				'Available updates',
+				'notification'
+			)
+		);
 
 		$this->addAction('notification_check_wordpress_updates');
 
-		$this->setGroup(__('WordPress', 'notification'));
-		$this->setDescription(__('Fires periodically when new updates are available', 'notification'));
+		$this->setGroup(
+			__(
+				'WordPress',
+				'notification'
+			)
+		);
+		$this->setDescription(
+			__(
+				'Fires periodically when new updates are available',
+				'notification'
+			)
+		);
 	}
 
 	/**
@@ -63,7 +79,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 		}
 
 		// Don't send any empty notifications unless the Setting is enabled.
-		if (! $hasUpdates && ! notification_get_setting('triggers/wordpress/updates_send_anyway')) {
+		if (!$hasUpdates && !notification_get_setting('triggers/wordpress/updates_send_anyway')) {
 			return false;
 		}
 	}
@@ -79,29 +95,44 @@ class UpdatesAvailable extends Abstracts\Trigger
 		$this->addMergeTag(
 			new MergeTag\HtmlTag(
 				[
-				'slug' => 'updates_list',
-				'name' => __('Updates list', 'notification'),
-				'description' => __('The lists for core, plugins and themes updates.', 'notification'),
-				'resolver' => static function ( $trigger ) {
-					$lists = [];
+					'slug' => 'updates_list',
+					'name' => __(
+						'Updates list',
+						'notification'
+					),
+					'description' => __(
+						'The lists for core, plugins and themes updates.',
+						'notification'
+					),
+					'resolver' => static function ($trigger) {
+						$lists = [];
 
-					foreach ($trigger->updateTypes as $updateType) {
-						if (!$trigger->hasUpdates($updateType)) {
-							continue;
+						foreach ($trigger->updateTypes as $updateType) {
+							if (!$trigger->hasUpdates($updateType)) {
+								continue;
+							}
+
+							$html = '<h3>' . $trigger->getListTitle($updateType) . '</h3>';
+							$html .= call_user_func([$trigger, 'get_' . $updateType . '_updates_list']);
+							$lists[] = $html;
 						}
 
-						$html = '<h3>' . $trigger->getListTitle($updateType) . '</h3>';
-						$html   .= call_user_func([ $trigger, 'get_' . $updateType . '_updates_list' ]);
-						$lists[] = $html;
-					}
+						if (empty($lists)) {
+							$lists[] = __(
+								'No updates available.',
+								'notification'
+							);
+						}
 
-					if (empty($lists)) {
-						$lists[] = __('No updates available.', 'notification');
-					}
-
-					return implode('<br><br>', $lists);
-				},
-				'group' => __('WordPress', 'notification'),
+						return implode(
+							'<br><br>',
+							$lists
+						);
+					},
+					'group' => __(
+						'WordPress',
+						'notification'
+					),
 				]
 			)
 		);
@@ -109,11 +140,14 @@ class UpdatesAvailable extends Abstracts\Trigger
 		$this->addMergeTag(
 			new MergeTag\IntegerTag(
 				[
-				'slug' => 'all_updates_count',
-				'name' => __('Number of all updates', 'notification'),
-				'resolver' => static function ( $trigger ) {
-					return $trigger->getUpdatesCount('all');
-				},
+					'slug' => 'all_updates_count',
+					'name' => __(
+						'Number of all updates',
+						'notification'
+					),
+					'resolver' => static function ($trigger) {
+						return $trigger->getUpdatesCount('all');
+					},
 				]
 			)
 		);
@@ -121,11 +155,14 @@ class UpdatesAvailable extends Abstracts\Trigger
 		$this->addMergeTag(
 			new MergeTag\IntegerTag(
 				[
-				'slug' => 'core_updates_count',
-				'name' => __('Number of core updates', 'notification'),
-				'resolver' => static function ( $trigger ) {
-					return $trigger->getUpdatesCount('core');
-				},
+					'slug' => 'core_updates_count',
+					'name' => __(
+						'Number of core updates',
+						'notification'
+					),
+					'resolver' => static function ($trigger) {
+						return $trigger->getUpdatesCount('core');
+					},
 				]
 			)
 		);
@@ -133,11 +170,14 @@ class UpdatesAvailable extends Abstracts\Trigger
 		$this->addMergeTag(
 			new MergeTag\IntegerTag(
 				[
-				'slug' => 'plugin_updates_count',
-				'name' => __('Number of plugin updates', 'notification'),
-				'resolver' => static function ( $trigger ) {
-					return $trigger->getUpdatesCount('plugin');
-				},
+					'slug' => 'plugin_updates_count',
+					'name' => __(
+						'Number of plugin updates',
+						'notification'
+					),
+					'resolver' => static function ($trigger) {
+						return $trigger->getUpdatesCount('plugin');
+					},
 				]
 			)
 		);
@@ -145,11 +185,14 @@ class UpdatesAvailable extends Abstracts\Trigger
 		$this->addMergeTag(
 			new MergeTag\IntegerTag(
 				[
-				'slug' => 'theme_updates_count',
-				'name' => __('Number of theme updates', 'notification'),
-				'resolver' => static function ( $trigger ) {
-					return $trigger->getUpdatesCount('theme');
-				},
+					'slug' => 'theme_updates_count',
+					'name' => __(
+						'Number of theme updates',
+						'notification'
+					),
+					'resolver' => static function ($trigger) {
+						return $trigger->getUpdatesCount('theme');
+					},
 				]
 			)
 		);
@@ -158,11 +201,11 @@ class UpdatesAvailable extends Abstracts\Trigger
 	/**
 	 * Checks if specific updates are available
 	 *
-	 * @since  5.1.5
-	 * @param  string $updateType update type, core | plugin | theme.
+	 * @param string $updateType update type, core | plugin | theme.
 	 * @return bool
+	 * @since  5.1.5
 	 */
-	public function hasUpdates( $updateType )
+	public function hasUpdates($updateType)
 	{
 		$updates = $this->getUpdatesCount($updateType);
 		return $updates > 0;
@@ -171,28 +214,40 @@ class UpdatesAvailable extends Abstracts\Trigger
 	/**
 	 * Gets specific update type title
 	 *
-	 * @since  5.1.5
-	 * @param  string $updateType update type, core | plugin | theme.
+	 * @param string $updateType update type, core | plugin | theme.
 	 * @return string
+	 * @since  5.1.5
 	 */
-	public function getListTitle( $updateType )
+	public function getListTitle($updateType)
 	{
 
 		switch ($updateType) {
 			case 'core':
-				$title = __('Core updates', 'notification');
+				$title = __(
+					'Core updates',
+					'notification'
+				);
 				break;
 
 			case 'plugin':
-				$title = __('Plugin updates', 'notification');
+				$title = __(
+					'Plugin updates',
+					'notification'
+				);
 				break;
 
 			case 'theme':
-				$title = __('Theme updates', 'notification');
+				$title = __(
+					'Theme updates',
+					'notification'
+				);
 				break;
 
 			default:
-				$title = __('Updates', 'notification');
+				$title = __(
+					'Updates',
+					'notification'
+				);
 				break;
 		}
 
@@ -202,8 +257,8 @@ class UpdatesAvailable extends Abstracts\Trigger
 	/**
 	 * Gets core updates list
 	 *
-	 * @since  5.1.5
 	 * @return string
+	 * @since  5.1.5
 	 */
 	public function getCoreUpdatesList()
 	{
@@ -225,7 +280,14 @@ class UpdatesAvailable extends Abstracts\Trigger
 
 		foreach ($updates as $update) {
 			// translators: 1. Update type, 2. Version.
-			$html .= '<li>' . sprintf(__('<strong>WordPress</strong> <i>(%1$s)</i>: %2$s', 'notification'), $update->response, $update->version) . '</li>';
+			$html .= '<li>' . sprintf(
+				__(
+					'<strong>WordPress</strong> <i>(%1$s)</i>: %2$s',
+					'notification'
+				),
+				$update->response,
+				$update->version
+			) . '</li>';
 		}
 
 		$html .= '</ul>';
@@ -236,8 +298,8 @@ class UpdatesAvailable extends Abstracts\Trigger
 	/**
 	 * Gets plugin updates list
 	 *
-	 * @since  5.1.5
 	 * @return string
+	 * @since  5.1.5
 	 */
 	public function getPluginUpdatesList()
 	{
@@ -252,10 +314,15 @@ class UpdatesAvailable extends Abstracts\Trigger
 		foreach ($updates as $update) {
 			$html .= '<li>' . sprintf(
 				// translators: 1. Plugin name, 2. Current version, 3. Update version.
-				__('<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s', 'notification'),
-				$update->Name, // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
-				$update->Version, // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
-				$update->update->newVersion
+				__(
+					'<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s',
+					'notification'
+				),
+				$update->Name,
+					// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+					$update->Version,
+					// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+					$update->update->newVersion
 			) . '</li>';
 		}
 
@@ -267,8 +334,8 @@ class UpdatesAvailable extends Abstracts\Trigger
 	/**
 	 * Gets theme updates list
 	 *
-	 * @since  5.1.5
 	 * @return string
+	 * @since  5.1.5
 	 */
 	public function getThemeUpdatesList()
 	{
@@ -283,10 +350,15 @@ class UpdatesAvailable extends Abstracts\Trigger
 		foreach ($updates as $update) {
 			$html .= '<li>' . sprintf(
 				// translators: 1. Theme name, 2. Current version, 3. Update version.
-				__('<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s', 'notification'),
-				$update->Name, // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
-				$update->Version, // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
-				$update->update['new_version']
+				__(
+					'<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s',
+					'notification'
+				),
+				$update->Name,
+					// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+					$update->Version,
+					// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+					$update->update['new_version']
 			) . '</li>';
 		}
 
@@ -298,11 +370,11 @@ class UpdatesAvailable extends Abstracts\Trigger
 	/**
 	 * Gets updates count
 	 *
-	 * @since  5.1.5
-	 * @param  string $updateType optional, update type, core | plugin | theme | all, default: all.
+	 * @param string $updateType optional, update type, core | plugin | theme | all, default: all.
 	 * @return int
+	 * @since  5.1.5
 	 */
-	public function getUpdatesCount( $updateType = 'all' )
+	public function getUpdatesCount($updateType = 'all')
 	{
 		if ($updateType !== 'all') {
 			$updates = call_user_func('get_' . $updateType . '_updates');

@@ -36,10 +36,10 @@ trait HasGroup
 	/**
 	 * Sets group
 	 *
-	 * @param  string $group Group name.
+	 * @param string $group Group name.
 	 * @return $this
 	 */
-	public function setGroup( string $group )
+	public function setGroup(string $group)
 	{
 		$this->group = $group;
 

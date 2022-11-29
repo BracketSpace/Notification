@@ -28,9 +28,12 @@ class UserID extends Abstracts\Recipient
 	{
 		parent::__construct(
 			[
-			'slug' => 'user_id',
-			'name' => __('User ID', 'notification'),
-			'default_value' => '',
+				'slug' => 'user_id',
+				'name' => __(
+					'User ID',
+					'notification'
+				),
+				'default_value' => '',
 			]
 		);
 	}
@@ -38,25 +41,34 @@ class UserID extends Abstracts\Recipient
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @param  string $value raw value saved by the user.
+	 * @param string $value raw value saved by the user.
 	 * @return array         array of resolved values
 	 */
-	public function parseValue( $value = '' )
+	public function parseValue($value = '')
 	{
 
 		if (empty($value)) {
 			return [];
 		}
 
-		$userIds = array_map('trim', explode(',', $value));
+		$userIds = array_map(
+			'trim',
+			explode(
+				',',
+				$value
+			)
+		);
 		$users = get_users(
 			[
-			'include' => $userIds,
-			'fields' => [ 'user_email' ],
+				'include' => $userIds,
+				'fields' => ['user_email'],
 			]
 		);
 
-		return wp_list_pluck($users, 'user_email');
+		return wp_list_pluck(
+			$users,
+			'user_email'
+		);
 	}
 
 	/**
@@ -69,12 +81,21 @@ class UserID extends Abstracts\Recipient
 
 		return new Field\InputField(
 			[
-			'label' => __('Recipient', 'notification'), // don't edit this!
-			'name' => 'recipient',                       // don't edit this!
-			'css_class' => 'recipient-value',                 // don't edit this!
-			'placeholder' => __('123 or {user_ID}', 'notification'),
-			'description' => __('You can use any valid email merge tag.', 'notification'),
-			'resolvable' => true,
+				'label' => __(
+					'Recipient',
+					'notification'
+				), // don't edit this!
+				'name' => 'recipient',                       // don't edit this!
+				'css_class' => 'recipient-value',                 // don't edit this!
+				'placeholder' => __(
+					'123 or {user_ID}',
+					'notification'
+				),
+				'description' => __(
+					'You can use any valid email merge tag.',
+					'notification'
+				),
+				'resolvable' => true,
 			]
 		);
 	}

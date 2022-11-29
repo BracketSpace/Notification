@@ -19,9 +19,9 @@ class CheckRestApi
 	/**
 	 * Method sends request to API, based on response checks whether REST API works correctly
 	 *
+	 * @return void
 	 * @since 8.0.12
 	 * @action admin_notices
-	 * @return void
 	 */
 	public function testRestApi()
 	{
@@ -32,7 +32,7 @@ class CheckRestApi
 			$isEdit = $currentScreen->base === 'post' && $currentScreen->postType === 'notification';
 		}
 
-		if (! $isEdit) {
+		if (!$isEdit) {
 			return;
 		}
 
@@ -43,11 +43,19 @@ class CheckRestApi
 			)
 		);
 
-		$message = json_decode(wp_remote_retrieve_body($response), true);
+		$message = json_decode(
+			wp_remote_retrieve_body($response),
+			true
+		);
 
 		$isAvailable = false;
 
-		if (is_array($message) && array_key_exists('data', $message) && $message['data'] === 'RestApi') {
+		if (
+			is_array($message) && array_key_exists(
+				'data',
+				$message
+			) && $message['data'] === 'RestApi'
+		) {
 			return;
 		}
 

@@ -43,10 +43,10 @@ trait HasName
 	/**
 	 * Sets name
 	 *
-	 * @param  string $name Name.
+	 * @param string $name Name.
 	 * @return $this
 	 */
-	public function setName( string $name )
+	public function setName(string $name)
 	{
 		$this->name = $name;
 

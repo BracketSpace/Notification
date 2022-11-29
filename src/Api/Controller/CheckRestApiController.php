@@ -21,8 +21,8 @@ class CheckRestApiController
 	/**
 	 * Sends response
 	 *
-	 * @since 8.0.12
 	 * @return void
+	 * @since 8.0.12
 	 */
 	public function sendResponse()
 	{

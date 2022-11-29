@@ -38,23 +38,41 @@ class UserPasswordResetRequest extends UserTrigger
 	public function __construct()
 	{
 
-		parent::__construct('user/password_reset_request', __('User password reset request', 'notification'));
+		parent::__construct(
+			'user/password_reset_request',
+			__(
+				'User password reset request',
+				'notification'
+			)
+		);
 
-		$this->addAction('retrieve_password_key', 10, 2);
+		$this->addAction(
+			'retrieve_password_key',
+			10,
+			2
+		);
 
-		$this->setDescription(__('Fires when user requests password change', 'notification'));
+		$this->setDescription(
+			__(
+				'Fires when user requests password change',
+				'notification'
+			)
+		);
 	}
 
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param string $username  username.
+	 * @param string $username username.
 	 * @param string $resetKey password reset key.
 	 * @return mixed
 	 */
-	public function context( $username, $resetKey )
+	public function context($username, $resetKey)
 	{
-		$user = get_user_by('login', $username);
+		$user = get_user_by(
+			'login',
+			$username
+		);
 
 		/**
 		 * Bail if we are handling the registration.
@@ -62,8 +80,12 @@ class UserPasswordResetRequest extends UserTrigger
 		 */
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if (
-			( isset($_REQUEST['action']) && $_REQUEST['action'] === 'register' ) ||
-			apply_filters('notification/trigger/wordpress/user_password_reset_request/bail_for_registration', false, $user)
+			(isset($_REQUEST['action']) && $_REQUEST['action'] === 'register') ||
+			apply_filters(
+				'notification/trigger/wordpress/user_password_reset_request/bail_for_registration',
+				false,
+				$user
+			)
 		) {
 			return false;
 		}
@@ -97,8 +119,11 @@ class UserPasswordResetRequest extends UserTrigger
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
-				'slug' => 'password_reset_request_datetime',
-				'name' => __('Password reset request date', 'notification'),
+					'slug' => 'password_reset_request_datetime',
+					'name' => __(
+						'Password reset request date',
+						'notification'
+					),
 				]
 			)
 		);

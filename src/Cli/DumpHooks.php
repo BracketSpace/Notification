@@ -29,7 +29,7 @@ class DumpHooks
 	 * @param list<string> $args Arguments.
 	 * @return void
 	 */
-	public function __invoke( $args )
+	public function __invoke($args)
 	{
 
 		$runtime = Notification::runtime();
@@ -55,9 +55,19 @@ class DumpHooks
 			if ($className === 'BracketSpace\\Notification\\Runtime') {
 				$callbackObjectName = '$this';
 			} else {
-				$componentName = array_search($className, $objects, true);
-				if (! $componentName) {
-					WP_CLI::warning(str_replace('BracketSpace\\Notification\\', '', $className) . ' skipped, no instance available');
+				$componentName = array_search(
+					$className,
+					$objects,
+					true
+				);
+				if (!$componentName) {
+					WP_CLI::warning(
+						str_replace(
+							'BracketSpace\\Notification\\',
+							'',
+							$className
+						) . ' skipped, no instance available'
+					);
 					continue;
 				}
 				$callbackObjectName = "\$this->component( '" . $componentName . "' )";
@@ -77,7 +87,13 @@ class DumpHooks
 				$count++;
 			}
 
-			WP_CLI::log(str_replace('BracketSpace\\Notification\\', '', $className) . ' added ' . $count . ' hooks');
+			WP_CLI::log(
+				str_replace(
+					'BracketSpace\\Notification\\',
+					'',
+					$className
+				) . ' added ' . $count . ' hooks'
+			);
 		}
 
 		// Clear the hooks file.
@@ -102,7 +118,13 @@ declare(strict_types=1);
 ';
 
 		// Save the content.
-		$filesystem->putContents($hooksFile, $fileHeader . implode("\n", $hookFunctions) . "\n");
+		$filesystem->putContents(
+			$hooksFile,
+			$fileHeader . implode(
+				"\n",
+				$hookFunctions
+			) . "\n"
+		);
 
 		WP_CLI::success('All hooks dumped!');
 	}

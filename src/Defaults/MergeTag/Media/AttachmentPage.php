@@ -20,10 +20,10 @@ class AttachmentPage extends UrlTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		$this->setTriggerProp($params['property_name'] ?? 'attachment');
@@ -32,12 +32,21 @@ class AttachmentPage extends UrlTag
 			$params,
 			[
 				'slug' => 'attachment_page_link',
-				'name' => __('Attachment page link', 'notification'),
-				'description' => __('http://example.com/forest-landscape/', 'notification'),
+				'name' => __(
+					'Attachment page link',
+					'notification'
+				),
+				'description' => __(
+					'http://example.com/forest-landscape/',
+					'notification'
+				),
 				'example' => true,
-				'group' => __('Attachment', 'notification'),
+				'group' => __(
+					'Attachment',
+					'notification'
+				),
 				'resolver' => function () {
-					return get_permalink($this->{ $this->getTriggerProp() }->attachment->ID);
+					return get_permalink($this->{$this->getTriggerProp()}->attachment->ID);
 				},
 			]
 		);

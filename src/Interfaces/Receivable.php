@@ -20,10 +20,10 @@ interface Receivable extends Nameable
 	 * Parses saved value something understood by notification
 	 * Must be defined in the child class
 	 *
-	 * @param  string $value raw value saved by the user.
+	 * @param string $value raw value saved by the user.
 	 * @return array         array of resolved values
 	 */
-	public function parseValue( $value = ''  );
+	public function parseValue($value = '');
 
 	/**
 	 * Returns input object

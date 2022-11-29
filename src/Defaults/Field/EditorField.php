@@ -29,10 +29,10 @@ class EditorField extends Field
 	/**
 	 * Field constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		if (isset($params['settings'])) {
@@ -61,7 +61,11 @@ class EditorField extends Field
 
 		ob_start();
 
-		wp_editor($this->getValue(), $this->getId(), $settings);
+		wp_editor(
+			$this->getValue(),
+			$this->getId(),
+			$settings
+		);
 
 		return ob_get_clean();
 	}
@@ -69,15 +73,19 @@ class EditorField extends Field
 	/**
 	 * Sanitizes the value sent by user
 	 *
-	 * @param  mixed $value value to sanitize.
+	 * @param mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value )
+	public function sanitize($value)
 	{
 
 		/**
 		 * Fixes WPLinkPreview TinyMCE component which adds the https:// prefix to invalid URL.
 		 */
-		return str_replace([ 'https://{', 'http://{' ], '{', $value);
+		return str_replace(
+			['https://{', 'http://{'],
+			'{',
+			$value
+		);
 	}
 }

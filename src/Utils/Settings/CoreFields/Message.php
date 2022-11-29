@@ -22,7 +22,7 @@ class Message
 	 * @param \BracketSpace\Notification\Utils\Settings\Field $field Field instance.
 	 * @return void
 	 */
-	public function input( $field )
+	public function input($field)
 	{
 		if ($field->addon('code')) {
 			echo '<pre><code>';
@@ -30,7 +30,11 @@ class Message
 
 		$message = $field->addon('message');
 
-		echo wp_kses_post(is_callable($message) ? $message() : $message);
+		echo wp_kses_post(
+			is_callable($message)
+				? $message()
+				: $message
+		);
 
 		if (!$field->addon('code')) {
 			return;
@@ -42,10 +46,10 @@ class Message
 	/**
 	 * Sanitize input value
 	 *
-	 * @param  string $value Saved value.
+	 * @param string $value Saved value.
 	 * @return string        Sanitized text
 	 */
-	public function sanitize( $value )
+	public function sanitize($value)
 	{
 		return $value;
 	}

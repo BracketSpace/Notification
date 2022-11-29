@@ -21,11 +21,11 @@ class NotificationDuplicator
 	 *
 	 * @filter post_row_actions 50
 	 *
-	 * @param  array  $rowActions array with action links.
-	 * @param  object $post        WP_Post object.
+	 * @param array $rowActions array with action links.
+	 * @param object $post WP_Post object.
 	 * @return array               filtered actions
 	 */
-	public function addDuplicateRowAction( $rowActions, $post )
+	public function addDuplicateRowAction($rowActions, $post)
 	{
 		if ($post->postType !== 'notification') {
 			return $rowActions;
@@ -40,7 +40,10 @@ class NotificationDuplicator
 					wp_create_nonce('duplicate_notification')
 				)
 			),
-			__('Duplicate', 'notification')
+			__(
+				'Duplicate',
+				'notification'
+			)
 		);
 
 		return $rowActions;
@@ -51,27 +54,36 @@ class NotificationDuplicator
 	 *
 	 * @action admin_post_notification_duplicate
 	 *
-	 * @since  5.2.3
 	 * @return void
+	 * @since  5.2.3
 	 */
 	public function notificationDuplicate()
 	{
-		check_admin_referer('duplicate_notification', 'nonce');
+		check_admin_referer(
+			'duplicate_notification',
+			'nonce'
+		);
 
-		if (! isset($_GET['duplicate'])) {
+		if (!isset($_GET['duplicate'])) {
 			exit;
 		}
 
 		// Get the source notification post.
 		$source = get_post(intval(wp_unslash($_GET['duplicate'])));
-		$wp = notification_adapt_from('WordPress', $source);
+		$wp = notification_adapt_from(
+			'WordPress',
+			$source
+		);
 
 		/**
 		 * JSON Adapter
 		 *
 		 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 		 */
-		$json = notification_swap_adapter('JSON', $wp);
+		$json = notification_swap_adapter(
+			'JSON',
+			$wp
+		);
 
 		$json->refreshHash();
 		$json->setEnabled(false);
@@ -82,10 +94,17 @@ class NotificationDuplicator
 
 		$newId = wp_insert_post(
 			[
-			'post_title' => sprintf('(%s) %s', __('Duplicate', 'notification'), $source->postTitle),
-			'post_content' => wp_slash($json->save(JSON_UNESCAPED_UNICODE)),
-			'post_status' => 'draft',
-			'post_type' => 'notification',
+				'post_title' => sprintf(
+					'(%s) %s',
+					__(
+						'Duplicate',
+						'notification'
+					),
+					$source->postTitle
+				),
+				'post_content' => wp_slash($json->save(JSON_UNESCAPED_UNICODE)),
+				'post_status' => 'draft',
+				'post_type' => 'notification',
 			]
 		);
 

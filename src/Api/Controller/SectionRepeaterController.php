@@ -21,11 +21,11 @@ class SectionRepeaterController extends RepeaterController
 	/**
 	 * Group fields in associative array
 	 *
-	 * @since 7.0.0
 	 * @param array $fields Fields data.
 	 * @return  array  Modified fields data.
+	 * @since 7.0.0
 	 */
-	public function groupFields( $fields )
+	public function groupFields($fields)
 	{
 
 		$grouppedFields = [];
@@ -43,7 +43,7 @@ class SectionRepeaterController extends RepeaterController
 	 * @param array $sections Sections data.
 	 * @return array
 	 */
-	public function getSectionsFields( $sections )
+	public function getSectionsFields($sections)
 	{
 
 		$sectionFields = [];
@@ -69,7 +69,10 @@ class SectionRepeaterController extends RepeaterController
 					$baseSubFields = $this->formFieldData($section['fields']);
 					$grouppedSubFields = $this->groupFields($baseSubFields);
 					$sectionField['fields'] = $grouppedSubFields;
-					$sections = array_merge($sections, $sectionField);
+					$sections = array_merge(
+						$sections,
+						$sectionField
+					);
 				}
 
 				$field = $sections;
@@ -82,12 +85,16 @@ class SectionRepeaterController extends RepeaterController
 	/**
 	 * Forms response data
 	 *
-	 * @since 7.0.0
 	 * @return array
+	 * @since 7.0.0
 	 */
 	public function formData()
 	{
-		$values = $this->getValues($this->postId, $this->carrier, $this->field) ?? [];
+		$values = $this->getValues(
+			$this->postId,
+			$this->carrier,
+			$this->field
+		) ?? [];
 
 		/** @var \BracketSpace\Notification\Defaults\Field\SectionRepeater */
 		$field = $this->getCarrierFields();

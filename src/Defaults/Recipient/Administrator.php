@@ -28,9 +28,12 @@ class Administrator extends Abstracts\Recipient
 	{
 		parent::__construct(
 			[
-			'slug' => 'administrator',
-			'name' => __('Administrator', 'notification'),
-			'default_value' => get_option('admin_email'),
+				'slug' => 'administrator',
+				'name' => __(
+					'Administrator',
+					'notification'
+				),
+				'default_value' => get_option('admin_email'),
 			]
 		);
 	}
@@ -38,17 +41,17 @@ class Administrator extends Abstracts\Recipient
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @param  string $value raw value saved by the user.
+	 * @param string $value raw value saved by the user.
 	 * @return array         array of resolved values
 	 */
-	public function parseValue( $value = '' )
+	public function parseValue($value = '')
 	{
 
 		if (empty($value)) {
 			$value = $this->getDefaultValue();
 		}
 
-		return [ sanitize_email($value) ];
+		return [sanitize_email($value)];
 	}
 
 	/**
@@ -61,14 +64,23 @@ class Administrator extends Abstracts\Recipient
 
 		return new Field\InputField(
 			[
-			'label' => __('Recipient', 'notification'), // don't edit this!
-			'name' => 'recipient',                       // don't edit this!
-			'css_class' => 'recipient-value',                 // don't edit this!
-			'value' => $this->getDefaultValue(),
-			'placeholder' => $this->getDefaultValue(),
-			// Translators: %s settings URL.
-			'description' => sprintf(__('You can edit this email in <a href="%s">General Settings</a>', 'notification'), admin_url('options-general.php')),
-			'disabled' => true,
+				'label' => __(
+					'Recipient',
+					'notification'
+				), // don't edit this!
+				'name' => 'recipient',                       // don't edit this!
+				'css_class' => 'recipient-value',                 // don't edit this!
+				'value' => $this->getDefaultValue(),
+				'placeholder' => $this->getDefaultValue(),
+				// Translators: %s settings URL.
+				'description' => sprintf(
+					__(
+						'You can edit this email in <a href="%s">General Settings</a>',
+						'notification'
+					),
+					admin_url('options-general.php')
+				),
+				'disabled' => true,
 			]
 		);
 	}

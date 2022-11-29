@@ -31,18 +31,22 @@ class TermUpdated extends TermTrigger
 	 *
 	 * @param string $taxonomy optional, default: category.
 	 */
-	public function __construct( $taxonomy = 'category' )
+	public function __construct($taxonomy = 'category')
 	{
 		$this->taxonomy = WpObjectHelper::getTaxonomy($taxonomy);
 
 		parent::__construct(
 			[
-			'taxonomy' => $taxonomy,
-			'slug' => 'taxonomy/' . $taxonomy . '/updated',
+				'taxonomy' => $taxonomy,
+				'slug' => 'taxonomy/' . $taxonomy . '/updated',
 			]
 		);
 
-		$this->addAction('edited_term', 100, 2);
+		$this->addAction(
+			'edited_term',
+			100,
+			2
+		);
 	}
 
 	/**
@@ -53,7 +57,13 @@ class TermUpdated extends TermTrigger
 	public function getName(): string
 	{
 		// Translators: taxonomy name.
-		return sprintf(__('%s term updated', 'notification'), $this->taxonomy->labels->singularName ?? '');
+		return sprintf(
+			__(
+				'%s term updated',
+				'notification'
+			),
+			$this->taxonomy->labels->singularName ?? ''
+		);
 	}
 
 	/**
@@ -64,8 +74,11 @@ class TermUpdated extends TermTrigger
 	public function getDescription(): string
 	{
 		return sprintf(
-			// Translators: 1. taxonomy name, 2. taxonomy slug.
-			__('Fires when %1$s (%2$s) is updated', 'notification'),
+		// Translators: 1. taxonomy name, 2. taxonomy slug.
+			__(
+				'Fires when %1$s (%2$s) is updated',
+				'notification'
+			),
 			$this->taxonomy->labels->singularName ?? '',
 			$this->taxonomy->name ?? ''
 		);
@@ -77,11 +90,11 @@ class TermUpdated extends TermTrigger
 	 * @param int $termId Term ID used only due to lack of taxonomy param.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $termId )
+	public function context($termId)
 	{
 		$term = get_term($termId);
 
-		if (! ( $this->taxonomy instanceof \WP_Taxonomy ) || ! ( $term instanceof \WP_Term )) {
+		if (!($this->taxonomy instanceof \WP_Taxonomy) || !($term instanceof \WP_Term)) {
 			return false;
 		}
 
@@ -92,7 +105,9 @@ class TermUpdated extends TermTrigger
 		}
 
 		$termLink = get_term_link($this->term);
-		$this->termPermalink = is_string($termLink) ? $termLink : '';
+		$this->termPermalink = is_string($termLink)
+			? $termLink
+			: '';
 
 		$this->termModificationDatetime = (string)time();
 	}
@@ -110,9 +125,15 @@ class TermUpdated extends TermTrigger
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
-				'slug' => 'term_modification_datetime',
-				'name' => __('Term modification date and time', 'notification'),
-				'group' => __('Term', 'notification'),
+					'slug' => 'term_modification_datetime',
+					'name' => __(
+						'Term modification date and time',
+						'notification'
+					),
+					'group' => __(
+						'Term',
+						'notification'
+					),
 				]
 			)
 		);

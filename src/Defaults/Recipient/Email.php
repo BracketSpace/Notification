@@ -28,9 +28,12 @@ class Email extends Abstracts\Recipient
 	{
 		parent::__construct(
 			[
-			'slug' => 'email',
-			'name' => __('Email / Merge tag', 'notification'),
-			'default_value' => '',
+				'slug' => 'email',
+				'name' => __(
+					'Email / Merge tag',
+					'notification'
+				),
+				'default_value' => '',
 			]
 		);
 	}
@@ -38,10 +41,10 @@ class Email extends Abstracts\Recipient
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @param  string $value raw value saved by the user.
+	 * @param string $value raw value saved by the user.
 	 * @return array         array of resolved values
 	 */
-	public function parseValue( $value = '' )
+	public function parseValue($value = '')
 	{
 
 		if (empty($value)) {
@@ -56,18 +59,38 @@ class Email extends Abstracts\Recipient
 		$filterId = 'default';
 		$pattern = '/\bfilter-id:([\w-]*)/';
 
-		if (preg_match($pattern, $value, $matches)) {
+		if (
+			preg_match(
+				$pattern,
+				$value,
+				$matches
+			)
+		) {
 			$filterId = $matches[1];
-			$value = preg_replace($pattern, '', $value);
-			$value = is_string($value) ? trim($value) : '';
+			$value = preg_replace(
+				$pattern,
+				'',
+				$value
+			);
+			$value = is_string($value)
+				? trim($value)
+				: '';
 		}
 
-		$value = apply_filters('notification/recipient/email/' . $filterId, $value);
+		$value = apply_filters(
+			'notification/recipient/email/' . $filterId,
+			$value
+		);
 
 		$parsedEmails = [];
-		$emails = is_array($value) ? $value : preg_split('/[;|,]/', $value);
+		$emails = is_array($value)
+			? $value
+			: preg_split(
+				'/[;|,]/',
+				$value
+			);
 
-		if (! $emails) {
+		if (!$emails) {
 			return [];
 		}
 
@@ -88,12 +111,21 @@ class Email extends Abstracts\Recipient
 
 		return new Field\InputField(
 			[
-			'label' => __('Recipient', 'notification'), // don't edit this!
-			'name' => 'recipient',                       // don't edit this!
-			'css_class' => 'recipient-value',                 // don't edit this!
-			'placeholder' => __('email@domain.com or {email}', 'notification'),
-			'description' => __('You can use any valid email merge tag.', 'notification'),
-			'resolvable' => true,
+				'label' => __(
+					'Recipient',
+					'notification'
+				), // don't edit this!
+				'name' => 'recipient',                       // don't edit this!
+				'css_class' => 'recipient-value',                 // don't edit this!
+				'placeholder' => __(
+					'email@domain.com or {email}',
+					'notification'
+				),
+				'description' => __(
+					'You can use any valid email merge tag.',
+					'notification'
+				),
+				'resolvable' => true,
 			]
 		);
 	}

@@ -42,10 +42,10 @@ class TextareaField extends Field
 	/**
 	 * Field constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		if (isset($params['placeholder'])) {
@@ -70,17 +70,24 @@ class TextareaField extends Field
 	 */
 	public function field()
 	{
-		return '<textarea name="' . esc_attr($this->getName()) . '" rows="' . esc_attr((string)$this->rows) . '" id="' . esc_attr($this->getId()) . '" placeholder="' . esc_attr($this->placeholder) . '" class="widefat ' . esc_attr($this->cssClass()) . '" ' . $this->maybeDisable() . '>' . $this->getValue() . '</textarea>';
+		return '<textarea name="' . esc_attr($this->getName()) . '" rows="' . esc_attr(
+			(string)$this->rows
+		) . '" id="' . esc_attr($this->getId()) . '" placeholder="' . esc_attr(
+			$this->placeholder
+		) . '" class="widefat ' . esc_attr($this->cssClass()) . '" ' . $this->maybeDisable(
+		) . '>' . $this->getValue() . '</textarea>';
 	}
 
 	/**
 	 * Sanitizes the value sent by user
 	 *
-	 * @param  mixed $value value to sanitize.
+	 * @param mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value )
+	public function sanitize($value)
 	{
-		return ( $this->allowedUnfiltered ) ? $value : sanitize_textarea_field($value);
+		return ($this->allowedUnfiltered)
+			? $value
+			: sanitize_textarea_field($value);
 	}
 }

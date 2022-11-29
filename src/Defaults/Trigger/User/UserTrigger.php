@@ -46,10 +46,18 @@ abstract class UserTrigger extends Abstracts\Trigger
 	 * @param string $slug $params trigger slug.
 	 * @param string $name $params trigger name.
 	 */
-	public function __construct( $slug, $name )
+	public function __construct($slug, $name)
 	{
-		parent::__construct($slug, $name);
-		$this->setGroup(__('User', 'notification'));
+		parent::__construct(
+			$slug,
+			$name
+		);
+		$this->setGroup(
+			__(
+				'User',
+				'notification'
+			)
+		);
 	}
 
 	/**
@@ -69,8 +77,11 @@ abstract class UserTrigger extends Abstracts\Trigger
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
-				'slug' => 'user_registered_datetime',
-				'name' => __('User registration date', 'notification'),
+					'slug' => 'user_registered_datetime',
+					'name' => __(
+						'User registration date',
+						'notification'
+					),
 				]
 			)
 		);

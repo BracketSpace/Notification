@@ -29,10 +29,10 @@ class CodeEditorField extends Field
 	/**
 	 * Field constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		if (isset($params['settings'])) {
@@ -53,8 +53,8 @@ class CodeEditorField extends Field
 		$settings = wp_parse_args(
 			$this->settings,
 			[
-			'indentUnit' => 4,
-			'tabSize' => 4,
+				'indentUnit' => 4,
+				'tabSize' => 4,
 			]
 		);
 
@@ -73,10 +73,10 @@ class CodeEditorField extends Field
 	/**
 	 * The code is not sanitized
 	 *
-	 * @param  mixed $value value to sanitize.
+	 * @param mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value )
+	public function sanitize($value)
 	{
 		return $value;
 	}

@@ -25,10 +25,10 @@ class Avatar extends HtmlTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 6.3.0
 	 * @param array $params merge tag configuration params.
+	 * @since 6.3.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		$this->setTriggerProp($params['property_name'] ?? 'user_object');
@@ -37,13 +37,22 @@ class Avatar extends HtmlTag
 			$params,
 			[
 				'slug' => 'user_avatar',
-				'name' => __('User avatar', 'notification'),
-				'description' => __('HTML img tag with avatar', 'notification'),
+				'name' => __(
+					'User avatar',
+					'notification'
+				),
+				'description' => __(
+					'HTML img tag with avatar',
+					'notification'
+				),
 				'example' => true,
-				'group' => __('User', 'notification'),
-				'resolver' => function ( $trigger ) {
-					if (isset($trigger->{ $this->getTriggerProp() }->userEmail)) {
-						return get_avatar($trigger->{ $this->getTriggerProp() }->userEmail);
+				'group' => __(
+					'User',
+					'notification'
+				),
+				'resolver' => function ($trigger) {
+					if (isset($trigger->{$this->getTriggerProp()}->userEmail)) {
+						return get_avatar($trigger->{$this->getTriggerProp()}->userEmail);
 					}
 
 					return '';

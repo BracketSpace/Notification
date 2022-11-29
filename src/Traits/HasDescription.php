@@ -36,10 +36,10 @@ trait HasDescription
 	/**
 	 * Sets description
 	 *
-	 * @param  string $description Description.
+	 * @param string $description Description.
 	 * @return $this
 	 */
-	public function setDescription( string $description )
+	public function setDescription(string $description)
 	{
 		$this->description = $description;
 

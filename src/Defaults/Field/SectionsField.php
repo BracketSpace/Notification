@@ -26,14 +26,17 @@ class SectionsField extends InputField
 	/**
 	 * Field constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
-		if (! isset($params['sections'])) {
-			trigger_error('SectionsField requires sections param', E_USER_ERROR);
+		if (!isset($params['sections'])) {
+			trigger_error(
+				'SectionsField requires sections param',
+				E_USER_ERROR
+			);
 		}
 
 		$this->sections = $params['sections'];
@@ -44,8 +47,8 @@ class SectionsField extends InputField
 	/**
 	 * Prints repeater row
 	 *
-	 * @since  5.0.0
 	 * @return string          row HTML
+	 * @since  5.0.0
 	 */
 	public function row()
 	{

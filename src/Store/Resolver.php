@@ -23,8 +23,8 @@ class Resolver implements Interfaces\Storable
 	/**
 	 * Gets all Resolvers sorted by priority.
 	 *
-	 * @since  8.0.0
 	 * @return array<string, \BracketSpace\Notification\Interfaces\Resolvable>
+	 * @since  8.0.0
 	 */
 	public static function sorted(): array
 	{
@@ -32,12 +32,14 @@ class Resolver implements Interfaces\Storable
 
 		usort(
 			$resolvers,
-			static function ( $a, $b ) {
+			static function ($a, $b) {
 				if ($a->getPriority() === $b->getPriority()) {
 					return 0;
 				}
 
-				return $a->getPriority() < $b->getPriority() ? -1 : 1;
+				return $a->getPriority() < $b->getPriority()
+					? -1
+					: 1;
 			}
 		);
 

@@ -23,10 +23,10 @@ class TaxonomyName extends StringTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.2.2
 	 * @param array<mixed> $params merge tag configuration params.
+	 * @since 5.2.2
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
 		$this->setTriggerProp($params['property_name'] ?? 'taxonomy');
@@ -34,14 +34,26 @@ class TaxonomyName extends StringTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf('%s_name', $params['tag_name'] ?? 'taxonomy'),
-				'name' => __('Taxonomy name', 'notification'),
-				'description' => __('Hello World', 'notification'),
+				'slug' => sprintf(
+					'%s_name',
+					$params['tag_name'] ?? 'taxonomy'
+				),
+				'name' => __(
+					'Taxonomy name',
+					'notification'
+				),
+				'description' => __(
+					'Hello World',
+					'notification'
+				),
 				'example' => true,
-				'group' => __('Taxonomy', 'notification'),
-				'resolver' => function ( $trigger ) {
+				'group' => __(
+					'Taxonomy',
+					'notification'
+				),
+				'resolver' => function ($trigger) {
 
-					return $trigger->{ $this->getTriggerProp() }->labels->singularName ?? '';
+					return $trigger->{$this->getTriggerProp()}->labels->singularName ?? '';
 				},
 			]
 		);

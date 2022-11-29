@@ -23,22 +23,40 @@ class CommentPublished extends CommentTrigger
 	 *
 	 * @param string $commentType optional, default: comment.
 	 */
-	public function __construct( $commentType = 'comment' )
+	public function __construct($commentType = 'comment')
 	{
 
 		parent::__construct(
 			[
-			'slug' => 'comment/' . $commentType . '/published',
-			// Translators: %s comment type.
-			'name' => sprintf(__('%s published', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
-			'comment_type' => $commentType,
+				'slug' => 'comment/' . $commentType . '/published',
+				// Translators: %s comment type.
+				'name' => sprintf(
+					__(
+						'%s published',
+						'notification'
+					),
+					WpObjectHelper::getCommentTypeName($commentType)
+				),
+				'comment_type' => $commentType,
 			]
 		);
 
-		$this->addAction('notification_comment_published_proxy', 10, 1);
+		$this->addAction(
+			'notification_comment_published_proxy',
+			10,
+			1
+		);
 
 		// Translators: comment type.
-		$this->setDescription(sprintf(__('Fires when new %s is published on the website. Includes comment replies.', 'notification'), WpObjectHelper::getCommentTypeName($commentType)));
+		$this->setDescription(
+			sprintf(
+				__(
+					'Fires when new %s is published on the website. Includes comment replies.',
+					'notification'
+				),
+				WpObjectHelper::getCommentTypeName($commentType)
+			)
+		);
 	}
 
 	/**
@@ -47,14 +65,14 @@ class CommentPublished extends CommentTrigger
 	 * @param object $comment Comment object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $comment )
+	public function context($comment)
 	{
 
 		if ($comment->commentApproved !== '1') {
 			return false;
 		}
 
-		if (! $this->isCorrectType($comment)) {
+		if (!$this->isCorrectType($comment)) {
 			return false;
 		}
 

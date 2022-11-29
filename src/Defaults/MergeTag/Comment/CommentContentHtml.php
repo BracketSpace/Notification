@@ -29,13 +29,13 @@ class CommentContentHtml extends HtmlTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params merge tag configuration params.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
-		if (isset($params['comment_type']) && ! empty($params['comment_type'])) {
+		if (isset($params['comment_type']) && !empty($params['comment_type'])) {
 			$this->commentType = $params['comment_type'];
 		}
 
@@ -48,12 +48,21 @@ class CommentContentHtml extends HtmlTag
 			[
 				'slug' => 'comment_content_html',
 				// Translators: Comment type name.
-				'name' => sprintf(__('%s HTML content', 'notification'), $commentTypeName),
-				'description' => __('Great post!', 'notification'),
+				'name' => sprintf(
+					__(
+						'%s HTML content',
+						'notification'
+					),
+					$commentTypeName
+				),
+				'description' => __(
+					'Great post!',
+					'notification'
+				),
 				'example' => true,
 				'group' => $commentTypeName,
-				'resolver' => function ( $trigger ) {
-					return $trigger->{ $this->getTriggerProp() }->commentContent;
+				'resolver' => function ($trigger) {
+					return $trigger->{$this->getTriggerProp()}->commentContent;
 				},
 			]
 		);

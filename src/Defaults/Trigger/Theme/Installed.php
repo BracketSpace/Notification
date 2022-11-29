@@ -31,25 +31,45 @@ class Installed extends ThemeTrigger
 	public function __construct()
 	{
 
-		parent::__construct('theme/installed', __('Theme installed', 'notification'));
+		parent::__construct(
+			'theme/installed',
+			__(
+				'Theme installed',
+				'notification'
+			)
+		);
 
-		$this->addAction('upgrader_process_complete', 1000, 2);
+		$this->addAction(
+			'upgrader_process_complete',
+			1000,
+			2
+		);
 
-		$this->setGroup(__('Theme', 'notification'));
-		$this->setDescription(__('Fires when theme is installed', 'notification'));
+		$this->setGroup(
+			__(
+				'Theme',
+				'notification'
+			)
+		);
+		$this->setDescription(
+			__(
+				'Fires when theme is installed',
+				'notification'
+			)
+		);
 	}
 
 	/**
 	 * Trigger action.
 	 *
-	 * @param  \Theme_Upgrader $upgrader Theme_Upgrader class.
-	 * @param  array           $data     Update data information.
+	 * @param \Theme_Upgrader $upgrader Theme_Upgrader class.
+	 * @param array $data Update data information.
 	 * @return mixed                     Void or false if no notifications should be sent.
 	 */
-	public function context( $upgrader, $data )
+	public function context($upgrader, $data)
 	{
 
-		if (! isset($data['type'], $data['action']) || $data['type'] !== 'theme' || $data['action'] !== 'install') {
+		if (!isset($data['type'], $data['action']) || $data['type'] !== 'theme' || $data['action'] !== 'install') {
 			return false;
 		}
 
@@ -77,8 +97,11 @@ class Installed extends ThemeTrigger
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
-				'slug' => 'theme_installation_date_time',
-				'name' => __('Theme installation date and time', 'notification'),
+					'slug' => 'theme_installation_date_time',
+					'name' => __(
+						'Theme installation date and time',
+						'notification'
+					),
 				]
 			)
 		);

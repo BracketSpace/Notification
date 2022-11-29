@@ -38,21 +38,36 @@ class UserLogin extends UserTrigger
 	public function __construct()
 	{
 
-		parent::__construct('user/login', __('User login', 'notification'));
+		parent::__construct(
+			'user/login',
+			__(
+				'User login',
+				'notification'
+			)
+		);
 
-		$this->addAction('wp_login', 10, 2);
+		$this->addAction(
+			'wp_login',
+			10,
+			2
+		);
 
-		$this->setDescription(__('Fires when user log into WordPress', 'notification'));
+		$this->setDescription(
+			__(
+				'Fires when user log into WordPress',
+				'notification'
+			)
+		);
 	}
 
 	/**
 	 * Sets trigger's context
 	 *
 	 * @param string $userLogin Logged in user login.
-	 * @param object $user       User object.
+	 * @param object $user User object.
 	 * @return void
 	 */
-	public function context( $userLogin, $user )
+	public function context($userLogin, $user)
 	{
 
 		$this->userId = $user->ID;
@@ -82,8 +97,11 @@ class UserLogin extends UserTrigger
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
-				'slug' => 'user_logged_in_datetime',
-				'name' => __('User login time', 'notification'),
+					'slug' => 'user_logged_in_datetime',
+					'name' => __(
+						'User login time',
+						'notification'
+					),
 				]
 			)
 		);
@@ -91,25 +109,31 @@ class UserLogin extends UserTrigger
 		$this->addMergeTag(
 			new MergeTag\IPTag(
 				[
-				'slug' => 'user_IP',
-				'name' => __('User IP', 'notification'),
-				'description' => '127.0.0.1',
-				'example' => true,
-				'resolver' => static function ( $trigger ) {
-					if (! empty($_SERVER['HTTP_CLIENT_IP'])) {
-						return sanitize_text_field(wp_unslash($_SERVER['HTTP_CLIENT_IP']));
-					}
+					'slug' => 'user_IP',
+					'name' => __(
+						'User IP',
+						'notification'
+					),
+					'description' => '127.0.0.1',
+					'example' => true,
+					'resolver' => static function ($trigger) {
+						if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+							return sanitize_text_field(wp_unslash($_SERVER['HTTP_CLIENT_IP']));
+						}
 
-					if (! empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-						return sanitize_text_field(wp_unslash($_SERVER['HTTP_X_FORWARDED_FOR']));
-					}
+						if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+							return sanitize_text_field(wp_unslash($_SERVER['HTTP_X_FORWARDED_FOR']));
+						}
 
-					if (! empty($_SERVER['REMOTE_ADDR'])) {
-						return sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR']));
-					}
-					return '';
-				},
-				'group' => __('User', 'notification'),
+						if (!empty($_SERVER['REMOTE_ADDR'])) {
+							return sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR']));
+						}
+						return '';
+					},
+					'group' => __(
+						'User',
+						'notification'
+					),
 				]
 			)
 		);

@@ -39,17 +39,26 @@ class Basic extends Abstracts\Resolver
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @param array       $match   Match array.
+	 * @param array $match Match array.
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return mixed               Resolved value
 	 */
-	public function resolveMergeTag( $match, Triggerable $trigger )
+	public function resolveMergeTag($match, Triggerable $trigger)
 	{
 
-		$mergeTags = $trigger->getMergeTags('all', true);
-		$tagSlug = trim(str_replace([ '{', '}' ], '', $match[0]));
+		$mergeTags = $trigger->getMergeTags(
+			'all',
+			true
+		);
+		$tagSlug = trim(
+			str_replace(
+				['{', '}'],
+				'',
+				$match[0]
+			)
+		);
 
-		if (! isset($mergeTags[$tagSlug])) {
+		if (!isset($mergeTags[$tagSlug])) {
 			return $match[0];
 		}
 

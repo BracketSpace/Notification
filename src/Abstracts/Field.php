@@ -100,24 +100,36 @@ abstract class Field implements Interfaces\Fillable
 	/**
 	 * Field constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params field configuration params.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
-		if (! isset($params['label'], $params['name'])) {
-			trigger_error('Field requires label and name', E_USER_ERROR);
+		if (!isset($params['label'], $params['name'])) {
+			trigger_error(
+				'Field requires label and name',
+				E_USER_ERROR
+			);
 		}
 
-		$this->fieldTypeHtml = substr(strrchr(static::class, '\\'), 1);
+		$this->fieldTypeHtml = substr(
+			strrchr(
+				static::class,
+				'\\'
+			),
+			1
+		);
 
 		$this->label = $params['label'];
 		$this->name = $params['name'];
 		$this->id = $this->name . '_' . uniqid();
 
 		if (isset($params['description'])) {
-			$this->description = wp_kses($params['description'], wp_kses_allowed_html('data'));
+			$this->description = wp_kses(
+				$params['description'],
+				wp_kses_allowed_html('data')
+			);
 		}
 
 		if (isset($params['resolvable'])) {
@@ -146,11 +158,11 @@ abstract class Field implements Interfaces\Fillable
 	/**
 	 * Returns field data
 	 *
-	 * @since 7.0.0
 	 * @param string $param Field data name.
 	 * @return  array
+	 * @since 7.0.0
 	 */
-	public function __get( $param )
+	public function __get($param)
 	{
 		return $this->$param ?? null;
 	}
@@ -165,10 +177,10 @@ abstract class Field implements Interfaces\Fillable
 	/**
 	 * Sanitizes the value sent by user
 	 *
-	 * @param  mixed $value value to sanitize.
+	 * @param mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	abstract public function sanitize( $value );
+	abstract public function sanitize($value);
 
 	/**
 	 * Gets description
@@ -187,17 +199,23 @@ abstract class Field implements Interfaces\Fillable
 	 */
 	public function getValue()
 	{
-		$value = is_string($this->value) ? stripslashes($this->value) : $this->value;
-		return apply_filters('notification/field/' . $this->getRawName() . '/value', $value, $this);
+		$value = is_string($this->value)
+			? stripslashes($this->value)
+			: $this->value;
+		return apply_filters(
+			'notification/field/' . $this->getRawName() . '/value',
+			$value,
+			$this
+		);
 	}
 
 	/**
 	 * Sets field value
 	 *
-	 * @param  mixed $value value from DB.
+	 * @param mixed $value value from DB.
 	 * @return void
 	 */
-	public function setValue( $value )
+	public function setValue($value)
 	{
 		$this->value = $value;
 	}
@@ -269,7 +287,9 @@ abstract class Field implements Interfaces\Fillable
 	 */
 	public function maybeDisable()
 	{
-		return $this->isDisabled() ? 'disabled="disabled"' : '';
+		return $this->isDisabled()
+			? 'disabled="disabled"'
+			: '';
 	}
 
 	/**
@@ -285,11 +305,14 @@ abstract class Field implements Interfaces\Fillable
 	/**
 	 * Returns rest API error message
 	 *
-	 * @since 7.1.0
 	 * @return string
+	 * @since 7.1.0
 	 */
 	public function restApiError()
 	{
-		return esc_html__('The REST API is required to display this field, but it has been blocked. Please unlock the /notification REST API endpoint.', 'notification');
+		return esc_html__(
+			'The REST API is required to display this field, but it has been blocked. Please unlock the /notification REST API endpoint.',
+			'notification'
+		);
 	}
 }

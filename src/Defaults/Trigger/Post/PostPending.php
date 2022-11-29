@@ -23,17 +23,21 @@ class PostPending extends PostTrigger
 	 *
 	 * @param string $postType optional, default: post.
 	 */
-	public function __construct( $postType = 'post' )
+	public function __construct($postType = 'post')
 	{
 
 		parent::__construct(
 			[
-			'post_type' => $postType,
-			'slug' => 'post/' . $postType . '/pending',
+				'post_type' => $postType,
+				'slug' => 'post/' . $postType . '/pending',
 			]
 		);
 
-		$this->addAction('transition_post_status', 10, 3);
+		$this->addAction(
+			'transition_post_status',
+			10,
+			3
+		);
 	}
 
 	/**
@@ -44,7 +48,13 @@ class PostPending extends PostTrigger
 	public function getName(): string
 	{
 		// translators: singular post name.
-		return sprintf(__('%s sent for review', 'notification'), WpObjectHelper::getPostTypeName($this->postType));
+		return sprintf(
+			__(
+				'%s sent for review',
+				'notification'
+			),
+			WpObjectHelper::getPostTypeName($this->postType)
+		);
 	}
 
 	/**
@@ -55,8 +65,11 @@ class PostPending extends PostTrigger
 	public function getDescription(): string
 	{
 		return sprintf(
-			// translators: 1. singular post name, 2. post type slug.
-			__('Fires when %1$s (%2$s) is sent for review', 'notification'),
+		// translators: 1. singular post name, 2. post type slug.
+			__(
+				'Fires when %1$s (%2$s) is sent for review',
+				'notification'
+			),
 			WpObjectHelper::getPostTypeName($this->postType),
 			$this->postType
 		);
@@ -67,10 +80,10 @@ class PostPending extends PostTrigger
 	 *
 	 * @param string $newStatus New post status.
 	 * @param string $oldStatus Old post status.
-	 * @param object $post       Post object.
+	 * @param object $post Post object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $newStatus, $oldStatus, $post )
+	public function context($newStatus, $oldStatus, $post)
 	{
 
 		if ($post->postType !== $this->postType) {
@@ -81,12 +94,18 @@ class PostPending extends PostTrigger
 			return false;
 		}
 
-		$this->{ $this->postType } = $post;
+		$this->{$this->postType} = $post;
 
-		$this->author = get_userdata((int)$this->{ $this->postType }->postAuthor);
-		$this->lastEditor = get_userdata((int)get_post_meta($this->{ $this->postType }->ID, '_edit_last', true));
+		$this->author = get_userdata((int)$this->{$this->postType}->postAuthor);
+		$this->lastEditor = get_userdata(
+			(int)get_post_meta(
+				$this->{$this->postType}->ID,
+				'_edit_last',
+				true
+			)
+		);
 
-		$this->{ $this->postType . '_creation_datetime' } = strtotime($this->{ $this->postType }->postDateGmt);
-		$this->{ $this->postType . '_modification_datetime' } = strtotime($this->{ $this->postType }->postModifiedGmt);
+		$this->{$this->postType . '_creation_datetime'} = strtotime($this->{$this->postType}->postDateGmt);
+		$this->{$this->postType . '_modification_datetime'} = strtotime($this->{$this->postType}->postModifiedGmt);
 	}
 }

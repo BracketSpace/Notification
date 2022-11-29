@@ -40,44 +40,74 @@ class Webhook extends Abstracts\Carrier
 
 		$this->addRecipientsField(
 			[
-			'label' => __('URLs', 'notification'),
-			'name' => 'urls',
-			'add_button_label' => __('Add URL', 'notification'),
+				'label' => __(
+					'URLs',
+					'notification'
+				),
+				'name' => 'urls',
+				'add_button_label' => __(
+					'Add URL',
+					'notification'
+				),
 			]
 		);
 
 		$this->addFormField(
 			new Field\RepeaterField(
 				[
-				'label' => __('Arguments', 'notification'),
-				'name' => 'args',
-				'add_button_label' => __('Add argument', 'notification'),
-				'fields' => [
-				new Field\CheckboxField(
-					[
-						'label' => __('Hide', 'notification-slack'),
-						'name' => 'hide',
-						'checkbox_label' => __('Hide if empty value', 'notification'),
-					]
-				),
-				new Field\InputField(
-					[
-					'label' => __('Key', 'notification'),
-					'name' => 'key',
-					'resolvable' => true,
-					'description' => __('You can use merge tags', 'notification'),
-					]
-				),
-				new Field\InputField(
-					[
-					'label' => __('Value', 'notification'),
-					'name' => 'value',
-					'resolvable' => true,
-					'allow_linebreaks' => true,
-					'description' => __('You can use merge tags', 'notification'),
-					]
-				),
-				],
+					'label' => __(
+						'Arguments',
+						'notification'
+					),
+					'name' => 'args',
+					'add_button_label' => __(
+						'Add argument',
+						'notification'
+					),
+					'fields' => [
+						new Field\CheckboxField(
+							[
+								'label' => __(
+									'Hide',
+									'notification-slack'
+								),
+								'name' => 'hide',
+								'checkbox_label' => __(
+									'Hide if empty value',
+									'notification'
+								),
+							]
+						),
+						new Field\InputField(
+							[
+								'label' => __(
+									'Key',
+									'notification'
+								),
+								'name' => 'key',
+								'resolvable' => true,
+								'description' => __(
+									'You can use merge tags',
+									'notification'
+								),
+							]
+						),
+						new Field\InputField(
+							[
+								'label' => __(
+									'Value',
+									'notification'
+								),
+								'name' => 'value',
+								'resolvable' => true,
+								'allow_linebreaks' => true,
+								'description' => __(
+									'You can use merge tags',
+									'notification'
+								),
+							]
+						),
+					],
 				]
 			)
 		);
@@ -85,9 +115,15 @@ class Webhook extends Abstracts\Carrier
 		$this->addFormField(
 			new Field\CheckboxField(
 				[
-				'label' => __('JSON', 'notification'),
-				'name' => 'json',
-				'checkbox_label' => __('Send the arguments in JSON format', 'notification'),
+					'label' => __(
+						'JSON',
+						'notification'
+					),
+					'name' => 'json',
+					'checkbox_label' => __(
+						'Send the arguments in JSON format',
+						'notification'
+					),
 				]
 			)
 		);
@@ -99,34 +135,58 @@ class Webhook extends Abstracts\Carrier
 		$this->addFormField(
 			new Field\RepeaterField(
 				[
-				'label' => __('Headers', 'notification'),
-				'name' => 'headers',
-				'add_button_label' => __('Add header', 'notification'),
-				'fields' => [
-				new Field\CheckboxField(
-					[
-						'label' => __('Hide', 'notification-slack'),
-						'name' => 'hide',
-						'checkbox_label' => __('Hide if empty value', 'notification'),
-					]
-				),
-				new Field\InputField(
-					[
-					'label' => __('Key', 'notification'),
-					'name' => 'key',
-					'resolvable' => true,
-					'description' => __('You can use merge tags', 'notification'),
-					]
-				),
-				new Field\InputField(
-					[
-					'label' => __('Value', 'notification'),
-					'name' => 'value',
-					'resolvable' => true,
-					'description' => __('You can use merge tags', 'notification'),
-					]
-				),
-				],
+					'label' => __(
+						'Headers',
+						'notification'
+					),
+					'name' => 'headers',
+					'add_button_label' => __(
+						'Add header',
+						'notification'
+					),
+					'fields' => [
+						new Field\CheckboxField(
+							[
+								'label' => __(
+									'Hide',
+									'notification-slack'
+								),
+								'name' => 'hide',
+								'checkbox_label' => __(
+									'Hide if empty value',
+									'notification'
+								),
+							]
+						),
+						new Field\InputField(
+							[
+								'label' => __(
+									'Key',
+									'notification'
+								),
+								'name' => 'key',
+								'resolvable' => true,
+								'description' => __(
+									'You can use merge tags',
+									'notification'
+								),
+							]
+						),
+						new Field\InputField(
+							[
+								'label' => __(
+									'Value',
+									'notification'
+								),
+								'name' => 'value',
+								'resolvable' => true,
+								'description' => __(
+									'You can use merge tags',
+									'notification'
+								),
+							]
+						),
+					],
 				]
 			)
 		);
@@ -138,32 +198,62 @@ class Webhook extends Abstracts\Carrier
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger trigger object.
 	 * @return void
 	 */
-	public function send( Triggerable $trigger )
+	public function send(Triggerable $trigger)
 	{
 
 		$data = $this->data;
 
 		$args = $this->parseArgs($data['args']);
-		$args = apply_filters_deprecated('notification/webhook/args', [ $args, $this, $trigger ], '6.0.0', 'notification/carrier/webhook/args');
-		$args = apply_filters('notification/carrier/webhook/args', $args, $this, $trigger);
+		$args = apply_filters_deprecated(
+			'notification/webhook/args',
+			[$args, $this, $trigger],
+			'6.0.0',
+			'notification/carrier/webhook/args'
+		);
+		$args = apply_filters(
+			'notification/carrier/webhook/args',
+			$args,
+			$this,
+			$trigger
+		);
 
 		if ($data['json']) {
 			$args = wp_json_encode($args);
 		}
 
 		// Headers.
-		$headers = $data['json'] ? [ 'Content-Type' => 'application/json' ] : [];
+		$headers = $data['json']
+			? ['Content-Type' => 'application/json']
+			: [];
 
 		if (notification_get_setting('carriers/webhook/headers')) {
-			$headers = array_merge($headers, $this->parseArgs($data['headers']));
+			$headers = array_merge(
+				$headers,
+				$this->parseArgs($data['headers'])
+			);
 		}
 
 		// Call each URL separately.
 		foreach ($data['urls'] as $url) {
-			$filteredArgs = apply_filters_deprecated('notification/webhook/args/' . $url['type'], [ $args, $this, $trigger ], '6.0.0', 'notification/carrier/webhook/args/' . $url['type']);
-			$filteredArgs = apply_filters('notification/carrier/webhook/args/' . $url['type'], $filteredArgs, $this, $trigger);
+			$filteredArgs = apply_filters_deprecated(
+				'notification/webhook/args/' . $url['type'],
+				[$args, $this, $trigger],
+				'6.0.0',
+				'notification/carrier/webhook/args/' . $url['type']
+			);
+			$filteredArgs = apply_filters(
+				'notification/carrier/webhook/args/' . $url['type'],
+				$filteredArgs,
+				$this,
+				$trigger
+			);
 
-			$this->httpRequest($url['recipient'], $filteredArgs, $headers, $url['type']);
+			$this->httpRequest(
+				$url['recipient'],
+				$filteredArgs,
+				$headers,
+				$url['type']
+			);
 		}
 	}
 }

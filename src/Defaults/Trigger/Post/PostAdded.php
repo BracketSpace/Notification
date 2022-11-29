@@ -30,16 +30,20 @@ class PostAdded extends PostTrigger
 	 *
 	 * @param string $postType optional, default: post.
 	 */
-	public function __construct( $postType = 'post' )
+	public function __construct($postType = 'post')
 	{
 		parent::__construct(
 			[
-			'post_type' => $postType,
-			'slug' => 'post/' . $postType . '/added',
+				'post_type' => $postType,
+				'slug' => 'post/' . $postType . '/added',
 			]
 		);
 
-		$this->addAction('wp_insert_post', 10, 3);
+		$this->addAction(
+			'wp_insert_post',
+			10,
+			3
+		);
 	}
 
 	/**
@@ -50,7 +54,13 @@ class PostAdded extends PostTrigger
 	public function getName(): string
 	{
 		// translators: singular post name.
-		return sprintf(__('%s added', 'notification'), WpObjectHelper::getPostTypeName($this->postType));
+		return sprintf(
+			__(
+				'%s added',
+				'notification'
+			),
+			WpObjectHelper::getPostTypeName($this->postType)
+		);
 	}
 
 	/**
@@ -61,8 +71,11 @@ class PostAdded extends PostTrigger
 	public function getDescription(): string
 	{
 		return sprintf(
-			// translators: 1. singular post name, 2. post type slug.
-			__('Fires when %1$s (%2$s) is added to database. Useful when adding posts programatically or for 3rd party integration', 'notification'),
+		// translators: 1. singular post name, 2. post type slug.
+			__(
+				'Fires when %1$s (%2$s) is added to database. Useful when adding posts programatically or for 3rd party integration',
+				'notification'
+			),
 			WpObjectHelper::getPostTypeName($this->postType),
 			$this->postType
 		);
@@ -73,11 +86,11 @@ class PostAdded extends PostTrigger
 	 * Return `false` if you want to abort the trigger execution
 	 *
 	 * @param int $postId Post ID.
-	 * @param object  $post    Post object.
-	 * @param bool    $update  Whether this is an existing post being updated or not.
+	 * @param object $post Post object.
+	 * @param bool $update Whether this is an existing post being updated or not.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $postId, $post, $update )
+	public function context($postId, $post, $update)
 	{
 
 		// Bail if post has been already added.
@@ -87,7 +100,10 @@ class PostAdded extends PostTrigger
 
 		// Controls if notification should be aborted if post is added from the admin. If disabled, the notification will be
 		// executed every time someone click the "Add new" button in the WordPress admin.
-		$bailAutoDraft = apply_filters('notification/trigger/wordpress/' . $this->postType . '/added/bail_auto_draft', true);
+		$bailAutoDraft = apply_filters(
+			'notification/trigger/wordpress/' . $this->postType . '/added/bail_auto_draft',
+			true
+		);
 		if ($bailAutoDraft && $post->postStatus === 'auto-draft') {
 			return false;
 		}
@@ -97,13 +113,19 @@ class PostAdded extends PostTrigger
 		}
 
 		// WP_Post object.
-		$this->{ $this->postType } = $post;
+		$this->{$this->postType} = $post;
 
-		$this->author = get_userdata((int)$this->{ $this->postType }->postAuthor);
-		$this->lastEditor = get_userdata((int)get_post_meta($this->{ $this->postType }->ID, '_edit_last', true));
+		$this->author = get_userdata((int)$this->{$this->postType}->postAuthor);
+		$this->lastEditor = get_userdata(
+			(int)get_post_meta(
+				$this->{$this->postType}->ID,
+				'_edit_last',
+				true
+			)
+		);
 		$this->publishingUser = get_userdata(get_current_user_id());
 
-		$this->{ $this->postType . '_creation_datetime' } = strtotime($this->{ $this->postType }->postDateGmt);
-		$this->{ $this->postType . '_modification_datetime' } = strtotime($this->{ $this->postType }->postModifiedGmt);
+		$this->{$this->postType . '_creation_datetime'} = strtotime($this->{$this->postType}->postDateGmt);
+		$this->{$this->postType . '_modification_datetime'} = strtotime($this->{$this->postType}->postModifiedGmt);
 	}
 }

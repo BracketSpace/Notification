@@ -44,11 +44,11 @@ class RepeaterController
 	/**
 	 * Forms field data
 	 *
-	 * @since 7.0.0
 	 * @param array $data Field data.
 	 * @return array
+	 * @since 7.0.0
 	 */
-	public function formFieldData( $data = null )
+	public function formFieldData($data = null)
 	{
 
 		if (empty($data)) {
@@ -74,7 +74,13 @@ class RepeaterController
 			$subField['id'] = $field->id;
 			$subField['placeholder'] = $field->placeholder;
 			$subField['nested'] = $field->nested;
-			$subField['type'] = strtolower(str_replace('Field', '', $field->fieldTypeHtml));
+			$subField['type'] = strtolower(
+				str_replace(
+					'Field',
+					'',
+					$field->fieldTypeHtml
+				)
+			);
 			$subField['sections'] = $field->sections;
 			$subField['message'] = $field->message;
 			$subField['value'] = '';
@@ -85,7 +91,10 @@ class RepeaterController
 				$subField['fields'] = $this->formFieldData($field->fields);
 			}
 
-			array_push($fields, $subField);
+			array_push(
+				$fields,
+				$subField
+			);
 		}
 
 		return $fields;
@@ -94,15 +103,18 @@ class RepeaterController
 	/**
 	 * Gets field values
 	 *
-	 * @since 7.0.0
-	 * @param int    $postId Post id.
+	 * @param int $postId Post id.
 	 * @param string $carrier Carrier slug.
 	 * @param string $field Field slug.
 	 * @return array
+	 * @since 7.0.0
 	 */
-	public function getValues( $postId, $carrier, $field )
+	public function getValues($postId, $carrier, $field)
 	{
-		$notification = notification_adapt_from('WordPress', $postId);
+		$notification = notification_adapt_from(
+			'WordPress',
+			$postId
+		);
 		$carrier = $notification->getCarrier($carrier);
 
 		if ($carrier) {
@@ -123,8 +135,8 @@ class RepeaterController
 	/**
 	 * Gets carrier fields
 	 *
-	 * @since 7.0.0
 	 * @return array<mixed>
+	 * @since 7.0.0
 	 */
 	public function getCarrierFields()
 	{
@@ -136,22 +148,31 @@ class RepeaterController
 		}
 
 		// Recipients field.
-		$rf = $carrier->hasRecipientsField() ? $carrier->getRecipientsField() : false;
+		$rf = $carrier->hasRecipientsField()
+			? $carrier->getRecipientsField()
+			: false;
 
-		return $rf && $rf->getRawName() === $this->field ? $carrier->getRecipientsField() : $carrier->getFormField($this->field);
+		return $rf && $rf->getRawName() === $this->field
+			? $carrier->getRecipientsField()
+			: $carrier->getFormField($this->field);
 	}
 
 	/**
 	 * Normalize values array
 	 *
-	 * @since 7.0.0
 	 * @param array $values Field values.
 	 * @return array
+	 * @since 7.0.0
 	 */
-	public function normalizeValues( $values )
+	public function normalizeValues($values)
 	{
 		foreach ($values as &$value) {
-			if (!array_key_exists('nested_repeater', $value)) {
+			if (
+				!array_key_exists(
+					'nested_repeater',
+					$value
+				)
+			) {
 				continue;
 			}
 
@@ -169,7 +190,7 @@ class RepeaterController
 	 * @param array $params Request params.
 	 * @return void
 	 */
-	public function parseParams( $params )
+	public function parseParams($params)
 	{
 		$this->postId = intval($params['id']);
 		$this->carrier = $params['fieldCarrier'];
@@ -179,12 +200,16 @@ class RepeaterController
 	/**
 	 * Forms response data
 	 *
-	 * @since 7.0.0
 	 * @return array
+	 * @since 7.0.0
 	 */
 	public function formData()
 	{
-		$values = $this->getValues($this->postId, $this->carrier, $this->field) ?? [];
+		$values = $this->getValues(
+			$this->postId,
+			$this->carrier,
+			$this->field
+		) ?? [];
 		$populatedFields = $this->formFieldData();
 
 		return [
@@ -196,11 +221,11 @@ class RepeaterController
 	/**
 	 * Sends response
 	 *
-	 * @since 7.0.0
 	 * @param \WP_REST_Request $request WP request instance.
 	 * @return void
+	 * @since 7.0.0
 	 */
-	public function sendResponse( \WP_REST_Request $request )
+	public function sendResponse(\WP_REST_Request $request)
 	{
 		$this->parseParams($request->getParams());
 		wp_send_json($this->formData());

@@ -38,11 +38,26 @@ class UserPasswordChanged extends UserTrigger
 	public function __construct()
 	{
 
-		parent::__construct('user/password_changed', __('User password changed', 'notification'));
+		parent::__construct(
+			'user/password_changed',
+			__(
+				'User password changed',
+				'notification'
+			)
+		);
 
-		$this->addAction('password_reset', 10, 1);
+		$this->addAction(
+			'password_reset',
+			10,
+			1
+		);
 
-		$this->setDescription(__('Fires when user changed his password', 'notification'));
+		$this->setDescription(
+			__(
+				'Fires when user changed his password',
+				'notification'
+			)
+		);
 	}
 
 	/**
@@ -51,7 +66,7 @@ class UserPasswordChanged extends UserTrigger
 	 * @param object $user User object.
 	 * @return void
 	 */
-	public function context( $user )
+	public function context($user)
 	{
 
 		$this->userId = $user->ID;
@@ -81,8 +96,11 @@ class UserPasswordChanged extends UserTrigger
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
-				'slug' => 'password_change_datetime',
-				'name' => __('Password change date', 'notification'),
+					'slug' => 'password_change_datetime',
+					'name' => __(
+						'Password change date',
+						'notification'
+					),
 				]
 			)
 		);

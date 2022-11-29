@@ -23,32 +23,50 @@ class CommentSpammed extends CommentTrigger
 	 *
 	 * @param string $commentType optional, default: comment.
 	 */
-	public function __construct( $commentType = 'comment' )
+	public function __construct($commentType = 'comment')
 	{
 
 		parent::__construct(
 			[
-			'slug' => 'comment/' . $commentType . '/spammed',
-			// Translators: %s comment type.
-			'name' => sprintf(__('%s spammed', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
-			'comment_type' => $commentType,
+				'slug' => 'comment/' . $commentType . '/spammed',
+				// Translators: %s comment type.
+				'name' => sprintf(
+					__(
+						'%s spammed',
+						'notification'
+					),
+					WpObjectHelper::getCommentTypeName($commentType)
+				),
+				'comment_type' => $commentType,
 			]
 		);
 
-		$this->addAction('spammed_comment', 100, 2);
+		$this->addAction(
+			'spammed_comment',
+			100,
+			2
+		);
 
 		// translators: comment type.
-		$this->setDescription(sprintf(__('Fires when %s is marked as spam', 'notification'), WpObjectHelper::getCommentTypeName($commentType)));
+		$this->setDescription(
+			sprintf(
+				__(
+					'Fires when %s is marked as spam',
+					'notification'
+				),
+				WpObjectHelper::getCommentTypeName($commentType)
+			)
+		);
 	}
 
 	/**
 	 * Sets trigger's context
 	 *
 	 * @param int $commentId Comment ID.
-	 * @param object  $comment    Comment object.
+	 * @param object $comment Comment object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $commentId, $comment )
+	public function context($commentId, $comment)
 	{
 
 		$this->comment = $comment;
@@ -57,7 +75,7 @@ class CommentSpammed extends CommentTrigger
 			return false;
 		}
 
-		if (! $this->isCorrectType($this->comment)) {
+		if (!$this->isCorrectType($this->comment)) {
 			return false;
 		}
 

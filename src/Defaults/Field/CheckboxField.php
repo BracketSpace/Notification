@@ -29,13 +29,16 @@ class CheckboxField extends Field
 	/**
 	 * Field constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
-		$this->checkboxLabel = $params['checkbox_label'] ?? __('Enable', 'notification');
+		$this->checkboxLabel = $params['checkbox_label'] ?? __(
+			'Enable',
+			'notification'
+		);
 
 		parent::__construct($params);
 	}
@@ -47,17 +50,27 @@ class CheckboxField extends Field
 	 */
 	public function field()
 	{
-		return '<label><input type="checkbox" name="' . esc_attr($this->getName()) . '" id="' . esc_attr($this->getId()) . '" value="1" ' . checked($this->getValue(), '1', false) . ' class="widefat ' . esc_attr($this->cssClass()) . '" ' . $this->maybeDisable() . '> ' . esc_html($this->checkboxLabel) . '</label>';
+		return '<label><input type="checkbox" name="' . esc_attr($this->getName()) . '" id="' . esc_attr(
+			$this->getId()
+		) . '" value="1" ' . checked(
+			$this->getValue(),
+			'1',
+			false
+		) . ' class="widefat ' . esc_attr($this->cssClass()) . '" ' . $this->maybeDisable() . '> ' . esc_html(
+			$this->checkboxLabel
+		) . '</label>';
 	}
 
 	/**
 	 * Sanitizes the value sent by user
 	 *
-	 * @param  mixed $value value to sanitize.
+	 * @param mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value )
+	public function sanitize($value)
 	{
-		return $value ? 1 : 0;
+		return $value
+			? 1
+			: 0;
 	}
 }

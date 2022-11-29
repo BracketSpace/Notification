@@ -31,25 +31,47 @@ class Deactivated extends PluginTrigger
 	public function __construct()
 	{
 
-		parent::__construct('plugin/deactivated', __('Plugin deactivated', 'notification'));
+		parent::__construct(
+			'plugin/deactivated',
+			__(
+				'Plugin deactivated',
+				'notification'
+			)
+		);
 
-		$this->addAction('deactivated_plugin', 1000);
+		$this->addAction(
+			'deactivated_plugin',
+			1000
+		);
 
-		$this->setGroup(__('Plugin', 'notification'));
-		$this->setDescription(__('Fires when plugin is deactivated', 'notification'));
+		$this->setGroup(
+			__(
+				'Plugin',
+				'notification'
+			)
+		);
+		$this->setDescription(
+			__(
+				'Fires when plugin is deactivated',
+				'notification'
+			)
+		);
 	}
 
 	/**
 	 * Trigger action
 	 *
-	 * @param  string $pluginRelPath Plugin path.
+	 * @param string $pluginRelPath Plugin path.
 	 * @return void
 	 */
-	public function context( $pluginRelPath )
+	public function context($pluginRelPath)
 	{
 
 		$pluginDir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $pluginRelPath;
-		$this->plugin = get_plugin_data($pluginDir, false);
+		$this->plugin = get_plugin_data(
+			$pluginDir,
+			false
+		);
 		$this->pluginDeactivationDateTime = time();
 	}
 
@@ -66,8 +88,11 @@ class Deactivated extends PluginTrigger
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
-				'slug' => 'plugin_deactivation_date_time',
-				'name' => __('Plugin deactivation date and time', 'notification'),
+					'slug' => 'plugin_deactivation_date_time',
+					'name' => __(
+						'Plugin deactivation date and time',
+						'notification'
+					),
 				]
 			)
 		);

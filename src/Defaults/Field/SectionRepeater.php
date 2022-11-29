@@ -91,18 +91,24 @@ class SectionRepeater extends Field
 	/**
 	 * Field constructor
 	 *
-	 * @since 5.0.0
 	 * @param array $params field configuration parameters.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] )
+	public function __construct($params = [])
 	{
 
-		if (! isset($params['sections'])) {
-			trigger_error('SectionsRepeater requires sections param', E_USER_ERROR);
+		if (!isset($params['sections'])) {
+			trigger_error(
+				'SectionsRepeater requires sections param',
+				E_USER_ERROR
+			);
 		}
 
-		if (! isset($params['section_labels'])) {
-			trigger_error('SectionsRepeater requires section labels param', E_USER_ERROR);
+		if (!isset($params['section_labels'])) {
+			trigger_error(
+				'SectionsRepeater requires section labels param',
+				E_USER_ERROR
+			);
 		}
 
 		$this->sections = $params['sections'];
@@ -113,7 +119,10 @@ class SectionRepeater extends Field
 			$this->fields = $params['fields'];
 		}
 
-		$this->addButtonLabel = $params['add_button_label'] ?? __('Add new', 'notification');
+		$this->addButtonLabel = $params['add_button_label'] ?? __(
+			'Add new',
+			'notification'
+		);
 
 		// additional data tags for repeater table. key => value array.
 		// will be transformed to data-key="value".
@@ -121,7 +130,7 @@ class SectionRepeater extends Field
 			$this->dataAttr = $params['data_attr'];
 		}
 
-		if (isset($params['sortable']) && ! $params['sortable']) {
+		if (isset($params['sortable']) && !$params['sortable']) {
 			$this->sortable = false;
 		}
 
@@ -147,7 +156,8 @@ class SectionRepeater extends Field
 
 		$this->headers = [];
 
-		$html = '<table class="section-repeater fields-repeater ' . $this->cssClass() . '" id="' . $this->getId() . '" ' . $dataAttr . '>';
+		$html = '<table class="section-repeater fields-repeater ' . $this->cssClass() . '" id="' . $this->getId(
+		) . '" ' . $dataAttr . '>';
 
 		$html .= '<thead>';
 		$html .= '<tr class="row header">';
@@ -176,8 +186,8 @@ class SectionRepeater extends Field
 
 		$html .= '<template v-if="repeaterError">
 					<div class="repeater-error">'
-					. $this->restApiError() .
-					'</div>
+				 . $this->restApiError() .
+				 '</div>
 				  </template>';
 
 		$html .= '<a href="#" class="button button-secondary add-new-repeater-field add-new-sections-field" @click="addSection">';
@@ -201,8 +211,8 @@ class SectionRepeater extends Field
 	/**
 	 * Prints repeater row
 	 *
-	 * @since  5.0.0
 	 * @return string          row HTML
+	 * @since  5.0.0
 	 */
 	public function row()
 	{
@@ -230,17 +240,22 @@ class SectionRepeater extends Field
 	/**
 	 * Sanitizes the value sent by user
 	 *
-	 * @param  mixed $value value to sanitize.
+	 * @param mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value )
+	public function sanitize($value)
 	{
 
 		if (empty($value)) {
 			return [];
 		}
 
-		if (array_keys($value) !== range(0, count($value) - 1)) {
+		if (
+			array_keys($value) !== range(
+				0,
+				count($value) - 1
+			)
+		) {
 			return;
 		}
 

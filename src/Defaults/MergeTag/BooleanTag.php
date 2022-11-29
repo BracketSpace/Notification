@@ -28,22 +28,27 @@ class BooleanTag extends MergeTag
 	/**
 	 * Check the merge tag value type
 	 *
-	 * @param  mixed $value value.
+	 * @param mixed $value value.
 	 * @return bool
 	 */
-	public function validate( $value )
+	public function validate($value)
 	{
-		return filter_var($value, FILTER_VALIDATE_BOOLEAN) !== false;
+		return filter_var(
+			$value,
+			FILTER_VALIDATE_BOOLEAN
+		) !== false;
 	}
 
 	/**
 	 * Sanitizes the merge tag value
 	 *
-	 * @param  mixed $value value.
+	 * @param mixed $value value.
 	 * @return mixed
 	 */
-	public function sanitize( $value )
+	public function sanitize($value)
 	{
-		return $value ? true : false;
+		return $value
+			? true
+			: false;
 	}
 }

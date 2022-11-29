@@ -29,16 +29,18 @@ class WordPress
 	 *
 	 * @filter wp_mail_from_name 1000
 	 *
-	 * @since  5.2.2
-	 * @param  string $fromName Default From Name.
+	 * @param string $fromName Default From Name.
 	 * @return string
+	 * @since  5.2.2
 	 */
-	public function filterEmailFromName( $fromName )
+	public function filterEmailFromName($fromName)
 	{
 
 		$setting = notification_get_setting('carriers/email/from_name');
 
-		return empty($setting) ? $fromName : $setting;
+		return empty($setting)
+			? $fromName
+			: $setting;
 	}
 
 	/**
@@ -46,16 +48,18 @@ class WordPress
 	 *
 	 * @filter wp_mail_from 1000
 	 *
-	 * @since  5.2.2
-	 * @param  string $fromEmail Default From Email.
+	 * @param string $fromEmail Default From Email.
 	 * @return string
+	 * @since  5.2.2
 	 */
-	public function filterEmailFromEmail( $fromEmail )
+	public function filterEmailFromEmail($fromEmail)
 	{
 
 		$setting = notification_get_setting('carriers/email/from_email');
 
-		return empty($setting) ? $fromEmail : $setting;
+		return empty($setting)
+			? $fromEmail
+			: $setting;
 	}
 
 	/**
@@ -72,21 +76,21 @@ class WordPress
 	 *
 	 * @filter notification/background_processing/trigger_key
 	 *
-	 * @since  8.0.0
-	 * @param  string      $triggerKey Trigger unique key.
+	 * @param string $triggerKey Trigger unique key.
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return string
+	 * @since  8.0.0
 	 */
-	public function identifyTrigger( $triggerKey, Triggerable $trigger )
+	public function identifyTrigger($triggerKey, Triggerable $trigger)
 	{
 		$coveredTriggers = [
-			'BracketSpace\Notification\Defaults\Trigger\Post\PostTrigger' => static function ( $trigger ) {
-				return $trigger->{ $trigger->getPostType() }->ID;
+			'BracketSpace\Notification\Defaults\Trigger\Post\PostTrigger' => static function ($trigger) {
+				return $trigger->{$trigger->getPostType()}->ID;
 			},
-			'BracketSpace\Notification\Defaults\Trigger\User\UserTrigger' => static function ( $trigger ) {
+			'BracketSpace\Notification\Defaults\Trigger\User\UserTrigger' => static function ($trigger) {
 				return $trigger->userId;
 			},
-			'BracketSpace\Notification\Defaults\Trigger\Comment\CommentTrigger' => static function ( $trigger ) {
+			'BracketSpace\Notification\Defaults\Trigger\Comment\CommentTrigger' => static function ($trigger) {
 				return $trigger->comment->commentID;
 			},
 		];
@@ -112,15 +116,22 @@ class WordPress
 	 *
 	 * @action wp_insert_comment
 	 *
-	 * @since 5.3.1
 	 * @param int $commentId Comment ID.
-	 * @param object  $comment    Comment object.
+	 * @param object $comment Comment object.
 	 * @return void
+	 * @since 5.3.1
 	 */
-	public function proxyCommentReply( $commentId, $comment )
+	public function proxyCommentReply($commentId, $comment)
 	{
-		$status = $comment->commentApproved === '1' ? 'approved' : 'unapproved';
-		do_action('notification_insert_comment_proxy', $status, 'insert', $comment);
+		$status = $comment->commentApproved === '1'
+			? 'approved'
+			: 'unapproved';
+		do_action(
+			'notification_insert_comment_proxy',
+			$status,
+			'insert',
+			$comment
+		);
 	}
 
 	/**
@@ -134,18 +145,21 @@ class WordPress
 	 *
 	 * @action comment_post
 	 *
-	 * @since 6.2.0
 	 * @param int $commentId Comment ID.
-	 * @param int|string $approved   1 if the comment is approved, 0 if not, 'spam' if spam.
+	 * @param int|string $approved 1 if the comment is approved, 0 if not, 'spam' if spam.
 	 * @return void
+	 * @since 6.2.0
 	 */
-	public function proxyPostCommentToPublished( $commentId, $approved )
+	public function proxyPostCommentToPublished($commentId, $approved)
 	{
 		if ($approved !== 1) {
 			return;
 		}
 
-		do_action('notification_comment_published_proxy', get_comment($commentId));
+		do_action(
+			'notification_comment_published_proxy',
+			get_comment($commentId)
+		);
 	}
 
 	/**
@@ -153,13 +167,13 @@ class WordPress
 	 *
 	 * @action transition_comment_status
 	 *
-	 * @since 6.2.0
 	 * @param string $commentNewStatus New comment status.
 	 * @param string $commentOldStatus Old comment status.
-	 * @param object $comment            Comment object.
+	 * @param object $comment Comment object.
 	 * @return void
+	 * @since 6.2.0
 	 */
-	public function proxyTransitionCommentStatusToPublished( $commentNewStatus, $commentOldStatus, $comment )
+	public function proxyTransitionCommentStatusToPublished($commentNewStatus, $commentOldStatus, $comment)
 	{
 
 		if ($comment->commentApproved === 'spam' && notification_get_setting('triggers/comment/akismet')) {
@@ -170,6 +184,9 @@ class WordPress
 			return;
 		}
 
-		do_action('notification_comment_published_proxy', $comment);
+		do_action(
+			'notification_comment_published_proxy',
+			$comment
+		);
 	}
 }
