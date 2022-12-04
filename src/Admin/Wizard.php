@@ -74,7 +74,7 @@ class Wizard
 			),
 			'manage_options',
 			'wizard',
-			[$this, 'wizard_page']
+			[$this, 'wizardPage']
 		);
 	}
 

@@ -49,11 +49,11 @@ class WordPressEmails
 
 		add_action(
 			'register_new_user',
-			[$this, 'disable_new_user_notify']
+			[$this, 'disableNewUserNotify']
 		);
 		add_action(
 			'edit_user_created_user',
-			[$this, 'disable_new_user_notify'],
+			[$this, 'disableNewUserNotify'],
 			10,
 			2
 		);
@@ -64,15 +64,15 @@ class WordPressEmails
 
 		add_action(
 			'network_site_new_created_user',
-			[$this, 'disable_new_user_notify']
+			[$this, 'disableNewUserNotify']
 		);
 		add_action(
 			'network_site_users_created_user',
-			[$this, 'disable_new_user_notify']
+			[$this, 'disableNewUserNotify']
 		);
 		add_action(
 			'network_user_new_created_user',
-			[$this, 'disable_new_user_notify']
+			[$this, 'disableNewUserNotify']
 		);
 	}
 

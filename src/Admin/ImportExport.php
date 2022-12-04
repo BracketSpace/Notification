@@ -94,10 +94,9 @@ class ImportExport
 		}
 
 		$type = sanitize_text_field(wp_unslash($_GET['type']));
-
 		try {
 			$data = call_user_func(
-				[$this, 'prepare_' . $type . '_export_data'],
+				[$this, 'prepare' . ucfirst($type) . 'ExportData'],
 				explode(
 					',',
 					sanitize_text_field(wp_unslash($_GET['items'] ?? ''))
@@ -238,7 +237,7 @@ class ImportExport
 
 		try {
 			$result = call_user_func(
-				[$this, 'process_' . $type . '_import_request'],
+				[$this, 'process' . ucfirst($type) . 'ImportRequest'],
 				$data
 			);
 		} catch (\Throwable $e) {

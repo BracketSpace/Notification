@@ -41,7 +41,7 @@ class Upsell
 				'Conditionals',
 				'notification'
 			),
-			[$this, 'conditionals_metabox'],
+			[$this, 'conditionalsMetabox'],
 			'notification',
 			'advanced',
 			'default'

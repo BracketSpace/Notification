@@ -58,7 +58,7 @@ class Sync
 				),
 				'slug' => 'actions',
 				'addons' => [
-					'message' => [$this, 'template_actions'],
+					'message' => [$this, 'templateActions'],
 				],
 				'render' => [new CoreFields\Message(), 'input'],
 				'sanitize' => [new CoreFields\Message(), 'sanitize'],

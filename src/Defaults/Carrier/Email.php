@@ -185,7 +185,7 @@ class Email extends Abstracts\Carrier
 		if ($htmlMime) {
 			add_filter(
 				'wp_mail_content_type',
-				[$this, 'set_mail_type']
+				[$this, 'setMailType']
 			);
 		}
 
@@ -347,7 +347,7 @@ class Email extends Abstracts\Carrier
 
 		remove_filter(
 			'wp_mail_content_type',
-			[$this, 'set_mail_type']
+			[$this, 'setMailType']
 		);
 	}
 

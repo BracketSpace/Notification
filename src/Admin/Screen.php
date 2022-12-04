@@ -236,7 +236,7 @@ class Screen
 				'Save',
 				'notification'
 			),
-			[$this, 'render_save_metabox'],
+			[$this, 'renderSaveMetabox'],
 			'notification',
 			'side',
 			'high'
@@ -295,7 +295,7 @@ class Screen
 				'Merge Tags',
 				'notification'
 			),
-			[$this, 'render_merge_tags_metabox'],
+			[$this, 'renderMergeTagsMetabox'],
 			'notification',
 			'side',
 			'default'

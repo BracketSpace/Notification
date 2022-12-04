@@ -91,7 +91,7 @@ class Settings extends SettingsAPI
 			$pageMenuLabel,
 			'manage_options',
 			'settings',
-			[$this, 'settings_page']
+			[$this, 'settingsPage']
 		);
 	}
 

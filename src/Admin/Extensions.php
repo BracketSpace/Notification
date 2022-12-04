@@ -96,12 +96,12 @@ class Extensions
 			$pageMenuLabel,
 			'manage_options',
 			'extensions',
-			[$this, 'extensions_page']
+			[$this, 'extensionsPage']
 		);
 
 		add_action(
 			'load-' . $this->pageHook,
-			[$this, 'load_extensions']
+			[$this, 'loadExtensions']
 		);
 	}
 

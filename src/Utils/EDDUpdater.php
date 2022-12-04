@@ -105,23 +105,23 @@ class EDDUpdater
 
 		add_filter(
 			'pre_set_site_transient_update_plugins',
-			[$this, 'check_update']
+			[$this, 'checkUpdate']
 		);
 		add_filter(
 			'plugins_api',
-			[$this, 'plugins_api_filter'],
+			[$this, 'pluginsApiFilter'],
 			10,
 			3
 		);
 		add_action(
 			'after_plugin_row',
-			[$this, 'show_update_notification'],
+			[$this, 'showUpdateNotification'],
 			10,
 			2
 		);
 		add_action(
 			'admin_init',
-			[$this, 'show_changelog']
+			[$this, 'showChangelog']
 		);
 	}
 
