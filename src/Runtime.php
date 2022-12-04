@@ -96,7 +96,7 @@ class Runtime
 		);
 
 		if (!$requirements->satisfied()) {
-			$requirements->printNotice();
+			$requirements->print_notice();
 			$this->requirementsUnmet = true;
 			return;
 		}
@@ -145,7 +145,7 @@ class Runtime
 	public function registerHooks()
 	{
 		// Hook Runtime class.
-		$this->addHooks();
+		$this->add_hooks();
 
 		// Hook components.
 		foreach ($this->components as $component) {
@@ -153,7 +153,7 @@ class Runtime
 				continue;
 			}
 
-			$this->addHooks($component);
+			$this->add_hooks($component);
 		}
 	}
 
@@ -350,28 +350,28 @@ class Runtime
 	{
 		$this->registerHooks();
 
-		notification_register_settings([$this->component('admin_settings'), 'general_settings']);
-		notification_register_settings(
+		notificationRegisterSettings([$this->component('admin_settings'), 'general_settings']);
+		notificationRegisterSettings(
 			[$this->component('admin_settings'), 'triggers_settings'],
 			20
 		);
-		notification_register_settings(
+		notificationRegisterSettings(
 			[$this->component('admin_settings'), 'carriers_settings'],
 			30
 		);
-		notification_register_settings(
+		notificationRegisterSettings(
 			[$this->component('admin_settings'), 'emails_settings'],
 			40
 		);
-		notification_register_settings(
+		notificationRegisterSettings(
 			[$this->component('admin_sync'), 'settings'],
 			50
 		);
-		notification_register_settings(
+		notificationRegisterSettings(
 			[$this->component('admin_impexp'), 'settings'],
 			60
 		);
-		notification_register_settings(
+		notificationRegisterSettings(
 			[$this->component('admin_debugging'), 'debugging_settings'],
 			70
 		);
