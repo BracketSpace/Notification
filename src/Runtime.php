@@ -377,7 +377,7 @@ class Runtime
 		);
 
 		// DocHooks compatibility.
-		if (DocHooksHelper::isEnabled() || !$this->getFilesystem()->exists('compat/register-hooks.php')) {
+		if (DocHooksHelper::is_enabled() || !$this->getFilesystem()->exists('compat/register-hooks.php')) {
 			return;
 		}
 
