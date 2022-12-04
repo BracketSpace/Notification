@@ -515,7 +515,7 @@ class PostType
 
 				// We're using direct db call for performance purposes - we only need the post_content field.
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
-				return $wpdb->getCol($sql);
+				return $wpdb->get_col($sql);
 			}
 		);
 	}

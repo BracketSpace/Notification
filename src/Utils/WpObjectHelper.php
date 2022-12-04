@@ -175,7 +175,7 @@ class WpObjectHelper
 
 				// There's no other way to get comment types and we're using the cache lib.
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-				$dbTypes = $wpdb->getCol(
+				$dbTypes = $wpdb->get_col(
 					"SELECT DISTINCT comment_type
 				FROM $wpdb->comments
 				WHERE 1=1"
