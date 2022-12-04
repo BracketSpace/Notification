@@ -350,17 +350,17 @@ class Runtime
 	{
 		$this->registerHooks();
 
-		notificationRegisterSettings([$this->component('admin_settings'), 'general_settings']);
+		notificationRegisterSettings([$this->component('admin_settings'), 'generalSettings']);
 		notificationRegisterSettings(
-			[$this->component('admin_settings'), 'triggers_settings'],
+			[$this->component('admin_settings'), 'triggersSettings'],
 			20
 		);
 		notificationRegisterSettings(
-			[$this->component('admin_settings'), 'carriers_settings'],
+			[$this->component('admin_settings'), 'carriersSettings'],
 			30
 		);
 		notificationRegisterSettings(
-			[$this->component('admin_settings'), 'emails_settings'],
+			[$this->component('admin_settings'), 'emailsSettings'],
 			40
 		);
 		notificationRegisterSettings(
@@ -372,7 +372,7 @@ class Runtime
 			60
 		);
 		notificationRegisterSettings(
-			[$this->component('admin_debugging'), 'debugging_settings'],
+			[$this->component('admin_debugging'), 'debuggingSettings'],
 			70
 		);
 
