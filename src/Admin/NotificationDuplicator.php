@@ -70,7 +70,7 @@ class NotificationDuplicator
 
 		// Get the source notification post.
 		$source = get_post(intval(wp_unslash($_GET['duplicate'])));
-		$wp = notification_adapt_from(
+		$wp = notificationAdaptFrom(
 			'WordPress',
 			$source
 		);
@@ -80,7 +80,7 @@ class NotificationDuplicator
 		 *
 		 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 		 */
-		$json = notification_swap_adapter(
+		$json = notificationSwapAdapter(
 			'JSON',
 			$wp
 		);

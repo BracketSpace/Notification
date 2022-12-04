@@ -171,7 +171,7 @@ class Sync
 				 *
 				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 				 */
-				$jsonAdapter = notification_adapt_from(
+				$jsonAdapter = notificationAdaptFrom(
 					'JSON',
 					$json
 				);
@@ -182,7 +182,7 @@ class Sync
 					 *
 					 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
 					 */
-					$wpAdapter = notification_swap_adapter(
+					$wpAdapter = notificationSwapAdapter(
 						'WordPress',
 						$jsonAdapter
 					);

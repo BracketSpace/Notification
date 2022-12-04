@@ -90,7 +90,7 @@ class Sync
 				 *
 				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 				 */
-				$adapter = notification_adapt_from(
+				$adapter = notificationAdaptFrom(
 					'JSON',
 					$json
 				);
@@ -127,7 +127,7 @@ class Sync
 		}
 
 		$file = $wpAdapter->getHash() . '.json';
-		$json = notification_swap_adapter(
+		$json = notificationSwapAdapter(
 			'JSON',
 			$wpAdapter
 		)->save();
@@ -159,7 +159,7 @@ class Sync
 			return;
 		}
 
-		$adapter = notification_adapt_from(
+		$adapter = notificationAdaptFrom(
 			'WordPress',
 			$postId
 		);

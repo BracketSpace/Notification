@@ -72,7 +72,7 @@ trait Webhook
 		);
 
 		if (is_wp_error($response)) {
-			notification_log(
+			notificationLog(
 				$this->getName(),
 				'error',
 				// phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
@@ -90,7 +90,7 @@ trait Webhook
 		$code = wp_remote_retrieve_response_code($response);
 
 		if ($code < 200 || $code >= 300) {
-			notification_log(
+			notificationLog(
 				$this->getName(),
 				'warning',
 				// phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged

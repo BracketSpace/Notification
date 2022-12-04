@@ -457,13 +457,13 @@ class Wizard
 
 			$json = $this->filesystem->getContents($jsonPath);
 
-			$jsonAdapter = notification_adapt_from(
+			$jsonAdapter = notificationAdaptFrom(
 				'JSON',
 				$json
 			);
 			$jsonAdapter->refreshHash();
 
-			$wpAdapter = notification_swap_adapter(
+			$wpAdapter = notificationSwapAdapter(
 				'WordPress',
 				$jsonAdapter
 			);

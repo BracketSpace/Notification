@@ -245,7 +245,7 @@ class Debugging
 				'name' => $trigger->getName(),
 			],
 		];
-		notification_log(
+		notificationLog(
 			'Core',
 			'notification',
 			wp_json_encode($data)

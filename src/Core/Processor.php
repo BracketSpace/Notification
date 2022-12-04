@@ -102,7 +102,7 @@ class Processor
 			),
 			'notification_background_processing',
 			[
-				notification_adapt(
+				notificationAdapt(
 					'JSON',
 					$notification
 				)->save(
@@ -177,7 +177,7 @@ class Processor
 	 */
 	public static function handleCron($notificationJson, $triggerKey)
 	{
-		$notification = notification_adapt_from(
+		$notification = notificationAdaptFrom(
 			'JSON',
 			$notificationJson
 		)->getNotification();

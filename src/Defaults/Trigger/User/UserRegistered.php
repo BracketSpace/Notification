@@ -144,7 +144,7 @@ class UserRegistered extends UserTrigger
 		);
 
 		if (is_wp_error($resetKey)) {
-			notification_log(
+			notificationLog(
 				'Core',
 				'error',
 				'User registration trigger error: ' . $resetKey->getErrorMessage()

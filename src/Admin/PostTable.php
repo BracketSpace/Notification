@@ -70,7 +70,7 @@ class PostTable
 		 *
 		 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
 		 */
-		$notification = notification_adapt_from(
+		$notification = notificationAdaptFrom(
 			'WordPress',
 			$postId
 		);
@@ -253,7 +253,7 @@ class PostTable
 		);
 
 		foreach ($postIds as $postId) {
-			$notification = notification_adapt_from(
+			$notification = notificationAdaptFrom(
 				'WordPress',
 				$postId
 			);

@@ -37,7 +37,7 @@ class JSON extends Abstracts\Adapter
 			throw new \Exception('Read method of JSON adapter expects valid JSON string');
 		}
 
-		$this->setupNotification(notification_convert_data($data));
+		$this->setupNotification(notificationConvertData($data));
 		$this->setSource('JSON');
 
 		return $this;

@@ -321,7 +321,7 @@ class Email extends Abstracts\Carrier
 		}
 
 		foreach ($errors as $error => $errorData) {
-			notification_log(
+			notificationLog(
 				$this->getName(),
 				'error',
 				// phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged

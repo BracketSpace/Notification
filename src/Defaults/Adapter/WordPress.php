@@ -54,14 +54,14 @@ class WordPress extends Abstracts\Adapter
 		}
 
 		try {
-			$jsonAdapter = notification_adapt_from(
+			$jsonAdapter = notificationAdaptFrom(
 				'JSON',
 				wp_specialchars_decode(
 					$this->post->postContent,
 					ENT_COMPAT
 				)
 			);
-			$this->setupNotification(notification_convert_data($jsonAdapter->getNotification()->toArray()));
+			$this->setupNotification(notificationConvertData($jsonAdapter->getNotification()->toArray()));
 		} catch (\Throwable $e) {
 			$doNothing = true;
 		}
@@ -91,7 +91,7 @@ class WordPress extends Abstracts\Adapter
 		$data = $this->getNotification()->toArray();
 
 		/** @var \BracketSpace\Notification\Defaults\Adapter\JSON */
-		$jsonAdapter = notification_swap_adapter(
+		$jsonAdapter = notificationSwapAdapter(
 			'JSON',
 			$this
 		);

@@ -53,7 +53,7 @@ function notificationAdapt($adapterName, Notification $notification)
  */
 function notificationAdaptFrom($adapterName, $data)
 {
-	$adapter = notification_adapt(
+	$adapter = notificationAdapt(
 		$adapterName,
 		new Notification()
 	);
@@ -70,7 +70,7 @@ function notificationAdaptFrom($adapterName, $data)
  */
 function notificationSwapAdapter($newAdapterName, Interfaces\Adaptable $adapter)
 {
-	return notification_adapt(
+	return notificationAdapt(
 		$newAdapterName,
 		$adapter->getNotification()
 	);
@@ -123,7 +123,7 @@ function notification($data = [])
 {
 
 	try {
-		notification_add(new Notification(notification_convert_data($data)));
+		notificationAdd(new Notification(notificationConvertData($data)));
 	} catch (\Throwable $e) {
 		return new \WP_Error(
 			'notification_error',
