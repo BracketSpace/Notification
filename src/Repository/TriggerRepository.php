@@ -28,11 +28,11 @@ class TriggerRepository
 
 		self::registerTaxonomyTriggers();
 
-		if (notification_get_setting('triggers/user/enable')) {
+		if (notificationGetSetting('triggers/user/enable')) {
 			self::registerUserTriggers();
 		}
 
-		if (notification_get_setting('triggers/media/enable')) {
+		if (notificationGetSetting('triggers/media/enable')) {
 			self::registerMediaTriggers();
 		}
 
@@ -40,15 +40,15 @@ class TriggerRepository
 
 		self::registerWpTriggers();
 
-		if (notification_get_setting('triggers/plugin/enable')) {
+		if (notificationGetSetting('triggers/plugin/enable')) {
 			self::registerPluginTriggers();
 		}
 
-		if (notification_get_setting('triggers/theme/enable')) {
+		if (notificationGetSetting('triggers/theme/enable')) {
 			self::registerThemeTriggers();
 		}
 
-		if (!notification_get_setting('triggers/privacy/enable')) {
+		if (!notificationGetSetting('triggers/privacy/enable')) {
 			return;
 		}
 
@@ -60,7 +60,7 @@ class TriggerRepository
 	 */
 	public static function registerPostTriggers()
 	{
-		$postTypes = notification_get_setting('triggers/post_types/types');
+		$postTypes = notificationGetSetting('triggers/post_types/types');
 
 		if (!$postTypes) {
 			return;
@@ -84,7 +84,7 @@ class TriggerRepository
 	 */
 	public static function registerTaxonomyTriggers()
 	{
-		$taxonomies = notification_get_setting('triggers/taxonomies/types');
+		$taxonomies = notificationGetSetting('triggers/taxonomies/types');
 
 		if (!$taxonomies) {
 			return;
@@ -128,7 +128,7 @@ class TriggerRepository
 	 */
 	public static function registerCommentTriggers()
 	{
-		$commentTypes = notification_get_setting('triggers/comment/types');
+		$commentTypes = notificationGetSetting('triggers/comment/types');
 
 		if (!$commentTypes) {
 			return;
@@ -150,11 +150,11 @@ class TriggerRepository
 	 */
 	public static function registerWpTriggers()
 	{
-		if (notification_get_setting('triggers/wordpress/updates')) {
+		if (notificationGetSetting('triggers/wordpress/updates')) {
 			Register::trigger(new Trigger\WordPress\UpdatesAvailable());
 		}
 
-		if (!notification_get_setting('triggers/wordpress/email_address_change_request')) {
+		if (!notificationGetSetting('triggers/wordpress/email_address_change_request')) {
 			return;
 		}
 

@@ -88,7 +88,7 @@ function notificationSwapAdapter($newAdapterName, Interfaces\Adaptable $adapter)
 function notificationLog($component, $type, $message)
 {
 
-	if ($type !== 'notification' && !notification_get_setting('debugging/settings/error_log')) {
+	if ($type !== 'notification' && !notificationGetSetting('debugging/settings/error_log')) {
 		return false;
 	}
 

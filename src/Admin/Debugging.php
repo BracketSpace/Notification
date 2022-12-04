@@ -182,9 +182,9 @@ class Debugging
 	public function debugWarning()
 	{
 		if (
-			get_post_type() !== 'notification' || !notification_get_setting(
+			get_post_type() !== 'notification' || !notificationGetSetting(
 				'debugging/settings/debug_log'
-			) || !notification_get_setting('debugging/settings/debug_suppressing')
+			) || !notificationGetSetting('debugging/settings/debug_suppressing')
 		) {
 			return;
 		}

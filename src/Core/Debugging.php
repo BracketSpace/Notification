@@ -215,7 +215,7 @@ class Debugging
 	 */
 	public function catchNotification($carrier, $trigger, $notification)
 	{
-		if (!notification_get_setting('debugging/settings/debug_log')) {
+		if (!notificationGetSetting('debugging/settings/debug_log')) {
 			return;
 		}
 
@@ -255,7 +255,7 @@ class Debugging
 		if (
 			apply_filters(
 				'notification/debug/suppress',
-				(bool)notification_get_setting('debugging/settings/debug_suppressing'),
+				(bool)notificationGetSetting('debugging/settings/debug_suppressing'),
 				$data['notification'],
 				$data['carrier'],
 				$data['trigger']

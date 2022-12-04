@@ -36,7 +36,7 @@ class WordPress
 	public function filterEmailFromName($fromName)
 	{
 
-		$setting = notification_get_setting('carriers/email/from_name');
+		$setting = notificationGetSetting('carriers/email/from_name');
 
 		return empty($setting)
 			? $fromName
@@ -55,7 +55,7 @@ class WordPress
 	public function filterEmailFromEmail($fromEmail)
 	{
 
-		$setting = notification_get_setting('carriers/email/from_email');
+		$setting = notificationGetSetting('carriers/email/from_email');
 
 		return empty($setting)
 			? $fromEmail
@@ -176,7 +176,7 @@ class WordPress
 	public function proxyTransitionCommentStatusToPublished($commentNewStatus, $commentOldStatus, $comment)
 	{
 
-		if ($comment->commentApproved === 'spam' && notification_get_setting('triggers/comment/akismet')) {
+		if ($comment->commentApproved === 'spam' && notificationGetSetting('triggers/comment/akismet')) {
 			return;
 		}
 

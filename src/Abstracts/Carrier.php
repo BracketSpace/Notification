@@ -437,7 +437,7 @@ abstract class Carrier implements Interfaces\Sendable
 		// Unused tags.
 		$stripMergeTags = apply_filters(
 			'notification/resolve/strip_empty_mergetags',
-			notification_get_setting('general/content/strip_empty_tags')
+			notificationGetSetting('general/content/strip_empty_tags')
 		);
 
 		if ($stripMergeTags) {
@@ -447,7 +447,7 @@ abstract class Carrier implements Interfaces\Sendable
 		// Shortcodes.
 		$stripShortcodes = apply_filters(
 			'notification/carrier/field/value/strip_shortcodes',
-			notification_get_setting('general/content/strip_shortcodes')
+			notificationGetSetting('general/content/strip_shortcodes')
 		);
 
 		$resolved = $stripShortcodes

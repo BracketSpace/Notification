@@ -98,14 +98,14 @@ class WordPressEmails
 			true
 		);
 
-		if ($isAdminNotify && (notification_get_setting('integration/emails/new_user_to_admin') !== 'true')) {
+		if ($isAdminNotify && (notificationGetSetting('integration/emails/new_user_to_admin') !== 'true')) {
 			wp_new_user_notification(
 				$userId,
 				null,
 				'admin'
 			);
 		}
-		if (!$isUserNotify || (notification_get_setting('integration/emails/new_user_to_user') === 'true')) {
+		if (!$isUserNotify || (notificationGetSetting('integration/emails/new_user_to_user') === 'true')) {
 			return;
 		}
 
@@ -128,7 +128,7 @@ class WordPressEmails
 	 */
 	public function disablePostAuthorNotify($maybeNotify, $commentId)
 	{
-		if (notification_get_setting('integration/emails/post_author') === 'true') {
+		if (notificationGetSetting('integration/emails/post_author') === 'true') {
 			$maybeNotify = false;
 		}
 		return $maybeNotify;
@@ -146,7 +146,7 @@ class WordPressEmails
 	 */
 	public function disableCommentModeratorNotify($maybeNotify, $commentId)
 	{
-		if (notification_get_setting('integration/emails/comment_moderator') === 'true') {
+		if (notificationGetSetting('integration/emails/comment_moderator') === 'true') {
 			$maybeNotify = false;
 		}
 		return $maybeNotify;
@@ -162,7 +162,7 @@ class WordPressEmails
 	 */
 	public function disablePasswordChangeNotifyToAdmin()
 	{
-		if (notification_get_setting('integration/emails/password_change_to_admin') !== 'true') {
+		if (notificationGetSetting('integration/emails/password_change_to_admin') !== 'true') {
 			return;
 		}
 		add_filter(
@@ -186,7 +186,7 @@ class WordPressEmails
 	public function disableSendConfirmationOnProfileEmail()
 	{
 
-		if (notification_get_setting('integration/emails/send_confirmation_on_profile_email') !== 'true') {
+		if (notificationGetSetting('integration/emails/send_confirmation_on_profile_email') !== 'true') {
 			return;
 		}
 
@@ -210,7 +210,7 @@ class WordPressEmails
 	public function disableSendConfirmationOnAdminEmail()
 	{
 
-		if (notification_get_setting('integration/emails/send_confirmation_on_admin_email') !== 'true') {
+		if (notificationGetSetting('integration/emails/send_confirmation_on_admin_email') !== 'true') {
 			return;
 		}
 
@@ -233,7 +233,7 @@ class WordPressEmails
 	 */
 	public function disablePasswordChangeNotifyToUser($send, $user, $userdata)
 	{
-		if (notification_get_setting('integration/emails/password_change_to_user') === 'true') {
+		if (notificationGetSetting('integration/emails/password_change_to_user') === 'true') {
 			$send = false;
 		}
 		return $send;
@@ -250,7 +250,7 @@ class WordPressEmails
 	 */
 	public function disablePasswordResetNotifyToUser($message)
 	{
-		if (notification_get_setting('integration/emails/password_forgotten_to_user') === 'true') {
+		if (notificationGetSetting('integration/emails/password_forgotten_to_user') === 'true') {
 			return '';
 		}
 		return $message;
@@ -269,7 +269,7 @@ class WordPressEmails
 	 */
 	public function disableEmailChangeNotifyToUser($send, $user, $userdata)
 	{
-		if (notification_get_setting('integration/emails/email_change_to_user') === 'true') {
+		if (notificationGetSetting('integration/emails/email_change_to_user') === 'true') {
 			$send = false;
 		}
 		return $send;
@@ -290,7 +290,7 @@ class WordPressEmails
 	public function disableAutomaticWpCoreUpdateNotify($send, $type, $coreUpdate, $result)
 	{
 		if (
-			($type === 'success') && (notification_get_setting(
+			($type === 'success') && (notificationGetSetting(
 				'integration/emails/automatic_wp_core_update'
 			) === 'true')
 		) {
@@ -318,8 +318,8 @@ class WordPressEmails
 		));
 
 		$value = $isAdmin
-			? notification_get_setting('integration/emails/' . $slug . '_to_admin')
-			: notification_get_setting('integration/emails/' . $slug . '_to_user');
+			? notificationGetSetting('integration/emails/' . $slug . '_to_admin')
+			: notificationGetSetting('integration/emails/' . $slug . '_to_user');
 		return $value;
 	}
 }

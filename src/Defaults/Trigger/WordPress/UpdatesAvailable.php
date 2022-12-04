@@ -79,7 +79,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 		}
 
 		// Don't send any empty notifications unless the Setting is enabled.
-		if (!$hasUpdates && !notification_get_setting('triggers/wordpress/updates_send_anyway')) {
+		if (!$hasUpdates && !notificationGetSetting('triggers/wordpress/updates_send_anyway')) {
 			return false;
 		}
 	}
