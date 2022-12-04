@@ -49,7 +49,7 @@ esc_html_e(
 	<?php
 	Templates::render(
 		'trigger/select',
-		$this->getVars()
+		$this->get_vars()
 	);
 	?>
 
