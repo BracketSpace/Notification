@@ -358,7 +358,7 @@ class Notification
 	public function getEnabledCarriers()
 	{
 		return array_filter(
-			$this->getCarriers(),
+			$this->get_carriers(),
 			function ($carrier) {
 				return $carrier->isEnabled();
 			}
