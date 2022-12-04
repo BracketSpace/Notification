@@ -396,7 +396,7 @@ class Runtime
 	public function defaults()
 	{
 		array_map(
-			[$this, 'load_default'],
+			[$this, 'loadDefault'],
 			[
 				'global-merge-tags',
 				'resolvers',
