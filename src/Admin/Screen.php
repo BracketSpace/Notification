@@ -466,7 +466,7 @@ class Screen
 	 */
 	public function addHelp($screen)
 	{
-		if ($screen->postType !== 'notification') {
+		if ($screen->post_type !== 'notification') {
 			return;
 		}
 
