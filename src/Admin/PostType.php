@@ -114,7 +114,7 @@ class PostType
 					true
 				),
 				'show_in_admin_bar' => true,
-				'menu_icon' => \Notification::fs()->imageToBase64('resources/images/menu-icon.svg'),
+				'menu_icon' => \Notification::fs()->image_to_base64('resources/images/menu-icon.svg'),
 				'menu_position' => 103,
 				'show_in_nav_menus' => false,
 				'publicly_queryable' => false,
