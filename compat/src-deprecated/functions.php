@@ -243,7 +243,7 @@ function notification_cache() {
 function notification_display_wizard() {
 	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Admin\\Wizard::should_display' );
 
-	return Wizard::should_display();
+	return Wizard::shouldDisplay();
 }
 
 /**
@@ -303,7 +303,7 @@ function notification_get_posts( $trigger_slug = null, $all = false ) {
 function notification_get_post_by_hash( $hash ) {
 	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Queries\\NotificationQueries::with_hash()' );
 
-	return NotificationQueries::with_hash( $hash );
+	return NotificationQueries::withHash( $hash );
 }
 
 /**
@@ -318,8 +318,8 @@ function notification_post_is_new( $post ) {
 	_deprecated_function( __FUNCTION__, '8.0.0' );
 
 	/** @var BracketSpace\Notification\Defaults\Adapter\WordPress $notification */
-	$notification = notification_adapt_from( 'WordPress', $post );
-	return $notification->is_new();
+	$notification = notificationAdaptFrom( 'WordPress', $post );
+	return $notification->isNew();
 }
 
 /**
@@ -381,7 +381,7 @@ function notification_sync( $path = null ) {
 function notification_get_sync_path() {
 	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Core\\Sync::get_sync_path' );
 
-	return Sync::get_sync_path();
+	return Sync::getSyncPath();
 }
 
 /**
@@ -394,7 +394,7 @@ function notification_get_sync_path() {
 function notification_is_syncing() {
 	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Core\\Sync::is_syncing' );
 
-	return Sync::is_syncing();
+	return Sync::isSyncing();
 }
 
 /**
@@ -421,7 +421,7 @@ function notification_whitelabel( $args = [] ) {
 function notification_is_whitelabeled() {
 	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Core\\Whitelabel::is_whitelabeled' );
 
-	return Whitelabel::is_whitelabeled();
+	return Whitelabel::isWhitelabeled();
 }
 
 /**
@@ -508,7 +508,7 @@ function notification_get_recipients() {
 function notification_get_carrier_recipients( $carrier_slug ) {
 	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Store\\Recipient::all_for_carrier' );
 
-	return Store\Recipient::all_for_carrier( $carrier_slug );
+	return Store\Recipient::allForCarrier( $carrier_slug );
 }
 
 /**
@@ -655,7 +655,7 @@ function notification_get_triggers_grouped() {
 function notification_add_global_merge_tag( Interfaces\Taggable $merge_tag ) {
 	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Register::global_merge_tag' );
 
-	return Register::global_merge_tag( $merge_tag );
+	return Register::globalMergeTag( $merge_tag );
 }
 
 /**
