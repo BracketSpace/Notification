@@ -146,7 +146,7 @@ class PostType
 	 *
 	 * @filter post_updated_messages
 	 *
-	 * @param array $messages Messages.
+	 * @param array<mixed> $messages Messages.
 	 * @return array
 	 * @since  5.2.0
 	 */
@@ -186,8 +186,8 @@ class PostType
 	 *
 	 * @filter bulk_post_updated_messages
 	 *
-	 * @param array $bulkMessages Messages.
-	 * @param array $bulkCounts Counters.
+	 * @param array<mixed> $bulkMessages Messages.
+	 * @param array<mixed> $bulkCounts Counters.
 	 * @return array
 	 * @since  6.0.0
 	 */
@@ -210,7 +210,7 @@ class PostType
 	 *
 	 * @filter views_edit-notification
 	 *
-	 * @param array $statuses Statuses array.
+	 * @param array<mixed> $statuses Statuses array.
 	 * @return array
 	 * @since  6.0.0
 	 */
@@ -285,8 +285,8 @@ class PostType
 	 *
 	 * @filter wp_insert_post_data 100
 	 *
-	 * @param array $data post data.
-	 * @param array $postarr saved data.
+	 * @param array<mixed> $data post data.
+	 * @param array<mixed> $postarr saved data.
 	 * @return array
 	 * @since  6.0.0
 	 */

@@ -218,7 +218,7 @@ class Group
 	/**
 	 * Add Field to the Group
 	 *
-	 * @param array $args field args.
+	 * @param array<mixed> $args field args.
 	 * @return \BracketSpace\Notification\Utils\Settings\Group $this
 	 * @throws \Exception Exception.
 	 */

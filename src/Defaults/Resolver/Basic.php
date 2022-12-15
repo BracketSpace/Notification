@@ -39,7 +39,7 @@ class Basic extends Abstracts\Resolver
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @param array $match Match array.
+	 * @param array<mixed> $match Match array.
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return mixed               Resolved value
 	 */

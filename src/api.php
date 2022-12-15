@@ -115,7 +115,7 @@ function notificationLog($component, $type, $message)
  *
  * Accepts both array with Trigger and Carriers objects or static values.
  *
- * @param array $data Notification data.
+ * @param array<mixed> $data Notification data.
  * @return \WP_Error | true
  * @since  6.0.0
  */
@@ -159,7 +159,7 @@ function notificationAdd(Notification $notification)
  * If no `trigger` nor `carriers` keys are available it does nothing.
  * If the data is already in form of objects it does nothing.
  *
- * @param array $data Notification static data.
+ * @param array<mixed> $data Notification static data.
  * @return array       Converted data.
  * @since  6.0.0
  */

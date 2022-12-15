@@ -52,7 +52,7 @@ class EDDUpdater
 	 *
 	 * @param string $apiUrl The URL pointing to the custom API endpoint.
 	 * @param string $pluginFile Path to the plugin file.
-	 * @param array $apiData Optional data to send with API calls.
+	 * @param array<mixed> $apiData Optional data to send with API calls.
 	 * @uses hook()
 	 *
 	 * @uses plugin_basename()
@@ -80,7 +80,7 @@ class EDDUpdater
 		/**
 		 * Fires after the $eddPluginData is setup.
 		 *
-		 * @param array $eddPluginData Array of EDD SL plugin data.
+		 * @param array<mixed> $eddPluginData Array of EDD SL plugin data.
 		 * @since x.x.x
 		 *
 		 */
@@ -133,7 +133,7 @@ class EDDUpdater
 	 * It is reassembled from parts of the native WordPress plugin update code.
 	 * See wp-includes/update.php line 121 for the original wp_update_plugins() function.
 	 *
-	 * @param array $transientData Update array build by WordPress.
+	 * @param array<mixed> $transientData Update array build by WordPress.
 	 * @return array Modified update array with custom plugin data.
 	 * @uses api_request()
 	 *
@@ -212,7 +212,7 @@ class EDDUpdater
 	 * Show the update notification on multisite subsites.
 	 *
 	 * @param string $file
-	 * @param array $plugin
+	 * @param array<mixed> $plugin
 	 */
 	public function showUpdateNotification($file, $plugin)
 	{
@@ -493,7 +493,7 @@ class EDDUpdater
 	/**
 	 * Disable SSL verification in order to prevent download update failures
 	 *
-	 * @param array $args
+	 * @param array<mixed> $args
 	 * @param string $url
 	 * @return object $array
 	 */
@@ -518,7 +518,7 @@ class EDDUpdater
 	 * Calls the API and, if successfull, returns the object delivered by the API.
 	 *
 	 * @param string $_action The requested action.
-	 * @param array $_data Parameters for the API action.
+	 * @param array<mixed> $_data Parameters for the API action.
 	 * @return false|object|void
 	 * @uses get_bloginfo()
 	 * @uses wp_remote_post()
@@ -665,8 +665,8 @@ class EDDUpdater
 		/**
 		 * Filters the parameters sent in the API request.
 		 *
-		 * @param array $apiParams The array of data sent in the request.
-		 * @param array $this- >apiData    The array of data set up in the class constructor.
+		 * @param array<mixed> $apiParams The array of data sent in the request.
+		 * @param array<mixed> $this- >apiData    The array of data set up in the class constructor.
 		 * @param string $this- >pluginFile The full path and filename of the file.
 		 */
 		$apiParams = apply_filters(

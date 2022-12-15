@@ -29,7 +29,7 @@ class CheckRestApi
 		$currentScreen = get_current_screen();
 
 		if ($currentScreen instanceof \WP_Screen) {
-			$isEdit = $currentScreen->base === 'post' && $currentScreen->postType === 'notification';
+			$isEdit = $currentScreen->base === 'post' && $currentScreen->post_type === 'notification';
 		}
 
 		if (!$isEdit) {

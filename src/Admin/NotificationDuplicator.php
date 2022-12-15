@@ -21,7 +21,7 @@ class NotificationDuplicator
 	 *
 	 * @filter post_row_actions 50
 	 *
-	 * @param array $rowActions array with action links.
+	 * @param array<mixed> $rowActions array with action links.
 	 * @param object $post WP_Post object.
 	 * @return array               filtered actions
 	 */

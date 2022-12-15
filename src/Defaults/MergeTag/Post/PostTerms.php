@@ -31,7 +31,7 @@ class PostTerms extends StringTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @param array $params merge tag configuration params.
+	 * @param array<mixed> $params merge tag configuration params.
 	 * @since 5.1.3
 	 */
 	public function __construct($params = [])

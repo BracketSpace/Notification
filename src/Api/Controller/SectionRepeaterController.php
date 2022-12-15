@@ -21,7 +21,7 @@ class SectionRepeaterController extends RepeaterController
 	/**
 	 * Group fields in associative array
 	 *
-	 * @param array $fields Fields data.
+	 * @param array<mixed> $fields Fields data.
 	 * @return  array  Modified fields data.
 	 * @since 7.0.0
 	 */
@@ -40,7 +40,7 @@ class SectionRepeaterController extends RepeaterController
 	/**
 	 * Forms field data for sections
 	 *
-	 * @param array $sections Sections data.
+	 * @param array<mixed> $sections Sections data.
 	 * @return array
 	 */
 	public function getSectionsFields($sections)

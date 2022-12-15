@@ -21,7 +21,7 @@ class PostTable
 	 *
 	 * @filter manage_notification_posts_columns
 	 *
-	 * @param array $columns current columns.
+	 * @param array<mixed> $columns current columns.
 	 * @return array          filtered columns
 	 */
 	public function tableColumns($columns)
@@ -129,7 +129,7 @@ class PostTable
 	 *
 	 * @filter display_post_states
 	 *
-	 * @param array $postStates an array of post display states.
+	 * @param array<mixed> $postStates an array of post display states.
 	 * @param \WP_Post $post the current post object.
 	 * @return array               filtered states
 	 */
@@ -147,7 +147,7 @@ class PostTable
 	 *
 	 * @filter post_row_actions
 	 *
-	 * @param array $rowActions array with action links.
+	 * @param array<mixed> $rowActions array with action links.
 	 * @param object $post WP_Post object.
 	 * @return array               filtered actions
 	 */
@@ -171,7 +171,7 @@ class PostTable
 	 *
 	 * @filter post_row_actions
 	 *
-	 * @param array $rowActions array with action links.
+	 * @param array<mixed> $rowActions array with action links.
 	 * @param object $post WP_Post object.
 	 * @return array               filtered actions
 	 */
@@ -200,7 +200,7 @@ class PostTable
 	 *
 	 * @filter bulk_actions-edit-notification
 	 *
-	 * @param array $actions Bulk actions array.
+	 * @param array<mixed> $actions Bulk actions array.
 	 * @return array          Filtered actions
 	 */
 	public function adjustBulkActions($actions)
@@ -231,7 +231,7 @@ class PostTable
 	 *
 	 * @param string $redirectTo Redirect to link.
 	 * @param string $doaction Action to perform.
-	 * @param array $postIds Array with post ids.
+	 * @param array<mixed> $postIds Array with post ids.
 	 * @return string              Redirect link.
 	 * @since  7.1.0
 	 */

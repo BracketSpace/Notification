@@ -226,8 +226,8 @@ class WordPressEmails
 	 * @filter send_password_change_email
 	 *
 	 * @param bool $send Whether to send the email.
-	 * @param array $user The original user array.
-	 * @param array $userdata The updated user array.
+	 * @param array<mixed> $user The original user array.
+	 * @param array<mixed> $userdata The updated user array.
 	 * @return bool  $send
 	 * @since  6.1.0
 	 */
@@ -262,8 +262,8 @@ class WordPressEmails
 	 * @filter send_email_change_email
 	 *
 	 * @param bool $send Whether to send the email.
-	 * @param array $user The original user array.
-	 * @param array $userdata The updated user array.
+	 * @param array<mixed> $user The original user array.
+	 * @param array<mixed> $userdata The updated user array.
 	 * @return bool  $send
 	 * @since  6.1.0
 	 */

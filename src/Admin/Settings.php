@@ -1065,7 +1065,7 @@ class Settings
 	 *
 	 * @filter notification/settings/triggers/valid_post_types
 	 *
-	 * @param array $postTypes post types.
+	 * @param array<mixed> $postTypes post types.
 	 * @return array
 	 * @since  5.0.0
 	 */

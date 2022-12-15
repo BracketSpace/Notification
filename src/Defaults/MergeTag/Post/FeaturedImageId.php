@@ -24,7 +24,7 @@ class FeaturedImageId extends IntegerTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @param array $params Merge tag configuration params.
+	 * @param array<mixed> $params Merge tag configuration params.
 	 * @since 6.0.0
 	 */
 	public function __construct($params = [])

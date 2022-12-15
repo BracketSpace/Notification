@@ -79,7 +79,7 @@ class UserRoleChanged extends UserTrigger
 	 *
 	 * @param int $userId User ID.
 	 * @param string $role User new role.
-	 * @param array $oldRoles User previous roles.
+	 * @param array<mixed> $oldRoles User previous roles.
 	 * @return mixed
 	 */
 	public function context($userId, $role, $oldRoles)

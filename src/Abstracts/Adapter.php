@@ -42,7 +42,7 @@ abstract class Adapter implements Interfaces\Adaptable
 	 * Pass the method calls to Notification object
 	 *
 	 * @param string $methodName Method name.
-	 * @param array $arguments Arguments.
+	 * @param array<mixed> $arguments Arguments.
 	 * @return mixed
 	 * @since  6.0.0
 	 */

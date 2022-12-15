@@ -125,6 +125,7 @@ abstract class Trigger implements Triggerable
 	 * @since 6.0.0
 	 * @since 6.3.0 Background processing action now accepts one more param for cache.
 	 * @since 8.0.0 Only stores the action params in collection.
+	 * @return void
 	 *
 	 */
 	public function addAction($tag, $priority = 10, $acceptedArgs = 1)
@@ -206,6 +207,8 @@ abstract class Trigger implements Triggerable
 	 * @param string $label Nice, translatable Merge Tag label.
 	 * @param string $group Optional, translatable group name.
 	 * @since 6.0.0
+	 * @return $this
+	 *
 	 */
 	public function addQuickMergeTag($propertyName, $label, $group = null)
 	{
@@ -386,7 +389,7 @@ abstract class Trigger implements Triggerable
 	/**
 	 * Gets action arguments.
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 * @since 8.0.0 Deprecated
 	 * @since 6.2.0
 	 */
@@ -403,7 +406,7 @@ abstract class Trigger implements Triggerable
 	/**
 	 * Always returns an empty array
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 * @since 8.0.0 Deprecated
 	 * @since  6.3.0
 	 */
@@ -420,7 +423,7 @@ abstract class Trigger implements Triggerable
 	/**
 	 * Doesn't do anything
 	 *
-	 * @param array $cache Array with cached vars.
+	 * @param array<mixed> $cache Array with cached vars.
 	 * @return $this
 	 * @since  6.3.0
 	 * @since 8.0.0 Deprecated

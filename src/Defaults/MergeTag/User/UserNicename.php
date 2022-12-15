@@ -24,7 +24,7 @@ class UserNicename extends StringTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @param array $params merge tag configuration params.
+	 * @param array<mixed> $params merge tag configuration params.
 	 * @since 5.0.0
 	 */
 	public function __construct($params = [])

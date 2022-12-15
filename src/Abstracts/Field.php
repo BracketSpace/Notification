@@ -100,7 +100,7 @@ abstract class Field implements Interfaces\Fillable
 	/**
 	 * Field constructor
 	 *
-	 * @param array $params field configuration params.
+	 * @param array<mixed> $params field configuration params.
 	 * @since 5.0.0
 	 */
 	public function __construct($params = [])

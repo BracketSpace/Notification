@@ -32,7 +32,7 @@ abstract class Recipient implements Interfaces\Receivable
 	/**
 	 * Recipient constructor
 	 *
-	 * @param array $params recipient configuration params.
+	 * @param array<mixed> $params recipient configuration params.
 	 * @since 5.0.0
 	 */
 	public function __construct($params = [])
@@ -60,7 +60,7 @@ abstract class Recipient implements Interfaces\Receivable
 	 * Parses saved value something understood by the Carrier
 	 *
 	 * @param string $value raw value saved by the user.
-	 * @return array         array of resolved values
+	 * @return array<mixed> array of resolved values
 	 */
 	abstract public function parseValue($value = '');
 

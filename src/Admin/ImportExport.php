@@ -250,7 +250,7 @@ class ImportExport
 	/**
 	 * Imports notifications
 	 *
-	 * @param array $data Notifications data.
+	 * @param array<mixed> $data Notifications data.
 	 * @return string
 	 * @since  6.0.0
 	 */

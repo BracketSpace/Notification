@@ -39,7 +39,7 @@ class License
 	/**
 	 * Class constructor
 	 *
-	 * @param array $extension extension data.
+	 * @param array<mixed> $extension extension data.
 	 * @since 5.1.0
 	 */
 	public function __construct(array $extension)

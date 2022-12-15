@@ -101,7 +101,7 @@ class Notification
 	/**
 	 * Constructor
 	 *
-	 * @param array $data Notification data.
+	 * @param array<mixed> $data Notification data.
 	 * @since 6.0.0
 	 */
 	public function __construct($data = [])
@@ -113,7 +113,7 @@ class Notification
 	 * Getter and Setter methods
 	 *
 	 * @param string $methodName Method name.
-	 * @param array $arguments Arguments.
+	 * @param array<mixed> $arguments Arguments.
 	 * @return mixed
 	 * @throws \Exception If no property has been found.
 	 * @since  6.0.0
@@ -201,7 +201,7 @@ class Notification
 	/**
 	 * Sets up Notification data from array.
 	 *
-	 * @param array $data Data array.
+	 * @param array<mixed> $data Data array.
 	 * @return $this
 	 * @throws \Exception If wrong arguments has been passed.
 	 * @since  6.0.0
@@ -442,7 +442,7 @@ class Notification
 	 * Sets Carriers
 	 * Makes sure that the Notification slug is used as key.
 	 *
-	 * @param array $carriers Array of Carriers.
+	 * @param array<mixed> $carriers Array of Carriers.
 	 * @return void
 	 * @since  6.0.0
 	 */
@@ -463,7 +463,7 @@ class Notification
 	 * Sets Carrier data
 	 *
 	 * @param string $carrierSlug Carrier slug.
-	 * @param array $data Carrier data.
+	 * @param array<mixed> $data Carrier data.
 	 * @return void
 	 * @since  6.0.0
 	 */

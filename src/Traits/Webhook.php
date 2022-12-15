@@ -46,8 +46,8 @@ trait Webhook
 	 * Makes http request
 	 *
 	 * @param string $url URL to call.
-	 * @param array $args Arguments. Default: empty.
-	 * @param array $headers Headers. Default: empty.
+	 * @param array<mixed> $args Arguments. Default: empty.
+	 * @param array<mixed> $headers Headers. Default: empty.
 	 * @param string $method HTTP request method.
 	 * @return void
 	 * @since  7.0.0
@@ -119,7 +119,7 @@ trait Webhook
 	/**
 	 * Parses args to be understand by the wp_remote_* functions
 	 *
-	 * @param array $args Args from saved fields.
+	 * @param array<mixed> $args Args from saved fields.
 	 * @return array       Parsed args as key => value array
 	 * @since  7.0.0
 	 */

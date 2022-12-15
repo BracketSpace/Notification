@@ -86,7 +86,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 	/**
 	 * Constructor
 	 *
-	 * @param array $params trigger configuration params.
+	 * @param array<mixed> $params trigger configuration params.
 	 */
 	public function __construct($params = [])
 	{

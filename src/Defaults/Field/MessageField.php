@@ -49,7 +49,7 @@ class MessageField extends Field
 	/**
 	 * Field constructor
 	 *
-	 * @param array $params field configuration parameters.
+	 * @param array<mixed> $params field configuration parameters.
 	 * @since 6.3.1 Allow for whitespace characters.
 	 * @since 5.0.0
 	 */

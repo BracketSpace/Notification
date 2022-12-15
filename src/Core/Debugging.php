@@ -45,7 +45,7 @@ class Debugging
 	/**
 	 * Adds log to the database
 	 *
-	 * @param array $logData Log data, must contain keys: type, component and message.
+	 * @param array<mixed> $logData Log data, must contain keys: type, component and message.
 	 * @return bool
 	 * @throws \Exception If any of the arguments is wrong.
 	 * @since 6.0.0
@@ -105,7 +105,7 @@ class Debugging
 	 * Gets logs from database
 	 *
 	 * @param int $page Page number, default: 1.
-	 * @param array $types Array of log types to get, default: all.
+	 * @param array<mixed> $types Array of log types to get, default: all.
 	 * @param string $component Component name, default: all.
 	 * @return array
 	 * @since  6.0.0
@@ -158,7 +158,7 @@ class Debugging
 	/**
 	 * Removes logs
 	 *
-	 * @param array $types Array of log types to remove, default: all.
+	 * @param array<mixed> $types Array of log types to remove, default: all.
 	 * @return void
 	 * @since  6.0.0
 	 */

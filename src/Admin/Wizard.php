@@ -434,7 +434,7 @@ class Wizard
 	 *
 	 * @action admin_post_save_notification_wizard
 	 *
-	 * @param array $notifications List of notifications template slugs.
+	 * @param array<mixed> $notifications List of notifications template slugs.
 	 * @return void
 	 */
 	private function addNotifications($notifications)

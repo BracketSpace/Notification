@@ -532,7 +532,7 @@ abstract class Carrier implements Interfaces\Sendable
 	/**
 	 * Sets data from array
 	 *
-	 * @param array $data Data with keys matched with Field names.
+	 * @param array<mixed> $data Data with keys matched with Field names.
 	 * @return $this
 	 * @since  6.0.0
 	 */
@@ -577,7 +577,7 @@ abstract class Carrier implements Interfaces\Sendable
 	/**
 	 * Gets data
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 * @since  6.0.0
 	 */
 	public function getData()

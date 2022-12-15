@@ -83,7 +83,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	/**
 	 * Merge tag constructor
 	 *
-	 * @param array $params merge tag configuration params.
+	 * @param array<mixed> $params merge tag configuration params.
 	 * @since 7.0.0 The resolver closure context is static.
 	 * @since 5.0.0
 	 */
@@ -232,6 +232,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 *
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @since 5.0.0
+	 * @return void
 	 */
 	public function setTrigger(Interfaces\Triggerable $trigger)
 	{
@@ -243,6 +244,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	 *
 	 * @param mixed $resolver Resolver, can be either a closure or array or string.
 	 * @since 5.2.2
+	 * @return void
 	 */
 	public function setResolver($resolver)
 	{

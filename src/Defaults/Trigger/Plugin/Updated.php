@@ -70,7 +70,7 @@ class Updated extends PluginTrigger
 	 * Trigger action.
 	 *
 	 * @param \Plugin_Upgrader $upgrader Plugin_Upgrader class.
-	 * @param array $data Update data information.
+	 * @param array<mixed> $data Update data information.
 	 * @return void|false
 	 */
 	public function context($upgrader, $data)

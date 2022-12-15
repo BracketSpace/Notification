@@ -357,8 +357,8 @@ class Email extends Abstracts\Carrier
 	 *
 	 * @filter notification/carrier/form/data/values
 	 *
-	 * @param array $carrierData Carrier data from PostData.
-	 * @param array $rawData Raw data from PostData, it contains the unfiltered message body.
+	 * @param array<mixed> $carrierData Carrier data from PostData.
+	 * @param array<mixed> $rawData Raw data from PostData, it contains the unfiltered message body.
 	 * @return array Carrier data with the unfiltered body,
 	 * if notifications/email/unfiltered_html setting is true.
 	 **/

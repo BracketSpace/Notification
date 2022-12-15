@@ -91,7 +91,7 @@ class SectionRepeater extends Field
 	/**
 	 * Field constructor
 	 *
-	 * @param array $params field configuration parameters.
+	 * @param array<mixed> $params field configuration parameters.
 	 * @since 5.0.0
 	 */
 	public function __construct($params = [])

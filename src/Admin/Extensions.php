@@ -48,7 +48,7 @@ class Extensions
 	/**
 	 * Extensions admin page hook
 	 *
-	 * @var string
+	 * @var string|false
 	 */
 	public $pageHook = 'none';
 
@@ -168,7 +168,7 @@ class Extensions
 	/**
 	 * Gets raw extensions data from API
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 */
 	public function getRawExtensions()
 	{
@@ -203,7 +203,7 @@ class Extensions
 	 * Gets single raw extension data
 	 *
 	 * @param string $slug extension slug.
-	 * @return array|false
+	 * @return array<mixed>|false
 	 */
 	public function getRawExtension($slug)
 	{

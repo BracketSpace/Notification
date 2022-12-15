@@ -44,7 +44,7 @@ class RepeaterController
 	/**
 	 * Forms field data
 	 *
-	 * @param array $data Field data.
+	 * @param array<mixed> $data Field data.
 	 * @return array
 	 * @since 7.0.0
 	 */
@@ -160,7 +160,7 @@ class RepeaterController
 	/**
 	 * Normalize values array
 	 *
-	 * @param array $values Field values.
+	 * @param array<mixed> $values Field values.
 	 * @return array
 	 * @since 7.0.0
 	 */
@@ -187,7 +187,7 @@ class RepeaterController
 	/**
 	 * Gets request params
 	 *
-	 * @param array $params Request params.
+	 * @param array<mixed> $params Request params.
 	 * @return void
 	 */
 	public function parseParams($params)

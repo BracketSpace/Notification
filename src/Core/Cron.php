@@ -21,7 +21,7 @@ class Cron
 	 *
 	 * @filter cron_schedules
 	 *
-	 * @param array $intervals intervals.
+	 * @param array<mixed> $intervals intervals.
 	 * @return array
 	 * @since  5.1.5
 	 */
