@@ -470,7 +470,7 @@ class Screen
 			return;
 		}
 
-		$screen->addHelpTab(
+		$screen->add_help_tab(
 			[
 				'id' => 'notification_global_merge_tags',
 				'title' => __(
@@ -486,7 +486,7 @@ class Screen
 			]
 		);
 
-		$screen->setHelpSidebar(Templates::get('help/sidebar'));
+		$screen->set_help_sidebar(Templates::get('help/sidebar'));
 	}
 
 	/**

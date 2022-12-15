@@ -94,8 +94,8 @@ class Wizard
 		$screen = get_current_screen();
 
 		if (
-			isset($screen->postType) &&
-			$screen->postType === 'notification' &&
+			isset($screen->post_type) &&
+			$screen->post_type === 'notification' &&
 			$screen->id !== 'notification_page_wizard'
 		) {
 			wp_safe_redirect(admin_url('edit.php?post_type=notification&page=wizard'));
