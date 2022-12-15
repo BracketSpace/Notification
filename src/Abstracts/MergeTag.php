@@ -110,9 +110,10 @@ abstract class MergeTag implements Interfaces\Taggable
 		}
 
 		// Change resolver context to static.
-		if ($params['resolver'] instanceof \Closure) {
-			$params['resolver']->bindTo($this);
-		}
+//		@todo throws warning - cannot bind instance to static closure
+//		if ($params['resolver'] instanceof \Closure) {
+//			$params['resolver']->bindTo($this);
+//		}
 
 		$this->setResolver($params['resolver']);
 
