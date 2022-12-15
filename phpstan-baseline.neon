@@ -471,11 +471,6 @@ parameters:
 			path: src/Abstracts/Adapter.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Adapter\\:\\:setup_notification\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Adapter.php
-
-		-
 			message: "#^Parameter \\#1 \\$function of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(BracketSpace\\\\Notification\\\\Core\\\\Notification, string\\) given\\.$#"
 			count: 1
 			path: src/Abstracts/Adapter.php
