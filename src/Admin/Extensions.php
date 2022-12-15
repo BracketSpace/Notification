@@ -369,13 +369,13 @@ class Extensions
 		$activation = $license->activate($data['license-key']);
 
 		if (is_wp_error($activation)) {
-			$licenseData = $activation->getErrorData();
+			$licenseData = $activation->get_error_data();
 			$params = [
-				'activation-status' => $activation->getErrorMessage(),
+				'activation-status' => $activation->get_error_message(),
 				'extension' => rawurlencode($licenseData->itemName),
 			];
 
-			if ($activation->getErrorMessage() === 'expired') {
+			if ($activation->get_error_message() === 'expired') {
 				$params['expiration'] = $licenseData->expires;
 			}
 
@@ -446,9 +446,9 @@ class Extensions
 		$activation = $license->deactivate();
 
 		if (is_wp_error($activation)) {
-			$licenseData = $activation->getErrorData();
+			$licenseData = $activation->get_error_data();
 			$params = [
-				'activation-status' => $activation->getErrorMessage(),
+				'activation-status' => $activation->get_error_message(),
 				'extension' => rawurlencode($licenseData->itemName),
 			];
 
