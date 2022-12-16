@@ -160,7 +160,7 @@ function notificationAdd(Notification $notification)
  * If the data is already in form of objects it does nothing.
  *
  * @param array<mixed> $data Notification static data.
- * @return array       Converted data.
+ * @return array<mixed>       Converted data.
  * @since  6.0.0
  */
 function notificationConvertData($data = [])

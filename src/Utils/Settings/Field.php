@@ -278,7 +278,7 @@ class Field
 	 * Set or get addons
 	 *
 	 * @param mixed $addons field additional settings or null to get them.
-	 * @return array addons
+	 * @return array<mixed> addons
 	 */
 	public function addons($addons = null)
 	{

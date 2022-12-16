@@ -232,7 +232,7 @@ class Settings
 	/**
 	 * Get all settings
 	 *
-	 * @return array settings
+	 * @return array<mixed> settings
 	 */
 	public function getSettings()
 	{

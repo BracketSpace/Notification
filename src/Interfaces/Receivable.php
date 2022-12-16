@@ -21,7 +21,7 @@ interface Receivable extends Nameable
 	 * Must be defined in the child class
 	 *
 	 * @param string $value raw value saved by the user.
-	 * @return array         array of resolved values
+	 * @return array<mixed>         array of resolved values
 	 */
 	public function parseValue($value = '');
 

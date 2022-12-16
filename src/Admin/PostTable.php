@@ -22,7 +22,7 @@ class PostTable
 	 * @filter manage_notification_posts_columns
 	 *
 	 * @param array<mixed> $columns current columns.
-	 * @return array          filtered columns
+	 * @return array<mixed> filtered columns
 	 */
 	public function tableColumns($columns)
 	{
@@ -131,7 +131,7 @@ class PostTable
 	 *
 	 * @param array<mixed> $postStates an array of post display states.
 	 * @param \WP_Post $post the current post object.
-	 * @return array               filtered states
+	 * @return array<mixed>               filtered states
 	 */
 	public function removeStatusDisplay($postStates, $post)
 	{
@@ -149,7 +149,7 @@ class PostTable
 	 *
 	 * @param array<mixed> $rowActions array with action links.
 	 * @param object $post WP_Post object.
-	 * @return array               filtered actions
+	 * @return array<mixed> filtered actions
 	 */
 	public function removeQuickEdit($rowActions, $post)
 	{
@@ -173,7 +173,7 @@ class PostTable
 	 *
 	 * @param array<mixed> $rowActions array with action links.
 	 * @param object $post WP_Post object.
-	 * @return array               filtered actions
+	 * @return array<mixed>               filtered actions
 	 */
 	public function adjustTrashLink($rowActions, $post)
 	{
@@ -201,7 +201,7 @@ class PostTable
 	 * @filter bulk_actions-edit-notification
 	 *
 	 * @param array<mixed> $actions Bulk actions array.
-	 * @return array          Filtered actions
+	 * @return array<mixed>          Filtered actions
 	 */
 	public function adjustBulkActions($actions)
 	{

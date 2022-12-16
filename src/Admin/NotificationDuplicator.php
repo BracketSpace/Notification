@@ -23,11 +23,11 @@ class NotificationDuplicator
 	 *
 	 * @param array<mixed> $rowActions array with action links.
 	 * @param object $post WP_Post object.
-	 * @return array               filtered actions
+	 * @return array<mixed>               filtered actions
 	 */
 	public function addDuplicateRowAction($rowActions, $post)
 	{
-		if ($post->postType !== 'notification') {
+		if ($post->post_type !== 'notification') {
 			return $rowActions;
 		}
 
@@ -100,7 +100,7 @@ class NotificationDuplicator
 						'Duplicate',
 						'notification'
 					),
-					$source->postTitle
+					$source->post_title
 				),
 				'post_content' => wp_slash($json->save(JSON_UNESCAPED_UNICODE)),
 				'post_status' => 'draft',

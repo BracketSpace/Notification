@@ -134,7 +134,7 @@ class EDDUpdater
 	 * See wp-includes/update.php line 121 for the original wp_update_plugins() function.
 	 *
 	 * @param array<mixed> $transientData Update array build by WordPress.
-	 * @return array Modified update array with custom plugin data.
+	 * @return array<mixed> Modified update array with custom plugin data.
 	 * @uses api_request()
 	 *
 	 */
@@ -642,7 +642,7 @@ class EDDUpdater
 	/**
 	 * Gets the current version information from the remote site.
 	 *
-	 * @return array|false
+	 * @return array<mixed>|false
 	 */
 	private function getVersionFromRemote()
 	{

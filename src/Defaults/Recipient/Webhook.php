@@ -41,7 +41,7 @@ class Webhook extends Abstracts\Recipient
 	 * {@inheritdoc}
 	 *
 	 * @param string $value raw value saved by the user.
-	 * @return array         array of resolved values
+	 * @return array<mixed>         array of resolved values
 	 */
 	public function parseValue($value = '')
 	{

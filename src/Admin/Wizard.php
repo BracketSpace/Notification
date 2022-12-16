@@ -121,7 +121,7 @@ class Wizard
 	/**
 	 * Gets settings for Wizard page.
 	 *
-	 * @return array List of settings groups.
+	 * @return array<mixed> List of settings groups.
 	 */
 	public function getSettings()
 	{

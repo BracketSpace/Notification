@@ -50,7 +50,7 @@ class License
 	/**
 	 * Gets all licenses from database
 	 *
-	 * @return array licenses
+	 * @return array<mixed> licenses
 	 * @since  5.1.0
 	 */
 	public function getLicenses()

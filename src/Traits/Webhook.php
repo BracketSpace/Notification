@@ -120,7 +120,7 @@ trait Webhook
 	 * Parses args to be understand by the wp_remote_* functions
 	 *
 	 * @param array<mixed> $args Args from saved fields.
-	 * @return array       Parsed args as key => value array
+	 * @return array<mixed>       Parsed args as key => value array
 	 * @since  7.0.0
 	 */
 	private function parseArgs($args)
