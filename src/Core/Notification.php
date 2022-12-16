@@ -23,21 +23,21 @@ use BracketSpace\Notification\Store;
  * - extras
  * - version
  *
- * @method string get_hash()
- * @method string get_title()
- * @method Interfaces\Triggerable|null get_trigger()
- * @method array<Interfaces\Sendable> get_carriers()
- * @method bool get_enabled()
- * @method array get_extras()
- * @method int get_version()
- * @method string get_source()
- * @method void set_hash(string $hash)
- * @method void set_title(string $title)
- * @method void set_trigger(Interfaces\Triggerable $trigger)
- * @method void set_enabled(bool $enabled)
- * @method void set_extras(array $extras)
- * @method void set_version(int $version)
- * @method void set_source(string $source)
+ * @method string getHash()
+ * @method string getTitle()
+ * @method Interfaces\Triggerable|null GetTrigger()
+ * @method array<Interfaces\Sendable> getCarriers()
+ * @method bool getEnabled()
+ * @method array getExtras()
+ * @method int getVersion()
+ * @method string getSource()
+ * @method void setHash(string $hash)
+ * @method void setTitle(string $title)
+ * @method void setTrigger(Interfaces\Triggerable $trigger)
+ * @method void setEnabled(bool $enabled)
+ * @method void setExtras(array $extras)
+ * @method void setVersion(int $version)
+ * @method void setSource(string $source)
  */
 class Notification
 {
