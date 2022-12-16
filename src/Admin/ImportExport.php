@@ -22,7 +22,7 @@ class ImportExport
 	/**
 	 * Registers Import/Export settings
 	 *
-	 * @param object $settings Settings API object.
+	 * @param \BracketSpace\Notification\Utils\Settings	 $settings Settings API object.
 	 * @return void
 	 */
 	public function settings($settings)
@@ -288,7 +288,13 @@ class ImportExport
 				if ($existingNotification->getVersion() >= $wpAdapter->getVersion()) {
 					$skipped++;
 				} else {
-					$wpAdapter->setPost($existingNotification->getPost())->save();
+					$post = $existingNotification->getPost();
+
+					if ( is_null($post) ) {
+						continue;
+					}
+
+					$wpAdapter->setPost($post)->save();
 					$updated++;
 				}
 			}

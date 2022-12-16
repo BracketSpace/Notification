@@ -22,7 +22,7 @@ class Debugging
 	/**
 	 * Registers Debugging settings
 	 *
-	 * @param object $settings Settings API object.
+	 * @param \BracketSpace\Notification\Utils\Settings $settings Settings API object.
 	 * @return void
 	 */
 	public function debuggingSettings($settings)
