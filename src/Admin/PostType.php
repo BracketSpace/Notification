@@ -147,7 +147,7 @@ class PostType
 	 * @filter post_updated_messages
 	 *
 	 * @param array<mixed> $messages Messages.
-	 * @return array
+	 * @return array<mixed>
 	 * @since  5.2.0
 	 */
 	public function postUpdatedMessages($messages)
@@ -188,7 +188,7 @@ class PostType
 	 *
 	 * @param array<mixed> $bulkMessages Messages.
 	 * @param array<mixed> $bulkCounts Counters.
-	 * @return array
+	 * @return array<mixed>
 	 * @since  6.0.0
 	 */
 	public function bulkActionMessages($bulkMessages, $bulkCounts)
@@ -211,7 +211,7 @@ class PostType
 	 * @filter views_edit-notification
 	 *
 	 * @param array<mixed> $statuses Statuses array.
-	 * @return array
+	 * @return array<mixed>
 	 * @since  6.0.0
 	 */
 	public function changePostStatuses($statuses)
@@ -287,7 +287,7 @@ class PostType
 	 *
 	 * @param array<mixed> $data post data.
 	 * @param array<mixed> $postarr saved data.
-	 * @return array
+	 * @return array<mixed>
 	 * @since  6.0.0
 	 */
 	public function createNotificationHash($data, $postarr)
@@ -493,7 +493,7 @@ class PostType
 	 * Gets all Notifications from database.
 	 * Uses direct database call for performance.
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 * @since  6.0.0
 	 */
 	public static function getAllNotifications()
