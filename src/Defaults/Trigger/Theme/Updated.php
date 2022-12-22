@@ -80,7 +80,7 @@ class Updated extends ThemeTrigger
 			return false;
 		}
 
-		$theme = $upgrader->themeInfo();
+		$theme = $upgrader->theme_info();
 
 		if ($theme === false) {
 			return false;
@@ -88,13 +88,13 @@ class Updated extends ThemeTrigger
 
 		$this->theme = $theme;
 
-		$this->themeUpdateDateTime = time();
+		$this->themeUpdateDateTime = (string)time();
 		$this->themePreviousVersion = (!property_exists(
 			$upgrader->skin,
 			'theme_info'
-		) || $upgrader->skin->themeInfo === null)
+		) || $upgrader->skin->theme_info === null)
 			? __('NA')
-			: $upgrader->skin->themeInfo->get('Version');
+			: $upgrader->skin->theme_info->get('Version');
 	}
 
 	/**

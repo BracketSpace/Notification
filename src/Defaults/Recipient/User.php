@@ -55,7 +55,7 @@ class User extends Abstracts\Recipient
 		$user = get_userdata((int)$value);
 
 		if ($user) {
-			return [$user->userEmail];
+			return [$user->user_email];
 		}
 
 		return [];

@@ -55,6 +55,22 @@ interface Taggable extends Nameable
 	 * Sets trigger object
 	 *
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
+	 * @return $this|void
 	 */
 	public function setTrigger(Triggerable $trigger);
+
+	/**
+	 * Gets group
+	 *
+	 * @return string|null Group name
+	 */
+	public function getGroup();
+
+	/**
+	 * Sets group
+	 *
+	 * @param string $group Group name.
+	 * @return $this
+	 */
+	public function setGroup(string $group);
 }

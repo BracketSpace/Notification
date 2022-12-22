@@ -78,7 +78,7 @@ class Switched extends ThemeTrigger
 	{
 		$this->theme = $theme;
 		$this->oldTheme = $oldTheme;
-		$this->themeSwitchDateTime = time();
+		$this->themeSwitchDateTime = (string)time();
 	}
 
 	/**

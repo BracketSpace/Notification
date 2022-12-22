@@ -93,7 +93,7 @@ class PostUpdated extends PostTrigger
 	public function context($postId, $post, $postBefore)
 	{
 
-		if ($post->postType !== $this->postType) {
+		if ($post->post_type !== $this->postType) {
 			return false;
 		}
 
@@ -106,16 +106,16 @@ class PostUpdated extends PostTrigger
 		);
 
 		// Pending posts doesn't have the slug, otherwise we should bail.
-		if ($post->postStatus !== 'pending' && empty($post->postName)) {
+		if ($post->post_status !== 'pending' && empty($post->postName)) {
 			return false;
 		}
 
 		if (
 			!in_array(
-				$postBefore->postStatus,
+				$postBefore->post_status,
 				$updatedPostStatuses,
 				true
-			) || $post->postStatus === 'trash'
+			) || $post->post_status === 'trash'
 		) {
 			return false;
 		}
@@ -124,7 +124,7 @@ class PostUpdated extends PostTrigger
 
 		$updatingUserId = get_current_user_id();
 
-		$this->author = get_userdata((int)$this->{$this->postType}->postAuthor);
+		$this->author = get_userdata((int)$this->{$this->postType}->post_author);
 		$this->lastEditor = get_userdata(
 			(int)get_post_meta(
 				$this->{$this->postType}->ID,
@@ -134,8 +134,8 @@ class PostUpdated extends PostTrigger
 		);
 		$this->updatingUser = get_userdata($updatingUserId);
 
-		$this->{$this->postType . '_creation_datetime'} = strtotime($this->{$this->postType}->postDateGmt);
-		$this->{$this->postType . '_modification_datetime'} = strtotime($this->{$this->postType}->postModifiedGmt);
+		$this->{$this->postType . '_creation_datetime'} = strtotime($this->{$this->postType}->post_date_gmt);
+		$this->{$this->postType . '_modification_datetime'} = strtotime($this->{$this->postType}->post_modified_gmt);
 	}
 
 	/**

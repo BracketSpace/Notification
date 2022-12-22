@@ -16,7 +16,8 @@ use BracketSpace\Notification\Core\Notification;
 /**
  * WordPress Adapter class
  *
- * @method void set_source_post_id(int $postId)
+ * @method void setSourcePostId(int $postId)
+ * @mixin \BracketSpace\Notification\Core\Notification
  */
 class WordPress extends Abstracts\Adapter
 {
@@ -39,7 +40,7 @@ class WordPress extends Abstracts\Adapter
 	 * {@inheritdoc}
 	 *
 	 * @param mixed $input Input data.
-	 * @return $this
+	 * @return $this|void
 	 * @throws \Exception If wrong input param provided.
 	 */
 	public function read($input = null)
@@ -48,7 +49,13 @@ class WordPress extends Abstracts\Adapter
 		if ($input instanceof \WP_Post) {
 			$this->setPost($input);
 		} elseif (is_integer($input)) {
-			$this->setPost(get_post($input));
+			$post = get_post($input);
+
+			if (!$post instanceof \WP_Post) {
+				return;
+			}
+
+			$this->setPost($post);
 		} else {
 			throw new \Exception('Read method of WordPress adapter expects the post ID or WP_Post object');
 		}
@@ -57,7 +64,7 @@ class WordPress extends Abstracts\Adapter
 			$jsonAdapter = notificationAdaptFrom(
 				'JSON',
 				wp_specialchars_decode(
-					$this->post->postContent,
+					$this->post->post_content,
 					ENT_COMPAT
 				)
 			);
@@ -67,7 +74,7 @@ class WordPress extends Abstracts\Adapter
 		}
 
 		// Hash sync with WordPress post.
-		$this->setHash($this->post->postName);
+		$this->setHash($this->post->post_name);
 
 		// Source.
 		$this->setSource('WordPress');
@@ -141,7 +148,8 @@ class WordPress extends Abstracts\Adapter
 		}
 
 		if (!$this->hasPost()) {
-			$this->setPost(get_post($postId));
+			$post = get_post($postId);
+			$post ? $this->setPost($post) : '';
 		}
 
 		return $this;
@@ -155,7 +163,7 @@ class WordPress extends Abstracts\Adapter
 	 */
 	public function isNew()
 	{
-		return empty($this->post) || $this->post->postDateGmt === '0000-00-00 00:00:00';
+		return empty($this->post) || $this->post->post_date_gmt === '0000-00-00 00:00:00';
 	}
 
 	/**

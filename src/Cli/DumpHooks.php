@@ -49,7 +49,7 @@ class DumpHooks
 		$hookFunctions = [];
 
 		// Loop over each class registering hooks.
-		foreach ($runtime->getCalls() as $className => $hooks) {
+		foreach ($runtime->get_calls() as $className => $hooks) {
 			$count = 0;
 
 			if ($className === 'BracketSpace\\Notification\\Runtime') {
@@ -118,7 +118,7 @@ declare(strict_types=1);
 ';
 
 		// Save the content.
-		$filesystem->putContents(
+		$filesystem->put_contents(
 			$hooksFile,
 			$fileHeader . implode(
 				"\n",

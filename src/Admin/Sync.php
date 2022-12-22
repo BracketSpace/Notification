@@ -27,7 +27,7 @@ class Sync
 	 * Registers synchronization settings
 	 * Hooks into the Import / Export settings.
 	 *
-	 * @param object $settings Settings API object.
+	 * @param \BracketSpace\Notification\Utils\Settings $settings Settings API object.
 	 * @return void
 	 */
 	public function settings($settings)

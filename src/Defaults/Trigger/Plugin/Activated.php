@@ -72,7 +72,7 @@ class Activated extends PluginTrigger
 			$pluginDir,
 			false
 		);
-		$this->pluginActivationDateTime = time();
+		$this->pluginActivationDateTime = (string)time();
 	}
 
 	/**

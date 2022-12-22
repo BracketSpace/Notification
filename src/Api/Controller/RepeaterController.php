@@ -45,7 +45,7 @@ class RepeaterController
 	 * Forms field data
 	 *
 	 * @param array<mixed> $data Field data.
-	 * @return array
+	 * @return array<mixed>
 	 * @since 7.0.0
 	 */
 	public function formFieldData($data = null)
@@ -106,7 +106,7 @@ class RepeaterController
 	 * @param int $postId Post id.
 	 * @param string $carrier Carrier slug.
 	 * @param string $field Field slug.
-	 * @return array
+	 * @return array<mixed>
 	 * @since 7.0.0
 	 */
 	public function getValues($postId, $carrier, $field)
@@ -161,7 +161,7 @@ class RepeaterController
 	 * Normalize values array
 	 *
 	 * @param array<mixed> $values Field values.
-	 * @return array
+	 * @return array<mixed>
 	 * @since 7.0.0
 	 */
 	public function normalizeValues($values)
@@ -200,7 +200,7 @@ class RepeaterController
 	/**
 	 * Forms response data
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 * @since 7.0.0
 	 */
 	public function formData()
@@ -227,7 +227,7 @@ class RepeaterController
 	 */
 	public function sendResponse(\WP_REST_Request $request)
 	{
-		$this->parseParams($request->getParams());
+		$this->parseParams($request->get_params());
 		wp_send_json($this->formData());
 	}
 }

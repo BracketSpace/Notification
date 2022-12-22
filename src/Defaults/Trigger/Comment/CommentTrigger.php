@@ -117,20 +117,30 @@ abstract class CommentTrigger extends Abstracts\Trigger
 	{
 
 		$this->userObject = new \StdClass();
-		$this->userObject->ID = ($this->comment->userId)
-			? $this->comment->userId
-			: 0;
-		$this->userObject->displayName = $this->comment->commentAuthor;
-		$this->userObject->userEmail = $this->comment->commentAuthorEmail;
+		$this->userObject->ID = ($this->comment->user_id)
+			?: 0;
+		$this->userObject->displayName = $this->comment->comment_author;
+		$this->userObject->userEmail = $this->comment->comment_author_email;
 
-		$this->post = get_post((int)$this->comment->commentPostID);
-		$this->postType = $this->post->postType;
+		$this->post = get_post((int)$this->comment->comment_post_ID);
 
-		$this->postCreationDatetime = strtotime($this->post->postDateGmt);
-		$this->postModificationDatetime = strtotime($this->post->postModifiedGmt);
-		$this->commentDatetime = strtotime($this->comment->commentDateGmt);
+		if (!$this->post instanceof \WP_Post) {
+			return;
+		}
 
-		$this->postAuthor = get_userdata((int)$this->post->postAuthor);
+		$this->postType = $this->post->post_type;
+
+		$this->postCreationDatetime = strtotime($this->post->post_date_gmt);
+		$this->postModificationDatetime = strtotime($this->post->post_modified_gmt);
+		$this->commentDatetime = strtotime($this->comment->comment_date_gmt);
+
+		$user = get_userdata((int)$this->post->post_author);
+
+		if (!($user instanceof \WP_User)) {
+			return;
+		}
+
+		$this->postAuthor = $user;
 	}
 
 	/**

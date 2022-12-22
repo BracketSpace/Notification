@@ -123,7 +123,7 @@ class WordPress
 	 */
 	public function proxyCommentReply($commentId, $comment)
 	{
-		$status = $comment->commentApproved === '1'
+		$status = $comment->comment_approved === '1'
 			? 'approved'
 			: 'unapproved';
 		do_action(
@@ -176,7 +176,7 @@ class WordPress
 	public function proxyTransitionCommentStatusToPublished($commentNewStatus, $commentOldStatus, $comment)
 	{
 
-		if ($comment->commentApproved === 'spam' && notificationGetSetting('triggers/comment/akismet')) {
+		if ($comment->comment_approved === 'spam' && notificationGetSetting('triggers/comment/akismet')) {
 			return;
 		}
 

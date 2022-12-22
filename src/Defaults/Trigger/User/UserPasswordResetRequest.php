@@ -91,11 +91,18 @@ class UserPasswordResetRequest extends UserTrigger
 		}
 
 		$this->userId = $user->data->ID;
-		$this->userObject = get_userdata($this->userId);
+
+		$user = get_userdata($this->userId);
+
+		if (!$user instanceof \WP_User) {
+			return false;
+		}
+
+		$this->userObject = $user;
 
 		$this->passwordResetKey = $resetKey;
 
-		$this->userRegisteredDatetime = strtotime($this->userObject->userRegistered);
+		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
 		$this->passwordResetRequestDatetime = time();
 	}
 

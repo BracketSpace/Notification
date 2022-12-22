@@ -18,7 +18,7 @@ use BracketSpace\Notification\Traits\Storage;
  * //phpcs:ignore Generic.Files.LineLength.TooLong
  * @method static array<string, \BracketSpace\Notification\Interfaces\Taggable> all() Gets all registered Global MergeTags
  * //phpcs:ignore Generic.Files.LineLength.TooLong
- * @method static \BracketSpace\Notification\Interfaces\Taggable|nullget(string $index) Gets registered Global MergeTag
+ * @method static \BracketSpace\Notification\Interfaces\Taggable|null get(string $index) Gets registered Global MergeTag
  */
 class GlobalMergeTag implements Interfaces\Storable
 {

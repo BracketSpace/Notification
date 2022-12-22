@@ -21,7 +21,7 @@ class TwoFactor
 	 *
 	 * @action notification/trigger/registered
 	 *
-	 * @param object $trigger Trigger instance.
+	 * @param \BracketSpace\Notification\Abstracts\Trigger $trigger Trigger instance.
 	 * @return void
 	 * @since  7.0.0
 	 */
@@ -52,7 +52,7 @@ class TwoFactor
 	{
 		do_action(
 			'ntfn_proxy_two_factor_user_authenticated',
-			$user->userLogin,
+			$user->user_login,
 			$user
 		);
 	}

@@ -431,7 +431,7 @@ class PostType
 		 * Now it's used in Admin\Wizard::addNotifications() as well
 		 */
 		$cache = new CacheDriver\ObjectCache('notification');
-		$cache->setKey('notifications');
+		$cache->set_key('notifications');
 		$cache->delete();
 
 		do_action(
@@ -461,7 +461,7 @@ class PostType
 		$data = $_POST;
 		$error = false;
 
-		$ajax->verifyNonce('change_notification_status_' . $data['post_id']);
+		$ajax->verify_nonce('change_notification_status_' . $data['post_id']);
 
 		$adapter = notificationAdaptFrom(
 			'WordPress',

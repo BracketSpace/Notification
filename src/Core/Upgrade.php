@@ -221,7 +221,7 @@ class Upgrade
 	/**
 	 * Gets new trigger slug replacements
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 * @since  7.0.0
 	 */
 	public function triggerSlugReplacements()
@@ -267,8 +267,8 @@ class Upgrade
 		foreach ($notifications as $adapter) {
 			$post = $adapter->getPost();
 
-			$adapter->setHash($post->postName);
-			$adapter->setTitle($post->postTitle);
+			$adapter->setHash($post->post_name);
+			$adapter->setTitle($post->post_title);
 
 			// Trigger.
 			$triggerSlug = get_post_meta(
@@ -301,8 +301,8 @@ class Upgrade
 				$adapter->setCarriers($carriers);
 			}
 
-			$adapter->setEnabled($post->postStatus === 'publish');
-			$adapter->setVersion(strtotime($post->postModifiedGmt));
+			$adapter->setEnabled($post->post_status === 'publish');
+			$adapter->setVersion((int)strtotime($post->post_modified_gmt));
 
 			$adapter->save();
 		}

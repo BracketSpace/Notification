@@ -94,7 +94,14 @@ class UserEmailChangeRequest extends UserTrigger
 		}
 
 		$this->userId = $userId;
-		$this->userObject = get_userdata($this->userId);
+
+		$user = get_userdata($this->userId);
+
+		if (!$user instanceof \WP_User) {
+			return false;
+		}
+
+		$this->userObject = $user;
 		$this->userMeta = get_user_meta($this->userId);
 		$this->newUserEmail = $newEmail['newemail'];
 		$this->confirmationUrl = esc_url(admin_url('profile.php?newuseremail=' . $newEmail['hash']));

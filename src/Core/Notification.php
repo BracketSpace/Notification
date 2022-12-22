@@ -25,7 +25,7 @@ use BracketSpace\Notification\Store;
  *
  * @method string getHash()
  * @method string getTitle()
- * @method Interfaces\Triggerable|null GetTrigger()
+ * @method Interfaces\Triggerable|null getTrigger()
  * @method array<Interfaces\Sendable> getCarriers()
  * @method bool getEnabled()
  * @method array getExtras()
@@ -281,12 +281,11 @@ class Notification
 	 * Dumps the object to array
 	 *
 	 * @param bool $onlyEnabledCarriers If only enabled Carriers should be saved.
-	 * @return array
+	 * @return array<mixed>
 	 * @since  6.0.0
 	 */
 	public function toArray($onlyEnabledCarriers = false)
 	{
-
 		$carriers = [];
 		$_carriers = $onlyEnabledCarriers
 			? $this->getEnabledCarriers()
@@ -352,13 +351,13 @@ class Notification
 	/**
 	 * Gets enabled Carriers
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 * @since  6.0.0
 	 */
 	public function getEnabledCarriers()
 	{
 		return array_filter(
-			$this->get_carriers(),
+			$this->getCarriers(),
 			function ($carrier) {
 				return $carrier->isEnabled();
 			}

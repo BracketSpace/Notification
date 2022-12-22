@@ -72,7 +72,7 @@ class Deactivated extends PluginTrigger
 			$pluginDir,
 			false
 		);
-		$this->pluginDeactivationDateTime = time();
+		$this->pluginDeactivationDateTime = (string)time();
 	}
 
 	/**

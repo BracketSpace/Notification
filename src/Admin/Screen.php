@@ -177,7 +177,7 @@ class Screen
 	 *
 	 * @action notification/admin/carriers
 	 *
-	 * @param object $notificationPost Notification Post object.
+	 * @param \BracketSpace\Notification\Defaults\Adapter\WordPress $notificationPost Notification Post object.
 	 * @return void
 	 */
 	public function renderCarriersWidget($notificationPost)
@@ -377,7 +377,7 @@ class Screen
 	/**
 	 * Prepates merge tag groups for provided Trigger.
 	 *
-	 * @param object $trigger Trigger object.
+	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return array<mixed> $groups  Grouped tags.
 	 */
 	public function prepareMergeTagGroups($trigger)

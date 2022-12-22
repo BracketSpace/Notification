@@ -71,7 +71,7 @@ class CommentTrashed extends CommentTrigger
 
 		$this->comment = $comment;
 
-		if ($this->comment->commentApproved === 'spam' && notificationGetSetting('triggers/comment/akismet')) {
+		if ($this->comment->comment_approved === 'spam' && notificationGetSetting('triggers/comment/akismet')) {
 			return false;
 		}
 
@@ -80,7 +80,7 @@ class CommentTrashed extends CommentTrigger
 		}
 
 		// fix for action being called too early, before WP marks the comment as trashed.
-		$this->comment->commentApproved = 'trash';
+		$this->comment->comment_approved = 'trash';
 
 		parent::assignProperties();
 	}

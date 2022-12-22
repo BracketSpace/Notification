@@ -55,7 +55,7 @@ class Sync
 				continue;
 			}
 
-			$json = $fs->getContents($filename);
+			$json = $fs->get_contents($filename);
 
 			if (empty($json)) {
 				continue;
@@ -132,7 +132,7 @@ class Sync
 			$wpAdapter
 		)->save();
 
-		$fs->putContents(
+		$fs->put_contents(
 			$file,
 			$json
 		);
@@ -204,7 +204,7 @@ class Sync
 			return;
 		}
 
-		if (!$fs->exists('') || !$fs->isDir('')) {
+		if (!$fs->exists('') || !$fs->is_dir('')) {
 			$fs->mkdir('');
 		}
 
@@ -213,7 +213,7 @@ class Sync
 		}
 
 		$fs->touch('index.php');
-		$fs->putContents(
+		$fs->put_contents(
 			'index.php',
 			'<?php' . "\r\n" . '// Keep this file here.' . "\r\n"
 		);

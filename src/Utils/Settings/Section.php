@@ -149,7 +149,7 @@ class Section
 	/**
 	 * Get all registered Groups
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 */
 	public function getGroups()
 	{

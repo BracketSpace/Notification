@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 
+use BracketSpace\Notification\Interfaces\Triggerable;
+
 /**
  * Binder class
  */
@@ -22,7 +24,7 @@ class Binder
 	 * @action notification/trigger/registered 100
 	 *
 	 * //phpcs:ignore Generic.Files.LineLength.TooLong
-	 * @param array<\BracketSpace\Notification\Core\Triggerable>|\BracketSpace\Notification\Core\Triggerable $triggers Array of Triggers or single Trigger.
+	 * @param array<\BracketSpace\Notification\Interfaces\Triggerable> $triggers Array of Triggers or single Trigger.
 	 * @return void
 	 * @since 8.0.0
 	 */
@@ -32,8 +34,8 @@ class Binder
 		if (!is_array($triggers)) {
 			$triggers = [$triggers];
 		}
-
 		foreach ($triggers as $trigger) {
+			/* @var Triggerable $trigger */
 			foreach ($trigger->getActions() as $action) {
 				add_action(
 					$action['tag'],

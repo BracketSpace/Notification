@@ -22,7 +22,7 @@ class Settings
 	/**
 	 * Registers General settings
 	 *
-	 * @param object $settings Settings API object.
+	 * @param \BracketSpace\Notification\Utils\Settings $settings Settings API object.
 	 * @return void
 	 */
 	public function generalSettings($settings)
@@ -229,7 +229,7 @@ class Settings
 	/**
 	 * Registers Triggers settings
 	 *
-	 * @param object $settings Settings API object.
+	 * @param \BracketSpace\Notification\Utils\Settings $settings Settings API object.
 	 * @return void
 	 */
 	public function triggersSettings($settings)
@@ -578,7 +578,7 @@ class Settings
 	/**
 	 * Registers Carrier settings
 	 *
-	 * @param object $settings Settings API object.
+	 * @param \BracketSpace\Notification\Utils\Settings $settings Settings API object.
 	 * @return void
 	 */
 	public function carriersSettings($settings)
@@ -789,7 +789,7 @@ class Settings
 	/**
 	 * Registers Emails settings
 	 *
-	 * @param object $settings Settings API object.
+	 * @param \BracketSpace\Notification\Utils\Settings $settings Settings API object.
 	 * @return void
 	 */
 	public function emailsSettings($settings)
@@ -1066,7 +1066,7 @@ class Settings
 	 * @filter notification/settings/triggers/valid_post_types
 	 *
 	 * @param array<mixed> $postTypes post types.
-	 * @return array
+	 * @return array<mixed>
 	 * @since  5.0.0
 	 */
 	public function filterPostTypes($postTypes)

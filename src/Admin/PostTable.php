@@ -135,7 +135,7 @@ class PostTable
 	 */
 	public function removeStatusDisplay($postStates, $post)
 	{
-		if ($post->postType === 'notification') {
+		if ($post->post_type === 'notification') {
 			return [];
 		}
 
@@ -153,7 +153,7 @@ class PostTable
 	 */
 	public function removeQuickEdit($rowActions, $post)
 	{
-		if ($post->postType === 'notification') {
+		if ($post->post_type === 'notification') {
 			if (isset($rowActions['inline hide-if-no-js'])) {
 				unset($rowActions['inline hide-if-no-js']);
 			}
@@ -177,7 +177,7 @@ class PostTable
 	 */
 	public function adjustTrashLink($rowActions, $post)
 	{
-		if ($post->postType !== 'notification') {
+		if ($post->post_type !== 'notification') {
 			return $rowActions;
 		}
 

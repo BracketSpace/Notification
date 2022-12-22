@@ -118,13 +118,13 @@ class License
 
 		return $cache->collect(
 			function () use ($licenseData) {
-				$licenseCheck = $this->check($licenseData->licenseKey);
+				$licenseCheck = $this->check($licenseData->license_key);
 
 				if (is_wp_error($licenseCheck)) {
 					return $licenseData->license === 'valid';
 				}
 
-				$licenseCheck->licenseKey = $licenseData->licenseKey;
+				$licenseCheck->license_key = $licenseData->license_key;
 				$licenseData = $licenseCheck;
 				$this->save($licenseData);
 

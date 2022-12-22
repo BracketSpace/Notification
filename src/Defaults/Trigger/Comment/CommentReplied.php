@@ -22,7 +22,7 @@ class CommentReplied extends CommentTrigger
 	/**
 	 * Parent comment object
 	 *
-	 * @var \WP_Comment
+	 * @var \WP_Comment|null
 	 */
 	public $parentComment;
 
@@ -92,7 +92,7 @@ class CommentReplied extends CommentTrigger
 
 		$this->comment = $comment;
 
-		if ($this->comment->commentApproved === 'spam' && notificationGetSetting('triggers/comment/akismet')) {
+		if ($this->comment->comment_approved === 'spam' && notificationGetSetting('triggers/comment/akismet')) {
 			return false;
 		}
 
@@ -101,7 +101,7 @@ class CommentReplied extends CommentTrigger
 		}
 
 		// Bail if comment is not a reply.
-		if (empty($this->comment->commentParent)) {
+		if (empty($this->comment->comment_parent)) {
 			return false;
 		}
 
@@ -109,14 +109,17 @@ class CommentReplied extends CommentTrigger
 			return false;
 		}
 
-		$this->parentComment = get_comment($this->comment->commentParent);
+		$this->parentComment = get_comment($this->comment->comment_parent);
+
+		if (!$this->parentComment instanceof \WP_Comment) {
+			return false;
+		}
 
 		$this->parentCommentUserObject = new \StdClass();
-		$this->parentCommentUserObject->ID = ($this->parentComment->userId)
-			? $this->parentComment->userId
-			: 0;
-		$this->parentCommentUserObject->displayName = $this->parentComment->commentAuthor;
-		$this->parentCommentUserObject->userEmail = $this->parentComment->commentAuthorEmail;
+		$this->parentCommentUserObject->ID = ($this->parentComment->user_id)
+			?: 0;
+		$this->parentCommentUserObject->displayName = $this->parentComment->comment_author;
+		$this->parentCommentUserObject->userEmail = $this->parentComment->comment_author_email;
 
 		parent::assignProperties();
 	}

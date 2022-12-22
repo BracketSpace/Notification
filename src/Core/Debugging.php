@@ -107,8 +107,7 @@ class Debugging
 	 * @param int $page Page number, default: 1.
 	 * @param array<mixed> $types Array of log types to get, default: all.
 	 * @param string $component Component name, default: all.
-	 * @return array
-	 * @since  6.0.0
+	 * @return array<mixed>  * @since  6.0.0
 	 */
 	public function getLogs($page = 1, $types = null, $component = null)
 	{
@@ -248,7 +247,7 @@ class Debugging
 		notificationLog(
 			'Core',
 			'notification',
-			wp_json_encode($data)
+			(string)wp_json_encode($data)
 		);
 
 		// Suppress when debug log is active.

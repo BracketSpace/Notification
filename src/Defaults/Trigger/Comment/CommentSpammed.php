@@ -71,7 +71,7 @@ class CommentSpammed extends CommentTrigger
 
 		$this->comment = $comment;
 
-		if ($this->comment->commentApproved === 'spam' && notificationGetSetting('triggers/comment/akismet')) {
+		if ($this->comment->comment_approved === 'spam' && notificationGetSetting('triggers/comment/akismet')) {
 			return false;
 		}
 
@@ -80,7 +80,7 @@ class CommentSpammed extends CommentTrigger
 		}
 
 		// fix for action being called too early, before WP marks the comment as spam.
-		$this->comment->commentApproved = 'spam';
+		$this->comment->comment_approved = 'spam';
 
 		parent::assignProperties();
 	}

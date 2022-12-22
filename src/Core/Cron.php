@@ -22,7 +22,7 @@ class Cron
 	 * @filter cron_schedules
 	 *
 	 * @param array<mixed> $intervals intervals.
-	 * @return array
+	 * @return array<mixed>
 	 * @since  5.1.5
 	 */
 	public function registerIntervals($intervals)

@@ -87,12 +87,24 @@ class DataExported extends PrivacyTrigger
 	{
 
 		$this->request = wp_get_user_request($requestId);
-		$this->userObject = get_userdata($this->request->userId);
+
+		$user = get_userdata($this->request->user_id);
+
+		if (!$user instanceof \WP_User) {
+			return;
+		}
+
+		$this->userObject = $user;
 		$this->archivePath = $archivePathname;
 		$this->archiveUrl = $archiveUrl;
 		$this->htmlReportPath = $htmlReportPathname;
+		$this->dataOperationTime = (string)time();
+
+		if (!$jsonReportPathname) {
+			return;
+		}
+
 		$this->jsonReportPathname = $jsonReportPathname;
-		$this->dataOperationTime = time();
 	}
 
 	/**

@@ -73,9 +73,13 @@ class UserLoginFailed extends UserTrigger
 		}
 
 		$this->userId = $user->ID;
-		$this->userObject = get_userdata($this->userId);
+		$user = get_userdata($this->userId);
 
-		$this->userRegisteredDatetime = strtotime($this->userObject->userRegistered);
+		if (!$user instanceof \WP_User) {
+			return false;
+		}
+
+		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
 		$this->userLoginFailedDatetime = time();
 	}
 

@@ -65,10 +65,16 @@ class MediaTrashed extends MediaTrigger
 
 		$this->userId = get_current_user_id();
 
-		$this->userObject = get_userdata($this->userId);
-		$this->trashingUser = get_userdata($this->userId);
+		$user = get_userdata($this->userId);
 
-		$this->attachmentCreationDate = strtotime($this->attachment->postDateGmt);
+		if (!$user instanceof \WP_User) {
+			return;
+		}
+
+		$this->userObject = $user;
+		$this->trashingUser = $user;
+
+		$this->attachmentCreationDate = strtotime($this->attachment->post_date_gmt);
 	}
 
 	/**

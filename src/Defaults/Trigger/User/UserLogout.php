@@ -73,10 +73,16 @@ class UserLogout extends UserTrigger
 			$userId = get_current_user_id();
 		}
 
-		$this->userObject = get_userdata($userId);
+		$user = get_userdata($this->userId);
+
+		if (!$user instanceof \WP_User) {
+			return;
+		}
+
+		$this->userObject = $user;
 		$this->userMeta = get_user_meta($userId);
 
-		$this->userRegisteredDatetime = strtotime($this->userObject->userRegistered);
+		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
 		$this->userLogoutDatetime = time();
 	}
 

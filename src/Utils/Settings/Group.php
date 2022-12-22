@@ -269,7 +269,7 @@ class Group
 	/**
 	 * Get all registered Fields
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 */
 	public function getFields()
 	{

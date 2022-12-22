@@ -70,10 +70,15 @@ class UserPasswordChanged extends UserTrigger
 	{
 
 		$this->userId = $user->ID;
-		$this->userObject = get_userdata($this->userId);
+		$user = get_userdata($this->userId);
+
+		if (!$user instanceof \WP_User) {
+			return;
+		}
+
 		$this->userMeta = get_user_meta($this->userId);
 
-		$this->userRegisteredDatetime = strtotime($this->userObject->userRegistered);
+		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
 		$this->passwordChangeDatetime = time();
 	}
 

@@ -31,7 +31,7 @@ class Wizard
 	/**
 	 * Wizard page hook.
 	 *
-	 * @var string
+	 * @var string|false
 	 */
 	public $pageHook = 'none';
 
@@ -451,11 +451,11 @@ class Wizard
 				$notificationSlug
 			);
 
-			if (!$this->filesystem->isReadable($jsonPath)) {
+			if (!$this->filesystem->is_readable($jsonPath)) {
 				continue;
 			}
 
-			$json = $this->filesystem->getContents($jsonPath);
+			$json = $this->filesystem->get_contents($jsonPath);
 
 			$jsonAdapter = notificationAdaptFrom(
 				'JSON',
@@ -476,7 +476,7 @@ class Wizard
 		 * Now it's used in Admin\PostType::save() as well
 		 */
 		$cache = new CacheDriver\ObjectCache('notification');
-		$cache->setKey('notifications');
+		$cache->set_key('notifications');
 		$cache->delete();
 	}
 
@@ -510,10 +510,12 @@ class Wizard
 	 */
 	public static function shouldDisplay()
 	{
-		$counter = wp_count_posts('notification');
+		/** @var array{publish: int, draft: int} $counter */
+		$counter = (array) wp_count_posts('notification');
 		$count = 0;
-		$count += $counter->publish ?? 0;
-		$count += $counter->draft ?? 0;
+
+		$count += $counter['publish'] ?? 0;
+		$count += $counter['draft'] ?? 0;
 
 		return !Whitelabel::isWhitelabeled() && !get_option('notification_wizard_dismissed') && ($count === 0);
 	}

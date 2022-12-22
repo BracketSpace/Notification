@@ -73,7 +73,7 @@ class Installed extends ThemeTrigger
 			return false;
 		}
 
-		$theme = $upgrader->themeInfo();
+		$theme = $upgrader->theme_info();
 
 		if ($theme === false) {
 			return false;
@@ -81,7 +81,7 @@ class Installed extends ThemeTrigger
 
 		$this->theme = $theme;
 
-		$this->themeInstallationDateTime = time();
+		$this->themeInstallationDateTime = (string)time();
 	}
 
 	/**

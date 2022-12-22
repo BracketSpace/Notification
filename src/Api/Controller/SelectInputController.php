@@ -30,7 +30,7 @@ class SelectInputController
 	 */
 	public function sendResponse(\WP_REST_Request $request)
 	{
-		$params = $request->getParams();
+		$params = $request->get_params();
 		$carrier = $params['carrier'];
 		$type = $params['type'];
 		$recipient = RecipientStore::get(

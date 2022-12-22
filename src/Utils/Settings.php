@@ -139,7 +139,7 @@ class Settings
 	/**
 	 * Get all registered sections
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 */
 	public function getSections()
 	{

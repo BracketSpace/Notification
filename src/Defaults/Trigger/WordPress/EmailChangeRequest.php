@@ -104,7 +104,7 @@ class EmailChangeRequest extends Abstracts\Trigger
 
 		$data = get_option('adminhash');
 		$currentUser = wp_get_current_user();
-		$this->userLogin = $currentUser->userLogin;
+		$this->userLogin = $currentUser->user_login;
 		$this->newAdminEmail = $data['newemail'];
 		$this->confirmationUrl = esc_url(admin_url('options.php?adminhash=' . $data['hash']));
 		$this->emailChangeDatetime = time();

@@ -68,7 +68,7 @@ class CommentPublished extends CommentTrigger
 	public function context($comment)
 	{
 
-		if ($comment->commentApproved !== '1') {
+		if ($comment->comment_approved !== '1') {
 			return false;
 		}
 

@@ -53,9 +53,17 @@ class MediaAdded extends MediaTrigger
 	{
 
 		$this->attachment = get_post($attachmentId);
-		$this->userId = (int)$this->attachment->postAuthor;
-		$this->userObject = get_userdata($this->userId);
+		if (!$this->attachment instanceof \WP_Post) {
+			return;
+		}
+		$this->userId = (int)$this->attachment->post_author;
+		$user = get_userdata($this->userId);
 
-		$this->attachmentCreationDate = strtotime($this->attachment->postDateGmt);
+		if (!$user instanceof \WP_User) {
+			return;
+		}
+		$this->userObject = $user;
+
+		$this->attachmentCreationDate = strtotime($this->attachment->post_date_gmt);
 	}
 }

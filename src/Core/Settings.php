@@ -82,7 +82,7 @@ class Settings extends SettingsAPI
 			);
 		}
 
-		$this->pageHook = add_submenu_page(
+		$this->pageHook = (string)add_submenu_page(
 			$parentHook,
 			__(
 				'Notification settings',

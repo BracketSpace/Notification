@@ -62,10 +62,17 @@ class UserRegistered extends UserTrigger
 	{
 
 		$this->userId = $userId;
-		$this->userObject = get_userdata($this->userId);
+
+		$user = get_userdata($this->userId);
+
+		if (!$user instanceof \WP_User) {
+			return;
+		}
+
+		$this->userObject = $user;
 		$this->userMeta = get_user_meta($this->userId);
 
-		$this->userRegisteredDatetime = strtotime($this->userObject->userRegistered);
+		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
 	}
 
 	/**
@@ -147,7 +154,7 @@ class UserRegistered extends UserTrigger
 			notificationLog(
 				'Core',
 				'error',
-				'User registration trigger error: ' . $resetKey->getErrorMessage()
+				'User registration trigger error: ' . $resetKey->get_error_message()
 			);
 			return '';
 		}

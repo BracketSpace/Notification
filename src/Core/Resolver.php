@@ -43,6 +43,11 @@ class Resolver
 			$value = preg_replace_callback(
 				$resolver->getPattern(),
 				static function ($match) use ($resolver, $trigger) {
+
+					if (!is_callable([$resolver, 'resolve_merge_tag'])) {
+						return false;
+					}
+
 					return call_user_func(
 						[$resolver, 'resolve_merge_tag'],
 						$match,

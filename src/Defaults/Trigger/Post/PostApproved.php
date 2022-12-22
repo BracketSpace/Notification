@@ -90,13 +90,13 @@ class PostApproved extends PostTrigger
 	public function context($post)
 	{
 
-		if ($post->postType !== $this->postType) {
+		if ($post->post_type !== $this->postType) {
 			return false;
 		}
 
 		$this->{$this->postType} = $post;
 
-		$this->author = get_userdata((int)$this->{$this->postType}->postAuthor);
+		$this->author = get_userdata((int)$this->{$this->postType}->post_author);
 		$this->lastEditor = get_userdata(
 			(int)get_post_meta(
 				$this->{$this->postType}->ID,
@@ -106,9 +106,9 @@ class PostApproved extends PostTrigger
 		);
 		$this->approvingUser = get_userdata(get_current_user_id());
 
-		$this->{$this->postType . '_creation_datetime'} = strtotime($this->{$this->postType}->postDateGmt);
-		$this->{$this->postType . '_publication_datetime'} = strtotime($this->{$this->postType}->postDateGmt);
-		$this->{$this->postType . '_modification_datetime'} = strtotime($this->{$this->postType}->postModifiedGmt);
+		$this->{$this->postType . '_creation_datetime'} = strtotime($this->{$this->postType}->post_date_gmt);
+		$this->{$this->postType . '_publication_datetime'} = strtotime($this->{$this->postType}->post_date_gmt);
+		$this->{$this->postType . '_modification_datetime'} = strtotime($this->{$this->postType}->post_modified_gmt);
 	}
 
 	/**

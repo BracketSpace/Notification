@@ -22,7 +22,7 @@ class ImportExport
 	/**
 	 * Registers Import/Export settings
 	 *
-	 * @param \BracketSpace\Notification\Utils\Settings	 $settings Settings API object.
+	 * @param \BracketSpace\Notification\Utils\Settings $settings Settings API object.
 	 * @return void
 	 */
 	public function settings($settings)
@@ -290,7 +290,7 @@ class ImportExport
 				} else {
 					$post = $existingNotification->getPost();
 
-					if ( is_null($post) ) {
+					if (is_null($post)) {
 						continue;
 					}
 
