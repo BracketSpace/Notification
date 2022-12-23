@@ -45,7 +45,7 @@ class NotificationLog
 				true
 			);
 			$logs[] = [
-				'time' => $rawLog->timeLogged,
+				'time' => $rawLog->time_logged,
 				'notification' => $logData['notification'],
 				'trigger' => $logData['trigger'],
 				'carrier' => $logData['carrier'],
