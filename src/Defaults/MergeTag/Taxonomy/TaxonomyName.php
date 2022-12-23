@@ -53,7 +53,7 @@ class TaxonomyName extends StringTag
 				),
 				'resolver' => function ($trigger) {
 
-					return $trigger->{$this->getTriggerProp()}->labels->singularName ?? '';
+					return $trigger->{$this->getTriggerProp()}->labels->singular_name ?? '';
 				},
 			]
 		);

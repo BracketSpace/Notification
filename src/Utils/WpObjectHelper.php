@@ -124,7 +124,7 @@ class WpObjectHelper
 	public static function getTaxonomyName($taxonomySlug)
 	{
 		$taxonomy = self::getTaxonomy($taxonomySlug);
-		return $taxonomy->labels->singularName ?? null;
+		return $taxonomy->labels->singular_name ?? null;
 	}
 
 	/**

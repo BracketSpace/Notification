@@ -62,7 +62,7 @@ class TermDeleted extends TermTrigger
 				'%s term deleted',
 				'notification'
 			),
-			$this->taxonomy->labels->singularName ?? ''
+			$this->taxonomy->labels->singular_name ?? ''
 		);
 	}
 
@@ -79,7 +79,7 @@ class TermDeleted extends TermTrigger
 				'Fires when %1$s (%2$s) is deleted',
 				'notification'
 			),
-			$this->taxonomy->labels->singularName ?? '',
+			$this->taxonomy->labels->singular_name ?? '',
 			$this->taxonomy->name ?? ''
 		);
 	}

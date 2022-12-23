@@ -62,7 +62,7 @@ class TermAdded extends TermTrigger
 				'%s term created',
 				'notification'
 			),
-			$this->taxonomy->labels->singularName ?? ''
+			$this->taxonomy->labels->singular_name ?? ''
 		);
 	}
 
@@ -79,7 +79,7 @@ class TermAdded extends TermTrigger
 				'Fires when %1$s (%2$s) is created',
 				'notification'
 			),
-			$this->taxonomy->labels->singularName ?? '',
+			$this->taxonomy->labels->singular_name ?? '',
 			$this->taxonomy->name ?? ''
 		);
 	}
