@@ -125,13 +125,15 @@ class Notification
 		if (
 			0 === strpos(
 				$methodName,
-				'get_'
+				'get'
 			)
 		) {
-			$property = str_replace(
-				'get_',
-				'',
-				$methodName
+			$property = lcfirst(
+				str_replace(
+					'get',
+					'',
+					$methodName
+				)
 			);
 
 			if (
