@@ -9,22 +9,22 @@ declare(strict_types=1);
  *
  * @var callable(string $varName, string $default=): mixed $get Variable getter.
  * @var callable(string $varName, string $default=): void $the Variable printer.
- * @var callable(string $varName, string $default=): void $theEsc Escaped variable printer.
+ * @var callable(string $varName, string $default=): void $the_esc Escaped variable printer.
  * @var \BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
 ?>
 
 <div
-	id="<?php $theEsc('id'); ?>"
-	class="postbox 
+	id="<?php $the_esc('id'); ?>"
+	class="postbox
 	<?php
 	echo (!$get('open') && $get('active'))
 		? 'closed'
 		: '';
 	?>
 		"
-	data-nt-carrier 
+	data-nt-carrier
 	<?php
 	echo (!$get('active'))
 	? 'data-nt-hidden'
@@ -33,10 +33,10 @@ declare(strict_types=1);
 	>
 	<div class="switch-container">
 		<input
-			id="carrier-toggle-<?php $theEsc('id'); ?>"
+			id="carrier-toggle-<?php $the_esc('id'); ?>"
 			type="checkbox"
-			name="<?php $theEsc('name'); ?>"
-			value="1" 
+			name="<?php $the_esc('name'); ?>"
+			value="1"
 			<?php
 			checked(
 				($get('open') || !$get('active')),
@@ -46,7 +46,7 @@ declare(strict_types=1);
 			data-nt-carrier-input-switch
 		/>
 		<label
-			for="carrier-toggle-<?php $theEsc('id'); ?>"
+			for="carrier-toggle-<?php $the_esc('id'); ?>"
 			class="switch"
 		>
 			<div></div>
@@ -56,7 +56,7 @@ declare(strict_types=1);
 			data-nt-carrier-remove
 		></button>
 	</div>
-	<h2 class="hndle"><span><?php $theEsc('title'); ?></span></h2>
+	<h2 class="hndle"><span><?php $the_esc('title'); ?></span></h2>
 	<div class="inside">
 		<?php
 		do_action_deprecated(

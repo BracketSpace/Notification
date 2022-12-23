@@ -9,7 +9,7 @@ declare(strict_types=1);
  *
  * @var callable(string $varName, string $default=): mixed $get Variable getter.
  * @var callable(string $varName, string $default=): void $the Variable printer.
- * @var callable(string $varName, string $default=): void $theEsc Escaped variable printer.
+ * @var callable(string $varName, string $default=): void $the_esc Escaped variable printer.
  * @var \BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
@@ -48,7 +48,7 @@ declare(strict_types=1);
 				name="notification_onoff_switch"
 				class="onoffswitch-checkbox"
 				value="1"
-				id="onoffswitch" 
+				id="onoffswitch"
 				<?php
 				checked(
 					$get('enabled'),

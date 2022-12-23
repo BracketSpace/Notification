@@ -9,7 +9,7 @@ declare(strict_types=1);
  *
  * @var callable(string $varName, string $default=): mixed $get Variable getter.
  * @var callable(string $varName, string $default=): void $the Variable printer.
- * @var callable(string $varName, string $default=): void $theEsc Escaped variable printer.
+ * @var callable(string $varName, string $default=): void $the_esc Escaped variable printer.
  * @var \BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
@@ -47,7 +47,7 @@ $notifications = $get('notifications');
 			<?php endforeach ?>
 		</ul>
 		<a
-			href="<?php $theEsc('download_link'); ?>"
+			href="<?php $the_esc('download_link'); ?>"
 			class="button button-secondary"
 		><?php esc_html_e('Download JSON'); ?></a>
 	</div>

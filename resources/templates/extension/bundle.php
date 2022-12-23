@@ -9,7 +9,7 @@ declare(strict_types=1);
  *
  * @var callable(string $varName, string $default=): mixed $get Variable getter.
  * @var callable(string $varName, string $default=): void $the Variable printer.
- * @var callable(string $varName, string $default=): void $theEsc Escaped variable printer.
+ * @var callable(string $varName, string $default=): void $the_esc Escaped variable printer.
  * @var \BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
@@ -18,7 +18,7 @@ declare(strict_types=1);
 <div class="plugin-card promo plugin-card-notification-all-extensions">
 	<div class="plugin-card-top">
 		<div class="name column-name">
-			<h3><?php $theEsc('name'); ?></h3>
+			<h3><?php $the_esc('name'); ?></h3>
 		</div>
 		<div class="action-links">
 			<ul class="plugin-action-buttons">
@@ -44,7 +44,7 @@ declare(strict_types=1);
 				);
 				?>
 						</span></li>
-				<li><span class="discount">$<?php $theEsc('price'); ?></span></li>
+				<li><span class="discount">$<?php $the_esc('price'); ?></span></li>
 			</ul>
 		</div>
 		<div class="desc column-description"><?php echo wp_kses_post($get('description')); ?></div>
