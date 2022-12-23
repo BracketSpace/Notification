@@ -53,7 +53,7 @@ class WpObjectHelper
 				continue;
 			}
 
-			$postTypes[$postType->name] = $postType->labels->singularName;
+			$postTypes[$postType->name] = $postType->labels->singular_name;
 		}
 
 		return $postTypes;
@@ -69,7 +69,7 @@ class WpObjectHelper
 	public static function getPostTypeName($postTypeSlug)
 	{
 		$postType = self::getPostType($postTypeSlug);
-		return $postType->labels->singularName ?? null;
+		return $postType->labels->singular_name ?? null;
 	}
 
 	/**
@@ -108,7 +108,7 @@ class WpObjectHelper
 				continue;
 			}
 
-			$taxonomies[$taxonomy->name] = $taxonomy->labels->singularName;
+			$taxonomies[$taxonomy->name] = $taxonomy->labels->singular_name;
 		}
 
 		return $taxonomies;
