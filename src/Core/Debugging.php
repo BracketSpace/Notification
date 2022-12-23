@@ -151,7 +151,7 @@ class Debugging
 
 		// We need to get the live results.
 		// phpcs:ignore
-		return $wpdb->getResults($query);
+		return $wpdb->get_results($query);
 	}
 
 	/**
@@ -191,7 +191,7 @@ class Debugging
 	{
 		global $wpdb;
 
-		$total = $wpdb->getVar('SELECT FOUND_ROWS();'); //phpcs:ignore
+		$total = $wpdb->get_var('SELECT FOUND_ROWS();'); //phpcs:ignore
 
 		if ($type === 'pages') {
 			return (int)ceil($total / $this->logsPerPage);
