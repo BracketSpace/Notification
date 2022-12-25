@@ -73,8 +73,8 @@ class PostAdded extends PostTrigger
 		return sprintf(
 		// translators: 1. singular post name, 2. post type slug.
 			__(
-				'Fires when %1$s (%2$s) is added to database.
-				Useful when adding posts programatically or for 3rd party integration',
+				'Fires when %1$s (%2$s) is added to database.' .
+				' Useful when adding posts programatically or for 3rd party integration',
 				'notification'
 			),
 			WpObjectHelper::getPostTypeName($this->postType),
