@@ -42,7 +42,7 @@ class Api
 			'path' => '/repeater-field/(?P<id>\d+)',
 			'args' => [
 				'methods' => 'POST',
-				'callback' => [new Controller\RepeaterController(), 'send_response'],
+				'callback' => [new Controller\RepeaterController(), 'sendResponse'],
 				'permission_callback' => static function () {
 					return current_user_can('manage_options');
 				},
@@ -53,7 +53,7 @@ class Api
 			'path' => '/section-repeater-field/(?P<id>\d+)',
 			'args' => [
 				'methods' => 'POST',
-				'callback' => [new Controller\SectionRepeaterController(), 'send_response'],
+				'callback' => [new Controller\SectionRepeaterController(), 'sendResponse'],
 				'permission_callback' => static function () {
 					return current_user_can('manage_options');
 				},
@@ -64,7 +64,7 @@ class Api
 			'path' => 'repeater-field/select',
 			'args' => [
 				'methods' => 'POST',
-				'callback' => [new Controller\SelectInputController(), 'send_response'],
+				'callback' => [new Controller\SelectInputController(), 'sendResponse'],
 				'permission_callback' => static function () {
 					return current_user_can('manage_options');
 				},
@@ -75,7 +75,7 @@ class Api
 			'path' => 'check',
 			'args' => [
 				'methods' => 'GET',
-				'callback' => [new Controller\CheckRestApiController(), 'send_response'],
+				'callback' => [new Controller\CheckRestApiController(), 'sendResponse'],
 				'permission_callback' => '__return_true',
 			],
 		];
