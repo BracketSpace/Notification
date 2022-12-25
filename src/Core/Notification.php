@@ -158,13 +158,15 @@ class Notification
 		if (
 			0 === strpos(
 				$methodName,
-				'set_'
+				'set'
 			)
 		) {
-			$property = str_replace(
-				'set_',
-				'',
-				$methodName
+			$property = lcfirst(
+				str_replace(
+					'set',
+					'',
+					$methodName
+				)
 			);
 
 			if (isset($arguments[0])) {
