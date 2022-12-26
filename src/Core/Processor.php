@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 
+use BracketSpace\Notification\Abstracts\Carrier;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver\Transient;
 use BracketSpace\Notification\ErrorHandler;
@@ -138,6 +139,7 @@ class Processor
 		}
 
 		foreach ($notification->getEnabledCarriers() as $carrier) {
+			/* @var Carrier $carrier */
 			$carrier->resolveFields($trigger);
 			$carrier->prepareData();
 
