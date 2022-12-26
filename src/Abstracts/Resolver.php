@@ -60,7 +60,7 @@ abstract class Resolver implements Interfaces\Resolvable
 	 */
 	public function getPattern()
 	{
-		return self::PATTERN;
+		return static::PATTERN;
 	}
 
 	/**
