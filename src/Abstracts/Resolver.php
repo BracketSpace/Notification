@@ -71,7 +71,7 @@ abstract class Resolver implements Interfaces\Resolvable
 	 */
 	public function getPriority()
 	{
-		return self::PRIORITY;
+		return static::PRIORITY;
 	}
 
 	/**
