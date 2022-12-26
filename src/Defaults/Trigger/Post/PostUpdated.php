@@ -106,7 +106,7 @@ class PostUpdated extends PostTrigger
 		);
 
 		// Pending posts doesn't have the slug, otherwise we should bail.
-		if ($post->post_status !== 'pending' && empty($post->postName)) {
+		if ($post->post_status !== 'pending' && empty($post->post_name)) {
 			return false;
 		}
 
