@@ -114,10 +114,10 @@ class Sync
 
 		$response = method_exists(
 			$this,
-			'load_notification_to_' . $data['type']
+			'loadNotificationTo' . ucfirst($data['type'])
 		)
 			? call_user_func(
-				[$this, 'load_notification_to_' . $data['type']],
+				[$this, 'loadNotificationTo' . ucfirst($data['type'])],
 				$data['hash']
 			)
 			: false;

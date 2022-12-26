@@ -113,7 +113,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 							}
 
 							$html = '<h3>' . $trigger->getListTitle($updateType) . '</h3>';
-							$html .= call_user_func([$trigger, 'get_' . $updateType . '_updates_list']);
+							$html .= call_user_func([$trigger, 'get' . ucfirst($updateType) . 'UpdatesList']);
 							$lists[] = $html;
 						}
 
@@ -379,7 +379,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 	public function getUpdatesCount($updateType = 'all')
 	{
 		if ($updateType !== 'all') {
-			$updates = call_user_func('get_' . $updateType . '_updates');
+			$updates = call_user_func('get' . ucfirst($updateType) . 'Updates');
 
 			if ($updateType === 'core') {
 				foreach ($updates as $updateKey => $update) {
