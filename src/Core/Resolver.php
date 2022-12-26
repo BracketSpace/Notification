@@ -44,12 +44,12 @@ class Resolver
 				$resolver->getPattern(),
 				static function ($match) use ($resolver, $trigger) {
 
-					if (!is_callable([$resolver, 'resolve_merge_tag'])) {
+					if (!is_callable([$resolver, 'resolveMergeTag'])) {
 						return false;
 					}
 
 					return call_user_func(
-						[$resolver, 'resolve_merge_tag'],
+						[$resolver, 'resolveMergeTag'],
 						$match,
 						clone $trigger
 					);
