@@ -17,6 +17,7 @@
 		<exclude name="PSR12.Properties.ConstantVisibility.NotFound"/>
 
 		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>
+		<exclude name="SlevomatCodingStandard.Classes.DisallowLateStaticBindingForConstants.DisallowedLateStaticBindingForConstant"/>
 
 		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores"/>
 		<exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited"/>
