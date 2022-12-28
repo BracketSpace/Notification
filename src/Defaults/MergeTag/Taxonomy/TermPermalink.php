@@ -48,7 +48,7 @@ class TermPermalink extends UrlTag
 					'notification'
 				),
 				'resolver' => static function ($trigger) {
-					return $trigger->termPermalink;
+					return $trigger->term_permalink;
 				},
 			]
 		);

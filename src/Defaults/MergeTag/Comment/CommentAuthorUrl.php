@@ -69,7 +69,7 @@ class CommentAuthorUrl extends UrlTag
 					$commentTypeName
 				),
 				'resolver' => function ($trigger) {
-					return $trigger->{$this->getTriggerProp()}->commentAuthorUrl;
+					return $trigger->{$this->getTriggerProp()}->comment_author_url;
 				},
 			]
 		);

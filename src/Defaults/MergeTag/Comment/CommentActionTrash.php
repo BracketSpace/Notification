@@ -65,7 +65,7 @@ class CommentActionTrash extends UrlTag
 				),
 				'resolver' => function ($trigger) {
 					return admin_url(
-						"comment.php?action=trash&c={$trigger->{ $this->getTriggerProp() }->commentID}#wpbody-content"
+						"comment.php?action=trash&c={$trigger->{ $this->getTriggerProp() }->comment_ID}#wpbody-content"
 					);
 				},
 			]

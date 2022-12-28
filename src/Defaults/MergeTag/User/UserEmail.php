@@ -50,7 +50,7 @@ class UserEmail extends StringTag
 					'notification'
 				),
 				'resolver' => function ($trigger) {
-					return $trigger->{$this->getTriggerProp()}->userEmail;
+					return $trigger->{$this->getTriggerProp()}->user_email;
 				},
 			]
 		);

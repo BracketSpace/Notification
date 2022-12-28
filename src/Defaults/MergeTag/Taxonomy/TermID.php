@@ -48,7 +48,7 @@ class TermID extends IntegerTag
 					'notification'
 				),
 				'resolver' => function ($trigger) {
-					return $trigger->{$this->getTriggerProp()}->termId;
+					return $trigger->{$this->getTriggerProp()}->term_id;
 				},
 			]
 		);

@@ -58,7 +58,7 @@ class PostContentHtml extends HtmlTag
 				'resolver' => function ($trigger) {
 					return apply_filters(
 						'the_content',
-						$trigger->{$this->getTriggerProp()}->postContent
+						$trigger->{$this->getTriggerProp()}->post_content
 					);
 				},
 			]

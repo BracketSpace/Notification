@@ -59,7 +59,7 @@ class CommentID extends IntegerTag
 				'example' => true,
 				'group' => $commentTypeName,
 				'resolver' => function ($trigger) {
-					return $trigger->{$this->getTriggerProp()}->commentID;
+					return $trigger->{$this->getTriggerProp()}->comment_ID;
 				},
 			]
 		);

@@ -46,7 +46,7 @@ class AttachmentTitle extends StringTag
 					'notification'
 				),
 				'resolver' => function ($trigger) {
-					return $trigger->{$this->getTriggerProp()}->postTitle;
+					return $trigger->{$this->getTriggerProp()}->post_title;
 				},
 			]
 		);

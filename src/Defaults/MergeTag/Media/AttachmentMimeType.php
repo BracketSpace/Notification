@@ -39,7 +39,7 @@ class AttachmentMimeType extends StringTag
 				'description' => 'image/jpeg',
 				'example' => true,
 				'resolver' => function ($trigger) {
-					return $trigger->{$this->getTriggerProp()}->postMimeType;
+					return $trigger->{$this->getTriggerProp()}->post_mime_type;
 				},
 				'group' => __(
 					'Attachment',

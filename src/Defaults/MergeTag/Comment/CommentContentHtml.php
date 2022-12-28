@@ -62,7 +62,7 @@ class CommentContentHtml extends HtmlTag
 				'example' => true,
 				'group' => $commentTypeName,
 				'resolver' => function ($trigger) {
-					return $trigger->{$this->getTriggerProp()}->commentContent;
+					return $trigger->{$this->getTriggerProp()}->comment_content;
 				},
 			]
 		);

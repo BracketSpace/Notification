@@ -62,7 +62,7 @@ class CommentIsReply extends StringTag
 				'example' => true,
 				'group' => $commentTypeName,
 				'resolver' => function ($trigger) {
-					$hasParent = $trigger->{$this->getTriggerProp()}->commentParent;
+					$hasParent = $trigger->{$this->getTriggerProp()}->comment_parent;
 					return $hasParent
 						? __(
 							'Yes',

@@ -66,7 +66,7 @@ class CommentAuthorIP extends IPTag
 					$commentTypeName
 				),
 				'resolver' => function ($trigger) {
-					return $trigger->{$this->getTriggerProp()}->commentAuthorIP;
+					return $trigger->{$this->getTriggerProp()}->comment_author_IP;
 				},
 			]
 		);

@@ -50,7 +50,7 @@ class UserLastName extends StringTag
 					'notification'
 				),
 				'resolver' => function ($trigger) {
-					return $trigger->{$this->getTriggerProp()}->lastName;
+					return $trigger->{$this->getTriggerProp()}->last_name;
 				},
 			]
 		);

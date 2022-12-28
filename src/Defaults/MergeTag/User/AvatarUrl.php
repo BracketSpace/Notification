@@ -49,8 +49,8 @@ class AvatarUrl extends UrlTag
 					'notification'
 				),
 				'resolver' => function ($trigger) {
-					if (isset($trigger->{$this->getTriggerProp()}->userEmail)) {
-						return get_avatar_url($trigger->{$this->getTriggerProp()}->userEmail);
+					if (isset($trigger->{$this->getTriggerProp()}->user_email)) {
+						return get_avatar_url($trigger->{$this->getTriggerProp()}->user_email);
 					}
 
 					return '';

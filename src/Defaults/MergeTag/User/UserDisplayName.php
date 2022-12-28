@@ -50,7 +50,7 @@ class UserDisplayName extends StringTag
 					'notification'
 				),
 				'resolver' => function ($trigger) {
-					return $trigger->{$this->getTriggerProp()}->displayName;
+					return $trigger->{$this->getTriggerProp()}->display_name;
 				},
 			]
 		);

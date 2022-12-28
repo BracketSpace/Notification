@@ -66,7 +66,7 @@ class CommentAuthorUserAgent extends StringTag
 					$commentTypeName
 				),
 				'resolver' => function ($trigger) {
-					return $trigger->{$this->getTriggerProp()}->commentAgent;
+					return $trigger->{$this->getTriggerProp()}->comment_agent;
 				},
 			]
 		);

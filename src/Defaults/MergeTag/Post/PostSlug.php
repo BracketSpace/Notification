@@ -56,7 +56,7 @@ class PostSlug extends StringTag
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ($trigger) {
-					return $trigger->{$this->getTriggerProp()}->postName;
+					return $trigger->{$this->getTriggerProp()}->post_name;
 				},
 			]
 		);
