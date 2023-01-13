@@ -10,12 +10,14 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Utils\Settings;
 
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
+
 /**
  * Settings class
  */
 class Section
 {
-
+	use Casegnostic;
 	/**
 	 * Settings handle
 	 *

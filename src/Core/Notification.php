@@ -11,6 +11,7 @@ namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Store;
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 
 /**
  * Notification class
@@ -41,7 +42,7 @@ use BracketSpace\Notification\Store;
  */
 class Notification
 {
-
+	use Casegnostic;
 	/**
 	 * Hash
 	 *

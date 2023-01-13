@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Utils;
 
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Utils\Settings\Section;
 
 /**
@@ -17,7 +18,7 @@ use BracketSpace\Notification\Utils\Settings\Section;
  */
 class Settings
 {
-
+	use Casegnostic;
 	/**
 	 * Setting sections (ones in the Settings menu)
 	 *

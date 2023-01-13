@@ -13,6 +13,7 @@ namespace BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Core\Resolver;
 use BracketSpace\Notification\Defaults\Field;
 use BracketSpace\Notification\Defaults\Field\RecipientsField;
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Store\Recipient as RecipientStore;
@@ -26,7 +27,7 @@ abstract class Carrier implements Interfaces\Sendable
 	use Traits\ClassUtils;
 	use Traits\HasName;
 	use Traits\HasSlug;
-
+	use Casegnostic;
 	/**
 	 * Form fields
 	 *
@@ -99,6 +100,7 @@ abstract class Carrier implements Interfaces\Sendable
 	 */
 	public function __construct($slug = null, $name = null)
 	{
+		file_put_contents( dirname( __FILE__ ) . '/log.log', print_r( [$slug, $name], true ) . "\r\n\r\n", FILE_APPEND );
 		if ($slug !== null) {
 			$this->setSlug($slug);
 		}
