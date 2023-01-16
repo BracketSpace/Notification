@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Abstracts;
 
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Traits;
 
@@ -21,6 +22,7 @@ abstract class Recipient implements Interfaces\Receivable
 	use Traits\ClassUtils;
 	use Traits\HasName;
 	use Traits\HasSlug;
+	use Casegnostic;
 
 	/**
 	 * Recipient input default value
