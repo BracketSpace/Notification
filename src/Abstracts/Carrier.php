@@ -178,14 +178,6 @@ abstract class Carrier implements Interfaces\Sendable
 	}
 
 	/**
-	 * Used to register Carrier form fields
-	 * Uses $this->addFormField();
-	 *
-	 * @return void
-	 */
-	abstract public function formFields();
-
-	/**
 	 * Sends the Carrier
 	 *
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger trigger object.
