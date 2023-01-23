@@ -13,91 +13,64 @@ use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 
-/**
- * Notification class
- * Valid keys are:
- * - hash
- * - title
- * - trigger
- * - carriers
- * - enabled
- * - extras
- * - version
- *
- * @method string getHash()
- * @method string getTitle()
- * @method Interfaces\Triggerable|null getTrigger()
- * @method array<Interfaces\Sendable> getCarriers()
- * @method bool getEnabled()
- * @method array getExtras()
- * @method int getVersion()
- * @method string getSource()
- * @method void setHash(string $hash)
- * @method void setTitle(string $title)
- * @method void setTrigger(Interfaces\Triggerable $trigger)
- * @method void setEnabled(bool $enabled)
- * @method void setExtras(array $extras)
- * @method void setVersion(int $version)
- * @method void setSource(string $source)
- */
 class Notification
 {
 	use Casegnostic;
+
 	/**
 	 * Hash
 	 *
 	 * @var string
 	 */
-	protected $hash;
-
+	private $hash;
 	/**
 	 * Title
 	 *
 	 * @var string
 	 */
-	protected $title = '';
+	private $title = '';
 
 	/**
 	 * Trigger
 	 *
 	 * @var Interfaces\Triggerable|null
 	 */
-	protected $trigger;
+	private $trigger;
 
 	/**
 	 * Carriers
 	 *
 	 * @var array<mixed>
 	 */
-	protected $carriers = [];
+	private $carriers = [];
 
 	/**
 	 * Status
 	 *
 	 * @var bool
 	 */
-	protected $enabled = true;
+	private $enabled = true;
 
 	/**
 	 * Extras
 	 *
 	 * @var array<mixed>
 	 */
-	protected $extras = [];
+	private $extras = [];
 
 	/**
 	 * Version
 	 *
 	 * @var int
 	 */
-	protected $version;
+	private $version;
 
 	/**
 	 * Source
 	 *
 	 * @var string
 	 */
-	protected $source = 'Internal';
+	private $source = 'Internal';
 
 	/**
 	 * Constructor
@@ -108,76 +81,6 @@ class Notification
 	public function __construct($data = [])
 	{
 		$this->setup($data);
-	}
-
-	/**
-	 * Getter and Setter methods
-	 *
-	 * @param string $methodName Method name.
-	 * @param array<mixed> $arguments Arguments.
-	 * @return mixed
-	 * @throws \Exception If no property has been found.
-	 * @since  6.0.0
-	 */
-	public function __call($methodName, $arguments)
-	{
-
-		// Getter.
-		if (
-			0 === strpos(
-				$methodName,
-				'get'
-			)
-		) {
-			$property = lcfirst(
-				str_replace(
-					'get',
-					'',
-					$methodName
-				)
-			);
-
-			if (
-				property_exists(
-					$this,
-					$property
-				)
-			) {
-				return $this->$property;
-			}
-			else {
-				throw new \Exception(
-					sprintf(
-						'Property %s doesn\'t exists.',
-						$property
-					)
-				);
-			}
-		}
-
-		// Setter.
-		if (
-			0 === strpos(
-				$methodName,
-				'set'
-			)
-		) {
-			$property = lcfirst(
-				str_replace(
-					'set',
-					'',
-					$methodName
-				)
-			);
-
-			if (isset($arguments[0])) {
-				$this->$property = $arguments[0];
-			}
-			else {
-				throw new \Exception('You must provide the property value');
-			}
-		}
-
 	}
 
 	/**
@@ -567,5 +470,111 @@ class Notification
 		$this->setHash(self::createHash());
 		return $this;
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getHash(): string
+	{
+		return $this->hash;
+	}
+
+	/**
+	 * @param string $hash
+	 */
+	public function setHash(string $hash)
+	{
+		$this->hash = $hash;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getTitle(): string
+	{
+		return $this->title;
+	}
+
+	/**
+	 * @param string $title
+	 */
+	public function setTitle(string $title)
+	{
+		$this->title = $title;
+	}
+
+	/**
+	 * @return Interfaces\Triggerable|null
+	 */
+	public function getTrigger()
+	{
+		return $this->trigger;
+	}
+
+	/**
+	 * @param Interfaces\Triggerable|null $trigger
+	 */
+	public function setTrigger(Interfaces\Triggerable $trigger)
+	{
+		$this->trigger = $trigger;
+	}
+
+	/**
+	 * @return mixed[]
+	 */
+	public function getExtras(): array
+	{
+		return $this->extras;
+	}
+
+	/**
+	 * @param mixed[] $extras
+	 */
+	public function setExtras(array $extras)
+	{
+		$this->extras = $extras;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getVersion(): int
+	{
+		return $this->version;
+	}
+
+	/**
+	 * @param int $version
+	 */
+	public function setVersion(int $version)
+	{
+		$this->version = $version;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getSource(): string
+	{
+		return $this->source;
+	}
+
+	/**
+	 * @param string $source
+	 */
+	public function setSource(string $source)
+	{
+		$this->source = $source;
+	}
+
+	/**
+	 * @return array<mixed>
+	 */
+	public function getCarriers()
+	{
+		return $this->carriers;
+	}
+
+
 
 }
