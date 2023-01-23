@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Abstracts;
 
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Helpers\CaseHelper;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Core\Notification;
 
@@ -20,7 +22,7 @@ use BracketSpace\Notification\Core\Notification;
  */
 abstract class Adapter implements Interfaces\Adaptable
 {
-
+	use Casegnostic;
 	/**
 	 * Notification object
 	 *
@@ -48,6 +50,10 @@ abstract class Adapter implements Interfaces\Adaptable
 	 */
 	public function __call($methodName, $arguments)
 	{
+		if (CaseHelper::isSnake($methodName)) {
+			$methodName = CaseHelper::toCamel($methodName);
+		}
+
 		return call_user_func_array(
 			[$this->getNotification(), $methodName],
 			$arguments
