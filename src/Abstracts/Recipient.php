@@ -64,7 +64,7 @@ abstract class Recipient implements Interfaces\Receivable
 	 * @param string $value raw value saved by the user.
 	 * @return array<mixed> array of resolved values
 	 */
-	abstract public function parseValue($value = '');
+	public function parseValue($value = '') {return [true];}
 
 	/**
 	 * Returns input object
