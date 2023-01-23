@@ -575,6 +575,21 @@ class Notification
 		return $this->carriers;
 	}
 
+	/**
+	 * @param bool $enabled
+	 */
+	public function setEnabled(bool $enabled)
+	{
+		$this->enabled = $enabled;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function getEnabled()
+	{
+		return $this->enabled;
+	}
 
 
 }
