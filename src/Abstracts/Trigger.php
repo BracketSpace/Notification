@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Abstracts;
 
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Interfaces\Taggable;
 use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Traits;
@@ -24,6 +25,7 @@ abstract class Trigger implements Triggerable
 	use Traits\HasGroup;
 	use Traits\HasName;
 	use Traits\HasSlug;
+	use Casegnostic;
 
 	/**
 	 * Flag indicating that trigger
