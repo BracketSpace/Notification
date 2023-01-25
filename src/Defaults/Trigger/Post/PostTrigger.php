@@ -87,7 +87,6 @@ abstract class PostTrigger extends Abstracts\Trigger
 	 */
 	public function mergeTags()
 	{
-
 		$postTypeName = WpObjectHelper::getPostTypeName($this->postType);
 
 		$this->addMergeTag(

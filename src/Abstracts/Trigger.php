@@ -81,7 +81,7 @@ abstract class Trigger implements Triggerable
 	 *
 	 * @return void
 	 */
-	abstract public function mergeTags();
+	public function mergeTags(){}
 
 	/**
 	 * Sets up the merge tags
