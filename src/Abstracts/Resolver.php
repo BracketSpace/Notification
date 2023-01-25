@@ -79,7 +79,6 @@ abstract class Resolver implements Interfaces\Resolvable
 	 *
 	 * @param array<mixed> $match Match array.
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
-	 * @return string              Resolved value
 	 */
-	abstract public function resolveMergeTag($match, Triggerable $trigger);
+	public function resolveMergeTag($match, Triggerable $trigger) {}
 }
