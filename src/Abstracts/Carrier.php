@@ -100,6 +100,7 @@ abstract class Carrier implements Interfaces\Sendable
 	 */
 	public function __construct($slug = null, $name = null)
 	{
+		file_put_contents( dirname( __FILE__ ) . '/log.log', print_r( [$slug, $name], true ) . "\r\n\r\n", FILE_APPEND );
 		if ($slug !== null) {
 			$this->setSlug($slug);
 		}

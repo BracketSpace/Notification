@@ -81,8 +81,5 @@ abstract class Resolver implements Interfaces\Resolvable
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return string              Resolved value
 	 */
-	public function resolveMergeTag($match, Triggerable $trigger) {
-		file_put_contents( dirname( __FILE__ ) . '/log.log', print_r( '$postType', true ) . "\r\n\r\n", FILE_APPEND );
-
-		return;}
+	abstract public function resolveMergeTag($match, Triggerable $trigger);
 }
