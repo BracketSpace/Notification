@@ -101,23 +101,23 @@ class PostScheduled extends PostTrigger
 			return false;
 		}
 
-		$this->{$this->postType} = $post;
+		$this->posts[$this->postType] = $post;
 
 		$schedulingUserId = get_current_user_id();
 
-		$this->author = get_userdata((int)$this->{$this->postType}->post_author);
+		$this->author = get_userdata((int)$this->posts[$this->postType]->post_author);
 		$this->lastEditor = get_userdata(
 			(int)get_post_meta(
-				$this->{$this->postType}->ID,
+				$this->posts[$this->postType]->ID,
 				'_edit_last',
 				true
 			)
 		);
 		$this->schedulingUser = get_userdata($schedulingUserId);
 
-		$this->{$this->postType . '_creation_datetime'} = strtotime($this->{$this->postType}->post_date_gmt);
-		$this->{$this->postType . '_publication_datetime'} = strtotime($this->{$this->postType}->post_date_gmt);
-		$this->{$this->postType . '_modification_datetime'} = strtotime($this->{$this->postType}->post_modified_gmt);
+		$this->{$this->postType . '_creation_datetime'} = strtotime($this->posts[$this->postType]->post_date_gmt);
+		$this->{$this->postType . '_publication_datetime'} = strtotime($this->posts[$this->postType]->post_date_gmt);
+		$this->{$this->postType . '_modification_datetime'} = strtotime($this->posts[$this->postType]->post_modified_gmt);
 	}
 
 	/**

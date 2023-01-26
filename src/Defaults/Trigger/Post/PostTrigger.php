@@ -42,6 +42,15 @@ abstract class PostTrigger extends Abstracts\Trigger
 	public $lastEditor;
 
 	/**
+	 * Replacement for $this->{$this->postType} = $post
+	 * Current usage: $this->posts[$this->postType] = $post
+	 * due to Casegnostic
+	 *
+	 * @var array
+	 */
+	protected $posts = [];
+
+	/**
 	 * Constructor
 	 *
 	 * @param array<mixed> $params trigger configuration params.
