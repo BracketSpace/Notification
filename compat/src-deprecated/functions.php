@@ -676,12 +676,12 @@ function notification_get_global_merge_tags() {
  * Default adapters are: WordPress || JSON
  *
  * @param string $adapterName Adapter class name.
- * @param Notification $notification Notification object.
+ * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
  * @return \BracketSpace\Notification\Interfaces\Adaptable
  * @since  6.0.0
  * @deprecated [Next]
  */
-function notification_adapt($adapterName, Notification $notification) {
+function notification_adapt($adapterName, \BracketSpace\Notification\Core\Notification $notification) {
 	_deprecated_function( __FUNCTION__, '[Next]', 'notificationAdapt');
 
 	return notificationAdapt($adapterName, $notification);
@@ -742,7 +742,7 @@ function notification_log($component, $type, $message) {
  * @since  6.0.0
  * @deprecated [Next]
  */
-function notification_add(Notification $notification) {
+function notification_add(\BracketSpace\Notification\Core\Notification $notification) {
 	_deprecated_function( __FUNCTION__, '[Next]', 'notificationAdd');
 
 	Store\Notification::insert(
