@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Store;
 
 use BracketSpace\Notification\Core\Notification as CoreNotification;
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Interfaces\Storable;
 use BracketSpace\Notification\Traits\Storage;
 
@@ -18,6 +19,7 @@ use BracketSpace\Notification\Traits\Storage;
  */
 class Notification implements Storable
 {
+	use Casegnostic;
 	use Storage;
 
 	/**
