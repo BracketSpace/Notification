@@ -177,6 +177,20 @@ abstract class Carrier implements Interfaces\Sendable
 	}
 
 	/**
+	 * Used to register Carrier form fields
+	 * Uses $this->addFormField();
+	 *
+	 * @return void
+	 */
+	public function formFields() {
+		if (method_exists($this, 'form_fields')) {
+			_deprecated_function( __METHOD__, '[Next]', 'Trigger::formFields');
+
+			$this->form_fields();
+		}
+	}
+
+	/**
 	 * Sends the Carrier
 	 *
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger trigger object.
@@ -242,6 +256,7 @@ abstract class Carrier implements Interfaces\Sendable
 	 */
 	public function addRecipientsField(array $params = [])
 	{
+		file_put_contents( dirname( __FILE__ ) . '/log.log', print_r( [$this->hasRecipientsField(), $this->recipientsField], true ) . "\r\n\r\n", FILE_APPEND );
 		if ($this->hasRecipientsField()) {
 			throw new \Exception('Recipient field has been already added');
 		}
