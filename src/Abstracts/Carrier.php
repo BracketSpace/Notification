@@ -184,7 +184,7 @@ abstract class Carrier implements Interfaces\Sendable
 	 */
 	public function formFields() {
 		if (method_exists($this, 'form_fields')) {
-			_deprecated_function( __METHOD__, '[Next]', 'Trigger::formFields');
+			_deprecated_function( __METHOD__, '[Next]', 'Carrier::formFields');
 
 			$this->form_fields();
 		}
