@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Templates;
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
@@ -21,6 +22,8 @@ use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
  */
 class Screen
 {
+
+	use Casegnostic;
 
 	/**
 	 * TABLE OF CONTENTS: -------------------------------

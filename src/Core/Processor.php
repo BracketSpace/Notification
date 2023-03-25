@@ -14,6 +14,7 @@ namespace BracketSpace\Notification\Core;
 use BracketSpace\Notification\Abstracts\Carrier;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver\Transient;
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\ErrorHandler;
 use BracketSpace\Notification\Interfaces\Sendable;
 use BracketSpace\Notification\Interfaces\Triggerable;
@@ -23,7 +24,7 @@ use BracketSpace\Notification\Interfaces\Triggerable;
  */
 class Processor
 {
-
+	use Casegnostic;
 	/**
 	 * Processes the Queue
 	 *
