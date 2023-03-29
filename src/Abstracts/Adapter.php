@@ -54,6 +54,8 @@ abstract class Adapter implements Interfaces\Adaptable
 			$methodName = CaseHelper::toCamel($methodName);
 		}
 
+		if ( $methodName === 'getNotification' ) return $this->getNotification();
+
 		return call_user_func_array(
 			[$this->getNotification(), $methodName],
 			$arguments
