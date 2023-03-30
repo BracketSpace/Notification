@@ -18,7 +18,6 @@ use BracketSpace\Notification\Interfaces\Triggerable;
  */
 abstract class Resolver implements Interfaces\Resolvable
 {
-
 	/**
 	 * Resolver priority
 	 * Higher number means later execution
@@ -81,5 +80,8 @@ abstract class Resolver implements Interfaces\Resolvable
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @returns string
 	 */
-	public function resolveMergeTag($match, Triggerable $trigger) {return '';}
+	public function resolveMergeTag($match, Triggerable $trigger)
+	{
+		return '';
+	}
 }

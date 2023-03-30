@@ -18,7 +18,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 class PostPublished extends PostTrigger
 {
-
 	/**
 	 * Status name of published post
 	 *

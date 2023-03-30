@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Traits;
  */
 trait Webhook
 {
-
 	/**
 	 * Carrier constructor
 	 *

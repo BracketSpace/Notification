@@ -17,7 +17,6 @@ use BracketSpace\Notification\Defaults\MergeTag;
  */
 class MediaUpdated extends MediaTrigger
 {
-
 	/**
 	 * Updating user object
 	 *

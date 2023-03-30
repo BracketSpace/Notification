@@ -17,7 +17,6 @@ use BracketSpace\Notification\Abstracts\MergeTag;
  */
 class IntegerTag extends MergeTag
 {
-
 	/**
 	 * MergeTag value type
 	 *

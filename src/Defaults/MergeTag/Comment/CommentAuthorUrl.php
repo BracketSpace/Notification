@@ -18,7 +18,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 class CommentAuthorUrl extends UrlTag
 {
-
 	/**
 	 * Trigger property to get the comment data from
 	 *

@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Queries;
  */
 class NotificationQueries
 {
-
 	/**
 	 * Gets Notification posts.
 	 *

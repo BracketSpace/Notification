@@ -19,7 +19,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 abstract class TermTrigger extends Abstracts\Trigger
 {
-
 	/**
 	 * Taxonomy slug
 	 *

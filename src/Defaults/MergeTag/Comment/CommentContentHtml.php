@@ -18,7 +18,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 class CommentContentHtml extends HtmlTag
 {
-
 	/**
 	 * Trigger property to get the comment data from
 	 *

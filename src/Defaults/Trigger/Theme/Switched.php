@@ -17,7 +17,6 @@ use BracketSpace\Notification\Defaults\MergeTag;
  */
 class Switched extends ThemeTrigger
 {
-
 	/**
 	 * Old theme object
 	 *

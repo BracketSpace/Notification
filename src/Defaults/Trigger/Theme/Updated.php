@@ -17,7 +17,6 @@ use BracketSpace\Notification\Defaults\MergeTag;
  */
 class Updated extends ThemeTrigger
 {
-
 	/**
 	 * Theme update date and time
 	 *

@@ -18,7 +18,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 class CommentAuthorIP extends IPTag
 {
-
 	/**
 	 * Trigger property to get the comment data from
 	 *

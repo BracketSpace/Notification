@@ -17,7 +17,6 @@ use BracketSpace\Notification\Defaults\MergeTag;
  */
 class DataExported extends PrivacyTrigger
 {
-
 	/**
 	 * Archive package path
 	 *

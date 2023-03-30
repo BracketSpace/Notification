@@ -17,7 +17,6 @@ use BracketSpace\Notification\Abstracts\Field;
  */
 class SelectField extends Field
 {
-
 	/**
 	 * Field options
 	 * value => label array

@@ -18,7 +18,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 class PostTrashed extends PostTrigger
 {
-
 	/**
 	 * Post trashing user object
 	 *

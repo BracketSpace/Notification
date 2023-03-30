@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Admin;
  */
 class PostTable
 {
-
 	/**
 	 * Adds custom table columns
 	 *

@@ -18,7 +18,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 class CommentReplied extends CommentTrigger
 {
-
 	/**
 	 * Parent comment object
 	 *

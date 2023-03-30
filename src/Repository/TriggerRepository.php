@@ -18,7 +18,6 @@ use BracketSpace\Notification\Defaults\Trigger;
  */
 class TriggerRepository
 {
-
 	/**
 	 * @return void
 	 */

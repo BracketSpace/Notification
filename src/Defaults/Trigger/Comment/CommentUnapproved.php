@@ -17,7 +17,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 class CommentUnapproved extends CommentTrigger
 {
-
 	/**
 	 * Constructor
 	 *

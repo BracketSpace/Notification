@@ -17,7 +17,6 @@ use BracketSpace\Notification\Core\Templates;
  */
 class ErrorLog
 {
-
 	/**
 	 * Field markup.
 	 *

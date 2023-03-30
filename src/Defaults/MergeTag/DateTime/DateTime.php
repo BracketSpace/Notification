@@ -21,7 +21,6 @@ use BracketSpace\Notification\Defaults\MergeTag\StringTag;
  */
 class DateTime extends StringTag
 {
-
 	/**
 	 * Merge tag constructor
 	 *

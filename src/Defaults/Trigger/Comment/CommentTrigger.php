@@ -19,7 +19,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 abstract class CommentTrigger extends Abstracts\Trigger
 {
-
 	/**
 	 * Comment Type slug
 	 *

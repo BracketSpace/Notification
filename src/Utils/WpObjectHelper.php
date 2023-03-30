@@ -22,6 +22,7 @@ use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 class WpObjectHelper
 {
 	use Casegnostic;
+
 	/**
 	 * Gets post type object
 	 *

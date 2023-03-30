@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Traits;
  */
 trait ClassUtils
 {
-
 	/**
 	 * Get short class name without namespace
 	 *

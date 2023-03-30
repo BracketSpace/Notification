@@ -20,7 +20,6 @@ use BracketSpace\Notification\Queries\NotificationQueries;
  */
 class SyncTable
 {
-
 	/**
 	 * Field markup.
 	 *

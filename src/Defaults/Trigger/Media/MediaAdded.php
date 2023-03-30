@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Defaults\Trigger\Media;
  */
 class MediaAdded extends MediaTrigger
 {
-
 	/**
 	 * Constructor
 	 */

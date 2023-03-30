@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Utils\Settings;
  */
 class Field
 {
-
 	/**
 	 * Settings handle
 	 *

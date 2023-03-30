@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Interfaces;
  */
 interface Resolvable
 {
-
 	/**
 	 * Gets slug
 	 *

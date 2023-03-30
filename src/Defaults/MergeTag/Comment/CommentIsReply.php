@@ -18,7 +18,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 class CommentIsReply extends StringTag
 {
-
 	/**
 	 * Trigger property to get the comment data from
 	 *

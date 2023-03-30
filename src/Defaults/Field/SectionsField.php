@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Defaults\Field;
  */
 class SectionsField extends InputField
 {
-
 	/**
 	 * Possible values
 	 *

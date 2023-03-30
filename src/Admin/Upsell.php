@@ -20,7 +20,6 @@ use BracketSpace\Notification\Store\Carrier as CarrierStore;
  */
 class Upsell
 {
-
 	/**
 	 * Adds conditionals metabox
 	 *

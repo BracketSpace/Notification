@@ -14,7 +14,6 @@ namespace BracketSpace\Notification;
  */
 class Register
 {
-
 	/**
 	 * Registers Carrier
 	 *

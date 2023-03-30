@@ -18,7 +18,6 @@ use BracketSpace\Notification\Defaults\Resolver;
  */
 class ResolverRepository
 {
-
 	/**
 	 * @return void
 	 */

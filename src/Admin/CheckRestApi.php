@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Admin;
  */
 class CheckRestApi
 {
-
 	/**
 	 * Method sends request to API, based on response checks whether REST API works correctly
 	 *

@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Api;
  */
 class Api
 {
-
 	/**
 	 * Endpoint namespace
 	 *

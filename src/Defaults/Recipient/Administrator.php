@@ -18,7 +18,6 @@ use BracketSpace\Notification\Defaults\Field;
  */
 class Administrator extends Abstracts\Recipient
 {
-
 	/**
 	 * Recipient constructor
 	 *

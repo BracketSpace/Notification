@@ -18,7 +18,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 class PostUpdated extends PostTrigger
 {
-
 	/**
 	 * Post updating user object
 	 *

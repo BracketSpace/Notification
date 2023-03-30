@@ -17,7 +17,6 @@ use BracketSpace\Notification\Abstracts\Field;
  */
 class TextareaField extends Field
 {
-
 	/**
 	 * Field placeholder
 	 *

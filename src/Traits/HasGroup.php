@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Traits;
  */
 trait HasGroup
 {
-
 	/**
 	 * Human readable, translated group name
 	 *

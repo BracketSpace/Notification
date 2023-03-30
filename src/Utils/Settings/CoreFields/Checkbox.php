@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Utils\Settings\CoreFields;
  */
 class Checkbox
 {
-
 	/**
 	 * Checkbox field
 	 * Requires 'label' addon

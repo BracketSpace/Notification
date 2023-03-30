@@ -20,7 +20,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
  */
 class Wizard
 {
-
 	/**
 	 * Filesystem object
 	 *
@@ -511,7 +510,7 @@ class Wizard
 	public static function shouldDisplay()
 	{
 		/** @var array{publish: int, draft: int} $counter */
-		$counter = (array) wp_count_posts('notification');
+		$counter = (array)wp_count_posts('notification');
 		$count = 0;
 
 		$count += $counter['publish'] ?? 0;

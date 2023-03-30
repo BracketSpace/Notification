@@ -18,6 +18,7 @@ use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 class Group
 {
 	use Casegnostic;
+
 	/**
 	 * Settings handle
 	 *

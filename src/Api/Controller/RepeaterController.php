@@ -19,7 +19,6 @@ use BracketSpace\Notification\Store;
  */
 class RepeaterController
 {
-
 	/**
 	 * Post ID
 	 *

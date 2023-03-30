@@ -19,6 +19,7 @@ use BracketSpace\Notification\Utils\Settings\Section;
 class Settings
 {
 	use Casegnostic;
+
 	/**
 	 * Setting sections (ones in the Settings menu)
 	 *

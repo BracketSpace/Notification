@@ -17,7 +17,6 @@ namespace BracketSpace\Notification\Api\Controller;
  */
 class SectionRepeaterController extends RepeaterController
 {
-
 	/**
 	 * Group fields in associative array
 	 *

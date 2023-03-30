@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Admin;
  */
 class NotificationDuplicator
 {
-
 	/**
 	 * Adds duplicate link to row actions
 	 *

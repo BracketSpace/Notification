@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Traits;
  */
 trait HasDescription
 {
-
 	/**
 	 * Human readable, translated description
 	 *

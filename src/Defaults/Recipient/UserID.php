@@ -18,7 +18,6 @@ use BracketSpace\Notification\Defaults\Field;
  */
 class UserID extends Abstracts\Recipient
 {
-
 	/**
 	 * Recipient constructor
 	 *

@@ -17,7 +17,6 @@ use BracketSpace\Notification\ErrorHandler;
  */
 trait Storage
 {
-
 	/**
 	 * Stored items
 	 *

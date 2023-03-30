@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Utils\Settings\CoreFields;
  */
 class Select
 {
-
 	/**
 	 * Select field
 	 * You can define `multiple` addon to make it multiple

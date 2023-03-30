@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Interfaces;
  */
 interface Triggerable extends Nameable
 {
-
 	/**
 	 * Sets up the merge tags
 	 *

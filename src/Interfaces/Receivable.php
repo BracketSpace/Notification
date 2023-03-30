@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Interfaces;
  */
 interface Receivable extends Nameable
 {
-
 	/**
 	 * Parses saved value something understood by notification
 	 * Must be defined in the child class

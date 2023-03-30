@@ -17,7 +17,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
  */
 class CheckRestApiController
 {
-
 	/**
 	 * Sends response
 	 *

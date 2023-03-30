@@ -18,7 +18,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 class Settings
 {
-
 	/**
 	 * Registers General settings
 	 *

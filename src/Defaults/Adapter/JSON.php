@@ -17,7 +17,6 @@ use BracketSpace\Notification\Abstracts;
  */
 class JSON extends Abstracts\Adapter
 {
-
 	/**
 	 * {@inheritdoc}
 	 *

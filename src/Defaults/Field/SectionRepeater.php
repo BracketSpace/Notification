@@ -17,7 +17,6 @@ use BracketSpace\Notification\Abstracts\Field;
  */
 class SectionRepeater extends Field
 {
-
 	/**
 	 * Current repeater row
 	 *

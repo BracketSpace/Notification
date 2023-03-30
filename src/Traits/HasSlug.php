@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Traits;
  */
 trait HasSlug
 {
-
 	/**
 	 * Object slug
 	 *

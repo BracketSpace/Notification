@@ -17,7 +17,6 @@ use BracketSpace\Notification\Defaults\MergeTag;
  */
 class Updated extends PluginTrigger
 {
-
 	/**
 	 * Plugin previous version
 	 *

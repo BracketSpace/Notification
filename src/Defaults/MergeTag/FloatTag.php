@@ -17,7 +17,6 @@ use BracketSpace\Notification\Abstracts\MergeTag;
  */
 class FloatTag extends MergeTag
 {
-
 	/**
 	 * MergeTag value type
 	 *

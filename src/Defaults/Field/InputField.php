@@ -17,7 +17,6 @@ use BracketSpace\Notification\Abstracts\Field;
  */
 class InputField extends Field
 {
-
 	/**
 	 * Field type
 	 * possible values are valid HTML5 types except file or checkbox

@@ -18,6 +18,7 @@ use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 class Section
 {
 	use Casegnostic;
+
 	/**
 	 * Settings handle
 	 *

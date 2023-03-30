@@ -10,14 +10,11 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 
-use BracketSpace\Notification\Interfaces\Triggerable;
-
 /**
  * Binder class
  */
 class Binder
 {
-
 	/**
 	 * Binds the trigger registered actions
 	 *

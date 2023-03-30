@@ -18,7 +18,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 class CommentID extends IntegerTag
 {
-
 	/**
 	 * Trigger property to get the comment data from
 	 *

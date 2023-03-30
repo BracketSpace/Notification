@@ -22,7 +22,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
  */
 class Screen
 {
-
 	use Casegnostic;
 
 	/**

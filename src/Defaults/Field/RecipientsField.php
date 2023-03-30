@@ -17,7 +17,6 @@ use BracketSpace\Notification\Store\Recipient as RecipientStore;
  */
 class RecipientsField extends RepeaterField
 {
-
 	/**
 	 * If the global description in the header should be printed
 	 *

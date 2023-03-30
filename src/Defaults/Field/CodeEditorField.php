@@ -17,7 +17,6 @@ use BracketSpace\Notification\Abstracts\Field;
  */
 class CodeEditorField extends Field
 {
-
 	/**
 	 * Editor settings
 	 *

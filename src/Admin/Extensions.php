@@ -23,7 +23,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDri
  */
 class Extensions
 {
-
 	/**
 	 * Extensions API URL
 	 *

@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Utils\Settings\CoreFields;
  */
 class Number
 {
-
 	/**
 	 * Number field
 	 * Accepts addons: min, max, step

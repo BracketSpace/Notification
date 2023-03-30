@@ -18,7 +18,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\Templates\Template;
  */
 class Templates
 {
-
 	/**
 	 * Templates storage name.
 	 */

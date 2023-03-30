@@ -18,7 +18,6 @@ use BracketSpace\Notification\Abstracts;
  */
 class EmailChangeRequest extends Abstracts\Trigger
 {
-
 	/**
 	 * User login
 	 *

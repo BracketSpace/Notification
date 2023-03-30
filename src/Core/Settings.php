@@ -17,7 +17,6 @@ use BracketSpace\Notification\Utils\Settings as SettingsAPI;
  */
 class Settings extends SettingsAPI
 {
-
 	/**
 	 * Settings constructor
 	 */

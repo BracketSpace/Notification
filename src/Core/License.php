@@ -21,7 +21,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDri
  */
 class License
 {
-
 	/**
 	 * Extension data
 	 *

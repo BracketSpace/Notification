@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Integration;
  */
 class WordPressEmails
 {
-
 	/**
 	 * Replaces the default hooks for the new user notification
 	 *

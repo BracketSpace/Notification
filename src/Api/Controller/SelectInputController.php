@@ -20,7 +20,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
  */
 class SelectInputController
 {
-
 	/**
 	 * Sends response
 	 *

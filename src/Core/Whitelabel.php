@@ -16,7 +16,6 @@ namespace BracketSpace\Notification\Core;
  */
 class Whitelabel
 {
-
 	/**
 	 * If plugin is in whitelabel mode.
 	 *

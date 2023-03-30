@@ -18,7 +18,6 @@ use BracketSpace\Notification\Defaults\MergeTag;
  */
 abstract class ThemeTrigger extends Abstracts\Trigger
 {
-
 	/**
 	 * Theme object
 	 *

@@ -18,7 +18,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 class PostApproved extends PostTrigger
 {
-
 	/**
 	 * Post approving user object
 	 *

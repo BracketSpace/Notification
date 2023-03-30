@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Integration;
  */
 class TwoFactor
 {
-
 	/**
 	 * Adds another authentication action
 	 *

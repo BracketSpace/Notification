@@ -17,7 +17,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
  */
 class Scripts
 {
-
 	/**
 	 * Filesystem object
 	 *

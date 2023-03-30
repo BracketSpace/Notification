@@ -17,7 +17,6 @@ use BracketSpace\Notification\Abstracts\Field;
  */
 class ImageField extends Field
 {
-
 	/**
 	 * Returns field HTML
 	 *

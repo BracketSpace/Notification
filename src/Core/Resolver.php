@@ -19,7 +19,6 @@ use BracketSpace\Notification\Store\Resolver as ResolverStore;
  */
 class Resolver
 {
-
 	/**
 	 * Resolves value with all the resolvers
 	 *

@@ -19,7 +19,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\Helper as DocHo
  */
 class CarrierRepository
 {
-
 	/**
 	 * @return void
 	 */

@@ -18,7 +18,6 @@ use BracketSpace\Notification\Queries\NotificationQueries;
  */
 class ImportExport
 {
-
 	/**
 	 * Registers Import/Export settings
 	 *

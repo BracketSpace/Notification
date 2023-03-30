@@ -17,7 +17,6 @@ use BracketSpace\Notification\Defaults\MergeTag;
  */
 class UserLoginFailed extends UserTrigger
 {
-
 	/**
 	 * User login failure date and time
 	 *

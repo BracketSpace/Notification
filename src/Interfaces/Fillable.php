@@ -17,7 +17,6 @@ namespace BracketSpace\Notification\Interfaces;
  */
 interface Fillable
 {
-
 	/**
 	 * Gets field value
 	 *

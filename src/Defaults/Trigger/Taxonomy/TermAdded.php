@@ -18,7 +18,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 class TermAdded extends TermTrigger
 {
-
 	/**
 	 * Term creation date and time
 	 *

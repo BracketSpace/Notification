@@ -18,7 +18,6 @@ use BracketSpace\Notification\Defaults\MergeTag;
  */
 abstract class PluginTrigger extends Abstracts\Trigger
 {
-
 	/**
 	 * Plugin details array
 	 *

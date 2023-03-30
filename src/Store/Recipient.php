@@ -20,7 +20,6 @@ use BracketSpace\Notification\Interfaces;
  */
 class Recipient implements Interfaces\Storable
 {
-
 	/**
 	 * Stored items
 	 *

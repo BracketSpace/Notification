@@ -17,7 +17,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 class PostDrafted extends PostTrigger
 {
-
 	/**
 	 * Post publishing user object
 	 *

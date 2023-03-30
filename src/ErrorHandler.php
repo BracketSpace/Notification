@@ -15,7 +15,6 @@ namespace BracketSpace\Notification;
  */
 class ErrorHandler
 {
-
 	/**
 	 * Checks if debug is enabled.
 	 *

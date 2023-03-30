@@ -17,7 +17,6 @@ use BracketSpace\Notification\Defaults\MergeTag;
  */
 class UserPasswordResetRequest extends UserTrigger
 {
-
 	/**
 	 * Password reset request date and time
 	 *

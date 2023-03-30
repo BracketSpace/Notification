@@ -18,7 +18,6 @@ use BracketSpace\Notification\Utils\Settings\Fields as SpecificFields;
  */
 class Debugging
 {
-
 	/**
 	 * Registers Debugging settings
 	 *

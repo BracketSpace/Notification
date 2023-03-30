@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Utils\Settings\CoreFields;
  */
 class Range
 {
-
 	/**
 	 * Range field
 	 * Accepts addons: min, max, step

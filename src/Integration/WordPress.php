@@ -17,7 +17,6 @@ use BracketSpace\Notification\Interfaces\Triggerable;
  */
 class WordPress
 {
-
 	/**
 	 * --------------------------
 	 * Email headers

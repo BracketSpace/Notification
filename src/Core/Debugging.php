@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Core;
  */
 class Debugging
 {
-
 	/**
 	 * Logs table name with prefix
 	 *

@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Core;
  */
 class Cron
 {
-
 	/**
 	 * Registers custom intervals for Cron
 	 *

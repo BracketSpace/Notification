@@ -19,6 +19,7 @@ use BracketSpace\Notification\Interfaces;
 abstract class Field implements Interfaces\Fillable
 {
 	use Casegnostic;
+
 	/**
 	 * Field unique ID
 	 *

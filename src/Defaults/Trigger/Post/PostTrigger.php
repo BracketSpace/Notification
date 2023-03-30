@@ -19,7 +19,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 abstract class PostTrigger extends Abstracts\Trigger
 {
-
 	/**
 	 * Post Type slug
 	 *

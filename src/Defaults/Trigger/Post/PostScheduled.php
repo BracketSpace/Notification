@@ -18,7 +18,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 class PostScheduled extends PostTrigger
 {
-
 	/**
 	 * Post scheduling user object
 	 *

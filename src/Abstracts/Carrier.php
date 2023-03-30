@@ -28,6 +28,7 @@ abstract class Carrier implements Interfaces\Sendable
 	use Traits\HasName;
 	use Traits\HasSlug;
 	use Casegnostic;
+
 	/**
 	 * Form fields
 	 *
@@ -182,12 +183,15 @@ abstract class Carrier implements Interfaces\Sendable
 	 *
 	 * @return void
 	 */
-	public function formFields() {
-		if (method_exists($this, 'form_fields')) {
-			_deprecated_function( __METHOD__, '[Next]', 'Carrier::formFields');
-
-			$this->form_fields();
+	public function formFields()
+	{
+		if (!method_exists($this, 'form_fields')) {
+			return;
 		}
+
+		_deprecated_function(__METHOD__, '[Next]', 'Carrier::formFields');
+
+		$this->form_fields();
 	}
 
 	/**
@@ -256,7 +260,7 @@ abstract class Carrier implements Interfaces\Sendable
 	 */
 	public function addRecipientsField(array $params = [])
 	{
-		file_put_contents( dirname( __FILE__ ) . '/log.log', print_r( [$this->hasRecipientsField(), $this->recipientsField], true ) . "\r\n\r\n", FILE_APPEND );
+		file_put_contents(dirname(__FILE__) . '/log.log', print_r([$this->hasRecipientsField(), $this->recipientsField], true) . "\r\n\r\n", FILE_APPEND);
 		if ($this->hasRecipientsField()) {
 			throw new \Exception('Recipient field has been already added');
 		}

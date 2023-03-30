@@ -17,7 +17,6 @@ use BracketSpace\Notification\Abstracts\Field;
  */
 class CheckboxField extends Field
 {
-
 	/**
 	 * Checkbox label text
 	 * Default: Enable

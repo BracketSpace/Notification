@@ -18,7 +18,6 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
  */
 class TermDeleted extends TermTrigger
 {
-
 	/**
 	 * Term deletion date and time
 	 *

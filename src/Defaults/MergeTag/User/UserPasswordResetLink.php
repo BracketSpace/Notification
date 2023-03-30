@@ -21,7 +21,6 @@ use BracketSpace\Notification\Defaults\MergeTag\StringTag;
  */
 class UserPasswordResetLink extends StringTag
 {
-
 	/**
 	 * Trigger property to get the reset key from
 	 *

@@ -17,7 +17,6 @@ namespace BracketSpace\Notification\Interfaces;
  */
 interface Adaptable
 {
-
 	/**
 	 * Reads the data
 	 *

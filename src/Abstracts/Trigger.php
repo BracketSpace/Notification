@@ -80,12 +80,15 @@ abstract class Trigger implements Triggerable
 	 *
 	 * @return void
 	 */
-	public function mergeTags() {
-		if (method_exists($this, 'merge_tags')) {
-			_deprecated_function( __METHOD__, '[Next]', 'Trigger::mergeTags');
-
-			$this->merge_tags();
+	public function mergeTags()
+	{
+		if (!method_exists($this, 'merge_tags')) {
+			return;
 		}
+
+		_deprecated_function(__METHOD__, '[Next]', 'Trigger::mergeTags');
+
+		$this->merge_tags();
 	}
 
 	/**

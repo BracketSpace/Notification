@@ -18,7 +18,6 @@ use BracketSpace\Notification\Defaults\MergeTag;
  */
 abstract class UserTrigger extends Abstracts\Trigger
 {
-
 	/**
 	 * User ID
 	 *

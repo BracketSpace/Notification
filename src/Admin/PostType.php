@@ -21,7 +21,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDri
  */
 class PostType
 {
-
 	/**
 	 * TABLE OF CONTENTS: -------------------------------
 	 * - Post Type.

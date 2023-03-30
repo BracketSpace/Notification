@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Utils\Settings\CoreFields;
  */
 class Image
 {
-
 	/**
 	 * Image Field field
 	 * Requires 'label' addon

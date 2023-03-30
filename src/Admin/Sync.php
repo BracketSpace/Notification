@@ -22,7 +22,6 @@ use BracketSpace\Notification\Queries\NotificationQueries;
  */
 class Sync
 {
-
 	/**
 	 * Registers synchronization settings
 	 * Hooks into the Import / Export settings.

@@ -17,7 +17,6 @@ use BracketSpace\Notification\Defaults\MergeTag;
  */
 class MediaTrashed extends MediaTrigger
 {
-
 	/**
 	 * Trashing user object
 	 *

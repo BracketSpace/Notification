@@ -18,7 +18,6 @@ use BracketSpace\Notification\Register;
  */
 class GlobalMergeTagRepository
 {
-
 	/**
 	 * @return void
 	 */

@@ -21,7 +21,6 @@ use BracketSpace\Notification\Core\Notification;
  */
 class WordPress extends Abstracts\Adapter
 {
-
 	/**
 	 * Notification post
 	 *

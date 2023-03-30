@@ -42,9 +42,9 @@ $logs = $get('logs');
 									"
 						>
 							<?php
-							 echo esc_html(
+							echo esc_html(
 								sprintf(
-								// translators: Time ago.
+								 // translators: Time ago.
 									__('%s ago'),
 									human_time_diff(strtotime($log['time']))
 								)

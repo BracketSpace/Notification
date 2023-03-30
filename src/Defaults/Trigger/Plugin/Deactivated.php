@@ -17,7 +17,6 @@ use BracketSpace\Notification\Defaults\MergeTag;
  */
 class Deactivated extends PluginTrigger
 {
-
 	/**
 	 * Plugin deactivation date and time
 	 *

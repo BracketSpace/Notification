@@ -18,7 +18,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDri
  */
 class UserQueries
 {
-
 	/**
 	 * Gets all users.
 	 *

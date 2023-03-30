@@ -18,7 +18,6 @@ use BracketSpace\Notification\Defaults\MergeTag;
  */
 abstract class MediaTrigger extends Abstracts\Trigger
 {
-
 	/**
 	 * Attachment post object
 	 *

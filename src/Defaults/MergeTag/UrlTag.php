@@ -17,7 +17,6 @@ use BracketSpace\Notification\Abstracts\MergeTag;
  */
 class UrlTag extends MergeTag
 {
-
 	/**
 	 * MergeTag value type
 	 *

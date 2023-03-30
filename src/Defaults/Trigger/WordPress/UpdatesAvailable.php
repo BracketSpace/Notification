@@ -18,7 +18,6 @@ use BracketSpace\Notification\Abstracts;
  */
 class UpdatesAvailable extends Abstracts\Trigger
 {
-
 	/**
 	 * Update types
 	 *

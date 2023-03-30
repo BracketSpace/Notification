@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Interfaces;
  */
 interface Taggable extends Nameable
 {
-
 	/**
 	 * Resolves the merge tag value
 	 *

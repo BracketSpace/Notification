@@ -18,7 +18,6 @@ use BracketSpace\Notification\Defaults\MergeTag;
  */
 abstract class PrivacyTrigger extends Abstracts\Trigger
 {
-
 	/**
 	 * User request object
 	 *

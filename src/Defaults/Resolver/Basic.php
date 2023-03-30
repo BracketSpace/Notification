@@ -24,7 +24,6 @@ use BracketSpace\Notification\Interfaces\Triggerable;
  */
 class Basic extends Abstracts\Resolver
 {
-
 	/**
 	 * Resolver priority
 	 * Higher number means later execution

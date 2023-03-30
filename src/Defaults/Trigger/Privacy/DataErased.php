@@ -15,7 +15,6 @@ namespace BracketSpace\Notification\Defaults\Trigger\Privacy;
  */
 class DataErased extends PrivacyTrigger
 {
-
 	/**
 	 * Constructor
 	 */

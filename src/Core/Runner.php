@@ -20,7 +20,6 @@ use BracketSpace\Notification\Interfaces\Triggerable;
  */
 class Runner
 {
-
 	/**
 	 * Trigger instance
 	 *

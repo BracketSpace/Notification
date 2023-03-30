@@ -22,7 +22,6 @@ use WP_CLI;
  */
 class DumpHooks
 {
-
 	/**
 	 * Dump all the Dochooks.
 	 *

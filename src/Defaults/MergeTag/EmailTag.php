@@ -17,7 +17,6 @@ use BracketSpace\Notification\Abstracts\MergeTag;
  */
 class EmailTag extends MergeTag
 {
-
 	/**
 	 * MergeTag value type
 	 *

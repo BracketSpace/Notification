@@ -17,7 +17,6 @@ use BracketSpace\Notification\Defaults\MergeTag;
  */
 class UserRoleChanged extends UserTrigger
 {
-
 	/**
 	 * User meta data
 	 *
