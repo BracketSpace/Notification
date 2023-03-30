@@ -38,7 +38,7 @@ class CommentActionSpam extends UrlTag
 		if (isset($params['comment_type']) && !empty($params['comment_type'])) {
 			$this->commentType = $params['comment_type'];
 		}
-
+    
 		$this->setTriggerProp($params['property_name'] ?? $this->commentType);
 
 		$commentTypeName = WpObjectHelper::getCommentTypeName($this->commentType);
