@@ -56,10 +56,6 @@ class PostContent extends StringTag
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ($trigger) {
-					foreach ($trigger->getMergeTags('visible') as $merge_tag) {
-						file_put_contents(dirname(__FILE__) . '/log.log', print_r($merge_tag->getName() . ': {' . $merge_tag->getSlug() . '}', true) . "\r\n\r\n", FILE_APPEND);
-					}
-
 					return apply_filters(
 						'the_content',
 						$trigger->{$this->getTriggerProp()}->post_content
