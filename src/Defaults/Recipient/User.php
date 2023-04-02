@@ -54,6 +54,7 @@ class User extends Abstracts\Recipient
 		$user = get_userdata((int)$value);
 
 		if ($user) {
+			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 			return [$user->user_email];
 		}
 

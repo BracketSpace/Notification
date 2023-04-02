@@ -44,6 +44,7 @@ class NotificationLog
 				true
 			);
 			$logs[] = [
+				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 				'time' => $rawLog->time_logged,
 				'notification' => $logData['notification'],
 				'trigger' => $logData['trigger'],

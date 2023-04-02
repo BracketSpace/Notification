@@ -98,7 +98,7 @@ class PostPublished extends PostTrigger
 	 */
 	public function context($newStatus, $oldStatus, $post)
 	{
-
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 		if ($post->post_type !== $this->postType) {
 			return false;
 		}
@@ -119,9 +119,15 @@ class PostPublished extends PostTrigger
 		);
 		$this->publishingUser = get_userdata(get_current_user_id());
 
-		$this->{$this->postType . '_creation_datetime'} = strtotime($this->posts[$this->postType]->post_date_gmt);
-		$this->{$this->postType . '_publication_datetime'} = strtotime($this->posts[$this->postType]->post_date_gmt);
-		$this->{$this->postType . '_modification_datetime'} = strtotime($this->posts[$this->postType]->post_modified_gmt);
+		$this->{$this->postType . '_creation_datetime'} = strtotime(
+			$this->posts[$this->postType]->post_date_gmt
+		);
+		$this->{$this->postType . '_publication_datetime'} = strtotime(
+			$this->posts[$this->postType]->post_date_gmt
+		);
+		$this->{$this->postType . '_modification_datetime'} = strtotime(
+			$this->posts[$this->postType]->post_modified_gmt
+		);
 	}
 
 	/**

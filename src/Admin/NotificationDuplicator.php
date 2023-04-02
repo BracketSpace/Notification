@@ -26,6 +26,7 @@ class NotificationDuplicator
 	 */
 	public function addDuplicateRowAction($rowActions, $post)
 	{
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 		if ($post->post_type !== 'notification') {
 			return $rowActions;
 		}
@@ -99,6 +100,7 @@ class NotificationDuplicator
 						'Duplicate',
 						'notification'
 					),
+					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 					$source->post_title
 				),
 				'post_content' => wp_slash($json->save(JSON_UNESCAPED_UNICODE)),

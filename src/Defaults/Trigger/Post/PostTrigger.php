@@ -45,7 +45,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 	 * Current usage: $this->posts[$this->postType] = $post
 	 * due to Casegnostic
 	 *
-	 * @var array
+	 * @var array<\WP_Post>
 	 */
 	protected $posts = [];
 

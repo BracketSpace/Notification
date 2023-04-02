@@ -117,7 +117,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 
 		$this->userObject = new \StdClass();
 		$this->userObject->ID = ($this->comment->user_id)
-			?: 0;
+			? ($this->comment->user_id) : 0;
 		$this->userObject->displayName = $this->comment->comment_author;
 		$this->userObject->userEmail = $this->comment->comment_author_email;
 

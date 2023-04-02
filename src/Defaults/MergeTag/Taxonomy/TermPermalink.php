@@ -48,6 +48,7 @@ class TermPermalink extends UrlTag
 					'notification'
 				),
 				'resolver' => static function ($trigger) {
+					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 					return $trigger->term_permalink;
 				},
 			]

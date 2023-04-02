@@ -105,10 +105,11 @@ class PostAdded extends PostTrigger
 			'notification/trigger/wordpress/' . $this->postType . '/added/bail_auto_draft',
 			true
 		);
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 		if ($bailAutoDraft && $post->post_status === 'auto-draft') {
 			return false;
 		}
-
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 		if ($post->post_type !== $this->postType) {
 			return false;
 		}
@@ -126,7 +127,11 @@ class PostAdded extends PostTrigger
 		);
 		$this->publishingUser = get_userdata(get_current_user_id());
 
-		$this->{$this->postType . '_creation_datetime'} = strtotime($this->posts[$this->postType]->post_date_gmt);
-		$this->{$this->postType . '_modification_datetime'} = strtotime($this->posts[$this->postType]->post_modified_gmt);
+		$this->{$this->postType . '_creation_datetime'} = strtotime(
+			$this->posts[$this->postType]->post_date_gmt
+		);
+		$this->{$this->postType . '_modification_datetime'} = strtotime(
+			$this->posts[$this->postType]->post_modified_gmt
+		);
 	}
 }

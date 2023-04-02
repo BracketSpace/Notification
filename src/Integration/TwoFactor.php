@@ -51,6 +51,7 @@ class TwoFactor
 	{
 		do_action(
 			'ntfn_proxy_two_factor_user_authenticated',
+			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 			$user->user_login,
 			$user
 		);

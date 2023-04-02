@@ -28,6 +28,7 @@ class CheckRestApi
 		$currentScreen = get_current_screen();
 
 		if ($currentScreen instanceof \WP_Screen) {
+			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 			$isEdit = $currentScreen->base === 'post' && $currentScreen->post_type === 'notification';
 		}
 

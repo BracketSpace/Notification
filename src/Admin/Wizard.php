@@ -93,7 +93,9 @@ class Wizard
 		$screen = get_current_screen();
 
 		if (
+			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 			isset($screen->post_type) &&
+			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 			$screen->post_type === 'notification' &&
 			$screen->id !== 'notification_page_wizard'
 		) {

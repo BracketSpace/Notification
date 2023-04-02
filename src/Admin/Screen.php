@@ -468,6 +468,7 @@ class Screen
 	 */
 	public function addHelp($screen)
 	{
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 		if ($screen->post_type !== 'notification') {
 			return;
 		}

@@ -91,7 +91,7 @@ class PostUpdated extends PostTrigger
 	 */
 	public function context($postId, $post, $postBefore)
 	{
-
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 		if ($post->post_type !== $this->postType) {
 			return false;
 		}
@@ -105,15 +105,18 @@ class PostUpdated extends PostTrigger
 		);
 
 		// Pending posts doesn't have the slug, otherwise we should bail.
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 		if ($post->post_status !== 'pending' && empty($post->post_name)) {
 			return false;
 		}
 
 		if (
 			!in_array(
+			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 				$postBefore->post_status,
 				$updatedPostStatuses,
 				true
+			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 			) || $post->post_status === 'trash'
 		) {
 			return false;
@@ -133,8 +136,12 @@ class PostUpdated extends PostTrigger
 		);
 		$this->updatingUser = get_userdata($updatingUserId);
 
-		$this->{$this->postType . '_creation_datetime'} = strtotime($this->posts[$this->postType]->post_date_gmt);
-		$this->{$this->postType . '_modification_datetime'} = strtotime($this->posts[$this->postType]->post_modified_gmt);
+		$this->{$this->postType . '_creation_datetime'} = strtotime(
+			$this->posts[$this->postType]->post_date_gmt
+		);
+		$this->{$this->postType . '_modification_datetime'} = strtotime(
+			$this->posts[$this->postType]->post_modified_gmt
+		);
 	}
 
 	/**

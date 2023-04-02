@@ -266,7 +266,9 @@ class Upgrade
 		foreach ($notifications as $adapter) {
 			$post = $adapter->getPost();
 
+			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 			$adapter->setHash($post->post_name);
+			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 			$adapter->setTitle($post->post_title);
 
 			// Trigger.
@@ -300,7 +302,9 @@ class Upgrade
 				$adapter->setCarriers($carriers);
 			}
 
+			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 			$adapter->setEnabled($post->post_status === 'publish');
+			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 			$adapter->setVersion((int)strtotime($post->post_modified_gmt));
 
 			$adapter->save();

@@ -82,6 +82,7 @@ class Updated extends PluginTrigger
 		/** @var \stdClass */
 		$skin = $upgrader->skin;
 
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 		$this->previousVersion = $skin->plugin_info['Version'];
 		$pluginDir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $upgrader->plugin_info();
 		$this->plugin = get_plugin_data(

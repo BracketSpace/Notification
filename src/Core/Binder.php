@@ -32,7 +32,7 @@ class Binder
 			$triggers = [$triggers];
 		}
 		foreach ($triggers as $trigger) {
-			/* @var Triggerable $trigger */
+			/** @var \BracketSpace\Notification\Core\BracketSpace\Notification\Interfaces\Triggerable $trigger */
 			foreach ($trigger->getActions() as $action) {
 				add_action(
 					$action['tag'],

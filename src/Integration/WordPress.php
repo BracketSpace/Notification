@@ -122,6 +122,7 @@ class WordPress
 	 */
 	public function proxyCommentReply($commentId, $comment)
 	{
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 		$status = $comment->comment_approved === '1'
 			? 'approved'
 			: 'unapproved';
@@ -174,7 +175,7 @@ class WordPress
 	 */
 	public function proxyTransitionCommentStatusToPublished($commentNewStatus, $commentOldStatus, $comment)
 	{
-
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 		if ($comment->comment_approved === 'spam' && notificationGetSetting('triggers/comment/akismet')) {
 			return;
 		}

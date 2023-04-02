@@ -117,12 +117,14 @@ class License
 
 		return $cache->collect(
 			function () use ($licenseData) {
+				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 				$licenseCheck = $this->check($licenseData->license_key);
 
 				if (is_wp_error($licenseCheck)) {
 					return $licenseData->license === 'valid';
 				}
 
+				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 				$licenseCheck->license_key = $licenseData->license_key;
 				$licenseData = $licenseCheck;
 				$this->save($licenseData);

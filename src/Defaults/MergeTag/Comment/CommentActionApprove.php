@@ -64,6 +64,7 @@ class CommentActionApprove extends UrlTag
 				),
 				'resolver' => function ($trigger) {
 					return admin_url(
+					// phpcs:ignore Generic.Files.LineLength.TooLong
 						"comment.php?action=approve&c={$trigger->{ $this->getTriggerProp() }->comment_ID}#wpbody-content"
 					);
 				},

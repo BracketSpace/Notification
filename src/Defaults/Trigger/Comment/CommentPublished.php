@@ -66,7 +66,7 @@ class CommentPublished extends CommentTrigger
 	 */
 	public function context($comment)
 	{
-
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 		if ($comment->comment_approved !== '1') {
 			return false;
 		}
