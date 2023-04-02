@@ -260,7 +260,6 @@ abstract class Carrier implements Interfaces\Sendable
 	 */
 	public function addRecipientsField(array $params = [])
 	{
-		file_put_contents(dirname(__FILE__) . '/log.log', print_r([$this->hasRecipientsField(), $this->recipientsField], true) . "\r\n\r\n", FILE_APPEND);
 		if ($this->hasRecipientsField()) {
 			throw new \Exception('Recipient field has been already added');
 		}
