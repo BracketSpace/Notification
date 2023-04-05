@@ -302,9 +302,10 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
-= Next =
+= [Next] =
 
 * [Fixed] Comment merge tags rendering empty values.
+* [Changed] Development dependencies got some security patches.
 
 = 8.0.14 =
 
