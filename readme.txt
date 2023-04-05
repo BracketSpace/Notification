@@ -306,6 +306,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 * [Fixed] Comment merge tags rendering empty values.
 * [Changed] Development dependencies got some security patches.
+* [Changed] `notification/merge_tag/value/resolve` now accepts unsanitized value.
 
 = 8.0.14 =
 
