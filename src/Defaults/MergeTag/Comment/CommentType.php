@@ -34,7 +34,7 @@ class CommentType extends StringTag {
 			$this->comment_type = $params['comment_type'];
 		}
 
-		$this->set_trigger_prop( $params['property_name'] ?? $this->comment_type );
+		$this->set_trigger_prop( $params['property_name'] ?? 'comment' );
 
 		$args = wp_parse_args(
 			$params,

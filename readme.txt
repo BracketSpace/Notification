@@ -2,8 +2,8 @@
 Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
-Tested up to: 6.1
-Stable tag: 8.0.14
+Tested up to: 6.2
+Stable tag: 8.0.15
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -301,6 +301,12 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 7. Default email disabler
 
 == Changelog ==
+
+= 8.0.15 =
+
+* [Fixed] Comment merge tags rendering empty values.
+* [Changed] Development dependencies got some security patches.
+* [Changed] `notification/merge_tag/value/resolve` now accepts unsanitized value.
 
 = 8.0.14 =
 

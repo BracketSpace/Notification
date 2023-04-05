@@ -34,7 +34,7 @@ class CommentStatus extends StringTag {
 			$this->comment_type = $params['comment_type'];
 		}
 
-		$this->set_trigger_prop( $params['property_name'] ?? $this->comment_type );
+		$this->set_trigger_prop( $params['property_name'] ?? 'comment' );
 
 		$comment_type_name = WpObjectHelper::get_comment_type_name( $this->comment_type );
 
