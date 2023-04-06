@@ -31,8 +31,9 @@ class Binder
 		if (!is_array($triggers)) {
 			$triggers = [$triggers];
 		}
+
+		/** @var \BracketSpace\Notification\Interfaces\Triggerable $trigger */
 		foreach ($triggers as $trigger) {
-			/** @var \BracketSpace\Notification\Core\BracketSpace\Notification\Interfaces\Triggerable $trigger */
 			foreach ($trigger->getActions() as $action) {
 				add_action(
 					$action['tag'],

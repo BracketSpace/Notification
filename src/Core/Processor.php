@@ -140,7 +140,7 @@ class Processor
 		}
 
 		foreach ($notification->getEnabledCarriers() as $carrier) {
-			/** @var \BracketSpace\Notification\Core\BracketSpace\Notification\Abstracts\Carrier $carrier */
+			/** @var \BracketSpace\Notification\Abstracts\Carrier $carrier */
 			$carrier->resolveFields($trigger);
 			$carrier->prepareData();
 
