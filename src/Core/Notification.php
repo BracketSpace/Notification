@@ -481,10 +481,12 @@ class Notification
 
 	/**
 	 * @param string $hash
+	 * @return Notification
 	 */
-	public function setHash(string $hash)
+	public function setHash(string $hash): Notification
 	{
 		$this->hash = $hash;
+		return $this;
 	}
 
 	/**
@@ -497,10 +499,12 @@ class Notification
 
 	/**
 	 * @param string $title
+	 * @return Notification
 	 */
-	public function setTitle(string $title)
+	public function setTitle(string $title): Notification
 	{
 		$this->title = $title;
+		return $this;
 	}
 
 	/**
@@ -513,10 +517,12 @@ class Notification
 
 	/**
 	 * @param Interfaces\Triggerable|null $trigger
+	 * @return Notification
 	 */
-	public function setTrigger(Interfaces\Triggerable $trigger)
+	public function setTrigger(Interfaces\Triggerable $trigger): Notification
 	{
 		$this->trigger = $trigger;
+		return $this;
 	}
 
 	/**
@@ -529,10 +535,12 @@ class Notification
 
 	/**
 	 * @param mixed[] $extras
+	 * @return Notification
 	 */
-	public function setExtras(array $extras)
+	public function setExtras(array $extras): Notification
 	{
 		$this->extras = $extras;
+		return $this;
 	}
 
 	/**
@@ -545,10 +553,12 @@ class Notification
 
 	/**
 	 * @param int $version
+	 * @return Notification
 	 */
-	public function setVersion(int $version)
+	public function setVersion(int $version): Notification
 	{
 		$this->version = $version;
+		return $this;
 	}
 
 	/**
@@ -561,10 +571,12 @@ class Notification
 
 	/**
 	 * @param string $source
+	 * @return Notification
 	 */
-	public function setSource(string $source)
+	public function setSource(string $source): Notification
 	{
 		$this->source = $source;
+		return $this;
 	}
 
 	/**
@@ -577,10 +589,12 @@ class Notification
 
 	/**
 	 * @param bool $enabled
+	 * @return Notification
 	 */
-	public function setEnabled(bool $enabled)
+	public function setEnabled(bool $enabled): Notification
 	{
 		$this->enabled = $enabled;
+		return $this;
 	}
 
 	/**
