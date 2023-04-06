@@ -115,6 +115,7 @@ class PostAdded extends PostTrigger
 		}
 
 		// WP_Post object.
+		/** @var \WP_Post $post */
 		$this->posts[$this->postType] = $post;
 
 		$this->author = get_userdata((int)$this->posts[$this->postType]->post_author);

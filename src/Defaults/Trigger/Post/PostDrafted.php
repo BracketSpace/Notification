@@ -103,6 +103,7 @@ class PostDrafted extends PostTrigger
 			return false;
 		}
 
+		/** @var \WP_Post $post */
 		$this->posts[$this->postType] = $post;
 
 		$this->author = get_userdata((int)$this->posts[$this->postType]->post_author);

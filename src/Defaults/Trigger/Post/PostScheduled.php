@@ -100,6 +100,7 @@ class PostScheduled extends PostTrigger
 			return false;
 		}
 
+		/** @var \WP_Post $post */
 		$this->posts[$this->postType] = $post;
 
 		$schedulingUserId = get_current_user_id();
