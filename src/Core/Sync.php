@@ -48,13 +48,13 @@ class Sync
 			if (
 				preg_match(
 					'/.*\.json/',
-					$filename
+					(string) $filename
 				) !== 1
 			) {
 				continue;
 			}
 
-			$json = $fs->get_contents($filename);
+			$json = $fs->get_contents( (string) $filename);
 
 			if (empty($json)) {
 				continue;
