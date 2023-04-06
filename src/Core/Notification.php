@@ -519,7 +519,7 @@ class Notification
 	 * @param Interfaces\Triggerable|null $trigger
 	 * @return Notification
 	 */
-	public function setTrigger(Interfaces\Triggerable $trigger): Notification
+	public function setTrigger($trigger): Notification
 	{
 		$this->trigger = $trigger;
 		return $this;
