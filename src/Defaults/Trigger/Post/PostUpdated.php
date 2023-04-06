@@ -116,8 +116,9 @@ class PostUpdated extends PostTrigger
 				$postBefore->post_status,
 				$updatedPostStatuses,
 				true
+			)
 			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-			) || $post->post_status === 'trash'
+			|| $post->post_status === 'trash'
 		) {
 			return false;
 		}

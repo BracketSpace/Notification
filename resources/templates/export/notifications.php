@@ -13,6 +13,8 @@ declare(strict_types=1);
  * @var \BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
+// phpcs:disable Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+
 /** @var array<\BracketSpace\Notification\Defaults\Adapter\WordPress> $notifications */
 $notifications = $get('notifications');
 
