@@ -32,8 +32,8 @@ class Binder
 			$triggers = [$triggers];
 		}
 
-		/** @var \BracketSpace\Notification\Interfaces\Triggerable $trigger */
 		foreach ($triggers as $trigger) {
+			\assert($trigger instanceof \BracketSpace\Notification\Interfaces\Triggerable);
 			foreach ($trigger->getActions() as $action) {
 				add_action(
 					$action['tag'],
