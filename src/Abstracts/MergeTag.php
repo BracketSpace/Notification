@@ -186,7 +186,8 @@ abstract class MergeTag implements Interfaces\Taggable
 
 		$this->value = apply_filters(
 			'notification/merge_tag/value/resolve',
-			$this->sanitize($value)
+			$this->sanitize($value),
+			$value
 		);
 
 		return $this->getValue();
