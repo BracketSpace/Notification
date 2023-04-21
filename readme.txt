@@ -302,6 +302,10 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+
+* [Fixed] Shortcodes being uncorrectly stripped leaving closing "]" behind.
+
 = 8.0.15 =
 
 * [Fixed] Comment merge tags rendering empty values.

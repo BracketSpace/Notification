@@ -385,7 +385,7 @@ abstract class Carrier implements Interfaces\Sendable {
 		);
 
 		if ( $strip_shortcodes ) {
-			$resolved = preg_replace( '@\[([^<>&/\[\]\x00-\x20=]++)@', '', $resolved );
+			$resolved = preg_replace( '@\[([^<>&\\[\]\x00-\x20=]++)\]@', '', $resolved );
 		} else {
 			$resolved = do_shortcode( $resolved );
 		}
