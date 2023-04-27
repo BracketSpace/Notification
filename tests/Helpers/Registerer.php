@@ -17,7 +17,6 @@ use BracketSpace\Notification\Store;
  * Registerer helper class
  */
 class Registerer {
-	use Casegnostic;
 
 	/**
 	 * Registers Trigger
