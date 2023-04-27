@@ -180,6 +180,7 @@ class Sync
 	 * @throws \Exception If provided path is not a directory.
 	 * @since  8.0.0
 	 */
+	//phpcs:ignore SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue.NullabilitySymbolRequired
 	public static function enable(string $path = null)
 	{
 		if (!$path) {

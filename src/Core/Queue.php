@@ -39,6 +39,7 @@ class Queue
 	 * @return void
 	 * @since 8.0.0
 	 */
+	//phpcs:ignore SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue.NullabilitySymbolRequired
 	public static function add(CoreNotification $notification, Triggerable $trigger, int $index = null)
 	{
 		$item = [
