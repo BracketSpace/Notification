@@ -24,10 +24,10 @@ use BracketSpace\Notification\Traits;
  */
 abstract class Carrier implements Interfaces\Sendable
 {
+	use Casegnostic;
 	use Traits\ClassUtils;
 	use Traits\HasName;
 	use Traits\HasSlug;
-	use Casegnostic;
 
 	/**
 	 * Form fields
