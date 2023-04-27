@@ -208,7 +208,7 @@ class TestNotification extends \WP_UnitTestCase {
 	 */
 	public function test_version() {
 
-		$ver = '1.0.0';
+		$ver = (int) '1.0.0';
 
 		$notification = new Notification( [
 			'version' => $ver,
