@@ -305,7 +305,7 @@ class Upgrade
 			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 			$adapter->setEnabled($post->post_status === 'publish');
 			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-			$adapter->setVersion( $post->post_modified_gmt );
+			$adapter->setVersion($post->post_modified_gmt);
 
 			$adapter->save();
 		}

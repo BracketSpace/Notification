@@ -92,7 +92,7 @@ class WordPress extends Abstracts\Adapter
 
 		// Update version as WordPress automatically does this while updating the post.
 		$versionBackup = $this->getVersion();
-		$this->setVersion( (string) time());
+		$this->setVersion((string)time());
 
 		$data = $this->getNotification()->toArray();
 

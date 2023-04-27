@@ -19,6 +19,7 @@ use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
 class Sync
 {
 	use Casegnostic;
+
 	/**
 	 * Sync path
 	 *

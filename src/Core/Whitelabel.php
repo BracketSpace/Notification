@@ -19,6 +19,7 @@ use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 class Whitelabel
 {
 	use Casegnostic;
+
 	/**
 	 * If plugin is in whitelabel mode.
 	 *
