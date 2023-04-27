@@ -10,11 +10,14 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Traits;
 
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
+
 /**
  * ClassUtils trait
  */
 trait ClassUtils
 {
+	use Casegnostic;
 	/**
 	 * Get short class name without namespace
 	 *

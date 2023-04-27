@@ -11,11 +11,14 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
+
 /**
  * Whitelabel class
  */
 class Whitelabel
 {
+	use Casegnostic;
 	/**
 	 * If plugin is in whitelabel mode.
 	 *

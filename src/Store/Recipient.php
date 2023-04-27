@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Store;
 
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\ErrorHandler;
 use BracketSpace\Notification\Interfaces;
 
@@ -20,6 +21,7 @@ use BracketSpace\Notification\Interfaces;
  */
 class Recipient implements Interfaces\Storable
 {
+	use Casegnostic;
 	/**
 	 * Stored items
 	 *

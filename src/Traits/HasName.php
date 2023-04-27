@@ -10,11 +10,15 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Traits;
 
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
+
 /**
  * HasName trait
  */
 trait HasName
 {
+	use Casegnostic;
+
 	/**
 	 * Human readable, translated name
 	 *

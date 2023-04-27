@@ -10,11 +10,15 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Traits;
 
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
+
 /**
  * HasSlug trait
  */
 trait HasSlug
 {
+	use Casegnostic;
+
 	/**
 	 * Object slug
 	 *
