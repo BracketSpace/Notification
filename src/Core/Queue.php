@@ -39,7 +39,7 @@ class Queue
 	 * @return void
 	 * @since 8.0.0
 	 */
-	public static function add(CoreNotification $notification, Triggerable $trigger, ?int $index = null)
+	public static function add(CoreNotification $notification, Triggerable $trigger, int $index = null)
 	{
 		$item = [
 			'notification' => $notification,

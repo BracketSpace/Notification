@@ -180,7 +180,7 @@ class Sync
 	 * @throws \Exception If provided path is not a directory.
 	 * @since  8.0.0
 	 */
-	public static function enable(?string $path = null)
+	public static function enable(string $path = null)
 	{
 		if (!$path) {
 			$path = trailingslashit(get_stylesheet_directory()) . 'notifications';
