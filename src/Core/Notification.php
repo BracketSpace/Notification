@@ -61,7 +61,7 @@ class Notification
 	/**
 	 * Version
 	 *
-	 * @var int
+	 * @var string
 	 */
 	private $version;
 
@@ -544,18 +544,18 @@ class Notification
 	}
 
 	/**
-	 * @return int
+	 * @return string
 	 */
-	public function getVersion(): int
+	public function getVersion(): string
 	{
 		return $this->version;
 	}
 
 	/**
-	 * @param int $version
+	 * @param string $version
 	 * @return Notification
 	 */
-	public function setVersion(int $version): Notification
+	public function setVersion(string $version): Notification
 	{
 		$this->version = $version;
 		return $this;
