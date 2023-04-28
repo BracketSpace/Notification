@@ -37,7 +37,7 @@ class Carrier extends AbstractCarrier {
 	 * @since 5.3.1
 	 * @return void
 	 */
-	public function form_fields() {
+	public function formFields() {
 
 	}
 
