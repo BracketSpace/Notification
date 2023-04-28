@@ -33,7 +33,8 @@
 		"optimize-autoloader": true,
 		"preferred-install": "dist",
 		"sort-packages": true,
-		"allow-plugins": true
+		"allow-plugins": true,
+		"platform-check": false
 	},
 	"extra": {
 		"mozart": {
