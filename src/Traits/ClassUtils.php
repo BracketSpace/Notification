@@ -17,8 +17,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
  */
 trait ClassUtils
 {
-	use Casegnostic;
-
 	/**
 	 * Get short class name without namespace
 	 *
