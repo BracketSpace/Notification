@@ -86,7 +86,8 @@ class Registerer {
 			'trigger'  => $trigger,
 			'carriers' => $carriers,
 		] );
-		notification_add( $notification );
+		notificationAdd( $notification );
+
 		return $notification;
 	}
 
