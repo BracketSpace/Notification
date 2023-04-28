@@ -26,7 +26,7 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
-        run: composer install --ignore-platform-req=php --no-progress
+        run: composer install --no-progress
       - name: Coding Standards
         run: composer phpcs
   phpstan:
@@ -52,9 +52,9 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
-        run: composer install --ignore-platform-req=php --no-progress
+        run: composer install --no-progress
       - name: Install Composer build dependencies
-        run: composer bin build install --ignore-platform-req=php --no-progress
+        run: composer bin build install --no-progress
       - name: Compose dependencies
         run: composer compose
       - name: Analyze
@@ -82,9 +82,9 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
-        run: composer install --ignore-platform-req=php --no-progress
+        run: composer install --no-progress
       - name: Install Composer build dependencies
-        run: composer bin build install --ignore-platform-req=php --no-progress
+        run: composer bin build install --no-progress
       - name: Compose dependencies
         run: composer compose
       - name: Lint
@@ -112,9 +112,9 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
-        run: composer install --ignore-platform-req=php --no-progress
+        run: composer install --no-progress
       - name: Install Composer build dependencies
-        run: composer bin build install --ignore-platform-req=php --no-progress
+        run: composer bin build install --no-progress
       - name: Compose dependencies
         run: composer compose
       - name: Check compatibility
@@ -156,9 +156,9 @@ jobs:
       - name: Set Composer version
         run: composer self-update --2.2
       - name: Install Composer dependencies
-        run: composer install --ignore-platform-req=php --no-progress
+        run: composer install --no-progress
       - name: Install Composer build dependencies
-        run: composer bin build install --ignore-platform-req=php --no-progress
+        run: composer bin build install --no-progress
       - name: Compose dependencies
         run: composer compose
       - name: Remove unused dependencies
