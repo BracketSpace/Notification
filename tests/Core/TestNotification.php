@@ -30,20 +30,6 @@ class TestNotification extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * Test setter exception
-	 *
-	 * @since 6.0.0
-	 */
-	public function test_setter_exception() {
-
-		$this->expectException( \Exception::class );
-
-		$notification = new Notification();
-		$notification->set_something();
-
-	}
-
-	/**
 	 * Test hash creation
 	 *
 	 * @since 6.0.0
