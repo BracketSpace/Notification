@@ -124,7 +124,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['7.4', '8.0']
+        php: [ '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1']
     services:
       mysql:
         image: mysql:5.7
@@ -156,7 +156,7 @@ jobs:
       - name: Set Composer version
         run: composer self-update --2.2
       - name: Install Composer dependencies
-        run: composer install --no-progress
+        run: composer install --ignore-platform-req=php --no-progress
       - name: Install Composer build dependencies
         run: composer bin build install --no-progress
       - name: Compose dependencies
