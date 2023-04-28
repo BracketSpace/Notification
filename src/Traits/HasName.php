@@ -17,8 +17,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
  */
 trait HasName
 {
-	use Casegnostic;
-
 	/**
 	 * Human readable, translated name
 	 *

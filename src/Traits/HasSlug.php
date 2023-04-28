@@ -17,8 +17,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
  */
 trait HasSlug
 {
-	use Casegnostic;
-
 	/**
 	 * Object slug
 	 *
