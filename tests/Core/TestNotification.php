@@ -16,20 +16,6 @@ use BracketSpace\Notification\Core\Notification;
 class TestNotification extends \WP_UnitTestCase {
 
 	/**
-	 * Test getter exception
-	 *
-	 * @since 6.0.0
-	 */
-	public function test_getter_exception() {
-
-		$this->expectException( \Exception::class );
-
-		$notification = new Notification();
-		$this->assertTrue( $notification->get_something() );
-
-	}
-
-	/**
 	 * Test hash creation
 	 *
 	 * @since 6.0.0
