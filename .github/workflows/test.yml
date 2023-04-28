@@ -158,7 +158,7 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --ignore-platform-req=php --no-progress
       - name: Install Composer build dependencies
-        run: composer bin build install --no-progress
+        run: composer bin build install --ignore-platform-req=php --no-progress
       - name: Compose dependencies
         run: composer compose
       - name: Remove unused dependencies
