@@ -112,12 +112,12 @@ class InputField extends Field
 			$value = preg_replace(
 				'/[\r\n\t ]+/',
 				' ',
-				$value
+				(string)$value
 			);
 		}
 
 		// Remove whitespace.
-		$value = trim($value);
+		$value = trim((string)$value);
 
 		return $value;
 	}

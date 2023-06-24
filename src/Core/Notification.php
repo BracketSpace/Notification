@@ -73,6 +73,13 @@ class Notification
 	private $source = 'Internal';
 
 	/**
+	 * Source Post ID
+	 *
+	 * @var int
+	 */
+	private $sourcePostId;
+
+	/**
 	 * Constructor
 	 *
 	 * @param array<mixed> $data Notification data.
@@ -610,7 +617,7 @@ class Notification
 	 *
 	 * @param int $postId The post identifier
 	 */
-	public function setSourcePostId($postId): void
+	public function setSourcePostId($postId)
 	{
 		$this->sourcePostId = $postid;
 	}
