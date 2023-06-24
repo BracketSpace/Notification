@@ -22,7 +22,7 @@
 		"php-stubs/wp-cli-stubs": "^2.4",
 		"phpcompatibility/php-compatibility": "^9.3",
 		"phpcompatibility/phpcompatibility-wp": "*",
-		"phpunit/phpunit": "6.5",
+		"phpunit/phpunit": "^9",
 		"roots/wordpress": "*",
 		"szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^0.6.1",
 		"szepeviktor/phpstan-wordpress": "^1.3",

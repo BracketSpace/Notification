@@ -23,7 +23,7 @@ class TestNotification extends \WP_UnitTestCase {
 	public function test_hash() {
 
 		$notification = new Notification();
-		$this->assertRegExp( '/notification_[a-z0-9]{13}/', $notification->get_hash() );
+		$this->assertMatchesRegularExpression( '/notification_[a-z0-9]{13}/', $notification->get_hash() );
 
 		$notification = new Notification( [
 			'hash' => 'test-hash',
@@ -247,7 +247,7 @@ class TestNotification extends \WP_UnitTestCase {
 	 * @since 6.0.0
 	 */
 	public function test_create_hash() {
-		$this->assertRegExp( '/notification_[a-z0-9]{13}/', Notification::create_hash() );
+		$this->assertMatchesRegularExpression( '/notification_[a-z0-9]{13}/', Notification::create_hash() );
 	}
 
 	/**
@@ -390,7 +390,7 @@ class TestNotification extends \WP_UnitTestCase {
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public function tearDown() {
+	public function tearDown() : void {
         Registerer::clear();
     }
 

@@ -67,7 +67,7 @@ class TestTriggerStore extends \WP_UnitTestCase {
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public function tearDown() {
+	public function tearDown() : void {
         Registerer::clear();
     }
 

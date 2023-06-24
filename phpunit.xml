@@ -8,15 +8,10 @@
 	convertWarningsToExceptions="true"
 	>
 	<testsuites>
-		<testsuite>
+		<testsuite name="Tests">
 			<directory prefix="Test" suffix=".php">./tests/</directory>
 		</testsuite>
 	</testsuites>
-	<filter>
-		<whitelist>
-			<directory suffix=".php">./src</directory>
-		</whitelist>
-	</filter>
 	<php>
 		<env name="WP_PHPUNIT__TESTS_CONFIG" value="tests/wp-tests-config.php" />
 	</php>
