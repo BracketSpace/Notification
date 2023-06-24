@@ -5,6 +5,8 @@
  * Author: BracketSpace
  * Author URI: https://bracketspace.com
  * Version: 8.0.15
+ * Requires PHP: 7.4
+ * Requires at least: 4.9
  * License: GPL3
  * Text Domain: notification
  * Domain Path: /languages

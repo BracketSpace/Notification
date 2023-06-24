@@ -88,7 +88,7 @@
 	</rule>
 
 	<rule ref="PHPCompatibilityWP"/>
-	<config name="testVersion" value="7.0-"/>
+	<config name="testVersion" value="7.4-"/>
 
 	<!-- Check all PHP files in directory tree by default. -->
 	<arg name="extensions" value="php"/>
