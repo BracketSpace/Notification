@@ -9,24 +9,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup variables
-        id: vars
-        run: |
-          echo "::set-output name=composer-cache-path::$(composer config cache-files-dir)"
       - name: Setup PHP 7.4
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
-      - name: Cache Composer
-        uses: actions/cache@v1
-        with:
-          path: ${{ steps.vars.outputs.composer-cache-path }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
-        run: composer install --no-progress
+        uses: "ramsey/composer-install@v2"
       - name: Coding Standards
         run: composer phpcs
   phpstan:
@@ -35,24 +25,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup variables
-        id: vars
-        run: |
-          echo "::set-output name=composer-cache-path::$(composer config cache-files-dir)"
       - name: Setup PHP 7.4
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
-      - name: Cache Composer
-        uses: actions/cache@v1
-        with:
-          path: ${{ steps.vars.outputs.composer-cache-path }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
-        run: composer install --no-progress
+        uses: "ramsey/composer-install@v2"
       - name: Install Composer build dependencies
         run: composer bin build install --no-progress
       - name: Compose dependencies
@@ -65,24 +45,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup variables
-        id: vars
-        run: |
-          echo "::set-output name=composer-cache-path::$(composer config cache-files-dir)"
       - name: Setup PHP 7.4
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
-      - name: Cache Composer
-        uses: actions/cache@v1
-        with:
-          path: ${{ steps.vars.outputs.composer-cache-path }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
-        run: composer install --no-progress
+        uses: "ramsey/composer-install@v2"
       - name: Install Composer build dependencies
         run: composer bin build install --no-progress
       - name: Compose dependencies
@@ -113,20 +83,10 @@ jobs:
           coverage: none
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup variables
-        id: vars
-        run: |
-          echo "::set-output name=composer-cache-path::$(composer config cache-files-dir)"
-      - name: Cache Composer
-        uses: actions/cache@v1
-        with:
-          path: ${{ steps.vars.outputs.composer-cache-path }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
       - name: Set Composer version
         run: composer self-update --2.2
       - name: Install Composer dependencies
-        run: composer install --no-progress
+        uses: "ramsey/composer-install@v2"
       - name: Install Composer build dependencies
         run: composer bin build install --no-progress
       - name: Compose dependencies
@@ -155,18 +115,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12'
-      - name: Setup variables
-        id: vars
-        run: |
-          echo "::set-output name=yarn-cache-path::$(yarn cache dir)"
-      - name: Cache Yarn
-        uses: actions/cache@v1
-        with:
-          path: ${{ steps.vars.outputs.yarn-cache-path }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: ${{ runner.os }}-yarn-
       - name: Install Node dependencies
-        run: yarn install --no-progress
+        uses: bahmutov/npm-install@v1
       - name: CSS lint
         run: yarn lint:css
   js:
@@ -179,17 +129,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12'
-      - name: Setup variables
-        id: vars
-        run: |
-          echo "::set-output name=yarn-cache-path::$(yarn cache dir)"
-      - name: Cache Yarn
-        uses: actions/cache@v1
-        with:
-          path: ${{ steps.vars.outputs.yarn-cache-path }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: ${{ runner.os }}-yarn-
       - name: Install Node dependencies
-        run: yarn install --no-progress
+        uses: bahmutov/npm-install@v1
       - name: JS lint
         run: yarn lint:js
