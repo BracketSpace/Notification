@@ -100,19 +100,25 @@ class InputField extends Field
 	 */
 	public function sanitize($value)
 	{
+		// Remove script and style tags.
 		$value = preg_replace(
 			'@<(script|style)[^>]*?>.*?</\\1>@si',
 			'',
-			$value
-		); // Remove script and style tags.
+			(string)$value
+		);
+
+		// Remove line breaks.
 		if ($this->allowLinebreaks !== true) {
 			$value = preg_replace(
 				'/[\r\n\t ]+/',
 				' ',
 				$value
-			); // Remove line breaks.
+			);
 		}
-		$value = trim($value); // Remove whitespace.
+
+		// Remove whitespace.
+		$value = trim($value);
+
 		return $value;
 	}
 }
