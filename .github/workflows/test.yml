@@ -4,7 +4,7 @@ on: push
 
 jobs:
   phpcs:
-    name: WordPress Coding Standards
+    name: PHP Coding Standards
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
