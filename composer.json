@@ -72,11 +72,5 @@
 		"phpstan": "phpstan analyze --memory-limit=-1",
 		"phpunit": "phpunit",
 		"phpunit-coverage": "phpunit --coverage-text"
-	},
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/micropackage/casegnostic/"
-		}
-	]
+	}
 }
