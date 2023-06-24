@@ -1,17 +1,20 @@
 <?php
+
 /**
  * Has Name Trait.
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Traits;
 
 /**
  * HasName trait
  */
-trait HasName {
-
+trait HasName
+{
 	/**
 	 * Human readable, translated name
 	 *
@@ -27,9 +30,10 @@ trait HasName {
 	 *
 	 * @return string name
 	 */
-	public function get_name() {
-		if ( null === $this->name ) {
-			return $this->get_nice_class_name();
+	public function getName()
+	{
+		if ($this->name === null) {
+			return $this->getNiceClassName();
 		}
 
 		return $this->name;
@@ -38,13 +42,13 @@ trait HasName {
 	/**
 	 * Sets name
 	 *
-	 * @param  string $name Name.
+	 * @param string $name Name.
 	 * @return $this
 	 */
-	public function set_name( string $name ) {
+	public function setName(string $name)
+	{
 		$this->name = $name;
 
 		return $this;
 	}
-
 }

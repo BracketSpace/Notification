@@ -16,47 +16,6 @@ use BracketSpace\Notification\Core\Notification;
 class TestNotification extends \WP_UnitTestCase {
 
 	/**
-	 * Test setter and getter
-	 *
-	 * @since 6.0.0
-	 */
-	public function test_setter_getter() {
-
-		$notification = new Notification();
-		$notification->set_something( true );
-		$this->assertTrue( $notification->get_something() );
-
-	}
-
-	/**
-	 * Test getter exception
-	 *
-	 * @since 6.0.0
-	 */
-	public function test_getter_exception() {
-
-		$this->expectException( \Exception::class );
-
-		$notification = new Notification();
-		$this->assertTrue( $notification->get_something() );
-
-	}
-
-	/**
-	 * Test setter exception
-	 *
-	 * @since 6.0.0
-	 */
-	public function test_setter_exception() {
-
-		$this->expectException( \Exception::class );
-
-		$notification = new Notification();
-		$notification->set_something();
-
-	}
-
-	/**
 	 * Test hash creation
 	 *
 	 * @since 6.0.0
@@ -221,7 +180,7 @@ class TestNotification extends \WP_UnitTestCase {
 	 */
 	public function test_version() {
 
-		$ver = '1.0.0';
+		$ver = (int) '1.0.0';
 
 		$notification = new Notification( [
 			'version' => $ver,

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Post featured image ID merge tag
  *
@@ -8,6 +9,8 @@
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag\IntegerTag;
@@ -16,38 +19,50 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
 /**
  * Post featured image id merge tag class
  */
-class FeaturedImageId extends IntegerTag {
+class FeaturedImageId extends IntegerTag
+{
 	/**
 	 * Merge tag constructor
 	 *
+	 * @param array<mixed> $params Merge tag configuration params.
 	 * @since 6.0.0
-	 * @param array $params Merge tag configuration params.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct($params = [])
+	{
 
-		$this->set_trigger_prop( $params['post_type'] ?? 'post' );
+		$this->setTriggerProp($params['post_type'] ?? 'post');
 
-		$post_type_name = WpObjectHelper::get_post_type_name( $this->get_trigger_prop() );
+		$postTypeName = WpObjectHelper::getPostTypeName($this->getTriggerProp());
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => sprintf( '%s_featured_image_id', $this->get_trigger_prop() ),
+				'slug' => sprintf(
+					'%s_featured_image_id',
+					$this->getTriggerProp()
+				),
+				'name' => sprintf(
 				// translators: singular post name.
-				'name'        => sprintf( __( '%s featured image id', 'notification' ), $post_type_name ),
-				'description' => __( '123', 'notification' ),
-				'example'     => true,
-				'group'       => $post_type_name,
-				'resolver'    => function ( $trigger ) {
-					$post_id = $trigger->{ $this->get_trigger_prop() }->ID;
+					__(
+						'%s featured image id',
+						'notification'
+					),
+					$postTypeName
+				),
+				'description' => __(
+					'123',
+					'notification'
+				),
+				'example' => true,
+				'group' => $postTypeName,
+				'resolver' => function ($trigger) {
+					$postId = $trigger->{$this->getTriggerProp()}->ID;
 
-					return (int) get_post_thumbnail_id( $post_id );
+					return (int)get_post_thumbnail_id($postId);
 				},
 			]
 		);
 
-		parent::__construct( $args );
-
+		parent::__construct($args);
 	}
-
 }

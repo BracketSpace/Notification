@@ -1,35 +1,37 @@
 <?php
+
 /**
  * Image field class
  *
  * @package notification
  */
 
-namespace BracketSpace\Notification\Utils\Settings\CoreFields;
+declare(strict_types=1);
 
-use BracketSpace\Notification\Utils\Settings\Field;
+namespace BracketSpace\Notification\Utils\Settings\CoreFields;
 
 /**
  * Image field class
  */
-class Image {
-
+class Image
+{
 	/**
 	 * Image Field field
 	 * Requires 'label' addon
 	 *
-	 * @since 7.0.0
-	 * @param  Field $field Field instance.
+	 * @param \BracketSpace\Notification\Utils\Settings\Field $field Field instance.
 	 * @return void
+	 * @since 7.0.0
 	 */
-	public function input( $field ) {
-		$uploaded_image = esc_url( wp_get_attachment_url( (int) $field->value() ) );
+	public function input($field)
+	{
+		$uploadedImage = esc_url(wp_get_attachment_url((int)$field->value()));
 
-		if ( $uploaded_image ) {
-			$image = $uploaded_image;
+		if ($uploadedImage) {
+			$image = $uploadedImage;
 			$class = 'selected';
-		} elseif ( $field->default_value() ) {
-			$image = $field->default_value();
+		} elseif ($field->defaultValue()) {
+			$image = $field->defaultValue();
 			$class = 'selected';
 		} else {
 			$image = '';
@@ -37,12 +39,17 @@ class Image {
 		}
 
 		echo '
-				<div class="notification-image-field ' . esc_attr( $class ) . '">
-					<input type="text" name="' . esc_attr( $field->input_name() ) . '" id="' . esc_attr( $field->input_id() ) . '" value="' . esc_url( $image ) . '" class="image-input ' . esc_attr( $class ) . '" readonly>
-					<button class="select-image button button-secondary">' . esc_html__( 'Select image', 'notification' ) . '</button>
+				<div class="notification-image-field ' . esc_attr($class) . '">
+					<input type="text" name="' . esc_attr($field->inputName()) . '" id="' . esc_attr(
+					$field->inputId()
+				) . '" value="' . esc_url($image) . '" class="image-input ' . esc_attr($class) . '" readonly>
+					<button class="select-image button button-secondary">' . esc_html__(
+					'Select image',
+					'notification'
+				) . '</button>
 					<div class="image">
 						<span class="clear dashicons dashicons-dismiss"></span>
-						<img class="preview" src="' . esc_url( $image ) . '">
+						<img class="preview" src="' . esc_url($image) . '">
 					</div>
 				</div>';
 	}
@@ -51,12 +58,12 @@ class Image {
 	 * Sanitize checkbox value
 	 * Allows only for empty string and 'true'
 	 *
-	 * @since 7.0.0
-	 * @param  string $value saved value.
+	 * @param string $value saved value.
 	 * @return string        empty string or 'true'
+	 * @since 7.0.0
 	 */
-	public function sanitize( $value ) {
+	public function sanitize($value)
+	{
 		return $value;
 	}
-
 }

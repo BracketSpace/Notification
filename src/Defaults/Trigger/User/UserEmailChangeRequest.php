@@ -1,9 +1,12 @@
 <?php
+
 /**
  * User email changed trigger
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Trigger\User;
 
@@ -12,105 +15,161 @@ use BracketSpace\Notification\Defaults\MergeTag;
 /**
  * User Email Change Request
  */
-class UserEmailChangeRequest extends UserTrigger {
+class UserEmailChangeRequest extends UserTrigger
+{
 	/**
 	 * User meta
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
-	public $user_meta;
+	public $userMeta;
 
 	/**
 	 * New user email
 	 *
 	 * @var string
 	 */
-	public $new_user_email;
+	public $newUserEmail;
 
 	/**
 	 * Email change confirmation URL
 	 *
 	 * @var string
 	 */
-	public $confirmation_url;
+	public $confirmationUrl;
 
 	/**
 	 * Email change datetime
 	 *
 	 * @var int
 	 */
-	public $email_change_datetime;
+	public $emailChangeDatetime;
 
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 
-		parent::__construct( 'user/email_change_request', __( 'User email change request', 'notification' ) );
+		parent::__construct(
+			'user/email_change_request',
+			__(
+				'User email change request',
+				'notification'
+			)
+		);
 
-		$this->add_action( 'personal_options_update', 10, 1 );
+		$this->addAction(
+			'personal_options_update',
+			10,
+			1
+		);
 
-		$this->set_description( __( 'Fires when user requests change of his email address', 'notification' ) );
-
+		$this->setDescription(
+			__(
+				'Fires when user requests change of his email address',
+				'notification'
+			)
+		);
 	}
 
 	/**
 	 * Sets trigger's context
 	 *
-	 * @since 8.0.0
-	 * @param integer $user_id User ID.
+	 * @param int $userId User ID.
 	 * @return mixed
+	 * @since 8.0.0
 	 */
-	public function context( $user_id ) {
+	public function context($userId)
+	{
 
-		$new_email = get_user_meta( $user_id, '_new_email', true );
+		$newEmail = get_user_meta(
+			$userId,
+			'_new_email',
+			true
+		);
 
-		if ( ! $new_email ) {
+		if (!$newEmail) {
 			return false;
 		}
 
-		$this->user_id               = $user_id;
-		$this->user_object           = get_userdata( $this->user_id );
-		$this->user_meta             = get_user_meta( $this->user_id );
-		$this->new_user_email        = $new_email['newemail'];
-		$this->confirmation_url      = esc_url( admin_url( 'profile.php?newuseremail=' . $new_email['hash'] ) );
-		$this->email_change_datetime = time();
+		$this->userId = $userId;
+
+		$user = get_userdata($this->userId);
+
+		if (!$user instanceof \WP_User) {
+			return false;
+		}
+
+		$this->userObject = $user;
+		$this->userMeta = get_user_meta($this->userId);
+		$this->newUserEmail = $newEmail['newemail'];
+		$this->confirmationUrl = esc_url(admin_url('profile.php?newuseremail=' . $newEmail['hash']));
+		$this->emailChangeDatetime = time();
 	}
 
 	/**
 	 * Registers attached merge tags
 	 *
-	 * @since 8.0.0
 	 * @return void
+	 * @since 8.0.0
 	 */
-	public function merge_tags() {
+	public function mergeTags()
+	{
 
-		$this->add_merge_tag( new MergeTag\User\UserNicename() );
-		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
-		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
-		$this->add_merge_tag( new MergeTag\User\UserLastName() );
+		$this->addMergeTag(new MergeTag\User\UserNicename());
+		$this->addMergeTag(new MergeTag\User\UserDisplayName());
+		$this->addMergeTag(new MergeTag\User\UserFirstName());
+		$this->addMergeTag(new MergeTag\User\UserLastName());
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
-			'slug' => 'user_email_change_datetime',
-			'name' => __( 'User email change time', 'notification' ),
-		] ) );
+		$this->addMergeTag(
+			new MergeTag\DateTime\DateTime(
+				[
+					'slug' => 'user_email_change_datetime',
+					'name' => __(
+						'User email change time',
+						'notification'
+					),
+				]
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\EmailTag( [
-			'slug'     => 'new_email',
-			'name'     => __( 'New email address', 'notification' ),
-			'resolver' => function ( $trigger ) {
-				return $trigger->new_user_email;
-			},
-			'group'    => __( 'User', 'notification' ),
-		] ) );
+		$this->addMergeTag(
+			new MergeTag\EmailTag(
+				[
+					'slug' => 'new_email',
+					'name' => __(
+						'New email address',
+						'notification'
+					),
+					'resolver' => static function ($trigger) {
+						return $trigger->newUserEmail;
+					},
+					'group' => __(
+						'User',
+						'notification'
+					),
+				]
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\UrlTag( [
-			'slug'     => 'confirmation_url',
-			'name'     => __( 'Email change confirmation url', 'notification' ),
-			'resolver' => function ( $trigger ) {
-				return $trigger->confirmation_url;
-			},
-			'group'    => __( 'Site', 'notification' ),
-		] ) );
+		$this->addMergeTag(
+			new MergeTag\UrlTag(
+				[
+					'slug' => 'confirmation_url',
+					'name' => __(
+						'Email change confirmation url',
+						'notification'
+					),
+					'resolver' => static function ($trigger) {
+						return $trigger->confirmationUrl;
+					},
+					'group' => __(
+						'Site',
+						'notification'
+					),
+				]
+			)
+		);
 	}
 }

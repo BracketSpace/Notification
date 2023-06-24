@@ -7,6 +7,7 @@
 
 namespace BracketSpace\Notification\Tests\Helpers;
 
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Tests\Helpers\Objects;
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Register;
@@ -85,7 +86,8 @@ class Registerer {
 			'trigger'  => $trigger,
 			'carriers' => $carriers,
 		] );
-		notification_add( $notification );
+		notificationAdd( $notification );
+
 		return $notification;
 	}
 

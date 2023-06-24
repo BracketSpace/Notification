@@ -471,24 +471,9 @@ parameters:
 			path: src/Abstracts/Adapter.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Adapter\\:\\:setup_notification\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Adapter.php
-
-		-
 			message: "#^Parameter \\#1 \\$function of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(BracketSpace\\\\Notification\\\\Core\\\\Notification, string\\) given\\.$#"
 			count: 1
 			path: src/Abstracts/Adapter.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Carrier\\:\\:get_data\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Carrier\\:\\:set_data\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
 
 		-
 			message: "#^Parameter \\#1 \\$str of function md5 expects string, string\\|false given\\.$#"
@@ -672,6 +657,11 @@ parameters:
 
 		-
 			message: "#^Parameter \\#2 \\$length of function fread expects int, int\\|false given\\.$#"
+			count: 1
+			path: src/Admin/ImportExport.php
+
+		-
+			message: "#^Parameter \\#1 \\$args of function get_posts expects array*.+$#"
 			count: 1
 			path: src/Admin/ImportExport.php
 
@@ -1131,6 +1121,11 @@ parameters:
 			path: src/Core/Upgrade.php
 
 		-
+			message: "#^Parameter \\#1 \\$args of function get_posts expects array*.+$#"
+			count: 1
+			path: src/Core/Upgrade.php
+
+		-
 			message: "#^Cannot access property \\$post_name on WP_Post\\|null\\.$#"
 			count: 1
 			path: src/Core/Upgrade.php
@@ -1249,6 +1244,11 @@ parameters:
 			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\EditorField\\:\\:field\\(\\) should return string but returns string\\|false\\.$#"
 			count: 1
 			path: src/Defaults/Field/EditorField.php
+
+		-
+			message: "#^Parameter \\#3 \\$settings of function wp_editor expects array*.+$#"
+			count: 1
+			path: src/Utils/Settings/CoreFields/Editor.php
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\InputField\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
@@ -1617,6 +1617,11 @@ parameters:
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Recipient\\\\UserID\\:\\:parse_value\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Defaults/Recipient/UserID.php
+
+		-
+			message: "#^Parameter \\#1 \\$args of function get_users expects array*.+$#"
 			count: 1
 			path: src/Defaults/Recipient/UserID.php
 
@@ -2387,6 +2392,11 @@ parameters:
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Queries\\\\NotificationQueries\\:\\:all\\(\\) should return array\\<int, BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\WordPress\\> but returns array\\<int, BracketSpace\\\\Notification\\\\Interfaces\\\\Adaptable\\>\\.$#"
+			count: 1
+			path: src/Queries/NotificationQueries.php
+
+		-
+			message: "#^Parameter \\#1 \\$args of function get_posts expects array*.+$#"
 			count: 1
 			path: src/Queries/NotificationQueries.php
 

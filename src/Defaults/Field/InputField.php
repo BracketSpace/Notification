@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Input field class
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Field;
 
@@ -12,8 +15,8 @@ use BracketSpace\Notification\Abstracts\Field;
 /**
  * Input field class
  */
-class InputField extends Field {
-
+class InputField extends Field
+{
 	/**
 	 * Field type
 	 * possible values are valid HTML5 types except file or checkbox
@@ -42,35 +45,35 @@ class InputField extends Field {
 	 * @since 6.3.1
 	 * @var bool
 	 */
-	protected $allow_linebreaks = false;
+	protected $allowLinebreaks = false;
 
 	/**
 	 * Field constructor
 	 *
-	 * @since 5.0.0
+	 * @param array<mixed> $params field configuration parameters.
 	 * @since 6.3.1 Allow for whitespace characters.
-	 * @param array $params field configuration parameters.
+	 * @since 5.0.0
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct($params = [])
+	{
 
-		if ( isset( $params['type'] ) ) {
+		if (isset($params['type'])) {
 			$this->type = $params['type'];
 		}
 
-		if ( isset( $params['placeholder'] ) ) {
+		if (isset($params['placeholder'])) {
 			$this->placeholder = $params['placeholder'];
 		}
 
-		if ( isset( $params['atts'] ) ) {
+		if (isset($params['atts'])) {
 			$this->atts = $params['atts'];
 		}
 
-		if ( isset( $params['allow_linebreaks'] ) ) {
-			$this->allow_linebreaks = $params['allow_linebreaks'];
+		if (isset($params['allow_linebreaks'])) {
+			$this->allowLinebreaks = $params['allow_linebreaks'];
 		}
 
-		parent::__construct( $params );
-
+		parent::__construct($params);
 	}
 
 	/**
@@ -78,23 +81,44 @@ class InputField extends Field {
 	 *
 	 * @return string html
 	 */
-	public function field() {
-		return '<input type="' . esc_attr( $this->type ) . '" name="' . esc_attr( $this->get_name() ) . '" id="' . esc_attr( $this->get_id() ) . '" value="' . esc_attr( $this->get_value() ) . '" placeholder="' . esc_attr( $this->placeholder ) . '" class="widefat ' . esc_attr( $this->css_class() ) . '" ' . $this->maybe_disable() . ' ' . esc_attr( $this->atts ) . '>';
+	public function field()
+	{
+		return '<input type="' . esc_attr($this->type) . '" name="' . esc_attr($this->getName()) . '" id="' . esc_attr(
+			$this->getId()
+		) . '" value="' . esc_attr($this->getValue()) . '" placeholder="' . esc_attr(
+			$this->placeholder
+		) . '" class="widefat ' . esc_attr($this->cssClass()) . '" ' . $this->maybeDisable() . ' ' . esc_attr(
+			$this->atts
+		) . '>';
 	}
 
 	/**
 	 * Sanitizes the value sent by user
 	 *
-	 * @param  mixed $value value to sanitize.
+	 * @param mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value ) {
-		$value = preg_replace( '@<(script|style)[^>]*?>.*?</\\1>@si', '', $value ); // Remove script and style tags.
-		if ( true !== $this->allow_linebreaks ) {
-			$value = preg_replace( '/[\r\n\t ]+/', ' ', $value ); // Remove line breaks.
+	public function sanitize($value)
+	{
+		// Remove script and style tags.
+		$value = preg_replace(
+			'@<(script|style)[^>]*?>.*?</\\1>@si',
+			'',
+			(string)$value
+		);
+
+		// Remove line breaks.
+		if ($this->allowLinebreaks !== true) {
+			$value = preg_replace(
+				'/[\r\n\t ]+/',
+				' ',
+				(string)$value
+			);
 		}
-		$value = trim( $value ); // Remove whitespace.
+
+		// Remove whitespace.
+		$value = trim((string)$value);
+
 		return $value;
 	}
-
 }

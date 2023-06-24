@@ -1,20 +1,20 @@
 <?php
+
 /**
  * Taggable interface class
  *
  * @package notification
  */
 
-namespace BracketSpace\Notification\Interfaces;
+declare(strict_types=1);
 
-use BracketSpace\Notification\Interfaces\Nameable;
-use BracketSpace\Notification\Interfaces\Triggerable;
+namespace BracketSpace\Notification\Interfaces;
 
 /**
  * Taggable interface
  */
-interface Taggable extends Nameable {
-
+interface Taggable extends Nameable
+{
 	/**
 	 * Resolves the merge tag value
 	 *
@@ -27,34 +27,49 @@ interface Taggable extends Nameable {
 	 *
 	 * @return mixed
 	 */
-	public function get_value();
+	public function getValue();
 
 	/**
 	 * Cleans merge tag value
 	 *
 	 * @return void
 	 */
-	public function clean_value();
+	public function cleanValue();
 
 	/**
 	 * Checks if merge tag is already resolved
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
-	public function is_resolved();
+	public function isResolved();
 
 	/**
 	 * Gets value type
 	 *
 	 * @return string
 	 */
-	public function get_value_type();
+	public function getValueType();
 
 	/**
 	 * Sets trigger object
 	 *
-	 * @param Triggerable $trigger Trigger object.
+	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
+	 * @return $this|void
 	 */
-	public function set_trigger( Triggerable $trigger );
+	public function setTrigger(Triggerable $trigger);
 
+	/**
+	 * Gets group
+	 *
+	 * @return string|null Group name
+	 */
+	public function getGroup();
+
+	/**
+	 * Sets group
+	 *
+	 * @param string $group Group name.
+	 * @return $this
+	 */
+	public function setGroup(string $group);
 }

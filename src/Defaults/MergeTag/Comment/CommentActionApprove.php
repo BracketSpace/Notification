@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Comment action approve URL merge tag
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
@@ -13,47 +16,61 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
 /**
  * Comment action approve URL merge tag class
  */
-class CommentActionApprove extends UrlTag {
-
+class CommentActionApprove extends UrlTag
+{
 	/**
 	 * Trigger property to get the comment data from
 	 *
 	 * @var string
 	 */
-	protected $comment_type = 'comment';
+	protected $commentType = 'comment';
 
 	/**
 	 * Merge tag constructor
 	 *
+	 * @param array<mixed> $params merge tag configuration params.
 	 * @since 5.0.0
-	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct($params = [])
+	{
 
-		if ( isset( $params['comment_type'] ) && ! empty( $params['comment_type'] ) ) {
-			$this->comment_type = $params['comment_type'];
+		if (isset($params['comment_type']) && !empty($params['comment_type'])) {
+			$this->commentType = $params['comment_type'];
 		}
 
-		$this->set_trigger_prop( $params['property_name'] ?? 'comment' );
+		$this->setTriggerProp($params['property_name'] ?? $this->commentType);
 
-		$comment_type_name = WpObjectHelper::get_comment_type_name( $this->comment_type );
+		$commentTypeName = WpObjectHelper::getCommentTypeName($this->commentType);
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'     => 'comment_approve_action_url',
-				// Translators: Comment type name.
-				'name'     => sprintf( __( '%s approve URL', 'notification' ), $comment_type_name ),
-				// Translators: comment type actions text.
-				'group'    => sprintf( __( '%s actions', 'notification' ), $comment_type_name ),
-				'resolver' => function ( $trigger ) {
-					return admin_url( "comment.php?action=approve&c={$trigger->{ $this->get_trigger_prop() }->comment_ID}#wpbody-content" );
+				'slug' => 'comment_approve_action_url',
+				'name' => sprintf(
+					// Translators: Comment type name.
+					__(
+						'%s approve URL',
+						'notification'
+					),
+					$commentTypeName
+				),
+				'group' => sprintf(
+					// Translators: comment type actions text.
+					__(
+						'%s actions',
+						'notification'
+					),
+					$commentTypeName
+				),
+				'resolver' => function ($trigger) {
+					return admin_url(
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+						"comment.php?action=approve&c={$trigger->{ $this->getTriggerProp() }->comment_ID}#wpbody-content"
+					);
 				},
 			]
 		);
 
-		parent::__construct( $args );
-
+		parent::__construct($args);
 	}
-
 }

@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Editor field class
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Field;
 
@@ -12,8 +15,8 @@ use BracketSpace\Notification\Abstracts\Field;
 /**
  * Editor field class
  */
-class EditorField extends Field {
-
+class EditorField extends Field
+{
 	/**
 	 * Editor settings
 	 *
@@ -25,17 +28,17 @@ class EditorField extends Field {
 	/**
 	 * Field constructor
 	 *
+	 * @param array<mixed> $params field configuration parameters.
 	 * @since 5.0.0
-	 * @param array $params field configuration parameters.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct($params = [])
+	{
 
-		if ( isset( $params['settings'] ) ) {
+		if (isset($params['settings'])) {
 			$this->settings = $params['settings'];
 		}
 
-		parent::__construct( $params );
-
+		parent::__construct($params);
 	}
 
 	/**
@@ -43,37 +46,45 @@ class EditorField extends Field {
 	 *
 	 * @return string html
 	 */
-	public function field() {
+	public function field()
+	{
 
 		$settings = wp_parse_args(
 			$this->settings,
 			[
-				'textarea_name' => $this->get_name(),
+				'textarea_name' => $this->getName(),
 				'textarea_rows' => 20,
-				'editor_class'  => $this->css_class(),
+				'editor_class' => $this->cssClass(),
 			]
 		);
 
 		ob_start();
 
-		wp_editor( $this->get_value(), $this->get_id(), $settings );
+		wp_editor(
+			$this->getValue(),
+			$this->getId(),
+			$settings
+		);
 
 		return ob_get_clean();
-
 	}
 
 	/**
 	 * Sanitizes the value sent by user
 	 *
-	 * @param  mixed $value value to sanitize.
+	 * @param mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value ) {
+	public function sanitize($value)
+	{
 
 		/**
 		 * Fixes WPLinkPreview TinyMCE component which adds the https:// prefix to invalid URL.
 		 */
-		return str_replace( [ 'https://{', 'http://{' ], '{', $value );
+		return str_replace(
+			['https://{', 'http://{'],
+			'{',
+			$value
+		);
 	}
-
 }

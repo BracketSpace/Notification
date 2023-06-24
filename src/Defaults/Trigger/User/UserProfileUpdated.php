@@ -1,9 +1,12 @@
 <?php
+
 /**
  * User profile updated trigger
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Trigger\User;
 
@@ -12,50 +15,72 @@ use BracketSpace\Notification\Defaults\MergeTag;
 /**
  * User profile updated trigger class
  */
-class UserProfileUpdated extends UserTrigger {
-
+class UserProfileUpdated extends UserTrigger
+{
 	/**
 	 * User meta data
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
-	public $user_meta;
+	public $userMeta;
 
 	/**
 	 * User profile update date and time
 	 *
 	 * @var int|false
 	 */
-	public $user_profile_updated_datetime;
+	public $userProfileUpdatedDatetime;
 
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 
-		parent::__construct( 'user/profile_updated', __( 'User profile updated', 'notification' ) );
+		parent::__construct(
+			'user/profile_updated',
+			__(
+				'User profile updated',
+				'notification'
+			)
+		);
 
-		$this->add_action( 'profile_update', 10, 2 );
+		$this->addAction(
+			'profile_update',
+			10,
+			2
+		);
 
-		$this->set_description( __( 'Fires when user updates his profile', 'notification' ) );
-
+		$this->setDescription(
+			__(
+				'Fires when user updates his profile',
+				'notification'
+			)
+		);
 	}
 
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param integer $user_id User ID.
+	 * @param int $userId User ID.
 	 * @return void
 	 */
-	public function context( $user_id ) {
+	public function context($userId)
+	{
 
-		$this->user_id     = $user_id;
-		$this->user_object = get_userdata( $this->user_id );
-		$this->user_meta   = get_user_meta( $this->user_id );
+		$this->userId = $userId;
 
-		$this->user_registered_datetime      = strtotime( $this->user_object->user_registered );
-		$this->user_profile_updated_datetime = time();
+		$user = get_userdata($this->userId);
 
+		if (!$user instanceof \WP_User) {
+			return;
+		}
+
+		$this->userObject = $user;
+		$this->userMeta = get_user_meta($this->userId);
+
+		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
+		$this->userProfileUpdatedDatetime = time();
 	}
 
 	/**
@@ -63,21 +88,27 @@ class UserProfileUpdated extends UserTrigger {
 	 *
 	 * @return void
 	 */
-	public function merge_tags() {
+	public function mergeTags()
+	{
 
-		parent::merge_tags();
+		parent::mergeTags();
 
-		$this->add_merge_tag( new MergeTag\User\UserNicename() );
-		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
-		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
-		$this->add_merge_tag( new MergeTag\User\UserLastName() );
-		$this->add_merge_tag( new MergeTag\User\UserBio() );
+		$this->addMergeTag(new MergeTag\User\UserNicename());
+		$this->addMergeTag(new MergeTag\User\UserDisplayName());
+		$this->addMergeTag(new MergeTag\User\UserFirstName());
+		$this->addMergeTag(new MergeTag\User\UserLastName());
+		$this->addMergeTag(new MergeTag\User\UserBio());
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
-			'slug' => 'user_profile_updated_datetime',
-			'name' => __( 'User profile update time', 'notification' ),
-		] ) );
-
+		$this->addMergeTag(
+			new MergeTag\DateTime\DateTime(
+				[
+					'slug' => 'user_profile_updated_datetime',
+					'name' => __(
+						'User profile update time',
+						'notification'
+					),
+				]
+			)
+		);
 	}
-
 }

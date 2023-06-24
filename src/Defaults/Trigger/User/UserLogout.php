@@ -1,9 +1,12 @@
 <?php
+
 /**
  * User logout trigger
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Trigger\User;
 
@@ -12,52 +15,74 @@ use BracketSpace\Notification\Defaults\MergeTag;
 /**
  * User logout trigger class
  */
-class UserLogout extends UserTrigger {
-
+class UserLogout extends UserTrigger
+{
 	/**
 	 * User meta data
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
-	public $user_meta;
+	public $userMeta;
 
 	/**
 	 * User logout date and time
 	 *
 	 * @var int|false
 	 */
-	public $user_logout_datetime;
+	public $userLogoutDatetime;
 
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 
-		parent::__construct( 'user/logout', __( 'User logout', 'notification' ) );
+		parent::__construct(
+			'user/logout',
+			__(
+				'User logout',
+				'notification'
+			)
+		);
 
-		$this->add_action( 'wp_logout', 10, 1 );
+		$this->addAction(
+			'wp_logout',
+			10,
+			1
+		);
 
-		$this->set_description( __( 'Fires when user log out from WordPress', 'notification' ) );
-
+		$this->setDescription(
+			__(
+				'Fires when user log out from WordPress',
+				'notification'
+			)
+		);
 	}
 
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param int $user_id User ID.
+	 * @param int $userId User ID.
 	 * @return void
 	 */
-	public function context( $user_id = 0 ) {
+	public function context($userId = 0)
+	{
 		// Fix for WordPress <5.5 where the param is not available.
-		if ( 0 === $user_id ) {
-			$user_id = get_current_user_id();
+		if ($userId === 0) {
+			$userId = get_current_user_id();
 		}
 
-		$this->user_object = get_userdata( $user_id );
-		$this->user_meta   = get_user_meta( $user_id );
+		$user = get_userdata($this->userId);
 
-		$this->user_registered_datetime = strtotime( $this->user_object->user_registered );
-		$this->user_logout_datetime     = time();
+		if (!$user instanceof \WP_User) {
+			return;
+		}
+
+		$this->userObject = $user;
+		$this->userMeta = get_user_meta($userId);
+
+		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
+		$this->userLogoutDatetime = time();
 	}
 
 	/**
@@ -65,21 +90,27 @@ class UserLogout extends UserTrigger {
 	 *
 	 * @return void
 	 */
-	public function merge_tags() {
+	public function mergeTags()
+	{
 
-		parent::merge_tags();
+		parent::mergeTags();
 
-		$this->add_merge_tag( new MergeTag\User\UserNicename() );
-		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
-		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
-		$this->add_merge_tag( new MergeTag\User\UserLastName() );
-		$this->add_merge_tag( new MergeTag\User\UserBio() );
+		$this->addMergeTag(new MergeTag\User\UserNicename());
+		$this->addMergeTag(new MergeTag\User\UserDisplayName());
+		$this->addMergeTag(new MergeTag\User\UserFirstName());
+		$this->addMergeTag(new MergeTag\User\UserLastName());
+		$this->addMergeTag(new MergeTag\User\UserBio());
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
-			'slug' => 'user_logout_datetime',
-			'name' => __( 'User logout time', 'notification' ),
-		] ) );
-
+		$this->addMergeTag(
+			new MergeTag\DateTime\DateTime(
+				[
+					'slug' => 'user_logout_datetime',
+					'name' => __(
+						'User logout time',
+						'notification'
+					),
+				]
+			)
+		);
 	}
-
 }

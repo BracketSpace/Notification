@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Comment author URL merge tag
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
@@ -13,49 +16,63 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
 /**
  * Comment author URL merge tag class
  */
-class CommentAuthorUrl extends UrlTag {
-
+class CommentAuthorUrl extends UrlTag
+{
 	/**
 	 * Trigger property to get the comment data from
 	 *
 	 * @var string
 	 */
-	protected $comment_type = 'comment';
+	protected $commentType = 'comment';
 
 	/**
 	 * Merge tag constructor
 	 *
+	 * @param array<mixed> $params merge tag configuration params.
 	 * @since 5.0.0
-	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct($params = [])
+	{
 
-		if ( isset( $params['comment_type'] ) && ! empty( $params['comment_type'] ) ) {
-			$this->comment_type = $params['comment_type'];
+		if (isset($params['comment_type']) && !empty($params['comment_type'])) {
+			$this->commentType = $params['comment_type'];
 		}
 
-		$this->set_trigger_prop( $params['property_name'] ?? 'comment' );
+		$this->setTriggerProp($params['property_name'] ?? $this->commentType);
 
-		$comment_type_name = WpObjectHelper::get_comment_type_name( $this->comment_type );
+		$commentTypeName = WpObjectHelper::getCommentTypeName($this->commentType);
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => 'comment_author_url',
+				'slug' => 'comment_author_url',
+				'name' => sprintf(
 				// Translators: Comment type name.
-				'name'        => sprintf( __( '%s author URL', 'notification' ), $comment_type_name ),
-				'description' => __( 'http://mywebsite.com', 'notification' ),
-				'example'     => true,
+					__(
+						'%s author URL',
+						'notification'
+					),
+					$commentTypeName
+				),
+				'description' => __(
+					'http://mywebsite.com',
+					'notification'
+				),
+				'example' => true,
+				'group' => sprintf(
 				// Translators: comment type author.
-				'group'       => sprintf( __( '%s author', 'notification' ), $comment_type_name ),
-				'resolver'    => function ( $trigger ) {
-					return $trigger->{ $this->get_trigger_prop() }->comment_author_url;
+					__(
+						'%s author',
+						'notification'
+					),
+					$commentTypeName
+				),
+				'resolver' => function ($trigger) {
+					return $trigger->{$this->getTriggerProp()}->comment_author_url;
 				},
 			]
 		);
 
-		parent::__construct( $args );
-
+		parent::__construct($args);
 	}
-
 }

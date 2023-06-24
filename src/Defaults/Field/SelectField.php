@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Select field class
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Field;
 
@@ -12,13 +15,13 @@ use BracketSpace\Notification\Abstracts\Field;
 /**
  * Select field class
  */
-class SelectField extends Field {
-
+class SelectField extends Field
+{
 	/**
 	 * Field options
 	 * value => label array
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	protected $options = [];
 
@@ -33,21 +36,21 @@ class SelectField extends Field {
 	/**
 	 * Field constructor
 	 *
+	 * @param array<mixed> $params field configuration parameters.
 	 * @since 5.0.0
-	 * @param array $params field configuration parameters.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct($params = [])
+	{
 
-		if ( isset( $params['options'] ) ) {
+		if (isset($params['options'])) {
 			$this->options = $params['options'];
 		}
 
-		if ( isset( $params['pretty'] ) && $params['pretty'] ) {
+		if (isset($params['pretty']) && $params['pretty']) {
 			$this->pretty = 'notification-pretty-select';
 		}
 
-		parent::__construct( $params );
-
+		parent::__construct($params);
 	}
 
 	/**
@@ -55,30 +58,36 @@ class SelectField extends Field {
 	 *
 	 * @return string html
 	 */
-	public function field() {
+	public function field()
+	{
 
-		$css_classes = $this->pretty . ' ' . $this->css_class();
+		$cssClasses = $this->pretty . ' ' . $this->cssClass();
 
-		$html = '<select name="' . esc_attr( $this->get_name() ) . '" id="' . esc_attr( $this->get_id() ) . '" class="' . $css_classes . '" ' . $this->maybe_disable() . '>';
+		$html = '<select name="' . esc_attr($this->getName()) . '" id="' . esc_attr(
+			$this->getId()
+		) . '" class="' . $cssClasses . '" ' . $this->maybeDisable() . '>';
 
-		foreach ( $this->options as $option_value => $option_label ) {
-			$html .= '<option value="' . esc_attr( $option_value ) . '" ' . selected( $this->get_value(), $option_value, false ) . '>' . esc_html( $option_label ) . '</option>';
+		foreach ($this->options as $optionValue => $optionLabel) {
+			$html .= '<option value="' . esc_attr($optionValue) . '" ' . selected(
+				$this->getValue(),
+				$optionValue,
+				false
+			) . '>' . esc_html($optionLabel) . '</option>';
 		}
 
 		$html .= '</select>';
 
 		return $html;
-
 	}
 
 	/**
 	 * Sanitizes the value sent by user
 	 *
-	 * @param  mixed $value value to sanitize.
+	 * @param mixed $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value ) {
-		return sanitize_text_field( $value );
+	public function sanitize($value)
+	{
+		return sanitize_text_field($value);
 	}
-
 }

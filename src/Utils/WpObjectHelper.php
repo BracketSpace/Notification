@@ -1,4 +1,5 @@
 <?php
+
 /**
  * WordPress Object Helper class
  *
@@ -7,87 +8,109 @@
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Utils;
 
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 
 /**
  * WpObjectHelper class
  */
-class WpObjectHelper {
+class WpObjectHelper
+{
+	use Casegnostic;
 
 	/**
 	 * Gets post type object
 	 *
-	 * @since  8.0.0
-	 * @param  string $post_type_slug Post type slug.
+	 * @param string $postTypeSlug Post type slug.
 	 * @return \WP_Post_Type|null
+	 * @since  8.0.0
 	 */
-	public static function get_post_type( $post_type_slug ) {
-		return get_post_type_object( $post_type_slug );
+	public static function getPostType($postTypeSlug)
+	{
+		return get_post_type_object($postTypeSlug);
 	}
 
 	/**
 	 * Gets registered post types in slug => name format
 	 *
-	 * @since  8.0.0
-	 * @param  array<mixed> $args Query args.
+	 * @param array<mixed> $args Query args.
 	 * @return array<string,string>
+	 * @since  8.0.0
 	 */
-	public static function get_post_types( $args = [] ) : array {
-		$post_types = [];
-		foreach ( get_post_types( $args, 'objects' ) as $post_type ) {
-			if ( ! $post_type instanceof \WP_Post_Type ) {
+	public static function getPostTypes($args = []): array
+	{
+		$postTypes = [];
+		foreach (
+			get_post_types(
+				$args,
+				'objects'
+			) as $postType
+		) {
+			if (!$postType instanceof \WP_Post_Type) {
 				continue;
 			}
 
-			$post_types[ $post_type->name ] = $post_type->labels->singular_name;
+			$postTypes[$postType->name] = $postType->labels->singular_name;
 		}
 
-		return $post_types;
+		return $postTypes;
 	}
 
 	/**
 	 * Gets post type object name
 	 *
-	 * @since  8.0.0
-	 * @param  string $post_type_slug Post type slug.
+	 * @param string $postTypeSlug Post type slug.
 	 * @return string|null
+	 * @since  8.0.0
 	 */
-	public static function get_post_type_name( $post_type_slug ) {
-		$post_type = self::get_post_type( $post_type_slug );
-		return $post_type->labels->singular_name ?? null;
+	public static function getPostTypeName($postTypeSlug)
+	{
+		$postType = self::getPostType($postTypeSlug);
+		return $postType->labels->singular_name ?? null;
 	}
 
 	/**
 	 * Gets taxonomy object
 	 *
-	 * @since  8.0.0
-	 * @param  string $taxonomy_slug Taxonomy slug.
+	 * @param string $taxonomySlug Taxonomy slug.
 	 * @return \WP_Taxonomy|null
+	 * @since  8.0.0
 	 */
-	public static function get_taxonomy( $taxonomy_slug ) {
-		$taxonomy = get_taxonomy( $taxonomy_slug );
-		return $taxonomy ? $taxonomy : null;
+	public static function getTaxonomy($taxonomySlug)
+	{
+		$taxonomy = get_taxonomy($taxonomySlug);
+		return $taxonomy
+			? $taxonomy
+			: null;
 	}
 
 	/**
 	 * Gets registered taxonomies in slug => name format
 	 *
-	 * @since  8.0.0
-	 * @param  array<mixed> $args Query args.
+	 * @param array<mixed> $args Query args.
 	 * @return array<string,\WP_Taxonomy>
+	 * @since  8.0.0
 	 */
-	public static function get_taxonomies( $args = [] ) : array {
+	public static function getTaxonomies($args = []): array
+	{
 		$taxonomies = [];
 
-		foreach ( get_taxonomies( $args, 'objects' ) as $taxonomy ) {
-			if ( 'post_format' === $taxonomy->name ) {
+		foreach (
+			get_taxonomies(
+				$args,
+				'objects'
+			) as $taxonomy
+		) {
+			if ($taxonomy->name === 'post_format') {
 				continue;
 			}
 
-			$taxonomies[ $taxonomy->name ] = $taxonomy->labels->singular_name;
+			$taxonomies[$taxonomy->name] = $taxonomy->labels->singular_name;
 		}
 
 		return $taxonomies;
@@ -96,65 +119,89 @@ class WpObjectHelper {
 	/**
 	 * Gets taxonomy object name
 	 *
-	 * @since  8.0.0
-	 * @param  string $taxonomy_slug Taxonomy slug.
+	 * @param string $taxonomySlug Taxonomy slug.
 	 * @return string|null
+	 * @since  8.0.0
 	 */
-	public static function get_taxonomy_name( $taxonomy_slug ) {
-		$taxonomy = self::get_taxonomy( $taxonomy_slug );
+	public static function getTaxonomyName($taxonomySlug)
+	{
+		$taxonomy = self::getTaxonomy($taxonomySlug);
 		return $taxonomy->labels->singular_name ?? null;
 	}
 
 	/**
 	 * Gets comment type name
 	 *
-	 * @since  8.0.0
-	 * @param  string $comment_type_slug Comment type slug.
+	 * @param string $commentTypeSlug Comment type slug.
 	 * @return string|null
+	 * @since  8.0.0
 	 */
-	public static function get_comment_type_name( $comment_type_slug ) {
-		$comment_types = self::get_comment_types();
-		return $comment_types[ $comment_type_slug ] ?? null;
+	public static function getCommentTypeName($commentTypeSlug)
+	{
+		$commentTypes = self::getCommentTypes();
+		return $commentTypes[$commentTypeSlug] ?? null;
 	}
 
 	/**
 	 * Gets comment types from database
 	 *
-	 * @since  8.0.0
 	 * @return array<string,string>
+	 * @since  8.0.0
 	 */
-	public static function get_comment_types() : array {
-		$driver = new CacheDriver\ObjectCache( 'notification' );
-		$cache  = new Cache( $driver, 'comment_types' );
+	public static function getCommentTypes(): array
+	{
+		$driver = new CacheDriver\ObjectCache('notification');
+		$cache = new Cache(
+			$driver,
+			'comment_types'
+		);
 
-		return $cache->collect( function () {
-			global $wpdb;
+		return $cache->collect(
+			static function () {
+				global $wpdb;
 
-			$comment_types = [
-				'comment'   => __( 'Comment', 'notification' ),
-				'pingback'  => __( 'Pingback', 'notification' ),
-				'trackback' => __( 'Trackback', 'notification' ),
-			];
+				$commentTypes = [
+					'comment' => __(
+						'Comment',
+						'notification'
+					),
+					'pingback' => __(
+						'Pingback',
+						'notification'
+					),
+					'trackback' => __(
+						'Trackback',
+						'notification'
+					),
+				];
 
-			// There's no other way to get comment types and we're using the cache lib.
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-			$db_types = $wpdb->get_col(
-				"SELECT DISTINCT comment_type
+				// There's no other way to get comment types and we're using the cache lib.
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+				$dbTypes = $wpdb->get_col(
+					"SELECT DISTINCT comment_type
 				FROM $wpdb->comments
 				WHERE 1=1"
-			);
+				);
 
-			foreach ( $db_types as $type ) {
-				if ( ! isset( $comment_types[ $type ] ) ) {
+				foreach ($dbTypes as $type) {
+					if (isset($commentTypes[$type])) {
+						continue;
+					}
+
 					// Dynamically generated and translated name.
-					$name = ucfirst( str_replace( [ '_', '-' ], ' ', $type ) );
+					$name = ucfirst(
+						str_replace(
+							['_', '-'],
+							' ',
+							$type
+						)
+					);
 
-					$comment_types[ (string) $type ] = __( $name );
+					$commentTypes[(string)$type] = __($name);
 				}
+
+				return $commentTypes;
 			}
-
-			return $comment_types;
-		} );
+		);
 	}
-
 }

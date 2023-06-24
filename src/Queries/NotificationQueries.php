@@ -1,50 +1,55 @@
 <?php
+
 /**
  * Notification Queries
  *
  * @package notification
  */
 
-namespace BracketSpace\Notification\Queries;
+declare(strict_types=1);
 
-use BracketSpace\Notification\Defaults\Adapter\WordPress as WordPressAdapter;
+namespace BracketSpace\Notification\Queries;
 
 /**
  * Notification Queries class
  */
-class NotificationQueries {
-
+class NotificationQueries
+{
 	/**
 	 * Gets Notification posts.
 	 *
+	 * @param bool $includingDisabled If should include disabled notifications as well.
+	 * @return array<int, \BracketSpace\Notification\Defaults\Adapter\WordPress>
 	 * @since  8.0.0
-	 * @param  bool $including_disabled If should include disabled notifications as well.
-	 * @return array<int,WordPressAdapter>
 	 */
-	public static function all( bool $including_disabled = false ) : array {
-		$query_args = [
+	public static function all(bool $includingDisabled = false): array
+	{
+		$queryArgs = [
 			'posts_per_page' => -1,
-			'post_type'      => 'notification',
+			'post_type' => 'notification',
 		];
 
-		if ( $including_disabled ) {
-			$query_args['post_status'] = [ 'publish', 'draft' ];
+		if ($includingDisabled) {
+			$queryArgs['post_status'] = ['publish', 'draft'];
 		}
 
 		// WPML compat.
-		if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
-			$query_args['suppress_filters'] = 0;
+		if (defined('ICL_LANGUAGE_CODE')) {
+			$queryArgs['suppress_filters'] = 0;
 		}
 
-		$wpposts = get_posts( $query_args );
-		$posts   = [];
+		$wpposts = get_posts($queryArgs);
+		$posts = [];
 
-		if ( empty( $wpposts ) ) {
+		if (empty($wpposts)) {
 			return $posts;
 		}
 
-		foreach ( $wpposts as $wppost ) {
-			$posts[] = notification_adapt_from( 'WordPress', $wppost );
+		foreach ($wpposts as $wppost) {
+			$posts[] = notificationAdaptFrom(
+				'WordPress',
+				$wppost
+			);
 		}
 
 		return $posts;
@@ -53,14 +58,23 @@ class NotificationQueries {
 	/**
 	 * Gets Notification post by hash.
 	 *
-	 * @since  8.0.0
-	 * @param  string $hash Notification hash.
+	 * @param string $hash Notification hash.
 	 * @return \BracketSpace\Notification\Interfaces\Adaptable|null
+	 * @since  8.0.0
 	 */
-	public static function with_hash( string $hash ) {
-		$post = get_page_by_path( $hash, OBJECT, 'notification' );
+	public static function withHash(string $hash)
+	{
+		$post = get_page_by_path(
+			$hash,
+			OBJECT,
+			'notification'
+		);
 
-		return empty( $post ) ? null : notification_adapt_from( 'WordPress', $post );
+		return empty($post)
+			? null
+			: notificationAdaptFrom(
+				'WordPress',
+				$post
+			);
 	}
-
 }

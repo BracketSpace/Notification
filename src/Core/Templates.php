@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Templates class
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 
@@ -13,8 +16,8 @@ use BracketSpace\Notification\Dependencies\Micropackage\Templates\Template;
 /**
  * Templates class
  */
-class Templates {
-
+class Templates
+{
 	/**
 	 * Templates storage name.
 	 */
@@ -23,47 +26,63 @@ class Templates {
 	/**
 	 * Renders the template
 	 *
-	 * @since  8.0.0
-	 * @param  string       $name Template name.
-	 * @param  array<mixed> $vars Template variables.
+	 * @param string $name Template name.
+	 * @param array<mixed> $vars Template variables.
 	 * @return void
+	 * @since  8.0.0
 	 */
-	public static function render( string $name, array $vars = [] ) {
-		self::create( $name, $vars )->render();
+	public static function render(string $name, array $vars = [])
+	{
+		self::create(
+			$name,
+			$vars
+		)->render();
 	}
 
 	/**
 	 * Gets the template string
 	 *
-	 * @since  8.0.0
-	 * @param  string       $name Template name.
-	 * @param  array<mixed> $vars Template variables.
+	 * @param string $name Template name.
+	 * @param array<mixed> $vars Template variables.
 	 * @return string
+	 * @since  8.0.0
 	 */
-	public static function get( string $name, array $vars = [] ) {
-		return self::create( $name, $vars )->output();
+	public static function get(string $name, array $vars = [])
+	{
+		return self::create(
+			$name,
+			$vars
+		)->output();
 	}
 
 	/**
 	 * Creates the Template object
 	 *
+	 * @param string $name Template name.
+	 * @param array<mixed> $vars Template variables.
+	 * @return \BracketSpace\Notification\Dependencies\Micropackage\Templates\Template
 	 * @since  8.0.0
-	 * @param  string       $name Template name.
-	 * @param  array<mixed> $vars Template variables.
-	 * @return Template
 	 */
-	public static function create( string $name, array $vars = [] ) : Template {
-		return new Template( self::TEMPLATE_STORAGE, $name, $vars );
+	public static function create(string $name, array $vars = []): Template
+	{
+		return new Template(
+			self::TEMPLATE_STORAGE,
+			$name,
+			$vars
+		);
 	}
 
 	/**
 	 * Renders the template
 	 *
-	 * @since  8.0.0
 	 * @return void
+	 * @since  8.0.0
 	 */
-	public static function register_storage() {
-		Storage::add( self::TEMPLATE_STORAGE, \Notification::fs()->path( 'resources/templates' ) );
+	public static function registerStorage()
+	{
+		Storage::add(
+			self::TEMPLATE_STORAGE,
+			\Notification::fs()->path('resources/templates')
+		);
 	}
-
 }

@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Role recipient
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Recipient;
 
@@ -14,35 +17,42 @@ use BracketSpace\Notification\Queries\UserQueries;
 /**
  * Role recipient
  */
-class Role extends Abstracts\Recipient {
-
+class Role extends Abstracts\Recipient
+{
 	/**
 	 * Recipient constructor
 	 *
 	 * @since 5.0.0
 	 */
-	public function __construct() {
-		parent::__construct( [
-			'slug'          => 'role',
-			'name'          => __( 'Role', 'notification' ),
-			'default_value' => 'administrator',
-		] );
+	public function __construct()
+	{
+		parent::__construct(
+			[
+				'slug' => 'role',
+				'name' => __(
+					'Role',
+					'notification'
+				),
+				'default_value' => 'administrator',
+			]
+		);
 	}
 
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @param  string $value raw value saved by the user.
-	 * @return array         array of resolved values
+	 * @param string $value raw value saved by the user.
+	 * @return array<mixed>         array of resolved values
 	 */
-	public function parse_value( $value = '' ) {
-		if ( empty( $value ) ) {
-			$value = $this->get_default_value();
+	public function parseValue($value = '')
+	{
+		if (empty($value)) {
+			$value = $this->getDefaultValue();
 		}
 
 		$emails = [];
 
-		foreach ( UserQueries::with_role( $value ) as $user ) {
+		foreach (UserQueries::withRole($value) as $user) {
 			$emails[] = $user['user_email'];
 		}
 
@@ -54,31 +64,44 @@ class Role extends Abstracts\Recipient {
 	 *
 	 * @return object
 	 */
-	public function input() {
-		if ( ! function_exists( 'get_editable_roles' ) ) {
+	public function input()
+	{
+		if (!function_exists('get_editable_roles')) {
 			require_once ABSPATH . 'wp-admin/includes/user.php';
 		}
 
 		$roles = get_editable_roles();
-		$opts  = [];
+		$opts = [];
 
-		foreach ( $roles as $role_slug => $role ) {
-			$num_users = count( UserQueries::with_role( $role_slug ) );
+		foreach ($roles as $roleSlug => $role) {
+			$numUsers = count(UserQueries::withRole($roleSlug));
 
-			// Translators: %s numer of users.
-			$label = translate_user_role( $role['name'] ) . ' (' . sprintf( _n( '%s user', '%s users', $num_users, 'notification' ), $num_users ) . ')';
+			$label = translate_user_role($role['name']) . ' (' . sprintf(
+				// Translators: %s numer of users.
+				_n(
+					'%s user',
+					'%s users',
+					$numUsers,
+					'notification'
+				),
+				$numUsers
+			) . ')';
 
-			$opts[ $role_slug ] = esc_html( $label );
+			$opts[$roleSlug] = esc_html($label);
 		}
 
-		return new Field\SelectField( [
-			'label'     => __( 'Recipient', 'notification' ), // don't edit this!
-			'name'      => 'recipient',                       // don't edit this!
-			'css_class' => 'recipient-value',                 // don't edit this!
-			'value'     => $this->get_default_value(),
-			'pretty'    => true,
-			'options'   => $opts,
-		] );
+		return new Field\SelectField(
+			[
+				'label' => __(
+					'Recipient',
+					'notification'
+				), // don't edit this!
+				'name' => 'recipient',                       // don't edit this!
+				'css_class' => 'recipient-value',                 // don't edit this!
+				'value' => $this->getDefaultValue(),
+				'pretty' => true,
+				'options' => $opts,
+			]
+		);
 	}
-
 }

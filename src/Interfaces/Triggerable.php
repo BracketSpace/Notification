@@ -1,41 +1,42 @@
 <?php
+
 /**
  * Triggerable interface class
  *
  * @package notification
  */
 
-namespace BracketSpace\Notification\Interfaces;
+declare(strict_types=1);
 
-use BracketSpace\Notification\Core\Notification;
+namespace BracketSpace\Notification\Interfaces;
 
 /**
  * Triggerable interface
  */
-interface Triggerable extends Nameable {
-
+interface Triggerable extends Nameable
+{
 	/**
 	 * Sets up the merge tags
 	 *
 	 * @return void
 	 */
-	public function setup_merge_tags();
+	public function setupMergeTags();
 
 	/**
 	 * Gets Trigger's merge tags
 	 *
-	 * @param string $type    Optional, all|visible|hidden, default: all.
-	 * @param bool   $grouped Optional, default: false.
-	 * @return array<Taggable>
+	 * @param string $type Optional, all|visible|hidden, default: all.
+	 * @param bool $grouped Optional, default: false.
+	 * @return array<\BracketSpace\Notification\Interfaces\Taggable>
 	 */
-	public function get_merge_tags( $type = 'all', $grouped = false );
+	public function getMergeTags($type = 'all', $grouped = false);
 
 	/**
 	 * Clears the merge tags
 	 *
 	 * @return $this
 	 */
-	public function clear_merge_tags();
+	public function clearMergeTags();
 
 	/**
 	 * Stops the trigger.
@@ -47,22 +48,22 @@ interface Triggerable extends Nameable {
 	/**
 	 * Checks if trigger has been stopped
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
-	public function is_stopped() : bool;
+	public function isStopped(): bool;
 
 	/**
 	 * Gets Trigger actions
 	 *
-	 * @since 8.0.0
 	 * @return array<int, array{tag: string, priority: int, accepted_args: int}>
+	 * @since 8.0.0
 	 */
-	public function get_actions() : array;
+	public function getActions(): array;
 
 	/**
 	 * Gets group
 	 *
 	 * @return string|null
 	 */
-	public function get_group();
+	public function getGroup();
 }
