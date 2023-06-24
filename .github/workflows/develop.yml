@@ -12,10 +12,14 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: Set PHP version
-      run: sudo update-alternatives --set php /usr/bin/php7.4
     - name: Checkout
       uses: actions/checkout@v2
+    - name: Setup PHP 7.4
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+        extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
+        coverage: none
     - name: Setup Node
       uses: actions/setup-node@v1
       with:

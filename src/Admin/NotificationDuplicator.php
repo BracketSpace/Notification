@@ -24,15 +24,21 @@ class NotificationDuplicator {
 	 * @return array               filtered actions
 	 */
 	public function add_duplicate_row_action( $row_actions, $post ) {
-
 		if ( 'notification' !== $post->post_type ) {
 			return $row_actions;
 		}
 
-		$row_actions['duplicate'] = sprintf( '<a href="%s">%s</a>', admin_url( 'admin-post.php?action=notification_duplicate&duplicate=' . $post->ID ), __( 'Duplicate', 'notification' ) );
+		$row_actions['duplicate'] = sprintf(
+			'<a href="%s">%s</a>',
+			admin_url( sprintf(
+				'admin-post.php?action=notification_duplicate&duplicate=%s&nonce=%s',
+				$post->ID,
+				wp_create_nonce( 'duplicate_notification' )
+			) ),
+			__( 'Duplicate', 'notification' )
+		);
 
 		return $row_actions;
-
 	}
 
 	/**
@@ -44,13 +50,13 @@ class NotificationDuplicator {
 	 * @return void
 	 */
 	public function notification_duplicate() {
+		check_admin_referer( 'duplicate_notification', 'nonce' );
 
-		if ( ! isset( $_GET['duplicate'] ) ) {  // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! isset( $_GET['duplicate'] ) ) {
 			exit;
 		}
 
 		// Get the source notification post.
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$source = get_post( intval( wp_unslash( $_GET['duplicate'] ) ) );
 		$wp     = notification_adapt_from( 'WordPress', $source );
 
@@ -62,6 +68,7 @@ class NotificationDuplicator {
 		$json = notification_swap_adapter( 'JSON', $wp );
 
 		$json->refresh_hash();
+		$json->set_enabled( false );
 
 		if ( get_post_type( $source ) !== 'notification' ) {
 			wp_die( 'You cannot duplicate post that\'s not Notification post' );
@@ -76,7 +83,6 @@ class NotificationDuplicator {
 
 		wp_safe_redirect( html_entity_decode( get_edit_post_link( $new_id ) ) );
 		exit;
-
 	}
 
 }

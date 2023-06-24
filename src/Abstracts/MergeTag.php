@@ -67,6 +67,13 @@ abstract class MergeTag implements Interfaces\Taggable {
 	protected $hidden = false;
 
 	/**
+	 * Trigger property name to get the comment data from
+	 *
+	 * @var string
+	 */
+	private $trigger_property_name;
+
+	/**
 	 * Merge tag constructor
 	 *
 	 * @since 5.0.0
@@ -142,7 +149,7 @@ abstract class MergeTag implements Interfaces\Taggable {
 			$value = call_user_func( $this->resolver, $this->get_trigger() );
 		} catch ( \Throwable $t ) {
 			$value = null;
-			trigger_error( $t->getMessage(), E_USER_NOTICE ); // phpcs:ignore
+			trigger_error( esc_html( $t->getMessage() ), E_USER_NOTICE );
 		}
 
 		if ( ! empty( $value ) && ! $this->validate( $value ) ) {
@@ -152,7 +159,7 @@ abstract class MergeTag implements Interfaces\Taggable {
 
 		$this->resolved = true;
 
-		$this->value = apply_filters( 'notification/merge_tag/value/resolve', $this->sanitize( $value ) );
+		$this->value = apply_filters( 'notification/merge_tag/value/resolve', $this->sanitize( $value ), $value );
 
 		return $this->get_value();
 
@@ -210,6 +217,30 @@ abstract class MergeTag implements Interfaces\Taggable {
 
 		$this->resolver = $resolver;
 
+	}
+
+	/**
+	 * Sets resolver function
+	 *
+	 * @since 8.0.12
+	 *
+	 * @param string $trigger_property_name merge tag trigger property name.
+	 *
+	 * @return void
+	 */
+	public function set_trigger_prop( string $trigger_property_name ) {
+		$this->trigger_property_name = $trigger_property_name;
+	}
+
+	/**
+	 * Get trigger property
+	 *
+	 * @since 8.0.12
+	 *
+	 * @return string
+	 */
+	public function get_trigger_prop(): string {
+		return $this->trigger_property_name;
 	}
 
 	/**

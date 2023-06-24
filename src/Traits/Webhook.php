@@ -32,7 +32,7 @@ trait Webhook {
 	 * @param  string $method  HTTP request method.
 	 * @return void
 	 */
-	public function http_request( $url, $args = [], $headers = [], $method ) {
+	public function http_request( $url, $args = [], $headers = [], $method = 'GET' ) {
 		$remote_args = apply_filters(
 			"notification/carrier/webhook/remote_args/{$method}",
 			[
@@ -48,11 +48,23 @@ trait Webhook {
 		$response = wp_remote_request( $url, $remote_args );
 
 		if ( is_wp_error( $response ) ) {
-			// phpcs:ignore
+			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
 			notification_log( $this->get_name(), 'error', '<pre>' . print_r( [
 				'url'    => $url,
 				'args'   => $remote_args,
 				'errors' => $response->get_error_messages(),
+			], true ) . '</pre>' );
+		}
+
+		$code = wp_remote_retrieve_response_code( $response );
+
+		if ( 200 > $code || 300 <= $code ) {
+			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
+			notification_log( $this->get_name(), 'warning', '<pre>' . print_r( [
+				'url'           => $url,
+				'args'          => $remote_args,
+				'response_code' => $code,
+				'message'       => wp_remote_retrieve_response_message( $response ),
 			], true ) . '</pre>' );
 		}
 

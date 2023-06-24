@@ -24,7 +24,7 @@ trait Storage {
 	/**
 	 * Adds an item to the Store
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  mixed $item Item to add.
 	 * @return void
 	 */
@@ -35,7 +35,7 @@ trait Storage {
 	/**
 	 * Inserts an item at a specifc index.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  int|string $index Item index.
 	 * @param  mixed      $item  Item to add.
 	 * @return void
@@ -59,7 +59,7 @@ trait Storage {
 	/**
 	 * Gets all items
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return array<mixed>
 	 */
 	public static function all() : array {
@@ -69,7 +69,7 @@ trait Storage {
 	/**
 	 * Removes all items from the store
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public static function clear() {
@@ -79,7 +79,7 @@ trait Storage {
 	/**
 	 * Get item by index
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  mixed $index Intex of an item.
 	 * @return mixed
 	 */
@@ -102,7 +102,7 @@ trait Storage {
 	/**
 	 * Checks if the Storage has item
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  mixed $index Intex of an item.
 	 * @return bool
 	 */

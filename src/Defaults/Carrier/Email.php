@@ -115,7 +115,6 @@ class Email extends Abstracts\Carrier {
 	 * @return void
 	 */
 	public function send( Triggerable $trigger ) {
-
 		$default_html_mime = notification_get_setting( 'carriers/email/type' ) === 'html';
 		$html_mime         = apply_filters_deprecated( 'notification/email/use_html_mime', [ $default_html_mime, $this, $trigger ], '6.0.0', 'notification/carrier/email/use_html_mime' );
 		$html_mime         = apply_filters( 'notification/carrier/email/use_html_mime', $html_mime, $this, $trigger );
@@ -180,7 +179,7 @@ class Email extends Abstracts\Carrier {
 		}
 
 		foreach ( $errors as $error => $error_data ) {
-			// phpcs:ignore
+			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
 			notification_log( $this->get_name(), 'error', '<pre>' . print_r( [
 				'error'               => $error,
 				'recipients_affected' => $error_data['recipients'],
@@ -192,7 +191,6 @@ class Email extends Abstracts\Carrier {
 		if ( $html_mime ) {
 			remove_filter( 'wp_mail_content_type', [ $this, 'set_mail_type' ] );
 		}
-
 	}
 
 	/**
@@ -205,13 +203,11 @@ class Email extends Abstracts\Carrier {
 	 * @return array                    Carrier data with the unfiltered body, if notifications/email/unfiltered_html setting is true.
 	 **/
 	public function allow_unfiltered_html_body( $carrier_data, $raw_data ) {
-
 		if ( notification_get_setting( 'carriers/email/unfiltered_html' ) ) {
 			$carrier_data['body'] = $raw_data['body'];
 		}
 
 		return $carrier_data;
-
 	}
 
 }

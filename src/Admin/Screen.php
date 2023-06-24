@@ -42,7 +42,6 @@ class Screen {
 	 * @return void
 	 */
 	public function render_main_column( $post ) {
-
 		if ( 'notification' !== get_post_type( $post ) ) {
 			return;
 		}
@@ -50,7 +49,6 @@ class Screen {
 		$notification_post = notification_adapt_from( 'WordPress', $post );
 
 		do_action( 'notification/post/column/main', $notification_post );
-
 	}
 
 	/**
@@ -62,7 +60,6 @@ class Screen {
 	 * @return void
 	 */
 	public function render_trigger_select( $notification_post ) {
-
 		$grouped_triggers = Store\Trigger::grouped();
 		$trigger          = $notification_post->get_trigger();
 
@@ -78,7 +75,6 @@ class Screen {
 			'select_name'  => 'notification_trigger',
 			'notification' => $notification_post,
 		] );
-
 	}
 
 	/**
@@ -91,7 +87,6 @@ class Screen {
 	 * @return void
 	 */
 	public function render_carrier_boxes( $notification_post ) {
-
 		echo '<h3 class="carriers-section-title">' . esc_html__( 'Carriers', 'notification' ) . '</h3>';
 
 		do_action_deprecated( 'notitication/admin/notifications/pre', [
@@ -138,7 +133,6 @@ class Screen {
 		], '6.0.0', 'notification/admin/carriers' );
 
 		do_action( 'notification/admin/carriers', $notification_post );
-
 	}
 
 	/**
@@ -150,7 +144,6 @@ class Screen {
 	 * @return void
 	 */
 	public function render_carriers_widget( $notification_post ) {
-
 		$carriers = Store\Carrier::all();
 		$exists   = $notification_post->get_carriers();
 
@@ -160,7 +153,6 @@ class Screen {
 			'carriers'              => $carriers,
 			'carriers_exists'       => (array) $exists,
 		] );
-
 	}
 
 	/**
@@ -171,7 +163,6 @@ class Screen {
 	 * @return string                       Form HTML.
 	 */
 	public function get_carrier_form( Interfaces\Sendable $carrier ) {
-
 		$fields = $carrier->get_form_fields();
 
 		// No fields available so return the default view.
@@ -183,7 +174,6 @@ class Screen {
 		return Templates::get( 'form/table', [
 			'carrier' => $carrier,
 		] );
-
 	}
 
 	/**
@@ -194,7 +184,6 @@ class Screen {
 	 * @return void
 	 */
 	public function add_save_meta_box() {
-
 		add_meta_box(
 			'notification_save',
 			__( 'Save', 'notification' ),
@@ -206,7 +195,6 @@ class Screen {
 
 		// enable metabox.
 		add_filter( 'notification/admin/allow_metabox/notification_save', '__return_true' );
-
 	}
 
 	/**
@@ -216,7 +204,6 @@ class Screen {
 	 * @return void
 	 */
 	public function render_save_metabox( $post ) {
-
 		if ( ! EMPTY_TRASH_DAYS ) {
 			$delete_text = __( 'Delete Permanently', 'notification' );
 		} else {
@@ -231,7 +218,6 @@ class Screen {
 			'post_id'           => $post->ID,
 			'delete_link_label' => $delete_text,
 		] );
-
 	}
 
 	/**
@@ -242,7 +228,6 @@ class Screen {
 	 * @return void
 	 */
 	public function add_merge_tags_meta_box() {
-
 		add_meta_box(
 			'notification_merge_tags',
 			__( 'Merge Tags', 'notification' ),
@@ -254,7 +239,6 @@ class Screen {
 
 		// enable metabox.
 		add_filter( 'notification/admin/allow_metabox/notification_merge_tags', '__return_true' );
-
 	}
 
 	/**
@@ -264,7 +248,6 @@ class Screen {
 	 * @return void
 	 */
 	public function render_merge_tags_metabox( $post ) {
-
 		$notification = notification_adapt_from( 'WordPress', $post );
 		$trigger      = $notification->get_trigger();
 		$trigger_slug = $trigger ? $trigger->get_slug() : false;
@@ -275,7 +258,6 @@ class Screen {
 		}
 
 		$this->render_merge_tags_list( $trigger_slug );
-
 	}
 
 	/**
@@ -285,7 +267,6 @@ class Screen {
 	 * @return void
 	 */
 	public function render_merge_tags_list( $trigger_slug ) {
-
 		$trigger = Store\Trigger::get( $trigger_slug );
 
 		if ( empty( $trigger ) ) {
@@ -320,7 +301,6 @@ class Screen {
 	 * @return array  $groups  Grouped tags.
 	 */
 	public function prepare_merge_tag_groups( $trigger ) {
-
 		$groups = [];
 		$tags   = $trigger->get_merge_tags( 'visible' );
 
@@ -347,7 +327,6 @@ class Screen {
 		}
 
 		return apply_filters( 'notification/trigger/tags/groups', $groups, $trigger );
-
 	}
 
 	/**
@@ -358,7 +337,6 @@ class Screen {
 	 * @return void
 	 */
 	public function metabox_cleanup() {
-
 		global $wp_meta_boxes;
 
 		if ( ! isset( $wp_meta_boxes['notification'] ) ) {
@@ -376,7 +354,6 @@ class Screen {
 				}
 			}
 		}
-
 	}
 
 	/**
@@ -394,7 +371,6 @@ class Screen {
 	 * @return void
 	 */
 	public function add_help( $screen ) {
-
 		if ( 'notification' !== $screen->post_type ) {
 			return;
 		}
@@ -408,7 +384,6 @@ class Screen {
 		] );
 
 		$screen->set_help_sidebar( Templates::get( 'help/sidebar' ) );
-
 	}
 
 	/**
@@ -425,18 +400,18 @@ class Screen {
 	 * @return void
 	 */
 	public function ajax_render_merge_tags() {
+		check_ajax_referer( 'notification_csrf' );
 
 		$ajax = new Response();
 
-		if ( ! isset( $_POST['trigger_slug'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		if ( ! isset( $_POST['trigger_slug'] ) ) {
 			$ajax->error();
 		}
 
 		ob_start();
 
-		$this->render_merge_tags_list( sanitize_text_field( wp_unslash( $_POST['trigger_slug'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$this->render_merge_tags_list( sanitize_text_field( wp_unslash( $_POST['trigger_slug'] ) ) );
 
 		$ajax->send( ob_get_clean() );
-
 	}
 }

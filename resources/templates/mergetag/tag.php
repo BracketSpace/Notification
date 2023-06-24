@@ -6,6 +6,7 @@
  *
  * @var callable(string $var_name, string $default=): mixed $get Variable getter.
  * @var callable(string $var_name, string $default=): void $the Variable printer.
+ * @var callable(string $var_name, string $default=): void $the_esc Escaped variable printer.
  * @var BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
@@ -28,7 +29,7 @@ $tag = $get( 'tag' );
 					<label><?php esc_html_e( 'Example:', 'notification' ); ?></label>
 				<?php endif ?>
 				<div class="description-content">
-					<?php echo $description; // phpcs:ignore ?>
+					<?php echo esc_html( $description ); ?>
 				</div>
 				<?php if ( $tag->is_description_example() ) : ?>
 					<i>(<?php echo esc_html( $tag->get_value_type() ); ?>)</i>

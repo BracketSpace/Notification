@@ -23,13 +23,6 @@ class CommentActionTrash extends UrlTag {
 	protected $comment_type = 'comment';
 
 	/**
-	 * Trigger property name to get the comment data from
-	 *
-	 * @var string
-	 */
-	protected $property_name = '';
-
-	/**
 	 * Merge tag constructor
 	 *
 	 * @since 5.0.0
@@ -41,11 +34,7 @@ class CommentActionTrash extends UrlTag {
 			$this->comment_type = $params['comment_type'];
 		}
 
-		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
-			$this->property_name = $params['property_name'];
-		} else {
-			$this->property_name = $this->comment_type;
-		}
+		$this->set_trigger_prop( $params['property_name'] ?? 'comment' );
 
 		$comment_type_name = WpObjectHelper::get_comment_type_name( $this->comment_type );
 
@@ -57,8 +46,8 @@ class CommentActionTrash extends UrlTag {
 				'name'     => sprintf( __( '%s trash URL', 'notification' ), $comment_type_name ),
 				// Translators: comment type actions text.
 				'group'    => sprintf( __( '%s actions', 'notification' ), $comment_type_name ),
-				'resolver' => function( $trigger ) {
-					return admin_url( "comment.php?action=trash&c={$trigger->{ $this->property_name }->comment_ID}#wpbody-content" );
+				'resolver' => function ( $trigger ) {
+					return admin_url( "comment.php?action=trash&c={$trigger->{ $this->get_trigger_prop() }->comment_ID}#wpbody-content" );
 				},
 			]
 		);

@@ -74,8 +74,8 @@ class PostPending extends PostTrigger {
 
 		$this->{ $this->post_type } = $post;
 
-		$this->author      = get_userdata( $this->{ $this->post_type }->post_author );
-		$this->last_editor = get_userdata( get_post_meta( $this->{ $this->post_type }->ID, '_edit_last', true ) );
+		$this->author      = get_userdata( (int) $this->{ $this->post_type }->post_author );
+		$this->last_editor = get_userdata( (int) get_post_meta( $this->{ $this->post_type }->ID, '_edit_last', true ) );
 
 		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date_gmt );
 		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified_gmt );

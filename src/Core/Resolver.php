@@ -20,7 +20,7 @@ class Resolver {
 	 * Resolves value with all the resolvers
 	 *
 	 * @since  6.0.0
-	 * @since  [Next] Method is static
+	 * @since  8.0.0 Method is static
 	 * @param  string      $value   Unresolved string with tags.
 	 * @param  Triggerable $trigger Trigger object.
 	 * @return string               Resolved value
@@ -35,8 +35,8 @@ class Resolver {
 
 		// Loop over all resolvers.
 		foreach ( $resolvers as $resolver ) {
-			$value = preg_replace_callback( $resolver->get_pattern(), function( $match ) use ( $resolver, $trigger ) {
-				return call_user_func( [ $resolver, 'resolve_merge_tag' ], $match, $trigger );
+			$value = preg_replace_callback( $resolver->get_pattern(), function ( $match ) use ( $resolver, $trigger ) {
+				return call_user_func( [ $resolver, 'resolve_merge_tag' ], $match, clone $trigger );
 			}, $value );
 		}
 
@@ -48,12 +48,12 @@ class Resolver {
 	 * Clears any Merge Tags
 	 *
 	 * @since  6.0.0
-	 * @since  [Next] Method is static
+	 * @since  8.0.0 Method is static
 	 * @param  string $value Unresolved string with tags.
 	 * @return string
 	 */
 	public static function clear( $value ) {
-		return preg_replace( '/(?<!\!)\{(?:[^{}])*\}/', '', $value );
+		return preg_replace( '/(?<!\!)\{(?:[^{}\s\"\'])*\}/', '', $value );
 	}
 
 }

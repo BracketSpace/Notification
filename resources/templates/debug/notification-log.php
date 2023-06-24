@@ -6,6 +6,7 @@
  *
  * @var callable(string $var_name, string $default=): mixed $get Variable getter.
  * @var callable(string $var_name, string $default=): void $the Variable printer.
+ * @var callable(string $var_name, string $default=): void $the_esc Escaped variable printer.
  * @var BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
@@ -64,7 +65,13 @@ $logs = $get( 'logs' );
 									<th><code><?php echo esc_html( $key ); ?></code></th>
 									<td>
 										<?php if ( is_array( $value ) ) : ?>
-											<pre><code><?php print_r( $value ); // phpcs:ignore ?></code></pre>
+											<pre><code>
+												<?php
+												// print_r is used to display debug info.
+												// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
+												echo wp_kses_post( print_r( $value, true ) );
+												?>
+											</code></pre>
 										<?php else : ?>
 											<pre><code><?php echo esc_html( $value ); ?></code></pre>
 										<?php endif ?>
@@ -84,7 +91,13 @@ $logs = $get( 'logs' );
 										<th><code><?php echo esc_html( $key ); ?></code></th>
 										<td>
 											<?php if ( is_array( $value ) ) : ?>
-												<pre><code><?php print_r( $value ); // phpcs:ignore ?></code></pre>
+												<pre><code>
+													<?php
+													// print_r is used to display debug info.
+													// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
+													echo wp_kses_post( print_r( $value, true ) );
+													?>
+												</code></pre>
 											<?php else : ?>
 												<pre><code><?php echo esc_html( $value ); ?></code></pre>
 											<?php endif ?>

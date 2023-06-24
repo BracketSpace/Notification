@@ -6,8 +6,13 @@
  *
  * @var callable(string $var_name, string $default=): mixed $get Variable getter.
  * @var callable(string $var_name, string $default=): void $the Variable printer.
+ * @var callable(string $var_name, string $default=): void $the_esc Escaped variable printer.
  * @var BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
+
+use BracketSpace\Notification\Dependencies\enshrined\svgSanitize\Sanitizer;
+
+$svg_sanitizer = new Sanitizer();
 
 ?>
 <div class="notification-carriers" data-nt-widget <?php echo ( $get( 'carriers_added_count' ) === $get( 'carriers_exists_count' ) ) ? 'data-nt-hidden' : ''; ?>>
@@ -19,7 +24,12 @@
 				<?php echo ( array_key_exists( $carrier->get_slug(), $get( 'carriers_exists' ) ) ) ? 'data-nt-hidden' : ''; ?>>
 				<a href="#" class="notification-carriers__carrier-link" data-nt-button-link>
 					<div class="notification-carriers__carrier-media">
-						<div class="notification-carriers__carrier-icon"><?php echo $carrier->icon; // phpcs:ignore ?></div>
+						<div class="notification-carriers__carrier-icon">
+							<?php
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							echo $svg_sanitizer->sanitize( $carrier->icon );
+							?>
+						</div>
 					</div>
 					<div class="notification-carriers__carrier-title"><?php echo esc_html( $carrier->get_name() ); ?></div>
 					<div class="notification-carriers__carrier-overlay">

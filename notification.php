@@ -4,7 +4,7 @@
  * Description: Customisable email and webhook notifications with powerful developer friendly API for custom triggers and notifications. Send alerts easily.
  * Author: BracketSpace
  * Author URI: https://bracketspace.com
- * Version: 8.0.0
+ * Version: 8.0.15
  * License: GPL3
  * Text Domain: notification
  * Domain Path: /languages
@@ -87,7 +87,7 @@ if ( ! class_exists( 'Notification' ) ) :
 		/**
 		 * Gets plugin filesystem
 		 *
-		 * @since  [Next]
+		 * @since  8.0.0
 		 * @throws \Exception When runtime wasn't invoked yet.
 		 * @return \BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem
 		 */

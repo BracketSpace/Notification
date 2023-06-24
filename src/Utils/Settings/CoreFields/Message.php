@@ -27,7 +27,7 @@ class Message {
 
 		$message = $field->addon( 'message' );
 
-		echo is_callable( $message ) ? $message() : $message; // phpcs:ignore
+		echo wp_kses_post( is_callable( $message ) ? $message() : $message );
 
 		if ( $field->addon( 'code' ) ) {
 			echo '</code></pre>';

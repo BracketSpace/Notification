@@ -302,7 +302,7 @@ class Notification {
 	 * @return array
 	 */
 	public function get_enabled_carriers() {
-		return array_filter( $this->get_carriers(), function( $carrier ) {
+		return array_filter( $this->get_carriers(), function ( $carrier ) {
 			return $carrier->is_enabled();
 		} );
 	}

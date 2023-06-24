@@ -29,7 +29,7 @@ class Checkbox {
 			esc_attr( $field->input_id() ),
 			esc_attr( $field->input_name() ),
 			checked( $checked, true, false ),
-			esc_html( $field->addon( 'label' ) )
+			wp_kses_data( $field->addon( 'label' ) )
 		);
 	}
 

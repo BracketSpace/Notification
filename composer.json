@@ -4,12 +4,14 @@
 	"license": "GPL-3.0-or-later",
 	"description": "Notification plugin for WordPress",
 	"require": {
-		"composer-runtime-api": "^2.0",
 		"php": "^7.0",
+		"composer-runtime-api": "^2.0",
+		"enshrined/svg-sanitize": "^0.16.0",
 		"micropackage/ajax": "^1.0",
+		"micropackage/cache": "^1.0",
 		"micropackage/dochooks": "1.0.2",
 		"micropackage/filesystem": "^1.1",
-		"micropackage/requirements": "^1.0",
+		"micropackage/requirements": "^1.1",
 		"micropackage/templates": "^1.1"
 	},
 	"require-dev": {
@@ -22,12 +24,14 @@
 		"roots/wordpress": "*",
 		"szepeviktor/phpstan-wordpress": "^0.7.2",
 		"wp-coding-standards/wpcs": "^2.0",
-		"wp-phpunit/wp-phpunit": "^5.8"
+		"wp-phpunit/wp-phpunit": "^5.8",
+		"yoast/phpunit-polyfills": "^1.0"
 	},
 	"config": {
 		"optimize-autoloader": true,
 		"preferred-install": "dist",
-		"sort-packages": true
+		"sort-packages": true,
+		"allow-plugins": true
 	},
 	"extra": {
 		"mozart": {

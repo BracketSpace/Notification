@@ -8,7 +8,7 @@
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Templates;
-use BracketSpace\Notification\Utils\Settings\CoreFields;
+use BracketSpace\Notification\Utils\Settings\Fields as SettingFields;
 use BracketSpace\Notification\Queries\NotificationQueries;
 
 /**
@@ -23,7 +23,6 @@ class ImportExport {
 	 * @return void
 	 */
 	public function settings( $settings ) {
-
 		$importexport = $settings->add_section( __( 'Import / Export', 'notification' ), 'import_export' );
 
 		$importexport->add_group( __( 'Import', 'notification' ), 'import' )
@@ -31,11 +30,8 @@ class ImportExport {
 				[
 					'name'     => __( 'Notifications', 'notification' ),
 					'slug'     => 'notifications',
-					'addons'   => [
-						'message' => [ $this, 'notification_import_form' ],
-					],
-					'render'   => [ new CoreFields\Message(), 'input' ],
-					'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
+					'render'   => [ new SettingFields\Import(), 'input' ],
+					'sanitize' => '__return_null',
 				]
 			);
 
@@ -44,41 +40,10 @@ class ImportExport {
 				[
 					'name'     => __( 'Notifications', 'notification' ),
 					'slug'     => 'notifications',
-					'addons'   => [
-						'message' => [ $this, 'notification_export_form' ],
-					],
-					'render'   => [ new CoreFields\Message(), 'input' ],
-					'sanitize' => [ new CoreFields\Message(), 'sanitize' ],
+					'render'   => [ new SettingFields\Export(), 'input' ],
+					'sanitize' => '__return_null',
 				]
 			);
-
-	}
-
-	/**
-	 * Returns notifications import form
-	 *
-	 * @since  6.0.0
-	 * @return string
-	 */
-	public function notification_import_form() {
-		return Templates::get( 'import/notifications' );
-	}
-
-	/**
-	 * Returns notifications export form
-	 *
-	 * @since  6.0.0
-	 * @return string
-	 */
-	public function notification_export_form() {
-
-		$download_link = admin_url( 'admin-post.php?action=notification_export&nonce=' . wp_create_nonce( 'notification-export' ) . '&type=notifications&items=' );
-
-		return Templates::get( 'export/notifications', [
-			'notifications' => NotificationQueries::all( true ),
-			'download_link' => $download_link,
-		] );
-
 	}
 
 	/**
@@ -90,7 +55,6 @@ class ImportExport {
 	 * @return void
 	 */
 	public function export_request() {
-
 		check_admin_referer( 'notification-export', 'nonce' );
 
 		if ( ! isset( $_GET['type'] ) ) {
@@ -100,18 +64,24 @@ class ImportExport {
 		$type = sanitize_text_field( wp_unslash( $_GET['type'] ) );
 
 		try {
-			$data = call_user_func( [ $this, 'prepare_' . $type . '_export_data' ] );
+			$data = call_user_func(
+				[ $this, 'prepare_' . $type . '_export_data' ],
+				explode( ',', sanitize_text_field( wp_unslash( $_GET['items'] ?? '' ) ) )
+			);
 		} catch ( \Exception $e ) {
 			wp_die( esc_html( $e->getMessage() ), '', [ 'back_link' => true ] );
 		}
 
 		header( 'Content-Description: File Transfer' );
-		header( 'Content-Disposition: attachment; filename=notification-export-' . $type . '-' . current_time( 'Y-m-d-H-i-s' ) . '.json' );
 		header( 'Content-Type: application/json; charset=utf-8' );
+		header( sprintf(
+			'Content-Disposition: attachment; filename=notification-export-%s-%s.json',
+			$type,
+			current_time( 'Y-m-d-H-i-s' )
+		) );
 
 		echo wp_json_encode( $data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE );
 		die;
-
 	}
 
 	/**
@@ -119,16 +89,16 @@ class ImportExport {
 	 *
 	 * @throws \Exception When no items selected for export.
 	 * @since  6.0.0
-	 * @return array
+	 * @since  8.0.2 Accepts the items argument, instead reading it from GET.
+	 * @param  array<int,string> $items Items to export.
+	 * @return array<int,string>
 	 */
-	public function prepare_notifications_export_data() {
-
-		if ( ! isset( $_GET['items'] ) || empty( $_GET['items'] ) ) { // phpcs:ignore
+	public function prepare_notifications_export_data( array $items = [] ) {
+		if ( empty( $items ) ) {
 			throw new \Exception( __( 'No items selected for export' ) );
 		}
 
 		$data  = [];
-		$items = explode( ',', sanitize_text_field( wp_unslash( $_GET['items'] ) ) ); // phpcs:ignore
 		$posts = get_posts( [
 			'post_type'      => 'notification',
 			'post_status'    => [ 'publish', 'draft' ],
@@ -137,7 +107,6 @@ class ImportExport {
 		] );
 
 		foreach ( $posts as $wppost ) {
-
 			$wp_adapter = notification_adapt_from( 'WordPress', $wppost );
 
 			/**
@@ -150,11 +119,9 @@ class ImportExport {
 
 			// Decode because it's encoded in the last step of export.
 			$data[] = json_decode( $json );
-
 		}
 
 		return $data;
-
 	}
 
 	/**
@@ -166,7 +133,6 @@ class ImportExport {
 	 * @return void
 	 */
 	public function import_request() {
-
 		if ( false === check_ajax_referer( 'import-notifications', 'nonce', false ) ) {
 			wp_send_json_error( __( 'Security check failed. Please refresh the page and try again' ) );
 		}
@@ -205,7 +171,6 @@ class ImportExport {
 		}
 
 		wp_send_json_success( $result );
-
 	}
 
 	/**
@@ -216,7 +181,6 @@ class ImportExport {
 	 * @return string
 	 */
 	public function process_notifications_import_request( $data ) {
-
 		$added   = 0;
 		$skipped = 0;
 		$updated = 0;
@@ -251,7 +215,6 @@ class ImportExport {
 
 		// translators: number and number and number of notifications.
 		return sprintf( __( '%1$d notifications imported successfully. %2$d updated. %3$d skipped.' ), ( $added + $updated ), $updated, $skipped );
-
 	}
 
 }

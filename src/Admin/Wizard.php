@@ -10,6 +10,8 @@ namespace BracketSpace\Notification\Admin;
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Core\Whitelabel;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
 
 /**
@@ -56,7 +58,6 @@ class Wizard {
 	 * @return void
 	 */
 	public function register_page() {
-
 		$this->page_hook = add_submenu_page(
 			'',
 			__( 'Wizard', 'notification' ),
@@ -65,7 +66,6 @@ class Wizard {
 			'wizard',
 			[ $this, 'wizard_page' ]
 		);
-
 	}
 
 	/**
@@ -76,7 +76,6 @@ class Wizard {
 	 * @return void
 	 */
 	public function maybe_redirect() {
-
 		if ( ! self::should_display() ) {
 			return;
 		}
@@ -87,7 +86,6 @@ class Wizard {
 			wp_safe_redirect( admin_url( 'edit.php?post_type=notification&page=wizard' ) );
 			exit;
 		}
-
 	}
 
 	/**
@@ -107,7 +105,6 @@ class Wizard {
 	 * @return array List of settings groups.
 	 */
 	public function get_settings() {
-
 		return [
 			[
 				'name'  => __( 'Common Notifications', 'notification' ),
@@ -253,7 +250,6 @@ class Wizard {
 				],
 			],
 		];
-
 	}
 
 	/**
@@ -264,25 +260,21 @@ class Wizard {
 	 * @return void
 	 */
 	public function save_settings() {
-
-		$data = $_POST; // phpcs:ignore
-
-		if ( wp_verify_nonce( $data['_wpnonce'], 'notification_wizard' ) === false ) {
+		if ( wp_verify_nonce( sanitize_key( $_POST['_wpnonce'] ?? '' ), 'notification_wizard' ) === false ) {
 			wp_die( 'Can\'t touch this' );
 		}
 
-		if ( ! isset( $data['skip-wizard'] ) ) {
+		$data = $_POST;
 
+		if ( ! isset( $data['skip-wizard'] ) ) {
 			$notifications = isset( $data['notification_wizard'] ) ? $data['notification_wizard'] : [];
 			$this->add_notifications( $notifications );
-
 		}
 
 		$this->save_option_to_dismiss_wizard();
 
 		wp_safe_redirect( admin_url( 'edit.php?post_type=notification' ) );
 		exit;
-
 	}
 
 	/**
@@ -294,11 +286,13 @@ class Wizard {
 	 * @return void
 	 */
 	private function add_notifications( $notifications ) {
+		if ( [] === $notifications ) {
+			return;
+		}
 
 		$json_path_tmpl = 'resources/wizard-data/%s.json';
 
 		foreach ( $notifications as $notification_slug ) {
-
 			$json_path = sprintf( $json_path_tmpl, $notification_slug );
 
 			if ( ! $this->filesystem->is_readable( $json_path ) ) {
@@ -312,9 +306,16 @@ class Wizard {
 
 			$wp_adapter = notification_swap_adapter( 'WordPress', $json_adapter );
 			$wp_adapter->save();
-
 		}
 
+		/**
+		 * @todo
+		 * This cache should be cleared in Adapter save method.
+		 * Now it's used in Admin\PostType::save() as well
+		 */
+		$cache = new CacheDriver\ObjectCache( 'notification' );
+		$cache->set_key( 'notifications' );
+		$cache->delete();
 	}
 
 	/**
@@ -323,19 +324,17 @@ class Wizard {
 	 * @return void
 	 */
 	private function save_option_to_dismiss_wizard() {
-
 		if ( get_option( $this->dismissed_option ) !== false ) {
 			update_option( $this->dismissed_option, true );
 		} else {
 			add_option( $this->dismissed_option, true, '', 'no' );
 		}
-
 	}
 
 	/**
 	 * Checks if wizard should be displayed
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return bool
 	 */
 	public static function should_display() {

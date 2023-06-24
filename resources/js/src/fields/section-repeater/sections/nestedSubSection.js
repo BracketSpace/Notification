@@ -1,4 +1,4 @@
-/* global Vue */
+import Vue from "vue/dist/vue.js";
 import { sectionsModal } from "../mixins/sectionsModal";
 import { sectionsHandler } from "../mixins/sectionsHandler";
 

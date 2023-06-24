@@ -28,7 +28,7 @@ class Queue {
 	/**
 	 * Adds the item to the queue
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 * @param CoreNotification $notification Notification.
 	 * @param Triggerable      $trigger      Trigger.
 	 * @param int|null         $index        Index at which to put the item.
@@ -37,7 +37,7 @@ class Queue {
 	public static function add( CoreNotification $notification, Triggerable $trigger, int $index = null ) {
 		$item = [
 			'notification' => $notification,
-			'trigger'      => $trigger,
+			'trigger'      => clone $trigger,
 		];
 
 		if ( null !== $index ) {
@@ -51,7 +51,7 @@ class Queue {
 	 * Replaces the items if they are already in the queue
 	 * or adds new queue item
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 * @param CoreNotification $notification Notification.
 	 * @param Triggerable      $trigger      Trigger.
 	 * @return void
@@ -59,8 +59,7 @@ class Queue {
 	public static function add_replace( CoreNotification $notification, Triggerable $trigger ) {
 		// Check if item already exists.
 		foreach ( self::$items as $index => $item ) {
-			// phpcs:ignore.
-			if ( $item['notification'] == $notification && $item['trigger'] == $trigger ) {
+			if ( $item['notification'] === $notification && $item['trigger'] === $trigger ) {
 				self::add( $notification, $trigger, $index );
 				return;
 			}
@@ -72,15 +71,14 @@ class Queue {
 	/**
 	 * Checks if the items are already in the queue
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 * @param CoreNotification $notification Notification.
 	 * @param Triggerable      $trigger      Trigger.
 	 * @return bool
 	 */
 	public static function has( CoreNotification $notification, Triggerable $trigger ) : bool {
 		foreach ( self::$items as $item ) {
-			// phpcs:ignore.
-			if ( $item['notification'] == $notification && $item['trigger'] == $trigger ) {
+			if ( $item['notification'] === $notification && $item['trigger'] === $trigger ) {
 				return true;
 			}
 		}
@@ -91,7 +89,7 @@ class Queue {
 	/**
 	 * Gets items added to the queue
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 * @return array<int, array{notification: CoreNotification, trigger: Triggerable}>
 	 */
 	public static function get() : array {
@@ -101,7 +99,7 @@ class Queue {
 	/**
 	 * Iterates over the queue items
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 * @param callable $callback Callback for each item.
 	 * @return void
 	 */
@@ -109,6 +107,27 @@ class Queue {
 		foreach ( self::get() as $index => $item ) {
 			call_user_func( $callback, $index, $item['notification'], $item['trigger'] );
 		}
+	}
+
+	/**
+	 * Clears the queue entirely
+	 *
+	 * @since 8.0.9
+	 * @return void
+	 */
+	public static function clear() {
+		self::$items = [];
+	}
+
+	/**
+	 * Removes an item from the queue
+	 *
+	 * @since 8.0.9
+	 * @param int $index Index of an item to remove.
+	 * @return void
+	 */
+	public static function remove( int $index ) {
+		unset( self::$items[ $index ] );
 	}
 
 }

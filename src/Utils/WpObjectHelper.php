@@ -9,6 +9,9 @@
 
 namespace BracketSpace\Notification\Utils;
 
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
+
 /**
  * WpObjectHelper class
  */
@@ -17,7 +20,7 @@ class WpObjectHelper {
 	/**
 	 * Gets post type object
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string $post_type_slug Post type slug.
 	 * @return \WP_Post_Type|null
 	 */
@@ -28,7 +31,7 @@ class WpObjectHelper {
 	/**
 	 * Gets registered post types in slug => name format
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  array<mixed> $args Query args.
 	 * @return array<string,string>
 	 */
@@ -48,7 +51,7 @@ class WpObjectHelper {
 	/**
 	 * Gets post type object name
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string $post_type_slug Post type slug.
 	 * @return string|null
 	 */
@@ -60,7 +63,7 @@ class WpObjectHelper {
 	/**
 	 * Gets taxonomy object
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string $taxonomy_slug Taxonomy slug.
 	 * @return \WP_Taxonomy|null
 	 */
@@ -72,7 +75,7 @@ class WpObjectHelper {
 	/**
 	 * Gets registered taxonomies in slug => name format
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  array<mixed> $args Query args.
 	 * @return array<string,\WP_Taxonomy>
 	 */
@@ -93,7 +96,7 @@ class WpObjectHelper {
 	/**
 	 * Gets taxonomy object name
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string $taxonomy_slug Taxonomy slug.
 	 * @return string|null
 	 */
@@ -105,7 +108,7 @@ class WpObjectHelper {
 	/**
 	 * Gets comment type name
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string $comment_type_slug Comment type slug.
 	 * @return string|null
 	 */
@@ -117,34 +120,41 @@ class WpObjectHelper {
 	/**
 	 * Gets comment types from database
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return array<string,string>
 	 */
 	public static function get_comment_types() : array {
-		global $wpdb;
+		$driver = new CacheDriver\ObjectCache( 'notification' );
+		$cache  = new Cache( $driver, 'comment_types' );
 
-		$comment_types = [
-			'comment'   => __( 'Comment', 'notification' ),
-			'pingback'  => __( 'Pingback', 'notification' ),
-			'trackback' => __( 'Trackback', 'notification' ),
-		];
+		return $cache->collect( function () {
+			global $wpdb;
 
-		$db_types = $wpdb->get_col( // phpcs:ignore
-			"SELECT DISTINCT comment_type
-			FROM $wpdb->comments
-			WHERE 1=1"
-		);
+			$comment_types = [
+				'comment'   => __( 'Comment', 'notification' ),
+				'pingback'  => __( 'Pingback', 'notification' ),
+				'trackback' => __( 'Trackback', 'notification' ),
+			];
 
-		foreach ( $db_types as $type ) {
-			if ( ! isset( $comment_types[ $type ] ) ) {
-				// Dynamically generated and translated name.
-				$name = ucfirst( str_replace( [ '_', '-' ], ' ', $type ) );
+			// There's no other way to get comment types and we're using the cache lib.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$db_types = $wpdb->get_col(
+				"SELECT DISTINCT comment_type
+				FROM $wpdb->comments
+				WHERE 1=1"
+			);
 
-				$comment_types[ (string) $type ] = __( $name );
+			foreach ( $db_types as $type ) {
+				if ( ! isset( $comment_types[ $type ] ) ) {
+					// Dynamically generated and translated name.
+					$name = ucfirst( str_replace( [ '_', '-' ], ' ', $type ) );
+
+					$comment_types[ (string) $type ] = __( $name );
+				}
 			}
-		}
 
-		return $comment_types;
+			return $comment_types;
+		} );
 	}
 
 }

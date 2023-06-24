@@ -21,7 +21,6 @@ class PostTable {
 	 * @return array          filtered columns
 	 */
 	public function table_columns( $columns ) {
-
 		$date_column  = $columns['date'];
 		$title_column = $columns['title'];
 		unset( $columns['date'] );
@@ -30,12 +29,12 @@ class PostTable {
 		// Custom columns.
 		$columns['switch']   = __( 'Status', 'notification' );
 		$columns['title']    = $title_column;
+		$columns['hash']     = __( 'Hash', 'notification' );
 		$columns['trigger']  = __( 'Trigger', 'notification' );
 		$columns['carriers'] = __( 'Carriers', 'notification' );
 		$columns['date']     = $date_column;
 
 		return $columns;
-
 	}
 
 	/**
@@ -48,7 +47,6 @@ class PostTable {
 	 * @return void
 	 */
 	public function table_column_content( $column, $post_id ) {
-
 		/**
 		 * WordPress Adapter
 		 *
@@ -57,6 +55,10 @@ class PostTable {
 		$notification = notification_adapt_from( 'WordPress', $post_id );
 
 		switch ( $column ) {
+			case 'hash':
+				echo '<code>' . esc_html( $notification->get_hash() ) . '</code>';
+				break;
+
 			case 'trigger':
 				$trigger = $notification->get_trigger();
 				echo esc_html( null === $trigger ? __( 'No trigger selected', 'notification' ) : $trigger->get_name() );
@@ -79,7 +81,6 @@ class PostTable {
 				}
 				break;
 		}
-
 	}
 
 	/**
@@ -92,13 +93,11 @@ class PostTable {
 	 * @return array               filtered states
 	 */
 	public function remove_status_display( $post_states, $post ) {
-
 		if ( 'notification' === $post->post_type ) {
 			return [];
 		}
 
 		return $post_states;
-
 	}
 
 	/**
@@ -111,7 +110,6 @@ class PostTable {
 	 * @return array               filtered actions
 	 */
 	public function remove_quick_edit( $row_actions, $post ) {
-
 		if ( 'notification' === $post->post_type ) {
 			if ( isset( $row_actions['inline hide-if-no-js'] ) ) {
 				unset( $row_actions['inline hide-if-no-js'] );
@@ -122,7 +120,6 @@ class PostTable {
 		}
 
 		return $row_actions;
-
 	}
 
 	/**
@@ -136,7 +133,6 @@ class PostTable {
 	 * @return array               filtered actions
 	 */
 	public function adjust_trash_link( $row_actions, $post ) {
-
 		if ( 'notification' !== $post->post_type ) {
 			return $row_actions;
 		}
@@ -144,7 +140,6 @@ class PostTable {
 		$row_actions['trash'] = '<a href="' . esc_url( get_delete_post_link( $post->ID, '', true ) ) . '" class="submitdelete notification-delete-post">' . esc_html__( 'Remove', 'notification' ) . '</a>';
 
 		return $row_actions;
-
 	}
 
 	/**
@@ -156,7 +151,6 @@ class PostTable {
 	 * @return array          Filtered actions
 	 */
 	public function adjust_bulk_actions( $actions ) {
-
 		unset( $actions['edit'] );
 		unset( $actions['trash'] );
 
@@ -165,7 +159,6 @@ class PostTable {
 		$actions['enable']  = __( 'Enable', 'notification' );
 
 		return $actions;
-
 	}
 
 	/**
@@ -180,7 +173,6 @@ class PostTable {
 	 * @return string              Redirect link.
 	 */
 	public function handle_status_bulk_actions( $redirect_to, $doaction, $post_ids ) {
-
 		if ( ! in_array( $doaction, [ 'enable', 'disable' ], true ) ) {
 			return $redirect_to;
 		}
@@ -193,8 +185,12 @@ class PostTable {
 			$notification->save();
 		}
 
-		return add_query_arg( 'bulk_' . $doaction . '_notifications', count( $post_ids ), $redirect_to );
+		$action = sprintf( 'bulk_%s_notifications', $doaction );
 
+		return add_query_arg( [
+			$action => count( $post_ids ),
+			'nonce' => wp_create_nonce( 'notification_bulk_action' ),
+		], $redirect_to );
 	}
 
 	/**
@@ -206,12 +202,13 @@ class PostTable {
 	 * @return void
 	 */
 	public function display_bulk_actions_admin_notices() {
-
-		$action = $_GET; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-
-		if ( ! isset( $action['bulk_disable_notifications'] ) && ! isset( $action['bulk_enable_notifications'] ) ) {
+		if ( ! isset( $_GET['bulk_disable_notifications'], $_GET['bulk_enable_notifications'] ) ) {
 			return;
 		}
+
+		check_admin_referer( 'notification_bulk_action', 'nonce' );
+
+		$action = $_GET;
 
 		if ( ! empty( $action['bulk_disable_notifications'] ) ) {
 			$action_type = esc_html__( 'disabled', 'notification' );
@@ -228,7 +225,6 @@ class PostTable {
 			$bulk_count,
 			$action_type
 		);
-
 	}
 
 }

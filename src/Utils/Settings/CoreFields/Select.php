@@ -27,13 +27,15 @@ class Select {
 		$name     = $field->addon( 'multiple' ) ? $field->input_name() . '[]' : $field->input_name();
 		$pretty   = $field->addon( 'pretty' ) ? 'pretty-select' : '';
 
-		echo '<select ' . esc_attr( $multiple ) . ' name="' . esc_attr( $name ) . '" id="' . esc_attr( $field->input_id() ) . '" class="' . esc_attr( $pretty ) . '">'; // phpcs:ignore
+		echo '<select ' . esc_attr( $multiple ) . ' name="' . esc_attr( $name ) . '" id="' . esc_attr( $field->input_id() ) . '" class="' . esc_attr( $pretty ) . '">';
 
 		$options = is_callable( $field->addon( 'options' ) ) ? $field->addon( 'options' )() : $field->addon( 'options' );
 
 		foreach ( $options as $option_value => $option_label ) {
 			$selected = in_array( $option_value, (array) $field->value(), true ) ? 'selected="selected"' : '';
-			echo '<option value="' . esc_attr( $option_value ) . '" ' . $selected . '>' . esc_html( $option_label ) . '</option>'; // phpcs:ignore
+			// We're printing safe variable here.
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<option value="' . esc_attr( $option_value ) . '" ' . $selected . '>' . esc_html( $option_label ) . '</option>';
 		}
 
 		echo '</select>';

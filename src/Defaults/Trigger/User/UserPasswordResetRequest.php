@@ -49,14 +49,14 @@ class UserPasswordResetRequest extends UserTrigger {
 	 * @return mixed
 	 */
 	public function context( $username, $reset_key ) {
-
 		$user = get_user_by( 'login', $username );
 
 		/**
 		 * Bail if we are handling the registration.
 		 * Use the filter to integrate with 3rd party code.
 		 */
-		if ( ( isset( $_GET['action'] ) && 'register' === $_GET['action'] ) ||  // phpcs:ignore
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ( isset( $_REQUEST['action'] ) && 'register' === $_REQUEST['action'] ) ||
 			apply_filters( 'notification/trigger/wordpress/user_password_reset_request/bail_for_registration', false, $user ) ) {
 			return false;
 		}
@@ -68,7 +68,6 @@ class UserPasswordResetRequest extends UserTrigger {
 
 		$this->user_registered_datetime        = strtotime( $this->user_object->user_registered );
 		$this->password_reset_request_datetime = time();
-
 	}
 
 	/**

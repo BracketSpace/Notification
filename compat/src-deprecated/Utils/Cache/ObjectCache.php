@@ -31,6 +31,7 @@ class ObjectCache extends Cache implements Cacheable {
 	 * @param string $group cache group, optional.
 	 */
 	public function __construct( $key, $group = '' ) {
+		notification_deprecated_class( __CLASS__, '8.0.2', 'BracketSpace\\Notification\\Dependencies\\Micropackage\\Cache\\Driver\\ObjectCache' );
 
 		parent::__construct( $key );
 

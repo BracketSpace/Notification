@@ -98,7 +98,7 @@ class UserRoleChanged extends UserTrigger {
 		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'     => 'new_role',
 			'name'     => __( 'New role', 'notification' ),
-			'resolver' => function( $trigger ) {
+			'resolver' => function ( $trigger ) {
 				return $trigger->new_role;
 			},
 			'group'    => __( 'Roles', 'notification' ),
@@ -107,7 +107,7 @@ class UserRoleChanged extends UserTrigger {
 		$this->add_merge_tag( new MergeTag\StringTag( [
 			'slug'     => 'old_role',
 			'name'     => __( 'Old role', 'notification' ),
-			'resolver' => function( $trigger ) {
+			'resolver' => function ( $trigger ) {
 				return $trigger->old_role;
 			},
 			'group'    => __( 'Roles', 'notification' ),

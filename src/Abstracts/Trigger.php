@@ -107,7 +107,7 @@ abstract class Trigger implements Triggerable {
 	 *
 	 * @since 6.0.0
 	 * @since 6.3.0 Background processing action now accepts one more param for cache.
-	 * @since [Next] Only stores the action params in collection.
+	 * @since 8.0.0 Only stores the action params in collection.
 	 *
 	 * @param string  $tag           action hook.
 	 * @param integer $priority      action priority, default 10.
@@ -151,7 +151,7 @@ abstract class Trigger implements Triggerable {
 	/**
 	 * Gets Trigger actions
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 * @return array<int, array{tag: string, priority: int, accepted_args: int}>
 	 */
 	public function get_actions() : array {
@@ -183,7 +183,7 @@ abstract class Trigger implements Triggerable {
 			'slug'     => $property_name,
 			'name'     => $label,
 			'group'    => $group,
-			'resolver' => function( $trigger ) use ( $property_name ) {
+			'resolver' => function ( $trigger ) use ( $property_name ) {
 				return $trigger->{ $property_name };
 			},
 		] ) );
@@ -261,6 +261,16 @@ abstract class Trigger implements Triggerable {
 	}
 
 	/**
+	 * Resumes the trigger.
+	 *
+	 * @since 6.2.0
+	 * @return void
+	 */
+	public function resume() {
+		$this->stopped = false;
+	}
+
+	/**
 	 * Checks if trigger has been stopped
 	 *
 	 * @return boolean
@@ -274,30 +284,30 @@ abstract class Trigger implements Triggerable {
 	 ***********************************/
 
 	/**
-	 * All triggers can be considered postponed as of v[Next]
+	 * All triggers can be considered postponed as of v8.0.0
 	 * as they are processed on the `shutdown` hook.
 	 *
 	 * @since 6.1.0 The postponed action have own method.
 	 * @since 6.2.0 Action cannot be postponed if background processing is active.
-	 * @since [Next] Deprecated
+	 * @since 8.0.0 Deprecated
 	 * @param string  $tag           action hook.
 	 * @param integer $priority      action priority, default 10.
 	 * @param integer $accepted_args how many args the action accepts, default 1.
 	 * @return void
 	 */
 	public function postpone_action( $tag, $priority = 10, $accepted_args = 1 ) {
-		_deprecated_function( __METHOD__, '[Next]' );
+		_deprecated_function( __METHOD__, '8.0.0' );
 	}
 
 	/**
-	 * All triggers can be considered postponed as of v[Next]
+	 * All triggers can be considered postponed as of v8.0.0
 	 * as they are processed on the `shutdown` hook.
 	 *
-	 * @since [Next] Deprecated
+	 * @since 8.0.0 Deprecated
 	 * @return boolean
 	 */
 	public function is_postponed() {
-		_deprecated_function( __METHOD__, '[Next]' );
+		_deprecated_function( __METHOD__, '8.0.0' );
 		return true;
 	}
 
@@ -305,11 +315,11 @@ abstract class Trigger implements Triggerable {
 	 * Checks if this trigger has background processing active.
 	 *
 	 * @since 7.2.3
-	 * @since [Next] Deprecated
+	 * @since 8.0.0 Deprecated
 	 * @return bool
 	 */
 	public function has_background_processing_enabled() {
-		_deprecated_function( __METHOD__, '[Next]' );
+		_deprecated_function( __METHOD__, '8.0.0' );
 
 		return apply_filters(
 			'notification/trigger/process_in_background',
@@ -322,11 +332,11 @@ abstract class Trigger implements Triggerable {
 	 * Gets action arguments.
 	 *
 	 * @since 6.2.0
-	 * @since [Next] Deprecated
+	 * @since 8.0.0 Deprecated
 	 * @return array
 	 */
 	public function get_action_args() {
-		_deprecated_function( __METHOD__, '[Next]' );
+		_deprecated_function( __METHOD__, '8.0.0' );
 
 		return [];
 	}
@@ -335,11 +345,11 @@ abstract class Trigger implements Triggerable {
 	 * Always returns an empty array
 	 *
 	 * @since  6.3.0
-	 * @since [Next] Deprecated
+	 * @since 8.0.0 Deprecated
 	 * @return array
 	 */
 	public function get_cache() {
-		_deprecated_function( __METHOD__, '[Next]' );
+		_deprecated_function( __METHOD__, '8.0.0' );
 
 		return [];
 	}
@@ -348,12 +358,12 @@ abstract class Trigger implements Triggerable {
 	 * Doesn't do anything
 	 *
 	 * @since  6.3.0
-	 * @since [Next] Deprecated
+	 * @since 8.0.0 Deprecated
 	 * @param  array $cache Array with cached vars.
 	 * @return $this
 	 */
 	public function set_cache( $cache ) {
-		_deprecated_function( __METHOD__, '[Next]' );
+		_deprecated_function( __METHOD__, '8.0.0' );
 
 		return $this;
 	}
@@ -362,13 +372,13 @@ abstract class Trigger implements Triggerable {
 	 * Always returns the $default value
 	 *
 	 * @since  6.3.0
-	 * @since  [Next] Deprecated
+	 * @since  8.0.0 Deprecated
 	 * @param  string $key     Cache key.
 	 * @param  mixed  $default Default value.
 	 * @return mixed
 	 */
 	public function cache( $key, $default = '' ) {
-		_deprecated_function( __METHOD__, '[Next]' );
+		_deprecated_function( __METHOD__, '8.0.0' );
 
 		return $default;
 	}

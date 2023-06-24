@@ -46,7 +46,7 @@ if ( ! isset( $current_section ) ) {
 
 			<?php do_action( $this->handle . '/settings/section/' . $section->slug() . '/before' ); ?>
 
-			<form action="<?php echo admin_url( 'admin-post.php' ); // phpcs:ignore ?>" method="post" enctype="multipart/form-data">
+			<form action="<?php echo esc_attr( admin_url( 'admin-post.php' ) ); ?>" method="post" enctype="multipart/form-data">
 
 				<?php wp_nonce_field( 'save_' . $this->handle . '_settings', 'nonce' ); ?>
 
@@ -88,7 +88,7 @@ if ( ! isset( $current_section ) ) {
 										$field_description = $field->description();
 										?>
 										<?php if ( ! empty( $field_description ) ) : ?>
-											<small class="description"><?php echo $field_description; // phpcs:ignore ?></small>
+											<small class="description"><?php echo wp_kses_data( $field_description ); ?></small>
 										<?php endif ?>
 									</td>
 								</tr>

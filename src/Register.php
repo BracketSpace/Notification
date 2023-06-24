@@ -15,7 +15,7 @@ class Register {
 	/**
 	 * Registers Carrier
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  Interfaces\Sendable $carrier Carrier object.
 	 * @return Interfaces\Sendable
 	 */
@@ -29,7 +29,7 @@ class Register {
 	/**
 	 * Registers Recipient
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  string                $carrier_slug Carrier slug.
 	 * @param  Interfaces\Receivable $recipient    Recipient object.
 	 * @return Interfaces\Receivable
@@ -44,7 +44,7 @@ class Register {
 	/**
 	 * Registers Recipient
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  Interfaces\Resolvable $resolver Resolver object.
 	 * @return Interfaces\Resolvable
 	 */
@@ -58,7 +58,7 @@ class Register {
 	/**
 	 * Registers Trigger
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  Interfaces\Triggerable $trigger Trigger object.
 	 * @return Interfaces\Triggerable
 	 */
@@ -72,7 +72,7 @@ class Register {
 	/**
 	 * Registers Global Merge Tag
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  Interfaces\Taggable $merge_tag MergeTag object.
 	 * @return Interfaces\Taggable
 	 */
@@ -82,7 +82,7 @@ class Register {
 		do_action( 'notification/global_merge_tag/registered', $merge_tag );
 
 		// Register the Merge Tag.
-		add_action( 'notification/trigger/merge_tags', function( $trigger ) use ( $merge_tag ) {
+		add_action( 'notification/trigger/merge_tags', function ( $trigger ) use ( $merge_tag ) {
 			$trigger->add_merge_tag( clone $merge_tag );
 		} );
 

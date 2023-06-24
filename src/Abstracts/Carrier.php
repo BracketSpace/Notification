@@ -51,6 +51,13 @@ abstract class Carrier implements Interfaces\Sendable {
 	public $recipients_data;
 
 	/**
+	 * Recipients form field resolved data
+	 *
+	 * @var mixed
+	 */
+	public $recipients_resolved_data;
+
+	/**
 	 * Fields data for send method
 	 *
 	 * @var array
@@ -210,7 +217,7 @@ abstract class Carrier implements Interfaces\Sendable {
 	/**
 	 * Adds recipients form field
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @throws \Exception When recipients fields was already added.
 	 * @param  array<mixed> $params Recipients field params.
 	 * @return $this
@@ -232,7 +239,7 @@ abstract class Carrier implements Interfaces\Sendable {
 	/**
 	 * Checks if the recipients field was added
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return bool
 	 */
 	public function has_recipients_field() {
@@ -243,7 +250,7 @@ abstract class Carrier implements Interfaces\Sendable {
 	 * Gets the recipients field
 	 * Calls the field closure.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return RecipientsField|null
 	 */
 	public function get_recipients_field() {
@@ -255,7 +262,11 @@ abstract class Carrier implements Interfaces\Sendable {
 		$field   = $closure();
 
 		// Setup the field data if it's available.
-		$this->set_field_data( $field, $this->recipients_data );
+		if ( ! empty( $this->recipients_resolved_data ) ) {
+			$this->set_field_data( $field, $this->recipients_resolved_data );
+		} else {
+			$this->set_field_data( $field, $this->recipients_data );
+		}
 
 		return $field;
 	}
@@ -312,6 +323,7 @@ abstract class Carrier implements Interfaces\Sendable {
 	 * @return void
 	 */
 	public function resolve_fields( Triggerable $trigger ) {
+		// Regular fields.
 		foreach ( $this->get_form_fields() as $field ) {
 			if ( ! $field->is_resolvable() ) {
 				continue;
@@ -319,6 +331,15 @@ abstract class Carrier implements Interfaces\Sendable {
 
 			$resolved = $this->resolve_value( $field->get_value(), $trigger );
 			$field->set_value( $resolved );
+		}
+
+		// Recipients field.
+		if ( $this->has_recipients_field() ) {
+			$recipients_field = $this->get_recipients_field();
+
+			if ( $recipients_field ) {
+				$this->recipients_resolved_data = $this->resolve_value( $recipients_field->get_value(), $trigger );
+			}
 		}
 	}
 
@@ -364,7 +385,7 @@ abstract class Carrier implements Interfaces\Sendable {
 		);
 
 		if ( $strip_shortcodes ) {
-			$resolved = preg_replace( '#\[[^\]]+\]#', '', $resolved );
+			$resolved = preg_replace( '@\[([^<>&\\[\]\x00-\x20=]++)\]@', '', $resolved );
 		} else {
 			$resolved = do_shortcode( $resolved );
 		}
@@ -399,27 +420,20 @@ abstract class Carrier implements Interfaces\Sendable {
 	/**
 	 * Parses the recipients to a flat array.
 	 *
-	 * @since  [Next]
+	 * It needs recipients_resolved_data property so the
+	 * resolve_fields method needs to be called beforehand.
+	 *
+	 * @since  8.0.0
 	 * @return array<int,mixed>
 	 */
 	public function parse_recipients() {
-		$this->data = $this->get_data();
-
-		if ( ! $this->has_recipients_field() ) {
-			return [];
-		}
-
-		$recipients_field = $this->get_recipients_field();
-
-		if ( ! $recipients_field ) {
+		if ( ! $this->recipients_resolved_data ) {
 			return [];
 		}
 
 		$parsed_recipients = [];
 
-		$raw_recipients = $this->get_field_value( $recipients_field->get_raw_name() );
-
-		foreach ( $this->get_recipients() as $recipient ) {
+		foreach ( $this->recipients_resolved_data as $recipient ) {
 			$parsed_recipients = array_merge(
 				$parsed_recipients,
 				(array) RecipientStore::get( $this->get_slug(), $recipient['type'] )->parse_value( $recipient['recipient'] ) ?? []
@@ -459,7 +473,7 @@ abstract class Carrier implements Interfaces\Sendable {
 	/**
 	 * Sets field data
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  Interfaces\Fillable $field Field.
 	 * @param  mixed               $data  Field data.
 	 * @return void

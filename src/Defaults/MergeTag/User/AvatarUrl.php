@@ -17,13 +17,6 @@ use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
  */
 class AvatarUrl extends UrlTag {
 	/**
-	 * Trigger property to get the user data from
-	 *
-	 * @var string
-	 */
-	protected $property_name = 'user_object';
-
-	/**
 	 * Merge tag constructor
 	 *
 	 * @since 5.0.0
@@ -31,9 +24,7 @@ class AvatarUrl extends UrlTag {
 	 */
 	public function __construct( array $params = [] ) {
 
-		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
-			$this->property_name = $params['property_name'];
-		}
+		$this->set_trigger_prop( $params['property_name'] ?? 'user_object' );
 
 		$args = wp_parse_args(
 			$params,
@@ -43,9 +34,9 @@ class AvatarUrl extends UrlTag {
 				'description' => __( 'http://0.gravatar.com/avatar/320eab812ab24ef3dbaa2e6dc6e024e0?s=96&d=mm&r=g', 'notification' ),
 				'example'     => true,
 				'group'       => __( 'User', 'notification' ),
-				'resolver'    => function( $trigger ) {
-					if ( isset( $trigger->{ $this->property_name }->user_email ) ) {
-						return get_avatar_url( $trigger->{ $this->property_name }->user_email );
+				'resolver'    => function ( $trigger ) {
+					if ( isset( $trigger->{ $this->get_trigger_prop() }->user_email ) ) {
+						return get_avatar_url( $trigger->{ $this->get_trigger_prop() }->user_email );
 					}
 
 					return '';

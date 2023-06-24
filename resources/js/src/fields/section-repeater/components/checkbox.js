@@ -1,5 +1,4 @@
-/* global Vue */
-
+import Vue from "vue/dist/vue.js";
 import { inputsHandler } from "../../repeater/mixins/inputsHandler";
 import { fieldHandler } from "../../repeater/mixins/fieldHandler";
 import { inputNameHandler } from "../mixins/inputNameHandler";

@@ -17,7 +17,7 @@ class TestSync extends \WP_UnitTestCase {
 	/**
 	 * Test enabling syncing
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 */
 	public function test_enabling_syncing() {
 		$this->assertFalse( Sync::is_syncing() );
@@ -31,7 +31,7 @@ class TestSync extends \WP_UnitTestCase {
 	/**
 	 * Test disabling syncing
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 */
 	public function test_disabling_syncing() {
 		Sync::enable();
@@ -43,7 +43,7 @@ class TestSync extends \WP_UnitTestCase {
 	/**
 	 * Test enabling syncing with default theme path
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 */
 	public function test_enabling_syncing_with_default_dir() {
 		Sync::enable();
@@ -54,7 +54,7 @@ class TestSync extends \WP_UnitTestCase {
 	/**
 	 * Test enabling syncing twice, which shouldn't be possible
 	 *
-	 * @since [Next]
+	 * @since 8.0.0
 	 */
 	public function test_enabling_syncing_twice() {
 		$this->expectException( \Exception::class );
@@ -69,7 +69,7 @@ class TestSync extends \WP_UnitTestCase {
 	/**
 	 * Clears after the test
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public function tearDown() {

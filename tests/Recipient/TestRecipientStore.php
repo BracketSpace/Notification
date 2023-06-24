@@ -73,7 +73,7 @@ class TestRecipientStore extends \WP_UnitTestCase {
 	/**
 	 * Clears after the test
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public function tearDown() {

@@ -6,6 +6,7 @@
  *
  * @var callable(string $var_name, string $default=): mixed $get Variable getter.
  * @var callable(string $var_name, string $default=): void $the Variable printer.
+ * @var callable(string $var_name, string $default=): void $the_esc Escaped variable printer.
  * @var BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
@@ -40,7 +41,7 @@ $logs = $get( 'logs' );
 				</div>
 				<div class="log-body">
 					<div class="body-content">
-						<?php echo $log->message; // phpcs:ignore ?>
+						<?php echo wp_kses_post( $log->message ); ?>
 					</div>
 				</div>
 			</div>

@@ -18,7 +18,7 @@ class PostUpdated extends PostTrigger {
 	/**
 	 * Post updating user object
 	 *
-	 * @var \WP_User
+	 * @var \WP_User|false
 	 */
 	public $updating_user;
 
@@ -91,7 +91,7 @@ class PostUpdated extends PostTrigger {
 		$updating_user_id = get_current_user_id();
 
 		$this->author        = get_userdata( (int) $this->{ $this->post_type }->post_author );
-		$this->last_editor   = get_userdata( get_post_meta( $this->{ $this->post_type }->ID, '_edit_last', true ) );
+		$this->last_editor   = get_userdata( (int) get_post_meta( $this->{ $this->post_type }->ID, '_edit_last', true ) );
 		$this->updating_user = get_userdata( $updating_user_id );
 
 		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date_gmt );

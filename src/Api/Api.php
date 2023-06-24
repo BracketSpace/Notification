@@ -65,6 +65,15 @@ class Api {
 				},
 			],
 		];
+
+		$this->routes[] = [
+			'path' => 'check',
+			'args' => [
+				'methods'             => 'GET',
+				'callback'            => [ new Controller\CheckRestApiController(), 'send_response' ],
+				'permission_callback' => '__return_true',
+			],
+		];
 	}
 
 	/**
@@ -79,6 +88,23 @@ class Api {
 		foreach ( $this->routes as $route ) {
 			register_rest_route( $this->namespace, $route['path'], $route['args'] );
 		}
+
+	}
+
+	/**
+	 * Gets API endpoint
+	 *
+	 * @since 8.0.13
+	 * @param string $endpoint Endopint name.
+	 * @return string
+	 */
+	public function get_endpoint( $endpoint ) {
+
+		return sprintf(
+			'%s/%s/',
+			$this->namespace,
+			untrailingslashit( $endpoint )
+		);
 
 	}
 }

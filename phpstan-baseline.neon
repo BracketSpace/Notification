@@ -1,6 +1,431 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'action_clear_logs'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'activate'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'activation_nag'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'activation_notices'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'add_conditionals…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'add_help'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'add_merge_tags_meta…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'add_notifications'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'add_save_meta_box'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'add_trigger_action'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'ajax_change…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'ajax_render_merge…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'ajax_sync'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'bind'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'bypass_trash'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'carriers_list'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'carriers_settings…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'catch_notification'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'check_upgrade'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'custom_development'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'custom_fields_merge…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'deactivate'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'debug_warning'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'delete_local_json'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'disable_password…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'disable_send…'\\) given\\.$#"
+			count: 2
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'display_bulk…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'enqueue_scripts'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'export_request'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'handle_cron'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'import_request'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'load_local_json'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'maybe_redirect'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'metabox_cleanup'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'notification…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'process_queue'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'proxy_comment_reply'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'proxy_post_comment…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'proxy_transition…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'register'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'register_check…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'register_page'\\) given\\.$#"
+			count: 3
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'register_settings'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'remove_defaults'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'render_carrier_boxes'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'render_carriers…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'render_main_column'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'render_trigger…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'replace_new_user…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'rest_api_init'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'review_queue_switch'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'save'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'save_local_json'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'save_settings'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'scheduled_triggers…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'setup_notifications'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'table_column_content'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'test_rest_api'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'triggers_settings…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'updater'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'upgrade_db'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'user_login_with_2fa'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'add_duplicate_row…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'adjust_bulk_actions'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'adjust_trash_link'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'bulk_action_messages'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'change_post_statuses'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'create_notification…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'disable_automatic…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'disable_comment…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'disable_email…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'disable_password…'\\) given\\.$#"
+			count: 2
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'disable_post_author…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'filter_email_from…'\\) given\\.$#"
+			count: 2
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'filter_post_types'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'handle_status_bulk…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'identify_trigger'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'post_updated…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'register_intervals'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'remove_quick_edit'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'remove_status…'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'table_columns'\\) given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:add\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
+
+		-
 			message: "#^Function notification_get_notification_recipients\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: compat/src-deprecated/functions.php
@@ -29,6 +454,11 @@ parameters:
 			message: "#^Function notification_whitelabel\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: compat/src-deprecated/functions.php
+
+		-
+			message: "#^Call to static method create\\(\\) on an unknown class StubsGenerator\\\\Finder\\.$#"
+			count: 1
+			path: compat/stub-finder.php
 
 		-
 			message: "#^Method Notification\\:\\:components\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -186,11 +616,6 @@ parameters:
 			path: src/Admin/Extensions.php
 
 		-
-			message: "#^Parameter \\#2 \\$now of function strtotime expects int, int\\|string given\\.$#"
-			count: 1
-			path: src/Admin/Extensions.php
-
-		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Admin\\\\Extensions\\:\\:\\$extensions type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Admin/Extensions.php
@@ -207,11 +632,6 @@ parameters:
 
 		-
 			message: "#^Call to an undefined method object\\:\\:add_section\\(\\)\\.$#"
-			count: 1
-			path: src/Admin/ImportExport.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\ImportExport\\:\\:prepare_notifications_export_data\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Admin/ImportExport.php
 
@@ -571,26 +991,6 @@ parameters:
 			path: src/Cli/DumpHooks.php
 
 		-
-			message: "#^Call to method get_actions\\(\\) on an unknown class BracketSpace\\\\Notification\\\\Core\\\\Triggerable\\.$#"
-			count: 1
-			path: src/Core/Binder.php
-
-		-
-			message: "#^Parameter \\#1 \\$trigger of class BracketSpace\\\\Notification\\\\Core\\\\Runner constructor expects BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, BracketSpace\\\\Notification\\\\Core\\\\Triggerable given\\.$#"
-			count: 1
-			path: src/Core/Binder.php
-
-		-
-			message: "#^Parameter \\$triggers of method BracketSpace\\\\Notification\\\\Core\\\\Binder\\:\\:bind\\(\\) has invalid typehint type BracketSpace\\\\Notification\\\\Core\\\\Triggerable\\.$#"
-			count: 2
-			path: src/Core/Binder.php
-
-		-
-			message: "#^Binary operation \"\\+\" between int\\|string and 86400 results in an error\\.$#"
-			count: 1
-			path: src/Core/Cron.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Cron\\:\\:register_intervals\\(\\) has parameter \\$intervals with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Core/Cron.php
@@ -629,6 +1029,11 @@ parameters:
 			message: "#^Parameter \\#3 \\$message of function notification_log expects string, string\\|false given\\.$#"
 			count: 1
 			path: src/Core/Debugging.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$license\\.$#"
+			count: 1
+			path: src/Core/License.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$license_key\\.$#"
@@ -719,11 +1124,6 @@ parameters:
 			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\:\\:\\$page_hook \\(string\\) does not accept string\\|false\\.$#"
 			count: 1
 			path: src/Core/Settings.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Sync\\:\\:get_all_json\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Core/Sync.php
 
 		-
 			message: "#^Cannot access property \\$post_modified_gmt on WP_Post\\|null\\.$#"
@@ -1131,16 +1531,6 @@ parameters:
 			path: src/Defaults/MergeTag/Post/ThumbnailUrl.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Taxonomy\\\\TaxonomyName\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Taxonomy/TaxonomyName.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Taxonomy\\\\TaxonomySlug\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Taxonomy/TaxonomySlug.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\User\\\\Avatar\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Defaults/MergeTag/User/Avatar.php
@@ -1212,11 +1602,6 @@ parameters:
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Recipient\\\\Email\\:\\:parse_value\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Recipient/Email.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function trim expects string, string\\|null given\\.$#"
 			count: 1
 			path: src/Defaults/Recipient/Email.php
 
@@ -1501,21 +1886,6 @@ parameters:
 			path: src/Defaults/Trigger/Post/PostAdded.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostAdded\\:\\:\\$publishing_user \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostAdded.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$author \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostAdded.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$last_editor \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostAdded.php
-
-		-
 			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostApproved.php
@@ -1541,21 +1911,6 @@ parameters:
 			path: src/Defaults/Trigger/Post/PostApproved.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostApproved\\:\\:\\$approving_user \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostApproved.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$author \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostApproved.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$last_editor \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostApproved.php
-
-		-
 			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostDrafted.php
@@ -1581,21 +1936,6 @@ parameters:
 			path: src/Defaults/Trigger/Post/PostDrafted.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostDrafted\\:\\:\\$publishing_user \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostDrafted.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$author \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostDrafted.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$last_editor \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostDrafted.php
-
-		-
 			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostPending.php
@@ -1617,16 +1957,6 @@ parameters:
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPending.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$author \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPending.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$last_editor \\(WP_User\\) does not accept WP_User\\|false\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostPending.php
 
@@ -1656,21 +1986,6 @@ parameters:
 			path: src/Defaults/Trigger/Post/PostPublished.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostPublished\\:\\:\\$publishing_user \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPublished.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$author \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPublished.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$last_editor \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPublished.php
-
-		-
 			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostScheduled.php
@@ -1696,21 +2011,6 @@ parameters:
 			path: src/Defaults/Trigger/Post/PostScheduled.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostScheduled\\:\\:\\$scheduling_user \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostScheduled.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$author \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostScheduled.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$last_editor \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostScheduled.php
-
-		-
 			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostTrashed.php
@@ -1732,21 +2032,6 @@ parameters:
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostTrashed.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrashed\\:\\:\\$trashing_user \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostTrashed.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$author \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostTrashed.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$last_editor \\(WP_User\\) does not accept WP_User\\|false\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostTrashed.php
 
@@ -1759,21 +2044,6 @@ parameters:
 			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostTrigger.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$author \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostUpdated.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:\\$last_editor \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostUpdated.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostUpdated\\:\\:\\$updating_user \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostUpdated.php
 
 		-
 			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
@@ -1859,86 +2129,6 @@ parameters:
 			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Privacy/DataExported.php
-
-		-
-			message: "#^Cannot access property \\$taxonomy on array\\|WP_Error\\|WP_Term\\|null\\.$#"
-			count: 2
-			path: src/Defaults/Trigger/Taxonomy/TermAdded.php
-
-		-
-			message: "#^Parameter \\#1 \\$term of function get_term_link expects int\\|string\\|WP_Term, array\\|WP_Error\\|WP_Term\\|null given\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermAdded.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermAdded\\:\\:\\$term_creation_datetime \\(string\\) does not accept int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermAdded.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermTrigger\\:\\:\\$term \\(WP_Term\\) does not accept array\\|WP_Error\\|WP_Term\\|null\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermAdded.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermTrigger\\:\\:\\$term_permalink \\(string\\) does not accept string\\|WP_Error\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermAdded.php
-
-		-
-			message: "#^Cannot access property \\$taxonomy on array\\|WP_Error\\|WP_Term\\|null\\.$#"
-			count: 2
-			path: src/Defaults/Trigger/Taxonomy/TermDeleted.php
-
-		-
-			message: "#^Parameter \\#1 \\$term of function get_term_link expects int\\|string\\|WP_Term, array\\|WP_Error\\|WP_Term\\|null given\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermDeleted.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermDeleted\\:\\:\\$term_deletion_datetime \\(string\\) does not accept int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermDeleted.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermTrigger\\:\\:\\$term \\(WP_Term\\) does not accept array\\|WP_Error\\|WP_Term\\|null\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermDeleted.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermTrigger\\:\\:\\$term_permalink \\(string\\) does not accept string\\|WP_Error\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermDeleted.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermTrigger\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermTrigger.php
-
-		-
-			message: "#^Cannot access property \\$taxonomy on array\\|WP_Error\\|WP_Term\\|null\\.$#"
-			count: 2
-			path: src/Defaults/Trigger/Taxonomy/TermUpdated.php
-
-		-
-			message: "#^Parameter \\#1 \\$term of function get_term_link expects int\\|string\\|WP_Term, array\\|WP_Error\\|WP_Term\\|null given\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermUpdated.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermTrigger\\:\\:\\$term \\(WP_Term\\) does not accept array\\|WP_Error\\|WP_Term\\|null\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermUpdated.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermTrigger\\:\\:\\$term_permalink \\(string\\) does not accept string\\|WP_Error\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermUpdated.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermUpdated\\:\\:\\$term_modification_datetime \\(string\\) does not accept int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermUpdated.php
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Theme\\\\Installed\\:\\:context\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
@@ -2216,21 +2406,6 @@ parameters:
 			path: src/Runtime.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:add\\(\\) has no return typehint specified\\.$#"
-			count: 1
-			path: src/Utils/Interfaces/Cacheable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:delete\\(\\) has no return typehint specified\\.$#"
-			count: 1
-			path: src/Utils/Interfaces/Cacheable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:set\\(\\) has no return typehint specified\\.$#"
-			count: 1
-			path: src/Utils/Interfaces/Cacheable.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Settings\\:\\:get_sections\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Utils/Settings.php
@@ -2242,11 +2417,6 @@ parameters:
 
 		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\:\\:\\$sections type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Utils/Settings.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\:\\:\\$settings type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Utils/Settings.php
 

@@ -39,7 +39,7 @@ class Whitelabel {
 	/**
 	 * Sets the plugin in white label mode.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  array<string,mixed> $args white label args.
 	 * @return void
 	 */
@@ -51,7 +51,7 @@ class Whitelabel {
 
 		// Change Notification CPT page.
 		if ( isset( $args['page_hook'] ) && ! empty( $args['page_hook'] ) ) {
-			add_filter( 'notification/whitelabel/cpt/parent', function( $hook ) use ( $args ) {
+			add_filter( 'notification/whitelabel/cpt/parent', function ( $hook ) use ( $args ) {
 				return $args['page_hook'];
 			} );
 		}
@@ -68,7 +68,7 @@ class Whitelabel {
 
 		// Settings access.
 		if ( isset( $args['settings_access'] ) ) {
-			add_filter( 'notification/whitelabel/settings/access', function( $access ) use ( $args ) {
+			add_filter( 'notification/whitelabel/settings/access', function ( $access ) use ( $args ) {
 				return (array) $args['settings_access'];
 			} );
 		}
@@ -77,7 +77,7 @@ class Whitelabel {
 	/**
 	 * Checks if the plugin is in white label mode.
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return bool
 	 */
 	public static function is_whitelabeled() : bool {

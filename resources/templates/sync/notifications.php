@@ -6,6 +6,7 @@
  *
  * @var callable(string $var_name, string $default=): mixed $get Variable getter.
  * @var callable(string $var_name, string $default=): void $the Variable printer.
+ * @var callable(string $var_name, string $default=): void $the_esc Escaped variable printer.
  * @var BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
@@ -53,9 +54,9 @@
 			<td class="action">
 				<?php if ( ! $item['up_to_date'] ) : ?>
 					<?php if ( 'WordPress' === $item['source'] ) : ?>
-						<a href="#" class="button button-secondary notification-sync button-small" data-sync-hash="<?php echo esc_attr( $hash ); ?>" data-nonce="<?php echo esc_attr( wp_create_nonce( 'notification_sync_' . $hash ) ); ?>" data-sync-type="json"><?php esc_html_e( 'Save to JSON' ); ?></a>
+						<a href="#" class="button button-secondary notification-sync button-small" data-sync-hash="<?php echo esc_attr( $hash ); ?>" data-sync-type="json"><?php esc_html_e( 'Save to JSON' ); ?></a>
 					<?php elseif ( 'JSON' === $item['source'] ) : ?>
-						<a href="#" class="button button-secondary notification-sync button-small" data-sync-hash="<?php echo esc_attr( $hash ); ?>" data-nonce="<?php echo esc_attr( wp_create_nonce( 'notification_sync_' . $hash ) ); ?>" data-sync-type="wordpress"><?php esc_html_e( 'Load to WordPress' ); ?></a>
+						<a href="#" class="button button-secondary notification-sync button-small" data-sync-hash="<?php echo esc_attr( $hash ); ?>" data-sync-type="wordpress"><?php esc_html_e( 'Load to WordPress' ); ?></a>
 					<?php endif ?>
 				<?php endif ?>
 			</td>

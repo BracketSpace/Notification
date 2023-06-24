@@ -16,7 +16,8 @@ $extension_link = sprintf(
 	<span class="label-pro">PRO</span>
 	<?php
 	// Translators: Link to extension.
-	printf( __( 'Use %s to define notifications based on time, rather than on action.', 'notification' ), $extension_link ); // phpcs:ignore
+	$description = sprintf( __( 'Use %s to define notifications based on time, rather than on action.', 'notification' ), $extension_link );
+	echo wp_kses_post( $description );
 	?>
 </p>
 <br>

@@ -85,7 +85,7 @@ class UserLogin extends UserTrigger {
 			'name'        => __( 'User IP', 'notification' ),
 			'description' => '127.0.0.1',
 			'example'     => true,
-			'resolver'    => function( $trigger ) {
+			'resolver'    => function ( $trigger ) {
 				if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
 					return sanitize_text_field( wp_unslash( $_SERVER['HTTP_CLIENT_IP'] ) );
 				} elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {

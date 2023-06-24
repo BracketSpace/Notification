@@ -79,8 +79,9 @@ class Runtime {
 
 		// Requirements check.
 		$requirements = new Requirements( __( 'Notification', 'notification' ), [
-			'php' => '7.0',
-			'wp'  => '5.3',
+			'php'            => '7.0',
+			'php_extensions' => [ 'xml' ],
+			'wp'             => '5.3',
 		] );
 
 		if ( ! $requirements->satisfied() ) {
@@ -98,14 +99,14 @@ class Runtime {
 		$this->load_bundled_extensions();
 
 		do_action( 'notification/init' );
-		do_action_deprecated( 'notification/elements', [], '[Next]', 'notification/init' );
+		do_action_deprecated( 'notification/elements', [], '8.0.0', 'notification/init' );
 
 	}
 
 	/**
 	 * Registers WP CLI commands
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public function cli_commands() {
@@ -138,7 +139,7 @@ class Runtime {
 	 * Gets filesystem
 	 *
 	 * @since  7.0.0
-	 * @since  [Next] Always return the root filesystem.
+	 * @since  8.0.0 Always return the root filesystem.
 	 * @param  string $deprecated Filesystem name.
 	 * @return Filesystem
 	 */
@@ -203,6 +204,7 @@ class Runtime {
 		$this->add_component( 'core_binder', new Core\Binder() );
 		$this->add_component( 'core_processor', new Core\Processor() );
 
+		$this->add_component( 'test_rest_api', new Admin\CheckRestApi() );
 		$this->add_component( 'admin_impexp', new Admin\ImportExport() );
 		$this->add_component( 'admin_settings', new Admin\Settings() );
 		$this->add_component( 'admin_duplicator', new Admin\NotificationDuplicator() );
@@ -223,7 +225,7 @@ class Runtime {
 		$this->add_component( 'integration_wp_emails', new Integration\WordPressEmails() );
 		$this->add_component( 'integration_2fa', new Integration\TwoFactor() );
 
-		$this->add_component( 'repeater_api', new Api\Api() );
+		$this->add_component( 'api', new Api\Api() );
 	}
 
 	/**
@@ -255,7 +257,7 @@ class Runtime {
 	 * @action notification/init 8
 	 *
 	 * @since  6.0.0
-	 * @since  [Next] Is hooked to notification/init action.
+	 * @since  8.0.0 Is hooked to notification/init action.
 	 * @return void
 	 */
 	public function defaults() {

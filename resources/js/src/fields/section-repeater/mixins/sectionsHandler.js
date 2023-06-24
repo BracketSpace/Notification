@@ -1,4 +1,6 @@
-/* global notification, Vue */
+/* global notification */
+
+import Vue from "vue/dist/vue.js";
 
 export const sectionsHandler = {
 	data() {

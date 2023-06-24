@@ -4,8 +4,115 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "73caec09742a40d66eb761a8ac5d029a",
+    "content-hash": "858bf31c6c396d961ef9cc1593bfd90a",
     "packages": [
+        {
+            "name": "enshrined/svg-sanitize",
+            "version": "0.16.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/darylldoyle/svg-sanitizer.git",
+                "reference": "239e257605e2141265b429e40987b2ee51bba4b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/darylldoyle/svg-sanitizer/zipball/239e257605e2141265b429e40987b2ee51bba4b4",
+                "reference": "239e257605e2141265b429e40987b2ee51bba4b4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-libxml": "*",
+                "ezyang/htmlpurifier": "^4.16",
+                "php": "^5.6 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7 || ^6.5 || ^8.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "enshrined\\svgSanitize\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Daryll Doyle",
+                    "email": "daryll@enshrined.co.uk"
+                }
+            ],
+            "description": "An SVG sanitizer for PHP",
+            "support": {
+                "issues": "https://github.com/darylldoyle/svg-sanitizer/issues",
+                "source": "https://github.com/darylldoyle/svg-sanitizer/tree/0.16.0"
+            },
+            "time": "2023-03-20T10:51:12+00:00"
+        },
+        {
+            "name": "ezyang/htmlpurifier",
+            "version": "v4.16.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ezyang/htmlpurifier.git",
+                "reference": "523407fb06eb9e5f3d59889b3978d5bfe94299c8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/523407fb06eb9e5f3d59889b3978d5bfe94299c8",
+                "reference": "523407fb06eb9e5f3d59889b3978d5bfe94299c8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6.0 || ~7.0.0 || ~7.1.0 || ~7.2.0 || ~7.3.0 || ~7.4.0 || ~8.0.0 || ~8.1.0 || ~8.2.0"
+            },
+            "require-dev": {
+                "cerdic/css-tidy": "^1.7 || ^2.0",
+                "simpletest/simpletest": "dev-master"
+            },
+            "suggest": {
+                "cerdic/css-tidy": "If you want to use the filter 'Filter.ExtractStyleBlocks'.",
+                "ext-bcmath": "Used for unit conversion and imagecrash protection",
+                "ext-iconv": "Converts text to and from non-UTF-8 encodings",
+                "ext-tidy": "Used for pretty-printing HTML"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "library/HTMLPurifier.composer.php"
+                ],
+                "psr-0": {
+                    "HTMLPurifier": "library/"
+                },
+                "exclude-from-classmap": [
+                    "/library/HTMLPurifier/Language/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Edward Z. Yang",
+                    "email": "admin@htmlpurifier.org",
+                    "homepage": "http://ezyang.com"
+                }
+            ],
+            "description": "Standards compliant HTML filter written in PHP",
+            "homepage": "http://htmlpurifier.org/",
+            "keywords": [
+                "html"
+            ],
+            "support": {
+                "issues": "https://github.com/ezyang/htmlpurifier/issues",
+                "source": "https://github.com/ezyang/htmlpurifier/tree/v4.16.0"
+            },
+            "time": "2022-09-18T07:06:19+00:00"
+        },
         {
             "name": "micropackage/ajax",
             "version": "1.0.1",
@@ -54,6 +161,52 @@
             "time": "2020-02-11T09:58:59+00:00"
         },
         {
+            "name": "micropackage/cache",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/micropackage/cache.git",
+                "reference": "4132b1de3036d72befc526ba4e78f50b5f23764c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/micropackage/cache/zipball/4132b1de3036d72befc526ba4e78f50b5f23764c",
+                "reference": "4132b1de3036d72befc526ba4e78f50b5f23764c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+                "phpcompatibility/php-compatibility": "^9.1",
+                "phpunit/phpunit": "^6.5.5",
+                "wp-coding-standards/wpcs": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Micropackage\\Cache\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jakub Mikita",
+                    "email": "jakub@bracketspace.com"
+                }
+            ],
+            "description": "WordPress Cache wrapper with Object and Transient drivers",
+            "support": {
+                "issues": "https://github.com/micropackage/cache/issues",
+                "source": "https://github.com/micropackage/cache/tree/1.0.3"
+            },
+            "time": "2021-10-30T17:44:14+00:00"
+        },
+        {
             "name": "micropackage/dochooks",
             "version": "1.0.2",
             "source": {
@@ -100,16 +253,16 @@
         },
         {
             "name": "micropackage/filesystem",
-            "version": "1.1.3",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/micropackage/filesystem.git",
-                "reference": "a686c7c2d7c7443c4cf6dc55dbd2283a6e219b06"
+                "reference": "fb643749ff282bf9d057caf9903ab17c5deceb33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/micropackage/filesystem/zipball/a686c7c2d7c7443c4cf6dc55dbd2283a6e219b06",
-                "reference": "a686c7c2d7c7443c4cf6dc55dbd2283a6e219b06",
+                "url": "https://api.github.com/repos/micropackage/filesystem/zipball/fb643749ff282bf9d057caf9903ab17c5deceb33",
+                "reference": "fb643749ff282bf9d057caf9903ab17c5deceb33",
                 "shasum": ""
             },
             "require": {
@@ -140,9 +293,9 @@
             "description": "Wrapper for WordPress' Filesystem for easier file manipulations.",
             "support": {
                 "issues": "https://github.com/micropackage/filesystem/issues",
-                "source": "https://github.com/micropackage/filesystem/tree/master"
+                "source": "https://github.com/micropackage/filesystem/tree/1.1.4"
             },
-            "time": "2020-06-15T11:06:50+00:00"
+            "time": "2021-10-29T14:01:09+00:00"
         },
         {
             "name": "micropackage/internationalization",
@@ -191,16 +344,16 @@
         },
         {
             "name": "micropackage/requirements",
-            "version": "1.1.0",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/micropackage/requirements.git",
-                "reference": "855b21b6df8f48fa82528dd073ed1b29a645d2ee"
+                "reference": "d21f2b54100d15246d493382dfd06a23ed49630a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/micropackage/requirements/zipball/855b21b6df8f48fa82528dd073ed1b29a645d2ee",
-                "reference": "855b21b6df8f48fa82528dd073ed1b29a645d2ee",
+                "url": "https://api.github.com/repos/micropackage/requirements/zipball/d21f2b54100d15246d493382dfd06a23ed49630a",
+                "reference": "d21f2b54100d15246d493382dfd06a23ed49630a",
                 "shasum": ""
             },
             "require": {
@@ -233,22 +386,22 @@
             "description": "Requirements checker for WordPress plugins",
             "support": {
                 "issues": "https://github.com/micropackage/requirements/issues",
-                "source": "https://github.com/micropackage/requirements/tree/1.1.0"
+                "source": "https://github.com/micropackage/requirements/tree/1.1.2"
             },
-            "time": "2021-07-08T17:37:55+00:00"
+            "time": "2021-11-14T08:45:42+00:00"
         },
         {
             "name": "micropackage/templates",
-            "version": "1.1.3",
+            "version": "1.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/micropackage/templates.git",
-                "reference": "2ed9aca818fd911183d5cbefb4aa10ff4e4794d9"
+                "reference": "c29a59437d5a027ac4dd80ef87c1350f5186986a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/micropackage/templates/zipball/2ed9aca818fd911183d5cbefb4aa10ff4e4794d9",
-                "reference": "2ed9aca818fd911183d5cbefb4aa10ff4e4794d9",
+                "url": "https://api.github.com/repos/micropackage/templates/zipball/c29a59437d5a027ac4dd80ef87c1350f5186986a",
+                "reference": "c29a59437d5a027ac4dd80ef87c1350f5186986a",
                 "shasum": ""
             },
             "require": {
@@ -259,7 +412,8 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                 "phpcompatibility/php-compatibility": "^9.1",
                 "phpunit/phpunit": "^6.5.5",
-                "wp-coding-standards/wpcs": "^2.0"
+                "wp-coding-standards/wpcs": "^2.0",
+                "yoast/phpunit-polyfills": "^1.0"
             },
             "type": "library",
             "autoload": {
@@ -283,9 +437,9 @@
             "description": "Simple PHP template engine which is easy to use",
             "support": {
                 "issues": "https://github.com/micropackage/templates/issues",
-                "source": "https://github.com/micropackage/templates/tree/1.1.3"
+                "source": "https://github.com/micropackage/templates/tree/1.1.6"
             },
-            "time": "2021-04-21T19:08:39+00:00"
+            "time": "2021-11-15T21:12:41+00:00"
         }
     ],
     "packages-dev": [
@@ -1565,19 +1719,22 @@
         },
         {
             "name": "roots/wordpress",
-            "version": "5.8.1",
+            "version": "5.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/WordPress.git",
-                "reference": "5.8.1"
+                "reference": "5.8.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress/WordPress/zipball/refs/tags/5.8.1"
+                "url": "https://api.github.com/repos/WordPress/WordPress/zipball/refs/tags/5.8.2"
             },
             "require": {
                 "php": ">=5.3.2",
                 "roots/wordpress-core-installer": ">=1.0.0"
+            },
+            "provide": {
+                "wordpress/core-implementation": "5.8.2"
             },
             "type": "wordpress-core",
             "notification-url": "https://packagist.org/downloads/",
@@ -1616,7 +1773,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-09-09T02:22:02+00:00"
+            "time": "2021-11-10T23:24:02+00:00"
         },
         {
             "name": "roots/wordpress-core-installer",
@@ -1924,16 +2081,16 @@
         },
         {
             "name": "sebastian/exporter",
-            "version": "3.1.3",
+            "version": "3.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "6b853149eab67d4da22291d36f5b0631c0fd856e"
+                "reference": "0c32ea2e40dbf59de29f3b49bf375176ce7dd8db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/6b853149eab67d4da22291d36f5b0631c0fd856e",
-                "reference": "6b853149eab67d4da22291d36f5b0631c0fd856e",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/0c32ea2e40dbf59de29f3b49bf375176ce7dd8db",
+                "reference": "0c32ea2e40dbf59de29f3b49bf375176ce7dd8db",
                 "shasum": ""
             },
             "require": {
@@ -1942,7 +2099,7 @@
             },
             "require-dev": {
                 "ext-mbstring": "*",
-                "phpunit/phpunit": "^6.0"
+                "phpunit/phpunit": "^8.5"
             },
             "type": "library",
             "extra": {
@@ -1989,7 +2146,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/exporter/issues",
-                "source": "https://github.com/sebastianbergmann/exporter/tree/3.1.3"
+                "source": "https://github.com/sebastianbergmann/exporter/tree/3.1.4"
             },
             "funding": [
                 {
@@ -1997,7 +2154,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-30T07:47:53+00:00"
+            "time": "2021-11-11T13:51:24+00:00"
         },
         {
             "name": "sebastian/global-state",
@@ -2273,7 +2430,6 @@
                 "issues": "https://github.com/sebastianbergmann/resource-operations/issues",
                 "source": "https://github.com/sebastianbergmann/resource-operations/tree/master"
             },
-            "abandoned": true,
             "time": "2015-07-28T20:34:47+00:00"
         },
         {
@@ -2762,16 +2918,16 @@
         },
         {
             "name": "wp-phpunit/wp-phpunit",
-            "version": "5.8.1",
+            "version": "5.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-phpunit/wp-phpunit.git",
-                "reference": "0b89ad32feae22f3a39e63e44117d6e56bdeed69"
+                "reference": "0cefcc49fd8a7e8c2f8d755e314532441618aee5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-phpunit/wp-phpunit/zipball/0b89ad32feae22f3a39e63e44117d6e56bdeed69",
-                "reference": "0b89ad32feae22f3a39e63e44117d6e56bdeed69",
+                "url": "https://api.github.com/repos/wp-phpunit/wp-phpunit/zipball/0cefcc49fd8a7e8c2f8d755e314532441618aee5",
+                "reference": "0cefcc49fd8a7e8c2f8d755e314532441618aee5",
                 "shasum": ""
             },
             "type": "library",
@@ -2806,7 +2962,68 @@
                 "issues": "https://github.com/wp-phpunit/issues",
                 "source": "https://github.com/wp-phpunit/wp-phpunit"
             },
-            "time": "2021-09-09T19:11:29+00:00"
+            "time": "2021-11-10T19:49:29+00:00"
+        },
+        {
+            "name": "yoast/phpunit-polyfills",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Yoast/PHPUnit-Polyfills.git",
+                "reference": "1a582ab1d91e86aa450340c4d35631a85314ff9f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Yoast/PHPUnit-Polyfills/zipball/1a582ab1d91e86aa450340c4d35631a85314ff9f",
+                "reference": "1a582ab1d91e86aa450340c4d35631a85314ff9f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "phpunit/phpunit": "^4.8.36 || ^5.7.21 || ^6.0 || ^7.0 || ^8.0 || ^9.0"
+            },
+            "require-dev": {
+                "yoast/yoastcs": "^2.2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.x-dev",
+                    "dev-develop": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "phpunitpolyfills-autoload.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Team Yoast",
+                    "email": "support@yoast.com",
+                    "homepage": "https://yoast.com"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/Yoast/PHPUnit-Polyfills/graphs/contributors"
+                }
+            ],
+            "description": "Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit cross-version compatible tests",
+            "homepage": "https://github.com/Yoast/PHPUnit-Polyfills",
+            "keywords": [
+                "phpunit",
+                "polyfill",
+                "testing"
+            ],
+            "support": {
+                "issues": "https://github.com/Yoast/PHPUnit-Polyfills/issues",
+                "source": "https://github.com/Yoast/PHPUnit-Polyfills"
+            },
+            "time": "2021-10-03T08:40:26+00:00"
         }
     ],
     "aliases": [],
@@ -2815,9 +3032,9 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "composer-runtime-api": "^2.0",
-        "php": "^7.0"
+        "php": "^7.0",
+        "composer-runtime-api": "^2.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.3.0"
 }

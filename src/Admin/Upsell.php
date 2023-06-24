@@ -23,7 +23,7 @@ class Upsell {
 	 *
 	 * @action add_meta_boxes
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public function add_conditionals_meta_box() {
@@ -47,7 +47,7 @@ class Upsell {
 	/**
 	 * Conditionals metabox content
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  object $post current WP_Post.
 	 * @return void
 	 */
@@ -61,7 +61,7 @@ class Upsell {
 	 *
 	 * @action notification/metabox/trigger/tags/groups/after
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public function custom_fields_merge_tag_group() {
@@ -77,7 +77,7 @@ class Upsell {
 	 *
 	 * @action notification/admin/metabox/save/post
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public function review_queue_switch() {
@@ -93,7 +93,7 @@ class Upsell {
 	 *
 	 * @action notification/settings/register 200
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @param  Settings $settings Settings API object.
 	 * @return void
 	 */
@@ -122,7 +122,7 @@ class Upsell {
 	 *
 	 * @action notification/settings/section/triggers/before
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public function triggers_settings_upsell() {
@@ -134,7 +134,7 @@ class Upsell {
 	 *
 	 * @action notification/settings/section/carriers/before
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public function carriers_settings_upsell() {
@@ -146,7 +146,7 @@ class Upsell {
 	 *
 	 * @action notification/carrier/list/after
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public function carriers_list() {
@@ -160,7 +160,7 @@ class Upsell {
 	 *
 	 * @action notification/settings/sidebar/after
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return void
 	 */
 	public function custom_development() {
@@ -170,7 +170,7 @@ class Upsell {
 	/**
 	 * Gets the missing carriers
 	 *
-	 * @since  [Next]
+	 * @since  8.0.0
 	 * @return array<string,array{name: string, pro: bool, link: string, icon: string}>
 	 */
 	public static function get_missing_carriers() {

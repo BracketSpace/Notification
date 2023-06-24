@@ -41,6 +41,7 @@ import "jquery-collapse/src/jquery.collapse.js";
 
 			const data = {
 				action: "get_merge_tags_for_trigger",
+				_ajax_nonce: notification.csrfToken,
 				trigger_slug: triggerSlug
 			};
 

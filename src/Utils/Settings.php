@@ -22,13 +22,6 @@ class Settings {
 	private $sections = [];
 
 	/**
-	 * All saved Settings
-	 *
-	 * @var array
-	 */
-	private $settings = [];
-
-	/**
 	 * Settings handle, used as a prefix for options
 	 *
 	 * @var string
@@ -74,7 +67,6 @@ class Settings {
 	 * @param string|bool $textdomain textdomain.
 	 */
 	public function __construct( $handle, $textdomain = false ) {
-
 		if ( empty( $handle ) ) {
 			throw new \Exception( 'Handle cannot be empty' );
 		}
@@ -89,9 +81,7 @@ class Settings {
 
 		// settings autoload on admin side.
 		add_action( 'admin_init', [ $this, 'setup_field_values' ], 10 );
-
 		add_action( 'admin_post_save_' . $this->handle . '_settings', [ $this, 'save_settings' ] );
-
 	}
 
 	/**
@@ -100,17 +90,18 @@ class Settings {
 	 * @return void
 	 */
 	public function settings_page() {
-
+		// We're using the GET variable only to get the section name.
+		// phpcs:disable WordPress.Security.NonceVerification
 		$sections = $this->get_sections();
 
-		if ( isset( $_GET['section'] ) && ! empty( $_GET['section'] ) ) { // phpcs:ignore
-			$current_section = sanitize_text_field( wp_unslash( $_GET['section'] ) ); // phpcs:ignore
+		if ( isset( $_GET['section'] ) && ! empty( $_GET['section'] ) ) {
+			$current_section = sanitize_text_field( wp_unslash( $_GET['section'] ) );
 		} else {
 			$current_section = key( $this->get_sections() );
 		}
 
 		include $this->path . '/resources/templates/settings/page.php';
-
+		// phpcs:enable
 	}
 
 	/**
@@ -165,12 +156,14 @@ class Settings {
 	 * @return void
 	 */
 	public function save_settings() {
-
-		$data = $_POST; // phpcs:ignore
-
-		if ( wp_verify_nonce( $data['nonce'], 'save_' . $this->handle . '_settings' ) === false ) {
+		if ( false === wp_verify_nonce(
+			sanitize_text_field( wp_unslash( $_POST['nonce'] ?? '' ) ),
+			'save_' . $this->handle . '_settings'
+		) ) {
 			wp_die( 'Can\'t touch this' );
 		}
+
+		$data = $_POST;
 
 		$settings = $data[ $this->handle . '_settings' ];
 
@@ -197,7 +190,6 @@ class Settings {
 		do_action( $this->handle . '/settings/saved', $to_save, $this );
 
 		wp_safe_redirect( add_query_arg( 'updated', 'true', $data['_wp_http_referer'] ) );
-
 	}
 
 	/**
@@ -206,35 +198,33 @@ class Settings {
 	 * @return array settings
 	 */
 	public function get_settings() {
+		$settings = [];
 
-		if ( empty( $this->settings ) ) {
-			foreach ( $this->get_sections() as $section_slug => $section ) {
-				$setting = get_option( $this->handle . '_' . $section_slug );
+		foreach ( $this->get_sections() as $section_slug => $section ) {
+			$setting = get_option( $this->handle . '_' . $section_slug );
 
-				$this->settings[ $section_slug ] = [];
+			$settings[ $section_slug ] = [];
 
-				$groups = $section->get_groups();
+			$groups = $section->get_groups();
 
-				foreach ( $groups as $group_slug => $group ) {
-					$this->settings[ $section_slug ][ $group_slug ] = [];
+			foreach ( $groups as $group_slug => $group ) {
+				$settings[ $section_slug ][ $group_slug ] = [];
 
-					$fields = $group->get_fields();
+				$fields = $group->get_fields();
 
-					foreach ( $fields as $field_slug => $field ) {
-						if ( isset( $setting[ $group_slug ][ $field_slug ] ) ) {
-							$value = $setting[ $group_slug ][ $field_slug ];
-						} else {
-							$value = $field->default_value();
-						}
-
-						$this->settings[ $section_slug ][ $group_slug ][ $field_slug ] = $value;
+				foreach ( $fields as $field_slug => $field ) {
+					if ( isset( $setting[ $group_slug ][ $field_slug ] ) ) {
+						$value = $setting[ $group_slug ][ $field_slug ];
+					} else {
+						$value = $field->default_value();
 					}
+
+					$settings[ $section_slug ][ $group_slug ][ $field_slug ] = $value;
 				}
 			}
 		}
 
-		return apply_filters( $this->handle . '/settings/saved_settings', $this->settings, $this );
-
+		return apply_filters( $this->handle . '/settings/saved_settings', $settings, $this );
 	}
 
 	/**
@@ -244,20 +234,14 @@ class Settings {
 	 * @return void
 	 */
 	public function setup_field_values() {
-
 		foreach ( $this->get_sections() as $section_slug => $section ) {
-
 			foreach ( $section->get_groups() as $group_slug => $group ) {
-
 				foreach ( $group->get_fields() as $field_slug => $field ) {
-
 					$setting_name = implode( '/', [ $section_slug, $group_slug, $field_slug ] );
 					$field->value( $this->get_setting( $setting_name ) );
-
 				}
 			}
 		}
-
 	}
 
 
@@ -269,7 +253,6 @@ class Settings {
 	 * @return mixed           field value or null if name not found
 	 */
 	public function get_setting( $setting ) {
-
 		$parts = explode( '/', $setting );
 
 		if ( count( $parts ) !== 3 ) {
@@ -285,7 +268,6 @@ class Settings {
 		$value = $settings[ $parts[0] ][ $parts[1] ][ $parts[2] ];
 
 		return apply_filters( $this->handle . '/settings/setting/' . $setting, $value, $this );
-
 	}
 
 	/**
@@ -357,7 +339,6 @@ class Settings {
 	 * @return void
 	 */
 	public function set_variables() {
-
 		// path.
 		$this->path = dirname( dirname( dirname( __FILE__ ) ) );
 
@@ -366,16 +347,11 @@ class Settings {
 		$theme_pos = strpos( $this->path, $theme_url['path'] );
 
 		if ( false !== $theme_pos ) { // loaded from theme.
-
 			$plugin_relative_dir = str_replace( $theme_url['path'], '', substr( $this->path, $theme_pos ) );
 			$this->uri           = $theme_url['scheme'] . '://' . $theme_url['host'] . $theme_url['path'] . $plugin_relative_dir;
-
 		} else { // loaded from plugin.
-
 			$this->uri = trailingslashit( plugins_url( '', dirname( __FILE__ ) ) );
-
 		}
-
 	}
 
 }

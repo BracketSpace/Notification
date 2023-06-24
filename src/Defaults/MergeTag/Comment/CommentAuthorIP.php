@@ -23,13 +23,6 @@ class CommentAuthorIP extends IPTag {
 	protected $comment_type = 'comment';
 
 	/**
-	 * Trigger property name to get the comment data from
-	 *
-	 * @var string
-	 */
-	protected $property_name = '';
-
-	/**
 	 * Merge tag constructor
 	 *
 	 * @since 5.0.0
@@ -41,11 +34,7 @@ class CommentAuthorIP extends IPTag {
 			$this->comment_type = $params['comment_type'];
 		}
 
-		if ( isset( $params['property_name'] ) && ! empty( $params['property_name'] ) ) {
-			$this->property_name = $params['property_name'];
-		} else {
-			$this->property_name = $this->comment_type;
-		}
+		$this->set_trigger_prop( $params['property_name'] ?? 'comment' );
 
 		$comment_type_name = WpObjectHelper::get_comment_type_name( $this->comment_type );
 
@@ -59,8 +48,8 @@ class CommentAuthorIP extends IPTag {
 				'example'     => true,
 				// Translators: comment type author.
 				'group'       => sprintf( __( '%s author', 'notification' ), $comment_type_name ),
-				'resolver'    => function( $trigger ) {
-					return $trigger->{ $this->property_name }->comment_author_IP;
+				'resolver'    => function ( $trigger ) {
+					return $trigger->{ $this->get_trigger_prop() }->comment_author_IP;
 				},
 			]
 		);

@@ -55,7 +55,6 @@ class Upgrade {
 	 * @return void
 	 */
 	public function check_upgrade() {
-
 		$data_version = get_option( static::$data_setting_name, 0 );
 
 		if ( $data_version >= static::$data_version ) {
@@ -72,7 +71,6 @@ class Upgrade {
 		}
 
 		update_option( static::$data_setting_name, static::$data_version );
-
 	}
 
 	/**
@@ -88,7 +86,6 @@ class Upgrade {
 	 * @return void
 	 */
 	public function upgrade_db() {
-
 		$current_version = get_option( static::$db_setting_name );
 
 		if ( $current_version >= static::$db_version ) {
@@ -125,7 +122,6 @@ class Upgrade {
 		dbDelta( $sql );
 
 		update_option( static::$db_setting_name, static::$db_version );
-
 	}
 
 	/**
@@ -144,7 +140,6 @@ class Upgrade {
 	 * @return Interfaces\Sendable
 	 */
 	protected function populate_carrier( $carrier, $post_id ) {
-
 		if ( ! $carrier instanceof Interfaces\Sendable ) {
 			$carrier = Store\Carrier::get( $carrier );
 		}
@@ -174,7 +169,6 @@ class Upgrade {
 		}
 
 		return $carrier;
-
 	}
 
 	/**
@@ -184,7 +178,6 @@ class Upgrade {
 	 * @return array
 	 */
 	public function trigger_slug_replacements() {
-
 		$taxonomies = '(' . implode( '|', array_keys( WpObjectHelper::get_taxonomies() ) ) . ')';
 
 		// phpcs:disable
@@ -199,7 +192,6 @@ class Upgrade {
 			'/wordpress\/theme\/(.*)/' => 'theme/${1}',
 		];
 		// phpcs:enable
-
 	}
 
 	/**
@@ -218,7 +210,6 @@ class Upgrade {
 	 * @return void
 	 */
 	public function upgrade_to_v1() {
-
 		// 1. Save the Notification cache in post_content field.
 		$notifications = NotificationQueries::all( true );
 		foreach ( $notifications as $adapter ) {
@@ -268,7 +259,6 @@ class Upgrade {
 
 		// 3. Remove old debug log
 		delete_option( 'notification_debug_log' );
-
 	}
 
 	/**
@@ -280,12 +270,12 @@ class Upgrade {
 	 * @return void
 	 */
 	public function upgrade_to_v2() {
-
 		global $wpdb;
 
 		// 1. Changes the Trigger slugs.
 
-		$notifications = $wpdb->get_results( // phpcs:ignore
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$notifications = $wpdb->get_results(
 			"SELECT p.ID, p.post_content
 			FROM {$wpdb->posts} p
 			WHERE p.post_type = 'notification'"
@@ -301,7 +291,8 @@ class Upgrade {
 				$data['trigger']
 			);
 
-			$wpdb->update( // phpcs:ignore
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->update(
 				$wpdb->posts,
 				[
 					'post_content' => wp_json_encode( $data, JSON_UNESCAPED_UNICODE ),
@@ -317,7 +308,8 @@ class Upgrade {
 
 		// 2. Changes the settings section `notifications` to `carriers`.
 
-		$wpdb->update( // phpcs:ignore
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$wpdb->update(
 			$wpdb->options,
 			[ 'option_name' => 'notification_carriers' ],
 			[ 'option_name' => 'notification_notifications' ],

@@ -2,8 +2,8 @@
 Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
-Tested up to: 5.8
-Stable tag: 8.0.0
+Tested up to: 6.2
+Stable tag: 8.0.15
 Requires PHP: 7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -14,7 +14,7 @@ Customisable email and webhook notifications with powerful developer friendly AP
 
 Custom Notifications and Alerts without a hassle. Notify anyone about any action in your WordPress. With powerful Merge Tags, you can endlessly customize your messages. Set unlimited Notifications in your WordPress Admin via the beautiful and intuitive interface within 5 minutes.
 
-[youtube https://www.youtube.com/watch?v=UPqVBhLGTek]
+[youtube https://www.youtube.com/watch?v=gW2KHrT_a7U]
 
 = DEFAULT WORDPRESS EMAILS OVERWRITE =
 
@@ -191,11 +191,10 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 * [BuddyPress](https://wordpress.org/plugins/notification-buddypress/) - BuddyPress triggers and integration with their notification system
 * [Signature](https://wordpress.org/plugins/signature-notification/) - add a signature to all your emails automatically
 * [AppPresser](https://bracketspace.com/downloads/notification-apppresser) - push messages to your mobile app built with AppPresser
+* [Email Attachments](https://bracketspace.com/downloads/notification-email-attachments/) - attach files to your notification
 
 *Coming soon* - vote for the extensions
 
-* [Email Attachments](https://bracketspace.com/downloads/notification-email-attachments/) - attach files to your notification
-* [Email Templates](https://bracketspace.com/downloads/notification-email-templates/) - use beautiful templates for your emails
 * [Facebook](https://bracketspace.com/downloads/notification-facebook/) - post messages to Facebook
 * [Twitter](https://bracketspace.com/downloads/notification-twitter/) - post messages to Twitter
 * [Zapier](https://bracketspace.com/downloads/notification-zapier/) - connect any WordPress event with Zapier
@@ -215,6 +214,10 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 * [GitHub repository](https://github.com/BracketSpace/Notification)
 * [Report a bug](https://github.com/BracketSpace/Notification/issues/new)
 
+= CUSTOM DEVELOPMENT =
+
+BracketSpace - the company behind this plugin provides [custom WordPress plugin development services](https://bracketspace.com/custom-development/). We can create any custom plugin for you.
+
 == Installation ==
 
 = Requirements =
@@ -233,10 +236,6 @@ Notification can be loaded also as a part of any plugin or theme. To do it just 
 
 == Frequently Asked Questions ==
 
-= How is this plugin different from Better Notifications for WordPress (BNFW)? =
-
-The Notification plugin works very similar to BNFW but it has better codebase and interface. You can read the full comparison in the [Notification vs Better Notifications for WordPress](https://bracketspace.com/notification-vs-better-notifications-for-wordpress/) article.
-
 = How can I test my notifications? =
 
 It's not needed to install 3rd-party plugins to catch your emails or other notifications. The Notification plugin comes with a logger which you can activate in the settings and see all the notification configuration parameters.
@@ -252,6 +251,10 @@ You can also try to activate the debug log in plugin settings to see if the emai
 Ofcourse it is! We are trying to make both parties happy - the Users and Developers. Users got their intuitive and beautiful panel in WordPress Admin and Developers got an awesome API by which they can extend the Notification plugin.
 
 So it doesn't matter if you don't have any coding skills, they are not required to setup the notifications with this plugin.
+
+= How is this plugin different from Better Notifications for WordPress (BNFW)? =
+
+The Notification plugin works very similar to BNFW but it has better codebase and interface. You can read the full comparison in the [Notification vs Better Notifications for WordPress](https://bracketspace.com/notification-vs-better-notifications-for-wordpress/) article.
 
 = How to register my own triggers? =
 
@@ -283,6 +286,10 @@ When using SMTP it's nearly impossible to send more than a dozen emails at once 
 
 Yes, just activate the debug log in the DEBUGGING section of the plugin settings. All notifications will be catched into log visible only to you.
 
+= Can you create a plugin for me? =
+
+Yes! We're offering a [custom plugin development](https://bracketspace.com/custom-development/) services. Feel free to contact us to find out how we can help you.
+
 == Screenshots ==
 
 1. Trigger edit screen
@@ -296,6 +303,109 @@ Yes, just activate the debug log in the DEBUGGING section of the plugin settings
 == Changelog ==
 
 = [Next] =
+
+* [Fixed] Shortcodes being uncorrectly stripped leaving closing "]" behind.
+
+= 8.0.15 =
+
+* [Fixed] Comment merge tags rendering empty values.
+* [Changed] Development dependencies got some security patches.
+* [Changed] `notification/merge_tag/value/resolve` now accepts unsanitized value.
+
+= 8.0.14 =
+
+* [Fixed] Outdated dochoooks compatibility file, causing a fatal error while adding new post in some environments.
+
+= 8.0.13 =
+
+* [Fixed] Regression with REST API check.
+* [Changed] `repeater_api` internal runtime component to `api`.
+* [Added] `get_endpoint` method to the API class.
+
+= 8.0.12 =
+
+* [Changed] Logic of assigning property name is moved to Abstract Merge Tag Class.
+* [Added] Property names to Term Merge Tags.
+* [Added] 6h cache expire to the user queries.
+* [Added] Email / Merge tag recipient now can also be separated with semicolon.
+* [Added] Endpoint to check whether the REST api is enabled.
+
+= 8.0.11 =
+
+* [Changed] Add php_xml to required php extensions.
+* [Changed] Background processing cache is being stored in transient instead of an option.
+* [Fixed] PHP 8.0 and 8.1 compatibility.
+* [Fixed] Improper caching expiration times.
+* [Fixed] Trigger keeping state between subsequent action runs.
+* [Fixed] Password reset trigger is not processed on user registration anymore.
+* [Added] Trigger `resume()` method to reset the stopped state.
+
+= 8.0.10 =
+
+* [Fixed] User logout trigger. In WordPress 5.5 the context is set properly.
+* [Fixed] Issue with persistent Trigger state if two or more actions assigned to the same trigger were called.
+* [Changed] Carrier's recipients field is now returned with resolved data if available.
+* [Added] Post Published privately trigger.
+
+= 8.0.9 =
+
+* [Fixed] Merge Tags resolver problem caused by overriding the processed trigger instance.
+* [Changed] `notification/should_send` filter is now executed when the queue is processed, not before the notification is added to the queue.
+* [Added] New queue methods: `remove()` and `clear()`.
+
+= 8.0.8 =
+
+* [Fixed] Two or more same triggers processed in the same request overwriting each other data.
+
+= 8.0.7 =
+
+* [Fixed] Shortcode stripping regex that was matching JSON arrays.
+* [Changed] Extensions are now reporting updates even if they are not activated.
+* [Changed] Updated EDD Updater class.
+* [Added] Webhook warning logging when response is not valid.
+
+= 8.0.6 =
+
+* [Fixed] Extension activation notice link.
+* [Fixed] Extension activation process.
+* [Fixed] Incorrect empty merge tag cleaning which was misreading JSON format.
+
+= 8.0.5 =
+
+* [Changed] Updated PHP dependencies.
+
+= 8.0.4 =
+
+* [Changed] Updated PHP dependencies.
+* [Changed] Extension license notice is now printed once and covers all the plugins.
+* [Changed] Some of the core fields like Import/Export now have own setting classes.
+* [Fixed] Remaining template variable escaping.
+* [Removed] HTML Settings field, introduced in v8.0.3. Now it's required to create purpose-specific field classes.
+
+= 8.0.3 =
+
+* [Added] HTML Settings field.
+* [Added] Notification hash column in the Notification table.
+* [Changed] Some of the Settings to HTML field instead of the Message field.
+* [Fixed] Broken Import/Export sections.
+* [Fixed] Notifications cache is now cleared when creating notification via wizard.
+
+= 8.0.2 =
+
+* [Added] HTML escaping and nonce verifications.
+* [Changed] Notification file syncing is now using Filesystem methods.
+* [Changed] Internal cache classes with `micropackage/cache`.
+* [Changed] Menu icon.
+* [Changed] Vue is now loaded from within the plugin instead of CDN.
+* [Removed] Internal cache classes `Bracketspace\Notification\Utils\Cache` and `Bracketspace\Notification\Utils\Interfaces` namespaces.
+* [Removed] Settings internal caching that couldn't wait for all the fields to be registered. Now we're relying on the get_option() core function caching.
+
+= 8.0.1 =
+
+* [Changed] Field and Merge Tag description field is now escaped and cannot contain any HTML tags.
+* [Fixed] Recipients parser which didn't resolved Email Merge Tags.
+
+= 8.0.0 =
 
 **Compatibility Breaking Changes**
 
