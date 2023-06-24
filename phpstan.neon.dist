@@ -21,3 +21,8 @@ parameters:
     ignoreErrors:
         # Uses func_get_args()
         - '#^Function apply_filters(_ref_array)? invoked with [34567] parameters, 2 required\.$#'
+        # PHPStan 
+        -
+          message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, '\\S+'\\) given\\.$#"
+          count: 81
+          path: compat/register-hooks.php
