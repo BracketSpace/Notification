@@ -295,7 +295,7 @@ class Screen {
 	}
 
 	/**
-	 * Prepates merge tag groups for provided Trigger.
+	 * Prepares merge tag groups for provided Trigger.
 	 *
 	 * @param  object $trigger Trigger object.
 	 * @return array  $groups  Grouped tags.

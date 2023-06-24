@@ -197,7 +197,7 @@ class Debugging {
 			return;
 		}
 
-		// Remove unneccessary carrier keys.
+		// Remove unnecessary carrier keys.
 		$carrier_data = $carrier->data;
 		unset( $carrier_data['activated'] );
 		unset( $carrier_data['enabled'] );

@@ -78,7 +78,7 @@ class Registerer {
 	 * @since  6.0.0
 	 * @param  mixed $trigger  Trigger object or null
 	 * @param  array $carriers Array of Carrier objects
-	 * @return Notifiation     Registered Notification.
+	 * @return Notification     Registered Notification.
 	 */
 	public static function register_notification( $trigger = null, $carriers = [] ) {
 		$notification = new Notification( [
@@ -94,7 +94,7 @@ class Registerer {
 	 *
 	 * @since  6.0.0
 	 * @param  bool $postponed If trigger should be postponed.
-	 * @return Notifiation Registered Notification.
+	 * @return Notification Registered Notification.
 	 */
 	public static function register_default_notification( $postponed = false ) {
 		$trigger = static::register_trigger( '', $postponed );
@@ -116,7 +116,7 @@ class Registerer {
 	 * Register Resolver
 	 *
 	 * @since 6.3.0
-	 * @return Objects\Resolver Registered Resovler.
+	 * @return Objects\Resolver Registered Resolver.
 	 */
 	public static function register_resolver() {
 		$resolver = new Objects\Resolver();
@@ -139,7 +139,7 @@ class Registerer {
 	 *
 	 * @since 6.3.0
 	 * @param  string            $carrier_slug Carrier slug.
-	 * @return Obejcts\Recipient               Registered Recipient.
+	 * @return Objects\Recipient               Registered Recipient.
 	 */
 	public static function register_recipient( $carrier_slug = 'dummy_carrier' ) {
 		$recipient = new Objects\Recipient();

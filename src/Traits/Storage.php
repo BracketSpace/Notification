@@ -33,7 +33,7 @@ trait Storage {
 	}
 
 	/**
-	 * Inserts an item at a specifc index.
+	 * Inserts an item at a specific index.
 	 *
 	 * @since  8.0.0
 	 * @param  int|string $index Item index.

@@ -24,7 +24,7 @@ class NotificationPost {
 	 * @since  6.0.0 Changed to adapter implementation
 	 * @param  Triggerable $trigger Trigger class or slug.
 	 * @param  Sendable    $carrier Carrier class or slug.
-	 * @return Adaptable            Notifcation WordPress adapter.
+	 * @return Adaptable            Notification WordPress adapter.
 	 */
 	public static function insert( Triggerable $trigger, Sendable $carrier ) {
 

@@ -23,13 +23,13 @@ class SectionRepeaterController extends RepeaterController {
 	 */
 	public function group_fields( $fields ) {
 
-		$groupped_fields = [];
+		$grouped_fields = [];
 
 		foreach ( $fields as $field ) {
-			$groupped_fields[ $field['name'] ] = $field;
+			$grouped_fields[ $field['name'] ] = $field;
 		}
 
-		return $groupped_fields;
+		return $grouped_fields;
 	}
 
 	/**
@@ -46,8 +46,8 @@ class SectionRepeaterController extends RepeaterController {
 
 			$section_fields[ $section ]['name']   = ucfirst( $section );
 			$base_fields                          = $this->form_field_data( $value['fields'] );
-			$groupped_fields                      = $this->group_fields( $base_fields );
-			$section_fields[ $section ]['fields'] = $groupped_fields;
+			$grouped_fields                      = $this->group_fields( $base_fields );
+			$section_fields[ $section ]['fields'] = $grouped_fields;
 
 			foreach ( $section_fields[ $section ]['fields'] as &$field ) {
 
@@ -61,8 +61,8 @@ class SectionRepeaterController extends RepeaterController {
 						$section_field['multiple'] = isset( $section['multiple_section'] ) ? $section['multiple_section'] : false;
 						$section_field['special']  = isset( $section['special_section'] ) ? $section['special_section'] : false;
 						$base_sub_fields           = $this->form_field_data( $section['fields'] );
-						$groupped_sub_fields       = $this->group_fields( $base_sub_fields );
-						$section_field['fields']   = $groupped_sub_fields;
+						$grouped_sub_fields       = $this->group_fields( $base_sub_fields );
+						$section_field['fields']   = $grouped_sub_fields;
 						$sections                  = array_merge( $sections, $section_field );
 
 					}

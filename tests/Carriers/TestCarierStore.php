@@ -31,12 +31,12 @@ class TestCarierStore extends \WP_UnitTestCase {
 		$carrier_1 = Registerer::register_carrier( 'dummy_1' );
 		$carrier_2 = Registerer::register_carrier( 'dummy_2' );
 
-		$excpected_array = [
+		$expected_array = [
 			'dummy_1' => $carrier_1,
 			'dummy_2' => $carrier_2,
 		];
 
-		$this->assertSame( $excpected_array, CarrierStore::all() );
+		$this->assertSame( $expected_array, CarrierStore::all() );
 	}
 
 	/**

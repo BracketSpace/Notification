@@ -54,7 +54,7 @@ class PostAdded extends PostTrigger {
 	public function get_description() : string {
 		return sprintf(
 			// translators: 1. singular post name, 2. post type slug.
-			__( 'Fires when %1$s (%2$s) is added to database. Useful when adding posts programatically or for 3rd party integration', 'notification' ),
+			__( 'Fires when %1$s (%2$s) is added to database. Useful when adding posts programmatically or for 3rd party integration', 'notification' ),
 			WpObjectHelper::get_post_type_name( $this->post_type ),
 			$this->post_type
 		);

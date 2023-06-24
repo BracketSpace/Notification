@@ -21,4 +21,4 @@ $extension_link = sprintf(
 	?>
 </p>
 <br>
-<p><?php esc_html_e( 'This allows to send notifications few days after the registation or purchase or reminder before a date.', 'notification' ); ?></p>
+<p><?php esc_html_e( 'This allows to send notifications few days after the registration or purchase or reminder before a date.', 'notification' ); ?></p>

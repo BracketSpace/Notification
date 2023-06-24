@@ -74,7 +74,7 @@ interface Fillable {
 	public function css_class();
 
 	/**
-	 * Cheks if field should be resolved with merge tags
+	 * Checks if field should be resolved with merge tags
 	 *
 	 * @return bool
 	 */

@@ -26,12 +26,12 @@ class SyncTable {
 	 */
 	public function input( $field ) {
 		// Get all Notifications.
-		$wp_json_notifiactions = PostType::get_all_notifications();
-		$json_notifiactions    = CoreSync::get_all_json();
+		$wp_json_notifications = PostType::get_all_notifications();
+		$json_notifications    = CoreSync::get_all_json();
 		$collection            = [];
 
 		// Load the WP Notifications first.
-		foreach ( $wp_json_notifiactions as $json ) {
+		foreach ( $wp_json_notifications as $json ) {
 			try {
 				$adapter      = notification_adapt_from( 'JSON', $json );
 				$notification = $adapter->get_notification();
@@ -59,7 +59,7 @@ class SyncTable {
 		}
 
 		// Compare against JSON.
-		foreach ( $json_notifiactions as $json ) {
+		foreach ( $json_notifications as $json ) {
 			try {
 				$adapter      = notification_adapt_from( 'JSON', $json );
 				$notification = $adapter->get_notification();

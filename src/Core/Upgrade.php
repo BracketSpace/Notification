@@ -281,9 +281,9 @@ class Upgrade {
 			WHERE p.post_type = 'notification'"
 		);
 
-		foreach ( $notifications as $notifiation_raw ) {
+		foreach ( $notifications as $notification_raw ) {
 
-			$data = json_decode( $notifiation_raw->post_content, true );
+			$data = json_decode( $notification_raw->post_content, true );
 
 			$data['trigger'] = preg_replace(
 				array_keys( $this->trigger_slug_replacements() ),
@@ -298,7 +298,7 @@ class Upgrade {
 					'post_content' => wp_json_encode( $data, JSON_UNESCAPED_UNICODE ),
 				],
 				[
-					'ID' => $notifiation_raw->ID,
+					'ID' => $notification_raw->ID,
 				],
 				[ '%s' ],
 				[ '%d' ]

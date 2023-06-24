@@ -172,7 +172,7 @@ class Wizard {
 					[
 						'name'        => __( 'Comment reply', 'notification' ),
 						'slug'        => 'comment_reply',
-						'description' => __( 'An email to comment autor about the reply', 'notification' ),
+						'description' => __( 'An email to comment author about the reply', 'notification' ),
 						'recipients'  => [
 							[
 								'name' => __( 'Comment author', 'notification' ),

@@ -80,7 +80,7 @@ class DumpHooks {
 
 		$file_header = '<?php
 /**
- * Hooks compatibilty file.
+ * Hooks compatibility file.
  *
  * Automatically generated with `wp notification dump-hooks`.
  *

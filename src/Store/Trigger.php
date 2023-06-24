@@ -1,6 +1,6 @@
 <?php
 /**
- * Triger Store
+ * Trigger Store
  *
  * @package notification
  */

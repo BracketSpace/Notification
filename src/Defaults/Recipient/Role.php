@@ -65,7 +65,7 @@ class Role extends Abstracts\Recipient {
 		foreach ( $roles as $role_slug => $role ) {
 			$num_users = count( UserQueries::with_role( $role_slug ) );
 
-			// Translators: %s numer of users.
+			// Translators: %s number of users.
 			$label = translate_user_role( $role['name'] ) . ' (' . sprintf( _n( '%s user', '%s users', $num_users, 'notification' ), $num_users ) . ')';
 
 			$opts[ $role_slug ] = esc_html( $label );

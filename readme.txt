@@ -284,7 +284,7 @@ When using SMTP it's nearly impossible to send more than a dozen emails at once 
 
 = Can I test my notifications before sending? =
 
-Yes, just activate the debug log in the DEBUGGING section of the plugin settings. All notifications will be catched into log visible only to you.
+Yes, just activate the debug log in the DEBUGGING section of the plugin settings. All notifications will be caught into log visible only to you.
 
 = Can you create a plugin for me? =
 
@@ -304,7 +304,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 
-* [Fixed] Shortcodes being uncorrectly stripped leaving closing "]" behind.
+* [Fixed] Shortcodes being incorrectly stripped leaving closing "]" behind.
 
 = 8.0.15 =
 
@@ -462,7 +462,7 @@ Removed deprecated hooks:
 * [Removed] Syncing functions: `notification_sync`, `notification_get_sync_path`, `notification_is_syncing`.
 * [Removed] Whitelabeling functions: `notification_whitelabel`, `notification_is_whitelabeled`.
 * [Removed] Editor and Code Editor fields sanitizers to allow for HTML usage, ie. email templates.
-* [Removed] `notification/elements` action hoook.
+* [Removed] `notification/elements` action hook.
 * [Removed] NOTIFICATION_VERSION constant.
 * [Added] Runner class that processes the Triggers.
 * [Added] ErrorHandler class that helps handle errors. It can throw an exception when NOTIFICATION_DEBUG is enabled or save a warning to error_log when it's disabled.

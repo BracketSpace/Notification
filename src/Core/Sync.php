@@ -148,7 +148,7 @@ class Sync {
 
 	/**
 	 * Enables the notification syncing
-	 * By default path used is current theme's `notifiations` dir.
+	 * By default path used is current theme's `notifications` dir.
 	 *
 	 * @since  8.0.0
 	 * @throws \Exception If provided path is not a directory.
