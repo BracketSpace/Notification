@@ -16,7 +16,6 @@ use BracketSpace\Notification\Core\Notification;
 /**
  * WordPress Adapter class
  *
- * @method void setSourcePostId(int $postId)
  * @mixin \BracketSpace\Notification\Core\Notification
  */
 class WordPress extends Abstracts\Adapter

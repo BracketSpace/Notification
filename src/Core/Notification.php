@@ -605,5 +605,13 @@ class Notification
 		return $this->enabled;
 	}
 
-
+	/**
+	 * Sets the source post identifier.
+	 *
+	 * @param int $postId The post identifier
+	 */
+	public function setSourcePostId($postId): void
+	{
+		$this->sourcePostId = $postid;
+	}
 }
