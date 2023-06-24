@@ -1,6 +1,6 @@
-
 ### Project ###
 *.log
+.phpunit.result.cache
 /classes/
 node_modules/
 /vendor/
