@@ -89,36 +89,6 @@ jobs:
         run: composer compose
       - name: Lint
         run: composer phplint
-  phpcompat:
-    name: PHP Compatibility (7.0)
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup variables
-        id: vars
-        run: |
-          echo "::set-output name=composer-cache-path::$(composer config cache-files-dir)"
-      - name: Setup PHP 7.4
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '7.4'
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
-          coverage: none
-      - name: Cache Composer
-        uses: actions/cache@v1
-        with:
-          path: ${{ steps.vars.outputs.composer-cache-path }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
-      - name: Install Composer dependencies
-        run: composer install --no-progress
-      - name: Install Composer build dependencies
-        run: composer bin build install --no-progress
-      - name: Compose dependencies
-        run: composer compose
-      - name: Check compatibility
-        run: composer phpcompat
   phpunit:
     name: PHPUnit
     runs-on: ubuntu-latest

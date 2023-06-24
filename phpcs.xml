@@ -87,6 +87,9 @@
 		</properties>
 	</rule>
 
+	<rule ref="PHPCompatibilityWP"/>
+	<config name="testVersion" value="7.0-"/>
+
 	<!-- Check all PHP files in directory tree by default. -->
 	<arg name="extensions" value="php"/>
 	<file>.</file>
@@ -96,6 +99,8 @@
 
 	<exclude-pattern>bin/*</exclude-pattern>
 	<exclude-pattern>node_modules/*</exclude-pattern>
+	<exclude-pattern>resources/js.*</exclude-pattern>
+	<exclude-pattern>resources/css.*</exclude-pattern>
 	<exclude-pattern>tests/*</exclude-pattern>
 	<exclude-pattern>vendor/*</exclude-pattern>
 	<exclude-pattern>src/Dependencies/*</exclude-pattern>
