@@ -72,7 +72,6 @@ function notification_cache() {
 	return null;
 }
 
-
 /**
  * Checks if the Wizard should be displayed.
  *
@@ -397,7 +396,6 @@ function notification_register_resolver( Interfaces\Resolvable $resolver ) {
 
 	Register::resolver( $resolver );
 }
-
 
 /**
  * Resolves the value
