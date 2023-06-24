@@ -1,56 +1,74 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Form table template
  *
  * @package notification
  *
- * @var callable(string $var_name, string $default=): mixed $get Variable getter.
- * @var callable(string $var_name, string $default=): void $the Variable printer.
- * @var callable(string $var_name, string $default=): void $the_esc Escaped variable printer.
- * @var BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
+ * @var callable(string $varName, string $default=): mixed $get Variable getter.
+ * @var callable(string $varName, string $default=): void $the Variable printer.
+ * @var callable(string $varName, string $default=): void $the_esc Escaped variable printer.
+ * @var \BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
 use BracketSpace\Notification\Core\Templates;
 
-/** @var BracketSpace\Notification\Interfaces\Sendable $carrier */
-$carrier                 = $get( 'carrier' );
-$current_index           = 0;
-$recipient_field_printed = false;
+$carrier = $get('carrier');
+\assert($carrier instanceof BracketSpace\Notification\Interfaces\Sendable);
+$currentIndex = 0;
+$recipientFieldPrinted = false;
 
 ?>
 
 <table class="form-table">
 
 	<?php
-	foreach ( $carrier->get_form_fields() as $field ) {
+	foreach ($carrier->getFormFields() as $field) {
 		// Check if this is the right moment to print recipients field.
-		if ( ! $recipient_field_printed && $carrier->has_recipients_field() && $current_index === $carrier->recipients_field_index ) {
-			Templates::render( 'form/field', [
-				'current_field' => $carrier->get_recipients_field(),
-				'carrier'       => $carrier->get_slug(),
-			] );
-			$recipient_field_printed = true;
+		if (
+			!$recipientFieldPrinted && $carrier->hasRecipientsField(
+			) && $currentIndex === $carrier->recipientsFieldIndex
+		) {
+			Templates::render(
+				'form/field',
+				[
+					'current_field' => $carrier->getRecipientsField(),
+					'carrier' => $carrier->getSlug(),
+				]
+			);
+			$recipientFieldPrinted = true;
 		}
 
 		$vars = [
 			'current_field' => $field,
-			'carrier'       => $carrier->get_slug(),
+			'carrier' => $carrier->getSlug(),
 		];
 
-		if ( empty( $field->get_label() ) ) {
-			Templates::render( 'form/field-hidden', $vars );
+		if (empty($field->getLabel())) {
+			Templates::render(
+				'form/field-hidden',
+				$vars
+			);
 		} else {
-			Templates::render( 'form/field', $vars );
-			$current_index++;
+			Templates::render(
+				'form/field',
+				$vars
+			);
+			$currentIndex++;
 		}
 	}
 
 	// Check if the recipients field should be printed as a last field.
-	if ( $carrier->has_recipients_field() && $current_index === $carrier->recipients_field_index ) {
-		Templates::render( 'form/field', [
-			'current_field' => $carrier->get_recipients_field(),
-			'carrier'       => $carrier->get_slug(),
-		] );
+	if ($carrier->hasRecipientsField() && $currentIndex === $carrier->recipientsFieldIndex) {
+		Templates::render(
+			'form/field',
+			[
+				'current_field' => $carrier->getRecipientsField(),
+				'carrier' => $carrier->getSlug(),
+			]
+		);
 	}
 	?>
 

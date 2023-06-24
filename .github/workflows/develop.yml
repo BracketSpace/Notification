@@ -24,27 +24,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12'
-    - name: Setup variables
-      id: vars
-      run: |
-        echo "::set-output name=yarn-cache-path::$(yarn cache dir)"
-        echo "::set-output name=composer-cache-path::$(composer config cache-files-dir)"
-    - name: Cache Yarn
-      uses: actions/cache@v1
-      with:
-        path: ${{ steps.vars.outputs.yarn-cache-path }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: ${{ runner.os }}-yarn-
-    - name: Cache Composer
-      uses: actions/cache@v1
-      with:
-        path: ${{ steps.vars.outputs.composer-cache-path }}
-        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-        restore-keys: ${{ runner.os }}-composer-
     - name: Install Node dependencies
-      run: yarn install --no-progress
+      uses: bahmutov/npm-install@v1
     - name: Install Composer dependencies
-      run: composer install --no-progress
+      uses: "ramsey/composer-install@v2"
     - name: Install Composer build dependencies
       run: composer bin build install --no-progress
     - name: Compose dependencies

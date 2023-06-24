@@ -1,52 +1,58 @@
 <?php
+
 /**
  * Recipients field class
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Defaults\Field;
 
 /**
  * Recipients field class
  */
-class SectionsField extends InputField {
-
-
+class SectionsField extends InputField
+{
 	/**
 	 * Possible values
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	protected $sections = [];
 
 	/**
 	 * Field constructor
 	 *
+	 * @param array<mixed> $params field configuration parameters.
 	 * @since 5.0.0
-	 * @param array $params field configuration parameters.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct($params = [])
+	{
 
-		if ( ! isset( $params['sections'] ) ) {
-			trigger_error( 'SectionsField requires sections param', E_USER_ERROR );
+		if (!isset($params['sections'])) {
+			trigger_error(
+				'SectionsField requires sections param',
+				E_USER_ERROR
+			);
 		}
 
 		$this->sections = $params['sections'];
 
-		parent::__construct( $params );
-
+		parent::__construct($params);
 	}
 
 	/**
 	 * Prints repeater row
 	 *
-	 * @since  5.0.0
 	 * @return string          row HTML
+	 * @since  5.0.0
 	 */
-	public function row() {
+	public function row()
+	{
 
-		$html = '<template v-for="( field, key ) in fields">
+		return '<template v-for="( field, key ) in fields">
 					<repeater-row
 					:field="field"
 					:fields="fields"
@@ -59,8 +65,5 @@ class SectionsField extends InputField {
 					>
 					</repeater-row>
 				  </template>';
-
-		return $html;
 	}
-
 }

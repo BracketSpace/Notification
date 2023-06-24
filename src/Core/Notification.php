@@ -5,229 +5,188 @@
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Store;
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 
-/**
- * Notification class
- * Valid keys are:
- * - hash
- * - title
- * - trigger
- * - carriers
- * - enabled
- * - extras
- * - version
- *
- * @method string get_hash()
- * @method string get_title()
- * @method Interfaces\Triggerable|null get_trigger()
- * @method array<Interfaces\Sendable> get_carriers()
- * @method bool get_enabled()
- * @method array get_extras()
- * @method int get_version()
- * @method string get_source()
- * @method void set_hash( string $hash )
- * @method void set_title( string $title )
- * @method void set_trigger( Interfaces\Triggerable $trigger )
- * @method void set_enabled( bool $enabled )
- * @method void set_extras( array $extras )
- * @method void set_version( int $version )
- * @method void set_source( string $source )
- */
-class Notification {
+class Notification
+{
+	use Casegnostic;
 
 	/**
 	 * Hash
 	 *
 	 * @var string
 	 */
-	protected $hash;
-
+	private $hash;
 	/**
 	 * Title
 	 *
 	 * @var string
 	 */
-	protected $title = '';
+	private $title = '';
 
 	/**
 	 * Trigger
 	 *
 	 * @var Interfaces\Triggerable|null
 	 */
-	protected $trigger;
+	private $trigger;
 
 	/**
 	 * Carriers
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
-	protected $carriers = [];
+	private $carriers = [];
 
 	/**
 	 * Status
 	 *
 	 * @var bool
 	 */
-	protected $enabled = true;
+	private $enabled = true;
 
 	/**
 	 * Extras
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
-	protected $extras = [];
+	private $extras = [];
 
 	/**
 	 * Version
 	 *
 	 * @var int
 	 */
-	protected $version;
+	private $version;
 
 	/**
 	 * Source
 	 *
 	 * @var string
 	 */
-	protected $source = 'Internal';
+	private $source = 'Internal';
+
+	/**
+	 * Source Post ID
+	 *
+	 * @var int
+	 */
+	private $sourcePostId;
 
 	/**
 	 * Constructor
 	 *
+	 * @param array<mixed> $data Notification data.
 	 * @since 6.0.0
-	 * @param array $data Notification data.
 	 */
-	public function __construct( $data = [] ) {
-		$this->setup( $data );
-	}
-
-	/**
-	 * Getter and Setter methods
-	 *
-	 * @since  6.0.0
-	 * @throws \Exception If no property has been found.
-	 * @param  string $method_name Method name.
-	 * @param  array  $arguments   Arguments.
-	 * @return mixed
-	 */
-	public function __call( $method_name, $arguments ) {
-
-		// Getter.
-		if ( 0 === strpos( $method_name, 'get_' ) ) {
-			$property = str_replace( 'get_', '', $method_name );
-
-			if ( property_exists( $this, $property ) ) {
-				return $this->$property;
-			} else {
-				throw new \Exception( sprintf( 'Property %s doesn\'t exists.', $property ) );
-			}
-		}
-
-		// Setter.
-		if ( 0 === strpos( $method_name, 'set_' ) ) {
-			$property = str_replace( 'set_', '', $method_name );
-
-			if ( isset( $arguments[0] ) ) {
-				$this->$property = $arguments[0];
-			} else {
-				throw new \Exception( 'You must provide the property value' );
-			}
-		}
-
+	public function __construct($data = [])
+	{
+		$this->setup($data);
 	}
 
 	/**
 	 * Clone method
 	 * Copies the Trigger and Carriers to new Carrier instance
 	 *
-	 * @since  6.0.0
 	 * @return void
+	 * @since  6.0.0
 	 */
-	public function __clone() {
+	public function __clone()
+	{
 
-		$trigger = $this->get_trigger();
-		if ( ! empty( $trigger ) ) {
-			$this->set_trigger( clone $trigger );
+		$trigger = $this->getTrigger();
+		if (!empty($trigger)) {
+			$this->setTrigger(clone $trigger);
 		}
 
 		$carriers = [];
-		foreach ( $this->get_carriers() as $key => $carrier ) {
-			$carriers[ $key ] = clone $carrier;
+		foreach ($this->getCarriers() as $key => $carrier) {
+			$carriers[$key] = clone $carrier;
 		}
-		$this->set_carriers( $carriers );
+		$this->setCarriers($carriers);
 
 	}
 
 	/**
 	 * Sets up Notification data from array.
 	 *
-	 * @since  6.0.0
-	 * @throws \Exception If wrong arguments has been passed.
-	 * @param  array $data Data array.
+	 * @param array<mixed> $data Data array.
 	 * @return $this
+	 * @throws \Exception If wrong arguments has been passed.
+	 * @since  6.0.0
 	 */
-	public function setup( $data = [] ) {
+	public function setup($data = [])
+	{
 
 		// Hash. If not provided will be generated automatically.
-		$hash = isset( $data['hash'] ) && ! empty( $data['hash'] ) ? $data['hash'] : self::create_hash();
-		$this->set_hash( $hash );
+		$hash = isset($data['hash']) && !empty($data['hash'])
+			? $data['hash']
+			: self::createHash();
+		$this->setHash($hash);
 
 		// Title.
-		if ( isset( $data['title'] ) && ! empty( $data['title'] ) ) {
-			$this->set_title( sanitize_text_field( $data['title'] ) );
+		if (isset($data['title']) && !empty($data['title'])) {
+			$this->setTitle(sanitize_text_field($data['title']));
 		}
 
 		// Trigger.
-		if ( isset( $data['trigger'] ) && ! empty( $data['trigger'] ) ) {
-			if ( $data['trigger'] instanceof Interfaces\Triggerable ) {
-				$this->set_trigger( $data['trigger'] );
-			} else {
-				throw new \Exception( 'Trigger must implement Triggerable interface' );
+		if (isset($data['trigger']) && !empty($data['trigger'])) {
+			if ($data['trigger'] instanceof Interfaces\Triggerable) {
+				$this->setTrigger($data['trigger']);
+			}
+			else {
+				throw new \Exception('Trigger must implement Triggerable interface');
 			}
 		}
 
 		// Carriers.
-		if ( isset( $data['carriers'] ) && ! empty( $data['carriers'] ) ) {
+		if (isset($data['carriers']) && !empty($data['carriers'])) {
 			$carriers = [];
 
-			foreach ( $data['carriers'] as $carrier ) {
-				if ( $carrier instanceof Interfaces\Sendable ) {
-					$carriers[ $carrier->get_slug() ] = $carrier;
-				} else {
-					throw new \Exception( 'Each Carrier object must implement Sendable interface' );
+			foreach ($data['carriers'] as $carrier) {
+				if ($carrier instanceof Interfaces\Sendable) {
+					$carriers[$carrier->getSlug()] = $carrier;
+				}
+				else {
+					throw new \Exception('Each Carrier object must implement Sendable interface');
 				}
 			}
 
-			$this->set_carriers( $carriers );
+			$this->setCarriers($carriers);
 		}
 
 		// Status.
-		if ( isset( $data['enabled'] ) ) {
-			$this->set_enabled( (bool) $data['enabled'] );
+		if (isset($data['enabled'])) {
+			$this->setEnabled((bool) $data['enabled']);
 		}
 
 		// Extras.
-		if ( isset( $data['extras'] ) ) {
+		if (isset($data['extras'])) {
 			$extras = [];
 
-			foreach ( $data['extras'] as $key => $extra ) {
-				if ( is_array( $extra ) || is_string( $extra ) || is_numeric( $extra ) || is_bool( $extra ) ) {
-					$extras[ $key ] = $extra;
-				} else {
-					throw new \Exception( 'Each extra must be an array or string or number or bool.' );
+			foreach ($data['extras'] as $key => $extra) {
+				if (is_array($extra) || is_string($extra) || is_numeric($extra) || is_bool($extra)) {
+					$extras[$key] = $extra;
+				}
+				else {
+					throw new \Exception('Each extra must be an array or string or number or bool.');
 				}
 			}
 
-			$this->set_extras( $extras );
+			$this->setExtras($extras);
 		}
 
 		// Version. If none provided, the current most recent version is used.
-		$version = isset( $data['version'] ) && ! empty( $data['version'] ) ? $data['version'] : time();
-		$this->set_version( $version );
+		$version = isset($data['version']) && !empty($data['version'])
+			? $data['version']
+			: time();
+		$this->setVersion($version);
 
 		return $this;
 
@@ -236,28 +195,32 @@ class Notification {
 	/**
 	 * Dumps the object to array
 	 *
+	 * @param bool $onlyEnabledCarriers If only enabled Carriers should be saved.
+	 * @return array<mixed>
 	 * @since  6.0.0
-	 * @param  bool $only_enabled_carriers If only enabled Carriers should be saved.
-	 * @return array
 	 */
-	public function to_array( $only_enabled_carriers = false ) {
-
-		$carriers  = [];
-		$_carriers = $only_enabled_carriers ? $this->get_enabled_carriers() : $this->get_carriers();
-		foreach ( $_carriers as $carrier_slug => $carrier ) {
-			$carriers[ $carrier_slug ] = $carrier->get_data();
+	public function toArray($onlyEnabledCarriers = false)
+	{
+		$carriers = [];
+		$_carriers = $onlyEnabledCarriers
+			? $this->getEnabledCarriers()
+			: $this->getCarriers();
+		foreach ($_carriers as $carrierSlug => $carrier) {
+			$carriers[$carrierSlug] = $carrier->getData();
 		}
 
-		$trigger = $this->get_trigger();
+		$trigger = $this->getTrigger();
 
 		return [
-			'hash'     => $this->get_hash(),
-			'title'    => $this->get_title(),
-			'trigger'  => $trigger ? $trigger->get_slug() : '',
+			'hash' => $this->getHash(),
+			'title' => $this->getTitle(),
+			'trigger' => $trigger
+				? $trigger->getSlug()
+				: '',
 			'carriers' => $carriers,
-			'enabled'  => $this->is_enabled(),
-			'extras'   => $this->get_extras(),
-			'version'  => $this->get_version(),
+			'enabled' => $this->isEnabled(),
+			'extras' => $this->getExtras(),
+			'version' => $this->getVersion(),
 		];
 
 	}
@@ -266,74 +229,89 @@ class Notification {
 	 * Checks if enabled
 	 * Alias for `get_enabled()` method
 	 *
-	 * @since  6.0.0
 	 * @return boolean
+	 * @since  6.0.0
 	 */
-	public function is_enabled() {
-		return (bool) $this->get_enabled();
+	public function isEnabled()
+	{
+		return (bool) $this->getEnabled();
 	}
 
 	/**
 	 * Creates hash
 	 *
-	 * @since  6.0.0
 	 * @return string hash
+	 * @since  6.0.0
 	 */
-	public static function create_hash() {
-		return uniqid( 'notification_' );
+	public static function createHash()
+	{
+		return uniqid('notification_');
 	}
 
 	/**
 	 * Gets single Carrier object
 	 *
-	 * @since  6.0.0
-	 * @param  string $carrier_slug Carrier slug.
+	 * @param string $carrierSlug Carrier slug.
 	 * @return mixed                Carrier object or null.
+	 * @since  6.0.0
 	 */
-	public function get_carrier( $carrier_slug ) {
-		$carriers = $this->get_carriers();
-		return isset( $carriers[ $carrier_slug ] ) ? $carriers[ $carrier_slug ] : null;
+	public function getCarrier($carrierSlug)
+	{
+		$carriers = $this->getCarriers();
+		return isset($carriers[$carrierSlug])
+			? $carriers[$carrierSlug]
+			: null;
 	}
 
 	/**
 	 * Gets enabled Carriers
 	 *
+	 * @return array<mixed>
 	 * @since  6.0.0
-	 * @return array
 	 */
-	public function get_enabled_carriers() {
-		return array_filter( $this->get_carriers(), function ( $carrier ) {
-			return $carrier->is_enabled();
-		} );
+	public function getEnabledCarriers()
+	{
+		return array_filter(
+			$this->getCarriers(),
+			function ($carrier) {
+				return $carrier->isEnabled();
+			}
+		);
 	}
 
 	/**
 	 * Add Carrier to the set
 	 *
-	 * @since  6.0.0
+	 * @param Interfaces\Sendable|string $carrier Carrier object or slug.
+	 * @return Interfaces\Sendable
 	 * @throws \Exception If you try to add already added Carrier.
 	 * @throws \Exception If you try to add non-existing Carrier.
-	 * @param  Interfaces\Sendable|string $carrier Carrier object or slug.
-	 * @return Interfaces\Sendable
+	 * @since  6.0.0
 	 */
-	public function add_carrier( $carrier ) {
+	public function addCarrier($carrier)
+	{
 
-		if ( ! $carrier instanceof Interfaces\Sendable ) {
-			$carrier = Store\Carrier::get( $carrier );
+		if (!$carrier instanceof Interfaces\Sendable) {
+			$carrier = Store\Carrier::get($carrier);
 		}
 
-		if ( ! $carrier instanceof Interfaces\Sendable ) {
-			throw new \Exception( 'Carrier hasn\'t been found' );
+		if (!$carrier instanceof Interfaces\Sendable) {
+			throw new \Exception('Carrier hasn\'t been found');
 		}
 
-		$carriers = $this->get_carriers();
+		$carriers = $this->getCarriers();
 
-		if ( isset( $carriers[ $carrier->get_slug() ] ) ) {
-			throw new \Exception( sprintf( 'Carrier %s already exists', $carrier->get_name() ) );
+		if (isset($carriers[$carrier->getSlug()])) {
+			throw new \Exception(
+				sprintf(
+					'Carrier %s already exists',
+					$carrier->getName()
+				)
+			);
 		}
 
-		$carriers[ $carrier->get_slug() ] = $carrier;
-		$this->set_carriers( $carriers );
+		$carriers[$carrier->getSlug()] = $carrier;
+		$this->setCarriers($carriers);
 
 		return $carrier;
 
@@ -342,16 +320,17 @@ class Notification {
 	/**
 	 * Enables Carrier
 	 *
-	 * @since  6.0.0
-	 * @param  string $carrier_slug Carrier slug.
+	 * @param string $carrierSlug Carrier slug.
 	 * @return void
+	 * @since  6.0.0
 	 */
-	public function enable_carrier( $carrier_slug ) {
+	public function enableCarrier($carrierSlug)
+	{
 
-		$carrier = $this->get_carrier( $carrier_slug );
+		$carrier = $this->getCarrier($carrierSlug);
 
-		if ( null === $carrier ) {
-			$carrier = $this->add_carrier( $carrier_slug );
+		if (null === $carrier) {
+			$carrier = $this->addCarrier($carrierSlug);
 		}
 
 		$carrier->enable();
@@ -361,13 +340,14 @@ class Notification {
 	/**
 	 * Disables Carrier
 	 *
-	 * @since  6.0.0
-	 * @param  string $carrier_slug Carrier slug.
+	 * @param string $carrierSlug Carrier slug.
 	 * @return void
+	 * @since  6.0.0
 	 */
-	public function disable_carrier( $carrier_slug ) {
-		$carrier = $this->get_carrier( $carrier_slug );
-		if ( null !== $carrier ) {
+	public function disableCarrier($carrierSlug)
+	{
+		$carrier = $this->getCarrier($carrierSlug);
+		if (null !== $carrier) {
 			$carrier->disable();
 		}
 	}
@@ -376,103 +356,111 @@ class Notification {
 	 * Sets Carriers
 	 * Makes sure that the Notification slug is used as key.
 	 *
-	 * @since  6.0.0
-	 * @param  array $carriers Array of Carriers.
+	 * @param array<mixed> $carriers Array of Carriers.
 	 * @return void
+	 * @since  6.0.0
 	 */
-	public function set_carriers( $carriers = [] ) {
+	public function setCarriers($carriers = [])
+	{
 
-		$saved_carriers = [];
+		$savedCarriers = [];
 
-		foreach ( $carriers as $carrier ) {
-			$saved_carriers[ $carrier->get_slug() ] = $carrier;
+		foreach ($carriers as $carrier) {
+			$savedCarriers[$carrier->getSlug()] = $carrier;
 		}
 
-		$this->carriers = $saved_carriers;
+		$this->carriers = $savedCarriers;
 
 	}
 
 	/**
 	 * Sets Carrier data
 	 *
-	 * @since  6.0.0
-	 * @param  string $carrier_slug Carrier slug.
-	 * @param  array  $data         Carrier data.
+	 * @param string $carrierSlug Carrier slug.
+	 * @param array<mixed> $data Carrier data.
 	 * @return void
+	 * @since  6.0.0
 	 */
-	public function set_carrier_data( $carrier_slug, $data ) {
-		$carrier = $this->get_carrier( $carrier_slug );
-		if ( null !== $carrier ) {
-			$carrier->set_data( $data );
+	public function setCarrierData($carrierSlug, $data)
+	{
+		$carrier = $this->getCarrier($carrierSlug);
+		if (null !== $carrier) {
+			$carrier->setData($data);
 		}
 	}
 
 	/**
 	 * Gets Carrier data
 	 *
-	 * @since  6.0.0
-	 * @param  string $carrier_slug Carrier slug.
+	 * @param string $carrierSlug Carrier slug.
 	 * @return void
+	 * @since  6.0.0
 	 */
-	public function get_carrier_data( $carrier_slug ) {
-		$carrier = $this->get_carrier( $carrier_slug );
-		if ( null !== $carrier ) {
-			$carrier->get_data();
+	public function getCarrierData($carrierSlug)
+	{
+		$carrier = $this->getCarrier($carrierSlug);
+		if (null !== $carrier) {
+			$carrier->getData();
 		}
 	}
 
 	/**
 	 * Gets single extra data value.
 	 *
-	 * @since  6.0.0
-	 * @param  string $key Extra data key.
+	 * @param string $key Extra data key.
 	 * @return mixed       Extra data value or null
+	 * @since  6.0.0
 	 */
-	public function get_extra( $key ) {
-		$extras = $this->get_extras();
-		return isset( $extras[ $key ] ) ? $extras[ $key ] : null;
+	public function getExtra($key)
+	{
+		$extras = $this->getExtras();
+		return isset($extras[$key])
+			? $extras[$key]
+			: null;
 	}
 
 	/**
 	 * Removes single extra data.
 	 *
-	 * @since  6.0.0
-	 * @param  string $key Extra data key.
+	 * @param string $key Extra data key.
 	 * @return void
+	 * @since  6.0.0
 	 */
-	public function remove_extra( $key ) {
+	public function removeExtra($key)
+	{
 
-		$extras = $this->get_extras();
+		$extras = $this->getExtras();
 
-		if ( isset( $extras[ $key ] ) ) {
-			unset( $extras[ $key ] );
+		if (isset($extras[$key])) {
+			unset($extras[$key]);
 		}
 
-		$this->set_extras( $extras );
+		$this->setExtras($extras);
 
 	}
 
 	/**
 	 * Add extra data
 	 *
-	 * @since  6.0.0
-	 * @throws \Exception If extra is not type of array, string or number or boolean.
-	 * @param  string $key   Extra data key.
-	 * @param  mixed  $value Extra data value.
+	 * @param string $key Extra data key.
+	 * @param mixed $value Extra data value.
 	 * @return $this
+	 * @throws \Exception If extra is not type of array, string or number or boolean.
+	 * @since  6.0.0
 	 */
-	public function add_extra( $key, $value ) {
+	public function addExtra($key, $value)
+	{
 
-		if ( ! is_array( $value ) && ! is_string( $value ) && ! is_numeric( $value ) && ! is_bool( $value ) ) {
-			throw new \Exception( 'Extra data must be an array or string or number.' );
+		if (!is_array($value) && !is_string($value) && !is_numeric($value) && !is_bool($value)) {
+			throw new \Exception('Extra data must be an array or string or number.');
 		}
 
-		$extras = $this->get_extras();
+		$extras = $this->getExtras();
 
 		// Create or update key.
-		$extras[ $key ] = $value;
+		$extras[$key] = $value;
 
-		$this->set_extras( $extras );
+		$this->setExtras($extras);
 
 		return $this;
 
@@ -481,12 +469,157 @@ class Notification {
 	/**
 	 * Refreshes the hash
 	 *
-	 * @since  6.1.4
 	 * @return $this
+	 * @since  6.1.4
 	 */
-	public function refresh_hash() {
-		$this->set_hash( self::create_hash() );
+	public function refreshHash()
+	{
+		$this->setHash(self::createHash());
 		return $this;
 	}
 
+	/**
+	 * @return string
+	 */
+	public function getHash(): string
+	{
+		return $this->hash;
+	}
+
+	/**
+	 * @param string $hash
+	 * @return Notification
+	 */
+	public function setHash(string $hash): Notification
+	{
+		$this->hash = $hash;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getTitle(): string
+	{
+		return $this->title;
+	}
+
+	/**
+	 * @param string $title
+	 * @return Notification
+	 */
+	public function setTitle(string $title): Notification
+	{
+		$this->title = $title;
+		return $this;
+	}
+
+	/**
+	 * @return Interfaces\Triggerable|null
+	 */
+	public function getTrigger()
+	{
+		return $this->trigger;
+	}
+
+	/**
+	 * @param Interfaces\Triggerable|null $trigger
+	 * @return Notification
+	 */
+	public function setTrigger($trigger): Notification
+	{
+		$this->trigger = $trigger;
+		return $this;
+	}
+
+	/**
+	 * @return mixed[]
+	 */
+	public function getExtras(): array
+	{
+		return $this->extras;
+	}
+
+	/**
+	 * @param mixed[] $extras
+	 * @return Notification
+	 */
+	public function setExtras(array $extras): Notification
+	{
+		$this->extras = $extras;
+		return $this;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getVersion(): int
+	{
+		return $this->version;
+	}
+
+	/**
+	 * @param int $version
+	 * @return Notification
+	 */
+	public function setVersion(int $version): Notification
+	{
+		$this->version = $version;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getSource(): string
+	{
+		return $this->source;
+	}
+
+	/**
+	 * @param string $source
+	 * @return Notification
+	 */
+	public function setSource(string $source): Notification
+	{
+		$this->source = $source;
+		return $this;
+	}
+
+	/**
+	 * @return array<mixed>
+	 */
+	public function getCarriers()
+	{
+		return $this->carriers;
+	}
+
+	/**
+	 * @param bool $enabled
+	 * @return Notification
+	 */
+	public function setEnabled(bool $enabled): Notification
+	{
+		$this->enabled = $enabled;
+		return $this;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function getEnabled()
+	{
+		return $this->enabled;
+	}
+
+	/**
+	 * Sets the source post identifier.
+	 *
+	 * @param int $postId The post identifier
+	 * @return void
+	 */
+	public function setSourcePostId($postId)
+	{
+		$this->sourcePostId = $postId;
+	}
 }

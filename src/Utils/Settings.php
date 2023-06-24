@@ -1,23 +1,29 @@
 <?php
+
 /**
  * Settings class
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Utils;
 
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Utils\Settings\Section;
 
 /**
  * Settings class
  */
-class Settings {
+class Settings
+{
+	use Casegnostic;
 
 	/**
 	 * Setting sections (ones in the Settings menu)
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	private $sections = [];
 
@@ -56,32 +62,40 @@ class Settings {
 	 *
 	 * @var string
 	 */
-	public $page_hook = '';
+	public $pageHook = '';
 
 	/**
 	 * Settings constructor
 	 *
+	 * @param string $handle settings handle.
+	 * @param string|bool $textdomain textdomain.
 	 * @throws \Exception Exception.
 	 * @since 5.0.0
-	 * @param string      $handle     settings handle.
-	 * @param string|bool $textdomain textdomain.
 	 */
-	public function __construct( $handle, $textdomain = false ) {
-		if ( empty( $handle ) ) {
-			throw new \Exception( 'Handle cannot be empty' );
+	public function __construct($handle, $textdomain = false)
+	{
+		if (empty($handle)) {
+			throw new \Exception('Handle cannot be empty');
 		}
 
 		$this->handle = $handle;
 
-		if ( empty( $textdomain ) ) {
+		if (empty($textdomain)) {
 			$this->textdomain = $this->handle;
 		}
 
-		$this->set_variables();
+		$this->setVariables();
 
 		// settings autoload on admin side.
-		add_action( 'admin_init', [ $this, 'setup_field_values' ], 10 );
-		add_action( 'admin_post_save_' . $this->handle . '_settings', [ $this, 'save_settings' ] );
+		add_action(
+			'admin_init',
+			[$this, 'setupFieldValues'],
+			10
+		);
+		add_action(
+			'admin_post_save_' . $this->handle . '_settings',
+			[$this, 'saveSettings']
+		);
 	}
 
 	/**
@@ -89,16 +103,15 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function settings_page() {
+	public function settingsPage()
+	{
 		// We're using the GET variable only to get the section name.
 		// phpcs:disable WordPress.Security.NonceVerification
-		$sections = $this->get_sections();
+		$sections = $this->getSections();
 
-		if ( isset( $_GET['section'] ) && ! empty( $_GET['section'] ) ) {
-			$current_section = sanitize_text_field( wp_unslash( $_GET['section'] ) );
-		} else {
-			$current_section = key( $this->get_sections() );
-		}
+		$currentSection = isset($_GET['section']) && !empty($_GET['section'])
+			? sanitize_text_field(wp_unslash($_GET['section']))
+			: key($this->getSections());
 
 		include $this->path . '/resources/templates/settings/page.php';
 		// phpcs:enable
@@ -109,45 +122,57 @@ class Settings {
 	 *
 	 * @param string $name Section name.
 	 * @param string $slug Section slug.
-	 * @return Section
+	 * @return \BracketSpace\Notification\Utils\Settings\Section
 	 */
-	public function add_section( $name, $slug ) {
+	public function addSection($name, $slug)
+	{
 
-		if ( ! isset( $this->sections[ $slug ] ) ) {
-			$this->sections[ $slug ] = new Section( $this->handle, $name, $slug );
+		if (!isset($this->sections[$slug])) {
+			$this->sections[$slug] = new Section(
+				$this->handle,
+				$name,
+				$slug
+			);
 		}
 
-		return $this->sections[ $slug ];
-
+		return $this->sections[$slug];
 	}
 
 	/**
 	 * Get all registered sections
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 */
-	public function get_sections() {
+	public function getSections()
+	{
 
-		return apply_filters( $this->handle . '/settings/sections', $this->sections, $this );
-
+		return apply_filters(
+			$this->handle . '/settings/sections',
+			$this->sections,
+			$this
+		);
 	}
 
 	/**
 	 * Get section by section slug
 	 *
-	 * @param  string $slug section slug.
+	 * @param string $slug section slug.
 	 * @return mixed        section object or false if no section defined
 	 */
-	public function get_section( $slug = '' ) {
+	public function getSection($slug = '')
+	{
 
-		$sections = $this->get_sections();
+		$sections = $this->getSections();
 
-		if ( isset( $sections[ $slug ] ) ) {
-			return apply_filters( $this->handle . '/settings/section', $sections[ $slug ], $this );
+		if (isset($sections[$slug])) {
+			return apply_filters(
+				$this->handle . '/settings/section',
+				$sections[$slug],
+				$this
+			);
 		}
 
 		return false;
-
 	}
 
 	/**
@@ -155,182 +180,216 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function save_settings() {
-		if ( false === wp_verify_nonce(
-			sanitize_text_field( wp_unslash( $_POST['nonce'] ?? '' ) ),
-			'save_' . $this->handle . '_settings'
-		) ) {
-			wp_die( 'Can\'t touch this' );
+	public function saveSettings()
+	{
+		if (
+			wp_verify_nonce(
+				sanitize_text_field(wp_unslash($_POST['nonce'] ?? '')),
+				'save_' . $this->handle . '_settings'
+			) === false
+		) {
+			wp_die('Can\'t touch this');
 		}
 
 		$data = $_POST;
 
-		$settings = $data[ $this->handle . '_settings' ];
+		$settings = $data[$this->handle . '_settings'];
 
-		$to_save = [];
+		$toSave = [];
 
-		foreach ( $settings as $section_slug => $groups_values ) {
-			foreach ( $this->get_section( $section_slug )->get_groups() as $group ) {
-				foreach ( $group->get_fields() as $field ) {
-					if ( isset( $groups_values[ $field->group() ][ $field->slug() ] ) ) {
-						$value = $field->sanitize( $groups_values[ $field->group() ][ $field->slug() ] );
-					} else {
-						$value = '';
-					}
+		foreach ($settings as $sectionSlug => $groupsValues) {
+			foreach ($this->getSection($sectionSlug)->getGroups() as $group) {
+				foreach ($group->getFields() as $field) {
+					$value = isset($groupsValues[$field->group()][$field->slug()])
+						? $field->sanitize($groupsValues[$field->group()][$field->slug()])
+						: '';
 
-					$to_save[ $field->section() ][ $field->group() ][ $field->slug() ] = $value;
+					$toSave[$field->section()][$field->group()][$field->slug()] = $value;
 				}
 			}
 		}
 
-		foreach ( $to_save as $section => $value ) {
-			update_option( $this->handle . '_' . $section, $value );
+		foreach ($toSave as $section => $value) {
+			update_option(
+				$this->handle . '_' . $section,
+				$value
+			);
 		}
 
-		do_action( $this->handle . '/settings/saved', $to_save, $this );
+		do_action(
+			$this->handle . '/settings/saved',
+			$toSave,
+			$this
+		);
 
-		wp_safe_redirect( add_query_arg( 'updated', 'true', $data['_wp_http_referer'] ) );
+		wp_safe_redirect(
+			add_query_arg(
+				'updated',
+				'true',
+				$data['_wp_http_referer']
+			)
+		);
 	}
 
 	/**
 	 * Get all settings
 	 *
-	 * @return array settings
+	 * @return array<mixed> settings
 	 */
-	public function get_settings() {
+	public function getSettings()
+	{
 		$settings = [];
 
-		foreach ( $this->get_sections() as $section_slug => $section ) {
-			$setting = get_option( $this->handle . '_' . $section_slug );
+		foreach ($this->getSections() as $sectionSlug => $section) {
+			$setting = get_option($this->handle . '_' . $sectionSlug);
 
-			$settings[ $section_slug ] = [];
+			$settings[$sectionSlug] = [];
 
-			$groups = $section->get_groups();
+			$groups = $section->getGroups();
 
-			foreach ( $groups as $group_slug => $group ) {
-				$settings[ $section_slug ][ $group_slug ] = [];
+			foreach ($groups as $groupSlug => $group) {
+				$settings[$sectionSlug][$groupSlug] = [];
 
-				$fields = $group->get_fields();
+				$fields = $group->getFields();
 
-				foreach ( $fields as $field_slug => $field ) {
-					if ( isset( $setting[ $group_slug ][ $field_slug ] ) ) {
-						$value = $setting[ $group_slug ][ $field_slug ];
-					} else {
-						$value = $field->default_value();
-					}
+				foreach ($fields as $fieldSlug => $field) {
+					$value = $setting[$groupSlug][$fieldSlug] ?? $field->defaultValue();
 
-					$settings[ $section_slug ][ $group_slug ][ $field_slug ] = $value;
+					$settings[$sectionSlug][$groupSlug][$fieldSlug] = $value;
 				}
 			}
 		}
 
-		return apply_filters( $this->handle . '/settings/saved_settings', $settings, $this );
+		return apply_filters(
+			$this->handle . '/settings/saved_settings',
+			$settings,
+			$this
+		);
 	}
 
 	/**
 	 * Sets up the field values for Settings form
 	 *
-	 * @since  5.0.0
 	 * @return void
+	 * @since  5.0.0
 	 */
-	public function setup_field_values() {
-		foreach ( $this->get_sections() as $section_slug => $section ) {
-			foreach ( $section->get_groups() as $group_slug => $group ) {
-				foreach ( $group->get_fields() as $field_slug => $field ) {
-					$setting_name = implode( '/', [ $section_slug, $group_slug, $field_slug ] );
-					$field->value( $this->get_setting( $setting_name ) );
+	public function setupFieldValues()
+	{
+		foreach ($this->getSections() as $sectionSlug => $section) {
+			foreach ($section->getGroups() as $groupSlug => $group) {
+				foreach ($group->getFields() as $fieldSlug => $field) {
+					$settingName = implode(
+						'/',
+						[$sectionSlug, $groupSlug, $fieldSlug]
+					);
+					$field->value($this->getSetting($settingName));
 				}
 			}
 		}
 	}
 
-
 	/**
 	 * Get single setting value
 	 *
-	 * @throws \Exception Exception.
-	 * @param  string $setting setting section/group/field separated with /.
+	 * @param string $setting setting section/group/field separated with /.
 	 * @return mixed           field value or null if name not found
+	 * @throws \Exception Exception.
 	 */
-	public function get_setting( $setting ) {
-		$parts = explode( '/', $setting );
+	public function getSetting($setting)
+	{
+		$parts = explode(
+			'/',
+			$setting
+		);
 
-		if ( count( $parts ) !== 3 ) {
-			throw new \Exception( 'You must provide exactly 3 parts as the setting name' );
+		if (count($parts) !== 3) {
+			throw new \Exception('You must provide exactly 3 parts as the setting name');
 		}
 
-		$settings = $this->get_settings();
+		$settings = $this->getSettings();
 
-		if ( ! isset( $settings[ $parts[0] ], $settings[ $parts[0] ][ $parts[1] ], $settings[ $parts[0] ][ $parts[1] ][ $parts[2] ] ) ) {
+		if (!isset($settings[$parts[0]], $settings[$parts[0]][$parts[1]], $settings[$parts[0]][$parts[1]][$parts[2]])) {
 			return null;
 		}
 
-		$value = $settings[ $parts[0] ][ $parts[1] ][ $parts[2] ];
+		$value = $settings[$parts[0]][$parts[1]][$parts[2]];
 
-		return apply_filters( $this->handle . '/settings/setting/' . $setting, $value, $this );
+		return apply_filters(
+			$this->handle . '/settings/setting/' . $setting,
+			$value,
+			$this
+		);
 	}
 
 	/**
 	 * Update single settings value.
 	 *
-	 * @throws \Exception Exception.
-	 * @param   string $setting setting name in `a/b/c` format.
-	 * @param   mixed  $value setting value.
+	 * @param string $setting setting name in `a/b/c` format.
+	 * @param mixed $value setting value.
 	 * @return  mixed
+	 * @throws \Exception Exception.
 	 */
-	public function update_setting( $setting, $value ) {
-		$parts = explode( '/', $setting );
+	public function updateSetting($setting, $value)
+	{
+		$parts = explode(
+			'/',
+			$setting
+		);
 
-		if ( count( $parts ) !== 3 ) {
-			throw new \Exception( 'You must provide exactly 3 parts as the setting name' );
+		if (count($parts) !== 3) {
+			throw new \Exception('You must provide exactly 3 parts as the setting name');
 		}
 
-		list($section_slug, $group_slug, $field_slug) = $parts;
+		// phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
+		list($sectionSlug, $groupSlug, $fieldSlug) = $parts;
 
-		$section = $this->get_section( $section_slug );
+		$section = $this->getSection($sectionSlug);
 
-		if ( false === $section ) {
-			throw new \Exception( "Cannot find \"${section_slug}\" settings section." );
+		if ($section === false) {
+			throw new \Exception("Cannot find \"${sectionSlug}\" settings section.");
 		}
 
 		$sanitized = false;
 
-		foreach ( $section->get_groups() as $group ) {
-			if ( $group->slug() !== $group_slug ) {
+		foreach ($section->getGroups() as $group) {
+			if ($group->slug() !== $groupSlug) {
 				continue;
 			}
 
-			foreach ( $group->get_fields() as $field ) {
-				if ( $field->slug() !== $field_slug ) {
+			foreach ($group->getFields() as $field) {
+				if ($field->slug() !== $fieldSlug) {
 					continue;
 				}
 
-				$value     = $field->sanitize( $value );
+				$value = $field->sanitize($value);
 				$sanitized = true;
 			}
 		}
 
-		if ( false === $sanitized ) {
-			throw new \Exception( "Cannot update \"${setting}\" setting." );
+		if ($sanitized === false) {
+			throw new \Exception("Cannot update \"${setting}\" setting.");
 		}
 
-		$settings = $this->get_settings();
+		$settings = $this->getSettings();
 
-		if ( ! is_array( $settings ) ) {
+		if (!is_array($settings)) {
 			$settings = [];
 		}
 
-		if ( ! isset( $settings[ $section_slug ] ) ) {
-			$settings[ $section_slug ] = [];
+		if (!isset($settings[$sectionSlug])) {
+			$settings[$sectionSlug] = [];
 		}
 
-		if ( ! isset( $settings[ $section_slug ][ $group_slug ] ) ) {
-			$settings[ $section_slug ][ $group_slug ] = [];
+		if (!isset($settings[$sectionSlug][$groupSlug])) {
+			$settings[$sectionSlug][$groupSlug] = [];
 		}
 
-		$settings[ $section_slug ][ $group_slug ][ $field_slug ] = $value;
+		$settings[$sectionSlug][$groupSlug][$fieldSlug] = $value;
 
-		return update_option( $this->handle . '_' . $section_slug, $settings );
+		return update_option(
+			$this->handle . '_' . $sectionSlug,
+			$settings
+		);
 	}
 
 	/**
@@ -338,20 +397,35 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function set_variables() {
+	public function setVariables()
+	{
 		// path.
-		$this->path = dirname( dirname( dirname( __FILE__ ) ) );
+		$this->path = dirname(dirname(dirname(__FILE__)));
 
 		// URI.
-		$theme_url = wp_parse_url( get_stylesheet_directory_uri() );
-		$theme_pos = strpos( $this->path, $theme_url['path'] );
+		$themeUrl = wp_parse_url(get_stylesheet_directory_uri());
+		$themePos = strpos(
+			$this->path,
+			$themeUrl['path']
+		);
 
-		if ( false !== $theme_pos ) { // loaded from theme.
-			$plugin_relative_dir = str_replace( $theme_url['path'], '', substr( $this->path, $theme_pos ) );
-			$this->uri           = $theme_url['scheme'] . '://' . $theme_url['host'] . $theme_url['path'] . $plugin_relative_dir;
+		if ($themePos !== false) { // loaded from theme.
+			$pluginRelativeDir = str_replace(
+				$themeUrl['path'],
+				'',
+				substr(
+					$this->path,
+					$themePos
+				)
+			);
+			$this->uri = $themeUrl['scheme'] . '://' . $themeUrl['host'] . $themeUrl['path'] . $pluginRelativeDir;
 		} else { // loaded from plugin.
-			$this->uri = trailingslashit( plugins_url( '', dirname( __FILE__ ) ) );
+			$this->uri = trailingslashit(
+				plugins_url(
+					'',
+					dirname(__FILE__)
+				)
+			);
 		}
 	}
-
 }

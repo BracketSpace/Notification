@@ -1,4 +1,5 @@
 <?php
+
 /**
  * User Bio merge tag
  *
@@ -9,6 +10,8 @@
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Defaults\MergeTag\User;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
@@ -16,33 +19,42 @@ use BracketSpace\Notification\Defaults\MergeTag\StringTag;
 /**
  * User Bio merge tag class
  */
-class UserBio extends StringTag {
+class UserBio extends StringTag
+{
 	/**
 	 * Merge tag constructor
 	 *
+	 * @param array<mixed> $params merge tag configuration params.
 	 * @since 5.0.0
-	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct($params = [])
+	{
 
-		$this->set_trigger_prop( $params['property_name'] ?? 'user_object' );
+		$this->setTriggerProp($params['property_name'] ?? 'user_object');
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => 'user_bio',
-				'name'        => __( 'User bio', 'notification' ),
-				'description' => __( 'Developer based in Ontario, Canada', 'notification' ),
-				'example'     => true,
-				'group'       => __( 'User', 'notification' ),
-				'resolver'    => function ( $trigger ) {
-					return $trigger->{ $this->get_trigger_prop() }->description;
+				'slug' => 'user_bio',
+				'name' => __(
+					'User bio',
+					'notification'
+				),
+				'description' => __(
+					'Developer based in Ontario, Canada',
+					'notification'
+				),
+				'example' => true,
+				'group' => __(
+					'User',
+					'notification'
+				),
+				'resolver' => function ($trigger) {
+					return $trigger->{$this->getTriggerProp()}->description;
 				},
 			]
 		);
 
-		parent::__construct( $args );
-
+		parent::__construct($args);
 	}
-
 }

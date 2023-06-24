@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Comment status merge tag
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
@@ -13,56 +16,82 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
 /**
  * Comment status merge tag class
  */
-class CommentStatus extends StringTag {
-
+class CommentStatus extends StringTag
+{
 	/**
 	 * Trigger property to get the comment data from
 	 *
 	 * @var string
 	 */
-	protected $comment_type = 'comment';
+	protected $commentType = 'comment';
 
 	/**
 	 * Merge tag constructor
 	 *
+	 * @param array<mixed> $params merge tag configuration params.
 	 * @since 5.0.0
-	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct($params = [])
+	{
 
-		if ( isset( $params['comment_type'] ) && ! empty( $params['comment_type'] ) ) {
-			$this->comment_type = $params['comment_type'];
+		if (isset($params['comment_type']) && !empty($params['comment_type'])) {
+			$this->commentType = $params['comment_type'];
 		}
 
-		$this->set_trigger_prop( $params['property_name'] ?? 'comment' );
+		$this->setTriggerProp($params['property_name'] ?? $this->commentType);
 
-		$comment_type_name = WpObjectHelper::get_comment_type_name( $this->comment_type );
+		$commentTypeName = WpObjectHelper::getCommentTypeName($this->commentType);
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => 'comment_status',
+				'slug' => 'comment_status',
+				'name' => sprintf(
 				// Translators: Comment type name.
-				'name'        => sprintf( __( '%s status', 'notification' ), $comment_type_name ),
-				'description' => __( 'Approved', 'notification' ),
-				'example'     => true,
-				'group'       => $comment_type_name,
-				'resolver'    => function ( $trigger ) {
-					if ( '1' === $trigger->{ $this->get_trigger_prop() }->comment_approved ) {
-						return __( 'Approved', 'notification' );
-					} elseif ( '0' === $trigger->{ $this->get_trigger_prop() }->comment_approved ) {
-						return __( 'Unapproved', 'notification' );
-					} elseif ( 'spam' === $trigger->{ $this->get_trigger_prop() }->comment_approved ) {
-						return __( 'Marked as spam', 'notification' );
-					} elseif ( 'trash' === $trigger->{ $this->get_trigger_prop() }->comment_approved ) {
-						return __( 'Trashed', 'notification' );
+					__(
+						'%s status',
+						'notification'
+					),
+					$commentTypeName
+				),
+				'description' => __(
+					'Approved',
+					'notification'
+				),
+				'example' => true,
+				'group' => $commentTypeName,
+				'resolver' => function ($trigger) {
+					if ($trigger->{$this->getTriggerProp() === '1'}->comment_approved) {
+						return __(
+							'Approved',
+							'notification'
+						);
+					}
+
+					if ($trigger->{$this->getTriggerProp() === '0'}->comment_approved) {
+						return __(
+							'Unapproved',
+							'notification'
+						);
+					}
+
+					if ($trigger->{$this->getTriggerProp() === 'spam'}->comment_approved) {
+						return __(
+							'Marked as spam',
+							'notification'
+						);
+					}
+
+					if ($trigger->{$this->getTriggerProp() === 'trash'}->comment_approved) {
+						return __(
+							'Trashed',
+							'notification'
+						);
 					}
 				},
 			]
 		);
 
-		parent::__construct( $args );
-
+		parent::__construct($args);
 	}
-
 }

@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Register defaults.
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository;
 
@@ -14,22 +17,23 @@ use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\Helper as DocHo
 /**
  * Carrier Repository.
  */
-class CarrierRepository {
-
+class CarrierRepository
+{
 	/**
 	 * @return void
 	 */
-	public static function register() {
+	public static function register()
+	{
 
-		if ( notification_get_setting( 'carriers/email/enable' ) ) {
-			Register::carrier( DocHooksHelper::hook( new Carrier\Email() ) );
+		if (notificationGetSetting('carriers/email/enable')) {
+			Register::carrier(DocHooksHelper::hook(new Carrier\Email()));
 		}
 
-		if ( notification_get_setting( 'carriers/webhook/enable' ) ) {
-			Register::carrier( DocHooksHelper::hook( new Carrier\Webhook( 'Webhook' ) ) );
-			Register::carrier( DocHooksHelper::hook( new Carrier\WebhookJson( 'Webhook JSON' ) ) );
+		if (!notificationGetSetting('carriers/webhook/enable')) {
+			return;
 		}
 
+		Register::carrier(DocHooksHelper::hook(new Carrier\Webhook('Webhook')));
+		Register::carrier(DocHooksHelper::hook(new Carrier\WebhookJson('Webhook JSON')));
 	}
-
 }

@@ -1,62 +1,86 @@
 <?php
+
 /**
  * User deleted trigger
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Defaults\Trigger\User;
 
 use BracketSpace\Notification\Defaults\MergeTag;
-use BracketSpace\Notification\Abstracts;
 
 /**
  * User deleted trigger class
  */
-class UserDeleted extends UserTrigger {
-
+class UserDeleted extends UserTrigger
+{
 	/**
 	 * User meta data
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
-	public $user_meta;
+	public $userMeta;
 
 	/**
 	 * User deletion date and time
 	 *
 	 * @var int|false
 	 */
-	public $user_deleted_datetime;
+	public $userDeletedDatetime;
 
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 
-		parent::__construct( 'user/deleted', __( 'User deleted', 'notification' ) );
+		parent::__construct(
+			'user/deleted',
+			__(
+				'User deleted',
+				'notification'
+			)
+		);
 
-		$this->add_action( 'delete_user', 10, 1 );
+		$this->addAction(
+			'delete_user',
+			10,
+			1
+		);
 
-		$this->set_description( __( 'Fires when user account is deleted', 'notification' ) );
-
+		$this->setDescription(
+			__(
+				'Fires when user account is deleted',
+				'notification'
+			)
+		);
 	}
 
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param integer $user_id User ID.
+	 * @param int $userId User ID.
 	 * @return void
 	 */
-	public function context( $user_id ) {
+	public function context($userId)
+	{
 
-		$this->user_id     = $user_id;
-		$this->user_object = get_userdata( $this->user_id );
-		$this->user_meta   = get_user_meta( $this->user_id );
+		$this->userId = $userId;
 
-		$this->user_registered_datetime = strtotime( $this->user_object->user_registered );
-		$this->user_deleted_datetime    = time();
+		$user = get_userdata($this->userId);
 
+		if (!$user instanceof \WP_User) {
+			return;
+		}
+
+		$this->userObject = $user;
+		$this->userMeta = get_user_meta($this->userId);
+
+		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
+		$this->userDeletedDatetime = time();
 	}
 
 	/**
@@ -64,21 +88,27 @@ class UserDeleted extends UserTrigger {
 	 *
 	 * @return void
 	 */
-	public function merge_tags() {
+	public function mergeTags()
+	{
 
-		parent::merge_tags();
+		parent::mergeTags();
 
-		$this->add_merge_tag( new MergeTag\User\UserNicename() );
-		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
-		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
-		$this->add_merge_tag( new MergeTag\User\UserLastName() );
-		$this->add_merge_tag( new MergeTag\User\UserBio() );
+		$this->addMergeTag(new MergeTag\User\UserNicename());
+		$this->addMergeTag(new MergeTag\User\UserDisplayName());
+		$this->addMergeTag(new MergeTag\User\UserFirstName());
+		$this->addMergeTag(new MergeTag\User\UserLastName());
+		$this->addMergeTag(new MergeTag\User\UserBio());
 
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
-			'slug' => 'user_deleted_datetime',
-			'name' => __( 'User deletion time', 'notification' ),
-		] ) );
-
+		$this->addMergeTag(
+			new MergeTag\DateTime\DateTime(
+				[
+					'slug' => 'user_deleted_datetime',
+					'name' => __(
+						'User deletion time',
+						'notification'
+					),
+				]
+			)
+		);
 	}
-
 }

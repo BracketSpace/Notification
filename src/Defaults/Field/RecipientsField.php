@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Recipients field class
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Field;
 
@@ -12,34 +15,47 @@ use BracketSpace\Notification\Store\Recipient as RecipientStore;
 /**
  * Recipients field class
  */
-class RecipientsField extends RepeaterField {
-
+class RecipientsField extends RepeaterField
+{
 	/**
 	 * If the global description in the header should be printed
 	 *
 	 * @var bool
 	 */
-	public $print_header_description = false;
+	public $printHeaderDescription = false;
 
 	/**
 	 * Field constructor
 	 *
+	 * @param array<mixed> $params field configuration parameters.
 	 * @since 5.0.0
-	 * @param array $params field configuration parameters.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct($params = [])
+	{
 
-		if ( ! isset( $params['carrier'] ) ) {
-			trigger_error( 'RecipientsField requires carrier param', E_USER_ERROR );
+		if (!isset($params['carrier'])) {
+			trigger_error(
+				'RecipientsField requires carrier param',
+				E_USER_ERROR
+			);
 		}
 
-		$params = wp_parse_args( $params, [
-			'carrier'          => '',
-			'label'            => __( 'Recipients', 'notification' ),
-			'name'             => 'recipients',
-			'add_button_label' => __( 'Add recipient', 'notification' ),
-			'css_class'        => '',
-		] );
+		$params = wp_parse_args(
+			$params,
+			[
+				'carrier' => '',
+				'label' => __(
+					'Recipients',
+					'notification'
+				),
+				'name' => 'recipients',
+				'add_button_label' => __(
+					'Add recipient',
+					'notification'
+				),
+				'css_class' => '',
+			]
+		);
 
 		$this->carrier = $params['carrier'];
 
@@ -51,43 +67,46 @@ class RecipientsField extends RepeaterField {
 			'carrier' => $this->carrier,
 		];
 
-		$recipients = RecipientStore::all_for_carrier( $this->carrier );
+		$recipients = RecipientStore::allForCarrier($this->carrier);
 
-		if ( ! empty( $recipients ) ) {
+		if (!empty($recipients)) {
+			$firstRecipient = array_values($recipients)[0];
+			$recipientTypes = [];
 
-			$first_recipient = array_values( $recipients )[0];
-			$recipient_types = [];
-
-			foreach ( (array) $recipients as $recipient ) {
-				$recipient_types[ $recipient->get_slug() ] = $recipient->get_name();
+			foreach ((array)$recipients as $recipient) {
+				$recipientTypes[$recipient->getSlug()] = $recipient->getName();
 			}
 
 			$params['fields'] = [
-				new SelectField( [
-					'label'     => __( 'Type', 'notification' ),
-					'name'      => 'type',
-					'css_class' => 'recipient-type',
-					'options'   => $recipient_types,
-				] ),
+				new SelectField(
+					[
+						'label' => __(
+							'Type',
+							'notification'
+						),
+						'name' => 'type',
+						'css_class' => 'recipient-type',
+						'options' => $recipientTypes,
+					]
+				),
 			];
 
-			$params['fields'][] = $first_recipient->input();
-
+			$params['fields'][] = $firstRecipient->input();
 		}
 
-		parent::__construct( $params );
-
+		parent::__construct($params);
 	}
 
 	/**
 	 * Prints repeater row
 	 *
-	 * @since 7.0.0 Added vue template.
-	 * @since  5.0.0
 	 * @return string
+	 * @since  5.0.0
+	 * @since 7.0.0 Added vue template.
 	 */
-	public function row() {
-		$html = '<template v-if="!repeaterError">
+	public function row()
+	{
+		return '<template v-if="!repeaterError">
 					<template v-for="( field, key ) in fields">
 						<recipient-row
 						:field="field"
@@ -99,7 +118,5 @@ class RecipientsField extends RepeaterField {
 					</template>
 				</template>
 				';
-		return $html;
 	}
-
 }

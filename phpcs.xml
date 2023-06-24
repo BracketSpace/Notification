@@ -1,38 +1,94 @@
 <?xml version="1.0"?>
-<ruleset name="WordPress Coding Standards for Plugins">
-	<description>Sniffs for Notification WordPress plugin</description>
+<ruleset name="BracketSpace Coding Style">
+	<config name="minimum_supported_wp_version" value="5.7"/>
 
-	<rule ref="WordPress">
-		<exclude name="Generic.Commenting.DocComment.MissingShort" />
-		<exclude name="Generic.Files.LowercasedFilename" />
-		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
-		<exclude name="WordPress.Files.FileName" />
-		<exclude name="WordPress.Files.FileName.UnderscoresNotAllowed" />
-		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
-		<exclude name="WordPress.PHP.DevelopmentFunctions.error_log_trigger_error" />
-		<exclude name="WordPress.VIP.SuperGlobalInputUsage.AccessDetected" />
-		<exclude name="WordPress.CSRF.NonceVerification.NoNonceVerification" />
-		<exclude name="WordPress.Security.NonceVerification.NoNonceVerification" />
-		<exclude name="WordPress.DB.SlowDBQuery" />
-		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralText" />
-		<exclude name="WordPress.VIP.RestrictedVariables.cache_constraints___SERVER__REMOTE_ADDR__" />
-		<exclude name="WordPress.WP.AlternativeFunctions.file_system_read_file_get_contents" />
-		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralDomain" />
-		<exclude name="WordPress.WP.GlobalVariablesOverride" />
-		<exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments" />
-		<exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
-		<exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
-	</rule>
-	<rule ref="Squiz.Commenting.FunctionComment">
-	    <exclude name="Squiz.Commenting.FunctionComment.InvalidTypeHint" />
-	</rule>
-	<rule ref="PSR2.Methods.MethodDeclaration">
-	    <exclude name="PSR2.Methods.MethodDeclaration.Underscore" />
+	<rule ref="PSR12NeutronRuleset">
+		<!-- NeutronStandard bug -->
+		<exclude name="NeutronStandard.Functions.TypeHint.NoReturnType"/>
+		<!-- https://github.com/sirbrillig/phpcs-import-detection/issues/45 -->
+		<exclude name="ImportDetection.Imports.RequireImports"/>
+		<!-- We write Composer packages -->
+		<exclude name="PEAR.Commenting.FileComment.InvalidPackage"/>
+		<exclude name="PEAR.Commenting.FileComment.MissingAuthorTag"/>
+		<exclude name="PEAR.Commenting.FileComment.MissingLicenseTag"/>
+		<exclude name="PEAR.Commenting.FileComment.MissingLinkTag"/>
+
+		<exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
+		<exclude name="PSR12.Properties.ConstantVisibility.NotFound"/>
+
+		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>
+		<exclude name="SlevomatCodingStandard.Classes.DisallowLateStaticBindingForConstants.DisallowedLateStaticBindingForConstant"/>
+
+		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores"/>
+		<exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited"/>
+
+		<exclude name="NeutronStandard.Functions.LongFunction.LongFunction"/>
+
+		<exclude name="NeutronStandard.Functions.DisallowCallUserFunc.CallUserFunc"/>
+
+		<exclude name="NeutronStandard.MagicMethods.RiskyMagicMethod.RiskyMagicMethod"/>
+		<exclude name="NeutronStandard.Globals.DisallowGlobalFunctions.GlobalFunctions"/>
+		<exclude name="NeutronStandard.Functions.VariableFunctions.VariableFunction"/>
+		<exclude name="NeutronStandard.MagicMethods.DisallowMagicGet.MagicGet"/>
+
+		<exclude name="SlevomatCodingStandard.ControlStructures.DisallowEmpty.DisallowedEmpty"/>
+		<exclude name="SlevomatCodingStandard.Classes.ClassConstantVisibility.MissingConstantVisibility"/>
+		<exclude name="SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostIncrementOperator"/>
+		<exclude name="SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter"/>
+		<exclude name="SlevomatCodingStandard.Variables.UnusedVariable.UnusedVariable"/>
+		<exclude name="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation.ImplicitArrayCreationUsed"/>
+		<exclude name="VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable"/>
+
+		<exclude name="Generic.WhiteSpace.DisallowTabIndent.TabsUsed"/>
+
+		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralDomain"/>
+		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralText"/>
+		<exclude name="WordPress.Security.NonceVerification.Recommended"/>
+		<exclude name="PEAR.Commenting.ClassComment.InvalidAuthors"/>
 	</rule>
 
-	<!-- PHPCompatibility -->
-	<rule ref="PHPCompatibility" />
-	<config name="testVersion" value="7.0-" />
+	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent" />
+	<rule ref="Generic.WhiteSpace.ScopeIndent">
+		<properties>
+			<property name="tabIndent" value="true" />
+		</properties>
+	</rule>
+
+	<arg name="extensions" value="php" />
+	<arg name="tab-width" value="4" />
+
+	<rule ref="Squiz.PHP.DiscouragedFunctions">
+		<properties>
+			<!--
+			* ini_set() environment belongs to the server
+			* env() does not work in production (artisan config:cache)
+			* eval() is dangerous!
+			* print and print_r() disturb templating, see wilderborn/partyline
+			* dump(), dd(), var_dump() - consider using barryvdh/laravel-debugbar
+			* error_log() has special use
+			* define() is for global constants
+			Defaults: https://github.com/squizlabs/PHP_CodeSniffer/blob/master/src/Standards/Squiz/Sniffs/PHP/DiscouragedFunctionsSniff.php
+			See https://github.com/WordPress/WordPress-Coding-Standards/blob/develop/WordPress/Sniffs/PHP/DiscouragedPHPFunctionsSniff.php
+			-->
+			<property name="forbiddenFunctions" type="array">
+				<element key="ini_set" value="null"/>
+				<element key="env" value="null"/>
+				<element key="list" value="null"/>
+				<element key="extract" value="null"/>
+				<element key="eval" value="null"/>
+				<element key="print" value="null"/>
+				<element key="print_r" value="null"/>
+				<element key="dump" value="null"/>
+				<element key="dd" value="null"/>
+				<element key="var_dump" value="null"/>
+				<element key="error_log" value="null"/>
+				<element key="define" value="null"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="PHPCompatibilityWP"/>
+	<config name="testVersion" value="7.4-"/>
 
 	<!-- Check all PHP files in directory tree by default. -->
 	<arg name="extensions" value="php"/>
@@ -41,12 +97,13 @@
 	<!-- Show progress and sniff codes in all reports -->
 	<arg value="ps"/>
 
+	<exclude-pattern>bin/*</exclude-pattern>
 	<exclude-pattern>node_modules/*</exclude-pattern>
+	<exclude-pattern>resources/js.*</exclude-pattern>
+	<exclude-pattern>resources/css.*</exclude-pattern>
 	<exclude-pattern>tests/*</exclude-pattern>
 	<exclude-pattern>vendor/*</exclude-pattern>
-	<exclude-pattern>vendor-bin/*</exclude-pattern>
 	<exclude-pattern>src/Dependencies/*</exclude-pattern>
-	<exclude-pattern>src/Utils/EDDUpdater.php</exclude-pattern>
-	<exclude-pattern>resources/css/*</exclude-pattern>
-	<exclude-pattern>resources/js/*</exclude-pattern>
+	<exclude-pattern>compat/*</exclude-pattern>
+	<exclude-pattern>notification.php</exclude-pattern>
 </ruleset>

@@ -1,17 +1,20 @@
 <?php
+
 /**
  * Has Description Trait.
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Traits;
 
 /**
  * HasDescription trait
  */
-trait HasDescription {
-
+trait HasDescription
+{
 	/**
 	 * Human readable, translated description
 	 *
@@ -24,20 +27,21 @@ trait HasDescription {
 	 *
 	 * @return string|null Description
 	 */
-	public function get_description() {
+	public function getDescription()
+	{
 		return $this->description;
 	}
 
 	/**
 	 * Sets description
 	 *
-	 * @param  string $description Description.
+	 * @param string $description Description.
 	 * @return $this
 	 */
-	public function set_description( string $description ) {
+	public function setDescription(string $description)
+	{
 		$this->description = $description;
 
 		return $this;
 	}
-
 }

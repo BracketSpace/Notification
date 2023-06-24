@@ -1,27 +1,28 @@
 <?php
+
 /**
  * Receivable interface class
  *
  * @package notification
  */
 
-namespace BracketSpace\Notification\Interfaces;
+declare(strict_types=1);
 
-use BracketSpace\Notification\Interfaces\Nameable;
+namespace BracketSpace\Notification\Interfaces;
 
 /**
  * Receivable interface
  */
-interface Receivable extends Nameable {
-
+interface Receivable extends Nameable
+{
 	/**
 	 * Parses saved value something understood by notification
 	 * Must be defined in the child class
 	 *
-	 * @param  string $value raw value saved by the user.
-	 * @return array         array of resolved values
+	 * @param string $value raw value saved by the user.
+	 * @return array<mixed>         array of resolved values
 	 */
-	public function parse_value( $value = ''  );
+	public function parseValue($value = '');
 
 	/**
 	 * Returns input object
@@ -36,6 +37,5 @@ interface Receivable extends Nameable {
 	 *
 	 * @return string
 	 */
-	public function get_default_value();
-
+	public function getDefaultValue();
 }

@@ -55,7 +55,7 @@ export const inputsHandler = {
 
 			data = data.join("&");
 
-			fetch(notification.select_rest_url, {
+			fetch(notification.selectRestUrl, {
 				method: "POST",
 				headers: {
 					"Content-Type":

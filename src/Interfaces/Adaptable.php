@@ -1,28 +1,29 @@
 <?php
+
 /**
  * Adaptable interface class
  *
  * @package notification
  */
 
-namespace BracketSpace\Notification\Interfaces;
+declare(strict_types=1);
 
-use BracketSpace\Notification\Core\Notification;
+namespace BracketSpace\Notification\Interfaces;
 
 /**
  * Adaptable interface
  *
- * @mixin Notification
+ * @mixin \BracketSpace\Notification\Core\Notification
  */
-interface Adaptable {
-
+interface Adaptable
+{
 	/**
 	 * Reads the data
 	 *
 	 * @param mixed $input Input data.
 	 * @return $this
 	 */
-	public function read( $input = null );
+	public function read($input = null);
 
 	/**
 	 * Saves the data
@@ -34,8 +35,7 @@ interface Adaptable {
 	/**
 	 * Gets Notification object
 	 *
-	 * @return Notification
+	 * @return \BracketSpace\Notification\Core\Notification
 	 */
-	public function get_notification();
-
+	public function getNotification();
 }

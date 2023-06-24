@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Repeater Handler class
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Api\Controller;
 
@@ -12,89 +15,93 @@ namespace BracketSpace\Notification\Api\Controller;
  *
  * @action
  */
-class SectionRepeaterController extends RepeaterController {
-
+class SectionRepeaterController extends RepeaterController
+{
 	/**
 	 * Group fields in associative array
 	 *
+	 * @param array<mixed> $fields Fields data.
+	 * @return  array<mixed>  Modified fields data.
 	 * @since 7.0.0
-	 * @param array $fields Fields data.
-	 * @return  array  Modified fields data.
 	 */
-	public function group_fields( $fields ) {
+	public function groupFields($fields)
+	{
 
-		$grouped_fields = [];
+		$groupedFields = [];
 
-		foreach ( $fields as $field ) {
-			$grouped_fields[ $field['name'] ] = $field;
+		foreach ($fields as $field) {
+			$groupedFields[$field['name']] = $field;
 		}
 
-		return $grouped_fields;
+		return $groupedFields;
 	}
 
 	/**
 	 * Forms field data for sections
 	 *
-	 * @param array $sections Sections data.
-	 * @return array
+	 * @param array<mixed> $sections Sections data.
+	 * @return array<mixed>
 	 */
-	public function get_sections_fields( $sections ) {
+	public function getSectionsFields($sections)
+	{
+		$sectionFields = [];
 
-		$section_fields = [];
+		foreach ($sections as $section => $value) {
+			$sectionFields[$section]['name'] = ucfirst($section);
+			$baseFields = $this->formFieldData($value['fields']);
+			$grouppedFields = $this->groupFields($baseFields);
+			$sectionFields[$section]['fields'] = $grouppedFields;
 
-		foreach ( $sections as $section => $value ) {
-
-			$section_fields[ $section ]['name']   = ucfirst( $section );
-			$base_fields                          = $this->form_field_data( $value['fields'] );
-			$grouped_fields                      = $this->group_fields( $base_fields );
-			$section_fields[ $section ]['fields'] = $grouped_fields;
-
-			foreach ( $section_fields[ $section ]['fields'] as &$field ) {
-
-				if ( $field['sections'] ) {
-					$sections = [];
-
-					foreach ( $field['sections'] as $section ) {
-
-						$section_field             = [];
-						$section_field['name']     = $section['name'];
-						$section_field['multiple'] = isset( $section['multiple_section'] ) ? $section['multiple_section'] : false;
-						$section_field['special']  = isset( $section['special_section'] ) ? $section['special_section'] : false;
-						$base_sub_fields           = $this->form_field_data( $section['fields'] );
-						$grouped_sub_fields       = $this->group_fields( $base_sub_fields );
-						$section_field['fields']   = $grouped_sub_fields;
-						$sections                  = array_merge( $sections, $section_field );
-
-					}
-
-					$field = $sections;
-
+			foreach ($sectionFields[$section]['fields'] as &$field) {
+				if (!$field['sections']) {
+					continue;
 				}
+
+				$sections = [];
+
+				foreach ($field['sections'] as $section) {
+					$sectionField = [];
+					$sectionField['name'] = $section['name'];
+					$sectionField['multiple'] = $section['multiple_section'] ?? false;
+					$sectionField['special'] = $section['special_section'] ?? false;
+					$baseSubFields = $this->formFieldData($section['fields']);
+					$grouppedSubFields = $this->groupFields($baseSubFields);
+					$sectionField['fields'] = $grouppedSubFields;
+					$sections = array_merge(
+						$sections,
+						$sectionField
+					);
+				}
+
+				$field = $sections;
 			}
 		}
 
-		return $section_fields;
+		return $sectionFields;
 	}
 
 	/**
 	 * Forms response data
 	 *
+	 * @return array<mixed>
 	 * @since 7.0.0
-	 * @return array
 	 */
-	public function form_data() {
-		$values = $this->get_values( $this->post_id, $this->carrier, $this->field ) ?? [];
+	public function formData()
+	{
+		$values = $this->getValues(
+			$this->postId,
+			$this->carrier,
+			$this->field
+		) ?? [];
 
 		/** @var \BracketSpace\Notification\Defaults\Field\SectionRepeater */
-		$field = $this->get_carrier_fields();
+		$field = $this->getCarrierFields();
 
-		$populated_sections = $this->get_sections_fields( $field->sections );
+		$populatedSections = $this->getSectionsFields($field->sections);
 
-		$data = [
-			'sections' => $populated_sections,
-			'values'   => $this->normalize_values( $values ),
+		return [
+			'sections' => $populatedSections,
+			'values' => $this->normalizeValues($values),
 		];
-
-		return $data;
 	}
 }

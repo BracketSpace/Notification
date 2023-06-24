@@ -4,7 +4,7 @@
 	"license": "GPL-3.0-or-later",
 	"description": "Notification plugin for WordPress",
 	"require": {
-		"php": "^7.0",
+		"php": "^7.4",
 		"composer-runtime-api": "^2.0",
 		"enshrined/svg-sanitize": "^0.16.0",
 		"micropackage/ajax": "^1.0",
@@ -12,7 +12,8 @@
 		"micropackage/dochooks": "1.0.2",
 		"micropackage/filesystem": "^1.1",
 		"micropackage/requirements": "^1.1",
-		"micropackage/templates": "^1.1"
+		"micropackage/templates": "^1.1",
+		"micropackage/casegnostic": "^1.0"
 	},
 	"require-dev": {
 		"bamarni/composer-bin-plugin": "^1.4",
@@ -20,18 +21,20 @@
 		"jakub-onderka/php-parallel-lint": "^1.0",
 		"php-stubs/wp-cli-stubs": "^2.4",
 		"phpcompatibility/php-compatibility": "^9.3",
-		"phpunit/phpunit": "6.5",
+		"phpcompatibility/phpcompatibility-wp": "*",
+		"phpunit/phpunit": "^9",
 		"roots/wordpress": "*",
-		"szepeviktor/phpstan-wordpress": "^0.7.2",
-		"wp-coding-standards/wpcs": "^2.0",
-		"wp-phpunit/wp-phpunit": "^5.8",
-		"yoast/phpunit-polyfills": "^1.0"
+		"szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^0.6.1",
+		"szepeviktor/phpstan-wordpress": "^1.3",
+		"wp-phpunit/wp-phpunit": "^6.2",
+		"yoast/phpunit-polyfills": "^2.0"
 	},
 	"config": {
 		"optimize-autoloader": true,
 		"preferred-install": "dist",
 		"sort-packages": true,
-		"allow-plugins": true
+		"allow-plugins": true,
+		"platform-check": false
 	},
 	"extra": {
 		"mozart": {
@@ -64,9 +67,8 @@
 		"compose": "mozart compose && composer dump-autoload",
 		"phpcbf": "phpcbf",
 		"phpcs": "phpcs",
-		"phpcompat": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.0 notification.php load.php uninstall.php src/ resources/templates/",
 		"phplint": "parallel-lint --exclude node_modules --exclude vendor  --exclude vendor-bin .",
-		"phpstan": "phpstan analyze",
+		"phpstan": "phpstan analyze --memory-limit=-1",
 		"phpunit": "phpunit",
 		"phpunit-coverage": "phpunit --coverage-text"
 	}

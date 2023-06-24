@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Post updated trigger
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Trigger\Post;
 
@@ -13,27 +16,34 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
 /**
  * Post updated trigger class
  */
-class PostUpdated extends PostTrigger {
-
+class PostUpdated extends PostTrigger
+{
 	/**
 	 * Post updating user object
 	 *
 	 * @var \WP_User|false
 	 */
-	public $updating_user;
+	public $updatingUser;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $post_type optional, default: post.
+	 * @param string $postType optional, default: post.
 	 */
-	public function __construct( $post_type = 'post' ) {
-		parent::__construct( [
-			'post_type' => $post_type,
-			'slug'      => 'post/' . $post_type . '/updated',
-		] );
+	public function __construct($postType = 'post')
+	{
+		parent::__construct(
+			[
+				'post_type' => $postType,
+				'slug' => 'post/' . $postType . '/updated',
+			]
+		);
 
-		$this->add_action( 'post_updated', 10, 3 );
+		$this->addAction(
+			'post_updated',
+			10,
+			3
+		);
 	}
 
 	/**
@@ -41,9 +51,16 @@ class PostUpdated extends PostTrigger {
 	 *
 	 * @return string name
 	 */
-	public function get_name() : string {
+	public function getName(): string
+	{
+		return sprintf(
 		// translators: singular post name.
-		return sprintf( __( '%s updated', 'notification' ), WpObjectHelper::get_post_type_name( $this->post_type ) );
+			__(
+				'%s updated',
+				'notification'
+			),
+			WpObjectHelper::getPostTypeName($this->postType)
+		);
 	}
 
 	/**
@@ -51,52 +68,81 @@ class PostUpdated extends PostTrigger {
 	 *
 	 * @return string description
 	 */
-	public function get_description() : string {
+	public function getDescription(): string
+	{
 		return sprintf(
-			// translators: 1. singular post name, 2. post type slug.
-			__( 'Fires when %1$s (%2$s) is updated', 'notification' ),
-			WpObjectHelper::get_post_type_name( $this->post_type ),
-			$this->post_type
+		// translators: 1. singular post name, 2. post type slug.
+			__(
+				'Fires when %1$s (%2$s) is updated',
+				'notification'
+			),
+			WpObjectHelper::getPostTypeName($this->postType),
+			$this->postType
 		);
 	}
 
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param integer  $post_id     Post ID.
-	 * @param \WP_Post $post        Post object.
-	 * @param \WP_Post $post_before Post before object.
+	 * @param int $postId Post ID.
+	 * @param \WP_Post $post Post object.
+	 * @param \WP_Post $postBefore Post before object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $post_id, $post, $post_before ) {
-
-		if ( $post->post_type !== $this->post_type ) {
+	public function context($postId, $post, $postBefore)
+	{
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+		if ($post->post_type !== $this->postType) {
 			return false;
 		}
 
-		// Filter the post statuses for which the notification should be sent. By default it will be send only if you update already published post.
-		$updated_post_statuses = apply_filters( 'notification/trigger/wordpress/post/updated/statuses', [ 'publish' ], $this->post_type );
+		// Filter the post statuses for which the notification should be sent.
+		// By default it will be send only if you update already published post.
+		$updatedPostStatuses = apply_filters(
+			'notification/trigger/wordpress/post/updated/statuses',
+			['publish'],
+			$this->postType
+		);
 
 		// Pending posts doesn't have the slug, otherwise we should bail.
-		if ( 'pending' !== $post->post_status && empty( $post->post_name ) ) {
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+		if ($post->post_status !== 'pending' && empty($post->post_name)) {
 			return false;
 		}
 
-		if ( ! in_array( $post_before->post_status, $updated_post_statuses, true ) || 'trash' === $post->post_status ) {
+		if (
+			!in_array(
+			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+				$postBefore->post_status,
+				$updatedPostStatuses,
+				true
+			)
+			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+			|| $post->post_status === 'trash'
+		) {
 			return false;
 		}
 
-		$this->{ $this->post_type } = $post;
+		$this->posts[$this->postType] = $post;
 
-		$updating_user_id = get_current_user_id();
+		$updatingUserId = get_current_user_id();
 
-		$this->author        = get_userdata( (int) $this->{ $this->post_type }->post_author );
-		$this->last_editor   = get_userdata( (int) get_post_meta( $this->{ $this->post_type }->ID, '_edit_last', true ) );
-		$this->updating_user = get_userdata( $updating_user_id );
+		$this->author = get_userdata((int)$this->posts[$this->postType]->post_author);
+		$this->lastEditor = get_userdata(
+			(int)get_post_meta(
+				$this->posts[$this->postType]->ID,
+				'_edit_last',
+				true
+			)
+		);
+		$this->updatingUser = get_userdata($updatingUserId);
 
-		$this->{ $this->post_type . '_creation_datetime' }     = strtotime( $this->{ $this->post_type }->post_date_gmt );
-		$this->{ $this->post_type . '_modification_datetime' } = strtotime( $this->{ $this->post_type }->post_modified_gmt );
-
+		$this->{$this->postType . '_creation_datetime'} = strtotime(
+			$this->posts[$this->postType]->post_date_gmt
+		);
+		$this->{$this->postType . '_modification_datetime'} = strtotime(
+			$this->posts[$this->postType]->post_modified_gmt
+		);
 	}
 
 	/**
@@ -104,89 +150,235 @@ class PostUpdated extends PostTrigger {
 	 *
 	 * @return void
 	 */
-	public function merge_tags() {
+	public function mergeTags()
+	{
 
-		$post_type_name = WpObjectHelper::get_post_type_name( $this->post_type );
+		$postTypeName = WpObjectHelper::getPostTypeName($this->postType);
 
-		parent::merge_tags();
+		parent::mergeTags();
 
 		// updating user.
-		$this->add_merge_tag( new MergeTag\User\UserID( [
-			'slug'          => sprintf( '%s_updating_user_ID', $this->post_type ),
-			// translators: singular post name.
-			'name'          => sprintf( __( '%s updating user ID', 'notification' ), $post_type_name ),
-			'property_name' => 'updating_user',
-			'group'         => __( 'Updating user', 'notification' ),
-		] ) );
+		$this->addMergeTag(
+			new MergeTag\User\UserID(
+				[
+					'slug' => sprintf(
+						'%s_updating_user_ID',
+						$this->postType
+					),
+					'name' => sprintf(
+					// translators: singular post name.
+						__(
+							'%s updating user ID',
+							'notification'
+						),
+						$postTypeName
+					),
+					'property_name' => 'updating_user',
+					'group' => __(
+						'Updating user',
+						'notification'
+					),
+				]
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\User\UserLogin( [
-			'slug'          => sprintf( '%s_updating_user_login', $this->post_type ),
-			// translators: singular post name.
-			'name'          => sprintf( __( '%s updating user login', 'notification' ), $post_type_name ),
-			'property_name' => 'updating_user',
-			'group'         => __( 'Updating user', 'notification' ),
-		] ) );
+		$this->addMergeTag(
+			new MergeTag\User\UserLogin(
+				[
+					'slug' => sprintf(
+						'%s_updating_user_login',
+						$this->postType
+					),
+					'name' => sprintf(
+					// translators: singular post name.
+						__(
+							'%s updating user login',
+							'notification'
+						),
+						$postTypeName
+					),
+					'property_name' => 'updating_user',
+					'group' => __(
+						'Updating user',
+						'notification'
+					),
+				]
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\User\UserEmail( [
-			'slug'          => sprintf( '%s_updating_user_email', $this->post_type ),
-			// translators: singular post name.
-			'name'          => sprintf( __( '%s updating user email', 'notification' ), $post_type_name ),
-			'property_name' => 'updating_user',
-			'group'         => __( 'Updating user', 'notification' ),
-		] ) );
+		$this->addMergeTag(
+			new MergeTag\User\UserEmail(
+				[
+					'slug' => sprintf(
+						'%s_updating_user_email',
+						$this->postType
+					),
+					'name' => sprintf(
+					// translators: singular post name.
+						__(
+							'%s updating user email',
+							'notification'
+						),
+						$postTypeName
+					),
+					'property_name' => 'updating_user',
+					'group' => __(
+						'Updating user',
+						'notification'
+					),
+				]
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\User\UserNicename( [
-			'slug'          => sprintf( '%s_updating_user_nicename', $this->post_type ),
-			// translators: singular post name.
-			'name'          => sprintf( __( '%s updating user nicename', 'notification' ), $post_type_name ),
-			'property_name' => 'updating_user',
-			'group'         => __( 'Updating user', 'notification' ),
-		] ) );
+		$this->addMergeTag(
+			new MergeTag\User\UserNicename(
+				[
+					'slug' => sprintf(
+						'%s_updating_user_nicename',
+						$this->postType
+					),
+					'name' => sprintf(
+					// translators: singular post name.
+						__(
+							'%s updating user nicename',
+							'notification'
+						),
+						$postTypeName
+					),
+					'property_name' => 'updating_user',
+					'group' => __(
+						'Updating user',
+						'notification'
+					),
+				]
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\User\UserDisplayName( [
-			'slug'          => sprintf( '%s_updating_user_display_name', $this->post_type ),
-			// translators: singular post name.
-			'name'          => sprintf( __( '%s updating user display name', 'notification' ), $post_type_name ),
-			'property_name' => 'updating_user',
-			'group'         => __( 'Updating user', 'notification' ),
-		] ) );
+		$this->addMergeTag(
+			new MergeTag\User\UserDisplayName(
+				[
+					'slug' => sprintf(
+						'%s_updating_user_display_name',
+						$this->postType
+					),
+					'name' => sprintf(
+					// translators: singular post name.
+						__(
+							'%s updating user display name',
+							'notification'
+						),
+						$postTypeName
+					),
+					'property_name' => 'updating_user',
+					'group' => __(
+						'Updating user',
+						'notification'
+					),
+				]
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\User\UserFirstName( [
-			'slug'          => sprintf( '%s_updating_user_firstname', $this->post_type ),
-			// translators: singular post name.
-			'name'          => sprintf( __( '%s updating user first name', 'notification' ), $post_type_name ),
-			'property_name' => 'updating_user',
-			'group'         => __( 'Updating user', 'notification' ),
-		] ) );
+		$this->addMergeTag(
+			new MergeTag\User\UserFirstName(
+				[
+					'slug' => sprintf(
+						'%s_updating_user_firstname',
+						$this->postType
+					),
+					'name' => sprintf(
+					// translators: singular post name.
+						__(
+							'%s updating user first name',
+							'notification'
+						),
+						$postTypeName
+					),
+					'property_name' => 'updating_user',
+					'group' => __(
+						'Updating user',
+						'notification'
+					),
+				]
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\User\UserLastName( [
-			'slug'          => sprintf( '%s_updating_user_lastname', $this->post_type ),
-			// translators: singular post name.
-			'name'          => sprintf( __( '%s updating user last name', 'notification' ), $post_type_name ),
-			'property_name' => 'updating_user',
-			'group'         => __( 'Updating user', 'notification' ),
-		] ) );
+		$this->addMergeTag(
+			new MergeTag\User\UserLastName(
+				[
+					'slug' => sprintf(
+						'%s_updating_user_lastname',
+						$this->postType
+					),
+					'name' => sprintf(
+					// translators: singular post name.
+						__(
+							'%s updating user last name',
+							'notification'
+						),
+						$postTypeName
+					),
+					'property_name' => 'updating_user',
+					'group' => __(
+						'Updating user',
+						'notification'
+					),
+				]
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\User\Avatar( [
-			'slug'          => sprintf( '%s_updating_user_avatar', $this->post_type ),
-			// translators: singular post name.
-			'name'          => sprintf( __( '%s updating user email', 'notification' ), $post_type_name ),
-			'property_name' => 'updating_user',
-			'group'         => __( 'Updating user', 'notification' ),
-		] ) );
+		$this->addMergeTag(
+			new MergeTag\User\Avatar(
+				[
+					'slug' => sprintf(
+						'%s_updating_user_avatar',
+						$this->postType
+					),
+					'name' => sprintf(
+					// translators: singular post name.
+						__(
+							'%s updating user email',
+							'notification'
+						),
+						$postTypeName
+					),
+					'property_name' => 'updating_user',
+					'group' => __(
+						'Updating user',
+						'notification'
+					),
+				]
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\User\UserRole( [
-			'slug'          => sprintf( '%s_updating_user_role', $this->post_type ),
-			// translators: singular post name.
-			'name'          => sprintf( __( '%s updating user role', 'notification' ), $post_type_name ),
-			'property_name' => 'updating_user',
-			'group'         => __( 'Updating user', 'notification' ),
-		] ) );
+		$this->addMergeTag(
+			new MergeTag\User\UserRole(
+				[
+					'slug' => sprintf(
+						'%s_updating_user_role',
+						$this->postType
+					),
+					'name' => sprintf(
+					// translators: singular post name.
+						__(
+							'%s updating user role',
+							'notification'
+						),
+						$postTypeName
+					),
+					'property_name' => 'updating_user',
+					'group' => __(
+						'Updating user',
+						'notification'
+					),
+				]
+			)
+		);
 
 		// add revision link tag if revisions are enabled.
-		if ( defined( 'WP_POST_REVISIONS' ) && WP_POST_REVISIONS ) {
-			$this->add_merge_tag( new MergeTag\Post\RevisionLink() );
+		if (!defined('WP_POST_REVISIONS') || !WP_POST_REVISIONS) {
+			return;
 		}
-	}
 
+		$this->addMergeTag(new MergeTag\Post\RevisionLink());
+	}
 }
