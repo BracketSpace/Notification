@@ -377,7 +377,7 @@ class Screen
 	}
 
 	/**
-	 * Prepates merge tag groups for provided Trigger.
+	 * Prepares merge tag groups for provided Trigger.
 	 *
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
 	 * @return array<mixed> $groups  Grouped tags.

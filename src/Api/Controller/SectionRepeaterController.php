@@ -27,13 +27,13 @@ class SectionRepeaterController extends RepeaterController
 	public function groupFields($fields)
 	{
 
-		$grouppedFields = [];
+		$groupedFields = [];
 
 		foreach ($fields as $field) {
-			$grouppedFields[$field['name']] = $field;
+			$groupedFields[$field['name']] = $field;
 		}
 
-		return $grouppedFields;
+		return $groupedFields;
 	}
 
 	/**
@@ -44,7 +44,6 @@ class SectionRepeaterController extends RepeaterController
 	 */
 	public function getSectionsFields($sections)
 	{
-
 		$sectionFields = [];
 
 		foreach ($sections as $section => $value) {

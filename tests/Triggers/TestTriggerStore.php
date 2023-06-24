@@ -28,7 +28,7 @@ class TestTriggerStore extends \WP_UnitTestCase {
 		$this->assertSame( $trigger, TriggerStore::get( $trigger_slug ) );
 	}
 
-	public function test_getting_tiggers() {
+	public function test_getting_triggers() {
 		$trigger_1 = Registerer::register_trigger( '0' );
 		$trigger_2 = Registerer::register_trigger( '1' );
 

@@ -87,7 +87,7 @@ Vue.component("nested-sub-section", {
 
 			const sectionName = section.name || section.label;
 
-			const forbidenSection = this.rows.filter(rowSection => {
+			const forbiddenSection = this.rows.filter(rowSection => {
 				const addedSection = rowSection.name || rowSection.label;
 
 				if (sectionName === addedSection) {
@@ -97,7 +97,7 @@ Vue.component("nested-sub-section", {
 				return section.special && rowSection.special ? true : false;
 			});
 
-			return 0 < forbidenSection.length ? false : true;
+			return 0 < forbiddenSection.length ? false : true;
 		},
 		testModal() {
 			const modal = this.$el.querySelector(".section-modal");

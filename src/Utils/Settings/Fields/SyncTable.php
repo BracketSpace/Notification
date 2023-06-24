@@ -30,7 +30,7 @@ class SyncTable
 	{
 		// Get all Notifications.
 		$wpJsonNotifiactions = PostType::getAllNotifications();
-		$jsonNotifiactions = CoreSync::getAllJson();
+		$jsonNotifications = CoreSync::getAllJson();
 		$collection = [];
 
 		// Load the WP Notifications first.
@@ -65,7 +65,7 @@ class SyncTable
 		}
 
 		// Compare against JSON.
-		foreach ($jsonNotifiactions as $json) {
+		foreach ($jsonNotifications as $json) {
 			try {
 				$adapter = notificationAdaptFrom(
 					'JSON',

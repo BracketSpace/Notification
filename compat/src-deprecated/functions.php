@@ -358,7 +358,7 @@ function notification_get_template( $template_name, $vars = [] ) {
 
 /**
  * Enables the notification syncing
- * By default path used is current theme's `notifiations` dir.
+ * By default path used is current theme's `notifications` dir.
  *
  * @since      6.0.0
  * @deprecated 8.0.0

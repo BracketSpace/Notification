@@ -5,7 +5,7 @@
  *
  * Requirements:
  * - Trigger property `user_object` or any other passed as
- * `property_name` parameter. Must be an object, preferabely WP_User
+ * `property_name` parameter. Must be an object, preferably WP_User
  *
  * @package notification
  */

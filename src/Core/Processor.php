@@ -81,7 +81,7 @@ class Processor
 		 * 2. Based on that ID we can detect duplicates
 		 *
 		 * By default all Trigger props are taken and whole trigger is unique.
-		 * This can be overriden by specific extensions.
+		 * This can be overridden by specific extensions.
 		 */
 		$triggerKey = sprintf(
 			'%s_%s_%s',

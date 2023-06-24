@@ -176,7 +176,7 @@ class Sync
 
 	/**
 	 * Enables the notification syncing
-	 * By default path used is current theme's `notifiations` dir.
+	 * By default path used is current theme's `notifications` dir.
 	 *
 	 * @param string $path full json directory path or null to use default.
 	 * @return void

@@ -515,7 +515,7 @@ class EDDUpdater
 	}
 
 	/**
-	 * Calls the API and, if successfull, returns the object delivered by the API.
+	 * Calls the API and, if successful, returns the object delivered by the API.
 	 *
 	 * @param string $_action The requested action.
 	 * @param array<mixed> $_data Parameters for the API action.

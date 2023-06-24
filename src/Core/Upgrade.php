@@ -350,9 +350,9 @@ class Upgrade
 			WHERE p.post_type = 'notification'"
 		);
 
-		foreach ($notifications as $notifiationRaw) {
+		foreach ($notifications as $notificationRaw) {
 			$data = json_decode(
-				$notifiationRaw->postContent,
+				$notificationRaw->postContent,
 				true
 			);
 

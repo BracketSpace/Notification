@@ -37,7 +37,7 @@ trait Storage
 	}
 
 	/**
-	 * Inserts an item at a specifc index.
+	 * Inserts an item at a specific index.
 	 *
 	 * @param int|string $index Item index.
 	 * @param mixed $item Item to add.

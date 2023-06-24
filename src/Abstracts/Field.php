@@ -263,7 +263,7 @@ abstract class Field implements Interfaces\Fillable
 	}
 
 	/**
-	 * Cheks if field should be resolved with merge tags
+	 * Checks if field should be resolved with merge tags
 	 *
 	 * @return bool
 	 */
@@ -273,7 +273,7 @@ abstract class Field implements Interfaces\Fillable
 	}
 
 	/**
-	 * Cheks if field is disabled
+	 * Checks if field is disabled
 	 *
 	 * @return bool
 	 */

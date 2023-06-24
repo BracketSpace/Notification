@@ -284,7 +284,7 @@ When using SMTP it's nearly impossible to send more than a dozen emails at once 
 
 = Can I test my notifications before sending? =
 
-Yes, just activate the debug log in the DEBUGGING section of the plugin settings. All notifications will be catched into log visible only to you.
+Yes, just activate the debug log in the DEBUGGING section of the plugin settings. All notifications will be caught into log visible only to you.
 
 = Can you create a plugin for me? =
 
