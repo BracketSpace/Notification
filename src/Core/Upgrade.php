@@ -372,7 +372,7 @@ class Upgrade
 					),
 				],
 				[
-					'ID' => $notifiationRaw->ID,
+					'ID' => $notificationRaw->ID,
 				],
 				['%s'],
 				['%d']
