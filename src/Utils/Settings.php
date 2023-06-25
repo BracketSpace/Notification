@@ -109,7 +109,7 @@ class Settings
 		// phpcs:disable WordPress.Security.NonceVerification
 		$sections = $this->getSections();
 
-		$currentSection = isset($_GET['section']) && !empty($_GET['section'])
+		$currentSection = ! empty($_GET['section'])
 			? sanitize_text_field(wp_unslash($_GET['section']))
 			: key($this->getSections());
 

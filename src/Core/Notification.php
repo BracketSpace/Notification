@@ -131,12 +131,12 @@ class Notification
 		$this->setHash($hash);
 
 		// Title.
-		if (isset($data['title']) && !empty($data['title'])) {
+		if (! empty($data['title'])) {
 			$this->setTitle(sanitize_text_field($data['title']));
 		}
 
 		// Trigger.
-		if (isset($data['trigger']) && !empty($data['trigger'])) {
+		if (! empty($data['trigger'])) {
 			if ($data['trigger'] instanceof Interfaces\Triggerable) {
 				$this->setTrigger($data['trigger']);
 			}
@@ -146,7 +146,7 @@ class Notification
 		}
 
 		// Carriers.
-		if (isset($data['carriers']) && !empty($data['carriers'])) {
+		if (! empty($data['carriers'])) {
 			$carriers = [];
 
 			foreach ($data['carriers'] as $carrier) {
@@ -183,9 +183,7 @@ class Notification
 		}
 
 		// Version. If none provided, the current most recent version is used.
-		$version = isset($data['version']) && !empty($data['version'])
-			? $data['version']
-			: time();
+		$version = ! empty($data['version']) ? $data['version'] : time();
 		$this->setVersion($version);
 
 		return $this;
@@ -414,9 +412,7 @@ class Notification
 	public function getExtra($key)
 	{
 		$extras = $this->getExtras();
-		return isset($extras[$key])
-			? $extras[$key]
-			: null;
+		return isset($extras[$key]) ? $extras[$key] : null;
 	}
 
 	/**

@@ -65,7 +65,7 @@ class Whitelabel
 		);
 
 		// Change Notification CPT page.
-		if (isset($args['page_hook']) && !empty($args['page_hook'])) {
+		if (! empty($args['page_hook'])) {
 			add_filter(
 				'notification/whitelabel/cpt/parent',
 				static function ($hook) use ($args) {
