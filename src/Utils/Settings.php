@@ -346,7 +346,7 @@ class Settings
 		$section = $this->getSection($sectionSlug);
 
 		if ($section === false) {
-			throw new \Exception("Cannot find \"${sectionSlug}\" settings section.");
+			throw new \Exception("Cannot find \"{$sectionSlug}\" settings section.");
 		}
 
 		$sanitized = false;
@@ -367,7 +367,7 @@ class Settings
 		}
 
 		if ($sanitized === false) {
-			throw new \Exception("Cannot update \"${setting}\" setting.");
+			throw new \Exception("Cannot update \"{$setting}\" setting.");
 		}
 
 		$settings = $this->getSettings();
