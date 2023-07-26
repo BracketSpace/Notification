@@ -61,7 +61,7 @@ class EditorField extends Field
 		ob_start();
 
 		wp_editor(
-			$this->getValue(),
+			(string)$this->getValue(),
 			$this->getId(),
 			$settings
 		);
