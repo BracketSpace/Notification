@@ -48,7 +48,6 @@ class EditorField extends Field
 	 */
 	public function field()
 	{
-
 		$settings = wp_parse_args(
 			$this->settings,
 			[
@@ -61,7 +60,7 @@ class EditorField extends Field
 		ob_start();
 
 		wp_editor(
-			(string)$this->getValue(),
+			$this->getValue() ?? '',
 			$this->getId(),
 			$settings
 		);
