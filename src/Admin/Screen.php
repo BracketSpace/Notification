@@ -343,6 +343,11 @@ class Screen
 	 */
 	public function renderMergeTagsList($triggerSlug)
 	{
+		if (empty($triggerSlug)) {
+			Templates::render('mergetag/metabox-notrigger');
+			return;
+		}
+
 		$trigger = Store\Trigger::get($triggerSlug);
 
 		if (empty($trigger)) {
