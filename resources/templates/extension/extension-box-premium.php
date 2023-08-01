@@ -140,14 +140,7 @@ $license = $ext['license']->get();
 				<input
 					type="text"
 					name="license-key"
-					placeholder="
-					<?php
-					esc_attr_e(
-						'License key',
-						'notification'
-					);
-					?>
-					"
+					placeholder="<?php esc_attr_e('License key', 'notification'); ?>"
 					class="widefat"
 				>
 			</div>
@@ -156,14 +149,7 @@ $license = $ext['license']->get();
 					type="submit"
 					name=""
 					class="button button-secondary widefat"
-					value="
-					<?php
-					esc_attr_e(
-						'Save and activate license',
-						'notification'
-					);
-					?>
-					"
+					value="<?php esc_attr_e('Save and activate license', 'notification'); ?>"
 				>
 			</div>
 		<?php else : ?>
@@ -191,14 +177,7 @@ $license = $ext['license']->get();
 					type="submit"
 					name=""
 					class="button button-secondary widefat"
-					value="
-					<?php
-					esc_attr_e(
-						'Deactivate license',
-						'notification'
-					);
-					?>
-					"
+					value="<?php esc_attr_e('Deactivate license', 'notification'); ?>"
 				>
 			</div>
 		<?php endif ?>

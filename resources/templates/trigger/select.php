@@ -21,14 +21,7 @@ declare(strict_types=1);
 	id="<?php $the_esc('select_name'); ?>_select"
 	name="<?php $the_esc('select_name'); ?>"
 	class="pretty-select"
-	data-placeholder="
-	<?php
-	esc_attr_e(
-		'Select trigger',
-		'notification'
-	);
-	?>
-	"
+	data-placeholder="<?php esc_attr_e('Select trigger', 'notification'); ?>"
 >
 
 	<option value=""></option>

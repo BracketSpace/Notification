@@ -17,14 +17,7 @@ declare(strict_types=1);
 
 <input
 	type="text"
-	placeholder="
-	<?php
-	esc_attr_e(
-		'Search merge tags',
-		'notification'
-	);
-	?>
-	"
+	placeholder="<?php esc_attr_e('Search merge tags', 'notification'); ?>"
 	class="widefat notification-search-merge-tags"
 	autocomplete="off"
 	id="notification-search-merge-tags"
