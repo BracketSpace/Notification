@@ -428,13 +428,14 @@ class Screen
 	 */
 	public function metaboxCleanup()
 	{
-		global $wpMetaBoxes;
+		// phpcs:disable Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+		global $wp_meta_boxes;
 
-		if (!isset($wpMetaBoxes['notification'])) {
+		if (!isset($wp_meta_boxes['notification'])) {
 			return;
 		}
 
-		foreach ($wpMetaBoxes['notification'] as $contextName => $context) {
+		foreach ($wp_meta_boxes['notification'] as $contextName => $context) {
 			foreach ($context as $priority => $boxes) {
 				foreach ($boxes as $boxId => $box) {
 					$allowBox = apply_filters(
@@ -446,10 +447,11 @@ class Screen
 						continue;
 					}
 
-					unset($wpMetaBoxes['notification'][$contextName][$priority][$boxId]);
+					unset($wp_meta_boxes['notification'][$contextName][$priority][$boxId]);
 				}
 			}
 		}
+		// phpcs:enable Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 	}
 
 	/**
