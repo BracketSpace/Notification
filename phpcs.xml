@@ -45,6 +45,8 @@
 		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralText"/>
 		<exclude name="WordPress.Security.NonceVerification.Recommended"/>
 		<exclude name="PEAR.Commenting.ClassComment.InvalidAuthors"/>
+
+		<exclude name="Generic.Files.ExecutableFile.Executable"/>
 	</rule>
 
 	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent" />

@@ -37,9 +37,7 @@ class WordPress
 
 		$setting = notificationGetSetting('carriers/email/from_name');
 
-		return empty($setting)
-			? $fromName
-			: $setting;
+		return empty($setting) ? $fromName : $setting;
 	}
 
 	/**
@@ -56,9 +54,7 @@ class WordPress
 
 		$setting = notificationGetSetting('carriers/email/from_email');
 
-		return empty($setting)
-			? $fromEmail
-			: $setting;
+		return empty($setting) ? $fromEmail : $setting;
 	}
 
 	/**
@@ -123,15 +119,9 @@ class WordPress
 	public function proxyCommentReply($commentId, $comment)
 	{
 		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-		$status = $comment->comment_approved === '1'
-			? 'approved'
-			: 'unapproved';
-		do_action(
-			'notification_insert_comment_proxy',
-			$status,
-			'insert',
-			$comment
-		);
+		$status = $comment->comment_approved === '1' ? 'approved' : 'unapproved';
+
+		do_action('notification_insert_comment_proxy', $status, 'insert', $comment);
 	}
 
 	/**
@@ -156,10 +146,7 @@ class WordPress
 			return;
 		}
 
-		do_action(
-			'notification_comment_published_proxy',
-			get_comment($commentId)
-		);
+		do_action('notification_comment_published_proxy', get_comment($commentId));
 	}
 
 	/**
@@ -184,9 +171,6 @@ class WordPress
 			return;
 		}
 
-		do_action(
-			'notification_comment_published_proxy',
-			$comment
-		);
+		do_action('notification_comment_published_proxy', $comment);
 	}
 }
