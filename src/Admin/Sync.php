@@ -111,14 +111,10 @@ class Sync
 		$ajax = new Response();
 		$data = $_POST;
 
-		$response = method_exists(
-			$this,
-			'loadNotificationTo' . ucfirst($data['type'])
-		)
-			? call_user_func(
-				[$this, 'loadNotificationTo' . ucfirst($data['type'])],
-				$data['hash']
-			)
+		$callable = [$this, 'loadNotificationTo' . ucfirst($data['type'])];
+
+		$response = method_exists($callable[0], $callable[1]) && is_callable($callable)
+			? call_user_func($callable, $data['hash'])
 			: false;
 
 		if ($response === false) {

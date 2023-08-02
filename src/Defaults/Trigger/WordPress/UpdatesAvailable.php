@@ -107,12 +107,14 @@ class UpdatesAvailable extends Abstracts\Trigger
 						$lists = [];
 
 						foreach ($trigger->updateTypes as $updateType) {
-							if (!$trigger->hasUpdates($updateType)) {
+							$getUpdatesListMethod = [$trigger, 'get' . ucfirst($updateType) . 'UpdatesList'];
+
+							if (!$trigger->hasUpdates($updateType) || ! is_callable($getUpdatesListMethod)) {
 								continue;
 							}
 
 							$html = '<h3>' . $trigger->getListTitle($updateType) . '</h3>';
-							$html .= call_user_func([$trigger, 'get' . ucfirst($updateType) . 'UpdatesList']);
+							$html .= call_user_func($getUpdatesListMethod);
 							$lists[] = $html;
 						}
 
@@ -378,7 +380,12 @@ class UpdatesAvailable extends Abstracts\Trigger
 	public function getUpdatesCount($updateType = 'all')
 	{
 		if ($updateType !== 'all') {
-			$updates = call_user_func('get' . ucfirst($updateType) . 'Updates');
+			$getUpdatesMethod = 'get' . ucfirst($updateType) . 'Updates';
+
+			/** @var array<string, mixed> */
+			$updates = is_callable($getUpdatesMethod)
+				? call_user_func($getUpdatesMethod)
+				: [];
 
 			if ($updateType === 'core') {
 				foreach ($updates as $updateKey => $update) {

@@ -59,10 +59,11 @@ abstract class Adapter implements Interfaces\Adaptable
 			return $this->getNotification();
 		}
 
-		return call_user_func_array(
-			[$this->getNotification(), $methodName],
-			$arguments
-		);
+		$method = [$this->getNotification(), $methodName];
+
+		if (is_callable($method)) {
+			return call_user_func_array($method, $arguments);
+		}
 	}
 
 	/**

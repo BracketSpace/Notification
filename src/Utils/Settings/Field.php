@@ -377,7 +377,6 @@ class Field
 	 */
 	public function setSanitizer($sanitizer)
 	{
-
 		if (!is_callable($sanitizer)) {
 			throw new \Exception('Field sanitizer is not callable');
 		}
@@ -394,11 +393,11 @@ class Field
 	 */
 	public function render()
 	{
+		if (!is_callable($this->renderer)) {
+			throw new \Exception('Field rendered is not callable');
+		}
 
-		call_user_func(
-			$this->renderer,
-			$this
-		);
+		call_user_func($this->renderer, $this);
 	}
 
 	/**
@@ -409,15 +408,8 @@ class Field
 	 */
 	public function sanitize($value)
 	{
-
-		if ($this->sanitizer) {
-			$this->value = call_user_func(
-				$this->sanitizer,
-				$value,
-				$this
-			);
-		}
-
-		return $this->value;
+		return $this->sanitizer && is_callable($this->sanitizer)
+			? call_user_func($this->sanitizer, $value, $this)
+			: $this->value;
 	}
 }

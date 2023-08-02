@@ -94,13 +94,13 @@ class ImportExport
 
 		$type = sanitize_text_field(wp_unslash($_GET['type']));
 		try {
-			$data = call_user_func(
-				[$this, 'prepare' . ucfirst($type) . 'ExportData'],
-				explode(
-					',',
-					sanitize_text_field(wp_unslash($_GET['items'] ?? ''))
+			$exportMethod = [$this, 'prepare' . ucfirst($type) . 'ExportData'];
+			$data = is_callable($exportMethod)
+				? call_user_func(
+					$exportMethod,
+					explode(',', sanitize_text_field(wp_unslash($_GET['items'] ?? '')))
 				)
-			);
+				: null;
 		} catch (\Throwable $e) {
 			wp_die(
 				esc_html($e->getMessage()),
@@ -235,10 +235,10 @@ class ImportExport
 		}
 
 		try {
-			$result = call_user_func(
-				[$this, 'process' . ucfirst($type) . 'ImportRequest'],
-				$data
-			);
+			$processMethod = [$this, 'process' . ucfirst($type) . 'ImportRequest'];
+			$result = is_callable($processMethod)
+				? call_user_func($processMethod, $data)
+				: 'Process method not available';
 		} catch (\Throwable $e) {
 			wp_send_json_error($e->getMessage());
 		}

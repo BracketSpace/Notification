@@ -69,18 +69,13 @@ class Upgrade
 
 		while ($dataVersion < static::$dataVersion) {
 			$dataVersion++;
-			$upgradeMethod = 'upgrade_to_v' . $dataVersion;
+			$upgradeMethod = [$this, 'upgrade_to_v' . $dataVersion];
 
-			if (
-				!method_exists(
-					$this,
-					$upgradeMethod
-				)
-			) {
+			if (! method_exists($upgradeMethod[0], $upgradeMethod[1]) || ! is_callable($upgradeMethod)) {
 				continue;
 			}
 
-			call_user_func([$this, $upgradeMethod]);
+			call_user_func($upgradeMethod);
 		}
 
 		update_option(
