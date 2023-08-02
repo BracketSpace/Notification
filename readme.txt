@@ -309,6 +309,12 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Changed] Minimum required PHP version from 7.4.
 * [Changed] WordPress Coding Standards to PSR-12 standards.
 
+**Compatibility Breaking Changes**
+
+* Class methods and properties has been changed from snake_case to camelCase.
+* In Post Triggers, dynamic property `$trigger->{$post_type}` has been replaced with static prop `$trigger->post`.
+* The same as above applies to Post Trigger datetime tags, namely: postCreationDatetime, postPublicationDatetime, and postModificationDatetime.
+
 == Upgrade Notice ==
 
 = [Next] =

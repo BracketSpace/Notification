@@ -93,7 +93,7 @@ class PostPublished extends PostTrigger
 	 *
 	 * @param string $newStatus New post status.
 	 * @param string $oldStatus Old post status.
-	 * @param object $post Post object.
+	 * @param \WP_Post $post Post object.
 	 * @return mixed void or false if no notifications should be sent
 	 */
 	public function context($newStatus, $oldStatus, $post)
@@ -107,28 +107,15 @@ class PostPublished extends PostTrigger
 			return false;
 		}
 
-		/** @var \WP_Post $post */
-		$this->posts[$this->postType] = $post;
+		$this->post = $post;
 
-		$this->author = get_userdata((int)$this->posts[$this->postType]->post_author);
-		$this->lastEditor = get_userdata(
-			(int)get_post_meta(
-				$this->posts[$this->postType]->ID,
-				'_edit_last',
-				true
-			)
-		);
+		$this->author = get_userdata((int)$this->post->post_author);
+		$this->lastEditor = get_userdata((int)get_post_meta($this->post->ID, '_edit_last', true));
 		$this->publishingUser = get_userdata(get_current_user_id());
 
-		$this->{$this->postType . '_creation_datetime'} = strtotime(
-			$this->posts[$this->postType]->post_date_gmt
-		);
-		$this->{$this->postType . '_publication_datetime'} = strtotime(
-			$this->posts[$this->postType]->post_date_gmt
-		);
-		$this->{$this->postType . '_modification_datetime'} = strtotime(
-			$this->posts[$this->postType]->post_modified_gmt
-		);
+		$this->postCreationDatetime = strtotime($this->post->post_date_gmt);
+		$this->postPublicationDatetime = strtotime($this->post->post_date_gmt);
+		$this->postModificationDatetime = strtotime($this->post->post_modified_gmt);
 	}
 
 	/**
@@ -138,7 +125,6 @@ class PostPublished extends PostTrigger
 	 */
 	public function mergeTags()
 	{
-
 		$postTypeName = WpObjectHelper::getPostTypeName($this->postType);
 
 		parent::mergeTags();
@@ -375,6 +361,7 @@ class PostPublished extends PostTrigger
 						),
 						$postTypeName
 					),
+					'timestamp' => $this->postPublicationDatetime,
 				]
 			)
 		);

@@ -86,13 +86,12 @@ class PostAdded extends PostTrigger
 	 * Return `false` if you want to abort the trigger execution
 	 *
 	 * @param int $postId Post ID.
-	 * @param object $post Post object.
+	 * @param \WP_Post $post Post object.
 	 * @param bool $update Whether this is an existing post being updated or not.
 	 * @return mixed void or false if no notifications should be sent
 	 */
 	public function context($postId, $post, $update)
 	{
-
 		// Bail if post has been already added.
 		if ($update) {
 			return false;
@@ -105,34 +104,24 @@ class PostAdded extends PostTrigger
 			'notification/trigger/wordpress/' . $this->postType . '/added/bail_auto_draft',
 			true
 		);
+
 		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 		if ($bailAutoDraft && $post->post_status === 'auto-draft') {
 			return false;
 		}
+
 		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 		if ($post->post_type !== $this->postType) {
 			return false;
 		}
 
-		// WP_Post object.
-		/** @var \WP_Post $post */
-		$this->posts[$this->postType] = $post;
+		$this->post = $post;
 
-		$this->author = get_userdata((int)$this->posts[$this->postType]->post_author);
-		$this->lastEditor = get_userdata(
-			(int)get_post_meta(
-				$this->posts[$this->postType]->ID,
-				'_edit_last',
-				true
-			)
-		);
+		$this->author = get_userdata((int)$this->post->post_author);
+		$this->lastEditor = get_userdata((int)get_post_meta($this->post->ID, '_edit_last', true));
 		$this->publishingUser = get_userdata(get_current_user_id());
 
-		$this->{$this->postType . '_creation_datetime'} = strtotime(
-			$this->posts[$this->postType]->post_date_gmt
-		);
-		$this->{$this->postType . '_modification_datetime'} = strtotime(
-			$this->posts[$this->postType]->post_modified_gmt
-		);
+		$this->postCreationDatetime = strtotime($this->post->post_date_gmt);
+		$this->postModificationDatetime = strtotime($this->post->post_modified_gmt);
 	}
 }

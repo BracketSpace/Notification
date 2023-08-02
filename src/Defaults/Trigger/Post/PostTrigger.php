@@ -41,13 +41,32 @@ abstract class PostTrigger extends Abstracts\Trigger
 	public $lastEditor;
 
 	/**
-	 * Replacement for $this->{$this->postType} = $post
-	 * Current usage: $this->posts[$this->postType] = $post
-	 * due to Casegnostic
+	 * Post in subject.
 	 *
-	 * @var array<\WP_Post>
+	 * @var \WP_Post
 	 */
-	protected $posts = [];
+	public $post;
+
+	/**
+	 * Post creation timestamp.
+	 *
+	 * @var int|false
+	 */
+	public $postCreationDatetime;
+
+	/**
+	 * Post publication timestamp.
+	 *
+	 * @var int|false
+	 */
+	public $postPublicationDatetime;
+
+	/**
+	 * Post modification timestamp.
+	 *
+	 * @var int|false
+	 */
+	public $postModificationDatetime;
 
 	/**
 	 * Constructor
@@ -261,6 +280,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						),
 						$postTypeName
 					),
+					'timestamp' => $this->postCreationDatetime,
 				]
 			)
 		);
@@ -280,6 +300,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						),
 						$postTypeName
 					),
+					'timestamp' => $this->postModificationDatetime,
 				]
 			)
 		);
