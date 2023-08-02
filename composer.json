@@ -4,7 +4,7 @@
 	"license": "GPL-3.0-or-later",
 	"description": "Notification plugin for WordPress",
 	"require": {
-		"php": "^7.4",
+		"php": "^7.4 | ^8.0",
 		"composer-runtime-api": "^2.0",
 		"enshrined/svg-sanitize": "^0.16.0",
 		"micropackage/ajax": "^1.0",
