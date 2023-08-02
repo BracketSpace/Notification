@@ -22,15 +22,20 @@ jobs:
   phpstan:
     name: PHPStan
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.4', '8.0', '8.1', '8.2']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup PHP 7.4
-        uses: shivammathur/setup-php@v2
+      - name: Setup PHP ${{ matrix.php }}
+        # https://github.com/shivammathur/setup-php/issues/446#issuecomment-824001225
+        uses: shivammathur/setup-php@develop
         with:
-          php-version: '7.4'
+          php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
+          tools: none
       - name: Install Composer dependencies
         uses: "ramsey/composer-install@v2"
       - name: Install Composer build dependencies
