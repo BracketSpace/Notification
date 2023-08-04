@@ -43,16 +43,10 @@ class PostPermalink extends UrlTag
 				),
 				'name' => sprintf(
 				// translators: singular post name.
-					__(
-						'%s permalink',
-						'notification'
-					),
+					__('%s permalink', 'notification'),
 					$postTypeName
 				),
-				'description' => __(
-					'https://example.com/hello-world/',
-					'notification'
-				),
+				'description' => __('https://example.com/hello-world/', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ($trigger) {

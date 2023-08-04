@@ -234,10 +234,7 @@ class Screen
 	{
 		add_meta_box(
 			'notification_save',
-			__(
-				'Save',
-				'notification'
-			),
+			__('Save', 'notification'),
 			[$this, 'renderSaveMetabox'],
 			'notification',
 			'side',
@@ -293,10 +290,7 @@ class Screen
 	{
 		add_meta_box(
 			'notification_merge_tags',
-			__(
-				'Merge Tags',
-				'notification'
-			),
+			__('Merge Tags', 'notification'),
 			[$this, 'renderMergeTagsMetabox'],
 			'notification',
 			'side',
@@ -483,10 +477,7 @@ class Screen
 		$screen->add_help_tab(
 			[
 				'id' => 'notification_global_merge_tags',
-				'title' => __(
-					'Global Merge Tags',
-					'notification'
-				),
+				'title' => __('Global Merge Tags', 'notification'),
 				'content' => Templates::get(
 					'help/global-merge-tags',
 					[

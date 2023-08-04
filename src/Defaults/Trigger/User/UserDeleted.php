@@ -103,10 +103,7 @@ class UserDeleted extends UserTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'user_deleted_datetime',
-					'name' => __(
-						'User deletion time',
-						'notification'
-					),
+					'name' => __('User deletion time', 'notification'),
 				]
 			)
 		);

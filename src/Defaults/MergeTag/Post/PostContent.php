@@ -43,10 +43,7 @@ class PostContent extends StringTag
 				),
 				'name' => sprintf(
 				// translators: singular post name.
-					__(
-						'%s content',
-						'notification'
-					),
+					__('%s content', 'notification'),
 					$postTypeName
 				),
 				'description' => __(

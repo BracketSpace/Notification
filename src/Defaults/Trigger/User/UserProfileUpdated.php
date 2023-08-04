@@ -103,10 +103,7 @@ class UserProfileUpdated extends UserTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'user_profile_updated_datetime',
-					'name' => __(
-						'User profile update time',
-						'notification'
-					),
+					'name' => __('User profile update time', 'notification'),
 				]
 			)
 		);

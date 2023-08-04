@@ -36,19 +36,10 @@ class UserRole extends StringTag
 			$params,
 			[
 				'slug' => 'user_role',
-				'name' => __(
-					'User role',
-					'notification'
-				),
-				'description' => __(
-					'Subscriber',
-					'notification'
-				),
+				'name' => __('User role', 'notification'),
+				'description' => __('Subscriber', 'notification'),
 				'example' => true,
-				'group' => __(
-					'User',
-					'notification'
-				),
+				'group' => __('User', 'notification'),
 				'resolver' => function () {
 					$roles = array_map(
 						static function ($role) {

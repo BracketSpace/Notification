@@ -104,10 +104,7 @@ class UserLogin extends UserTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'user_logged_in_datetime',
-					'name' => __(
-						'User login time',
-						'notification'
-					),
+					'name' => __('User login time', 'notification'),
 				]
 			)
 		);
@@ -116,10 +113,7 @@ class UserLogin extends UserTrigger
 			new MergeTag\IPTag(
 				[
 					'slug' => 'user_IP',
-					'name' => __(
-						'User IP',
-						'notification'
-					),
+					'name' => __('User IP', 'notification'),
 					'description' => '127.0.0.1',
 					'example' => true,
 					'resolver' => static function ($trigger) {
@@ -136,10 +130,7 @@ class UserLogin extends UserTrigger
 						}
 						return '';
 					},
-					'group' => __(
-						'User',
-						'notification'
-					),
+					'group' => __('User', 'notification'),
 				]
 			)
 		);

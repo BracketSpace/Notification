@@ -43,16 +43,10 @@ class FeaturedImageId extends IntegerTag
 				),
 				'name' => sprintf(
 				// translators: singular post name.
-					__(
-						'%s featured image id',
-						'notification'
-					),
+					__('%s featured image id', 'notification'),
 					$postTypeName
 				),
-				'description' => __(
-					'123',
-					'notification'
-				),
+				'description' => __('123', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ($trigger) {

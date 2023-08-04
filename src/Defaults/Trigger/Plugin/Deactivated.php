@@ -88,10 +88,7 @@ class Deactivated extends PluginTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'plugin_deactivation_date_time',
-					'name' => __(
-						'Plugin deactivation date and time',
-						'notification'
-					),
+					'name' => __('Plugin deactivation date and time', 'notification'),
 				]
 			)
 		);

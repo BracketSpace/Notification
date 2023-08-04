@@ -41,35 +41,23 @@ class WebhookJson extends Abstracts\Carrier
 
 		$this->addRecipientsField(
 			[
-				'label' => __(
-					'URLs',
-					'notification'
-				),
+				'label' => __('URLs', 'notification'),
 				'name' => 'urls',
-				'add_button_label' => __(
-					'Add URL',
-					'notification'
-				),
+				'add_button_label' => __('Add URL', 'notification'),
 			]
 		);
 
 		$this->addFormField(
 			new Field\CodeEditorField(
 				[
-					'label' => __(
-						'JSON',
-						'notification'
-					),
+					'label' => __('JSON', 'notification'),
 					'name' => 'json',
 					'resolvable' => true,
 					'settings' => [
 						'mode' => 'application/json',
 						'lineNumbers' => true,
 					],
-					'description' => __(
-						'You can use merge tags',
-						'notification'
-					),
+					'description' => __('You can use merge tags', 'notification'),
 				]
 			)
 		);
@@ -81,55 +69,31 @@ class WebhookJson extends Abstracts\Carrier
 		$this->addFormField(
 			new Field\RepeaterField(
 				[
-					'label' => __(
-						'Headers',
-						'notification'
-					),
+					'label' => __('Headers', 'notification'),
 					'name' => 'headers',
-					'add_button_label' => __(
-						'Add header',
-						'notification'
-					),
+					'add_button_label' => __('Add header', 'notification'),
 					'fields' => [
 						new Field\CheckboxField(
 							[
-								'label' => __(
-									'Hide',
-									'notification-slack'
-								),
+								'label' => __('Hide', 'notification-slack'),
 								'name' => 'hide',
-								'checkbox_label' => __(
-									'Hide if empty value',
-									'notification'
-								),
+								'checkbox_label' => __('Hide if empty value', 'notification'),
 							]
 						),
 						new Field\InputField(
 							[
-								'label' => __(
-									'Key',
-									'notification'
-								),
+								'label' => __('Key', 'notification'),
 								'name' => 'key',
 								'resolvable' => true,
-								'description' => __(
-									'You can use merge tags',
-									'notification'
-								),
+								'description' => __('You can use merge tags', 'notification'),
 							]
 						),
 						new Field\InputField(
 							[
-								'label' => __(
-									'Value',
-									'notification'
-								),
+								'label' => __('Value', 'notification'),
 								'name' => 'value',
 								'resolvable' => true,
-								'description' => __(
-									'You can use merge tags',
-									'notification'
-								),
+								'description' => __('You can use merge tags', 'notification'),
 							]
 						),
 					],

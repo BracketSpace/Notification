@@ -30,10 +30,7 @@ class CommentPublished extends CommentTrigger
 				'slug' => 'comment/' . $commentType . '/published',
 				'name' => sprintf(
 				// Translators: %s comment type.
-					__(
-						'%s published',
-						'notification'
-					),
+					__('%s published', 'notification'),
 					WpObjectHelper::getCommentTypeName($commentType)
 				),
 				'comment_type' => $commentType,
@@ -49,10 +46,7 @@ class CommentPublished extends CommentTrigger
 		$this->setDescription(
 			sprintf(
 			// Translators: comment type.
-				__(
-					'Fires when new %s is published on the website. Includes comment replies.',
-					'notification'
-				),
+				__('Fires when new %s is published on the website. Includes comment replies.', 'notification'),
 				WpObjectHelper::getCommentTypeName($commentType)
 			)
 		);

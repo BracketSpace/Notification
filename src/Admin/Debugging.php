@@ -28,33 +28,21 @@ class Debugging
 	{
 
 		$debugging = $settings->addSection(
-			__(
-				'Debugging',
-				'notification'
-			),
+			__('Debugging', 'notification'),
 			'debugging'
 		);
 
 		$debugging->addGroup(
-			__(
-				'Settings',
-				'notification'
-			),
+			__('Settings', 'notification'),
 			'settings'
 		)
 			->addField(
 				[
-					'name' => __(
-						'Notification log',
-						'notification'
-					),
+					'name' => __('Notification log', 'notification'),
 					'slug' => 'debug_log',
 					'default' => false,
 					'addons' => [
-						'label' => __(
-							'Enable Notification logging',
-							'notification'
-						),
+						'label' => __('Enable Notification logging', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
@@ -62,17 +50,11 @@ class Debugging
 			)
 			->addField(
 				[
-					'name' => __(
-						'Suppress Notifications',
-						'notification'
-					),
+					'name' => __('Suppress Notifications', 'notification'),
 					'slug' => 'debug_suppressing',
 					'default' => 'true',
 					'addons' => [
-						'label' => __(
-							'Suppress Notifications while logging is active',
-							'notification'
-						),
+						'label' => __('Suppress Notifications while logging is active', 'notification'),
 					],
 					'description' => __(
 						'While suppressing is active, no notifications are sent',
@@ -84,17 +66,11 @@ class Debugging
 			)
 			->addField(
 				[
-					'name' => __(
-						'Error log',
-						'notification'
-					),
+					'name' => __('Error log', 'notification'),
 					'slug' => 'error_log',
 					'default' => false,
 					'addons' => [
-						'label' => __(
-							'Enable error logging',
-							'notification'
-						),
+						'label' => __('Enable error logging', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
@@ -102,10 +78,7 @@ class Debugging
 			)
 			->addField(
 				[
-					'name' => __(
-						'Clear',
-						'notification'
-					),
+					'name' => __('Clear', 'notification'),
 					'slug' => 'clear',
 					'default' => false,
 					'addons' => [
@@ -132,18 +105,12 @@ class Debugging
 			);
 
 		$debugging->addGroup(
-			__(
-				'Notification Log',
-				'notification'
-			),
+			__('Notification Log', 'notification'),
 			'notification_log'
 		)
 			->addField(
 				[
-					'name' => __(
-						'Log',
-						'notification'
-					),
+					'name' => __('Log', 'notification'),
 					'slug' => 'log',
 					'render' => [new SpecificFields\NotificationLog(), 'input'],
 					'sanitize' => '__return_null',
@@ -151,18 +118,12 @@ class Debugging
 			);
 
 		$debugging->addGroup(
-			__(
-				'Error Log',
-				'notification'
-			),
+			__('Error Log', 'notification'),
 			'error_log'
 		)
 			->addField(
 				[
-					'name' => __(
-						'Log',
-						'notification'
-					),
+					'name' => __('Log', 'notification'),
 					'slug' => 'log',
 					'render' => [new SpecificFields\ErrorLog(), 'input'],
 					'sanitize' => '__return_null',

@@ -110,22 +110,13 @@ class Updated extends ThemeTrigger
 			new MergeTag\StringTag(
 				[
 					'slug' => 'theme_previous_version',
-					'name' => __(
-						'Theme previous version',
-						'notification'
-					),
-					'description' => __(
-						'1.0.0',
-						'notification'
-					),
+					'name' => __('Theme previous version', 'notification'),
+					'description' => __('1.0.0', 'notification'),
 					'example' => true,
 					'resolver' => static function ($trigger) {
 						return $trigger->themePreviousVersion;
 					},
-					'group' => __(
-						'Theme',
-						'notification'
-					),
+					'group' => __('Theme', 'notification'),
 				]
 			)
 		);
@@ -134,10 +125,7 @@ class Updated extends ThemeTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'theme_update_date_time',
-					'name' => __(
-						'Theme update date and time',
-						'notification'
-					),
+					'name' => __('Theme update date and time', 'notification'),
 				]
 			)
 		);

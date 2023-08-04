@@ -120,20 +120,14 @@ class DataExported extends PrivacyTrigger
 			new MergeTag\UrlTag(
 				[
 					'slug' => 'archive_url',
-					'name' => __(
-						'User data archive URL',
-						'notification'
-					),
+					'name' => __('User data archive URL', 'notification'),
 					'description' => __(
 						//phpcs:ignore Generic.Files.LineLength.TooLong
 						'https://example.com/wp-content/uploads/wp-personal-data-exports/wp-personal-data-file-f3563fe4.zip',
 						'notification'
 					),
 					'example' => true,
-					'group' => __(
-						'Archive',
-						'notification'
-					),
+					'group' => __('Archive', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->archiveUrl;
 					},
@@ -145,19 +139,13 @@ class DataExported extends PrivacyTrigger
 			new MergeTag\StringTag(
 				[
 					'slug' => 'archive_pathname',
-					'name' => __(
-						'User data archive pathname',
-						'notification'
-					),
+					'name' => __('User data archive pathname', 'notification'),
 					'description' => __(
 						'/var/www/html/wp-content/uploads/wp-personal-data-exports/wp-personal-data-file-test.zip',
 						'notification'
 					),
 					'example' => true,
-					'group' => __(
-						'Archive',
-						'notification'
-					),
+					'group' => __('Archive', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->archivePath;
 					},
@@ -169,19 +157,13 @@ class DataExported extends PrivacyTrigger
 			new MergeTag\StringTag(
 				[
 					'slug' => 'html_report_pathname',
-					'name' => __(
-						'User data html report pathname',
-						'notification'
-					),
+					'name' => __('User data html report pathname', 'notification'),
 					'description' => __(
 						'/var/www/html/wp-content/uploads/wp-personal-data-exports/wp-personal-data-file-test.html',
 						'notification'
 					),
 					'example' => true,
-					'group' => __(
-						'Archive',
-						'notification'
-					),
+					'group' => __('Archive', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->htmlReportPath;
 					},
@@ -193,19 +175,13 @@ class DataExported extends PrivacyTrigger
 			new MergeTag\StringTag(
 				[
 					'slug' => 'json_report_pathname',
-					'name' => __(
-						'User data JSON report pathname',
-						'notification'
-					),
+					'name' => __('User data JSON report pathname', 'notification'),
 					'description' => __(
 						'/var/www/html/wp-content/uploads/wp-personal-data-exports/wp-personal-data-file-test.JSON',
 						'notification'
 					),
 					'example' => true,
-					'group' => __(
-						'Archive',
-						'notification'
-					),
+					'group' => __('Archive', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->jsonReportPathname;
 					},

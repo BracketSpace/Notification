@@ -43,16 +43,10 @@ class PostExcerpt extends StringTag
 				),
 				'name' => sprintf(
 				// translators: singular post name.
-					__(
-						'%s excerpt',
-						'notification'
-					),
+					__('%s excerpt', 'notification'),
 					$postTypeName
 				),
-				'description' => __(
-					'Welcome to WordPress...',
-					'notification'
-				),
+				'description' => __('Welcome to WordPress...', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ($trigger) {

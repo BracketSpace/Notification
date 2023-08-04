@@ -38,19 +38,10 @@ class TaxonomySlug extends StringTag
 					'%s_slug',
 					$params['tag_name'] ?? 'taxonomy'
 				),
-				'name' => __(
-					'Taxonomy slug',
-					'notification'
-				),
-				'description' => __(
-					'hello-world',
-					'notification'
-				),
+				'name' => __('Taxonomy slug', 'notification'),
+				'description' => __('hello-world', 'notification'),
 				'example' => true,
-				'group' => __(
-					'Taxonomy',
-					'notification'
-				),
+				'group' => __('Taxonomy', 'notification'),
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->name ?? '';
 				},

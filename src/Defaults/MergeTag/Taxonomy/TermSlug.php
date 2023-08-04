@@ -37,16 +37,10 @@ class TermSlug extends StringTag
 					'%s_slug',
 					$this->getTriggerProp()
 				),
-				'name' => __(
-					'Term slug',
-					'notification'
-				),
+				'name' => __('Term slug', 'notification'),
 				'description' => 'nature',
 				'example' => true,
-				'group' => __(
-					'Term',
-					'notification'
-				),
+				'group' => __('Term', 'notification'),
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->slug;
 				},

@@ -102,10 +102,7 @@ class UserLoginFailed extends UserTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'user_login_failed_datetime',
-					'name' => __(
-						'User login failed datetime',
-						'notification'
-					),
+					'name' => __('User login failed datetime', 'notification'),
 				]
 			)
 		);

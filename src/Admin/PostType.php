@@ -47,55 +47,22 @@ class PostType
 	public function register()
 	{
 		$labels = [
-			'name' => __(
-				'Notifications',
-				'notification'
-			),
-			'singular_name' => __(
-				'Notification',
-				'notification'
-			),
+			'name' => __('Notifications', 'notification'),
+			'singular_name' => __('Notification', 'notification'),
 			'add_new' => _x(
 				'Add New Notification',
 				'notification',
 				'notification'
 			),
-			'add_new_item' => __(
-				'Add New Notification',
-				'notification'
-			),
-			'edit_item' => __(
-				'Edit Notification',
-				'notification'
-			),
-			'new_item' => __(
-				'New Notification',
-				'notification'
-			),
-			'view_item' => __(
-				'View Notification',
-				'notification'
-			),
-			'search_items' => __(
-				'Search Notifications',
-				'notification'
-			),
-			'not_found' => __(
-				'No Notifications found',
-				'notification'
-			),
-			'not_found_in_trash' => __(
-				'No Notifications found in Trash',
-				'notification'
-			),
-			'parent_item_colon' => __(
-				'Parent Notification:',
-				'notification'
-			),
-			'menu_name' => __(
-				'Notifications',
-				'notification'
-			),
+			'add_new_item' => __('Add New Notification', 'notification'),
+			'edit_item' => __('Edit Notification', 'notification'),
+			'new_item' => __('New Notification', 'notification'),
+			'view_item' => __('View Notification', 'notification'),
+			'search_items' => __('Search Notifications', 'notification'),
+			'not_found' => __('No Notifications found', 'notification'),
+			'not_found_in_trash' => __('No Notifications found in Trash', 'notification'),
+			'parent_item_colon' => __('Parent Notification:', 'notification'),
+			'menu_name' => __('Notifications', 'notification'),
 		];
 
 		register_post_type(
@@ -153,25 +120,13 @@ class PostType
 	{
 		$messages['notification'] = [
 			'',
-			__(
-				'Notification updated.',
-				'notification'
-			),
+			__('Notification updated.', 'notification'),
 			'',
 			'',
-			__(
-				'Notification updated.',
-				'notification'
-			),
+			__('Notification updated.', 'notification'),
 			'',
-			__(
-				'Notification saved.',
-				'notification'
-			),
-			__(
-				'Notification saved.',
-				'notification'
-			),
+			__('Notification saved.', 'notification'),
+			__('Notification saved.', 'notification'),
 			'',
 			'',
 			'',
@@ -217,28 +172,16 @@ class PostType
 	{
 		if (isset($statuses['publish'])) {
 			$statuses['publish'] = str_replace(
-				__(
-					'Published',
-					'notification'
-				),
-				__(
-					'Active',
-					'notification'
-				),
+				__('Published', 'notification'),
+				__('Active', 'notification'),
 				$statuses['publish']
 			);
 		}
 
 		if (isset($statuses['draft'])) {
 			$statuses['draft'] = str_replace(
-				__(
-					'Draft',
-					'notification'
-				),
-				__(
-					'Disabled',
-					'notification'
-				),
+				__('Draft', 'notification'),
+				__('Disabled', 'notification'),
 				$statuses['draft']
 			);
 		}

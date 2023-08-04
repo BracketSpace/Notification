@@ -36,10 +36,7 @@ class PostType extends StringTag
 			$params,
 			[
 				'slug' => 'post_type',
-				'name' => __(
-					'Post Type',
-					'notification'
-				),
+				'name' => __('Post Type', 'notification'),
 				'description' => 'post',
 				'example' => true,
 				'group' => WpObjectHelper::getPostTypeName($this->getTriggerProp()),

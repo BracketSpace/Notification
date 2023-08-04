@@ -43,16 +43,10 @@ class FeaturedImageUrl extends UrlTag
 				),
 				'name' => sprintf(
 				// translators: singular post name.
-					__(
-						'%s featured image url',
-						'notification'
-					),
+					__('%s featured image url', 'notification'),
 					$postTypeName
 				),
-				'description' => __(
-					'https://example.com/wp-content/2019/01/image.jpg',
-					'notification'
-				),
+				'description' => __('https://example.com/wp-content/2019/01/image.jpg', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ($trigger) {

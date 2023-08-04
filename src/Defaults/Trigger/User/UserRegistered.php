@@ -88,10 +88,7 @@ class UserRegistered extends UserTrigger
 			new MergeTag\UrlTag(
 				[
 					'slug' => 'user_password_setup_link',
-					'name' => __(
-						'User password setup link',
-						'notification'
-					),
+					'name' => __('User password setup link', 'notification'),
 					'description' => network_site_url(
 						'wp-login.php?action=rp&key=37f62f1363b04df4370753037853fe88&login=userlogin',
 						'login'
@@ -109,10 +106,7 @@ class UserRegistered extends UserTrigger
 							'login'
 						);
 					},
-					'group' => __(
-						'User',
-						'notification'
-					),
+					'group' => __('User', 'notification'),
 				]
 			)
 		);

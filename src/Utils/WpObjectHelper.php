@@ -161,18 +161,9 @@ class WpObjectHelper
 				global $wpdb;
 
 				$commentTypes = [
-					'comment' => __(
-						'Comment',
-						'notification'
-					),
-					'pingback' => __(
-						'Pingback',
-						'notification'
-					),
-					'trackback' => __(
-						'Trackback',
-						'notification'
-					),
+					'comment' => __('Comment', 'notification'),
+					'pingback' => __('Pingback', 'notification'),
+					'trackback' => __('Trackback', 'notification'),
 				];
 
 				// There's no other way to get comment types and we're using the cache lib.

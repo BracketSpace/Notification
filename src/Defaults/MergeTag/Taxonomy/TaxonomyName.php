@@ -38,19 +38,10 @@ class TaxonomyName extends StringTag
 					'%s_name',
 					$params['tag_name'] ?? 'taxonomy'
 				),
-				'name' => __(
-					'Taxonomy name',
-					'notification'
-				),
-				'description' => __(
-					'Hello World',
-					'notification'
-				),
+				'name' => __('Taxonomy name', 'notification'),
+				'description' => __('Hello World', 'notification'),
 				'example' => true,
-				'group' => __(
-					'Taxonomy',
-					'notification'
-				),
+				'group' => __('Taxonomy', 'notification'),
 				'resolver' => function ($trigger) {
 
 					return $trigger->{$this->getTriggerProp()}->labels->singular_name ?? '';

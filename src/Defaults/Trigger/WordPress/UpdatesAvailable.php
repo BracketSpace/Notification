@@ -95,10 +95,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 			new MergeTag\HtmlTag(
 				[
 					'slug' => 'updates_list',
-					'name' => __(
-						'Updates list',
-						'notification'
-					),
+					'name' => __('Updates list', 'notification'),
 					'description' => __(
 						'The lists for core, plugins and themes updates.',
 						'notification'
@@ -130,10 +127,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 							$lists
 						);
 					},
-					'group' => __(
-						'WordPress',
-						'notification'
-					),
+					'group' => __('WordPress', 'notification'),
 				]
 			)
 		);
@@ -142,10 +136,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 			new MergeTag\IntegerTag(
 				[
 					'slug' => 'all_updates_count',
-					'name' => __(
-						'Number of all updates',
-						'notification'
-					),
+					'name' => __('Number of all updates', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->getUpdatesCount('all');
 					},
@@ -157,10 +148,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 			new MergeTag\IntegerTag(
 				[
 					'slug' => 'core_updates_count',
-					'name' => __(
-						'Number of core updates',
-						'notification'
-					),
+					'name' => __('Number of core updates', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->getUpdatesCount('core');
 					},
@@ -172,10 +160,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 			new MergeTag\IntegerTag(
 				[
 					'slug' => 'plugin_updates_count',
-					'name' => __(
-						'Number of plugin updates',
-						'notification'
-					),
+					'name' => __('Number of plugin updates', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->getUpdatesCount('plugin');
 					},
@@ -187,10 +172,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 			new MergeTag\IntegerTag(
 				[
 					'slug' => 'theme_updates_count',
-					'name' => __(
-						'Number of theme updates',
-						'notification'
-					),
+					'name' => __('Number of theme updates', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->getUpdatesCount('theme');
 					},
@@ -282,10 +264,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 		foreach ($updates as $update) {
 			$html .= '<li>' . sprintf(
 				// translators: 1. Update type, 2. Version.
-				__(
-					'<strong>WordPress</strong> <i>(%1$s)</i>: %2$s',
-					'notification'
-				),
+				__('<strong>WordPress</strong> <i>(%1$s)</i>: %2$s', 'notification'),
 				$update->response,
 				$update->version
 			) . '</li>';
@@ -315,10 +294,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 		foreach ($updates as $update) {
 			$html .= '<li>' . sprintf(
 				// translators: 1. Plugin name, 2. Current version, 3. Update version.
-				__(
-					'<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s',
-					'notification'
-				),
+				__('<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s', 'notification'),
 					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 					$update->Name,
 					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
@@ -352,10 +328,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 		foreach ($updates as $update) {
 			$html .= '<li>' . sprintf(
 				// translators: 1. Theme name, 2. Current version, 3. Update version.
-				__(
-					'<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s',
-					'notification'
-				),
+				__('<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s', 'notification'),
 					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 					$update->Name,
 					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps

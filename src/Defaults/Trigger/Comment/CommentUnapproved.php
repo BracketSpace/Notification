@@ -30,10 +30,7 @@ class CommentUnapproved extends CommentTrigger
 				'slug' => 'comment/' . $commentType . '/unapproved',
 				'name' => sprintf(
 				// Translators: %s comment type.
-					__(
-						'%s unapproved',
-						'notification'
-					),
+					__('%s unapproved', 'notification'),
 					WpObjectHelper::getCommentTypeName($commentType)
 				),
 				'comment_type' => $commentType,
@@ -49,10 +46,7 @@ class CommentUnapproved extends CommentTrigger
 		$this->setDescription(
 			sprintf(
 			// translators: comment type.
-				__(
-					'Fires when %s is marked as unapproved',
-					'notification'
-				),
+				__('Fires when %s is marked as unapproved', 'notification'),
 				WpObjectHelper::getCommentTypeName($commentType),
 				'notification'
 			)

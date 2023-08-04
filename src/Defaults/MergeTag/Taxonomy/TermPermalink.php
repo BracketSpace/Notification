@@ -37,16 +37,10 @@ class TermPermalink extends UrlTag
 					'%s_link',
 					$this->getTriggerProp()
 				),
-				'name' => __(
-					'Term link',
-					'notification'
-				),
+				'name' => __('Term link', 'notification'),
 				'description' => 'http://example.com/category/nature',
 				'example' => true,
-				'group' => __(
-					'Term',
-					'notification'
-				),
+				'group' => __('Term', 'notification'),
 				'resolver' => static function ($trigger) {
 					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 					return $trigger->term_permalink;

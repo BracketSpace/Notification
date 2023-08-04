@@ -96,10 +96,7 @@ class NotificationDuplicator
 			[
 				'post_title' => sprintf(
 					'(%s) %s',
-					__(
-						'Duplicate',
-						'notification'
-					),
+					__('Duplicate', 'notification'),
 					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 					$source->post_title
 				),

@@ -88,10 +88,7 @@ class Activated extends PluginTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'plugin_activation_date_time',
-					'name' => __(
-						'Plugin activation date and time',
-						'notification'
-					),
+					'name' => __('Plugin activation date and time', 'notification'),
 				]
 			)
 		);

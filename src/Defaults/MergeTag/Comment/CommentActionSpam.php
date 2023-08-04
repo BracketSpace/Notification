@@ -48,18 +48,12 @@ class CommentActionSpam extends UrlTag
 				'slug' => 'comment_spam_action_url',
 				'name' => sprintf(
 				// Translators: Comment type name.
-					__(
-						'%s mark as spam URL',
-						'notification'
-					),
+					__('%s mark as spam URL', 'notification'),
 					$commentTypeName
 				),
 				'group' => sprintf(
 				// Translators: comment type actions text.
-					__(
-						'%s actions',
-						'notification'
-					),
+					__('%s actions', 'notification'),
 					$commentTypeName
 				),
 				'resolver' => function ($trigger) {

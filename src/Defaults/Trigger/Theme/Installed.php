@@ -97,10 +97,7 @@ class Installed extends ThemeTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'theme_installation_date_time',
-					'name' => __(
-						'Theme installation date and time',
-						'notification'
-					),
+					'name' => __('Theme installation date and time', 'notification'),
 				]
 			)
 		);

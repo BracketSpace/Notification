@@ -30,10 +30,7 @@ class CommentSpammed extends CommentTrigger
 				'slug' => 'comment/' . $commentType . '/spammed',
 				'name' => sprintf(
 				// Translators: %s comment type.
-					__(
-						'%s spammed',
-						'notification'
-					),
+					__('%s spammed', 'notification'),
 					WpObjectHelper::getCommentTypeName($commentType)
 				),
 				'comment_type' => $commentType,
@@ -49,10 +46,7 @@ class CommentSpammed extends CommentTrigger
 		$this->setDescription(
 			sprintf(
 			// translators: comment type.
-				__(
-					'Fires when %s is marked as spam',
-					'notification'
-				),
+				__('Fires when %s is marked as spam', 'notification'),
 				WpObjectHelper::getCommentTypeName($commentType)
 			)
 		);

@@ -48,20 +48,14 @@ class CommentAuthorUserAgent extends StringTag
 				'slug' => 'comment_author_user_agent',
 				'name' => sprintf(
 				// Translators: Comment type name.
-					__(
-						'%s author user browser agent',
-						'notification'
-					),
+					__('%s author user browser agent', 'notification'),
 					$commentTypeName
 				),
 				'description' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
 				'example' => true,
 				'group' => sprintf(
 				// Translators: comment type author.
-					__(
-						'%s author',
-						'notification'
-					),
+					__('%s author', 'notification'),
 					$commentTypeName
 				),
 				'resolver' => function ($trigger) {
