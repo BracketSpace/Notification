@@ -41,7 +41,7 @@ class FloatTag extends MergeTag
 	/**
 	 * Sanitizes the merge tag value
 	 *
-	 * @param mixed $value value.
+	 * @param string $value value.
 	 * @return mixed
 	 */
 	public function sanitize($value)

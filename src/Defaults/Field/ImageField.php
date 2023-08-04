@@ -49,7 +49,7 @@ class ImageField extends Field
 	/**
 	 * Sanitizes the value sent by user
 	 *
-	 * @param mixed $value value to sanitize.
+	 * @param string $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
 	public function sanitize($value)
