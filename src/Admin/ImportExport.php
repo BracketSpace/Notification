@@ -215,6 +215,10 @@ class ImportExport
 			$_FILES[0]['tmp_name'],
 			'rb'
 		);
+
+		if ( !$file ) wp_send_json_error('Can\'t read the file.');
+
+
 		$json = fread(
 			$file,
 			filesize($_FILES[0]['tmp_name'])
