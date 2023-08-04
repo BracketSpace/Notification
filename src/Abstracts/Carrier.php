@@ -215,12 +215,12 @@ abstract class Carrier implements Interfaces\Sendable
 	/**
 	 * Adds form field to collection
 	 *
-	 * @param \BracketSpace\Notification\Interfaces\Fillable $field Field object.
+	 * @param \BracketSpace\Notification\Abstracts\Field $field Field object.
 	 * @return $this
 	 * @throws \Exception When restricted name is used.
 	 * @since  6.0.0 Added restricted field check.
 	 */
-	public function addFormField(Interfaces\Fillable $field)
+	public function addFormField(\BracketSpace\Notification\Abstracts\Field $field)
 	{
 
 		if (
