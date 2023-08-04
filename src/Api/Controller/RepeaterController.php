@@ -192,7 +192,10 @@ class RepeaterController
 	 */
 	public function parseParams($params)
 	{
-		$this->postId = intval($params['id']);
+		/** @var int $id */
+		$id = $params['id'];
+
+		$this->postId = intval($id);
 		$this->carrier = $params['fieldCarrier'];
 		$this->field = $params['fieldType'];
 	}
