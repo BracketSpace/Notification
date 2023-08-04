@@ -189,8 +189,8 @@ class SectionRepeater extends Field
 				 '</div>
 				  </template>';
 
-		$html .= '<a 
-		href="#" 
+		$html .= '<a
+		href="#"
 		class="button button-secondary add-new-repeater-field add-new-sections-field"
 		@click="addSection">';
 		$html .= esc_html($this->addButtonLabel);
@@ -248,7 +248,7 @@ class SectionRepeater extends Field
 	public function sanitize($value)
 	{
 
-		if (empty($value)) {
+		if (empty($value) || !is_array($value)) {
 			return [];
 		}
 
