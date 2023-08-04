@@ -141,10 +141,7 @@ abstract class Trigger implements Triggerable
 	public function addAction($tag, $priority = 10, $acceptedArgs = 1)
 	{
 		if (empty($tag)) {
-			trigger_error(
-				'Action tag cannot be empty',
-				E_USER_ERROR
-			);
+			trigger_error('Action tag cannot be empty', E_USER_ERROR);
 		}
 
 		array_push(
@@ -169,10 +166,7 @@ abstract class Trigger implements Triggerable
 	{
 
 		if (empty($tag)) {
-			trigger_error(
-				'Action tag cannot be empty',
-				E_USER_ERROR
-			);
+			trigger_error('Action tag cannot be empty', E_USER_ERROR);
 		}
 
 		foreach ($this->actions as $actionIndex => $action) {

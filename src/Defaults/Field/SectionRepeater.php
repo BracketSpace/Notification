@@ -97,17 +97,11 @@ class SectionRepeater extends Field
 	{
 
 		if (!isset($params['sections'])) {
-			trigger_error(
-				'SectionsRepeater requires sections param',
-				E_USER_ERROR
-			);
+			trigger_error('SectionsRepeater requires sections param', E_USER_ERROR);
 		}
 
 		if (!isset($params['section_labels'])) {
-			trigger_error(
-				'SectionsRepeater requires section labels param',
-				E_USER_ERROR
-			);
+			trigger_error('SectionsRepeater requires section labels param', E_USER_ERROR);
 		}
 
 		$this->sections = $params['sections'];

@@ -210,10 +210,7 @@ function notificationRegisterSettings($callback, $priority = 10)
 {
 
 	if (!is_callable($callback)) {
-		trigger_error(
-			'You have to pass callable while registering the settings',
-			E_USER_ERROR
-		);
+		trigger_error('You have to pass callable while registering the settings', E_USER_ERROR);
 	}
 
 	add_action(

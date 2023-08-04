@@ -34,10 +34,7 @@ class NonceField extends Field
 	{
 
 		if (!isset($params['nonce_key'])) {
-			trigger_error(
-				'NonceField requires nonce_key param',
-				E_USER_ERROR
-			);
+			trigger_error('NonceField requires nonce_key param', E_USER_ERROR);
 		}
 
 		$this->nonceKey = $params['nonce_key'];

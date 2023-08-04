@@ -32,10 +32,7 @@ class SectionsField extends InputField
 	{
 
 		if (!isset($params['sections'])) {
-			trigger_error(
-				'SectionsField requires sections param',
-				E_USER_ERROR
-			);
+			trigger_error('SectionsField requires sections param', E_USER_ERROR);
 		}
 
 		$this->sections = $params['sections'];

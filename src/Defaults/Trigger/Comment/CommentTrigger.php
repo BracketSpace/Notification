@@ -91,10 +91,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 	{
 
 		if (!isset($params['comment_type'], $params['slug'], $params['name'])) {
-			trigger_error(
-				'CommentTrigger requires comment_type, slug and name params.',
-				E_USER_ERROR
-			);
+			trigger_error('CommentTrigger requires comment_type, slug and name params.', E_USER_ERROR);
 		}
 
 		$this->commentType = $params['comment_type'];

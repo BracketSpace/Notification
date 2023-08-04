@@ -109,10 +109,7 @@ abstract class Field implements Interfaces\Fillable
 	{
 
 		if (!isset($params['label'], $params['name'])) {
-			trigger_error(
-				'Field requires label and name',
-				E_USER_ERROR
-			);
+			trigger_error('Field requires label and name', E_USER_ERROR);
 		}
 
 		$this->fieldTypeHtml = substr(
