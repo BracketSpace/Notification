@@ -209,7 +209,7 @@ abstract class Carrier implements Interfaces\Sendable
 	 */
 	public function hash()
 	{
-		return md5(wp_json_encode($this));
+		return md5((string) wp_json_encode($this));
 	}
 
 	/**
