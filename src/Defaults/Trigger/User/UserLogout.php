@@ -105,10 +105,7 @@ class UserLogout extends UserTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'user_logout_datetime',
-					'name' => __(
-						'User logout time',
-						'notification'
-					),
+					'name' => __('User logout time', 'notification'),
 				]
 			)
 		);

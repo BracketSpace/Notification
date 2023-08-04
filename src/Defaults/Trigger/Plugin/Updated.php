@@ -106,10 +106,7 @@ class Updated extends PluginTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'plugin_update_date_time',
-					'name' => __(
-						'Plugin update date and time',
-						'notification'
-					),
+					'name' => __('Plugin update date and time', 'notification'),
 				]
 			)
 		);
@@ -118,22 +115,13 @@ class Updated extends PluginTrigger
 			new MergeTag\StringTag(
 				[
 					'slug' => 'plugin_previous_version',
-					'name' => __(
-						'Plugin previous version',
-						'notification'
-					),
-					'description' => __(
-						'1.0.0',
-						'notification'
-					),
+					'name' => __('Plugin previous version', 'notification'),
+					'description' => __('1.0.0', 'notification'),
 					'example' => true,
 					'resolver' => static function ($trigger) {
 						return $trigger->previousVersion;
 					},
-					'group' => __(
-						'Plugin',
-						'notification'
-					),
+					'group' => __('Plugin', 'notification'),
 				]
 			)
 		);

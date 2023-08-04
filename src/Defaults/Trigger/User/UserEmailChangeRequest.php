@@ -126,10 +126,7 @@ class UserEmailChangeRequest extends UserTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'user_email_change_datetime',
-					'name' => __(
-						'User email change time',
-						'notification'
-					),
+					'name' => __('User email change time', 'notification'),
 				]
 			)
 		);
@@ -138,17 +135,11 @@ class UserEmailChangeRequest extends UserTrigger
 			new MergeTag\EmailTag(
 				[
 					'slug' => 'new_email',
-					'name' => __(
-						'New email address',
-						'notification'
-					),
+					'name' => __('New email address', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->newUserEmail;
 					},
-					'group' => __(
-						'User',
-						'notification'
-					),
+					'group' => __('User', 'notification'),
 				]
 			)
 		);
@@ -157,17 +148,11 @@ class UserEmailChangeRequest extends UserTrigger
 			new MergeTag\UrlTag(
 				[
 					'slug' => 'confirmation_url',
-					'name' => __(
-						'Email change confirmation url',
-						'notification'
-					),
+					'name' => __('Email change confirmation url', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->confirmationUrl;
 					},
-					'group' => __(
-						'Site',
-						'notification'
-					),
+					'group' => __('Site', 'notification'),
 				]
 			)
 		);

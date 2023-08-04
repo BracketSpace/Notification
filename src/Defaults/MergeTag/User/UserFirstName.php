@@ -36,19 +36,10 @@ class UserFirstName extends StringTag
 			$params,
 			[
 				'slug' => 'user_first_name',
-				'name' => __(
-					'User first name',
-					'notification'
-				),
-				'description' => __(
-					'John',
-					'notification'
-				),
+				'name' => __('User first name', 'notification'),
+				'description' => __('John', 'notification'),
 				'example' => true,
-				'group' => __(
-					'User',
-					'notification'
-				),
+				'group' => __('User', 'notification'),
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->first_name;
 				},

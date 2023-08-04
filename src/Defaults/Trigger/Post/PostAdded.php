@@ -54,10 +54,7 @@ class PostAdded extends PostTrigger
 	{
 		return sprintf(
 		// translators: singular post name.
-			__(
-				'%s added',
-				'notification'
-			),
+			__('%s added', 'notification'),
 			WpObjectHelper::getPostTypeName($this->postType)
 		);
 	}

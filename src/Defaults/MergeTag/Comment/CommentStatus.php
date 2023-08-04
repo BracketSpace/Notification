@@ -48,16 +48,10 @@ class CommentStatus extends StringTag
 				'slug' => 'comment_status',
 				'name' => sprintf(
 				// Translators: Comment type name.
-					__(
-						'%s status',
-						'notification'
-					),
+					__('%s status', 'notification'),
 					$commentTypeName
 				),
-				'description' => __(
-					'Approved',
-					'notification'
-				),
+				'description' => __('Approved', 'notification'),
 				'example' => true,
 				'group' => $commentTypeName,
 				'resolver' => function ($trigger) {

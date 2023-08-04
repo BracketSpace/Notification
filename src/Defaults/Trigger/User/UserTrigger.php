@@ -77,10 +77,7 @@ abstract class UserTrigger extends Abstracts\Trigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'user_registered_datetime',
-					'name' => __(
-						'User registration date',
-						'notification'
-					),
+					'name' => __('User registration date', 'notification'),
 				]
 			)
 		);

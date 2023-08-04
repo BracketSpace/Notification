@@ -43,10 +43,7 @@ class PostID extends IntegerTag
 				),
 				'name' => sprintf(
 				// translators: singular post name.
-					__(
-						'%s ID',
-						'notification'
-					),
+					__('%s ID', 'notification'),
 					$postTypeName
 				),
 				'description' => '35',

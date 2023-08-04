@@ -36,19 +36,10 @@ class UserNicename extends StringTag
 			$params,
 			[
 				'slug' => 'user_nicename',
-				'name' => __(
-					'User nicename',
-					'notification'
-				),
-				'description' => __(
-					'Johhnie',
-					'notification'
-				),
+				'name' => __('User nicename', 'notification'),
+				'description' => __('Johhnie', 'notification'),
 				'example' => true,
-				'group' => __(
-					'User',
-					'notification'
-				),
+				'group' => __('User', 'notification'),
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->user_nicename;
 				},

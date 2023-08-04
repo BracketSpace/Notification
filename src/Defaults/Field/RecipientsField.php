@@ -44,15 +44,9 @@ class RecipientsField extends RepeaterField
 			$params,
 			[
 				'carrier' => '',
-				'label' => __(
-					'Recipients',
-					'notification'
-				),
+				'label' => __('Recipients', 'notification'),
 				'name' => 'recipients',
-				'add_button_label' => __(
-					'Add recipient',
-					'notification'
-				),
+				'add_button_label' => __('Add recipient', 'notification'),
 				'css_class' => '',
 			]
 		);
@@ -80,10 +74,7 @@ class RecipientsField extends RepeaterField
 			$params['fields'] = [
 				new SelectField(
 					[
-						'label' => __(
-							'Type',
-							'notification'
-						),
+						'label' => __('Type', 'notification'),
 						'name' => 'type',
 						'css_class' => 'recipient-type',
 						'options' => $recipientTypes,

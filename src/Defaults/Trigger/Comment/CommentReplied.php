@@ -45,10 +45,7 @@ class CommentReplied extends CommentTrigger
 				'slug' => 'comment/' . $commentType . '/replied',
 				'name' => sprintf(
 				// Translators: %s comment type.
-					__(
-						'%s replied',
-						'notification'
-					),
+					__('%s replied', 'notification'),
 					WpObjectHelper::getCommentTypeName($commentType)
 				),
 				'comment_type' => $commentType,
@@ -69,10 +66,7 @@ class CommentReplied extends CommentTrigger
 		$this->setDescription(
 			sprintf(
 			// translators: comment type.
-				__(
-					'Fires when %s is replied and the reply is approved',
-					'notification'
-				),
+				__('Fires when %s is replied and the reply is approved', 'notification'),
 				WpObjectHelper::getCommentTypeName($commentType)
 			)
 		);
@@ -170,15 +164,9 @@ class CommentReplied extends CommentTrigger
 			new MergeTag\Comment\CommentID(
 				[
 					'slug' => 'parent_comment_ID',
-					'name' => __(
-						'Parent comment ID',
-						'notification'
-					),
+					'name' => __('Parent comment ID', 'notification'),
 					'property_name' => 'parent_comment',
-					'group' => __(
-						'Parent comment',
-						'notification'
-					),
+					'group' => __('Parent comment', 'notification'),
 				]
 			)
 		);
@@ -187,15 +175,9 @@ class CommentReplied extends CommentTrigger
 			new MergeTag\Comment\CommentContent(
 				[
 					'slug' => 'parent_comment_content',
-					'name' => __(
-						'Parent comment content',
-						'notification'
-					),
+					'name' => __('Parent comment content', 'notification'),
 					'property_name' => 'parent_comment',
-					'group' => __(
-						'Parent comment',
-						'notification'
-					),
+					'group' => __('Parent comment', 'notification'),
 				]
 			)
 		);
@@ -204,15 +186,9 @@ class CommentReplied extends CommentTrigger
 			new MergeTag\Comment\CommentStatus(
 				[
 					'slug' => 'parent_comment_status',
-					'name' => __(
-						'Parent comment status',
-						'notification'
-					),
+					'name' => __('Parent comment status', 'notification'),
 					'property_name' => 'parent_comment',
-					'group' => __(
-						'Parent comment',
-						'notification'
-					),
+					'group' => __('Parent comment', 'notification'),
 				]
 			)
 		);
@@ -221,15 +197,9 @@ class CommentReplied extends CommentTrigger
 			new MergeTag\Comment\CommentType(
 				[
 					'slug' => 'parent_comment_type',
-					'name' => __(
-						'Parent comment type',
-						'notification'
-					),
+					'name' => __('Parent comment type', 'notification'),
 					'property_name' => 'parent_comment',
-					'group' => __(
-						'Parent comment',
-						'notification'
-					),
+					'group' => __('Parent comment', 'notification'),
 				]
 			)
 		);
@@ -239,15 +209,9 @@ class CommentReplied extends CommentTrigger
 			new MergeTag\Comment\CommentAuthorIP(
 				[
 					'slug' => 'parent_comment_author_IP',
-					'name' => __(
-						'Parent comment author IP',
-						'notification'
-					),
+					'name' => __('Parent comment author IP', 'notification'),
 					'property_name' => 'parent_comment',
-					'group' => __(
-						'Parent comment author',
-						'notification'
-					),
+					'group' => __('Parent comment author', 'notification'),
 				]
 			)
 		);
@@ -256,15 +220,9 @@ class CommentReplied extends CommentTrigger
 			new MergeTag\Comment\CommentAuthorUserAgent(
 				[
 					'slug' => 'parent_comment_user_agent',
-					'name' => __(
-						'Parent comment user agent',
-						'notification'
-					),
+					'name' => __('Parent comment user agent', 'notification'),
 					'property_name' => 'parent_comment',
-					'group' => __(
-						'Parent comment author',
-						'notification'
-					),
+					'group' => __('Parent comment author', 'notification'),
 				]
 			)
 		);
@@ -273,15 +231,9 @@ class CommentReplied extends CommentTrigger
 			new MergeTag\Comment\CommentAuthorUrl(
 				[
 					'slug' => 'parent_comment_author_url',
-					'name' => __(
-						'Parent comment author URL',
-						'notification'
-					),
+					'name' => __('Parent comment author URL', 'notification'),
 					'property_name' => 'parent_comment',
-					'group' => __(
-						'Parent comment author',
-						'notification'
-					),
+					'group' => __('Parent comment author', 'notification'),
 				]
 			)
 		);
@@ -290,15 +242,9 @@ class CommentReplied extends CommentTrigger
 			new MergeTag\User\UserID(
 				[
 					'slug' => 'parent_comment_author_user_ID',
-					'name' => __(
-						'Parent comment author user ID',
-						'notification'
-					),
+					'name' => __('Parent comment author user ID', 'notification'),
 					'property_name' => 'parent_comment_user_object',
-					'group' => __(
-						'Parent comment author',
-						'notification'
-					),
+					'group' => __('Parent comment author', 'notification'),
 				]
 			)
 		);
@@ -307,15 +253,9 @@ class CommentReplied extends CommentTrigger
 			new MergeTag\User\UserEmail(
 				[
 					'slug' => 'parent_comment_author_user_email',
-					'name' => __(
-						'Parent comment author user email',
-						'notification'
-					),
+					'name' => __('Parent comment author user email', 'notification'),
 					'property_name' => 'parent_comment_user_object',
-					'group' => __(
-						'Parent comment author',
-						'notification'
-					),
+					'group' => __('Parent comment author', 'notification'),
 				]
 			)
 		);
@@ -324,15 +264,9 @@ class CommentReplied extends CommentTrigger
 			new MergeTag\User\UserDisplayName(
 				[
 					'slug' => 'parent_comment_author_user_display_name',
-					'name' => __(
-						'Parent comment author user display name',
-						'notification'
-					),
+					'name' => __('Parent comment author user display name', 'notification'),
 					'property_name' => 'parent_comment_user_object',
-					'group' => __(
-						'Parent comment author',
-						'notification'
-					),
+					'group' => __('Parent comment author', 'notification'),
 				]
 			)
 		);
@@ -341,15 +275,9 @@ class CommentReplied extends CommentTrigger
 			new MergeTag\User\Avatar(
 				[
 					'slug' => 'parent_comment_author_user_avatar',
-					'name' => __(
-						'Parent comment author user avatar',
-						'notification'
-					),
+					'name' => __('Parent comment author user avatar', 'notification'),
 					'property_name' => 'parent_comment_user_object',
-					'group' => __(
-						'Parent comment author',
-						'notification'
-					),
+					'group' => __('Parent comment author', 'notification'),
 				]
 			)
 		);
@@ -358,15 +286,9 @@ class CommentReplied extends CommentTrigger
 			new MergeTag\User\AvatarUrl(
 				[
 					'slug' => 'parent_comment_author_user_avatar_url',
-					'name' => __(
-						'Parent comment author user avatar url',
-						'notification'
-					),
+					'name' => __('Parent comment author user avatar url', 'notification'),
 					'property_name' => 'parent_comment_user_object',
-					'group' => __(
-						'Parent comment author',
-						'notification'
-					),
+					'group' => __('Parent comment author', 'notification'),
 				]
 			)
 		);

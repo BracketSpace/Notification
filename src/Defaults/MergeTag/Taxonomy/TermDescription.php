@@ -37,16 +37,10 @@ class TermDescription extends StringTag
 					'%s_description',
 					$this->getTriggerProp()
 				),
-				'name' => __(
-					'Term description',
-					'notification'
-				),
+				'name' => __('Term description', 'notification'),
 				'description' => 'Lorem ipsum sit dolor amet',
 				'example' => true,
-				'group' => __(
-					'Term',
-					'notification'
-				),
+				'group' => __('Term', 'notification'),
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->description;
 				},

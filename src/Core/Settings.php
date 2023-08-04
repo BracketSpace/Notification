@@ -83,10 +83,7 @@ class Settings extends SettingsAPI
 
 		$this->pageHook = (string)add_submenu_page(
 			$parentHook,
-			__(
-				'Notification settings',
-				'notification'
-			),
+			__('Notification settings', 'notification'),
 			$pageMenuLabel,
 			'manage_options',
 			'settings',

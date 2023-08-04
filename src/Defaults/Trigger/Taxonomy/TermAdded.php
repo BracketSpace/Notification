@@ -57,10 +57,7 @@ class TermAdded extends TermTrigger
 	{
 		return sprintf(
 		// Translators: taxonomy name.
-			__(
-				'%s term created',
-				'notification'
-			),
+			__('%s term created', 'notification'),
 			$this->taxonomy->labels->singular_name ?? ''
 		);
 	}
@@ -74,10 +71,7 @@ class TermAdded extends TermTrigger
 	{
 		return sprintf(
 		// Translators: 1. taxonomy name, 2. taxonomy slug.
-			__(
-				'Fires when %1$s (%2$s) is created',
-				'notification'
-			),
+			__('Fires when %1$s (%2$s) is created', 'notification'),
 			$this->taxonomy->labels->singular_name ?? '',
 			$this->taxonomy->name ?? ''
 		);
@@ -126,14 +120,8 @@ class TermAdded extends TermTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'term_creation_datetime',
-					'name' => __(
-						'Term creation date and time',
-						'notification'
-					),
-					'group' => __(
-						'Term',
-						'notification'
-					),
+					'name' => __('Term creation date and time', 'notification'),
+					'group' => __('Term', 'notification'),
 				]
 			)
 		);

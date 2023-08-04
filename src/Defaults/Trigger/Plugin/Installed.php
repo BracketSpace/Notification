@@ -94,10 +94,7 @@ class Installed extends PluginTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'plugin_installation_date_time',
-					'name' => __(
-						'Plugin installation date and time',
-						'notification'
-					),
+					'name' => __('Plugin installation date and time', 'notification'),
 				]
 			)
 		);

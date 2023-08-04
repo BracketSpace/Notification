@@ -48,16 +48,10 @@ class CommentIsReply extends StringTag
 				'slug' => 'comment_is_reply',
 				'name' => sprintf(
 				// Translators: Comment type name.
-					__(
-						'Is %s a reply?',
-						'notification'
-					),
+					__('Is %s a reply?', 'notification'),
 					$commentTypeName
 				),
-				'description' => __(
-					'Yes or No',
-					'notification'
-				),
+				'description' => __('Yes or No', 'notification'),
 				'example' => true,
 				'group' => $commentTypeName,
 				'resolver' => function ($trigger) {

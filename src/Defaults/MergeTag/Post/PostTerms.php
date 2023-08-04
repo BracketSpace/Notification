@@ -57,10 +57,7 @@ class PostTerms extends StringTag
 				),
 				'name' => sprintf(
 				// translators: 1. Post Type 2. Taxonomy name.
-					__(
-						'%1$s %2$s',
-						'notification'
-					),
+					__('%1$s %2$s', 'notification'),
 					$postTypeName,
 					$this->taxonomy->label
 				),

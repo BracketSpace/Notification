@@ -28,10 +28,7 @@ class Administrator extends Abstracts\Recipient
 		parent::__construct(
 			[
 				'slug' => 'administrator',
-				'name' => __(
-					'Administrator',
-					'notification'
-				),
+				'name' => __('Administrator', 'notification'),
 				'default_value' => get_option('admin_email'),
 			]
 		);
@@ -63,20 +60,14 @@ class Administrator extends Abstracts\Recipient
 
 		return new Field\InputField(
 			[
-				'label' => __(
-					'Recipient',
-					'notification'
-				), // don't edit this!
+				'label' => __('Recipient', 'notification'), // don't edit this!
 				'name' => 'recipient',                       // don't edit this!
 				'css_class' => 'recipient-value',                 // don't edit this!
 				'value' => $this->getDefaultValue(),
 				'placeholder' => $this->getDefaultValue(),
 				'description' => sprintf(
 				// Translators: %s settings URL.
-					__(
-						'You can edit this email in <a href="%s">General Settings</a>',
-						'notification'
-					),
+					__('You can edit this email in <a href="%s">General Settings</a>', 'notification'),
 					admin_url('options-general.php')
 				),
 				'disabled' => true,

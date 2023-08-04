@@ -48,16 +48,10 @@ class CommentContentHtml extends HtmlTag
 				'slug' => 'comment_content_html',
 				'name' => sprintf(
 				// Translators: Comment type name.
-					__(
-						'%s HTML content',
-						'notification'
-					),
+					__('%s HTML content', 'notification'),
 					$commentTypeName
 				),
-				'description' => __(
-					'Great post!',
-					'notification'
-				),
+				'description' => __('Great post!', 'notification'),
 				'example' => true,
 				'group' => $commentTypeName,
 				'resolver' => function ($trigger) {

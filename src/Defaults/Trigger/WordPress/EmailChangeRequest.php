@@ -123,10 +123,7 @@ class EmailChangeRequest extends Abstracts\Trigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'site_email_change_datetime',
-					'name' => __(
-						'Site email change time',
-						'notification'
-					),
+					'name' => __('Site email change time', 'notification'),
 				]
 			)
 		);
@@ -135,17 +132,11 @@ class EmailChangeRequest extends Abstracts\Trigger
 			new MergeTag\StringTag(
 				[
 					'slug' => 'admin_login',
-					'name' => __(
-						'Admin login',
-						'notification'
-					),
+					'name' => __('Admin login', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->userLogin;
 					},
-					'group' => __(
-						'Site',
-						'notification'
-					),
+					'group' => __('Site', 'notification'),
 				]
 			)
 		);
@@ -154,17 +145,11 @@ class EmailChangeRequest extends Abstracts\Trigger
 			new MergeTag\EmailTag(
 				[
 					'slug' => 'new_email',
-					'name' => __(
-						'New email address',
-						'notification'
-					),
+					'name' => __('New email address', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->newAdminEmail;
 					},
-					'group' => __(
-						'Site',
-						'notification'
-					),
+					'group' => __('Site', 'notification'),
 				]
 			)
 		);
@@ -173,17 +158,11 @@ class EmailChangeRequest extends Abstracts\Trigger
 			new MergeTag\UrlTag(
 				[
 					'slug' => 'confirmation_url',
-					'name' => __(
-						'Email change confirmation url',
-						'notification'
-					),
+					'name' => __('Email change confirmation url', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->confirmationUrl;
 					},
-					'group' => __(
-						'Site',
-						'notification'
-					),
+					'group' => __('Site', 'notification'),
 				]
 			)
 		);
@@ -192,17 +171,11 @@ class EmailChangeRequest extends Abstracts\Trigger
 			new MergeTag\UrlTag(
 				[
 					'slug' => 'site_url',
-					'name' => __(
-						'Site url',
-						'notification'
-					),
+					'name' => __('Site url', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->siteUrl;
 					},
-					'group' => __(
-						'Site',
-						'notification'
-					),
+					'group' => __('Site', 'notification'),
 				]
 			)
 		);

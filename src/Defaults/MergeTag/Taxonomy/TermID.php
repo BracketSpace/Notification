@@ -37,16 +37,10 @@ class TermID extends IntegerTag
 					'%s_ID',
 					$this->getTriggerProp()
 				),
-				'name' => __(
-					'Term ID',
-					'notification'
-				),
+				'name' => __('Term ID', 'notification'),
 				'description' => '35',
 				'example' => true,
-				'group' => __(
-					'Term',
-					'notification'
-				),
+				'group' => __('Term', 'notification'),
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->term_id;
 				},

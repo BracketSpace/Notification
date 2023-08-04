@@ -48,18 +48,12 @@ class CommentActionTrash extends UrlTag
 				'slug' => 'comment_trash_action_url',
 				'name' => sprintf(
 				// Translators: Comment type name.
-					__(
-						'%s trash URL',
-						'notification'
-					),
+					__('%s trash URL', 'notification'),
 					$commentTypeName
 				),
 				'group' => sprintf(
 				// Translators: comment type actions text.
-					__(
-						'%s actions',
-						'notification'
-					),
+					__('%s actions', 'notification'),
 					$commentTypeName
 				),
 				'resolver' => function ($trigger) {

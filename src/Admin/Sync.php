@@ -33,17 +33,11 @@ class Sync
 	{
 
 		$importExport = $settings->addSection(
-			__(
-				'Import / Export',
-				'notification'
-			),
+			__('Import / Export', 'notification'),
 			'import_export'
 		);
 		$syncGroup = $importExport->addGroup(
-			__(
-				'Synchronization',
-				'notification'
-			),
+			__('Synchronization', 'notification'),
 			'sync'
 		);
 
@@ -51,10 +45,7 @@ class Sync
 
 		$syncGroup->addField(
 			[
-				'name' => __(
-					'Actions',
-					'notification'
-				),
+				'name' => __('Actions', 'notification'),
 				'slug' => 'actions',
 				'addons' => [
 					'message' => [$this, 'templateActions'],
@@ -71,10 +62,7 @@ class Sync
 
 		$syncGroup->addField(
 			[
-				'name' => __(
-					'Notifications',
-					'notification'
-				),
+				'name' => __('Notifications', 'notification'),
 				'slug' => 'notifications',
 				'render' => [new SpecificFields\SyncTable(), 'input'],
 				'sanitize' => '__return_null',

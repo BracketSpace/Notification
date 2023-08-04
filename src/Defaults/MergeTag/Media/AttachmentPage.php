@@ -32,19 +32,10 @@ class AttachmentPage extends UrlTag
 			$params,
 			[
 				'slug' => 'attachment_page_link',
-				'name' => __(
-					'Attachment page link',
-					'notification'
-				),
-				'description' => __(
-					'http://example.com/forest-landscape/',
-					'notification'
-				),
+				'name' => __('Attachment page link', 'notification'),
+				'description' => __('http://example.com/forest-landscape/', 'notification'),
 				'example' => true,
-				'group' => __(
-					'Attachment',
-					'notification'
-				),
+				'group' => __('Attachment', 'notification'),
 				'resolver' => function () {
 					return get_permalink($this->{$this->getTriggerProp()}->attachment->ID);
 				},

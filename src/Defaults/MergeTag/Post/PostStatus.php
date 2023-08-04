@@ -43,10 +43,7 @@ class PostStatus extends StringTag
 				),
 				'name' => sprintf(
 				// translators: singular post name.
-					__(
-						'%s status',
-						'notification'
-					),
+					__('%s status', 'notification'),
 					$postTypeName
 				),
 				'description' => 'publish',

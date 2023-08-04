@@ -43,16 +43,10 @@ class PostTitle extends StringTag
 				),
 				'name' => sprintf(
 				// translators: singular post name.
-					__(
-						'%s title',
-						'notification'
-					),
+					__('%s title', 'notification'),
 					$postTypeName
 				),
-				'description' => __(
-					'Hello World',
-					'notification'
-				),
+				'description' => __('Hello World', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ($trigger) {

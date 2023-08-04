@@ -29,10 +29,7 @@ class User extends Abstracts\Recipient
 		parent::__construct(
 			[
 				'slug' => 'user',
-				'name' => __(
-					'User',
-					'notification'
-				),
+				'name' => __('User', 'notification'),
 				'default_value' => get_current_user_id(),
 			]
 		);
@@ -76,10 +73,7 @@ class User extends Abstracts\Recipient
 
 		return new Field\SelectField(
 			[
-				'label' => __(
-					'Recipient',
-					'notification'
-				), // don't edit this!
+				'label' => __('Recipient', 'notification'), // don't edit this!
 				'name' => 'recipient',                       // don't edit this!
 				'css_class' => 'recipient-value',                 // don't edit this!
 				'value' => $this->getDefaultValue(),

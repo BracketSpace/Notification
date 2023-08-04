@@ -43,10 +43,7 @@ class PostContentHtml extends HtmlTag
 				),
 				'name' => sprintf(
 				// translators: singular post name.
-					__(
-						'%s content HTML',
-						'notification'
-					),
+					__('%s content HTML', 'notification'),
 					$postTypeName
 				),
 				'description' => __(

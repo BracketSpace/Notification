@@ -32,16 +32,10 @@ class AttachmentID extends IntegerTag
 			$params,
 			[
 				'slug' => 'attachment_ID',
-				'name' => __(
-					'Attachment ID',
-					'notification'
-				),
+				'name' => __('Attachment ID', 'notification'),
 				'description' => '35',
 				'example' => true,
-				'group' => __(
-					'Attachment',
-					'notification'
-				),
+				'group' => __('Attachment', 'notification'),
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->ID;
 				},

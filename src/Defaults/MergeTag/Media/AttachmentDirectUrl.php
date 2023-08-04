@@ -32,19 +32,13 @@ class AttachmentDirectUrl extends UrlTag
 			$params,
 			[
 				'slug' => 'attachment_direct_url',
-				'name' => __(
-					'Attachment direct URL',
-					'notification'
-				),
+				'name' => __('Attachment direct URL', 'notification'),
 				'description' => __(
 					'http://example.com/wp-content/uploads/2018/02/forest-landscape.jpg',
 					'notification'
 				),
 				'example' => true,
-				'group' => __(
-					'Attachment',
-					'notification'
-				),
+				'group' => __('Attachment', 'notification'),
 				'resolver' => function () {
 					return wp_get_attachment_url($this->trigger->{$this->getTriggerProp()}->ID);
 				},

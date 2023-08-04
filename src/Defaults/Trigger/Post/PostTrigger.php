@@ -215,10 +215,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						),
 						'name' => sprintf(
 						// translators: singular post name.
-							__(
-								'%s sticky status',
-								'notification'
-							),
+							__('%s sticky status', 'notification'),
 							$postTypeName
 						),
 						'group' => $postTypeName,
@@ -274,10 +271,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s creation date and time',
-							'notification'
-						),
+						__('%s creation date and time', 'notification'),
 						$postTypeName
 					),
 					'timestamp' => $this->postCreationDatetime,
@@ -294,10 +288,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s modification date and time',
-							'notification'
-						),
+						__('%s modification date and time', 'notification'),
 						$postTypeName
 					),
 					'timestamp' => $this->postModificationDatetime,
@@ -315,17 +306,11 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s author user ID',
-							'notification'
-						),
+						__('%s author user ID', 'notification'),
 						$postTypeName
 					),
 					'property_name' => 'author',
-					'group' => __(
-						'Author',
-						'notification'
-					),
+					'group' => __('Author', 'notification'),
 				]
 			)
 		);
@@ -339,17 +324,11 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s author user login',
-							'notification'
-						),
+						__('%s author user login', 'notification'),
 						$postTypeName
 					),
 					'property_name' => 'author',
-					'group' => __(
-						'Author',
-						'notification'
-					),
+					'group' => __('Author', 'notification'),
 				]
 			)
 		);
@@ -363,17 +342,11 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s author user email',
-							'notification'
-						),
+						__('%s author user email', 'notification'),
 						$postTypeName
 					),
 					'property_name' => 'author',
-					'group' => __(
-						'Author',
-						'notification'
-					),
+					'group' => __('Author', 'notification'),
 				]
 			)
 		);
@@ -387,17 +360,11 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s author user nicename',
-							'notification'
-						),
+						__('%s author user nicename', 'notification'),
 						$postTypeName
 					),
 					'property_name' => 'author',
-					'group' => __(
-						'Author',
-						'notification'
-					),
+					'group' => __('Author', 'notification'),
 				]
 			)
 		);
@@ -411,17 +378,11 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s author user display name',
-							'notification'
-						),
+						__('%s author user display name', 'notification'),
 						$postTypeName
 					),
 					'property_name' => 'author',
-					'group' => __(
-						'Author',
-						'notification'
-					),
+					'group' => __('Author', 'notification'),
 				]
 			)
 		);
@@ -435,17 +396,11 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s author user first name',
-							'notification'
-						),
+						__('%s author user first name', 'notification'),
 						$postTypeName
 					),
 					'property_name' => 'author',
-					'group' => __(
-						'Author',
-						'notification'
-					),
+					'group' => __('Author', 'notification'),
 				]
 			)
 		);
@@ -459,17 +414,11 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s author user last name',
-							'notification'
-						),
+						__('%s author user last name', 'notification'),
 						$postTypeName
 					),
 					'property_name' => 'author',
-					'group' => __(
-						'Author',
-						'notification'
-					),
+					'group' => __('Author', 'notification'),
 				]
 			)
 		);
@@ -483,17 +432,11 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s author user avatar',
-							'notification'
-						),
+						__('%s author user avatar', 'notification'),
 						$postTypeName
 					),
 					'property_name' => 'author',
-					'group' => __(
-						'Author',
-						'notification'
-					),
+					'group' => __('Author', 'notification'),
 				]
 			)
 		);
@@ -507,17 +450,11 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s author user role',
-							'notification'
-						),
+						__('%s author user role', 'notification'),
 						$postTypeName
 					),
 					'property_name' => 'author',
-					'group' => __(
-						'Author',
-						'notification'
-					),
+					'group' => __('Author', 'notification'),
 				]
 			)
 		);
@@ -532,17 +469,11 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s last editor ID',
-							'notification'
-						),
+						__('%s last editor ID', 'notification'),
 						$postTypeName
 					),
 					'property_name' => 'last_editor',
-					'group' => __(
-						'Last editor',
-						'notification'
-					),
+					'group' => __('Last editor', 'notification'),
 				]
 			)
 		);
@@ -556,17 +487,11 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s last editor login',
-							'notification'
-						),
+						__('%s last editor login', 'notification'),
 						$postTypeName
 					),
 					'property_name' => 'last_editor',
-					'group' => __(
-						'Last editor',
-						'notification'
-					),
+					'group' => __('Last editor', 'notification'),
 				]
 			)
 		);
@@ -580,17 +505,11 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s last editor email',
-							'notification'
-						),
+						__('%s last editor email', 'notification'),
 						$postTypeName
 					),
 					'property_name' => 'last_editor',
-					'group' => __(
-						'Last editor',
-						'notification'
-					),
+					'group' => __('Last editor', 'notification'),
 				]
 			)
 		);
@@ -604,17 +523,11 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s last editor nicename',
-							'notification'
-						),
+						__('%s last editor nicename', 'notification'),
 						$postTypeName
 					),
 					'property_name' => 'last_editor',
-					'group' => __(
-						'Last editor',
-						'notification'
-					),
+					'group' => __('Last editor', 'notification'),
 				]
 			)
 		);
@@ -628,17 +541,11 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s last editor display name',
-							'notification'
-						),
+						__('%s last editor display name', 'notification'),
 						$postTypeName
 					),
 					'property_name' => 'last_editor',
-					'group' => __(
-						'Last editor',
-						'notification'
-					),
+					'group' => __('Last editor', 'notification'),
 				]
 			)
 		);
@@ -652,17 +559,11 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s last editor first name',
-							'notification'
-						),
+						__('%s last editor first name', 'notification'),
 						$postTypeName
 					),
 					'property_name' => 'last_editor',
-					'group' => __(
-						'Last editor',
-						'notification'
-					),
+					'group' => __('Last editor', 'notification'),
 				]
 			)
 		);
@@ -676,17 +577,11 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s last editor last name',
-							'notification'
-						),
+						__('%s last editor last name', 'notification'),
 						$postTypeName
 					),
 					'property_name' => 'last_editor',
-					'group' => __(
-						'Last editor',
-						'notification'
-					),
+					'group' => __('Last editor', 'notification'),
 				]
 			)
 		);
@@ -700,17 +595,11 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s last editor avatar',
-							'notification'
-						),
+						__('%s last editor avatar', 'notification'),
 						$postTypeName
 					),
 					'property_name' => 'last_editor',
-					'group' => __(
-						'Last editor',
-						'notification'
-					),
+					'group' => __('Last editor', 'notification'),
 				]
 			)
 		);
@@ -724,17 +613,11 @@ abstract class PostTrigger extends Abstracts\Trigger
 					),
 					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s last editor role',
-							'notification'
-						),
+						__('%s last editor role', 'notification'),
 						$postTypeName
 					),
 					'property_name' => 'last_editor',
-					'group' => __(
-						'Last editor',
-						'notification'
-					),
+					'group' => __('Last editor', 'notification'),
 				]
 			)
 		);

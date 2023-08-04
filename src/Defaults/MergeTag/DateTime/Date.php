@@ -38,17 +38,11 @@ class Date extends StringTag
 			$params,
 			[
 				'slug' => 'date',
-				'name' => __(
-					'Date',
-					'notification'
-				),
+				'name' => __('Date', 'notification'),
 				'date_format' => get_option('date_format'),
 				'timezone' => null,
 				'example' => true,
-				'group' => __(
-					'Date',
-					'notification'
-				),
+				'group' => __('Date', 'notification'),
 			]
 		);
 

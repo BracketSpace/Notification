@@ -101,10 +101,7 @@ class UserPasswordChanged extends UserTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'password_change_datetime',
-					'name' => __(
-						'Password change date',
-						'notification'
-					),
+					'name' => __('Password change date', 'notification'),
 				]
 			)
 		);

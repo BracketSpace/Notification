@@ -43,16 +43,10 @@ class RevisionLink extends UrlTag
 				),
 				'name' => sprintf(
 				// translators: singular post name.
-					__(
-						'%s revision link',
-						'notification'
-					),
+					__('%s revision link', 'notification'),
 					$postTypeName
 				),
-				'description' => __(
-					'https://example.com/wp-admin/revision.php?revision=id',
-					'notification'
-				),
+				'description' => __('https://example.com/wp-admin/revision.php?revision=id', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ($trigger) {

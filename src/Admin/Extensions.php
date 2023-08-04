@@ -88,10 +88,7 @@ class Extensions
 				'notification/whitelabel/cpt/parent',
 				'edit.php?post_type=notification'
 			),
-			__(
-				'Extensions',
-				'notification'
-			),
+			__('Extensions', 'notification'),
 			$pageMenuLabel,
 			'manage_options',
 			'extensions',
@@ -524,10 +521,7 @@ class Extensions
 				$view = 'error';
 				$message = sprintf(
 				// translators: 1. Date.
-					__(
-						'Your license key expired on %s.',
-						'notification'
-					),
+					__('Your license key expired on %s.', 'notification'),
 					date_i18n(
 						get_option('date_format'),
 						$expiration
@@ -548,10 +542,7 @@ class Extensions
 				$view = 'error';
 				$message = sprintf(
 				// Translators: Extension slug.
-					__(
-						'Invalid license key for %s.',
-						'notification'
-					),
+					__('Invalid license key for %s.', 'notification'),
 					$extensionSlug
 				);
 				break;
@@ -569,10 +560,7 @@ class Extensions
 				$view = 'error';
 				$message = sprintf(
 				// translators: 1. Extension name.
-					__(
-						'This appears to be an invalid license key for %s.',
-						'notification'
-					),
+					__('This appears to be an invalid license key for %s.', 'notification'),
 					$extensionSlug
 				);
 				break;

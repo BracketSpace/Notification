@@ -126,10 +126,7 @@ class UserPasswordResetRequest extends UserTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'password_reset_request_datetime',
-					'name' => __(
-						'Password reset request date',
-						'notification'
-					),
+					'name' => __('Password reset request date', 'notification'),
 				]
 			)
 		);

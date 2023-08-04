@@ -54,10 +54,7 @@ class PostDrafted extends PostTrigger
 	{
 		return sprintf(
 			// translators: singular post name.
-			__(
-				'%s saved as a draft',
-				'notification'
-			),
+			__('%s saved as a draft', 'notification'),
 			WpObjectHelper::getPostTypeName($this->postType)
 		);
 	}
@@ -71,10 +68,7 @@ class PostDrafted extends PostTrigger
 	{
 		return sprintf(
 		// translators: 1. singular post name, 2. post type slug.
-			__(
-				'Fires when %1$s (%2$s) is saved as a draft',
-				'notification'
-			),
+			__('Fires when %1$s (%2$s) is saved as a draft', 'notification'),
 			WpObjectHelper::getPostTypeName($this->postType),
 			$this->postType
 		);

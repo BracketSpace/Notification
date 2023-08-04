@@ -91,15 +91,9 @@ class MediaUpdated extends MediaTrigger
 			new MergeTag\User\UserID(
 				[
 					'slug' => 'attachment_updating_user_ID',
-					'name' => __(
-						'Attachment updating user ID',
-						'notification'
-					),
+					'name' => __('Attachment updating user ID', 'notification'),
 					'property_name' => 'updating_user',
-					'group' => __(
-						'Updating user',
-						'notification'
-					),
+					'group' => __('Updating user', 'notification'),
 				]
 			)
 		);
@@ -108,15 +102,9 @@ class MediaUpdated extends MediaTrigger
 			new MergeTag\User\UserLogin(
 				[
 					'slug' => 'attachment_updating_user_login',
-					'name' => __(
-						'Attachment updating user login',
-						'notification'
-					),
+					'name' => __('Attachment updating user login', 'notification'),
 					'property_name' => 'updating_user',
-					'group' => __(
-						'Updating user',
-						'notification'
-					),
+					'group' => __('Updating user', 'notification'),
 				]
 			)
 		);
@@ -125,15 +113,9 @@ class MediaUpdated extends MediaTrigger
 			new MergeTag\User\UserEmail(
 				[
 					'slug' => 'attachment_updating_user_email',
-					'name' => __(
-						'Attachment updating user email',
-						'notification'
-					),
+					'name' => __('Attachment updating user email', 'notification'),
 					'property_name' => 'updating_user',
-					'group' => __(
-						'Updating user',
-						'notification'
-					),
+					'group' => __('Updating user', 'notification'),
 				]
 			)
 		);
@@ -142,15 +124,9 @@ class MediaUpdated extends MediaTrigger
 			new MergeTag\User\UserNicename(
 				[
 					'slug' => 'attachment_updating_user_nicename',
-					'name' => __(
-						'Attachment updating user nicename',
-						'notification'
-					),
+					'name' => __('Attachment updating user nicename', 'notification'),
 					'property_name' => 'updating_user',
-					'group' => __(
-						'Updating user',
-						'notification'
-					),
+					'group' => __('Updating user', 'notification'),
 				]
 			)
 		);
@@ -159,15 +135,9 @@ class MediaUpdated extends MediaTrigger
 			new MergeTag\User\UserFirstName(
 				[
 					'slug' => 'attachment_updating_user_firstname',
-					'name' => __(
-						'Attachment updating user first name',
-						'notification'
-					),
+					'name' => __('Attachment updating user first name', 'notification'),
 					'property_name' => 'updating_user',
-					'group' => __(
-						'Updating user',
-						'notification'
-					),
+					'group' => __('Updating user', 'notification'),
 				]
 			)
 		);
@@ -176,15 +146,9 @@ class MediaUpdated extends MediaTrigger
 			new MergeTag\User\UserLastName(
 				[
 					'slug' => 'attachment_updating_user_lastname',
-					'name' => __(
-						'Attachment updating user last name',
-						'notification'
-					),
+					'name' => __('Attachment updating user last name', 'notification'),
 					'property_name' => 'updating_user',
-					'group' => __(
-						'Updating user',
-						'notification'
-					),
+					'group' => __('Updating user', 'notification'),
 				]
 			)
 		);

@@ -48,18 +48,12 @@ class CommentActionApprove extends UrlTag
 				'slug' => 'comment_approve_action_url',
 				'name' => sprintf(
 					// Translators: Comment type name.
-					__(
-						'%s approve URL',
-						'notification'
-					),
+					__('%s approve URL', 'notification'),
 					$commentTypeName
 				),
 				'group' => sprintf(
 					// Translators: comment type actions text.
-					__(
-						'%s actions',
-						'notification'
-					),
+					__('%s actions', 'notification'),
 					$commentTypeName
 				),
 				'resolver' => function ($trigger) {

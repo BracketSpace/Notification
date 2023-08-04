@@ -37,19 +37,10 @@ class Avatar extends HtmlTag
 			$params,
 			[
 				'slug' => 'user_avatar',
-				'name' => __(
-					'User avatar',
-					'notification'
-				),
-				'description' => __(
-					'HTML img tag with avatar',
-					'notification'
-				),
+				'name' => __('User avatar', 'notification'),
+				'description' => __('HTML img tag with avatar', 'notification'),
 				'example' => true,
-				'group' => __(
-					'User',
-					'notification'
-				),
+				'group' => __('User', 'notification'),
 				'resolver' => function ($trigger) {
 					if (isset($trigger->{$this->getTriggerProp()}->user_email)) {
 						return get_avatar($trigger->{$this->getTriggerProp()}->user_email);

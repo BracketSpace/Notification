@@ -30,10 +30,7 @@ class CommentApproved extends CommentTrigger
 				'slug' => 'comment/' . $commentType . '/approved',
 				'name' => sprintf(
 				// Translators: %s comment type.
-					__(
-						'%s approved',
-						'notification'
-					),
+					__('%s approved', 'notification'),
 					WpObjectHelper::getCommentTypeName($commentType)
 				),
 				'comment_type' => $commentType,
@@ -49,10 +46,7 @@ class CommentApproved extends CommentTrigger
 		$this->setDescription(
 			sprintf(
 			// translators: comment type.
-				__(
-					'Fires when %s is approved',
-					'notification'
-				),
+				__('Fires when %s is approved', 'notification'),
 				WpObjectHelper::getCommentTypeName($commentType)
 			)
 		);

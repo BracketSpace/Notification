@@ -57,10 +57,7 @@ class TermDeleted extends TermTrigger
 	{
 		return sprintf(
 		// Translators: taxonomy name.
-			__(
-				'%s term deleted',
-				'notification'
-			),
+			__('%s term deleted', 'notification'),
 			$this->taxonomy->labels->singular_name ?? ''
 		);
 	}
@@ -74,10 +71,7 @@ class TermDeleted extends TermTrigger
 	{
 		return sprintf(
 		// Translators: 1. taxonomy name, 2. taxonomy slug.
-			__(
-				'Fires when %1$s (%2$s) is deleted',
-				'notification'
-			),
+			__('Fires when %1$s (%2$s) is deleted', 'notification'),
 			$this->taxonomy->labels->singular_name ?? '',
 			$this->taxonomy->name ?? ''
 		);
@@ -125,14 +119,8 @@ class TermDeleted extends TermTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'term_deletion_datetime',
-					'name' => __(
-						'Term deletion date and time',
-						'notification'
-					),
-					'group' => __(
-						'Term',
-						'notification'
-					),
+					'name' => __('Term deletion date and time', 'notification'),
+					'group' => __('Term', 'notification'),
 				]
 			)
 		);

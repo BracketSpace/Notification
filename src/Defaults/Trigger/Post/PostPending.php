@@ -47,10 +47,7 @@ class PostPending extends PostTrigger
 	{
 		return sprintf(
 		// translators: singular post name.
-			__(
-				'%s sent for review',
-				'notification'
-			),
+			__('%s sent for review', 'notification'),
 			WpObjectHelper::getPostTypeName($this->postType)
 		);
 	}
@@ -64,10 +61,7 @@ class PostPending extends PostTrigger
 	{
 		return sprintf(
 		// translators: 1. singular post name, 2. post type slug.
-			__(
-				'Fires when %1$s (%2$s) is sent for review',
-				'notification'
-			),
+			__('Fires when %1$s (%2$s) is sent for review', 'notification'),
 			WpObjectHelper::getPostTypeName($this->postType),
 			$this->postType
 		);

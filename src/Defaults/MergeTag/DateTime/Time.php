@@ -38,17 +38,11 @@ class Time extends StringTag
 			$params,
 			[
 				'slug' => 'time',
-				'name' => __(
-					'Time',
-					'notification'
-				),
+				'name' => __('Time', 'notification'),
 				'time_format' => get_option('time_format'),
 				'timezone' => null,
 				'example' => true,
-				'group' => __(
-					'Date',
-					'notification'
-				),
+				'group' => __('Date', 'notification'),
 			]
 		);
 

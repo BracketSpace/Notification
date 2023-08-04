@@ -55,10 +55,7 @@ class Email extends Abstracts\Carrier
 		$this->addFormField(
 			new Field\InputField(
 				[
-					'label' => __(
-						'Subject',
-						'notification'
-					),
+					'label' => __('Subject', 'notification'),
 					'name' => 'subject',
 				]
 			)
@@ -69,10 +66,7 @@ class Email extends Abstracts\Carrier
 		)
 			? new Field\EditorField(
 				[
-					'label' => __(
-						'Body',
-						'notification'
-					),
+					'label' => __('Body', 'notification'),
 					'name' => 'body',
 					'settings' => [
 						'media_buttons' => false,
@@ -81,10 +75,7 @@ class Email extends Abstracts\Carrier
 			)
 			: new Field\CodeEditorField(
 				[
-					'label' => __(
-						'Body',
-						'notification'
-					),
+					'label' => __('Body', 'notification'),
 					'name' => 'body',
 					'resolvable' => true,
 					'settings' => [
@@ -105,42 +96,24 @@ class Email extends Abstracts\Carrier
 		$this->addFormField(
 			new Field\RepeaterField(
 				[
-					'label' => __(
-						'Headers',
-						'notification'
-					),
+					'label' => __('Headers', 'notification'),
 					'name' => 'headers',
-					'add_button_label' => __(
-						'Add header',
-						'notification'
-					),
+					'add_button_label' => __('Add header', 'notification'),
 					'fields' => [
 						new Field\InputField(
 							[
-								'label' => __(
-									'Key',
-									'notification'
-								),
+								'label' => __('Key', 'notification'),
 								'name' => 'key',
 								'resolvable' => true,
-								'description' => __(
-									'You can use merge tags',
-									'notification'
-								),
+								'description' => __('You can use merge tags', 'notification'),
 							]
 						),
 						new Field\InputField(
 							[
-								'label' => __(
-									'Value',
-									'notification'
-								),
+								'label' => __('Value', 'notification'),
 								'name' => 'value',
 								'resolvable' => true,
-								'description' => __(
-									'You can use merge tags',
-									'notification'
-								),
+								'description' => __('You can use merge tags', 'notification'),
 							]
 						),
 					],

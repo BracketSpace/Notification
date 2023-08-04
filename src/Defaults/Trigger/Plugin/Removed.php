@@ -87,10 +87,7 @@ class Removed extends PluginTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'plugin_deletion_date_time',
-					'name' => __(
-						'Plugin deletion date and time',
-						'notification'
-					),
+					'name' => __('Plugin deletion date and time', 'notification'),
 				]
 			)
 		);

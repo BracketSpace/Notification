@@ -32,19 +32,10 @@ class AttachmentTitle extends StringTag
 			$params,
 			[
 				'slug' => 'attachment_title',
-				'name' => __(
-					'Attachment title',
-					'notification'
-				),
-				'description' => __(
-					'Forest landscape',
-					'notification'
-				),
+				'name' => __('Attachment title', 'notification'),
+				'description' => __('Forest landscape', 'notification'),
 				'example' => true,
-				'group' => __(
-					'Attachment',
-					'notification'
-				),
+				'group' => __('Attachment', 'notification'),
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->post_title;
 				},
