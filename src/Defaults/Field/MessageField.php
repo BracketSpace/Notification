@@ -56,10 +56,7 @@ class MessageField extends Field
 	{
 
 		if (!isset($params['message'])) {
-			trigger_error(
-				'MessageField requires message param',
-				E_USER_ERROR
-			);
+			trigger_error('MessageField requires message param', E_USER_ERROR);
 		}
 
 		$this->message = $params['message'];

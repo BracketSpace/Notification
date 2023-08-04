@@ -42,9 +42,6 @@ class ErrorHandler
 			throw new $exceptionClass($message);
 		}
 
-		trigger_error(
-			esc_html($message),
-			E_USER_WARNING
-		);
+		trigger_error(esc_html($message), E_USER_WARNING);
 	}
 }

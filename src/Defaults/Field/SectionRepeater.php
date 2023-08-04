@@ -97,17 +97,11 @@ class SectionRepeater extends Field
 	{
 
 		if (!isset($params['sections'])) {
-			trigger_error(
-				'SectionsRepeater requires sections param',
-				E_USER_ERROR
-			);
+			trigger_error('SectionsRepeater requires sections param', E_USER_ERROR);
 		}
 
 		if (!isset($params['section_labels'])) {
-			trigger_error(
-				'SectionsRepeater requires section labels param',
-				E_USER_ERROR
-			);
+			trigger_error('SectionsRepeater requires section labels param', E_USER_ERROR);
 		}
 
 		$this->sections = $params['sections'];
@@ -189,8 +183,8 @@ class SectionRepeater extends Field
 				 '</div>
 				  </template>';
 
-		$html .= '<a 
-		href="#" 
+		$html .= '<a
+		href="#"
 		class="button button-secondary add-new-repeater-field add-new-sections-field"
 		@click="addSection">';
 		$html .= esc_html($this->addButtonLabel);

@@ -91,10 +91,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	{
 
 		if (!isset($params['slug'], $params['name'], $params['resolver'])) {
-			trigger_error(
-				'Merge tag requires resolver',
-				E_USER_ERROR
-			);
+			trigger_error('Merge tag requires resolver', E_USER_ERROR);
 		}
 
 		if (!empty($params['slug'])) {
@@ -166,20 +163,14 @@ abstract class MergeTag implements Interfaces\Taggable
 			);
 		} catch (\Throwable $t) {
 			$value = null;
-			trigger_error(
-				esc_html($t->getMessage()),
-				E_USER_NOTICE
-			);
+			trigger_error(esc_html($t->getMessage()), E_USER_NOTICE);
 		}
 
 		if (!empty($value) && !$this->validate($value)) {
 			$errorType = (defined('WP_DEBUG') && WP_DEBUG)
 				? E_USER_ERROR
 				: E_USER_NOTICE;
-			trigger_error(
-				'Resolved value is a wrong type',
-				$errorType
-			);
+			trigger_error('Resolved value is a wrong type', $errorType);
 		}
 
 		$this->resolved = true;
@@ -251,10 +242,7 @@ abstract class MergeTag implements Interfaces\Taggable
 	{
 
 		if (!is_callable($resolver)) {
-			trigger_error(
-				'Merge tag resolver has to be callable',
-				E_USER_ERROR
-			);
+			trigger_error('Merge tag resolver has to be callable', E_USER_ERROR);
 		}
 
 		$this->resolver = $resolver;

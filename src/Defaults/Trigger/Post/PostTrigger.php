@@ -76,10 +76,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 	public function __construct($params = [])
 	{
 		if (!isset($params['post_type'], $params['slug'])) {
-			trigger_error(
-				'PostTrigger requires post_type and slug params.',
-				E_USER_ERROR
-			);
+			trigger_error('PostTrigger requires post_type and slug params.', E_USER_ERROR);
 		}
 
 		$this->postType = $params['post_type'];
