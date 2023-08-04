@@ -210,6 +210,9 @@ class License
 		$licenseKey = trim($licenseKey);
 		$error = false;
 
+		/** @var string $itemName */
+		$itemName = $this->extension['edd']['item_name'];
+
 		// Call the custom API.
 		$response = wp_remote_post(
 			$this->extension['edd']['store_url'],
@@ -218,7 +221,7 @@ class License
 				'body' => [
 					'edd_action' => 'activate_license',
 					'license' => $licenseKey,
-					'item_name' => rawurlencode($this->extension['edd']['item_name']),
+					'item_name' => rawurlencode($itemName),
 					'url' => home_url(),
 				],
 			]
@@ -260,6 +263,9 @@ class License
 		$licenseData = $this->get();
 		$error = false;
 
+		/** @var string $itemName */
+		$itemName = $this->extension['edd']['item_name'];
+
 		// Call the custom API.
 		$response = wp_remote_post(
 			$this->extension['edd']['store_url'],
@@ -268,7 +274,7 @@ class License
 				'body' => [
 					'edd_action' => 'deactivate_license',
 					'license' => trim($licenseData->licenseKey),
-					'item_name' => rawurlencode($this->extension['edd']['item_name']),
+					'item_name' => rawurlencode($itemName),
 					'url' => home_url(),
 				],
 			]
@@ -315,6 +321,9 @@ class License
 		$licenseKey = trim($licenseKey);
 		$error = false;
 
+		/** @var string $itemName */
+		$itemName = $this->extension['edd']['item_name'];
+
 		// Call the custom API.
 		$response = wp_remote_post(
 			$this->extension['edd']['store_url'],
@@ -323,7 +332,7 @@ class License
 				'body' => [
 					'edd_action' => 'check_license',
 					'license' => $licenseKey,
-					'item_name' => rawurlencode($this->extension['edd']['item_name']),
+					'item_name' => rawurlencode($itemName),
 					'url' => home_url(),
 				],
 			]
