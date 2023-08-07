@@ -48,7 +48,7 @@ class Recipient implements Interfaces\Storable
 		if (
 			array_key_exists(
 				$slug,
-				static::$items[$carrierSlug]
+				(array)static::$items[$carrierSlug]
 			)
 		) {
 			ErrorHandler::error(

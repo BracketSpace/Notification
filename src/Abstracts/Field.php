@@ -69,7 +69,7 @@ abstract class Field implements Interfaces\Fillable
 	 *
 	 * @var string
 	 */
-	public $section = '';
+	protected $section = '';
 
 	/**
 	 * If field is disabled
@@ -220,13 +220,34 @@ abstract class Field implements Interfaces\Fillable
 	}
 
 	/**
+	 * Gets field section name
+	 *
+	 * @return string
+	 */
+	public function getSection()
+	{
+		return $this->section;
+	}
+
+	/**
+	 * Sets field section name
+	 *
+	 * @param string $value assigned value
+	 * @return void
+	 */
+	public function setSection($value)
+	{
+		$this->section = $value;
+	}
+
+	/**
 	 * Gets field name
 	 *
 	 * @return string
 	 */
 	public function getName()
 	{
-		return $this->section . '[' . $this->name . ']';
+		return $this->getSection() . '[' . $this->name . ']';
 	}
 
 	/**

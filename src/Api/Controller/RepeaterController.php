@@ -165,6 +165,7 @@ class RepeaterController
 	 */
 	public function normalizeValues($values)
 	{
+		/** @var array<mixed> $value */
 		foreach ($values as &$value) {
 			if (
 				!array_key_exists(
@@ -191,7 +192,10 @@ class RepeaterController
 	 */
 	public function parseParams($params)
 	{
-		$this->postId = intval($params['id']);
+		/** @var int $id */
+		$id = $params['id'];
+
+		$this->postId = intval($id);
 		$this->carrier = $params['fieldCarrier'];
 		$this->field = $params['fieldType'];
 	}

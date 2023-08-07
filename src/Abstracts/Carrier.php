@@ -119,7 +119,7 @@ abstract class Carrier implements Interfaces\Sendable
 			]
 		);
 
-		$nonceField->section = 'notification_carrier_' . $this->getSlug();
+		$nonceField->setSection('notification_carrier_' . $this->getSlug());
 
 		$this->formFields[$nonceField->getRawName()] = $nonceField;
 
@@ -135,7 +135,7 @@ abstract class Carrier implements Interfaces\Sendable
 			]
 		);
 
-		$activatedField->section = 'notification_carrier_' . $this->getSlug();
+		$activatedField->setSection('notification_carrier_' . $this->getSlug());
 
 		$this->formFields[$activatedField->getRawName()] = $activatedField;
 
@@ -151,7 +151,7 @@ abstract class Carrier implements Interfaces\Sendable
 			]
 		);
 
-		$enabledField->section = 'notification_carrier_' . $this->getSlug();
+		$enabledField->setSection('notification_carrier_' . $this->getSlug());
 
 		$this->formFields[$enabledField->getRawName()] = $enabledField;
 
@@ -209,7 +209,7 @@ abstract class Carrier implements Interfaces\Sendable
 	 */
 	public function hash()
 	{
-		return md5(wp_json_encode($this));
+		return md5((string)wp_json_encode($this));
 	}
 
 	/**
@@ -239,7 +239,7 @@ abstract class Carrier implements Interfaces\Sendable
 		}
 
 		$addingField = clone $field;
-		$addingField->section = 'notification_carrier_' . $this->getSlug();
+		$addingField->setSection('notification_carrier_' . $this->getSlug());
 
 		$this->formFields[$field->getRawName()] = $addingField;
 
