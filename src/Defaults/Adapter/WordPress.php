@@ -66,7 +66,7 @@ class WordPress extends Abstracts\Adapter
 					ENT_COMPAT
 				)
 			);
-			$this->setupNotification(notificationConvertData($jsonAdapter->getNotification()->toArray()));
+			$this->setupNotification(\BracketSpace\Notification\convertData($jsonAdapter->getNotification()->toArray()));
 		} catch (\Throwable $e) {
 			$doNothing = true;
 		}
