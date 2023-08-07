@@ -177,7 +177,7 @@ class Sync
 					 *
 					 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
 					 */
-					$wpAdapter = notificationSwapAdapter(
+					$wpAdapter = \BracketSpace\Notification\swapAdapter(
 						'WordPress',
 						$jsonAdapter
 					);

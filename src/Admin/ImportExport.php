@@ -162,7 +162,7 @@ class ImportExport
 			 *
 			 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 			 */
-			$jsonAdapter = notificationSwapAdapter(
+			$jsonAdapter = \BracketSpace\Notification\swapAdapter(
 				'JSON',
 				$wpAdapter
 			);
@@ -275,7 +275,7 @@ class ImportExport
 			 *
 			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
 			 */
-			$wpAdapter = notificationSwapAdapter(
+			$wpAdapter = \BracketSpace\Notification\swapAdapter(
 				'WordPress',
 				$jsonAdapter
 			);

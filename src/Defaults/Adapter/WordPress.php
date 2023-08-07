@@ -96,7 +96,7 @@ class WordPress extends Abstracts\Adapter
 		$data = $this->getNotification()->toArray();
 
 		/** @var \BracketSpace\Notification\Defaults\Adapter\JSON */
-		$jsonAdapter = notificationSwapAdapter(
+		$jsonAdapter = \BracketSpace\Notification\swapAdapter(
 			'JSON',
 			$this
 		);
