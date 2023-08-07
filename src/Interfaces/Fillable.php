@@ -10,11 +10,6 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Interfaces;
 
-/**
- * Fillable interface
- *
- * @property string $section Field section name.
- */
 interface Fillable
 {
 	/**
@@ -31,6 +26,21 @@ interface Fillable
 	 * @return void
 	 */
 	public function setValue($value);
+
+	/**
+	 * Gets field section name
+	 *
+	 * @return string
+	 */
+	public function getSection();
+
+	/**
+	 * Sets field section name
+	 *
+	 * @param string $value assigned value
+	 * @return void
+	 */
+	public function setSection($value);
 
 	/**
 	 * Gets field name

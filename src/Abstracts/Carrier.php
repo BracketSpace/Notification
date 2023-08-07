@@ -119,7 +119,7 @@ abstract class Carrier implements Interfaces\Sendable
 			]
 		);
 
-		$nonceField->section = 'notification_carrier_' . $this->getSlug();
+		$nonceField->setSection('notification_carrier_' . $this->getSlug());
 
 		$this->formFields[$nonceField->getRawName()] = $nonceField;
 
@@ -135,7 +135,7 @@ abstract class Carrier implements Interfaces\Sendable
 			]
 		);
 
-		$activatedField->section = 'notification_carrier_' . $this->getSlug();
+		$activatedField->setSection('notification_carrier_' . $this->getSlug());
 
 		$this->formFields[$activatedField->getRawName()] = $activatedField;
 
@@ -151,7 +151,7 @@ abstract class Carrier implements Interfaces\Sendable
 			]
 		);
 
-		$enabledField->section = 'notification_carrier_' . $this->getSlug();
+		$enabledField->setSection('notification_carrier_' . $this->getSlug());
 
 		$this->formFields[$enabledField->getRawName()] = $enabledField;
 
@@ -215,12 +215,12 @@ abstract class Carrier implements Interfaces\Sendable
 	/**
 	 * Adds form field to collection
 	 *
-	 * @param \BracketSpace\Notification\Abstracts\Field $field Field object.
+	 * @param \BracketSpace\Notification\Interfaces\Fillable $field Field object.
 	 * @return $this
 	 * @throws \Exception When restricted name is used.
 	 * @since  6.0.0 Added restricted field check.
 	 */
-	public function addFormField(\BracketSpace\Notification\Abstracts\Field $field)
+	public function addFormField(Interfaces\Fillable $field)
 	{
 
 		if (
@@ -239,7 +239,7 @@ abstract class Carrier implements Interfaces\Sendable
 		}
 
 		$addingField = clone $field;
-		$addingField->section = 'notification_carrier_' . $this->getSlug();
+		$addingField->setSection('notification_carrier_' . $this->getSlug());
 
 		$this->formFields[$field->getRawName()] = $addingField;
 
