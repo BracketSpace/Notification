@@ -64,9 +64,10 @@ class Email extends Abstracts\Carrier
 			)
 		);
 
-		$bodyField = \BracketSpace\Notification\getSetting('carriers/email/type') === 'html' && !\BracketSpace\Notification\getSetting(
-			'carriers/email/unfiltered_html'
-		)
+		$bodyField = \BracketSpace\Notification\getSetting('carriers/email/type') === 'html' &&
+					!\BracketSpace\Notification\getSetting(
+						'carriers/email/unfiltered_html'
+					)
 			? new Field\EditorField(
 				[
 					'label' => __(

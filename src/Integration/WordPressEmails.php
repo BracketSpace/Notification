@@ -97,14 +97,20 @@ class WordPressEmails
 			true
 		);
 
-		if ($isAdminNotify && (\BracketSpace\Notification\getSetting('integration/emails/new_user_to_admin') !== 'true')) {
+		if (
+			$isAdminNotify &&
+			(\BracketSpace\Notification\getSetting('integration/emails/new_user_to_admin') !== 'true')
+		) {
 			wp_new_user_notification(
 				$userId,
 				null,
 				'admin'
 			);
 		}
-		if (!$isUserNotify || (\BracketSpace\Notification\getSetting('integration/emails/new_user_to_user') === 'true')) {
+		if (
+			!$isUserNotify ||
+			(\BracketSpace\Notification\getSetting('integration/emails/new_user_to_user') === 'true')
+		) {
 			return;
 		}
 
