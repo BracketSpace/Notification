@@ -46,7 +46,7 @@ class NotificationQueries
 		}
 
 		foreach ($wpposts as $wppost) {
-			$posts[] = notificationAdaptFrom(
+			$posts[] = \BracketSpace\Notification\adaptFrom(
 				'WordPress',
 				$wppost
 			);
@@ -72,7 +72,7 @@ class NotificationQueries
 
 		return empty($post)
 			? null
-			: notificationAdaptFrom(
+			: \BracketSpace\Notification\adaptFrom(
 				'WordPress',
 				$post
 			);

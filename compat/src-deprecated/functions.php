@@ -318,7 +318,7 @@ function notification_post_is_new( $post ) {
 	_deprecated_function( __FUNCTION__, '8.0.0' );
 
 	/** @var BracketSpace\Notification\Defaults\Adapter\WordPress $notification */
-	$notification = notificationAdaptFrom( 'WordPress', $post );
+	$notification = \BracketSpace\Notification\adaptFrom( 'WordPress', $post );
 	return $notification->isNew();
 }
 

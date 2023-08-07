@@ -152,7 +152,7 @@ class ImportExport
 		);
 
 		foreach ($posts as $wppost) {
-			$wpAdapter = notificationAdaptFrom(
+			$wpAdapter = \BracketSpace\Notification\adaptFrom(
 				'WordPress',
 				$wppost
 			);
@@ -265,7 +265,7 @@ class ImportExport
 		$updated = 0;
 
 		foreach ($data as $notificationData) {
-			$jsonAdapter = notificationAdaptFrom(
+			$jsonAdapter = \BracketSpace\Notification\adaptFrom(
 				'JSON',
 				wp_json_encode($notificationData)
 			);

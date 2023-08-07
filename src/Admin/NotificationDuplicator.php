@@ -70,7 +70,7 @@ class NotificationDuplicator
 
 		// Get the source notification post.
 		$source = get_post(intval(wp_unslash($_GET['duplicate'])));
-		$wp = notificationAdaptFrom(
+		$wp = \BracketSpace\Notification\adaptFrom(
 			'WordPress',
 			$source
 		);

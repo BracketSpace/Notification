@@ -166,7 +166,7 @@ class Sync
 				 *
 				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 				 */
-				$jsonAdapter = notificationAdaptFrom(
+				$jsonAdapter = \BracketSpace\Notification\adaptFrom(
 					'JSON',
 					$json
 				);

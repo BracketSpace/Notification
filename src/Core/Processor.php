@@ -180,7 +180,7 @@ class Processor
 	 */
 	public static function handleCron($notificationJson, $triggerKey)
 	{
-		$notification = notificationAdaptFrom(
+		$notification = \BracketSpace\Notification\adaptFrom(
 			'JSON',
 			$notificationJson
 		)->getNotification();

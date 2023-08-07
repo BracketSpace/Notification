@@ -110,7 +110,7 @@ class RepeaterController
 	 */
 	public function getValues($postId, $carrier, $field)
 	{
-		$notification = notificationAdaptFrom(
+		$notification = \BracketSpace\Notification\adaptFrom(
 			'WordPress',
 			$postId
 		);
