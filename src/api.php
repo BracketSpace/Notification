@@ -38,6 +38,7 @@ function adapt($adapterName, Notification $notification)
 		);
 	}
 
+	/** @var \BracketSpace\Notification\Interfaces\Adaptable $adapter */
 	return $adapter;
 }
 
