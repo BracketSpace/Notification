@@ -8,6 +8,8 @@
 
 declare(strict_types=1);
 
+namespace BracketSpace\Notification;
+
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Interfaces;
@@ -20,11 +22,10 @@ use BracketSpace\Notification\Interfaces;
  * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
  * @return \BracketSpace\Notification\Interfaces\Adaptable
  * @throws \Exception If adapter wasn't found.
- * @since  6.0.0
+ * @since [Next]
  */
-function notificationAdapt($adapterName, Notification $notification)
+function adapt($adapterName, Notification $notification)
 {
-
 	if (class_exists($adapterName)) {
 		$adapter = new $adapterName($notification);
 	} elseif (class_exists('BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapterName)) {
@@ -49,11 +50,11 @@ function notificationAdapt($adapterName, Notification $notification)
  * @param string $adapterName Adapter class name.
  * @param mixed $data Input data needed by adapter.
  * @return \BracketSpace\Notification\Interfaces\Adaptable
- * @since  6.0.0
+ * @since [Next]
  */
-function notificationAdaptFrom($adapterName, $data)
+function adaptFrom($adapterName, $data)
 {
-	$adapter = notificationAdapt(
+	$adapter = adapt(
 		$adapterName,
 		new Notification()
 	);
@@ -66,11 +67,11 @@ function notificationAdaptFrom($adapterName, $data)
  * @param string $newAdapterName Adapter class name.
  * @param \BracketSpace\Notification\Interfaces\Adaptable $adapter Adapter.
  * @return \BracketSpace\Notification\Interfaces\Adaptable
- * @since  6.0.0
+ * @since [Next]
  */
-function notificationSwapAdapter($newAdapterName, Interfaces\Adaptable $adapter)
+function swapAdapter($newAdapterName, Interfaces\Adaptable $adapter)
 {
-	return notificationAdapt(
+	return adapt(
 		$newAdapterName,
 		$adapter->getNotification()
 	);
@@ -83,12 +84,12 @@ function notificationSwapAdapter($newAdapterName, Interfaces\Adaptable $adapter)
  * @param string $type Log type, values: notification|error|warning.
  * @param string $message Log formatted message.
  * @return bool|\WP_Error
- * @since  6.0.0
+ * @since [Next]
  */
-function notificationLog($component, $type, $message)
+function log($component, $type, $message)
 {
 
-	if ($type !== 'notification' && !notificationGetSetting('debugging/settings/error_log')) {
+	if ($type !== 'notification' && !getSetting('debugging/settings/error_log')) {
 		return false;
 	}
 
@@ -123,7 +124,7 @@ function notification($data = [])
 {
 
 	try {
-		notificationAdd(new Notification(notificationConvertData($data)));
+		add(new Notification(convertData($data)));
 	} catch (\Throwable $e) {
 		return new \WP_Error(
 			'notification_error',
@@ -139,9 +140,9 @@ function notification($data = [])
  *
  * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
  * @return void
- * @since  6.0.0
+ * @since [Next]
  */
-function notificationAdd(Notification $notification)
+function add(Notification $notification)
 {
 	Store\Notification::insert(
 		$notification->getHash(),
@@ -161,9 +162,9 @@ function notificationAdd(Notification $notification)
  *
  * @param array<mixed> $data Notification static data.
  * @return array<mixed>       Converted data.
- * @since  6.0.0
+ * @since [Next]
  */
-function notificationConvertData($data = [])
+function convertData($data = [])
 {
 
 	// Trigger conversion.
@@ -204,9 +205,9 @@ function notificationConvertData($data = [])
  * @param mixed $callback Callback for settings registration, array of string.
  * @param int $priority Action priority.
  * @return void
- * @since  5.0.0
+ * @since [Next]
  */
-function notificationRegisterSettings($callback, $priority = 10)
+function registerSettings($callback, $priority = 10)
 {
 
 	if (!is_callable($callback)) {
@@ -227,9 +228,9 @@ function notificationRegisterSettings($callback, $priority = 10)
  * Gets setting values
  *
  * @return mixed
- * @since 5.0.0
+ * @since [Next]
  */
-function notificationGetSettings()
+function getSettings()
 {
 	return \Notification::component('core_settings')->getSettings();
 }
@@ -239,12 +240,10 @@ function notificationGetSettings()
  *
  * @param string $setting setting name in `a/b/c` format.
  * @return mixed
- * @since  5.0.0
- * @since  7.0.0 The `notifications` section has been changed to `carriers`.
+ * @since [Next]
  */
-function notificationGetSetting($setting)
+function getSetting($setting)
 {
-
 	$parts = explode(
 		'/',
 		$setting
@@ -272,8 +271,9 @@ function notificationGetSetting($setting)
  * @param string $setting setting name in `a/b/c` format.
  * @param mixed $value setting value.
  * @return  mixed
+ * @since [Next]
  */
-function notificationUpdateSetting($setting, $value)
+function updateSetting($setting, $value)
 {
 	return \Notification::component('core_settings')->updateSetting(
 		$setting,
