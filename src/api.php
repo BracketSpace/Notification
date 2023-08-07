@@ -11,8 +11,6 @@ declare(strict_types=1);
 namespace BracketSpace\Notification;
 
 use BracketSpace\Notification\Core\Notification;
-use BracketSpace\Notification\Store;
-use BracketSpace\Notification\Interfaces;
 
 /**
  * Adapts Notification object
