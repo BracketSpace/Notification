@@ -80,7 +80,7 @@ class Cron
 	public function registerCheckUpdatesEvent()
 	{
 		$event = wp_get_schedule('notification_check_wordpress_updates');
-		$schedule = notificationGetSetting('triggers/wordpress/updates_cron_period');
+		$schedule = \BracketSpace\Notification\getSetting('triggers/wordpress/updates_cron_period');
 
 		if ($event === false) {
 			$this->schedule(

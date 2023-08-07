@@ -64,7 +64,7 @@ class Email extends Abstracts\Carrier
 			)
 		);
 
-		$bodyField = notificationGetSetting('carriers/email/type') === 'html' && !notificationGetSetting(
+		$bodyField = \BracketSpace\Notification\getSetting('carriers/email/type') === 'html' && !\BracketSpace\Notification\getSetting(
 			'carriers/email/unfiltered_html'
 		)
 			? new Field\EditorField(
@@ -98,7 +98,7 @@ class Email extends Abstracts\Carrier
 
 		$this->addRecipientsField();
 
-		if (!notificationGetSetting('carriers/email/headers')) {
+		if (!\BracketSpace\Notification\getSetting('carriers/email/headers')) {
 			return;
 		}
 
@@ -167,7 +167,7 @@ class Email extends Abstracts\Carrier
 	 */
 	public function send(Triggerable $trigger)
 	{
-		$defaultHtmlMime = notificationGetSetting('carriers/email/type') === 'html';
+		$defaultHtmlMime = \BracketSpace\Notification\getSetting('carriers/email/type') === 'html';
 		$htmlMime = apply_filters_deprecated(
 			'notification/email/use_html_mime',
 			[$defaultHtmlMime, $this, $trigger],
@@ -264,7 +264,7 @@ class Email extends Abstracts\Carrier
 		}
 
 		$headers = [];
-		if (notificationGetSetting('carriers/email/headers') && !empty($data['headers'])) {
+		if (\BracketSpace\Notification\getSetting('carriers/email/headers') && !empty($data['headers'])) {
 			foreach ($data['headers'] as $header) {
 				$headers[] = $header['key'] . ': ' . $header['value'];
 			}
@@ -363,7 +363,7 @@ class Email extends Abstracts\Carrier
 	 **/
 	public function allowUnfilteredHtmlBody($carrierData, $rawData)
 	{
-		if (notificationGetSetting('carriers/email/unfiltered_html')) {
+		if (\BracketSpace\Notification\getSetting('carriers/email/unfiltered_html')) {
 			$carrierData['body'] = $rawData['body'];
 		}
 

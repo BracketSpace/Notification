@@ -35,7 +35,7 @@ class WordPress
 	public function filterEmailFromName($fromName)
 	{
 
-		$setting = notificationGetSetting('carriers/email/from_name');
+		$setting = \BracketSpace\Notification\getSetting('carriers/email/from_name');
 
 		return empty($setting) ? $fromName : $setting;
 	}
@@ -52,7 +52,7 @@ class WordPress
 	public function filterEmailFromEmail($fromEmail)
 	{
 
-		$setting = notificationGetSetting('carriers/email/from_email');
+		$setting = \BracketSpace\Notification\getSetting('carriers/email/from_email');
 
 		return empty($setting) ? $fromEmail : $setting;
 	}
@@ -163,7 +163,7 @@ class WordPress
 	public function proxyTransitionCommentStatusToPublished($commentNewStatus, $commentOldStatus, $comment)
 	{
 		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-		if ($comment->comment_approved === 'spam' && notificationGetSetting('triggers/comment/akismet')) {
+		if ($comment->comment_approved === 'spam' && \BracketSpace\Notification\getSetting('triggers/comment/akismet')) {
 			return;
 		}
 

@@ -25,11 +25,11 @@ class CarrierRepository
 	public static function register()
 	{
 
-		if (notificationGetSetting('carriers/email/enable')) {
+		if (\BracketSpace\Notification\getSetting('carriers/email/enable')) {
 			Register::carrier(DocHooksHelper::hook(new Carrier\Email()));
 		}
 
-		if (!notificationGetSetting('carriers/webhook/enable')) {
+		if (!\BracketSpace\Notification\getSetting('carriers/webhook/enable')) {
 			return;
 		}
 

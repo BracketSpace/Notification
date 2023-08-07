@@ -391,7 +391,7 @@ abstract class Trigger implements Triggerable
 
 		return apply_filters(
 			'notification/trigger/process_in_background',
-			notificationGetSetting('general/advanced/background_processing'),
+			\BracketSpace\Notification\getSetting('general/advanced/background_processing'),
 			$this
 		);
 	}

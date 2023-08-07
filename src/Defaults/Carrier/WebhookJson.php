@@ -74,7 +74,7 @@ class WebhookJson extends Abstracts\Carrier
 			)
 		);
 
-		if (!notificationGetSetting('carriers/webhook/headers')) {
+		if (!\BracketSpace\Notification\getSetting('carriers/webhook/headers')) {
 			return;
 		}
 
@@ -172,7 +172,7 @@ class WebhookJson extends Abstracts\Carrier
 			? ['Content-Type' => 'application/json']
 			: [];
 
-		if (notificationGetSetting('carriers/webhook/headers')) {
+		if (\BracketSpace\Notification\getSetting('carriers/webhook/headers')) {
 			$headers = array_merge(
 				$headers,
 				$this->parseArgs($data['headers'])

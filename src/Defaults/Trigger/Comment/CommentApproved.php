@@ -71,7 +71,7 @@ class CommentApproved extends CommentTrigger
 
 		$this->comment = $comment;
 
-		if ($this->comment->comment_approved === 'spam' && notificationGetSetting('triggers/comment/akismet')) {
+		if ($this->comment->comment_approved === 'spam' && \BracketSpace\Notification\getSetting('triggers/comment/akismet')) {
 			return false;
 		}
 

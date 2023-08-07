@@ -27,11 +27,11 @@ class TriggerRepository
 
 		self::registerTaxonomyTriggers();
 
-		if (notificationGetSetting('triggers/user/enable')) {
+		if (\BracketSpace\Notification\getSetting('triggers/user/enable')) {
 			self::registerUserTriggers();
 		}
 
-		if (notificationGetSetting('triggers/media/enable')) {
+		if (\BracketSpace\Notification\getSetting('triggers/media/enable')) {
 			self::registerMediaTriggers();
 		}
 
@@ -39,15 +39,15 @@ class TriggerRepository
 
 		self::registerWpTriggers();
 
-		if (notificationGetSetting('triggers/plugin/enable')) {
+		if (\BracketSpace\Notification\getSetting('triggers/plugin/enable')) {
 			self::registerPluginTriggers();
 		}
 
-		if (notificationGetSetting('triggers/theme/enable')) {
+		if (\BracketSpace\Notification\getSetting('triggers/theme/enable')) {
 			self::registerThemeTriggers();
 		}
 
-		if (!notificationGetSetting('triggers/privacy/enable')) {
+		if (!\BracketSpace\Notification\getSetting('triggers/privacy/enable')) {
 			return;
 		}
 
@@ -59,7 +59,7 @@ class TriggerRepository
 	 */
 	public static function registerPostTriggers()
 	{
-		$postTypes = notificationGetSetting('triggers/post_types/types');
+		$postTypes = \BracketSpace\Notification\getSetting('triggers/post_types/types');
 
 		if (!$postTypes) {
 			return;
@@ -83,7 +83,7 @@ class TriggerRepository
 	 */
 	public static function registerTaxonomyTriggers()
 	{
-		$taxonomies = notificationGetSetting('triggers/taxonomies/types');
+		$taxonomies = \BracketSpace\Notification\getSetting('triggers/taxonomies/types');
 
 		if (!$taxonomies) {
 			return;
@@ -127,7 +127,7 @@ class TriggerRepository
 	 */
 	public static function registerCommentTriggers()
 	{
-		$commentTypes = notificationGetSetting('triggers/comment/types');
+		$commentTypes = \BracketSpace\Notification\getSetting('triggers/comment/types');
 
 		if (!$commentTypes) {
 			return;
@@ -149,11 +149,11 @@ class TriggerRepository
 	 */
 	public static function registerWpTriggers()
 	{
-		if (notificationGetSetting('triggers/wordpress/updates')) {
+		if (\BracketSpace\Notification\getSetting('triggers/wordpress/updates')) {
 			Register::trigger(new Trigger\WordPress\UpdatesAvailable());
 		}
 
-		if (!notificationGetSetting('triggers/wordpress/email_address_change_request')) {
+		if (!\BracketSpace\Notification\getSetting('triggers/wordpress/email_address_change_request')) {
 			return;
 		}
 
