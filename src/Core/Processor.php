@@ -104,7 +104,7 @@ class Processor
 			),
 			'notification_background_processing',
 			[
-				notificationAdapt(
+				\BracketSpace\Notification\adapt(
 					'JSON',
 					$notification
 				)->save(
