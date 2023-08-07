@@ -216,8 +216,9 @@ class ImportExport
 			'rb'
 		);
 
-		if ( !$file ) wp_send_json_error('Can\'t read the file.');
-
+		if (! $file) {
+			wp_send_json_error("Can't read the file.");
+		}
 
 		$json = fread(
 			$file,
