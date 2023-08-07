@@ -559,7 +559,7 @@ class PostType
 				continue;
 			}
 
-			notificationAdd($adapter->getNotification());
+			\BracketSpace\Notification\add($adapter->getNotification());
 		}
 	}
 }

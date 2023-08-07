@@ -108,6 +108,6 @@ abstract class Adapter implements Interfaces\Adaptable
 	 */
 	public function registerNotification()
 	{
-		notificationAdd($this->getNotification());
+		\BracketSpace\Notification\add($this->getNotification());
 	}
 }
