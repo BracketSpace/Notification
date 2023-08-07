@@ -6,7 +6,6 @@
  */
 
 use BracketSpace\Notification\Admin\Wizard;
-use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Resolver;
 use BracketSpace\Notification\Core\Sync;
 use BracketSpace\Notification\Core\Templates;
@@ -853,7 +852,7 @@ function notification_update_setting($setting, $value) {
  * @since  6.0.0
  * @deprecated [Next]
  */
-function notificationAdapt($adapterName, Notification $notification) {
+function notificationAdapt($adapterName, \BracketSpace\Notification\Core\Notification $notification) {
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\adapt()');
 
 	return \BracketSpace\Notification\adapt($adapterName, $notification);
@@ -917,7 +916,7 @@ function notificationLog($component, $type, $message)
  * @since  6.0.0
  * @deprecated [Next]
  */
-function notificationAdd(Notification $notification)
+function notificationAdd(\BracketSpace\Notification\Core\Notification $notification)
 {
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\add()');
 
