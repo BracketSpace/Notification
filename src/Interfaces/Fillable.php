@@ -10,6 +10,9 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Interfaces;
 
+/**
+ * Fillable interface
+ */
 interface Fillable
 {
 	/**
