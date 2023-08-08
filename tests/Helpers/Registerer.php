@@ -86,7 +86,7 @@ class Registerer {
 			'trigger'  => $trigger,
 			'carriers' => $carriers,
 		] );
-		\Bracketspace\Notification\add( $notification );
+		\Bracketspace\Notification\addNotification($notification );
 
 		return $notification;
 	}

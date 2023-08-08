@@ -920,7 +920,7 @@ function notificationAdd(\BracketSpace\Notification\Core\Notification $notificat
 {
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\add()');
 
-	\BracketSpace\Notification\add($notification);
+	\BracketSpace\Notification\addNotification($notification);
 }
 
 

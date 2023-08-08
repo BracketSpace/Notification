@@ -128,7 +128,7 @@ function notification($data = [])
 {
 
 	try {
-		add(new Notification(convertData($data)));
+		addNotification(new Notification(convertData($data)));
 	} catch (\Throwable $e) {
 		return new \WP_Error(
 			'notification_error',
@@ -147,7 +147,7 @@ function notification($data = [])
  * @since  6.0.0
  * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function add(Notification $notification)
+function addNotification(Notification $notification)
 {
 	Store\Notification::insert(
 		$notification->getHash(),
