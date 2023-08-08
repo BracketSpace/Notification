@@ -13,6 +13,7 @@ namespace BracketSpace\Notification\Defaults\Adapter;
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Core\Notification;
 use function BracketSpace\Notification\adaptNotificationFrom;
+use function BracketSpace\Notification\convertData;
 use function BracketSpace\Notification\swapNotificationAdapter;
 
 /**
@@ -69,7 +70,7 @@ class WordPress extends Abstracts\Adapter
 				)
 			);
 			$this->setupNotification(
-				\BracketSpace\Notification\convertData(
+				convertData(
 					$jsonAdapter->getNotification()->toArray()
 				)
 			);
