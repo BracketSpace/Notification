@@ -11,12 +11,14 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 
+
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver\Transient;
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\ErrorHandler;
 use BracketSpace\Notification\Interfaces\Sendable;
 use BracketSpace\Notification\Interfaces\Triggerable;
+use function BracketSpace\Notification\adaptNotification;
 use function BracketSpace\Notification\adaptNotificationFrom;
 
 /**
@@ -105,7 +107,7 @@ class Processor
 			),
 			'notification_background_processing',
 			[
-				\BracketSpace\Notification\adaptNotification(
+				adaptNotification(
 					'JSON',
 					$notification
 				)->save(
