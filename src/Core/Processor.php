@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 
-
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver\Transient;
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
