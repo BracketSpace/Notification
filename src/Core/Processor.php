@@ -17,6 +17,7 @@ use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\ErrorHandler;
 use BracketSpace\Notification\Interfaces\Sendable;
 use BracketSpace\Notification\Interfaces\Triggerable;
+use function BracketSpace\Notification\adaptNotificationFrom;
 
 /**
  * Processor class
@@ -180,7 +181,7 @@ class Processor
 	 */
 	public static function handleCron($notificationJson, $triggerKey)
 	{
-		$notification = \BracketSpace\Notification\adaptNotificationFrom(
+		$notification = adaptNotificationFrom(
 			'JSON',
 			$notificationJson
 		)->getNotification();

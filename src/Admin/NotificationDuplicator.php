@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 
+use function BracketSpace\Notification\adaptNotificationFrom;
+
 /**
  * Notification duplicator class
  */
@@ -70,7 +72,7 @@ class NotificationDuplicator
 
 		// Get the source notification post.
 		$source = get_post(intval(wp_unslash($_GET['duplicate'])));
-		$wp = \BracketSpace\Notification\adaptNotificationFrom(
+		$wp = adaptNotificationFrom(
 			'WordPress',
 			$source
 		);

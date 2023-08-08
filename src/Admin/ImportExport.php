@@ -12,6 +12,7 @@ namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Utils\Settings\Fields as SettingFields;
 use BracketSpace\Notification\Queries\NotificationQueries;
+use function BracketSpace\Notification\adaptNotificationFrom;
 
 /**
  * Import/Export class
@@ -152,7 +153,7 @@ class ImportExport
 		);
 
 		foreach ($posts as $wppost) {
-			$wpAdapter = \BracketSpace\Notification\adaptNotificationFrom(
+			$wpAdapter = adaptNotificationFrom(
 				'WordPress',
 				$wppost
 			);
@@ -265,7 +266,7 @@ class ImportExport
 		$updated = 0;
 
 		foreach ($data as $notificationData) {
-			$jsonAdapter = \BracketSpace\Notification\adaptNotificationFrom(
+			$jsonAdapter = adaptNotificationFrom(
 				'JSON',
 				wp_json_encode($notificationData)
 			);

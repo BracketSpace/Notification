@@ -12,6 +12,7 @@ namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
+use function BracketSpace\Notification\adaptNotificationFrom;
 
 /**
  * Sync class
@@ -92,7 +93,7 @@ class Sync
 				 *
 				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 				 */
-				$adapter = \BracketSpace\Notification\adaptNotificationFrom(
+				$adapter = adaptNotificationFrom(
 					'JSON',
 					$json
 				);
@@ -161,7 +162,7 @@ class Sync
 			return;
 		}
 
-		$adapter = \BracketSpace\Notification\adaptNotificationFrom(
+		$adapter = adaptNotificationFrom(
 			'WordPress',
 			$postId
 		);

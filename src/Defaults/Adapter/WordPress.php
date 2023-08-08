@@ -12,6 +12,7 @@ namespace BracketSpace\Notification\Defaults\Adapter;
 
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Core\Notification;
+use function BracketSpace\Notification\adaptNotificationFrom;
 
 /**
  * WordPress Adapter class
@@ -59,7 +60,7 @@ class WordPress extends Abstracts\Adapter
 		}
 
 		try {
-			$jsonAdapter = \BracketSpace\Notification\adaptNotificationFrom(
+			$jsonAdapter = adaptNotificationFrom(
 				'JSON',
 				wp_specialchars_decode(
 					$this->post->post_content,

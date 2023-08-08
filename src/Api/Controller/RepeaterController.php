@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Api\Controller;
 
 use BracketSpace\Notification\Store;
+use function BracketSpace\Notification\adaptNotificationFrom;
 
 /**
  * RepeaterHandler class
@@ -110,7 +111,7 @@ class RepeaterController
 	 */
 	public function getValues($postId, $carrier, $field)
 	{
-		$notification = \BracketSpace\Notification\adaptNotificationFrom(
+		$notification = adaptNotificationFrom(
 			'WordPress',
 			$postId
 		);

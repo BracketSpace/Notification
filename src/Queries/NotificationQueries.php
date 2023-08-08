@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Queries;
 
+use function BracketSpace\Notification\adaptNotificationFrom;
+
 /**
  * Notification Queries class
  */
@@ -46,7 +48,7 @@ class NotificationQueries
 		}
 
 		foreach ($wpposts as $wppost) {
-			$posts[] = \BracketSpace\Notification\adaptNotificationFrom(
+			$posts[] = adaptNotificationFrom(
 				'WordPress',
 				$wppost
 			);
@@ -72,7 +74,7 @@ class NotificationQueries
 
 		return empty($post)
 			? null
-			: \BracketSpace\Notification\adaptNotificationFrom(
+			: adaptNotificationFrom(
 				'WordPress',
 				$post
 			);

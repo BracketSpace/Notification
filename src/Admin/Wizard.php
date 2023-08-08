@@ -14,6 +14,7 @@ use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Core\Whitelabel;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
+use function BracketSpace\Notification\adaptNotificationFrom;
 
 /**
  * Wizard class
@@ -458,7 +459,7 @@ class Wizard
 
 			$json = $this->filesystem->get_contents($jsonPath);
 
-			$jsonAdapter = \BracketSpace\Notification\adaptNotificationFrom(
+			$jsonAdapter = adaptNotificationFrom(
 				'JSON',
 				$json
 			);

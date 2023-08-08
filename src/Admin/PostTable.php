@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 
+use function BracketSpace\Notification\adaptNotificationFrom;
+
 /**
  * PostTable class
  */
@@ -69,7 +71,7 @@ class PostTable
 		 *
 		 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
 		 */
-		$notification = \BracketSpace\Notification\adaptNotificationFrom(
+		$notification = adaptNotificationFrom(
 			'WordPress',
 			$postId
 		);
@@ -255,7 +257,7 @@ class PostTable
 		);
 
 		foreach ($postIds as $postId) {
-			$notification = \BracketSpace\Notification\adaptNotificationFrom(
+			$notification = adaptNotificationFrom(
 				'WordPress',
 				$postId
 			);

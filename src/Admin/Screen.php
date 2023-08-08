@@ -16,6 +16,7 @@ use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
+use function BracketSpace\Notification\adaptNotificationFrom;
 
 /**
  * Screen class
@@ -52,7 +53,7 @@ class Screen
 			return;
 		}
 
-		$notificationPost = \BracketSpace\Notification\adaptNotificationFrom(
+		$notificationPost = adaptNotificationFrom(
 			'WordPress',
 			$post
 		);
@@ -318,7 +319,7 @@ class Screen
 	 */
 	public function renderMergeTagsMetabox($post)
 	{
-		$notification = \BracketSpace\Notification\adaptNotificationFrom(
+		$notification = adaptNotificationFrom(
 			'WordPress',
 			$post
 		);

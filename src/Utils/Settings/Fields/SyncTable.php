@@ -14,6 +14,7 @@ use BracketSpace\Notification\Admin\PostType;
 use BracketSpace\Notification\Core\Sync as CoreSync;
 use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Queries\NotificationQueries;
+use function BracketSpace\Notification\adaptNotificationFrom;
 
 /**
  * SyncTable class
@@ -36,7 +37,7 @@ class SyncTable
 		// Load the WP Notifications first.
 		foreach ($wpJsonNotifiactions as $json) {
 			try {
-				$adapter = \BracketSpace\Notification\adaptNotificationFrom(
+				$adapter = adaptNotificationFrom(
 					'JSON',
 					$json
 				);
@@ -67,7 +68,7 @@ class SyncTable
 		// Compare against JSON.
 		foreach ($jsonNotifications as $json) {
 			try {
-				$adapter = \BracketSpace\Notification\adaptNotificationFrom(
+				$adapter = adaptNotificationFrom(
 					'JSON',
 					$json
 				);

@@ -16,6 +16,7 @@ use BracketSpace\Notification\Utils\Settings\CoreFields;
 use BracketSpace\Notification\Utils\Settings\Fields as SpecificFields;
 use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
 use BracketSpace\Notification\Queries\NotificationQueries;
+use function BracketSpace\Notification\adaptNotificationFrom;
 
 /**
  * Sync class
@@ -166,7 +167,7 @@ class Sync
 				 *
 				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 				 */
-				$jsonAdapter = \BracketSpace\Notification\adaptNotificationFrom(
+				$jsonAdapter = adaptNotificationFrom(
 					'JSON',
 					$json
 				);
