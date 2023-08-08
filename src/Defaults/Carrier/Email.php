@@ -13,6 +13,7 @@ namespace BracketSpace\Notification\Defaults\Carrier;
 use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\Field;
+use function BracketSpace\Notification\log;
 
 /**
  * Email Carrier
@@ -321,7 +322,7 @@ class Email extends Abstracts\Carrier
 		}
 
 		foreach ($errors as $error => $errorData) {
-			\BracketSpace\Notification\log(
+			log(
 				$this->getName(),
 				'error',
 				// phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
