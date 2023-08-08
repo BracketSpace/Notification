@@ -12,6 +12,7 @@ namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Utils\Settings\CoreFields;
 use BracketSpace\Notification\Utils\Settings\Fields as SpecificFields;
+use function BracketSpace\Notification\getSetting;
 
 /**
  * Debugging class
@@ -181,9 +182,9 @@ class Debugging
 	public function debugWarning()
 	{
 		if (
-			get_post_type() !== 'notification' || !\BracketSpace\Notification\getSetting(
+			get_post_type() !== 'notification' || !getSetting(
 				'debugging/settings/debug_log'
-			) || !\BracketSpace\Notification\getSetting('debugging/settings/debug_suppressing')
+			) || !getSetting('debugging/settings/debug_suppressing')
 		) {
 			return;
 		}

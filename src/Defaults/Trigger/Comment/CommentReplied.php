@@ -12,6 +12,7 @@ namespace BracketSpace\Notification\Defaults\Trigger\Comment;
 
 use BracketSpace\Notification\Defaults\MergeTag;
 use BracketSpace\Notification\Utils\WpObjectHelper;
+use function BracketSpace\Notification\getSetting;
 
 /**
  * Comment replied trigger class
@@ -93,7 +94,7 @@ class CommentReplied extends CommentTrigger
 
 		if (
 			$this->comment->comment_approved === 'spam' &&
-			\BracketSpace\Notification\getSetting('triggers/comment/akismet')
+			getSetting('triggers/comment/akismet')
 		) {
 			return false;
 		}

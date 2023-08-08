@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 
+use function BracketSpace\Notification\getSetting;
+
 /**
  * Cron class
  */
@@ -80,7 +82,7 @@ class Cron
 	public function registerCheckUpdatesEvent()
 	{
 		$event = wp_get_schedule('notification_check_wordpress_updates');
-		$schedule = \BracketSpace\Notification\getSetting('triggers/wordpress/updates_cron_period');
+		$schedule = getSetting('triggers/wordpress/updates_cron_period');
 
 		if ($event === false) {
 			$this->schedule(

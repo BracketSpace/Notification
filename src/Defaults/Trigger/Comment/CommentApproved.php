@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Defaults\Trigger\Comment;
 
 use BracketSpace\Notification\Utils\WpObjectHelper;
+use function BracketSpace\Notification\getSetting;
 
 /**
  * Comment added trigger class
@@ -73,7 +74,7 @@ class CommentApproved extends CommentTrigger
 
 		if (
 			$this->comment->comment_approved === 'spam' &&
-			\BracketSpace\Notification\getSetting('triggers/comment/akismet')
+			getSetting('triggers/comment/akismet')
 		) {
 			return false;
 		}

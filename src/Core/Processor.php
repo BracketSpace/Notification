@@ -20,6 +20,7 @@ use BracketSpace\Notification\Interfaces\Sendable;
 use BracketSpace\Notification\Interfaces\Triggerable;
 use function BracketSpace\Notification\adaptNotification;
 use function BracketSpace\Notification\adaptNotificationFrom;
+use function BracketSpace\Notification\getSetting;
 
 /**
  * Processor class
@@ -44,7 +45,7 @@ class Processor
 
 				$bpEnabled = apply_filters(
 					'notification/trigger/process_in_background',
-					\BracketSpace\Notification\getSetting('general/advanced/background_processing'),
+					getSetting('general/advanced/background_processing'),
 					$trigger
 				);
 

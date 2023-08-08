@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Integration;
 
+use function BracketSpace\Notification\getSetting;
+
 /**
  * WordPress integration class
  */
@@ -99,7 +101,7 @@ class WordPressEmails
 
 		if (
 			$isAdminNotify &&
-			(\BracketSpace\Notification\getSetting('integration/emails/new_user_to_admin') !== 'true')
+			(getSetting('integration/emails/new_user_to_admin') !== 'true')
 		) {
 			wp_new_user_notification(
 				$userId,
@@ -109,7 +111,7 @@ class WordPressEmails
 		}
 		if (
 			!$isUserNotify ||
-			(\BracketSpace\Notification\getSetting('integration/emails/new_user_to_user') === 'true')
+			(getSetting('integration/emails/new_user_to_user') === 'true')
 		) {
 			return;
 		}
@@ -133,7 +135,7 @@ class WordPressEmails
 	 */
 	public function disablePostAuthorNotify($maybeNotify, $commentId)
 	{
-		if (\BracketSpace\Notification\getSetting('integration/emails/post_author') === 'true') {
+		if (getSetting('integration/emails/post_author') === 'true') {
 			$maybeNotify = false;
 		}
 		return $maybeNotify;
@@ -151,7 +153,7 @@ class WordPressEmails
 	 */
 	public function disableCommentModeratorNotify($maybeNotify, $commentId)
 	{
-		if (\BracketSpace\Notification\getSetting('integration/emails/comment_moderator') === 'true') {
+		if (getSetting('integration/emails/comment_moderator') === 'true') {
 			$maybeNotify = false;
 		}
 		return $maybeNotify;
@@ -167,7 +169,7 @@ class WordPressEmails
 	 */
 	public function disablePasswordChangeNotifyToAdmin()
 	{
-		if (\BracketSpace\Notification\getSetting('integration/emails/password_change_to_admin') !== 'true') {
+		if (getSetting('integration/emails/password_change_to_admin') !== 'true') {
 			return;
 		}
 		add_filter(
@@ -191,7 +193,7 @@ class WordPressEmails
 	public function disableSendConfirmationOnProfileEmail()
 	{
 
-		if (\BracketSpace\Notification\getSetting('integration/emails/send_confirmation_on_profile_email') !== 'true') {
+		if (getSetting('integration/emails/send_confirmation_on_profile_email') !== 'true') {
 			return;
 		}
 
@@ -215,7 +217,7 @@ class WordPressEmails
 	public function disableSendConfirmationOnAdminEmail()
 	{
 
-		if (\BracketSpace\Notification\getSetting('integration/emails/send_confirmation_on_admin_email') !== 'true') {
+		if (getSetting('integration/emails/send_confirmation_on_admin_email') !== 'true') {
 			return;
 		}
 
@@ -238,7 +240,7 @@ class WordPressEmails
 	 */
 	public function disablePasswordChangeNotifyToUser($send, $user, $userdata)
 	{
-		if (\BracketSpace\Notification\getSetting('integration/emails/password_change_to_user') === 'true') {
+		if (getSetting('integration/emails/password_change_to_user') === 'true') {
 			$send = false;
 		}
 		return $send;
@@ -255,7 +257,7 @@ class WordPressEmails
 	 */
 	public function disablePasswordResetNotifyToUser($message)
 	{
-		if (\BracketSpace\Notification\getSetting('integration/emails/password_forgotten_to_user') === 'true') {
+		if (getSetting('integration/emails/password_forgotten_to_user') === 'true') {
 			return '';
 		}
 		return $message;
@@ -274,7 +276,7 @@ class WordPressEmails
 	 */
 	public function disableEmailChangeNotifyToUser($send, $user, $userdata)
 	{
-		if (\BracketSpace\Notification\getSetting('integration/emails/email_change_to_user') === 'true') {
+		if (getSetting('integration/emails/email_change_to_user') === 'true') {
 			$send = false;
 		}
 		return $send;
@@ -295,7 +297,7 @@ class WordPressEmails
 	public function disableAutomaticWpCoreUpdateNotify($send, $type, $coreUpdate, $result)
 	{
 		if (
-			($type === 'success') && (\BracketSpace\Notification\getSetting(
+			($type === 'success') && (getSetting(
 				'integration/emails/automatic_wp_core_update'
 			) === 'true')
 		) {
@@ -323,8 +325,8 @@ class WordPressEmails
 		));
 
 		$value = $isAdmin
-			? \BracketSpace\Notification\getSetting('integration/emails/' . $slug . '_to_admin')
-			: \BracketSpace\Notification\getSetting('integration/emails/' . $slug . '_to_user');
+			? getSetting('integration/emails/' . $slug . '_to_admin')
+			: getSetting('integration/emails/' . $slug . '_to_user');
 		return $value;
 	}
 }
