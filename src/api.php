@@ -20,7 +20,8 @@ use BracketSpace\Notification\Core\Notification;
  * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
  * @return \BracketSpace\Notification\Interfaces\Adaptable
  * @throws \Exception If adapter wasn't found.
- * @since [Next]
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
 function adapt($adapterName, Notification $notification)
 {
@@ -49,7 +50,8 @@ function adapt($adapterName, Notification $notification)
  * @param string $adapterName Adapter class name.
  * @param mixed $data Input data needed by adapter.
  * @return \BracketSpace\Notification\Interfaces\Adaptable
- * @since [Next]
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
 function adaptFrom($adapterName, $data)
 {
@@ -66,7 +68,8 @@ function adaptFrom($adapterName, $data)
  * @param string $newAdapterName Adapter class name.
  * @param \BracketSpace\Notification\Interfaces\Adaptable $adapter Adapter.
  * @return \BracketSpace\Notification\Interfaces\Adaptable
- * @since [Next]
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
 function swapAdapter($newAdapterName, Interfaces\Adaptable $adapter)
 {
@@ -83,7 +86,8 @@ function swapAdapter($newAdapterName, Interfaces\Adaptable $adapter)
  * @param string $type Log type, values: notification|error|warning.
  * @param string $message Log formatted message.
  * @return bool|\WP_Error
- * @since [Next]
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
 function log($component, $type, $message)
 {
@@ -118,6 +122,7 @@ function log($component, $type, $message)
  * @param array<mixed> $data Notification data.
  * @return \WP_Error | true
  * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
 function notification($data = [])
 {
@@ -139,7 +144,8 @@ function notification($data = [])
  *
  * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
  * @return void
- * @since [Next]
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
 function add(Notification $notification)
 {
@@ -161,7 +167,8 @@ function add(Notification $notification)
  *
  * @param array<mixed> $data Notification static data.
  * @return array<mixed>       Converted data.
- * @since [Next]
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
 function convertData($data = [])
 {
@@ -204,7 +211,8 @@ function convertData($data = [])
  * @param mixed $callback Callback for settings registration, array of string.
  * @param int $priority Action priority.
  * @return void
- * @since [Next]
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
 function registerSettings($callback, $priority = 10)
 {
@@ -227,7 +235,8 @@ function registerSettings($callback, $priority = 10)
  * Gets setting values
  *
  * @return mixed
- * @since [Next]
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
 function getSettings()
 {
@@ -239,7 +248,8 @@ function getSettings()
  *
  * @param string $setting setting name in `a/b/c` format.
  * @return mixed
- * @since [Next]
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
 function getSetting($setting)
 {
@@ -270,7 +280,8 @@ function getSetting($setting)
  * @param string $setting setting name in `a/b/c` format.
  * @param mixed $value setting value.
  * @return  mixed
- * @since [Next]
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
 function updateSetting($setting, $value)
 {
