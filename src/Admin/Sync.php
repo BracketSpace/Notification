@@ -17,6 +17,7 @@ use BracketSpace\Notification\Utils\Settings\Fields as SpecificFields;
 use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
 use BracketSpace\Notification\Queries\NotificationQueries;
 use function BracketSpace\Notification\adaptNotificationFrom;
+use function BracketSpace\Notification\swapNotificationAdapter;
 
 /**
  * Sync class
@@ -178,7 +179,7 @@ class Sync
 					 *
 					 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
 					 */
-					$wpAdapter = \BracketSpace\Notification\swapNotificationAdapter(
+					$wpAdapter = swapNotificationAdapter(
 						'WordPress',
 						$jsonAdapter
 					);

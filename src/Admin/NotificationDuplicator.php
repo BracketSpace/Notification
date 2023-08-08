@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Admin;
 
 use function BracketSpace\Notification\adaptNotificationFrom;
+use function BracketSpace\Notification\swapNotificationAdapter;
 
 /**
  * Notification duplicator class
@@ -82,7 +83,7 @@ class NotificationDuplicator
 		 *
 		 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 		 */
-		$json = \BracketSpace\Notification\swapNotificationAdapter(
+		$json = swapNotificationAdapter(
 			'JSON',
 			$wp
 		);

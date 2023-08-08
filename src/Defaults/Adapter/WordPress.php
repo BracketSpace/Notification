@@ -13,6 +13,7 @@ namespace BracketSpace\Notification\Defaults\Adapter;
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Core\Notification;
 use function BracketSpace\Notification\adaptNotificationFrom;
+use function BracketSpace\Notification\swapNotificationAdapter;
 
 /**
  * WordPress Adapter class
@@ -101,7 +102,7 @@ class WordPress extends Abstracts\Adapter
 		$data = $this->getNotification()->toArray();
 
 		/** @var \BracketSpace\Notification\Defaults\Adapter\JSON */
-		$jsonAdapter = \BracketSpace\Notification\swapNotificationAdapter(
+		$jsonAdapter = swapNotificationAdapter(
 			'JSON',
 			$this
 		);

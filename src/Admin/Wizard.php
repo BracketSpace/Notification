@@ -15,6 +15,7 @@ use BracketSpace\Notification\Core\Whitelabel;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
 use function BracketSpace\Notification\adaptNotificationFrom;
+use function BracketSpace\Notification\swapNotificationAdapter;
 
 /**
  * Wizard class
@@ -465,7 +466,7 @@ class Wizard
 			);
 			$jsonAdapter->refreshHash();
 
-			$wpAdapter = \BracketSpace\Notification\swapNotificationAdapter(
+			$wpAdapter = swapNotificationAdapter(
 				'WordPress',
 				$jsonAdapter
 			);
