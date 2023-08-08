@@ -855,7 +855,7 @@ function notification_update_setting($setting, $value) {
 function notificationAdapt($adapterName, \BracketSpace\Notification\Core\Notification $notification) {
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\adapt()');
 
-	return \BracketSpace\Notification\adapt($adapterName, $notification);
+	return \BracketSpace\Notification\adaptNotification($adapterName, $notification);
 }
 
 /**

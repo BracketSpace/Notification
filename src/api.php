@@ -23,7 +23,7 @@ use BracketSpace\Notification\Core\Notification;
  * @since  6.0.0
  * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function adapt($adapterName, Notification $notification)
+function adaptNotification($adapterName, Notification $notification)
 {
 	if (class_exists($adapterName)) {
 		$adapter = new $adapterName($notification);
@@ -55,7 +55,7 @@ function adapt($adapterName, Notification $notification)
  */
 function adaptFrom($adapterName, $data)
 {
-	$adapter = adapt(
+	$adapter = adaptNotification(
 		$adapterName,
 		new Notification()
 	);
@@ -73,7 +73,7 @@ function adaptFrom($adapterName, $data)
  */
 function swapAdapter($newAdapterName, Interfaces\Adaptable $adapter)
 {
-	return adapt(
+	return adaptNotification(
 		$newAdapterName,
 		$adapter->getNotification()
 	);
