@@ -16,6 +16,7 @@ use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 use function BracketSpace\Notification\adaptNotificationFrom;
+use function BracketSpace\Notification\addNotification;
 
 /**
  * PostType class
@@ -560,7 +561,7 @@ class PostType
 				continue;
 			}
 
-			\BracketSpace\Notification\addNotification($adapter->getNotification());
+			addNotification($adapter->getNotification());
 		}
 	}
 }
