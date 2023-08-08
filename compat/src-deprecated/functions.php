@@ -888,7 +888,7 @@ function notificationSwapAdapter($newAdapterName, Interfaces\Adaptable $adapter)
 {
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\swapAdapter()');
 
-	return \BracketSpace\Notification\swapAdapter($newAdapterName, $adapter);
+	return \BracketSpace\Notification\swapNotificationAdapter($newAdapterName, $adapter);
 }
 
 /**

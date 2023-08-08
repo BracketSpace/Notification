@@ -464,7 +464,7 @@ class Wizard
 			);
 			$jsonAdapter->refreshHash();
 
-			$wpAdapter = \BracketSpace\Notification\swapAdapter(
+			$wpAdapter = \BracketSpace\Notification\swapNotificationAdapter(
 				'WordPress',
 				$jsonAdapter
 			);

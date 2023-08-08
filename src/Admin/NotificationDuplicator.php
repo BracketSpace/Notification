@@ -80,7 +80,7 @@ class NotificationDuplicator
 		 *
 		 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 		 */
-		$json = \BracketSpace\Notification\swapAdapter(
+		$json = \BracketSpace\Notification\swapNotificationAdapter(
 			'JSON',
 			$wp
 		);

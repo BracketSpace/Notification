@@ -129,7 +129,7 @@ class Sync
 		}
 
 		$file = $wpAdapter->getHash() . '.json';
-		$json = \BracketSpace\Notification\swapAdapter(
+		$json = \BracketSpace\Notification\swapNotificationAdapter(
 			'JSON',
 			$wpAdapter
 		)->save();

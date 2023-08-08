@@ -71,7 +71,7 @@ function adaptNotificationFrom($adapterName, $data)
  * @since  6.0.0
  * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function swapAdapter($newAdapterName, Interfaces\Adaptable $adapter)
+function swapNotificationAdapter($newAdapterName, Interfaces\Adaptable $adapter)
 {
 	return adaptNotification(
 		$newAdapterName,
