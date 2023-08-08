@@ -36,7 +36,7 @@ class SyncTable
 		// Load the WP Notifications first.
 		foreach ($wpJsonNotifiactions as $json) {
 			try {
-				$adapter = \BracketSpace\Notification\adaptFrom(
+				$adapter = \BracketSpace\Notification\adaptNotificationFrom(
 					'JSON',
 					$json
 				);
@@ -67,7 +67,7 @@ class SyncTable
 		// Compare against JSON.
 		foreach ($jsonNotifications as $json) {
 			try {
-				$adapter = \BracketSpace\Notification\adaptFrom(
+				$adapter = \BracketSpace\Notification\adaptNotificationFrom(
 					'JSON',
 					$json
 				);

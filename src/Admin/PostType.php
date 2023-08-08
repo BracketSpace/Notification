@@ -356,7 +356,7 @@ class PostType
 		}
 
 		$data = $_POST;
-		$notificationPost = \BracketSpace\Notification\adaptFrom(
+		$notificationPost = \BracketSpace\Notification\adaptNotificationFrom(
 			'WordPress',
 			$post
 		);
@@ -462,7 +462,7 @@ class PostType
 
 		$ajax->verify_nonce('change_notification_status_' . $data['post_id']);
 
-		$adapter = \BracketSpace\Notification\adaptFrom(
+		$adapter = \BracketSpace\Notification\adaptNotificationFrom(
 			'WordPress',
 			(int)$data['post_id']
 		);
@@ -546,7 +546,7 @@ class PostType
 				continue;
 			}
 
-			$adapter = \BracketSpace\Notification\adaptFrom(
+			$adapter = \BracketSpace\Notification\adaptNotificationFrom(
 				'JSON',
 				$notificationJson
 			);

@@ -458,7 +458,7 @@ class Wizard
 
 			$json = $this->filesystem->get_contents($jsonPath);
 
-			$jsonAdapter = \BracketSpace\Notification\adaptFrom(
+			$jsonAdapter = \BracketSpace\Notification\adaptNotificationFrom(
 				'JSON',
 				$json
 			);

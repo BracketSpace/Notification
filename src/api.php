@@ -53,7 +53,7 @@ function adaptNotification($adapterName, Notification $notification)
  * @since  6.0.0
  * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function adaptFrom($adapterName, $data)
+function adaptNotificationFrom($adapterName, $data)
 {
 	$adapter = adaptNotification(
 		$adapterName,

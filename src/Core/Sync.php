@@ -92,7 +92,7 @@ class Sync
 				 *
 				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 				 */
-				$adapter = \BracketSpace\Notification\adaptFrom(
+				$adapter = \BracketSpace\Notification\adaptNotificationFrom(
 					'JSON',
 					$json
 				);
@@ -161,7 +161,7 @@ class Sync
 			return;
 		}
 
-		$adapter = \BracketSpace\Notification\adaptFrom(
+		$adapter = \BracketSpace\Notification\adaptNotificationFrom(
 			'WordPress',
 			$postId
 		);

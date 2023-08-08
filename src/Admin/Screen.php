@@ -52,7 +52,7 @@ class Screen
 			return;
 		}
 
-		$notificationPost = \BracketSpace\Notification\adaptFrom(
+		$notificationPost = \BracketSpace\Notification\adaptNotificationFrom(
 			'WordPress',
 			$post
 		);
@@ -318,7 +318,7 @@ class Screen
 	 */
 	public function renderMergeTagsMetabox($post)
 	{
-		$notification = \BracketSpace\Notification\adaptFrom(
+		$notification = \BracketSpace\Notification\adaptNotificationFrom(
 			'WordPress',
 			$post
 		);

@@ -872,7 +872,7 @@ function notificationAdaptFrom($adapterName, $data)
 {
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\adaptFrom()');
 
-	return \BracketSpace\Notification\adaptFrom($adapterName, $data);
+	return \BracketSpace\Notification\adaptNotificationFrom($adapterName, $data);
 }
 
 /**

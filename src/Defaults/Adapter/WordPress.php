@@ -59,7 +59,7 @@ class WordPress extends Abstracts\Adapter
 		}
 
 		try {
-			$jsonAdapter = \BracketSpace\Notification\adaptFrom(
+			$jsonAdapter = \BracketSpace\Notification\adaptNotificationFrom(
 				'JSON',
 				wp_specialchars_decode(
 					$this->post->post_content,
