@@ -304,6 +304,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 
+* [Changed] Removed v6 & v7 deprecated functions
 * [Fixed] Shortcodes being uncorrectly stripped leaving closing "]" behind.
 * [Fixed] PHP 8.2 deprecations.
 * [Changed] Minimum required PHP version from 7.4.
