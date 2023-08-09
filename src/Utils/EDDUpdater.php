@@ -84,10 +84,7 @@ class EDDUpdater
 		 * @since x.x.x
 		 *
 		 */
-		do_action(
-			'post_edd_sl_plugin_updater_setup',
-			$eddPluginData
-		);
+		do_action('post_edd_sl_plugin_updater_setup', $eddPluginData);
 
 		// Set up hooks.
 		$this->init();
@@ -292,7 +289,7 @@ class EDDUpdater
 		);
 
 		printf(
-		/* translators: the plugin name. */
+			/* translators: the plugin name. */
 			esc_html__('There is a new version of %1$s available.', 'easy-digital-downloads'),
 			esc_html($plugin['Name'])
 		);
@@ -306,7 +303,7 @@ class EDDUpdater
 		} elseif (empty($updateCache->response[$this->name]->package) && !empty($changelogLink)) {
 			echo ' ';
 			printf(
-			/* translators:
+				/* translators:
 				1. opening anchor tag, do not translate
 				2. the new plugin version
 				3. closing anchor tag, do not translate.
@@ -346,11 +343,7 @@ class EDDUpdater
 			);
 		}
 
-		do_action(
-			"in_plugin_update_message-{$file}",
-			$plugin,
-			$plugin
-		);
+		do_action("in_plugin_update_message-{$file}", $plugin, $plugin);
 
 		echo '</p></div></td></tr>';
 	}

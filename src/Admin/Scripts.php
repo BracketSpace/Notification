@@ -96,8 +96,9 @@ class Scripts
 		wp_enqueue_script(
 			'notification',
 			$this->filesystem->url('resources/js/dist/scripts.js'),
-			['jquery', 'wp-color-picker', 'wp-i18n', 'wp-hooks', 'jquery-ui-sortable', 'wp-polyfill', 'wp-tinymce',
-			 'wplink',
+			[
+				'jquery', 'wp-color-picker', 'wp-i18n', 'wp-hooks', 'jquery-ui-sortable', 'wp-polyfill', 'wp-tinymce',
+				'wplink',
 			],
 			$this->filesystem->mtime('resources/js/dist/scripts.js'),
 			true
@@ -141,9 +142,6 @@ class Scripts
 		// Remove TinyMCE styles as they are not applied to any frontend content.
 		remove_editor_styles();
 
-		do_action(
-			'notification/scripts',
-			$pageHook
-		);
+		do_action('notification/scripts', $pageHook);
 	}
 }

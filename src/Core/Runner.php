@@ -116,11 +116,7 @@ class Runner
 			$trigger->stop();
 		}
 
-		do_action(
-			'notification/trigger/action/did',
-			$trigger,
-			current_action()
-		);
+		do_action('notification/trigger/action/did', $trigger, current_action());
 
 		if ($trigger->isStopped()) {
 			return;
@@ -137,10 +133,7 @@ class Runner
 				$trigger
 			);
 
-			do_action(
-				'notification/processed',
-				$notification
-			);
+			do_action('notification/processed', $notification);
 		}
 	}
 

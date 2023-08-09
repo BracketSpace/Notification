@@ -94,9 +94,6 @@ class Settings extends SettingsAPI
 	 */
 	public function registerSettings()
 	{
-		do_action(
-			'notification/settings/register',
-			$this
-		);
+		do_action('notification/settings/register', $this);
 	}
 }

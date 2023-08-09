@@ -360,10 +360,7 @@ class PostType
 		$notificationPost->setCarriers($carriers);
 
 		// Hook into this action if you want to save any Notification Post data.
-		do_action(
-			'notification/data/save',
-			$notificationPost
-		);
+		do_action('notification/data/save', $notificationPost);
 
 		$notificationPost->save();
 
@@ -376,10 +373,7 @@ class PostType
 		$cache->set_key('notifications');
 		$cache->delete();
 
-		do_action(
-			'notification/data/save/after',
-			$notificationPost
-		);
+		do_action('notification/data/save/after', $notificationPost);
 	}
 
 	/**
