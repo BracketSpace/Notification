@@ -61,27 +61,14 @@ class Scripts
 
 		$allowedPostTypes = apply_filters('notification/scripts/allowed_post_types', ['notification']);
 
-		if (
-			!in_array(
-				$pageHook,
-				$allowedHooks,
-				true
-			)
-		) {
+		if (!in_array($pageHook, $allowedHooks, true)) {
 			return;
 		}
 
 		// Check if we are on a correct post type if we edit the post.
 		if (
-			in_array(
-				$pageHook,
-				['post-new.php', 'post.php', 'edit.php'],
-				true
-			) && !in_array(
-				get_post_type(),
-				$allowedPostTypes,
-				true
-			)
+			in_array($pageHook, ['post-new.php', 'post.php', 'edit.php'], true) &&
+			!in_array(get_post_type(), $allowedPostTypes, true)
 		) {
 			return;
 		}

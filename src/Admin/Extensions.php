@@ -272,13 +272,7 @@ class Extensions
 		}
 
 		foreach ($extensions as $extension) {
-			if (
-				!isset($extension['edd']) || !in_array(
-					$extension['slug'],
-					$pluginSlugs,
-					true
-				)
-			) {
+			if (!isset($extension['edd']) || !in_array($extension['slug'], $pluginSlugs, true)) {
 				continue;
 			}
 

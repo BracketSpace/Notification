@@ -43,13 +43,7 @@ class Settings extends SettingsAPI
 
 		$settingsAccess = apply_filters('notification/whitelabel/settings/access', false);
 
-		if (
-			$settingsAccess !== false && !in_array(
-				get_current_user_id(),
-				$settingsAccess,
-				true
-			)
-		) {
+		if ($settingsAccess !== false && !in_array(get_current_user_id(), $settingsAccess, true)) {
 			return;
 		}
 

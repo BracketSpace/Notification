@@ -104,16 +104,8 @@ class PostUpdated extends PostTrigger
 			return false;
 		}
 
-		if (
-			!in_array(
-				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-				$postBefore->post_status,
-				$updatedPostStatuses,
-				true
-			)
-			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-			|| $post->post_status === 'trash'
-		) {
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+		if (!in_array($postBefore->post_status, $updatedPostStatuses, true) || $post->post_status === 'trash') {
 			return false;
 		}
 

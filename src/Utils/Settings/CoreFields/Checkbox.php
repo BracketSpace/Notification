@@ -24,11 +24,7 @@ class Checkbox
 	 */
 	public function input($field)
 	{
-		$checked = in_array(
-			$field->value(),
-			['true', true],
-			true
-		);
+		$checked = in_array($field->value(), ['true', true], true);
 
 		printf(
 			'<label><input type="checkbox" id="%s" name="%s" value="true" %s> %s</label>',

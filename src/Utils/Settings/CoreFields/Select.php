@@ -44,11 +44,7 @@ class Select
 			: $field->addon('options');
 
 		foreach ($options as $optionValue => $optionLabel) {
-			$selected = in_array(
-				$optionValue,
-				(array)$field->value(),
-				true
-			)
+			$selected = in_array($optionValue, (array)$field->value(), true)
 				? 'selected="selected"'
 				: '';
 			// We're printing safe variable here.
