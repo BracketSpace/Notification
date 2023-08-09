@@ -144,12 +144,7 @@ class Processor
 			$carrier->resolveFields($trigger);
 			$carrier->prepareData();
 
-			do_action(
-				'notification/carrier/pre-send',
-				$carrier,
-				$trigger,
-				$notification
-			);
+			do_action('notification/carrier/pre-send', $carrier, $trigger, $notification);
 
 			if ($carrier->isSuppressed()) {
 				continue;
@@ -161,11 +156,7 @@ class Processor
 			);
 		}
 
-		do_action(
-			'notification/sent',
-			$notification,
-			$trigger
-		);
+		do_action('notification/sent', $notification, $trigger);
 	}
 
 	/**
@@ -215,11 +206,7 @@ class Processor
 	public static function send(Sendable $carrier, Triggerable $trigger)
 	{
 		$carrier->send($trigger);
-		do_action(
-			'notification/carrier/sent',
-			$carrier,
-			$trigger
-		);
+		do_action('notification/carrier/sent', $carrier, $trigger);
 	}
 
 	/**

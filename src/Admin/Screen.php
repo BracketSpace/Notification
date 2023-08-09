@@ -57,10 +57,7 @@ class Screen
 			$post
 		);
 
-		do_action(
-			'notification/post/column/main',
-			$notificationPost
-		);
+		do_action('notification/post/column/main', $notificationPost);
 	}
 
 	/**
@@ -116,10 +113,7 @@ class Screen
 			'notification/admin/carriers/pre'
 		);
 
-		do_action(
-			'notification/admin/carriers/pre',
-			$notificationPost
-		);
+		do_action('notification/admin/carriers/pre', $notificationPost);
 
 		echo '<div id="carrier-boxes">';
 
@@ -164,10 +158,7 @@ class Screen
 			'notification/admin/carriers'
 		);
 
-		do_action(
-			'notification/admin/carriers',
-			$notificationPost
-		);
+		do_action('notification/admin/carriers', $notificationPost);
 	}
 
 	/**

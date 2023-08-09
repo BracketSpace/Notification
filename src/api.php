@@ -147,10 +147,7 @@ function notificationAdd(Notification $notification)
 		$notification->getHash(),
 		$notification
 	);
-	do_action(
-		'notification/notification/registered',
-		$notification
-	);
+	do_action('notification/notification/registered', $notification);
 }
 
 /**

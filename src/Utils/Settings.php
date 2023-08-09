@@ -109,7 +109,7 @@ class Settings
 		// phpcs:disable WordPress.Security.NonceVerification
 		$sections = $this->getSections();
 
-		$currentSection = ! empty($_GET['section'])
+		$currentSection = !empty($_GET['section'])
 			? sanitize_text_field(wp_unslash($_GET['section']))
 			: key($this->getSections());
 
@@ -216,11 +216,7 @@ class Settings
 			);
 		}
 
-		do_action(
-			$this->handle . '/settings/saved',
-			$toSave,
-			$this
-		);
+		do_action($this->handle . '/settings/saved', $toSave, $this);
 
 		wp_safe_redirect(
 			add_query_arg(

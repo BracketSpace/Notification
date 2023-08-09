@@ -43,10 +43,7 @@ class RecipientRepository
 		Register::recipient('email', new Recipient\Role());
 
 		foreach (self::$webhookRecipientTypes as $type => $name) {
-			$recipient = new Recipient\Webhook(
-				$type,
-				$name
-			);
+			$recipient = new Recipient\Webhook($type, $name);
 
 			Register::recipient('webhook', $recipient);
 			Register::recipient('webhook_json', $recipient);

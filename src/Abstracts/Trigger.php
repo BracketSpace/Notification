@@ -107,10 +107,7 @@ abstract class Trigger implements Triggerable
 
 		$this->mergeTagsAdded = true;
 
-		do_action(
-			'notification/trigger/merge_tags',
-			$this
-		);
+		do_action('notification/trigger/merge_tags', $this);
 	}
 
 	/**
