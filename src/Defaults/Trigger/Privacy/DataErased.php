@@ -23,10 +23,7 @@ class DataErased extends PrivacyTrigger
 
 		parent::__construct(
 			'privacy/data-erased',
-			__(
-				'Personal Data Erased',
-				'notification'
-			)
+			__('Personal Data Erased', 'notification')
 		);
 
 		$this->addAction(

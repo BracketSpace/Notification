@@ -32,16 +32,10 @@ class UserRegistered extends UserTrigger
 
 		parent::__construct(
 			'user/registered',
-			__(
-				'User registration',
-				'notification'
-			)
+			__('User registration', 'notification')
 		);
 
-		$this->addAction(
-			'user_register',
-			1000
-		);
+		$this->addAction('user_register', 1000);
 
 		$this->setDescription(
 			__(
@@ -93,10 +87,10 @@ class UserRegistered extends UserTrigger
 						'wp-login.php?action=rp&key=37f62f1363b04df4370753037853fe88&login=userlogin',
 						'login'
 					) . "\n" .
-									__(
-										'After using this Merge Tag, no other password setup links will work.',
-										'notification'
-									),
+						__(
+							'After using this Merge Tag, no other password setup links will work.',
+							'notification'
+						),
 					'example' => true,
 					'resolver' => static function ($trigger) {
 						return network_site_url(

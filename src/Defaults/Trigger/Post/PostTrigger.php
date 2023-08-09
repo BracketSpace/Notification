@@ -211,21 +211,15 @@ abstract class PostTrigger extends Abstracts\Trigger
 							$this->postType
 						),
 						'name' => sprintf(
-						// translators: singular post name.
+							// translators: singular post name.
 							__('%s sticky status', 'notification'),
 							$postTypeName
 						),
 						'group' => $postTypeName,
 						'resolver' => function ($trigger) {
 							return is_sticky($trigger->{$this->postType}->ID)
-								? __(
-									'Sticky',
-									'notification'
-								)
-								: __(
-									'Not sticky',
-									'notification'
-								);
+								? __('Sticky', 'notification')
+								: __('Not sticky', 'notification');
 						},
 					]
 				)
@@ -242,10 +236,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 				// Post format special treatment.
 				$group = $taxonomy->name === 'post_format'
 					? $postTypeName
-					: __(
-						'Taxonomies',
-						'notification'
-					);
+					: __('Taxonomies', 'notification');
 
 				$this->addMergeTag(
 					new MergeTag\Post\PostTerms(
@@ -267,7 +258,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s creation date and time', 'notification'),
 						$postTypeName
 					),
@@ -284,7 +275,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s modification date and time', 'notification'),
 						$postTypeName
 					),
@@ -302,7 +293,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s author user ID', 'notification'),
 						$postTypeName
 					),
@@ -320,7 +311,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s author user login', 'notification'),
 						$postTypeName
 					),
@@ -338,7 +329,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s author user email', 'notification'),
 						$postTypeName
 					),
@@ -356,7 +347,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s author user nicename', 'notification'),
 						$postTypeName
 					),
@@ -374,7 +365,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s author user display name', 'notification'),
 						$postTypeName
 					),
@@ -392,7 +383,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s author user first name', 'notification'),
 						$postTypeName
 					),
@@ -410,7 +401,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s author user last name', 'notification'),
 						$postTypeName
 					),
@@ -428,7 +419,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s author user avatar', 'notification'),
 						$postTypeName
 					),
@@ -446,7 +437,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s author user role', 'notification'),
 						$postTypeName
 					),
@@ -465,7 +456,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s last editor ID', 'notification'),
 						$postTypeName
 					),
@@ -483,7 +474,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s last editor login', 'notification'),
 						$postTypeName
 					),
@@ -501,7 +492,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s last editor email', 'notification'),
 						$postTypeName
 					),
@@ -519,7 +510,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s last editor nicename', 'notification'),
 						$postTypeName
 					),
@@ -537,7 +528,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s last editor display name', 'notification'),
 						$postTypeName
 					),
@@ -555,7 +546,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s last editor first name', 'notification'),
 						$postTypeName
 					),
@@ -573,7 +564,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s last editor last name', 'notification'),
 						$postTypeName
 					),
@@ -591,7 +582,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s last editor avatar', 'notification'),
 						$postTypeName
 					),
@@ -609,7 +600,7 @@ abstract class PostTrigger extends Abstracts\Trigger
 						$this->postType
 					),
 					'name' => sprintf(
-					// translators: singular post name.
+						// translators: singular post name.
 						__('%s last editor role', 'notification'),
 						$postTypeName
 					),

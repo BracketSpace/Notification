@@ -106,16 +106,12 @@ class Screen
 	 */
 	public function renderCarrierBoxes($notificationPost)
 	{
-		echo '<h3 class="carriers-section-title">' . esc_html__(
-			'Carriers',
-			'notification'
-		) . '</h3>';
+		echo '<h3 class="carriers-section-title">'
+			. esc_html__('Carriers', 'notification') . '</h3>';
 
 		do_action_deprecated(
 			'notitication/admin/notifications/pre',
-			[
-				$notificationPost,
-			],
+			[$notificationPost],
 			'6.0.0',
 			'notification/admin/carriers/pre'
 		);
@@ -257,14 +253,8 @@ class Screen
 	public function renderSaveMetabox($post)
 	{
 		$deleteText = !EMPTY_TRASH_DAYS
-			? __(
-				'Delete Permanently',
-				'notification'
-			)
-			: __(
-				'Move to Trash',
-				'notification'
-			);
+			? __('Delete Permanently', 'notification')
+			: __('Move to Trash', 'notification');
 
 		// New posts has the status auto-draft and in this case the Notification should be enabled.
 		$enabled = get_post_status($post->ID) !== 'draft';
@@ -390,10 +380,7 @@ class Screen
 			return $groups;
 		}
 
-		$otherKey = __(
-			'Other',
-			'notification'
-		);
+		$otherKey = __('Other', 'notification');
 
 		foreach ($tags as $tag) {
 			if ($tag->getGroup()) {

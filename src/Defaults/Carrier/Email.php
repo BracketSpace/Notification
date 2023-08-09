@@ -36,10 +36,7 @@ class Email extends Abstracts\Carrier
 	{
 		parent::__construct(
 			'email',
-			__(
-				'Email',
-				'notification'
-			)
+			__('Email', 'notification')
 		);
 	}
 

@@ -58,24 +58,13 @@ class EmailChangeRequest extends Abstracts\Trigger
 
 		parent::__construct(
 			'wordpress/email_change_request',
-			__(
-				'Site email change request',
-				'notification'
-			)
+			__('Site email change request', 'notification')
 		);
 
-		$this->addAction(
-			'update_option_new_admin_email',
-			10,
-			2
-		);
+		$this->addAction('update_option_new_admin_email', 10, 2);
 
-		$this->setGroup(
-			__(
-				'WordPress',
-				'notification'
-			)
-		);
+		$this->setGroup(__('WordPress', 'notification'));
+
 		$this->setDescription(
 			__(
 				'Fires when admin requests change of site email address',

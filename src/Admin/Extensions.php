@@ -74,14 +74,8 @@ class Extensions
 			'notification/whitelabel/cpt/parent',
 			true
 		) !== true
-			? __(
-				'Notification extensions',
-				'notification'
-			)
-			: __(
-				'Extensions',
-				'notification'
-			);
+			? __('Notification extensions', 'notification')
+			: __('Extensions', 'notification');
 
 		$this->pageHook = add_submenu_page(
 			apply_filters(
@@ -492,26 +486,17 @@ class Extensions
 		switch ($status) {
 			case 'success':
 				$view = 'success';
-				$message = __(
-					'Your license has been activated.',
-					'notification'
-				);
+				$message = __('Your license has been activated.', 'notification');
 				break;
 
 			case 'deactivated':
 				$view = 'success';
-				$message = __(
-					'Your license has been deactivated.',
-					'notification'
-				);
+				$message = __('Your license has been deactivated.', 'notification');
 				break;
 
 			case 'wrong-nonce':
 				$view = 'error';
-				$message = __(
-					'Couldn\'t activate the license, please try again.',
-					'notification'
-				);
+				$message = __("Couldn't activate the license, please try again.", 'notification');
 				break;
 
 			case 'expired':
@@ -520,7 +505,7 @@ class Extensions
 
 				$view = 'error';
 				$message = sprintf(
-				// translators: 1. Date.
+					// translators: 1. Date.
 					__('Your license key expired on %s.', 'notification'),
 					date_i18n(
 						get_option('date_format'),
@@ -541,7 +526,7 @@ class Extensions
 			case 'missing':
 				$view = 'error';
 				$message = sprintf(
-				// Translators: Extension slug.
+					// Translators: Extension slug.
 					__('Invalid license key for %s.', 'notification'),
 					$extensionSlug
 				);
@@ -550,16 +535,13 @@ class Extensions
 			case 'invalid':
 			case 'site_inactive':
 				$view = 'error';
-				$message = __(
-					'Your license is not active for this URL.',
-					'notification'
-				);
+				$message = __('Your license is not active for this URL.', 'notification');
 				break;
 
 			case 'item_name_mismatch':
 				$view = 'error';
 				$message = sprintf(
-				// translators: 1. Extension name.
+					// translators: 1. Extension name.
 					__('This appears to be an invalid license key for %s.', 'notification'),
 					$extensionSlug
 				);
@@ -575,10 +557,7 @@ class Extensions
 
 			default:
 				$view = 'error';
-				$message = __(
-					'An error occurred, please try again.',
-					'notification'
-				);
+				$message = __('An error occurred, please try again.', 'notification');
 				break;
 		}
 
@@ -648,10 +627,7 @@ class Extensions
 		$extensionsLink = sprintf(
 			'<a href="%s">%s</a>',
 			admin_url('edit.php?post_type=notification&page=extensions'),
-			__(
-				'Go to Extensions',
-				'notification'
-			)
+			__('Go to Extensions', 'notification')
 		);
 
 		$message .= ' ' . $extensionsLink;

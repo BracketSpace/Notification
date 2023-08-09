@@ -39,23 +39,13 @@ class UserLogin extends UserTrigger
 
 		parent::__construct(
 			'user/login',
-			__(
-				'User login',
-				'notification'
-			)
+			__('User login', 'notification')
 		);
 
-		$this->addAction(
-			'wp_login',
-			10,
-			2
-		);
+		$this->addAction('wp_login', 10, 2);
 
 		$this->setDescription(
-			__(
-				'Fires when user log into WordPress',
-				'notification'
-			)
+			__('Fires when user log into WordPress', 'notification')
 		);
 	}
 

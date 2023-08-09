@@ -47,7 +47,7 @@ class CommentIsReply extends StringTag
 			[
 				'slug' => 'comment_is_reply',
 				'name' => sprintf(
-				// Translators: Comment type name.
+					// Translators: Comment type name.
 					__('Is %s a reply?', 'notification'),
 					$commentTypeName
 				),
@@ -57,14 +57,8 @@ class CommentIsReply extends StringTag
 				'resolver' => function ($trigger) {
 					$hasParent = $trigger->{$this->getTriggerProp()}->comment_parent;
 					return $hasParent
-						? __(
-							'Yes',
-							'notification'
-						)
-						: __(
-							'No',
-							'notification'
-						);
+						? __('Yes', 'notification')
+						: __('No', 'notification');
 				},
 			]
 		);

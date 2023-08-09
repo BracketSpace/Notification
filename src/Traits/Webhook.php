@@ -24,21 +24,9 @@ trait Webhook
 	 */
 	public function __construct($name)
 	{
-		$slug = strtolower(
-			str_replace(
-				' ',
-				'_',
-				$name
-			)
-		);
+		$slug = strtolower(str_replace(' ', '_', $name));
 
-		parent::__construct(
-			$slug,
-			__(
-				$name,
-				'notification'
-			)
-		);
+		parent::__construct($slug, __($name, 'notification'));
 	}
 
 	/**

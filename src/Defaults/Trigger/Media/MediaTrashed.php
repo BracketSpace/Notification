@@ -32,22 +32,12 @@ class MediaTrashed extends MediaTrigger
 
 		parent::__construct(
 			'media/trashed',
-			__(
-				'Media trashed',
-				'notification'
-			)
+			__('Media trashed', 'notification')
 		);
 
-		$this->addAction(
-			'delete_attachment',
-			10,
-			1
-		);
+		$this->addAction('delete_attachment', 10, 1);
 		$this->setDescription(
-			__(
-				'Fires when attachment is removed',
-				'notification'
-			)
+			__('Fires when attachment is removed', 'notification')
 		);
 	}
 

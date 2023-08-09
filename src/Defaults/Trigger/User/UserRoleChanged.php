@@ -53,23 +53,13 @@ class UserRoleChanged extends UserTrigger
 
 		parent::__construct(
 			'user/role_changed',
-			__(
-				'User role changed',
-				'notification'
-			)
+			__('User role changed', 'notification')
 		);
 
-		$this->addAction(
-			'set_user_role',
-			1000,
-			3
-		);
+		$this->addAction('set_user_role', 1000, 3);
 
 		$this->setDescription(
-			__(
-				'Fires when user role changes',
-				'notification'
-			)
+			__('Fires when user role changes', 'notification')
 		);
 	}
 

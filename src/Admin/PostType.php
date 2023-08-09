@@ -415,10 +415,7 @@ class PostType
 
 		if (is_wp_error($result)) {
 			$ajax->error(
-				__(
-					'Notification status couldn\'t be changed.',
-					'notification'
-				)
+				__("Notification status couldn't be changed.", 'notification')
 			);
 		}
 

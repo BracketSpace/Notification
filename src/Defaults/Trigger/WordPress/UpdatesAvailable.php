@@ -35,20 +35,13 @@ class UpdatesAvailable extends Abstracts\Trigger
 
 		parent::__construct(
 			'wordpress/updates_available',
-			__(
-				'Available updates',
-				'notification'
-			)
+			__('Available updates', 'notification')
 		);
 
 		$this->addAction('notification_check_wordpress_updates');
 
-		$this->setGroup(
-			__(
-				'WordPress',
-				'notification'
-			)
-		);
+		$this->setGroup(__('WordPress', 'notification'));
+
 		$this->setDescription(
 			__(
 				'Fires periodically when new updates are available',
@@ -106,7 +99,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 						foreach ($trigger->updateTypes as $updateType) {
 							$getUpdatesListMethod = [$trigger, 'get' . ucfirst($updateType) . 'UpdatesList'];
 
-							if (!$trigger->hasUpdates($updateType) || ! is_callable($getUpdatesListMethod)) {
+							if (!$trigger->hasUpdates($updateType) || !is_callable($getUpdatesListMethod)) {
 								continue;
 							}
 
@@ -116,10 +109,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 						}
 
 						if (empty($lists)) {
-							$lists[] = __(
-								'No updates available.',
-								'notification'
-							);
+							$lists[] = __('No updates available.', 'notification');
 						}
 
 						return implode(
@@ -206,31 +196,19 @@ class UpdatesAvailable extends Abstracts\Trigger
 
 		switch ($updateType) {
 			case 'core':
-				$title = __(
-					'Core updates',
-					'notification'
-				);
+				$title = __('Core updates', 'notification');
 				break;
 
 			case 'plugin':
-				$title = __(
-					'Plugin updates',
-					'notification'
-				);
+				$title = __('Plugin updates', 'notification');
 				break;
 
 			case 'theme':
-				$title = __(
-					'Theme updates',
-					'notification'
-				);
+				$title = __('Theme updates', 'notification');
 				break;
 
 			default:
-				$title = __(
-					'Updates',
-					'notification'
-				);
+				$title = __('Updates', 'notification');
 				break;
 		}
 
@@ -295,12 +273,12 @@ class UpdatesAvailable extends Abstracts\Trigger
 			$html .= '<li>' . sprintf(
 				// translators: 1. Plugin name, 2. Current version, 3. Update version.
 				__('<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s', 'notification'),
-					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-					$update->Name,
-					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-					$update->Version,
-					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-					$update->update->newVersion
+				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+				$update->Name,
+				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+				$update->Version,
+				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+				$update->update->newVersion
 			) . '</li>';
 		}
 
@@ -329,12 +307,12 @@ class UpdatesAvailable extends Abstracts\Trigger
 			$html .= '<li>' . sprintf(
 				// translators: 1. Theme name, 2. Current version, 3. Update version.
 				__('<strong>%1$s</strong> <i>(current version: %2$s)</i>: %3$s', 'notification'),
-					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-					$update->Name,
-					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-					$update->Version,
-					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-					$update->update['new_version']
+				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+				$update->Name,
+				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+				$update->Version,
+				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+				$update->update['new_version']
 			) . '</li>';
 		}
 

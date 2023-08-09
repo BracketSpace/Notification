@@ -48,17 +48,9 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 	public function __construct($slug, $name)
 	{
 
-		parent::__construct(
-			$slug,
-			$name
-		);
+		parent::__construct($slug, $name);
 
-		$this->setGroup(
-			__(
-				'Privacy',
-				'notification'
-			)
-		);
+		$this->setGroup(__('Privacy', 'notification'));
 	}
 
 	/**

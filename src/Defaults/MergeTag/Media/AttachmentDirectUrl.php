@@ -47,11 +47,6 @@ class AttachmentDirectUrl extends UrlTag
 
 		parent::__construct($args);
 
-		$this->setGroup(
-			__(
-				'Attachment',
-				'notification'
-			)
-		);
+		$this->setGroup(__('Attachment', 'notification'));
 	}
 }

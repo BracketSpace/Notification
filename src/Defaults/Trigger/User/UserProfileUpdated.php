@@ -39,17 +39,10 @@ class UserProfileUpdated extends UserTrigger
 
 		parent::__construct(
 			'user/profile_updated',
-			__(
-				'User profile updated',
-				'notification'
-			)
+			__('User profile updated', 'notification')
 		);
 
-		$this->addAction(
-			'profile_update',
-			10,
-			2
-		);
+		$this->addAction('profile_update', 10, 2);
 
 		$this->setDescription(
 			__(

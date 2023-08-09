@@ -40,10 +40,7 @@ class NotificationDuplicator
 					wp_create_nonce('duplicate_notification')
 				)
 			),
-			__(
-				'Duplicate',
-				'notification'
-			)
+			__('Duplicate', 'notification')
 		);
 
 		return $rowActions;

@@ -39,23 +39,13 @@ class UserDeleted extends UserTrigger
 
 		parent::__construct(
 			'user/deleted',
-			__(
-				'User deleted',
-				'notification'
-			)
+			__('User deleted', 'notification')
 		);
 
-		$this->addAction(
-			'delete_user',
-			10,
-			1
-		);
+		$this->addAction('delete_user', 10, 1);
 
 		$this->setDescription(
-			__(
-				'Fires when user account is deleted',
-				'notification'
-			)
+			__('Fires when user account is deleted', 'notification')
 		);
 	}
 

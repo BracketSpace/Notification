@@ -39,17 +39,10 @@ class UserLogout extends UserTrigger
 
 		parent::__construct(
 			'user/logout',
-			__(
-				'User logout',
-				'notification'
-			)
+			__('User logout', 'notification')
 		);
 
-		$this->addAction(
-			'wp_logout',
-			10,
-			1
-		);
+		$this->addAction('wp_logout', 10, 1);
 
 		$this->setDescription(
 			__(

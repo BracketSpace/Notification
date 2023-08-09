@@ -69,16 +69,10 @@ class Settings extends SettingsAPI
 				'notification/whitelabel/cpt/parent',
 				'edit.php?post_type=notification'
 			);
-			$pageMenuLabel = __(
-				'Notification settings',
-				'notification'
-			);
+			$pageMenuLabel = __('Notification settings', 'notification');
 		} else {
 			$parentHook = 'edit.php?post_type=notification';
-			$pageMenuLabel = __(
-				'Settings',
-				'notification'
-			);
+			$pageMenuLabel = __('Settings', 'notification');
 		}
 
 		$this->pageHook = (string)add_submenu_page(

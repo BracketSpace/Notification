@@ -39,10 +39,7 @@ class Updated extends ThemeTrigger
 
 		parent::__construct(
 			'theme/updated',
-			__(
-				'Theme updated',
-				'notification'
-			)
+			__('Theme updated', 'notification')
 		);
 
 		$this->addAction(
@@ -51,17 +48,10 @@ class Updated extends ThemeTrigger
 			2
 		);
 
-		$this->setGroup(
-			__(
-				'Theme',
-				'notification'
-			)
-		);
+		$this->setGroup(__('Theme', 'notification'));
+
 		$this->setDescription(
-			__(
-				'Fires when theme is updated',
-				'notification'
-			)
+			__('Fires when theme is updated', 'notification')
 		);
 	}
 
