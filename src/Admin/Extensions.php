@@ -496,10 +496,7 @@ class Extensions
 				$message = sprintf(
 					// translators: 1. Date.
 					__('Your license key expired on %s.', 'notification'),
-					date_i18n(
-						get_option('date_format'),
-						$expiration
-					)
+					date_i18n(get_option('date_format'), $expiration)
 				);
 				break;
 
@@ -551,10 +548,7 @@ class Extensions
 		}
 
 		Templates::render(
-			sprintf(
-				'extension/activation-%s',
-				$view
-			),
+			sprintf('extension/activation-%s', $view),
 			['message' => $message]
 		);
 	}

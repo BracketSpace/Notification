@@ -45,7 +45,7 @@ class CommentUnapproved extends CommentTrigger
 
 		$this->setDescription(
 			sprintf(
-			// translators: comment type.
+				// translators: comment type.
 				__('Fires when %s is marked as unapproved', 'notification'),
 				WpObjectHelper::getCommentTypeName($commentType),
 				'notification'

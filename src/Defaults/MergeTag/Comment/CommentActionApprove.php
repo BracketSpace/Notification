@@ -46,20 +46,14 @@ class CommentActionApprove extends UrlTag
 			$params,
 			[
 				'slug' => 'comment_approve_action_url',
-				'name' => sprintf(
-					// Translators: Comment type name.
-					__('%s approve URL', 'notification'),
-					$commentTypeName
-				),
-				'group' => sprintf(
-					// Translators: comment type actions text.
-					__('%s actions', 'notification'),
-					$commentTypeName
-				),
+				// Translators: Comment type name.
+				'name' => sprintf(__('%s approve URL', 'notification'), $commentTypeName),
+				// Translators: comment type actions text.
+				'group' => sprintf(__('%s actions', 'notification'), $commentTypeName),
 				'resolver' => function ($trigger) {
 					return admin_url(
-					// phpcs:ignore Generic.Files.LineLength.TooLong
-						"comment.php?action=approve&c={$trigger->{ $this->getTriggerProp() }->comment_ID}#wpbody-content"
+						// phpcs:ignore Generic.Files.LineLength.TooLong
+						"comment.php?action=approve&c={$trigger->{$this->getTriggerProp()}->comment_ID}#wpbody-content"
 					);
 				},
 			]

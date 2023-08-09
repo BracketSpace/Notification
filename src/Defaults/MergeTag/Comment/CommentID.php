@@ -46,11 +46,8 @@ class CommentID extends IntegerTag
 			$params,
 			[
 				'slug' => 'comment_ID',
-				'name' => sprintf(
 				// Translators: Comment type name.
-					__('%s ID', 'notification'),
-					$commentTypeName
-				),
+				'name' => sprintf(__('%s ID', 'notification'), $commentTypeName),
 				'description' => '35',
 				'example' => true,
 				'group' => $commentTypeName,

@@ -37,15 +37,9 @@ class RevisionLink extends UrlTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf(
-					'%s_revision_link',
-					$this->getTriggerProp()
-				),
-				'name' => sprintf(
+				'slug' => sprintf('%s_revision_link', $this->getTriggerProp()),
 				// translators: singular post name.
-					__('%s revision link', 'notification'),
-					$postTypeName
-				),
+				'name' => sprintf(__('%s revision link', 'notification'), $postTypeName),
 				'description' => __('https://example.com/wp-admin/revision.php?revision=id', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,

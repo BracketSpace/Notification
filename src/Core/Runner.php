@@ -88,15 +88,9 @@ class Runner
 
 			$class = get_class($trigger);
 			_deprecated_function(
-				sprintf(
-					'%s::action()',
-					esc_html($class)
-				),
+				sprintf('%s::action()', esc_html($class)),
 				'8.0.0',
-				sprintf(
-					'%s::context()',
-					esc_html($class)
-				)
+				sprintf('%s::context()', esc_html($class))
 			);
 		} elseif (
 			method_exists(

@@ -32,10 +32,7 @@ function notificationAdapt($adapterName, Notification $notification)
 		$adapter = new $adapterName($notification);
 	} else {
 		throw new \Exception(
-			sprintf(
-				'Couldn\'t find %s adapter',
-				$adapterName
-			)
+			sprintf('Couldn\'t find %s adapter', $adapterName)
 		);
 	}
 

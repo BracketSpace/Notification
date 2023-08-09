@@ -37,15 +37,9 @@ class PostSlug extends StringTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf(
-					'%s_slug',
-					$this->getTriggerProp()
-				),
-				'name' => sprintf(
+				'slug' => sprintf('%s_slug', $this->getTriggerProp()),
 				// translators: singular post name.
-					__('%s slug', 'notification'),
-					$postTypeName
-				),
+				'name' => sprintf(__('%s slug', 'notification'), $postTypeName),
 				'description' => __('hello-world', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,

@@ -37,15 +37,9 @@ class PostStatus extends StringTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf(
-					'%s_status',
-					$this->getTriggerProp()
-				),
-				'name' => sprintf(
+				'slug' => sprintf('%s_status', $this->getTriggerProp()),
 				// translators: singular post name.
-					__('%s status', 'notification'),
-					$postTypeName
-				),
+				'name' => sprintf(__('%s status', 'notification'), $postTypeName),
 				'description' => 'publish',
 				'example' => true,
 				'group' => $postTypeName,

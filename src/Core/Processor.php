@@ -169,10 +169,7 @@ class Processor
 
 		if (!$trigger instanceof Triggerable) {
 			ErrorHandler::error(
-				sprintf(
-					'Trigger key %s doesn\'t seem to exist in cache anymore',
-					$triggerKey
-				)
+				sprintf('Trigger key %s doesn\'t seem to exist in cache anymore', $triggerKey)
 			);
 			return;
 		}

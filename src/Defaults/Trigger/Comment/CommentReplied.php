@@ -43,11 +43,9 @@ class CommentReplied extends CommentTrigger
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/replied',
-				'name' => sprintf(
+
 				// Translators: %s comment type.
-					__('%s replied', 'notification'),
-					WpObjectHelper::getCommentTypeName($commentType)
-				),
+				'name' => sprintf(__('%s replied', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 				'comment_type' => $commentType,
 			]
 		);
@@ -65,7 +63,7 @@ class CommentReplied extends CommentTrigger
 
 		$this->setDescription(
 			sprintf(
-			// translators: comment type.
+				// translators: comment type.
 				__('Fires when %s is replied and the reply is approved', 'notification'),
 				WpObjectHelper::getCommentTypeName($commentType)
 			)

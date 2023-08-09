@@ -33,10 +33,7 @@ class TermName extends StringTag
 
 		$args = wp_parse_args(
 			[
-				'slug' => sprintf(
-					'%s_name',
-					$this->getTriggerProp()
-				),
+				'slug' => sprintf('%s_name', $this->getTriggerProp()),
 				'name' => __('Term name', 'notification'),
 				'description' => 'Nature',
 				'example' => true,

@@ -37,15 +37,9 @@ class PostExcerpt extends StringTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf(
-					'%s_excerpt',
-					$this->getTriggerProp()
-				),
-				'name' => sprintf(
+				'slug' => sprintf('%s_excerpt', $this->getTriggerProp()),
 				// translators: singular post name.
-					__('%s excerpt', 'notification'),
-					$postTypeName
-				),
+				'name' => sprintf(__('%s excerpt', 'notification'), $postTypeName),
 				'description' => __('Welcome to WordPress...', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,

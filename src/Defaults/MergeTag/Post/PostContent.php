@@ -37,15 +37,9 @@ class PostContent extends StringTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf(
-					'%s_content',
-					$this->getTriggerProp()
-				),
-				'name' => sprintf(
-					// translators: singular post name.
-					__('%s content', 'notification'),
-					$postTypeName
-				),
+				'slug' => sprintf('%s_content', $this->getTriggerProp()),
+				// translators: singular post name.
+				'name' => sprintf(__('%s content', 'notification'), $postTypeName),
 				'description' => __(
 					'Welcome to WordPress. This is your first post. Edit or delete it, then start writing!',
 					'notification'

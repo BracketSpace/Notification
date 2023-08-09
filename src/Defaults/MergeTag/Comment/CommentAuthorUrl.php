@@ -46,18 +46,12 @@ class CommentAuthorUrl extends UrlTag
 			$params,
 			[
 				'slug' => 'comment_author_url',
-				'name' => sprintf(
 				// Translators: Comment type name.
-					__('%s author URL', 'notification'),
-					$commentTypeName
-				),
+				'name' => sprintf(__('%s author URL', 'notification'), $commentTypeName),
 				'description' => __('http://mywebsite.com', 'notification'),
 				'example' => true,
-				'group' => sprintf(
 				// Translators: comment type author.
-					__('%s author', 'notification'),
-					$commentTypeName
-				),
+				'group' => sprintf(__('%s author', 'notification'), $commentTypeName),
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->comment_author_url;
 				},

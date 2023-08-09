@@ -259,11 +259,7 @@ class Email extends Abstracts\Carrier
 					[
 						'error' => $error,
 						'recipients_affected' => $errorData['recipients'],
-						'trigger' => sprintf(
-							'%s (%s)',
-							$trigger->getName(),
-							$trigger->getSlug()
-						),
+						'trigger' => sprintf('%s (%s)', $trigger->getName(), $trigger->getSlug()),
 						'email_subject' => $subject,
 					],
 					true

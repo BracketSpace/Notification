@@ -37,16 +37,9 @@ class ThumbnailUrl extends UrlTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf(
-					'%s_thumbnail_url',
-					$this->getTriggerProp()
-				),
-				'name' => sprintf(
+				'slug' => sprintf('%s_thumbnail_url', $this->getTriggerProp()),
 				// translators: singular post name.
-
-					__('%s thumbnail url', 'notification'),
-					$postTypeName
-				),
+				'name' => sprintf(__('%s thumbnail url', 'notification'), $postTypeName),
 				'description' => __('https://example.com/wp-content/2019/01/image.jpg', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,
