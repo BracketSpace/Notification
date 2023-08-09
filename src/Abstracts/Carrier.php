@@ -435,10 +435,7 @@ abstract class Carrier implements Interfaces\Sendable
 			return $resolved;
 		}
 
-		$value = apply_filters(
-			'notification/carrier/field/resolving',
-			$value
-		);
+		$value = apply_filters('notification/carrier/field/resolving', $value);
 
 		$resolved = Resolver::resolve(
 			$value,
@@ -476,11 +473,7 @@ abstract class Carrier implements Interfaces\Sendable
 			$resolved
 		);
 
-		return apply_filters(
-			'notification/carrier/field/value/resolved',
-			$resolved,
-			null
-		);
+		return apply_filters('notification/carrier/field/value/resolved', $resolved, null);
 	}
 
 	/**

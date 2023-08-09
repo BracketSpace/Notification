@@ -98,10 +98,7 @@ class Processor
 		self::getCache($triggerKey)->set($trigger);
 
 		$result = wp_schedule_single_event(
-			time() + apply_filters(
-				'notification/background_processing/delay',
-				30
-			),
+			time() + apply_filters('notification/background_processing/delay', 30),
 			'notification_background_processing',
 			[
 				notificationAdapt(
@@ -128,14 +125,7 @@ class Processor
 	{
 		$trigger->setupMergeTags();
 
-		if (
-			!apply_filters(
-				'notification/should_send',
-				true,
-				$notification,
-				$trigger
-			)
-		) {
+		if (!apply_filters('notification/should_send', true, $notification, $trigger)) {
 			return;
 		}
 

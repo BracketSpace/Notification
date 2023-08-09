@@ -36,18 +36,13 @@ class Settings extends SettingsAPI
 	{
 
 		if (
-			!apply_filters(
-				'notification/whitelabel/settings',
-				true
-			)
+			!apply_filters('notification/whitelabel/settings', true)
 		) {
 			return;
 		}
 
-		$settingsAccess = apply_filters(
-			'notification/whitelabel/settings/access',
-			false
-		);
+		$settingsAccess = apply_filters('notification/whitelabel/settings/access', false);
+
 		if (
 			$settingsAccess !== false && !in_array(
 				get_current_user_id(),
@@ -59,12 +54,7 @@ class Settings extends SettingsAPI
 		}
 
 		// Change settings position if white labelled.
-		if (
-			apply_filters(
-				'notification/whitelabel/cpt/parent',
-				true
-			) !== true
-		) {
+		if (apply_filters('notification/whitelabel/cpt/parent', true) !== true) {
 			$parentHook = apply_filters(
 				'notification/whitelabel/cpt/parent',
 				'edit.php?post_type=notification'

@@ -307,10 +307,7 @@ class Runtime
 		);
 
 		if (
-			apply_filters(
-				'notification/upselling',
-				true
-			)
+			apply_filters('notification/upselling', true)
 		) {
 			$this->addComponent(
 				'admin_upsell',
@@ -421,12 +418,7 @@ class Runtime
 	 */
 	public function loadDefault($default, $className)
 	{
-		if (
-			!apply_filters(
-				'notification/load/default/' . $default,
-				true
-			)
-		) {
+		if (!apply_filters('notification/load/default/' . $default, true)) {
 			return;
 		}
 

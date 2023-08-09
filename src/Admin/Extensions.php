@@ -60,20 +60,12 @@ class Extensions
 	 */
 	public function registerPage()
 	{
-		if (
-			!apply_filters(
-				'notification/whitelabel/extensions',
-				true
-			)
-		) {
+		if (!apply_filters('notification/whitelabel/extensions', true)) {
 			return;
 		}
 
 		// change settings position if white labelled.
-		$pageMenuLabel = apply_filters(
-			'notification/whitelabel/cpt/parent',
-			true
-		) !== true
+		$pageMenuLabel = apply_filters('notification/whitelabel/cpt/parent', true) !== true
 			? __('Notification extensions', 'notification')
 			: __('Extensions', 'notification');
 

@@ -151,12 +151,7 @@ class Webhook extends Abstracts\Carrier
 			'6.0.0',
 			'notification/carrier/webhook/args'
 		);
-		$args = apply_filters(
-			'notification/carrier/webhook/args',
-			$args,
-			$this,
-			$trigger
-		);
+		$args = apply_filters('notification/carrier/webhook/args', $args, $this, $trigger);
 
 		if ($data['json']) {
 			$args = wp_json_encode($args);
@@ -168,10 +163,7 @@ class Webhook extends Abstracts\Carrier
 			: [];
 
 		if (notificationGetSetting('carriers/webhook/headers')) {
-			$headers = array_merge(
-				$headers,
-				$this->parseArgs($data['headers'])
-			);
+			$headers = array_merge($headers, $this->parseArgs($data['headers']));
 		}
 
 		// Call each URL separately.

@@ -118,11 +118,7 @@ class Group
 			$this->name = $name;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/group/name',
-			$this->name,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/group/name', $this->name, $this);
 	}
 
 	/**
@@ -138,11 +134,7 @@ class Group
 			$this->slug = $slug;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/group/slug',
-			$this->slug,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/group/slug', $this->slug, $this);
 	}
 
 	/**
@@ -158,11 +150,7 @@ class Group
 			$this->section = $section;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/group/section',
-			$this->section,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/group/section', $this->section, $this);
 	}
 
 	/**
@@ -180,11 +168,7 @@ class Group
 			return $this;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/group/description',
-			$this->description,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/group/description', $this->description, $this);
 	}
 
 	/**
@@ -201,11 +185,7 @@ class Group
 			return $this;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/group/collapsed',
-			$this->collapsed,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/group/collapsed', $this->collapsed, $this);
 	}
 
 	/**
@@ -277,9 +257,6 @@ class Group
 	public function getFields()
 	{
 
-		return apply_filters(
-			$this->handle . '/settings/group/fields',
-			$this->fields
-		);
+		return apply_filters($this->handle . '/settings/group/fields', $this->fields);
 	}
 }

@@ -201,11 +201,7 @@ abstract class Field implements Interfaces\Fillable
 		$value = is_string($this->value)
 			? stripslashes($this->value)
 			: $this->value;
-		return apply_filters(
-			'notification/field/' . $this->getRawName() . '/value',
-			$value,
-			$this
-		);
+		return apply_filters('notification/field/' . $this->getRawName() . '/value', $value, $this);
 	}
 
 	/**

@@ -146,11 +146,7 @@ class Field
 			$this->name = $name;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/field/name',
-			$this->name,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/field/name', $this->name, $this);
 	}
 
 	/**
@@ -166,11 +162,7 @@ class Field
 			$this->slug = $slug;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/field/slug',
-			$this->slug,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/field/slug', $this->slug, $this);
 	}
 
 	/**
@@ -186,11 +178,7 @@ class Field
 			$this->section = $section;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/field/section',
-			$this->section,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/field/section', $this->section, $this);
 	}
 
 	/**
@@ -206,11 +194,7 @@ class Field
 			$this->group = $group;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/field/group',
-			$this->group,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/field/group', $this->group, $this);
 	}
 
 	/**
@@ -226,11 +210,7 @@ class Field
 			$this->description = $description;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/field/description',
-			$this->description,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/field/description', $this->description, $this);
 	}
 
 	/**
@@ -246,11 +226,7 @@ class Field
 			$this->value = $value;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/field/value',
-			$this->value,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/field/value', $this->value, $this);
 	}
 
 	/**
@@ -266,11 +242,7 @@ class Field
 			$this->defaultValue = $defaultValue;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/field/default_value',
-			$this->defaultValue,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/field/default_value', $this->defaultValue, $this);
 	}
 
 	/**
@@ -286,11 +258,7 @@ class Field
 			$this->addons = $addons;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/field/addons',
-			$this->addons,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/field/addons', $this->addons, $this);
 	}
 
 	/**
@@ -305,11 +273,7 @@ class Field
 		$addons = $this->addons();
 
 		if (isset($addons[$addon])) {
-			return apply_filters(
-				$this->handle . '/settings/field/addon',
-				$addons[$addon],
-				$this
-			);
+			return apply_filters($this->handle . '/settings/field/addon', $addons[$addon], $this);
 		}
 
 		return null;
@@ -325,11 +289,7 @@ class Field
 
 		$name = $this->handle . '_settings[' . $this->section() . '][' . $this->group() . '][' . $this->slug() . ']';
 
-		return apply_filters(
-			$this->handle . '/settings/field/input/name',
-			$name,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/field/input/name', $name, $this);
 	}
 
 	/**
@@ -342,11 +302,7 @@ class Field
 
 		$id = $this->handle . '-setting-' . $this->section() . '-' . $this->group() . '-' . $this->slug();
 
-		return apply_filters(
-			$this->handle . '/settings/field/input/id',
-			$id,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/field/input/id', $id, $this);
 	}
 
 	/**

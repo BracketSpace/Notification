@@ -149,10 +149,7 @@ class Settings
 				]
 			)
 			->description(
-				__(
-					'Choose what to remove upon plugin removal',
-					'notification'
-				)
+				__('Choose what to remove upon plugin removal', 'notification')
 			);
 	}
 
