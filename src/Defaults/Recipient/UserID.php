@@ -61,10 +61,7 @@ class UserID extends Abstracts\Recipient
 			]
 		);
 
-		return wp_list_pluck(
-			$users,
-			'user_email'
-		);
+		return wp_list_pluck($users, 'user_email');
 	}
 
 	/**
