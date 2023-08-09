@@ -109,10 +109,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 							$lists[] = __('No updates available.', 'notification');
 						}
 
-						return implode(
-							'<br><br>',
-							$lists
-						);
+						return implode('<br><br>', $lists);
 					},
 					'group' => __('WordPress', 'notification'),
 				]

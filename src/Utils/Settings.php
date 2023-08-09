@@ -255,10 +255,7 @@ class Settings
 		foreach ($this->getSections() as $sectionSlug => $section) {
 			foreach ($section->getGroups() as $groupSlug => $group) {
 				foreach ($group->getFields() as $fieldSlug => $field) {
-					$settingName = implode(
-						'/',
-						[$sectionSlug, $groupSlug, $fieldSlug]
-					);
+					$settingName = implode('/', [$sectionSlug, $groupSlug, $fieldSlug]);
 					$field->value($this->getSetting($settingName));
 				}
 			}
@@ -274,10 +271,7 @@ class Settings
 	 */
 	public function getSetting($setting)
 	{
-		$parts = explode(
-			'/',
-			$setting
-		);
+		$parts = explode('/', $setting);
 
 		if (count($parts) !== 3) {
 			throw new \Exception('You must provide exactly 3 parts as the setting name');
@@ -304,10 +298,7 @@ class Settings
 	 */
 	public function updateSetting($setting, $value)
 	{
-		$parts = explode(
-			'/',
-			$setting
-		);
+		$parts = explode('/', $setting);
 
 		if (count($parts) !== 3) {
 			throw new \Exception('You must provide exactly 3 parts as the setting name');

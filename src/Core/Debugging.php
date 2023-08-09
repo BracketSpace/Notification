@@ -61,9 +61,10 @@ class Debugging
 
 		if (!isset($logData['type']) || !in_array($logData['type'], $allowedTypes, true)) {
 			throw new \Exception(
-				'Log type must be a one of the following types: ' . implode(
-					', ',
-					$allowedTypes
+				sprintf(
+					'%s %s',
+					'Log type must be a one of the following types: ',
+					implode(', ', $allowedTypes)
 				)
 			);
 		}
