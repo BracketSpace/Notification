@@ -47,13 +47,7 @@ class UserID extends Abstracts\Recipient
 			return [];
 		}
 
-		$userIds = array_map(
-			'trim',
-			explode(
-				',',
-				$value
-			)
-		);
+		$userIds = array_map('trim', explode(',', $value));
 		$users = get_users(
 			[
 				'include' => $userIds,

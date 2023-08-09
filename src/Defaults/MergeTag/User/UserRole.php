@@ -49,10 +49,7 @@ class UserRole extends StringTag
 						$this->trigger->{$this->getTriggerProp()}->roles
 					);
 
-					return implode(
-						', ',
-						$roles
-					);
+					return implode(', ', $roles);
 				},
 			]
 		);

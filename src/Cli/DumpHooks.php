@@ -119,10 +119,7 @@ declare(strict_types=1);
 		// Save the content.
 		$filesystem->put_contents(
 			$hooksFile,
-			$fileHeader . implode(
-				"\n",
-				$hookFunctions
-			) . "\n"
+			$fileHeader . implode("\n", $hookFunctions) . "\n"
 		);
 
 		WP_CLI::success('All hooks dumped!');

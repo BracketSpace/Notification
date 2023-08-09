@@ -227,9 +227,11 @@ abstract class Carrier implements Interfaces\Sendable
 			in_array($field->getRawName(), $this->restrictedFields, true)
 		) {
 			throw new \Exception(
-				'You cannot use restricted field name. Restricted names: ' . implode(
-					', ',
-					$this->restrictedFields
+				sprintf(
+					'%s %s, %s',
+					'You cannot use restricted field name.',
+					'Restricted names:',
+					implode(', ', $this->restrictedFields)
 				)
 			);
 		}

@@ -232,10 +232,7 @@ function notificationGetSettings()
 function notificationGetSetting($setting)
 {
 
-	$parts = explode(
-		'/',
-		$setting
-	);
+	$parts = explode('/', $setting);
 
 	if ($parts[0] === 'notifications') {
 		_deprecated_argument(
@@ -244,10 +241,7 @@ function notificationGetSetting($setting)
 			'The `notifications` section has been changed to `carriers`, adjust the first part of the setting.'
 		);
 		$parts[0] = 'carriers';
-		$setting = implode(
-			'/',
-			$parts
-		);
+		$setting = implode('/', $parts);
 	}
 
 	return \Notification::component('core_settings')->getSetting($setting);
