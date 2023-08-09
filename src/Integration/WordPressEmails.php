@@ -69,16 +69,8 @@ class WordPressEmails
 	 */
 	public function disableNewUserNotify($userId, $notify = 'both')
 	{
-		$isAdminNotify = in_array(
-			$notify,
-			['', 'admin', 'both'],
-			true
-		);
-		$isUserNotify = in_array(
-			$notify,
-			['user', 'both'],
-			true
-		);
+		$isAdminNotify = in_array($notify, ['', 'admin', 'both'], true);
+		$isUserNotify = in_array($notify, ['user', 'both'], true);
 
 		if ($isAdminNotify && (notificationGetSetting('integration/emails/new_user_to_admin') !== 'true')) {
 			wp_new_user_notification(
@@ -293,11 +285,7 @@ class WordPressEmails
 	private function getSettingForUserRole($value, $userId, $slug)
 	{
 		$user = get_userdata($userId);
-		$isAdmin = ($user && is_array($user->roles) && in_array(
-			'administrator',
-			$user->roles,
-			true
-		));
+		$isAdmin = ($user && is_array($user->roles) && in_array('administrator', $user->roles, true));
 
 		$value = $isAdmin
 			? notificationGetSetting('integration/emails/' . $slug . '_to_admin')

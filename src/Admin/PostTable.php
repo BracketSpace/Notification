@@ -209,13 +209,7 @@ class PostTable
 	 */
 	public function handleStatusBulkActions($redirectTo, $doaction, $postIds)
 	{
-		if (
-			!in_array(
-				$doaction,
-				['enable', 'disable'],
-				true
-			)
-		) {
+		if (!in_array($doaction, ['enable', 'disable'], true)) {
 			return $redirectTo;
 		}
 

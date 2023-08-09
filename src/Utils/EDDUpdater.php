@@ -246,13 +246,7 @@ class EDDUpdater
 			'<tr class="plugin-update-tr %3$s" id="%1$s-update" data-slug="%1$s" data-plugin="%2$s">',
 			$this->slug,
 			$file,
-			in_array(
-				$this->name,
-				$this->getActivePlugins(),
-				true
-			)
-				? 'active'
-				: 'inactive'
+			in_array($this->name, $this->getActivePlugins(), true) ? 'active' : 'inactive'
 		);
 
 		echo '<td colspan="3" class="plugin-update colspanchange">';

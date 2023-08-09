@@ -167,13 +167,7 @@ class Upgrade
 		// Set enabled state.
 		$enabledCarriers = (array)get_post_meta($postId, '_enabled_notification', false);
 
-		if (
-			in_array(
-				$carrier->getSlug(),
-				$enabledCarriers,
-				true
-			)
-		) {
+		if (in_array($carrier->getSlug(), $enabledCarriers, true)) {
 			$carrier->enable();
 		} else {
 			$carrier->disable();

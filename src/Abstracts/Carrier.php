@@ -224,11 +224,7 @@ abstract class Carrier implements Interfaces\Sendable
 	{
 
 		if (
-			in_array(
-				$field->getRawName(),
-				$this->restrictedFields,
-				true
-			)
+			in_array($field->getRawName(), $this->restrictedFields, true)
 		) {
 			throw new \Exception(
 				'You cannot use restricted field name. Restricted names: ' . implode(

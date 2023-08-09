@@ -287,13 +287,7 @@ class License
 
 		$licenseData = json_decode(wp_remote_retrieve_body($response));
 
-		if (
-			!in_array(
-				$licenseData->license,
-				['deactivated', 'failed'],
-				true
-			)
-		) {
+		if (!in_array($licenseData->license, ['deactivated', 'failed'], true)) {
 			return new \WP_Error(
 				'notification_license_error',
 				'deactivation-error'
