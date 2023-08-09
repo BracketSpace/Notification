@@ -32,10 +32,7 @@ class Installed extends ThemeTrigger
 
 		parent::__construct(
 			'theme/installed',
-			__(
-				'Theme installed',
-				'notification'
-			)
+			__('Theme installed', 'notification')
 		);
 
 		$this->addAction(
@@ -44,17 +41,10 @@ class Installed extends ThemeTrigger
 			2
 		);
 
-		$this->setGroup(
-			__(
-				'Theme',
-				'notification'
-			)
-		);
+		$this->setGroup(__('Theme', 'notification'));
+
 		$this->setDescription(
-			__(
-				'Fires when theme is installed',
-				'notification'
-			)
+			__('Fires when theme is installed', 'notification')
 		);
 	}
 

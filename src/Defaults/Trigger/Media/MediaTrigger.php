@@ -54,16 +54,9 @@ abstract class MediaTrigger extends Abstracts\Trigger
 	 */
 	public function __construct($slug, $name)
 	{
-		parent::__construct(
-			$slug,
-			$name
-		);
-		$this->setGroup(
-			__(
-				'Media',
-				'notification'
-			)
-		);
+		parent::__construct($slug, $name);
+
+		$this->setGroup(__('Media', 'notification'));
 	}
 
 	/**

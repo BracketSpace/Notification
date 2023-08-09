@@ -62,10 +62,7 @@ class Settings
 				]
 			)
 			->description(
-				__(
-					'Notification content settings',
-					'notification'
-				)
+				__('Notification content settings', 'notification')
 			);
 
 		$general->addGroup(
@@ -84,10 +81,7 @@ class Settings
 				]
 			)
 			->description(
-				__(
-					'Plugin tools',
-					'notification'
-				)
+				__('Plugin tools', 'notification')
 			);
 
 		$general->addGroup(
@@ -506,7 +500,7 @@ class Settings
 					'render' => [new CoreFields\Text(), 'input'],
 					'sanitize' => [new CoreFields\Text(), 'sanitize'],
 					'description' => sprintf(
-					// Translators: %s default value.
+						// Translators: %s default value.
 						__('Leave blank to use default value: %s', 'notification'),
 						'<code>WordPress</code>'
 					),
@@ -520,7 +514,7 @@ class Settings
 					'render' => [new CoreFields\Text(), 'input'],
 					'sanitize' => [new CoreFields\Text(), 'sanitize'],
 					'description' => sprintf(
-					// Translators: %s default value.
+						// Translators: %s default value.
 						__('Leave blank to use default value: %s', 'notification'),
 						'<code>' . $defaultFromEmail . '</code>'
 					),

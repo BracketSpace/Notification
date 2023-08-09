@@ -85,18 +85,18 @@ class Debugging
 						'message' => '
 						<a href="' . admin_url(
 							'admin-post.php?action=notification_clear_logs&log_type=notification&nonce=' .
-							wp_create_nonce(
-								'notification_clear_log_notification'
-							)
+								wp_create_nonce(
+									'notification_clear_log_notification'
+								)
 						) . '" class="button button-secondary">' . esc_html__('Clear Notification logs') .
-									'</a>
+							'</a>
 						<a href="' . admin_url(
-										'admin-post.php?action=notification_clear_logs&log_type=error&nonce=' .
-										wp_create_nonce(
-											'notification_clear_log_error'
-										)
-									) . '" class="button button-secondary">' . esc_html__('Clear Error logs') .
-									 '</a>
+								'admin-post.php?action=notification_clear_logs&log_type=error&nonce=' .
+									wp_create_nonce(
+										'notification_clear_log_error'
+									)
+							) . '" class="button button-secondary">' . esc_html__('Clear Error logs') .
+							'</a>
 					',
 					],
 					'render' => [new CoreFields\Message(), 'input'],
@@ -142,9 +142,9 @@ class Debugging
 	public function debugWarning()
 	{
 		if (
-			get_post_type() !== 'notification' || !notificationGetSetting(
-				'debugging/settings/debug_log'
-			) || !notificationGetSetting('debugging/settings/debug_suppressing')
+			get_post_type() !== 'notification' ||
+			!notificationGetSetting('debugging/settings/debug_log') ||
+			!notificationGetSetting('debugging/settings/debug_suppressing')
 		) {
 			return;
 		}
@@ -155,10 +155,7 @@ class Debugging
 		);
 		$debugLogLink = '<a href="' . admin_url(
 			'edit.php?post_type=notification&page=settings&section=debugging'
-		) . '">' . esc_html__(
-			'See debug log',
-			'notification'
-		) . '</a>';
+		) . '">' . esc_html__('See debug log', 'notification') . '</a>';
 
 		echo wp_kses_post('<div class="notice notice-warning"><p>' . $message . ' ' . $debugLogLink . '</p></div>');
 	}

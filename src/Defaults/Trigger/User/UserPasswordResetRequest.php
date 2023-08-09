@@ -39,17 +39,10 @@ class UserPasswordResetRequest extends UserTrigger
 
 		parent::__construct(
 			'user/password_reset_request',
-			__(
-				'User password reset request',
-				'notification'
-			)
+			__('User password reset request', 'notification')
 		);
 
-		$this->addAction(
-			'retrieve_password_key',
-			10,
-			2
-		);
+		$this->addAction('retrieve_password_key', 10, 2);
 
 		$this->setDescription(
 			__(

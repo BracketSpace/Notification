@@ -32,28 +32,15 @@ class Removed extends PluginTrigger
 
 		parent::__construct(
 			'plugin/removed',
-			__(
-				'Plugin removed',
-				'notification'
-			)
+			__('Plugin removed', 'notification')
 		);
 
-		$this->addAction(
-			'delete_plugin',
-			1000
-		);
+		$this->addAction('delete_plugin', 1000);
 
-		$this->setGroup(
-			__(
-				'Plugin',
-				'notification'
-			)
-		);
+		$this->setGroup(__('Plugin', 'notification'));
+
 		$this->setDescription(
-			__(
-				'Fires when plugin is deleted',
-				'notification'
-			)
+			__('Fires when plugin is deleted', 'notification')
 		);
 	}
 

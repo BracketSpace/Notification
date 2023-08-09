@@ -47,7 +47,7 @@ class CommentStatus extends StringTag
 			[
 				'slug' => 'comment_status',
 				'name' => sprintf(
-				// Translators: Comment type name.
+					// Translators: Comment type name.
 					__('%s status', 'notification'),
 					$commentTypeName
 				),
@@ -56,31 +56,19 @@ class CommentStatus extends StringTag
 				'group' => $commentTypeName,
 				'resolver' => function ($trigger) {
 					if ($trigger->{$this->getTriggerProp() === '1'}->comment_approved) {
-						return __(
-							'Approved',
-							'notification'
-						);
+						return __('Approved', 'notification');
 					}
 
 					if ($trigger->{$this->getTriggerProp() === '0'}->comment_approved) {
-						return __(
-							'Unapproved',
-							'notification'
-						);
+						return __('Unapproved', 'notification');
 					}
 
 					if ($trigger->{$this->getTriggerProp() === 'spam'}->comment_approved) {
-						return __(
-							'Marked as spam',
-							'notification'
-						);
+						return __('Marked as spam', 'notification');
 					}
 
 					if ($trigger->{$this->getTriggerProp() === 'trash'}->comment_approved) {
-						return __(
-							'Trashed',
-							'notification'
-						);
+						return __('Trashed', 'notification');
 					}
 				},
 			]

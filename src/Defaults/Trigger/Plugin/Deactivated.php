@@ -32,28 +32,15 @@ class Deactivated extends PluginTrigger
 
 		parent::__construct(
 			'plugin/deactivated',
-			__(
-				'Plugin deactivated',
-				'notification'
-			)
+			__('Plugin deactivated', 'notification')
 		);
 
-		$this->addAction(
-			'deactivated_plugin',
-			1000
-		);
+		$this->addAction('deactivated_plugin', 1000);
 
-		$this->setGroup(
-			__(
-				'Plugin',
-				'notification'
-			)
-		);
+		$this->setGroup(__('Plugin', 'notification'));
+
 		$this->setDescription(
-			__(
-				'Fires when plugin is deactivated',
-				'notification'
-			)
+			__('Fires when plugin is deactivated', 'notification')
 		);
 	}
 

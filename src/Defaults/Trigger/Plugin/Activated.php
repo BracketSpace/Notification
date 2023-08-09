@@ -32,28 +32,15 @@ class Activated extends PluginTrigger
 
 		parent::__construct(
 			'plugin/activated',
-			__(
-				'Plugin activated',
-				'notification'
-			)
+			__('Plugin activated', 'notification')
 		);
 
-		$this->addAction(
-			'activated_plugin',
-			1000
-		);
+		$this->addAction('activated_plugin', 1000);
 
-		$this->setGroup(
-			__(
-				'Plugin',
-				'notification'
-			)
-		);
+		$this->setGroup(__('Plugin', 'notification'));
+
 		$this->setDescription(
-			__(
-				'Fires when plugin is activated',
-				'notification'
-			)
+			__('Fires when plugin is activated', 'notification')
 		);
 	}
 

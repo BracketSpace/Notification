@@ -93,10 +93,7 @@ class RepeaterField extends Field
 			$this->fields = $params['fields'];
 		}
 
-		$this->addButtonLabel = $params['add_button_label'] ?? __(
-			'Add new',
-			'notification'
-		);
+		$this->addButtonLabel = $params['add_button_label'] ?? __('Add new', 'notification');
 
 		// additional data tags for repeater table. key => value array.
 		// will be transformed to data-key="value".
@@ -173,8 +170,8 @@ class RepeaterField extends Field
 
 		$html .= '<template v-if="repeaterError">
 					<div class="repeater-error">'
-				 . $this->restApiError() .
-				 '</div>
+			. $this->restApiError() .
+			'</div>
 				  </template>';
 
 		$html .= '<a href="#" class="button button-secondary add-new-repeater-field" @click="addField">' . esc_html(

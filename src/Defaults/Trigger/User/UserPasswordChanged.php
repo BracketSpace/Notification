@@ -39,17 +39,10 @@ class UserPasswordChanged extends UserTrigger
 
 		parent::__construct(
 			'user/password_changed',
-			__(
-				'User password changed',
-				'notification'
-			)
+			__('User password changed', 'notification')
 		);
 
-		$this->addAction(
-			'password_reset',
-			10,
-			1
-		);
+		$this->addAction('password_reset', 10, 1);
 
 		$this->setDescription(
 			__(

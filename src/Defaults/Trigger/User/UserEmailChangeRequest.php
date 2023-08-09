@@ -53,17 +53,10 @@ class UserEmailChangeRequest extends UserTrigger
 
 		parent::__construct(
 			'user/email_change_request',
-			__(
-				'User email change request',
-				'notification'
-			)
+			__('User email change request', 'notification')
 		);
 
-		$this->addAction(
-			'personal_options_update',
-			10,
-			1
-		);
+		$this->addAction('personal_options_update', 10, 1);
 
 		$this->setDescription(
 			__(

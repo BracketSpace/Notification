@@ -39,29 +39,15 @@ class Updated extends PluginTrigger
 
 		parent::__construct(
 			'plugin/updated',
-			__(
-				'Plugin updated',
-				'notification'
-			)
+			__('Plugin updated', 'notification')
 		);
 
-		$this->addAction(
-			'upgrader_process_complete',
-			1000,
-			2
-		);
+		$this->addAction('upgrader_process_complete', 1000, 2);
 
-		$this->setGroup(
-			__(
-				'Plugin',
-				'notification'
-			)
-		);
+		$this->setGroup(__('Plugin', 'notification'));
+
 		$this->setDescription(
-			__(
-				'Fires when plugin is updated',
-				'notification'
-			)
+			__('Fires when plugin is updated', 'notification')
 		);
 	}
 

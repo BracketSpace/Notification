@@ -39,29 +39,15 @@ class Switched extends ThemeTrigger
 
 		parent::__construct(
 			'theme/switched',
-			__(
-				'Theme switched',
-				'notification'
-			)
+			__('Theme switched', 'notification')
 		);
 
-		$this->addAction(
-			'switch_theme',
-			1000,
-			3
-		);
+		$this->addAction('switch_theme', 1000, 3);
 
-		$this->setGroup(
-			__(
-				'Theme',
-				'notification'
-			)
-		);
+		$this->setGroup(__('Theme', 'notification'));
+
 		$this->setDescription(
-			__(
-				'Fires when theme is switched',
-				'notification'
-			)
+			__('Fires when theme is switched', 'notification')
 		);
 	}
 

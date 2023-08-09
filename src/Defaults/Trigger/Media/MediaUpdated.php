@@ -32,22 +32,12 @@ class MediaUpdated extends MediaTrigger
 
 		parent::__construct(
 			'media/updated',
-			__(
-				'Media updated',
-				'notification'
-			)
+			__('Media updated', 'notification')
 		);
 
-		$this->addAction(
-			'attachment_updated',
-			10,
-			1
-		);
+		$this->addAction('attachment_updated', 10, 1);
 		$this->setDescription(
-			__(
-				'Fires when attachment is updated',
-				'notification'
-			)
+			__('Fires when attachment is updated', 'notification')
 		);
 	}
 
