@@ -66,10 +66,7 @@ class EmailChangeRequest extends Abstracts\Trigger
 		$this->setGroup(__('WordPress', 'notification'));
 
 		$this->setDescription(
-			__(
-				'Fires when admin requests change of site email address',
-				'notification'
-			)
+			__('Fires when admin requests change of site email address', 'notification')
 		);
 	}
 

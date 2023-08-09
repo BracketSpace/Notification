@@ -36,9 +36,7 @@ class MediaUpdated extends MediaTrigger
 		);
 
 		$this->addAction('attachment_updated', 10, 1);
-		$this->setDescription(
-			__('Fires when attachment is updated', 'notification')
-		);
+		$this->setDescription(__('Fires when attachment is updated', 'notification'));
 	}
 
 	/**

@@ -38,10 +38,7 @@ class UserRegistered extends UserTrigger
 		$this->addAction('user_register', 1000);
 
 		$this->setDescription(
-			__(
-				'Fires when user registers new account',
-				'notification'
-			)
+			__('Fires when user registers new account', 'notification')
 		);
 	}
 

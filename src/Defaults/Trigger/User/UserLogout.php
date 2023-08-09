@@ -45,10 +45,7 @@ class UserLogout extends UserTrigger
 		$this->addAction('wp_logout', 10, 1);
 
 		$this->setDescription(
-			__(
-				'Fires when user log out from WordPress',
-				'notification'
-			)
+			__('Fires when user log out from WordPress', 'notification')
 		);
 	}
 

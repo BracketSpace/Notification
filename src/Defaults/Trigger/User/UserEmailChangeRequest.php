@@ -59,10 +59,7 @@ class UserEmailChangeRequest extends UserTrigger
 		$this->addAction('personal_options_update', 10, 1);
 
 		$this->setDescription(
-			__(
-				'Fires when user requests change of his email address',
-				'notification'
-			)
+			__('Fires when user requests change of his email address', 'notification')
 		);
 	}
 

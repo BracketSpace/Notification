@@ -53,23 +53,13 @@ class DataExported extends PrivacyTrigger
 
 		parent::__construct(
 			'privacy/data-exported',
-			__(
-				'Personal Data Exported',
-				'notification'
-			)
+			__('Personal Data Exported', 'notification')
 		);
 
-		$this->addAction(
-			'wp_privacy_personal_data_export_file_created',
-			10,
-			5
-		);
+		$this->addAction('wp_privacy_personal_data_export_file_created', 10, 5);
 
 		$this->setDescription(
-			__(
-				'Fires when user personal data is exported',
-				'notification'
-			)
+			__('Fires when user personal data is exported', 'notification')
 		);
 	}
 
