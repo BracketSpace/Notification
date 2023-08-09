@@ -863,7 +863,7 @@ function notification_update_setting($setting, $value) {
  * @deprecated [Next]
  */
 function notificationAdapt($adapterName, \BracketSpace\Notification\Core\Notification $notification) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\adapt()');
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\adaptNotification()');
 
 	return adaptNotification($adapterName, $notification);
 }
@@ -880,7 +880,7 @@ function notificationAdapt($adapterName, \BracketSpace\Notification\Core\Notific
  */
 function notificationAdaptFrom($adapterName, $data)
 {
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\adaptFrom()');
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\adaptNotificationFrom()');
 
 	return adaptNotificationFrom($adapterName, $data);
 }
@@ -896,7 +896,7 @@ function notificationAdaptFrom($adapterName, $data)
  */
 function notificationSwapAdapter($newAdapterName, Interfaces\Adaptable $adapter)
 {
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\swapAdapter()');
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\swapNotificationAdapter()');
 
 	return swapNotificationAdapter($newAdapterName, $adapter);
 }
@@ -913,7 +913,7 @@ function notificationSwapAdapter($newAdapterName, Interfaces\Adaptable $adapter)
  */
 function notificationLog($component, $type, $message)
 {
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\log()');
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\logNotification()');
 
 	return logNotification($component, $type, $message);
 }
@@ -928,7 +928,7 @@ function notificationLog($component, $type, $message)
  */
 function notificationAdd(\BracketSpace\Notification\Core\Notification $notification)
 {
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\add()');
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\addNotification()');
 
 	addNotification($notification);
 }
@@ -947,7 +947,7 @@ function notificationAdd(\BracketSpace\Notification\Core\Notification $notificat
  */
 function notificationConvertData($data = [])
 {
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\convertData()');
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\convertNotificationData()');
 
 	return convertNotificationData($data);
 }
