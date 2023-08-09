@@ -89,10 +89,7 @@ class Extensions
 			[$this, 'extensionsPage']
 		);
 
-		add_action(
-			'load-' . $this->pageHook,
-			[$this, 'loadExtensions']
-		);
+		add_action('load-' . $this->pageHook, [$this, 'loadExtensions']);
 	}
 
 	/**

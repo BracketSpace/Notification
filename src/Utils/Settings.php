@@ -87,15 +87,8 @@ class Settings
 		$this->setVariables();
 
 		// settings autoload on admin side.
-		add_action(
-			'admin_init',
-			[$this, 'setupFieldValues'],
-			10
-		);
-		add_action(
-			'admin_post_save_' . $this->handle . '_settings',
-			[$this, 'saveSettings']
-		);
+		add_action('admin_init', [$this, 'setupFieldValues'], 10);
+		add_action('admin_post_save_' . $this->handle . '_settings', [$this, 'saveSettings']);
 	}
 
 	/**

@@ -110,16 +110,8 @@ class EDDUpdater
 			10,
 			3
 		);
-		add_action(
-			'after_plugin_row',
-			[$this, 'showUpdateNotification'],
-			10,
-			2
-		);
-		add_action(
-			'admin_init',
-			[$this, 'showChangelog']
-		);
+		add_action('after_plugin_row', [$this, 'showUpdateNotification'], 10, 2);
+		add_action('admin_init', [$this, 'showChangelog']);
 	}
 
 	/**
