@@ -50,21 +50,10 @@ class PostTerms extends StringTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf(
-					'%s_%s',
-					$this->getTriggerProp(),
-					$this->taxonomy->name
-				),
-				'name' => sprintf(
+				'slug' => sprintf('%s_%s', $this->getTriggerProp(), $this->taxonomy->name),
 				// translators: 1. Post Type 2. Taxonomy name.
-					__('%1$s %2$s', 'notification'),
-					$postTypeName,
-					$this->taxonomy->label
-				),
-				'description' => __(
-					'General, Tech, Lifestyle',
-					'notification'
-				),
+				'name' => sprintf(__('%1$s %2$s', 'notification'), $postTypeName, $this->taxonomy->label),
+				'description' => __('General, Tech, Lifestyle', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ($trigger) {

@@ -33,10 +33,7 @@ class TermPermalink extends UrlTag
 
 		$args = wp_parse_args(
 			[
-				'slug' => sprintf(
-					'%s_link',
-					$this->getTriggerProp()
-				),
+				'slug' => sprintf('%s_link', $this->getTriggerProp()),
 				'name' => __('Term link', 'notification'),
 				'description' => 'http://example.com/category/nature',
 				'example' => true,

@@ -233,10 +233,7 @@ class PostTable
 			$notification->save();
 		}
 
-		$action = sprintf(
-			'bulk_%s_notifications',
-			$doaction
-		);
+		$action = sprintf('bulk_%s_notifications', $doaction);
 
 		return add_query_arg(
 			[

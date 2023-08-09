@@ -180,10 +180,7 @@ class Runtime
 	{
 		if (isset($this->components[$name])) {
 			throw new \Exception(
-				sprintf(
-					'Component %s is already added.',
-					$name
-				)
+				sprintf('Component %s is already added.', $name)
 			);
 		}
 
@@ -452,10 +449,7 @@ class Runtime
 				continue;
 			}
 
-			$extensionFile = sprintf(
-				$extensionTemplate,
-				$extension['name']
-			);
+			$extensionFile = sprintf($extensionTemplate, $extension['name']);
 			if (!$this->getFilesystem()->exists($extensionFile)) {
 				continue;
 			}

@@ -37,15 +37,9 @@ class FeaturedImageId extends IntegerTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf(
-					'%s_featured_image_id',
-					$this->getTriggerProp()
-				),
-				'name' => sprintf(
+				'slug' => sprintf('%s_featured_image_id', $this->getTriggerProp()),
 				// translators: singular post name.
-					__('%s featured image id', 'notification'),
-					$postTypeName
-				),
+				'name' => sprintf(__('%s featured image id', 'notification'), $postTypeName),
 				'description' => __('123', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,

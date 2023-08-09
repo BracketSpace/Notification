@@ -324,10 +324,7 @@ class Wizard
 		$jsonPathTmpl = 'resources/wizard-data/%s.json';
 
 		foreach ($notifications as $notificationSlug) {
-			$jsonPath = sprintf(
-				$jsonPathTmpl,
-				$notificationSlug
-			);
+			$jsonPath = sprintf($jsonPathTmpl, $notificationSlug);
 
 			if (!$this->filesystem->is_readable($jsonPath)) {
 				continue;

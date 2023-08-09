@@ -34,10 +34,7 @@ class TaxonomySlug extends StringTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf(
-					'%s_slug',
-					$params['tag_name'] ?? 'taxonomy'
-				),
+				'slug' => sprintf('%s_slug', $params['tag_name'] ?? 'taxonomy'),
 				'name' => __('Taxonomy slug', 'notification'),
 				'description' => __('hello-world', 'notification'),
 				'example' => true,

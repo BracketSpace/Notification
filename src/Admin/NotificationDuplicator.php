@@ -91,12 +91,8 @@ class NotificationDuplicator
 
 		$newId = wp_insert_post(
 			[
-				'post_title' => sprintf(
-					'(%s) %s',
-					__('Duplicate', 'notification'),
-					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-					$source->post_title
-				),
+				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+				'post_title' => sprintf('(%s) %s', __('Duplicate', 'notification'), $source->post_title),
 				'post_content' => wp_slash($json->save(JSON_UNESCAPED_UNICODE)),
 				'post_status' => 'draft',
 				'post_type' => 'notification',

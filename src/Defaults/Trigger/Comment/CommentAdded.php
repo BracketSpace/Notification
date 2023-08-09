@@ -29,11 +29,9 @@ class CommentAdded extends CommentTrigger
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/added',
-				'name' => sprintf(
+
 				// Translators: %s comment type.
-					__('%s added', 'notification'),
-					WpObjectHelper::getCommentTypeName($commentType)
-				),
+				'name' => sprintf(__('%s added', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 				'comment_type' => $commentType,
 			]
 		);
@@ -46,10 +44,10 @@ class CommentAdded extends CommentTrigger
 
 		$this->setDescription(
 			sprintf(
-			// Translators: comment type.
+				// Translators: comment type.
 				__(
 					'Fires when new %s is added to database and awaits moderation or is published.' .
-					' Includes comment replies.',
+						' Includes comment replies.',
 					'notification'
 				),
 				WpObjectHelper::getCommentTypeName($commentType)

@@ -28,11 +28,9 @@ class CommentApproved extends CommentTrigger
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/approved',
-				'name' => sprintf(
+
 				// Translators: %s comment type.
-					__('%s approved', 'notification'),
-					WpObjectHelper::getCommentTypeName($commentType)
-				),
+				'name' => sprintf(__('%s approved', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 				'comment_type' => $commentType,
 			]
 		);
@@ -45,7 +43,7 @@ class CommentApproved extends CommentTrigger
 
 		$this->setDescription(
 			sprintf(
-			// translators: comment type.
+				// translators: comment type.
 				__('Fires when %s is approved', 'notification'),
 				WpObjectHelper::getCommentTypeName($commentType)
 			)

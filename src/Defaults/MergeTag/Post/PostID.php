@@ -37,15 +37,9 @@ class PostID extends IntegerTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf(
-					'%s_ID',
-					$this->getTriggerProp()
-				),
-				'name' => sprintf(
+				'slug' => sprintf('%s_ID', $this->getTriggerProp()),
 				// translators: singular post name.
-					__('%s ID', 'notification'),
-					$postTypeName
-				),
+				'name' => sprintf(__('%s ID', 'notification'), $postTypeName),
 				'description' => '35',
 				'example' => true,
 				'group' => $postTypeName,

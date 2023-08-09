@@ -37,15 +37,9 @@ class PostTitle extends StringTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf(
-					'%s_title',
-					$this->getTriggerProp()
-				),
-				'name' => sprintf(
+				'slug' => sprintf('%s_title', $this->getTriggerProp()),
 				// translators: singular post name.
-					__('%s title', 'notification'),
-					$postTypeName
-				),
+				'name' => sprintf(__('%s title', 'notification'), $postTypeName),
 				'description' => __('Hello World', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,

@@ -33,10 +33,7 @@ class TermID extends IntegerTag
 
 		$args = wp_parse_args(
 			[
-				'slug' => sprintf(
-					'%s_ID',
-					$this->getTriggerProp()
-				),
+				'slug' => sprintf('%s_ID', $this->getTriggerProp()),
 				'name' => __('Term ID', 'notification'),
 				'description' => '35',
 				'example' => true,

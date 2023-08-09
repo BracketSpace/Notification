@@ -37,15 +37,9 @@ class PostContentHtml extends HtmlTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf(
-					'%s_content_html',
-					$this->getTriggerProp()
-				),
-				'name' => sprintf(
-					// translators: singular post name.
-					__('%s content HTML', 'notification'),
-					$postTypeName
-				),
+				'slug' => sprintf('%s_content_html', $this->getTriggerProp()),
+				// translators: singular post name.
+				'name' => sprintf(__('%s content HTML', 'notification'), $postTypeName),
 				'description' => __(
 					'Welcome to WordPress. This is your first post. Edit or delete it, then start writing!',
 					'notification'

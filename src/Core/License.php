@@ -109,10 +109,7 @@ class License
 		);
 		$cache = new Cache(
 			$driver,
-			sprintf(
-				'notification_license_check_%s',
-				$this->extension['slug']
-			)
+			sprintf('notification_license_check_%s', $this->extension['slug'])
 		);
 
 		return $cache->collect(
