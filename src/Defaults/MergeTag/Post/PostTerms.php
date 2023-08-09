@@ -67,10 +67,7 @@ class PostTerms extends StringTag
 
 					return implode(
 						', ',
-						wp_list_pluck(
-							$postTerms,
-							'name'
-						)
+						wp_list_pluck($postTerms, 'name')
 					);
 				},
 			]
