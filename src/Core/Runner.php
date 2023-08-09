@@ -76,10 +76,7 @@ class Runner
 
 		// Setup the Trigger context.
 		if (
-			method_exists(
-				$trigger,
-				'action'
-			)
+			method_exists($trigger, 'action')
 		) {
 			$result = call_user_func_array(
 				[$trigger, 'action'],
@@ -92,12 +89,7 @@ class Runner
 				'8.0.0',
 				sprintf('%s::context()', esc_html($class))
 			);
-		} elseif (
-			method_exists(
-				$trigger,
-				'context'
-			)
-		) {
+		} elseif (method_exists($trigger, 'context')) {
 			$result = call_user_func_array(
 				[$trigger, 'context'],
 				$context
