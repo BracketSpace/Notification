@@ -128,7 +128,7 @@ function notification($data = [])
 {
 
 	try {
-		addNotification(new Notification(convertData($data)));
+		addNotification(new Notification(convertNotificationData($data)));
 	} catch (\Throwable $e) {
 		return new \WP_Error(
 			'notification_error',
@@ -170,7 +170,7 @@ function addNotification(Notification $notification)
  * @since  6.0.0
  * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function convertData($data = [])
+function convertNotificationData($data = [])
 {
 
 	// Trigger conversion.

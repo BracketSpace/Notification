@@ -939,7 +939,7 @@ function notificationConvertData($data = [])
 {
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\convertData()');
 
-	return \BracketSpace\Notification\convertData($data);
+	return \BracketSpace\Notification\convertNotificationData($data);
 }
 
 /**
