@@ -165,11 +165,7 @@ class Upgrade
 		}
 
 		// Set enabled state.
-		$enabledCarriers = (array)get_post_meta(
-			$postId,
-			'_enabled_notification',
-			false
-		);
+		$enabledCarriers = (array)get_post_meta($postId, '_enabled_notification', false);
 
 		if (
 			in_array(
@@ -184,11 +180,7 @@ class Upgrade
 		}
 
 		// Set data.
-		$data = get_post_meta(
-			$postId,
-			'_notification_type_' . $carrier->getSlug(),
-			true
-		);
+		$data = get_post_meta($postId, '_notification_type_' . $carrier->getSlug(), true);
 		$fieldValues = apply_filters_deprecated(
 			'notification/notification/form_fields/values',
 			[$data, $carrier],
@@ -263,11 +255,7 @@ class Upgrade
 			$adapter->setTitle($post->post_title);
 
 			// Trigger.
-			$triggerSlug = get_post_meta(
-				$adapter->getId(),
-				'_trigger',
-				true
-			);
+			$triggerSlug = get_post_meta($adapter->getId(), '_trigger', true);
 			$trigger = Store\Trigger::get($triggerSlug);
 
 			if (!empty($trigger)) {
