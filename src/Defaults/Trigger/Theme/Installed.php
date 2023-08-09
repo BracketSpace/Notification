@@ -35,11 +35,7 @@ class Installed extends ThemeTrigger
 			__('Theme installed', 'notification')
 		);
 
-		$this->addAction(
-			'upgrader_process_complete',
-			1000,
-			2
-		);
+		$this->addAction('upgrader_process_complete', 1000, 2);
 
 		$this->setGroup(__('Theme', 'notification'));
 

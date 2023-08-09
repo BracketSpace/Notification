@@ -45,10 +45,7 @@ class UserPasswordChanged extends UserTrigger
 		$this->addAction('password_reset', 10, 1);
 
 		$this->setDescription(
-			__(
-				'Fires when user changed his password',
-				'notification'
-			)
+			__('Fires when user changed his password', 'notification')
 		);
 	}
 

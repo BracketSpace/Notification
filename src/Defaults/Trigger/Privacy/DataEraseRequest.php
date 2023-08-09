@@ -26,17 +26,10 @@ class DataEraseRequest extends PrivacyTrigger
 			__('Personal Data Erase Request', 'notification')
 		);
 
-		$this->addAction(
-			'user_request_action_confirmed',
-			10,
-			1
-		);
+		$this->addAction('user_request_action_confirmed', 10, 1);
 
 		$this->setDescription(
-			__(
-				'Fires when user requests privacy data erase',
-				'notification'
-			)
+			__('Fires when user requests privacy data erase', 'notification')
 		);
 	}
 

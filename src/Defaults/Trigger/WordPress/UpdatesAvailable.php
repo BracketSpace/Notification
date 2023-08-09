@@ -43,10 +43,7 @@ class UpdatesAvailable extends Abstracts\Trigger
 		$this->setGroup(__('WordPress', 'notification'));
 
 		$this->setDescription(
-			__(
-				'Fires periodically when new updates are available',
-				'notification'
-			)
+			__('Fires periodically when new updates are available', 'notification')
 		);
 	}
 

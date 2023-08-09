@@ -27,9 +27,7 @@ class MediaAdded extends MediaTrigger
 		);
 
 		$this->addAction('add_attachment', 10, 1);
-		$this->setDescription(
-			__('Fires when new attachment is added', 'notification')
-		);
+		$this->setDescription(__('Fires when new attachment is added', 'notification'));
 	}
 
 	/**

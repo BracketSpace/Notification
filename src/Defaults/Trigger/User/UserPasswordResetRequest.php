@@ -45,10 +45,7 @@ class UserPasswordResetRequest extends UserTrigger
 		$this->addAction('retrieve_password_key', 10, 2);
 
 		$this->setDescription(
-			__(
-				'Fires when user requests password change',
-				'notification'
-			)
+			__('Fires when user requests password change', 'notification')
 		);
 	}
 

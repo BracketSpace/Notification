@@ -26,17 +26,10 @@ class DataErased extends PrivacyTrigger
 			__('Personal Data Erased', 'notification')
 		);
 
-		$this->addAction(
-			'wp_privacy_personal_data_erased',
-			10,
-			1
-		);
+		$this->addAction('wp_privacy_personal_data_erased', 10, 1);
 
 		$this->setDescription(
-			__(
-				'Fires when user personal data is erased',
-				'notification'
-			)
+			__('Fires when user personal data is erased', 'notification')
 		);
 	}
 
