@@ -70,7 +70,7 @@ class WordPress extends Abstracts\Adapter
 				)
 			);
 			$this->setupNotification(
-                convertNotificationData(
+				convertNotificationData(
 					$jsonAdapter->getNotification()->toArray()
 				)
 			);
