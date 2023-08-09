@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 
-use function BracketSpace\Notification\log;
+use function BracketSpace\Notification\logNotification;
 use function BracketSpace\Notification\getSetting;
 /**
  * Debugging class
@@ -245,7 +245,7 @@ class Debugging
 				'name' => $trigger->getName(),
 			],
 		];
-		log(
+		logNotification(
 			'Core',
 			'notification',
 			(string)wp_json_encode($data)

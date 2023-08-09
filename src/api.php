@@ -89,7 +89,7 @@ function swapNotificationAdapter($newAdapterName, Interfaces\Adaptable $adapter)
  * @since  6.0.0
  * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function log($component, $type, $message)
+function logNotification($component, $type, $message)
 {
 
 	if ($type !== 'notification' && !getSetting('debugging/settings/error_log')) {
