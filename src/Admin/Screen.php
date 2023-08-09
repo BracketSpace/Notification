@@ -389,11 +389,7 @@ class Screen
 			$groups[$otherKey] = $others;
 		}
 
-		return apply_filters(
-			'notification/trigger/tags/groups',
-			$groups,
-			$trigger
-		);
+		return apply_filters('notification/trigger/tags/groups', $groups, $trigger);
 	}
 
 	/**
@@ -415,10 +411,7 @@ class Screen
 		foreach ($wp_meta_boxes['notification'] as $contextName => $context) {
 			foreach ($context as $priority => $boxes) {
 				foreach ($boxes as $boxId => $box) {
-					$allowBox = apply_filters(
-						'notification/admin/allow_metabox/' . $boxId,
-						false
-					);
+					$allowBox = apply_filters('notification/admin/allow_metabox/' . $boxId, false);
 
 					if ($allowBox) {
 						continue;

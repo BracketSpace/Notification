@@ -90,11 +90,7 @@ class Section
 			$this->name = $name;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/section/name',
-			$this->name,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/section/name', $this->name, $this);
 	}
 
 	/**
@@ -110,11 +106,7 @@ class Section
 			$this->slug = $slug;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/section/slug',
-			$this->slug,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/section/slug', $this->slug, $this);
 	}
 
 	/**
@@ -157,11 +149,7 @@ class Section
 	public function getGroups()
 	{
 
-		return apply_filters(
-			$this->handle . '/settings/section/groups',
-			$this->groups,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/section/groups', $this->groups, $this);
 	}
 
 	/**
@@ -174,11 +162,7 @@ class Section
 	{
 
 		if (isset($this->groups[$slug])) {
-			return apply_filters(
-				$this->handle . '/settings/group',
-				$this->groups[$slug],
-				$this
-			);
+			return apply_filters($this->handle . '/settings/group', $this->groups[$slug], $this);
 		}
 
 		return false;

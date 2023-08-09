@@ -71,7 +71,7 @@ class Upgrade
 			$dataVersion++;
 			$upgradeMethod = [$this, 'upgrade_to_v' . $dataVersion];
 
-			if (! method_exists($upgradeMethod[0], $upgradeMethod[1]) || ! is_callable($upgradeMethod)) {
+			if (!method_exists($upgradeMethod[0], $upgradeMethod[1]) || !is_callable($upgradeMethod)) {
 				continue;
 			}
 
@@ -195,11 +195,7 @@ class Upgrade
 			'6.0.0',
 			'notification/carrier/fields/values'
 		);
-		$fieldValues = apply_filters(
-			'notification/carrier/fields/values',
-			$fieldValues,
-			$carrier
-		);
+		$fieldValues = apply_filters('notification/carrier/fields/values', $fieldValues, $carrier);
 
 		foreach ($carrier->getFormFields() as $field) {
 			if (!isset($fieldValues[$field->getRawName()])) {

@@ -139,11 +139,7 @@ class Settings
 	public function getSections()
 	{
 
-		return apply_filters(
-			$this->handle . '/settings/sections',
-			$this->sections,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/sections', $this->sections, $this);
 	}
 
 	/**
@@ -158,11 +154,7 @@ class Settings
 		$sections = $this->getSections();
 
 		if (isset($sections[$slug])) {
-			return apply_filters(
-				$this->handle . '/settings/section',
-				$sections[$slug],
-				$this
-			);
+			return apply_filters($this->handle . '/settings/section', $sections[$slug], $this);
 		}
 
 		return false;
@@ -249,11 +241,7 @@ class Settings
 			}
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/saved_settings',
-			$settings,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/saved_settings', $settings, $this);
 	}
 
 	/**
@@ -303,11 +291,7 @@ class Settings
 
 		$value = $settings[$parts[0]][$parts[1]][$parts[2]];
 
-		return apply_filters(
-			$this->handle . '/settings/setting/' . $setting,
-			$value,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/setting/' . $setting, $value, $this);
 	}
 
 	/**

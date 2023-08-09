@@ -144,12 +144,8 @@ class Email extends Abstracts\Carrier
 			'6.0.0',
 			'notification/carrier/email/use_html_mime'
 		);
-		$htmlMime = apply_filters(
-			'notification/carrier/email/use_html_mime',
-			$htmlMime,
-			$this,
-			$trigger
-		);
+
+		$htmlMime = apply_filters('notification/carrier/email/use_html_mime', $htmlMime, $this, $trigger);
 
 		if ($htmlMime) {
 			add_filter(
@@ -166,12 +162,7 @@ class Email extends Abstracts\Carrier
 			'6.0.0',
 			'notification/carrier/email/recipients'
 		);
-		$recipients = apply_filters(
-			'notification/carrier/email/recipients',
-			$recipients,
-			$this,
-			$trigger
-		);
+		$recipients = apply_filters('notification/carrier/email/recipients', $recipients, $this, $trigger);
 
 		$subject = apply_filters_deprecated(
 			'notification/email/subject',
@@ -179,12 +170,7 @@ class Email extends Abstracts\Carrier
 			'6.0.0',
 			'notification/carrier/email/subject'
 		);
-		$subject = apply_filters(
-			'notification/carrier/email/subject',
-			$subject,
-			$this,
-			$trigger
-		);
+		$subject = apply_filters('notification/carrier/email/subject', $subject, $this, $trigger);
 
 		$message = apply_filters_deprecated(
 			'notification/email/message/pre',
@@ -192,12 +178,7 @@ class Email extends Abstracts\Carrier
 			'6.0.0',
 			'notification/carrier/email/message/pre'
 		);
-		$message = apply_filters(
-			'notification/carrier/email/message/pre',
-			$message,
-			$this,
-			$trigger
-		);
+		$message = apply_filters('notification/carrier/email/message/pre', $message, $this, $trigger);
 
 		$useAutop = apply_filters_deprecated(
 			'notification/email/message/use_autop',
@@ -205,12 +186,7 @@ class Email extends Abstracts\Carrier
 			'6.0.0',
 			'notification/carrier/email/message/use_autop'
 		);
-		$useAutop = apply_filters(
-			'notification/carrier/email/message/use_autop',
-			$useAutop,
-			$this,
-			$trigger
-		);
+		$useAutop = apply_filters('notification/carrier/email/message/use_autop', $useAutop, $this, $trigger);
 		if ($useAutop) {
 			$message = wpautop($message);
 		}
@@ -221,12 +197,7 @@ class Email extends Abstracts\Carrier
 			'6.0.0',
 			'notification/carrier/email/message'
 		);
-		$message = apply_filters(
-			'notification/carrier/email/message',
-			$message,
-			$this,
-			$trigger
-		);
+		$message = apply_filters('notification/carrier/email/message', $message, $this, $trigger);
 
 		// Fix for wp_mail not being processed with empty message.
 		if (empty($message)) {
@@ -246,12 +217,7 @@ class Email extends Abstracts\Carrier
 			'6.0.0',
 			'notification/carrier/email/headers'
 		);
-		$headers = apply_filters(
-			'notification/carrier/email/headers',
-			$headers,
-			$this,
-			$trigger
-		);
+		$headers = apply_filters('notification/carrier/email/headers', $headers, $this, $trigger);
 
 		$attachments = apply_filters_deprecated(
 			'notification/email/attachments',
@@ -259,12 +225,7 @@ class Email extends Abstracts\Carrier
 			'6.0.0',
 			'notification/carrier/email/attachments'
 		);
-		$attachments = apply_filters(
-			'notification/carrier/email/attachments',
-			$attachments,
-			$this,
-			$trigger
-		);
+		$attachments = apply_filters('notification/carrier/email/attachments', $attachments, $this, $trigger);
 
 		$errors = [];
 

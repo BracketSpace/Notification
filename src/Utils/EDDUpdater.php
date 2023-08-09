@@ -752,11 +752,7 @@ class EDDUpdater
 	 */
 	private function verifySsl()
 	{
-		return (bool)apply_filters(
-			'edd_sl_api_request_verify_ssl',
-			true,
-			$this
-		);
+		return (bool)apply_filters('edd_sl_api_request_verify_ssl', true, $this);
 	}
 
 	/**

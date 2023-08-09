@@ -73,10 +73,7 @@ class Email extends Abstracts\Recipient
 				: '';
 		}
 
-		$value = apply_filters(
-			'notification/recipient/email/' . $filterId,
-			$value
-		);
+		$value = apply_filters('notification/recipient/email/' . $filterId, $value);
 
 		$parsedEmails = [];
 		$emails = is_array($value)

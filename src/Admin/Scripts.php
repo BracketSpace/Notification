@@ -59,12 +59,7 @@ class Scripts
 			]
 		);
 
-		$allowedPostTypes = apply_filters(
-			'notification/scripts/allowed_post_types',
-			[
-				'notification',
-			]
-		);
+		$allowedPostTypes = apply_filters('notification/scripts/allowed_post_types', ['notification']);
 
 		if (
 			!in_array(

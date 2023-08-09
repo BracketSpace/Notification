@@ -68,17 +68,11 @@ class PostType
 		register_post_type(
 			'notification',
 			[
-				'labels' => apply_filters(
-					'notification/whitelabel/cpt/labels',
-					$labels
-				),
+				'labels' => apply_filters('notification/whitelabel/cpt/labels', $labels),
 				'hierarchical' => false,
 				'public' => true,
 				'show_ui' => true,
-				'show_in_menu' => apply_filters(
-					'notification/whitelabel/cpt/parent',
-					true
-				),
+				'show_in_menu' => apply_filters('notification/whitelabel/cpt/parent', true),
 				'show_in_admin_bar' => true,
 				'menu_icon' => \Notification::fs()->image_to_base64('resources/images/menu-icon.svg'),
 				'menu_position' => 103,

@@ -42,7 +42,7 @@ class PostContentHtml extends HtmlTag
 					$this->getTriggerProp()
 				),
 				'name' => sprintf(
-				// translators: singular post name.
+					// translators: singular post name.
 					__('%s content HTML', 'notification'),
 					$postTypeName
 				),
@@ -53,10 +53,7 @@ class PostContentHtml extends HtmlTag
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ($trigger) {
-					return apply_filters(
-						'the_content',
-						$trigger->{$this->getTriggerProp()}->post_content
-					);
+					return apply_filters('the_content', $trigger->{$this->getTriggerProp()}->post_content);
 				},
 			]
 		);
