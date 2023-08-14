@@ -29,16 +29,10 @@ class MediaTrashed extends MediaTrigger
 	 */
 	public function __construct()
 	{
-
-		parent::__construct(
-			'media/trashed',
-			__('Media trashed', 'notification')
-		);
+		parent::__construct('media/trashed', __('Media trashed', 'notification'));
 
 		$this->addAction('delete_attachment', 10, 1);
-		$this->setDescription(
-			__('Fires when attachment is removed', 'notification')
-		);
+		$this->setDescription(__('Fires when attachment is removed', 'notification'));
 	}
 
 	/**
@@ -49,7 +43,6 @@ class MediaTrashed extends MediaTrigger
 	 */
 	public function context($attachmentId)
 	{
-
 		$this->attachment = get_post($attachmentId);
 
 		$this->userId = get_current_user_id();
@@ -73,7 +66,6 @@ class MediaTrashed extends MediaTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		// Trashing user.

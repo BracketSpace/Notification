@@ -36,7 +36,6 @@ class UserLogout extends UserTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'user/logout',
 			__('User logout', 'notification')
@@ -82,7 +81,6 @@ class UserLogout extends UserTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(new MergeTag\User\UserNicename());

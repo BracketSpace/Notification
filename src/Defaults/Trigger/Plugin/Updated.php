@@ -36,19 +36,13 @@ class Updated extends PluginTrigger
 	 */
 	public function __construct()
 	{
-
-		parent::__construct(
-			'plugin/updated',
-			__('Plugin updated', 'notification')
-		);
+		parent::__construct('plugin/updated', __('Plugin updated', 'notification'));
 
 		$this->addAction('upgrader_process_complete', 1000, 2);
 
 		$this->setGroup(__('Plugin', 'notification'));
 
-		$this->setDescription(
-			__('Fires when plugin is updated', 'notification')
-		);
+		$this->setDescription(__('Fires when plugin is updated', 'notification'));
 	}
 
 	/**
@@ -60,7 +54,6 @@ class Updated extends PluginTrigger
 	 */
 	public function context($upgrader, $data)
 	{
-
 		if (!isset($data['type'], $data['action']) || $data['type'] !== 'plugin' || $data['action'] !== 'update') {
 			return false;
 		}
@@ -85,7 +78,6 @@ class Updated extends PluginTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(

@@ -29,19 +29,13 @@ class Installed extends PluginTrigger
 	 */
 	public function __construct()
 	{
-
-		parent::__construct(
-			'plugin/installed',
-			__('Plugin installed', 'notification')
-		);
+		parent::__construct('plugin/installed', __('Plugin installed', 'notification'));
 
 		$this->addAction('upgrader_process_complete', 1000, 2);
 
 		$this->setGroup(__('Plugin', 'notification'));
 
-		$this->setDescription(
-			__('Fires when plugin is installed', 'notification')
-		);
+		$this->setDescription(__('Fires when plugin is installed', 'notification'));
 	}
 
 	/**
@@ -53,7 +47,6 @@ class Installed extends PluginTrigger
 	 */
 	public function context($upgrader, $data)
 	{
-
 		if (!isset($data['type'], $data['action']) || $data['type'] !== 'plugin' || $data['action'] !== 'install') {
 			return false;
 		}
@@ -73,7 +66,6 @@ class Installed extends PluginTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(

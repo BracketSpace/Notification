@@ -36,7 +36,6 @@ class UserProfileUpdated extends UserTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'user/profile_updated',
 			__('User profile updated', 'notification')
@@ -60,7 +59,6 @@ class UserProfileUpdated extends UserTrigger
 	 */
 	public function context($userId)
 	{
-
 		$this->userId = $userId;
 
 		$user = get_userdata($this->userId);
@@ -83,7 +81,6 @@ class UserProfileUpdated extends UserTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(new MergeTag\User\UserNicename());

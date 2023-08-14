@@ -24,7 +24,6 @@ class CommentUnapproved extends CommentTrigger
 	 */
 	public function __construct($commentType = 'comment')
 	{
-
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/unapproved',
@@ -63,7 +62,6 @@ class CommentUnapproved extends CommentTrigger
 	 */
 	public function context($commentNewStatus, $commentOldStatus, $comment)
 	{
-
 		$this->comment = $comment;
 
 		if ($this->comment->comment_approved === 'spam' && notificationGetSetting('triggers/comment/akismet')) {

@@ -33,7 +33,6 @@ class CodeEditorField extends Field
 	 */
 	public function __construct($params = [])
 	{
-
 		if (isset($params['settings'])) {
 			$this->settings = $params['settings'];
 		}
@@ -48,7 +47,6 @@ class CodeEditorField extends Field
 	 */
 	public function field()
 	{
-
 		$settings = wp_parse_args(
 			$this->settings,
 			[

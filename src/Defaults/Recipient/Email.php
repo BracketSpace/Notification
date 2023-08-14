@@ -42,7 +42,6 @@ class Email extends Abstracts\Recipient
 	 */
 	public function parseValue($value = '')
 	{
-
 		if (empty($value)) {
 			$value = $this->getDefaultValue();
 		}
@@ -95,7 +94,6 @@ class Email extends Abstracts\Recipient
 	 */
 	public function input()
 	{
-
 		return new Field\InputField(
 			[
 				'label' => __('Recipient', 'notification'), // don't edit this!

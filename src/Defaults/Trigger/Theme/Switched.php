@@ -36,7 +36,6 @@ class Switched extends ThemeTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'theme/switched',
 			__('Theme switched', 'notification')
@@ -46,9 +45,7 @@ class Switched extends ThemeTrigger
 
 		$this->setGroup(__('Theme', 'notification'));
 
-		$this->setDescription(
-			__('Fires when theme is switched', 'notification')
-		);
+		$this->setDescription(__('Fires when theme is switched', 'notification'));
 	}
 
 	/**
@@ -73,7 +70,6 @@ class Switched extends ThemeTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(

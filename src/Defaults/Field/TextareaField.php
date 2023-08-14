@@ -46,7 +46,6 @@ class TextareaField extends Field
 	 */
 	public function __construct($params = [])
 	{
-
 		if (isset($params['placeholder'])) {
 			$this->placeholder = $params['placeholder'];
 		}

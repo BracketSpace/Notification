@@ -36,7 +36,6 @@ class UserPasswordResetRequest extends UserTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'user/password_reset_request',
 			__('User password reset request', 'notification')
@@ -102,7 +101,6 @@ class UserPasswordResetRequest extends UserTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(new MergeTag\User\UserNicename());

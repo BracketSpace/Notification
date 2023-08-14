@@ -50,7 +50,6 @@ class UserRoleChanged extends UserTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'user/role_changed',
 			__('User role changed', 'notification')
@@ -73,7 +72,6 @@ class UserRoleChanged extends UserTrigger
 	 */
 	public function context($userId, $role, $oldRoles)
 	{
-
 		if (empty($oldRoles)) {
 			return false;
 		}
@@ -102,7 +100,6 @@ class UserRoleChanged extends UserTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(new MergeTag\User\UserNicename());

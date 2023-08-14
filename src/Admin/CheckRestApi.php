@@ -51,10 +51,9 @@ class CheckRestApi
 		$isAvailable = false;
 
 		if (
-			is_array($message) && array_key_exists(
-				'data',
-				$message
-			) && $message['data'] === 'RestApi'
+			is_array($message) &&
+			array_key_exists('data', $message) &&
+			$message['data'] === 'RestApi'
 		) {
 			return;
 		}

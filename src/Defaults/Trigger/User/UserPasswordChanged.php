@@ -36,7 +36,6 @@ class UserPasswordChanged extends UserTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'user/password_changed',
 			__('User password changed', 'notification')
@@ -57,7 +56,6 @@ class UserPasswordChanged extends UserTrigger
 	 */
 	public function context($user)
 	{
-
 		$this->userId = $user->ID;
 		$user = get_userdata($this->userId);
 
@@ -78,7 +76,6 @@ class UserPasswordChanged extends UserTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(new MergeTag\User\UserNicename());

@@ -203,7 +203,6 @@ class License
 	 */
 	public function activate($licenseKey = '')
 	{
-
 		$licenseKey = trim($licenseKey);
 		$error = false;
 
@@ -256,7 +255,6 @@ class License
 	 */
 	public function deactivate()
 	{
-
 		$licenseData = $this->get();
 		$error = false;
 
@@ -308,7 +306,6 @@ class License
 	 */
 	public function check($licenseKey = '')
 	{
-
 		$licenseKey = trim($licenseKey);
 		$error = false;
 

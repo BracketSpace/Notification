@@ -26,7 +26,6 @@ class JSON extends Abstracts\Adapter
 	 */
 	public function read($input = null)
 	{
-
 		$data = json_decode(
 			$input,
 			true
@@ -51,7 +50,6 @@ class JSON extends Abstracts\Adapter
 	 */
 	public function save($jsonOptions = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE, $onlyEnabledCarriers = false)
 	{
-
 		if ($jsonOptions === null) {
 			$jsonOptions = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE;
 		}

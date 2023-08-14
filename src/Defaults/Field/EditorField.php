@@ -33,7 +33,6 @@ class EditorField extends Field
 	 */
 	public function __construct($params = [])
 	{
-
 		if (isset($params['settings'])) {
 			$this->settings = $params['settings'];
 		}
@@ -76,7 +75,6 @@ class EditorField extends Field
 	 */
 	public function sanitize($value)
 	{
-
 		/**
 		 * Fixes WPLinkPreview TinyMCE component which adds the https:// prefix to invalid URL.
 		 */

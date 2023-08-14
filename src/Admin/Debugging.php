@@ -26,7 +26,6 @@ class Debugging
 	 */
 	public function debuggingSettings($settings)
 	{
-
 		$debugging = $settings->addSection(__('Debugging', 'notification'), 'debugging');
 
 		$debugging->addGroup(__('Settings', 'notification'), 'settings')
@@ -79,16 +78,12 @@ class Debugging
 						'message' => '
 						<a href="' . admin_url(
 							'admin-post.php?action=notification_clear_logs&log_type=notification&nonce=' .
-								wp_create_nonce(
-									'notification_clear_log_notification'
-								)
+								wp_create_nonce('notification_clear_log_notification')
 						) . '" class="button button-secondary">' . esc_html__('Clear Notification logs') .
 							'</a>
-						<a href="' . admin_url(
+							<a href="' . admin_url(
 								'admin-post.php?action=notification_clear_logs&log_type=error&nonce=' .
-									wp_create_nonce(
-										'notification_clear_log_error'
-									)
+									wp_create_nonce('notification_clear_log_error')
 							) . '" class="button button-secondary">' . esc_html__('Clear Error logs') .
 							'</a>
 					',
@@ -141,9 +136,12 @@ class Debugging
 			'Debug log is active and no notifications will be sent.',
 			'notification'
 		);
-		$debugLogLink = '<a href="' . admin_url(
-			'edit.php?post_type=notification&page=settings&section=debugging'
-		) . '">' . esc_html__('See debug log', 'notification') . '</a>';
+
+		$debugLogLink = sprintf(
+			'<a href="%s">%s</a>',
+			esc_url(admin_url('edit.php?post_type=notification&page=settings&section=debugging')),
+			esc_html__('See debug log', 'notification')
+		);
 
 		echo wp_kses_post('<div class="notice notice-warning"><p>' . $message . ' ' . $debugLogLink . '</p></div>');
 	}

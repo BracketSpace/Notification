@@ -54,10 +54,7 @@ class Settings
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
-			)
-			->description(
-				__('Notification content settings', 'notification')
-			);
+			)->description(__('Notification content settings', 'notification'));
 
 		$general->addGroup(__('Tools', 'notification'), 'tools')
 			->addField(
@@ -70,10 +67,7 @@ class Settings
 					],
 					'render' => [new CoreFields\Button(), 'input'],
 				]
-			)
-			->description(
-				__('Plugin tools', 'notification')
-			);
+			)->description(__('Plugin tools', 'notification'));
 
 		$general->addGroup(__('Advanced', 'notification'), 'advanced')
 			->addField(
@@ -132,10 +126,7 @@ class Settings
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
-			)
-			->description(
-				__('Choose what to remove upon plugin removal', 'notification')
-			);
+			)->description(__('Choose what to remove upon plugin removal', 'notification'));
 	}
 
 	/**
@@ -167,8 +158,7 @@ class Settings
 					'render' => [new CoreFields\Select(), 'input'],
 					'sanitize' => [new CoreFields\Select(), 'sanitize'],
 				]
-			)
-			->description(
+			)->description(
 				__(
 					'For these post types you will be able to define published,
 					updated, pending moderation etc. notifications',
@@ -696,13 +686,7 @@ class Settings
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
-			)
-			->description(
-				__(
-					'Disable each default emails by selecting the option.',
-					'notification'
-				)
-			);
+			)->description(__('Disable each default emails by selecting the option.', 'notification'));
 	}
 
 	/**

@@ -89,7 +89,6 @@ abstract class MergeTag implements Interfaces\Taggable
 	 */
 	public function __construct($params = [])
 	{
-
 		if (!isset($params['slug'], $params['name'], $params['resolver'])) {
 			trigger_error('Merge tag requires resolver', E_USER_ERROR);
 		}
@@ -151,7 +150,6 @@ abstract class MergeTag implements Interfaces\Taggable
 	 */
 	public function resolve()
 	{
-
 		if ($this->isResolved()) {
 			return $this->getValue();
 		}
@@ -240,7 +238,6 @@ abstract class MergeTag implements Interfaces\Taggable
 	 */
 	public function setResolver($resolver)
 	{
-
 		if (!is_callable($resolver)) {
 			trigger_error('Merge tag resolver has to be callable', E_USER_ERROR);
 		}

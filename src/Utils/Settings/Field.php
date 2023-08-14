@@ -106,7 +106,6 @@ class Field
 	 */
 	public function __construct($handle, $name, $slug, $section, $group)
 	{
-
 		if (empty($handle)) {
 			throw new \Exception('Setting handle in Section instance cannot be empty');
 		}
@@ -141,7 +140,6 @@ class Field
 	 */
 	public function name($name = null)
 	{
-
 		if ($name !== null) {
 			$this->name = $name;
 		}
@@ -157,7 +155,6 @@ class Field
 	 */
 	public function slug($slug = null)
 	{
-
 		if ($slug !== null) {
 			$this->slug = $slug;
 		}
@@ -173,7 +170,6 @@ class Field
 	 */
 	public function section($section = null)
 	{
-
 		if ($section !== null) {
 			$this->section = $section;
 		}
@@ -189,7 +185,6 @@ class Field
 	 */
 	public function group($group = null)
 	{
-
 		if ($group !== null) {
 			$this->group = $group;
 		}
@@ -205,7 +200,6 @@ class Field
 	 */
 	public function description($description = null)
 	{
-
 		if ($description !== null) {
 			$this->description = $description;
 		}
@@ -221,7 +215,6 @@ class Field
 	 */
 	public function value($value = null)
 	{
-
 		if ($value !== null) {
 			$this->value = $value;
 		}
@@ -237,7 +230,6 @@ class Field
 	 */
 	public function defaultValue($defaultValue = null)
 	{
-
 		if ($defaultValue !== null) {
 			$this->defaultValue = $defaultValue;
 		}
@@ -253,7 +245,6 @@ class Field
 	 */
 	public function addons($addons = null)
 	{
-
 		if ($addons !== null) {
 			$this->addons = $addons;
 		}
@@ -269,7 +260,6 @@ class Field
 	 */
 	public function addon($addon = null)
 	{
-
 		$addons = $this->addons();
 
 		if (isset($addons[$addon])) {
@@ -286,7 +276,6 @@ class Field
 	 */
 	public function inputName()
 	{
-
 		$name = $this->handle . '_settings[' . $this->section() . '][' . $this->group() . '][' . $this->slug() . ']';
 
 		return apply_filters($this->handle . '/settings/field/input/name', $name, $this);
@@ -299,7 +288,6 @@ class Field
 	 */
 	public function inputId()
 	{
-
 		$id = $this->handle . '-setting-' . $this->section() . '-' . $this->group() . '-' . $this->slug();
 
 		return apply_filters($this->handle . '/settings/field/input/id', $id, $this);
@@ -314,7 +302,6 @@ class Field
 	 */
 	public function setRenderer($renderer)
 	{
-
 		if (!is_callable($renderer)) {
 			throw new \Exception('Field renderer is not callable');
 		}

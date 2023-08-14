@@ -44,7 +44,6 @@ class Webhook extends Abstracts\Recipient
 	 */
 	public function parseValue($value = '')
 	{
-
 		if (empty($value)) {
 			$value = $this->getDefaultValue();
 		}
@@ -59,7 +58,6 @@ class Webhook extends Abstracts\Recipient
 	 */
 	public function input()
 	{
-
 		return new Field\InputField(
 			[
 				'label' => __('URL', 'notification'), // don't edit this!

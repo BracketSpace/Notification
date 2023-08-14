@@ -66,7 +66,6 @@ abstract class MediaTrigger extends Abstracts\Trigger
 	 */
 	public function mergeTags()
 	{
-
 		$this->addMergeTag(new MergeTag\Media\AttachmentID());
 		$this->addMergeTag(new MergeTag\Media\AttachmentPage());
 		$this->addMergeTag(new MergeTag\Media\AttachmentTitle());

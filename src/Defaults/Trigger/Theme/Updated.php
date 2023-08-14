@@ -36,7 +36,6 @@ class Updated extends ThemeTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'theme/updated',
 			__('Theme updated', 'notification')
@@ -64,7 +63,6 @@ class Updated extends ThemeTrigger
 	 */
 	public function context($upgrader, $data)
 	{
-
 		if (!isset($data['type'], $data['action']) || $data['type'] !== 'theme' || $data['action'] !== 'update') {
 			return false;
 		}
@@ -93,7 +91,6 @@ class Updated extends ThemeTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(

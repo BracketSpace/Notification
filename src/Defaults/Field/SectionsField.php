@@ -30,7 +30,6 @@ class SectionsField extends InputField
 	 */
 	public function __construct($params = [])
 	{
-
 		if (!isset($params['sections'])) {
 			trigger_error('SectionsField requires sections param', E_USER_ERROR);
 		}
@@ -48,7 +47,6 @@ class SectionsField extends InputField
 	 */
 	public function row()
 	{
-
 		return '<template v-for="( field, key ) in fields">
 					<repeater-row
 					:field="field"

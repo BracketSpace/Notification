@@ -76,7 +76,6 @@ class Runtime
 	 */
 	public function init()
 	{
-
 		// Plugin has been already initialized.
 		if (did_action('notification/init') || $this->requirementsUnmet) {
 			return;
@@ -338,7 +337,7 @@ class Runtime
 	 */
 	public function loadDefault($default, $className)
 	{
-		if (!apply_filters('notification/load/default/' . $default, true)) {
+		if (!apply_filters(sprintf('notification/load/default/%s', $default), true)) {
 			return;
 		}
 

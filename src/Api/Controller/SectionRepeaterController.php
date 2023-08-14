@@ -26,7 +26,6 @@ class SectionRepeaterController extends RepeaterController
 	 */
 	public function groupFields($fields)
 	{
-
 		$groupedFields = [];
 
 		foreach ($fields as $field) {

@@ -36,7 +36,6 @@ class UserPasswordResetLink extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		if (isset($params['key_property_name']) && !empty($params['key_property_name'])) {
 			$this->keyPropertyName = $params['key_property_name'];
 		}

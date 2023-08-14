@@ -35,7 +35,6 @@ class Processor
 	 */
 	public function processQueue()
 	{
-
 		Queue::iterate(
 			static function ($index, $notification, $trigger) {
 

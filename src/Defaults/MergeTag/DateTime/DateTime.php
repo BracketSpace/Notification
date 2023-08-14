@@ -33,7 +33,6 @@ class DateTime extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$args = wp_parse_args(
 			$params,
 			[

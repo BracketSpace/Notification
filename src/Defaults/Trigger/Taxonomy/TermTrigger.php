@@ -73,7 +73,6 @@ abstract class TermTrigger extends Abstracts\Trigger
 	 */
 	public function mergeTags()
 	{
-
 		$this->addMergeTag(new MergeTag\Taxonomy\TermID());
 		$this->addMergeTag(new MergeTag\Taxonomy\TermDescription());
 		$this->addMergeTag(new MergeTag\Taxonomy\TermName());

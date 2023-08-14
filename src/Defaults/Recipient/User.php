@@ -43,7 +43,6 @@ class User extends Abstracts\Recipient
 	 */
 	public function parseValue($value = '')
 	{
-
 		if (empty($value)) {
 			$value = $this->getDefaultValue();
 		}

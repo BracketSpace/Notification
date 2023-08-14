@@ -30,7 +30,6 @@ class DumpHooks
 	 */
 	public function __invoke($args)
 	{
-
 		$runtime = Notification::runtime();
 		$filesystem = $runtime->getFilesystem();
 		$hooksFile = 'compat/register-hooks.php';

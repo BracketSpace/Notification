@@ -54,7 +54,6 @@ class MessageField extends Field
 	 */
 	public function __construct($params = [])
 	{
-
 		if (!isset($params['message'])) {
 			trigger_error('MessageField requires message param', E_USER_ERROR);
 		}
@@ -96,7 +95,6 @@ class MessageField extends Field
 	 */
 	public function sanitize($value)
 	{
-
 		$value = preg_replace(
 			'@<(script|style)[^>]*?>.*?</\\1>@si',
 			'',

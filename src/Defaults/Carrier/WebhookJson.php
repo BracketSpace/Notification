@@ -38,7 +38,6 @@ class WebhookJson extends Abstracts\Carrier
 	 */
 	public function formFields()
 	{
-
 		$this->addRecipientsField(
 			[
 				'label' => __('URLs', 'notification'),
@@ -110,7 +109,6 @@ class WebhookJson extends Abstracts\Carrier
 	 */
 	public function send(Triggerable $trigger)
 	{
-
 		$data = $this->data;
 
 		$args = $this->parseArgs($data['args']);

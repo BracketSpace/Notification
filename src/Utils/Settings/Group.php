@@ -79,7 +79,6 @@ class Group
 	 */
 	public function __construct($handle, $name, $slug, $section)
 	{
-
 		if (empty($handle)) {
 			throw new \Exception('Setting handle in Section instance cannot be empty');
 		}
@@ -113,7 +112,6 @@ class Group
 	 */
 	public function name($name = null)
 	{
-
 		if ($name !== null) {
 			$this->name = $name;
 		}
@@ -129,7 +127,6 @@ class Group
 	 */
 	public function slug($slug = null)
 	{
-
 		if ($slug !== null) {
 			$this->slug = $slug;
 		}
@@ -145,7 +142,6 @@ class Group
 	 */
 	public function section($section = null)
 	{
-
 		if ($section !== null) {
 			$this->section = $section;
 		}
@@ -162,7 +158,6 @@ class Group
 	 */
 	public function description($description = null)
 	{
-
 		if ($description !== null) {
 			$this->description = $description;
 			return $this;
@@ -179,7 +174,6 @@ class Group
 	 */
 	public function collapsed($collapsed = null)
 	{
-
 		if ($collapsed !== null) {
 			$this->collapsed = $collapsed;
 			return $this;
@@ -207,7 +201,6 @@ class Group
 	 */
 	public function addField($args)
 	{
-
 		if (!isset($args['name'], $args['slug'], $args['render'])) {
 			throw new \Exception('You must define field name, slug and render callback');
 		}
@@ -256,7 +249,6 @@ class Group
 	 */
 	public function getFields()
 	{
-
 		return apply_filters($this->handle . '/settings/group/fields', $this->fields);
 	}
 }

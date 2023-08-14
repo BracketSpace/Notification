@@ -25,7 +25,6 @@ class CommentAdded extends CommentTrigger
 	 */
 	public function __construct($commentType = 'comment')
 	{
-
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/added',
@@ -64,7 +63,6 @@ class CommentAdded extends CommentTrigger
 	 */
 	public function context($commentId, $comment)
 	{
-
 		$this->comment = $comment;
 
 		if ($this->comment->comment_approved === 'spam' && notificationGetSetting('triggers/comment/akismet')) {
@@ -85,7 +83,6 @@ class CommentAdded extends CommentTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(

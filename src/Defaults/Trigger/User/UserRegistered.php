@@ -29,7 +29,6 @@ class UserRegistered extends UserTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'user/registered',
 			__('User registration', 'notification')
@@ -50,7 +49,6 @@ class UserRegistered extends UserTrigger
 	 */
 	public function context($userId)
 	{
-
 		$this->userId = $userId;
 
 		$user = get_userdata($this->userId);
@@ -72,7 +70,6 @@ class UserRegistered extends UserTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(
@@ -91,8 +88,10 @@ class UserRegistered extends UserTrigger
 					'example' => true,
 					'resolver' => static function ($trigger) {
 						return network_site_url(
-							'wp-login.php?action=rp&key=' . $trigger->getPasswordResetKey() . '&login=' . rawurlencode(
-								$trigger->userObject->userLogin
+							sprintf(
+								'wp-login.php?action=rp&key=%s&login=%s',
+								$trigger->getPasswordResetKey(),
+								rawurlencode($trigger->userObject->userLogin)
 							),
 							'login'
 						);
@@ -111,7 +110,6 @@ class UserRegistered extends UserTrigger
 	 */
 	public function getPasswordResetKey()
 	{
-
 		add_filter(
 			'allow_password_reset',
 			'__return_true',

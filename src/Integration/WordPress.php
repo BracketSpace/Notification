@@ -34,7 +34,6 @@ class WordPress
 	 */
 	public function filterEmailFromName($fromName)
 	{
-
 		$setting = notificationGetSetting('carriers/email/from_name');
 
 		return empty($setting) ? $fromName : $setting;
@@ -51,7 +50,6 @@ class WordPress
 	 */
 	public function filterEmailFromEmail($fromEmail)
 	{
-
 		$setting = notificationGetSetting('carriers/email/from_email');
 
 		return empty($setting) ? $fromEmail : $setting;

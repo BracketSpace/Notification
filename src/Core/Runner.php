@@ -64,7 +64,6 @@ class Runner
 	 */
 	public function run(...$context)
 	{
-
 		$this->setNotifications();
 
 		// If no Notifications use the Trigger, bail.

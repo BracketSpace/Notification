@@ -28,7 +28,6 @@ class TermName extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->setTriggerProp($params['property_name'] ?? 'term');
 
 		$args = wp_parse_args(

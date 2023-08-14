@@ -119,7 +119,6 @@ class Settings
 	 */
 	public function addSection($name, $slug)
 	{
-
 		if (!isset($this->sections[$slug])) {
 			$this->sections[$slug] = new Section(
 				$this->handle,
@@ -138,7 +137,6 @@ class Settings
 	 */
 	public function getSections()
 	{
-
 		return apply_filters($this->handle . '/settings/sections', $this->sections, $this);
 	}
 
@@ -150,7 +148,6 @@ class Settings
 	 */
 	public function getSection($slug = '')
 	{
-
 		$sections = $this->getSections();
 
 		if (isset($sections[$slug])) {
@@ -368,10 +365,7 @@ class Settings
 
 		// URI.
 		$themeUrl = wp_parse_url(get_stylesheet_directory_uri());
-		$themePos = strpos(
-			$this->path,
-			$themeUrl['path']
-		);
+		$themePos = strpos($this->path, $themeUrl['path']);
 
 		if ($themePos !== false) { // loaded from theme.
 			$pluginRelativeDir = str_replace(

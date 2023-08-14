@@ -30,7 +30,6 @@ class UpdatesAvailable extends Abstracts\Trigger
 	 */
 	public function __construct()
 	{
-
 		$this->updateTypes = ['core', 'plugin', 'theme'];
 
 		parent::__construct(
@@ -80,7 +79,6 @@ class UpdatesAvailable extends Abstracts\Trigger
 	 */
 	public function mergeTags()
 	{
-
 		$this->addMergeTag(
 			new MergeTag\HtmlTag(
 				[
@@ -187,7 +185,6 @@ class UpdatesAvailable extends Abstracts\Trigger
 	 */
 	public function getListTitle($updateType)
 	{
-
 		switch ($updateType) {
 			case 'core':
 				$title = __('Core updates', 'notification');
