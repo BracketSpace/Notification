@@ -53,11 +53,7 @@ class DumpHooks
 			if ($className === 'BracketSpace\\Notification\\Runtime') {
 				$callbackObjectName = '$this';
 			} else {
-				$componentName = array_search(
-					$className,
-					$objects,
-					true
-				);
+				$componentName = array_search($className, $objects, true);
 				if (!$componentName) {
 					WP_CLI::warning(
 						str_replace(

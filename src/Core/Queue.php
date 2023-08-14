@@ -68,19 +68,12 @@ class Queue
 		// Check if item already exists.
 		foreach (self::$items as $index => $item) {
 			if ($item['notification'] === $notification && $item['trigger'] === $trigger) {
-				self::add(
-					$notification,
-					$trigger,
-					$index
-				);
+				self::add($notification, $trigger, $index);
 				return;
 			}
 		}
 
-		self::add(
-			$notification,
-			$trigger
-		);
+		self::add($notification, $trigger);
 	}
 
 	/**

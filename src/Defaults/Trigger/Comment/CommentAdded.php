@@ -28,18 +28,13 @@ class CommentAdded extends CommentTrigger
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/added',
-
 				// Translators: %s comment type.
 				'name' => sprintf(__('%s added', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 				'comment_type' => $commentType,
 			]
 		);
 
-		$this->addAction(
-			'wp_insert_comment',
-			10,
-			2
-		);
+		$this->addAction('wp_insert_comment', 10, 2);
 
 		$this->setDescription(
 			sprintf(

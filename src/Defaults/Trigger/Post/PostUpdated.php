@@ -39,11 +39,7 @@ class PostUpdated extends PostTrigger
 			]
 		);
 
-		$this->addAction(
-			'post_updated',
-			10,
-			3
-		);
+		$this->addAction('post_updated', 10, 3);
 	}
 
 	/**

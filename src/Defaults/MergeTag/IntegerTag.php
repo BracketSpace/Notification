@@ -32,10 +32,7 @@ class IntegerTag extends MergeTag
 	 */
 	public function validate($value)
 	{
-		return filter_var(
-			(int)$value,
-			FILTER_VALIDATE_INT
-		) !== false;
+		return filter_var((int)$value, FILTER_VALIDATE_INT) !== false;
 	}
 
 	/**

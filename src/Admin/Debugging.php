@@ -146,8 +146,8 @@ class Debugging
 		echo wp_kses_post(
 			sprintf(
 				'<div class="notice notice-warning"><p>%s %s</p></div>',
-					$message,
-					$debugLogLink
+				$message,
+				$debugLogLink
 			)
 		);
 	}

@@ -58,10 +58,7 @@ class Upgrade
 	 */
 	public function checkUpgrade()
 	{
-		$dataVersion = get_option(
-			static::$dataSettingName,
-			0
-		);
+		$dataVersion = get_option(static::$dataSettingName, 0);
 
 		if ($dataVersion >= static::$dataVersion) {
 			return;
@@ -78,10 +75,7 @@ class Upgrade
 			call_user_func($upgradeMethod);
 		}
 
-		update_option(
-			static::$dataSettingName,
-			static::$dataVersion
-		);
+		update_option(static::$dataSettingName, static::$dataVersion);
 	}
 
 	/**
@@ -133,10 +127,7 @@ class Upgrade
 
 		dbDelta($sql);
 
-		update_option(
-			static::$dbSettingName,
-			static::$dbVersion
-		);
+		update_option(static::$dbSettingName, static::$dbVersion);
 	}
 
 	/**
@@ -292,10 +283,7 @@ class Upgrade
 			]
 		);
 		foreach ($trashedNotifications as $trashedNotification) {
-			wp_delete_post(
-				$trashedNotification->ID,
-				true
-			);
+			wp_delete_post($trashedNotification->ID, true);
 		}
 
 		// 3. Remove old debug log

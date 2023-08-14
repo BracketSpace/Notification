@@ -95,10 +95,7 @@ abstract class CommentTrigger extends Abstracts\Trigger
 
 		$this->commentType = $params['comment_type'];
 
-		parent::__construct(
-			$params['slug'],
-			$params['name']
-		);
+		parent::__construct($params['slug'], $params['name']);
 
 		$this->setGroup((string)WpObjectHelper::getCommentTypeName($this->commentType));
 	}

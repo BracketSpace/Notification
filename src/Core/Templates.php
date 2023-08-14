@@ -33,10 +33,7 @@ class Templates
 	 */
 	public static function render(string $name, array $vars = [])
 	{
-		self::create(
-			$name,
-			$vars
-		)->render();
+		self::create($name, $vars)->render();
 	}
 
 	/**
@@ -49,10 +46,7 @@ class Templates
 	 */
 	public static function get(string $name, array $vars = [])
 	{
-		return self::create(
-			$name,
-			$vars
-		)->output();
+		return self::create($name, $vars)->output();
 	}
 
 	/**
@@ -65,11 +59,7 @@ class Templates
 	 */
 	public static function create(string $name, array $vars = []): Template
 	{
-		return new Template(
-			self::TEMPLATE_STORAGE,
-			$name,
-			$vars
-		);
+		return new Template(self::TEMPLATE_STORAGE, $name, $vars);
 	}
 
 	/**

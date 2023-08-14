@@ -27,18 +27,13 @@ class CommentApproved extends CommentTrigger
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/approved',
-
 				// Translators: %s comment type.
 				'name' => sprintf(__('%s approved', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 				'comment_type' => $commentType,
 			]
 		);
 
-		$this->addAction(
-			'transition_comment_status',
-			10,
-			3
-		);
+		$this->addAction('transition_comment_status', 10, 3);
 
 		$this->setDescription(
 			sprintf(

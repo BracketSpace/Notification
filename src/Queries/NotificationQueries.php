@@ -61,11 +61,7 @@ class NotificationQueries
 	 */
 	public static function withHash(string $hash)
 	{
-		$post = get_page_by_path(
-			$hash,
-			OBJECT,
-			'notification'
-		);
+		$post = get_page_by_path($hash, OBJECT, 'notification');
 
 		return empty($post)
 			? null

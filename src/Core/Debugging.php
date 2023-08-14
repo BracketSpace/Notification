@@ -86,12 +86,7 @@ class Debugging
 				'component' => $logData['component'],
 				'time_logged' => gmdate('Y-m-d H:i:s'),
 			],
-			[
-				'%s',
-				'%s',
-				'%s',
-				'%s',
-			]
+			['%s', '%s', '%s', '%s']
 		);
 	}
 
@@ -165,11 +160,7 @@ class Debugging
 
 		foreach ($types as $type) {
 			// phpcs:ignore
-			$wpdb->delete(
-				$this->logsTable,
-				['type' => $type],
-				['%s']
-			);
+			$wpdb->delete($this->logsTable, ['type' => $type], ['%s']);
 		}
 	}
 

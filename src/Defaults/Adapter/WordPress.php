@@ -94,10 +94,7 @@ class WordPress extends Abstracts\Adapter
 		$data = $this->getNotification()->toArray();
 
 		/** @var \BracketSpace\Notification\Defaults\Adapter\JSON */
-		$jsonAdapter = notificationSwapAdapter(
-			'JSON',
-			$this
-		);
+		$jsonAdapter = notificationSwapAdapter('JSON', $this);
 		$json = $jsonAdapter->save(JSON_UNESCAPED_UNICODE);
 
 		// Update the hash.

@@ -32,10 +32,7 @@ class BooleanTag extends MergeTag
 	 */
 	public function validate($value)
 	{
-		return filter_var(
-			$value,
-			FILTER_VALIDATE_BOOLEAN
-		) !== false;
+		return filter_var($value, FILTER_VALIDATE_BOOLEAN) !== false;
 	}
 
 	/**

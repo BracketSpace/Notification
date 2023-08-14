@@ -111,10 +111,7 @@ class Runner
 			 * If an item already exists in the queue, we are replacing it with the new version.
 			 * This doesn't prevents the duplicates coming from two separate requests.
 			 */
-			Queue::addReplace(
-				$notification,
-				$trigger
-			);
+			Queue::addReplace($notification, $trigger);
 
 			do_action('notification/processed', $notification);
 		}

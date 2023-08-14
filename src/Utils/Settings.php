@@ -192,10 +192,7 @@ class Settings
 		}
 
 		foreach ($toSave as $section => $value) {
-			update_option(
-				$this->handle . '_' . $section,
-				$value
-			);
+			update_option($this->handle . '_' . $section, $value);
 		}
 
 		do_action($this->handle . '/settings/saved', $toSave, $this);
@@ -347,10 +344,7 @@ class Settings
 
 		$settings[$sectionSlug][$groupSlug][$fieldSlug] = $value;
 
-		return update_option(
-			$this->handle . '_' . $sectionSlug,
-			$settings
-		);
+		return update_option($this->handle . '_' . $sectionSlug, $settings);
 	}
 
 	/**

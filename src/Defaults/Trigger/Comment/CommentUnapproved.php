@@ -36,11 +36,7 @@ class CommentUnapproved extends CommentTrigger
 			]
 		);
 
-		$this->addAction(
-			'transition_comment_status',
-			10,
-			3
-		);
+		$this->addAction('transition_comment_status', 10, 3);
 
 		$this->setDescription(
 			sprintf(

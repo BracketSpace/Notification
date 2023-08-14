@@ -47,10 +47,7 @@ class Removed extends PluginTrigger
 	public function context($pluginRelPath)
 	{
 		$pluginDir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $pluginRelPath;
-		$this->plugin = get_plugin_data(
-			$pluginDir,
-			false
-		);
+		$this->plugin = get_plugin_data($pluginDir, false);
 		$this->pluginDeletionDateTime = (string)time();
 	}
 

@@ -204,10 +204,7 @@ class PostType
 			return;
 		}
 
-		wp_delete_post(
-			$postId,
-			true
-		);
+		wp_delete_post($postId, true);
 	}
 
 	/**
@@ -262,7 +259,8 @@ class PostType
 		}
 
 		if (
-			!isset($_POST['notification_data_nonce']) || !wp_verify_nonce(
+			!isset($_POST['notification_data_nonce']) ||
+			!wp_verify_nonce(
 				sanitize_text_field(wp_unslash($_POST['notification_data_nonce'])),
 				'notification_post_data_save'
 			)
@@ -281,10 +279,7 @@ class PostType
 		// Prevent infinite loops.
 		if (!defined('DOING_NOTIFICATION_SAVE')) {
 			// phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
-			define(
-				'DOING_NOTIFICATION_SAVE',
-				true
-			);
+			define('DOING_NOTIFICATION_SAVE', true);
 		}
 
 		$data = $_POST;
@@ -410,10 +405,7 @@ class PostType
 	public static function getAllNotifications()
 	{
 		$driver = new CacheDriver\ObjectCache('notification');
-		$cache = new Cache(
-			$driver,
-			'notifications'
-		);
+		$cache = new Cache($driver, 'notifications');
 
 		return $cache->collect(
 			static function () {

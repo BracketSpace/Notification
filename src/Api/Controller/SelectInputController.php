@@ -32,10 +32,7 @@ class SelectInputController
 		$params = $request->get_params();
 		$carrier = $params['carrier'];
 		$type = $params['type'];
-		$recipient = RecipientStore::get(
-			$carrier,
-			$type
-		);
+		$recipient = RecipientStore::get($carrier, $type);
 		$response = new Response();
 
 		if ($recipient) {

@@ -54,10 +54,7 @@ class License
 	 */
 	public function getLicenses()
 	{
-		return get_option(
-			$this->licenseStorage,
-			[]
-		);
+		return get_option($this->licenseStorage, []);
 	}
 
 	/**
@@ -69,10 +66,7 @@ class License
 	public function get()
 	{
 		$driver = new CacheDriver\ObjectCache('notification_license');
-		$cache = new Cache(
-			$driver,
-			$this->extension['slug']
-		);
+		$cache = new Cache($driver, $this->extension['slug']);
 
 		return $cache->collect(
 			function () {
@@ -103,9 +97,7 @@ class License
 		}
 
 		$driver = new CacheDriver\Transient(
-			ErrorHandler::debugEnabled()
-				? 60
-				: DAY_IN_SECONDS
+			ErrorHandler::debugEnabled() ? 60 : DAY_IN_SECONDS
 		);
 		$cache = new Cache(
 			$driver,
@@ -153,19 +145,13 @@ class License
 	public function save($licenseData)
 	{
 		$driver = new CacheDriver\ObjectCache('notification_license');
-		$cache = new Cache(
-			$driver,
-			$this->extension['slug']
-		);
+		$cache = new Cache($driver, $this->extension['slug']);
 		$cache->set($licenseData);
 
 		$licenses = $this->getLicenses();
 		$licenses[$this->extension['slug']] = $licenseData;
 
-		update_option(
-			$this->licenseStorage,
-			$licenses
-		);
+		update_option($this->licenseStorage, $licenses);
 	}
 
 	/**
@@ -177,10 +163,7 @@ class License
 	public function remove()
 	{
 		$driver = new CacheDriver\ObjectCache('notification_license');
-		$cache = new Cache(
-			$driver,
-			$this->extension['slug']
-		);
+		$cache = new Cache($driver, $this->extension['slug']);
 		$cache->delete();
 
 		$licenses = $this->getLicenses();
@@ -188,10 +171,7 @@ class License
 			unset($licenses[$this->extension['slug']]);
 		}
 
-		update_option(
-			$this->licenseStorage,
-			$licenses
-		);
+		update_option($this->licenseStorage, $licenses);
 	}
 
 	/**

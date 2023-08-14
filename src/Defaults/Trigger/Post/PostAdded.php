@@ -38,11 +38,7 @@ class PostAdded extends PostTrigger
 			]
 		);
 
-		$this->addAction(
-			'wp_insert_post',
-			10,
-			3
-		);
+		$this->addAction('wp_insert_post', 10, 3);
 	}
 
 	/**

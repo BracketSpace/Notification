@@ -64,10 +64,7 @@ class Updated extends PluginTrigger
 		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 		$this->previousVersion = $skin->plugin_info['Version'];
 		$pluginDir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $upgrader->plugin_info();
-		$this->plugin = get_plugin_data(
-			$pluginDir,
-			false
-		);
+		$this->plugin = get_plugin_data($pluginDir, false);
 		$this->pluginUpdateDateTime = (string)time();
 	}
 
