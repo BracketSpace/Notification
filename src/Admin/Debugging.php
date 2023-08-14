@@ -27,15 +27,9 @@ class Debugging
 	public function debuggingSettings($settings)
 	{
 
-		$debugging = $settings->addSection(
-			__('Debugging', 'notification'),
-			'debugging'
-		);
+		$debugging = $settings->addSection(__('Debugging', 'notification'), 'debugging');
 
-		$debugging->addGroup(
-			__('Settings', 'notification'),
-			'settings'
-		)
+		$debugging->addGroup(__('Settings', 'notification'), 'settings')
 			->addField(
 				[
 					'name' => __('Notification log', 'notification'),
@@ -104,10 +98,7 @@ class Debugging
 				]
 			);
 
-		$debugging->addGroup(
-			__('Notification Log', 'notification'),
-			'notification_log'
-		)
+		$debugging->addGroup(__('Notification Log', 'notification'), 'notification_log')
 			->addField(
 				[
 					'name' => __('Log', 'notification'),
@@ -117,10 +108,7 @@ class Debugging
 				]
 			);
 
-		$debugging->addGroup(
-			__('Error Log', 'notification'),
-			'error_log'
-		)
+		$debugging->addGroup(__('Error Log', 'notification'), 'error_log')
 			->addField(
 				[
 					'name' => __('Log', 'notification'),

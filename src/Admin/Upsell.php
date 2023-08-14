@@ -112,15 +112,9 @@ class Upsell
 			return;
 		}
 
-		$section = $settings->addSection(
-			__('Triggers', 'notification'),
-			'triggers'
-		);
+		$section = $settings->addSection(__('Triggers', 'notification'), 'triggers');
 
-		$section->addGroup(
-			__('Scheduled Triggers', 'notification'),
-			'scheduled_triggers'
-		)
+		$section->addGroup(__('Scheduled Triggers', 'notification'), 'scheduled_triggers')
 			->addField(
 				[
 					'name' => __('Features', 'notification'),

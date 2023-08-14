@@ -26,15 +26,9 @@ class ImportExport
 	 */
 	public function settings($settings)
 	{
-		$importexport = $settings->addSection(
-			__('Import / Export', 'notification'),
-			'import_export'
-		);
+		$importexport = $settings->addSection(__('Import / Export', 'notification'), 'import_export');
 
-		$importexport->addGroup(
-			__('Import', 'notification'),
-			'import'
-		)
+		$importexport->addGroup(__('Import', 'notification'), 'import')
 			->addField(
 				[
 					'name' => __('Notifications', 'notification'),
@@ -44,10 +38,7 @@ class ImportExport
 				]
 			);
 
-		$importexport->addGroup(
-			__('Export', 'notification'),
-			'export'
-		)
+		$importexport->addGroup(__('Export', 'notification'), 'export')
 			->addField(
 				[
 					'name' => __('Notifications', 'notification'),
