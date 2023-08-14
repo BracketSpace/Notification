@@ -95,7 +95,6 @@ class SectionRepeater extends Field
 	 */
 	public function __construct($params = [])
 	{
-
 		if (!isset($params['sections'])) {
 			trigger_error('SectionsRepeater requires sections param', E_USER_ERROR);
 		}
@@ -138,7 +137,6 @@ class SectionRepeater extends Field
 	 */
 	public function field()
 	{
-
 		$dataAttr = '';
 		foreach ($this->dataAttr as $key => $value) {
 			$dataAttr .= 'data-' . $key . '="' . esc_attr($value) . '" ';
@@ -146,9 +144,12 @@ class SectionRepeater extends Field
 
 		$this->headers = [];
 
-		$html = '<table class="section-repeater fields-repeater '
-				. $this->cssClass() . '" id="' . $this->getId()
-				. '" ' . $dataAttr . '>';
+		$html = sprintf(
+			'<table class="section-repeater fields-repeater %s" id="%s" "%s">',
+			esc_attr($this->cssClass()),
+			esc_attr($this->getId()),
+			$dataAttr
+		);
 
 		$html .= '<thead>';
 		$html .= '<tr class="row header">';
@@ -175,11 +176,14 @@ class SectionRepeater extends Field
 		$html .= '</tbody>';
 		$html .= '</table>';
 
-		$html .= '<template v-if="repeaterError">
-					<div class="repeater-error">'
-			. $this->restApiError() .
-			'</div>
-				  </template>';
+		$html .= sprintf(
+	'<template v-if="repeaterError">
+				<div class="repeater-error">
+					%s
+				</div>
+			</template>',
+			$this->restApiError()
+		);
 
 		$html .= '<a
 		href="#"
@@ -239,17 +243,11 @@ class SectionRepeater extends Field
 	 */
 	public function sanitize($value)
 	{
-
 		if (empty($value) || !is_array($value)) {
 			return [];
 		}
 
-		if (
-			array_keys($value) !== range(
-				0,
-				count($value) - 1
-			)
-		) {
+		if (array_keys($value) !== range(0, count($value) - 1)) {
 			return;
 		}
 
@@ -263,7 +261,6 @@ class SectionRepeater extends Field
 	 */
 	public function cssClass()
 	{
-
 		$classes = '';
 		if ($this->sortable) {
 			$classes .= 'fields-repeater-sortable ';

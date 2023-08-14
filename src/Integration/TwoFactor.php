@@ -26,7 +26,6 @@ class TwoFactor
 	 */
 	public function addTriggerAction($trigger)
 	{
-
 		if ($trigger->getSlug() !== 'user/login') {
 			return;
 		}

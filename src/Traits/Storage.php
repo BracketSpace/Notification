@@ -116,9 +116,6 @@ trait Storage
 	 */
 	public static function has($index): bool
 	{
-		return array_key_exists(
-			$index,
-			static::$items
-		);
+		return array_key_exists($index, static::$items);
 	}
 }

@@ -33,7 +33,6 @@ class CheckboxField extends Field
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->checkboxLabel = $params['checkbox_label'] ?? __('Enable', 'notification');
 
 		parent::__construct($params);

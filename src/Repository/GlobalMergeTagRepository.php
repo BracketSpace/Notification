@@ -23,7 +23,6 @@ class GlobalMergeTagRepository
 	 */
 	public static function register()
 	{
-
 		Register::globalMergeTag(
 			new MergeTag\UrlTag(
 				[

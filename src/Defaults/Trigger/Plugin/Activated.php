@@ -29,19 +29,13 @@ class Activated extends PluginTrigger
 	 */
 	public function __construct()
 	{
-
-		parent::__construct(
-			'plugin/activated',
-			__('Plugin activated', 'notification')
-		);
+		parent::__construct('plugin/activated', __('Plugin activated', 'notification'));
 
 		$this->addAction('activated_plugin', 1000);
 
 		$this->setGroup(__('Plugin', 'notification'));
 
-		$this->setDescription(
-			__('Fires when plugin is activated', 'notification')
-		);
+		$this->setDescription(__('Fires when plugin is activated', 'notification'));
 	}
 
 	/**
@@ -52,7 +46,6 @@ class Activated extends PluginTrigger
 	 */
 	public function context($pluginRelPath)
 	{
-
 		$pluginDir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $pluginRelPath;
 		$this->plugin = get_plugin_data(
 			$pluginDir,
@@ -68,7 +61,6 @@ class Activated extends PluginTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(

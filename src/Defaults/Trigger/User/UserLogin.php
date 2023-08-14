@@ -36,7 +36,6 @@ class UserLogin extends UserTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'user/login',
 			__('User login', 'notification')
@@ -58,7 +57,6 @@ class UserLogin extends UserTrigger
 	 */
 	public function context($userLogin, $user)
 	{
-
 		$this->userId = $user->ID;
 
 		$user = get_userdata($this->userId);
@@ -81,7 +79,6 @@ class UserLogin extends UserTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(new MergeTag\User\UserNicename());

@@ -59,7 +59,6 @@ class EDDUpdater
 	 */
 	public function __construct($apiUrl, $pluginFile, $apiData = null)
 	{
-
 		global $eddPluginData;
 
 		$this->apiUrl = trailingslashit($apiUrl);
@@ -99,7 +98,6 @@ class EDDUpdater
 	 */
 	public function init()
 	{
-
 		add_filter(
 			'pre_set_site_transient_update_plugins',
 			[$this, 'checkUpdate']
@@ -129,7 +127,6 @@ class EDDUpdater
 	 */
 	public function checkUpdate($transientData)
 	{
-
 		global $pagenow;
 
 		if (!is_object($transientData)) {
@@ -199,7 +196,6 @@ class EDDUpdater
 	 */
 	public function showUpdateNotification($file, $plugin)
 	{
-
 		// Return early if in the network admin, or if this is not a multisite install.
 		if (is_network_admin() || !is_multisite()) {
 			return;
@@ -357,7 +353,6 @@ class EDDUpdater
 	 */
 	public function pluginsApiFilter($_data, $_action = '', $_args = null)
 	{
-
 		if ($_action !== 'plugin_information') {
 			return $_data;
 		}
@@ -461,7 +456,6 @@ class EDDUpdater
 	 */
 	public function httpRequestArgs($args, $url)
 	{
-
 		if (strpos($url, 'https://') !== false && strpos($url, 'edd_action=package_download')) {
 			$args['sslverify'] = $this->verifySsl();
 		}
@@ -555,7 +549,6 @@ class EDDUpdater
 	 */
 	public function showChangelog()
 	{
-
 		if (empty($_REQUEST['edd_sl_action']) || $_REQUEST['edd_sl_action'] !== 'view_plugin_changelog') {
 			return;
 		}
@@ -672,7 +665,6 @@ class EDDUpdater
 	 */
 	public function getCachedVersionInfo($cacheKey = '')
 	{
-
 		if (empty($cacheKey)) {
 			$cacheKey = $this->getCacheKey();
 		}
@@ -701,7 +693,6 @@ class EDDUpdater
 	 */
 	public function setVersionInfoCache($value = '', $cacheKey = '')
 	{
-
 		if (empty($cacheKey)) {
 			$cacheKey = $this->getCacheKey();
 		}

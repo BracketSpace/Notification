@@ -39,7 +39,6 @@ abstract class Recipient implements Interfaces\Receivable
 	 */
 	public function __construct($params = [])
 	{
-
 		if (!empty($params['slug'])) {
 			$this->setSlug($params['slug']);
 		}

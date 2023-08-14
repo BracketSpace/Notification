@@ -113,7 +113,6 @@ class TermAdded extends TermTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(

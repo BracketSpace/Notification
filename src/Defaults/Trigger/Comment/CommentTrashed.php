@@ -24,7 +24,6 @@ class CommentTrashed extends CommentTrigger
 	 */
 	public function __construct($commentType = 'comment')
 	{
-
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/trashed',
@@ -59,7 +58,6 @@ class CommentTrashed extends CommentTrigger
 	 */
 	public function context($commentId, $comment)
 	{
-
 		$this->comment = $comment;
 
 		if ($this->comment->comment_approved === 'spam' && notificationGetSetting('triggers/comment/akismet')) {

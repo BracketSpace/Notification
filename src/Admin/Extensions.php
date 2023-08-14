@@ -453,7 +453,6 @@ class Extensions
 	 */
 	public function activationNotices()
 	{
-
 		// We're just checking for the status slug.
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if (!isset($_GET['activation-status'])) {

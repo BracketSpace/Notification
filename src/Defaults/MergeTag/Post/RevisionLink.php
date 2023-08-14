@@ -29,7 +29,6 @@ class RevisionLink extends UrlTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->setTriggerProp($params['post_type'] ?? 'post');
 
 		$postTypeName = WpObjectHelper::getPostTypeName($this->getTriggerProp());

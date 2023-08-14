@@ -30,7 +30,6 @@ class Resolver
 	 */
 	public static function resolve($value, Triggerable $trigger)
 	{
-
 		$resolvers = ResolverStore::sorted();
 
 		if (empty($resolvers)) {

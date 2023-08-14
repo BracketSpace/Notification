@@ -44,7 +44,6 @@ class Basic extends Abstracts\Resolver
 	 */
 	public function resolveMergeTag($match, Triggerable $trigger)
 	{
-
 		$mergeTags = $trigger->getMergeTags(
 			'all',
 			true

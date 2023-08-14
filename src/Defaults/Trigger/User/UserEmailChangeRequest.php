@@ -50,7 +50,6 @@ class UserEmailChangeRequest extends UserTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'user/email_change_request',
 			__('User email change request', 'notification')
@@ -72,7 +71,6 @@ class UserEmailChangeRequest extends UserTrigger
 	 */
 	public function context($userId)
 	{
-
 		$newEmail = get_user_meta(
 			$userId,
 			'_new_email',
@@ -106,7 +104,6 @@ class UserEmailChangeRequest extends UserTrigger
 	 */
 	public function mergeTags()
 	{
-
 		$this->addMergeTag(new MergeTag\User\UserNicename());
 		$this->addMergeTag(new MergeTag\User\UserDisplayName());
 		$this->addMergeTag(new MergeTag\User\UserFirstName());

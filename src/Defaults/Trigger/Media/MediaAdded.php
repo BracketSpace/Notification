@@ -20,7 +20,6 @@ class MediaAdded extends MediaTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'media/added',
 			__('Media added', 'notification')
@@ -38,7 +37,6 @@ class MediaAdded extends MediaTrigger
 	 */
 	public function context($attachmentId)
 	{
-
 		$this->attachment = get_post($attachmentId);
 		if (!$this->attachment instanceof \WP_Post) {
 			return;

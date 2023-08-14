@@ -56,7 +56,6 @@ class InputField extends Field
 	 */
 	public function __construct($params = [])
 	{
-
 		if (isset($params['type'])) {
 			$this->type = $params['type'];
 		}

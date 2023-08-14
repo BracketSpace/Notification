@@ -48,7 +48,6 @@ class Email extends Abstracts\Carrier
 	 */
 	public function formFields()
 	{
-
 		$this->addFormField(
 			new Field\InputField(
 				[

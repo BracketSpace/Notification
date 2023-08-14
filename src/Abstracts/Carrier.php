@@ -167,7 +167,6 @@ abstract class Carrier implements Interfaces\Sendable
 	 */
 	public function __clone()
 	{
-
 		$fields = [];
 
 		foreach ($this->formFields as $rawName => $field) {
@@ -222,7 +221,6 @@ abstract class Carrier implements Interfaces\Sendable
 	 */
 	public function addFormField(Interfaces\Fillable $field)
 	{
-
 		if ( in_array($field->getRawName(), $this->restrictedFields, true) ) {
 			throw new \Exception(
 				sprintf(

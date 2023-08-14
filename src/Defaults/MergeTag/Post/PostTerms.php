@@ -36,7 +36,6 @@ class PostTerms extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->setTriggerProp($params['post_type'] ?? 'post');
 
 		if (isset($params['taxonomy'])) {

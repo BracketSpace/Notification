@@ -24,7 +24,6 @@ class CommentPublished extends CommentTrigger
 	 */
 	public function __construct($commentType = 'comment')
 	{
-
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/published',

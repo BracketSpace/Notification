@@ -131,7 +131,6 @@ class PostPublishedPrivately extends PostTrigger
 						'%s_publishing_user_ID',
 						$this->postType
 					),
-
 					// translators: singular post name.
 					'name' => sprintf(__('%s publishing user ID', 'notification'), $postTypeName),
 					'property_name' => 'publishing_user',
@@ -147,7 +146,6 @@ class PostPublishedPrivately extends PostTrigger
 						'%s_publishing_user_login',
 						$this->postType
 					),
-
 					// translators: singular post name.
 					'name' => sprintf(__('%s publishing user login', 'notification'), $postTypeName),
 					'property_name' => 'publishing_user',
@@ -163,7 +161,6 @@ class PostPublishedPrivately extends PostTrigger
 						'%s_publishing_user_email',
 						$this->postType
 					),
-
 					// translators: singular post name.
 					'name' => sprintf(__('%s publishing user email', 'notification'), $postTypeName),
 					'property_name' => 'publishing_user',
@@ -179,7 +176,6 @@ class PostPublishedPrivately extends PostTrigger
 						'%s_publishing_user_nicename',
 						$this->postType
 					),
-
 					// translators: singular post name.
 					'name' => sprintf(__('%s publishing user nicename', 'notification'), $postTypeName),
 					'property_name' => 'publishing_user',
@@ -195,7 +191,6 @@ class PostPublishedPrivately extends PostTrigger
 						'%s_publishing_user_display_name',
 						$this->postType
 					),
-
 					// translators: singular post name.
 					'name' => sprintf(__('%s publishing user display name', 'notification'), $postTypeName),
 					'property_name' => 'publishing_user',
@@ -211,7 +206,6 @@ class PostPublishedPrivately extends PostTrigger
 						'%s_publishing_user_firstname',
 						$this->postType
 					),
-
 					// translators: singular post name.
 					'name' => sprintf(__('%s publishing user first name', 'notification'), $postTypeName),
 					'property_name' => 'publishing_user',
@@ -227,7 +221,6 @@ class PostPublishedPrivately extends PostTrigger
 						'%s_publishing_user_lastname',
 						$this->postType
 					),
-
 					// translators: singular post name.
 					'name' => sprintf(__('%s publishing user last name', 'notification'), $postTypeName),
 					'property_name' => 'publishing_user',
@@ -243,7 +236,6 @@ class PostPublishedPrivately extends PostTrigger
 						'%s_publishing_user_avatar',
 						$this->postType
 					),
-
 					// translators: singular post name.
 					'name' => sprintf(__('%s publishing user avatar', 'notification'), $postTypeName),
 					'property_name' => 'publishing_user',
@@ -259,7 +251,6 @@ class PostPublishedPrivately extends PostTrigger
 						'%s_publishing_user_role',
 						$this->postType
 					),
-
 					// translators: singular post name.
 					'name' => sprintf(__('%s publishing user role', 'notification'), $postTypeName),
 					'property_name' => 'publishing_user',
@@ -275,7 +266,6 @@ class PostPublishedPrivately extends PostTrigger
 						'%s_publication_datetime',
 						$this->postType
 					),
-
 					// translators: singular post name.
 					'name' => sprintf(__('%s publication date and time', 'notification'), $postTypeName),
 					'timestamp' => $this->postPublicationDatetime,

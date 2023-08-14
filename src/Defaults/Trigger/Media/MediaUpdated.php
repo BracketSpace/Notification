@@ -29,7 +29,6 @@ class MediaUpdated extends MediaTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'media/updated',
 			__('Media updated', 'notification')
@@ -47,7 +46,6 @@ class MediaUpdated extends MediaTrigger
 	 */
 	public function context($attachmentId)
 	{
-
 		$this->attachment = get_post($attachmentId);
 
 		$this->userId = get_current_user_id();
@@ -71,7 +69,6 @@ class MediaUpdated extends MediaTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		// Updating user.

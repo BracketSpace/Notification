@@ -31,7 +31,6 @@ class Sync
 	 */
 	public function settings($settings)
 	{
-
 		$importExport = $settings->addSection(__('Import / Export', 'notification'), 'import_export');
 		$syncGroup = $importExport->addGroup(__('Synchronization', 'notification'), 'sync');
 
@@ -138,7 +137,6 @@ class Sync
 	 */
 	public function loadNotificationToWordpress($hash)
 	{
-
 		$jsonNotifications = CoreSync::getAllJson();
 
 		foreach ($jsonNotifications as $json) {

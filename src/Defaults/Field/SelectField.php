@@ -41,7 +41,6 @@ class SelectField extends Field
 	 */
 	public function __construct($params = [])
 	{
-
 		if (isset($params['options'])) {
 			$this->options = $params['options'];
 		}
@@ -60,7 +59,6 @@ class SelectField extends Field
 	 */
 	public function field()
 	{
-
 		$cssClasses = $this->pretty . ' ' . $this->cssClass();
 
 		$html = '<select name="' . esc_attr($this->getName()) . '" id="' . esc_attr(

@@ -29,7 +29,6 @@ class PostType extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->setTriggerProp($params['post_type'] ?? 'post');
 
 		$args = wp_parse_args(

@@ -29,7 +29,6 @@ class Installed extends ThemeTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'theme/installed',
 			__('Theme installed', 'notification')
@@ -53,7 +52,6 @@ class Installed extends ThemeTrigger
 	 */
 	public function context($upgrader, $data)
 	{
-
 		if (!isset($data['type'], $data['action']) || $data['type'] !== 'theme' || $data['action'] !== 'install') {
 			return false;
 		}
@@ -76,7 +74,6 @@ class Installed extends ThemeTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(

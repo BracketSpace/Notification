@@ -45,7 +45,6 @@ class Scripts
 	 */
 	public function enqueueScripts($pageHook)
 	{
-
 		$allowedHooks = apply_filters(
 			'notification/scripts/allowed_hooks',
 			[

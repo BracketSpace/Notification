@@ -159,7 +159,6 @@ class WordPressEmails
 	 */
 	public function disableSendConfirmationOnProfileEmail()
 	{
-
 		if (notificationGetSetting('integration/emails/send_confirmation_on_profile_email') !== 'true') {
 			return;
 		}
@@ -183,7 +182,6 @@ class WordPressEmails
 	 */
 	public function disableSendConfirmationOnAdminEmail()
 	{
-
 		if (notificationGetSetting('integration/emails/send_confirmation_on_admin_email') !== 'true') {
 			return;
 		}

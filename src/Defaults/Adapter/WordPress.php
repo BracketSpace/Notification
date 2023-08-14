@@ -43,7 +43,6 @@ class WordPress extends Abstracts\Adapter
 	 */
 	public function read($input = null)
 	{
-
 		if ($input instanceof \WP_Post) {
 			$this->setPost($input);
 		} elseif (is_integer($input)) {
@@ -88,7 +87,6 @@ class WordPress extends Abstracts\Adapter
 	 */
 	public function save()
 	{
-
 		// Update version as WordPress automatically does this while updating the post.
 		$versionBackup = $this->getVersion();
 		$this->setVersion(time());
@@ -103,12 +101,7 @@ class WordPress extends Abstracts\Adapter
 		$json = $jsonAdapter->save(JSON_UNESCAPED_UNICODE);
 
 		// Update the hash.
-		if (
-			!preg_match(
-				'/notification_[a-z0-9]{13}/',
-				$data['hash']
-			)
-		) {
+		if (!preg_match('/notification_[a-z0-9]{13}/', $data['hash'])) {
 			$data['hash'] = Notification::createHash();
 		}
 

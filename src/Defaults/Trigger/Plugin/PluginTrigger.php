@@ -32,7 +32,6 @@ abstract class PluginTrigger extends Abstracts\Trigger
 	 */
 	public function mergeTags()
 	{
-
 		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[

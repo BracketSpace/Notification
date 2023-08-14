@@ -55,7 +55,6 @@ class EmailChangeRequest extends Abstracts\Trigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'wordpress/email_change_request',
 			__('Site email change request', 'notification')
@@ -82,7 +81,6 @@ class EmailChangeRequest extends Abstracts\Trigger
 	 */
 	public function context($oldValue, $value)
 	{
-
 		if ($oldValue === $value) {
 			return false;
 		}
@@ -104,7 +102,6 @@ class EmailChangeRequest extends Abstracts\Trigger
 	 */
 	public function mergeTags()
 	{
-
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[

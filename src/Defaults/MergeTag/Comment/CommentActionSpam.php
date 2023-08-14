@@ -33,7 +33,6 @@ class CommentActionSpam extends UrlTag
 	 */
 	public function __construct($params = [])
 	{
-
 		if (isset($params['comment_type']) && !empty($params['comment_type'])) {
 			$this->commentType = $params['comment_type'];
 		}

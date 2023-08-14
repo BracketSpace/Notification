@@ -50,7 +50,6 @@ class DataExported extends PrivacyTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'privacy/data-exported',
 			__('Personal Data Exported', 'notification')
@@ -58,9 +57,7 @@ class DataExported extends PrivacyTrigger
 
 		$this->addAction('wp_privacy_personal_data_export_file_created', 10, 5);
 
-		$this->setDescription(
-			__('Fires when user personal data is exported', 'notification')
-		);
+		$this->setDescription(__('Fires when user personal data is exported', 'notification'));
 	}
 
 	/**
@@ -74,7 +71,6 @@ class DataExported extends PrivacyTrigger
 	 */
 	public function context($archivePathname, $archiveUrl, $htmlReportPathname, $requestId, $jsonReportPathname = null)
 	{
-
 		$this->request = wp_get_user_request($requestId);
 
 		$user = get_userdata($this->request->user_id);
@@ -103,7 +99,6 @@ class DataExported extends PrivacyTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(

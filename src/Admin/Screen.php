@@ -103,8 +103,8 @@ class Screen
 	 */
 	public function renderCarrierBoxes($notificationPost)
 	{
-		echo '<h3 class="carriers-section-title">'
-			. esc_html__('Carriers', 'notification') . '</h3>';
+		echo sprintf('<h3 class="carriers-section-title">%s</h3>', esc_html__('Carriers', 'notification'));
+
 
 		do_action_deprecated(
 			'notitication/admin/notifications/pre',

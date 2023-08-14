@@ -98,7 +98,6 @@ abstract class Trigger implements Triggerable
 	 */
 	public function setupMergeTags()
 	{
-
 		if ($this->mergeTagsAdded) {
 			return;
 		}
@@ -161,7 +160,6 @@ abstract class Trigger implements Triggerable
 	 */
 	public function removeAction($tag, $priority = 10, $deprecated = null)
 	{
-
 		if (empty($tag)) {
 			trigger_error('Action tag cannot be empty', E_USER_ERROR);
 		}
@@ -235,7 +233,6 @@ abstract class Trigger implements Triggerable
 	 */
 	public function removeMergeTag($mergeTagSlug)
 	{
-
 		foreach ($this->mergeTags as $index => $mergeTag) {
 			if ($mergeTag->getSlug() === $mergeTagSlug) {
 				unset($this->mergeTags[$index]);
@@ -257,7 +254,6 @@ abstract class Trigger implements Triggerable
 	 */
 	public function getMergeTags($type = 'all', $grouped = false)
 	{
-
 		if (!$this->mergeTagsAdded) {
 			$this->setupMergeTags();
 		}

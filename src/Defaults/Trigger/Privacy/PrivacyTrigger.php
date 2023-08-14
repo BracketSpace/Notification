@@ -47,7 +47,6 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 	 */
 	public function __construct($slug, $name)
 	{
-
 		parent::__construct($slug, $name);
 
 		$this->setGroup(__('Privacy', 'notification'));
@@ -60,7 +59,6 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 	 */
 	public function mergeTags()
 	{
-
 		// Data owner.
 		$this->addMergeTag(
 			new MergeTag\User\UserID(

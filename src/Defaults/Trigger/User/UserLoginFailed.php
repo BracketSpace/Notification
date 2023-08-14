@@ -29,7 +29,6 @@ class UserLoginFailed extends UserTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'user/login_failed',
 			__('User login failed', 'notification')
@@ -50,7 +49,6 @@ class UserLoginFailed extends UserTrigger
 	 */
 	public function context($username)
 	{
-
 		$user = get_user_by(
 			'login',
 			$username
@@ -79,7 +77,6 @@ class UserLoginFailed extends UserTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(new MergeTag\User\UserNicename());

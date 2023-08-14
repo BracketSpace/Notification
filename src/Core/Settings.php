@@ -34,10 +34,7 @@ class Settings extends SettingsAPI
 	 */
 	public function registerPage()
 	{
-
-		if (
-			!apply_filters('notification/whitelabel/settings', true)
-		) {
+		if (!apply_filters('notification/whitelabel/settings', true)) {
 			return;
 		}
 
