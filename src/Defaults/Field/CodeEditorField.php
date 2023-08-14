@@ -58,6 +58,8 @@ class CodeEditorField extends Field
 		wp_enqueue_script('code-editor');
 		wp_enqueue_style('code-editor');
 
+		$value = is_string($this->getValue()) ? $this->getValue() : '';
+
 		return sprintf(
 			'<textarea
 				id="%s"
@@ -69,7 +71,7 @@ class CodeEditorField extends Field
 			esc_attr($this->getId()),
 			esc_attr(wp_json_encode($settings)),
 			esc_attr($this->getName()),
-			esc_textarea($this->getValue())
+			esc_textarea($value)
 		);
 	}
 
