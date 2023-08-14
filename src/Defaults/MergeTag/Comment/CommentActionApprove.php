@@ -52,9 +52,10 @@ class CommentActionApprove extends UrlTag
 				'group' => sprintf(__('%s actions', 'notification'), $commentTypeName),
 				'resolver' => function ($trigger) {
 					return admin_url(
-						// phpcs:ignore Generic.Files.LineLength.TooLong
-						"comment.php?action=approve&c={$trigger->{$this->getTriggerProp()}->comment_ID}#wpbody-content"
-					);
+						sprintf(
+				 	'comment.php?action=approve&c=%s#wpbody-content',
+						 	$trigger->{$this->getTriggerProp()}->comment_ID
+					));
 				},
 			]
 		);
