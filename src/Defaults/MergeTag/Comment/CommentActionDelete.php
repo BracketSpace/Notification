@@ -52,8 +52,10 @@ class CommentActionDelete extends UrlTag
 				'group' => sprintf(__('%s actions', 'notification'), $commentTypeName),
 				'resolver' => function ($trigger) {
 					return admin_url(
-						"comment.php?action=delete&c={$trigger->{$this->getTriggerProp()}->comment_ID}#wpbody-content"
-					);
+						sprintf(
+							'comment.php?action=delete&c=%s#wpbody-content',
+							$trigger->{$this->getTriggerProp()}->comment_ID
+						));
 				},
 			]
 		);
