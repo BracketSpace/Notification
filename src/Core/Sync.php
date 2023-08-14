@@ -48,12 +48,7 @@ class Sync
 		}
 
 		foreach ((array)$fs->dirlist('/') as $filename => $file) {
-			if (
-				preg_match(
-					'/.*\.json/',
-					(string)$filename
-				) !== 1
-			) {
+			if (preg_match('/.*\.json/', (string)$filename) !== 1) {
 				continue;
 			}
 

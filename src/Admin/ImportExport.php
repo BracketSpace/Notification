@@ -173,13 +173,7 @@ class ImportExport
 	 */
 	public function importRequest()
 	{
-		if (
-			check_ajax_referer(
-				'import-notifications',
-				'nonce',
-				false
-			) === false
-		) {
+		if (check_ajax_referer('import-notifications', 'nonce', false) === false) {
 			wp_send_json_error(__('Security check failed. Please refresh the page and try again'));
 		}
 
@@ -201,7 +195,7 @@ class ImportExport
 			'rb'
 		);
 
-		if (! $file) {
+		if (!$file) {
 			wp_send_json_error("Can't read the file.");
 		}
 
@@ -290,7 +284,7 @@ class ImportExport
 		}
 
 		return sprintf(
-		// translators: number and number and number of notifications.
+			// translators: number and number and number of notifications.
 			__('%1$d notifications imported successfully. %2$d updated. %3$d skipped.'),
 			($added + $updated),
 			$updated,

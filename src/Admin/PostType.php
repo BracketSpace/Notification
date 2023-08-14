@@ -237,12 +237,7 @@ class PostType
 			return $data;
 		}
 
-		if (
-			!preg_match(
-				'/notification_[a-z0-9]{13}/',
-				$data['post_name']
-			)
-		) {
+		if (!preg_match('/notification_[a-z0-9]{13}/', $data['post_name'])) {
 			$data['post_name'] = Notification::createHash();
 		}
 
@@ -330,12 +325,7 @@ class PostType
 			}
 
 			// If nonce not set or false, ignore this form.
-			if (
-				!wp_verify_nonce(
-					$carrierData['_nonce'],
-					$carrier->getSlug() . '_carrier_security'
-				)
-			) {
+			if (!wp_verify_nonce($carrierData['_nonce'], $carrier->getSlug() . '_carrier_security')) {
 				continue;
 			}
 

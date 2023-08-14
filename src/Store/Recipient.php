@@ -45,12 +45,7 @@ class Recipient implements Interfaces\Storable
 			static::$items[$carrierSlug] = [];
 		}
 
-		if (
-			array_key_exists(
-				$slug,
-				(array)static::$items[$carrierSlug]
-			)
-		) {
+		if (array_key_exists($slug, (array)static::$items[$carrierSlug])) {
 			ErrorHandler::error(
 				sprintf(
 					'Recipient with %s slug for %s Carrier in %s Store already exists.',
@@ -97,12 +92,7 @@ class Recipient implements Interfaces\Storable
 	 */
 	public static function allForCarrier(string $carrierSlug): array
 	{
-		if (
-			!array_key_exists(
-				$carrierSlug,
-				static::$items
-			)
-		) {
+		if (!array_key_exists($carrierSlug, static::$items)) {
 			ErrorHandler::error(
 				sprintf(
 					'Carrier %s in %s Store doesn\'t have any Recipients.',
@@ -129,12 +119,7 @@ class Recipient implements Interfaces\Storable
 	{
 		$carrierRecipients = static::allForCarrier($carrierSlug);
 
-		if (
-			!array_key_exists(
-				$slug,
-				$carrierRecipients
-			)
-		) {
+		if (!array_key_exists($slug, $carrierRecipients)) {
 			ErrorHandler::error(
 				sprintf(
 					'Carrier %s in %s Store doesn\'t have %s Recipient.',

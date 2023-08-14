@@ -167,12 +167,7 @@ class RepeaterController
 	{
 		/** @var array<mixed> $value */
 		foreach ($values as &$value) {
-			if (
-				!array_key_exists(
-					'nested_repeater',
-					$value
-				)
-			) {
+			if (!array_key_exists('nested_repeater', $value)) {
 				continue;
 			}
 

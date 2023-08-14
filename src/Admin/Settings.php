@@ -419,17 +419,8 @@ class Settings
 	{
 		if (!empty($_SERVER['SERVER_NAME'])) {
 			$sitename = strtolower(sanitize_text_field(wp_unslash($_SERVER['SERVER_NAME'])));
-			if (
-				substr(
-					$sitename,
-					0,
-					4
-				) === 'www.'
-			) {
-				$sitename = substr(
-					$sitename,
-					4
-				);
+			if (substr($sitename, 0, 4) === 'www.') {
+				$sitename = substr($sitename, 4);
 			}
 		} else {
 			$sitename = 'example.com';
