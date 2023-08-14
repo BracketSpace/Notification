@@ -160,10 +160,8 @@ class Processor
 	 */
 	public static function handleCron($notificationJson, $triggerKey)
 	{
-		$notification = notificationAdaptFrom(
-			'JSON',
-			$notificationJson
-		)->getNotification();
+		$notification = notificationAdaptFrom('JSON', $notificationJson)
+			->getNotification();
 		$trigger = self::getCache($triggerKey)->get();
 
 		if (!$trigger instanceof Triggerable) {

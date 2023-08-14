@@ -52,10 +52,7 @@ class Screen
 			return;
 		}
 
-		$notificationPost = notificationAdaptFrom(
-			'WordPress',
-			$post
-		);
+		$notificationPost = notificationAdaptFrom('WordPress',	$post);
 
 		do_action('notification/post/column/main', $notificationPost);
 	}
@@ -292,10 +289,7 @@ class Screen
 	 */
 	public function renderMergeTagsMetabox($post)
 	{
-		$notification = notificationAdaptFrom(
-			'WordPress',
-			$post
-		);
+		$notification = notificationAdaptFrom('WordPress', $post);
 		$trigger = $notification->getTrigger();
 		$triggerSlug = $trigger
 			? $trigger->getSlug()

@@ -371,10 +371,7 @@ abstract class Carrier implements Interfaces\Sendable
 				continue;
 			}
 
-			$resolved = $this->resolveValue(
-				$field->getValue(),
-				$trigger
-			);
+			$resolved = $this->resolveValue($field->getValue(), $trigger);
 			$field->setValue($resolved);
 		}
 
@@ -409,14 +406,8 @@ abstract class Carrier implements Interfaces\Sendable
 			$resolved = [];
 
 			foreach ($value as $key => $val) {
-				$key = $this->resolveValue(
-					$key,
-					$trigger
-				);
-				$val = $this->resolveValue(
-					$val,
-					$trigger
-				);
+				$key = $this->resolveValue($key, $trigger);
+				$val = $this->resolveValue($val, $trigger);
 				$resolved[$key] = $val;
 			}
 
@@ -425,10 +416,7 @@ abstract class Carrier implements Interfaces\Sendable
 
 		$value = apply_filters('notification/carrier/field/resolving', $value);
 
-		$resolved = Resolver::resolve(
-			$value,
-			$trigger
-		);
+		$resolved = Resolver::resolve($value, $trigger);
 
 		// Unused tags.
 		$stripMergeTags = apply_filters(
@@ -455,11 +443,7 @@ abstract class Carrier implements Interfaces\Sendable
 			: do_shortcode($resolved);
 
 		// Unescape escaped {.
-		$resolved = str_replace(
-			'!{',
-			'{',
-			$resolved
-		);
+		$resolved = str_replace('!{', '{', $resolved);
 
 		return apply_filters('notification/carrier/field/value/resolved', $resolved, null);
 	}

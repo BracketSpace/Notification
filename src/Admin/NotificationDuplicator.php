@@ -56,10 +56,7 @@ class NotificationDuplicator
 	 */
 	public function notificationDuplicate()
 	{
-		check_admin_referer(
-			'duplicate_notification',
-			'nonce'
-		);
+		check_admin_referer('duplicate_notification', 'nonce');
 
 		if (!isset($_GET['duplicate'])) {
 			exit;
@@ -67,10 +64,7 @@ class NotificationDuplicator
 
 		// Get the source notification post.
 		$source = get_post(intval(wp_unslash($_GET['duplicate'])));
-		$wp = notificationAdaptFrom(
-			'WordPress',
-			$source
-		);
+		$wp = notificationAdaptFrom('WordPress', $source);
 
 		/**
 		 * JSON Adapter

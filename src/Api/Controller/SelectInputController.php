@@ -52,13 +52,7 @@ class SelectInputController
 			$data['css_class'] = $input->cssClass;
 			$data['id'] = $input->id;
 			$data['placeholder'] = $input->placeholder;
-			$data['type'] = strtolower(
-				str_replace(
-					'Field',
-					'',
-					$input->fieldTypeHtml
-				)
-			);
+			$data['type'] = strtolower(str_replace('Field', '', $input->fieldTypeHtml));
 			$data['value'] = $input->value;
 
 			$response->send($data);

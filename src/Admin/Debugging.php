@@ -143,7 +143,13 @@ class Debugging
 			esc_html__('See debug log', 'notification')
 		);
 
-		echo wp_kses_post('<div class="notice notice-warning"><p>' . $message . ' ' . $debugLogLink . '</p></div>');
+		echo wp_kses_post(
+			sprintf(
+				'<div class="notice notice-warning"><p>%s %s</p></div>',
+					$message,
+					$debugLogLink
+			)
+		);
 	}
 
 	/**
