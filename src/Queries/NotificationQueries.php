@@ -46,10 +46,7 @@ class NotificationQueries
 		}
 
 		foreach ($wpposts as $wppost) {
-			$posts[] = notificationAdaptFrom(
-				'WordPress',
-				$wppost
-			);
+			$posts[] = notificationAdaptFrom('WordPress', $wppost);
 		}
 
 		return $posts;
@@ -72,9 +69,6 @@ class NotificationQueries
 
 		return empty($post)
 			? null
-			: notificationAdaptFrom(
-				'WordPress',
-				$post
-			);
+			: notificationAdaptFrom('WordPress', $post);
 	}
 }

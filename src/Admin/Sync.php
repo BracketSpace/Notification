@@ -146,10 +146,7 @@ class Sync
 				 *
 				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 				 */
-				$jsonAdapter = notificationAdaptFrom(
-					'JSON',
-					$json
-				);
+				$jsonAdapter = notificationAdaptFrom('JSON', $json);
 
 				if ($jsonAdapter->getHash() === $hash) {
 					/**

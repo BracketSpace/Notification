@@ -128,11 +128,8 @@ class Extensions
 			}
 
 			// Fix for the PRO extension having a version number in the directory name.
-			$globSlug = wp_normalize_path(trailingslashit(WP_PLUGIN_DIR)) . str_replace(
-				'/',
-				'-*/',
-				$extension['slug']
-			);
+			$globSlug = wp_normalize_path(trailingslashit(WP_PLUGIN_DIR)) .
+				str_replace('/', '-*/', $extension['slug']);
 			$proInstalled = is_plugin_active($extension['slug']) || !empty(glob($globSlug));
 
 			if (isset($extension['edd']) && $proInstalled) {
@@ -167,10 +164,7 @@ class Extensions
 				$extensions = [];
 
 				if (!is_wp_error($response) && wp_remote_retrieve_response_code($response) === 200) {
-					$extensions = json_decode(
-						wp_remote_retrieve_body($response),
-						true
-					);
+					$extensions = json_decode(wp_remote_retrieve_body($response), true);
 				}
 
 				return $extensions;
@@ -352,12 +346,7 @@ class Extensions
 				$params['expiration'] = $licenseData->expires;
 			}
 
-			wp_safe_redirect(
-				add_query_arg(
-					$params,
-					$data['_wp_http_referer']
-				)
-			);
+			wp_safe_redirect(add_query_arg($params, $data['_wp_http_referer']));
 			exit;
 		}
 
@@ -425,12 +414,7 @@ class Extensions
 				'extension' => rawurlencode($licenseData->itemName),
 			];
 
-			wp_safe_redirect(
-				add_query_arg(
-					$params,
-					$data['_wp_http_referer']
-				)
-			);
+			wp_safe_redirect(add_query_arg($params, $data['_wp_http_referer']));
 			exit;
 		}
 
@@ -496,10 +480,7 @@ class Extensions
 			case 'revoked':
 			case 'inactive':
 				$view = 'error';
-				$message = __(
-					'Your license key has been disabled.',
-					'notification'
-				);
+				$message = __('Your license key has been disabled.', 'notification');
 				break;
 
 			case 'missing':

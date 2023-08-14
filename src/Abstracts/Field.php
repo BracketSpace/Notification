@@ -111,13 +111,7 @@ abstract class Field implements Interfaces\Fillable
 			trigger_error('Field requires label and name', E_USER_ERROR);
 		}
 
-		$this->fieldTypeHtml = substr(
-			strrchr(
-				static::class,
-				'\\'
-			),
-			1
-		);
+		$this->fieldTypeHtml = substr(strrchr(static::class,'\\'), 1);
 
 		$this->label = $params['label'];
 		$this->name = $params['name'];

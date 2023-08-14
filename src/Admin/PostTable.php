@@ -57,10 +57,7 @@ class PostTable
 		 *
 		 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
 		 */
-		$notification = notificationAdaptFrom(
-			'WordPress',
-			$postId
-		);
+		$notification = notificationAdaptFrom('WordPress', $postId);
 
 		switch ($column) {
 			case 'hash':
@@ -219,10 +216,7 @@ class PostTable
 		);
 
 		foreach ($postIds as $postId) {
-			$notification = notificationAdaptFrom(
-				'WordPress',
-				$postId
-			);
+			$notification = notificationAdaptFrom('WordPress', $postId);
 			$notification->setEnabled($doaction === 'enable');
 			$notification->save();
 		}
@@ -252,10 +246,7 @@ class PostTable
 			return;
 		}
 
-		check_admin_referer(
-			'notification_bulk_action',
-			'nonce'
-		);
+		check_admin_referer('notification_bulk_action', 'nonce');
 
 		$action = $_GET;
 

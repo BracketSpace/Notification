@@ -371,19 +371,11 @@ class Settings
 			$pluginRelativeDir = str_replace(
 				$themeUrl['path'],
 				'',
-				substr(
-					$this->path,
-					$themePos
-				)
+				substr($this->path, $themePos)
 			);
 			$this->uri = $themeUrl['scheme'] . '://' . $themeUrl['host'] . $themeUrl['path'] . $pluginRelativeDir;
 		} else { // loaded from plugin.
-			$this->uri = trailingslashit(
-				plugins_url(
-					'',
-					dirname(__FILE__)
-				)
-			);
+			$this->uri = trailingslashit(plugins_url('', dirname(__FILE__)));
 		}
 	}
 }

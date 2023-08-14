@@ -87,10 +87,7 @@ class Sync
 				 *
 				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 				 */
-				$adapter = notificationAdaptFrom(
-					'JSON',
-					$json
-				);
+				$adapter = notificationAdaptFrom('JSON', $json);
 
 				if ($adapter->isEnabled()) {
 					$adapter->registerNotification();
@@ -156,10 +153,7 @@ class Sync
 			return;
 		}
 
-		$adapter = notificationAdaptFrom(
-			'WordPress',
-			$postId
-		);
+		$adapter = notificationAdaptFrom('WordPress', $postId);
 		$file = $adapter->getHash() . '.json';
 
 		if (!$fs->exists($file)) {

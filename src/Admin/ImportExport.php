@@ -59,10 +59,7 @@ class ImportExport
 	 */
 	public function exportRequest()
 	{
-		check_admin_referer(
-			'notification-export',
-			'nonce'
-		);
+		check_admin_referer('notification-export', 'nonce');
 
 		if (!isset($_GET['type'])) {
 			wp_die('Wrong export type. Please go back and try again.');
@@ -128,24 +125,15 @@ class ImportExport
 		);
 
 		foreach ($posts as $wppost) {
-			$wpAdapter = notificationAdaptFrom(
-				'WordPress',
-				$wppost
-			);
+			$wpAdapter = notificationAdaptFrom('WordPress', $wppost);
 
 			/**
 			 * JSON Adapter
 			 *
 			 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 			 */
-			$jsonAdapter = notificationSwapAdapter(
-				'JSON',
-				$wpAdapter
-			);
-			$json = $jsonAdapter->save(
-				null,
-				false
-			);
+			$jsonAdapter = notificationSwapAdapter('JSON', $wpAdapter);
+			$json = $jsonAdapter->save(null, false);
 
 			// Decode because it's encoded in the last step of export.
 			$data[] = json_decode($json);
@@ -235,20 +223,14 @@ class ImportExport
 		$updated = 0;
 
 		foreach ($data as $notificationData) {
-			$jsonAdapter = notificationAdaptFrom(
-				'JSON',
-				wp_json_encode($notificationData)
-			);
+			$jsonAdapter = notificationAdaptFrom('JSON', wp_json_encode($notificationData));
 
 			/**
 			 * WordPress Adapter
 			 *
 			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
 			 */
-			$wpAdapter = notificationSwapAdapter(
-				'WordPress',
-				$jsonAdapter
-			);
+			$wpAdapter = notificationSwapAdapter('WordPress', $jsonAdapter);
 
 			/**
 			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null

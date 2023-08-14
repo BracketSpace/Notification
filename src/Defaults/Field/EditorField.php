@@ -78,10 +78,6 @@ class EditorField extends Field
 		/**
 		 * Fixes WPLinkPreview TinyMCE component which adds the https:// prefix to invalid URL.
 		 */
-		return str_replace(
-			['https://{', 'http://{'],
-			'{',
-			$value
-		);
+		return str_replace(['https://{', 'http://{'], '{', $value);
 	}
 }

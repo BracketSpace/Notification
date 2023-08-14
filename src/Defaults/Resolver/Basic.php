@@ -44,17 +44,8 @@ class Basic extends Abstracts\Resolver
 	 */
 	public function resolveMergeTag($match, Triggerable $trigger)
 	{
-		$mergeTags = $trigger->getMergeTags(
-			'all',
-			true
-		);
-		$tagSlug = trim(
-			str_replace(
-				['{', '}'],
-				'',
-				$match[0]
-			)
-		);
+		$mergeTags = $trigger->getMergeTags('all', true);
+		$tagSlug = trim(str_replace(['{', '}'], '', $match[0]));
 
 		if (!isset($mergeTags[$tagSlug])) {
 			return $match[0];

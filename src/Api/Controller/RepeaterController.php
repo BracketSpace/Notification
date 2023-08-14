@@ -72,13 +72,7 @@ class RepeaterController
 			$subField['id'] = $field->id;
 			$subField['placeholder'] = $field->placeholder;
 			$subField['nested'] = $field->nested;
-			$subField['type'] = strtolower(
-				str_replace(
-					'Field',
-					'',
-					$field->fieldTypeHtml
-				)
-			);
+			$subField['type'] = strtolower(str_replace('Field', '', $field->fieldTypeHtml));
 			$subField['sections'] = $field->sections;
 			$subField['message'] = $field->message;
 			$subField['value'] = '';
@@ -109,10 +103,7 @@ class RepeaterController
 	 */
 	public function getValues($postId, $carrier, $field)
 	{
-		$notification = notificationAdaptFrom(
-			'WordPress',
-			$postId
-		);
+		$notification = notificationAdaptFrom('WordPress', $postId);
 		$carrier = $notification->getCarrier($carrier);
 
 		if ($carrier) {
