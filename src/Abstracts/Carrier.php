@@ -298,15 +298,9 @@ abstract class Carrier implements Interfaces\Sendable
 
 		// Setup the field data if it's available.
 		if (!empty($this->recipientsResolvedData)) {
-			$this->setFieldData(
-				$field,
-				$this->recipientsResolvedData
-			);
+			$this->setFieldData($field, $this->recipientsResolvedData);
 		} else {
-			$this->setFieldData(
-				$field,
-				$this->recipientsData
-			);
+			$this->setFieldData($field, $this->recipientsData);
 		}
 
 		return $field;
@@ -542,10 +536,7 @@ abstract class Carrier implements Interfaces\Sendable
 				continue;
 			}
 
-			$this->setFieldData(
-				$field,
-				$data[$field->getRawName()]
-			);
+			$this->setFieldData($field, $data[$field->getRawName()]);
 		}
 
 		// Set recipients data.
