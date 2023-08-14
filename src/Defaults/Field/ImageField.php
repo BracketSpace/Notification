@@ -30,7 +30,7 @@ class ImageField extends Field
 			: '';
 
 		return sprintf(
-	'<div class="notification-image-field %s">
+			'<div class="notification-image-field %s">
 				<input type="text" name="%s" id="%s" value="%s" class="image-input %s" %s readonly>
 				<button class="select-image button button-secondary">%s</button>
 				<div class="image">

@@ -52,9 +52,10 @@ class CommentActionApprove extends UrlTag
 				'resolver' => function ($trigger) {
 					return admin_url(
 						sprintf(
-				 	'comment.php?action=approve&c=%s#wpbody-content',
-						 	$trigger->{$this->getTriggerProp()}->comment_ID
-					));
+							'comment.php?action=approve&c=%s#wpbody-content',
+							$trigger->{$this->getTriggerProp()}->comment_ID
+						)
+					);
 				},
 			]
 		);
