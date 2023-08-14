@@ -39,7 +39,7 @@ class PostTrashed extends PostTrigger
 			]
 		);
 
-		$this->addAction('trash_' . $postType,10,2);
+		$this->addAction('trash_' . $postType, 10, 2);
 	}
 
 	/**

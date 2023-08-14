@@ -54,7 +54,8 @@ class CommentActionDelete extends UrlTag
 						sprintf(
 							'comment.php?action=delete&c=%s#wpbody-content',
 							$trigger->{$this->getTriggerProp()}->comment_ID
-						));
+						)
+					);
 				},
 			]
 		);

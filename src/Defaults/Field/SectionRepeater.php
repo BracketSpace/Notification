@@ -177,7 +177,7 @@ class SectionRepeater extends Field
 		$html .= '</table>';
 
 		$html .= sprintf(
-	'<template v-if="repeaterError">
+			'<template v-if="repeaterError">
 				<div class="repeater-error">
 					%s
 				</div>
