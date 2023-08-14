@@ -538,10 +538,7 @@ class EDDUpdater
 	 */
 	private function logFailedRequest()
 	{
-		update_option(
-			$this->failedRequestCacheKey,
-			strtotime('+1 hour')
-		);
+		update_option($this->failedRequestCacheKey, strtotime('+1 hour'));
 	}
 
 	/**
@@ -698,18 +695,11 @@ class EDDUpdater
 		}
 
 		$data = [
-			'timeout' => strtotime(
-				'+3 hours',
-				time()
-			),
+			'timeout' => strtotime('+3 hours', time()),
 			'value' => wp_json_encode($value),
 		];
 
-		update_option(
-			$cacheKey,
-			$data,
-			'no'
-		);
+		update_option($cacheKey, $data, 'no');
 
 		// Delete the duplicate option
 		//phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_serialize

@@ -276,7 +276,13 @@ class Field
 	 */
 	public function inputName()
 	{
-		$name = $this->handle . '_settings[' . $this->section() . '][' . $this->group() . '][' . $this->slug() . ']';
+		$name = sprintf(
+			'%s_settings[%s][%s][%s]',
+			$this->handle,
+			$this->section(),
+			$this->group(),
+			$this->slug()
+		);
 
 		return apply_filters($this->handle . '/settings/field/input/name', $name, $this);
 	}
@@ -288,7 +294,13 @@ class Field
 	 */
 	public function inputId()
 	{
-		$id = $this->handle . '-setting-' . $this->section() . '-' . $this->group() . '-' . $this->slug();
+		$id = sprintf(
+			'%s-setting-%s-%s-%s',
+			$this->handle,
+			$this->section(),
+			$this->group(),
+			$this->slug()
+		);
 
 		return apply_filters($this->handle . '/settings/field/input/id', $id, $this);
 	}

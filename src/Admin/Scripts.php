@@ -92,10 +92,7 @@ class Scripts
 			$this->filesystem->mtime('resources/css/dist/style.css')
 		);
 
-		wp_set_script_translations(
-			'notification',
-			'notification'
-		);
+		wp_set_script_translations('notification', 'notification');
 
 		wp_localize_script(
 			'notification',

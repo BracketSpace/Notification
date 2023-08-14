@@ -42,23 +42,14 @@ class CommentReplied extends CommentTrigger
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/replied',
-
 				// Translators: %s comment type.
 				'name' => sprintf(__('%s replied', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 				'comment_type' => $commentType,
 			]
 		);
 
-		$this->addAction(
-			'transition_comment_status',
-			10,
-			3
-		);
-		$this->addAction(
-			'notification_insert_comment_proxy',
-			10,
-			3
-		);
+		$this->addAction('transition_comment_status', 10, 3);
+		$this->addAction('notification_insert_comment_proxy', 10, 3);
 
 		$this->setDescription(
 			sprintf(

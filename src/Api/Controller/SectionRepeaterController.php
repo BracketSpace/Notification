@@ -66,10 +66,7 @@ class SectionRepeaterController extends RepeaterController
 					$baseSubFields = $this->formFieldData($section['fields']);
 					$grouppedSubFields = $this->groupFields($baseSubFields);
 					$sectionField['fields'] = $grouppedSubFields;
-					$sections = array_merge(
-						$sections,
-						$sectionField
-					);
+					$sections = array_merge($sections, $sectionField);
 				}
 
 				$field = $sections;
@@ -87,11 +84,7 @@ class SectionRepeaterController extends RepeaterController
 	 */
 	public function formData()
 	{
-		$values = $this->getValues(
-			$this->postId,
-			$this->carrier,
-			$this->field
-		) ?? [];
+		$values = $this->getValues($this->postId, $this->carrier, $this->field) ?? [];
 
 		/** @var \BracketSpace\Notification\Defaults\Field\SectionRepeater */
 		$field = $this->getCarrierFields();

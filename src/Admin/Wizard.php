@@ -286,10 +286,7 @@ class Wizard
 	public function saveSettings()
 	{
 		if (
-			wp_verify_nonce(
-				sanitize_key($_POST['_wpnonce'] ?? ''),
-				'notification_wizard'
-			) === false
+			wp_verify_nonce(sanitize_key($_POST['_wpnonce'] ?? ''), 'notification_wizard') === false
 		) {
 			wp_die('Can\'t touch this');
 		}
@@ -335,10 +332,7 @@ class Wizard
 			$jsonAdapter = notificationAdaptFrom('JSON', $json);
 			$jsonAdapter->refreshHash();
 
-			$wpAdapter = notificationSwapAdapter(
-				'WordPress',
-				$jsonAdapter
-			);
+			$wpAdapter = notificationSwapAdapter('WordPress', $jsonAdapter);
 			$wpAdapter->save();
 		}
 
@@ -360,17 +354,9 @@ class Wizard
 	private function saveOptionToDismissWizard()
 	{
 		if (get_option($this->dismissedOption) !== false) {
-			update_option(
-				$this->dismissedOption,
-				true
-			);
+			update_option($this->dismissedOption, true);
 		} else {
-			add_option(
-				$this->dismissedOption,
-				true,
-				'',
-				'no'
-			);
+			add_option($this->dismissedOption, true, '', 'no');
 		}
 	}
 

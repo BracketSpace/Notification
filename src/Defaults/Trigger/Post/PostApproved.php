@@ -39,10 +39,7 @@ class PostApproved extends PostTrigger
 			]
 		);
 
-		$this->addAction(
-			'pending_to_publish',
-			10
-		);
+		$this->addAction('pending_to_publish', 10);
 	}
 
 	/**

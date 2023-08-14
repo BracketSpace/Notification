@@ -27,18 +27,13 @@ class CommentTrashed extends CommentTrigger
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/trashed',
-
 				// Translators: %s comment type.
 				'name' => sprintf(__('%s trashed', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 				'comment_type' => $commentType,
 			]
 		);
 
-		$this->addAction(
-			'trashed_comment',
-			10,
-			2
-		);
+		$this->addAction('trashed_comment', 10, 2);
 
 		$this->setDescription(
 			sprintf(

@@ -154,15 +154,9 @@ class Sync
 					 *
 					 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
 					 */
-					$wpAdapter = notificationSwapAdapter(
-						'WordPress',
-						$jsonAdapter
-					);
+					$wpAdapter = notificationSwapAdapter('WordPress', $jsonAdapter);
 					$wpAdapter->save();
-					return get_edit_post_link(
-						$wpAdapter->getId(),
-						'admin'
-					);
+					return get_edit_post_link($wpAdapter->getId(), 'admin');
 				}
 			} catch (\Throwable $e) {
 				// Do nothing.

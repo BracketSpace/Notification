@@ -25,14 +25,8 @@ class UserQueries
 	 */
 	public static function all()
 	{
-		$driver = new CacheDriver\ObjectCache(
-			'notification',
-			6 * HOUR_IN_SECONDS
-		);
-		$cache = new Cache(
-			$driver,
-			'users'
-		);
+		$driver = new CacheDriver\ObjectCache('notification', 6 * HOUR_IN_SECONDS);
+		$cache = new Cache($driver, 'users');
 
 		return $cache->collect(
 			static function () {
@@ -60,13 +54,7 @@ class UserQueries
 			'notification',
 			6 * HOUR_IN_SECONDS
 		);
-		$cache = new Cache(
-			$driver,
-			sprintf(
-				'%s_users',
-				$role
-			)
-		);
+		$cache = new Cache($driver, sprintf('%s_users', $role));
 
 		return $cache->collect(
 			static function () use ($role) {

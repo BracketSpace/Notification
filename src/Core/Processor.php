@@ -46,17 +46,11 @@ class Processor
 
 				// If Background Processing is enabled we load the execution to Cron and stop processing.
 				if ($bpEnabled) {
-					self::schedule(
-						$notification,
-						$trigger
-					);
+					self::schedule($notification, $trigger);
 					return;
 				}
 
-				self::processNotification(
-					$notification,
-					$trigger
-				);
+				self::processNotification($notification, $trigger);
 			}
 		);
 	}
@@ -100,13 +94,7 @@ class Processor
 			time() + apply_filters('notification/background_processing/delay', 30),
 			'notification_background_processing',
 			[
-				notificationAdapt(
-					'JSON',
-					$notification
-				)->save(
-					JSON_UNESCAPED_UNICODE,
-					true
-				),
+				notificationAdapt('JSON', $notification)->save(JSON_UNESCAPED_UNICODE, true),
 				$triggerKey,
 			]
 		);
@@ -139,10 +127,7 @@ class Processor
 				continue;
 			}
 
-			self::send(
-				$carrier,
-				$trigger
-			);
+			self::send($carrier, $trigger);
 		}
 
 		do_action('notification/sent', $notification, $trigger);
@@ -173,10 +158,7 @@ class Processor
 
 		self::getCache($triggerKey)->delete();
 
-		self::processNotification(
-			$notification,
-			$trigger
-		);
+		self::processNotification($notification, $trigger);
 	}
 
 	/**
@@ -202,9 +184,6 @@ class Processor
 	 */
 	public static function getCache($triggerKey)
 	{
-		return new Cache(
-			new Transient(3 * DAY_IN_SECONDS),
-			$triggerKey
-		);
+		return new Cache(new Transient(3 * DAY_IN_SECONDS), $triggerKey);
 	}
 }

@@ -52,10 +52,7 @@ class Installed extends PluginTrigger
 		}
 
 		$pluginDir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $upgrader->plugin_info();
-		$this->plugin = get_plugin_data(
-			$pluginDir,
-			false
-		);
+		$this->plugin = get_plugin_data($pluginDir, false);
 		$this->pluginInstallationDateTime = (string)time();
 	}
 

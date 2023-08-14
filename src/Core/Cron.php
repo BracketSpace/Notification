@@ -68,10 +68,7 @@ class Cron
 		$schedule = notificationGetSetting('triggers/wordpress/updates_cron_period');
 
 		if ($event === false) {
-			$this->schedule(
-				$schedule,
-				'notification_check_wordpress_updates'
-			);
+			$this->schedule($schedule, 'notification_check_wordpress_updates');
 		}
 
 		// Reschedule to match new settings.
@@ -80,10 +77,7 @@ class Cron
 		}
 
 		$this->unschedule('notification_check_wordpress_updates');
-		$this->schedule(
-			$schedule,
-			'notification_check_wordpress_updates'
-		);
+		$this->schedule($schedule, 'notification_check_wordpress_updates');
 	}
 
 	/**
@@ -118,9 +112,6 @@ class Cron
 	public function unschedule($eventName)
 	{
 		$timestamp = wp_next_scheduled($eventName);
-		wp_unschedule_event(
-			$timestamp,
-			$eventName
-		);
+		wp_unschedule_event($timestamp, $eventName);
 	}
 }

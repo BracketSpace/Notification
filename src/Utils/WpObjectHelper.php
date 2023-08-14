@@ -45,10 +45,12 @@ class WpObjectHelper
 	public static function getPostTypes($args = []): array
 	{
 		$postTypes = [];
-		foreach (get_post_types(
+		foreach (
+			get_post_types(
 				$args,
 				'objects'
-			) as $postType) {
+			) as $postType
+		) {
 			if (!$postType instanceof \WP_Post_Type) {
 				continue;
 			}
@@ -98,10 +100,12 @@ class WpObjectHelper
 	{
 		$taxonomies = [];
 
-		foreach (get_taxonomies(
+		foreach (
+			get_taxonomies(
 				$args,
 				'objects'
-			) as $taxonomy) {
+			) as $taxonomy
+		) {
 			if ($taxonomy->name === 'post_format') {
 				continue;
 			}

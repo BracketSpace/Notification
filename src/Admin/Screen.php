@@ -52,7 +52,7 @@ class Screen
 			return;
 		}
 
-		$notificationPost = notificationAdaptFrom('WordPress',	$post);
+		$notificationPost = notificationAdaptFrom('WordPress', $post);
 
 		do_action('notification/post/column/main', $notificationPost);
 	}
@@ -198,12 +198,7 @@ class Screen
 		}
 
 		// Setup the fields and return form.
-		return Templates::get(
-			'form/table',
-			[
-				'carrier' => $carrier,
-			]
-		);
+		return Templates::get('form/table', ['carrier' => $carrier]);
 	}
 
 	/**
@@ -337,15 +332,9 @@ class Screen
 		];
 
 		if (count($tagGroups) > 1) {
-			Templates::render(
-				'mergetag/metabox-accordion',
-				$vars
-			);
+			Templates::render('mergetag/metabox-accordion', $vars);
 		} else {
-			Templates::render(
-				'mergetag/metabox-list',
-				$vars
-			);
+			Templates::render('mergetag/metabox-list', $vars);
 		}
 	}
 

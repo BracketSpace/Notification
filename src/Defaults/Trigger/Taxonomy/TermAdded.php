@@ -41,11 +41,7 @@ class TermAdded extends TermTrigger
 			]
 		);
 
-		$this->addAction(
-			'created_' . $taxonomy,
-			100,
-			2
-		);
+		$this->addAction('created_' . $taxonomy, 100, 2);
 	}
 
 	/**
@@ -99,9 +95,7 @@ class TermAdded extends TermTrigger
 		}
 
 		$termLink = get_term_link($this->term);
-		$this->termPermalink = is_string($termLink)
-			? $termLink
-			: '';
+		$this->termPermalink = is_string($termLink) ? $termLink : '';
 
 		$this->termCreationDatetime = (string)time();
 	}

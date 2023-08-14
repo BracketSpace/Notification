@@ -41,11 +41,7 @@ class TermDeleted extends TermTrigger
 			]
 		);
 
-		$this->addAction(
-			'pre_delete_term',
-			100,
-			4
-		);
+		$this->addAction('pre_delete_term', 100, 4);
 	}
 
 	/**
@@ -98,9 +94,7 @@ class TermDeleted extends TermTrigger
 		}
 
 		$termLink = get_term_link($this->term);
-		$this->termPermalink = is_string($termLink)
-			? $termLink
-			: '';
+		$this->termPermalink = is_string($termLink) ? $termLink : '';
 
 		$this->termDeletionDatetime = (string)time();
 	}

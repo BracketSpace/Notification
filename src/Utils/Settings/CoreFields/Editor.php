@@ -45,11 +45,7 @@ class Editor
 			'teeny' => $teeny,
 		];
 
-		wp_editor(
-			$field->value(),
-			$field->inputId(),
-			$settings
-		);
+		wp_editor($field->value(), $field->inputId(), $settings);
 	}
 
 	/**

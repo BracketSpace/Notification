@@ -46,11 +46,7 @@ class PostPublishedPrivately extends PostTrigger
 			]
 		);
 
-		$this->addAction(
-			'transition_post_status',
-			10,
-			3
-		);
+		$this->addAction('transition_post_status', 10, 3);
 	}
 
 	/**

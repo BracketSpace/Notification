@@ -41,11 +41,7 @@ class TermUpdated extends TermTrigger
 			]
 		);
 
-		$this->addAction(
-			'edited_term',
-			100,
-			2
-		);
+		$this->addAction('edited_term', 100, 2);
 	}
 
 	/**
@@ -98,9 +94,7 @@ class TermUpdated extends TermTrigger
 		}
 
 		$termLink = get_term_link($this->term);
-		$this->termPermalink = is_string($termLink)
-			? $termLink
-			: '';
+		$this->termPermalink = is_string($termLink) ? $termLink : '';
 
 		$this->termModificationDatetime = (string)time();
 	}

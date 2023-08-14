@@ -32,10 +32,7 @@ class FloatTag extends MergeTag
 	 */
 	public function validate($value)
 	{
-		return filter_var(
-			$value,
-			FILTER_VALIDATE_FLOAT
-		) !== false;
+		return filter_var($value, FILTER_VALIDATE_FLOAT) !== false;
 	}
 
 	/**

@@ -100,10 +100,7 @@ function notificationLog($component, $type, $message)
 	try {
 		return $debugger->addLog($logData);
 	} catch (\Throwable $e) {
-		return new \WP_Error(
-			'wrong_log_data',
-			$e->getMessage()
-		);
+		return new \WP_Error('wrong_log_data', $e->getMessage());
 	}
 }
 
@@ -122,10 +119,7 @@ function notification($data = [])
 	try {
 		notificationAdd(new Notification(notificationConvertData($data)));
 	} catch (\Throwable $e) {
-		return new \WP_Error(
-			'notification_error',
-			$e->getMessage()
-		);
+		return new \WP_Error('notification_error', $e->getMessage());
 	}
 
 	return true;

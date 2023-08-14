@@ -43,7 +43,7 @@ class CheckRestApi
 			)
 		);
 
-		$message = json_decode(wp_remote_retrieve_body($response),true);
+		$message = json_decode(wp_remote_retrieve_body($response), true);
 
 		$isAvailable = false;
 

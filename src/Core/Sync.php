@@ -121,15 +121,10 @@ class Sync
 		}
 
 		$file = $wpAdapter->getHash() . '.json';
-		$json = notificationSwapAdapter(
-			'JSON',
-			$wpAdapter
-		)->save();
+		$json = notificationSwapAdapter('JSON', $wpAdapter)
+			->save();
 
-		$fs->put_contents(
-			$file,
-			$json
-		);
+		$fs->put_contents($file, $json);
 	}
 
 	/**

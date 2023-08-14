@@ -73,21 +73,13 @@ class WordPressEmails
 		$isUserNotify = in_array($notify, ['user', 'both'], true);
 
 		if ($isAdminNotify && (notificationGetSetting('integration/emails/new_user_to_admin') !== 'true')) {
-			wp_new_user_notification(
-				$userId,
-				null,
-				'admin'
-			);
+			wp_new_user_notification($userId, null, 'admin');
 		}
 		if (!$isUserNotify || (notificationGetSetting('integration/emails/new_user_to_user') === 'true')) {
 			return;
 		}
 
-		wp_new_user_notification(
-			$userId,
-			null,
-			'user'
-		);
+		wp_new_user_notification($userId, null, 'user');
 	}
 
 	/**

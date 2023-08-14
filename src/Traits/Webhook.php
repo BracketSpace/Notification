@@ -53,10 +53,7 @@ trait Webhook
 			$this
 		);
 
-		$response = wp_remote_request(
-			$url,
-			$remoteArgs
-		);
+		$response = wp_remote_request($url, $remoteArgs);
 
 		if (is_wp_error($response)) {
 			notificationLog(

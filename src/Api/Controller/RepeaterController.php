@@ -83,10 +83,7 @@ class RepeaterController
 				$subField['fields'] = $this->formFieldData($field->fields);
 			}
 
-			array_push(
-				$fields,
-				$subField
-			);
+			array_push($fields, $subField);
 		}
 
 		return $fields;
@@ -193,11 +190,7 @@ class RepeaterController
 	 */
 	public function formData()
 	{
-		$values = $this->getValues(
-			$this->postId,
-			$this->carrier,
-			$this->field
-		) ?? [];
+		$values = $this->getValues($this->postId, $this->carrier, $this->field) ?? [];
 		$populatedFields = $this->formFieldData();
 
 		return [

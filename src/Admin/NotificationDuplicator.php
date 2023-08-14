@@ -71,10 +71,7 @@ class NotificationDuplicator
 		 *
 		 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 		 */
-		$json = notificationSwapAdapter(
-			'JSON',
-			$wp
-		);
+		$json = notificationSwapAdapter('JSON', $wp);
 
 		$json->refreshHash();
 		$json->setEnabled(false);

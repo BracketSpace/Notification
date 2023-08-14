@@ -48,8 +48,6 @@ class Checkbox
 	 */
 	public function sanitize($value)
 	{
-		return ($value !== 'true')
-			? ''
-			: $value;
+		return ($value !== 'true') ? '' : $value;
 	}
 }
