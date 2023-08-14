@@ -55,13 +55,7 @@ class Email extends Abstracts\Recipient
 		$filterId = 'default';
 		$pattern = '/\bfilter-id:([\w-]*)/';
 
-		if (
-			preg_match(
-				$pattern,
-				$value,
-				$matches
-			)
-		) {
+		if (preg_match($pattern, $value, $matches)) {
 			$filterId = $matches[1];
 			$value = preg_replace(
 				$pattern,

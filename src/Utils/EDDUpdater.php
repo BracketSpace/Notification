@@ -146,13 +146,7 @@ class EDDUpdater
 
 		$current = $this->getRepoApiData();
 		if ($current !== false && is_object($current) && isset($current->newVersion)) {
-			if (
-				version_compare(
-					$this->version,
-					$current->newVersion,
-					'<'
-				)
-			) {
+			if (version_compare($this->version, $current->newVersion, '<')) {
 				$transientData->response[$this->name] = $current;
 			} else {
 				// Populating the no_update information is required to support auto-updates in WordPress 5.5.
@@ -233,7 +227,8 @@ class EDDUpdater
 		// Return early if this plugin isn't in the transient->response or
 		//if the site is running the current or newer version of the plugin.
 		if (
-			empty($updateCache->response[$this->name]) || version_compare(
+			empty($updateCache->response[$this->name]) ||
+			version_compare(
 				$this->version,
 				$updateCache->response[$this->name]->newVersion,
 				'>='
@@ -467,15 +462,7 @@ class EDDUpdater
 	public function httpRequestArgs($args, $url)
 	{
 
-		if (
-			strpos(
-				$url,
-				'https://'
-			) !== false && strpos(
-				$url,
-				'edd_action=package_download'
-			)
-		) {
+		if (strpos($url, 'https://') !== false && strpos($url, 'edd_action=package_download')) {
 			$args['sslverify'] = $this->verifySsl();
 		}
 		return $args;

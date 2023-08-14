@@ -75,9 +75,7 @@ class Runner
 		$trigger = $this->getTrigger();
 
 		// Setup the Trigger context.
-		if (
-			method_exists($trigger, 'action')
-		) {
+		if (method_exists($trigger, 'action')) {
 			$result = call_user_func_array(
 				[$trigger, 'action'],
 				$context

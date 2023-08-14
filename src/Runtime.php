@@ -243,9 +243,7 @@ class Runtime
 		$this->addComponent('admin_sync', new Admin\Sync());
 		$this->addComponent('admin_debugging', new Admin\Debugging());
 
-		if (
-			apply_filters('notification/upselling', true)
-		) {
+		if (apply_filters('notification/upselling', true)) {
 			$this->addComponent('admin_upsell', new Admin\Upsell());
 		}
 

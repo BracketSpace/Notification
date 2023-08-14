@@ -39,28 +39,12 @@ class ColorPickerField extends Field
 	 */
 	public function sanitize($value)
 	{
-		if (
-			strpos(
-				$value,
-				'rgba'
-			) === false
-		) {
+		if (strpos($value, 'rgba') === false) {
 			return sanitize_hex_color($value);
 		}
 
-		$color = str_replace(
-			' ',
-			'',
-			$value
-		);
-		sscanf(
-			$color,
-			'rgba(%d,%d,%d,%f)',
-			$red,
-			$green,
-			$blue,
-			$alpha
-		);
+		$color = str_replace(' ', '', $value);
+		sscanf($color, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha);
 		return 'rgba(' . $red . ',' . $green . ',' . $blue . ',' . $alpha . ')';
 	}
 }

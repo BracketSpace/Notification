@@ -264,9 +264,8 @@ class WordPressEmails
 	public function disableAutomaticWpCoreUpdateNotify($send, $type, $coreUpdate, $result)
 	{
 		if (
-			($type === 'success') && (notificationGetSetting(
-				'integration/emails/automatic_wp_core_update'
-			) === 'true')
+			($type === 'success') &&
+			(notificationGetSetting('integration/emails/automatic_wp_core_update') === 'true')
 		) {
 			$send = false;
 		}
