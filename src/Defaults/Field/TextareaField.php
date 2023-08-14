@@ -68,6 +68,8 @@ class TextareaField extends Field
 	 */
 	public function field()
 	{
+		$value = is_string($this->getValue()) ? $this->getValue() : '';
+
 		return sprintf(
 			'<textarea name="%s" rows="%s" id="%s" placeholder="%s" class="widefat %s" %s>%s</textarea>',
 			esc_attr($this->getName()),
@@ -76,7 +78,7 @@ class TextareaField extends Field
 			esc_attr($this->placeholder),
 			esc_attr($this->cssClass()),
 			$this->maybeDisable(),
-			esc_textarea($this->getValue())
+			esc_textarea($value)
 		);
 	}
 
