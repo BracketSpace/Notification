@@ -26,15 +26,9 @@ class Settings
 	 */
 	public function generalSettings($settings)
 	{
-		$general = $settings->addSection(
-			__('General', 'notification'),
-			'general'
-		);
+		$general = $settings->addSection(__('General', 'notification'), 'general');
 
-		$general->addGroup(
-			__('Content', 'notification'),
-			'content'
-		)
+		$general->addGroup(__('Content', 'notification'), 'content')
 			->addField(
 				[
 					'name' => __('Empty merge tags', 'notification'),
@@ -65,10 +59,7 @@ class Settings
 				__('Notification content settings', 'notification')
 			);
 
-		$general->addGroup(
-			__('Tools', 'notification'),
-			'tools'
-		)
+		$general->addGroup(__('Tools', 'notification'), 'tools')
 			->addField(
 				[
 					'name' => __('Wizard', 'notification'),
@@ -84,10 +75,7 @@ class Settings
 				__('Plugin tools', 'notification')
 			);
 
-		$general->addGroup(
-			__('Advanced', 'notification'),
-			'advanced'
-		)
+		$general->addGroup(__('Advanced', 'notification'), 'advanced')
 			->addField(
 				[
 					'name' => __('Background processing', 'notification'),
@@ -108,10 +96,7 @@ class Settings
 				]
 			);
 
-		$general->addGroup(
-			__('Uninstallation', 'notification'),
-			'uninstallation'
-		)
+		$general->addGroup(__('Uninstallation', 'notification'), 'uninstallation')
 			->addField(
 				[
 					'name' => __('Notifications', 'notification'),
@@ -161,15 +146,9 @@ class Settings
 	 */
 	public function triggersSettings($settings)
 	{
-		$triggers = $settings->addSection(
-			__('Triggers', 'notification'),
-			'triggers'
-		);
+		$triggers = $settings->addSection(__('Triggers', 'notification'), 'triggers');
 
-		$triggers->addGroup(
-			__('Post', 'notification'),
-			'post_types'
-		)
+		$triggers->addGroup(__('Post', 'notification'), 'post_types')
 			->addField(
 				[
 					'name' => __('Post Types', 'notification'),
@@ -197,10 +176,7 @@ class Settings
 				)
 			);
 
-		$triggers->addGroup(
-			__('Taxonomy', 'notification'),
-			'taxonomies'
-		)
+		$triggers->addGroup(__('Taxonomy', 'notification'), 'taxonomies')
 			->addField(
 				[
 					'name' => __('Taxonomies', 'notification'),
@@ -227,10 +203,7 @@ class Settings
 				)
 			);
 
-		$triggers->addGroup(
-			__('Comment', 'notification'),
-			'comment'
-		)
+		$triggers->addGroup(__('Comment', 'notification'), 'comment')
 			->addField(
 				[
 					'name' => __('Comment Types', 'notification'),
@@ -263,10 +236,7 @@ class Settings
 				]
 			);
 
-		$triggers->addGroup(
-			__('User', 'notification'),
-			'user'
-		)
+		$triggers->addGroup(__('User', 'notification'), 'user')
 			->addField(
 				[
 					'name' => __('User', 'notification'),
@@ -280,10 +250,7 @@ class Settings
 				]
 			);
 
-		$triggers->addGroup(
-			__('Media', 'notification'),
-			'media'
-		)
+		$triggers->addGroup(__('Media', 'notification'), 'media')
 			->addField(
 				[
 					'name' => __('Media', 'notification'),
@@ -297,10 +264,7 @@ class Settings
 				]
 			);
 
-		$triggers->addGroup(
-			__('Theme', 'notification'),
-			'theme'
-		)
+		$triggers->addGroup(__('Theme', 'notification'), 'theme')
 			->addField(
 				[
 					'name' => __('Theme', 'notification'),
@@ -314,10 +278,7 @@ class Settings
 				]
 			);
 
-		$triggers->addGroup(
-			__('Plugin', 'notification'),
-			'plugin'
-		)
+		$triggers->addGroup(__('Plugin', 'notification'), 'plugin')
 			->addField(
 				[
 					'name' => __('Plugin', 'notification'),
@@ -332,10 +293,7 @@ class Settings
 			);
 
 		// phpcs:ignore WordPress.WP.CapitalPDangit.Misspelled
-		$triggers->addGroup(
-			__('WordPress', 'notification'),
-			'WordPress'
-		)
+		$triggers->addGroup(__('WordPress', 'notification'), 'WordPress')
 			->addField(
 				[
 					'name' => __('Updates', 'notification'),
@@ -391,10 +349,7 @@ class Settings
 				]
 			);
 
-		$triggers->addGroup(
-			__('Privacy', 'notification'),
-			'privacy'
-		)
+		$triggers->addGroup(__('Privacy', 'notification'), 'privacy')
 			->addField(
 				[
 					'name' => __('Privacy', 'notification'),
@@ -428,15 +383,9 @@ class Settings
 
 		$defaultFromEmail = 'wordpress@' . $sitename;
 
-		$carriers = $settings->addSection(
-			__('Carriers', 'notification'),
-			'carriers'
-		);
+		$carriers = $settings->addSection(__('Carriers', 'notification'), 'carriers');
 
-		$carriers->addGroup(
-			__('Email', 'notification'),
-			'email'
-		)
+		$carriers->addGroup(__('Email', 'notification'), 'email')
 			->addField(
 				[
 					'name' => __('Enable', 'notification'),
@@ -521,10 +470,7 @@ class Settings
 				]
 			);
 
-		$carriers->addGroup(
-			__('Webhook', 'notification'),
-			'webhook'
-		)
+		$carriers->addGroup(__('Webhook', 'notification'), 'webhook')
 			->addField(
 				[
 					'name' => __('Enable', 'notification'),
@@ -559,15 +505,9 @@ class Settings
 	 */
 	public function emailsSettings($settings)
 	{
-		$general = $settings->addSection(
-			__('Integration', 'notification'),
-			'integration'
-		);
+		$general = $settings->addSection(__('Integration', 'notification'), 'integration');
 
-		$general->addGroup(
-			__('Default WordPress emails', 'notification'),
-			'emails'
-		)
+		$general->addGroup(__('Default WordPress emails', 'notification'), 'emails')
 			->addField(
 				[
 					'name' => __('New user', 'notification'),

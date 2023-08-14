@@ -32,14 +32,8 @@ class Sync
 	public function settings($settings)
 	{
 
-		$importExport = $settings->addSection(
-			__('Import / Export', 'notification'),
-			'import_export'
-		);
-		$syncGroup = $importExport->addGroup(
-			__('Synchronization', 'notification'),
-			'sync'
-		);
+		$importExport = $settings->addSection(__('Import / Export', 'notification'), 'import_export');
+		$syncGroup = $importExport->addGroup(__('Synchronization', 'notification'), 'sync');
 
 		$syncGroup->description('Synchronization allow to export or load the Notifications from JSON files.');
 
