@@ -58,13 +58,19 @@ class CodeEditorField extends Field
 		wp_enqueue_script('code-editor');
 		wp_enqueue_style('code-editor');
 
-		return '<textarea
-			id="' . esc_attr($this->getId()) . '"
-			class="widefat notification-field notification-code-editor-field"
-			data-settings="' . esc_attr(wp_json_encode($settings)) . '"
-			rows="10"
-			name="' . esc_attr($this->getName()) . '"
-		>' . esc_attr($this->getValue()) . '</textarea>';
+		return sprintf(
+			'<textarea
+				id="%s"
+				class="widefat notification-field notification-code-editor-field"
+				data-settings="%s"
+				rows="10"
+				name="%s"
+			>%s</textarea>',
+			esc_attr($this->getId()),
+			esc_attr(wp_json_encode($settings)),
+			esc_attr($this->getName()),
+			esc_textarea($this->getValue())
+		);
 	}
 
 	/**

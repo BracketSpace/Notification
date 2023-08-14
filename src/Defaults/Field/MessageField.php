@@ -78,13 +78,17 @@ class MessageField extends Field
 	 */
 	public function field()
 	{
-		return '<input type="' . esc_attr($this->type) . '" name="' . esc_attr($this->getName()) . '" id="' . esc_attr(
-			$this->getId()
-		) . '" value="' . esc_attr($this->getValue()) . '" placeholder="' . esc_attr(
-			$this->placeholder
-		) . '" class="widefat ' . esc_attr($this->cssClass()) . '" ' . $this->maybeDisable() . ' ' . esc_attr(
-			$this->atts
-		) . '>';
+		return sprintf(
+			'<input type="%s" name="%s" id="%s" value="%s" placeholder="%s" class="widefat %s" %s %s>',
+			esc_attr($this->type),
+			esc_attr($this->getName()),
+			esc_attr($this->getId()),
+			esc_attr($this->getValue()),
+			esc_attr($this->placeholder),
+			esc_attr($this->cssClass()),
+			$this->maybeDisable(),
+			esc_attr($this->atts)
+		);
 	}
 
 	/**

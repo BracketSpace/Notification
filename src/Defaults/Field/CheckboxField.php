@@ -45,15 +45,15 @@ class CheckboxField extends Field
 	 */
 	public function field()
 	{
-		return '<label><input type="checkbox" name="' . esc_attr($this->getName()) . '" id="' . esc_attr(
-			$this->getId()
-		) . '" value="1" ' . checked(
-			$this->getValue(),
-			'1',
-			false
-		) . ' class="widefat ' . esc_attr($this->cssClass()) . '" ' . $this->maybeDisable() . '> ' . esc_html(
-			$this->checkboxLabel
-		) . '</label>';
+		return sprintf(
+			'<label><input type="checkbox" name="%s" id="%s" value="1" %s class="widefat %s" %s> %s</label>',
+			esc_attr($this->getName()),
+			esc_attr($this->getId()),
+			checked($this->getValue(), '1', false),
+			esc_attr($this->cssClass()),
+			$this->maybeDisable(),
+			esc_html($this->checkboxLabel)
+		);
 	}
 
 	/**
