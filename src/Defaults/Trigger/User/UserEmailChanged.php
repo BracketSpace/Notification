@@ -1,21 +1,51 @@
 <?php
 
+/**
+ * User email changed trigger
+ *
+ * @package notification
+ */
+
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Defaults\Trigger\User;
 
 use BracketSpace\Notification\Defaults\MergeTag;
 
+/**
+ * User email changed class
+ */
 class UserEmailChanged extends UserTrigger
 {
-	public $changedTo;
+	/**
+	 * User meta data
+	 *
+	 * @var array<mixed>|mixed
+	 */
+	public $userMeta;
 
+	/**
+	 * User new email address
+	 *
+	 * @var string
+	 */
+	public $userNewEmail;
+
+	/**
+	 * User new email address
+	 *
+	 * @var int|false
+	 */
+	public $userChangeEmailDatetime;
+
+	/**
+	 * Constructor
+	 */
 	public function __construct()
 	{
 		parent::__construct(
 			'user/email_changed',
-			__(
-				'User email changed',
-				'notification'
-			)
+			__('User email changed', 'notification')
 		);
 
 		$this->addAction(
@@ -24,26 +54,32 @@ class UserEmailChanged extends UserTrigger
 			4
 		);
 
-		$this->setDescription(
-			__(
-				'Fires when user changes his email address. After confirms his new email address by confirmation link.',
-				'notification'
-			)
-		);
+		$this->setDescription(__('Fires when user changes his email address, after confirms by link.', 'notification'));
 	}
 
+	/**
+	 * Sets trigger's context
+	 *
+	 * @param array<int> $metaIds User meta Ids
+	 * @param int $objectId User ID
+	 * @param string $metaKey User meta key
+	 * @param string $metaValue User meta value
+	 * @return false|void
+	 */
 	public function context($metaIds, $objectId, $metaKey, $metaValue)
 	{
-		if ('_new_email' !== $metaKey) {
+		if ($metaKey !== '_new_email') {
+			return false;
+		}
+
+		/**
+		 * Make sure that the action comes from verifying the email address
+		 */
+		if (! isset($_REQUEST['newuseremail'])) {
 			return false;
 		}
 
 		$this->userId = $objectId;
-
-		if (! isset($_GET['newuseremail'])) {
-			return false;
-		}
-
 		$user = get_userdata($this->userId);
 
 		if (!$user instanceof \WP_User) {
@@ -54,11 +90,17 @@ class UserEmailChanged extends UserTrigger
 		$this->userMeta = get_user_meta($this->userId);
 
 		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
-		$this->userChaneEmailDatetime = time();
+		$this->userChangeEmailDatetime = time();
 
-		$this->changedTo = $user->user_email;
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+		$this->userNewEmail = $user->user_email;
 	}
 
+	/**
+	 * Registers attached merge tags
+	 *
+	 * @return void
+	 */
 	public function mergeTags()
 	{
 		parent::mergeTags();
@@ -72,25 +114,21 @@ class UserEmailChanged extends UserTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'user_change_email_datetime',
-					'name' => __(
-						'User change email time',
-						'notification'
-					),
+					'name' => __('User change email date time', 'notification'),
 				]
 			)
 		);
 
 		$this->addMergeTag(
-			new MergeTag\EmailTag([
-				'slug' => 'email_changed_to',
-				'name' => __(
-					'Email changed to',
-					'notification'
-				),
-				'resolver' => static function ($trigger) {
-					return $trigger->changedTo;
-				},
-			])
+			new MergeTag\EmailTag(
+				[
+					'slug' => 'user_new_email',
+					'name' => __('User new email', 'notification'),
+					'resolver' => static function ($trigger) {
+						return $trigger->userNewEmail;
+					},
+				]
+			)
 		);
 	}
 }
