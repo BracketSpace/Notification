@@ -27,13 +27,6 @@ class UserEmailChanged extends UserTrigger
 	/**
 	 * User new email address
 	 *
-	 * @var string
-	 */
-	public $userNewEmail;
-
-	/**
-	 * User new email address
-	 *
 	 * @var int|false
 	 */
 	public $userChangeEmailDatetime;
@@ -43,16 +36,9 @@ class UserEmailChanged extends UserTrigger
 	 */
 	public function __construct()
 	{
-		parent::__construct(
-			'user/email_changed',
-			__('User email changed', 'notification')
-		);
+		parent::__construct('user/email_changed', __('User email changed', 'notification'));
 
-		$this->addAction(
-			'delete_user_meta',
-			10,
-			4
-		);
+		$this->addAction('delete_user_meta', 10, 4);
 
 		$this->setDescription(__('Fires when user changes his email address, after confirms by link.', 'notification'));
 	}
@@ -91,9 +77,6 @@ class UserEmailChanged extends UserTrigger
 
 		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
 		$this->userChangeEmailDatetime = time();
-
-		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-		$this->userNewEmail = $user->user_email;
 	}
 
 	/**
@@ -115,18 +98,6 @@ class UserEmailChanged extends UserTrigger
 				[
 					'slug' => 'user_change_email_datetime',
 					'name' => __('User change email date time', 'notification'),
-				]
-			)
-		);
-
-		$this->addMergeTag(
-			new MergeTag\EmailTag(
-				[
-					'slug' => 'user_new_email',
-					'name' => __('User new email', 'notification'),
-					'resolver' => static function ($trigger) {
-						return $trigger->userNewEmail;
-					},
 				]
 			)
 		);
