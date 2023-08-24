@@ -58,10 +58,7 @@ class Upgrade
 	 */
 	public function checkUpgrade()
 	{
-		$dataVersion = get_option(
-			static::$dataSettingName,
-			0
-		);
+		$dataVersion = get_option(static::$dataSettingName, 0);
 
 		if ($dataVersion >= static::$dataVersion) {
 			return;
@@ -71,17 +68,14 @@ class Upgrade
 			$dataVersion++;
 			$upgradeMethod = [$this, 'upgrade_to_v' . $dataVersion];
 
-			if (! method_exists($upgradeMethod[0], $upgradeMethod[1]) || ! is_callable($upgradeMethod)) {
+			if (!method_exists($upgradeMethod[0], $upgradeMethod[1]) || !is_callable($upgradeMethod)) {
 				continue;
 			}
 
 			call_user_func($upgradeMethod);
 		}
 
-		update_option(
-			static::$dataSettingName,
-			static::$dataVersion
-		);
+		update_option(static::$dataSettingName, static::$dataVersion);
 	}
 
 	/**
@@ -133,10 +127,7 @@ class Upgrade
 
 		dbDelta($sql);
 
-		update_option(
-			static::$dbSettingName,
-			static::$dbVersion
-		);
+		update_option(static::$dbSettingName, static::$dbVersion);
 	}
 
 	/**
@@ -165,41 +156,23 @@ class Upgrade
 		}
 
 		// Set enabled state.
-		$enabledCarriers = (array)get_post_meta(
-			$postId,
-			'_enabled_notification',
-			false
-		);
+		$enabledCarriers = (array)get_post_meta($postId, '_enabled_notification', false);
 
-		if (
-			in_array(
-				$carrier->getSlug(),
-				$enabledCarriers,
-				true
-			)
-		) {
+		if (in_array($carrier->getSlug(), $enabledCarriers, true)) {
 			$carrier->enable();
 		} else {
 			$carrier->disable();
 		}
 
 		// Set data.
-		$data = get_post_meta(
-			$postId,
-			'_notification_type_' . $carrier->getSlug(),
-			true
-		);
+		$data = get_post_meta($postId, '_notification_type_' . $carrier->getSlug(), true);
 		$fieldValues = apply_filters_deprecated(
 			'notification/notification/form_fields/values',
 			[$data, $carrier],
 			'6.0.0',
 			'notification/carrier/fields/values'
 		);
-		$fieldValues = apply_filters(
-			'notification/carrier/fields/values',
-			$fieldValues,
-			$carrier
-		);
+		$fieldValues = apply_filters('notification/carrier/fields/values', $fieldValues, $carrier);
 
 		foreach ($carrier->getFormFields() as $field) {
 			if (!isset($fieldValues[$field->getRawName()])) {
@@ -267,11 +240,7 @@ class Upgrade
 			$adapter->setTitle($post->post_title);
 
 			// Trigger.
-			$triggerSlug = get_post_meta(
-				$adapter->getId(),
-				'_trigger',
-				true
-			);
+			$triggerSlug = get_post_meta($adapter->getId(), '_trigger', true);
 			$trigger = Store\Trigger::get($triggerSlug);
 
 			if (!empty($trigger)) {
@@ -314,10 +283,7 @@ class Upgrade
 			]
 		);
 		foreach ($trashedNotifications as $trashedNotification) {
-			wp_delete_post(
-				$trashedNotification->ID,
-				true
-			);
+			wp_delete_post($trashedNotification->ID, true);
 		}
 
 		// 3. Remove old debug log

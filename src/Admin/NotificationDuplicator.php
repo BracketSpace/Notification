@@ -43,10 +43,7 @@ class NotificationDuplicator
 					wp_create_nonce('duplicate_notification')
 				)
 			),
-			__(
-				'Duplicate',
-				'notification'
-			)
+			__('Duplicate', 'notification')
 		);
 
 		return $rowActions;
@@ -62,10 +59,7 @@ class NotificationDuplicator
 	 */
 	public function notificationDuplicate()
 	{
-		check_admin_referer(
-			'duplicate_notification',
-			'nonce'
-		);
+		check_admin_referer('duplicate_notification', 'nonce');
 
 		if (!isset($_GET['duplicate'])) {
 			exit;
@@ -73,20 +67,14 @@ class NotificationDuplicator
 
 		// Get the source notification post.
 		$source = get_post(intval(wp_unslash($_GET['duplicate'])));
-		$wp = adaptNotificationFrom(
-			'WordPress',
-			$source
-		);
+		$wp = adaptNotificationFrom('WordPress', $source);
 
 		/**
 		 * JSON Adapter
 		 *
 		 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 		 */
-		$json = swapNotificationAdapter(
-			'JSON',
-			$wp
-		);
+		$json = swapNotificationAdapter('JSON', $wp);
 
 		$json->refreshHash();
 		$json->setEnabled(false);
@@ -97,15 +85,8 @@ class NotificationDuplicator
 
 		$newId = wp_insert_post(
 			[
-				'post_title' => sprintf(
-					'(%s) %s',
-					__(
-						'Duplicate',
-						'notification'
-					),
-					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-					$source->post_title
-				),
+				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+				'post_title' => sprintf('(%s) %s', __('Duplicate', 'notification'), $source->post_title),
 				'post_content' => wp_slash($json->save(JSON_UNESCAPED_UNICODE)),
 				'post_status' => 'draft',
 				'post_type' => 'notification',

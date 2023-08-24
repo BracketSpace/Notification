@@ -27,11 +27,7 @@ class JSON extends Abstracts\Adapter
 	 */
 	public function read($input = null)
 	{
-
-		$data = json_decode(
-			$input,
-			true
-		);
+		$data = json_decode($input, true);
 
 		if (json_last_error() !== JSON_ERROR_NONE) {
 			throw new \Exception('Read method of JSON adapter expects valid JSON string');
@@ -52,15 +48,11 @@ class JSON extends Abstracts\Adapter
 	 */
 	public function save($jsonOptions = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE, $onlyEnabledCarriers = false)
 	{
-
 		if ($jsonOptions === null) {
 			$jsonOptions = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE;
 		}
 
 		$data = $this->getNotification()->toArray($onlyEnabledCarriers);
-		return wp_json_encode(
-			$data,
-			$jsonOptions
-		);
+		return wp_json_encode($data, $jsonOptions);
 	}
 }

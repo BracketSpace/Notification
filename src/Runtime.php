@@ -76,7 +76,6 @@ class Runtime
 	 */
 	public function init()
 	{
-
 		// Plugin has been already initialized.
 		if (did_action('notification/init') || $this->requirementsUnmet) {
 			return;
@@ -84,10 +83,7 @@ class Runtime
 
 		// Requirements check.
 		$requirements = new Requirements(
-			__(
-				'Notification',
-				'notification'
-			),
+			__('Notification', 'notification'),
 			[
 				'php' => '7.0',
 				'php_extensions' => ['xml'],
@@ -183,10 +179,7 @@ class Runtime
 	{
 		if (isset($this->components[$name])) {
 			throw new \Exception(
-				sprintf(
-					'Component %s is already added.',
-					$name
-				)
+				sprintf('Component %s is already added.', $name)
 			);
 		}
 
@@ -227,117 +220,37 @@ class Runtime
 	 */
 	public function singletons()
 	{
-		$this->addComponent(
-			'core_cron',
-			new Core\Cron()
-		);
-		$this->addComponent(
-			'core_whitelabel',
-			new Core\Whitelabel()
-		);
-		$this->addComponent(
-			'core_debugging',
-			new Core\Debugging()
-		);
-		$this->addComponent(
-			'core_settings',
-			new Core\Settings()
-		);
-		$this->addComponent(
-			'core_upgrade',
-			new Core\Upgrade()
-		);
-		$this->addComponent(
-			'core_sync',
-			new Core\Sync()
-		);
-		$this->addComponent(
-			'core_binder',
-			new Core\Binder()
-		);
-		$this->addComponent(
-			'core_processor',
-			new Core\Processor()
-		);
+		$this->addComponent('core_cron', new Core\Cron());
+		$this->addComponent('core_whitelabel', new Core\Whitelabel());
+		$this->addComponent('core_debugging', new Core\Debugging());
+		$this->addComponent('core_settings', new Core\Settings());
+		$this->addComponent('core_upgrade', new Core\Upgrade());
+		$this->addComponent('core_sync', new Core\Sync());
+		$this->addComponent('core_binder', new Core\Binder());
+		$this->addComponent('core_processor', new Core\Processor());
 
-		$this->addComponent(
-			'test_rest_api',
-			new Admin\CheckRestApi()
-		);
-		$this->addComponent(
-			'admin_impexp',
-			new Admin\ImportExport()
-		);
-		$this->addComponent(
-			'admin_settings',
-			new Admin\Settings()
-		);
-		$this->addComponent(
-			'admin_duplicator',
-			new Admin\NotificationDuplicator()
-		);
-		$this->addComponent(
-			'admin_post_type',
-			new Admin\PostType()
-		);
-		$this->addComponent(
-			'admin_post_table',
-			new Admin\PostTable()
-		);
-		$this->addComponent(
-			'admin_extensions',
-			new Admin\Extensions()
-		);
-		$this->addComponent(
-			'admin_scripts',
-			new Admin\Scripts($this->getFilesystem())
-		);
-		$this->addComponent(
-			'admin_screen',
-			new Admin\Screen()
-		);
-		$this->addComponent(
-			'admin_wizard',
-			new Admin\Wizard($this->getFilesystem())
-		);
-		$this->addComponent(
-			'admin_sync',
-			new Admin\Sync()
-		);
-		$this->addComponent(
-			'admin_debugging',
-			new Admin\Debugging()
-		);
+		$this->addComponent('test_rest_api', new Admin\CheckRestApi());
+		$this->addComponent('admin_impexp', new Admin\ImportExport());
+		$this->addComponent('admin_settings', new Admin\Settings());
+		$this->addComponent('admin_duplicator', new Admin\NotificationDuplicator());
+		$this->addComponent('admin_post_type', new Admin\PostType());
+		$this->addComponent('admin_post_table', new Admin\PostTable());
+		$this->addComponent('admin_extensions', new Admin\Extensions());
+		$this->addComponent('admin_scripts', new Admin\Scripts($this->getFilesystem()));
+		$this->addComponent('admin_screen', new Admin\Screen());
+		$this->addComponent('admin_wizard', new Admin\Wizard($this->getFilesystem()));
+		$this->addComponent('admin_sync', new Admin\Sync());
+		$this->addComponent('admin_debugging', new Admin\Debugging());
 
-		if (
-			apply_filters(
-				'notification/upselling',
-				true
-			)
-		) {
-			$this->addComponent(
-				'admin_upsell',
-				new Admin\Upsell()
-			);
+		if (apply_filters('notification/upselling', true)) {
+			$this->addComponent('admin_upsell', new Admin\Upsell());
 		}
 
-		$this->addComponent(
-			'integration_wp',
-			new Integration\WordPress()
-		);
-		$this->addComponent(
-			'integration_wp_emails',
-			new Integration\WordPressEmails()
-		);
-		$this->addComponent(
-			'integration_2fa',
-			new Integration\TwoFactor()
-		);
+		$this->addComponent('integration_wp', new Integration\WordPress());
+		$this->addComponent('integration_wp_emails', new Integration\WordPressEmails());
+		$this->addComponent('integration_2fa', new Integration\TwoFactor());
 
-		$this->addComponent(
-			'api',
-			new Api\Api()
-		);
+		$this->addComponent('api', new Api\Api());
 	}
 
 	/**
@@ -424,12 +337,7 @@ class Runtime
 	 */
 	public function loadDefault($default, $className)
 	{
-		if (
-			!apply_filters(
-				'notification/load/default/' . $default,
-				true
-			)
-		) {
+		if (!apply_filters(sprintf('notification/load/default/%s', $default), true)) {
 			return;
 		}
 
@@ -463,10 +371,7 @@ class Runtime
 				continue;
 			}
 
-			$extensionFile = sprintf(
-				$extensionTemplate,
-				$extension['name']
-			);
+			$extensionFile = sprintf($extensionTemplate, $extension['name']);
 			if (!$this->getFilesystem()->exists($extensionFile)) {
 				continue;
 			}

@@ -33,22 +33,15 @@ class Date extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug' => 'date',
-				'name' => __(
-					'Date',
-					'notification'
-				),
+				'name' => __('Date', 'notification'),
 				'date_format' => get_option('date_format'),
 				'timezone' => null,
 				'example' => true,
-				'group' => __(
-					'Date',
-					'notification'
-				),
+				'group' => __('Date', 'notification'),
 			]
 		);
 

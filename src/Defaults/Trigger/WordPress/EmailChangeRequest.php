@@ -55,32 +55,17 @@ class EmailChangeRequest extends Abstracts\Trigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'wordpress/email_change_request',
-			__(
-				'Site email change request',
-				'notification'
-			)
+			__('Site email change request', 'notification')
 		);
 
-		$this->addAction(
-			'update_option_new_admin_email',
-			10,
-			2
-		);
+		$this->addAction('update_option_new_admin_email', 10, 2);
 
-		$this->setGroup(
-			__(
-				'WordPress',
-				'notification'
-			)
-		);
+		$this->setGroup(__('WordPress', 'notification'));
+
 		$this->setDescription(
-			__(
-				'Fires when admin requests change of site email address',
-				'notification'
-			)
+			__('Fires when admin requests change of site email address', 'notification')
 		);
 	}
 
@@ -96,7 +81,6 @@ class EmailChangeRequest extends Abstracts\Trigger
 	 */
 	public function context($oldValue, $value)
 	{
-
 		if ($oldValue === $value) {
 			return false;
 		}
@@ -118,15 +102,11 @@ class EmailChangeRequest extends Abstracts\Trigger
 	 */
 	public function mergeTags()
 	{
-
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'site_email_change_datetime',
-					'name' => __(
-						'Site email change time',
-						'notification'
-					),
+					'name' => __('Site email change time', 'notification'),
 				]
 			)
 		);
@@ -135,17 +115,11 @@ class EmailChangeRequest extends Abstracts\Trigger
 			new MergeTag\StringTag(
 				[
 					'slug' => 'admin_login',
-					'name' => __(
-						'Admin login',
-						'notification'
-					),
+					'name' => __('Admin login', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->userLogin;
 					},
-					'group' => __(
-						'Site',
-						'notification'
-					),
+					'group' => __('Site', 'notification'),
 				]
 			)
 		);
@@ -154,17 +128,11 @@ class EmailChangeRequest extends Abstracts\Trigger
 			new MergeTag\EmailTag(
 				[
 					'slug' => 'new_email',
-					'name' => __(
-						'New email address',
-						'notification'
-					),
+					'name' => __('New email address', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->newAdminEmail;
 					},
-					'group' => __(
-						'Site',
-						'notification'
-					),
+					'group' => __('Site', 'notification'),
 				]
 			)
 		);
@@ -173,17 +141,11 @@ class EmailChangeRequest extends Abstracts\Trigger
 			new MergeTag\UrlTag(
 				[
 					'slug' => 'confirmation_url',
-					'name' => __(
-						'Email change confirmation url',
-						'notification'
-					),
+					'name' => __('Email change confirmation url', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->confirmationUrl;
 					},
-					'group' => __(
-						'Site',
-						'notification'
-					),
+					'group' => __('Site', 'notification'),
 				]
 			)
 		);
@@ -192,17 +154,11 @@ class EmailChangeRequest extends Abstracts\Trigger
 			new MergeTag\UrlTag(
 				[
 					'slug' => 'site_url',
-					'name' => __(
-						'Site url',
-						'notification'
-					),
+					'name' => __('Site url', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->siteUrl;
 					},
-					'group' => __(
-						'Site',
-						'notification'
-					),
+					'group' => __('Site', 'notification'),
 				]
 			)
 		);

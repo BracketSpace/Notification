@@ -38,16 +38,9 @@ abstract class Resolver implements Interfaces\Resolvable
 	 */
 	public function getSlug()
 	{
-		$prepared = str_replace(
-			'\\',
-			'-',
-			static::class
-		);
-		$prepared = str_replace(
-			'BracketSpace-Notification-',
-			'',
-			$prepared
-		);
+		$prepared = str_replace('\\', '-', static::class);
+		$prepared = str_replace('BracketSpace-Notification-', '', $prepared);
+
 		return sanitize_title_with_dashes($prepared);
 	}
 

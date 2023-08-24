@@ -39,11 +39,7 @@ class PostScheduled extends PostTrigger
 			]
 		);
 
-		$this->addAction(
-			'transition_post_status',
-			10,
-			3
-		);
+		$this->addAction('transition_post_status', 10, 3);
 	}
 
 	/**
@@ -55,10 +51,7 @@ class PostScheduled extends PostTrigger
 	{
 		return sprintf(
 		// translators: singular post name.
-			__(
-				'%s scheduled',
-				'notification'
-			),
+			__('%s scheduled', 'notification'),
 			WpObjectHelper::getPostTypeName($this->postType)
 		);
 	}
@@ -72,10 +65,7 @@ class PostScheduled extends PostTrigger
 	{
 		return sprintf(
 		// translators: 1. singular post name, 2. post type slug.
-			__(
-				'Fires when %1$s (%2$s) is scheduled',
-				'notification'
-			),
+			__('Fires when %1$s (%2$s) is scheduled', 'notification'),
 			WpObjectHelper::getPostTypeName($this->postType),
 			$this->postType
 		);
@@ -131,14 +121,8 @@ class PostScheduled extends PostTrigger
 						'%s_publication_datetime',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s publication date and time',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s publication date and time', 'notification'), $postTypeName),
 					'timestamp' => $this->postPublicationDatetime,
 				]
 			)
@@ -152,19 +136,10 @@ class PostScheduled extends PostTrigger
 						'%s_scheduling_user_ID',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s scheduling user ID',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s scheduling user ID', 'notification'), $postTypeName),
 					'property_name' => 'scheduling_user',
-					'group' => __(
-						'Scheduling user',
-						'notification'
-					),
+					'group' => __('Scheduling user', 'notification'),
 				]
 			)
 		);
@@ -176,19 +151,10 @@ class PostScheduled extends PostTrigger
 						'%s_scheduling_user_login',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s scheduling user login',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s scheduling user login', 'notification'), $postTypeName),
 					'property_name' => 'scheduling_user',
-					'group' => __(
-						'Scheduling user',
-						'notification'
-					),
+					'group' => __('Scheduling user', 'notification'),
 				]
 			)
 		);
@@ -200,19 +166,10 @@ class PostScheduled extends PostTrigger
 						'%s_scheduling_user_email',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s scheduling user email',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s scheduling user email', 'notification'), $postTypeName),
 					'property_name' => 'scheduling_user',
-					'group' => __(
-						'Scheduling user',
-						'notification'
-					),
+					'group' => __('Scheduling user', 'notification'),
 				]
 			)
 		);
@@ -224,19 +181,10 @@ class PostScheduled extends PostTrigger
 						'%s_scheduling_user_nicename',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s scheduling user nicename',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s scheduling user nicename', 'notification'), $postTypeName),
 					'property_name' => 'scheduling_user',
-					'group' => __(
-						'Scheduling user',
-						'notification'
-					),
+					'group' => __('Scheduling user', 'notification'),
 				]
 			)
 		);
@@ -248,19 +196,10 @@ class PostScheduled extends PostTrigger
 						'%s_scheduling_user_display_name',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s scheduling user display name',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s scheduling user display name', 'notification'), $postTypeName),
 					'property_name' => 'scheduling_user',
-					'group' => __(
-						'Scheduling user',
-						'notification'
-					),
+					'group' => __('Scheduling user', 'notification'),
 				]
 			)
 		);
@@ -272,19 +211,10 @@ class PostScheduled extends PostTrigger
 						'%s_scheduling_user_firstname',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s scheduling user first name',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s scheduling user first name', 'notification'), $postTypeName),
 					'property_name' => 'scheduling_user',
-					'group' => __(
-						'Scheduling user',
-						'notification'
-					),
+					'group' => __('Scheduling user', 'notification'),
 				]
 			)
 		);
@@ -296,19 +226,10 @@ class PostScheduled extends PostTrigger
 						'%s_scheduling_user_lastname',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s scheduling user last name',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s scheduling user last name', 'notification'), $postTypeName),
 					'property_name' => 'scheduling_user',
-					'group' => __(
-						'Scheduling user',
-						'notification'
-					),
+					'group' => __('Scheduling user', 'notification'),
 				]
 			)
 		);
@@ -320,19 +241,10 @@ class PostScheduled extends PostTrigger
 						'%s_scheduling_user_avatar',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s scheduling user email',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s scheduling user email', 'notification'), $postTypeName),
 					'property_name' => 'scheduling_user',
-					'group' => __(
-						'Scheduling user',
-						'notification'
-					),
+					'group' => __('Scheduling user', 'notification'),
 				]
 			)
 		);
@@ -344,19 +256,10 @@ class PostScheduled extends PostTrigger
 						'%s_scheduling_user_role',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s scheduling user role',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s scheduling user role', 'notification'), $postTypeName),
 					'property_name' => 'scheduling_user',
-					'group' => __(
-						'Scheduling user',
-						'notification'
-					),
+					'group' => __('Scheduling user', 'notification'),
 				]
 			)
 		);

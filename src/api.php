@@ -32,10 +32,7 @@ function adaptNotification($adapterName, Notification $notification)
 		$adapter = new $adapterName($notification);
 	} else {
 		throw new \Exception(
-			sprintf(
-				'Couldn\'t find %s adapter',
-				$adapterName
-			)
+			sprintf('Couldn\'t find %s adapter', $adapterName)
 		);
 	}
 
@@ -107,10 +104,7 @@ function logNotification($component, $type, $message)
 	try {
 		return $debugger->addLog($logData);
 	} catch (\Throwable $e) {
-		return new \WP_Error(
-			'wrong_log_data',
-			$e->getMessage()
-		);
+		return new \WP_Error('wrong_log_data', $e->getMessage());
 	}
 }
 
@@ -130,10 +124,7 @@ function notification($data = [])
 	try {
 		addNotification(new Notification(convertNotificationData($data)));
 	} catch (\Throwable $e) {
-		return new \WP_Error(
-			'notification_error',
-			$e->getMessage()
-		);
+		return new \WP_Error('notification_error', $e->getMessage());
 	}
 
 	return true;
@@ -153,10 +144,7 @@ function addNotification(Notification $notification)
 		$notification->getHash(),
 		$notification
 	);
-	do_action(
-		'notification/notification/registered',
-		$notification
-	);
+	do_action('notification/notification/registered', $notification);
 }
 
 /**
@@ -218,17 +206,10 @@ function registerSettings($callback, $priority = 10)
 {
 
 	if (!is_callable($callback)) {
-		trigger_error(
-			'You have to pass callable while registering the settings',
-			E_USER_ERROR
-		);
+		trigger_error('You have to pass callable while registering the settings', E_USER_ERROR);
 	}
 
-	add_action(
-		'notification/settings/register',
-		$callback,
-		$priority
-	);
+	add_action('notification/settings/register', $callback, $priority);
 }
 
 /**
@@ -253,10 +234,8 @@ function getSettings()
  */
 function getSetting($setting)
 {
-	$parts = explode(
-		'/',
-		$setting
-	);
+
+	$parts = explode('/', $setting);
 
 	if ($parts[0] === 'notifications') {
 		_deprecated_argument(
@@ -265,10 +244,7 @@ function getSetting($setting)
 			'The `notifications` section has been changed to `carriers`, adjust the first part of the setting.'
 		);
 		$parts[0] = 'carriers';
-		$setting = implode(
-			'/',
-			$parts
-		);
+		$setting = implode('/', $parts);
 	}
 
 	return \Notification::component('core_settings')->getSetting($setting);

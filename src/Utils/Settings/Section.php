@@ -57,7 +57,6 @@ class Section
 	 */
 	public function __construct($handle, $name, $slug)
 	{
-
 		if (empty($handle)) {
 			throw new \Exception('Setting handle in Section instance cannot be empty');
 		}
@@ -85,16 +84,11 @@ class Section
 	 */
 	public function name($name = null)
 	{
-
 		if ($name !== null) {
 			$this->name = $name;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/section/name',
-			$this->name,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/section/name', $this->name, $this);
 	}
 
 	/**
@@ -105,16 +99,11 @@ class Section
 	 */
 	public function slug($slug = null)
 	{
-
 		if ($slug !== null) {
 			$this->slug = $slug;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/section/slug',
-			$this->slug,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/section/slug', $this->slug, $this);
 	}
 
 	/**
@@ -127,7 +116,6 @@ class Section
 	 */
 	public function addGroup($name, $slug)
 	{
-
 		if (empty($name) || empty($slug)) {
 			throw new \Exception('Group name and slug cannot be empty');
 		}
@@ -156,12 +144,7 @@ class Section
 	 */
 	public function getGroups()
 	{
-
-		return apply_filters(
-			$this->handle . '/settings/section/groups',
-			$this->groups,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/section/groups', $this->groups, $this);
 	}
 
 	/**
@@ -172,13 +155,8 @@ class Section
 	 */
 	public function getGroup($slug = '')
 	{
-
 		if (isset($this->groups[$slug])) {
-			return apply_filters(
-				$this->handle . '/settings/group',
-				$this->groups[$slug],
-				$this
-			);
+			return apply_filters($this->handle . '/settings/group', $this->groups[$slug], $this);
 		}
 
 		return false;

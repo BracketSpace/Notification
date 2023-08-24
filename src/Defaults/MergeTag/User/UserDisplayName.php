@@ -29,26 +29,16 @@ class UserDisplayName extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->setTriggerProp($params['property_name'] ?? 'user_object');
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug' => 'user_display_name',
-				'name' => __(
-					'User display name',
-					'notification'
-				),
-				'description' => __(
-					'John - fast finegrs - Doe',
-					'notification'
-				),
+				'name' => __('User display name', 'notification'),
+				'description' => __('John - fast finegrs - Doe', 'notification'),
 				'example' => true,
-				'group' => __(
-					'User',
-					'notification'
-				),
+				'group' => __('User', 'notification'),
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->display_name;
 				},

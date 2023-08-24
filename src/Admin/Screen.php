@@ -53,15 +53,9 @@ class Screen
 			return;
 		}
 
-		$notificationPost = adaptNotificationFrom(
-			'WordPress',
-			$post
-		);
+		$notificationPost = adaptNotificationFrom('WordPress', $post);
 
-		do_action(
-			'notification/post/column/main',
-			$notificationPost
-		);
+		do_action('notification/post/column/main', $notificationPost);
 	}
 
 	/**
@@ -107,24 +101,16 @@ class Screen
 	 */
 	public function renderCarrierBoxes($notificationPost)
 	{
-		echo '<h3 class="carriers-section-title">' . esc_html__(
-			'Carriers',
-			'notification'
-		) . '</h3>';
+		echo sprintf('<h3 class="carriers-section-title">%s</h3>', esc_html__('Carriers', 'notification'));
 
 		do_action_deprecated(
 			'notitication/admin/notifications/pre',
-			[
-				$notificationPost,
-			],
+			[$notificationPost],
 			'6.0.0',
 			'notification/admin/carriers/pre'
 		);
 
-		do_action(
-			'notification/admin/carriers/pre',
-			$notificationPost
-		);
+		do_action('notification/admin/carriers/pre', $notificationPost);
 
 		echo '<div id="carrier-boxes">';
 
@@ -169,10 +155,7 @@ class Screen
 			'notification/admin/carriers'
 		);
 
-		do_action(
-			'notification/admin/carriers',
-			$notificationPost
-		);
+		do_action('notification/admin/carriers', $notificationPost);
 	}
 
 	/**
@@ -216,12 +199,7 @@ class Screen
 		}
 
 		// Setup the fields and return form.
-		return Templates::get(
-			'form/table',
-			[
-				'carrier' => $carrier,
-			]
-		);
+		return Templates::get('form/table', ['carrier' => $carrier]);
 	}
 
 	/**
@@ -235,10 +213,7 @@ class Screen
 	{
 		add_meta_box(
 			'notification_save',
-			__(
-				'Save',
-				'notification'
-			),
+			__('Save', 'notification'),
 			[$this, 'renderSaveMetabox'],
 			'notification',
 			'side',
@@ -261,14 +236,8 @@ class Screen
 	public function renderSaveMetabox($post)
 	{
 		$deleteText = !EMPTY_TRASH_DAYS
-			? __(
-				'Delete Permanently',
-				'notification'
-			)
-			: __(
-				'Move to Trash',
-				'notification'
-			);
+			? __('Delete Permanently', 'notification')
+			: __('Move to Trash', 'notification');
 
 		// New posts has the status auto-draft and in this case the Notification should be enabled.
 		$enabled = get_post_status($post->ID) !== 'draft';
@@ -294,10 +263,7 @@ class Screen
 	{
 		add_meta_box(
 			'notification_merge_tags',
-			__(
-				'Merge Tags',
-				'notification'
-			),
+			__('Merge Tags', 'notification'),
 			[$this, 'renderMergeTagsMetabox'],
 			'notification',
 			'side',
@@ -319,10 +285,7 @@ class Screen
 	 */
 	public function renderMergeTagsMetabox($post)
 	{
-		$notification = adaptNotificationFrom(
-			'WordPress',
-			$post
-		);
+		$notification = adaptNotificationFrom('WordPress', $post);
 		$trigger = $notification->getTrigger();
 		$triggerSlug = $trigger
 			? $trigger->getSlug()
@@ -370,15 +333,9 @@ class Screen
 		];
 
 		if (count($tagGroups) > 1) {
-			Templates::render(
-				'mergetag/metabox-accordion',
-				$vars
-			);
+			Templates::render('mergetag/metabox-accordion', $vars);
 		} else {
-			Templates::render(
-				'mergetag/metabox-list',
-				$vars
-			);
+			Templates::render('mergetag/metabox-list', $vars);
 		}
 	}
 
@@ -397,10 +354,7 @@ class Screen
 			return $groups;
 		}
 
-		$otherKey = __(
-			'Other',
-			'notification'
-		);
+		$otherKey = __('Other', 'notification');
 
 		foreach ($tags as $tag) {
 			if ($tag->getGroup()) {
@@ -418,11 +372,7 @@ class Screen
 			$groups[$otherKey] = $others;
 		}
 
-		return apply_filters(
-			'notification/trigger/tags/groups',
-			$groups,
-			$trigger
-		);
+		return apply_filters('notification/trigger/tags/groups', $groups, $trigger);
 	}
 
 	/**
@@ -444,10 +394,7 @@ class Screen
 		foreach ($wp_meta_boxes['notification'] as $contextName => $context) {
 			foreach ($context as $priority => $boxes) {
 				foreach ($boxes as $boxId => $box) {
-					$allowBox = apply_filters(
-						'notification/admin/allow_metabox/' . $boxId,
-						false
-					);
+					$allowBox = apply_filters('notification/admin/allow_metabox/' . $boxId, false);
 
 					if ($allowBox) {
 						continue;
@@ -484,10 +431,7 @@ class Screen
 		$screen->add_help_tab(
 			[
 				'id' => 'notification_global_merge_tags',
-				'title' => __(
-					'Global Merge Tags',
-					'notification'
-				),
+				'title' => __('Global Merge Tags', 'notification'),
 				'content' => Templates::get(
 					'help/global-merge-tags',
 					[

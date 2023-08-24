@@ -45,7 +45,6 @@ class Scripts
 	 */
 	public function enqueueScripts($pageHook)
 	{
-
 		$allowedHooks = apply_filters(
 			'notification/scripts/allowed_hooks',
 			[
@@ -59,34 +58,16 @@ class Scripts
 			]
 		);
 
-		$allowedPostTypes = apply_filters(
-			'notification/scripts/allowed_post_types',
-			[
-				'notification',
-			]
-		);
+		$allowedPostTypes = apply_filters('notification/scripts/allowed_post_types', ['notification']);
 
-		if (
-			!in_array(
-				$pageHook,
-				$allowedHooks,
-				true
-			)
-		) {
+		if (!in_array($pageHook, $allowedHooks, true)) {
 			return;
 		}
 
 		// Check if we are on a correct post type if we edit the post.
 		if (
-			in_array(
-				$pageHook,
-				['post-new.php', 'post.php', 'edit.php'],
-				true
-			) && !in_array(
-				get_post_type(),
-				$allowedPostTypes,
-				true
-			)
+			in_array($pageHook, ['post-new.php', 'post.php', 'edit.php'], true) &&
+			!in_array(get_post_type(), $allowedPostTypes, true)
 		) {
 			return;
 		}
@@ -96,8 +77,9 @@ class Scripts
 		wp_enqueue_script(
 			'notification',
 			$this->filesystem->url('resources/js/dist/scripts.js'),
-			['jquery', 'wp-color-picker', 'wp-i18n', 'wp-hooks', 'jquery-ui-sortable', 'wp-polyfill', 'wp-tinymce',
-			 'wplink',
+			[
+				'jquery', 'wp-color-picker', 'wp-i18n', 'wp-hooks', 'jquery-ui-sortable', 'wp-polyfill', 'wp-tinymce',
+				'wplink',
 			],
 			$this->filesystem->mtime('resources/js/dist/scripts.js'),
 			true
@@ -110,10 +92,7 @@ class Scripts
 			$this->filesystem->mtime('resources/css/dist/style.css')
 		);
 
-		wp_set_script_translations(
-			'notification',
-			'notification'
-		);
+		wp_set_script_translations('notification', 'notification');
 
 		wp_localize_script(
 			'notification',
@@ -141,9 +120,6 @@ class Scripts
 		// Remove TinyMCE styles as they are not applied to any frontend content.
 		remove_editor_styles();
 
-		do_action(
-			'notification/scripts',
-			$pageHook
-		);
+		do_action('notification/scripts', $pageHook);
 	}
 }

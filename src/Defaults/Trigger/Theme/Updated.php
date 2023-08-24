@@ -36,13 +36,9 @@ class Updated extends ThemeTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'theme/updated',
-			__(
-				'Theme updated',
-				'notification'
-			)
+			__('Theme updated', 'notification')
 		);
 
 		$this->addAction(
@@ -51,17 +47,10 @@ class Updated extends ThemeTrigger
 			2
 		);
 
-		$this->setGroup(
-			__(
-				'Theme',
-				'notification'
-			)
-		);
+		$this->setGroup(__('Theme', 'notification'));
+
 		$this->setDescription(
-			__(
-				'Fires when theme is updated',
-				'notification'
-			)
+			__('Fires when theme is updated', 'notification')
 		);
 	}
 
@@ -74,7 +63,6 @@ class Updated extends ThemeTrigger
 	 */
 	public function context($upgrader, $data)
 	{
-
 		if (!isset($data['type'], $data['action']) || $data['type'] !== 'theme' || $data['action'] !== 'update') {
 			return false;
 		}
@@ -103,29 +91,19 @@ class Updated extends ThemeTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(
 			new MergeTag\StringTag(
 				[
 					'slug' => 'theme_previous_version',
-					'name' => __(
-						'Theme previous version',
-						'notification'
-					),
-					'description' => __(
-						'1.0.0',
-						'notification'
-					),
+					'name' => __('Theme previous version', 'notification'),
+					'description' => __('1.0.0', 'notification'),
 					'example' => true,
 					'resolver' => static function ($trigger) {
 						return $trigger->themePreviousVersion;
 					},
-					'group' => __(
-						'Theme',
-						'notification'
-					),
+					'group' => __('Theme', 'notification'),
 				]
 			)
 		);
@@ -134,10 +112,7 @@ class Updated extends ThemeTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'theme_update_date_time',
-					'name' => __(
-						'Theme update date and time',
-						'notification'
-					),
+					'name' => __('Theme update date and time', 'notification'),
 				]
 			)
 		);

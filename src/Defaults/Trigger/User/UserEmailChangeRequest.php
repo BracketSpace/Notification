@@ -50,26 +50,15 @@ class UserEmailChangeRequest extends UserTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'user/email_change_request',
-			__(
-				'User email change request',
-				'notification'
-			)
+			__('User email change request', 'notification')
 		);
 
-		$this->addAction(
-			'personal_options_update',
-			10,
-			1
-		);
+		$this->addAction('personal_options_update', 10, 1);
 
 		$this->setDescription(
-			__(
-				'Fires when user requests change of his email address',
-				'notification'
-			)
+			__('Fires when user requests change of his email address', 'notification')
 		);
 	}
 
@@ -82,7 +71,6 @@ class UserEmailChangeRequest extends UserTrigger
 	 */
 	public function context($userId)
 	{
-
 		$newEmail = get_user_meta(
 			$userId,
 			'_new_email',
@@ -116,7 +104,6 @@ class UserEmailChangeRequest extends UserTrigger
 	 */
 	public function mergeTags()
 	{
-
 		$this->addMergeTag(new MergeTag\User\UserNicename());
 		$this->addMergeTag(new MergeTag\User\UserDisplayName());
 		$this->addMergeTag(new MergeTag\User\UserFirstName());
@@ -126,10 +113,7 @@ class UserEmailChangeRequest extends UserTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'user_email_change_datetime',
-					'name' => __(
-						'User email change time',
-						'notification'
-					),
+					'name' => __('User email change time', 'notification'),
 				]
 			)
 		);
@@ -138,17 +122,11 @@ class UserEmailChangeRequest extends UserTrigger
 			new MergeTag\EmailTag(
 				[
 					'slug' => 'new_email',
-					'name' => __(
-						'New email address',
-						'notification'
-					),
+					'name' => __('New email address', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->newUserEmail;
 					},
-					'group' => __(
-						'User',
-						'notification'
-					),
+					'group' => __('User', 'notification'),
 				]
 			)
 		);
@@ -157,17 +135,11 @@ class UserEmailChangeRequest extends UserTrigger
 			new MergeTag\UrlTag(
 				[
 					'slug' => 'confirmation_url',
-					'name' => __(
-						'Email change confirmation url',
-						'notification'
-					),
+					'name' => __('Email change confirmation url', 'notification'),
 					'resolver' => static function ($trigger) {
 						return $trigger->confirmationUrl;
 					},
-					'group' => __(
-						'Site',
-						'notification'
-					),
+					'group' => __('Site', 'notification'),
 				]
 			)
 		);

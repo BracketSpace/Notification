@@ -25,26 +25,19 @@ class AttachmentMimeType extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->setTriggerProp($params['property_name'] ?? 'attachment');
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug' => 'attachment_mime_type',
-				'name' => __(
-					'Attachment MIME type',
-					'notification'
-				),
+				'name' => __('Attachment MIME type', 'notification'),
 				'description' => 'image/jpeg',
 				'example' => true,
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->post_mime_type;
 				},
-				'group' => __(
-					'Attachment',
-					'notification'
-				),
+				'group' => __('Attachment', 'notification'),
 			]
 		);
 

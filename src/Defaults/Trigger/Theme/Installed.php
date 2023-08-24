@@ -29,32 +29,17 @@ class Installed extends ThemeTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'theme/installed',
-			__(
-				'Theme installed',
-				'notification'
-			)
+			__('Theme installed', 'notification')
 		);
 
-		$this->addAction(
-			'upgrader_process_complete',
-			1000,
-			2
-		);
+		$this->addAction('upgrader_process_complete', 1000, 2);
 
-		$this->setGroup(
-			__(
-				'Theme',
-				'notification'
-			)
-		);
+		$this->setGroup(__('Theme', 'notification'));
+
 		$this->setDescription(
-			__(
-				'Fires when theme is installed',
-				'notification'
-			)
+			__('Fires when theme is installed', 'notification')
 		);
 	}
 
@@ -67,7 +52,6 @@ class Installed extends ThemeTrigger
 	 */
 	public function context($upgrader, $data)
 	{
-
 		if (!isset($data['type'], $data['action']) || $data['type'] !== 'theme' || $data['action'] !== 'install') {
 			return false;
 		}
@@ -90,17 +74,13 @@ class Installed extends ThemeTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'theme_installation_date_time',
-					'name' => __(
-						'Theme installation date and time',
-						'notification'
-					),
+					'name' => __('Theme installation date and time', 'notification'),
 				]
 			)
 		);

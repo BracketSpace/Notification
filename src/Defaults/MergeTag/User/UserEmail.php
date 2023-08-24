@@ -29,26 +29,16 @@ class UserEmail extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->setTriggerProp($params['property_name'] ?? 'user_object');
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug' => 'user_email',
-				'name' => __(
-					'User email',
-					'notification'
-				),
-				'description' => __(
-					'john.doe@example.com',
-					'notification'
-				),
+				'name' => __('User email', 'notification'),
+				'description' => __('john.doe@example.com', 'notification'),
 				'example' => true,
-				'group' => __(
-					'User',
-					'notification'
-				),
+				'group' => __('User', 'notification'),
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->user_email;
 				},

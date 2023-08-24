@@ -54,10 +54,7 @@ class License
 	 */
 	public function getLicenses()
 	{
-		return get_option(
-			$this->licenseStorage,
-			[]
-		);
+		return get_option($this->licenseStorage, []);
 	}
 
 	/**
@@ -69,10 +66,7 @@ class License
 	public function get()
 	{
 		$driver = new CacheDriver\ObjectCache('notification_license');
-		$cache = new Cache(
-			$driver,
-			$this->extension['slug']
-		);
+		$cache = new Cache($driver, $this->extension['slug']);
 
 		return $cache->collect(
 			function () {
@@ -103,16 +97,11 @@ class License
 		}
 
 		$driver = new CacheDriver\Transient(
-			ErrorHandler::debugEnabled()
-				? 60
-				: DAY_IN_SECONDS
+			ErrorHandler::debugEnabled() ? 60 : DAY_IN_SECONDS
 		);
 		$cache = new Cache(
 			$driver,
-			sprintf(
-				'notification_license_check_%s',
-				$this->extension['slug']
-			)
+			sprintf('notification_license_check_%s', $this->extension['slug'])
 		);
 
 		return $cache->collect(
@@ -156,19 +145,13 @@ class License
 	public function save($licenseData)
 	{
 		$driver = new CacheDriver\ObjectCache('notification_license');
-		$cache = new Cache(
-			$driver,
-			$this->extension['slug']
-		);
+		$cache = new Cache($driver, $this->extension['slug']);
 		$cache->set($licenseData);
 
 		$licenses = $this->getLicenses();
 		$licenses[$this->extension['slug']] = $licenseData;
 
-		update_option(
-			$this->licenseStorage,
-			$licenses
-		);
+		update_option($this->licenseStorage, $licenses);
 	}
 
 	/**
@@ -180,10 +163,7 @@ class License
 	public function remove()
 	{
 		$driver = new CacheDriver\ObjectCache('notification_license');
-		$cache = new Cache(
-			$driver,
-			$this->extension['slug']
-		);
+		$cache = new Cache($driver, $this->extension['slug']);
 		$cache->delete();
 
 		$licenses = $this->getLicenses();
@@ -191,10 +171,7 @@ class License
 			unset($licenses[$this->extension['slug']]);
 		}
 
-		update_option(
-			$this->licenseStorage,
-			$licenses
-		);
+		update_option($this->licenseStorage, $licenses);
 	}
 
 	/**
@@ -206,7 +183,6 @@ class License
 	 */
 	public function activate($licenseKey = '')
 	{
-
 		$licenseKey = trim($licenseKey);
 		$error = false;
 
@@ -259,7 +235,6 @@ class License
 	 */
 	public function deactivate()
 	{
-
 		$licenseData = $this->get();
 		$error = false;
 
@@ -290,13 +265,7 @@ class License
 
 		$licenseData = json_decode(wp_remote_retrieve_body($response));
 
-		if (
-			!in_array(
-				$licenseData->license,
-				['deactivated', 'failed'],
-				true
-			)
-		) {
+		if (!in_array($licenseData->license, ['deactivated', 'failed'], true)) {
 			return new \WP_Error(
 				'notification_license_error',
 				'deactivation-error'
@@ -317,7 +286,6 @@ class License
 	 */
 	public function check($licenseKey = '')
 	{
-
 		$licenseKey = trim($licenseKey);
 		$error = false;
 

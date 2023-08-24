@@ -29,21 +29,24 @@ class ImageField extends Field
 			? 'selected'
 			: '';
 
-		return '<div class="notification-image-field ' . esc_attr($class) . '">
-			<input type="text" name="' . esc_attr($this->getName()) . '" id="' . esc_attr(
-			$this->getId()
-		) . '" value="' . esc_attr($this->getValue()) . '" class="image-input ' . esc_attr(
-			$this->cssClass()
-		) . '" ' . $this->maybeDisable() . ' readonly>
-			<button class="select-image button button-secondary">' . esc_html__(
-			'Select image',
-			'notification'
-		) . '</button>
-			<div class="image">
-				<span class="clear dashicons dashicons-dismiss"></span>
-				<img class="preview" src="' . wp_get_attachment_thumb_url($this->getValue()) . '">
-			</div>
-		</div>';
+		return sprintf(
+			'<div class="notification-image-field %s">
+				<input type="text" name="%s" id="%s" value="%s" class="image-input %s" %s readonly>
+				<button class="select-image button button-secondary">%s</button>
+				<div class="image">
+					<span class="clear dashicons dashicons-dismiss"></span>
+					<img class="preview" src="%s">
+				</div>
+			</div>',
+			esc_attr($class),
+			esc_attr($this->getName()),
+			esc_attr($this->getId()),
+			esc_attr($this->getValue()),
+			esc_attr($this->cssClass()),
+			$this->maybeDisable(),
+			esc_html__('Select image', 'notification'),
+			wp_get_attachment_thumb_url($this->getValue())
+		);
 	}
 
 	/**

@@ -50,12 +50,7 @@ class Sync
 		}
 
 		foreach ((array)$fs->dirlist('/') as $filename => $file) {
-			if (
-				preg_match(
-					'/.*\.json/',
-					(string)$filename
-				) !== 1
-			) {
+			if (preg_match('/.*\.json/', (string)$filename) !== 1) {
 				continue;
 			}
 
@@ -94,10 +89,7 @@ class Sync
 				 *
 				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 				 */
-				$adapter = adaptNotificationFrom(
-					'JSON',
-					$json
-				);
+				$adapter = adaptNotificationFrom('JSON', $json);
 
 				if ($adapter->isEnabled()) {
 					$adapter->registerNotification();
@@ -131,15 +123,10 @@ class Sync
 		}
 
 		$file = $wpAdapter->getHash() . '.json';
-		$json = swapNotificationAdapter(
-			'JSON',
-			$wpAdapter
-		)->save();
+		$json = swapNotificationAdapter('JSON', $wpAdapter)
+			->save();
 
-		$fs->put_contents(
-			$file,
-			$json
-		);
+		$fs->put_contents($file, $json);
 	}
 
 	/**
@@ -163,10 +150,7 @@ class Sync
 			return;
 		}
 
-		$adapter = adaptNotificationFrom(
-			'WordPress',
-			$postId
-		);
+		$adapter = adaptNotificationFrom('WordPress', $postId);
 		$file = $adapter->getHash() . '.json';
 
 		if (!$fs->exists($file)) {

@@ -44,7 +44,6 @@ class Range
 	 */
 	public function sanitize($value)
 	{
-
 		if (!is_numeric($value)) {
 			return 0;
 		}

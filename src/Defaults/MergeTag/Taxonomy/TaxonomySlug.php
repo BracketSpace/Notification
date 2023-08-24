@@ -28,29 +28,16 @@ class TaxonomySlug extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->setTriggerProp($params['property_name'] ?? 'taxonomy');
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf(
-					'%s_slug',
-					$params['tag_name'] ?? 'taxonomy'
-				),
-				'name' => __(
-					'Taxonomy slug',
-					'notification'
-				),
-				'description' => __(
-					'hello-world',
-					'notification'
-				),
+				'slug' => sprintf('%s_slug', $params['tag_name'] ?? 'taxonomy'),
+				'name' => __('Taxonomy slug', 'notification'),
+				'description' => __('hello-world', 'notification'),
 				'example' => true,
-				'group' => __(
-					'Taxonomy',
-					'notification'
-				),
+				'group' => __('Taxonomy', 'notification'),
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->name ?? '';
 				},

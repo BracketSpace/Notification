@@ -48,10 +48,7 @@ abstract class TermTrigger extends Abstracts\Trigger
 	public function __construct($params = [])
 	{
 		if (!isset($params['taxonomy'], $params['slug'])) {
-			trigger_error(
-				'TaxonomyTrigger requires taxonomy slug and trigger slug.',
-				E_USER_ERROR
-			);
+			trigger_error('TaxonomyTrigger requires taxonomy slug and trigger slug.', E_USER_ERROR);
 		}
 
 		$this->taxonomy = WpObjectHelper::getTaxonomy($params['taxonomy']);
@@ -76,7 +73,6 @@ abstract class TermTrigger extends Abstracts\Trigger
 	 */
 	public function mergeTags()
 	{
-
 		$this->addMergeTag(new MergeTag\Taxonomy\TermID());
 		$this->addMergeTag(new MergeTag\Taxonomy\TermDescription());
 		$this->addMergeTag(new MergeTag\Taxonomy\TermName());

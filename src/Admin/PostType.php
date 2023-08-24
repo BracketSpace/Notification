@@ -49,71 +49,32 @@ class PostType
 	public function register()
 	{
 		$labels = [
-			'name' => __(
-				'Notifications',
-				'notification'
-			),
-			'singular_name' => __(
-				'Notification',
-				'notification'
-			),
+			'name' => __('Notifications', 'notification'),
+			'singular_name' => __('Notification', 'notification'),
 			'add_new' => _x(
 				'Add New Notification',
 				'notification',
 				'notification'
 			),
-			'add_new_item' => __(
-				'Add New Notification',
-				'notification'
-			),
-			'edit_item' => __(
-				'Edit Notification',
-				'notification'
-			),
-			'new_item' => __(
-				'New Notification',
-				'notification'
-			),
-			'view_item' => __(
-				'View Notification',
-				'notification'
-			),
-			'search_items' => __(
-				'Search Notifications',
-				'notification'
-			),
-			'not_found' => __(
-				'No Notifications found',
-				'notification'
-			),
-			'not_found_in_trash' => __(
-				'No Notifications found in Trash',
-				'notification'
-			),
-			'parent_item_colon' => __(
-				'Parent Notification:',
-				'notification'
-			),
-			'menu_name' => __(
-				'Notifications',
-				'notification'
-			),
+			'add_new_item' => __('Add New Notification', 'notification'),
+			'edit_item' => __('Edit Notification', 'notification'),
+			'new_item' => __('New Notification', 'notification'),
+			'view_item' => __('View Notification', 'notification'),
+			'search_items' => __('Search Notifications', 'notification'),
+			'not_found' => __('No Notifications found', 'notification'),
+			'not_found_in_trash' => __('No Notifications found in Trash', 'notification'),
+			'parent_item_colon' => __('Parent Notification:', 'notification'),
+			'menu_name' => __('Notifications', 'notification'),
 		];
 
 		register_post_type(
 			'notification',
 			[
-				'labels' => apply_filters(
-					'notification/whitelabel/cpt/labels',
-					$labels
-				),
+				'labels' => apply_filters('notification/whitelabel/cpt/labels', $labels),
 				'hierarchical' => false,
 				'public' => true,
 				'show_ui' => true,
-				'show_in_menu' => apply_filters(
-					'notification/whitelabel/cpt/parent',
-					true
-				),
+				'show_in_menu' => apply_filters('notification/whitelabel/cpt/parent', true),
 				'show_in_admin_bar' => true,
 				'menu_icon' => \Notification::fs()->image_to_base64('resources/images/menu-icon.svg'),
 				'menu_position' => 103,
@@ -155,25 +116,13 @@ class PostType
 	{
 		$messages['notification'] = [
 			'',
-			__(
-				'Notification updated.',
-				'notification'
-			),
+			__('Notification updated.', 'notification'),
 			'',
 			'',
-			__(
-				'Notification updated.',
-				'notification'
-			),
+			__('Notification updated.', 'notification'),
 			'',
-			__(
-				'Notification saved.',
-				'notification'
-			),
-			__(
-				'Notification saved.',
-				'notification'
-			),
+			__('Notification saved.', 'notification'),
+			__('Notification saved.', 'notification'),
 			'',
 			'',
 			'',
@@ -219,28 +168,16 @@ class PostType
 	{
 		if (isset($statuses['publish'])) {
 			$statuses['publish'] = str_replace(
-				__(
-					'Published',
-					'notification'
-				),
-				__(
-					'Active',
-					'notification'
-				),
+				__('Published', 'notification'),
+				__('Active', 'notification'),
 				$statuses['publish']
 			);
 		}
 
 		if (isset($statuses['draft'])) {
 			$statuses['draft'] = str_replace(
-				__(
-					'Draft',
-					'notification'
-				),
-				__(
-					'Disabled',
-					'notification'
-				),
+				__('Draft', 'notification'),
+				__('Disabled', 'notification'),
 				$statuses['draft']
 			);
 		}
@@ -269,10 +206,7 @@ class PostType
 			return;
 		}
 
-		wp_delete_post(
-			$postId,
-			true
-		);
+		wp_delete_post($postId, true);
 	}
 
 	/**
@@ -302,12 +236,7 @@ class PostType
 			return $data;
 		}
 
-		if (
-			!preg_match(
-				'/notification_[a-z0-9]{13}/',
-				$data['post_name']
-			)
-		) {
+		if (!preg_match('/notification_[a-z0-9]{13}/', $data['post_name'])) {
 			$data['post_name'] = Notification::createHash();
 		}
 
@@ -332,7 +261,8 @@ class PostType
 		}
 
 		if (
-			!isset($_POST['notification_data_nonce']) || !wp_verify_nonce(
+			!isset($_POST['notification_data_nonce']) ||
+			!wp_verify_nonce(
 				sanitize_text_field(wp_unslash($_POST['notification_data_nonce'])),
 				'notification_post_data_save'
 			)
@@ -351,17 +281,11 @@ class PostType
 		// Prevent infinite loops.
 		if (!defined('DOING_NOTIFICATION_SAVE')) {
 			// phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
-			define(
-				'DOING_NOTIFICATION_SAVE',
-				true
-			);
+			define('DOING_NOTIFICATION_SAVE', true);
 		}
 
 		$data = $_POST;
-		$notificationPost = adaptNotificationFrom(
-			'WordPress',
-			$post
-		);
+		$notificationPost = adaptNotificationFrom('WordPress', $post);
 
 		// Title.
 		if (isset($data['post_title'])) {
@@ -395,12 +319,7 @@ class PostType
 			}
 
 			// If nonce not set or false, ignore this form.
-			if (
-				!wp_verify_nonce(
-					$carrierData['_nonce'],
-					$carrier->getSlug() . '_carrier_security'
-				)
-			) {
+			if (!wp_verify_nonce($carrierData['_nonce'], $carrier->getSlug() . '_carrier_security')) {
 				continue;
 			}
 
@@ -419,10 +338,7 @@ class PostType
 		$notificationPost->setCarriers($carriers);
 
 		// Hook into this action if you want to save any Notification Post data.
-		do_action(
-			'notification/data/save',
-			$notificationPost
-		);
+		do_action('notification/data/save', $notificationPost);
 
 		$notificationPost->save();
 
@@ -435,10 +351,7 @@ class PostType
 		$cache->set_key('notifications');
 		$cache->delete();
 
-		do_action(
-			'notification/data/save/after',
-			$notificationPost
-		);
+		do_action('notification/data/save/after', $notificationPost);
 	}
 
 	/**
@@ -464,20 +377,14 @@ class PostType
 
 		$ajax->verify_nonce('change_notification_status_' . $data['post_id']);
 
-		$adapter = adaptNotificationFrom(
-			'WordPress',
-			(int)$data['post_id']
-		);
+		$adapter = adaptNotificationFrom('WordPress', (int)$data['post_id']);
 		$adapter->setEnabled($data['status'] === 'true');
 
 		$result = $adapter->save();
 
 		if (is_wp_error($result)) {
 			$ajax->error(
-				__(
-					'Notification status couldn\'t be changed.',
-					'notification'
-				)
+				__("Notification status couldn't be changed.", 'notification')
 			);
 		}
 
@@ -500,10 +407,7 @@ class PostType
 	public static function getAllNotifications()
 	{
 		$driver = new CacheDriver\ObjectCache('notification');
-		$cache = new Cache(
-			$driver,
-			'notifications'
-		);
+		$cache = new Cache($driver, 'notifications');
 
 		return $cache->collect(
 			static function () {
@@ -548,10 +452,7 @@ class PostType
 				continue;
 			}
 
-			$adapter = adaptNotificationFrom(
-				'JSON',
-				$notificationJson
-			);
+			$adapter = adaptNotificationFrom('JSON', $notificationJson);
 
 			// Set source back to WordPress.
 			$adapter->setSource('WordPress');

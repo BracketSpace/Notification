@@ -48,10 +48,7 @@ class NotificationQueries
 		}
 
 		foreach ($wpposts as $wppost) {
-			$posts[] = adaptNotificationFrom(
-				'WordPress',
-				$wppost
-			);
+			$posts[] = adaptNotificationFrom('WordPress', $wppost);
 		}
 
 		return $posts;
@@ -66,17 +63,10 @@ class NotificationQueries
 	 */
 	public static function withHash(string $hash)
 	{
-		$post = get_page_by_path(
-			$hash,
-			OBJECT,
-			'notification'
-		);
+		$post = get_page_by_path($hash, OBJECT, 'notification');
 
 		return empty($post)
 			? null
-			: adaptNotificationFrom(
-				'WordPress',
-				$post
-			);
+			: adaptNotificationFrom('WordPress', $post);
 	}
 }

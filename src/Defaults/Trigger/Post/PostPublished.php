@@ -46,11 +46,7 @@ class PostPublished extends PostTrigger
 			]
 		);
 
-		$this->addAction(
-			'transition_post_status',
-			10,
-			3
-		);
+		$this->addAction('transition_post_status', 10, 3);
 	}
 
 	/**
@@ -61,11 +57,8 @@ class PostPublished extends PostTrigger
 	public function getName(): string
 	{
 		return sprintf(
-		// translators: singular post name.
-			__(
-				'%s published',
-				'notification'
-			),
+			// translators: singular post name.
+			__('%s published', 'notification'),
 			WpObjectHelper::getPostTypeName($this->postType)
 		);
 	}
@@ -78,11 +71,8 @@ class PostPublished extends PostTrigger
 	public function getDescription(): string
 	{
 		return sprintf(
-		// translators: 1. singular post name, 2. post type slug.
-			__(
-				'Fires when %1$s (%2$s) is published',
-				'notification'
-			),
+			// translators: 1. singular post name, 2. post type slug.
+			__('Fires when %1$s (%2$s) is published', 'notification'),
 			WpObjectHelper::getPostTypeName($this->postType),
 			$this->postType
 		);
@@ -137,19 +127,10 @@ class PostPublished extends PostTrigger
 						'%s_publishing_user_ID',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s publishing user ID',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s publishing user ID', 'notification'), $postTypeName),
 					'property_name' => 'publishing_user',
-					'group' => __(
-						'Publishing user',
-						'notification'
-					),
+					'group' => __('Publishing user', 'notification'),
 				]
 			)
 		);
@@ -161,19 +142,10 @@ class PostPublished extends PostTrigger
 						'%s_publishing_user_login',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s publishing user login',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s publishing user login', 'notification'), $postTypeName),
 					'property_name' => 'publishing_user',
-					'group' => __(
-						'Publishing user',
-						'notification'
-					),
+					'group' => __('Publishing user', 'notification'),
 				]
 			)
 		);
@@ -185,19 +157,10 @@ class PostPublished extends PostTrigger
 						'%s_publishing_user_email',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s publishing user email',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s publishing user email', 'notification'), $postTypeName),
 					'property_name' => 'publishing_user',
-					'group' => __(
-						'Publishing user',
-						'notification'
-					),
+					'group' => __('Publishing user', 'notification'),
 				]
 			)
 		);
@@ -209,19 +172,10 @@ class PostPublished extends PostTrigger
 						'%s_publishing_user_nicename',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s publishing user nicename',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s publishing user nicename', 'notification'), $postTypeName),
 					'property_name' => 'publishing_user',
-					'group' => __(
-						'Publishing user',
-						'notification'
-					),
+					'group' => __('Publishing user', 'notification'),
 				]
 			)
 		);
@@ -233,19 +187,10 @@ class PostPublished extends PostTrigger
 						'%s_publishing_user_display_name',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s publishing user display name',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s publishing user display name', 'notification'), $postTypeName),
 					'property_name' => 'publishing_user',
-					'group' => __(
-						'Publishing user',
-						'notification'
-					),
+					'group' => __('Publishing user', 'notification'),
 				]
 			)
 		);
@@ -257,19 +202,10 @@ class PostPublished extends PostTrigger
 						'%s_publishing_user_firstname',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s publishing user first name',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s publishing user first name', 'notification'), $postTypeName),
 					'property_name' => 'publishing_user',
-					'group' => __(
-						'Publishing user',
-						'notification'
-					),
+					'group' => __('Publishing user', 'notification'),
 				]
 			)
 		);
@@ -281,19 +217,10 @@ class PostPublished extends PostTrigger
 						'%s_publishing_user_lastname',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s publishing user last name',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s publishing user last name', 'notification'), $postTypeName),
 					'property_name' => 'publishing_user',
-					'group' => __(
-						'Publishing user',
-						'notification'
-					),
+					'group' => __('Publishing user', 'notification'),
 				]
 			)
 		);
@@ -305,19 +232,10 @@ class PostPublished extends PostTrigger
 						'%s_publishing_user_avatar',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s publishing user avatar',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s publishing user avatar', 'notification'), $postTypeName),
 					'property_name' => 'publishing_user',
-					'group' => __(
-						'Publishing user',
-						'notification'
-					),
+					'group' => __('Publishing user', 'notification'),
 				]
 			)
 		);
@@ -329,19 +247,10 @@ class PostPublished extends PostTrigger
 						'%s_publishing_user_role',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s publishing user role',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s publishing user role', 'notification'), $postTypeName),
 					'property_name' => 'publishing_user',
-					'group' => __(
-						'Publishing user',
-						'notification'
-					),
+					'group' => __('Publishing user', 'notification'),
 				]
 			)
 		);
@@ -353,14 +262,8 @@ class PostPublished extends PostTrigger
 						'%s_publication_datetime',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s publication date and time',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s publication date and time', 'notification'), $postTypeName),
 					'timestamp' => $this->postPublicationDatetime,
 				]
 			)

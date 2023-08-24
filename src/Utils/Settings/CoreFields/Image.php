@@ -38,20 +38,23 @@ class Image
 			$class = '';
 		}
 
-		echo '
-				<div class="notification-image-field ' . esc_attr($class) . '">
-					<input type="text" name="' . esc_attr($field->inputName()) . '" id="' . esc_attr(
-					$field->inputId()
-				) . '" value="' . esc_url($image) . '" class="image-input ' . esc_attr($class) . '" readonly>
-					<button class="select-image button button-secondary">' . esc_html__(
-					'Select image',
-					'notification'
-				) . '</button>
-					<div class="image">
-						<span class="clear dashicons dashicons-dismiss"></span>
-						<img class="preview" src="' . esc_url($image) . '">
-					</div>
-				</div>';
+		echo sprintf(
+			'<div class="notification-image-field %s">
+				<input type="text" name="%s" id="%s" value="%s" class="image-input %s" readonly>
+				<button class="select-image button button-secondary">%s</button>
+				<div class="image">
+					<span class="clear dashicons dashicons-dismiss"></span>
+					<img class="preview" src="%s">
+				</div>
+			</div>',
+			esc_attr($class),
+			esc_attr($field->inputName()),
+			esc_attr($field->inputId()),
+			esc_url($image),
+			esc_attr($class),
+			esc_html__('Select image', 'notification'),
+			esc_url($image)
+		);
 	}
 
 	/**

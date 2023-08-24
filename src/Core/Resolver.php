@@ -30,7 +30,6 @@ class Resolver
 	 */
 	public static function resolve($value, Triggerable $trigger)
 	{
-
 		$resolvers = ResolverStore::sorted();
 
 		if (empty($resolvers)) {
@@ -65,10 +64,6 @@ class Resolver
 	 */
 	public static function clear($value)
 	{
-		return preg_replace(
-			'/(?<!\!)\{(?:[^{}\s\"\'])*\}/',
-			'',
-			$value
-		);
+		return preg_replace('/(?<!\!)\{(?:[^{}\s\"\'])*\}/', '', $value);
 	}
 }

@@ -25,7 +25,6 @@ class CarrierRepository
 	 */
 	public static function register()
 	{
-
 		if (getSetting('carriers/email/enable')) {
 			Register::carrier(DocHooksHelper::hook(new Carrier\Email()));
 		}

@@ -33,7 +33,6 @@ class CommentIsReply extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		if (isset($params['comment_type']) && !empty($params['comment_type'])) {
 			$this->commentType = $params['comment_type'];
 		}
@@ -46,31 +45,16 @@ class CommentIsReply extends StringTag
 			$params,
 			[
 				'slug' => 'comment_is_reply',
-				'name' => sprintf(
 				// Translators: Comment type name.
-					__(
-						'Is %s a reply?',
-						'notification'
-					),
-					$commentTypeName
-				),
-				'description' => __(
-					'Yes or No',
-					'notification'
-				),
+				'name' => sprintf(__('Is %s a reply?', 'notification'), $commentTypeName),
+				'description' => __('Yes or No', 'notification'),
 				'example' => true,
 				'group' => $commentTypeName,
 				'resolver' => function ($trigger) {
 					$hasParent = $trigger->{$this->getTriggerProp()}->comment_parent;
 					return $hasParent
-						? __(
-							'Yes',
-							'notification'
-						)
-						: __(
-							'No',
-							'notification'
-						);
+						? __('Yes', 'notification')
+						: __('No', 'notification');
 				},
 			]
 		);

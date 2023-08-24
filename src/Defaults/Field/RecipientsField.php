@@ -32,27 +32,17 @@ class RecipientsField extends RepeaterField
 	 */
 	public function __construct($params = [])
 	{
-
 		if (!isset($params['carrier'])) {
-			trigger_error(
-				'RecipientsField requires carrier param',
-				E_USER_ERROR
-			);
+			trigger_error('RecipientsField requires carrier param', E_USER_ERROR);
 		}
 
 		$params = wp_parse_args(
 			$params,
 			[
 				'carrier' => '',
-				'label' => __(
-					'Recipients',
-					'notification'
-				),
+				'label' => __('Recipients', 'notification'),
 				'name' => 'recipients',
-				'add_button_label' => __(
-					'Add recipient',
-					'notification'
-				),
+				'add_button_label' => __('Add recipient', 'notification'),
 				'css_class' => '',
 			]
 		);
@@ -80,10 +70,7 @@ class RecipientsField extends RepeaterField
 			$params['fields'] = [
 				new SelectField(
 					[
-						'label' => __(
-							'Type',
-							'notification'
-						),
+						'label' => __('Type', 'notification'),
 						'name' => 'type',
 						'css_class' => 'recipient-type',
 						'options' => $recipientTypes,

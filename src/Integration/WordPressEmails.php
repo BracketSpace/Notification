@@ -48,33 +48,16 @@ class WordPressEmails
 			'wp_send_new_user_notifications'
 		);
 
-		add_action(
-			'register_new_user',
-			[$this, 'disableNewUserNotify']
-		);
-		add_action(
-			'edit_user_created_user',
-			[$this, 'disableNewUserNotify'],
-			10,
-			2
-		);
+		add_action('register_new_user', [$this, 'disableNewUserNotify']);
+		add_action('edit_user_created_user', [$this, 'disableNewUserNotify'], 10, 2);
 
 		if (!is_multisite()) {
 			return;
 		}
 
-		add_action(
-			'network_site_new_created_user',
-			[$this, 'disableNewUserNotify']
-		);
-		add_action(
-			'network_site_users_created_user',
-			[$this, 'disableNewUserNotify']
-		);
-		add_action(
-			'network_user_new_created_user',
-			[$this, 'disableNewUserNotify']
-		);
+		add_action('network_site_new_created_user', [$this, 'disableNewUserNotify']);
+		add_action('network_site_users_created_user', [$this, 'disableNewUserNotify']);
+		add_action('network_user_new_created_user', [$this, 'disableNewUserNotify']);
 	}
 
 	/**
@@ -88,39 +71,17 @@ class WordPressEmails
 	 */
 	public function disableNewUserNotify($userId, $notify = 'both')
 	{
-		$isAdminNotify = in_array(
-			$notify,
-			['', 'admin', 'both'],
-			true
-		);
-		$isUserNotify = in_array(
-			$notify,
-			['user', 'both'],
-			true
-		);
+		$isAdminNotify = in_array($notify, ['', 'admin', 'both'], true);
+		$isUserNotify = in_array($notify, ['user', 'both'], true);
 
-		if (
-			$isAdminNotify &&
-			(getSetting('integration/emails/new_user_to_admin') !== 'true')
-		) {
-			wp_new_user_notification(
-				$userId,
-				null,
-				'admin'
-			);
+		if ($isAdminNotify && (getSetting('integration/emails/new_user_to_admin') !== 'true')) {
+			wp_new_user_notification($userId, null, 'admin');
 		}
-		if (
-			!$isUserNotify ||
-			(getSetting('integration/emails/new_user_to_user') === 'true')
-		) {
+		if (!$isUserNotify || (getSetting('integration/emails/new_user_to_user') === 'true')) {
 			return;
 		}
 
-		wp_new_user_notification(
-			$userId,
-			null,
-			'user'
-		);
+		wp_new_user_notification($userId, null, 'user');
 	}
 
 	/**
@@ -192,7 +153,6 @@ class WordPressEmails
 	 */
 	public function disableSendConfirmationOnProfileEmail()
 	{
-
 		if (getSetting('integration/emails/send_confirmation_on_profile_email') !== 'true') {
 			return;
 		}
@@ -216,7 +176,6 @@ class WordPressEmails
 	 */
 	public function disableSendConfirmationOnAdminEmail()
 	{
-
 		if (getSetting('integration/emails/send_confirmation_on_admin_email') !== 'true') {
 			return;
 		}
@@ -297,9 +256,8 @@ class WordPressEmails
 	public function disableAutomaticWpCoreUpdateNotify($send, $type, $coreUpdate, $result)
 	{
 		if (
-			($type === 'success') && (getSetting(
-				'integration/emails/automatic_wp_core_update'
-			) === 'true')
+			($type === 'success') &&
+			(getSetting('integration/emails/automatic_wp_core_update') === 'true')
 		) {
 			$send = false;
 		}
@@ -318,11 +276,7 @@ class WordPressEmails
 	private function getSettingForUserRole($value, $userId, $slug)
 	{
 		$user = get_userdata($userId);
-		$isAdmin = ($user && is_array($user->roles) && in_array(
-			'administrator',
-			$user->roles,
-			true
-		));
+		$isAdmin = ($user && is_array($user->roles) && in_array('administrator', $user->roles, true));
 
 		$value = $isAdmin
 			? getSetting('integration/emails/' . $slug . '_to_admin')

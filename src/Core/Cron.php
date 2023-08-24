@@ -30,42 +30,27 @@ class Cron
 	{
 		$intervals['ntfn_2days'] = [
 			'interval' => 2 * DAY_IN_SECONDS,
-			'display' => __(
-				'Every two days',
-				'notification'
-			),
+			'display' => __('Every two days', 'notification'),
 		];
 
 		$intervals['ntfn_3days'] = [
 			'interval' => 3 * DAY_IN_SECONDS,
-			'display' => __(
-				'Every three days',
-				'notification'
-			),
+			'display' => __('Every three days', 'notification'),
 		];
 
 		$intervals['ntfn_week'] = [
 			'interval' => WEEK_IN_SECONDS,
-			'display' => __(
-				'Every week',
-				'notification'
-			),
+			'display' => __('Every week', 'notification'),
 		];
 
 		$intervals['ntfn_2weeks'] = [
 			'interval' => 2 * WEEK_IN_SECONDS,
-			'display' => __(
-				'Every two weeks',
-				'notification'
-			),
+			'display' => __('Every two weeks', 'notification'),
 		];
 
 		$intervals['ntfn_month'] = [
 			'interval' => MONTH_IN_SECONDS,
-			'display' => __(
-				'Every month',
-				'notification'
-			),
+			'display' => __('Every month', 'notification'),
 		];
 
 		return $intervals;
@@ -85,10 +70,7 @@ class Cron
 		$schedule = getSetting('triggers/wordpress/updates_cron_period');
 
 		if ($event === false) {
-			$this->schedule(
-				$schedule,
-				'notification_check_wordpress_updates'
-			);
+			$this->schedule($schedule, 'notification_check_wordpress_updates');
 		}
 
 		// Reschedule to match new settings.
@@ -97,10 +79,7 @@ class Cron
 		}
 
 		$this->unschedule('notification_check_wordpress_updates');
-		$this->schedule(
-			$schedule,
-			'notification_check_wordpress_updates'
-		);
+		$this->schedule($schedule, 'notification_check_wordpress_updates');
 	}
 
 	/**
@@ -135,9 +114,6 @@ class Cron
 	public function unschedule($eventName)
 	{
 		$timestamp = wp_next_scheduled($eventName);
-		wp_unschedule_event(
-			$timestamp,
-			$eventName
-		);
+		wp_unschedule_event($timestamp, $eventName);
 	}
 }

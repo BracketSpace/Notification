@@ -33,32 +33,20 @@ class Time extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug' => 'time',
-				'name' => __(
-					'Time',
-					'notification'
-				),
+				'name' => __('Time', 'notification'),
 				'time_format' => get_option('time_format'),
 				'timezone' => null,
 				'example' => true,
-				'group' => __(
-					'Date',
-					'notification'
-				),
+				'group' => __('Date', 'notification'),
 			]
 		);
 
 		if (!isset($args['group'])) {
-			$this->setGroup(
-				__(
-					'Date',
-					'notification'
-				)
-			);
+			$this->setGroup(__('Date', 'notification'));
 		}
 
 		if (!isset($args['description'])) {

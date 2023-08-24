@@ -24,11 +24,7 @@ class Checkbox
 	 */
 	public function input($field)
 	{
-		$checked = in_array(
-			$field->value(),
-			['true', true],
-			true
-		);
+		$checked = in_array($field->value(), ['true', true], true);
 
 		printf(
 			'<label><input type="checkbox" id="%s" name="%s" value="true" %s> %s</label>',
@@ -52,8 +48,6 @@ class Checkbox
 	 */
 	public function sanitize($value)
 	{
-		return ($value !== 'true')
-			? ''
-			: $value;
+		return ($value !== 'true') ? '' : $value;
 	}
 }

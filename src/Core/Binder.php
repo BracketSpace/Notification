@@ -26,7 +26,6 @@ class Binder
 	 */
 	public static function bind($triggers)
 	{
-
 		if (!is_array($triggers)) {
 			$triggers = [$triggers];
 		}

@@ -29,10 +29,7 @@ class Role extends Abstracts\Recipient
 		parent::__construct(
 			[
 				'slug' => 'role',
-				'name' => __(
-					'Role',
-					'notification'
-				),
+				'name' => __('Role', 'notification'),
 				'default_value' => 'administrator',
 			]
 		);
@@ -92,10 +89,7 @@ class Role extends Abstracts\Recipient
 
 		return new Field\SelectField(
 			[
-				'label' => __(
-					'Recipient',
-					'notification'
-				), // don't edit this!
+				'label' => __('Recipient', 'notification'), // don't edit this!
 				'name' => 'recipient',                       // don't edit this!
 				'css_class' => 'recipient-value',                 // don't edit this!
 				'value' => $this->getDefaultValue(),

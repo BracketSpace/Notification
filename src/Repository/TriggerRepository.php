@@ -111,6 +111,7 @@ class TriggerRepository
 		Register::trigger(new Trigger\User\UserPasswordResetRequest());
 		Register::trigger(new Trigger\User\UserLoginFailed());
 		Register::trigger(new Trigger\User\UserRoleChanged());
+		Register::trigger(new Trigger\User\UserEmailChanged());
 	}
 
 	/**

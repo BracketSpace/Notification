@@ -29,26 +29,10 @@ class MediaTrashed extends MediaTrigger
 	 */
 	public function __construct()
 	{
+		parent::__construct('media/trashed', __('Media trashed', 'notification'));
 
-		parent::__construct(
-			'media/trashed',
-			__(
-				'Media trashed',
-				'notification'
-			)
-		);
-
-		$this->addAction(
-			'delete_attachment',
-			10,
-			1
-		);
-		$this->setDescription(
-			__(
-				'Fires when attachment is removed',
-				'notification'
-			)
-		);
+		$this->addAction('delete_attachment', 10, 1);
+		$this->setDescription(__('Fires when attachment is removed', 'notification'));
 	}
 
 	/**
@@ -59,7 +43,6 @@ class MediaTrashed extends MediaTrigger
 	 */
 	public function context($attachmentId)
 	{
-
 		$this->attachment = get_post($attachmentId);
 
 		$this->userId = get_current_user_id();
@@ -83,7 +66,6 @@ class MediaTrashed extends MediaTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		// Trashing user.
@@ -91,15 +73,9 @@ class MediaTrashed extends MediaTrigger
 			new MergeTag\User\UserID(
 				[
 					'slug' => 'attachment_trashing_user_ID',
-					'name' => __(
-						'Attachment trashing user ID',
-						'notification'
-					),
+					'name' => __('Attachment trashing user ID', 'notification'),
 					'property_name' => 'trashing_user',
-					'group' => __(
-						'Trashing user',
-						'notification'
-					),
+					'group' => __('Trashing user', 'notification'),
 				]
 			)
 		);
@@ -108,15 +84,9 @@ class MediaTrashed extends MediaTrigger
 			new MergeTag\User\UserLogin(
 				[
 					'slug' => 'attachment_trashing_user_login',
-					'name' => __(
-						'Attachment trashing user login',
-						'notification'
-					),
+					'name' => __('Attachment trashing user login', 'notification'),
 					'property_name' => 'trashing_user',
-					'group' => __(
-						'Trashing user',
-						'notification'
-					),
+					'group' => __('Trashing user', 'notification'),
 				]
 			)
 		);
@@ -125,15 +95,9 @@ class MediaTrashed extends MediaTrigger
 			new MergeTag\User\UserEmail(
 				[
 					'slug' => 'attachment_trashing_user_email',
-					'name' => __(
-						'Attachment trashing user email',
-						'notification'
-					),
+					'name' => __('Attachment trashing user email', 'notification'),
 					'property_name' => 'trashing_user',
-					'group' => __(
-						'Trashing user',
-						'notification'
-					),
+					'group' => __('Trashing user', 'notification'),
 				]
 			)
 		);
@@ -142,15 +106,9 @@ class MediaTrashed extends MediaTrigger
 			new MergeTag\User\UserNicename(
 				[
 					'slug' => 'attachment_trashing_user_nicename',
-					'name' => __(
-						'Attachment trashing user nicename',
-						'notification'
-					),
+					'name' => __('Attachment trashing user nicename', 'notification'),
 					'property_name' => 'trashing_user',
-					'group' => __(
-						'Trashing user',
-						'notification'
-					),
+					'group' => __('Trashing user', 'notification'),
 				]
 			)
 		);
@@ -159,15 +117,9 @@ class MediaTrashed extends MediaTrigger
 			new MergeTag\User\UserDisplayName(
 				[
 					'slug' => 'attachment_trashing_user_display_name',
-					'name' => __(
-						'Attachment trashing user display name',
-						'notification'
-					),
+					'name' => __('Attachment trashing user display name', 'notification'),
 					'property_name' => 'trashing_user',
-					'group' => __(
-						'Trashing user',
-						'notification'
-					),
+					'group' => __('Trashing user', 'notification'),
 				]
 			)
 		);
@@ -176,15 +128,9 @@ class MediaTrashed extends MediaTrigger
 			new MergeTag\User\UserFirstName(
 				[
 					'slug' => 'attachment_trashing_user_firstname',
-					'name' => __(
-						'Attachment trashing user first name',
-						'notification'
-					),
+					'name' => __('Attachment trashing user first name', 'notification'),
 					'property_name' => 'trashing_user',
-					'group' => __(
-						'Trashing user',
-						'notification'
-					),
+					'group' => __('Trashing user', 'notification'),
 				]
 			)
 		);
@@ -193,15 +139,9 @@ class MediaTrashed extends MediaTrigger
 			new MergeTag\User\UserLastName(
 				[
 					'slug' => 'attachment_trashing_user_lastname',
-					'name' => __(
-						'Attachment trashing user last name',
-						'notification'
-					),
+					'name' => __('Attachment trashing user last name', 'notification'),
 					'property_name' => 'trashing_user',
-					'group' => __(
-						'Trashing user',
-						'notification'
-					),
+					'group' => __('Trashing user', 'notification'),
 				]
 			)
 		);

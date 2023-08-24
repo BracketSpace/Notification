@@ -26,21 +26,9 @@ trait Webhook
 	 */
 	public function __construct($name)
 	{
-		$slug = strtolower(
-			str_replace(
-				' ',
-				'_',
-				$name
-			)
-		);
+		$slug = strtolower(str_replace(' ', '_', $name));
 
-		parent::__construct(
-			$slug,
-			__(
-				$name,
-				'notification'
-			)
-		);
+		parent::__construct($slug, __($name, 'notification'));
 	}
 
 	/**
@@ -67,10 +55,7 @@ trait Webhook
 			$this
 		);
 
-		$response = wp_remote_request(
-			$url,
-			$remoteArgs
-		);
+		$response = wp_remote_request($url, $remoteArgs);
 
 		if (is_wp_error($response)) {
 			logNotification(

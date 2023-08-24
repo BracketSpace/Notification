@@ -33,7 +33,6 @@ class CommentContent extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		if (isset($params['comment_type']) && !empty($params['comment_type'])) {
 			$this->commentType = $params['comment_type'];
 		}
@@ -46,18 +45,9 @@ class CommentContent extends StringTag
 			$params,
 			[
 				'slug' => 'comment_content',
-				'name' => sprintf(
 				// Translators: Comment type name.
-					__(
-						'%s content',
-						'notification'
-					),
-					$commentTypeName
-				),
-				'description' => __(
-					'Great post!',
-					'notification'
-				),
+				'name' => sprintf(__('%s content', 'notification'), $commentTypeName),
+				'description' => __('Great post!', 'notification'),
 				'example' => true,
 				'group' => $commentTypeName,
 				'resolver' => function ($trigger) {

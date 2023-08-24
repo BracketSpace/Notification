@@ -33,7 +33,6 @@ class CommentAuthorIP extends IPTag
 	 */
 	public function __construct($params = [])
 	{
-
 		if (isset($params['comment_type']) && !empty($params['comment_type'])) {
 			$this->commentType = $params['comment_type'];
 		}
@@ -46,24 +45,12 @@ class CommentAuthorIP extends IPTag
 			$params,
 			[
 				'slug' => 'comment_author_IP',
-				'name' => sprintf(
 				// Translators: Comment type name.
-					__(
-						'%s author IP',
-						'notification'
-					),
-					$commentTypeName
-				),
+				'name' => sprintf(__('%s author IP', 'notification'), $commentTypeName),
 				'description' => '127.0.0.1',
 				'example' => true,
-				'group' => sprintf(
 				// Translators: comment type author.
-					__(
-						'%s author',
-						'notification'
-					),
-					$commentTypeName
-				),
+				'group' => sprintf(__('%s author', 'notification'), $commentTypeName),
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->comment_author_IP;
 				},

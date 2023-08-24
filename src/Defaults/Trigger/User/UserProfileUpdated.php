@@ -36,20 +36,12 @@ class UserProfileUpdated extends UserTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'user/profile_updated',
-			__(
-				'User profile updated',
-				'notification'
-			)
+			__('User profile updated', 'notification')
 		);
 
-		$this->addAction(
-			'profile_update',
-			10,
-			2
-		);
+		$this->addAction('profile_update', 10, 2);
 
 		$this->setDescription(
 			__(
@@ -67,7 +59,6 @@ class UserProfileUpdated extends UserTrigger
 	 */
 	public function context($userId)
 	{
-
 		$this->userId = $userId;
 
 		$user = get_userdata($this->userId);
@@ -90,7 +81,6 @@ class UserProfileUpdated extends UserTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(new MergeTag\User\UserNicename());
@@ -103,10 +93,7 @@ class UserProfileUpdated extends UserTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'user_profile_updated_datetime',
-					'name' => __(
-						'User profile update time',
-						'notification'
-					),
+					'name' => __('User profile update time', 'notification'),
 				]
 			)
 		);

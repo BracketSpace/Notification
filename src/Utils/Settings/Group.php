@@ -79,7 +79,6 @@ class Group
 	 */
 	public function __construct($handle, $name, $slug, $section)
 	{
-
 		if (empty($handle)) {
 			throw new \Exception('Setting handle in Section instance cannot be empty');
 		}
@@ -113,16 +112,11 @@ class Group
 	 */
 	public function name($name = null)
 	{
-
 		if ($name !== null) {
 			$this->name = $name;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/group/name',
-			$this->name,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/group/name', $this->name, $this);
 	}
 
 	/**
@@ -133,16 +127,11 @@ class Group
 	 */
 	public function slug($slug = null)
 	{
-
 		if ($slug !== null) {
 			$this->slug = $slug;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/group/slug',
-			$this->slug,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/group/slug', $this->slug, $this);
 	}
 
 	/**
@@ -153,16 +142,11 @@ class Group
 	 */
 	public function section($section = null)
 	{
-
 		if ($section !== null) {
 			$this->section = $section;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/group/section',
-			$this->section,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/group/section', $this->section, $this);
 	}
 
 	/**
@@ -174,17 +158,12 @@ class Group
 	 */
 	public function description($description = null)
 	{
-
 		if ($description !== null) {
 			$this->description = $description;
 			return $this;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/group/description',
-			$this->description,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/group/description', $this->description, $this);
 	}
 
 	/**
@@ -195,17 +174,12 @@ class Group
 	 */
 	public function collapsed($collapsed = null)
 	{
-
 		if ($collapsed !== null) {
 			$this->collapsed = $collapsed;
 			return $this;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/group/collapsed',
-			$this->collapsed,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/group/collapsed', $this->collapsed, $this);
 	}
 
 	/**
@@ -227,7 +201,6 @@ class Group
 	 */
 	public function addField($args)
 	{
-
 		if (!isset($args['name'], $args['slug'], $args['render'])) {
 			throw new \Exception('You must define field name, slug and render callback');
 		}
@@ -276,10 +249,6 @@ class Group
 	 */
 	public function getFields()
 	{
-
-		return apply_filters(
-			$this->handle . '/settings/group/fields',
-			$this->fields
-		);
+		return apply_filters($this->handle . '/settings/group/fields', $this->fields);
 	}
 }

@@ -33,23 +33,11 @@ class PostTable
 		unset($columns['title']);
 
 		// Custom columns.
-		$columns['switch'] = __(
-			'Status',
-			'notification'
-		);
+		$columns['switch'] = __('Status', 'notification');
 		$columns['title'] = $titleColumn;
-		$columns['hash'] = __(
-			'Hash',
-			'notification'
-		);
-		$columns['trigger'] = __(
-			'Trigger',
-			'notification'
-		);
-		$columns['carriers'] = __(
-			'Carriers',
-			'notification'
-		);
+		$columns['hash'] = __('Hash', 'notification');
+		$columns['trigger'] = __('Trigger', 'notification');
+		$columns['carriers'] = __('Carriers', 'notification');
 		$columns['date'] = $dateColumn;
 
 		return $columns;
@@ -71,10 +59,7 @@ class PostTable
 		 *
 		 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
 		 */
-		$notification = adaptNotificationFrom(
-			'WordPress',
-			$postId
-		);
+		$notification = adaptNotificationFrom('WordPress', $postId);
 
 		switch ($column) {
 			case 'hash':
@@ -85,10 +70,7 @@ class PostTable
 				$trigger = $notification->getTrigger();
 				echo esc_html(
 					$trigger === null
-						? __(
-							'No trigger selected',
-							'notification'
-						)
+						? __('No trigger selected', 'notification')
 						: $trigger->getName()
 				);
 				break;
@@ -185,16 +167,10 @@ class PostTable
 			return $rowActions;
 		}
 
-		$rowActions['trash'] = '<a href="' . esc_url(
-			get_delete_post_link(
-				$post->ID,
-				'',
-				true
-			)
-		) . '" class="submitdelete notification-delete-post">' . esc_html__(
-			'Remove',
-			'notification'
-		) . '</a>';
+		$rowActions['trash'] = '<a href="' .
+			esc_url(get_delete_post_link($post->ID, '', true))
+			. '" class="submitdelete notification-delete-post">'
+			. esc_html__('Remove', 'notification') . '</a>';
 
 		return $rowActions;
 	}
@@ -212,18 +188,9 @@ class PostTable
 		unset($actions['edit']);
 		unset($actions['trash']);
 
-		$actions['delete'] = __(
-			'Remove',
-			'notification'
-		);
-		$actions['disable'] = __(
-			'Disable',
-			'notification'
-		);
-		$actions['enable'] = __(
-			'Enable',
-			'notification'
-		);
+		$actions['delete'] = __('Remove', 'notification');
+		$actions['disable'] = __('Disable', 'notification');
+		$actions['enable'] = __('Enable', 'notification');
 
 		return $actions;
 	}
@@ -241,13 +208,7 @@ class PostTable
 	 */
 	public function handleStatusBulkActions($redirectTo, $doaction, $postIds)
 	{
-		if (
-			!in_array(
-				$doaction,
-				['enable', 'disable'],
-				true
-			)
-		) {
+		if (!in_array($doaction, ['enable', 'disable'], true)) {
 			return $redirectTo;
 		}
 
@@ -257,18 +218,12 @@ class PostTable
 		);
 
 		foreach ($postIds as $postId) {
-			$notification = adaptNotificationFrom(
-				'WordPress',
-				$postId
-			);
+			$notification = adaptNotificationFrom('WordPress', $postId);
 			$notification->setEnabled($doaction === 'enable');
 			$notification->save();
 		}
 
-		$action = sprintf(
-			'bulk_%s_notifications',
-			$doaction
-		);
+		$action = sprintf('bulk_%s_notifications', $doaction);
 
 		return add_query_arg(
 			[
@@ -293,30 +248,21 @@ class PostTable
 			return;
 		}
 
-		check_admin_referer(
-			'notification_bulk_action',
-			'nonce'
-		);
+		check_admin_referer('notification_bulk_action', 'nonce');
 
 		$action = $_GET;
 
 		if (!empty($action['bulk_disable_notifications'])) {
-			$actionType = esc_html__(
-				'disabled',
-				'notification'
-			);
+			$actionType = esc_html__('disabled', 'notification');
 			$bulkCount = intval($action['bulk_disable_notifications']);
 		} else {
-			$actionType = esc_html__(
-				'enabled',
-				'notification'
-			);
+			$actionType = esc_html__('enabled', 'notification');
 			$bulkCount = intval($action['bulk_enable_notifications']);
 		}
 
 		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 		printf(
-		// translators: 1. Number of Notifications, 2. Action taken disabled|enabled.
+			// translators: 1. Number of Notifications, 2. Action taken disabled|enabled.
 			'<div id="message" class="updated notice is-dismissible"><p>' . _n(
 				'%1$s notification %2$s.',
 				'%1$s notifications %2$s.',

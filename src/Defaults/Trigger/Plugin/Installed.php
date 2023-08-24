@@ -29,33 +29,13 @@ class Installed extends PluginTrigger
 	 */
 	public function __construct()
 	{
+		parent::__construct('plugin/installed', __('Plugin installed', 'notification'));
 
-		parent::__construct(
-			'plugin/installed',
-			__(
-				'Plugin installed',
-				'notification'
-			)
-		);
+		$this->addAction('upgrader_process_complete', 1000, 2);
 
-		$this->addAction(
-			'upgrader_process_complete',
-			1000,
-			2
-		);
+		$this->setGroup(__('Plugin', 'notification'));
 
-		$this->setGroup(
-			__(
-				'Plugin',
-				'notification'
-			)
-		);
-		$this->setDescription(
-			__(
-				'Fires when plugin is installed',
-				'notification'
-			)
-		);
+		$this->setDescription(__('Fires when plugin is installed', 'notification'));
 	}
 
 	/**
@@ -67,16 +47,12 @@ class Installed extends PluginTrigger
 	 */
 	public function context($upgrader, $data)
 	{
-
 		if (!isset($data['type'], $data['action']) || $data['type'] !== 'plugin' || $data['action'] !== 'install') {
 			return false;
 		}
 
 		$pluginDir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $upgrader->plugin_info();
-		$this->plugin = get_plugin_data(
-			$pluginDir,
-			false
-		);
+		$this->plugin = get_plugin_data($pluginDir, false);
 		$this->pluginInstallationDateTime = (string)time();
 	}
 
@@ -87,17 +63,13 @@ class Installed extends PluginTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'plugin_installation_date_time',
-					'name' => __(
-						'Plugin installation date and time',
-						'notification'
-					),
+					'name' => __('Plugin installation date and time', 'notification'),
 				]
 			)
 		);

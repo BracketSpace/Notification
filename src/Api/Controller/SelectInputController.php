@@ -32,10 +32,7 @@ class SelectInputController
 		$params = $request->get_params();
 		$carrier = $params['carrier'];
 		$type = $params['type'];
-		$recipient = RecipientStore::get(
-			$carrier,
-			$type
-		);
+		$recipient = RecipientStore::get($carrier, $type);
 		$response = new Response();
 
 		if ($recipient) {
@@ -52,13 +49,7 @@ class SelectInputController
 			$data['css_class'] = $input->cssClass;
 			$data['id'] = $input->id;
 			$data['placeholder'] = $input->placeholder;
-			$data['type'] = strtolower(
-				str_replace(
-					'Field',
-					'',
-					$input->fieldTypeHtml
-				)
-			);
+			$data['type'] = strtolower(str_replace('Field', '', $input->fieldTypeHtml));
 			$data['value'] = $input->value;
 
 			$response->send($data);

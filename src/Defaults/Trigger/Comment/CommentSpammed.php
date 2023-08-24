@@ -25,35 +25,21 @@ class CommentSpammed extends CommentTrigger
 	 */
 	public function __construct($commentType = 'comment')
 	{
-
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/spammed',
-				'name' => sprintf(
 				// Translators: %s comment type.
-					__(
-						'%s spammed',
-						'notification'
-					),
-					WpObjectHelper::getCommentTypeName($commentType)
-				),
+				'name' => sprintf(__('%s spammed', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 				'comment_type' => $commentType,
 			]
 		);
 
-		$this->addAction(
-			'spammed_comment',
-			100,
-			2
-		);
+		$this->addAction('spammed_comment', 100, 2);
 
 		$this->setDescription(
 			sprintf(
-			// translators: comment type.
-				__(
-					'Fires when %s is marked as spam',
-					'notification'
-				),
+				// translators: comment type.
+				__('Fires when %s is marked as spam', 'notification'),
 				WpObjectHelper::getCommentTypeName($commentType)
 			)
 		);
@@ -68,7 +54,6 @@ class CommentSpammed extends CommentTrigger
 	 */
 	public function context($commentId, $comment)
 	{
-
 		$this->comment = $comment;
 
 		if (

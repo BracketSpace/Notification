@@ -39,11 +39,7 @@ class PostUpdated extends PostTrigger
 			]
 		);
 
-		$this->addAction(
-			'post_updated',
-			10,
-			3
-		);
+		$this->addAction('post_updated', 10, 3);
 	}
 
 	/**
@@ -54,11 +50,8 @@ class PostUpdated extends PostTrigger
 	public function getName(): string
 	{
 		return sprintf(
-		// translators: singular post name.
-			__(
-				'%s updated',
-				'notification'
-			),
+			// translators: singular post name.
+			__('%s updated', 'notification'),
 			WpObjectHelper::getPostTypeName($this->postType)
 		);
 	}
@@ -71,11 +64,8 @@ class PostUpdated extends PostTrigger
 	public function getDescription(): string
 	{
 		return sprintf(
-		// translators: 1. singular post name, 2. post type slug.
-			__(
-				'Fires when %1$s (%2$s) is updated',
-				'notification'
-			),
+			// translators: 1. singular post name, 2. post type slug.
+			__('Fires when %1$s (%2$s) is updated', 'notification'),
 			WpObjectHelper::getPostTypeName($this->postType),
 			$this->postType
 		);
@@ -110,16 +100,8 @@ class PostUpdated extends PostTrigger
 			return false;
 		}
 
-		if (
-			!in_array(
-			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-				$postBefore->post_status,
-				$updatedPostStatuses,
-				true
-			)
-			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-			|| $post->post_status === 'trash'
-		) {
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+		if (!in_array($postBefore->post_status, $updatedPostStatuses, true) || $post->post_status === 'trash') {
 			return false;
 		}
 
@@ -154,19 +136,10 @@ class PostUpdated extends PostTrigger
 						'%s_updating_user_ID',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s updating user ID',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s updating user ID', 'notification'), $postTypeName),
 					'property_name' => 'updating_user',
-					'group' => __(
-						'Updating user',
-						'notification'
-					),
+					'group' => __('Updating user', 'notification'),
 				]
 			)
 		);
@@ -178,19 +151,10 @@ class PostUpdated extends PostTrigger
 						'%s_updating_user_login',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s updating user login',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s updating user login', 'notification'), $postTypeName),
 					'property_name' => 'updating_user',
-					'group' => __(
-						'Updating user',
-						'notification'
-					),
+					'group' => __('Updating user', 'notification'),
 				]
 			)
 		);
@@ -202,19 +166,10 @@ class PostUpdated extends PostTrigger
 						'%s_updating_user_email',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s updating user email',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s updating user email', 'notification'), $postTypeName),
 					'property_name' => 'updating_user',
-					'group' => __(
-						'Updating user',
-						'notification'
-					),
+					'group' => __('Updating user', 'notification'),
 				]
 			)
 		);
@@ -226,19 +181,10 @@ class PostUpdated extends PostTrigger
 						'%s_updating_user_nicename',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s updating user nicename',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s updating user nicename', 'notification'), $postTypeName),
 					'property_name' => 'updating_user',
-					'group' => __(
-						'Updating user',
-						'notification'
-					),
+					'group' => __('Updating user', 'notification'),
 				]
 			)
 		);
@@ -250,19 +196,10 @@ class PostUpdated extends PostTrigger
 						'%s_updating_user_display_name',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s updating user display name',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s updating user display name', 'notification'), $postTypeName),
 					'property_name' => 'updating_user',
-					'group' => __(
-						'Updating user',
-						'notification'
-					),
+					'group' => __('Updating user', 'notification'),
 				]
 			)
 		);
@@ -274,19 +211,10 @@ class PostUpdated extends PostTrigger
 						'%s_updating_user_firstname',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s updating user first name',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s updating user first name', 'notification'), $postTypeName),
 					'property_name' => 'updating_user',
-					'group' => __(
-						'Updating user',
-						'notification'
-					),
+					'group' => __('Updating user', 'notification'),
 				]
 			)
 		);
@@ -298,19 +226,10 @@ class PostUpdated extends PostTrigger
 						'%s_updating_user_lastname',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s updating user last name',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s updating user last name', 'notification'), $postTypeName),
 					'property_name' => 'updating_user',
-					'group' => __(
-						'Updating user',
-						'notification'
-					),
+					'group' => __('Updating user', 'notification'),
 				]
 			)
 		);
@@ -322,19 +241,10 @@ class PostUpdated extends PostTrigger
 						'%s_updating_user_avatar',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s updating user email',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s updating user email', 'notification'), $postTypeName),
 					'property_name' => 'updating_user',
-					'group' => __(
-						'Updating user',
-						'notification'
-					),
+					'group' => __('Updating user', 'notification'),
 				]
 			)
 		);
@@ -346,19 +256,10 @@ class PostUpdated extends PostTrigger
 						'%s_updating_user_role',
 						$this->postType
 					),
-					'name' => sprintf(
 					// translators: singular post name.
-						__(
-							'%s updating user role',
-							'notification'
-						),
-						$postTypeName
-					),
+					'name' => sprintf(__('%s updating user role', 'notification'), $postTypeName),
 					'property_name' => 'updating_user',
-					'group' => __(
-						'Updating user',
-						'notification'
-					),
+					'group' => __('Updating user', 'notification'),
 				]
 			)
 		);

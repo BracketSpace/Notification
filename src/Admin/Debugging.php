@@ -27,35 +27,16 @@ class Debugging
 	 */
 	public function debuggingSettings($settings)
 	{
+		$debugging = $settings->addSection(__('Debugging', 'notification'), 'debugging');
 
-		$debugging = $settings->addSection(
-			__(
-				'Debugging',
-				'notification'
-			),
-			'debugging'
-		);
-
-		$debugging->addGroup(
-			__(
-				'Settings',
-				'notification'
-			),
-			'settings'
-		)
+		$debugging->addGroup(__('Settings', 'notification'), 'settings')
 			->addField(
 				[
-					'name' => __(
-						'Notification log',
-						'notification'
-					),
+					'name' => __('Notification log', 'notification'),
 					'slug' => 'debug_log',
 					'default' => false,
 					'addons' => [
-						'label' => __(
-							'Enable Notification logging',
-							'notification'
-						),
+						'label' => __('Enable Notification logging', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
@@ -63,17 +44,11 @@ class Debugging
 			)
 			->addField(
 				[
-					'name' => __(
-						'Suppress Notifications',
-						'notification'
-					),
+					'name' => __('Suppress Notifications', 'notification'),
 					'slug' => 'debug_suppressing',
 					'default' => 'true',
 					'addons' => [
-						'label' => __(
-							'Suppress Notifications while logging is active',
-							'notification'
-						),
+						'label' => __('Suppress Notifications while logging is active', 'notification'),
 					],
 					'description' => __(
 						'While suppressing is active, no notifications are sent',
@@ -85,17 +60,11 @@ class Debugging
 			)
 			->addField(
 				[
-					'name' => __(
-						'Error log',
-						'notification'
-					),
+					'name' => __('Error log', 'notification'),
 					'slug' => 'error_log',
 					'default' => false,
 					'addons' => [
-						'label' => __(
-							'Enable error logging',
-							'notification'
-						),
+						'label' => __('Enable error logging', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
@@ -103,28 +72,21 @@ class Debugging
 			)
 			->addField(
 				[
-					'name' => __(
-						'Clear',
-						'notification'
-					),
+					'name' => __('Clear', 'notification'),
 					'slug' => 'clear',
 					'default' => false,
 					'addons' => [
 						'message' => '
 						<a href="' . admin_url(
 							'admin-post.php?action=notification_clear_logs&log_type=notification&nonce=' .
-							wp_create_nonce(
-								'notification_clear_log_notification'
-							)
+								wp_create_nonce('notification_clear_log_notification')
 						) . '" class="button button-secondary">' . esc_html__('Clear Notification logs') .
-									'</a>
-						<a href="' . admin_url(
-										'admin-post.php?action=notification_clear_logs&log_type=error&nonce=' .
-										wp_create_nonce(
-											'notification_clear_log_error'
-										)
-									) . '" class="button button-secondary">' . esc_html__('Clear Error logs') .
-									 '</a>
+							'</a>
+							<a href="' . admin_url(
+								'admin-post.php?action=notification_clear_logs&log_type=error&nonce=' .
+									wp_create_nonce('notification_clear_log_error')
+							) . '" class="button button-secondary">' . esc_html__('Clear Error logs') .
+							'</a>
 					',
 					],
 					'render' => [new CoreFields\Message(), 'input'],
@@ -132,38 +94,20 @@ class Debugging
 				]
 			);
 
-		$debugging->addGroup(
-			__(
-				'Notification Log',
-				'notification'
-			),
-			'notification_log'
-		)
+		$debugging->addGroup(__('Notification Log', 'notification'), 'notification_log')
 			->addField(
 				[
-					'name' => __(
-						'Log',
-						'notification'
-					),
+					'name' => __('Log', 'notification'),
 					'slug' => 'log',
 					'render' => [new SpecificFields\NotificationLog(), 'input'],
 					'sanitize' => '__return_null',
 				]
 			);
 
-		$debugging->addGroup(
-			__(
-				'Error Log',
-				'notification'
-			),
-			'error_log'
-		)
+		$debugging->addGroup(__('Error Log', 'notification'), 'error_log')
 			->addField(
 				[
-					'name' => __(
-						'Log',
-						'notification'
-					),
+					'name' => __('Log', 'notification'),
 					'slug' => 'log',
 					'render' => [new SpecificFields\ErrorLog(), 'input'],
 					'sanitize' => '__return_null',
@@ -182,9 +126,9 @@ class Debugging
 	public function debugWarning()
 	{
 		if (
-			get_post_type() !== 'notification' || !getSetting(
-				'debugging/settings/debug_log'
-			) || !getSetting('debugging/settings/debug_suppressing')
+			get_post_type() !== 'notification' ||
+			!getSetting('debugging/settings/debug_log') ||
+			!getSetting('debugging/settings/debug_suppressing')
 		) {
 			return;
 		}
@@ -193,14 +137,20 @@ class Debugging
 			'Debug log is active and no notifications will be sent.',
 			'notification'
 		);
-		$debugLogLink = '<a href="' . admin_url(
-			'edit.php?post_type=notification&page=settings&section=debugging'
-		) . '">' . esc_html__(
-			'See debug log',
-			'notification'
-		) . '</a>';
 
-		echo wp_kses_post('<div class="notice notice-warning"><p>' . $message . ' ' . $debugLogLink . '</p></div>');
+		$debugLogLink = sprintf(
+			'<a href="%s">%s</a>',
+			esc_url(admin_url('edit.php?post_type=notification&page=settings&section=debugging')),
+			esc_html__('See debug log', 'notification')
+		);
+
+		echo wp_kses_post(
+			sprintf(
+				'<div class="notice notice-warning"><p>%s %s</p></div>',
+				$message,
+				$debugLogLink
+			)
+		);
 	}
 
 	/**

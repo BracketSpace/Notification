@@ -25,35 +25,21 @@ class CommentTrashed extends CommentTrigger
 	 */
 	public function __construct($commentType = 'comment')
 	{
-
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/trashed',
-				'name' => sprintf(
 				// Translators: %s comment type.
-					__(
-						'%s trashed',
-						'notification'
-					),
-					WpObjectHelper::getCommentTypeName($commentType)
-				),
+				'name' => sprintf(__('%s trashed', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 				'comment_type' => $commentType,
 			]
 		);
 
-		$this->addAction(
-			'trashed_comment',
-			10,
-			2
-		);
+		$this->addAction('trashed_comment', 10, 2);
 
 		$this->setDescription(
 			sprintf(
-			// translators: comment type.
-				__(
-					'Fires when %s is trashed',
-					'notification'
-				),
+				// translators: comment type.
+				__('Fires when %s is trashed', 'notification'),
 				WpObjectHelper::getCommentTypeName($commentType)
 			)
 		);
@@ -68,7 +54,6 @@ class CommentTrashed extends CommentTrigger
 	 */
 	public function context($commentId, $comment)
 	{
-
 		$this->comment = $comment;
 
 		if (

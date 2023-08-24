@@ -89,13 +89,8 @@ class Api
 	 */
 	public function restApiInit()
 	{
-
 		foreach ($this->routes as $route) {
-			register_rest_route(
-				$this->namespace,
-				$route['path'],
-				$route['args']
-			);
+			register_rest_route($this->namespace, $route['path'], $route['args']);
 		}
 	}
 
@@ -108,11 +103,6 @@ class Api
 	 */
 	public function getEndpoint($endpoint)
 	{
-
-		return sprintf(
-			'%s/%s/',
-			$this->namespace,
-			untrailingslashit($endpoint)
-		);
+		return sprintf('%s/%s/', $this->namespace, untrailingslashit($endpoint));
 	}
 }

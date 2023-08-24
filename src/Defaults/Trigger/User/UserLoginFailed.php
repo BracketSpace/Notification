@@ -29,26 +29,15 @@ class UserLoginFailed extends UserTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'user/login_failed',
-			__(
-				'User login failed',
-				'notification'
-			)
+			__('User login failed', 'notification')
 		);
 
-		$this->addAction(
-			'wp_login_failed',
-			10,
-			1
-		);
+		$this->addAction('wp_login_failed', 10, 1);
 
 		$this->setDescription(
-			__(
-				'Fires when user login failed',
-				'notification'
-			)
+			__('Fires when user login failed', 'notification')
 		);
 	}
 
@@ -60,7 +49,6 @@ class UserLoginFailed extends UserTrigger
 	 */
 	public function context($username)
 	{
-
 		$user = get_user_by(
 			'login',
 			$username
@@ -89,7 +77,6 @@ class UserLoginFailed extends UserTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(new MergeTag\User\UserNicename());
@@ -102,10 +89,7 @@ class UserLoginFailed extends UserTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'user_login_failed_datetime',
-					'name' => __(
-						'User login failed datetime',
-						'notification'
-					),
+					'name' => __('User login failed datetime', 'notification'),
 				]
 			)
 		);

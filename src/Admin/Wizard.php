@@ -65,14 +65,8 @@ class Wizard
 	{
 		$this->pageHook = add_submenu_page(
 			'',
-			__(
-				'Wizard',
-				'notification'
-			),
-			__(
-				'Wizard',
-				'notification'
-			),
+			__('Wizard', 'notification'),
+			__('Wizard', 'notification'),
 			'manage_options',
 			'wizard',
 			[$this, 'wizardPage']
@@ -130,54 +124,30 @@ class Wizard
 	{
 		return [
 			[
-				'name' => __(
-					'Common Notifications',
-					'notification'
-				),
+				'name' => __('Common Notifications', 'notification'),
 				'items' => [
 					[
-						'name' => __(
-							'Post published',
-							'notification'
-						),
+						'name' => __('Post published', 'notification'),
 						'slug' => 'post_published_admin',
-						'description' => __(
-							'An email to administrator when post is published',
-							'notification'
-						),
+						'description' => __('An email to administrator when post is published', 'notification'),
 						'recipients' => [
 							[
-								'name' => __(
-									'Administrator',
-									'notification'
-								),
+								'name' => __('Administrator', 'notification'),
 							],
 						],
 					],
 					[
-						'name' => __(
-							'Post published',
-							'notification'
-						),
+						'name' => __('Post published', 'notification'),
 						'slug' => 'post_published_subscribers',
-						'description' => __(
-							'An email to all Subscribers when post is published',
-							'notification'
-						),
+						'description' => __('An email to all Subscribers when post is published', 'notification'),
 						'recipients' => [
 							[
-								'name' => __(
-									'Subscribers (role)',
-									'notification'
-								),
+								'name' => __('Subscribers (role)', 'notification'),
 							],
 						],
 					],
 					[
-						'name' => __(
-							'Post pending review',
-							'notification'
-						),
+						'name' => __('Post pending review', 'notification'),
 						'slug' => 'post_review',
 						'description' => __(
 							'An email to administrator when post has been sent for review',
@@ -185,121 +155,67 @@ class Wizard
 						),
 						'recipients' => [
 							[
-								'name' => __(
-									'Administrator',
-									'notification'
-								),
+								'name' => __('Administrator', 'notification'),
 							],
 						],
 					],
 					[
-						'name' => __(
-							'Post updated',
-							'notification'
-						),
+						'name' => __('Post updated', 'notification'),
 						'slug' => 'post_updated',
-						'description' => __(
-							'An email to administrator when post is updated',
-							'notification'
-						),
+						'description' => __('An email to administrator when post is updated', 'notification'),
 						'recipients' => [
 							[
-								'name' => __(
-									'Administrator',
-									'notification'
-								),
+								'name' => __('Administrator', 'notification'),
 							],
 						],
 					],
 					[
-						'name' => __(
-							'Welcome email',
-							'notification'
-						),
+						'name' => __('Welcome email', 'notification'),
 						'slug' => 'welcome_email',
-						'description' => __(
-							'An email to registered user',
-							'notification'
-						),
+						'description' => __('An email to registered user', 'notification'),
 						'recipients' => [
 							[
-								'name' => __(
-									'User',
-									'notification'
-								),
+								'name' => __('User', 'notification'),
 							],
 						],
 					],
 					[
-						'name' => __(
-							'Comment added',
-							'notification'
-						),
+						'name' => __('Comment added', 'notification'),
 						'slug' => 'comment_added',
-						'description' => __(
-							'An email to post author about comment to his article',
-							'notification'
-						),
+						'description' => __('An email to post author about comment to his article', 'notification'),
 						'recipients' => [
 							[
-								'name' => __(
-									'Post author',
-									'notification'
-								),
+								'name' => __('Post author', 'notification'),
 							],
 						],
 					],
 					[
-						'name' => __(
-							'Comment reply',
-							'notification'
-						),
+						'name' => __('Comment reply', 'notification'),
 						'slug' => 'comment_reply',
-						'description' => __(
-							'An email to comment autor about the reply',
-							'notification'
-						),
+						'description' => __('An email to comment autor about the reply', 'notification'),
 						'recipients' => [
 							[
-								'name' => __(
-									'Comment author',
-									'notification'
-								),
+								'name' => __('Comment author', 'notification'),
 							],
 						],
 					],
 				],
 			],
 			[
-				'name' => __(
-					'WordPress emails',
-					'notification'
-				),
+				'name' => __('WordPress emails', 'notification'),
 				'items' => [
 					[
-						'name' => __(
-							'New user',
-							'notification'
-						),
+						'name' => __('New user', 'notification'),
 						'slug' => 'new_user',
-						'description' => __(
-							'An email to administrator when new user is created',
-							'notification'
-						),
+						'description' => __('An email to administrator when new user is created', 'notification'),
 						'recipients' => [
 							[
-								'name' => __(
-									'Administrator',
-									'notification'
-								),
+								'name' => __('Administrator', 'notification'),
 							],
 						],
 					],
 					[
-						'name' => __(
-							'Your account',
-							'notification'
-						),
+						'name' => __('Your account', 'notification'),
 						'slug' => 'your_account',
 						'description' => __(
 							'An email to registered user, with password reset link',
@@ -307,56 +223,32 @@ class Wizard
 						),
 						'recipients' => [
 							[
-								'name' => __(
-									'User',
-									'notification'
-								),
+								'name' => __('User', 'notification'),
 							],
 						],
 					],
 					[
-						'name' => __(
-							'Password reset request',
-							'notification'
-						),
+						'name' => __('Password reset request', 'notification'),
 						'slug' => 'password_forgotten',
-						'description' => __(
-							'An email to user when password reset has been requested',
-							'notification'
-						),
+						'description' => __('An email to user when password reset has been requested', 'notification'),
 						'recipients' => [
 							[
-								'name' => __(
-									'User',
-									'notification'
-								),
+								'name' => __('User', 'notification'),
 							],
 						],
 					],
 					[
-						'name' => __(
-							'Password reset',
-							'notification'
-						),
+						'name' => __('Password reset', 'notification'),
 						'slug' => 'password_reset',
-						'description' => __(
-							'An email with info that password has been reset',
-							'notification'
-						),
+						'description' => __('An email with info that password has been reset', 'notification'),
 						'recipients' => [
 							[
-								'name' => __(
-									'User',
-									'notification'
-								),
+								'name' => __('User', 'notification'),
 							],
 						],
 					],
 					[
-						'name' => __(
-							'Comment awaiting moderation',
-							'notification'
-						),
+						'name' => __('Comment awaiting moderation', 'notification'),
 						'slug' => 'comment_moderation',
 						'description' => __(
 							'An email to administrator and post author that comment is awaiting moderation',
@@ -364,35 +256,20 @@ class Wizard
 						),
 						'recipients' => [
 							[
-								'name' => __(
-									'Administrator',
-									'notification'
-								),
+								'name' => __('Administrator', 'notification'),
 							],
 							[
-								'name' => __(
-									'Post author',
-									'notification'
-								),
+								'name' => __('Post author', 'notification'),
 							],
 						],
 					],
 					[
-						'name' => __(
-							'Comment has been published',
-							'notification'
-						),
+						'name' => __('Comment has been published', 'notification'),
 						'slug' => 'comment_published',
-						'description' => __(
-							'An email to post author that comment has been published',
-							'notification'
-						),
+						'description' => __('An email to post author that comment has been published', 'notification'),
 						'recipients' => [
 							[
-								'name' => __(
-									'Post author',
-									'notification'
-								),
+								'name' => __('Post author', 'notification'),
 							],
 						],
 					],
@@ -411,10 +288,7 @@ class Wizard
 	public function saveSettings()
 	{
 		if (
-			wp_verify_nonce(
-				sanitize_key($_POST['_wpnonce'] ?? ''),
-				'notification_wizard'
-			) === false
+			wp_verify_nonce(sanitize_key($_POST['_wpnonce'] ?? ''), 'notification_wizard') === false
 		) {
 			wp_die('Can\'t touch this');
 		}
@@ -449,10 +323,7 @@ class Wizard
 		$jsonPathTmpl = 'resources/wizard-data/%s.json';
 
 		foreach ($notifications as $notificationSlug) {
-			$jsonPath = sprintf(
-				$jsonPathTmpl,
-				$notificationSlug
-			);
+			$jsonPath = sprintf($jsonPathTmpl, $notificationSlug);
 
 			if (!$this->filesystem->is_readable($jsonPath)) {
 				continue;
@@ -460,16 +331,10 @@ class Wizard
 
 			$json = $this->filesystem->get_contents($jsonPath);
 
-			$jsonAdapter = adaptNotificationFrom(
-				'JSON',
-				$json
-			);
+			$jsonAdapter = adaptNotificationFrom('JSON', $json);
 			$jsonAdapter->refreshHash();
 
-			$wpAdapter = swapNotificationAdapter(
-				'WordPress',
-				$jsonAdapter
-			);
+			$wpAdapter = swapNotificationAdapter('WordPress', $jsonAdapter);
 			$wpAdapter->save();
 		}
 
@@ -491,17 +356,9 @@ class Wizard
 	private function saveOptionToDismissWizard()
 	{
 		if (get_option($this->dismissedOption) !== false) {
-			update_option(
-				$this->dismissedOption,
-				true
-			);
+			update_option($this->dismissedOption, true);
 		} else {
-			add_option(
-				$this->dismissedOption,
-				true,
-				'',
-				'no'
-			);
+			add_option($this->dismissedOption, true, '', 'no');
 		}
 	}
 

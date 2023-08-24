@@ -106,7 +106,6 @@ class Field
 	 */
 	public function __construct($handle, $name, $slug, $section, $group)
 	{
-
 		if (empty($handle)) {
 			throw new \Exception('Setting handle in Section instance cannot be empty');
 		}
@@ -141,16 +140,11 @@ class Field
 	 */
 	public function name($name = null)
 	{
-
 		if ($name !== null) {
 			$this->name = $name;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/field/name',
-			$this->name,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/field/name', $this->name, $this);
 	}
 
 	/**
@@ -161,16 +155,11 @@ class Field
 	 */
 	public function slug($slug = null)
 	{
-
 		if ($slug !== null) {
 			$this->slug = $slug;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/field/slug',
-			$this->slug,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/field/slug', $this->slug, $this);
 	}
 
 	/**
@@ -181,16 +170,11 @@ class Field
 	 */
 	public function section($section = null)
 	{
-
 		if ($section !== null) {
 			$this->section = $section;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/field/section',
-			$this->section,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/field/section', $this->section, $this);
 	}
 
 	/**
@@ -201,16 +185,11 @@ class Field
 	 */
 	public function group($group = null)
 	{
-
 		if ($group !== null) {
 			$this->group = $group;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/field/group',
-			$this->group,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/field/group', $this->group, $this);
 	}
 
 	/**
@@ -221,16 +200,11 @@ class Field
 	 */
 	public function description($description = null)
 	{
-
 		if ($description !== null) {
 			$this->description = $description;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/field/description',
-			$this->description,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/field/description', $this->description, $this);
 	}
 
 	/**
@@ -241,16 +215,11 @@ class Field
 	 */
 	public function value($value = null)
 	{
-
 		if ($value !== null) {
 			$this->value = $value;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/field/value',
-			$this->value,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/field/value', $this->value, $this);
 	}
 
 	/**
@@ -261,16 +230,11 @@ class Field
 	 */
 	public function defaultValue($defaultValue = null)
 	{
-
 		if ($defaultValue !== null) {
 			$this->defaultValue = $defaultValue;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/field/default_value',
-			$this->defaultValue,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/field/default_value', $this->defaultValue, $this);
 	}
 
 	/**
@@ -281,16 +245,11 @@ class Field
 	 */
 	public function addons($addons = null)
 	{
-
 		if ($addons !== null) {
 			$this->addons = $addons;
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/field/addons',
-			$this->addons,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/field/addons', $this->addons, $this);
 	}
 
 	/**
@@ -301,15 +260,10 @@ class Field
 	 */
 	public function addon($addon = null)
 	{
-
 		$addons = $this->addons();
 
 		if (isset($addons[$addon])) {
-			return apply_filters(
-				$this->handle . '/settings/field/addon',
-				$addons[$addon],
-				$this
-			);
+			return apply_filters($this->handle . '/settings/field/addon', $addons[$addon], $this);
 		}
 
 		return null;
@@ -322,14 +276,15 @@ class Field
 	 */
 	public function inputName()
 	{
-
-		$name = $this->handle . '_settings[' . $this->section() . '][' . $this->group() . '][' . $this->slug() . ']';
-
-		return apply_filters(
-			$this->handle . '/settings/field/input/name',
-			$name,
-			$this
+		$name = sprintf(
+			'%s_settings[%s][%s][%s]',
+			$this->handle,
+			$this->section(),
+			$this->group(),
+			$this->slug()
 		);
+
+		return apply_filters($this->handle . '/settings/field/input/name', $name, $this);
 	}
 
 	/**
@@ -339,14 +294,15 @@ class Field
 	 */
 	public function inputId()
 	{
-
-		$id = $this->handle . '-setting-' . $this->section() . '-' . $this->group() . '-' . $this->slug();
-
-		return apply_filters(
-			$this->handle . '/settings/field/input/id',
-			$id,
-			$this
+		$id = sprintf(
+			'%s-setting-%s-%s-%s',
+			$this->handle,
+			$this->section(),
+			$this->group(),
+			$this->slug()
 		);
+
+		return apply_filters($this->handle . '/settings/field/input/id', $id, $this);
 	}
 
 	/**
@@ -358,7 +314,6 @@ class Field
 	 */
 	public function setRenderer($renderer)
 	{
-
 		if (!is_callable($renderer)) {
 			throw new \Exception('Field renderer is not callable');
 		}

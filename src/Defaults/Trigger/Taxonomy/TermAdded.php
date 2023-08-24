@@ -41,11 +41,7 @@ class TermAdded extends TermTrigger
 			]
 		);
 
-		$this->addAction(
-			'created_' . $taxonomy,
-			100,
-			2
-		);
+		$this->addAction('created_' . $taxonomy, 100, 2);
 	}
 
 	/**
@@ -57,10 +53,7 @@ class TermAdded extends TermTrigger
 	{
 		return sprintf(
 		// Translators: taxonomy name.
-			__(
-				'%s term created',
-				'notification'
-			),
+			__('%s term created', 'notification'),
 			$this->taxonomy->labels->singular_name ?? ''
 		);
 	}
@@ -74,10 +67,7 @@ class TermAdded extends TermTrigger
 	{
 		return sprintf(
 		// Translators: 1. taxonomy name, 2. taxonomy slug.
-			__(
-				'Fires when %1$s (%2$s) is created',
-				'notification'
-			),
+			__('Fires when %1$s (%2$s) is created', 'notification'),
 			$this->taxonomy->labels->singular_name ?? '',
 			$this->taxonomy->name ?? ''
 		);
@@ -105,9 +95,7 @@ class TermAdded extends TermTrigger
 		}
 
 		$termLink = get_term_link($this->term);
-		$this->termPermalink = is_string($termLink)
-			? $termLink
-			: '';
+		$this->termPermalink = is_string($termLink) ? $termLink : '';
 
 		$this->termCreationDatetime = (string)time();
 	}
@@ -119,21 +107,14 @@ class TermAdded extends TermTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'term_creation_datetime',
-					'name' => __(
-						'Term creation date and time',
-						'notification'
-					),
-					'group' => __(
-						'Term',
-						'notification'
-					),
+					'name' => __('Term creation date and time', 'notification'),
+					'group' => __('Term', 'notification'),
 				]
 			)
 		);

@@ -30,25 +30,15 @@ class UserRegistered extends UserTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'user/registered',
-			__(
-				'User registration',
-				'notification'
-			)
+			__('User registration', 'notification')
 		);
 
-		$this->addAction(
-			'user_register',
-			1000
-		);
+		$this->addAction('user_register', 1000);
 
 		$this->setDescription(
-			__(
-				'Fires when user registers new account',
-				'notification'
-			)
+			__('Fires when user registers new account', 'notification')
 		);
 	}
 
@@ -60,7 +50,6 @@ class UserRegistered extends UserTrigger
 	 */
 	public function context($userId)
 	{
-
 		$this->userId = $userId;
 
 		$user = get_userdata($this->userId);
@@ -82,38 +71,33 @@ class UserRegistered extends UserTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(
 			new MergeTag\UrlTag(
 				[
 					'slug' => 'user_password_setup_link',
-					'name' => __(
-						'User password setup link',
-						'notification'
-					),
+					'name' => __('User password setup link', 'notification'),
 					'description' => network_site_url(
 						'wp-login.php?action=rp&key=37f62f1363b04df4370753037853fe88&login=userlogin',
 						'login'
 					) . "\n" .
-									__(
-										'After using this Merge Tag, no other password setup links will work.',
-										'notification'
-									),
+						__(
+							'After using this Merge Tag, no other password setup links will work.',
+							'notification'
+						),
 					'example' => true,
 					'resolver' => static function ($trigger) {
 						return network_site_url(
-							'wp-login.php?action=rp&key=' . $trigger->getPasswordResetKey() . '&login=' . rawurlencode(
-								$trigger->userObject->userLogin
+							sprintf(
+								'wp-login.php?action=rp&key=%s&login=%s',
+								$trigger->getPasswordResetKey(),
+								rawurlencode($trigger->userObject->userLogin)
 							),
 							'login'
 						);
 					},
-					'group' => __(
-						'User',
-						'notification'
-					),
+					'group' => __('User', 'notification'),
 				]
 			)
 		);
@@ -127,7 +111,6 @@ class UserRegistered extends UserTrigger
 	 */
 	public function getPasswordResetKey()
 	{
-
 		add_filter(
 			'allow_password_reset',
 			'__return_true',

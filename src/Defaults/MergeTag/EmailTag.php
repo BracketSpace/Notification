@@ -32,10 +32,7 @@ class EmailTag extends MergeTag
 	 */
 	public function validate($value)
 	{
-		return filter_var(
-			$value,
-			FILTER_VALIDATE_EMAIL
-		) !== false;
+		return filter_var($value, FILTER_VALIDATE_EMAIL) !== false;
 	}
 
 	/**

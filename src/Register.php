@@ -27,10 +27,7 @@ class Register
 			$carrier->getSlug(),
 			$carrier
 		);
-		do_action(
-			'notification/carrier/registered',
-			$carrier
-		);
+		do_action('notification/carrier/registered', $carrier);
 
 		return $carrier;
 	}
@@ -50,11 +47,7 @@ class Register
 			$recipient->getSlug(),
 			$recipient
 		);
-		do_action(
-			'notification/recipient/registered',
-			$recipient,
-			$carrierSlug
-		);
+		do_action('notification/recipient/registered', $recipient, $carrierSlug);
 
 		return $recipient;
 	}
@@ -72,10 +65,7 @@ class Register
 			$resolver->getSlug(),
 			$resolver
 		);
-		do_action(
-			'notification/resolver/registered',
-			$resolver
-		);
+		do_action('notification/resolver/registered', $resolver);
 
 		return $resolver;
 	}
@@ -93,10 +83,7 @@ class Register
 			$trigger->getSlug(),
 			$trigger
 		);
-		do_action(
-			'notification/trigger/registered',
-			$trigger
-		);
+		do_action('notification/trigger/registered', $trigger);
 
 		return $trigger;
 	}
@@ -115,10 +102,7 @@ class Register
 			$mergeTag
 		);
 
-		do_action(
-			'notification/global_merge_tag/registered',
-			$mergeTag
-		);
+		do_action('notification/global_merge_tag/registered', $mergeTag);
 
 		// Register the Merge Tag.
 		add_action(

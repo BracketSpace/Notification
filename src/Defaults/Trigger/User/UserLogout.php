@@ -36,26 +36,15 @@ class UserLogout extends UserTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'user/logout',
-			__(
-				'User logout',
-				'notification'
-			)
+			__('User logout', 'notification')
 		);
 
-		$this->addAction(
-			'wp_logout',
-			10,
-			1
-		);
+		$this->addAction('wp_logout', 10, 1);
 
 		$this->setDescription(
-			__(
-				'Fires when user log out from WordPress',
-				'notification'
-			)
+			__('Fires when user log out from WordPress', 'notification')
 		);
 	}
 
@@ -92,7 +81,6 @@ class UserLogout extends UserTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(new MergeTag\User\UserNicename());
@@ -105,10 +93,7 @@ class UserLogout extends UserTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'user_logout_datetime',
-					'name' => __(
-						'User logout time',
-						'notification'
-					),
+					'name' => __('User logout time', 'notification'),
 				]
 			)
 		);

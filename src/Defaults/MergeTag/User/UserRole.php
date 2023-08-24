@@ -29,26 +29,16 @@ class UserRole extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->setTriggerProp($params['property_name'] ?? 'user_object');
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug' => 'user_role',
-				'name' => __(
-					'User role',
-					'notification'
-				),
-				'description' => __(
-					'Subscriber',
-					'notification'
-				),
+				'name' => __('User role', 'notification'),
+				'description' => __('Subscriber', 'notification'),
 				'example' => true,
-				'group' => __(
-					'User',
-					'notification'
-				),
+				'group' => __('User', 'notification'),
 				'resolver' => function () {
 					$roles = array_map(
 						static function ($role) {
@@ -58,10 +48,7 @@ class UserRole extends StringTag
 						$this->trigger->{$this->getTriggerProp()}->roles
 					);
 
-					return implode(
-						', ',
-						$roles
-					);
+					return implode(', ', $roles);
 				},
 			]
 		);

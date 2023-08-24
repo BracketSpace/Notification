@@ -36,26 +36,15 @@ class UserLogin extends UserTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'user/login',
-			__(
-				'User login',
-				'notification'
-			)
+			__('User login', 'notification')
 		);
 
-		$this->addAction(
-			'wp_login',
-			10,
-			2
-		);
+		$this->addAction('wp_login', 10, 2);
 
 		$this->setDescription(
-			__(
-				'Fires when user log into WordPress',
-				'notification'
-			)
+			__('Fires when user log into WordPress', 'notification')
 		);
 	}
 
@@ -68,7 +57,6 @@ class UserLogin extends UserTrigger
 	 */
 	public function context($userLogin, $user)
 	{
-
 		$this->userId = $user->ID;
 
 		$user = get_userdata($this->userId);
@@ -91,7 +79,6 @@ class UserLogin extends UserTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(new MergeTag\User\UserNicename());
@@ -104,10 +91,7 @@ class UserLogin extends UserTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'user_logged_in_datetime',
-					'name' => __(
-						'User login time',
-						'notification'
-					),
+					'name' => __('User login time', 'notification'),
 				]
 			)
 		);
@@ -116,10 +100,7 @@ class UserLogin extends UserTrigger
 			new MergeTag\IPTag(
 				[
 					'slug' => 'user_IP',
-					'name' => __(
-						'User IP',
-						'notification'
-					),
+					'name' => __('User IP', 'notification'),
 					'description' => '127.0.0.1',
 					'example' => true,
 					'resolver' => static function ($trigger) {
@@ -136,10 +117,7 @@ class UserLogin extends UserTrigger
 						}
 						return '';
 					},
-					'group' => __(
-						'User',
-						'notification'
-					),
+					'group' => __('User', 'notification'),
 				]
 			)
 		);

@@ -28,10 +28,7 @@ class UserID extends Abstracts\Recipient
 		parent::__construct(
 			[
 				'slug' => 'user_id',
-				'name' => __(
-					'User ID',
-					'notification'
-				),
+				'name' => __('User ID', 'notification'),
 				'default_value' => '',
 			]
 		);
@@ -45,18 +42,11 @@ class UserID extends Abstracts\Recipient
 	 */
 	public function parseValue($value = '')
 	{
-
 		if (empty($value)) {
 			return [];
 		}
 
-		$userIds = array_map(
-			'trim',
-			explode(
-				',',
-				$value
-			)
-		);
+		$userIds = array_map('trim', explode(',', $value));
 		$users = get_users(
 			[
 				'include' => $userIds,
@@ -64,10 +54,7 @@ class UserID extends Abstracts\Recipient
 			]
 		);
 
-		return wp_list_pluck(
-			$users,
-			'user_email'
-		);
+		return wp_list_pluck($users, 'user_email');
 	}
 
 	/**
@@ -77,23 +64,13 @@ class UserID extends Abstracts\Recipient
 	 */
 	public function input()
 	{
-
 		return new Field\InputField(
 			[
-				'label' => __(
-					'Recipient',
-					'notification'
-				), // don't edit this!
+				'label' => __('Recipient', 'notification'), // don't edit this!
 				'name' => 'recipient',                       // don't edit this!
 				'css_class' => 'recipient-value',                 // don't edit this!
-				'placeholder' => __(
-					'123 or {user_ID}',
-					'notification'
-				),
-				'description' => __(
-					'You can use any valid email merge tag.',
-					'notification'
-				),
+				'placeholder' => __('123 or {user_ID}', 'notification'),
+				'description' => __('You can use any valid email merge tag.', 'notification'),
 				'resolvable' => true,
 			]
 		);

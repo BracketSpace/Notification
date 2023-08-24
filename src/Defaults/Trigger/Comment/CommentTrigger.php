@@ -89,20 +89,13 @@ abstract class CommentTrigger extends Abstracts\Trigger
 	 */
 	public function __construct($params = [])
 	{
-
 		if (!isset($params['comment_type'], $params['slug'], $params['name'])) {
-			trigger_error(
-				'CommentTrigger requires comment_type, slug and name params.',
-				E_USER_ERROR
-			);
+			trigger_error('CommentTrigger requires comment_type, slug and name params.', E_USER_ERROR);
 		}
 
 		$this->commentType = $params['comment_type'];
 
-		parent::__construct(
-			$params['slug'],
-			$params['name']
-		);
+		parent::__construct($params['slug'], $params['name']);
 
 		$this->setGroup((string)WpObjectHelper::getCommentTypeName($this->commentType));
 	}
@@ -114,7 +107,6 @@ abstract class CommentTrigger extends Abstracts\Trigger
 	 */
 	public function assignProperties()
 	{
-
 		$this->userObject = new \StdClass();
 		$this->userObject->ID = ($this->comment->user_id)
 			? ($this->comment->user_id) : 0;
@@ -160,70 +152,39 @@ abstract class CommentTrigger extends Abstracts\Trigger
 	 */
 	public function mergeTags()
 	{
-
 		$commentTypeName = WpObjectHelper::getCommentTypeName($this->commentType);
 		$postTypeName = WpObjectHelper::getPostTypeName('post');
 
 		$this->addMergeTag(
-			new MergeTag\Comment\CommentID(
-				[
-					'comment_type' => $this->commentType,
-				]
-			)
+			new MergeTag\Comment\CommentID(['comment_type' => $this->commentType])
 		);
 
 		$this->addMergeTag(
-			new MergeTag\Comment\CommentContent(
-				[
-					'comment_type' => $this->commentType,
-				]
-			)
+			new MergeTag\Comment\CommentContent(['comment_type' => $this->commentType])
 		);
 
 		$this->addMergeTag(
-			new MergeTag\Comment\CommentContentHtml(
-				[
-					'comment_type' => $this->commentType,
-				]
-			)
+			new MergeTag\Comment\CommentContentHtml(['comment_type' => $this->commentType])
 		);
 
 		$this->addMergeTag(
-			new MergeTag\Comment\CommentStatus(
-				[
-					'comment_type' => $this->commentType,
-				]
-			)
+			new MergeTag\Comment\CommentStatus(['comment_type' => $this->commentType])
 		);
 
 		$this->addMergeTag(
-			new MergeTag\Comment\CommentType(
-				[
-					'comment_type' => $this->commentType,
-				]
-			)
+			new MergeTag\Comment\CommentType(['comment_type' => $this->commentType])
 		);
 
 		$this->addMergeTag(
-			new MergeTag\Comment\CommentIsReply(
-				[
-					'comment_type' => $this->commentType,
-				]
-			)
+			new MergeTag\Comment\CommentIsReply(['comment_type' => $this->commentType])
 		);
 
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'comment_datetime',
-					'name' => sprintf(
 					// Translators: Comment type name.
-						__(
-							'%s date and time',
-							'notification'
-						),
-						$commentTypeName
-					),
+					'name' => sprintf(__('%s date and time', 'notification'), $commentTypeName),
 					'group' => $commentTypeName,
 				]
 			)
@@ -231,49 +192,25 @@ abstract class CommentTrigger extends Abstracts\Trigger
 
 		// Author.
 		$this->addMergeTag(
-			new MergeTag\Comment\CommentAuthorIP(
-				[
-					'comment_type' => $this->commentType,
-				]
-			)
+			new MergeTag\Comment\CommentAuthorIP(['comment_type' => $this->commentType])
 		);
 
 		$this->addMergeTag(
-			new MergeTag\Comment\CommentAuthorUserAgent(
-				[
-					'comment_type' => $this->commentType,
-				]
-			)
+			new MergeTag\Comment\CommentAuthorUserAgent(['comment_type' => $this->commentType])
 		);
 
 		$this->addMergeTag(
-			new MergeTag\Comment\CommentAuthorUrl(
-				[
-					'comment_type' => $this->commentType,
-				]
-			)
+			new MergeTag\Comment\CommentAuthorUrl(['comment_type' => $this->commentType])
 		);
 
 		$this->addMergeTag(
 			new MergeTag\User\UserID(
 				[
 					'slug' => 'comment_author_user_ID',
-					'name' => sprintf(
 					// Translators: Comment type name.
-						__(
-							'%s author user ID',
-							'notification'
-						),
-						$commentTypeName
-					),
-					'group' => sprintf(
+					'name' => sprintf(__('%s author user ID', 'notification'), $commentTypeName),
 					// Translators: comment type author.
-						__(
-							'%s author',
-							'notification'
-						),
-						$commentTypeName
-					),
+					'group' => sprintf(__('%s author', 'notification'), $commentTypeName),
 				]
 			)
 		);
@@ -282,22 +219,10 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			new MergeTag\User\UserEmail(
 				[
 					'slug' => 'comment_author_user_email',
-					'name' => sprintf(
 					// Translators: Comment type name.
-						__(
-							'%s author user email',
-							'notification'
-						),
-						$commentTypeName
-					),
-					'group' => sprintf(
+					'name' => sprintf(__('%s author user email', 'notification'), $commentTypeName),
 					// Translators: comment type author.
-						__(
-							'%s author',
-							'notification'
-						),
-						$commentTypeName
-					),
+					'group' => sprintf(__('%s author', 'notification'), $commentTypeName),
 				]
 			)
 		);
@@ -306,22 +231,10 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			new MergeTag\User\UserDisplayName(
 				[
 					'slug' => 'comment_author_user_display_name',
-					'name' => sprintf(
 					// Translators: Comment type name.
-						__(
-							'%s author user display name',
-							'notification'
-						),
-						$commentTypeName
-					),
-					'group' => sprintf(
+					'name' => sprintf(__('%s author user display name', 'notification'), $commentTypeName),
 					// Translators: comment type author.
-						__(
-							'%s author',
-							'notification'
-						),
-						$commentTypeName
-					),
+					'group' => sprintf(__('%s author', 'notification'), $commentTypeName),
 				]
 			)
 		);
@@ -330,22 +243,10 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			new MergeTag\User\Avatar(
 				[
 					'slug' => 'comment_author_user_avatar',
-					'name' => sprintf(
 					// Translators: Comment type name.
-						__(
-							'%s author user avatar',
-							'notification'
-						),
-						$commentTypeName
-					),
-					'group' => sprintf(
+					'name' => sprintf(__('%s author user avatar', 'notification'), $commentTypeName),
 					// Translators: comment type author.
-						__(
-							'%s author',
-							'notification'
-						),
-						$commentTypeName
-					),
+					'group' => sprintf(__('%s author', 'notification'), $commentTypeName),
 				]
 			)
 		);
@@ -354,22 +255,10 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			new MergeTag\User\AvatarUrl(
 				[
 					'slug' => 'comment_author_user_avatar_url',
-					'name' => sprintf(
 					// Translators: Comment type name.
-						__(
-							'%s author user avatar url',
-							'notification'
-						),
-						$commentTypeName
-					),
-					'group' => sprintf(
+					'name' => sprintf(__('%s author user avatar url', 'notification'), $commentTypeName),
 					// Translators: comment type author.
-						__(
-							'%s author',
-							'notification'
-						),
-						$commentTypeName
-					),
+					'group' => sprintf(__('%s author', 'notification'), $commentTypeName),
 				]
 			)
 		);
@@ -388,17 +277,8 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'post_creation_datetime',
-					'name' => sprintf(
 					// Translators: singular post name.
-						__(
-							'%s creation date and time',
-							'notification'
-						),
-						__(
-							'Post',
-							'notification'
-						)
-					),
+					'name' => sprintf(__('%s creation date and time', 'notification'), __('Post', 'notification')),
 					'group' => $postTypeName,
 				]
 			)
@@ -408,17 +288,8 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'post_modification_datetime',
-					'name' => sprintf(
 					// Translators: singular post name.
-						__(
-							'%s modification date and time',
-							'notification'
-						),
-						__(
-							'Post',
-							'notification'
-						)
-					),
+					'name' => sprintf(__('%s modification date and time', 'notification'), __('Post', 'notification')),
 					'group' => $postTypeName,
 				]
 			)
@@ -429,26 +300,11 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			new MergeTag\User\UserID(
 				[
 					'slug' => 'post_author_user_ID',
-					'name' => sprintf(
 					// Translators: singular post name.
-						__(
-							'%s author user ID',
-							'notification'
-						),
-						__(
-							'Post',
-							'notification'
-						)
-					),
+					'name' => sprintf(__('%s author user ID', 'notification'), __('Post', 'notification')),
 					'property_name' => 'post_author',
-					'group' => sprintf(
 					// Translators: Post type name.
-						__(
-							'%s author',
-							'notification'
-						),
-						$postTypeName
-					),
+					'group' => sprintf(__('%s author', 'notification'), $postTypeName),
 				]
 			)
 		);
@@ -457,26 +313,11 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			new MergeTag\User\UserLogin(
 				[
 					'slug' => 'post_author_user_login',
-					'name' => sprintf(
 					// Translators: singular post name.
-						__(
-							'%s author user login',
-							'notification'
-						),
-						__(
-							'Post',
-							'notification'
-						)
-					),
+					'name' => sprintf(__('%s author user login', 'notification'), __('Post', 'notification')),
 					'property_name' => 'post_author',
-					'group' => sprintf(
 					// Translators: Post type name.
-						__(
-							'%s author',
-							'notification'
-						),
-						$postTypeName
-					),
+					'group' => sprintf(__('%s author', 'notification'), $postTypeName),
 				]
 			)
 		);
@@ -485,26 +326,11 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			new MergeTag\User\UserEmail(
 				[
 					'slug' => 'post_author_user_email',
-					'name' => sprintf(
 					// Translators: singular post name.
-						__(
-							'%s author user email',
-							'notification'
-						),
-						__(
-							'Post',
-							'notification'
-						)
-					),
+					'name' => sprintf(__('%s author user email', 'notification'), __('Post', 'notification')),
 					'property_name' => 'post_author',
-					'group' => sprintf(
 					// Translators: Post type name.
-						__(
-							'%s author',
-							'notification'
-						),
-						$postTypeName
-					),
+					'group' => sprintf(__('%s author', 'notification'), $postTypeName),
 				]
 			)
 		);
@@ -513,26 +339,11 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			new MergeTag\User\UserNicename(
 				[
 					'slug' => 'post_author_user_nicename',
-					'name' => sprintf(
 					// Translators: singular post name.
-						__(
-							'%s author user nicename',
-							'notification'
-						),
-						__(
-							'Post',
-							'notification'
-						)
-					),
+					'name' => sprintf(__('%s author user nicename', 'notification'), __('Post', 'notification')),
 					'property_name' => 'post_author',
-					'group' => sprintf(
 					// Translators: Post type name.
-						__(
-							'%s author',
-							'notification'
-						),
-						$postTypeName
-					),
+					'group' => sprintf(__('%s author', 'notification'), $postTypeName),
 				]
 			)
 		);
@@ -541,26 +352,11 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			new MergeTag\User\UserDisplayName(
 				[
 					'slug' => 'post_author_user_display_name',
-					'name' => sprintf(
 					// Translators: singular post name.
-						__(
-							'%s author user display name',
-							'notification'
-						),
-						__(
-							'Post',
-							'notification'
-						)
-					),
+					'name' => sprintf(__('%s author user display name', 'notification'), __('Post', 'notification')),
 					'property_name' => 'post_author',
-					'group' => sprintf(
 					// Translators: Post type name.
-						__(
-							'%s author',
-							'notification'
-						),
-						$postTypeName
-					),
+					'group' => sprintf(__('%s author', 'notification'), $postTypeName),
 				]
 			)
 		);
@@ -569,26 +365,11 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			new MergeTag\User\UserFirstName(
 				[
 					'slug' => 'post_author_user_firstname',
-					'name' => sprintf(
 					// Translators: singular post name.
-						__(
-							'%s author user first name',
-							'notification'
-						),
-						__(
-							'Post',
-							'notification'
-						)
-					),
+					'name' => sprintf(__('%s author user first name', 'notification'), __('Post', 'notification')),
 					'property_name' => 'post_author',
-					'group' => sprintf(
 					// Translators: Post type name.
-						__(
-							'%s author',
-							'notification'
-						),
-						$postTypeName
-					),
+					'group' => sprintf(__('%s author', 'notification'), $postTypeName),
 				]
 			)
 		);
@@ -597,26 +378,11 @@ abstract class CommentTrigger extends Abstracts\Trigger
 			new MergeTag\User\UserLastName(
 				[
 					'slug' => 'post_author_user_lastname',
-					'name' => sprintf(
 					// Translators: singular post name.
-						__(
-							'%s author user last name',
-							'notification'
-						),
-						__(
-							'Post',
-							'notification'
-						)
-					),
+					'name' => sprintf(__('%s author user last name', 'notification'), __('Post', 'notification')),
 					'property_name' => 'post_author',
-					'group' => sprintf(
 					// Translators: Post type name.
-						__(
-							'%s author',
-							'notification'
-						),
-						$postTypeName
-					),
+					'group' => sprintf(__('%s author', 'notification'), $postTypeName),
 				]
 			)
 		);

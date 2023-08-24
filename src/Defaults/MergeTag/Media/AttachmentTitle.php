@@ -25,26 +25,16 @@ class AttachmentTitle extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->setTriggerProp($params['property_name'] ?? 'attachment');
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug' => 'attachment_title',
-				'name' => __(
-					'Attachment title',
-					'notification'
-				),
-				'description' => __(
-					'Forest landscape',
-					'notification'
-				),
+				'name' => __('Attachment title', 'notification'),
+				'description' => __('Forest landscape', 'notification'),
 				'example' => true,
-				'group' => __(
-					'Attachment',
-					'notification'
-				),
+				'group' => __('Attachment', 'notification'),
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->post_title;
 				},

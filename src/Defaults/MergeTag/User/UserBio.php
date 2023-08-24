@@ -29,26 +29,19 @@ class UserBio extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->setTriggerProp($params['property_name'] ?? 'user_object');
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug' => 'user_bio',
-				'name' => __(
-					'User bio',
-					'notification'
-				),
+				'name' => __('User bio', 'notification'),
 				'description' => __(
 					'Developer based in Ontario, Canada',
 					'notification'
 				),
 				'example' => true,
-				'group' => __(
-					'User',
-					'notification'
-				),
+				'group' => __('User', 'notification'),
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->description;
 				},

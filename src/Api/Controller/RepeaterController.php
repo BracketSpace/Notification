@@ -50,7 +50,6 @@ class RepeaterController
 	 */
 	public function formFieldData($data = null)
 	{
-
 		if (empty($data)) {
 			/** @var \BracketSpace\Notification\Defaults\Field\RepeaterField */
 			$carrierFields = $this->getCarrierFields();
@@ -74,13 +73,7 @@ class RepeaterController
 			$subField['id'] = $field->id;
 			$subField['placeholder'] = $field->placeholder;
 			$subField['nested'] = $field->nested;
-			$subField['type'] = strtolower(
-				str_replace(
-					'Field',
-					'',
-					$field->fieldTypeHtml
-				)
-			);
+			$subField['type'] = strtolower(str_replace('Field', '', $field->fieldTypeHtml));
 			$subField['sections'] = $field->sections;
 			$subField['message'] = $field->message;
 			$subField['value'] = '';
@@ -91,10 +84,7 @@ class RepeaterController
 				$subField['fields'] = $this->formFieldData($field->fields);
 			}
 
-			array_push(
-				$fields,
-				$subField
-			);
+			array_push($fields, $subField);
 		}
 
 		return $fields;
@@ -111,10 +101,7 @@ class RepeaterController
 	 */
 	public function getValues($postId, $carrier, $field)
 	{
-		$notification = adaptNotificationFrom(
-			'WordPress',
-			$postId
-		);
+		$notification = adaptNotificationFrom('WordPress', $postId);
 		$carrier = $notification->getCarrier($carrier);
 
 		if ($carrier) {
@@ -168,12 +155,7 @@ class RepeaterController
 	{
 		/** @var array<mixed> $value */
 		foreach ($values as &$value) {
-			if (
-				!array_key_exists(
-					'nested_repeater',
-					$value
-				)
-			) {
+			if (!array_key_exists('nested_repeater', $value)) {
 				continue;
 			}
 
@@ -209,11 +191,7 @@ class RepeaterController
 	 */
 	public function formData()
 	{
-		$values = $this->getValues(
-			$this->postId,
-			$this->carrier,
-			$this->field
-		) ?? [];
+		$values = $this->getValues($this->postId, $this->carrier, $this->field) ?? [];
 		$populatedFields = $this->formFieldData();
 
 		return [

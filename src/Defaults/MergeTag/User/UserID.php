@@ -29,23 +29,16 @@ class UserID extends IntegerTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->setTriggerProp($params['property_name'] ?? 'user_object');
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug' => 'user_ID',
-				'name' => __(
-					'User ID',
-					'notification'
-				),
+				'name' => __('User ID', 'notification'),
 				'description' => '25',
 				'example' => true,
-				'group' => __(
-					'User',
-					'notification'
-				),
+				'group' => __('User', 'notification'),
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->ID;
 				},

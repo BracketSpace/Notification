@@ -59,7 +59,6 @@ class EDDUpdater
 	 */
 	public function __construct($apiUrl, $pluginFile, $apiData = null)
 	{
-
 		global $eddPluginData;
 
 		$this->apiUrl = trailingslashit($apiUrl);
@@ -84,10 +83,7 @@ class EDDUpdater
 		 * @since x.x.x
 		 *
 		 */
-		do_action(
-			'post_edd_sl_plugin_updater_setup',
-			$eddPluginData
-		);
+		do_action('post_edd_sl_plugin_updater_setup', $eddPluginData);
 
 		// Set up hooks.
 		$this->init();
@@ -102,7 +98,6 @@ class EDDUpdater
 	 */
 	public function init()
 	{
-
 		add_filter(
 			'pre_set_site_transient_update_plugins',
 			[$this, 'checkUpdate']
@@ -113,16 +108,8 @@ class EDDUpdater
 			10,
 			3
 		);
-		add_action(
-			'after_plugin_row',
-			[$this, 'showUpdateNotification'],
-			10,
-			2
-		);
-		add_action(
-			'admin_init',
-			[$this, 'showChangelog']
-		);
+		add_action('after_plugin_row', [$this, 'showUpdateNotification'], 10, 2);
+		add_action('admin_init', [$this, 'showChangelog']);
 	}
 
 	/**
@@ -140,7 +127,6 @@ class EDDUpdater
 	 */
 	public function checkUpdate($transientData)
 	{
-
 		global $pagenow;
 
 		if (!is_object($transientData)) {
@@ -157,13 +143,7 @@ class EDDUpdater
 
 		$current = $this->getRepoApiData();
 		if ($current !== false && is_object($current) && isset($current->newVersion)) {
-			if (
-				version_compare(
-					$this->version,
-					$current->newVersion,
-					'<'
-				)
-			) {
+			if (version_compare($this->version, $current->newVersion, '<')) {
 				$transientData->response[$this->name] = $current;
 			} else {
 				// Populating the no_update information is required to support auto-updates in WordPress 5.5.
@@ -216,7 +196,6 @@ class EDDUpdater
 	 */
 	public function showUpdateNotification($file, $plugin)
 	{
-
 		// Return early if in the network admin, or if this is not a multisite install.
 		if (is_network_admin() || !is_multisite()) {
 			return;
@@ -244,7 +223,8 @@ class EDDUpdater
 		// Return early if this plugin isn't in the transient->response or
 		//if the site is running the current or newer version of the plugin.
 		if (
-			empty($updateCache->response[$this->name]) || version_compare(
+			empty($updateCache->response[$this->name]) ||
+			version_compare(
 				$this->version,
 				$updateCache->response[$this->name]->newVersion,
 				'>='
@@ -257,13 +237,7 @@ class EDDUpdater
 			'<tr class="plugin-update-tr %3$s" id="%1$s-update" data-slug="%1$s" data-plugin="%2$s">',
 			$this->slug,
 			$file,
-			in_array(
-				$this->name,
-				$this->getActivePlugins(),
-				true
-			)
-				? 'active'
-				: 'inactive'
+			in_array($this->name, $this->getActivePlugins(), true) ? 'active' : 'inactive'
 		);
 
 		echo '<td colspan="3" class="plugin-update colspanchange">';
@@ -292,11 +266,8 @@ class EDDUpdater
 		);
 
 		printf(
-		/* translators: the plugin name. */
-			esc_html__(
-				'There is a new version of %1$s available.',
-				'easy-digital-downloads'
-			),
+			/* translators: the plugin name. */
+			esc_html__('There is a new version of %1$s available.', 'easy-digital-downloads'),
 			esc_html($plugin['Name'])
 		);
 
@@ -309,15 +280,12 @@ class EDDUpdater
 		} elseif (empty($updateCache->response[$this->name]->package) && !empty($changelogLink)) {
 			echo ' ';
 			printf(
-			/* translators:
+				/* translators:
 				1. opening anchor tag, do not translate
 				2. the new plugin version
 				3. closing anchor tag, do not translate.
 			*/
-				__(
-					'%1$sView version %2$s details%3$s.',
-					'easy-digital-downloads'
-				),
+				__('%1$sView version %2$s details%3$s.', 'easy-digital-downloads'),
 				'<a target="_blank" class="thickbox open-plugin-details-modal" href="' . esc_url($changelogLink) . '">',
 				esc_html($updateCache->response[$this->name]->newVersion),
 				'</a>'
@@ -326,10 +294,7 @@ class EDDUpdater
 			echo ' ';
 			printf(
 				/* Translators: @todo */
-				__(
-					'%1$sView version %2$s details%3$s or %4$supdate now%5$s.',
-					'easy-digital-downloads'
-				),
+				__('%1$sView version %2$s details%3$s or %4$supdate now%5$s.', 'easy-digital-downloads'),
 				'<a target="_blank" class="thickbox open-plugin-details-modal" href="' . esc_url($changelogLink) . '">',
 				esc_html($updateCache->response[$this->name]->newVersion),
 				'</a>',
@@ -350,19 +315,12 @@ class EDDUpdater
 						'upgrade-plugin_' . $file
 					)
 				) . '">',
-				esc_html__(
-					'Update now.',
-					'easy-digital-downloads'
-				),
+				esc_html__('Update now.', 'easy-digital-downloads'),
 				'</a>'
 			);
 		}
 
-		do_action(
-			"in_plugin_update_message-{$file}",
-			$plugin,
-			$plugin
-		);
+		do_action("in_plugin_update_message-{$file}", $plugin, $plugin);
 
 		echo '</p></div></td></tr>';
 	}
@@ -395,7 +353,6 @@ class EDDUpdater
 	 */
 	public function pluginsApiFilter($_data, $_action = '', $_args = null)
 	{
-
 		if ($_action !== 'plugin_information') {
 			return $_data;
 		}
@@ -499,16 +456,7 @@ class EDDUpdater
 	 */
 	public function httpRequestArgs($args, $url)
 	{
-
-		if (
-			strpos(
-				$url,
-				'https://'
-			) !== false && strpos(
-				$url,
-				'edd_action=package_download'
-			)
-		) {
+		if (strpos($url, 'https://') !== false && strpos($url, 'edd_action=package_download')) {
 			$args['sslverify'] = $this->verifySsl();
 		}
 		return $args;
@@ -590,10 +538,7 @@ class EDDUpdater
 	 */
 	private function logFailedRequest()
 	{
-		update_option(
-			$this->failedRequestCacheKey,
-			strtotime('+1 hour')
-		);
+		update_option($this->failedRequestCacheKey, strtotime('+1 hour'));
 	}
 
 	/**
@@ -601,7 +546,6 @@ class EDDUpdater
 	 */
 	public function showChangelog()
 	{
-
 		if (empty($_REQUEST['edd_sl_action']) || $_REQUEST['edd_sl_action'] !== 'view_plugin_changelog') {
 			return;
 		}
@@ -616,14 +560,8 @@ class EDDUpdater
 
 		if (!current_user_can('update_plugins')) {
 			wp_die(
-				esc_html__(
-					'You do not have permission to install plugin updates',
-					'easy-digital-downloads'
-				),
-				esc_html__(
-					'Error',
-					'easy-digital-downloads'
-				),
+				esc_html__('You do not have permission to install plugin updates', 'easy-digital-downloads'),
+				esc_html__('Error', 'easy-digital-downloads'),
 				['response' => 403]
 			);
 		}
@@ -724,7 +662,6 @@ class EDDUpdater
 	 */
 	public function getCachedVersionInfo($cacheKey = '')
 	{
-
 		if (empty($cacheKey)) {
 			$cacheKey = $this->getCacheKey();
 		}
@@ -753,24 +690,16 @@ class EDDUpdater
 	 */
 	public function setVersionInfoCache($value = '', $cacheKey = '')
 	{
-
 		if (empty($cacheKey)) {
 			$cacheKey = $this->getCacheKey();
 		}
 
 		$data = [
-			'timeout' => strtotime(
-				'+3 hours',
-				time()
-			),
+			'timeout' => strtotime('+3 hours', time()),
 			'value' => wp_json_encode($value),
 		];
 
-		update_option(
-			$cacheKey,
-			$data,
-			'no'
-		);
+		update_option($cacheKey, $data, 'no');
 
 		// Delete the duplicate option
 		//phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_serialize
@@ -785,11 +714,7 @@ class EDDUpdater
 	 */
 	private function verifySsl()
 	{
-		return (bool)apply_filters(
-			'edd_sl_api_request_verify_ssl',
-			true,
-			$this
-		);
+		return (bool)apply_filters('edd_sl_api_request_verify_ssl', true, $this);
 	}
 
 	/**

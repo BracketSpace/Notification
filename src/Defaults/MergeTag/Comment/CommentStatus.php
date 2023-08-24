@@ -33,7 +33,6 @@ class CommentStatus extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		if (isset($params['comment_type']) && !empty($params['comment_type'])) {
 			$this->commentType = $params['comment_type'];
 		}
@@ -46,47 +45,26 @@ class CommentStatus extends StringTag
 			$params,
 			[
 				'slug' => 'comment_status',
-				'name' => sprintf(
 				// Translators: Comment type name.
-					__(
-						'%s status',
-						'notification'
-					),
-					$commentTypeName
-				),
-				'description' => __(
-					'Approved',
-					'notification'
-				),
+				'name' => sprintf(__('%s status', 'notification'), $commentTypeName),
+				'description' => __('Approved', 'notification'),
 				'example' => true,
 				'group' => $commentTypeName,
 				'resolver' => function ($trigger) {
 					if ($trigger->{$this->getTriggerProp() === '1'}->comment_approved) {
-						return __(
-							'Approved',
-							'notification'
-						);
+						return __('Approved', 'notification');
 					}
 
 					if ($trigger->{$this->getTriggerProp() === '0'}->comment_approved) {
-						return __(
-							'Unapproved',
-							'notification'
-						);
+						return __('Unapproved', 'notification');
 					}
 
 					if ($trigger->{$this->getTriggerProp() === 'spam'}->comment_approved) {
-						return __(
-							'Marked as spam',
-							'notification'
-						);
+						return __('Marked as spam', 'notification');
 					}
 
 					if ($trigger->{$this->getTriggerProp() === 'trash'}->comment_approved) {
-						return __(
-							'Trashed',
-							'notification'
-						);
+						return __('Trashed', 'notification');
 					}
 				},
 			]

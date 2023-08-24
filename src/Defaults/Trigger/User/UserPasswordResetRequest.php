@@ -36,26 +36,15 @@ class UserPasswordResetRequest extends UserTrigger
 	 */
 	public function __construct()
 	{
-
 		parent::__construct(
 			'user/password_reset_request',
-			__(
-				'User password reset request',
-				'notification'
-			)
+			__('User password reset request', 'notification')
 		);
 
-		$this->addAction(
-			'retrieve_password_key',
-			10,
-			2
-		);
+		$this->addAction('retrieve_password_key', 10, 2);
 
 		$this->setDescription(
-			__(
-				'Fires when user requests password change',
-				'notification'
-			)
+			__('Fires when user requests password change', 'notification')
 		);
 	}
 
@@ -112,7 +101,6 @@ class UserPasswordResetRequest extends UserTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(new MergeTag\User\UserNicename());
@@ -126,10 +114,7 @@ class UserPasswordResetRequest extends UserTrigger
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'password_reset_request_datetime',
-					'name' => __(
-						'Password reset request date',
-						'notification'
-					),
+					'name' => __('Password reset request date', 'notification'),
 				]
 			)
 		);

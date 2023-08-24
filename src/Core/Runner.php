@@ -64,7 +64,6 @@ class Runner
 	 */
 	public function run(...$context)
 	{
-
 		$this->setNotifications();
 
 		// If no Notifications use the Trigger, bail.
@@ -75,12 +74,7 @@ class Runner
 		$trigger = $this->getTrigger();
 
 		// Setup the Trigger context.
-		if (
-			method_exists(
-				$trigger,
-				'action'
-			)
-		) {
+		if (method_exists($trigger, 'action')) {
 			$result = call_user_func_array(
 				[$trigger, 'action'],
 				$context
@@ -88,22 +82,11 @@ class Runner
 
 			$class = get_class($trigger);
 			_deprecated_function(
-				sprintf(
-					'%s::action()',
-					esc_html($class)
-				),
+				sprintf('%s::action()', esc_html($class)),
 				'8.0.0',
-				sprintf(
-					'%s::context()',
-					esc_html($class)
-				)
+				sprintf('%s::context()', esc_html($class))
 			);
-		} elseif (
-			method_exists(
-				$trigger,
-				'context'
-			)
-		) {
+		} elseif (method_exists($trigger, 'context')) {
 			$result = call_user_func_array(
 				[$trigger, 'context'],
 				$context
@@ -116,11 +99,7 @@ class Runner
 			$trigger->stop();
 		}
 
-		do_action(
-			'notification/trigger/action/did',
-			$trigger,
-			current_action()
-		);
+		do_action('notification/trigger/action/did', $trigger, current_action());
 
 		if ($trigger->isStopped()) {
 			return;
@@ -132,15 +111,9 @@ class Runner
 			 * If an item already exists in the queue, we are replacing it with the new version.
 			 * This doesn't prevents the duplicates coming from two separate requests.
 			 */
-			Queue::addReplace(
-				$notification,
-				$trigger
-			);
+			Queue::addReplace($notification, $trigger);
 
-			do_action(
-				'notification/processed',
-				$notification
-			);
+			do_action('notification/processed', $notification);
 		}
 	}
 

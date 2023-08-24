@@ -33,7 +33,6 @@ class CommentType extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		if (isset($params['comment_type']) && !empty($params['comment_type'])) {
 			$this->commentType = $params['comment_type'];
 		}
@@ -44,14 +43,8 @@ class CommentType extends StringTag
 			$params,
 			[
 				'slug' => 'comment_type',
-				'name' => __(
-					'Comment type',
-					'notification'
-				),
-				'description' => __(
-					'Comment or Pingback or Trackback or Custom',
-					'notification'
-				),
+				'name' => __('Comment type', 'notification'),
+				'description' => __('Comment or Pingback or Trackback or Custom', 'notification'),
 				'group' => WpObjectHelper::getCommentTypeName($this->commentType),
 				'resolver' => function ($trigger) {
 					return get_comment_type($trigger->{$this->getTriggerProp()});

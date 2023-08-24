@@ -36,10 +36,7 @@ class Upsell
 
 		add_meta_box(
 			'notification_conditionals',
-			__(
-				'Conditionals',
-				'notification'
-			),
+			__('Conditionals', 'notification'),
 			[$this, 'conditionalsMetabox'],
 			'notification',
 			'advanced',
@@ -115,27 +112,12 @@ class Upsell
 			return;
 		}
 
-		$section = $settings->addSection(
-			__(
-				'Triggers',
-				'notification'
-			),
-			'triggers'
-		);
+		$section = $settings->addSection(__('Triggers', 'notification'), 'triggers');
 
-		$section->addGroup(
-			__(
-				'Scheduled Triggers',
-				'notification'
-			),
-			'scheduled_triggers'
-		)
+		$section->addGroup(__('Scheduled Triggers', 'notification'), 'scheduled_triggers')
 			->addField(
 				[
-					'name' => __(
-						'Features',
-						'notification'
-					),
+					'name' => __('Features', 'notification'),
 					'slug' => 'upsell',
 					'addons' => [
 						'message' => Templates::get('upsell/scheduled-triggers-setting'),
@@ -184,9 +166,7 @@ class Upsell
 	{
 		Templates::render(
 			'upsell/carriers-list',
-			[
-				'carriers' => self::getMissingCarriers(),
-			]
+			['carriers' => self::getMissingCarriers()]
 		);
 	}
 
@@ -270,10 +250,7 @@ class Upsell
 
 		if (!CarrierStore::has('filelog')) {
 			$carriers['filelog'] = [
-				'name' => __(
-					'File Log',
-					'notification'
-				),
+				'name' => __('File Log', 'notification'),
 				'pro' => true,
 				//phpcs:ignore Generic.Files.LineLength.TooLong
 				'link' => 'https://bracketspace.com/downloads/notification-file-log/?utm_source=wp&utm_medium=notification-carriers&utm_id=upsell',

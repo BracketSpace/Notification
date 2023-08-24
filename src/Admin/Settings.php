@@ -26,122 +26,56 @@ class Settings
 	 */
 	public function generalSettings($settings)
 	{
-		$general = $settings->addSection(
-			__(
-				'General',
-				'notification'
-			),
-			'general'
-		);
+		$general = $settings->addSection(__('General', 'notification'), 'general');
 
-		$general->addGroup(
-			__(
-				'Content',
-				'notification'
-			),
-			'content'
-		)
+		$general->addGroup(__('Content', 'notification'), 'content')
 			->addField(
 				[
-					'name' => __(
-						'Empty merge tags',
-						'notification'
-					),
+					'name' => __('Empty merge tags', 'notification'),
 					'slug' => 'strip_empty_tags',
 					'default' => 'true',
 					'addons' => [
-						'label' => __(
-							'Remove unused merge tags from sent values',
-							'notification'
-						),
+						'label' => __('Remove unused merge tags from sent values', 'notification'),
 					],
-					'description' => __(
-						'This will affect any notification fields',
-						'notification'
-					),
+					'description' => __('This will affect any notification fields', 'notification'),
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
 			)
 			->addField(
 				[
-					'name' => __(
-						'Shortcodes',
-						'notification'
-					),
+					'name' => __('Shortcodes', 'notification'),
 					'slug' => 'strip_shortcodes',
 					'default' => 'true',
 					'addons' => [
-						'label' => __(
-							'Strip all shortcodes',
-							'notification'
-						),
+						'label' => __('Strip all shortcodes', 'notification'),
 					],
-					'description' => __(
-						'This will affect any notification fields',
-						'notification'
-					),
+					'description' => __('This will affect any notification fields', 'notification'),
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
-			)
-			->description(
-				__(
-					'Notification content settings',
-					'notification'
-				)
-			);
+			)->description(__('Notification content settings', 'notification'));
 
-		$general->addGroup(
-			__(
-				'Tools',
-				'notification'
-			),
-			'tools'
-		)
+		$general->addGroup(__('Tools', 'notification'), 'tools')
 			->addField(
 				[
-					'name' => __(
-						'Wizard',
-						'notification'
-					),
+					'name' => __('Wizard', 'notification'),
 					'slug' => 'wizard',
 					'addons' => [
 						'url' => admin_url('edit.php?post_type=notification&page=wizard'),
-						'label' => __(
-							'Run wizard',
-							'notification'
-						),
+						'label' => __('Run wizard', 'notification'),
 					],
 					'render' => [new CoreFields\Button(), 'input'],
 				]
-			)
-			->description(
-				__(
-					'Plugin tools',
-					'notification'
-				)
-			);
+			)->description(__('Plugin tools', 'notification'));
 
-		$general->addGroup(
-			__(
-				'Advanced',
-				'notification'
-			),
-			'advanced'
-		)
+		$general->addGroup(__('Advanced', 'notification'), 'advanced')
 			->addField(
 				[
-					'name' => __(
-						'Background processing',
-						'notification'
-					),
+					'name' => __('Background processing', 'notification'),
 					'slug' => 'background_processing',
 					'addons' => [
-						'label' => __(
-							'Enable background processing with WP Cron',
-							'notification'
-						),
+						'label' => __('Enable background processing with WP Cron', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
@@ -156,26 +90,14 @@ class Settings
 				]
 			);
 
-		$general->addGroup(
-			__(
-				'Uninstallation',
-				'notification'
-			),
-			'uninstallation'
-		)
+		$general->addGroup(__('Uninstallation', 'notification'), 'uninstallation')
 			->addField(
 				[
-					'name' => __(
-						'Notifications',
-						'notification'
-					),
+					'name' => __('Notifications', 'notification'),
 					'slug' => 'notifications',
 					'default' => 'true',
 					'addons' => [
-						'label' => __(
-							'Remove all added notifications',
-							'notification'
-						),
+						'label' => __('Remove all added notifications', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
@@ -183,17 +105,11 @@ class Settings
 			)
 			->addField(
 				[
-					'name' => __(
-						'Settings',
-						'notification'
-					),
+					'name' => __('Settings', 'notification'),
 					'slug' => 'settings',
 					'default' => 'true',
 					'addons' => [
-						'label' => __(
-							'Remove plugin settings',
-							'notification'
-						),
+						'label' => __('Remove plugin settings', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
@@ -201,28 +117,16 @@ class Settings
 			)
 			->addField(
 				[
-					'name' => __(
-						'Licenses',
-						'notification'
-					),
+					'name' => __('Licenses', 'notification'),
 					'slug' => 'licenses',
 					'default' => 'true',
 					'addons' => [
-						'label' => __(
-							'Remove and deactivate extension licenses',
-							'notification'
-						),
+						'label' => __('Remove and deactivate extension licenses', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
-			)
-			->description(
-				__(
-					'Choose what to remove upon plugin removal',
-					'notification'
-				)
-			);
+			)->description(__('Choose what to remove upon plugin removal', 'notification'));
 	}
 
 	/**
@@ -233,27 +137,12 @@ class Settings
 	 */
 	public function triggersSettings($settings)
 	{
-		$triggers = $settings->addSection(
-			__(
-				'Triggers',
-				'notification'
-			),
-			'triggers'
-		);
+		$triggers = $settings->addSection(__('Triggers', 'notification'), 'triggers');
 
-		$triggers->addGroup(
-			__(
-				'Post',
-				'notification'
-			),
-			'post_types'
-		)
+		$triggers->addGroup(__('Post', 'notification'), 'post_types')
 			->addField(
 				[
-					'name' => __(
-						'Post Types',
-						'notification'
-					),
+					'name' => __('Post Types', 'notification'),
 					'slug' => 'types',
 					'default' => ['post', 'page'],
 					'addons' => [
@@ -269,8 +158,7 @@ class Settings
 					'render' => [new CoreFields\Select(), 'input'],
 					'sanitize' => [new CoreFields\Select(), 'sanitize'],
 				]
-			)
-			->description(
+			)->description(
 				__(
 					'For these post types you will be able to define published,
 					updated, pending moderation etc. notifications',
@@ -278,19 +166,10 @@ class Settings
 				)
 			);
 
-		$triggers->addGroup(
-			__(
-				'Taxonomy',
-				'notification'
-			),
-			'taxonomies'
-		)
+		$triggers->addGroup(__('Taxonomy', 'notification'), 'taxonomies')
 			->addField(
 				[
-					'name' => __(
-						'Taxonomies',
-						'notification'
-					),
+					'name' => __('Taxonomies', 'notification'),
 					'slug' => 'types',
 					'default' => ['category', 'post_tag'],
 					'addons' => [
@@ -314,19 +193,10 @@ class Settings
 				)
 			);
 
-		$triggers->addGroup(
-			__(
-				'Comment',
-				'notification'
-			),
-			'comment'
-		)
+		$triggers->addGroup(__('Comment', 'notification'), 'comment')
 			->addField(
 				[
-					'name' => __(
-						'Comment Types',
-						'notification'
-					),
+					'name' => __('Comment Types', 'notification'),
 					'slug' => 'types',
 					'default' => ['comment'],
 					'addons' => [
@@ -342,10 +212,7 @@ class Settings
 			)
 			->addField(
 				[
-					'name' => __(
-						'Akismet',
-						'notification'
-					),
+					'name' => __('Akismet', 'notification'),
 					'slug' => 'akismet',
 					'default' => 'true',
 					'addons' => [
@@ -359,104 +226,56 @@ class Settings
 				]
 			);
 
-		$triggers->addGroup(
-			__(
-				'User',
-				'notification'
-			),
-			'user'
-		)
+		$triggers->addGroup(__('User', 'notification'), 'user')
 			->addField(
 				[
-					'name' => __(
-						'User',
-						'notification'
-					),
+					'name' => __('User', 'notification'),
 					'slug' => 'enable',
 					'default' => 'true',
 					'addons' => [
-						'label' => __(
-							'Enable user triggers',
-							'notification'
-						),
+						'label' => __('Enable user triggers', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
 			);
 
-		$triggers->addGroup(
-			__(
-				'Media',
-				'notification'
-			),
-			'media'
-		)
+		$triggers->addGroup(__('Media', 'notification'), 'media')
 			->addField(
 				[
-					'name' => __(
-						'Media',
-						'notification'
-					),
+					'name' => __('Media', 'notification'),
 					'slug' => 'enable',
 					'default' => 'true',
 					'addons' => [
-						'label' => __(
-							'Enable media triggers',
-							'notification'
-						),
+						'label' => __('Enable media triggers', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
 			);
 
-		$triggers->addGroup(
-			__(
-				'Theme',
-				'notification'
-			),
-			'theme'
-		)
+		$triggers->addGroup(__('Theme', 'notification'), 'theme')
 			->addField(
 				[
-					'name' => __(
-						'Theme',
-						'notification'
-					),
+					'name' => __('Theme', 'notification'),
 					'slug' => 'enable',
 					'default' => 'true',
 					'addons' => [
-						'label' => __(
-							'Enable theme triggers',
-							'notification'
-						),
+						'label' => __('Enable theme triggers', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
 			);
 
-		$triggers->addGroup(
-			__(
-				'Plugin',
-				'notification'
-			),
-			'plugin'
-		)
+		$triggers->addGroup(__('Plugin', 'notification'), 'plugin')
 			->addField(
 				[
-					'name' => __(
-						'Plugin',
-						'notification'
-					),
+					'name' => __('Plugin', 'notification'),
 					'slug' => 'enable',
 					'default' => 'true',
 					'addons' => [
-						'label' => __(
-							'Enable plugin triggers',
-							'notification'
-						),
+						'label' => __('Enable plugin triggers', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
@@ -464,26 +283,14 @@ class Settings
 			);
 
 		// phpcs:ignore WordPress.WP.CapitalPDangit.Misspelled
-		$triggers->addGroup(
-			__(
-				'WordPress',
-				'notification'
-			),
-			'WordPress'
-		)
+		$triggers->addGroup(__('WordPress', 'notification'), 'WordPress')
 			->addField(
 				[
-					'name' => __(
-						'Updates',
-						'notification'
-					),
+					'name' => __('Updates', 'notification'),
 					'slug' => 'updates',
 					'default' => false,
 					'addons' => [
-						'label' => __(
-							'Enable "Updates available" trigger',
-							'notification'
-						),
+						'label' => __('Enable "Updates available" trigger', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
@@ -491,17 +298,11 @@ class Settings
 			)
 			->addField(
 				[
-					'name' => __(
-						'Send if no updates',
-						'notification'
-					),
+					'name' => __('Send if no updates', 'notification'),
 					'slug' => 'updates_send_anyway',
 					'default' => false,
 					'addons' => [
-						'label' => __(
-							'Send updates email even if no updates available',
-							'notification'
-						),
+						'label' => __('Send updates email even if no updates available', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
@@ -509,10 +310,7 @@ class Settings
 			)
 			->addField(
 				[
-					'name' => __(
-						'Updates check period',
-						'notification'
-					),
+					'name' => __('Updates check period', 'notification'),
 					'slug' => 'updates_cron_period',
 					'default' => 'ntfn_week',
 					'addons' => [
@@ -530,43 +328,25 @@ class Settings
 			)
 			->addField(
 				[
-					'name' => __(
-						'Site email address change request',
-						'notification'
-					),
+					'name' => __('Site email address change request', 'notification'),
 					'slug' => 'email_address_change_request',
 					'default' => 'true',
 					'addons' => [
-						'label' => __(
-							'Enable site email address change request trigger',
-							'notification'
-						),
+						'label' => __('Enable site email address change request trigger', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
 			);
 
-		$triggers->addGroup(
-			__(
-				'Privacy',
-				'notification'
-			),
-			'privacy'
-		)
+		$triggers->addGroup(__('Privacy', 'notification'), 'privacy')
 			->addField(
 				[
-					'name' => __(
-						'Privacy',
-						'notification'
-					),
+					'name' => __('Privacy', 'notification'),
 					'slug' => 'enable',
 					'default' => 'true',
 					'addons' => [
-						'label' => __(
-							'Enable privacy triggers',
-							'notification'
-						),
+						'label' => __('Enable privacy triggers', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
@@ -584,17 +364,8 @@ class Settings
 	{
 		if (!empty($_SERVER['SERVER_NAME'])) {
 			$sitename = strtolower(sanitize_text_field(wp_unslash($_SERVER['SERVER_NAME'])));
-			if (
-				substr(
-					$sitename,
-					0,
-					4
-				) === 'www.'
-			) {
-				$sitename = substr(
-					$sitename,
-					4
-				);
+			if (substr($sitename, 0, 4) === 'www.') {
+				$sitename = substr($sitename, 4);
 			}
 		} else {
 			$sitename = 'example.com';
@@ -602,34 +373,16 @@ class Settings
 
 		$defaultFromEmail = 'wordpress@' . $sitename;
 
-		$carriers = $settings->addSection(
-			__(
-				'Carriers',
-				'notification'
-			),
-			'carriers'
-		);
+		$carriers = $settings->addSection(__('Carriers', 'notification'), 'carriers');
 
-		$carriers->addGroup(
-			__(
-				'Email',
-				'notification'
-			),
-			'email'
-		)
+		$carriers->addGroup(__('Email', 'notification'), 'email')
 			->addField(
 				[
-					'name' => __(
-						'Enable',
-						'notification'
-					),
+					'name' => __('Enable', 'notification'),
 					'slug' => 'enable',
 					'default' => 'true',
 					'addons' => [
-						'label' => __(
-							'Enable Email Carrier',
-							'notification'
-						),
+						'label' => __('Enable Email Carrier', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
@@ -637,22 +390,13 @@ class Settings
 			)
 			->addField(
 				[
-					'name' => __(
-						'Message type',
-						'notification'
-					),
+					'name' => __('Message type', 'notification'),
 					'slug' => 'type',
 					'default' => 'html',
 					'addons' => [
 						'options' => [
-							'html' => __(
-								'HTML',
-								'notification'
-							),
-							'plain' => __(
-								'Plain text',
-								'notification'
-							),
+							'html' => __('HTML', 'notification'),
+							'plain' => __('Plain text', 'notification'),
 						],
 					],
 					'render' => [new CoreFields\Select(), 'input'],
@@ -661,17 +405,11 @@ class Settings
 			)
 			->addField(
 				[
-					'name' => __(
-						'Unfiltered HTML',
-						'notification'
-					),
+					'name' => __('Unfiltered HTML', 'notification'),
 					'slug' => 'unfiltered_html',
 					'default' => false,
 					'addons' => [
-						'label' => __(
-							'Allow unfiltered HTML in email body',
-							'notification'
-						),
+						'label' => __('Allow unfiltered HTML in email body', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
@@ -683,83 +421,53 @@ class Settings
 			)
 			->addField(
 				[
-					'name' => __(
-						'From Name',
-						'notification'
-					),
+					'name' => __('From Name', 'notification'),
 					'slug' => 'from_name',
 					'default' => '',
 					'render' => [new CoreFields\Text(), 'input'],
 					'sanitize' => [new CoreFields\Text(), 'sanitize'],
 					'description' => sprintf(
-					// Translators: %s default value.
-						__(
-							'Leave blank to use default value: %s',
-							'notification'
-						),
+						// Translators: %s default value.
+						__('Leave blank to use default value: %s', 'notification'),
 						'<code>WordPress</code>'
 					),
 				]
 			)
 			->addField(
 				[
-					'name' => __(
-						'From Email',
-						'notification'
-					),
+					'name' => __('From Email', 'notification'),
 					'slug' => 'from_email',
 					'default' => '',
 					'render' => [new CoreFields\Text(), 'input'],
 					'sanitize' => [new CoreFields\Text(), 'sanitize'],
 					'description' => sprintf(
-					// Translators: %s default value.
-						__(
-							'Leave blank to use default value: %s',
-							'notification'
-						),
+						// Translators: %s default value.
+						__('Leave blank to use default value: %s', 'notification'),
 						'<code>' . $defaultFromEmail . '</code>'
 					),
 				]
 			)
 			->addField(
 				[
-					'name' => __(
-						'Headers',
-						'notification'
-					),
+					'name' => __('Headers', 'notification'),
 					'slug' => 'headers',
 					'default' => false,
 					'addons' => [
-						'label' => __(
-							'Allow to configure email headers',
-							'notification'
-						),
+						'label' => __('Allow to configure email headers', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
 			);
 
-		$carriers->addGroup(
-			__(
-				'Webhook',
-				'notification'
-			),
-			'webhook'
-		)
+		$carriers->addGroup(__('Webhook', 'notification'), 'webhook')
 			->addField(
 				[
-					'name' => __(
-						'Enable',
-						'notification'
-					),
+					'name' => __('Enable', 'notification'),
 					'slug' => 'enable',
 					'default' => 'true',
 					'addons' => [
-						'label' => __(
-							'Enable Webhook Carrier',
-							'notification'
-						),
+						'label' => __('Enable Webhook Carrier', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
@@ -767,17 +475,11 @@ class Settings
 			)
 			->addField(
 				[
-					'name' => __(
-						'Headers',
-						'notification'
-					),
+					'name' => __('Headers', 'notification'),
 					'slug' => 'headers',
 					'default' => false,
 					'addons' => [
-						'label' => __(
-							'Allow to configure webhook headers',
-							'notification'
-						),
+						'label' => __('Allow to configure webhook headers', 'notification'),
 					],
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
@@ -793,56 +495,29 @@ class Settings
 	 */
 	public function emailsSettings($settings)
 	{
-		$general = $settings->addSection(
-			__(
-				'Integration',
-				'notification'
-			),
-			'integration'
-		);
+		$general = $settings->addSection(__('Integration', 'notification'), 'integration');
 
-		$general->addGroup(
-			__(
-				'Default WordPress emails',
-				'notification'
-			),
-			'emails'
-		)
+		$general->addGroup(__('Default WordPress emails', 'notification'), 'emails')
 			->addField(
 				[
-					'name' => __(
-						'New user',
-						'notification'
-					),
+					'name' => __('New user', 'notification'),
 					'slug' => 'new_user_to_admin',
 					'default' => false,
 					'addons' => [
-						'label' => __(
-							'Disable new user email to admin',
-							'notification'
-						),
+						'label' => __('Disable new user email to admin', 'notification'),
 					],
-					'description' => __(
-						'Email is sent after registration.',
-						'notification'
-					),
+					'description' => __('Email is sent after registration.', 'notification'),
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
 			)
 			->addField(
 				[
-					'name' => __(
-						'Welcome email',
-						'notification'
-					),
+					'name' => __('Welcome email', 'notification'),
 					'slug' => 'new_user_to_user',
 					'default' => false,
 					'addons' => [
-						'label' => __(
-							'Disable account details email to <strong>user</strong>',
-							'notification'
-						),
+						'label' => __('Disable account details email to <strong>user</strong>', 'notification'),
 					],
 					'description' => __(
 						'Email is sent after registration and contains password setup link.',
@@ -854,10 +529,7 @@ class Settings
 			)
 			->addField(
 				[
-					'name' => __(
-						'New comment',
-						'notification'
-					),
+					'name' => __('New comment', 'notification'),
 					'slug' => 'post_author',
 					'default' => false,
 					'addons' => [
@@ -866,20 +538,14 @@ class Settings
 							'notification'
 						),
 					],
-					'description' => __(
-						'Email is sent after comment is published.',
-						'notification'
-					),
+					'description' => __('Email is sent after comment is published.', 'notification'),
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
 			)
 			->addField(
 				[
-					'name' => __(
-						'Comment awaiting moderation',
-						'notification'
-					),
+					'name' => __('Comment awaiting moderation', 'notification'),
 					'slug' => 'comment_moderator',
 					'default' => false,
 					'addons' => [
@@ -888,20 +554,14 @@ class Settings
 							'notification'
 						),
 					],
-					'description' => __(
-						'Email is sent when new comment is awaiting approval.',
-						'notification'
-					),
+					'description' => __('Email is sent when new comment is awaiting approval.', 'notification'),
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
 			)
 			->addField(
 				[
-					'name' => __(
-						'Password reset request',
-						'notification'
-					),
+					'name' => __('Password reset request', 'notification'),
 					'slug' => 'password_forgotten_to_user',
 					'default' => false,
 					'addons' => [
@@ -920,10 +580,7 @@ class Settings
 			)
 			->addField(
 				[
-					'name' => __(
-						'Password changed',
-						'notification'
-					),
+					'name' => __('Password changed', 'notification'),
 					'slug' => 'password_change_to_admin',
 					'default' => false,
 					'addons' => [
@@ -932,20 +589,14 @@ class Settings
 							'notification'
 						),
 					],
-					'description' => __(
-						'Email is sent when user changes his password.',
-						'notification'
-					),
+					'description' => __('Email is sent when user changes his password.', 'notification'),
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
 			)
 			->addField(
 				[
-					'name' => __(
-						'Password changed',
-						'notification'
-					),
+					'name' => __('Password changed', 'notification'),
 					'slug' => 'password_change_to_user',
 					'default' => false,
 					'addons' => [
@@ -954,20 +605,14 @@ class Settings
 							'notification'
 						),
 					],
-					'description' => __(
-						'Email is sent when user changes his password.',
-						'notification'
-					),
+					'description' => __('Email is sent when user changes his password.', 'notification'),
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
 			)
 			->addField(
 				[
-					'name' => __(
-						'Email address changed',
-						'notification'
-					),
+					'name' => __('Email address changed', 'notification'),
 					'slug' => 'email_change_to_user',
 					'default' => false,
 					'addons' => [
@@ -986,10 +631,7 @@ class Settings
 			)
 			->addField(
 				[
-					'name' => __(
-						'Email address change request',
-						'notification'
-					),
+					'name' => __('Email address change request', 'notification'),
 					'slug' => 'send_confirmation_on_profile_email',
 					'default' => false,
 					'addons' => [
@@ -1008,10 +650,7 @@ class Settings
 			)
 			->addField(
 				[
-					'name' => __(
-						'Admin Email address change request',
-						'notification'
-					),
+					'name' => __('Admin Email address change request', 'notification'),
 					'slug' => 'send_confirmation_on_admin_email',
 					'default' => false,
 					'addons' => [
@@ -1030,10 +669,7 @@ class Settings
 			)
 			->addField(
 				[
-					'name' => __(
-						'Automatic WordPress core update',
-						'notification'
-					),
+					'name' => __('Automatic WordPress core update', 'notification'),
 					'slug' => 'automatic_wp_core_update',
 					'default' => false,
 					'addons' => [
@@ -1050,13 +686,7 @@ class Settings
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
-			)
-			->description(
-				__(
-					'Disable each default emails by selecting the option.',
-					'notification'
-				)
-			);
+			)->description(__('Disable each default emails by selecting the option.', 'notification'));
 	}
 
 	/**

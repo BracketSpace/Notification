@@ -88,15 +88,11 @@ class RepeaterField extends Field
 	 */
 	public function __construct($params = [])
 	{
-
 		if (isset($params['fields'])) {
 			$this->fields = $params['fields'];
 		}
 
-		$this->addButtonLabel = $params['add_button_label'] ?? __(
-			'Add new',
-			'notification'
-		);
+		$this->addButtonLabel = $params['add_button_label'] ?? __('Add new', 'notification');
 
 		// additional data tags for repeater table. key => value array.
 		// will be transformed to data-key="value".
@@ -122,7 +118,6 @@ class RepeaterField extends Field
 	 */
 	public function field()
 	{
-
 		$dataAttr = '';
 		foreach ($this->dataAttr as $key => $value) {
 			$dataAttr .= 'data-' . $key . '="' . esc_attr($value) . '" ';
@@ -171,11 +166,14 @@ class RepeaterField extends Field
 		$html .= '</tbody>';
 		$html .= '</table>';
 
-		$html .= '<template v-if="repeaterError">
-					<div class="repeater-error">'
-				 . $this->restApiError() .
-				 '</div>
-				  </template>';
+		$html .= sprintf(
+			'<template v-if="repeaterError">
+				<div class="repeater-error">
+					%s
+				</div>
+			</template>',
+			$this->restApiError()
+		);
 
 		$html .= '<a href="#" class="button button-secondary add-new-repeater-field" @click="addField">' . esc_html(
 			$this->addButtonLabel
@@ -217,7 +215,6 @@ class RepeaterField extends Field
 	 */
 	public function sanitize($value)
 	{
-
 		if (empty($value)) {
 			return [];
 		}
@@ -248,7 +245,6 @@ class RepeaterField extends Field
 	 */
 	public function cssClass()
 	{
-
 		$classes = '';
 		if ($this->sortable) {
 			$classes .= 'fields-repeater-sortable ';

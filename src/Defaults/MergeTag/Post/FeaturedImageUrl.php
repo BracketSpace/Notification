@@ -29,7 +29,6 @@ class FeaturedImageUrl extends UrlTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->setTriggerProp($params['post_type'] ?? 'post');
 
 		$postTypeName = WpObjectHelper::getPostTypeName($this->getTriggerProp());
@@ -37,22 +36,10 @@ class FeaturedImageUrl extends UrlTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf(
-					'%s_featured_image_url',
-					$this->getTriggerProp()
-				),
-				'name' => sprintf(
+				'slug' => sprintf('%s_featured_image_url', $this->getTriggerProp()),
 				// translators: singular post name.
-					__(
-						'%s featured image url',
-						'notification'
-					),
-					$postTypeName
-				),
-				'description' => __(
-					'https://example.com/wp-content/2019/01/image.jpg',
-					'notification'
-				),
+				'name' => sprintf(__('%s featured image url', 'notification'), $postTypeName),
+				'description' => __('https://example.com/wp-content/2019/01/image.jpg', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ($trigger) {

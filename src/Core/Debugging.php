@@ -61,17 +61,12 @@ class Debugging
 			'warning',
 		];
 
-		if (
-			!isset($logData['type']) || !in_array(
-				$logData['type'],
-				$allowedTypes,
-				true
-			)
-		) {
+		if (!isset($logData['type']) || !in_array($logData['type'], $allowedTypes, true)) {
 			throw new \Exception(
-				'Log type must be a one of the following types: ' . implode(
-					', ',
-					$allowedTypes
+				sprintf(
+					'%s %s',
+					'Log type must be a one of the following types: ',
+					implode(', ', $allowedTypes)
 				)
 			);
 		}
@@ -93,12 +88,7 @@ class Debugging
 				'component' => $logData['component'],
 				'time_logged' => gmdate('Y-m-d H:i:s'),
 			],
-			[
-				'%s',
-				'%s',
-				'%s',
-				'%s',
-			]
+			['%s', '%s', '%s', '%s']
 		);
 	}
 
@@ -172,11 +162,7 @@ class Debugging
 
 		foreach ($types as $type) {
 			// phpcs:ignore
-			$wpdb->delete(
-				$this->logsTable,
-				['type' => $type],
-				['%s']
-			);
+			$wpdb->delete($this->logsTable, ['type' => $type], ['%s']);
 		}
 	}
 

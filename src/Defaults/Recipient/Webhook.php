@@ -44,7 +44,6 @@ class Webhook extends Abstracts\Recipient
 	 */
 	public function parseValue($value = '')
 	{
-
 		if (empty($value)) {
 			$value = $this->getDefaultValue();
 		}
@@ -59,20 +58,13 @@ class Webhook extends Abstracts\Recipient
 	 */
 	public function input()
 	{
-
 		return new Field\InputField(
 			[
-				'label' => __(
-					'URL',
-					'notification'
-				), // don't edit this!
+				'label' => __('URL', 'notification'), // don't edit this!
 				'name' => 'recipient',                 // don't edit this!
 				'css_class' => 'recipient-value',           // don't edit this!
 				'placeholder' => site_url(),
-				'description' => __(
-					'You can use any valid email merge tag.',
-					'notification'
-				),
+				'description' => __('You can use any valid email merge tag.', 'notification'),
 				'resolvable' => true,
 			]
 		);

@@ -25,23 +25,16 @@ class AttachmentID extends IntegerTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->setTriggerProp($params['property_name'] ?? 'attachment');
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug' => 'attachment_ID',
-				'name' => __(
-					'Attachment ID',
-					'notification'
-				),
+				'name' => __('Attachment ID', 'notification'),
 				'description' => '35',
 				'example' => true,
-				'group' => __(
-					'Attachment',
-					'notification'
-				),
+				'group' => __('Attachment', 'notification'),
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->ID;
 				},

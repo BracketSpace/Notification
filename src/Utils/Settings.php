@@ -87,15 +87,8 @@ class Settings
 		$this->setVariables();
 
 		// settings autoload on admin side.
-		add_action(
-			'admin_init',
-			[$this, 'setupFieldValues'],
-			10
-		);
-		add_action(
-			'admin_post_save_' . $this->handle . '_settings',
-			[$this, 'saveSettings']
-		);
+		add_action('admin_init', [$this, 'setupFieldValues'], 10);
+		add_action('admin_post_save_' . $this->handle . '_settings', [$this, 'saveSettings']);
 	}
 
 	/**
@@ -109,7 +102,7 @@ class Settings
 		// phpcs:disable WordPress.Security.NonceVerification
 		$sections = $this->getSections();
 
-		$currentSection = ! empty($_GET['section'])
+		$currentSection = !empty($_GET['section'])
 			? sanitize_text_field(wp_unslash($_GET['section']))
 			: key($this->getSections());
 
@@ -126,7 +119,6 @@ class Settings
 	 */
 	public function addSection($name, $slug)
 	{
-
 		if (!isset($this->sections[$slug])) {
 			$this->sections[$slug] = new Section(
 				$this->handle,
@@ -145,12 +137,7 @@ class Settings
 	 */
 	public function getSections()
 	{
-
-		return apply_filters(
-			$this->handle . '/settings/sections',
-			$this->sections,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/sections', $this->sections, $this);
 	}
 
 	/**
@@ -161,15 +148,10 @@ class Settings
 	 */
 	public function getSection($slug = '')
 	{
-
 		$sections = $this->getSections();
 
 		if (isset($sections[$slug])) {
-			return apply_filters(
-				$this->handle . '/settings/section',
-				$sections[$slug],
-				$this
-			);
+			return apply_filters($this->handle . '/settings/section', $sections[$slug], $this);
 		}
 
 		return false;
@@ -210,17 +192,10 @@ class Settings
 		}
 
 		foreach ($toSave as $section => $value) {
-			update_option(
-				$this->handle . '_' . $section,
-				$value
-			);
+			update_option($this->handle . '_' . $section, $value);
 		}
 
-		do_action(
-			$this->handle . '/settings/saved',
-			$toSave,
-			$this
-		);
+		do_action($this->handle . '/settings/saved', $toSave, $this);
 
 		wp_safe_redirect(
 			add_query_arg(
@@ -260,11 +235,7 @@ class Settings
 			}
 		}
 
-		return apply_filters(
-			$this->handle . '/settings/saved_settings',
-			$settings,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/saved_settings', $settings, $this);
 	}
 
 	/**
@@ -278,10 +249,7 @@ class Settings
 		foreach ($this->getSections() as $sectionSlug => $section) {
 			foreach ($section->getGroups() as $groupSlug => $group) {
 				foreach ($group->getFields() as $fieldSlug => $field) {
-					$settingName = implode(
-						'/',
-						[$sectionSlug, $groupSlug, $fieldSlug]
-					);
+					$settingName = implode('/', [$sectionSlug, $groupSlug, $fieldSlug]);
 					$field->value($this->getSetting($settingName));
 				}
 			}
@@ -297,10 +265,7 @@ class Settings
 	 */
 	public function getSetting($setting)
 	{
-		$parts = explode(
-			'/',
-			$setting
-		);
+		$parts = explode('/', $setting);
 
 		if (count($parts) !== 3) {
 			throw new \Exception('You must provide exactly 3 parts as the setting name');
@@ -314,11 +279,7 @@ class Settings
 
 		$value = $settings[$parts[0]][$parts[1]][$parts[2]];
 
-		return apply_filters(
-			$this->handle . '/settings/setting/' . $setting,
-			$value,
-			$this
-		);
+		return apply_filters($this->handle . '/settings/setting/' . $setting, $value, $this);
 	}
 
 	/**
@@ -331,10 +292,7 @@ class Settings
 	 */
 	public function updateSetting($setting, $value)
 	{
-		$parts = explode(
-			'/',
-			$setting
-		);
+		$parts = explode('/', $setting);
 
 		if (count($parts) !== 3) {
 			throw new \Exception('You must provide exactly 3 parts as the setting name');
@@ -386,10 +344,7 @@ class Settings
 
 		$settings[$sectionSlug][$groupSlug][$fieldSlug] = $value;
 
-		return update_option(
-			$this->handle . '_' . $sectionSlug,
-			$settings
-		);
+		return update_option($this->handle . '_' . $sectionSlug, $settings);
 	}
 
 	/**
@@ -404,28 +359,17 @@ class Settings
 
 		// URI.
 		$themeUrl = wp_parse_url(get_stylesheet_directory_uri());
-		$themePos = strpos(
-			$this->path,
-			$themeUrl['path']
-		);
+		$themePos = strpos($this->path, $themeUrl['path']);
 
 		if ($themePos !== false) { // loaded from theme.
 			$pluginRelativeDir = str_replace(
 				$themeUrl['path'],
 				'',
-				substr(
-					$this->path,
-					$themePos
-				)
+				substr($this->path, $themePos)
 			);
 			$this->uri = $themeUrl['scheme'] . '://' . $themeUrl['host'] . $themeUrl['path'] . $pluginRelativeDir;
 		} else { // loaded from plugin.
-			$this->uri = trailingslashit(
-				plugins_url(
-					'',
-					dirname(__FILE__)
-				)
-			);
+			$this->uri = trailingslashit(plugins_url('', dirname(__FILE__)));
 		}
 	}
 }

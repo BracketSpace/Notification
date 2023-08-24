@@ -36,7 +36,6 @@ class PostTerms extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->setTriggerProp($params['post_type'] ?? 'post');
 
 		if (isset($params['taxonomy'])) {
@@ -50,24 +49,10 @@ class PostTerms extends StringTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf(
-					'%s_%s',
-					$this->getTriggerProp(),
-					$this->taxonomy->name
-				),
-				'name' => sprintf(
+				'slug' => sprintf('%s_%s', $this->getTriggerProp(), $this->taxonomy->name),
 				// translators: 1. Post Type 2. Taxonomy name.
-					__(
-						'%1$s %2$s',
-						'notification'
-					),
-					$postTypeName,
-					$this->taxonomy->label
-				),
-				'description' => __(
-					'General, Tech, Lifestyle',
-					'notification'
-				),
+				'name' => sprintf(__('%1$s %2$s', 'notification'), $postTypeName, $this->taxonomy->label),
+				'description' => __('General, Tech, Lifestyle', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ($trigger) {
@@ -79,13 +64,7 @@ class PostTerms extends StringTag
 						return '';
 					}
 
-					return implode(
-						', ',
-						wp_list_pluck(
-							$postTerms,
-							'name'
-						)
-					);
+					return implode(', ', wp_list_pluck($postTerms, 'name'));
 				},
 			]
 		);

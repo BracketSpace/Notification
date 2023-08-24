@@ -107,21 +107,11 @@ abstract class Field implements Interfaces\Fillable
 	 */
 	public function __construct($params = [])
 	{
-
 		if (!isset($params['label'], $params['name'])) {
-			trigger_error(
-				'Field requires label and name',
-				E_USER_ERROR
-			);
+			trigger_error('Field requires label and name', E_USER_ERROR);
 		}
 
-		$this->fieldTypeHtml = substr(
-			strrchr(
-				static::class,
-				'\\'
-			),
-			1
-		);
+		$this->fieldTypeHtml = substr(strrchr(static::class, '\\'), 1);
 
 		$this->label = $params['label'];
 		$this->name = $params['name'];
@@ -204,11 +194,7 @@ abstract class Field implements Interfaces\Fillable
 		$value = is_string($this->value)
 			? stripslashes($this->value)
 			: $this->value;
-		return apply_filters(
-			'notification/field/' . $this->getRawName() . '/value',
-			$value,
-			$this
-		);
+		return apply_filters('notification/field/' . $this->getRawName() . '/value', $value, $this);
 	}
 
 	/**

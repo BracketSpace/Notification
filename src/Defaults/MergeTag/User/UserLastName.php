@@ -29,26 +29,16 @@ class UserLastName extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->setTriggerProp($params['property_name'] ?? 'user_object');
 
 		$args = wp_parse_args(
 			$params,
 			[
 				'slug' => 'user_last_name',
-				'name' => __(
-					'User last name',
-					'notification'
-				),
-				'description' => __(
-					'Doe',
-					'notification'
-				),
+				'name' => __('User last name', 'notification'),
+				'description' => __('Doe', 'notification'),
 				'example' => true,
-				'group' => __(
-					'User',
-					'notification'
-				),
+				'group' => __('User', 'notification'),
 				'resolver' => function ($trigger) {
 					return $trigger->{$this->getTriggerProp()}->last_name;
 				},

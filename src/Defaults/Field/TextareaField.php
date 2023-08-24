@@ -46,7 +46,6 @@ class TextareaField extends Field
 	 */
 	public function __construct($params = [])
 	{
-
 		if (isset($params['placeholder'])) {
 			$this->placeholder = $params['placeholder'];
 		}
@@ -69,12 +68,18 @@ class TextareaField extends Field
 	 */
 	public function field()
 	{
-		return '<textarea name="' . esc_attr($this->getName()) . '" rows="' . esc_attr(
-			(string)$this->rows
-		) . '" id="' . esc_attr($this->getId()) . '" placeholder="' . esc_attr(
-			$this->placeholder
-		) . '" class="widefat ' . esc_attr($this->cssClass()) . '" ' . $this->maybeDisable(
-		) . '>' . $this->getValue() . '</textarea>';
+		$value = is_string($this->getValue()) ? $this->getValue() : '';
+
+		return sprintf(
+			'<textarea name="%s" rows="%s" id="%s" placeholder="%s" class="widefat %s" %s>%s</textarea>',
+			esc_attr($this->getName()),
+			esc_attr((string)$this->rows),
+			esc_attr($this->getId()),
+			esc_attr($this->placeholder),
+			esc_attr($this->cssClass()),
+			$this->maybeDisable(),
+			esc_textarea($value)
+		);
 	}
 
 	/**
@@ -85,8 +90,6 @@ class TextareaField extends Field
 	 */
 	public function sanitize($value)
 	{
-		return ($this->allowedUnfiltered)
-			? $value
-			: sanitize_textarea_field($value);
+		return ($this->allowedUnfiltered) ? $value  : sanitize_textarea_field($value);
 	}
 }

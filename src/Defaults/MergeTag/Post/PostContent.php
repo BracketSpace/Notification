@@ -29,7 +29,6 @@ class PostContent extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->setTriggerProp($params['post_type'] ?? 'post');
 
 		$postTypeName = WpObjectHelper::getPostTypeName($this->getTriggerProp());
@@ -37,18 +36,9 @@ class PostContent extends StringTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf(
-					'%s_content',
-					$this->getTriggerProp()
-				),
-				'name' => sprintf(
+				'slug' => sprintf('%s_content', $this->getTriggerProp()),
 				// translators: singular post name.
-					__(
-						'%s content',
-						'notification'
-					),
-					$postTypeName
-				),
+				'name' => sprintf(__('%s content', 'notification'), $postTypeName),
 				'description' => __(
 					'Welcome to WordPress. This is your first post. Edit or delete it, then start writing!',
 					'notification'
@@ -56,10 +46,7 @@ class PostContent extends StringTag
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ($trigger) {
-					return apply_filters(
-						'the_content',
-						$trigger->{$this->getTriggerProp()}->post_content
-					);
+					return apply_filters('the_content', $trigger->{$this->getTriggerProp()}->post_content);
 				},
 			]
 		);

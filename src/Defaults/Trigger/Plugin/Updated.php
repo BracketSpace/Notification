@@ -36,33 +36,13 @@ class Updated extends PluginTrigger
 	 */
 	public function __construct()
 	{
+		parent::__construct('plugin/updated', __('Plugin updated', 'notification'));
 
-		parent::__construct(
-			'plugin/updated',
-			__(
-				'Plugin updated',
-				'notification'
-			)
-		);
+		$this->addAction('upgrader_process_complete', 1000, 2);
 
-		$this->addAction(
-			'upgrader_process_complete',
-			1000,
-			2
-		);
+		$this->setGroup(__('Plugin', 'notification'));
 
-		$this->setGroup(
-			__(
-				'Plugin',
-				'notification'
-			)
-		);
-		$this->setDescription(
-			__(
-				'Fires when plugin is updated',
-				'notification'
-			)
-		);
+		$this->setDescription(__('Fires when plugin is updated', 'notification'));
 	}
 
 	/**
@@ -74,7 +54,6 @@ class Updated extends PluginTrigger
 	 */
 	public function context($upgrader, $data)
 	{
-
 		if (!isset($data['type'], $data['action']) || $data['type'] !== 'plugin' || $data['action'] !== 'update') {
 			return false;
 		}
@@ -85,10 +64,7 @@ class Updated extends PluginTrigger
 		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 		$this->previousVersion = $skin->plugin_info['Version'];
 		$pluginDir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $upgrader->plugin_info();
-		$this->plugin = get_plugin_data(
-			$pluginDir,
-			false
-		);
+		$this->plugin = get_plugin_data($pluginDir, false);
 		$this->pluginUpdateDateTime = (string)time();
 	}
 
@@ -99,17 +75,13 @@ class Updated extends PluginTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'plugin_update_date_time',
-					'name' => __(
-						'Plugin update date and time',
-						'notification'
-					),
+					'name' => __('Plugin update date and time', 'notification'),
 				]
 			)
 		);
@@ -118,22 +90,13 @@ class Updated extends PluginTrigger
 			new MergeTag\StringTag(
 				[
 					'slug' => 'plugin_previous_version',
-					'name' => __(
-						'Plugin previous version',
-						'notification'
-					),
-					'description' => __(
-						'1.0.0',
-						'notification'
-					),
+					'name' => __('Plugin previous version', 'notification'),
+					'description' => __('1.0.0', 'notification'),
 					'example' => true,
 					'resolver' => static function ($trigger) {
 						return $trigger->previousVersion;
 					},
-					'group' => __(
-						'Plugin',
-						'notification'
-					),
+					'group' => __('Plugin', 'notification'),
 				]
 			)
 		);

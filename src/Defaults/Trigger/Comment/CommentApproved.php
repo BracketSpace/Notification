@@ -25,35 +25,21 @@ class CommentApproved extends CommentTrigger
 	 */
 	public function __construct($commentType = 'comment')
 	{
-
 		parent::__construct(
 			[
 				'slug' => 'comment/' . $commentType . '/approved',
-				'name' => sprintf(
 				// Translators: %s comment type.
-					__(
-						'%s approved',
-						'notification'
-					),
-					WpObjectHelper::getCommentTypeName($commentType)
-				),
+				'name' => sprintf(__('%s approved', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 				'comment_type' => $commentType,
 			]
 		);
 
-		$this->addAction(
-			'transition_comment_status',
-			10,
-			3
-		);
+		$this->addAction('transition_comment_status', 10, 3);
 
 		$this->setDescription(
 			sprintf(
-			// translators: comment type.
-				__(
-					'Fires when %s is approved',
-					'notification'
-				),
+				// translators: comment type.
+				__('Fires when %s is approved', 'notification'),
 				WpObjectHelper::getCommentTypeName($commentType)
 			)
 		);
@@ -69,7 +55,6 @@ class CommentApproved extends CommentTrigger
 	 */
 	public function context($commentNewStatus, $commentOldStatus, $comment)
 	{
-
 		$this->comment = $comment;
 
 		if (

@@ -38,7 +38,6 @@ class Processor
 	 */
 	public function processQueue()
 	{
-
 		Queue::iterate(
 			static function ($index, $notification, $trigger) {
 
@@ -50,17 +49,11 @@ class Processor
 
 				// If Background Processing is enabled we load the execution to Cron and stop processing.
 				if ($bpEnabled) {
-					self::schedule(
-						$notification,
-						$trigger
-					);
+					self::schedule($notification, $trigger);
 					return;
 				}
 
-				self::processNotification(
-					$notification,
-					$trigger
-				);
+				self::processNotification($notification, $trigger);
 			}
 		);
 	}
@@ -101,19 +94,10 @@ class Processor
 		self::getCache($triggerKey)->set($trigger);
 
 		$result = wp_schedule_single_event(
-			time() + apply_filters(
-				'notification/background_processing/delay',
-				30
-			),
+			time() + apply_filters('notification/background_processing/delay', 30),
 			'notification_background_processing',
 			[
-				adaptNotification(
-					'JSON',
-					$notification
-				)->save(
-					JSON_UNESCAPED_UNICODE,
-					true
-				),
+				adaptNotification('JSON', $notification)->save(JSON_UNESCAPED_UNICODE, true),
 				$triggerKey,
 			]
 		);
@@ -131,14 +115,7 @@ class Processor
 	{
 		$trigger->setupMergeTags();
 
-		if (
-			!apply_filters(
-				'notification/should_send',
-				true,
-				$notification,
-				$trigger
-			)
-		) {
+		if (!apply_filters('notification/should_send', true, $notification, $trigger)) {
 			return;
 		}
 
@@ -147,28 +124,16 @@ class Processor
 			$carrier->resolveFields($trigger);
 			$carrier->prepareData();
 
-			do_action(
-				'notification/carrier/pre-send',
-				$carrier,
-				$trigger,
-				$notification
-			);
+			do_action('notification/carrier/pre-send', $carrier, $trigger, $notification);
 
 			if ($carrier->isSuppressed()) {
 				continue;
 			}
 
-			self::send(
-				$carrier,
-				$trigger
-			);
+			self::send($carrier, $trigger);
 		}
 
-		do_action(
-			'notification/sent',
-			$notification,
-			$trigger
-		);
+		do_action('notification/sent', $notification, $trigger);
 	}
 
 	/**
@@ -183,28 +148,20 @@ class Processor
 	 */
 	public static function handleCron($notificationJson, $triggerKey)
 	{
-		$notification = adaptNotificationFrom(
-			'JSON',
-			$notificationJson
-		)->getNotification();
+		$notification = adaptNotificationFrom('JSON', $notificationJson)
+			->getNotification();
 		$trigger = self::getCache($triggerKey)->get();
 
 		if (!$trigger instanceof Triggerable) {
 			ErrorHandler::error(
-				sprintf(
-					'Trigger key %s doesn\'t seem to exist in cache anymore',
-					$triggerKey
-				)
+				sprintf('Trigger key %s doesn\'t seem to exist in cache anymore', $triggerKey)
 			);
 			return;
 		}
 
 		self::getCache($triggerKey)->delete();
 
-		self::processNotification(
-			$notification,
-			$trigger
-		);
+		self::processNotification($notification, $trigger);
 	}
 
 	/**
@@ -218,11 +175,7 @@ class Processor
 	public static function send(Sendable $carrier, Triggerable $trigger)
 	{
 		$carrier->send($trigger);
-		do_action(
-			'notification/carrier/sent',
-			$carrier,
-			$trigger
-		);
+		do_action('notification/carrier/sent', $carrier, $trigger);
 	}
 
 	/**
@@ -234,9 +187,6 @@ class Processor
 	 */
 	public static function getCache($triggerKey)
 	{
-		return new Cache(
-			new Transient(3 * DAY_IN_SECONDS),
-			$triggerKey
-		);
+		return new Cache(new Transient(3 * DAY_IN_SECONDS), $triggerKey);
 	}
 }

@@ -24,11 +24,14 @@ class ColorPickerField extends Field
 	 */
 	public function field()
 	{
-		return '<input type="text" name="' . esc_attr($this->getName()) . '" id="' . esc_attr(
-			$this->getId()
-		) . '" value="' . esc_attr($this->getValue()) . '" class="notification-color-picker ' . esc_attr(
-			$this->cssClass()
-		) . '" ' . $this->maybeDisable() . '>';
+		return sprintf(
+			'<input type="text" name="%s" id="%s" value="%s" class="notification-color-picker %s" %s>',
+			esc_attr($this->getName()),
+			esc_attr($this->getId()),
+			esc_attr($this->getValue()),
+			esc_attr($this->cssClass()),
+			$this->maybeDisable()
+		);
 	}
 
 	/**
@@ -39,28 +42,12 @@ class ColorPickerField extends Field
 	 */
 	public function sanitize($value)
 	{
-		if (
-			strpos(
-				$value,
-				'rgba'
-			) === false
-		) {
+		if (strpos($value, 'rgba') === false) {
 			return sanitize_hex_color($value);
 		}
 
-		$color = str_replace(
-			' ',
-			'',
-			$value
-		);
-		sscanf(
-			$color,
-			'rgba(%d,%d,%d,%f)',
-			$red,
-			$green,
-			$blue,
-			$alpha
-		);
+		$color = str_replace(' ', '', $value);
+		sscanf($color, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha);
 		return 'rgba(' . $red . ',' . $green . ',' . $blue . ',' . $alpha . ')';
 	}
 }

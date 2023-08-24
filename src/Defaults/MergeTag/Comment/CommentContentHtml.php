@@ -33,7 +33,6 @@ class CommentContentHtml extends HtmlTag
 	 */
 	public function __construct($params = [])
 	{
-
 		if (isset($params['comment_type']) && !empty($params['comment_type'])) {
 			$this->commentType = $params['comment_type'];
 		}
@@ -46,18 +45,9 @@ class CommentContentHtml extends HtmlTag
 			$params,
 			[
 				'slug' => 'comment_content_html',
-				'name' => sprintf(
 				// Translators: Comment type name.
-					__(
-						'%s HTML content',
-						'notification'
-					),
-					$commentTypeName
-				),
-				'description' => __(
-					'Great post!',
-					'notification'
-				),
+				'name' => sprintf(__('%s HTML content', 'notification'), $commentTypeName),
+				'description' => __('Great post!', 'notification'),
 				'example' => true,
 				'group' => $commentTypeName,
 				'resolver' => function ($trigger) {

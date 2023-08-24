@@ -33,30 +33,14 @@ class Sync
 	 */
 	public function settings($settings)
 	{
-
-		$importExport = $settings->addSection(
-			__(
-				'Import / Export',
-				'notification'
-			),
-			'import_export'
-		);
-		$syncGroup = $importExport->addGroup(
-			__(
-				'Synchronization',
-				'notification'
-			),
-			'sync'
-		);
+		$importExport = $settings->addSection(__('Import / Export', 'notification'), 'import_export');
+		$syncGroup = $importExport->addGroup(__('Synchronization', 'notification'), 'sync');
 
 		$syncGroup->description('Synchronization allow to export or load the Notifications from JSON files.');
 
 		$syncGroup->addField(
 			[
-				'name' => __(
-					'Actions',
-					'notification'
-				),
+				'name' => __('Actions', 'notification'),
 				'slug' => 'actions',
 				'addons' => [
 					'message' => [$this, 'templateActions'],
@@ -73,10 +57,7 @@ class Sync
 
 		$syncGroup->addField(
 			[
-				'name' => __(
-					'Notifications',
-					'notification'
-				),
+				'name' => __('Notifications', 'notification'),
 				'slug' => 'notifications',
 				'render' => [new SpecificFields\SyncTable(), 'input'],
 				'sanitize' => '__return_null',
@@ -158,7 +139,6 @@ class Sync
 	 */
 	public function loadNotificationToWordpress($hash)
 	{
-
 		$jsonNotifications = CoreSync::getAllJson();
 
 		foreach ($jsonNotifications as $json) {
@@ -168,10 +148,7 @@ class Sync
 				 *
 				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 				 */
-				$jsonAdapter = adaptNotificationFrom(
-					'JSON',
-					$json
-				);
+				$jsonAdapter = adaptNotificationFrom('JSON', $json);
 
 				if ($jsonAdapter->getHash() === $hash) {
 					/**
@@ -179,15 +156,9 @@ class Sync
 					 *
 					 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
 					 */
-					$wpAdapter = swapNotificationAdapter(
-						'WordPress',
-						$jsonAdapter
-					);
+					$wpAdapter = swapNotificationAdapter('WordPress', $jsonAdapter);
 					$wpAdapter->save();
-					return get_edit_post_link(
-						$wpAdapter->getId(),
-						'admin'
-					);
+					return get_edit_post_link($wpAdapter->getId(), 'admin');
 				}
 			} catch (\Throwable $e) {
 				// Do nothing.

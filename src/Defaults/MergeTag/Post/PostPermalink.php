@@ -29,7 +29,6 @@ class PostPermalink extends UrlTag
 	 */
 	public function __construct($params = [])
 	{
-
 		$this->setTriggerProp($params['post_type'] ?? 'post');
 
 		$postTypeName = WpObjectHelper::getPostTypeName($this->getTriggerProp());
@@ -37,22 +36,10 @@ class PostPermalink extends UrlTag
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf(
-					'%s_permalink',
-					$this->getTriggerProp()
-				),
-				'name' => sprintf(
+				'slug' => sprintf('%s_permalink', $this->getTriggerProp()),
 				// translators: singular post name.
-					__(
-						'%s permalink',
-						'notification'
-					),
-					$postTypeName
-				),
-				'description' => __(
-					'https://example.com/hello-world/',
-					'notification'
-				),
+				'name' => sprintf(__('%s permalink', 'notification'), $postTypeName),
+				'description' => __('https://example.com/hello-world/', 'notification'),
 				'example' => true,
 				'group' => $postTypeName,
 				'resolver' => function ($trigger) {

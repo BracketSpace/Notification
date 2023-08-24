@@ -99,7 +99,6 @@ class Notification
 	 */
 	public function __clone()
 	{
-
 		$trigger = $this->getTrigger();
 		if (!empty($trigger)) {
 			$this->setTrigger(clone $trigger);
@@ -123,7 +122,6 @@ class Notification
 	 */
 	public function setup($data = [])
 	{
-
 		// Hash. If not provided will be generated automatically.
 		$hash = isset($data['hash']) && !empty($data['hash'])
 			? $data['hash']
@@ -288,7 +286,6 @@ class Notification
 	 */
 	public function addCarrier($carrier)
 	{
-
 		if (!$carrier instanceof Interfaces\Sendable) {
 			$carrier = Store\Carrier::get($carrier);
 		}
@@ -324,7 +321,6 @@ class Notification
 	 */
 	public function enableCarrier($carrierSlug)
 	{
-
 		$carrier = $this->getCarrier($carrierSlug);
 
 		if (null === $carrier) {
@@ -360,7 +356,6 @@ class Notification
 	 */
 	public function setCarriers($carriers = [])
 	{
-
 		$savedCarriers = [];
 
 		foreach ($carriers as $carrier) {
@@ -424,7 +419,6 @@ class Notification
 	 */
 	public function removeExtra($key)
 	{
-
 		$extras = $this->getExtras();
 
 		if (isset($extras[$key])) {
@@ -446,7 +440,6 @@ class Notification
 	 */
 	public function addExtra($key, $value)
 	{
-
 		if (!is_array($value) && !is_string($value) && !is_numeric($value) && !is_bool($value)) {
 			throw new \Exception('Extra data must be an array or string or number.');
 		}

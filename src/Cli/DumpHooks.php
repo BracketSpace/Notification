@@ -30,7 +30,6 @@ class DumpHooks
 	 */
 	public function __invoke($args)
 	{
-
 		$runtime = Notification::runtime();
 		$filesystem = $runtime->getFilesystem();
 		$hooksFile = 'compat/register-hooks.php';
@@ -54,11 +53,7 @@ class DumpHooks
 			if ($className === 'BracketSpace\\Notification\\Runtime') {
 				$callbackObjectName = '$this';
 			} else {
-				$componentName = array_search(
-					$className,
-					$objects,
-					true
-				);
+				$componentName = array_search($className, $objects, true);
 				if (!$componentName) {
 					WP_CLI::warning(
 						str_replace(
@@ -119,10 +114,7 @@ declare(strict_types=1);
 		// Save the content.
 		$filesystem->put_contents(
 			$hooksFile,
-			$fileHeader . implode(
-				"\n",
-				$hookFunctions
-			) . "\n"
+			$fileHeader . implode("\n", $hookFunctions) . "\n"
 		);
 
 		WP_CLI::success('All hooks dumped!');

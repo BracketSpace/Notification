@@ -39,7 +39,6 @@ abstract class Recipient implements Interfaces\Receivable
 	 */
 	public function __construct($params = [])
 	{
-
 		if (!empty($params['slug'])) {
 			$this->setSlug($params['slug']);
 		}
@@ -49,10 +48,7 @@ abstract class Recipient implements Interfaces\Receivable
 		}
 
 		if (!isset($params['default_value'])) {
-			trigger_error(
-				'Recipient requires default_value',
-				E_USER_ERROR
-			);
+			trigger_error('Recipient requires default_value', E_USER_ERROR);
 		}
 
 		$this->defaultValue = $params['default_value'];

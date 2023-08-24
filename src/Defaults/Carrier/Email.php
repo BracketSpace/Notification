@@ -38,10 +38,7 @@ class Email extends Abstracts\Carrier
 	{
 		parent::__construct(
 			'email',
-			__(
-				'Email',
-				'notification'
-			)
+			__('Email', 'notification')
 		);
 	}
 
@@ -53,14 +50,10 @@ class Email extends Abstracts\Carrier
 	 */
 	public function formFields()
 	{
-
 		$this->addFormField(
 			new Field\InputField(
 				[
-					'label' => __(
-						'Subject',
-						'notification'
-					),
+					'label' => __('Subject', 'notification'),
 					'name' => 'subject',
 				]
 			)
@@ -72,10 +65,7 @@ class Email extends Abstracts\Carrier
 					)
 			? new Field\EditorField(
 				[
-					'label' => __(
-						'Body',
-						'notification'
-					),
+					'label' => __('Body', 'notification'),
 					'name' => 'body',
 					'settings' => [
 						'media_buttons' => false,
@@ -84,10 +74,7 @@ class Email extends Abstracts\Carrier
 			)
 			: new Field\CodeEditorField(
 				[
-					'label' => __(
-						'Body',
-						'notification'
-					),
+					'label' => __('Body', 'notification'),
 					'name' => 'body',
 					'resolvable' => true,
 					'settings' => [
@@ -108,42 +95,24 @@ class Email extends Abstracts\Carrier
 		$this->addFormField(
 			new Field\RepeaterField(
 				[
-					'label' => __(
-						'Headers',
-						'notification'
-					),
+					'label' => __('Headers', 'notification'),
 					'name' => 'headers',
-					'add_button_label' => __(
-						'Add header',
-						'notification'
-					),
+					'add_button_label' => __('Add header', 'notification'),
 					'fields' => [
 						new Field\InputField(
 							[
-								'label' => __(
-									'Key',
-									'notification'
-								),
+								'label' => __('Key', 'notification'),
 								'name' => 'key',
 								'resolvable' => true,
-								'description' => __(
-									'You can use merge tags',
-									'notification'
-								),
+								'description' => __('You can use merge tags', 'notification'),
 							]
 						),
 						new Field\InputField(
 							[
-								'label' => __(
-									'Value',
-									'notification'
-								),
+								'label' => __('Value', 'notification'),
 								'name' => 'value',
 								'resolvable' => true,
-								'description' => __(
-									'You can use merge tags',
-									'notification'
-								),
+								'description' => __('You can use merge tags', 'notification'),
 							]
 						),
 					],
@@ -177,12 +146,8 @@ class Email extends Abstracts\Carrier
 			'6.0.0',
 			'notification/carrier/email/use_html_mime'
 		);
-		$htmlMime = apply_filters(
-			'notification/carrier/email/use_html_mime',
-			$htmlMime,
-			$this,
-			$trigger
-		);
+
+		$htmlMime = apply_filters('notification/carrier/email/use_html_mime', $htmlMime, $this, $trigger);
 
 		if ($htmlMime) {
 			add_filter(
@@ -199,12 +164,7 @@ class Email extends Abstracts\Carrier
 			'6.0.0',
 			'notification/carrier/email/recipients'
 		);
-		$recipients = apply_filters(
-			'notification/carrier/email/recipients',
-			$recipients,
-			$this,
-			$trigger
-		);
+		$recipients = apply_filters('notification/carrier/email/recipients', $recipients, $this, $trigger);
 
 		$subject = apply_filters_deprecated(
 			'notification/email/subject',
@@ -212,12 +172,7 @@ class Email extends Abstracts\Carrier
 			'6.0.0',
 			'notification/carrier/email/subject'
 		);
-		$subject = apply_filters(
-			'notification/carrier/email/subject',
-			$subject,
-			$this,
-			$trigger
-		);
+		$subject = apply_filters('notification/carrier/email/subject', $subject, $this, $trigger);
 
 		$message = apply_filters_deprecated(
 			'notification/email/message/pre',
@@ -225,12 +180,7 @@ class Email extends Abstracts\Carrier
 			'6.0.0',
 			'notification/carrier/email/message/pre'
 		);
-		$message = apply_filters(
-			'notification/carrier/email/message/pre',
-			$message,
-			$this,
-			$trigger
-		);
+		$message = apply_filters('notification/carrier/email/message/pre', $message, $this, $trigger);
 
 		$useAutop = apply_filters_deprecated(
 			'notification/email/message/use_autop',
@@ -238,12 +188,7 @@ class Email extends Abstracts\Carrier
 			'6.0.0',
 			'notification/carrier/email/message/use_autop'
 		);
-		$useAutop = apply_filters(
-			'notification/carrier/email/message/use_autop',
-			$useAutop,
-			$this,
-			$trigger
-		);
+		$useAutop = apply_filters('notification/carrier/email/message/use_autop', $useAutop, $this, $trigger);
 		if ($useAutop) {
 			$message = wpautop($message);
 		}
@@ -254,12 +199,7 @@ class Email extends Abstracts\Carrier
 			'6.0.0',
 			'notification/carrier/email/message'
 		);
-		$message = apply_filters(
-			'notification/carrier/email/message',
-			$message,
-			$this,
-			$trigger
-		);
+		$message = apply_filters('notification/carrier/email/message', $message, $this, $trigger);
 
 		// Fix for wp_mail not being processed with empty message.
 		if (empty($message)) {
@@ -279,12 +219,7 @@ class Email extends Abstracts\Carrier
 			'6.0.0',
 			'notification/carrier/email/headers'
 		);
-		$headers = apply_filters(
-			'notification/carrier/email/headers',
-			$headers,
-			$this,
-			$trigger
-		);
+		$headers = apply_filters('notification/carrier/email/headers', $headers, $this, $trigger);
 
 		$attachments = apply_filters_deprecated(
 			'notification/email/attachments',
@@ -292,12 +227,7 @@ class Email extends Abstracts\Carrier
 			'6.0.0',
 			'notification/carrier/email/attachments'
 		);
-		$attachments = apply_filters(
-			'notification/carrier/email/attachments',
-			$attachments,
-			$this,
-			$trigger
-		);
+		$attachments = apply_filters('notification/carrier/email/attachments', $attachments, $this, $trigger);
 
 		$errors = [];
 
@@ -331,11 +261,7 @@ class Email extends Abstracts\Carrier
 					[
 						'error' => $error,
 						'recipients_affected' => $errorData['recipients'],
-						'trigger' => sprintf(
-							'%s (%s)',
-							$trigger->getName(),
-							$trigger->getSlug()
-						),
+						'trigger' => sprintf('%s (%s)', $trigger->getName(), $trigger->getSlug()),
 						'email_subject' => $subject,
 					],
 					true

@@ -168,7 +168,6 @@ abstract class Carrier implements Interfaces\Sendable
 	 */
 	public function __clone()
 	{
-
 		$fields = [];
 
 		foreach ($this->formFields as $rawName => $field) {
@@ -223,18 +222,13 @@ abstract class Carrier implements Interfaces\Sendable
 	 */
 	public function addFormField(Interfaces\Fillable $field)
 	{
-
-		if (
-			in_array(
-				$field->getRawName(),
-				$this->restrictedFields,
-				true
-			)
-		) {
+		if (in_array($field->getRawName(), $this->restrictedFields, true)) {
 			throw new \Exception(
-				'You cannot use restricted field name. Restricted names: ' . implode(
-					', ',
-					$this->restrictedFields
+				sprintf(
+					'%s %s, %s',
+					'You cannot use restricted field name.',
+					'Restricted names:',
+					implode(', ', $this->restrictedFields)
 				)
 			);
 		}
@@ -305,15 +299,9 @@ abstract class Carrier implements Interfaces\Sendable
 
 		// Setup the field data if it's available.
 		if (!empty($this->recipientsResolvedData)) {
-			$this->setFieldData(
-				$field,
-				$this->recipientsResolvedData
-			);
+			$this->setFieldData($field, $this->recipientsResolvedData);
 		} else {
-			$this->setFieldData(
-				$field,
-				$this->recipientsData
-			);
+			$this->setFieldData($field, $this->recipientsData);
 		}
 
 		return $field;
@@ -384,10 +372,7 @@ abstract class Carrier implements Interfaces\Sendable
 				continue;
 			}
 
-			$resolved = $this->resolveValue(
-				$field->getValue(),
-				$trigger
-			);
+			$resolved = $this->resolveValue($field->getValue(), $trigger);
 			$field->setValue($resolved);
 		}
 
@@ -422,29 +407,17 @@ abstract class Carrier implements Interfaces\Sendable
 			$resolved = [];
 
 			foreach ($value as $key => $val) {
-				$key = $this->resolveValue(
-					$key,
-					$trigger
-				);
-				$val = $this->resolveValue(
-					$val,
-					$trigger
-				);
+				$key = $this->resolveValue($key, $trigger);
+				$val = $this->resolveValue($val, $trigger);
 				$resolved[$key] = $val;
 			}
 
 			return $resolved;
 		}
 
-		$value = apply_filters(
-			'notification/carrier/field/resolving',
-			$value
-		);
+		$value = apply_filters('notification/carrier/field/resolving', $value);
 
-		$resolved = Resolver::resolve(
-			$value,
-			$trigger
-		);
+		$resolved = Resolver::resolve($value, $trigger);
 
 		// Unused tags.
 		$stripMergeTags = apply_filters(
@@ -471,17 +444,9 @@ abstract class Carrier implements Interfaces\Sendable
 			: do_shortcode($resolved);
 
 		// Unescape escaped {.
-		$resolved = str_replace(
-			'!{',
-			'{',
-			$resolved
-		);
+		$resolved = str_replace('!{', '{', $resolved);
 
-		return apply_filters(
-			'notification/carrier/field/value/resolved',
-			$resolved,
-			null
-		);
+		return apply_filters('notification/carrier/field/value/resolved', $resolved, null);
 	}
 
 	/**
@@ -556,10 +521,7 @@ abstract class Carrier implements Interfaces\Sendable
 				continue;
 			}
 
-			$this->setFieldData(
-				$field,
-				$data[$field->getRawName()]
-			);
+			$this->setFieldData($field, $data[$field->getRawName()]);
 		}
 
 		// Set recipients data.

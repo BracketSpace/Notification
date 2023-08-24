@@ -43,18 +43,14 @@ class CheckRestApi
 			)
 		);
 
-		$message = json_decode(
-			wp_remote_retrieve_body($response),
-			true
-		);
+		$message = json_decode(wp_remote_retrieve_body($response), true);
 
 		$isAvailable = false;
 
 		if (
-			is_array($message) && array_key_exists(
-				'data',
-				$message
-			) && $message['data'] === 'RestApi'
+			is_array($message) &&
+			array_key_exists('data', $message) &&
+			$message['data'] === 'RestApi'
 		) {
 			return;
 		}

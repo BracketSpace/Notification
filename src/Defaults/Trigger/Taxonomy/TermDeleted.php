@@ -41,11 +41,7 @@ class TermDeleted extends TermTrigger
 			]
 		);
 
-		$this->addAction(
-			'pre_delete_term',
-			100,
-			4
-		);
+		$this->addAction('pre_delete_term', 100, 4);
 	}
 
 	/**
@@ -57,10 +53,7 @@ class TermDeleted extends TermTrigger
 	{
 		return sprintf(
 		// Translators: taxonomy name.
-			__(
-				'%s term deleted',
-				'notification'
-			),
+			__('%s term deleted', 'notification'),
 			$this->taxonomy->labels->singular_name ?? ''
 		);
 	}
@@ -74,10 +67,7 @@ class TermDeleted extends TermTrigger
 	{
 		return sprintf(
 		// Translators: 1. taxonomy name, 2. taxonomy slug.
-			__(
-				'Fires when %1$s (%2$s) is deleted',
-				'notification'
-			),
+			__('Fires when %1$s (%2$s) is deleted', 'notification'),
 			$this->taxonomy->labels->singular_name ?? '',
 			$this->taxonomy->name ?? ''
 		);
@@ -104,9 +94,7 @@ class TermDeleted extends TermTrigger
 		}
 
 		$termLink = get_term_link($this->term);
-		$this->termPermalink = is_string($termLink)
-			? $termLink
-			: '';
+		$this->termPermalink = is_string($termLink) ? $termLink : '';
 
 		$this->termDeletionDatetime = (string)time();
 	}
@@ -118,21 +106,14 @@ class TermDeleted extends TermTrigger
 	 */
 	public function mergeTags()
 	{
-
 		parent::mergeTags();
 
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
 					'slug' => 'term_deletion_datetime',
-					'name' => __(
-						'Term deletion date and time',
-						'notification'
-					),
-					'group' => __(
-						'Term',
-						'notification'
-					),
+					'name' => __('Term deletion date and time', 'notification'),
+					'group' => __('Term', 'notification'),
 				]
 			)
 		);

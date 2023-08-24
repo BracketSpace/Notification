@@ -161,18 +161,9 @@ class WpObjectHelper
 				global $wpdb;
 
 				$commentTypes = [
-					'comment' => __(
-						'Comment',
-						'notification'
-					),
-					'pingback' => __(
-						'Pingback',
-						'notification'
-					),
-					'trackback' => __(
-						'Trackback',
-						'notification'
-					),
+					'comment' => __('Comment', 'notification'),
+					'pingback' => __('Pingback', 'notification'),
+					'trackback' => __('Trackback', 'notification'),
 				];
 
 				// There's no other way to get comment types and we're using the cache lib.
@@ -189,13 +180,7 @@ class WpObjectHelper
 					}
 
 					// Dynamically generated and translated name.
-					$name = ucfirst(
-						str_replace(
-							['_', '-'],
-							' ',
-							$type
-						)
-					);
+					$name = ucfirst(str_replace(['_', '-'], ' ', $type));
 
 					$commentTypes[(string)$type] = __($name);
 				}

@@ -33,7 +33,6 @@ class CommentActionDelete extends UrlTag
 	 */
 	public function __construct($params = [])
 	{
-
 		if (isset($params['comment_type']) && !empty($params['comment_type'])) {
 			$this->commentType = $params['comment_type'];
 		}
@@ -46,25 +45,16 @@ class CommentActionDelete extends UrlTag
 			$params,
 			[
 				'slug' => 'comment_delete_action_url',
-				'name' => sprintf(
-					// Translators: Comment type name.
-					__(
-						'%s delete URL',
-						'notification'
-					),
-					$commentTypeName
-				),
-				'group' => sprintf(
+				// Translators: Comment type name.
+				'name' => sprintf(__('%s delete URL', 'notification'), $commentTypeName),
 				// Translators: comment type actions text.
-					__(
-						'%s actions',
-						'notification'
-					),
-					$commentTypeName
-				),
+				'group' => sprintf(__('%s actions', 'notification'), $commentTypeName),
 				'resolver' => function ($trigger) {
 					return admin_url(
-						"comment.php?action=delete&c={$trigger->{ $this->getTriggerProp() }->comment_ID}#wpbody-content"
+						sprintf(
+							'comment.php?action=delete&c=%s#wpbody-content',
+							$trigger->{$this->getTriggerProp()}->comment_ID
+						)
 					);
 				},
 			]
