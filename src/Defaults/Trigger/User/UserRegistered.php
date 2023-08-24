@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Defaults\Trigger\User;
 
 use BracketSpace\Notification\Defaults\MergeTag;
+use function BracketSpace\Notification\log;
 
 /**
  * User registered trigger class
@@ -133,7 +134,7 @@ class UserRegistered extends UserTrigger
 		);
 
 		if (is_wp_error($resetKey)) {
-			notificationLog(
+			log(
 				'Core',
 				'error',
 				'User registration trigger error: ' . $resetKey->get_error_message()

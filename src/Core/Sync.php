@@ -12,6 +12,8 @@ namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
+use function BracketSpace\Notification\adaptNotificationFrom;
+use function BracketSpace\Notification\swapNotificationAdapter;
 
 /**
  * Sync class
@@ -87,7 +89,7 @@ class Sync
 				 *
 				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 				 */
-				$adapter = notificationAdaptFrom('JSON', $json);
+				$adapter = adaptNotificationFrom('JSON', $json);
 
 				if ($adapter->isEnabled()) {
 					$adapter->registerNotification();
@@ -121,7 +123,7 @@ class Sync
 		}
 
 		$file = $wpAdapter->getHash() . '.json';
-		$json = notificationSwapAdapter('JSON', $wpAdapter)
+		$json = swapNotificationAdapter('JSON', $wpAdapter)
 			->save();
 
 		$fs->put_contents($file, $json);
@@ -148,7 +150,7 @@ class Sync
 			return;
 		}
 
-		$adapter = notificationAdaptFrom('WordPress', $postId);
+		$adapter = adaptNotificationFrom('WordPress', $postId);
 		$file = $adapter->getHash() . '.json';
 
 		if (!$fs->exists($file)) {

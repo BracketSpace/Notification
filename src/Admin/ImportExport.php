@@ -12,6 +12,8 @@ namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Utils\Settings\Fields as SettingFields;
 use BracketSpace\Notification\Queries\NotificationQueries;
+use function BracketSpace\Notification\adaptNotificationFrom;
+use function BracketSpace\Notification\swapNotificationAdapter;
 
 /**
  * Import/Export class
@@ -125,14 +127,14 @@ class ImportExport
 		);
 
 		foreach ($posts as $wppost) {
-			$wpAdapter = notificationAdaptFrom('WordPress', $wppost);
+			$wpAdapter = adaptNotificationFrom('WordPress', $wppost);
 
 			/**
 			 * JSON Adapter
 			 *
 			 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 			 */
-			$jsonAdapter = notificationSwapAdapter('JSON', $wpAdapter);
+			$jsonAdapter = swapNotificationAdapter('JSON', $wpAdapter);
 			$json = $jsonAdapter->save(null, false);
 
 			// Decode because it's encoded in the last step of export.
@@ -223,14 +225,14 @@ class ImportExport
 		$updated = 0;
 
 		foreach ($data as $notificationData) {
-			$jsonAdapter = notificationAdaptFrom('JSON', wp_json_encode($notificationData));
+			$jsonAdapter = adaptNotificationFrom('JSON', wp_json_encode($notificationData));
 
 			/**
 			 * WordPress Adapter
 			 *
 			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
 			 */
-			$wpAdapter = notificationSwapAdapter('WordPress', $jsonAdapter);
+			$wpAdapter = swapNotificationAdapter('WordPress', $jsonAdapter);
 
 			/**
 			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null

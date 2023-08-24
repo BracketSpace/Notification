@@ -15,6 +15,8 @@ use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
+use function BracketSpace\Notification\adaptNotificationFrom;
+use function BracketSpace\Notification\addNotification;
 
 /**
  * PostType class
@@ -283,7 +285,7 @@ class PostType
 		}
 
 		$data = $_POST;
-		$notificationPost = notificationAdaptFrom('WordPress', $post);
+		$notificationPost = adaptNotificationFrom('WordPress', $post);
 
 		// Title.
 		if (isset($data['post_title'])) {
@@ -375,7 +377,7 @@ class PostType
 
 		$ajax->verify_nonce('change_notification_status_' . $data['post_id']);
 
-		$adapter = notificationAdaptFrom('WordPress', (int)$data['post_id']);
+		$adapter = adaptNotificationFrom('WordPress', (int)$data['post_id']);
 		$adapter->setEnabled($data['status'] === 'true');
 
 		$result = $adapter->save();
@@ -450,7 +452,7 @@ class PostType
 				continue;
 			}
 
-			$adapter = notificationAdaptFrom('JSON', $notificationJson);
+			$adapter = adaptNotificationFrom('JSON', $notificationJson);
 
 			// Set source back to WordPress.
 			$adapter->setSource('WordPress');
@@ -460,7 +462,7 @@ class PostType
 				continue;
 			}
 
-			notificationAdd($adapter->getNotification());
+			addNotification($adapter->getNotification());
 		}
 	}
 }

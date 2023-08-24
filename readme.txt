@@ -304,6 +304,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 
+* [Changed] Global functions moved to namespace and set as deprecated.
 * [Changed] Removed v6 & v7 deprecated functions
 * [Fixed] Shortcodes being uncorrectly stripped leaving closing "]" behind.
 * [Fixed] PHP 8.2 deprecations.
@@ -316,6 +317,17 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * Class methods and properties has been changed from snake_case to camelCase.
 * In Post Triggers, dynamic property `$trigger->{$post_type}` has been replaced with static prop `$trigger->post`.
 * The same as above applies to Post Trigger datetime tags, namely: postCreationDatetime, postPublicationDatetime, and postModificationDatetime.
+* Renamed functions:
+  	notification_adapt() -> BracketSpace\Notification\adaptNotification()
+  	notification_adapt_from() -> BracketSpace\Notification\adaptNotificationFrom()
+	notification_swap_adapter() -> BracketSpace\Notification\swapNotificationAdapter()
+  	notification_log() -> BracketSpace\Notification\log()
+  	notification_add() -> BracketSpace\Notification\addNotification()
+  	notification_convert_data() -> BracketSpace\Notification\convertNotificationData()
+  	notification_register_settings() -> BracketSpace\Notification\registerSettings()
+	notification_get_settings() -> BracketSpace\Notification\getSettings()
+  	notification_get_setting() -> BracketSpace\Notification\getSetting()
+  	notification_update_setting() -> BracketSpace\Notification\updateSetting()
 
 == Upgrade Notice ==
 

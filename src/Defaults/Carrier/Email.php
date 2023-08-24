@@ -13,6 +13,8 @@ namespace BracketSpace\Notification\Defaults\Carrier;
 use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\Field;
+use function BracketSpace\Notification\log;
+use function BracketSpace\Notification\getSetting;
 
 /**
  * Email Carrier
@@ -57,9 +59,10 @@ class Email extends Abstracts\Carrier
 			)
 		);
 
-		$bodyField = notificationGetSetting('carriers/email/type') === 'html' && !notificationGetSetting(
-			'carriers/email/unfiltered_html'
-		)
+		$bodyField = getSetting('carriers/email/type') === 'html' &&
+					!getSetting(
+						'carriers/email/unfiltered_html'
+					)
 			? new Field\EditorField(
 				[
 					'label' => __('Body', 'notification'),
@@ -85,7 +88,7 @@ class Email extends Abstracts\Carrier
 
 		$this->addRecipientsField();
 
-		if (!notificationGetSetting('carriers/email/headers')) {
+		if (!getSetting('carriers/email/headers')) {
 			return;
 		}
 
@@ -136,7 +139,7 @@ class Email extends Abstracts\Carrier
 	 */
 	public function send(Triggerable $trigger)
 	{
-		$defaultHtmlMime = notificationGetSetting('carriers/email/type') === 'html';
+		$defaultHtmlMime = getSetting('carriers/email/type') === 'html';
 		$htmlMime = apply_filters_deprecated(
 			'notification/email/use_html_mime',
 			[$defaultHtmlMime, $this, $trigger],
@@ -204,7 +207,7 @@ class Email extends Abstracts\Carrier
 		}
 
 		$headers = [];
-		if (notificationGetSetting('carriers/email/headers') && !empty($data['headers'])) {
+		if (getSetting('carriers/email/headers') && !empty($data['headers'])) {
 			foreach ($data['headers'] as $header) {
 				$headers[] = $header['key'] . ': ' . $header['value'];
 			}
@@ -250,7 +253,7 @@ class Email extends Abstracts\Carrier
 		}
 
 		foreach ($errors as $error => $errorData) {
-			notificationLog(
+			log(
 				$this->getName(),
 				'error',
 				// phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
@@ -289,7 +292,7 @@ class Email extends Abstracts\Carrier
 	 **/
 	public function allowUnfilteredHtmlBody($carrierData, $rawData)
 	{
-		if (notificationGetSetting('carriers/email/unfiltered_html')) {
+		if (getSetting('carriers/email/unfiltered_html')) {
 			$carrierData['body'] = $rawData['body'];
 		}
 
