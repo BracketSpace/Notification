@@ -321,7 +321,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
   	notification_adapt() -> BracketSpace\Notification\adaptNotification()
   	notification_adapt_from() -> BracketSpace\Notification\adaptNotificationFrom()
 	notification_swap_adapter() -> BracketSpace\Notification\swapNotificationAdapter()
-  	notification_log() -> BracketSpace\Notification\logNotification()
+  	notification_log() -> BracketSpace\Notification\log()
   	notification_add() -> BracketSpace\Notification\addNotification()
   	notification_convert_data() -> BracketSpace\Notification\convertNotificationData()
   	notification_register_settings() -> BracketSpace\Notification\registerSettings()

@@ -19,7 +19,7 @@ use function BracketSpace\Notification\getSetting;
 use function BracketSpace\Notification\adaptNotification;
 use function BracketSpace\Notification\adaptNotificationFrom;
 use function BracketSpace\Notification\swapNotificationAdapter;
-use function BracketSpace\Notification\logNotification;
+use function BracketSpace\Notification\log;
 use function BracketSpace\Notification\addNotification;
 use function BracketSpace\Notification\convertNotificationData;
 use function BracketSpace\Notification\registerSettings;
@@ -743,9 +743,9 @@ function notificationSwapAdapter($newAdapterName, Interfaces\Adaptable $adapter)
  */
 function notificationLog($component, $type, $message)
 {
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\logNotification()');
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\log()');
 
-	return logNotification($component, $type, $message);
+	return log($component, $type, $message);
 }
 
 /**
