@@ -91,6 +91,7 @@ add_filter( 'notify_moderator', [ $this->component( 'integration_wp_emails' ), '
 add_action( 'notification/init', [ $this->component( 'integration_wp_emails' ), 'disable_password_change_notify_to_admin' ], 10, 0 );
 add_action( 'notification/init', [ $this->component( 'integration_wp_emails' ), 'disable_send_confirmation_on_profile_email' ], 10, 0 );
 add_action( 'notification/init', [ $this->component( 'integration_wp_emails' ), 'disable_send_confirmation_on_admin_email' ], 10, 0 );
+add_action( 'notification/init', [ $this->component( 'integration_wp_emails' ), 'disable_send_confirmation_on_admin_email_changed' ], 10, 0 );
 add_filter( 'send_password_change_email', [ $this->component( 'integration_wp_emails' ), 'disable_password_change_notify_to_user' ], 10, 3 );
 add_filter( 'retrieve_password_message', [ $this->component( 'integration_wp_emails' ), 'disable_password_reset_notify_to_user' ], 100, 1 );
 add_filter( 'send_email_change_email', [ $this->component( 'integration_wp_emails' ), 'disable_email_change_notify_to_user' ], 10, 3 );
