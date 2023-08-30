@@ -32,7 +32,7 @@ class Upgrade
 	 *
 	 * @var int
 	 */
-	public static $dbVersion = 1;
+	public static $dbVersion = 2;
 
 	/**
 	 * Data version setting key name
@@ -66,7 +66,7 @@ class Upgrade
 
 		while ($dataVersion < static::$dataVersion) {
 			$dataVersion++;
-			$upgradeMethod = [$this, 'upgrade_to_v' . $dataVersion];
+			$upgradeMethod = [$this, sprintf('upgradeToV%d', $dataVersion)];
 
 			if (!method_exists($upgradeMethod[0], $upgradeMethod[1]) || !is_callable($upgradeMethod)) {
 				continue;
@@ -111,6 +111,9 @@ class Upgrade
 		}
 
 		$logsTable = $wpdb->prefix . 'notification_logs';
+		$notificationsTable = $wpdb->prefix . 'notifications';
+		$notificationCarriersTable = $wpdb->prefix . 'notification_carriers';
+		$notificationExtrasTable = $wpdb->prefix . 'notification_extras';
 
 		$sql = "
 		CREATE TABLE {$logsTable} (
@@ -120,6 +123,40 @@ class Upgrade
 			message text NOT NULL,
 			component text NOT NULL,
 			UNIQUE KEY ID (ID)
+		) $charsetCollate;
+
+		CREATE TABLE {$notificationsTable} (
+			hash varchar(150) NOT NULL,
+			title tinytext NOT NULL,
+			trigger_slug varchar(250) NOT NULL,
+			enabled tinyint(1) NOT NULL DEFAULT '0',
+			created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+			updated_at timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+			PRIMARY KEY  (hash),
+			UNIQUE KEY (hash)
+		) $charsetCollate;
+
+		CREATE TABLE {$notificationCarriersTable} (
+			ID bigint(20) NOT NULL AUTO_INCREMENT,
+			notification_hash varchar(150) NOT NULL,
+			slug varchar(150) NOT NULL,
+			data json NULL DEFAULT NULL,
+			enabled tinyint(1) NULL DEFAULT '0',
+			created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+			updated_at timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+			PRIMARY KEY  (ID),
+			KEY notification_hash (notification_hash)
+		) $charsetCollate;
+
+		CREATE TABLE {$notificationExtrasTable} (
+			ID bigint(20) NOT NULL AUTO_INCREMENT,
+			notification_hash varchar(150) NOT NULL,
+			slug varchar(150) NOT NULL,
+			data json NULL DEFAULT NULL,
+			created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+			updated_at timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+			PRIMARY KEY  (ID),
+			KEY notification_hash (notification_hash)
 		) $charsetCollate;
 		";
 
