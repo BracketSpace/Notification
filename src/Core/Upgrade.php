@@ -342,7 +342,7 @@ class Upgrade
 		// 1. Changes the Trigger slugs.
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-		$notifications = $wpdb->getResults(
+		$notifications = $wpdb->get_results(
 			"SELECT p.ID, p.post_content
 			FROM {$wpdb->posts} p
 			WHERE p.post_type = 'notification'"
@@ -364,10 +364,7 @@ class Upgrade
 			$wpdb->update(
 				$wpdb->posts,
 				[
-					'post_content' => wp_json_encode(
-						$data,
-						JSON_UNESCAPED_UNICODE
-					),
+					'post_content' => wp_json_encode($data, JSON_UNESCAPED_UNICODE),
 				],
 				[
 					'ID' => $notificationRaw->ID,
