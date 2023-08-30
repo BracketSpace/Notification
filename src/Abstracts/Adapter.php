@@ -80,7 +80,8 @@ abstract class Adapter implements Interfaces\Adaptable
 	/**
 	 * Sets up Notification object with data.
 	 *
-	 * @param array<mixed> $data Data array.
+	 * phpcs:ignore SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName
+	 * @param NotificationData $data Data array.
 	 * @return \BracketSpace\Notification\Core\Notification
 	 * @since  6.0.0
 	 */

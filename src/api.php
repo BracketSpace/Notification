@@ -4,6 +4,8 @@
  * Public API.
  *
  * @package notification
+ *
+ * phpcs:disable SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName
  */
 
 declare(strict_types=1);
@@ -109,7 +111,7 @@ function notificationLog($component, $type, $message)
  *
  * Accepts both array with Trigger and Carriers objects or static values.
  *
- * @param array<mixed> $data Notification data.
+ * @param NotificationData $data Notification data.
  * @return \WP_Error | true
  * @since  6.0.0
  */
@@ -148,12 +150,11 @@ function notificationAdd(Notification $notification)
  * If the data is already in form of objects it does nothing.
  *
  * @param array<mixed> $data Notification static data.
- * @return array<mixed>       Converted data.
+ * @return NotificationData Converted data.
  * @since  6.0.0
  */
 function notificationConvertData($data = [])
 {
-
 	// Trigger conversion.
 	if (!empty($data['trigger']) && !($data['trigger'] instanceof Interfaces\Triggerable)) {
 		$data['trigger'] = Store\Trigger::get($data['trigger']);

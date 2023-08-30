@@ -23,6 +23,7 @@ class Notification
 	 * @var string
 	 */
 	private $hash;
+
 	/**
 	 * Title
 	 *
@@ -40,7 +41,7 @@ class Notification
 	/**
 	 * Carriers
 	 *
-	 * @var array<mixed>
+	 * @var Interfaces\Sendable[]
 	 */
 	private $carriers = [];
 
@@ -54,7 +55,7 @@ class Notification
 	/**
 	 * Extras
 	 *
-	 * @var array<mixed>
+	 * @var array<string, array<mixed>|bool|float|int|string>
 	 */
 	private $extras = [];
 
@@ -82,7 +83,7 @@ class Notification
 	/**
 	 * Constructor
 	 *
-	 * @param array<mixed> $data Notification data.
+	 * @param NotificationData $data Notification data.
 	 * @since 6.0.0
 	 */
 	public function __construct($data = [])
@@ -115,7 +116,7 @@ class Notification
 	/**
 	 * Sets up Notification data from array.
 	 *
-	 * @param array<mixed> $data Data array.
+	 * @param NotificationData $data Data array.
 	 * @return $this
 	 * @throws \Exception If wrong arguments has been passed.
 	 * @since  6.0.0
@@ -350,7 +351,7 @@ class Notification
 	 * Sets Carriers
 	 * Makes sure that the Notification slug is used as key.
 	 *
-	 * @param array<mixed> $carriers Array of Carriers.
+	 * @param array<string,Interfaces\Sendable> $carriers Array of Carriers.
 	 * @return void
 	 * @since  6.0.0
 	 */
@@ -401,7 +402,7 @@ class Notification
 	 * Gets single extra data value.
 	 *
 	 * @param string $key Extra data key.
-	 * @return mixed       Extra data value or null
+	 * @return array<mixed>|bool|float|int|string|null Extra data value or null
 	 * @since  6.0.0
 	 */
 	public function getExtra($key)
@@ -433,7 +434,7 @@ class Notification
 	 * Add extra data
 	 *
 	 * @param string $key Extra data key.
-	 * @param mixed $value Extra data value.
+	 * @param array<mixed>|bool|float|int|string $value Extra data value.
 	 * @return $this
 	 * @throws \Exception If extra is not type of array, string or number or boolean.
 	 * @since  6.0.0
@@ -522,7 +523,7 @@ class Notification
 	}
 
 	/**
-	 * @return mixed[]
+	 * @return array<string, array<mixed>|bool|float|int|string>
 	 */
 	public function getExtras(): array
 	{
@@ -530,7 +531,7 @@ class Notification
 	}
 
 	/**
-	 * @param mixed[] $extras
+	 * @param array<string, array<mixed>|bool|float|int|string> $extras
 	 * @return Notification
 	 */
 	public function setExtras(array $extras): Notification
