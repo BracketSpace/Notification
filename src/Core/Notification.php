@@ -611,4 +611,17 @@ class Notification
 	{
 		$this->sourcePostId = $postId;
 	}
+
+	/**
+	 * Converts the notification to another type of representation.
+	 *
+	 * @since [Next]
+	 * @param string $type The type of representation, ie. array or json
+	 * @param array<string|int,mixed> $config The additional configuration of the adapter
+	 * @return mixed
+	 */
+	public function to(string $type, array $config = [])
+	{
+		return apply_filters(sprintf('notification/to/%s', $type), $this, $config);
+	}
 }
