@@ -19,11 +19,11 @@ use BracketSpace\Notification\Abstracts;
 class EmailChanged extends Abstracts\Trigger
 {
 	/**
-	 * User login
+	 * User object
 	 *
-	 * @var string
+	 * @var \WP_User
 	 */
-	public $userLogin;
+	public $userObject;
 
 	/**
 	 * Site new email
@@ -49,7 +49,9 @@ class EmailChanged extends Abstracts\Trigger
 		$this->addAction('delete_option_new_admin_email');
 
 		$this->setGroup(__('WordPress', 'notification'));
-		$this->setDescription(__('Fires when admin confirms his new email address', 'notification'));
+		$this->setDescription(
+			__('Fires when admin confirms his new email address. Trigger performing by user.', 'notification')
+		);
 	}
 
 	/**
@@ -64,17 +66,17 @@ class EmailChanged extends Abstracts\Trigger
 			return false;
 		}
 
-		$currentUser = wp_get_current_user();
-		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-		$this->userLogin = $currentUser->user_login;
+		$user = wp_get_current_user();
 
-		// Makes sure that site new email is string
-		$siteNewEmail = get_option('admin_email');
-		if (! is_string($siteNewEmail)) {
-			$siteNewEmail = '';
+		if (! $user instanceof \WP_User) {
+			return false;
 		}
 
-		$this->siteNewEmail = $siteNewEmail;
+		$this->userObject = $user;
+
+		/** @var string $newEmail */
+		$newEmail = get_option('admin_email');
+		$this->siteNewEmail = $newEmail;
 		$this->emailChangedDatetime = time();
 	}
 
@@ -85,20 +87,15 @@ class EmailChanged extends Abstracts\Trigger
 	 */
 	public function mergeTags()
 	{
-		parent::mergeTags();
-
-		$this->addMergeTag(
-			new MergeTag\StringTag(
-				[
-					'slug' => 'user_login',
-					'name' => __('Admin login', 'notification'),
-					'resolver' => static function ($trigger) {
-						return $trigger->userLogin;
-					},
-					'group' => __('Site', 'notification'),
-				]
-			)
-		);
+		$this->addMergeTag(new MergeTag\User\UserID());
+		$this->addMergeTag(new MergeTag\User\UserLogin());
+		$this->addMergeTag(new MergeTag\User\UserEmail());
+		$this->addMergeTag(new MergeTag\User\UserRole());
+		$this->addMergeTag(new MergeTag\User\Avatar());
+		$this->addMergeTag(new MergeTag\User\UserDisplayName());
+		$this->addMergeTag(new MergeTag\User\UserFirstName());
+		$this->addMergeTag(new MergeTag\User\UserLastName());
+		$this->addMergeTag(new MergeTag\User\UserNicename());
 
 		$this->addMergeTag(
 			new MergeTag\StringTag(
@@ -116,7 +113,7 @@ class EmailChanged extends Abstracts\Trigger
 		$this->addMergeTag(
 			new MergeTag\DateTime\DateTime(
 				[
-					'slug' => 'site_email_changed_datetime',
+					'slug' => 'email_changed_datetime',
 					'name' => __('Site email changed datetime', 'notification'),
 				]
 			)
