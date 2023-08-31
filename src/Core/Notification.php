@@ -249,7 +249,7 @@ class Notification
 	 * Gets single Carrier object
 	 *
 	 * @param string $carrierSlug Carrier slug.
-	 * @return mixed                Carrier object or null.
+	 * @return Interfaces\Sendable|null
 	 * @since  6.0.0
 	 */
 	public function getCarrier($carrierSlug)
@@ -263,7 +263,7 @@ class Notification
 	/**
 	 * Gets enabled Carriers
 	 *
-	 * @return array<mixed>
+	 * @return array<string,Interfaces\Sendable>
 	 * @since  6.0.0
 	 */
 	public function getEnabledCarriers()
@@ -577,7 +577,7 @@ class Notification
 	}
 
 	/**
-	 * @return array<mixed>
+	 * @return array<string,Interfaces\Sendable>
 	 */
 	public function getCarriers()
 	{
