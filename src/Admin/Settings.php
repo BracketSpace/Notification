@@ -667,17 +667,22 @@ class Settings
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
 			)
-			->addField( [
-				'name' => __('Admin Email address changed', 'notification'),
-				'slug' => 'send_confirmation_on_admin_email_changed',
-				'default' => false,
-				'addons' => [
-					'label' => __('Disable email to <strong>new admin</strong> about site email address changed.', 'notification'),
-				],
-				'description' => __('Email is sent when new site email address is confirmed.', 'notification'),
-				'render' => [new CoreFields\Checkbox(), 'input'],
-				'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
-			] )
+			->addField(
+				[
+					'name' => __('Admin Email address changed', 'notification'),
+					'slug' => 'send_confirmation_on_admin_email_changed',
+					'default' => false,
+					'addons' => [
+						'label' => __(
+							'Disable email to <strong>new admin</strong> about site email address changed.',
+							'notification'
+						),
+					],
+					'description' => __('Email is sent when new site email address is confirmed.', 'notification'),
+					'render' => [new CoreFields\Checkbox(), 'input'],
+					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
+				]
+			)
 			->addField(
 				[
 					'name' => __('Automatic WordPress core update', 'notification'),
