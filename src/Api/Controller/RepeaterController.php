@@ -107,12 +107,12 @@ class RepeaterController
 			if ($carrier->hasRecipientsField()) {
 				$recipientsField = $carrier->getRecipientsField();
 
-				if ($field === $recipientsField->getRawName()) {
+				if ($recipientsField !== null && $field === $recipientsField->getRawName()) {
 					return $carrier->getRecipients();
 				}
 			}
 
-			return $carrier->getFieldValue($field);
+			return (array)$carrier->getFieldValue($field);
 		}
 
 		return [];

@@ -550,7 +550,7 @@ abstract class Carrier implements Interfaces\Sendable
 	/**
 	 * Gets data
 	 *
-	 * @return array<mixed>
+	 * @return array<string,mixed>
 	 * @since  6.0.0
 	 */
 	public function getData()
