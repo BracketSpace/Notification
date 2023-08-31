@@ -311,6 +311,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Changed] Minimum required PHP version from 7.4.
 * [Changed] WordPress Coding Standards to PSR-12 standards.
 * [Added] New trigger after user confirms his new email address
+* [Added] Disable notification about admin email address changed
 
 **Compatibility Breaking Changes**
 
