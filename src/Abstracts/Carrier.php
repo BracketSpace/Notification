@@ -18,6 +18,7 @@ use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Store\Recipient as RecipientStore;
 use BracketSpace\Notification\Traits;
+use function BracketSpace\Notification\getSetting;
 
 /**
  * Carrier abstract class
@@ -421,7 +422,7 @@ abstract class Carrier implements Interfaces\Sendable
 		// Unused tags.
 		$stripMergeTags = apply_filters(
 			'notification/resolve/strip_empty_mergetags',
-			notificationGetSetting('general/content/strip_empty_tags')
+			getSetting('general/content/strip_empty_tags')
 		);
 
 		if ($stripMergeTags) {
@@ -431,7 +432,7 @@ abstract class Carrier implements Interfaces\Sendable
 		// Shortcodes.
 		$stripShortcodes = apply_filters(
 			'notification/carrier/field/value/strip_shortcodes',
-			notificationGetSetting('general/content/strip_shortcodes')
+			getSetting('general/content/strip_shortcodes')
 		);
 
 		$resolved = $stripShortcodes

@@ -10,6 +10,9 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 
+use function BracketSpace\Notification\adaptNotificationFrom;
+use function BracketSpace\Notification\swapNotificationAdapter;
+
 /**
  * Notification duplicator class
  */
@@ -64,14 +67,14 @@ class NotificationDuplicator
 
 		// Get the source notification post.
 		$source = get_post(intval(wp_unslash($_GET['duplicate'])));
-		$wp = notificationAdaptFrom('WordPress', $source);
+		$wp = adaptNotificationFrom('WordPress', $source);
 
 		/**
 		 * JSON Adapter
 		 *
 		 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 		 */
-		$json = notificationSwapAdapter('JSON', $wp);
+		$json = swapNotificationAdapter('JSON', $wp);
 
 		$json->refreshHash();
 		$json->setEnabled(false);

@@ -263,28 +263,28 @@ class Runtime
 	{
 		$this->registerHooks();
 
-		notificationRegisterSettings([$this->component('admin_settings'), 'generalSettings']);
-		notificationRegisterSettings(
+		registerSettings([$this->component('admin_settings'), 'generalSettings']);
+		registerSettings(
 			[$this->component('admin_settings'), 'triggersSettings'],
 			20
 		);
-		notificationRegisterSettings(
+		registerSettings(
 			[$this->component('admin_settings'), 'carriersSettings'],
 			30
 		);
-		notificationRegisterSettings(
+		registerSettings(
 			[$this->component('admin_settings'), 'emailsSettings'],
 			40
 		);
-		notificationRegisterSettings(
+		registerSettings(
 			[$this->component('admin_sync'), 'settings'],
 			50
 		);
-		notificationRegisterSettings(
+		registerSettings(
 			[$this->component('admin_impexp'), 'settings'],
 			60
 		);
-		notificationRegisterSettings(
+		registerSettings(
 			[$this->component('admin_debugging'), 'debuggingSettings'],
 			70
 		);

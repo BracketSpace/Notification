@@ -216,7 +216,6 @@ $logs = $get('logs');
 			</div>
 		<?php endforeach ?>
 
-
 	<?php else : ?>
 		<p>
 		<?php

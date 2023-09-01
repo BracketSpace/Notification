@@ -17,6 +17,9 @@ use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\ErrorHandler;
 use BracketSpace\Notification\Interfaces\Sendable;
 use BracketSpace\Notification\Interfaces\Triggerable;
+use function BracketSpace\Notification\adaptNotification;
+use function BracketSpace\Notification\adaptNotificationFrom;
+use function BracketSpace\Notification\getSetting;
 
 /**
  * Processor class
@@ -40,7 +43,7 @@ class Processor
 
 				$bpEnabled = apply_filters(
 					'notification/trigger/process_in_background',
-					notificationGetSetting('general/advanced/background_processing'),
+					getSetting('general/advanced/background_processing'),
 					$trigger
 				);
 
@@ -94,7 +97,7 @@ class Processor
 			time() + apply_filters('notification/background_processing/delay', 30),
 			'notification_background_processing',
 			[
-				notificationAdapt('JSON', $notification)->save(JSON_UNESCAPED_UNICODE, true),
+				adaptNotification('JSON', $notification)->save(JSON_UNESCAPED_UNICODE, true),
 				$triggerKey,
 			]
 		);
@@ -145,7 +148,7 @@ class Processor
 	 */
 	public static function handleCron($notificationJson, $triggerKey)
 	{
-		$notification = notificationAdaptFrom('JSON', $notificationJson)
+		$notification = adaptNotificationFrom('JSON', $notificationJson)
 			->getNotification();
 		$trigger = self::getCache($triggerKey)->get();
 

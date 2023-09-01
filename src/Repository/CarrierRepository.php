@@ -13,6 +13,7 @@ namespace BracketSpace\Notification\Repository;
 use BracketSpace\Notification\Defaults\Carrier;
 use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\Helper as DocHooksHelper;
+use function BracketSpace\Notification\getSetting;
 
 /**
  * Carrier Repository.
@@ -24,11 +25,11 @@ class CarrierRepository
 	 */
 	public static function register()
 	{
-		if (notificationGetSetting('carriers/email/enable')) {
+		if (getSetting('carriers/email/enable')) {
 			Register::carrier(DocHooksHelper::hook(new Carrier\Email()));
 		}
 
-		if (!notificationGetSetting('carriers/webhook/enable')) {
+		if (!getSetting('carriers/webhook/enable')) {
 			return;
 		}
 

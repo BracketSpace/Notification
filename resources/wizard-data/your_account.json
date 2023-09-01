@@ -4,7 +4,7 @@
     "trigger": "user/registered",
     "carriers": {
         "email": {
-        	"activated": true,
+            "activated": true,
             "enabled": true,
             "subject": "{site_title} - Login Details",
             "body": "Username: %s\r\n\r\nTo set your password, visit the following address:\r\n\r\n{user_password_setup_link}",

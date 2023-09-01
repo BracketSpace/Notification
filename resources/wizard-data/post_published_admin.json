@@ -4,7 +4,7 @@
     "trigger": "post/post/published",
     "carriers": {
         "email": {
-        	"activated": true,
+            "activated": true,
             "enabled": true,
             "subject": "{site_title} - Post \"{post_title}\" has been published",
             "body": "The post \"{post_title}\" has been just published.\r\n\r\nView: {post_permalink}\r\nEdit: {home_url}/wp-admin/post.php?post={post_ID}&amp;action=edit",

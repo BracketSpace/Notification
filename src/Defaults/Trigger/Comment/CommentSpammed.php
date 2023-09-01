@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Defaults\Trigger\Comment;
 
 use BracketSpace\Notification\Utils\WpObjectHelper;
+use function BracketSpace\Notification\getSetting;
 
 /**
  * Comment spammed trigger class
@@ -55,7 +56,10 @@ class CommentSpammed extends CommentTrigger
 	{
 		$this->comment = $comment;
 
-		if ($this->comment->comment_approved === 'spam' && notificationGetSetting('triggers/comment/akismet')) {
+		if (
+			$this->comment->comment_approved === 'spam' &&
+			getSetting('triggers/comment/akismet')
+		) {
 			return false;
 		}
 
