@@ -14,6 +14,7 @@ use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Helpers\CaseHelper;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Core\Notification;
+use function BracketSpace\Notification\addNotification;
 
 /**
  * Adapter class
@@ -109,6 +110,6 @@ abstract class Adapter implements Interfaces\Adaptable
 	 */
 	public function registerNotification()
 	{
-		notificationAdd($this->getNotification());
+		addNotification($this->getNotification());
 	}
 }

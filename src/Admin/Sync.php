@@ -16,6 +16,8 @@ use BracketSpace\Notification\Utils\Settings\CoreFields;
 use BracketSpace\Notification\Utils\Settings\Fields as SpecificFields;
 use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
 use BracketSpace\Notification\Queries\NotificationQueries;
+use function BracketSpace\Notification\adaptNotificationFrom;
+use function BracketSpace\Notification\swapNotificationAdapter;
 
 /**
  * Sync class
@@ -146,7 +148,7 @@ class Sync
 				 *
 				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
 				 */
-				$jsonAdapter = notificationAdaptFrom('JSON', $json);
+				$jsonAdapter = adaptNotificationFrom('JSON', $json);
 
 				if ($jsonAdapter->getHash() === $hash) {
 					/**
@@ -154,7 +156,7 @@ class Sync
 					 *
 					 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
 					 */
-					$wpAdapter = notificationSwapAdapter('WordPress', $jsonAdapter);
+					$wpAdapter = swapNotificationAdapter('WordPress', $jsonAdapter);
 					$wpAdapter->save();
 					return get_edit_post_link($wpAdapter->getId(), 'admin');
 				}

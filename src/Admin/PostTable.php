@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 
+use function BracketSpace\Notification\adaptNotificationFrom;
+
 /**
  * PostTable class
  */
@@ -57,7 +59,7 @@ class PostTable
 		 *
 		 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
 		 */
-		$notification = notificationAdaptFrom('WordPress', $postId);
+		$notification = adaptNotificationFrom('WordPress', $postId);
 
 		switch ($column) {
 			case 'hash':
@@ -216,7 +218,7 @@ class PostTable
 		);
 
 		foreach ($postIds as $postId) {
-			$notification = notificationAdaptFrom('WordPress', $postId);
+			$notification = adaptNotificationFrom('WordPress', $postId);
 			$notification->setEnabled($doaction === 'enable');
 			$notification->save();
 		}

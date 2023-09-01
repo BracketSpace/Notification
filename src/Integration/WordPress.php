@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Integration;
 
 use BracketSpace\Notification\Interfaces\Triggerable;
+use function BracketSpace\Notification\getSetting;
 
 /**
  * WordPress integration class
@@ -34,7 +35,7 @@ class WordPress
 	 */
 	public function filterEmailFromName($fromName)
 	{
-		$setting = notificationGetSetting('carriers/email/from_name');
+		$setting = getSetting('carriers/email/from_name');
 
 		return empty($setting) ? $fromName : $setting;
 	}
@@ -50,7 +51,7 @@ class WordPress
 	 */
 	public function filterEmailFromEmail($fromEmail)
 	{
-		$setting = notificationGetSetting('carriers/email/from_email');
+		$setting = getSetting('carriers/email/from_email');
 
 		return empty($setting) ? $fromEmail : $setting;
 	}
@@ -161,7 +162,7 @@ class WordPress
 	public function proxyTransitionCommentStatusToPublished($commentNewStatus, $commentOldStatus, $comment)
 	{
 		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-		if ($comment->comment_approved === 'spam' && notificationGetSetting('triggers/comment/akismet')) {
+		if ($comment->comment_approved === 'spam' && getSetting('triggers/comment/akismet')) {
 			return;
 		}
 

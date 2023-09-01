@@ -10,9 +10,9 @@
 
 declare(strict_types=1);
 
+namespace BracketSpace\Notification;
+
 use BracketSpace\Notification\Core\Notification;
-use BracketSpace\Notification\Store;
-use BracketSpace\Notification\Interfaces;
 
 /**
  * Adapts Notification object
@@ -23,10 +23,10 @@ use BracketSpace\Notification\Interfaces;
  * @return \BracketSpace\Notification\Interfaces\Adaptable
  * @throws \Exception If adapter wasn't found.
  * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notificationAdapt($adapterName, Notification $notification)
+function adaptNotification($adapterName, Notification $notification)
 {
-
 	if (class_exists($adapterName)) {
 		$adapter = new $adapterName($notification);
 	} elseif (class_exists('BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapterName)) {
@@ -38,6 +38,7 @@ function notificationAdapt($adapterName, Notification $notification)
 		);
 	}
 
+	/** @var \BracketSpace\Notification\Interfaces\Adaptable $adapter */
 	return $adapter;
 }
 
@@ -49,10 +50,11 @@ function notificationAdapt($adapterName, Notification $notification)
  * @param mixed $data Input data needed by adapter.
  * @return \BracketSpace\Notification\Interfaces\Adaptable
  * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notificationAdaptFrom($adapterName, $data)
+function adaptNotificationFrom($adapterName, $data)
 {
-	$adapter = notificationAdapt(
+	$adapter = adaptNotification(
 		$adapterName,
 		new Notification()
 	);
@@ -66,10 +68,11 @@ function notificationAdaptFrom($adapterName, $data)
  * @param \BracketSpace\Notification\Interfaces\Adaptable $adapter Adapter.
  * @return \BracketSpace\Notification\Interfaces\Adaptable
  * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notificationSwapAdapter($newAdapterName, Interfaces\Adaptable $adapter)
+function swapNotificationAdapter($newAdapterName, Interfaces\Adaptable $adapter)
 {
-	return notificationAdapt(
+	return adaptNotification(
 		$newAdapterName,
 		$adapter->getNotification()
 	);
@@ -83,11 +86,12 @@ function notificationSwapAdapter($newAdapterName, Interfaces\Adaptable $adapter)
  * @param string $message Log formatted message.
  * @return bool|\WP_Error
  * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notificationLog($component, $type, $message)
+function log($component, $type, $message)
 {
 
-	if ($type !== 'notification' && !notificationGetSetting('debugging/settings/error_log')) {
+	if ($type !== 'notification' && !getSetting('debugging/settings/error_log')) {
 		return false;
 	}
 
@@ -114,12 +118,13 @@ function notificationLog($component, $type, $message)
  * @param NotificationData $data Notification data.
  * @return \WP_Error | true
  * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
 function notification($data = [])
 {
 
 	try {
-		notificationAdd(new Notification(notificationConvertData($data)));
+		addNotification(new Notification(convertNotificationData($data)));
 	} catch (\Throwable $e) {
 		return new \WP_Error('notification_error', $e->getMessage());
 	}
@@ -133,8 +138,9 @@ function notification($data = [])
  * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
  * @return void
  * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notificationAdd(Notification $notification)
+function addNotification(Notification $notification)
 {
 	Store\Notification::insert(
 		$notification->getHash(),
@@ -152,8 +158,9 @@ function notificationAdd(Notification $notification)
  * @param array<mixed> $data Notification static data.
  * @return NotificationData Converted data.
  * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notificationConvertData($data = [])
+function convertNotificationData($data = [])
 {
 	// Trigger conversion.
 	if (!empty($data['trigger']) && !($data['trigger'] instanceof Interfaces\Triggerable)) {
@@ -193,9 +200,10 @@ function notificationConvertData($data = [])
  * @param mixed $callback Callback for settings registration, array of string.
  * @param int $priority Action priority.
  * @return void
- * @since  5.0.0
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notificationRegisterSettings($callback, $priority = 10)
+function registerSettings($callback, $priority = 10)
 {
 
 	if (!is_callable($callback)) {
@@ -209,9 +217,10 @@ function notificationRegisterSettings($callback, $priority = 10)
  * Gets setting values
  *
  * @return mixed
- * @since 5.0.0
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notificationGetSettings()
+function getSettings()
 {
 	return \Notification::component('core_settings')->getSettings();
 }
@@ -221,10 +230,10 @@ function notificationGetSettings()
  *
  * @param string $setting setting name in `a/b/c` format.
  * @return mixed
- * @since  5.0.0
- * @since  7.0.0 The `notifications` section has been changed to `carriers`.
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notificationGetSetting($setting)
+function getSetting($setting)
 {
 
 	$parts = explode('/', $setting);
@@ -248,8 +257,10 @@ function notificationGetSetting($setting)
  * @param string $setting setting name in `a/b/c` format.
  * @param mixed $value setting value.
  * @return  mixed
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notificationUpdateSetting($setting, $value)
+function updateSetting($setting, $value)
 {
 	return \Notification::component('core_settings')->updateSetting(
 		$setting,

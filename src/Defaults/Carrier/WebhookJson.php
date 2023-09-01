@@ -14,6 +14,7 @@ use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\Field;
 use BracketSpace\Notification\Traits\Webhook as WebhookTrait;
+use function BracketSpace\Notification\getSetting;
 
 /**
  * Webhook Carrier
@@ -61,7 +62,7 @@ class WebhookJson extends Abstracts\Carrier
 			)
 		);
 
-		if (!notificationGetSetting('carriers/webhook/headers')) {
+		if (!getSetting('carriers/webhook/headers')) {
 			return;
 		}
 
@@ -129,7 +130,7 @@ class WebhookJson extends Abstracts\Carrier
 			? ['Content-Type' => 'application/json']
 			: [];
 
-		if (notificationGetSetting('carriers/webhook/headers')) {
+		if (getSetting('carriers/webhook/headers')) {
 			$headers = array_merge(
 				$headers,
 				$this->parseArgs($data['headers'])

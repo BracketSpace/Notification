@@ -77,7 +77,6 @@ $logs = $get('logs');
 			</div>
 		<?php endforeach ?>
 
-
 	<?php else : ?>
 		<p><?php esc_html_e('The Error log is empty.'); ?></p>
 	<?php endif ?>
