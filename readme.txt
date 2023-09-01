@@ -310,7 +310,8 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Fixed] PHP 8.2 deprecations.
 * [Changed] Minimum required PHP version from 7.4.
 * [Changed] WordPress Coding Standards to PSR-12 standards.
-* [Added] New trigger after user confirms his new email address
+* [Added] New trigger after user confirms his new email address.
+* [Fixed] Fix strip shortcodes in carriers fields.
 
 **Compatibility Breaking Changes**
 
