@@ -98,7 +98,7 @@ class EmailChanged extends Abstracts\Trigger
 		$this->addMergeTag(new MergeTag\User\UserNicename());
 
 		$this->addMergeTag(
-			new MergeTag\StringTag(
+			new MergeTag\EmailTag(
 				[
 					'slug' => 'site_new_email',
 					'name' => __('Site new email', 'notification'),

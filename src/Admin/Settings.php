@@ -325,30 +325,6 @@ class Settings
 					'render' => [new CoreFields\Select(), 'input'],
 					'sanitize' => [new CoreFields\Select(), 'sanitize'],
 				]
-			)
-			->addField(
-				[
-					'name' => __('Site email address change request', 'notification'),
-					'slug' => 'email_address_change_request',
-					'default' => 'true',
-					'addons' => [
-						'label' => __('Enable site email address change request trigger', 'notification'),
-					],
-					'render' => [new CoreFields\Checkbox(), 'input'],
-					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
-				]
-			)
-			->addField(
-				[
-					'name' => __('Site email address changed', 'notification'),
-					'slug' => 'email_address_changed',
-					'default' => 'true',
-					'addons' => [
-						'label' => __('Enable site email address changed trigger', 'notification'),
-					],
-					'render' => [new CoreFields\Checkbox(), 'input'],
-					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
-				]
 			);
 
 		$triggers->addGroup(__('Privacy', 'notification'), 'privacy')

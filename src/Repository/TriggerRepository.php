@@ -155,15 +155,9 @@ class TriggerRepository
 			Register::trigger(new Trigger\WordPress\UpdatesAvailable());
 		}
 
-		if (getSetting('triggers/wordpress/email_address_changed')) {
-			Register::trigger(new Trigger\WordPress\EmailChanged());
-		}
-
-		if (!getSetting('triggers/wordpress/email_address_change_request')) {
-			return;
-		}
-
 		Register::trigger(new Trigger\WordPress\EmailChangeRequest());
+
+		Register::trigger(new Trigger\WordPress\EmailChanged());
 	}
 
 	/**
