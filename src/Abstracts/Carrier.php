@@ -437,7 +437,7 @@ abstract class Carrier implements Interfaces\Sendable
 
 		$resolved = $stripShortcodes
 			? preg_replace(
-				'@\[([^<>&/\[\]\x00-\x20=]++)@',
+				'/\[[^\]]*\]/',
 				'',
 				$resolved
 			)

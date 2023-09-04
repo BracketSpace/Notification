@@ -187,6 +187,19 @@ class WordPressEmails
 	}
 
 	/**
+	 * Disables email on admin email address changed
+	 *
+	 * @filter send_site_admin_email_change_email
+	 *
+	 * @since [Next]
+	 * @return bool
+	 */
+	public function disableSendConfirmationOnAdminEmailChanged()
+	{
+		return getSetting('integration/emails/send_confirmation_on_admin_email_changed') !== 'true';
+	}
+
+	/**
 	 * Disables send the email change email to user
 	 *
 	 * @filter send_password_change_email
