@@ -308,6 +308,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Changed] Removed v6 & v7 deprecated functions
 * [Changed] Minimum required PHP version from 7.4.
 * [Changed] WordPress Coding Standards to PSR-12 standards.
+* [Changed] Trigger dropdown is now taller for better UX.
 * [Fixed] Shortcodes being uncorrectly stripped leaving closing "]" behind.
 * [Fixed] PHP 8.2 deprecations.
 * [Fixed] Stripping shortcodes in carrier fields.
