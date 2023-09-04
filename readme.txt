@@ -315,6 +315,8 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Added] New trigger after user confirms his new email address.
 * [Added] New trigger after user confirms his new email address
 * [Added] Option to disable notification about admin email address changed.
+* [Added] New trigger after user confirms his new email address.
+* [Added] New trigger after admin confirms new site email address.
 
 **Compatibility Breaking Changes**
 
