@@ -9,10 +9,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup PHP 7.4
+      - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.2'
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
       - name: Install Composer dependencies
@@ -22,16 +22,13 @@ jobs:
   phpstan:
     name: PHPStan
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php: ['7.4', '8.2']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup PHP 7.4
+      - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.2'
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
       - name: Install Composer dependencies
@@ -40,14 +37,6 @@ jobs:
         run: composer bin build install --no-progress
       - name: Compose dependencies
         run: composer compose
-      - name: Setup PHP ${{ matrix.php }}
-        # https://github.com/shivammathur/setup-php/issues/446#issuecomment-824001225
-        uses: shivammathur/setup-php@develop
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
-          coverage: none
-          tools: none
       - name: Analyze
         run: composer phpstan
   phplint:
@@ -56,10 +45,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup PHP 7.4
+      - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.2'
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
       - name: Install Composer dependencies
@@ -75,21 +64,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['7.4', '8.0', '8.1', '8.2']
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: wp_phpunit_tests
-        ports:
-          - 3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        php: ['8.2']
     steps:
-      - name: Setup PHP 7.4
+      - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.2'
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
       - name: Checkout
@@ -104,6 +84,8 @@ jobs:
         run: composer compose
       - name: Remove unused dependencies
         run: composer remove --dev szepeviktor/phpstan-wordpress
+      - name: Setup tests
+        run: bash tests/bin/install-wp-tests.sh
       - name: Setup PHP ${{ matrix.php }}
         # https://github.com/shivammathur/setup-php/issues/446#issuecomment-824001225
         uses: shivammathur/setup-php@develop
@@ -115,7 +97,7 @@ jobs:
       - name: PHPUnit
         env:
           WP_DB_HOST: 127.0.0.1:${{ job.services.mysql.ports['3306'] }}
-        run: composer phpunit
+        run: composer test
   css:
     name: CSS Lint
     runs-on: ubuntu-latest

@@ -283,7 +283,7 @@ class Settings
 			);
 
 		// phpcs:ignore WordPress.WP.CapitalPDangit.Misspelled
-		$triggers->addGroup(__('WordPress', 'notification'), 'WordPress')
+		$triggers->addGroup(__('WordPress', 'notification'), 'wordpress')
 			->addField(
 				[
 					'name' => __('Updates', 'notification'),
@@ -663,6 +663,22 @@ class Settings
 						'Email is sent when site email address change is requested.',
 						'notification'
 					),
+					'render' => [new CoreFields\Checkbox(), 'input'],
+					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
+				]
+			)
+			->addField(
+				[
+					'name' => __('Admin Email address changed', 'notification'),
+					'slug' => 'send_confirmation_on_admin_email_changed',
+					'default' => false,
+					'addons' => [
+						'label' => __(
+							'Disable email to <strong>new admin</strong> about site email address changed.',
+							'notification'
+						),
+					],
+					'description' => __('Email is sent when new site email address is confirmed.', 'notification'),
 					'render' => [new CoreFields\Checkbox(), 'input'],
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]

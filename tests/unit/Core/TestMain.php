@@ -13,6 +13,11 @@ namespace BracketSpace\Notification\Tests\Core;
 class TestMain extends \WP_UnitTestCase {
 
 	/**
+	 * Notification Runtime
+	 */
+	public $notification;
+
+	/**
 	 * Setup test
 	 *
 	 * @since 5.2.3
