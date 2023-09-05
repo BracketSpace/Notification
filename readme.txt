@@ -317,6 +317,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Added] Option to disable notification about admin email address changed.
 * [Added] New trigger after user confirms his new email address.
 * [Added] New trigger after admin confirms new site email address.
+* [Fixed] Email carrier header "From" prioritized over header in settings.
 
 **Compatibility Breaking Changes**
 
