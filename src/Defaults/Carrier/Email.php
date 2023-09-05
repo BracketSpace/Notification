@@ -207,6 +207,12 @@ class Email extends Abstracts\Carrier
 		}
 
 		$headers = [];
+
+		$fromHeader = $this->getFromHeaderFromSettings();
+		if ($fromHeader) {
+			$headers[] = $fromHeader;
+		}
+
 		if (getSetting('carriers/email/headers') && !empty($data['headers'])) {
 			foreach ($data['headers'] as $header) {
 				$headers[] = $header['key'] . ': ' . $header['value'];
@@ -297,5 +303,30 @@ class Email extends Abstracts\Carrier
 		}
 
 		return $carrierData;
+	}
+
+	/**
+	 * Retrieve email "From" header from settings.
+	 *
+	 * @return string
+	 */
+	protected function getFromHeaderFromSettings()
+	{
+		$fromHeader = '';
+
+		if (getSetting('carriers/email/from_name')) {
+			$fromHeader = 'From: ' . getSetting('carriers/email/from_name');
+		}
+
+		$fromEmail = getSetting('carriers/email/from_email');
+		if ($fromEmail) {
+			if (strpos($fromHeader, 'From:') === false) {
+				$fromHeader = 'From:';
+			}
+
+			$fromHeader .= ' <' . $fromEmail . '>';
+		}
+
+		return $fromHeader;
 	}
 }
