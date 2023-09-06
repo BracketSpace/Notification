@@ -208,7 +208,7 @@ class Email extends Abstracts\Carrier
 
 		$headers = [];
 
-		$fromHeader = $this->getFromHeaderFromSettings();
+		$fromHeader = $this->getFromHeaderSetting();
 		if ($fromHeader) {
 			$headers[] = $fromHeader;
 		}
@@ -310,23 +310,13 @@ class Email extends Abstracts\Carrier
 	 *
 	 * @return string
 	 */
-	protected function getFromHeaderFromSettings()
+	protected function getFromHeaderSetting()
 	{
-		$fromHeader = '';
-
-		if (getSetting('carriers/email/from_name')) {
-			$fromHeader = 'From: ' . getSetting('carriers/email/from_name');
-		}
-
+		/** @var string $fromName */
+		$fromName = getSetting('carriers/email/from_name');
+		/** @var string $fromEmail */
 		$fromEmail = getSetting('carriers/email/from_email');
-		if ($fromEmail) {
-			if (strpos($fromHeader, 'From:') === false) {
-				$fromHeader = 'From:';
-			}
 
-			$fromHeader .= ' <' . $fromEmail . '>';
-		}
-
-		return $fromHeader;
+		return sprintf('From: %s <%s>', $fromName, $fromEmail);
 	}
 }
