@@ -17,6 +17,16 @@ use function BracketSpace\Notification\adaptNotificationFrom;
  */
 class PostTable
 {
+	const COLUMNS = [
+		'cb',
+		'switch',
+		'title',
+		'hash',
+		'trigger',
+		'carriers',
+		'date'
+	];
+
 	/**
 	 * Adds custom table columns
 	 *
@@ -41,6 +51,18 @@ class PostTable
 		$columns['date'] = $dateColumn;
 
 		return $columns;
+	}
+
+	/**
+	 * @filter manage_edit-notification_columns 1000
+	 * @param $columns
+	 * @return array
+	 */
+	public function manageColumns($columns)
+	{
+		return array_filter($columns, function($label, $column) {
+			return in_array($column, self::COLUMNS, true);
+		}, ARRAY_FILTER_USE_BOTH);
 	}
 
 	/**
