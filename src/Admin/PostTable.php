@@ -24,7 +24,7 @@ class PostTable
 		'hash',
 		'trigger',
 		'carriers',
-		'date'
+		'date',
 	];
 
 	/**
@@ -55,14 +55,18 @@ class PostTable
 
 	/**
 	 * @filter manage_edit-notification_columns 1000
-	 * @param $columns
-	 * @return array
+	 * @param array<mixed> $columns
+	 * @return array<mixed>
 	 */
 	public function manageColumns($columns)
 	{
-		return array_filter($columns, function($label, $column) {
-			return in_array($column, self::COLUMNS, true);
-		}, ARRAY_FILTER_USE_BOTH);
+		return array_filter(
+			$columns,
+			static function ($label, $column) {
+				return in_array($column, self::COLUMNS, true);
+			},
+			ARRAY_FILTER_USE_BOTH
+		);
 	}
 
 	/**
