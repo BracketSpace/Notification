@@ -17,16 +17,6 @@ use function BracketSpace\Notification\adaptNotificationFrom;
  */
 class PostTable
 {
-	const COLUMNS = [
-		'cb',
-		'switch',
-		'title',
-		'hash',
-		'trigger',
-		'carriers',
-		'date',
-	];
-
 	/**
 	 * Adds custom table columns
 	 *
@@ -50,20 +40,38 @@ class PostTable
 		$columns['carriers'] = __('Carriers', 'notification');
 		$columns['date'] = $dateColumn;
 
+		// Whitelist columns.
+		$allowedColumns = [
+			'cb',
+			'switch',
+			'title',
+			'hash',
+			'trigger',
+			'carriers',
+			'date',
+		];
+
+		foreach ($allowedColumns as $columnName) {
+			add_filter('notification/admin/allow_column/' . $columnName, '__return_true');
+		}
+
 		return $columns;
 	}
 
 	/**
-	 * @filter manage_edit-notification_columns 1000
-	 * @param array<mixed> $columns
-	 * @return array<mixed>
+	 * Cleans up Notification table columns.
+	 *
+	 * @filter manage_edit-notification_columns 999999999
+	 *
+	 * @param array<string,string> $columns Columns.
+	 * @return array<string,string>
 	 */
-	public function manageColumns($columns)
+	public function columnCleanup($columns)
 	{
 		return array_filter(
 			$columns,
-			static function ($label, $column) {
-				return in_array($column, self::COLUMNS, true);
+			static function ($label, $slug) {
+				return apply_filters('notification/admin/allow_column/' . $slug, false);
 			},
 			ARRAY_FILTER_USE_BOTH
 		);
