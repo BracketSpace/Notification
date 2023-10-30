@@ -309,6 +309,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Changed] Minimum required PHP version from 7.4.
 * [Changed] WordPress Coding Standards to PSR-12 standards.
 * [Changed] Trigger dropdown is now taller for better UX.
+* [Changed] Notification table is now filtered from uneccessary columns.
 * [Fixed] Shortcodes being uncorrectly stripped leaving closing "]" behind.
 * [Fixed] PHP 8.2 deprecations.
 * [Fixed] Stripping shortcodes in carrier fields.
@@ -317,6 +318,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Added] Option to disable notification about admin email address changed.
 * [Added] New trigger after user confirms his new email address.
 * [Added] New trigger after admin confirms new site email address.
+* [Added] notification/admin/allow_column/$column filter.
 * [Fixed] Email carrier header "From" prioritized over header in settings.
 
 **Compatibility Breaking Changes**
