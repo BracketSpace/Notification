@@ -1,72 +1,87 @@
 <?php
+
 /**
  * WordPress theme updated trigger
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Defaults\Trigger\Theme;
 
 use BracketSpace\Notification\Defaults\MergeTag;
-use BracketSpace\Notification\Abstracts;
 
 /**
  * Updated theme trigger class
  */
-class Updated extends ThemeTrigger {
-
+class Updated extends ThemeTrigger
+{
 	/**
 	 * Theme update date and time
 	 *
 	 * @var string
 	 */
-	public $theme_update_date_time;
+	public $themeUpdateDateTime;
 
 	/**
 	 * Theme previous version
 	 *
 	 * @var string
 	 */
-	public $theme_previous_version;
+	public $themePreviousVersion;
 
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
+	public function __construct()
+	{
+		parent::__construct(
+			'theme/updated',
+			__('Theme updated', 'notification')
+		);
 
-		parent::__construct( 'theme/updated', __( 'Theme updated', 'notification' ) );
+		$this->addAction(
+			'upgrader_process_complete',
+			1000,
+			2
+		);
 
-		$this->add_action( 'upgrader_process_complete', 1000, 2 );
+		$this->setGroup(__('Theme', 'notification'));
 
-		$this->set_group( __( 'Theme', 'notification' ) );
-		$this->set_description( __( 'Fires when theme is updated', 'notification' ) );
-
+		$this->setDescription(
+			__('Fires when theme is updated', 'notification')
+		);
 	}
 
 	/**
 	 * Trigger action.
 	 *
-	 * @param  \Theme_Upgrader $upgrader Theme_Upgrader class.
-	 * @param  array           $data     Update data information.
+	 * @param \Theme_Upgrader $upgrader Theme_Upgrader class.
+	 * @param array<mixed> $data Update data information.
 	 * @return mixed                     Void or false if no notifications should be sent.
 	 */
-	public function context( $upgrader, $data ) {
-
-		if ( ! isset( $data['type'], $data['action'] ) || 'theme' !== $data['type'] || 'update' !== $data['action'] ) {
+	public function context($upgrader, $data)
+	{
+		if (!isset($data['type'], $data['action']) || $data['type'] !== 'theme' || $data['action'] !== 'update') {
 			return false;
 		}
 
 		$theme = $upgrader->theme_info();
 
-		if ( false === $theme ) {
+		if ($theme === false) {
 			return false;
 		}
 
 		$this->theme = $theme;
 
-		$this->theme_update_date_time = time();
-		$this->theme_previous_version = ( ! property_exists( $upgrader->skin, 'theme_info' ) || null === $upgrader->skin->theme_info ) ? __( 'NA' ) : $upgrader->skin->theme_info->get( 'Version' );
-
+		$this->themeUpdateDateTime = (string)time();
+		$this->themePreviousVersion = (!property_exists(
+			$upgrader->skin,
+			'theme_info'
+		) || $upgrader->skin->theme_info === null)
+			? __('NA')
+			: $upgrader->skin->theme_info->get('Version');
 	}
 
 	/**
@@ -74,26 +89,32 @@ class Updated extends ThemeTrigger {
 	 *
 	 * @return void
 	 */
-	public function merge_tags() {
+	public function mergeTags()
+	{
+		parent::mergeTags();
 
-		parent::merge_tags();
+		$this->addMergeTag(
+			new MergeTag\StringTag(
+				[
+					'slug' => 'theme_previous_version',
+					'name' => __('Theme previous version', 'notification'),
+					'description' => __('1.0.0', 'notification'),
+					'example' => true,
+					'resolver' => static function ($trigger) {
+						return $trigger->themePreviousVersion;
+					},
+					'group' => __('Theme', 'notification'),
+				]
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\StringTag( [
-			'slug'        => 'theme_previous_version',
-			'name'        => __( 'Theme previous version', 'notification' ),
-			'description' => __( '1.0.0', 'notification' ),
-			'example'     => true,
-			'resolver'    => function ( $trigger ) {
-				return $trigger->theme_previous_version;
-			},
-			'group'       => __( 'Theme', 'notification' ),
-		] ) );
-
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
-			'slug' => 'theme_update_date_time',
-			'name' => __( 'Theme update date and time', 'notification' ),
-		] ) );
-
+		$this->addMergeTag(
+			new MergeTag\DateTime\DateTime(
+				[
+					'slug' => 'theme_update_date_time',
+					'name' => __('Theme update date and time', 'notification'),
+				]
+			)
+		);
 	}
-
 }

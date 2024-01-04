@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Taxonomy term updated trigger
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Trigger\Taxonomy;
 
@@ -13,29 +16,32 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
 /**
  * Taxonomy updated trigger class
  */
-class TermUpdated extends TermTrigger {
-
+class TermUpdated extends TermTrigger
+{
 	/**
 	 * Term modification date and time
 	 *
 	 * @var string
 	 */
-	public $term_modification_datetime;
+	public $termModificationDatetime;
 
 	/**
 	 * Constructor
 	 *
 	 * @param string $taxonomy optional, default: category.
 	 */
-	public function __construct( $taxonomy = 'category' ) {
-		$this->taxonomy = WpObjectHelper::get_taxonomy( $taxonomy );
+	public function __construct($taxonomy = 'category')
+	{
+		$this->taxonomy = WpObjectHelper::getTaxonomy($taxonomy);
 
-		parent::__construct( [
-			'taxonomy' => $taxonomy,
-			'slug'     => 'taxonomy/' . $taxonomy . '/updated',
-		] );
+		parent::__construct(
+			[
+				'taxonomy' => $taxonomy,
+				'slug' => 'taxonomy/' . $taxonomy . '/updated',
+			]
+		);
 
-		$this->add_action( 'edited_term', 100, 2 );
+		$this->addAction('edited_term', 100, 2);
 	}
 
 	/**
@@ -43,9 +49,13 @@ class TermUpdated extends TermTrigger {
 	 *
 	 * @return string name
 	 */
-	public function get_name() : string {
+	public function getName(): string
+	{
+		return sprintf(
 		// Translators: taxonomy name.
-		return sprintf( __( '%s term updated', 'notification' ), $this->taxonomy->labels->singular_name ?? '' );
+			__('%s term updated', 'notification'),
+			$this->taxonomy->labels->singular_name ?? ''
+		);
 	}
 
 	/**
@@ -53,10 +63,11 @@ class TermUpdated extends TermTrigger {
 	 *
 	 * @return string description
 	 */
-	public function get_description() : string {
+	public function getDescription(): string
+	{
 		return sprintf(
-			// Translators: 1. taxonomy name, 2. taxonomy slug.
-			__( 'Fires when %1$s (%2$s) is updated', 'notification' ),
+		// Translators: 1. taxonomy name, 2. taxonomy slug.
+			__('Fires when %1$s (%2$s) is updated', 'notification'),
 			$this->taxonomy->labels->singular_name ?? '',
 			$this->taxonomy->name ?? ''
 		);
@@ -65,26 +76,27 @@ class TermUpdated extends TermTrigger {
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param integer $term_id Term ID used only due to lack of taxonomy param.
+	 * @param int $termId Term ID used only due to lack of taxonomy param.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $term_id ) {
-		$term = get_term( $term_id );
+	public function context($termId)
+	{
+		$term = get_term($termId);
 
-		if ( ! ( $this->taxonomy instanceof \WP_Taxonomy ) || ! ( $term instanceof \WP_Term ) ) {
+		if (!($this->taxonomy instanceof \WP_Taxonomy) || !($term instanceof \WP_Term)) {
 			return false;
 		}
 
 		$this->term = $term;
 
-		if ( $this->taxonomy->name !== $this->term->taxonomy ) {
+		if ($this->taxonomy->name !== $this->term->taxonomy) {
 			return false;
 		}
 
-		$term_link            = get_term_link( $this->term );
-		$this->term_permalink = is_string( $term_link ) ? $term_link : '';
+		$termLink = get_term_link($this->term);
+		$this->termPermalink = is_string($termLink) ? $termLink : '';
 
-		$this->term_modification_datetime = (string) time();
+		$this->termModificationDatetime = (string)time();
 	}
 
 	/**
@@ -92,16 +104,18 @@ class TermUpdated extends TermTrigger {
 	 *
 	 * @return void
 	 */
-	public function merge_tags() {
+	public function mergeTags()
+	{
+		parent::mergeTags();
 
-		parent::merge_tags();
-
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
-			'slug'  => 'term_modification_datetime',
-			'name'  => __( 'Term modification date and time', 'notification' ),
-			'group' => __( 'Term', 'notification' ),
-		] ) );
-
+		$this->addMergeTag(
+			new MergeTag\DateTime\DateTime(
+				[
+					'slug' => 'term_modification_datetime',
+					'name' => __('Term modification date and time', 'notification'),
+					'group' => __('Term', 'notification'),
+				]
+			)
+		);
 	}
-
 }

@@ -1,95 +1,111 @@
 <?php
+
 /**
  * Public API.
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
+namespace BracketSpace\Notification;
+
 use BracketSpace\Notification\Core\Notification;
-use BracketSpace\Notification\Defaults\Adapter;
-use BracketSpace\Notification\Store;
-use BracketSpace\Notification\Interfaces;
 
 /**
  * Adapts Notification object
  * Default adapters are: WordPress || JSON
  *
- * @since  6.0.0
+ * @param string $adapterName Adapter class name.
+ * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
+ * @return \BracketSpace\Notification\Interfaces\Adaptable
  * @throws \Exception If adapter wasn't found.
- * @param  string       $adapter_name Adapter class name.
- * @param  Notification $notification Notification object.
- * @return Interfaces\Adaptable
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notification_adapt( $adapter_name, Notification $notification ) {
-
-	if ( class_exists( $adapter_name ) ) {
-		$adapter = new $adapter_name( $notification );
-	} elseif ( class_exists( 'BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapter_name ) ) {
-		$adapter_name = 'BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapter_name;
-		$adapter      = new $adapter_name( $notification );
+function adaptNotification($adapterName, Notification $notification)
+{
+	if (class_exists($adapterName)) {
+		$adapter = new $adapterName($notification);
+	} elseif (class_exists('BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapterName)) {
+		$adapterName = 'BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapterName;
+		$adapter = new $adapterName($notification);
 	} else {
-		throw new \Exception( sprintf( 'Couldn\'t find %s adapter', $adapter_name ) );
+		throw new \Exception(
+			sprintf('Couldn\'t find %s adapter', $adapterName)
+		);
 	}
 
+	/** @var \BracketSpace\Notification\Interfaces\Adaptable $adapter */
 	return $adapter;
-
 }
 
 /**
  * Adapts Notification from input data
  * Default adapters are: WordPress || JSON
  *
+ * @param string $adapterName Adapter class name.
+ * @param mixed $data Input data needed by adapter.
+ * @return \BracketSpace\Notification\Interfaces\Adaptable
  * @since  6.0.0
- * @param  string $adapter_name Adapter class name.
- * @param  mixed  $data         Input data needed by adapter.
- * @return Interfaces\Adaptable
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notification_adapt_from( $adapter_name, $data ) {
-	$adapter = notification_adapt( $adapter_name, new Notification() );
-	return $adapter->read( $data );
+function adaptNotificationFrom($adapterName, $data)
+{
+	$adapter = adaptNotification(
+		$adapterName,
+		new Notification()
+	);
+	return $adapter->read($data);
 }
 
 /**
  * Changes one adapter to another
  *
+ * @param string $newAdapterName Adapter class name.
+ * @param \BracketSpace\Notification\Interfaces\Adaptable $adapter Adapter.
+ * @return \BracketSpace\Notification\Interfaces\Adaptable
  * @since  6.0.0
- * @param  string               $new_adapter_name Adapter class name.
- * @param  Interfaces\Adaptable $adapter          Adapter.
- * @return Interfaces\Adaptable
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notification_swap_adapter( $new_adapter_name, Interfaces\Adaptable $adapter ) {
-	return notification_adapt( $new_adapter_name, $adapter->get_notification() );
+function swapNotificationAdapter($newAdapterName, Interfaces\Adaptable $adapter)
+{
+	return adaptNotification(
+		$newAdapterName,
+		$adapter->getNotification()
+	);
 }
 
 /**
  * Logs the message in database
  *
- * @since  6.0.0
- * @param  string $component Component nice name, like `Core` or `Any Plugin Name`.
- * @param  string $type      Log type, values: notification|error|warning.
- * @param  string $message   Log formatted message.
+ * @param string $component Component nice name, like `Core` or `Any Plugin Name`.
+ * @param string $type Log type, values: notification|error|warning.
+ * @param string $message Log formatted message.
  * @return bool|\WP_Error
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notification_log( $component, $type, $message ) {
+function log($component, $type, $message)
+{
 
-	if ( 'notification' !== $type && ! notification_get_setting( 'debugging/settings/error_log' ) ) {
+	if ($type !== 'notification' && !getSetting('debugging/settings/error_log')) {
 		return false;
 	}
 
-	$debugger = \Notification::component( 'core_debugging' );
+	$debugger = \Notification::component('core_debugging');
 
-	$log_data = [
+	$logData = [
 		'component' => $component,
-		'type'      => $type,
-		'message'   => $message,
+		'type' => $type,
+		'message' => $message,
 	];
 
 	try {
-		return $debugger->add_log( $log_data );
-	} catch ( \Exception $e ) {
-		return new \WP_Error( 'wrong_log_data', $e->getMessage() );
+		return $debugger->addLog($logData);
+	} catch (\Throwable $e) {
+		return new \WP_Error('wrong_log_data', $e->getMessage());
 	}
-
 }
 
 /**
@@ -97,32 +113,38 @@ function notification_log( $component, $type, $message ) {
  *
  * Accepts both array with Trigger and Carriers objects or static values.
  *
- * @since  6.0.0
- * @param  array $data Notification data.
+ * @param array<mixed> $data Notification data.
  * @return \WP_Error | true
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notification( $data = [] ) {
+function notification($data = [])
+{
 
 	try {
-		notification_add( new Notification( notification_convert_data( $data ) ) );
-	} catch ( \Exception $e ) {
-		return new \WP_Error( 'notification_error', $e->getMessage() );
+		addNotification(new Notification(convertNotificationData($data)));
+	} catch (\Throwable $e) {
+		return new \WP_Error('notification_error', $e->getMessage());
 	}
 
 	return true;
-
 }
 
 /**
  * Adds Notification to Store
  *
- * @since  6.0.0
- * @param  Notification $notification Notification object.
+ * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
  * @return void
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notification_add( Notification $notification ) {
-	Store\Notification::insert( $notification->get_hash(), $notification );
-	do_action( 'notification/notification/registered', $notification );
+function addNotification(Notification $notification)
+{
+	Store\Notification::insert(
+		$notification->getHash(),
+		$notification
+	);
+	do_action('notification/notification/registered', $notification);
 }
 
 /**
@@ -131,100 +153,116 @@ function notification_add( Notification $notification ) {
  * If no `trigger` nor `carriers` keys are available it does nothing.
  * If the data is already in form of objects it does nothing.
  *
+ * @param array<mixed> $data Notification static data.
+ * @return array<mixed>       Converted data.
  * @since  6.0.0
- * @param  array $data Notification static data.
- * @return array       Converted data.
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notification_convert_data( $data = [] ) {
+function convertNotificationData($data = [])
+{
 
 	// Trigger conversion.
-	if ( ! empty( $data['trigger'] ) && ! ( $data['trigger'] instanceof Interfaces\Triggerable ) ) {
-		$data['trigger'] = Store\Trigger::get( $data['trigger'] );
+	if (!empty($data['trigger']) && !($data['trigger'] instanceof Interfaces\Triggerable)) {
+		$data['trigger'] = Store\Trigger::get($data['trigger']);
 	}
 
 	// Carriers conversion.
-	if ( isset( $data['carriers'] ) ) {
+	if (isset($data['carriers'])) {
 		$carriers = [];
 
-		foreach ( $data['carriers'] as $carrier_slug => $carrier_data ) {
-			if ( $carrier_data instanceof Interfaces\Sendable ) {
-				$carriers[ $carrier_slug ] = $carrier_data;
+		foreach ($data['carriers'] as $carrierSlug => $carrierData) {
+			if ($carrierData instanceof Interfaces\Sendable) {
+				$carriers[$carrierSlug] = $carrierData;
 				continue;
 			}
 
-			$registered_carrier = Store\Carrier::get( $carrier_slug );
+			$registeredCarrier = Store\Carrier::get($carrierSlug);
 
-			if ( ! empty( $registered_carrier ) ) {
-				$carrier = clone $registered_carrier;
-				$carrier->set_data( $carrier_data );
-				$carriers[ $carrier_slug ] = $carrier;
+			if (empty($registeredCarrier)) {
+				continue;
 			}
+
+			$carrier = clone $registeredCarrier;
+			$carrier->setData($carrierData);
+			$carriers[$carrierSlug] = $carrier;
 		}
 
 		$data['carriers'] = $carriers;
 	}
 
 	return $data;
-
 }
 
 /**
  * Registers settings
  *
- * @since  5.0.0
- * @param  mixed   $callback Callback for settings registration, array of string.
- * @param  integer $priority Action priority.
+ * @param mixed $callback Callback for settings registration, array of string.
+ * @param int $priority Action priority.
  * @return void
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notification_register_settings( $callback, $priority = 10 ) {
+function registerSettings($callback, $priority = 10)
+{
 
-	if ( ! is_callable( $callback ) ) {
-		trigger_error( 'You have to pass callable while registering the settings', E_USER_ERROR );
+	if (!is_callable($callback)) {
+		trigger_error('You have to pass callable while registering the settings', E_USER_ERROR);
 	}
 
-	add_action( 'notification/settings/register', $callback, $priority );
-
+	add_action('notification/settings/register', $callback, $priority);
 }
 
 /**
  * Gets setting values
  *
- * @since 5.0.0
  * @return mixed
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notification_get_settings() {
-	return \Notification::component( 'core_settings' )->get_settings();
+function getSettings()
+{
+	return \Notification::component('core_settings')->getSettings();
 }
 
 /**
  * Gets single setting value
  *
- * @since  5.0.0
- * @since  7.0.0 The `notifications` section has been changed to `carriers`.
- * @param  string $setting setting name in `a/b/c` format.
+ * @param string $setting setting name in `a/b/c` format.
  * @return mixed
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notification_get_setting( $setting ) {
+function getSetting($setting)
+{
 
-	$parts = explode( '/', $setting );
+	$parts = explode('/', $setting);
 
-	if ( 'notifications' === $parts[0] ) {
-		_deprecated_argument( __FUNCTION__, '7.0.0', 'The `notifications` section has been changed to `carriers`, adjust the first part of the setting.' );
+	if ($parts[0] === 'notifications') {
+		_deprecated_argument(
+			__FUNCTION__,
+			'7.0.0',
+			'The `notifications` section has been changed to `carriers`, adjust the first part of the setting.'
+		);
 		$parts[0] = 'carriers';
-		$setting  = implode( '/', $parts );
+		$setting = implode('/', $parts);
 	}
 
-	return \Notification::component( 'core_settings' )->get_setting( $setting );
-
+	return \Notification::component('core_settings')->getSetting($setting);
 }
 
 /**
  * Updates single setting value.
  *
- * @param   string $setting setting name in `a/b/c` format.
- * @param   mixed  $value setting value.
+ * @param string $setting setting name in `a/b/c` format.
+ * @param mixed $value setting value.
  * @return  mixed
+ * @since  6.0.0
+ * @since [Next] Function lives under BracketSpace\Notifiation namespace.
  */
-function notification_update_setting( $setting, $value ) {
-	return \Notification::component( 'core_settings' )->update_setting( $setting, $value );
+function updateSetting($setting, $value)
+{
+	return \Notification::component('core_settings')->updateSetting(
+		$setting,
+		$value
+	);
 }

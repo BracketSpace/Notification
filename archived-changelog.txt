@@ -1,5 +1,173 @@
 This file contains old changelogs and it's refreshed periodically.
 
+==================================================== VERSION 8 ====================================================
+
+= 8.0.15 =
+
+* [Fixed] Comment merge tags rendering empty values.
+* [Changed] Development dependencies got some security patches.
+* [Changed] `notification/merge_tag/value/resolve` now accepts unsanitized value.
+
+= 8.0.14 =
+
+* [Fixed] Outdated dochoooks compatibility file, causing a fatal error while adding new post in some environments.
+
+= 8.0.13 =
+
+* [Fixed] Regression with REST API check.
+* [Changed] `repeater_api` internal runtime component to `api`.
+* [Added] `get_endpoint` method to the API class.
+
+= 8.0.12 =
+
+* [Changed] Logic of assigning property name is moved to Abstract Merge Tag Class.
+* [Added] Property names to Term Merge Tags.
+* [Added] 6h cache expire to the user queries.
+* [Added] Email / Merge tag recipient now can also be separated with semicolon.
+* [Added] Endpoint to check whether the REST api is enabled.
+
+= 8.0.11 =
+
+* [Changed] Add php_xml to required php extensions.
+* [Changed] Background processing cache is being stored in transient instead of an option.
+* [Fixed] PHP 8.0 and 8.1 compatibility.
+* [Fixed] Improper caching expiration times.
+* [Fixed] Trigger keeping state between subsequent action runs.
+* [Fixed] Password reset trigger is not processed on user registration anymore.
+* [Added] Trigger `resume()` method to reset the stopped state.
+
+= 8.0.10 =
+
+* [Fixed] User logout trigger. In WordPress 5.5 the context is set properly.
+* [Fixed] Issue with persistent Trigger state if two or more actions assigned to the same trigger were called.
+* [Changed] Carrier's recipients field is now returned with resolved data if available.
+* [Added] Post Published privately trigger.
+
+= 8.0.9 =
+
+* [Fixed] Merge Tags resolver problem caused by overriding the processed trigger instance.
+* [Changed] `notification/should_send` filter is now executed when the queue is processed, not before the notification is added to the queue.
+* [Added] New queue methods: `remove()` and `clear()`.
+
+= 8.0.8 =
+
+* [Fixed] Two or more same triggers processed in the same request overwriting each other data.
+
+= 8.0.7 =
+
+* [Fixed] Shortcode stripping regex that was matching JSON arrays.
+* [Changed] Extensions are now reporting updates even if they are not activated.
+* [Changed] Updated EDD Updater class.
+* [Added] Webhook warning logging when response is not valid.
+
+= 8.0.6 =
+
+* [Fixed] Extension activation notice link.
+* [Fixed] Extension activation process.
+* [Fixed] Incorrect empty merge tag cleaning which was misreading JSON format.
+
+= 8.0.5 =
+
+* [Changed] Updated PHP dependencies.
+
+= 8.0.4 =
+
+* [Changed] Updated PHP dependencies.
+* [Changed] Extension license notice is now printed once and covers all the plugins.
+* [Changed] Some of the core fields like Import/Export now have own setting classes.
+* [Fixed] Remaining template variable escaping.
+* [Removed] HTML Settings field, introduced in v8.0.3. Now it's required to create purpose-specific field classes.
+
+= 8.0.3 =
+
+* [Added] HTML Settings field.
+* [Added] Notification hash column in the Notification table.
+* [Changed] Some of the Settings to HTML field instead of the Message field.
+* [Fixed] Broken Import/Export sections.
+* [Fixed] Notifications cache is now cleared when creating notification via wizard.
+
+= 8.0.2 =
+
+* [Added] HTML escaping and nonce verifications.
+* [Changed] Notification file syncing is now using Filesystem methods.
+* [Changed] Internal cache classes with `micropackage/cache`.
+* [Changed] Menu icon.
+* [Changed] Vue is now loaded from within the plugin instead of CDN.
+* [Removed] Internal cache classes `Bracketspace\Notification\Utils\Cache` and `Bracketspace\Notification\Utils\Interfaces` namespaces.
+* [Removed] Settings internal caching that couldn't wait for all the fields to be registered. Now we're relying on the get_option() core function caching.
+
+= 8.0.1 =
+
+* [Changed] Field and Merge Tag description field is now escaped and cannot contain any HTML tags.
+* [Fixed] Recipients parser which didn't resolved Email Merge Tags.
+
+= 8.0.0 =
+
+**Compatibility Breaking Changes**
+
+1. Runtime `get_filesystems()` method has been changed to `get_filesystem()` and now only root file system is defined.
+2. Trigger `action()` method has been renamed to `context()`.
+3. Trigger doesn't have the postponing feature anymore, as processing is happening on the `shutdown` action.
+4. Trigger is now only a description object, all the processing is handled by the Runner class.
+5. `notification/carrier/sent` action doesn't have the Notification context anymore, so there's no 3rd parameter.
+6. Store classes now live under `BracketSpace\Notification\Store` namespace rather than `BracketSpace\Notification\Defaults\Store`.
+7. Plugin doesn't cache anything anymore, the loading process is more streamlined and things like Post Types are lazy loaded when needed
+8. Registration functions has been replaced with `Register` class and its static methods.
+9. Multiple functions has been replaced with their static method equivalents.
+10. `notification/elements` action has been deprecated, use `notification/init` instead.
+11. `NOTIFICATION_VERSION` constant has been removed, use `Notification::version()` instead.
+12. `BracketSpace\Notification\Vendor` namespace is replaced with `BracketSpace\Notification\Dependencies`.
+
+Removed deprecated hooks:
+- `notification/notification/pre-send`, use `notification/carrier/pre-send`
+- `notificaiton/notification/field/resolving`, use `notification/carrier/field/resolving`
+- `notification/value/strip_empty_mergetags`, use `notification/resolve/strip_empty_mergetags`
+- `notification/value/strip_shortcodes`, use `notification/carrier/field/value/strip_shortcodes`
+- `notificaiton/notification/field/resolved`, use `notification/carrier/field/value/resolved`
+- `notificaiton/merge_tag/value/resolved`, use `notification/merge_tag/value/resolved`
+- `notification/webhook/remote_args/{$method}`, use `notification/carrier/webhook/remote_args/{$method}`
+- `notification/webhook/called/{$method}`, use `notification/carrier/webhook/called/{$method}`
+- `notification/boot/initial`, use `notification/init`
+- `notification/boot`, use `notification/init`
+
+**Full changelog**
+
+* [Fixed] Code issues from not using static analysis.
+* [Fixed] WordPress' balanceTags filter which was breaking the Notification content.
+* [Fixed] Notification importing.
+* [Fixed] Setting fields escaping.
+* [Fixed] Post Updated Trigger which failed for updating pending posts, that doesn't have the slug yet.
+* [Changed] Always return the single root filesystem in Runtime.
+* [Changed] Stores with plugin objects, now they are much simpler and don't use WP filters.
+* [Changed] Plugin loading stack, [see docs](https://docs.bracketspace.com/notification/developer/general/plugin-loading-chain) for more details.
+* [Changed] Plugin settings now are initialized on `notification/init 5` action.
+* [Changed] Recipients now can be loaded anytime, not only before Carriers get registered.
+* [Changed] PHP Dependency handling, now all the PHP dependencies lives in src/Dependencies dir.
+* [Removed] `Common` Abstract that has been replaced by HasName and HasSlug Traits.
+* [Removed] Cache class and all caching mechanism for post types, taxonomies and comment types.
+* [Removed] Trait Users. This is replaced with `BracketSpace\Notification\Queries\UserQueries` class.
+* [Removed] Deprecated hooks for actions and filters.
+* [Removed] Carrier helper functions: `notification_register_carrier`, `notification_get_carriers`, `notification_get_carrier`.
+* [Removed] Recipient helper functions: `notification_register_recipient`, `notification_get_recipients`, `notification_get_carrier_recipients`, `notification_get_recipient`, `notification_parse_recipient`.
+* [Removed] Resolver helper functions: `notification_register_resolver`, `notification_resolve`, `notification_clear_tags`.
+* [Removed] Trigger helper functions: `notification_register_trigger`, `notification_get_triggers`, `notification_get_trigger`, `notification_get_triggers_grouped`.
+* [Removed] GLobal Merge Tags helper functions: `notification_add_global_merge_tag`, `notification_get_global_merge_tags`.
+* [Removed] Misc functions: `notification_display_wizard`, `notification_ajax_handler`, `notification_filesystem`.
+* [Removed] Template functions: `notification_template`, `notification_get_template`.
+* [Removed] Notification post functions: `notification_get_posts`, `notification_get_post_by_hash`, `notification_post_is_new`.
+* [Removed] Syncing functions: `notification_sync`, `notification_get_sync_path`, `notification_is_syncing`.
+* [Removed] Whitelabeling functions: `notification_whitelabel`, `notification_is_whitelabeled`.
+* [Removed] Editor and Code Editor fields sanitizers to allow for HTML usage, ie. email templates.
+* [Removed] `notification/elements` action hoook.
+* [Removed] NOTIFICATION_VERSION constant.
+* [Added] Runner class that processes the Triggers.
+* [Added] ErrorHandler class that helps handle errors. It can throw an exception when NOTIFICATION_DEBUG is enabled or save a warning to error_log when it's disabled.
+* [Added] Plugin settings value lazy loading.
+* [Added] Email error catcher.
+* [Added] Free and Premium extensions upselling.
+* [Added] `Notification::fs()` helper that returns plugin filesystem.
+* [Added] Core\Templates wrapper for Templates provider.
+
 ==================================================== VERSION 7 ====================================================
 
 = 7.2.4 =
@@ -10,7 +178,7 @@ This file contains old changelogs and it's refreshed periodically.
 * [Fixed] Parent Comment ID Merge Tag returning reply ID not the parent.
 * [Changed] A check for activation nag if the user can manage options. Otherwise the useless notice is printed when a paid extension is not activated with license key, thanks to @mircobabini.
 * [Changed] Post published action to generic "publish_{post_type}" action which allows to trigger the notification when publishing from custom statuses.
-* [Changed] Import process which now allows to import singular notification instead of always requireing a collection.
+* [Changed] Import process which now allows to import singular notification instead of always requiring a collection.
 * [Added] [Filter for Background Processing](https://docs.bracketspace.com/notification/developer/snippets/general/background-processing-filter) which can be used to enable or disable particular trigger queueing.
 
 = 7.2.2 =
@@ -85,7 +253,7 @@ This file contains old changelogs and it's refreshed periodically.
 4. The plugin initializes now on `init 5` action and no functions/classes are available until then. You may use `notifiation/init` action to init the extensions and `notification/elements` to register custom Triggers and Carriers.
 5. The Date and Time Merge Tags now require the Unix timestamp which shouldn't have the timezone offset. Use GMT timezone.
 6. The `notification_runtime` function has been deprecated in favor of new `\Notification` static class.
-7. Repeater and recipients fields on the front-end has been rewriten to use vue.js. Hooks for actions in js scripts for this fields provide now access to vue.js instance. Each repeater and recipient field, are now separate vue.js instances.
+7. Repeater and recipients fields on the front-end has been rewritten to use vue.js. Hooks for actions in js scripts for this fields provide now access to vue.js instance. Each repeater and recipient field, are now separate vue.js instances.
 
 **Full changelog**
 
@@ -98,9 +266,9 @@ This file contains old changelogs and it's refreshed periodically.
 * [Changed] Ajax utility to `micropackage/ajax`.
 * [Changed] Loading stack, now the plugin initializes on init 5 (or 4 if bundled).
 * [Changed] Merge Tags don't need the requirements now and throwable resolver errors are caught and changed to notices.
-* [Changed] Date and Time Merge Tags now expect Unix timestaps (GMT) without offset.
+* [Changed] Date and Time Merge Tags now expect Unix timestamps (GMT) without offset.
 * [Changed] All Trigger's slugs.
-* [Changed] Settings section `notifiations` to proper `carriers` to follow the standard established in version 6.
+* [Changed] Settings section `notifications` to proper `carriers` to follow the standard established in version 6.
 * [Changed] Repeater and recipient fields are now using vue.js on the front-end.
 * [Changed] Pretty select fields in the repeater and recipient fields are now handled by vue.js lifecycle hooks.
 * [Changed] `NOTIFICATION_VERSION` constant to `\Notification::version()` method.
@@ -108,7 +276,7 @@ This file contains old changelogs and it's refreshed periodically.
 * [Changed] The Recipients section in Carrier box now displays Type column even if a single recipient type is registered.
 * [Added] Webhook and Cache trait.
 * [Added] Webhook JSON Carrier with plain JSON input code field.
-* [Added] Composer imposter package to aviod package conflicts.
+* [Added] Composer imposter package to avoid package conflicts.
 * [Added] `notification_filesystem` function to get plugin filesystem(s).
 * [Added] Scheduling user Merge Tags for Post Scheduled trigger.
 * [Added] Last updated by user Merge Tags for Post triggers.
@@ -175,7 +343,7 @@ This file contains old changelogs and it's refreshed periodically.
 * [Fixed] Error when a new user was added by logged in user, the password reset notification was sent.
 
 = 6.1.4 =
-* [Fixed] Addig the same Notification twice from the Wizard. Now Notification hash is regenerated.
+* [Fixed] Adding the same Notification twice from the Wizard. Now Notification hash is regenerated.
 * [Changed] Post triggers now setup properties after checking all the conditions. This way second action call with wrong params won't change the trigger state. Thanks to Tom Angell.
 
 = 6.1.3 =
@@ -211,7 +379,7 @@ This file contains old changelogs and it's refreshed periodically.
 * [Removed] Plugin internationalization files as all the translations comes from wp.org.
 
 = 6.0.4 =
-* [Fixed] Webhook waring using empty header values.
+* [Fixed] Webhook warning using empty header values.
 * [Fixed] Quick switch in Notifications table.
 * [Fixed] Catching Notifications.
 * [Added] Basic Gutenberg compatibility, post triggers are now postponed to `rest_after_insert_{$post_type}` action.
@@ -391,7 +559,7 @@ This file contains old changelogs and it's refreshed periodically.
 * [Fixed] Bug when recipient types has been changed.
 * [Fixed] Every comment type being targeted in Comment trigger.
 * [Fixed] Used failed login datetime merge tag.
-* [Added] `remove_action` metod in Trigger class.
+* [Added] `remove_action` method in Trigger class.
 * [Added] Option to allow unfiltered HTML in Email body, thanks to @martinellimarco.
 * [Added] Post content HTML tag, for unfiltered output.
 * [Added] Better JSON support for webhooks, if webhook is sent as JSON the default Content-Type header is added.
@@ -402,11 +570,11 @@ This file contains old changelogs and it's refreshed periodically.
 * [Fixed] Duplicated meta for active notification type.
 * [Fixed] Post Title merge tag HTML entities, thanks to @freshjustin.
 * [Fixed] Problem with disabling active notification types when switching notification status, thanks to @freshjustin.
-* [Added] Notification duplicator to easly duplicate notifications.
+* [Added] Notification duplicator to easily duplicate notifications.
 * [Added] `notification/trigger/action/did` action in Trigger class.
 * [Added] `get_post_type` method for PostTrigger.
 * [Added] `notification/load/default/priority` filter for registering default things.
-* [Added] `user_IP` Merge Tag for User loged in Trigger.
+* [Added] `user_IP` Merge Tag for User logged in Trigger.
 * [Changed] Plugin initializes the default things on `plugins_loaded` action.
 
 = 5.2.2 =
@@ -494,10 +662,10 @@ This file contains old changelogs and it's refreshed periodically.
 = 5.1.2 =
 * [Added] Ability to suppress the Notification just before it's send.
 * [Added] Freemius integration to better understand the users.
-* [Added] Current Notification post ID property for Notifiation object.
+* [Added] Current Notification post ID property for Notification object.
 
 = 5.1.1 =
-* [Fixed] Posponed action callback.
+* [Fixed] Postponed action callback.
 * [Added] Support for NOTIFICATION_DEBUG constant. If it's defined the cache for extensions is not applied.
 * [Added] notificaiton/notification/field/resolving filter before any value is resolved with merge tags.
 
@@ -511,7 +679,7 @@ This file contains old changelogs and it's refreshed periodically.
 * [Added] License handler for premium extensions
 
 = 5.0.0 =
-* WARNING! This version is not compatible with previous version. No core notifications nor custom triggers will be transfered to the new version because of too many changes in the plugin. Consider updating the plugin in a safe, not-production environment.
+* WARNING! This version is not compatible with previous version. No core notifications nor custom triggers will be transferred to the new version because of too many changes in the plugin. Consider updating the plugin in a safe, not-production environment.
 * Plugin has been redesigned from ground up
 * The only thing which is not available in new version is disabling the notifications
 
@@ -552,7 +720,7 @@ This file contains old changelogs and it's refreshed periodically.
 = 3.0 =
 * [Fixed] Ignore tags which has been passed to `notification` but hasn't be registered in the trigger
 * [Fixed] Conflict with Advanced Custom Fields
-* [Added] Filters for post and comment types to output disbale metabox. `notification/disable/post_types_allowed` and `notification/disable/comment_types_allowed`, default to saved general settings
+* [Added] Filters for post and comment types to output disable metabox. `notification/disable/post_types_allowed` and `notification/disable/comment_types_allowed`, default to saved general settings
 * [Added] Extensions screen
 * [Added] While registering triggers you can now provide a default title and recipients
 * [Changed] bbPress post types are no longer available in the settings. Triggers for bbPress are provided by addon https://github.com/Kubitomakita/notification-bbpress
@@ -561,7 +729,7 @@ This file contains old changelogs and it's refreshed periodically.
 
 = 2.4 =
 * [Fixed] Bug with "Can't use method return value in write context" in Settings class, thanks to @rozv
-* [Fixed] Settings priorities, now every CPT registered not later than init 15 will be catched by the plugin, thanks to @rozv
+* [Fixed] Settings priorities, now every CPT registered not later than init 15 will be caught by the plugin, thanks to @rozv
 * [Fixed] Double protocol in links added via TinyMCE insert link feature, thanks to Jozsef
 * [Fixed] Notices in Notification validation method
 * [Fixed] Empty Recipient value, ie. Administrator
@@ -592,7 +760,7 @@ This file contains old changelogs and it's refreshed periodically.
 * [Fixed] Post type trashed template
 * [Changed] Gulpfile to not include any browser
 * [Fixed] Comment type added template
-* [Changed] Comment added trigger now is Akismet compatibile, thanks to Nels Johnson
+* [Changed] Comment added trigger now is Akismet compatible, thanks to Nels Johnson
 * [Changed] Core triggers current type global to anonymous functions, thanks to Bartosz Romanowski @toszcze
 
 = 2.1 =
@@ -613,17 +781,17 @@ This file contains old changelogs and it's refreshed periodically.
 * [Added]: Plugin deactivation feedback popup
 * [Added]: Conditional tag `is_notification_defined()` to check if notification will be send
 * [Added]: Post permalink to comment triggers
-* [Changed]: Notifications class is now singleton and partialy moved to Admin class
+* [Changed]: Notifications class is now singleton and partially moved to Admin class
 * [Changed]: Notification trigger metabox is now under the subject
 * [Changed]: On the single Notification edit screen there are only allowed metaboxes displayed
-* [Changed]: You can now controll what post types and comment types trigger use via plugin Settings
+* [Changed]: You can now control what post types and comment types trigger use via plugin Settings
 
 = 1.4 =
 * [Fixed]: Missing 3rd argument on page publish
 * [Fixed]: Namespace issue for PHP < 5.3
 * [Fixed]: Constant notification on post edit. Thanks to @pehbeh
 * [Changed]: Allow for merge tags empty values. Thanks to kokoq
-* [Added]: Admin notice: beg for a review. It will display only if there's at least one notification set, on the Notification plugin screens and can be dismissed easly.
+* [Added]: Admin notice: beg for a review. It will display only if there's at least one notification set, on the Notification plugin screens and can be dismissed easily.
 
 = 1.3.1 =
 * [Fixed]: Error with "Can't use function return value in write context" in empty() function. Thanks to Błażej Zabłotny

@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Taxonomy term deleted trigger
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Trigger\Taxonomy;
 
@@ -13,29 +16,32 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
 /**
  * Taxonomy term deleted trigger class
  */
-class TermDeleted extends TermTrigger {
-
+class TermDeleted extends TermTrigger
+{
 	/**
 	 * Term deletion date and time
 	 *
 	 * @var string
 	 */
-	public $term_deletion_datetime;
+	public $termDeletionDatetime;
 
 	/**
 	 * Constructor
 	 *
 	 * @param string $taxonomy optional, default: category.
 	 */
-	public function __construct( $taxonomy = 'category' ) {
-		$this->taxonomy = WpObjectHelper::get_taxonomy( $taxonomy );
+	public function __construct($taxonomy = 'category')
+	{
+		$this->taxonomy = WpObjectHelper::getTaxonomy($taxonomy);
 
-		parent::__construct( [
-			'taxonomy' => $taxonomy,
-			'slug'     => 'taxonomy/' . $taxonomy . '/deleted',
-		] );
+		parent::__construct(
+			[
+				'taxonomy' => $taxonomy,
+				'slug' => 'taxonomy/' . $taxonomy . '/deleted',
+			]
+		);
 
-		$this->add_action( 'pre_delete_term', 100, 4 );
+		$this->addAction('pre_delete_term', 100, 4);
 	}
 
 	/**
@@ -43,9 +49,13 @@ class TermDeleted extends TermTrigger {
 	 *
 	 * @return string name
 	 */
-	public function get_name() : string {
+	public function getName(): string
+	{
+		return sprintf(
 		// Translators: taxonomy name.
-		return sprintf( __( '%s term deleted', 'notification' ), $this->taxonomy->labels->singular_name ?? '' );
+			__('%s term deleted', 'notification'),
+			$this->taxonomy->labels->singular_name ?? ''
+		);
 	}
 
 	/**
@@ -53,10 +63,11 @@ class TermDeleted extends TermTrigger {
 	 *
 	 * @return string description
 	 */
-	public function get_description() : string {
+	public function getDescription(): string
+	{
 		return sprintf(
-			// Translators: 1. taxonomy name, 2. taxonomy slug.
-			__( 'Fires when %1$s (%2$s) is deleted', 'notification' ),
+		// Translators: 1. taxonomy name, 2. taxonomy slug.
+			__('Fires when %1$s (%2$s) is deleted', 'notification'),
 			$this->taxonomy->labels->singular_name ?? '',
 			$this->taxonomy->name ?? ''
 		);
@@ -65,26 +76,27 @@ class TermDeleted extends TermTrigger {
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param integer $term_id Term ID.
+	 * @param int $termId Term ID.
 	 * @return mixed void or false if no notifications should be sent
 	 */
-	public function context( $term_id ) {
-		$term = get_term( $term_id );
+	public function context($termId)
+	{
+		$term = get_term($termId);
 
-		if ( ! ( $this->taxonomy instanceof \WP_Taxonomy ) || ! ( $term instanceof \WP_Term ) ) {
+		if (!($this->taxonomy instanceof \WP_Taxonomy) || !($term instanceof \WP_Term)) {
 			return false;
 		}
 
 		$this->term = $term;
 
-		if ( $this->taxonomy->name !== $this->term->taxonomy ) {
+		if ($this->taxonomy->name !== $this->term->taxonomy) {
 			return false;
 		}
 
-		$term_link            = get_term_link( $this->term );
-		$this->term_permalink = is_string( $term_link ) ? $term_link : '';
+		$termLink = get_term_link($this->term);
+		$this->termPermalink = is_string($termLink) ? $termLink : '';
 
-		$this->term_deletion_datetime = (string) time();
+		$this->termDeletionDatetime = (string)time();
 	}
 
 	/**
@@ -92,16 +104,18 @@ class TermDeleted extends TermTrigger {
 	 *
 	 * @return void
 	 */
-	public function merge_tags() {
+	public function mergeTags()
+	{
+		parent::mergeTags();
 
-		parent::merge_tags();
-
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
-			'slug'  => 'term_deletion_datetime',
-			'name'  => __( 'Term deletion date and time', 'notification' ),
-			'group' => __( 'Term', 'notification' ),
-		] ) );
-
+		$this->addMergeTag(
+			new MergeTag\DateTime\DateTime(
+				[
+					'slug' => 'term_deletion_datetime',
+					'name' => __('Term deletion date and time', 'notification'),
+					'group' => __('Term', 'notification'),
+				]
+			)
+		);
 	}
-
 }

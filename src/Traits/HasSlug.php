@@ -1,17 +1,20 @@
 <?php
+
 /**
  * Has Slug Trait.
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Traits;
 
 /**
  * HasSlug trait
  */
-trait HasSlug {
-
+trait HasSlug
+{
 	/**
 	 * Object slug
 	 *
@@ -27,9 +30,10 @@ trait HasSlug {
 	 *
 	 * @return string slug
 	 */
-	public function get_slug() {
-		if ( null === $this->slug ) {
-			return $this->get_class_slug();
+	public function getSlug()
+	{
+		if ($this->slug === null) {
+			return $this->getClassSlug();
 		}
 
 		return $this->slug;
@@ -38,13 +42,13 @@ trait HasSlug {
 	/**
 	 * Sets slug
 	 *
-	 * @param  string $slug Slug.
+	 * @param string $slug Slug.
 	 * @return $this
 	 */
-	public function set_slug( string $slug ) {
+	public function setSlug(string $slug)
+	{
 		$this->slug = $slug;
 
 		return $this;
 	}
-
 }

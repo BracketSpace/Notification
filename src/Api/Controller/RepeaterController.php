@@ -1,28 +1,31 @@
 <?php
+
 /**
  * Repeater Handler class
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Api\Controller;
 
-use BracketSpace\Notification\Interfaces\Fillable;
 use BracketSpace\Notification\Store;
+use function BracketSpace\Notification\adaptNotificationFrom;
 
 /**
  * RepeaterHandler class
  *
  * @action
  */
-class RepeaterController {
-
+class RepeaterController
+{
 	/**
 	 * Post ID
 	 *
 	 * @var int
 	 */
-	public $post_id;
+	public $postId;
 
 	/**
 	 * Carrier slug
@@ -38,82 +41,79 @@ class RepeaterController {
 	 */
 	public $field;
 
-
 	/**
 	 * Forms field data
 	 *
+	 * @param array<mixed> $data Field data.
+	 * @return array<mixed>
 	 * @since 7.0.0
-	 * @param array $data Field data.
-	 * @return array
 	 */
-	public function form_field_data( $data = null ) {
-
-		if ( empty( $data ) ) {
+	public function formFieldData($data = null)
+	{
+		if (empty($data)) {
 			/** @var \BracketSpace\Notification\Defaults\Field\RepeaterField */
-			$carrier_fields = $this->get_carrier_fields();
-			$data           = $carrier_fields->fields;
+			$carrierFields = $this->getCarrierFields();
+			$data = $carrierFields->fields;
 		}
 
 		$fields = [];
 
-		foreach ( $data as $field ) {
+		foreach ($data as $field) {
+			$subField = [];
 
-			$sub_field = [];
+			$subField['options'] = $field->options;
+			$subField['pretty'] = $field->pretty;
+			$subField['label'] = $field->label;
+			$subField['checkbox_label'] = $field->checkboxLabel;
+			$subField['name'] = $field->name;
+			$subField['description'] = $field->description;
+			$subField['section'] = $field->section;
+			$subField['disabled'] = $field->disabled;
+			$subField['css_class'] = $field->cssClass;
+			$subField['id'] = $field->id;
+			$subField['placeholder'] = $field->placeholder;
+			$subField['nested'] = $field->nested;
+			$subField['type'] = strtolower(str_replace('Field', '', $field->fieldTypeHtml));
+			$subField['sections'] = $field->sections;
+			$subField['message'] = $field->message;
+			$subField['value'] = '';
+			$subField['rows'] = $field->rows;
+			$subField['multiple'] = $field->multipleSection;
 
-			$sub_field['options']        = $field->options;
-			$sub_field['pretty']         = $field->pretty;
-			$sub_field['label']          = $field->label;
-			$sub_field['checkbox_label'] = $field->checkbox_label;
-			$sub_field['name']           = $field->name;
-			$sub_field['description']    = $field->description;
-			$sub_field['section']        = $field->section;
-			$sub_field['disabled']       = $field->disabled;
-			$sub_field['css_class']      = $field->css_class;
-			$sub_field['id']             = $field->id;
-			$sub_field['placeholder']    = $field->placeholder;
-			$sub_field['nested']         = $field->nested;
-			$sub_field['type']           = strtolower( str_replace( 'Field', '', $field->field_type_html ) );
-			$sub_field['sections']       = $field->sections;
-			$sub_field['message']        = $field->message;
-			$sub_field['value']          = '';
-			$sub_field['rows']           = $field->rows;
-			$sub_field['multiple']       = $field->multiple_section;
-
-			if ( $field->fields ) {
-				$sub_field['fields'] = $this->form_field_data( $field->fields );
+			if ($field->fields) {
+				$subField['fields'] = $this->formFieldData($field->fields);
 			}
 
-			array_push( $fields, $sub_field );
-
+			array_push($fields, $subField);
 		}
 
 		return $fields;
-
 	}
 
 	/**
 	 * Gets field values
 	 *
-	 * @since 7.0.0
-	 * @param int    $post_id Post id.
+	 * @param int $postId Post id.
 	 * @param string $carrier Carrier slug.
 	 * @param string $field Field slug.
-	 * @return array
+	 * @return array<mixed>
+	 * @since 7.0.0
 	 */
-	public function get_values( $post_id, $carrier, $field ) {
-		$notification = notification_adapt_from( 'WordPress', $post_id );
-		$carrier      = $notification->get_carrier( $carrier );
+	public function getValues($postId, $carrier, $field)
+	{
+		$notification = adaptNotificationFrom('WordPress', $postId);
+		$carrier = $notification->getCarrier($carrier);
 
-		if ( $carrier ) {
-			if ( $carrier->has_recipients_field() ) {
-				$recipients_field = $carrier->get_recipients_field();
+		if ($carrier) {
+			if ($carrier->hasRecipientsField()) {
+				$recipientsField = $carrier->getRecipientsField();
 
-				if ( $field === $recipients_field->get_raw_name() ) {
-					return $carrier->get_recipients();
+				if ($field === $recipientsField->getRawName()) {
+					return $carrier->getRecipients();
 				}
 			}
 
-			return $carrier->get_field_value( $field );
+			return $carrier->getFieldValue($field);
 		}
 
 		return [];
@@ -122,90 +122,94 @@ class RepeaterController {
 	/**
 	 * Gets carrier fields
 	 *
-	 * @since 7.0.0
 	 * @return array<mixed>
+	 * @since 7.0.0
 	 */
-	public function get_carrier_fields() {
-		$carrier        = Store\Carrier::get( $this->carrier );
-		$carrier_fields = [];
+	public function getCarrierFields()
+	{
+		$carrier = Store\Carrier::get($this->carrier);
+		$carrierFields = [];
 
-		if ( null === $carrier ) {
-			return $carrier_fields;
+		if ($carrier === null) {
+			return $carrierFields;
 		}
 
 		// Recipients field.
-		$rf = $carrier->has_recipients_field() ? $carrier->get_recipients_field() : false;
+		$rf = $carrier->hasRecipientsField()
+			? $carrier->getRecipientsField()
+			: false;
 
-		if ( $rf && $rf->get_raw_name() === $this->field ) {
-			$carrier_fields = $carrier->get_recipients_field();
-		} else {
-			$carrier_fields = $carrier->get_form_field( $this->field );
-		}
-
-		return $carrier_fields;
+		return $rf && $rf->getRawName() === $this->field
+			? $carrier->getRecipientsField()
+			: $carrier->getFormField($this->field);
 	}
 
 	/**
 	 * Normalize values array
 	 *
+	 * @param array<mixed> $values Field values.
+	 * @return array<mixed>
 	 * @since 7.0.0
-	 * @param array $values Field values.
-	 * @return array
 	 */
-	public function normalize_values( $values ) {
-		foreach ( $values as &$value ) {
-
-			if ( array_key_exists( 'nested_repeater', $value ) ) {
-				$data = array_values( $value['nested_repeater'] );
-
-				$value['nested_repeater'] = $data;
-
+	public function normalizeValues($values)
+	{
+		/** @var array<mixed> $value */
+		foreach ($values as &$value) {
+			if (!array_key_exists('nested_repeater', $value)) {
+				continue;
 			}
+
+			$data = array_values($value['nested_repeater']);
+
+			$value['nested_repeater'] = $data;
 		}
 
-		return array_values( $values );
+		return array_values($values);
 	}
 
 	/**
 	 * Gets request params
 	 *
-	 * @param array $params Request params.
+	 * @param array<mixed> $params Request params.
 	 * @return void
 	 */
-	public function parse_params( $params ) {
-		$this->post_id = intval( $params['id'] );
+	public function parseParams($params)
+	{
+		/** @var int $id */
+		$id = $params['id'];
+
+		$this->postId = intval($id);
 		$this->carrier = $params['fieldCarrier'];
-		$this->field   = $params['fieldType'];
+		$this->field = $params['fieldType'];
 	}
 
 	/**
 	 * Forms response data
 	 *
+	 * @return array<mixed>
 	 * @since 7.0.0
-	 * @return array
 	 */
-	public function form_data() {
-		$values           = $this->get_values( $this->post_id, $this->carrier, $this->field ) ?? [];
-		$populated_fields = $this->form_field_data();
+	public function formData()
+	{
+		$values = $this->getValues($this->postId, $this->carrier, $this->field) ?? [];
+		$populatedFields = $this->formFieldData();
 
-		$data = [
-			'field'  => $populated_fields,
-			'values' => $this->normalize_values( $values ),
+		return [
+			'field' => $populatedFields,
+			'values' => $this->normalizeValues($values),
 		];
-
-		return $data;
 	}
 
 	/**
 	 * Sends response
 	 *
-	 * @since 7.0.0
 	 * @param \WP_REST_Request $request WP request instance.
 	 * @return void
+	 * @since 7.0.0
 	 */
-	public function send_response( \WP_REST_Request $request ) {
-		$this->parse_params( $request->get_params() );
-		wp_send_json( $this->form_data() );
+	public function sendResponse(\WP_REST_Request $request)
+	{
+		$this->parseParams($request->get_params());
+		wp_send_json($this->formData());
 	}
-
 }

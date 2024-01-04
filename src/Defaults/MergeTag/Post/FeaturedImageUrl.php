@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Post featured image url merge tag
  *
@@ -8,6 +9,8 @@
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
@@ -16,36 +19,38 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
 /**
  * Post featured image url merge tag class
  */
-class FeaturedImageUrl extends UrlTag {
+class FeaturedImageUrl extends UrlTag
+{
 	/**
 	 * Merge tag constructor
 	 *
+	 * @param array<mixed> $params merge tag configuration params.
 	 * @since 6.0.0
-	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct($params = [])
+	{
+		$this->setTriggerProp($params['post_type'] ?? 'post');
 
-		$this->set_trigger_prop( $params['post_type'] ?? 'post' );
-
-		$post_type_name = WpObjectHelper::get_post_type_name( $this->get_trigger_prop() );
+		$postTypeName = WpObjectHelper::getPostTypeName($this->getTriggerProp());
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => sprintf( '%s_featured_image_url', $this->get_trigger_prop() ),
+				'slug' => sprintf('%s_featured_image_url', $this->getTriggerProp()),
 				// translators: singular post name.
-				'name'        => sprintf( __( '%s featured image url', 'notification' ), $post_type_name ),
-				'description' => __( 'https://example.com/wp-content/2019/01/image.jpg', 'notification' ),
-				'example'     => true,
-				'group'       => $post_type_name,
-				'resolver'    => function ( $trigger ) {
-					return wp_get_attachment_image_url( get_post_thumbnail_id( $trigger->{ $this->get_trigger_prop() }->ID ), 'full' );
+				'name' => sprintf(__('%s featured image url', 'notification'), $postTypeName),
+				'description' => __('https://example.com/wp-content/2019/01/image.jpg', 'notification'),
+				'example' => true,
+				'group' => $postTypeName,
+				'resolver' => function ($trigger) {
+					return wp_get_attachment_image_url(
+						get_post_thumbnail_id($trigger->{$this->getTriggerProp()}->ID),
+						'full'
+					);
 				},
 			]
 		);
 
-		parent::__construct( $args );
-
+		parent::__construct($args);
 	}
-
 }

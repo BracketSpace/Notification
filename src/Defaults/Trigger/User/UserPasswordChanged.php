@@ -1,9 +1,12 @@
 <?php
+
 /**
  * User password changed trigger
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Trigger\User;
 
@@ -12,33 +15,37 @@ use BracketSpace\Notification\Defaults\MergeTag;
 /**
  * User password changed trigger class
  */
-class UserPasswordChanged extends UserTrigger {
-
+class UserPasswordChanged extends UserTrigger
+{
 	/**
 	 * User meta data
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
-	public $user_meta;
+	public $userMeta;
 
 	/**
 	 * Password change date and time
 	 *
 	 * @var int|false
 	 */
-	public $password_change_datetime;
+	public $passwordChangeDatetime;
 
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
+	public function __construct()
+	{
+		parent::__construct(
+			'user/password_changed',
+			__('User password changed', 'notification')
+		);
 
-		parent::__construct( 'user/password_changed', __( 'User password changed', 'notification' ) );
+		$this->addAction('password_reset', 10, 1);
 
-		$this->add_action( 'password_reset', 10, 1 );
-
-		$this->set_description( __( 'Fires when user changed his password', 'notification' ) );
-
+		$this->setDescription(
+			__('Fires when user changed his password', 'notification')
+		);
 	}
 
 	/**
@@ -47,15 +54,19 @@ class UserPasswordChanged extends UserTrigger {
 	 * @param object $user User object.
 	 * @return void
 	 */
-	public function context( $user ) {
+	public function context($user)
+	{
+		$this->userId = $user->ID;
+		$user = get_userdata($this->userId);
 
-		$this->user_id     = $user->ID;
-		$this->user_object = get_userdata( $this->user_id );
-		$this->user_meta   = get_user_meta( $this->user_id );
+		if (!$user instanceof \WP_User) {
+			return;
+		}
 
-		$this->user_registered_datetime = strtotime( $this->user_object->user_registered );
-		$this->password_change_datetime = time();
+		$this->userMeta = get_user_meta($this->userId);
 
+		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
+		$this->passwordChangeDatetime = time();
 	}
 
 	/**
@@ -63,21 +74,23 @@ class UserPasswordChanged extends UserTrigger {
 	 *
 	 * @return void
 	 */
-	public function merge_tags() {
+	public function mergeTags()
+	{
+		parent::mergeTags();
 
-		parent::merge_tags();
+		$this->addMergeTag(new MergeTag\User\UserNicename());
+		$this->addMergeTag(new MergeTag\User\UserDisplayName());
+		$this->addMergeTag(new MergeTag\User\UserFirstName());
+		$this->addMergeTag(new MergeTag\User\UserLastName());
+		$this->addMergeTag(new MergeTag\User\UserBio());
 
-		$this->add_merge_tag( new MergeTag\User\UserNicename() );
-		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
-		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
-		$this->add_merge_tag( new MergeTag\User\UserLastName() );
-		$this->add_merge_tag( new MergeTag\User\UserBio() );
-
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
-			'slug' => 'password_change_datetime',
-			'name' => __( 'Password change date', 'notification' ),
-		] ) );
-
+		$this->addMergeTag(
+			new MergeTag\DateTime\DateTime(
+				[
+					'slug' => 'password_change_datetime',
+					'name' => __('Password change date', 'notification'),
+				]
+			)
+		);
 	}
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Taxonomy term permalink merge tag
  *
@@ -8,6 +9,8 @@
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Defaults\MergeTag\Taxonomy;
 
 use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
@@ -15,31 +18,32 @@ use BracketSpace\Notification\Defaults\MergeTag\UrlTag;
 /**
  * Taxonomy term permalink merge tag class
  */
-class TermPermalink extends UrlTag {
+class TermPermalink extends UrlTag
+{
 	/**
 	 * Merge tag constructor
 	 *
-	 * @since 5.2.2
 	 * @param array<mixed> $params merge tag configuration params.
+	 * @since 5.2.2
 	 */
-	public function __construct( $params = [] ) {
-
-		$this->set_trigger_prop( $params['property_name'] ?? 'term' );
+	public function __construct($params = [])
+	{
+		$this->setTriggerProp($params['property_name'] ?? 'term');
 
 		$args = wp_parse_args(
 			[
-				'slug'        => sprintf( '%s_link', $this->get_trigger_prop() ),
-				'name'        => __( 'Term link', 'notification' ),
+				'slug' => sprintf('%s_link', $this->getTriggerProp()),
+				'name' => __('Term link', 'notification'),
 				'description' => 'http://example.com/category/nature',
-				'example'     => true,
-				'group'       => __( 'Term', 'notification' ),
-				'resolver'    => function ( $trigger ) {
+				'example' => true,
+				'group' => __('Term', 'notification'),
+				'resolver' => static function ($trigger) {
+					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 					return $trigger->term_permalink;
 				},
 			]
 		);
 
-		parent::__construct( $args );
-
+		parent::__construct($args);
 	}
 }

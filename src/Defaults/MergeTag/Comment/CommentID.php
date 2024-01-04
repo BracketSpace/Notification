@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Comment ID merge tag
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
@@ -13,48 +16,46 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
 /**
  * Comment ID merge tag class
  */
-class CommentID extends IntegerTag {
-
+class CommentID extends IntegerTag
+{
 	/**
 	 * Trigger property to get the comment data from
 	 *
 	 * @var string
 	 */
-	protected $comment_type = 'comment';
+	protected $commentType = 'comment';
 
 	/**
 	 * Merge tag constructor
 	 *
+	 * @param array<mixed> $params merge tag configuration params.
 	 * @since 5.0.0
-	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = [] ) {
-
-		if ( isset( $params['comment_type'] ) && ! empty( $params['comment_type'] ) ) {
-			$this->comment_type = $params['comment_type'];
+	public function __construct($params = [])
+	{
+		if (isset($params['comment_type']) && !empty($params['comment_type'])) {
+			$this->commentType = $params['comment_type'];
 		}
 
-		$this->set_trigger_prop( $params['property_name'] ?? 'comment' );
+		$this->setTriggerProp($params['property_name'] ?? $this->commentType);
 
-		$comment_type_name = WpObjectHelper::get_comment_type_name( $this->comment_type );
+		$commentTypeName = WpObjectHelper::getCommentTypeName($this->commentType);
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => 'comment_ID',
+				'slug' => 'comment_ID',
 				// Translators: Comment type name.
-				'name'        => sprintf( __( '%s ID', 'notification' ), $comment_type_name ),
+				'name' => sprintf(__('%s ID', 'notification'), $commentTypeName),
 				'description' => '35',
-				'example'     => true,
-				'group'       => $comment_type_name,
-				'resolver'    => function ( $trigger ) {
-					return $trigger->{ $this->get_trigger_prop() }->comment_ID;
+				'example' => true,
+				'group' => $commentTypeName,
+				'resolver' => function ($trigger) {
+					return $trigger->{$this->getTriggerProp()}->comment_ID;
 				},
 			]
 		);
 
-		parent::__construct( $args );
-
+		parent::__construct($args);
 	}
-
 }

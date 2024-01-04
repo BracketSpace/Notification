@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Post title merge tag
  *
@@ -8,6 +9,8 @@
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Defaults\MergeTag\Post;
 
 use BracketSpace\Notification\Defaults\MergeTag\StringTag;
@@ -16,36 +19,35 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
 /**
  * Post title merge tag class
  */
-class PostTitle extends StringTag {
+class PostTitle extends StringTag
+{
 	/**
 	 * Merge tag constructor
 	 *
+	 * @param array<mixed> $params merge tag configuration params.
 	 * @since 5.0.0
-	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct($params = [])
+	{
+		$this->setTriggerProp($params['post_type'] ?? 'post');
 
-		$this->set_trigger_prop( $params['post_type'] ?? 'post' );
-
-		$post_type_name = WpObjectHelper::get_post_type_name( $this->get_trigger_prop() );
+		$postTypeName = WpObjectHelper::getPostTypeName($this->getTriggerProp());
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => sprintf( '%s_title', $this->get_trigger_prop() ),
+				'slug' => sprintf('%s_title', $this->getTriggerProp()),
 				// translators: singular post name.
-				'name'        => sprintf( __( '%s title', 'notification' ), $post_type_name ),
-				'description' => __( 'Hello World', 'notification' ),
-				'example'     => true,
-				'group'       => $post_type_name,
-				'resolver'    => function ( $trigger ) {
-					return html_entity_decode( get_the_title( $trigger->{ $this->get_trigger_prop() } ) );
+				'name' => sprintf(__('%s title', 'notification'), $postTypeName),
+				'description' => __('Hello World', 'notification'),
+				'example' => true,
+				'group' => $postTypeName,
+				'resolver' => function ($trigger) {
+					return html_entity_decode(get_the_title($trigger->{$this->getTriggerProp()}));
 				},
 			]
 		);
 
-		parent::__construct( $args );
-
+		parent::__construct($args);
 	}
-
 }

@@ -1,57 +1,58 @@
 <?php
+
 /**
  * JSON Adapter class
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Defaults\Adapter;
 
 use BracketSpace\Notification\Abstracts;
+use function BracketSpace\Notification\convertNotificationData;
 
 /**
  * JSON Adapter class
  */
-class JSON extends Abstracts\Adapter {
-
+class JSON extends Abstracts\Adapter
+{
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @throws \Exception If wrong input param provided.
 	 * @param string $input JSON string.
 	 * @return $this
+	 * @throws \Exception If wrong input param provided.
 	 */
-	public function read( $input = null ) {
+	public function read($input = null)
+	{
+		$data = json_decode($input, true);
 
-		$data = json_decode( $input, true );
-
-		if ( json_last_error() !== JSON_ERROR_NONE ) {
-			throw new \Exception( 'Read method of JSON adapter expects valid JSON string' );
+		if (json_last_error() !== JSON_ERROR_NONE) {
+			throw new \Exception('Read method of JSON adapter expects valid JSON string');
 		}
 
-		$this->setup_notification( notification_convert_data( $data ) );
-		$this->set_source( 'JSON' );
+		$this->setupNotification(convertNotificationData((array)$data));
+		$this->setSource('JSON');
 
 		return $this;
-
 	}
 
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @param int|null $json_options          JSON options, pass null to use default as well.
-	 * @param bool     $only_enabled_carriers If only enabled Carriers should be saved.
+	 * @param int|null $jsonOptions JSON options, pass null to use default as well.
+	 * @param bool $onlyEnabledCarriers If only enabled Carriers should be saved.
 	 * @return mixed
 	 */
-	public function save( $json_options = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE, $only_enabled_carriers = false ) {
-
-		if ( null === $json_options ) {
-			$json_options = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE;
+	public function save($jsonOptions = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE, $onlyEnabledCarriers = false)
+	{
+		if ($jsonOptions === null) {
+			$jsonOptions = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE;
 		}
 
-		$data = $this->get_notification()->to_array( $only_enabled_carriers );
-		return wp_json_encode( $data, $json_options );
-
+		$data = $this->getNotification()->toArray($onlyEnabledCarriers);
+		return wp_json_encode($data, $jsonOptions);
 	}
-
 }

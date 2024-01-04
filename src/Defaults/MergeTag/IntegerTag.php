@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Integer merge tag class
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\MergeTag;
 
@@ -12,33 +15,34 @@ use BracketSpace\Notification\Abstracts\MergeTag;
 /**
  * Integer merge tag class
  */
-class IntegerTag extends MergeTag {
-
+class IntegerTag extends MergeTag
+{
 	/**
 	 * MergeTag value type
 	 *
 	 * @var string
 	 */
-	protected $value_type = 'integer';
+	protected $valueType = 'integer';
 
 	/**
 	 * Check the merge tag value type
 	 *
-	 * @param  mixed $value value.
-	 * @return boolean
+	 * @param mixed $value value.
+	 * @return bool
 	 */
-	public function validate( $value ) {
-		return filter_var( (int) $value, FILTER_VALIDATE_INT ) !== false;
+	public function validate($value)
+	{
+		return filter_var((int)$value, FILTER_VALIDATE_INT) !== false;
 	}
 
 	/**
 	 * Sanitizes the merge tag value
 	 *
-	 * @param  mixed $value value.
+	 * @param string $value value.
 	 * @return mixed
 	 */
-	public function sanitize( $value ) {
-		return intval( $value );
+	public function sanitize($value)
+	{
+		return intval($value);
 	}
-
 }

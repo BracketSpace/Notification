@@ -15,11 +15,16 @@ use BracketSpace\Notification\Tests\Helpers\Objects\DummyClassName;
 class TestClassUtils extends \WP_UnitTestCase {
 
 	/**
+	 * Dummy Class
+	 */
+	public $sut;
+
+	/**
 	 * Setup test
 	 *
 	 * @since 5.2.3
 	 */
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		$this->sut = new DummyClassName();
 	}

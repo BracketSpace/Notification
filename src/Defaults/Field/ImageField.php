@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Image field class
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Field;
 
@@ -12,35 +15,48 @@ use BracketSpace\Notification\Abstracts\Field;
 /**
  * Image field class
  */
-class ImageField extends Field {
-
+class ImageField extends Field
+{
 	/**
 	 * Returns field HTML
 	 *
 	 * @return string html
 	 */
-	public function field() {
+	public function field()
+	{
 
-		$class = $this->get_value() > 0 ? 'selected' : '';
+		$class = $this->getValue() > 0
+			? 'selected'
+			: '';
 
-		return '<div class="notification-image-field ' . esc_attr( $class ) . '">
-			<input type="text" name="' . esc_attr( $this->get_name() ) . '" id="' . esc_attr( $this->get_id() ) . '" value="' . esc_attr( $this->get_value() ) . '" class="image-input ' . esc_attr( $this->css_class() ) . '" ' . $this->maybe_disable() . ' readonly>
-			<button class="select-image button button-secondary">' . esc_html__( 'Select image', 'notification' ) . '</button>
-			<div class="image">
-				<span class="clear dashicons dashicons-dismiss"></span>
-				<img class="preview" src="' . wp_get_attachment_thumb_url( $this->get_value() ) . '">
-			</div>
-		</div>';
+		return sprintf(
+			'<div class="notification-image-field %s">
+				<input type="text" name="%s" id="%s" value="%s" class="image-input %s" %s readonly>
+				<button class="select-image button button-secondary">%s</button>
+				<div class="image">
+					<span class="clear dashicons dashicons-dismiss"></span>
+					<img class="preview" src="%s">
+				</div>
+			</div>',
+			esc_attr($class),
+			esc_attr($this->getName()),
+			esc_attr($this->getId()),
+			esc_attr($this->getValue()),
+			esc_attr($this->cssClass()),
+			$this->maybeDisable(),
+			esc_html__('Select image', 'notification'),
+			wp_get_attachment_thumb_url($this->getValue())
+		);
 	}
 
 	/**
 	 * Sanitizes the value sent by user
 	 *
-	 * @param  mixed $value value to sanitize.
+	 * @param string $value value to sanitize.
 	 * @return mixed        sanitized value
 	 */
-	public function sanitize( $value ) {
-		return intval( $value );
+	public function sanitize($value)
+	{
+		return intval($value);
 	}
-
 }

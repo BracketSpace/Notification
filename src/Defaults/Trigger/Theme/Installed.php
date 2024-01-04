@@ -1,64 +1,70 @@
 <?php
+
 /**
  * WordPress theme installed trigger
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Defaults\Trigger\Theme;
 
 use BracketSpace\Notification\Defaults\MergeTag;
-use BracketSpace\Notification\Abstracts;
 
 /**
  * Installed theme trigger class
  */
-class Installed extends ThemeTrigger {
-
+class Installed extends ThemeTrigger
+{
 	/**
 	 * Theme installation date and time
 	 *
 	 * @var string
 	 */
-	public $theme_installation_date_time;
+	public $themeInstallationDateTime;
 
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
+	public function __construct()
+	{
+		parent::__construct(
+			'theme/installed',
+			__('Theme installed', 'notification')
+		);
 
-		parent::__construct( 'theme/installed', __( 'Theme installed', 'notification' ) );
+		$this->addAction('upgrader_process_complete', 1000, 2);
 
-		$this->add_action( 'upgrader_process_complete', 1000, 2 );
+		$this->setGroup(__('Theme', 'notification'));
 
-		$this->set_group( __( 'Theme', 'notification' ) );
-		$this->set_description( __( 'Fires when theme is installed', 'notification' ) );
-
+		$this->setDescription(
+			__('Fires when theme is installed', 'notification')
+		);
 	}
 
 	/**
 	 * Trigger action.
 	 *
-	 * @param  \Theme_Upgrader $upgrader Theme_Upgrader class.
-	 * @param  array           $data     Update data information.
+	 * @param \Theme_Upgrader $upgrader Theme_Upgrader class.
+	 * @param array<mixed> $data Update data information.
 	 * @return mixed                     Void or false if no notifications should be sent.
 	 */
-	public function context( $upgrader, $data ) {
-
-		if ( ! isset( $data['type'], $data['action'] ) || 'theme' !== $data['type'] || 'install' !== $data['action'] ) {
+	public function context($upgrader, $data)
+	{
+		if (!isset($data['type'], $data['action']) || $data['type'] !== 'theme' || $data['action'] !== 'install') {
 			return false;
 		}
 
 		$theme = $upgrader->theme_info();
 
-		if ( false === $theme ) {
+		if ($theme === false) {
 			return false;
 		}
 
 		$this->theme = $theme;
 
-		$this->theme_installation_date_time = time();
-
+		$this->themeInstallationDateTime = (string)time();
 	}
 
 	/**
@@ -66,15 +72,17 @@ class Installed extends ThemeTrigger {
 	 *
 	 * @return void
 	 */
-	public function merge_tags() {
+	public function mergeTags()
+	{
+		parent::mergeTags();
 
-		parent::merge_tags();
-
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
-			'slug' => 'theme_installation_date_time',
-			'name' => __( 'Theme installation date and time', 'notification' ),
-		] ) );
-
+		$this->addMergeTag(
+			new MergeTag\DateTime\DateTime(
+				[
+					'slug' => 'theme_installation_date_time',
+					'name' => __('Theme installation date and time', 'notification'),
+				]
+			)
+		);
 	}
-
 }

@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Comment is reply merge tag
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\MergeTag\Comment;
 
@@ -13,49 +16,49 @@ use BracketSpace\Notification\Utils\WpObjectHelper;
 /**
  * Comment is reply merge tag class
  */
-class CommentIsReply extends StringTag {
-
+class CommentIsReply extends StringTag
+{
 	/**
 	 * Trigger property to get the comment data from
 	 *
 	 * @var string
 	 */
-	protected $comment_type = 'comment';
+	protected $commentType = 'comment';
 
 	/**
 	 * Merge tag constructor
 	 *
+	 * @param array<mixed> $params merge tag configuration params.
 	 * @since 5.0.0
-	 * @param array $params merge tag configuration params.
 	 */
-	public function __construct( $params = [] ) {
-
-		if ( isset( $params['comment_type'] ) && ! empty( $params['comment_type'] ) ) {
-			$this->comment_type = $params['comment_type'];
+	public function __construct($params = [])
+	{
+		if (isset($params['comment_type']) && !empty($params['comment_type'])) {
+			$this->commentType = $params['comment_type'];
 		}
 
-		$this->set_trigger_prop( $params['property_name'] ?? 'comment' );
+		$this->setTriggerProp($params['property_name'] ?? $this->commentType);
 
-		$comment_type_name = WpObjectHelper::get_comment_type_name( $this->comment_type );
+		$commentTypeName = WpObjectHelper::getCommentTypeName($this->commentType);
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug'        => 'comment_is_reply',
+				'slug' => 'comment_is_reply',
 				// Translators: Comment type name.
-				'name'        => sprintf( __( 'Is %s a reply?', 'notification' ), $comment_type_name ),
-				'description' => __( 'Yes or No', 'notification' ),
-				'example'     => true,
-				'group'       => $comment_type_name,
-				'resolver'    => function ( $trigger ) {
-					$has_parent = $trigger->{ $this->get_trigger_prop() }->comment_parent;
-					return $has_parent ? __( 'Yes', 'notification' ) : __( 'No', 'notification' );
+				'name' => sprintf(__('Is %s a reply?', 'notification'), $commentTypeName),
+				'description' => __('Yes or No', 'notification'),
+				'example' => true,
+				'group' => $commentTypeName,
+				'resolver' => function ($trigger) {
+					$hasParent = $trigger->{$this->getTriggerProp()}->comment_parent;
+					return $hasParent
+						? __('Yes', 'notification')
+						: __('No', 'notification');
 				},
 			]
 		);
 
-		parent::__construct( $args );
-
+		parent::__construct($args);
 	}
-
 }

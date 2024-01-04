@@ -1,65 +1,74 @@
 <?php
+
 /**
  * Recipient abstract class
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Abstracts;
 
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Traits;
 
 /**
  * Recipient abstract class
  */
-abstract class Recipient implements Interfaces\Receivable {
-
-	use Traits\ClassUtils, Traits\HasName, Traits\HasSlug;
+abstract class Recipient implements Interfaces\Receivable
+{
+	use Traits\ClassUtils;
+	use Traits\HasName;
+	use Traits\HasSlug;
+	use Casegnostic;
 
 	/**
 	 * Recipient input default value
 	 *
 	 * @var string
 	 */
-	protected $default_value;
+	protected $defaultValue;
 
 	/**
 	 * Recipient constructor
 	 *
+	 * @param array<mixed> $params recipient configuration params.
 	 * @since 5.0.0
-	 * @param array $params recipient configuration params.
 	 */
-	public function __construct( $params = [] ) {
-
-		if ( ! empty( $params['slug'] ) ) {
-			$this->set_slug( $params['slug'] );
+	public function __construct($params = [])
+	{
+		if (!empty($params['slug'])) {
+			$this->setSlug($params['slug']);
 		}
 
-		if ( ! empty( $params['name'] ) ) {
-			$this->set_name( $params['name'] );
+		if (!empty($params['name'])) {
+			$this->setName($params['name']);
 		}
 
-		if ( ! isset( $params['default_value'] ) ) {
-			trigger_error( 'Recipient requires default_value', E_USER_ERROR );
+		if (!isset($params['default_value'])) {
+			trigger_error('Recipient requires default_value', E_USER_ERROR);
 		}
 
-		$this->default_value = $params['default_value'];
-
+		$this->defaultValue = $params['default_value'];
 	}
 
 	/**
 	 * Parses saved value something understood by the Carrier
 	 *
-	 * @param  string $value raw value saved by the user.
-	 * @return array         array of resolved values
+	 * @param string $value raw value saved by the user.
+	 * @return array<mixed> array of resolved values
 	 */
-	abstract public function parse_value( $value = '' );
+	public function parseValue($value = '')
+	{
+		return [true];
+	}
 
 	/**
 	 * Returns input object
 	 *
-	 * @return Interfaces\Fillable
+	 * @return \BracketSpace\Notification\Interfaces\Fillable
 	 */
 	abstract public function input();
 
@@ -68,8 +77,8 @@ abstract class Recipient implements Interfaces\Receivable {
 	 *
 	 * @return string
 	 */
-	public function get_default_value() {
-		return $this->default_value;
+	public function getDefaultValue()
+	{
+		return $this->defaultValue;
 	}
-
 }

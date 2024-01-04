@@ -1,24 +1,28 @@
 <?php
+
 /**
  * Class Utils Trait.
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Traits;
 
 /**
  * ClassUtils trait
  */
-trait ClassUtils {
-
+trait ClassUtils
+{
 	/**
 	 * Get short class name without namespace
 	 *
 	 * @return string
 	 */
-	public function get_short_class_name() {
-		return ( new \ReflectionClass( $this ) )->getShortName();
+	public function getShortClassName()
+	{
+		return (new \ReflectionClass($this))->getShortName();
 	}
 
 	/**
@@ -26,8 +30,13 @@ trait ClassUtils {
 	 *
 	 * @return string
 	 */
-	public function get_nice_class_name() {
-		return (string) preg_replace( '/(.)(?=[A-Z])/u', '$1 ', $this->get_short_class_name() );
+	public function getNiceClassName()
+	{
+		return (string)preg_replace(
+			'/(.)(?=[A-Z])/u',
+			'$1 ',
+			$this->getShortClassName()
+		);
 	}
 
 	/**
@@ -35,8 +44,14 @@ trait ClassUtils {
 	 *
 	 * @return string
 	 */
-	public function get_class_slug() {
-		return strtolower( (string) preg_replace( '/(.)(?=[A-Z])/u', '$1-', $this->get_short_class_name() ) );
+	public function getClassSlug()
+	{
+		return strtolower(
+			(string)preg_replace(
+				'/(.)(?=[A-Z])/u',
+				'$1-',
+				$this->getShortClassName()
+			)
+		);
 	}
-
 }

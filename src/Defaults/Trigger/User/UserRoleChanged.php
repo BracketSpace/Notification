@@ -1,9 +1,12 @@
 <?php
+
 /**
  * User role changed trigger
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Trigger\User;
 
@@ -12,72 +15,82 @@ use BracketSpace\Notification\Defaults\MergeTag;
 /**
  * User role changed trigger class
  */
-class UserRoleChanged extends UserTrigger {
-
+class UserRoleChanged extends UserTrigger
+{
 	/**
 	 * User meta data
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
-	public $user_meta;
+	public $userMeta;
 
 	/**
 	 * New role
 	 *
 	 * @var string
 	 */
-	public $new_role;
+	public $newRole;
 
 	/**
 	 * Old role
 	 *
 	 * @var string
 	 */
-	public $old_role;
+	public $oldRole;
 
 	/**
 	 * User role change date and time
 	 *
 	 * @var int|false
 	 */
-	public $user_role_change_datetime;
+	public $userRoleChangeDatetime;
 
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
+	public function __construct()
+	{
+		parent::__construct(
+			'user/role_changed',
+			__('User role changed', 'notification')
+		);
 
-		parent::__construct( 'user/role_changed', __( 'User role changed', 'notification' ) );
+		$this->addAction('set_user_role', 1000, 3);
 
-		$this->add_action( 'set_user_role', 1000, 3 );
-
-		$this->set_description( __( 'Fires when user role changes', 'notification' ) );
-
+		$this->setDescription(
+			__('Fires when user role changes', 'notification')
+		);
 	}
 
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param integer $user_id   User ID.
-	 * @param string  $role      User new role.
-	 * @param array   $old_roles User previous roles.
+	 * @param int $userId User ID.
+	 * @param string $role User new role.
+	 * @param array<mixed> $oldRoles User previous roles.
 	 * @return mixed
 	 */
-	public function context( $user_id, $role, $old_roles ) {
-
-		if ( empty( $old_roles ) ) {
+	public function context($userId, $role, $oldRoles)
+	{
+		if (empty($oldRoles)) {
 			return false;
 		}
 
-		$this->user_id     = $user_id;
-		$this->user_object = get_userdata( $this->user_id );
-		$this->user_meta   = get_user_meta( $this->user_id );
-		$this->new_role    = $role;
-		$this->old_role    = implode( ', ', $old_roles );
+		$this->userId = $userId;
 
-		$this->user_registered_datetime  = strtotime( $this->user_object->user_registered );
-		$this->user_role_change_datetime = time();
+		$user = get_userdata($this->userId);
 
+		if (!$user instanceof \WP_User) {
+			return false;
+		}
+
+		$this->userObject = $user;
+		$this->userMeta = get_user_meta($this->userId);
+		$this->newRole = $role;
+		$this->oldRole = implode(', ', $oldRoles);
+
+		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
+		$this->userRoleChangeDatetime = time();
 	}
 
 	/**
@@ -85,39 +98,49 @@ class UserRoleChanged extends UserTrigger {
 	 *
 	 * @return void
 	 */
-	public function merge_tags() {
+	public function mergeTags()
+	{
+		parent::mergeTags();
 
-		parent::merge_tags();
+		$this->addMergeTag(new MergeTag\User\UserNicename());
+		$this->addMergeTag(new MergeTag\User\UserDisplayName());
+		$this->addMergeTag(new MergeTag\User\UserFirstName());
+		$this->addMergeTag(new MergeTag\User\UserLastName());
+		$this->addMergeTag(new MergeTag\User\UserBio());
 
-		$this->add_merge_tag( new MergeTag\User\UserNicename() );
-		$this->add_merge_tag( new MergeTag\User\UserDisplayName() );
-		$this->add_merge_tag( new MergeTag\User\UserFirstName() );
-		$this->add_merge_tag( new MergeTag\User\UserLastName() );
-		$this->add_merge_tag( new MergeTag\User\UserBio() );
+		$this->addMergeTag(
+			new MergeTag\StringTag(
+				[
+					'slug' => 'new_role',
+					'name' => __('New role', 'notification'),
+					'resolver' => static function ($trigger) {
+						return $trigger->newRole;
+					},
+					'group' => __('Roles', 'notification'),
+				]
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\StringTag( [
-			'slug'     => 'new_role',
-			'name'     => __( 'New role', 'notification' ),
-			'resolver' => function ( $trigger ) {
-				return $trigger->new_role;
-			},
-			'group'    => __( 'Roles', 'notification' ),
-		] ) );
+		$this->addMergeTag(
+			new MergeTag\StringTag(
+				[
+					'slug' => 'old_role',
+					'name' => __('Old role', 'notification'),
+					'resolver' => static function ($trigger) {
+						return $trigger->oldRole;
+					},
+					'group' => __('Roles', 'notification'),
+				]
+			)
+		);
 
-		$this->add_merge_tag( new MergeTag\StringTag( [
-			'slug'     => 'old_role',
-			'name'     => __( 'Old role', 'notification' ),
-			'resolver' => function ( $trigger ) {
-				return $trigger->old_role;
-			},
-			'group'    => __( 'Roles', 'notification' ),
-		] ) );
-
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
-			'slug' => 'user_role_change_datetime',
-			'name' => __( 'User role change datetime', 'notification' ),
-		] ) );
-
+		$this->addMergeTag(
+			new MergeTag\DateTime\DateTime(
+				[
+					'slug' => 'user_role_change_datetime',
+					'name' => __('User role change datetime', 'notification'),
+				]
+			)
+		);
 	}
-
 }

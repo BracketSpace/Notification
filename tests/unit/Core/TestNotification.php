@@ -16,47 +16,6 @@ use BracketSpace\Notification\Core\Notification;
 class TestNotification extends \WP_UnitTestCase {
 
 	/**
-	 * Test setter and getter
-	 *
-	 * @since 6.0.0
-	 */
-	public function test_setter_getter() {
-
-		$notification = new Notification();
-		$notification->set_something( true );
-		$this->assertTrue( $notification->get_something() );
-
-	}
-
-	/**
-	 * Test getter exception
-	 *
-	 * @since 6.0.0
-	 */
-	public function test_getter_exception() {
-
-		$this->expectException( \Exception::class );
-
-		$notification = new Notification();
-		$this->assertTrue( $notification->get_something() );
-
-	}
-
-	/**
-	 * Test setter exception
-	 *
-	 * @since 6.0.0
-	 */
-	public function test_setter_exception() {
-
-		$this->expectException( \Exception::class );
-
-		$notification = new Notification();
-		$notification->set_something();
-
-	}
-
-	/**
 	 * Test hash creation
 	 *
 	 * @since 6.0.0
@@ -64,7 +23,7 @@ class TestNotification extends \WP_UnitTestCase {
 	public function test_hash() {
 
 		$notification = new Notification();
-		$this->assertRegExp( '/notification_[a-z0-9]{13}/', $notification->get_hash() );
+		$this->assertMatchesRegularExpression( '/notification_[a-z0-9]{13}/', $notification->get_hash() );
 
 		$notification = new Notification( [
 			'hash' => 'test-hash',
@@ -221,7 +180,7 @@ class TestNotification extends \WP_UnitTestCase {
 	 */
 	public function test_version() {
 
-		$ver = '1.0.0';
+		$ver = (int) '1.0.0';
 
 		$notification = new Notification( [
 			'version' => $ver,
@@ -288,7 +247,7 @@ class TestNotification extends \WP_UnitTestCase {
 	 * @since 6.0.0
 	 */
 	public function test_create_hash() {
-		$this->assertRegExp( '/notification_[a-z0-9]{13}/', Notification::create_hash() );
+		$this->assertMatchesRegularExpression( '/notification_[a-z0-9]{13}/', Notification::create_hash() );
 	}
 
 	/**
@@ -431,7 +390,7 @@ class TestNotification extends \WP_UnitTestCase {
 	 * @since  8.0.0
 	 * @return void
 	 */
-	public function tearDown() {
+	public function tearDown() : void {
         Registerer::clear();
     }
 

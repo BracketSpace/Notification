@@ -1,9 +1,12 @@
 <?php
+
 /**
  * User trigger abstract
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Trigger\User;
 
@@ -13,28 +16,28 @@ use BracketSpace\Notification\Defaults\MergeTag;
 /**
  * User trigger class
  */
-abstract class UserTrigger extends Abstracts\Trigger {
-
+abstract class UserTrigger extends Abstracts\Trigger
+{
 	/**
 	 * User ID
 	 *
 	 * @var int
 	 */
-	public $user_id;
+	public $userId;
 
 	/**
 	 * User object
 	 *
 	 * @var \WP_User
 	 */
-	public $user_object;
+	public $userObject;
 
 	/**
 	 * User registration date and time
 	 *
 	 * @var int|false
 	 */
-	public $user_registered_datetime;
+	public $userRegisteredDatetime;
 
 	/**
 	 * Constructor
@@ -42,9 +45,18 @@ abstract class UserTrigger extends Abstracts\Trigger {
 	 * @param string $slug $params trigger slug.
 	 * @param string $name $params trigger name.
 	 */
-	public function __construct( $slug, $name ) {
-		parent::__construct( $slug, $name );
-		$this->set_group( __( 'User', 'notification' ) );
+	public function __construct($slug, $name)
+	{
+		parent::__construct(
+			$slug,
+			$name
+		);
+		$this->setGroup(
+			__(
+				'User',
+				'notification'
+			)
+		);
 	}
 
 	/**
@@ -52,19 +64,21 @@ abstract class UserTrigger extends Abstracts\Trigger {
 	 *
 	 * @return void
 	 */
-	public function merge_tags() {
+	public function mergeTags()
+	{
+		$this->addMergeTag(new MergeTag\User\UserID());
+		$this->addMergeTag(new MergeTag\User\UserLogin());
+		$this->addMergeTag(new MergeTag\User\UserEmail());
+		$this->addMergeTag(new MergeTag\User\UserRole());
+		$this->addMergeTag(new MergeTag\User\Avatar());
 
-		$this->add_merge_tag( new MergeTag\User\UserID() );
-		$this->add_merge_tag( new MergeTag\User\UserLogin() );
-		$this->add_merge_tag( new MergeTag\User\UserEmail() );
-		$this->add_merge_tag( new MergeTag\User\UserRole() );
-		$this->add_merge_tag( new MergeTag\User\Avatar() );
-
-		$this->add_merge_tag( new MergeTag\DateTime\DateTime( [
-			'slug' => 'user_registered_datetime',
-			'name' => __( 'User registration date', 'notification' ),
-		] ) );
-
+		$this->addMergeTag(
+			new MergeTag\DateTime\DateTime(
+				[
+					'slug' => 'user_registered_datetime',
+					'name' => __('User registration date', 'notification'),
+				]
+			)
+		);
 	}
-
 }

@@ -1,34 +1,40 @@
 <?php
+
 /**
  * Two Factor plugin integration class
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Integration;
 
 /**
  * Two Factor plugin integration class
  */
-class TwoFactor {
-
+class TwoFactor
+{
 	/**
 	 * Adds another authentication action
 	 *
 	 * @action notification/trigger/registered
 	 *
-	 * @since  7.0.0
-	 * @param  object $trigger Trigger instance.
+	 * @param \BracketSpace\Notification\Abstracts\Trigger $trigger Trigger instance.
 	 * @return void
+	 * @since  7.0.0
 	 */
-	public function add_trigger_action( $trigger ) {
-
-		if ( 'user/login' !== $trigger->get_slug() ) {
+	public function addTriggerAction($trigger)
+	{
+		if ($trigger->getSlug() !== 'user/login') {
 			return;
 		}
 
-		$trigger->add_action( 'ntfn_proxy_two_factor_user_authenticated', 10, 2 );
-
+		$trigger->addAction(
+			'ntfn_proxy_two_factor_user_authenticated',
+			10,
+			2
+		);
 	}
 
 	/**
@@ -36,12 +42,13 @@ class TwoFactor {
 	 *
 	 * @action two_factor_user_authenticated
 	 *
-	 * @since  7.0.0
-	 * @param  \WP_User $user User instance.
+	 * @param \WP_User $user User instance.
 	 * @return void
+	 * @since  7.0.0
 	 */
-	public function user_login_with_2fa( $user ) {
-		do_action( 'ntfn_proxy_two_factor_user_authenticated', $user->user_login, $user );
+	public function userLoginWith2fa($user)
+	{
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+		do_action('ntfn_proxy_two_factor_user_authenticated', $user->user_login, $user);
 	}
-
 }

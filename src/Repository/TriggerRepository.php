@@ -1,173 +1,195 @@
 <?php
+
 /**
  * Register defaults.
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Repository;
 
 use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Defaults\Trigger;
+use function BracketSpace\Notification\getSetting;
 
 /**
  * Trigger Repository.
  */
-class TriggerRepository {
-
+class TriggerRepository
+{
 	/**
 	 * @return void
 	 */
-	public static function register() {
-		self::register_post_triggers();
+	public static function register()
+	{
+		self::registerPostTriggers();
 
-		self::register_taxonomy_triggers();
+		self::registerTaxonomyTriggers();
 
-		if ( notification_get_setting( 'triggers/user/enable' ) ) {
-			self::register_user_triggers();
+		if (getSetting('triggers/user/enable')) {
+			self::registerUserTriggers();
 		}
 
-		if ( notification_get_setting( 'triggers/media/enable' ) ) {
-			self::register_media_triggers();
+		if (getSetting('triggers/media/enable')) {
+			self::registerMediaTriggers();
 		}
 
-		self::register_comment_triggers();
+		self::registerCommentTriggers();
 
-		self::register_wp_triggers();
+		self::registerWpTriggers();
 
-		if ( notification_get_setting( 'triggers/plugin/enable' ) ) {
-			self::register_plugin_triggers();
+		if (getSetting('triggers/plugin/enable')) {
+			self::registerPluginTriggers();
 		}
 
-		if ( notification_get_setting( 'triggers/theme/enable' ) ) {
-			self::register_theme_triggers();
+		if (getSetting('triggers/theme/enable')) {
+			self::registerThemeTriggers();
 		}
 
-		if ( notification_get_setting( 'triggers/privacy/enable' ) ) {
-			self::register_privacy_triggers();
+		if (!getSetting('triggers/privacy/enable')) {
+			return;
 		}
+
+		self::registerPrivacyTriggers();
 	}
 
 	/**
 	 * @return void
 	 */
-	public static function register_post_triggers() {
-		$post_types = notification_get_setting( 'triggers/post_types/types' );
+	public static function registerPostTriggers()
+	{
+		$postTypes = getSetting('triggers/post_types/types');
 
-		if ( $post_types ) {
-			foreach ( $post_types as $post_type ) {
-				Register::trigger( new Trigger\Post\PostAdded( $post_type ) );
-				Register::trigger( new Trigger\Post\PostApproved( $post_type ) );
-				Register::trigger( new Trigger\Post\PostDrafted( $post_type ) );
-				Register::trigger( new Trigger\Post\PostPending( $post_type ) );
-				Register::trigger( new Trigger\Post\PostPublished( $post_type ) );
-				Register::trigger( new Trigger\Post\PostPublishedPrivately( $post_type ) );
-				Register::trigger( new Trigger\Post\PostScheduled( $post_type ) );
-				Register::trigger( new Trigger\Post\PostTrashed( $post_type ) );
-				Register::trigger( new Trigger\Post\PostUpdated( $post_type ) );
-			}
+		if (!$postTypes) {
+			return;
 		}
-	}
 
-	/**
-	 * @return void
-	 */
-	public static function register_taxonomy_triggers() {
-		$taxonomies = notification_get_setting( 'triggers/taxonomies/types' );
-
-		if ( $taxonomies ) {
-			foreach ( $taxonomies as $taxonomy ) {
-				Register::trigger( new Trigger\Taxonomy\TermAdded( $taxonomy ) );
-				Register::trigger( new Trigger\Taxonomy\TermUpdated( $taxonomy ) );
-				Register::trigger( new Trigger\Taxonomy\TermDeleted( $taxonomy ) );
-			}
+		foreach ($postTypes as $postType) {
+			Register::trigger(new Trigger\Post\PostAdded($postType));
+			Register::trigger(new Trigger\Post\PostApproved($postType));
+			Register::trigger(new Trigger\Post\PostDrafted($postType));
+			Register::trigger(new Trigger\Post\PostPending($postType));
+			Register::trigger(new Trigger\Post\PostPublished($postType));
+			Register::trigger(new Trigger\Post\PostPublishedPrivately($postType));
+			Register::trigger(new Trigger\Post\PostScheduled($postType));
+			Register::trigger(new Trigger\Post\PostTrashed($postType));
+			Register::trigger(new Trigger\Post\PostUpdated($postType));
 		}
 	}
 
 	/**
 	 * @return void
 	 */
-	public static function register_user_triggers() {
-		Register::trigger( new Trigger\User\UserLogin() );
-		Register::trigger( new Trigger\User\UserLogout() );
-		Register::trigger( new Trigger\User\UserRegistered() );
-		Register::trigger( new Trigger\User\UserProfileUpdated() );
-		Register::trigger( new Trigger\User\UserDeleted() );
-		Register::trigger( new Trigger\User\UserPasswordChanged() );
-		Register::trigger( new Trigger\User\UserPasswordResetRequest() );
-		Register::trigger( new Trigger\User\UserLoginFailed() );
-		Register::trigger( new Trigger\User\UserRoleChanged() );
-	}
+	public static function registerTaxonomyTriggers()
+	{
+		$taxonomies = getSetting('triggers/taxonomies/types');
 
-	/**
-	 * @return void
-	 */
-	public static function register_media_triggers() {
-		Register::trigger( new Trigger\Media\MediaAdded() );
-		Register::trigger( new Trigger\Media\MediaUpdated() );
-		Register::trigger( new Trigger\Media\MediaTrashed() );
-	}
+		if (!$taxonomies) {
+			return;
+		}
 
-	/**
-	 * @return void
-	 */
-	public static function register_comment_triggers() {
-		$comment_types = notification_get_setting( 'triggers/comment/types' );
-
-		if ( $comment_types ) {
-			foreach ( $comment_types as $comment_type ) {
-				Register::trigger( new Trigger\Comment\CommentPublished( $comment_type ) );
-				Register::trigger( new Trigger\Comment\CommentAdded( $comment_type ) );
-				Register::trigger( new Trigger\Comment\CommentReplied( $comment_type ) );
-				Register::trigger( new Trigger\Comment\CommentApproved( $comment_type ) );
-				Register::trigger( new Trigger\Comment\CommentUnapproved( $comment_type ) );
-				Register::trigger( new Trigger\Comment\CommentSpammed( $comment_type ) );
-				Register::trigger( new Trigger\Comment\CommentTrashed( $comment_type ) );
-			}
+		foreach ($taxonomies as $taxonomy) {
+			Register::trigger(new Trigger\Taxonomy\TermAdded($taxonomy));
+			Register::trigger(new Trigger\Taxonomy\TermUpdated($taxonomy));
+			Register::trigger(new Trigger\Taxonomy\TermDeleted($taxonomy));
 		}
 	}
 
 	/**
 	 * @return void
 	 */
-	public static function register_wp_triggers() {
-		if ( notification_get_setting( 'triggers/wordpress/updates' ) ) {
-			Register::trigger( new Trigger\WordPress\UpdatesAvailable() );
+	public static function registerUserTriggers()
+	{
+		Register::trigger(new Trigger\User\UserLogin());
+		Register::trigger(new Trigger\User\UserLogout());
+		Register::trigger(new Trigger\User\UserRegistered());
+		Register::trigger(new Trigger\User\UserProfileUpdated());
+		Register::trigger(new Trigger\User\UserDeleted());
+		Register::trigger(new Trigger\User\UserPasswordChanged());
+		Register::trigger(new Trigger\User\UserPasswordResetRequest());
+		Register::trigger(new Trigger\User\UserLoginFailed());
+		Register::trigger(new Trigger\User\UserRoleChanged());
+		Register::trigger(new Trigger\User\UserEmailChanged());
+	}
+
+	/**
+	 * @return void
+	 */
+	public static function registerMediaTriggers()
+	{
+		Register::trigger(new Trigger\Media\MediaAdded());
+		Register::trigger(new Trigger\Media\MediaUpdated());
+		Register::trigger(new Trigger\Media\MediaTrashed());
+	}
+
+	/**
+	 * @return void
+	 */
+	public static function registerCommentTriggers()
+	{
+		$commentTypes = getSetting('triggers/comment/types');
+
+		if (!$commentTypes) {
+			return;
 		}
 
-		if ( notification_get_setting( 'triggers/wordpress/email_address_change_request' ) ) {
-			Register::trigger( new Trigger\WordPress\EmailChangeRequest() );
+		foreach ($commentTypes as $commentType) {
+			Register::trigger(new Trigger\Comment\CommentPublished($commentType));
+			Register::trigger(new Trigger\Comment\CommentAdded($commentType));
+			Register::trigger(new Trigger\Comment\CommentReplied($commentType));
+			Register::trigger(new Trigger\Comment\CommentApproved($commentType));
+			Register::trigger(new Trigger\Comment\CommentUnapproved($commentType));
+			Register::trigger(new Trigger\Comment\CommentSpammed($commentType));
+			Register::trigger(new Trigger\Comment\CommentTrashed($commentType));
 		}
 	}
 
 	/**
 	 * @return void
 	 */
-	public static function register_plugin_triggers() {
-		Register::trigger( new Trigger\Plugin\Activated() );
-		Register::trigger( new Trigger\Plugin\Deactivated() );
-		Register::trigger( new Trigger\Plugin\Updated() );
-		Register::trigger( new Trigger\Plugin\Installed() );
-		Register::trigger( new Trigger\Plugin\Removed() );
+	public static function registerWpTriggers()
+	{
+		if (getSetting('triggers/wordpress/updates')) {
+			Register::trigger(new Trigger\WordPress\UpdatesAvailable());
+		}
+
+		Register::trigger(new Trigger\WordPress\EmailChangeRequest());
+
+		Register::trigger(new Trigger\WordPress\EmailChanged());
 	}
 
 	/**
 	 * @return void
 	 */
-	public static function register_theme_triggers() {
-		Register::trigger( new Trigger\Theme\Switched() );
-		Register::trigger( new Trigger\Theme\Updated() );
-		Register::trigger( new Trigger\Theme\Installed() );
+	public static function registerPluginTriggers()
+	{
+		Register::trigger(new Trigger\Plugin\Activated());
+		Register::trigger(new Trigger\Plugin\Deactivated());
+		Register::trigger(new Trigger\Plugin\Updated());
+		Register::trigger(new Trigger\Plugin\Installed());
+		Register::trigger(new Trigger\Plugin\Removed());
 	}
 
 	/**
 	 * @return void
 	 */
-	public static function register_privacy_triggers() {
-		Register::trigger( new Trigger\Privacy\DataEraseRequest() );
-		Register::trigger( new Trigger\Privacy\DataErased() );
-		Register::trigger( new Trigger\Privacy\DataExportRequest() );
-		Register::trigger( new Trigger\Privacy\DataExported() );
+	public static function registerThemeTriggers()
+	{
+		Register::trigger(new Trigger\Theme\Switched());
+		Register::trigger(new Trigger\Theme\Updated());
+		Register::trigger(new Trigger\Theme\Installed());
 	}
 
+	/**
+	 * @return void
+	 */
+	public static function registerPrivacyTriggers()
+	{
+		Register::trigger(new Trigger\Privacy\DataEraseRequest());
+		Register::trigger(new Trigger\Privacy\DataErased());
+		Register::trigger(new Trigger\Privacy\DataExportRequest());
+		Register::trigger(new Trigger\Privacy\DataExported());
+	}
 }
