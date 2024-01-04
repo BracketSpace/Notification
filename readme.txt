@@ -304,6 +304,10 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 
+* [Added] Option to disable notification about admin email address changed.
+* [Added] New trigger after user confirms his new email address.
+* [Added] New trigger after admin confirms new site email address.
+* [Added] notification/admin/allow_column/$column filter.
 * [Changed] Global functions moved to namespace and set as deprecated.
 * [Changed] Removed v6 & v7 deprecated functions
 * [Changed] Minimum required PHP version from 7.4.
@@ -313,12 +317,6 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Fixed] Shortcodes being uncorrectly stripped leaving closing "]" behind.
 * [Fixed] PHP 8.2 deprecations.
 * [Fixed] Stripping shortcodes in carrier fields.
-* [Added] New trigger after user confirms his new email address.
-* [Added] New trigger after user confirms his new email address
-* [Added] Option to disable notification about admin email address changed.
-* [Added] New trigger after user confirms his new email address.
-* [Added] New trigger after admin confirms new site email address.
-* [Added] notification/admin/allow_column/$column filter.
 * [Fixed] Email carrier header "From" prioritized over header in settings.
 
 **Compatibility Breaking Changes**
