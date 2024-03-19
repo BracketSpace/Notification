@@ -57,7 +57,7 @@ class UserPasswordResetLink extends StringTag
 						sprintf(
 							'wp-login.php?action=rp&key=%s&login=%s',
 							$trigger->{$this->keyPropertyName},
-							$trigger->{$this->getTriggerProp()}->data->user_login
+							urlencode($trigger->{$this->getTriggerProp()}->data->user_login)
 						)
 					);
 				},

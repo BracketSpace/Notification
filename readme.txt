@@ -318,6 +318,109 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Fixed] PHP 8.2 deprecations.
 * [Fixed] Stripping shortcodes in carrier fields.
 * [Fixed] Email carrier header "From" prioritized over header in settings.
+* [Fixed] User password reset link requires encoded username.
+
+= 8.0.15 =
+
+* [Fixed] Comment merge tags rendering empty values.
+* [Changed] Development dependencies got some security patches.
+* [Changed] `notification/merge_tag/value/resolve` now accepts unsanitized value.
+
+= 8.0.14 =
+
+* [Fixed] Outdated dochoooks compatibility file, causing a fatal error while adding new post in some environments.
+
+= 8.0.13 =
+
+* [Fixed] Regression with REST API check.
+* [Changed] `repeater_api` internal runtime component to `api`.
+* [Added] `get_endpoint` method to the API class.
+
+= 8.0.12 =
+
+* [Changed] Logic of assigning property name is moved to Abstract Merge Tag Class.
+* [Added] Property names to Term Merge Tags.
+* [Added] 6h cache expire to the user queries.
+* [Added] Email / Merge tag recipient now can also be separated with semicolon.
+* [Added] Endpoint to check whether the REST api is enabled.
+
+= 8.0.11 =
+
+* [Changed] Add php_xml to required php extensions.
+* [Changed] Background processing cache is being stored in transient instead of an option.
+* [Fixed] PHP 8.0 and 8.1 compatibility.
+* [Fixed] Improper caching expiration times.
+* [Fixed] Trigger keeping state between subsequent action runs.
+* [Fixed] Password reset trigger is not processed on user registration anymore.
+* [Added] Trigger `resume()` method to reset the stopped state.
+
+= 8.0.10 =
+
+* [Fixed] User logout trigger. In WordPress 5.5 the context is set properly.
+* [Fixed] Issue with persistent Trigger state if two or more actions assigned to the same trigger were called.
+* [Changed] Carrier's recipients field is now returned with resolved data if available.
+* [Added] Post Published privately trigger.
+
+= 8.0.9 =
+
+* [Fixed] Merge Tags resolver problem caused by overriding the processed trigger instance.
+* [Changed] `notification/should_send` filter is now executed when the queue is processed, not before the notification is added to the queue.
+* [Added] New queue methods: `remove()` and `clear()`.
+
+= 8.0.8 =
+
+* [Fixed] Two or more same triggers processed in the same request overwriting each other data.
+
+= 8.0.7 =
+
+* [Fixed] Shortcode stripping regex that was matching JSON arrays.
+* [Changed] Extensions are now reporting updates even if they are not activated.
+* [Changed] Updated EDD Updater class.
+* [Added] Webhook warning logging when response is not valid.
+
+= 8.0.6 =
+
+* [Fixed] Extension activation notice link.
+* [Fixed] Extension activation process.
+* [Fixed] Incorrect empty merge tag cleaning which was misreading JSON format.
+
+= 8.0.5 =
+
+* [Changed] Updated PHP dependencies.
+
+= 8.0.4 =
+
+* [Changed] Updated PHP dependencies.
+* [Changed] Extension license notice is now printed once and covers all the plugins.
+* [Changed] Some of the core fields like Import/Export now have own setting classes.
+* [Fixed] Remaining template variable escaping.
+* [Removed] HTML Settings field, introduced in v8.0.3. Now it's required to create purpose-specific field classes.
+
+= 8.0.3 =
+
+* [Added] HTML Settings field.
+* [Added] Notification hash column in the Notification table.
+* [Changed] Some of the Settings to HTML field instead of the Message field.
+* [Fixed] Broken Import/Export sections.
+* [Fixed] Notifications cache is now cleared when creating notification via wizard.
+
+= 8.0.2 =
+
+* [Added] HTML escaping and nonce verifications.
+* [Changed] Notification file syncing is now using Filesystem methods.
+* [Changed] Internal cache classes with `micropackage/cache`.
+* [Changed] Menu icon.
+* [Changed] Vue is now loaded from within the plugin instead of CDN.
+* [Removed] Internal cache classes `Bracketspace\Notification\Utils\Cache` and `Bracketspace\Notification\Utils\Interfaces` namespaces.
+* [Removed] Settings internal caching that couldn't wait for all the fields to be registered. Now we're relying on the get_option() core function caching.
+
+= 8.0.1 =
+
+* [Changed] Field and Merge Tag description field is now escaped and cannot contain any HTML tags.
+* [Fixed] Recipients parser which didn't resolved Email Merge Tags.
+
+= 8.0.0 =
+>>>>>>> 9ff8761a (fix: encode user login in password reset link merge tag)
 
 **Compatibility Breaking Changes**
 
