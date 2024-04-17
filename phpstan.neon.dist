@@ -16,7 +16,7 @@ parameters:
         - src/
         - compat/
     excludePaths:
-        - src/Dependencies/
+        - dependencies/
         - src/Utils/EDDUpdater.php
     ignoreErrors:
         # Uses func_get_args()

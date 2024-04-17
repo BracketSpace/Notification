@@ -1,5 +1,5 @@
 {
-	"phpVersion": "8.2",
+	"phpVersion": "7.4",
 	"mappings": {
 		"wp-content/plugins/notification": "."
 	}

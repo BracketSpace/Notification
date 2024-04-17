@@ -6,7 +6,7 @@ node_modules/
 /vendor/
 package-lock.json
 /resources/*/dist/
-/src/Dependencies/
+/dependencies/
 /tests/_wordpress/
 /vendor-bin/**/vendor/
 
