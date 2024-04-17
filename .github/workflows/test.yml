@@ -6,13 +6,16 @@ jobs:
   phpcs:
     name: PHP Coding Standards
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.4', '8.0', '8.1', 8.2', '8.3']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
       - name: Install Composer dependencies
@@ -22,13 +25,16 @@ jobs:
   phpstan:
     name: PHPStan
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.4', '8.0', '8.1', 8.2', '8.3']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
       - name: Install Composer dependencies
@@ -38,13 +44,16 @@ jobs:
   phplint:
     name: PHP Lint
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.4', '8.0', '8.1', 8.2', '8.3']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
       - name: Install Composer dependencies
@@ -56,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['8.2']
+        php: ['7.4', '8.0', '8.1', 8.2', '8.3']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
