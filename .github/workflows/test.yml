@@ -71,7 +71,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '16'
           cache: yarn
       - name: Install yarn dependencies
         run: yarn install --immutable
@@ -90,11 +90,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '12'
-      - name: Install Node dependencies
-        uses: bahmutov/npm-install@v1
+          node-version: '16'
+          cache: yarn
+      - name: Install yarn dependencies
+        run: yarn install --immutable
       - name: CSS lint
         run: yarn lint:css
   js:
@@ -104,10 +105,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '12'
-      - name: Install Node dependencies
-        uses: bahmutov/npm-install@v1
+          node-version: '16'
+          cache: yarn
+      - name: Install yarn dependencies
+        run: yarn install --immutable
       - name: JS lint
         run: yarn lint:js
