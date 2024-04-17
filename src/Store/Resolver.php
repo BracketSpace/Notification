@@ -18,12 +18,13 @@ use BracketSpace\Notification\Traits\Storage;
  */
 class Resolver implements Interfaces\Storable
 {
+	/** @use Storage<Interfaces\Resolvable> */
 	use Storage;
 
 	/**
 	 * Gets all Resolvers sorted by priority.
 	 *
-	 * @return array<string, \BracketSpace\Notification\Interfaces\Resolvable>
+	 * @return array<Interfaces\Resolvable>
 	 * @since  8.0.0
 	 */
 	public static function sorted(): array

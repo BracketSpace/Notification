@@ -201,8 +201,14 @@ class PostTable
 			return $rowActions;
 		}
 
+		$deleteUrl = get_delete_post_link($post->ID, '', true);
+
+		if (!is_string($deleteUrl)) {
+			return $rowActions;
+		}
+
 		$rowActions['trash'] = '<a href="' .
-			esc_url(get_delete_post_link($post->ID, '', true))
+			esc_url($deleteUrl)
 			. '" class="submitdelete notification-delete-post">'
 			. esc_html__('Remove', 'notification') . '</a>';
 

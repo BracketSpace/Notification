@@ -14,20 +14,22 @@ use BracketSpace\Notification\ErrorHandler;
 
 /**
  * Storage trait
+ *
+ * @template TItem
  */
 trait Storage
 {
 	/**
 	 * Stored items
 	 *
-	 * @var array<mixed>
+	 * @var array<TItem>
 	 */
-	private static $items = [];
+	protected static $items = [];
 
 	/**
 	 * Adds an item to the Store
 	 *
-	 * @param mixed $item Item to add.
+	 * @param TItem $item Item to add.
 	 * @return void
 	 * @since  8.0.0
 	 */
@@ -40,7 +42,7 @@ trait Storage
 	 * Inserts an item at a specific index.
 	 *
 	 * @param int|string $index Item index.
-	 * @param mixed $item Item to add.
+	 * @param TItem $item Item to add.
 	 * @return void
 	 * @since  8.0.0
 	 */
@@ -64,7 +66,7 @@ trait Storage
 	/**
 	 * Gets all items
 	 *
-	 * @return array<mixed>
+	 * @return array<TItem>
 	 * @since  8.0.0
 	 */
 	public static function all(): array
@@ -87,7 +89,7 @@ trait Storage
 	 * Get item by index
 	 *
 	 * @param mixed $index Intex of an item.
-	 * @return mixed
+	 * @return TItem|null
 	 * @since  8.0.0
 	 */
 	public static function get($index)
@@ -101,7 +103,7 @@ trait Storage
 				)
 			);
 
-			return;
+			return null;
 		}
 
 		return static::$items[$index];
