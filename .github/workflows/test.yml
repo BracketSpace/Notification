@@ -77,6 +77,10 @@ jobs:
         run: yarn install --immutable
       - name: Install Composer dependencies
         uses: "ramsey/composer-install@v2"
+      - name: Install Composer build dependencies
+        run: composer bin build install --no-progress
+      - name: Compose dependencies
+        run: composer compose
       - name: Start wp-env
         env:
             WP_ENV_PHP_VERSION: ${{ matrix.php }}
