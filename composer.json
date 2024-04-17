@@ -68,7 +68,6 @@
 		"phpcbf": "phpcbf",
 		"phpcs": "phpcs",
 		"phplint": "parallel-lint --exclude node_modules --exclude vendor  --exclude vendor-bin .",
-		"phpstan": "phpstan analyze --memory-limit=-1",
-		"test": "vendor/bin/pest"
+		"phpstan": "phpstan analyze --memory-limit=-1"
 	}
 }

@@ -1,0 +1,6 @@
+{
+	"phpVersion": "8.2",
+	"mappings": {
+		"wp-content/plugins/notification": "."
+	}
+}
