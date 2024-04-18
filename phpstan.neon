@@ -4,7 +4,6 @@ includes:
 parameters:
     level: max
     inferPrivatePropertyTypeFromConstructor: true
-    reportUnmatchedIgnoredErrors: false
     scanFiles:
         - vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
     paths:
