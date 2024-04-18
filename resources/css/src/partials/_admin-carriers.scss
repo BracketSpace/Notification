@@ -24,31 +24,31 @@ body.post-type-notification {
 
 				&::before,
 				&::after {
+					clear: both;
 					content: "";
 					display: block;
-					clear: both;
 				}
 
 				.switch {
-					float: left;
-					display: inline-block;
-					font-size: 20px;
-					height: 1em;
-					width: 2em;
 					background: #c5c5c5;
 					border-radius: 1em;
-					margin-top: 8px;
+					display: inline-block;
+					float: left;
+					font-size: 20px;
+					height: 1em;
 					margin-right: 10px;
+					margin-top: 8px;
+					width: 2em;
 
 					div {
-						height: 1em;
-						width: 1em;
-						border-radius: 1em;
 						background: #fff;
+						border-radius: 1em;
 						box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.3);
+						height: 1em;
 						-webkit-transition: all 300ms;
 						-moz-transition: all 300ms;
 						transition: all 300ms;
+						width: 1em;
 					}
 
 				}

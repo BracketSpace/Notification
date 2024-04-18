@@ -1,13 +1,13 @@
 /* global notification */
 
-import Vue from "vue/dist/vue.js";
+import Vue from 'vue/dist/vue.js';
 
 export const sectionsHandler = {
 	data() {
 		return {
 			subRows: 0,
-			rowName: "",
-			secitioName: null
+			rowName: '',
+			secitioName: null,
 		};
 	},
 	mounted() {
@@ -20,7 +20,7 @@ export const sectionsHandler = {
 			for (const field in section) {
 				const fieldModel = Object.assign({}, section[field]);
 
-				if ("message" === section.type) {
+				if ('message' === section.type) {
 					this.rows[`section-${this.rowCount}`] = fieldModel;
 				} else {
 					sectionFields[section[field].name] = fieldModel;
@@ -31,7 +31,7 @@ export const sectionsHandler = {
 
 			this.rowCount++;
 
-			notification.hooks.doAction("notification.section.row.added", this);
+			notification.hooks.doAction('notification.section.row.added', this);
 		},
 		addSubFieldSection(name, value) {
 			const fieldModel = Object.assign(
@@ -45,7 +45,7 @@ export const sectionsHandler = {
 
 			if (value) {
 				for (const data in value) {
-					if (typeof value === "string" || value instanceof String) {
+					if (typeof value === 'string' || value instanceof String) {
 						fieldData.push(value);
 					} else {
 						fieldData.push(value[data]);
@@ -54,7 +54,7 @@ export const sectionsHandler = {
 			}
 
 			if (!fieldModel.fields) {
-				fieldModel.value = fieldData.join("");
+				fieldModel.value = fieldData.join('');
 			} else {
 				let counter = 0;
 
@@ -68,12 +68,12 @@ export const sectionsHandler = {
 
 			this.rowCount++;
 
-			notification.hooks.doAction("notification.section.row.added", this);
+			notification.hooks.doAction('notification.section.row.added', this);
 		},
 		addFieldSectionValues() {
 			let sectionIndex = 0;
 
-			this.values.forEach(value => {
+			this.values.forEach((value) => {
 				const sections = this.sections;
 
 				for (const key in value) {
@@ -85,7 +85,7 @@ export const sectionsHandler = {
 					if (Array.isArray(value[key])) {
 						this.subFieldValues[sectionIndex] = [];
 
-						value[key].forEach(field => {
+						value[key].forEach((field) => {
 							this.subFieldValues[sectionIndex].push(field);
 						});
 						sectionIndex++;
@@ -109,6 +109,6 @@ export const sectionsHandler = {
 		},
 		createParentSectionName(type, index) {
 			return (this.rowName = `notification_carrier_${type.fieldCarrier}[${type.fieldType}][${index}]`);
-		}
-	}
+		},
+	},
 };

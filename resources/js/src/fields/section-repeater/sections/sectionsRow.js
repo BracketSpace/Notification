@@ -1,8 +1,8 @@
-import Vue from "vue/dist/vue.js";
-import { fieldHandler } from "../../repeater/mixins/fieldHandler";
-import { sectionsHandler } from "../mixins/sectionsHandler";
+import Vue from 'vue/dist/vue.js';
+import { fieldHandler } from '../../repeater/mixins/fieldHandler';
+import { sectionsHandler } from '../mixins/sectionsHandler';
 
-Vue.component("sections-row", {
+Vue.component('sections-row', {
 	template: `
 		<tr class="row">
 			<td class="handle no-sortable">{{index + 1}}</td>
@@ -39,20 +39,20 @@ Vue.component("sections-row", {
 		</tr>
 	`,
 	props: [
-		"index",
-		"rows",
-		"row",
-		"rowCount",
-		"type",
-		"selectedSection",
-		"subFieldValues",
-		"baseFields",
-		"savedSections"
+		'index',
+		'rows',
+		'row',
+		'rowCount',
+		'type',
+		'selectedSection',
+		'subFieldValues',
+		'baseFields',
+		'savedSections',
 	],
 	mixins: [fieldHandler, sectionsHandler],
 	data() {
 		return {
-			sectionName: null
+			sectionName: null,
 		};
 	},
 	computed: {
@@ -60,7 +60,7 @@ Vue.component("sections-row", {
 			if (this.sectionName) {
 				return this.sectionName.toLowerCase();
 			}
-		}
+		},
 	},
 	mounted() {
 		if (this.selectedSection) {
@@ -71,5 +71,5 @@ Vue.component("sections-row", {
 	},
 	updated() {
 		this.sectionName = this.savedSections[this.index];
-	}
+	},
 });

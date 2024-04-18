@@ -18,9 +18,9 @@
 		}
 
 		td {
+			overflow-wrap: break-word;
 			padding: 15px 0;
 			word-wrap: break-word;
-			overflow-wrap: break-word;
 
 			table {
 				margin-bottom: 1rem;
@@ -44,8 +44,8 @@
 				}
 
 				caption {
-					text-align: left;
 					font-weight: 600;
+					text-align: left;
 				}
 
 			}
@@ -61,30 +61,30 @@
 		.log-handle {
 
 			.message {
-				padding: 10px;
-				display: inline-block;
 				background: #ececec;
-				min-width: 90px;
-				font-weight: 600;
+				display: inline-block;
 				float: left;
+				font-weight: 600;
+				min-width: 90px;
+				padding: 10px;
 			}
 
 			.component {
-				padding: 10px;
 				display: inline-block;
 				float: left;
+				padding: 10px;
 			}
 
 			.excerpt {
-				padding: 10px;
-				white-space: nowrap;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				max-width: 60%;
+				color: #ccc;
 				display: inline-block;
 				float: left;
-				color: #ccc;
+				max-width: 60%;
+				overflow: hidden;
+				padding: 10px;
+				text-overflow: ellipsis;
 				transition: opacity 0.3s;
+				white-space: nowrap;
 			}
 
 		}
@@ -116,31 +116,31 @@
 				overflow: auto;
 
 				.carrier-name {
-					padding: 10px;
-					display: inline-block;
 					background: #ececec;
-					min-width: 120px;
+					display: inline-block;
 					font-weight: 600;
+					min-width: 120px;
+					padding: 10px;
 				}
 
 				.notification-title {
-					padding: 10px;
 					display: inline-block;
+					padding: 10px;
 				}
 
 				.source-label {
-					font-size: 10px;
 					background: #ececec;
-					padding: 2px 6px;
 					border-radius: 6px;
-					position: relative;
 					bottom: 2px;
+					font-size: 10px;
+					padding: 2px 6px;
+					position: relative;
 				}
 
 				.date {
-					padding: 10px;
 					display: inline-block;
 					float: right;
+					padding: 10px;
 
 					abbr {
 						text-decoration: none;
@@ -149,9 +149,9 @@
 				}
 
 				.indicator {
-					padding: 8px 10px;
 					display: inline-block;
 					float: right;
+					padding: 8px 10px;
 				}
 
 				@media ( max-width: 768px ) {
@@ -198,21 +198,21 @@
 		text-align: right;
 
 		a.page-numbers {
-			display: inline-block;
-			text-decoration: none;
-			font-size: 13px;
-			line-height: 26px;
-			height: 28px;
-			margin: 0;
-			padding: 0 10px 1px;
-			cursor: pointer;
 			-webkit-appearance: none;
+			border: 1px solid #ececec;
 			border-radius: 3px;
-			white-space: nowrap;
 			box-sizing: border-box;
 			color: #555;
-			border: 1px solid #ececec;
+			cursor: pointer;
+			display: inline-block;
+			font-size: 13px;
+			height: 28px;
+			line-height: 26px;
+			margin: 0;
+			padding: 0 10px 1px;
+			text-decoration: none;
 			vertical-align: top;
+			white-space: nowrap;
 
 			&:hover {
 				background: #ececec;

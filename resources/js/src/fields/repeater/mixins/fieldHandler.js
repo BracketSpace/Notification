@@ -12,7 +12,7 @@ export const fieldHandler = {
 			this.rowCount++;
 			this.fields.push(model);
 			notification.hooks.doAction(
-				"notification.repeater.row.added",
+				'notification.repeater.row.added',
 				this
 			);
 		},
@@ -37,7 +37,7 @@ export const fieldHandler = {
 		cloneField(model) {
 			const clonedModel = [];
 
-			model.forEach(element => {
+			model.forEach((element) => {
 				const field = Object.assign({}, element);
 				clonedModel.push(field);
 			});
@@ -47,7 +47,7 @@ export const fieldHandler = {
 		removeField(index, fields) {
 			fields.splice(index, 1);
 			notification.hooks.doAction(
-				"notification.repeater.row.removed",
+				'notification.repeater.row.removed',
 				this
 			);
 		},
@@ -65,7 +65,7 @@ export const fieldHandler = {
 				let counter = 0;
 
 				for (const value in this.values[i]) {
-					if ("object" === typeof this.values[i][value]) {
+					if ('object' === typeof this.values[i][value]) {
 						this.nestedValues[i] = this.values[i].nested_repeater;
 					}
 
@@ -74,13 +74,13 @@ export const fieldHandler = {
 					if (field) {
 						field.value = this.values[i][value];
 
-						if ("checkbox" === field.type) {
+						if ('checkbox' === field.type) {
 							if (this.values[i][value]) {
-								field.checked = "checked";
+								field.checked = 'checked';
 							}
 						}
 
-						if ("type" === field.name) {
+						if ('type' === field.name) {
 							this.selectChange(field, this.fields[i]);
 							field.value = this.values[i][value];
 						}
@@ -95,13 +95,13 @@ export const fieldHandler = {
 		},
 		addNestedModel(fields) {
 			if (fields) {
-				fields.forEach(field => {
+				fields.forEach((field) => {
 					if (field.fields) {
 						this.nestedRepeater = true;
 						this.nestedModel = this.cloneField(field.fields);
 					}
 				});
 			}
-		}
-	}
+		},
+	},
 };
