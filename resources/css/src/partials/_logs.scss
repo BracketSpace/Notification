@@ -2,6 +2,97 @@
  * Log styles
  */
 
+%notification-logs {
+
+	.log-item {
+		border: 1px solid #ececec;
+		border-radius: 3px;
+		box-shadow: 1px 1px 1px #f9f9f9;
+		margin-bottom: 1em;
+
+		.log-handle {
+			cursor: pointer;
+			overflow: auto;
+
+			.carrier-name {
+				background: #ececec;
+				display: inline-block;
+				font-weight: 600;
+				min-width: 120px;
+				padding: 10px;
+			}
+
+			.notification-title {
+				display: inline-block;
+				padding: 10px;
+			}
+
+			.source-label {
+				background: #ececec;
+				border-radius: 6px;
+				bottom: 2px;
+				font-size: 10px;
+				padding: 2px 6px;
+				position: relative;
+			}
+
+			.date {
+				display: inline-block;
+				float: right;
+				padding: 10px;
+
+				abbr {
+					text-decoration: none;
+				}
+
+			}
+
+			.indicator {
+				display: inline-block;
+				float: right;
+				padding: 8px 10px;
+			}
+
+			@media ( max-width: 768px ) {
+
+				.carrier-name {
+					background: none;
+					width: 100%;
+				}
+
+				.indicator {
+					display: none;
+				}
+
+			}
+
+		}
+
+		.log-body {
+			max-height: 0;
+			overflow: hidden;
+			overflow-y: scroll;
+			transition: max-height 0.3s;
+
+			.body-content {
+				border-top: 1px solid #ececec;
+				padding: 10px;
+			}
+
+		}
+
+		&.expanded {
+
+			.log-body {
+				max-height: 400px;
+			}
+
+		}
+
+	}
+
+}
+
 .notification-settings {
 
 	/* stylelint-disable */
@@ -56,7 +147,7 @@
 
 	.error-logs {
 
-		@extend .notification-logs;
+		@extend %notification-logs;
 
 		.log-handle {
 
@@ -105,92 +196,7 @@
 
 	.notification-logs {
 
-		.log-item {
-			border: 1px solid #ececec;
-			border-radius: 3px;
-			box-shadow: 1px 1px 1px #f9f9f9;
-			margin-bottom: 1em;
-
-			.log-handle {
-				cursor: pointer;
-				overflow: auto;
-
-				.carrier-name {
-					background: #ececec;
-					display: inline-block;
-					font-weight: 600;
-					min-width: 120px;
-					padding: 10px;
-				}
-
-				.notification-title {
-					display: inline-block;
-					padding: 10px;
-				}
-
-				.source-label {
-					background: #ececec;
-					border-radius: 6px;
-					bottom: 2px;
-					font-size: 10px;
-					padding: 2px 6px;
-					position: relative;
-				}
-
-				.date {
-					display: inline-block;
-					float: right;
-					padding: 10px;
-
-					abbr {
-						text-decoration: none;
-					}
-
-				}
-
-				.indicator {
-					display: inline-block;
-					float: right;
-					padding: 8px 10px;
-				}
-
-				@media ( max-width: 768px ) {
-
-					.carrier-name {
-						background: none;
-						width: 100%;
-					}
-
-					.indicator {
-						display: none;
-					}
-
-				}
-
-			}
-
-			.log-body {
-				max-height: 0;
-				overflow: hidden;
-				overflow-y: scroll;
-				transition: max-height 0.3s;
-
-				.body-content {
-					border-top: 1px solid #ececec;
-					padding: 10px;
-				}
-
-			}
-
-			&.expanded {
-
-				.log-body {
-					max-height: 400px;
-				}
-
-			}
-
-		}
+		@extend %notification-logs;
 
 	}
 
