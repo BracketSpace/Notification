@@ -29,7 +29,7 @@ jobs:
       run: yarn install --immutable
     - name: Install Composer dependencies
       uses: "ramsey/composer-install@v2"
-      with
+      with:
         composer-options: "--no-dev"
     - name: Build static assets
       run: yarn build
