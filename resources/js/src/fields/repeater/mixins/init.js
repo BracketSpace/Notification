@@ -1,5 +1,6 @@
-/* global notification, fetch */
-import sortableHandle from "./sortableHandle";
+/* global notification */
+
+import sortableHandle from './sortableHandle';
 
 export const init = {
 	mounted() {
@@ -12,16 +13,16 @@ export const init = {
 			this.postID = notification.postId;
 
 			fetch(`${notification.repeater_rest_url}${this.postID}`, {
-				method: "POST",
+				method: 'POST',
 				headers: {
-					Accept: "application/json",
-					"Content-Type": "application/json",
-					"X-WP-Nonce": notification.rest_nonce
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+					'X-WP-Nonce': notification.rest_nonce,
 				},
-				body: JSON.stringify(this.type)
+				body: JSON.stringify(this.type),
 			})
-				.then(res => res.json())
-				.then(data => {
+				.then((res) => res.json())
+				.then((data) => {
 					// eslint-disable-next-line camelcase
 					const { field, values } = data;
 
@@ -38,22 +39,22 @@ export const init = {
 					}
 				})
 				//eslint-disable-next-line no-unused-vars
-				.catch(err => {
+				.catch((err) => {
 					this.repeaterError = true;
 				});
 		},
 		setType() {
 			const instance = this.$el;
-			const fieldType = instance.getAttribute("data-field-name");
-			const fieldCarrier = instance.getAttribute("data-carrier");
+			const fieldType = instance.getAttribute('data-field-name');
+			const fieldCarrier = instance.getAttribute('data-carrier');
 
 			this.type = {
 				fieldType,
-				fieldCarrier
+				fieldCarrier,
 			};
 		},
 		sortable() {
 			sortableHandle();
-		}
-	}
+		},
+	},
 };

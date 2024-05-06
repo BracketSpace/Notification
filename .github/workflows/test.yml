@@ -6,13 +6,16 @@ jobs:
   phpcs:
     name: PHP Coding Standards
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.4', '8.0', '8.1', '8.2', '8.3']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
       - name: Install Composer dependencies
@@ -22,41 +25,39 @@ jobs:
   phpstan:
     name: PHPStan
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.4', '8.0', '8.1', '8.2', '8.3']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
       - name: Install Composer dependencies
         uses: "ramsey/composer-install@v2"
-      - name: Install Composer build dependencies
-        run: composer bin build install --no-progress
-      - name: Compose dependencies
-        run: composer compose
       - name: Analyze
         run: composer phpstan
   phplint:
     name: PHP Lint
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.4', '8.0', '8.1', '8.2', '8.3']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
       - name: Install Composer dependencies
         uses: "ramsey/composer-install@v2"
-      - name: Install Composer build dependencies
-        run: composer bin build install --no-progress
-      - name: Compose dependencies
-        run: composer compose
       - name: Lint
         run: composer phplint
   phpunit:
@@ -64,40 +65,25 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['8.2']
+        php: ['7.4', '8.0', '8.1', '8.2', '8.3']
     steps:
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
-          coverage: none
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Set Composer version
-        run: composer self-update --2.2
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+          cache: yarn
+      - name: Install yarn dependencies
+        run: yarn install --immutable
       - name: Install Composer dependencies
         uses: "ramsey/composer-install@v2"
-      - name: Install Composer build dependencies
-        run: composer bin build install --no-progress
-      - name: Compose dependencies
-        run: composer compose
-      - name: Remove unused dependencies
-        run: composer remove --dev szepeviktor/phpstan-wordpress
-      - name: Setup tests
-        run: bash tests/bin/install-wp-tests.sh
-      - name: Setup PHP ${{ matrix.php }}
-        # https://github.com/shivammathur/setup-php/issues/446#issuecomment-824001225
-        uses: shivammathur/setup-php@develop
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
-          coverage: none
-          tools: none
-      - name: PHPUnit
+      - name: Start wp-env
         env:
-          WP_DB_HOST: 127.0.0.1:${{ job.services.mysql.ports['3306'] }}
-        run: composer test
+            WP_ENV_PHP_VERSION: ${{ matrix.php }}
+        run: yarn run wp-env start
+      - name: Run Tests
+        run: yarn run test-php
   css:
     name: CSS Lint
     runs-on: ubuntu-latest
@@ -105,11 +91,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '12'
-      - name: Install Node dependencies
-        uses: bahmutov/npm-install@v1
+          node-version: '16'
+          cache: yarn
+      - name: Install yarn dependencies
+        run: yarn install --immutable
       - name: CSS lint
         run: yarn lint:css
   js:
@@ -119,10 +106,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '12'
-      - name: Install Node dependencies
-        uses: bahmutov/npm-install@v1
+          node-version: '16'
+          cache: yarn
+      - name: Install yarn dependencies
+        run: yarn install --immutable
       - name: JS lint
         run: yarn lint:js

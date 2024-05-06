@@ -1,9 +1,9 @@
-import Vue from "vue/dist/vue.js";
-import { inputsHandler } from "../../repeater/mixins/inputsHandler";
-import { fieldHandler } from "../../repeater/mixins/fieldHandler";
-import { inputNameHandler } from "../mixins/inputNameHandler";
+import Vue from 'vue/dist/vue.js';
+import { inputsHandler } from '../../repeater/mixins/inputsHandler';
+import { fieldHandler } from '../../repeater/mixins/fieldHandler';
+import { inputNameHandler } from '../mixins/inputNameHandler';
 
-Vue.component("notification-text", {
+Vue.component('notification-text', {
 	template: `
 	<div>
 		<label>
@@ -26,20 +26,20 @@ Vue.component("notification-text", {
 	</div>
 	`,
 	props: [
-		"subfield",
-		"rowIndex",
-		"keyIndex",
-		"type",
-		"sectionName",
-		"inputType",
-		"parentField",
-		"values",
-		"multiple"
+		'subfield',
+		'rowIndex',
+		'keyIndex',
+		'type',
+		'sectionName',
+		'inputType',
+		'parentField',
+		'values',
+		'multiple',
 	],
 	mixins: [inputsHandler, fieldHandler, inputNameHandler],
 	data() {
 		return {
-			value: null
+			value: null,
 		};
 	},
 	computed: {
@@ -50,23 +50,24 @@ Vue.component("notification-text", {
 				this.subfield
 			);
 			const fieldName = `[${this.parentFieldName}][${this.keyIndex}]`;
-			if ("repeater" === this.inputType) {
+			if ('repeater' === this.inputType) {
 				return `${baseFieldName}${fieldName.toLowerCase()}[${this.sectionName.toLowerCase()}][${this.subfield.name.toLowerCase()}]`;
 			}
 			return `${baseFieldName}${fieldName.toLowerCase()}[${this.subfield.name.toLowerCase()}]`;
-		}
+		},
 	},
 	mounted() {
 		if (this.values && this.values[this.rowIndex]) {
 			const section = this.sectionName.toLowerCase();
 
-			if ("repeater" === this.inputType) {
-				this.value = this.values[this.rowIndex][this.keyIndex][section][
-					this.subfield.name.toLowerCase()
-				];
+			if ('repeater' === this.inputType) {
+				this.value =
+					this.values[this.rowIndex][this.keyIndex][section][
+						this.subfield.name.toLowerCase()
+					];
 			} else {
 				this.value = this.values[this.rowIndex][this.keyIndex][section];
 			}
 		}
-	}
+	},
 });

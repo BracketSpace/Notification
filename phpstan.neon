@@ -1,0 +1,29 @@
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+    - phpstan-baseline.neon
+parameters:
+    level: max
+    inferPrivatePropertyTypeFromConstructor: true
+    scanFiles:
+        - vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
+    paths:
+        - notification.php
+        - load.php
+        - uninstall.php
+        - src/
+        - compat/
+    typeAliases:
+		NotificationData: '''
+			array{
+				hash?: string,
+				title?: string,
+				trigger?: BracketSpace\Notification\Interfaces\Triggerable,
+				carriers?: array<string,BracketSpace\Notification\Interfaces\Sendable>,
+				enabled?: bool,
+				extras?: array<string, array<mixed>|bool|float|int|string>,
+				version?: int,
+			}
+		'''
+    excludePaths:
+        - dependencies/
+        - src/Utils/EDDUpdater.php

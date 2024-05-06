@@ -1,9 +1,9 @@
-import Vue from "vue/dist/vue.js";
-import { inputsHandler } from "../../repeater/mixins/inputsHandler";
-import { fieldHandler } from "../../repeater/mixins/fieldHandler";
-import { inputNameHandler } from "../mixins/inputNameHandler";
+import Vue from 'vue/dist/vue.js';
+import { inputsHandler } from '../../repeater/mixins/inputsHandler';
+import { fieldHandler } from '../../repeater/mixins/fieldHandler';
+import { inputNameHandler } from '../mixins/inputNameHandler';
 
-Vue.component("notification-checkbox", {
+Vue.component('notification-checkbox', {
 	template: `
 	<div>
 		<label>
@@ -20,13 +20,13 @@ Vue.component("notification-checkbox", {
 	</div>
 	`,
 	props: [
-		"subfield",
-		"rowIndex",
-		"keyIndex",
-		"type",
-		"sectionName",
-		"inputType",
-		"parentField"
+		'subfield',
+		'rowIndex',
+		'keyIndex',
+		'type',
+		'sectionName',
+		'inputType',
+		'parentField',
 	],
 	mixins: [inputsHandler, fieldHandler, inputNameHandler],
 	computed: {
@@ -37,10 +37,10 @@ Vue.component("notification-checkbox", {
 				this.subfield
 			);
 			const fieldName = `[${this.parentFieldName}][${this.keyIndex}]`;
-			if ("repeater" === this.inputType) {
+			if ('repeater' === this.inputType) {
 				return `${baseFieldName}${fieldName.toLowerCase()}[${this.sectionName.toLowerCase()}][${this.subfield.name.toLowerCase()}]`;
 			}
 			return `${baseFieldName}${fieldName.toLowerCase()}[${this.subfield.name.toLowerCase()}]`;
-		}
-	}
+		},
+	},
 });

@@ -17,25 +17,22 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.2'
+        php-version: '7.4'
         extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
         coverage: none
-    - name: Setup Node
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12'
-    - name: Install Node dependencies
-      uses: bahmutov/npm-install@v1
+    - name: Install Strauss globally
+      run: composer global require brianhenryie/strauss
     - name: Install Composer dependencies
       uses: "ramsey/composer-install@v2"
-    - name: Install Composer build dependencies
-      run: composer bin build install --no-progress
-    - name: Compose dependencies
-      run: composer compose
-    - name: Remove dev depencencies
-      run: |
-        rm -rf vendor
-        composer install --no-dev --no-progress
+      with:
+        composer-options: "--no-dev"
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: '16'
+        cache: yarn
+    - name: Install yarn dependencies
+      run: yarn install --immutable
     - name: Build static assets
       run: yarn build:production
     - name: Create build dir

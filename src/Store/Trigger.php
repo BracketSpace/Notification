@@ -15,18 +15,16 @@ use BracketSpace\Notification\Traits\Storage;
 
 /**
  * Trigger Store
- *
- * @method static array<string, \BracketSpace\Notification\Interfaces\Triggerable> all() Gets all registered Triggers
- * @method static \BracketSpace\Notification\Interfaces\Triggerable|null get(string $index) Gets registered Trigger
  */
 class Trigger implements Interfaces\Storable
 {
+	/** @use Storage<Interfaces\Triggerable> */
 	use Storage;
 
 	/**
 	 * Gets all Triggers grouped.
 	 *
-	 * @return array<string, array<string, \BracketSpace\Notification\Interfaces\Triggerable>>
+	 * @return array<string, array<string, Interfaces\Triggerable>>
 	 * @since  8.0.0
 	 */
 	public static function grouped(): array

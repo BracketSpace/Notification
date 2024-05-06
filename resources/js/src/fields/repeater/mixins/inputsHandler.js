@@ -1,4 +1,4 @@
-/* global fetch, notification */
+/* global notification */
 
 export const inputsHandler = {
 	methods: {
@@ -7,13 +7,13 @@ export const inputsHandler = {
 
 			const value = !checkbox.value;
 			if (!value) {
-				checkbox.checked = "";
-				checkboxInput.setAttribute("checked", "");
-				checkboxInput.setAttribute("value", 0);
+				checkbox.checked = '';
+				checkboxInput.setAttribute('checked', '');
+				checkboxInput.setAttribute('value', 0);
 			} else {
-				checkbox.checked = "checked";
-				checkboxInput.setAttribute("checked", "checked");
-				checkboxInput.setAttribute("value", 1);
+				checkbox.checked = 'checked';
+				checkboxInput.setAttribute('checked', 'checked');
+				checkboxInput.setAttribute('value', 1);
 			}
 		},
 		handleSelect(value, data) {
@@ -37,12 +37,12 @@ export const inputsHandler = {
 			}
 
 			const carrier =
-				this.$el.querySelector(".recipients-repeater") ||
-				this.$parent.$parent.$el.querySelector(".recipients-repeater");
+				this.$el.querySelector('.recipients-repeater') ||
+				this.$parent.$parent.$el.querySelector('.recipients-repeater');
 
 			const payload = {
 				type: field.value,
-				carrier: carrier.getAttribute("data-carrier")
+				carrier: carrier.getAttribute('data-carrier'),
 			};
 
 			let data = [];
@@ -50,22 +50,22 @@ export const inputsHandler = {
 			for (const property in payload) {
 				const encodedKey = encodeURIComponent(property);
 				const encodedValue = encodeURIComponent(payload[property]);
-				data.push(encodedKey + "=" + encodedValue);
+				data.push(encodedKey + '=' + encodedValue);
 			}
 
-			data = data.join("&");
+			data = data.join('&');
 
 			fetch(notification.selectRestUrl, {
-				method: "POST",
+				method: 'POST',
 				headers: {
-					"Content-Type":
-						"application/x-www-form-urlencoded; charset=UTF-8",
-					"X-WP-Nonce": notification.rest_nonce
+					'Content-Type':
+						'application/x-www-form-urlencoded; charset=UTF-8',
+					'X-WP-Nonce': notification.rest_nonce,
 				},
-				body: data
+				body: data,
 			})
-				.then(res => res.json())
-				.then(response => {
+				.then((res) => res.json())
+				.then((response) => {
 					// eslint-disable-next-line no-shadow
 					const data = response.data;
 
@@ -77,14 +77,14 @@ export const inputsHandler = {
 					recipientTypeField.id = data.id;
 					recipientTypeField.pretty = data.pretty;
 					if (e) {
-						recipientTypeField.value = "";
+						recipientTypeField.value = '';
 					}
 
 					notification.hooks.doAction(
-						"notification.carrier.recipients.recipient.replaced",
+						'notification.carrier.recipients.recipient.replaced',
 						this
 					);
 				});
-		}
-	}
+		},
+	},
 };

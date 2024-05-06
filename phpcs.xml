@@ -17,6 +17,7 @@
 		<exclude name="PSR12.Properties.ConstantVisibility.NotFound"/>
 
 		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>
+		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation"/>
 		<exclude name="SlevomatCodingStandard.Classes.DisallowLateStaticBindingForConstants.DisallowedLateStaticBindingForConstant"/>
 		<exclude name="SlevomatCodingStandard.PHP.RequireExplicitAssertion.RequiredExplicitAssertion"/>
 
@@ -106,7 +107,7 @@
 	<exclude-pattern>resources/css.*</exclude-pattern>
 	<exclude-pattern>tests/*</exclude-pattern>
 	<exclude-pattern>vendor/*</exclude-pattern>
-	<exclude-pattern>src/Dependencies/*</exclude-pattern>
+	<exclude-pattern>dependencies/*</exclude-pattern>
 	<exclude-pattern>compat/*</exclude-pattern>
 	<exclude-pattern>notification.php</exclude-pattern>
 </ruleset>

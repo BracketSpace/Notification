@@ -96,7 +96,7 @@ function notification_display_wizard() {
 function notification_ajax_handler() {
 	_deprecated_function( __FUNCTION__, '8.0.0' );
 
-	return new BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response();
+	return new \BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response();
 }
 
 /**

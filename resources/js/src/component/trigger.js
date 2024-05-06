@@ -1,36 +1,36 @@
 /* global notification, jQuery */
 
-import "selectize";
+import 'selectize';
 
-(function($) {
-	$(document).ready(function() {
-		$("#notification_trigger_select").selectize({
+(function ($) {
+	$(document).ready(function () {
+		$('#notification_trigger_select').selectize({
 			render: {
 				item(item) {
 					return (
-						"<div>" +
-						item.text.replace(/\[\[(.*)\]\]/g, "") +
-						"</div>"
+						'<div>' +
+						item.text.replace(/\[\[(.*)\]\]/g, '') +
+						'</div>'
 					);
 				},
 				option(item) {
 					return (
-						"<div>" +
+						'<div>' +
 						item.text.replace(
 							/(.*)\[\[(.*)\]\]/g,
 							'<span class="label">$1</span><span class="caption">$2</span>'
 						) +
-						"</div>"
+						'</div>'
 					);
-				}
-			}
+				},
+			},
 		});
 
-		$("#notification_trigger_select")
+		$('#notification_trigger_select')
 			.selectize()
-			.change(function() {
+			.change(function () {
 				notification.hooks.doAction(
-					"notification.trigger.changed",
+					'notification.trigger.changed',
 					$(this)
 				);
 			});

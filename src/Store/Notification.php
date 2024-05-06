@@ -20,6 +20,7 @@ use BracketSpace\Notification\Traits\Storage;
 class Notification implements Storable
 {
 	use Casegnostic;
+	/** @use Storage<mixed> */
 	use Storage;
 
 	/**

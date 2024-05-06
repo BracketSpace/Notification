@@ -20,44 +20,6 @@ class WordPress
 {
 	/**
 	 * --------------------------
-	 * Email headers
-	 * --------------------------
-	 */
-
-	/**
-	 * Filters default Email From Name
-	 *
-	 * @filter wp_mail_from_name 1000
-	 *
-	 * @param string $fromName Default From Name.
-	 * @return string
-	 * @since  5.2.2
-	 */
-	public function filterEmailFromName($fromName)
-	{
-		$setting = getSetting('carriers/email/from_name');
-
-		return empty($setting) ? $fromName : $setting;
-	}
-
-	/**
-	 * Filters default Email From Email
-	 *
-	 * @filter wp_mail_from 1000
-	 *
-	 * @param string $fromEmail Default From Email.
-	 * @return string
-	 * @since  5.2.2
-	 */
-	public function filterEmailFromEmail($fromEmail)
-	{
-		$setting = getSetting('carriers/email/from_email');
-
-		return empty($setting) ? $fromEmail : $setting;
-	}
-
-	/**
-	 * --------------------------
 	 * Duplicate prevention
 	 * --------------------------
 	 */

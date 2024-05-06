@@ -1,4 +1,4 @@
-/* global notification, fetch */
+/* global notification */
 
 export const init = {
 	mounted() {
@@ -10,16 +10,16 @@ export const init = {
 			this.postID = notification.postId;
 
 			fetch(`${notification.section_repeater_rest_url}${this.postID}`, {
-				method: "POST",
+				method: 'POST',
 				headers: {
-					Accept: "application/json",
-					"Content-Type": "application/json",
-					"X-WP-Nonce": notification.rest_nonce
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+					'X-WP-Nonce': notification.rest_nonce,
 				},
-				body: JSON.stringify(this.type)
+				body: JSON.stringify(this.type),
 			})
-				.then(res => res.json())
-				.then(data => {
+				.then((res) => res.json())
+				.then((data) => {
 					const { sections, values } = data;
 
 					if (sections) {
@@ -33,7 +33,7 @@ export const init = {
 					}
 				})
 				//eslint-disable-next-line no-unused-vars
-				.catch(err => {
+				.catch((err) => {
 					this.repeaterError = true;
 				});
 		},
@@ -50,13 +50,13 @@ export const init = {
 		},
 		setType() {
 			const instance = this.$el;
-			const fieldType = instance.getAttribute("data-field-name");
-			const fieldCarrier = instance.getAttribute("data-carrier");
+			const fieldType = instance.getAttribute('data-field-name');
+			const fieldCarrier = instance.getAttribute('data-carrier');
 
 			this.type = {
 				fieldType,
-				fieldCarrier
+				fieldCarrier,
 			};
-		}
-	}
+		},
+	},
 };

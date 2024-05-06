@@ -430,20 +430,6 @@ parameters:
 			count: 1
 			path: compat/src-deprecated/functions.php
 
-		-
-			message: "#^Function notification_add_doc_hooks\\(\\) should return object but returns mixed\\.$#"
-			count: 1
-			path: compat/src-deprecated/functions.php
-
-		-
-			message: "#^Function notification_get_notification_recipients\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: compat/src-deprecated/functions.php
-
-		-
-			message: "#^Function notification_get_notifications\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: compat/src-deprecated/functions.php
 
 		-
 			message: "#^Function notification_get_posts\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -457,11 +443,6 @@ parameters:
 
 		-
 			message: "#^Function notification_get_template\\(\\) has parameter \\$vars with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: compat/src-deprecated/functions.php
-
-		-
-			message: "#^Function notification_runtime\\(\\) should return object but returns mixed\\.$#"
 			count: 1
 			path: compat/src-deprecated/functions.php
 
@@ -494,11 +475,6 @@ parameters:
 			message: "#^Static property Notification\\:\\:\\$runtime \\(BracketSpace\\\\Notification\\\\Runtime\\) in isset\\(\\) is not nullable\\.$#"
 			count: 4
 			path: notification.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func_array expects callable\\(\\)\\: mixed, array\\{BracketSpace\\\\Notification\\\\Core\\\\Notification, string\\} given\\.$#"
-			count: 1
-			path: src/Abstracts/Adapter.php
 
 		-
 			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
@@ -542,11 +518,6 @@ parameters:
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Carrier\\:\\:getFormFields\\(\\) should return array\\<BracketSpace\\\\Notification\\\\Interfaces\\\\Fillable\\> but returns array\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function md5 expects string, string\\|false given\\.$#"
 			count: 1
 			path: src/Abstracts/Carrier.php
 
@@ -606,11 +577,6 @@ parameters:
 			path: src/Abstracts/Trigger.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:getMergeTags\\(\\) should return array\\<BracketSpace\\\\Notification\\\\Interfaces\\\\Taggable\\> but returns array\\<int\\|string, mixed\\>\\.$#"
-			count: 1
-			path: src/Abstracts/Trigger.php
-
-		-
 			message: "#^Cannot call method getEndpoint\\(\\) on mixed\\.$#"
 			count: 1
 			path: src/Admin/CheckRestApi.php
@@ -632,7 +598,7 @@ parameters:
 
 		-
 			message: "#^Cannot access offset 'edd' on mixed\\.$#"
-			count: 5
+			count: 2
 			path: src/Admin/Extensions.php
 
 		-
@@ -642,7 +608,7 @@ parameters:
 
 		-
 			message: "#^Cannot access offset 'slug' on mixed\\.$#"
-			count: 5
+			count: 3
 			path: src/Admin/Extensions.php
 
 		-
@@ -711,21 +677,6 @@ parameters:
 			path: src/Admin/ImportExport.php
 
 		-
-			message: "#^Parameter \\#1 \\$fp of function fclose expects resource, resource\\|false given\\.$#"
-			count: 1
-			path: src/Admin/ImportExport.php
-
-		-
-			message: "#^Parameter \\#1 \\$fp of function fread expects resource, resource\\|false given\\.$#"
-			count: 1
-			path: src/Admin/ImportExport.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func expects callable\\(\\)\\: mixed, array\\{\\$this\\(BracketSpace\\\\Notification\\\\Admin\\\\ImportExport\\), non\\-falsy\\-string\\} given\\.$#"
-			count: 2
-			path: src/Admin/ImportExport.php
-
-		-
 			message: "#^Parameter \\#1 \\$json of function json_decode expects string, mixed given\\.$#"
 			count: 1
 			path: src/Admin/ImportExport.php
@@ -777,11 +728,6 @@ parameters:
 
 		-
 			message: "#^Cannot call method getName\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Admin/PostTable.php
-
-		-
-			message: "#^Parameter \\#1 \\$url of function esc_url expects string, string\\|void given\\.$#"
 			count: 1
 			path: src/Admin/PostTable.php
 
@@ -869,11 +815,6 @@ parameters:
 			message: "#^Parameter \\#4 \\$ver of function wp_enqueue_style expects bool\\|string\\|null, int\\|false given\\.$#"
 			count: 1
 			path: src/Admin/Scripts.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func expects callable\\(\\)\\: mixed, array\\{\\$this\\(BracketSpace\\\\Notification\\\\Admin\\\\Sync\\), non\\-falsy\\-string\\} given\\.$#"
-			count: 1
-			path: src/Admin/Sync.php
 
 		-
 			message: "#^Offset 'draft' on array\\{publish\\: int, draft\\: int\\} on left side of \\?\\? always exists and is not nullable\\.$#"
@@ -1036,16 +977,6 @@ parameters:
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Parameter \\#1 \\$var of function intval expects array\\|bool\\|float\\|int\\|resource\\|string\\|null, mixed given\\.$#"
-			count: 1
-			path: src/Api/Controller/RepeaterController.php
-
-		-
-			message: "#^Parameter \\#2 \\$search of function array_key_exists expects array, mixed given\\.$#"
-			count: 1
-			path: src/Api/Controller/RepeaterController.php
-
-		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\RepeaterController\\:\\:\\$carrier \\(string\\) does not accept mixed\\.$#"
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
@@ -1077,7 +1008,7 @@ parameters:
 
 		-
 			message: "#^Cannot access offset 'sections' on mixed\\.$#"
-			count: 2
+			count: 1
 			path: src/Api/Controller/SectionRepeaterController.php
 
 		-
@@ -1186,11 +1117,6 @@ parameters:
 			path: src/Core/License.php
 
 		-
-			message: "#^Parameter \\#1 \\$str of function rawurlencode expects string, mixed given\\.$#"
-			count: 3
-			path: src/Core/License.php
-
-		-
 			message: "#^Parameter \\#1 \\$url of function wp_remote_post expects string, mixed given\\.$#"
 			count: 3
 			path: src/Core/License.php
@@ -1266,16 +1192,6 @@ parameters:
 			path: src/Core/Resolver.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function preg_replace_callback expects callable\\(array\\<int\\|string, string\\>\\)\\: string, Closure\\(mixed\\)\\: mixed given\\.$#"
-			count: 1
-			path: src/Core/Resolver.php
-
-		-
-			message: "#^Parameter \\#3 \\$subject of function preg_replace_callback expects array\\|string, string\\|null given\\.$#"
-			count: 1
-			path: src/Core/Resolver.php
-
-		-
 			message: "#^Parameter \\#2 \\$contents of method WP_Filesystem_Base\\:\\:put_contents\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Core/Sync.php
@@ -1306,16 +1222,6 @@ parameters:
 			path: src/Core/Upgrade.php
 
 		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func expects callable\\(\\)\\: mixed, array\\{\\$this\\(BracketSpace\\\\Notification\\\\Core\\\\Upgrade\\), non\\-falsy\\-string\\} given\\.$#"
-			count: 1
-			path: src/Core/Upgrade.php
-
-		-
-			message: "#^Parameter \\#1 \\$index of static method BracketSpace\\\\Notification\\\\Store\\\\Trigger\\:\\:get\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Core/Upgrade.php
-
-		-
 			message: "#^Parameter \\#3 \\$subject of function preg_replace expects array\\|string, mixed given\\.$#"
 			count: 1
 			path: src/Core/Upgrade.php
@@ -1324,11 +1230,6 @@ parameters:
 			message: "#^Variable \\$carrier in empty\\(\\) always exists and is not falsy\\.$#"
 			count: 1
 			path: src/Core/Upgrade.php
-
-		-
-			message: "#^Parameter \\#1 \\$data of function notificationConvertData expects array, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Adapter/JSON.php
 
 		-
 			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|null given\\.$#"
@@ -1367,7 +1268,7 @@ parameters:
 
 		-
 			message: "#^Cannot access offset 'hide' on mixed\\.$#"
-			count: 2
+			count: 1
 			path: src/Defaults/Carrier/Webhook.php
 
 		-
@@ -1387,7 +1288,7 @@ parameters:
 
 		-
 			message: "#^Cannot access offset 'hide' on mixed\\.$#"
-			count: 2
+			count: 1
 			path: src/Defaults/Carrier/WebhookJson.php
 
 		-
@@ -1404,11 +1305,6 @@ parameters:
 			message: "#^Parameter \\#1 \\$args of method BracketSpace\\\\Notification\\\\Defaults\\\\Carrier\\\\WebhookJson\\:\\:parseArgs\\(\\) expects array, mixed given\\.$#"
 			count: 1
 			path: src/Defaults/Carrier/WebhookJson.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/CodeEditorField.php
 
 		-
 			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, string\\|false given\\.$#"
@@ -1471,11 +1367,6 @@ parameters:
 			path: src/Defaults/Field/ImageField.php
 
 		-
-			message: "#^Parameter \\#1 \\$var of function intval expects array\\|bool\\|float\\|int\\|resource\\|string\\|null, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/ImageField.php
-
-		-
 			message: "#^Cannot cast mixed to string\\.$#"
 			count: 1
 			path: src/Defaults/Field/InputField.php
@@ -1517,7 +1408,7 @@ parameters:
 
 		-
 			message: "#^Cannot access offset string on mixed\\.$#"
-			count: 2
+			count: 1
 			path: src/Defaults/Field/RepeaterField.php
 
 		-
@@ -1531,22 +1422,12 @@ parameters:
 			path: src/Defaults/Field/RepeaterField.php
 
 		-
-			message: "#^Parameter \\#1 \\$input of function array_keys expects array, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/SectionRepeater.php
-
-		-
 			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
 			count: 1
 			path: src/Defaults/Field/SectionRepeater.php
 
 		-
 			message: "#^Parameter \\#1 \\$text of function esc_html expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/SectionRepeater.php
-
-		-
-			message: "#^Parameter \\#1 \\$var of function count expects array\\|Countable, mixed given\\.$#"
 			count: 1
 			path: src/Defaults/Field/SectionRepeater.php
 
@@ -1656,22 +1537,12 @@ parameters:
 			path: src/Defaults/MergeTag/EmailTag.php
 
 		-
-			message: "#^Parameter \\#1 \\$var of function floatval expects array\\|bool\\|float\\|int\\|resource\\|string\\|null, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/FloatTag.php
-
-		-
 			message: "#^Cannot cast mixed to string\\.$#"
 			count: 1
 			path: src/Defaults/MergeTag/HtmlTag.php
 
 		-
 			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/IntegerTag.php
-
-		-
-			message: "#^Parameter \\#1 \\$var of function intval expects array\\|bool\\|float\\|int\\|resource\\|string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/Defaults/MergeTag/IntegerTag.php
 
@@ -2026,24 +1897,9 @@ parameters:
 			path: src/Defaults/Trigger/Media/MediaUpdated.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_status\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostAdded.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostAdded.php
-
-		-
 			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostAdded.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostApproved.php
 
 		-
 			message: "#^Cannot cast mixed to int\\.$#"
@@ -2051,29 +1907,14 @@ parameters:
 			path: src/Defaults/Trigger/Post/PostApproved.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
+			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostDrafted.php
 
 		-
 			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Post/PostDrafted.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
 			path: src/Defaults/Trigger/Post/PostPending.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPending.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPublished.php
 
 		-
 			message: "#^Cannot cast mixed to int\\.$#"
@@ -2086,19 +1927,9 @@ parameters:
 			path: src/Defaults/Trigger/Post/PostPublishedPrivately.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostScheduled.php
-
-		-
 			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Post/PostScheduled.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostTrashed.php
 
 		-
 			message: "#^Cannot cast mixed to int\\.$#"
@@ -2271,32 +2102,12 @@ parameters:
 			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
 
 		-
-			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
-
-		-
-			message: "#^Cannot access offset mixed on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
-
-		-
 			message: "#^Cannot access property \\$current on mixed\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
 
 		-
 			message: "#^Cannot access property \\$version on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func expects callable\\(\\)\\: mixed, array\\{mixed, non\\-falsy\\-string\\} given\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func expects callable\\(\\)\\: mixed, non\\-falsy\\-string given\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
 
@@ -2311,11 +2122,6 @@ parameters:
 			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
 
 		-
-			message: "#^Parameter \\#1 \\$var of function count expects array\\|Countable, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
-
-		-
 			message: "#^Invalid type object to throw\\.$#"
 			count: 1
 			path: src/ErrorHandler.php
@@ -2323,16 +2129,6 @@ parameters:
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
 			count: 2
-			path: src/Integration/WordPress.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Integration\\\\WordPress\\:\\:filterEmailFromEmail\\(\\) should return string but returns mixed\\.$#"
-			count: 1
-			path: src/Integration/WordPress.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Integration\\\\WordPress\\:\\:filterEmailFromName\\(\\) should return string but returns mixed\\.$#"
-			count: 1
 			path: src/Integration/WordPress.php
 
 		-
@@ -2481,11 +2277,6 @@ parameters:
 			path: src/Store/Carrier.php
 
 		-
-			message: "#^Unsafe access to private property BracketSpace\\\\Notification\\\\Store\\\\Carrier\\:\\:\\$items through static\\:\\:\\.$#"
-			count: 6
-			path: src/Store/Carrier.php
-
-		-
 			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, mixed given\\.$#"
 			count: 1
 			path: src/Store/GlobalMergeTag.php
@@ -2493,11 +2284,6 @@ parameters:
 		-
 			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
 			count: 1
-			path: src/Store/GlobalMergeTag.php
-
-		-
-			message: "#^Unsafe access to private property BracketSpace\\\\Notification\\\\Store\\\\GlobalMergeTag\\:\\:\\$items through static\\:\\:\\.$#"
-			count: 6
 			path: src/Store/GlobalMergeTag.php
 
 		-
@@ -2521,11 +2307,6 @@ parameters:
 			path: src/Store/Notification.php
 
 		-
-			message: "#^Unsafe access to private property BracketSpace\\\\Notification\\\\Store\\\\Notification\\:\\:\\$items through static\\:\\:\\.$#"
-			count: 6
-			path: src/Store/Notification.php
-
-		-
 			message: "#^Cannot access offset string on mixed\\.$#"
 			count: 1
 			path: src/Store/Recipient.php
@@ -2541,26 +2322,11 @@ parameters:
 			path: src/Store/Recipient.php
 
 		-
-			message: "#^Parameter \\#2 \\$search of function array_key_exists expects array, mixed given\\.$#"
-			count: 1
-			path: src/Store/Recipient.php
-
-		-
 			message: "#^Unsafe access to private property BracketSpace\\\\Notification\\\\Store\\\\Recipient\\:\\:\\$items through static\\:\\:\\.$#"
 			count: 8
 			path: src/Store/Recipient.php
 
 		-
-			message: "#^Cannot call method getPriority\\(\\) on mixed\\.$#"
-			count: 4
-			path: src/Store/Resolver.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Store\\\\Resolver\\:\\:sorted\\(\\) should return array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Resolvable\\> but returns array\\.$#"
-			count: 1
-			path: src/Store/Resolver.php
-
-		-
 			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, mixed given\\.$#"
 			count: 1
 			path: src/Store/Resolver.php
@@ -2571,11 +2337,6 @@ parameters:
 			path: src/Store/Resolver.php
 
 		-
-			message: "#^Unsafe access to private property BracketSpace\\\\Notification\\\\Store\\\\Resolver\\:\\:\\$items through static\\:\\:\\.$#"
-			count: 6
-			path: src/Store/Resolver.php
-
-		-
 			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, mixed given\\.$#"
 			count: 1
 			path: src/Store/Trigger.php
@@ -2583,11 +2344,6 @@ parameters:
 		-
 			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
 			count: 1
-			path: src/Store/Trigger.php
-
-		-
-			message: "#^Unsafe access to private property BracketSpace\\\\Notification\\\\Store\\\\Trigger\\:\\:\\$items through static\\:\\:\\.$#"
-			count: 6
 			path: src/Store/Trigger.php
 
 		-
@@ -2612,7 +2368,7 @@ parameters:
 
 		-
 			message: "#^Cannot access offset string on mixed\\.$#"
-			count: 5
+			count: 3
 			path: src/Utils/Settings.php
 
 		-
@@ -2664,16 +2420,6 @@ parameters:
 			message: "#^Parameter \\#1 \\$str of function sanitize_text_field expects string, mixed given\\.$#"
 			count: 1
 			path: src/Utils/Settings/CoreFields/Select.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Field\\:\\:sanitize\\(\\) should return string but returns mixed\\.$#"
-			count: 1
-			path: src/Utils/Settings/Field.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func expects callable\\(\\)\\: mixed, mixed given\\.$#"
-			count: 2
-			path: src/Utils/Settings/Field.php
 
 		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Field\\:\\:\\$addons \\(string\\) does not accept mixed\\.$#"
@@ -2766,16 +2512,6 @@ parameters:
 			path: src/api.php
 
 		-
-			message: "#^Function notificationAdapt\\(\\) should return BracketSpace\\\\Notification\\\\Interfaces\\\\Adaptable but returns object\\.$#"
-			count: 1
-			path: src/api.php
-
-		-
-			message: "#^Parameter \\#1 \\$index of static method BracketSpace\\\\Notification\\\\Store\\\\Trigger\\:\\:get\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/api.php
-
-		-
 			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: uninstall.php
@@ -2787,17 +2523,17 @@ parameters:
 
 		-
 			message: "#^Cannot access offset 'licenses' on mixed\\.$#"
-			count: 2
+			count: 1
 			path: uninstall.php
 
 		-
 			message: "#^Cannot access offset 'notifications' on mixed\\.$#"
-			count: 2
+			count: 1
 			path: uninstall.php
 
 		-
 			message: "#^Cannot access offset 'settings' on mixed\\.$#"
-			count: 2
+			count: 1
 			path: uninstall.php
 
 		-

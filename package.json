@@ -11,12 +11,14 @@
 		"fix:css": "mp-scripts lint-style --fix",
 		"fix:js": "mp-scripts lint-js --fix",
 		"lint": "run-p \"lint:*\"",
-		"fix": "run-p \"fix:*\""
+		"fix": "run-p \"fix:*\"",
+		"test-php": "wp-env run tests-wordpress --env-cwd=wp-content/plugins/notification ./vendor/bin/pest -- --configuration phpunit.xml"
 	},
 	"author": "BracketSpace",
 	"license": "GPL-3.0-or-later",
 	"devDependencies": {
-		"@micropackage/scripts": "^1.0.0",
+		"@micropackage/scripts": "^1.2.5",
+		"@wordpress/env": "^9.7.0",
 		"npm-run-all": "^4.1.5"
 	},
 	"dependencies": {

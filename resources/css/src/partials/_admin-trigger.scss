@@ -5,13 +5,17 @@
 body.post-type-notification {
 
 	.selectize-control .selectize-dropdown .caption {
-		font-size: 12px;
-		display: block;
 		color: #a0a0a0;
+		display: block;
+		font-size: 12px;
 	}
 
 	.selectize-control .selectize-dropdown div[data-selectable] {
 		padding: 6px 8px;
+	}
+
+	.selectize-control .selectize-dropdown-content {
+		max-height: 550px;
 	}
 
 }
