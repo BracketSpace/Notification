@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 
+use BracketSpace\Notification\Database\DatabaseService;
+use BracketSpace\Notification\Database\NotificationDatabaseService;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Utils\WpObjectHelper;
 use BracketSpace\Notification\Store;
@@ -32,7 +34,7 @@ class Upgrade
 	 *
 	 * @var int
 	 */
-	public static $dbVersion = 2;
+	public static $dbVersion = 3;
 
 	/**
 	 * Data version setting key name
@@ -98,22 +100,22 @@ class Upgrade
 			return;
 		}
 
-		global $wpdb;
+		$db = DatabaseService::db();
 
 		$charsetCollate = '';
 
-		if (!empty($wpdb->charset)) {
-			$charsetCollate = "DEFAULT CHARACTER SET {$wpdb->charset}";
+		if (!empty($db->charset)) {
+			$charsetCollate = "DEFAULT CHARACTER SET {$db->charset}";
 		}
 
-		if (!empty($wpdb->collate)) {
-			$charsetCollate .= " COLLATE {$wpdb->collate}";
+		if (!empty($db->collate)) {
+			$charsetCollate .= " COLLATE {$db->collate}";
 		}
 
-		$logsTable = $wpdb->prefix . 'notification_logs';
-		$notificationsTable = $wpdb->prefix . 'notifications';
-		$notificationCarriersTable = $wpdb->prefix . 'notification_carriers';
-		$notificationExtrasTable = $wpdb->prefix . 'notification_extras';
+		$logsTable = DatabaseService::prefixTable('notification_logs');
+		$notificationsTable = NotificationDatabaseService::getNotificationsTableName();
+		$notificationCarriersTable = NotificationDatabaseService::getNotificationCarriersTableName();
+		$notificationExtrasTable = NotificationDatabaseService::getNotificationExtrasTableName();
 
 		$sql = "
 		CREATE TABLE {$logsTable} (
@@ -133,7 +135,7 @@ class Upgrade
 			created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 			updated_at timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
 			PRIMARY KEY  (hash),
-			UNIQUE KEY (hash)
+			UNIQUE KEY hash (hash)
 		) $charsetCollate;
 
 		CREATE TABLE {$notificationCarriersTable} (
@@ -337,14 +339,14 @@ class Upgrade
 	 */
 	public function upgradeToV2()
 	{
-		global $wpdb;
+		$db = DatabaseService::db();
 
 		// 1. Changes the Trigger slugs.
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-		$notifications = $wpdb->get_results(
+		$notifications = (array)$db->get_results(
 			"SELECT p.ID, p.post_content
-			FROM {$wpdb->posts} p
+			FROM {$db->posts} p
 			WHERE p.post_type = 'notification'"
 		);
 
@@ -361,8 +363,8 @@ class Upgrade
 			);
 
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-			$wpdb->update(
-				$wpdb->posts,
+			$db->update(
+				$db->posts,
 				[
 					'post_content' => wp_json_encode($data, JSON_UNESCAPED_UNICODE),
 				],
@@ -377,8 +379,8 @@ class Upgrade
 		// 2. Changes the settings section `notifications` to `carriers`.
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-		$wpdb->update(
-			$wpdb->options,
+		$db->update(
+			$db->options,
 			['option_name' => 'notification_carriers'],
 			['option_name' => 'notification_notifications'],
 			['%s'],
