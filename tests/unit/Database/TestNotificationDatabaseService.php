@@ -63,9 +63,8 @@ it('should delete notification', function () {
 
 	$carriersDataRaw = DatabaseService::db()->get_results(
 		DatabaseService::db()->prepare(
-			'SELECT *
-			FROM '. NotificationDatabaseService::getNotificationCarriersTableName() .'
-			WHERE notification_hash = %s',
+			'SELECT * FROM %i WHERE notification_hash = %s',
+			NotificationDatabaseService::getNotificationCarriersTableName(),
 			$notification->getHash()
 		),
 		'ARRAY_A'
@@ -73,10 +72,9 @@ it('should delete notification', function () {
 
 	$extrasDataRaw = DatabaseService::db()->get_results(
 		DatabaseService::db()->prepare(
-			'SELECT *
-			FROM '. NotificationDatabaseService::getNotificationExtrasTableName() .'
-			WHERE notification_hash = %s',
-			$hash
+			'SELECT * FROM %i WHERE notification_hash = %s',
+			NotificationDatabaseService::getNotificationExtrasTableName(),
+			$notification->getHash()
 		),
 		'ARRAY_A'
 	);
