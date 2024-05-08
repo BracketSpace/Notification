@@ -83,7 +83,8 @@ class Registerer {
 	 */
 	public static function register_notification( $trigger = null, $carriers = [] ) {
 		$notification = new Notification( [
-			'trigger'  => $trigger,
+			'title' => uniqid(true),
+			'trigger' => $trigger,
 			'carriers' => $carriers,
 		] );
 		\Bracketspace\Notification\addNotification($notification );
@@ -99,9 +100,9 @@ class Registerer {
 	 * @return Notification Registered Notification.
 	 */
 	public static function register_default_notification( $postponed = false ) {
-		$trigger = static::register_trigger( '', $postponed );
-		$carrier = static::register_carrier()->enable();
-		return static::register_notification( $trigger, [ $carrier ] );
+		$trigger = static::register_trigger(uniqid(), $postponed);
+		$carrier = static::register_carrier(uniqid())->enable();
+		return static::register_notification($trigger, [$carrier]);
 	}
 
 	/**
