@@ -14,7 +14,7 @@ use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\Helper as DocHooksHelper;
-use BracketSpace\Notification\Queries\NotificationQueries;
+use BracketSpace\Notification\Database\Queries\NotificationQueries;
 use function BracketSpace\Notification\getSetting;
 use function BracketSpace\Notification\adaptNotification;
 use function BracketSpace\Notification\adaptNotificationFrom;
@@ -126,7 +126,7 @@ function notification_filesystem( $deprecated ) {
  * @return     array
  */
 function notification_get_posts( $trigger_slug = null, $all = false ) {
-	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Queries\\NotificationQueries::all()' );
+	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Database\\Queries\\NotificationQueries::all()' );
 
 	return NotificationQueries::all( $all );
 }
@@ -140,7 +140,7 @@ function notification_get_posts( $trigger_slug = null, $all = false ) {
  * @return     mixed        null or Notification object
  */
 function notification_get_post_by_hash( $hash ) {
-	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Queries\\NotificationQueries::with_hash()' );
+	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Database\\Queries\\NotificationQueries::with_hash()' );
 
 	return NotificationQueries::withHash( $hash );
 }

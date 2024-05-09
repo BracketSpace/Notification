@@ -1111,6 +1111,26 @@ parameters:
 			path: src/Core/Upgrade.php
 
 		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Database\\\\Queries\\\\NotificationQueries\\:\\:all\\(\\) should return array\\<int, BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\WordPress\\> but returns array\\<int, BracketSpace\\\\Notification\\\\Interfaces\\\\Adaptable\\>\\.$#"
+			count: 1
+			path: src/Database/Queries/NotificationQueries.php
+
+		-
+			message: "#^Parameter \\#1 \\$args of function get_posts expects array\\{numberposts\\?\\: int, category\\?\\: int\\|string, include\\?\\: array\\<int\\>, exclude\\?\\: array\\<int\\>, suppress_filters\\?\\: bool, attachment_id\\?\\: int, author\\?\\: int\\|string, author_name\\?\\: string, \\.\\.\\.\\}\\|null, array\\{posts_per_page\\: \\-1, post_type\\: 'notification', post_status\\?\\: array\\{'publish', 'draft'\\}, suppress_filters\\?\\: 0\\} given\\.$#"
+			count: 1
+			path: src/Database/Queries/NotificationQueries.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Database\\\\Queries\\\\UserQueries\\:\\:all\\(\\) should return array\\<int, array\\{ID\\: string, user_email\\: string, display_name\\: string\\}\\> but returns mixed\\.$#"
+			count: 1
+			path: src/Database/Queries/UserQueries.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Database\\\\Queries\\\\UserQueries\\:\\:withRole\\(\\) should return array\\<int, array\\{ID\\: string, user_email\\: string, display_name\\: string\\}\\> but returns mixed\\.$#"
+			count: 1
+			path: src/Database/Queries/UserQueries.php
+
+		-
 			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|null given\\.$#"
 			count: 1
 			path: src/Defaults/Adapter/JSON.php
@@ -2014,26 +2034,6 @@ parameters:
 			message: "#^Method BracketSpace\\\\Notification\\\\Integration\\\\WordPressEmails\\:\\:getSettingForUserRole\\(\\) is unused\\.$#"
 			count: 1
 			path: src/Integration/WordPressEmails.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Queries\\\\NotificationQueries\\:\\:all\\(\\) should return array\\<int, BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\WordPress\\> but returns array\\<int, BracketSpace\\\\Notification\\\\Interfaces\\\\Adaptable\\>\\.$#"
-			count: 1
-			path: src/Queries/NotificationQueries.php
-
-		-
-			message: "#^Parameter \\#1 \\$args of function get_posts expects array\\{numberposts\\?\\: int, category\\?\\: int\\|string, include\\?\\: array\\<int\\>, exclude\\?\\: array\\<int\\>, suppress_filters\\?\\: bool, attachment_id\\?\\: int, author\\?\\: int\\|string, author_name\\?\\: string, \\.\\.\\.\\}\\|null, array\\{posts_per_page\\: \\-1, post_type\\: 'notification', post_status\\?\\: array\\{'publish', 'draft'\\}, suppress_filters\\?\\: 0\\} given\\.$#"
-			count: 1
-			path: src/Queries/NotificationQueries.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Queries\\\\UserQueries\\:\\:all\\(\\) should return array\\<int, array\\{ID\\: string, user_email\\: string, display_name\\: string\\}\\> but returns mixed\\.$#"
-			count: 1
-			path: src/Queries/UserQueries.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Queries\\\\UserQueries\\:\\:withRole\\(\\) should return array\\<int, array\\{ID\\: string, user_email\\: string, display_name\\: string\\}\\> but returns mixed\\.$#"
-			count: 1
-			path: src/Queries/UserQueries.php
 
 		-
 			message: "#^Parameter \\#1 \\$carrier of static method BracketSpace\\\\Notification\\\\Register\\:\\:carrier\\(\\) expects BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable, mixed given\\.$#"

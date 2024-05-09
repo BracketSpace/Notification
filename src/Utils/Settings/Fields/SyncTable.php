@@ -13,7 +13,7 @@ namespace BracketSpace\Notification\Utils\Settings\Fields;
 use BracketSpace\Notification\Admin\PostType;
 use BracketSpace\Notification\Core\Sync as CoreSync;
 use BracketSpace\Notification\Core\Templates;
-use BracketSpace\Notification\Queries\NotificationQueries;
+use BracketSpace\Notification\Database\Queries\NotificationQueries;
 use function BracketSpace\Notification\adaptNotificationFrom;
 
 /**

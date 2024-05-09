@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Utils\Settings\Fields as SettingFields;
-use BracketSpace\Notification\Queries\NotificationQueries;
+use BracketSpace\Notification\Database\Queries\NotificationQueries;
 use function BracketSpace\Notification\adaptNotificationFrom;
 use function BracketSpace\Notification\swapNotificationAdapter;
 

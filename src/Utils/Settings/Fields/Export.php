@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Utils\Settings\Fields;
 
 use BracketSpace\Notification\Core\Templates;
-use BracketSpace\Notification\Queries\NotificationQueries;
+use BracketSpace\Notification\Database\Queries\NotificationQueries;
 
 /**
  * Export class

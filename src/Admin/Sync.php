@@ -14,8 +14,8 @@ use BracketSpace\Notification\Core\Sync as CoreSync;
 use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Utils\Settings\CoreFields;
 use BracketSpace\Notification\Utils\Settings\Fields as SpecificFields;
+use BracketSpace\Notification\Database\Queries\NotificationQueries;
 use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
-use BracketSpace\Notification\Queries\NotificationQueries;
 use function BracketSpace\Notification\adaptNotificationFrom;
 use function BracketSpace\Notification\swapNotificationAdapter;
 

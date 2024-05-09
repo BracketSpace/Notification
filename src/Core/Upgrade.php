@@ -15,7 +15,7 @@ use BracketSpace\Notification\Database\NotificationDatabaseService;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Utils\WpObjectHelper;
 use BracketSpace\Notification\Store;
-use BracketSpace\Notification\Queries\NotificationQueries;
+use BracketSpace\Notification\Database\Queries\NotificationQueries;
 
 /**
  * Upgrade class
