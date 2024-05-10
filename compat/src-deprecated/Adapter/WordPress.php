@@ -20,6 +20,7 @@ use function BracketSpace\Notification\swapNotificationAdapter;
  * WordPress Adapter class
  *
  * @mixin \BracketSpace\Notification\Core\Notification
+ * @deprecated [Next]
  */
 class WordPress extends Abstracts\Adapter
 {

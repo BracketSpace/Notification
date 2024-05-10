@@ -20,6 +20,7 @@ use function BracketSpace\Notification\addNotification;
  * Adapter class
  *
  * @mixin \BracketSpace\Notification\Core\Notification
+ * @deprecated [Next]
  */
 abstract class Adapter implements Interfaces\Adaptable
 {
@@ -39,6 +40,8 @@ abstract class Adapter implements Interfaces\Adaptable
 	 */
 	public function __construct(Notification $notification)
 	{
+		notification_deprecated_class( __CLASS__, '[Next]' );
+
 		$this->notification = $notification;
 	}
 

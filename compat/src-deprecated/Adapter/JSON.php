@@ -15,6 +15,8 @@ use function BracketSpace\Notification\convertNotificationData;
 
 /**
  * JSON Adapter class
+ *
+ * @deprecated [Next]
  */
 class JSON extends Abstracts\Adapter
 {

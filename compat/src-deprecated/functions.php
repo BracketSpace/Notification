@@ -6,6 +6,7 @@
  */
 
 use BracketSpace\Notification\Admin\Wizard;
+use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Resolver;
 use BracketSpace\Notification\Core\Sync;
 use BracketSpace\Notification\Core\Templates;
@@ -520,9 +521,21 @@ function notification_get_global_merge_tags() {
  * @deprecated [Next]
  */
 function notification_adapt($adapterName, \BracketSpace\Notification\Core\Notification $notification) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationAdapt');
+	_deprecated_function( __FUNCTION__, '[Next]');
 
-	return notificationAdapt($adapterName, $notification);
+	if (class_exists($adapterName)) {
+		$adapter = new $adapterName($notification);
+	} elseif (class_exists('BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapterName)) {
+		$adapterName = 'BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapterName;
+		$adapter = new $adapterName($notification);
+	} else {
+		throw new \Exception(
+			sprintf('Couldn\'t find %s adapter', $adapterName)
+		);
+	}
+
+	/** @var \BracketSpace\Notification\Interfaces\Adaptable $adapter */
+	return $adapter;
 }
 
 /**
@@ -536,9 +549,11 @@ function notification_adapt($adapterName, \BracketSpace\Notification\Core\Notifi
  * @deprecated [Next]
  */
 function notification_adapt_from($adapterName, $data) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationAdaptFrom');
-
-	return notificationAdaptFrom($adapterName, $data);
+	$adapter = notification_adapt(
+		$adapterName,
+		new Notification()
+	);
+	return $adapter->read($data);
 }
 
 /**
@@ -551,9 +566,10 @@ function notification_adapt_from($adapterName, $data) {
  * @deprecated [Next]
  */
 function notification_swap_adapter($newAdapterName, Interfaces\Adaptable $adapter) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationSwapAdapter');
-
-	return notificationSwapAdapter($newAdapterName, $adapter);
+	return notification_adapt(
+		$newAdapterName,
+		$adapter->getNotification()
+	);
 }
 
 /**

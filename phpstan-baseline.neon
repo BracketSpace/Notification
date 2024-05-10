@@ -411,6 +411,26 @@ parameters:
 			path: compat/register-hooks.php
 
 		-
+			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|null given\\.$#"
+			count: 1
+			path: compat/src-deprecated/Adapter/JSON.php
+
+		-
+			message: "#^Parameter \\#1 \\$postarr of function wp_insert_post expects array\\{ID\\?\\: int, post_author\\?\\: int, post_date\\?\\: string, post_date_gmt\\?\\: string, post_content\\?\\: string, post_content_filtered\\?\\: string, post_title\\?\\: string, post_excerpt\\?\\: string, \\.\\.\\.\\}, array\\{ID\\: int, post_content\\: mixed, post_type\\: string, post_title\\: mixed, post_name\\: mixed, post_status\\: 'draft'\\|'publish'\\} given\\.$#"
+			count: 1
+			path: compat/src-deprecated/Adapter/WordPress.php
+
+		-
+			message: "#^Parameter \\#2 \\$subject of function preg_match expects string, mixed given\\.$#"
+			count: 1
+			path: compat/src-deprecated/Adapter/WordPress.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\WordPress\\:\\:\\$post \\(WP_Post\\) in empty\\(\\) is not falsy\\.$#"
+			count: 2
+			path: compat/src-deprecated/Adapter/WordPress.php
+
+		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:add\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
@@ -1129,26 +1149,6 @@ parameters:
 			message: "#^Method BracketSpace\\\\Notification\\\\Database\\\\Queries\\\\UserQueries\\:\\:withRole\\(\\) should return array\\<int, array\\{ID\\: string, user_email\\: string, display_name\\: string\\}\\> but returns mixed\\.$#"
 			count: 1
 			path: src/Database/Queries/UserQueries.php
-
-		-
-			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|null given\\.$#"
-			count: 1
-			path: src/Defaults/Adapter/JSON.php
-
-		-
-			message: "#^Parameter \\#1 \\$postarr of function wp_insert_post expects array\\{ID\\?\\: int, post_author\\?\\: int, post_date\\?\\: string, post_date_gmt\\?\\: string, post_content\\?\\: string, post_content_filtered\\?\\: string, post_title\\?\\: string, post_excerpt\\?\\: string, \\.\\.\\.\\}, array\\{ID\\: int, post_content\\: mixed, post_type\\: string, post_title\\: mixed, post_name\\: mixed, post_status\\: 'draft'\\|'publish'\\} given\\.$#"
-			count: 1
-			path: src/Defaults/Adapter/WordPress.php
-
-		-
-			message: "#^Parameter \\#2 \\$subject of function preg_match expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Adapter/WordPress.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\WordPress\\:\\:\\$post \\(WP_Post\\) in empty\\(\\) is not falsy\\.$#"
-			count: 2
-			path: src/Defaults/Adapter/WordPress.php
 
 		-
 			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
