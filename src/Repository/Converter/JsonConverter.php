@@ -66,7 +66,7 @@ class JsonConverter implements Convertable
 			? JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
 			: $config['jsonOptions'];
 
-		$data = $notification->toArray($onlyEnabledCarriers);
+		$data = $notification->to('array', ['onlyEnabledCarriers' => $onlyEnabledCarriers]);
 
 		return wp_json_encode($data, $jsonOptions);
 	}

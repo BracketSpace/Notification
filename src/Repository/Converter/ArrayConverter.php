@@ -26,7 +26,7 @@ class ArrayConverter implements Convertable
 	 * @filter notification/from/json
 	 *
 	 * @since [Next]
-	 * @param array $data The notification representation
+	 * @param NotificationData $data The notification representation
 	 * @return Notification
 	 */
 	public function from($data): Notification

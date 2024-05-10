@@ -190,39 +190,6 @@ class Notification
 	}
 
 	/**
-	 * Dumps the object to array
-	 *
-	 * @param bool $onlyEnabledCarriers If only enabled Carriers should be saved.
-	 * @return array<mixed>
-	 * @since  6.0.0
-	 */
-	public function toArray($onlyEnabledCarriers = false)
-	{
-		$carriers = [];
-		$_carriers = $onlyEnabledCarriers
-			? $this->getEnabledCarriers()
-			: $this->getCarriers();
-		foreach ($_carriers as $carrierSlug => $carrier) {
-			$carriers[$carrierSlug] = $carrier->getData();
-		}
-
-		$trigger = $this->getTrigger();
-
-		return [
-			'hash' => $this->getHash(),
-			'title' => $this->getTitle(),
-			'trigger' => $trigger
-				? $trigger->getSlug()
-				: '',
-			'carriers' => $carriers,
-			'enabled' => $this->isEnabled(),
-			'extras' => $this->getExtras(),
-			'version' => $this->getVersion(),
-		];
-
-	}
-
-	/**
 	 * Checks if enabled
 	 * Alias for `get_enabled()` method
 	 *
@@ -614,11 +581,58 @@ class Notification
 	}
 
 	/**
+	 * Dumps the object to array
+	 *
+	 * @since  6.0.0
+	 * @deprecated [Next] Use Converter instead, via $notification->to('array') method
+	 * @param bool $onlyEnabledCarriers If only enabled Carriers should be saved.
+	 * @return NotificationData|null
+	 */
+	public function toArray($onlyEnabledCarriers = false)
+	{
+		_deprecated_function(__METHOD__, '[Next]', 'Notification::to');
+
+		$array = $this->to('array', ['onlyEnabledCarriers' => $onlyEnabledCarriers]);
+
+		if (! is_array($array)) {
+			return null;
+		}
+
+		return $array;
+	}
+
+	/**
+	 * Creates Notification from a specific representation
+	 *
+	 * @since [Next]
+	 * @throws \Exception When no Notification object comes back from the filter
+	 * @param string $type The type of representation, ie. array or json
+	 * @param string|array<mixed,mixed> $data The notification representation
+	 * @return self
+	 */
+	public static function from(string $type, $data): Notification
+	{
+		$filterName = sprintf('notification/from/%s', $type);
+		$notification = apply_filters($filterName, $data);
+
+		if (! $notification instanceof self) {
+			throw new \Exception(
+				sprintf(
+					"The %s filter didn't return a Notification object. Make sure the filter is correctly hooked",
+					$filterName
+				)
+			);
+		}
+
+		return $notification;
+	}
+
+	/**
 	 * Converts the notification to another type of representation.
 	 *
 	 * @since [Next]
 	 * @param string $type The type of representation, ie. array or json
-	 * @param array<string|int,mixed> $config The additional configuration of the adapter
+	 * @param array<string|int,mixed> $config The additional configuration of the converter
 	 * @return mixed
 	 */
 	public function to(string $type, array $config = [])

@@ -416,12 +416,27 @@ parameters:
 			path: compat/src-deprecated/Adapter/JSON.php
 
 		-
-			message: "#^Parameter \\#1 \\$postarr of function wp_insert_post expects array\\{ID\\?\\: int, post_author\\?\\: int, post_date\\?\\: string, post_date_gmt\\?\\: string, post_content\\?\\: string, post_content_filtered\\?\\: string, post_title\\?\\: string, post_excerpt\\?\\: string, \\.\\.\\.\\}, array\\{ID\\: int, post_content\\: mixed, post_type\\: string, post_title\\: mixed, post_name\\: mixed, post_status\\: 'draft'\\|'publish'\\} given\\.$#"
+			message: "#^Offset 'enabled' does not exist on array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, carriers\\?\\: array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\}\\|null\\.$#"
 			count: 1
 			path: compat/src-deprecated/Adapter/WordPress.php
 
 		-
-			message: "#^Parameter \\#2 \\$subject of function preg_match expects string, mixed given\\.$#"
+			message: "#^Offset 'hash' does not exist on array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, carriers\\?\\: array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\}\\|null\\.$#"
+			count: 2
+			path: compat/src-deprecated/Adapter/WordPress.php
+
+		-
+			message: "#^Offset 'title' does not exist on array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, carriers\\?\\: array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\}\\|null\\.$#"
+			count: 1
+			path: compat/src-deprecated/Adapter/WordPress.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of function BracketSpace\\\\Notification\\\\convertNotificationData expects array, array\\<string, array\\<string, array\\|bool\\|BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\|float\\|int\\|string\\>\\|bool\\|BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable\\|int\\|string\\>\\|null given\\.$#"
+			count: 1
+			path: compat/src-deprecated/Adapter/WordPress.php
+
+		-
+			message: "#^Parameter \\#1 \\$postarr of function wp_insert_post expects array\\{ID\\?\\: int, post_author\\?\\: int, post_date\\?\\: string, post_date_gmt\\?\\: string, post_content\\?\\: string, post_content_filtered\\?\\: string, post_title\\?\\: string, post_excerpt\\?\\: string, \\.\\.\\.\\}, array\\{ID\\: int, post_content\\: mixed, post_type\\: string, post_title\\: string, post_name\\: string, post_status\\: 'draft'\\|'publish'\\} given\\.$#"
 			count: 1
 			path: compat/src-deprecated/Adapter/WordPress.php
 
