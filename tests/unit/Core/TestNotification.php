@@ -9,6 +9,7 @@ namespace BracketSpace\Notification\Tests\Core;
 
 use BracketSpace\Notification\Tests\Helpers\Registerer;
 use BracketSpace\Notification\Core\Notification;
+use Brain\Monkey\Filters;
 
 /**
  * Notification test case.
@@ -193,55 +194,6 @@ class TestNotification extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * Test to_array
-	 *
-	 * @since 6.0.0
-	 */
-	public function test_to_array() {
-
-		$trigger = Registerer::register_trigger();
-		$carrier = Registerer::register_carrier();
-		$carrier->enable();
-
-		$version = time() - 100;
-		$extras  = [
-			'extras1' => 'value1',
-			'extras2' => [ 'value2-1', 'value2-2' ],
-			'extras3' => 3,
-		];
-
-		$notification = new Notification( [
-			'hash'     => 'test-hash',
-			'title'    => 'Test Title',
-			'trigger'  => $trigger,
-			'carriers' => [ $carrier ],
-			'enabled'  => true,
-			'extras'   => $extras,
-			'version'  => $version,
-		] );
-
-		$data = $notification->to_array();
-
-		$this->assertArrayHasKey( 'hash', $data );
-		$this->assertArrayHasKey( 'title', $data );
-		$this->assertArrayHasKey( 'trigger', $data );
-		$this->assertArrayHasKey( 'carriers', $data );
-		$this->assertArrayHasKey( 'enabled', $data );
-		$this->assertArrayHasKey( 'extras', $data );
-		$this->assertArrayHasKey( 'version', $data );
-
-		$this->assertEquals( 'test-hash', $data['hash'] );
-		$this->assertEquals( 'Test Title', $data['title'] );
-		$this->assertEquals( $trigger->get_slug(), $data['trigger'] );
-		$this->assertEquals( $trigger->get_slug(), $data['trigger'] );
-		$this->assertArrayHasKey( $carrier->get_slug(), $data['carriers'] );
-		$this->assertEquals( true, $data['enabled'] );
-		$this->assertEquals( $extras, $data['extras'] );
-		$this->assertEquals( $version, $data['version'] );
-
-	}
-
-	/**
 	 * Test create_hash
 	 *
 	 * @since 6.0.0
@@ -381,6 +333,45 @@ class TestNotification extends \WP_UnitTestCase {
 
 		$this->assertEquals( $value, $notification->get_extra( 'extra_key' ) );
 		$this->assertNull( $notification->get_extra( 'undefined' ) );
+
+	}
+
+	/**
+	 * Test from
+	 */
+	public function test_from() {
+
+		$type = uniqid();
+		$data = uniqid();
+		$filterName = sprintf('notification/from/%s', $type);
+
+		add_filter($filterName, function() {
+			return new Notification();
+		});
+
+		Notification::from($type, $data);
+
+		$this->assertEquals(1, did_filter($filterName));
+
+	}
+
+	/**
+	 * Test to
+	 */
+	public function test_to() {
+
+		$notification = new Notification();
+		$type = uniqid();
+		$representation = uniqid();
+		$filterName = sprintf('notification/to/%s', $type);
+
+		add_filter($filterName, function() use ($representation) {
+			return $representation;
+		} );
+
+		$actual = $notification->to($type);
+
+		$this->assertSame($representation, $actual);
 
 	}
 
