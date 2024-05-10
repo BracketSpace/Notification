@@ -316,6 +316,7 @@ class Runtime
 				'carriers',
 				'recipients',
 				'triggers',
+				'converters',
 			],
 			[
 				Repository\GlobalMergeTagRepository::class,
@@ -323,6 +324,7 @@ class Runtime
 				Repository\CarrierRepository::class,
 				Repository\RecipientRepository::class,
 				Repository\TriggerRepository::class,
+				Repository\ConverterRepository::class,
 			]
 		);
 	}
