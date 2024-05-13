@@ -23,7 +23,7 @@ class ArrayConverter implements Convertable
 	/**
 	 * Creates Notification from a specific representation
 	 *
-	 * @filter notification/from/json
+	 * @filter notification/from/array
 	 *
 	 * @since [Next]
 	 * @param NotificationData $data The notification representation
@@ -37,12 +37,12 @@ class ArrayConverter implements Convertable
 	/**
 	 * Converts the notification to another type of representation
 	 *
-	 * @filter notification/to/json
+	 * @filter notification/to/array
 	 *
 	 * @since [Next]
 	 * @param Notification $notification Notification instance
 	 * @param array<string|int,mixed> $config The additional configuration of the converter
-	 * @return mixed
+	 * @return NotificationData
 	 */
 	public function to(Notification $notification, array $config = [])
 	{
