@@ -232,6 +232,7 @@ class Screen
 				'enabled' => $enabled,
 				'post_id' => $post->ID,
 				'delete_link_label' => $deleteText,
+				'notification' => adaptNotificationFrom('WordPress', $post),
 			]
 		);
 	}
