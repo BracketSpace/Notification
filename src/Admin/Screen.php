@@ -103,13 +103,6 @@ class Screen
 	{
 		echo sprintf('<h3 class="carriers-section-title">%s</h3>', esc_html__('Carriers', 'notification'));
 
-		do_action_deprecated(
-			'notitication/admin/notifications/pre',
-			[$notificationPost],
-			'6.0.0',
-			'notification/admin/carriers/pre'
-		);
-
 		do_action('notification/admin/carriers/pre', $notificationPost);
 
 		echo '<div id="carrier-boxes">';
@@ -145,15 +138,6 @@ class Screen
 		}
 
 		echo '</div>';
-
-		do_action_deprecated(
-			'notitication/admin/notifications',
-			[
-				$notificationPost,
-			],
-			'6.0.0',
-			'notification/admin/carriers'
-		);
 
 		do_action('notification/admin/carriers', $notificationPost);
 	}

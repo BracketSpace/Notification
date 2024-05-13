@@ -205,13 +205,7 @@ class Upgrade
 
 		// Set data.
 		$data = get_post_meta($postId, '_notification_type_' . $carrier->getSlug(), true);
-		$fieldValues = apply_filters_deprecated(
-			'notification/notification/form_fields/values',
-			[$data, $carrier],
-			'6.0.0',
-			'notification/carrier/fields/values'
-		);
-		$fieldValues = apply_filters('notification/carrier/fields/values', $fieldValues, $carrier);
+		$fieldValues = apply_filters('notification/carrier/fields/values', $data, $carrier);
 
 		foreach ($carrier->getFormFields() as $field) {
 			if (!isset($fieldValues[$field->getRawName()])) {

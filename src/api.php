@@ -235,19 +235,6 @@ function getSettings()
  */
 function getSetting($setting)
 {
-
-	$parts = explode('/', $setting);
-
-	if ($parts[0] === 'notifications') {
-		_deprecated_argument(
-			__FUNCTION__,
-			'7.0.0',
-			'The `notifications` section has been changed to `carriers`, adjust the first part of the setting.'
-		);
-		$parts[0] = 'carriers';
-		$setting = implode('/', $parts);
-	}
-
 	return \Notification::component('core_settings')->getSetting($setting);
 }
 

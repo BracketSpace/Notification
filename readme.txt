@@ -304,6 +304,41 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 
+**Compatibility Breaking Changes**
+
+Class methods and properties has been changed from snake_case to camelCase.
+In Post Triggers, dynamic property `$trigger->{$post_type}` has been replaced with static prop `$trigger->post`.
+The same as above applies to Post Trigger datetime tags, namely: postCreationDatetime, postPublicationDatetime, and postModificationDatetime.
+
+Renamed functions:
+- notification_adapt() -> BracketSpace\Notification\adaptNotification()
+- notification_adapt_from() -> BracketSpace\Notification\adaptNotificationFrom()
+- notification_swap_adapter() -> BracketSpace\Notification\swapNotificationAdapter()
+- notification_log() -> BracketSpace\Notification\log()
+- notification_add() -> BracketSpace\Notification\addNotification()
+- notification_convert_data() -> BracketSpace\Notification\convertNotificationData()
+- notification_register_settings() -> BracketSpace\Notification\registerSettings()
+- notification_get_settings() -> BracketSpace\Notification\getSettings()
+- notification_get_setting() -> BracketSpace\Notification\getSetting()
+- notification_update_setting() -> BracketSpace\Notification\updateSetting()
+
+Removed deprecated hooks:
+- `notitication/admin/notifications/pre`, use `notification/admin/carriers/pre`
+- `notitication/admin/notifications`, use `notification/admin/carriers`
+- `notification/email/use_html_mime`, use `notification/carrier/email/use_html_mime`
+- `notification/email/recipients`, use `notification/carrier/email/recipients`
+- `notification/email/subject`, use `notification/carrier/email/subject`
+- `notification/email/message/pre`, use `notification/carrier/email/message/pre`
+- `notification/email/message/use_autop`, use `notification/carrier/email/message/use_autop`
+- `notification/email/message`, use `notification/carrier/email/message`
+- `notification/email/headers`, use `notification/carrier/email/headers`
+- `notification/email/attachments`, use `notification/carrier/email/attachments`
+- `notification/webhook/args`, use `notification/carrier/webhook/args`
+- `notification/webhook/args/{$type}`, use `notification/carrier/webhook/args/{$type}`
+- `notification/notification/form_fields/values`, use `notification/carrier/fields/values`
+
+**Full changelog**
+
 * [Added] Option to disable notification about admin email address changed.
 * [Added] New trigger after user confirms his new email address.
 * [Added] New trigger after admin confirms new site email address.
@@ -319,125 +354,6 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Fixed] Stripping shortcodes in carrier fields.
 * [Fixed] Email carrier header "From" prioritized over header in settings.
 * [Fixed] User password reset link requires encoded username.
-
-= 8.0.15 =
-
-* [Fixed] Comment merge tags rendering empty values.
-* [Changed] Development dependencies got some security patches.
-* [Changed] `notification/merge_tag/value/resolve` now accepts unsanitized value.
-
-= 8.0.14 =
-
-* [Fixed] Outdated dochoooks compatibility file, causing a fatal error while adding new post in some environments.
-
-= 8.0.13 =
-
-* [Fixed] Regression with REST API check.
-* [Changed] `repeater_api` internal runtime component to `api`.
-* [Added] `get_endpoint` method to the API class.
-
-= 8.0.12 =
-
-* [Changed] Logic of assigning property name is moved to Abstract Merge Tag Class.
-* [Added] Property names to Term Merge Tags.
-* [Added] 6h cache expire to the user queries.
-* [Added] Email / Merge tag recipient now can also be separated with semicolon.
-* [Added] Endpoint to check whether the REST api is enabled.
-
-= 8.0.11 =
-
-* [Changed] Add php_xml to required php extensions.
-* [Changed] Background processing cache is being stored in transient instead of an option.
-* [Fixed] PHP 8.0 and 8.1 compatibility.
-* [Fixed] Improper caching expiration times.
-* [Fixed] Trigger keeping state between subsequent action runs.
-* [Fixed] Password reset trigger is not processed on user registration anymore.
-* [Added] Trigger `resume()` method to reset the stopped state.
-
-= 8.0.10 =
-
-* [Fixed] User logout trigger. In WordPress 5.5 the context is set properly.
-* [Fixed] Issue with persistent Trigger state if two or more actions assigned to the same trigger were called.
-* [Changed] Carrier's recipients field is now returned with resolved data if available.
-* [Added] Post Published privately trigger.
-
-= 8.0.9 =
-
-* [Fixed] Merge Tags resolver problem caused by overriding the processed trigger instance.
-* [Changed] `notification/should_send` filter is now executed when the queue is processed, not before the notification is added to the queue.
-* [Added] New queue methods: `remove()` and `clear()`.
-
-= 8.0.8 =
-
-* [Fixed] Two or more same triggers processed in the same request overwriting each other data.
-
-= 8.0.7 =
-
-* [Fixed] Shortcode stripping regex that was matching JSON arrays.
-* [Changed] Extensions are now reporting updates even if they are not activated.
-* [Changed] Updated EDD Updater class.
-* [Added] Webhook warning logging when response is not valid.
-
-= 8.0.6 =
-
-* [Fixed] Extension activation notice link.
-* [Fixed] Extension activation process.
-* [Fixed] Incorrect empty merge tag cleaning which was misreading JSON format.
-
-= 8.0.5 =
-
-* [Changed] Updated PHP dependencies.
-
-= 8.0.4 =
-
-* [Changed] Updated PHP dependencies.
-* [Changed] Extension license notice is now printed once and covers all the plugins.
-* [Changed] Some of the core fields like Import/Export now have own setting classes.
-* [Fixed] Remaining template variable escaping.
-* [Removed] HTML Settings field, introduced in v8.0.3. Now it's required to create purpose-specific field classes.
-
-= 8.0.3 =
-
-* [Added] HTML Settings field.
-* [Added] Notification hash column in the Notification table.
-* [Changed] Some of the Settings to HTML field instead of the Message field.
-* [Fixed] Broken Import/Export sections.
-* [Fixed] Notifications cache is now cleared when creating notification via wizard.
-
-= 8.0.2 =
-
-* [Added] HTML escaping and nonce verifications.
-* [Changed] Notification file syncing is now using Filesystem methods.
-* [Changed] Internal cache classes with `micropackage/cache`.
-* [Changed] Menu icon.
-* [Changed] Vue is now loaded from within the plugin instead of CDN.
-* [Removed] Internal cache classes `Bracketspace\Notification\Utils\Cache` and `Bracketspace\Notification\Utils\Interfaces` namespaces.
-* [Removed] Settings internal caching that couldn't wait for all the fields to be registered. Now we're relying on the get_option() core function caching.
-
-= 8.0.1 =
-
-* [Changed] Field and Merge Tag description field is now escaped and cannot contain any HTML tags.
-* [Fixed] Recipients parser which didn't resolved Email Merge Tags.
-
-= 8.0.0 =
->>>>>>> 9ff8761a (fix: encode user login in password reset link merge tag)
-
-**Compatibility Breaking Changes**
-
-* Class methods and properties has been changed from snake_case to camelCase.
-* In Post Triggers, dynamic property `$trigger->{$post_type}` has been replaced with static prop `$trigger->post`.
-* The same as above applies to Post Trigger datetime tags, namely: postCreationDatetime, postPublicationDatetime, and postModificationDatetime.
-* Renamed functions:
-  	notification_adapt() -> BracketSpace\Notification\adaptNotification()
-  	notification_adapt_from() -> BracketSpace\Notification\adaptNotificationFrom()
-	notification_swap_adapter() -> BracketSpace\Notification\swapNotificationAdapter()
-  	notification_log() -> BracketSpace\Notification\log()
-  	notification_add() -> BracketSpace\Notification\addNotification()
-  	notification_convert_data() -> BracketSpace\Notification\convertNotificationData()
-  	notification_register_settings() -> BracketSpace\Notification\registerSettings()
-	notification_get_settings() -> BracketSpace\Notification\getSettings()
-  	notification_get_setting() -> BracketSpace\Notification\getSetting()
-  	notification_update_setting() -> BracketSpace\Notification\updateSetting()
 
 == Upgrade Notice ==
 
