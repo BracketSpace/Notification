@@ -246,7 +246,7 @@ class Runtime
 			$this->addComponent('admin_upsell', new Admin\Upsell());
 		}
 
-		$this->addComponent('integration_wp', new Integration\WordPress());
+		$this->addComponent('integration_wp', new Integration\WordPressIntegration());
 		$this->addComponent('integration_wp_emails', new Integration\WordPressEmails());
 		$this->addComponent('integration_2fa', new Integration\TwoFactor());
 

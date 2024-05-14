@@ -10,14 +10,34 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Integration;
 
+use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Interfaces\Triggerable;
+use BracketSpace\Notification\Store\Notification as NotificationStore;
 use function BracketSpace\Notification\getSetting;
 
 /**
  * WordPress integration class
  */
-class WordPress
+class WordPressIntegration
 {
+	/**
+	 * --------------------------
+	 * Helpers
+	 * --------------------------
+	 */
+
+	/**
+	 * Translates post ID to Notification object
+	 *
+	 * @since [Next]
+	 * @param int|\WP_Post $post Notification post object or post ID
+	 * @return ?Notification
+	 */
+	public static function postToNotification($post): ?Notification
+	{
+		return NotificationStore::get(get_post_field('post_name', $post, 'raw'));
+	}
+
 	/**
 	 * --------------------------
 	 * Duplicate prevention
