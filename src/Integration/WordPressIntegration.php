@@ -93,7 +93,7 @@ class WordPressIntegration
 	 * @action wp_insert_comment
 	 *
 	 * @param int $commentId Comment ID.
-	 * @param object $comment Comment object.
+	 * @param \WP_Comment $comment Comment object.
 	 * @return void
 	 * @since 5.3.1
 	 */
@@ -137,7 +137,7 @@ class WordPressIntegration
 	 *
 	 * @param string $commentNewStatus New comment status.
 	 * @param string $commentOldStatus Old comment status.
-	 * @param object $comment Comment object.
+	 * @param \WP_Comment $comment Comment object.
 	 * @return void
 	 * @since 6.2.0
 	 */

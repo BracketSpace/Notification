@@ -2041,11 +2041,6 @@ parameters:
 			path: src/ErrorHandler.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
-			count: 2
-			path: src/Integration/WordPress.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Integration\\\\WordPressEmails\\:\\:getSettingForUserRole\\(\\) is unused\\.$#"
 			count: 1
 			path: src/Integration/WordPressEmails.php
@@ -2179,16 +2174,6 @@ parameters:
 			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/Store/GlobalMergeTag.php
-
-		-
-			message: "#^Cannot call method getTrigger\\(\\) on mixed\\.$#"
-			count: 2
-			path: src/Store/Notification.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Store\\\\Notification\\:\\:withTrigger\\(\\) should return array\\<int, BracketSpace\\\\Notification\\\\Core\\\\Notification\\> but returns array\\.$#"
-			count: 1
-			path: src/Store/Notification.php
 
 		-
 			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, mixed given\\.$#"
