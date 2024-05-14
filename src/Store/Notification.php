@@ -22,7 +22,8 @@ use BracketSpace\Notification\Traits\Storage;
 class Notification implements Persistable, Storable
 {
 	use Casegnostic;
-	/** @use Storage<mixed> */
+
+	/** @use Storage<CoreNotification> */
 	use Storage;
 
 	/**
