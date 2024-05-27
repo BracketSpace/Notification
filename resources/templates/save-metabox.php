@@ -19,7 +19,7 @@ $notification = $get('notification');
 ?>
 <div class="submitbox" id="submitpost">
 	<?php wp_nonce_field('notification_post_data_save', 'notification_data_nonce'); ?>
-	<input type="hidden" name="notification_hash" value="<?php echo esc_attr($notification->getHash()); ?>">
+	<input type="hidden" name="post_name" value="<?php echo esc_attr($notification->getHash()); ?>">
 	<div class="misc-pub-section">
 		<?php do_action('notification/admin/metabox/save/pre', $this); ?>
 		<label class="row-label" for="onoffswitch">
@@ -32,7 +32,7 @@ $notification = $get('notification');
 				class="onoffswitch-checkbox"
 				value="1"
 				id="onoffswitch"
-				<?php checked($get('enabled'), true); ?>
+				<?php checked($notification->isEnabled(), true); ?>
 			>
 			<label class="onoffswitch-label" for="onoffswitch">
 				<span class="onoffswitch-inner"></span>

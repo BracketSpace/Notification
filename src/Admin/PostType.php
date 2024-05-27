@@ -11,12 +11,10 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Database\NotificationDatabaseService;
+use BracketSpace\Notification\Integration\WordPressIntegration;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
-use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
-use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
-use function BracketSpace\Notification\adaptNotificationFrom;
-use function BracketSpace\Notification\addNotification;
 
 /**
  * PostType class
@@ -193,12 +191,13 @@ class PostType
 
 	/**
 	 * Deletes the post entirely bypassing the trash
+	 * And removes the Notification from custom table
 	 *
 	 * @action wp_trash_post 100
 	 *
+	 * @since 6.0.0
 	 * @param int $postId Post ID.
 	 * @return void
-	 * @since  6.0.0
 	 */
 	public function bypassTrash($postId)
 	{
@@ -210,59 +209,47 @@ class PostType
 	}
 
 	/**
+	 * Removes the Notification from custom table upon WP Post deletion
+	 *
+	 * @action delete_post 100
+	 *
+	 * @since [Next]
+	 * @param int $postId Post ID.
+	 * @return void
+	 */
+	public function deleteNotification($postId)
+	{
+		$notification = WordPressIntegration::postToNotification($postId);
+
+		if ($notification === null) {
+			return;
+		}
+
+		NotificationDatabaseService::delete($notification->getHash());
+	}
+
+	/**
 	 * --------------------------------------------------
 	 * Save.
 	 * --------------------------------------------------
 	 */
 
 	/**
-	 * Creates Notification unique hash
-	 *
-	 * @filter wp_insert_post_data 100
-	 *
-	 * @param array<mixed> $data post data.
-	 * @param array<mixed> $postarr saved data.
-	 * @return array<mixed>
-	 * @since  6.0.0
-	 */
-	public function createNotificationHash($data, $postarr)
-	{
-		// Another save process is in progress, abort.
-		if (defined('DOING_NOTIFICATION_SAVE') && DOING_NOTIFICATION_SAVE) {
-			return $data;
-		}
-
-		if ($data['post_type'] !== 'notification') {
-			return $data;
-		}
-
-		if (!preg_match('/notification_[a-z0-9]{13}/', $data['post_name'])) {
-			$data['post_name'] = Notification::createHash();
-		}
-
-		return $data;
-	}
-
-	/**
 	 * Saves the Notification data
 	 *
 	 * @action save_post_notification
 	 *
+	 * @since [Next] We're saving the Notification to custom table instead of Post Type. Post is just the shell.
 	 * @param int $postId Current post ID.
-	 * @param object $post WP_Post object.
+	 * @param \WP_Post $post WP_Post object.
 	 * @param bool $update If existing notification is updated.
 	 * @return void
 	 */
 	public function save($postId, $post, $update)
 	{
-		// Another save process is in progress, abort.
-		if (defined('DOING_NOTIFICATION_SAVE') && DOING_NOTIFICATION_SAVE) {
-			return;
-		}
-
 		if (
-			!isset($_POST['notification_data_nonce']) ||
-			!wp_verify_nonce(
+			! isset($_POST['notification_data_nonce']) ||
+			! wp_verify_nonce(
 				sanitize_text_field(wp_unslash($_POST['notification_data_nonce'])),
 				'notification_post_data_save'
 			)
@@ -274,33 +261,34 @@ class PostType
 			return;
 		}
 
-		if (!$update) {
+		if (! $update) {
 			return;
 		}
 
-		// Prevent infinite loops.
-		if (!defined('DOING_NOTIFICATION_SAVE')) {
-			// phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
-			define('DOING_NOTIFICATION_SAVE', true);
-		}
-
 		$data = $_POST;
-		$notificationPost = adaptNotificationFrom('WordPress', $post);
+
+		$notification = WordPressIntegration::postToNotification($post) ?? new Notification();
+
+		// hash.
+		if (isset($data['post_name'])) {
+			$hash = empty($data['post_name']) ? Notification::createHash() : $data['post_name'];
+			$notification->setHash($hash);
+		}
 
 		// Title.
 		if (isset($data['post_title'])) {
-			$notificationPost->setTitle($data['post_title']);
+			$notification->setTitle($data['post_title']);
 		}
 
 		// Status.
 		$status = (isset($data['notification_onoff_switch']) && $data['notification_onoff_switch'] === '1');
-		$notificationPost->setEnabled($status);
+		$notification->setEnabled($status);
 
 		// Trigger.
 		if (!empty($data['notification_trigger'])) {
 			$trigger = Store\Trigger::get($data['notification_trigger']);
-			if (!empty($trigger)) {
-				$notificationPost->setTrigger($trigger);
+			if (! empty($trigger)) {
+				$notification->setTrigger($trigger);
 			}
 		}
 
@@ -308,22 +296,21 @@ class PostType
 		$carriers = [];
 
 		foreach (Store\Carrier::all() as $carrier) {
-			if (!isset($data['notification_carrier_' . $carrier->getSlug()])) {
+			if (! isset($data['notification_carrier_' . $carrier->getSlug()])) {
 				continue;
 			}
 
 			$carrierData = $data['notification_carrier_' . $carrier->getSlug()];
 
-			if (!$carrierData['activated']) {
+			if (! $carrierData['activated']) {
 				continue;
 			}
 
 			// If nonce not set or false, ignore this form.
-			if (!wp_verify_nonce($carrierData['_nonce'], $carrier->getSlug() . '_carrier_security')) {
+			if (! wp_verify_nonce($carrierData['_nonce'], $carrier->getSlug() . '_carrier_security')) {
 				continue;
 			}
 
-			// @todo #h1kf7 `enabled` key is overwritten below.
 			$carrier->setData($carrierData);
 
 			if (isset($data['notification_carrier_' . $carrier->getSlug() . '_enable'])) {
@@ -335,23 +322,15 @@ class PostType
 			$carriers[$carrier->getSlug()] = $carrier;
 		}
 
-		$notificationPost->setCarriers($carriers);
+		$notification->setCarriers($carriers);
 
 		// Hook into this action if you want to save any Notification Post data.
-		do_action('notification/data/save', $notificationPost);
+		do_action('notification/data/save', $notification);
 
-		$notificationPost->save();
+		NotificationDatabaseService::upsert($notification);
 
-		/**
-		 * @todo
-		 * This cache should be cleared in Adapter save method.
-		 * Now it's used in Admin\Wizard::addNotifications() as well
-		 */
-		$cache = new CacheDriver\ObjectCache('notification');
-		$cache->set_key('notifications');
-		$cache->delete();
-
-		do_action('notification/data/save/after', $notificationPost);
+		do_action_deprecated('notification/data/save/after', [$notification], '[Next]', 'notification/data/saved');
+		do_action('notification/data/saved', $notification);
 	}
 
 	/**
@@ -373,19 +352,20 @@ class PostType
 
 		$ajax = new Response();
 		$data = $_POST;
-		$error = false;
+		$errorMessage = __("Notification status couldn't be changed.", 'notification');
 
 		$ajax->verify_nonce('change_notification_status_' . $data['post_id']);
 
-		$adapter = adaptNotificationFrom('WordPress', (int)$data['post_id']);
-		$adapter->setEnabled($data['status'] === 'true');
+		$notification = WordPressIntegration::postToNotification($data['post_id']);
 
-		$result = $adapter->save();
+		if ($notification === null) {
+			$ajax->error($errorMessage);
+		} else {
+			$notification->setEnabled($data['status'] === 'true');
 
-		if (is_wp_error($result)) {
-			$ajax->error(
-				__("Notification status couldn't be changed.", 'notification')
-			);
+			do_action('notification/data/save', $notification);
+			NotificationDatabaseService::upsert($notification);
+			do_action('notification/data/saved', $notification);
 		}
 
 		$ajax->send(true);
@@ -399,70 +379,19 @@ class PostType
 
 	/**
 	 * Gets all Notifications from database.
-	 * Uses direct database call for performance.
 	 *
-	 * @return array<mixed>
+	 * @deprecated [Next] Use BracketSpace\Notification\Database\NotificationDatabaseService::getAll();
 	 * @since  6.0.0
+	 * @return array<Notification>
 	 */
 	public static function getAllNotifications()
 	{
-		$driver = new CacheDriver\ObjectCache('notification');
-		$cache = new Cache($driver, 'notifications');
-
-		return $cache->collect(
-			static function () {
-				global $wpdb;
-
-				$sql = "SELECT p.post_content
-				FROM {$wpdb->posts} p
-				WHERE p.post_type = 'notification' AND p.post_status = 'publish'
-				ORDER BY p.menu_order ASC, p.post_modified DESC";
-
-				// We're using direct db call for performance purposes - we only need the post_content field.
-				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
-				return $wpdb->get_col($sql);
-			}
+		_deprecated_function(
+			__METHOD__,
+			'[Next]',
+			'BracketSpace\Notification\Database\NotificationDatabaseService::getAll'
 		);
-	}
 
-	/**
-	 * Sets up all the Notification from database
-	 * It's running on every single page load.
-	 *
-	 * @action notification/init 9999999
-	 *
-	 * @return void
-	 * @since  6.0.0
-	 */
-	public function setupNotifications()
-	{
-		$notifications = self::getAllNotifications();
-
-		foreach ($notifications as $notificationJson) {
-			if (empty($notificationJson)) {
-				continue;
-			}
-
-			// Check if Notification has valid JSON.
-			$jsonCheck = json_decode(
-				$notificationJson,
-				true
-			);
-			if (json_last_error() !== JSON_ERROR_NONE) {
-				continue;
-			}
-
-			$adapter = adaptNotificationFrom('JSON', $notificationJson);
-
-			// Set source back to WordPress.
-			$adapter->setSource('WordPress');
-
-			// Check if the notification hasn't been added already ie. via Sync.
-			if (Store\Notification::has($adapter->getHash())) {
-				continue;
-			}
-
-			addNotification($adapter->getNotification());
-		}
+		return NotificationDatabaseService::getAll();
 	}
 }

@@ -27,6 +27,7 @@
 		<exclude name="NeutronStandard.Functions.LongFunction.LongFunction"/>
 
 		<exclude name="NeutronStandard.Functions.DisallowCallUserFunc.CallUserFunc"/>
+		<exclude name="SlevomatCodingStandard.Functions.DisallowArrowFunction.DisallowedArrowFunction"/>
 
 		<exclude name="NeutronStandard.MagicMethods.RiskyMagicMethod.RiskyMagicMethod"/>
 		<exclude name="NeutronStandard.Globals.DisallowGlobalFunctions.GlobalFunctions"/>

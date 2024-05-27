@@ -306,9 +306,10 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 **Compatibility Breaking Changes**
 
-Class methods and properties has been changed from snake_case to camelCase.
-In Post Triggers, dynamic property `$trigger->{$post_type}` has been replaced with static prop `$trigger->post`.
-The same as above applies to Post Trigger datetime tags, namely: postCreationDatetime, postPublicationDatetime, and postModificationDatetime.
+- Class methods and properties has been changed from snake_case to camelCase.
+- In Post Triggers, dynamic property `$trigger->{$post_type}` has been replaced with static prop `$trigger->post`.
+- The same as above applies to Post Trigger datetime tags, namely: postCreationDatetime, postPublicationDatetime, and postModificationDatetime.
+- Hook `notification/data/save` and `notification/data/save/after` now pass Core\Notification instance in the first param instead of the WordPress adapter instance.
 
 Renamed functions:
 - notification_adapt() -> BracketSpace\Notification\adaptNotification()
@@ -337,6 +338,12 @@ Removed deprecated hooks:
 - `notification/webhook/args/{$type}`, use `notification/carrier/webhook/args/{$type}`
 - `notification/notification/form_fields/values`, use `notification/carrier/fields/values`
 
+Hook depracations:
+- `notification/data/save/after`, use `notification/data/saved`
+
+Method deprecations:
+ - `BracketSpace\Notification\Admin\PostType::getAllNotifications()`, use `BracketSpace\Notification\Database\NotificationDatabaseService::getAll()`
+
 **Full changelog**
 
 * [Added] Option to disable notification about admin email address changed.
@@ -344,7 +351,7 @@ Removed deprecated hooks:
 * [Added] New trigger after admin confirms new site email address.
 * [Added] notification/admin/allow_column/$column filter.
 * [Changed] Global functions moved to namespace and set as deprecated.
-* [Changed] Removed v6 & v7 deprecated functions
+* [Changed] Removed v6 & v7 deprecated functions.
 * [Changed] Minimum required PHP version from 7.4.
 * [Changed] WordPress Coding Standards to PSR-12 standards.
 * [Changed] Trigger dropdown is now taller for better UX.
@@ -354,6 +361,7 @@ Removed deprecated hooks:
 * [Fixed] Stripping shortcodes in carrier fields.
 * [Fixed] Email carrier header "From" prioritized over header in settings.
 * [Fixed] User password reset link requires encoded username.
+* [Removed] DOING_NOTIFICATION_SAVE constant.
 
 == Upgrade Notice ==
 

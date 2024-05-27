@@ -11,6 +11,9 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Integration;
 
 use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Database\NotificationDatabaseService;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Store\Notification as NotificationStore;
 use function BracketSpace\Notification\getSetting;
@@ -20,6 +23,13 @@ use function BracketSpace\Notification\getSetting;
  */
 class WordPressIntegration
 {
+	/**
+	 * Notifications cache key
+	 *
+	 * @var string
+	 */
+	protected static $notificationsCacheKey = 'notifications';
+
 	/**
 	 * --------------------------
 	 * Helpers
@@ -35,7 +45,51 @@ class WordPressIntegration
 	 */
 	public static function postToNotification($post): ?Notification
 	{
-		return NotificationStore::get(get_post_field('post_name', $post, 'raw'));
+		$hash = get_post_field('post_name', $post, 'raw');
+
+		return NotificationStore::has($hash) ? NotificationStore::get($hash) : null;
+	}
+
+	/**
+	 * --------------------------
+	 * Loaders & Cache
+	 * --------------------------
+	 */
+
+	/**
+	 * Loads all Notifications from Database
+	 *
+	 * @action notification/init 9999999
+	 *
+	 * @since [Next]
+	 * @return void
+	 */
+	public function loadDatabaseNotifications()
+	{
+		$driver = new CacheDriver\ObjectCache('notification');
+		$cache = new Cache($driver, static::$notificationsCacheKey);
+
+		/**
+		 * @var array<Notification>
+		 */
+		$notifications = $cache->collect(static fn() => NotificationDatabaseService::getAll());
+
+		array_map('BracketSpace\Notification\addNotification', $notifications);
+	}
+
+	/**
+	 * Clears the Notifications cache
+	 *
+	 * @action notification/data/saved
+	 *
+	 * @since [Next]
+	 * @return void
+	 */
+	public static function clearNotificationsCache()
+	{
+		$cache = new CacheDriver\ObjectCache('notification');
+		$cache->set_key(static::$notificationsCacheKey);
+		$cache->delete();
 	}
 
 	/**
