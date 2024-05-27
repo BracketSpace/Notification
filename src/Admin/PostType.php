@@ -269,7 +269,7 @@ class PostType
 
 		$notification = WordPressIntegration::postToNotification($post) ?? new Notification();
 
-		// hash.
+		// Hash.
 		if (isset($data['post_name'])) {
 			$hash = empty($data['post_name']) ? Notification::createHash() : $data['post_name'];
 			$notification->setHash($hash);
