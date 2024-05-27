@@ -341,7 +341,7 @@ Removed deprecated hooks:
 Hook depracations:
 - `notification/data/save/after`, use `notification/data/saved`
 
-Method deprecations:
+Function and method deprecations:
  - `BracketSpace\Notification\Admin\PostType::getAllNotifications()`, use `BracketSpace\Notification\Database\NotificationDatabaseService::getAll()`
 
 **Full changelog**
@@ -352,10 +352,11 @@ Method deprecations:
 * [Added] notification/admin/allow_column/$column filter.
 * [Changed] Global functions moved to namespace and set as deprecated.
 * [Changed] Removed v6 & v7 deprecated functions.
-* [Changed] Minimum required PHP version from 7.4.
+* [Changed] Minimum required PHP version to 7.4 or newer.
 * [Changed] WordPress Coding Standards to PSR-12 standards.
 * [Changed] Trigger dropdown is now taller for better UX.
 * [Changed] Notification table is now filtered from uneccessary columns.
+* [Changed] Multiple function, method and hook deprecations, see above for detailed list and replacements.
 * [Fixed] Shortcodes being uncorrectly stripped leaving closing "]" behind.
 * [Fixed] PHP 8.2 deprecations.
 * [Fixed] Stripping shortcodes in carrier fields.
