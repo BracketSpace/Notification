@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 
-use function BracketSpace\Notification\adaptNotificationFrom;
-use function BracketSpace\Notification\swapNotificationAdapter;
+use BracketSpace\Notification\Database\NotificationDatabaseService;
+use BracketSpace\Notification\Integration\WordPressIntegration;
 
 /**
  * Notification duplicator class
@@ -61,39 +61,42 @@ class NotificationDuplicator
 	{
 		check_admin_referer('duplicate_notification', 'nonce');
 
-		if (!isset($_GET['duplicate'])) {
+		if (! isset($_GET['duplicate'])) {
 			exit;
 		}
 
 		// Get the source notification post.
 		$source = get_post(intval(wp_unslash($_GET['duplicate'])));
-		$wp = adaptNotificationFrom('WordPress', $source);
 
-		/**
-		 * JSON Adapter
-		 *
-		 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
-		 */
-		$json = swapNotificationAdapter('JSON', $wp);
-
-		$json->refreshHash();
-		$json->setEnabled(false);
-
-		if (get_post_type($source) !== 'notification') {
-			wp_die('You cannot duplicate post that\'s not Notification post');
+		if (get_post_type($source) !== 'notification' || ! $source instanceof \WP_Post ) {
+			wp_die("You cannot duplicate post that's not a Notification post");
 		}
 
-		$newId = wp_insert_post(
-			[
-				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-				'post_title' => sprintf('(%s) %s', __('Duplicate', 'notification'), $source->post_title),
-				'post_content' => wp_slash($json->save(JSON_UNESCAPED_UNICODE)),
-				'post_status' => 'draft',
-				'post_type' => 'notification',
-			]
-		);
+		$notification = WordPressIntegration::postToNotification($source);
 
-		wp_safe_redirect(html_entity_decode(get_edit_post_link($newId)));
+		if ($notification === null) {
+			wp_die("It doesn't seem that Notification exist anymore");
+		}
+
+		$newNotification = clone $notification;
+		$newNotification->refreshHash();
+		$newNotification->setEnabled(false);
+
+		// Create duplicated Notification.
+		do_action('notification/data/save', $newNotification);
+		NotificationDatabaseService::upsert($newNotification);
+		do_action('notification/data/saved', $newNotification);
+
+		// Create duplicated WP_Post.
+		$postId = wp_insert_post([
+			'post_title' => $newNotification->getTitle(),
+			'post_name' => $newNotification->getHash(),
+			'post_content' => '',
+			'post_status' => 'draft',
+			'post_type' => 'notification',
+		]);
+
+		wp_safe_redirect(html_entity_decode(get_edit_post_link($postId)));
 		exit;
 	}
 }
