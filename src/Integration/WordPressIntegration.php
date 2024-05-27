@@ -51,6 +51,20 @@ class WordPressIntegration
 	}
 
 	/**
+	 * Translates Notification to WP_Post
+	 *
+	 * @since [Next]
+	 * @param string|Notification $notification Notification object or hash.
+	 * @return ?\WP_Post
+	 */
+	public static function notificationToPost($notification): ?\WP_Post
+	{
+		$hash = $notification instanceof Notification ? $notification->getHash() : $notification;
+
+		return get_page_by_path($hash, OBJECT, 'post');
+	}
+
+	/**
 	 * --------------------------
 	 * Loaders & Cache
 	 * --------------------------
