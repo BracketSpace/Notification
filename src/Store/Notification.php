@@ -12,14 +12,13 @@ namespace BracketSpace\Notification\Store;
 use BracketSpace\Notification\Core\Notification as CoreNotification;
 use BracketSpace\Notification\Database\NotificationDatabaseService;
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
-use BracketSpace\Notification\Interfaces\Persistable;
 use BracketSpace\Notification\Interfaces\Storable;
 use BracketSpace\Notification\Traits\Storage;
 
 /**
  * Notification Store
  */
-class Notification implements Persistable, Storable
+class Notification implements Storable
 {
 	use Casegnostic;
 
@@ -42,18 +41,5 @@ class Notification implements Persistable, Storable
 				return !empty($notification->getTrigger()) && $notification->getTrigger()->getSlug() === $triggerSlug;
 			}
 		);
-	}
-
-	/**
-	 * Persists Notification in database
-	 *
-	 * @since [Next]
-	 * @return CoreNotification
-	 */
-	public static function persist(CoreNotification $notification): CoreNotification
-	{
-		NotificationDatabaseService::upsert($notification);
-
-		return $notification;
 	}
 }
