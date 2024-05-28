@@ -68,7 +68,7 @@ class NotificationDuplicator
 		// Get the source notification post.
 		$source = get_post(intval(wp_unslash($_GET['duplicate'])));
 
-		if (get_post_type($source) !== 'notification' || ! $source instanceof \WP_Post ) {
+		if (get_post_type($source) !== 'notification' || ! $source instanceof \WP_Post) {
 			wp_die("You cannot duplicate post that's not a Notification post");
 		}
 
@@ -88,13 +88,15 @@ class NotificationDuplicator
 		do_action('notification/data/saved', $newNotification);
 
 		// Create duplicated WP_Post.
-		$postId = wp_insert_post([
-			'post_title' => $newNotification->getTitle(),
-			'post_name' => $newNotification->getHash(),
-			'post_content' => '',
-			'post_status' => 'draft',
-			'post_type' => 'notification',
-		]);
+		$postId = wp_insert_post(
+			[
+				'post_title' => $newNotification->getTitle(),
+				'post_name' => $newNotification->getHash(),
+				'post_content' => '',
+				'post_status' => 'draft',
+				'post_type' => 'notification',
+			]
+		);
 
 		wp_safe_redirect(html_entity_decode(get_edit_post_link($postId)));
 		exit;
