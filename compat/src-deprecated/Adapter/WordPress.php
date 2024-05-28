@@ -12,9 +12,8 @@ namespace BracketSpace\Notification\Defaults\Adapter;
 
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Core\Notification;
-use function BracketSpace\Notification\adaptNotificationFrom;
+
 use function BracketSpace\Notification\convertNotificationData;
-use function BracketSpace\Notification\swapNotificationAdapter;
 
 /**
  * WordPress Adapter class
@@ -62,7 +61,7 @@ class WordPress extends Abstracts\Adapter
 		}
 
 		try {
-			$jsonAdapter = adaptNotificationFrom(
+			$jsonAdapter = notification_adapt_from(
 				'JSON',
 				wp_specialchars_decode(
 					$this->post->post_content,
@@ -102,7 +101,7 @@ class WordPress extends Abstracts\Adapter
 		$data = $this->getNotification()->toArray();
 
 		/** @var \BracketSpace\Notification\Defaults\Adapter\JSON */
-		$jsonAdapter = swapNotificationAdapter('JSON', $this);
+		$jsonAdapter = notification_swap_adapter('JSON', $this);
 		$json = $jsonAdapter->save(JSON_UNESCAPED_UNICODE);
 
 		// Update the hash.

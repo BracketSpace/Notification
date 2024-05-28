@@ -17,9 +17,6 @@ use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\Helper as DocHooksHelper;
 use BracketSpace\Notification\Database\Queries\NotificationQueries;
 use function BracketSpace\Notification\getSetting;
-use function BracketSpace\Notification\adaptNotification;
-use function BracketSpace\Notification\adaptNotificationFrom;
-use function BracketSpace\Notification\swapNotificationAdapter;
 use function BracketSpace\Notification\log;
 use function BracketSpace\Notification\addNotification;
 use function BracketSpace\Notification\convertNotificationData;
@@ -158,7 +155,7 @@ function notification_post_is_new( $post ) {
 	_deprecated_function( __FUNCTION__, '8.0.0' );
 
 	/** @var BracketSpace\Notification\Defaults\Adapter\WordPress $notification */
-	$notification = notificationAdaptFrom( 'WordPress', $post );
+	$notification = notification_adapt_from( 'WordPress', $post );
 	return $notification->isNew();
 }
 
@@ -521,7 +518,7 @@ function notification_get_global_merge_tags() {
  * @deprecated [Next]
  */
 function notification_adapt($adapterName, \BracketSpace\Notification\Core\Notification $notification) {
-	_deprecated_function( __FUNCTION__, '[Next]');
+	_deprecated_function( __FUNCTION__, '[Next]', 'Notification::to()');
 
 	if (class_exists($adapterName)) {
 		$adapter = new $adapterName($notification);
@@ -549,6 +546,8 @@ function notification_adapt($adapterName, \BracketSpace\Notification\Core\Notifi
  * @deprecated [Next]
  */
 function notification_adapt_from($adapterName, $data) {
+	_deprecated_function( __FUNCTION__, '[Next]', 'Notification::from()');
+
 	$adapter = notification_adapt(
 		$adapterName,
 		new Notification()
@@ -566,6 +565,8 @@ function notification_adapt_from($adapterName, $data) {
  * @deprecated [Next]
  */
 function notification_swap_adapter($newAdapterName, Interfaces\Adaptable $adapter) {
+	_deprecated_function( __FUNCTION__, '[Next]');
+
 	return notification_adapt(
 		$newAdapterName,
 		$adapter->getNotification()
@@ -692,57 +693,6 @@ function notification_update_setting($setting, $value) {
 	_deprecated_function( __FUNCTION__, '[Next]', 'notificationUpdateSetting');
 
 	return notificationUpdateSetting($setting, $value);
-}
-
-
-/**
- * Adapts Notification object
- * Default adapters are: WordPress || JSON
- *
- * @param string $adapterName Adapter class name.
- * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
- * @return \BracketSpace\Notification\Interfaces\Adaptable
- * @throws \Exception If adapter wasn't found.
- * @since  6.0.0
- * @deprecated [Next]
- */
-function notificationAdapt($adapterName, \BracketSpace\Notification\Core\Notification $notification) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\adaptNotification()');
-
-	return adaptNotification($adapterName, $notification);
-}
-
-/**
- * Adapts Notification from input data
- * Default adapters are: WordPress || JSON
- *
- * @param string $adapterName Adapter class name.
- * @param mixed $data Input data needed by adapter.
- * @return \BracketSpace\Notification\Interfaces\Adaptable
- * @since  6.0.0
- * @deprecated [Next]
- */
-function notificationAdaptFrom($adapterName, $data)
-{
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\adaptNotificationFrom()');
-
-	return adaptNotificationFrom($adapterName, $data);
-}
-
-/**
- * Changes one adapter to another
- *
- * @param string $newAdapterName Adapter class name.
- * @param \BracketSpace\Notification\Interfaces\Adaptable $adapter Adapter.
- * @return \BracketSpace\Notification\Interfaces\Adaptable
- * @since  6.0.0
- * @deprecated [Next]
- */
-function notificationSwapAdapter($newAdapterName, Interfaces\Adaptable $adapter)
-{
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\swapNotificationAdapter()');
-
-	return swapNotificationAdapter($newAdapterName, $adapter);
 }
 
 /**

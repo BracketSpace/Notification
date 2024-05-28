@@ -10,12 +10,12 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 
+use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Core\Whitelabel;
+use BracketSpace\Notification\Database\NotificationDatabaseService;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
-use function BracketSpace\Notification\adaptNotificationFrom;
-use function BracketSpace\Notification\swapNotificationAdapter;
 
 /**
  * Wizard class
@@ -331,15 +331,14 @@ class Wizard
 
 			$json = $this->filesystem->get_contents($jsonPath);
 
-			$jsonAdapter = adaptNotificationFrom('JSON', $json);
-			$jsonAdapter->refreshHash();
+			$notification = Notification::from('json', (string)$json);
+			$notification->refreshHash();
 
-			$wpAdapter = swapNotificationAdapter('WordPress', $jsonAdapter);
-			$wpAdapter->save();
+			NotificationDatabaseService::upsert($notification);
 		}
 
 		/**
-		 * @todo
+		 * @todo 3mp4ad
 		 * This cache should be cleared in Adapter save method.
 		 * Now it's used in Admin\PostType::save() as well
 		 */

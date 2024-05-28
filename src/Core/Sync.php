@@ -12,8 +12,8 @@ namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
-use function BracketSpace\Notification\adaptNotificationFrom;
-use function BracketSpace\Notification\swapNotificationAdapter;
+use BracketSpace\Notification\Integration\WordPressIntegration;
+use function BracketSpace\Notification\addNotification;
 
 /**
  * Sync class
@@ -84,15 +84,10 @@ class Sync
 
 		foreach ($notifications as $json) {
 			try {
-				/**
-				 * JSON Adapter
-				 *
-				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
-				 */
-				$adapter = adaptNotificationFrom('JSON', $json);
+				$notification = Notification::from('json', $json);
 
-				if ($adapter->isEnabled()) {
-					$adapter->registerNotification();
+				if ($notification->isEnabled()) {
+					addNotification($notification);
 				}
 			} catch (\Throwable $e) {
 				// Do nothing.
@@ -104,13 +99,13 @@ class Sync
 	/**
 	 * Saves local JSON file
 	 *
-	 * @action notification/data/save/after
+	 * @action notification/data/saved
 	 *
-	 * @param \BracketSpace\Notification\Defaults\Adapter\WordPress $wpAdapter WordPress adapter.
-	 * @return void
 	 * @since  6.0.0
+	 * @param Notification $notification Notification.
+	 * @return void
 	 */
-	public static function saveLocalJson($wpAdapter)
+	public static function saveLocalJson($notification)
 	{
 		if (!self::isSyncing()) {
 			return;
@@ -122,11 +117,9 @@ class Sync
 			return;
 		}
 
-		$file = $wpAdapter->getHash() . '.json';
-		$json = swapNotificationAdapter('JSON', $wpAdapter)
-			->save();
+		$file = $notification->getHash() . '.json';
 
-		$fs->put_contents($file, $json);
+		$fs->put_contents($file, $notification->to('json'));
 	}
 
 	/**
@@ -150,8 +143,13 @@ class Sync
 			return;
 		}
 
-		$adapter = adaptNotificationFrom('WordPress', $postId);
-		$file = $adapter->getHash() . '.json';
+		$notification = WordPressIntegration::postToNotification($postId);
+
+		if (! $notification instanceof Notification) {
+			return;
+		}
+
+		$file = $notification->getHash() . '.json';
 
 		if (!$fs->exists($file)) {
 			return;

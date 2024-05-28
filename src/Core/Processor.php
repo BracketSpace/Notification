@@ -17,8 +17,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\ErrorHandler;
 use BracketSpace\Notification\Interfaces\Sendable;
 use BracketSpace\Notification\Interfaces\Triggerable;
-use function BracketSpace\Notification\adaptNotification;
-use function BracketSpace\Notification\adaptNotificationFrom;
 use function BracketSpace\Notification\getSetting;
 
 /**
@@ -97,7 +95,7 @@ class Processor
 			time() + apply_filters('notification/background_processing/delay', 30),
 			'notification_background_processing',
 			[
-				adaptNotification('JSON', $notification)->save(JSON_UNESCAPED_UNICODE, true),
+				$notification->to('json', ['jsonOptions' => JSON_UNESCAPED_UNICODE]),
 				$triggerKey,
 			]
 		);
@@ -148,8 +146,7 @@ class Processor
 	 */
 	public static function handleCron($notificationJson, $triggerKey)
 	{
-		$notification = adaptNotificationFrom('JSON', $notificationJson)
-			->getNotification();
+		$notification = Notification::from('json', $notificationJson);
 		$trigger = self::getCache($triggerKey)->get();
 
 		if (!$trigger instanceof Triggerable) {

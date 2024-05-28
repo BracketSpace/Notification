@@ -10,7 +10,8 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Database\Queries;
 
-use function BracketSpace\Notification\adaptNotificationFrom;
+use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Integration\WordPressIntegration;
 
 /**
  * Notification Queries class
@@ -21,7 +22,7 @@ class NotificationQueries
 	 * Gets Notification posts.
 	 *
 	 * @param bool $includingDisabled If should include disabled notifications as well.
-	 * @return array<int, \BracketSpace\Notification\Defaults\Adapter\WordPress>
+	 * @return array<Notification>
 	 * @since  8.0.0
 	 */
 	public static function all(bool $includingDisabled = false): array
@@ -48,7 +49,13 @@ class NotificationQueries
 		}
 
 		foreach ($wpposts as $wppost) {
-			$posts[] = adaptNotificationFrom('WordPress', $wppost);
+			$notification = WordPressIntegration::postToNotification($wppost);
+
+			if (!($notification instanceof Notification)) {
+				continue;
+			}
+
+			$posts[] = $notification;
 		}
 
 		return $posts;
@@ -58,15 +65,13 @@ class NotificationQueries
 	 * Gets Notification post by hash.
 	 *
 	 * @param string $hash Notification hash.
-	 * @return \BracketSpace\Notification\Interfaces\Adaptable|null
+	 * @return ?Notification
 	 * @since  8.0.0
 	 */
 	public static function withHash(string $hash)
 	{
 		$post = get_page_by_path($hash, OBJECT, 'notification');
 
-		return empty($post)
-			? null
-			: adaptNotificationFrom('WordPress', $post);
+		return empty($post) ? null : WordPressIntegration::postToNotification($post);
 	}
 }

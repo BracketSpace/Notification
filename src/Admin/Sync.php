@@ -10,14 +10,14 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 
+use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Sync as CoreSync;
 use BracketSpace\Notification\Core\Templates;
+use BracketSpace\Notification\Database\NotificationDatabaseService;
 use BracketSpace\Notification\Utils\Settings\CoreFields;
 use BracketSpace\Notification\Utils\Settings\Fields as SpecificFields;
 use BracketSpace\Notification\Database\Queries\NotificationQueries;
 use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
-use function BracketSpace\Notification\adaptNotificationFrom;
-use function BracketSpace\Notification\swapNotificationAdapter;
 
 /**
  * Sync class
@@ -118,9 +118,6 @@ class Sync
 	 */
 	public function loadNotificationToJson($hash)
 	{
-		/**
-		 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null
-		 */
 		$notification = NotificationQueries::withHash($hash);
 
 		if ($notification === null) {
@@ -143,22 +140,16 @@ class Sync
 
 		foreach ($jsonNotifications as $json) {
 			try {
-				/**
-				 * JSON Adapter
-				 *
-				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
-				 */
-				$jsonAdapter = adaptNotificationFrom('JSON', $json);
+				$notification = Notification::from('json', $json);
 
-				if ($jsonAdapter->getHash() === $hash) {
+				if ($notification->getHash() === $hash) {
+					NotificationDatabaseService::upsert($notification);
+
 					/**
-					 * WordPress Adapter
-					 *
-					 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
+					 * Get post edit link from freshly inserted notification
+					 * @todo 3mp4ad
 					 */
-					$wpAdapter = swapNotificationAdapter('WordPress', $jsonAdapter);
-					$wpAdapter->save();
-					return get_edit_post_link($wpAdapter->getId(), 'admin');
+					return get_edit_post_link(0, 'admin');
 				}
 			} catch (\Throwable $e) {
 				// Do nothing.

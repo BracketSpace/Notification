@@ -15,7 +15,6 @@ use BracketSpace\Notification\Database\NotificationDatabaseService;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Utils\WpObjectHelper;
 use BracketSpace\Notification\Store;
-use BracketSpace\Notification\Database\Queries\NotificationQueries;
 
 /**
  * Upgrade class
@@ -263,49 +262,7 @@ class Upgrade
 	public function upgradeToV1()
 	{
 		// 1. Save the Notification cache in post_content field.
-		$notifications = NotificationQueries::all(true);
-		foreach ($notifications as $adapter) {
-			$post = $adapter->getPost();
-
-			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-			$adapter->setHash($post->post_name);
-			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-			$adapter->setTitle($post->post_title);
-
-			// Trigger.
-			$triggerSlug = get_post_meta($adapter->getId(), '_trigger', true);
-			$trigger = Store\Trigger::get($triggerSlug);
-
-			if (!empty($trigger)) {
-				$adapter->setTrigger($trigger);
-			}
-
-			// Carriers.
-			$rawCarriers = (array)Store\Carrier::all();
-			$carriers = [];
-
-			foreach ($rawCarriers as $carrier) {
-				if (empty($carrier)) {
-					continue;
-				}
-
-				$carriers[$carrier->getSlug()] = $this->populateCarrier(
-					clone $carrier,
-					$adapter->getId()
-				);
-			}
-
-			if (!empty($carriers)) {
-				$adapter->setCarriers($carriers);
-			}
-
-			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-			$adapter->setEnabled($post->post_status === 'publish');
-			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-			$adapter->setVersion((int)strtotime($post->post_modified_gmt));
-
-			$adapter->save();
-		}
+		// This portion of the updater is no longer maintained and requires manual action.
 
 		// 2. Delete trashed Notifications.
 		$trashedNotifications = get_posts(

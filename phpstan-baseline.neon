@@ -711,11 +711,6 @@ parameters:
 			path: src/Admin/ImportExport.php
 
 		-
-			message: "#^Parameter \\#1 \\$json of function json_decode expects string, mixed given\\.$#"
-			count: 1
-			path: src/Admin/ImportExport.php
-
-		-
 			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
 			count: 1
 			path: src/Admin/ImportExport.php
@@ -1071,11 +1066,6 @@ parameters:
 			path: src/Core/Notification.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Interfaces\\\\Adaptable\\:\\:save\\(\\) invoked with 2 parameters, 0 required\\.$#"
-			count: 1
-			path: src/Core/Processor.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Resolver\\:\\:clear\\(\\) should return string but returns string\\|null\\.$#"
 			count: 1
 			path: src/Core/Resolver.php
@@ -1096,34 +1086,9 @@ parameters:
 			path: src/Core/Upgrade.php
 
 		-
-			message: "#^Cannot access property \\$post_modified_gmt on WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Core/Upgrade.php
-
-		-
-			message: "#^Cannot access property \\$post_name on WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Core/Upgrade.php
-
-		-
-			message: "#^Cannot access property \\$post_status on WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Core/Upgrade.php
-
-		-
-			message: "#^Cannot access property \\$post_title on WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Core/Upgrade.php
-
-		-
 			message: "#^Parameter \\#3 \\$subject of function preg_replace expects array\\|string, mixed given\\.$#"
 			count: 1
 			path: src/Core/Upgrade.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Database\\\\Queries\\\\NotificationQueries\\:\\:all\\(\\) should return array\\<int, BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\WordPress\\> but returns array\\<int, BracketSpace\\\\Notification\\\\Interfaces\\\\Adaptable\\>\\.$#"
-			count: 1
-			path: src/Database/Queries/NotificationQueries.php
 
 		-
 			message: "#^Parameter \\#1 \\$args of function get_posts expects array\\{numberposts\\?\\: int, category\\?\\: int\\|string, include\\?\\: array\\<int\\>, exclude\\?\\: array\\<int\\>, suppress_filters\\?\\: bool, attachment_id\\?\\: int, author\\?\\: int\\|string, author_name\\?\\: string, \\.\\.\\.\\}\\|null, array\\{posts_per_page\\: \\-1, post_type\\: 'notification', post_status\\?\\: array\\{'publish', 'draft'\\}, suppress_filters\\?\\: 0\\} given\\.$#"
