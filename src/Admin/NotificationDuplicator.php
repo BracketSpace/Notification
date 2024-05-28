@@ -10,8 +10,7 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 
-use BracketSpace\Notification\Database\NotificationDatabaseService;
-use BracketSpace\Notification\Integration\WordPressIntegration;
+use BracketSpace\Notification\Database\NotificationDatabaseService as Db;
 
 /**
  * Notification duplicator class
@@ -72,7 +71,7 @@ class NotificationDuplicator
 			wp_die("You cannot duplicate post that's not a Notification post");
 		}
 
-		$notification = WordPressIntegration::postToNotification($source);
+		$notification = Db::postToNotification($source);
 
 		if ($notification === null) {
 			wp_die("It doesn't seem that Notification exist anymore");
@@ -84,7 +83,7 @@ class NotificationDuplicator
 
 		// Create duplicated Notification.
 		do_action('notification/data/save', $newNotification);
-		NotificationDatabaseService::upsert($newNotification);
+		Db::upsert($newNotification);
 		do_action('notification/data/saved', $newNotification);
 
 		// Create duplicated WP_Post.

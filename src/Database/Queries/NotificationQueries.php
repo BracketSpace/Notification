@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Database\Queries;
 
 use BracketSpace\Notification\Core\Notification;
-use BracketSpace\Notification\Integration\WordPressIntegration;
+use BracketSpace\Notification\Database\NotificationDatabaseService as Db;
 
 /**
  * Notification Queries class
@@ -49,7 +49,7 @@ class NotificationQueries
 		}
 
 		foreach ($wpposts as $wppost) {
-			$notification = WordPressIntegration::postToNotification($wppost);
+			$notification = Db::postToNotification($wppost);
 
 			if (!($notification instanceof Notification)) {
 				continue;
@@ -72,6 +72,6 @@ class NotificationQueries
 	{
 		$post = get_page_by_path($hash, OBJECT, 'notification');
 
-		return empty($post) ? null : WordPressIntegration::postToNotification($post);
+		return empty($post) ? null : Db::postToNotification($post);
 	}
 }

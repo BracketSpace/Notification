@@ -11,8 +11,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Notification;
-use BracketSpace\Notification\Database\NotificationDatabaseService;
-use BracketSpace\Notification\Integration\WordPressIntegration;
+use BracketSpace\Notification\Database\NotificationDatabaseService as Db;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
 
@@ -219,13 +218,13 @@ class PostType
 	 */
 	public function deleteNotification($postId)
 	{
-		$notification = WordPressIntegration::postToNotification($postId);
+		$notification = Db::postToNotification($postId);
 
 		if ($notification === null) {
 			return;
 		}
 
-		NotificationDatabaseService::delete($notification->getHash());
+		Db::delete($notification->getHash());
 	}
 
 	/**
@@ -267,7 +266,7 @@ class PostType
 
 		$data = $_POST;
 
-		$notification = WordPressIntegration::postToNotification($post) ?? new Notification();
+		$notification = Db::postToNotification($post) ?? new Notification();
 
 		// Hash.
 		if (isset($data['post_name'])) {
@@ -327,7 +326,7 @@ class PostType
 		// Hook into this action if you want to save any Notification Post data.
 		do_action('notification/data/save', $notification);
 
-		NotificationDatabaseService::upsert($notification);
+		Db::upsert($notification);
 
 		do_action_deprecated('notification/data/save/after', [$notification], '[Next]', 'notification/data/saved');
 		do_action('notification/data/saved', $notification);
@@ -356,7 +355,7 @@ class PostType
 
 		$ajax->verify_nonce('change_notification_status_' . $data['post_id']);
 
-		$notification = WordPressIntegration::postToNotification($data['post_id']);
+		$notification = Db::postToNotification($data['post_id']);
 
 		if ($notification === null) {
 			$ajax->error($errorMessage);
@@ -364,18 +363,12 @@ class PostType
 			$notification->setEnabled($data['status'] === 'true');
 
 			do_action('notification/data/save', $notification);
-			NotificationDatabaseService::upsert($notification);
+			Db::upsert($notification);
 			do_action('notification/data/saved', $notification);
 		}
 
 		$ajax->send(true);
 	}
-
-	/**
-	 * --------------------------------------------------
-	 * Notifications.
-	 * --------------------------------------------------
-	 */
 
 	/**
 	 * Gets all Notifications from database.
@@ -392,6 +385,6 @@ class PostType
 			'BracketSpace\Notification\Database\NotificationDatabaseService::getAll'
 		);
 
-		return NotificationDatabaseService::getAll();
+		return Db::getAll();
 	}
 }

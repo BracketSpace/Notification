@@ -10,12 +10,10 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Integration;
 
-use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Database\NotificationDatabaseService;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 use BracketSpace\Notification\Interfaces\Triggerable;
-use BracketSpace\Notification\Store\Notification as NotificationStore;
 use function BracketSpace\Notification\getSetting;
 
 /**
@@ -29,40 +27,6 @@ class WordPressIntegration
 	 * @var string
 	 */
 	protected static $notificationsCacheKey = 'notifications';
-
-	/**
-	 * --------------------------
-	 * Helpers
-	 * --------------------------
-	 */
-
-	/**
-	 * Translates post ID to Notification object
-	 *
-	 * @since [Next]
-	 * @param int|\WP_Post $post Notification post object or post ID
-	 * @return ?Notification
-	 */
-	public static function postToNotification($post): ?Notification
-	{
-		$hash = get_post_field('post_name', $post, 'raw');
-
-		return NotificationStore::has($hash) ? NotificationStore::get($hash) : null;
-	}
-
-	/**
-	 * Translates Notification to WP_Post
-	 *
-	 * @since [Next]
-	 * @param string|Notification $notification Notification object or hash.
-	 * @return ?\WP_Post
-	 */
-	public static function notificationToPost($notification): ?\WP_Post
-	{
-		$hash = $notification instanceof Notification ? $notification->getHash() : $notification;
-
-		return get_page_by_path($hash, OBJECT, 'post');
-	}
 
 	/**
 	 * --------------------------
@@ -84,7 +48,7 @@ class WordPressIntegration
 		$cache = new Cache($driver, static::$notificationsCacheKey);
 
 		/**
-		 * @var array<Notification>
+		 * @var array<\BracketSpace\Notification\Core\Notification>
 		 */
 		$notifications = $cache->collect(static fn() => NotificationDatabaseService::getAll());
 

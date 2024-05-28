@@ -3,6 +3,8 @@
 /**
  * Notification Database Service.
  *
+ * This class handles both wp_notification* tables and wp_posts table in sync.
+ *
  * @package notification
  */
 
@@ -11,10 +13,13 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Database;
 
 use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Store\Notification as NotificationStore;
 use function BracketSpace\Notification\convertNotificationData;
 
 /**
  * This class describes a notification database service.
+ *
+ * @since [Next]
  */
 class NotificationDatabaseService
 {
@@ -58,6 +63,32 @@ class NotificationDatabaseService
 		return (int)DatabaseService::db()->get_var(
 			sprintf('SELECT COUNT(*) FROM %s', self::getNotificationsTableName())
 		);
+	}
+
+	/**
+	 * Translates post ID to Notification object
+	 *
+	 * @param int|\WP_Post $post Notification post object or post ID
+	 * @return ?Notification
+	 */
+	public static function postToNotification($post): ?Notification
+	{
+		$hash = get_post_field('post_name', $post, 'raw');
+
+		return NotificationStore::has($hash) ? NotificationStore::get($hash) : null;
+	}
+
+	/**
+	 * Translates Notification to WP_Post
+	 *
+	 * @param string|Notification $notification Notification object or hash.
+	 * @return ?\WP_Post
+	 */
+	public static function notificationToPost($notification): ?\WP_Post
+	{
+		$hash = $notification instanceof Notification ? $notification->getHash() : $notification;
+
+		return get_page_by_path($hash, OBJECT, 'post');
 	}
 
 	/**

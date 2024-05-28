@@ -13,8 +13,8 @@ namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Templates;
+use BracketSpace\Notification\Database\NotificationDatabaseService as Db;
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
-use BracketSpace\Notification\Integration\WordPressIntegration;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
@@ -78,7 +78,7 @@ class Screen
 			return;
 		}
 
-		self::$currentNotification = WordPressIntegration::postToNotification($_GET['post']);
+		self::$currentNotification = Db::postToNotification($_GET['post']);
 	}
 
 	/**
@@ -276,7 +276,7 @@ class Screen
 			[
 				'post_id' => $post->ID,
 				'delete_link_label' => $deleteText,
-				'notification' => WordPressIntegration::postToNotification($post) ?? new Notification(),
+				'notification' => Db::postToNotification($post) ?? new Notification(),
 			]
 		);
 	}
@@ -311,7 +311,7 @@ class Screen
 	 */
 	public function renderMergeTagsMetabox($post)
 	{
-		$notification = WordPressIntegration::postToNotification($post) ?? new Notification();
+		$notification = Db::postToNotification($post) ?? new Notification();
 		$trigger = $notification->getTrigger();
 		$triggerSlug = $trigger ? $trigger->getSlug() : false;
 

@@ -11,8 +11,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Notification;
-use BracketSpace\Notification\Database\NotificationDatabaseService;
-use BracketSpace\Notification\Integration\WordPressIntegration;
+use BracketSpace\Notification\Database\NotificationDatabaseService as Db;
 use BracketSpace\Notification\Utils\Settings\Fields as SettingFields;
 use BracketSpace\Notification\Database\Queries\NotificationQueries;
 
@@ -125,7 +124,7 @@ class ImportExport
 		);
 
 		foreach ($posts as $post) {
-			$notification = WordPressIntegration::postToNotification($post);
+			$notification = Db::postToNotification($post);
 
 			if (!($notification instanceof Notification)) {
 				continue;
@@ -223,7 +222,7 @@ class ImportExport
 			$existingNotification = NotificationQueries::withHash($notification->getHash());
 
 			if ($existingNotification === null) {
-				NotificationDatabaseService::upsert($notification);
+				Db::upsert($notification);
 				$added++;
 			} else {
 				if ($existingNotification->getVersion() >= $notification->getVersion()) {
@@ -235,7 +234,7 @@ class ImportExport
 						continue;
 					}
 
-					NotificationDatabaseService::upsert($notification);
+					Db::upsert($notification);
 					$updated++;
 				}
 			}

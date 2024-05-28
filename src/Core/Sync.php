@@ -12,7 +12,7 @@ namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
-use BracketSpace\Notification\Integration\WordPressIntegration;
+use BracketSpace\Notification\Database\NotificationDatabaseService as Db;
 use function BracketSpace\Notification\addNotification;
 
 /**
@@ -143,7 +143,7 @@ class Sync
 			return;
 		}
 
-		$notification = WordPressIntegration::postToNotification($postId);
+		$notification = Db::postToNotification($postId);
 
 		if (! $notification instanceof Notification) {
 			return;

@@ -10,8 +10,7 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 
-use BracketSpace\Notification\Database\NotificationDatabaseService;
-use BracketSpace\Notification\Integration\WordPressIntegration;
+use BracketSpace\Notification\Database\NotificationDatabaseService as Db;
 
 /**
  * PostTable class
@@ -89,7 +88,7 @@ class PostTable
 	 */
 	public function tableColumnContent($column, $postId)
 	{
-		$notification = WordPressIntegration::postToNotification($postId);
+		$notification = Db::postToNotification($postId);
 
 		if ($notification === null) {
 			return;
@@ -258,7 +257,7 @@ class PostTable
 		);
 
 		foreach ($postIds as $postId) {
-			$notification = WordPressIntegration::postToNotification($postId);
+			$notification = Db::postToNotification($postId);
 
 			if ($notification === null) {
 				continue;
@@ -267,7 +266,7 @@ class PostTable
 			$notification->setEnabled($doaction === 'enable');
 
 			do_action('notification/data/save', $notification);
-			NotificationDatabaseService::upsert($notification);
+			Db::upsert($notification);
 			do_action('notification/data/saved', $notification);
 		}
 

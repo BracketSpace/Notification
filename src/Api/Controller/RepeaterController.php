@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Api\Controller;
 
 use BracketSpace\Notification\Core\Notification;
-use BracketSpace\Notification\Integration\WordPressIntegration;
+use BracketSpace\Notification\Database\NotificationDatabaseService as Db;
 use BracketSpace\Notification\Store;
 
 /**
@@ -102,7 +102,7 @@ class RepeaterController
 	 */
 	public function getValues($postId, $carrier, $field)
 	{
-		$notification = WordPressIntegration::postToNotification($postId);
+		$notification = Db::postToNotification($postId);
 
 		if (! $notification instanceof Notification) {
 			return [];
