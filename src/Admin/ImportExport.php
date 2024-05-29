@@ -102,11 +102,12 @@ class ImportExport
 	/**
 	 * Prepares notifications data for export
 	 *
+	 * @since 6.0.0
+	 * @since 8.0.2 Accepts the items argument, instead reading it from GET.
+	 * @since [Next] Uses NotificationDatabaseService instead of get_posts().
 	 * @param array<int,string> $items Items to export.
 	 * @return array<int,string>
 	 * @throws \Exception When no items selected for export.
-	 * @since  6.0.0
-	 * @since  8.0.2 Accepts the items argument, instead reading it from GET.
 	 */
 	public function prepareNotificationsExportData(array $items = [])
 	{
@@ -115,19 +116,11 @@ class ImportExport
 		}
 
 		$data = [];
-		$posts = get_posts(
-			[
-				'post_type' => 'notification',
-				'post_status' => ['publish', 'draft'],
-				'posts_per_page' => -1,
-				'post__in' => $items,
-			]
-		);
 
-		foreach ($posts as $post) {
-			$notification = Db::postToNotification($post);
+		foreach ($items as $notificationHash) {
+			$notification = Db::get($notificationHash);
 
-			if (!($notification instanceof Notification)) {
+			if (! $notification instanceof Notification) {
 				continue;
 			}
 
@@ -164,19 +157,13 @@ class ImportExport
 		}
 
 		// phpcs:disable
-		$file = fopen(
-			$_FILES[0]['tmp_name'],
-			'rb'
-		);
+		$file = fopen($_FILES[0]['tmp_name'], 'rb');
 
-		if (!$file) {
+		if (! $file) {
 			wp_send_json_error("Can't read the file.");
 		}
 
-		$json = fread(
-			$file,
-			filesize($_FILES[0]['tmp_name'])
-		);
+		$json = fread($file, filesize($_FILES[0]['tmp_name']));
 		fclose($file);
 		unlink($_FILES[0]['tmp_name']);
 		// phpcs:enable
