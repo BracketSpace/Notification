@@ -67,18 +67,6 @@ function notification($data = [])
 }
 
 /**
- * Gets setting values
- *
- * @return mixed
- * @since  6.0.0
- * @since [Next] Function lives under BracketSpace\Notifiation namespace.
- */
-function getSettings()
-{
-	return \Notification::component('settings')->getSettings();
-}
-
-/**
  * Gets single setting value
  *
  * @param string $setting setting name in `a/b/c` format.

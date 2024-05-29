@@ -348,6 +348,7 @@ Function and method deprecations:
  - `BracketSpace\Notification\Admin\PostType::getAllNotifications()`, use `BracketSpace\Notification\Database\NotificationDatabaseService::getAll()`
  - `notification_convert_data()`, use `BracketSpace\Notification\Core\Notification::from('array', $array)`
  - `notification_register_settings()`, use the `notification/settings/register` action directly
+ - `notification_get_settings()`, use `\Notification::component('settings')->getSettings()`
 
 **Full changelog**
 

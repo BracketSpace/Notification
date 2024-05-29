@@ -19,7 +19,6 @@ use BracketSpace\Notification\Database\Queries\NotificationQueries;
 use function BracketSpace\Notification\notification as notificationNamespaced;
 use function BracketSpace\Notification\getSetting;
 use function BracketSpace\Notification\log;
-use function BracketSpace\Notification\getSettings;
 use function BracketSpace\Notification\updateSetting;
 
 /**
@@ -669,9 +668,9 @@ function notification_register_settings($callback, $priority = 10) {
  * @deprecated [Next]
  */
 function notification_get_settings() {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationGetSettings');
+	_deprecated_function( __FUNCTION__, '[Next]', "\Notification::component('settings')->getSettings()");
 
-	return notificationGetSettings();
+	return \Notification::component('settings')->getSettings();
 }
 
 /**
@@ -734,20 +733,6 @@ function notification($data = [])
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\notification()');
 
 	notificationNamespaced($data);
-}
-
-/**
- * Gets setting values
- *
- * @return mixed
- * @since 5.0.0
- * @deprecated [Next]
- */
-function notificationGetSettings()
-{
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\getSettings()');
-
-	return getSettings();
 }
 
 /**
