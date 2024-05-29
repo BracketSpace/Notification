@@ -323,13 +323,7 @@ class PostType
 
 		$notification->setCarriers($carriers);
 
-		// Hook into this action if you want to save any Notification Post data.
-		do_action('notification/data/save', $notification);
-
 		Db::upsert($notification);
-
-		do_action_deprecated('notification/data/save/after', [$notification], '[Next]', 'notification/data/saved');
-		do_action('notification/data/saved', $notification);
 	}
 
 	/**
@@ -362,9 +356,7 @@ class PostType
 		} else {
 			$notification->setEnabled($data['status'] === 'true');
 
-			do_action('notification/data/save', $notification);
 			Db::upsert($notification);
-			do_action('notification/data/saved', $notification);
 		}
 
 		$ajax->send(true);

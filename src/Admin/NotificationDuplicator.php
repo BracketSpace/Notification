@@ -82,9 +82,7 @@ class NotificationDuplicator
 		$newNotification->setEnabled(false);
 
 		// Create duplicated Notification.
-		do_action('notification/data/save', $newNotification);
 		Db::upsert($newNotification);
-		do_action('notification/data/saved', $newNotification);
 
 		// Create duplicated WP_Post.
 		$postId = wp_insert_post(

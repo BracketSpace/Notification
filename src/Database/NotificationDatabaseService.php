@@ -99,6 +99,11 @@ class NotificationDatabaseService
 	 */
 	public static function upsert(Notification $notification)
 	{
+		/**
+		 * This action has been moved from Admin\PostType::save()
+		 */
+		do_action('notification/data/save', $notification);
+
 		// Insert main notification object.
 		DatabaseService::db()->replace(
 			self::getNotificationsTableName(),
@@ -150,6 +155,12 @@ class NotificationDatabaseService
 				]
 			);
 		}
+
+		/**
+		 * These actions has been moved from Admin\PostType::save()
+		 */
+		do_action_deprecated('notification/data/save/after', [$notification], '[Next]', 'notification/data/saved');
+		do_action('notification/data/saved', $notification);
 	}
 
 	/**

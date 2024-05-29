@@ -265,9 +265,7 @@ class PostTable
 
 			$notification->setEnabled($doaction === 'enable');
 
-			do_action('notification/data/save', $notification);
 			Db::upsert($notification);
-			do_action('notification/data/saved', $notification);
 		}
 
 		$action = sprintf('bulk_%s_notifications', $doaction);
