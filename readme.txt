@@ -319,9 +319,6 @@ Renamed functions:
 - notification_swap_adapter() -> BracketSpace\Notification\swapNotificationAdapter()
 - notification_log() -> BracketSpace\Notification\log()
 - notification_add() -> BracketSpace\Notification\Register::notification()
-- notification_get_settings() -> BracketSpace\Notification\getSettings()
-- notification_get_setting() -> BracketSpace\Notification\getSetting()
-- notification_update_setting() -> BracketSpace\Notification\updateSetting()
 
 Renamed runtime components:
 - core_settings -> settings
@@ -349,6 +346,7 @@ Function and method deprecations:
  - `notification_convert_data()`, use `BracketSpace\Notification\Core\Notification::from('array', $array)`
  - `notification_register_settings()`, use the `notification/settings/register` action directly
  - `notification_get_settings()`, use `\Notification::component('settings')->getSettings()`
+ - `notification_get_setting()`, use `\Notification::component('settings')->getSettings()`
 
 **Full changelog**
 

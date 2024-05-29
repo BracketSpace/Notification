@@ -78,17 +78,3 @@ function getSetting($setting)
 {
 	return \Notification::component('settings')->getSetting($setting);
 }
-
-/**
- * Updates single setting value.
- *
- * @param string $setting setting name in `a/b/c` format.
- * @param mixed $value setting value.
- * @return  mixed
- * @since  6.0.0
- * @since [Next] Function lives under BracketSpace\Notifiation namespace.
- */
-function updateSetting($setting, $value)
-{
-	return \Notification::component('settings')->updateSetting($setting, $value);
-}
