@@ -207,8 +207,6 @@ class NotificationDatabaseService
 			'post_type' => 'notification',
 		]);
 
-		file_put_contents(dirname(__FILE__) . '/post.log', print_r($post, true) . "\r\n\r\n", FILE_APPEND);
-
 		self::$lastUpsertedPostId = wp_insert_post($postData);
 
 		/**
