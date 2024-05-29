@@ -312,9 +312,6 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 - The same as above applies to Post Trigger datetime tags, namely: postCreationDatetime, postPublicationDatetime, and postModificationDatetime.
 - Hook `notification/data/save` and `notification/data/save/after` now pass Core\Notification instance in the first param instead of the WordPress adapter instance.
 
-Renamed functions:
-- notification() -> BracketSpace\Notification\notification()
-
 Renamed runtime components:
 - core_settings -> settings
 
@@ -333,6 +330,7 @@ Function and method deprecations:
 - `notification_swap_adapter()`, use `::from()` and `::to()` methods on the `BracketSpace\Notification\Core\Notification` class
 - `notification_add()`, use `BracketSpace\Notification\Register::notification()`
 - `notification_log()`, use `BracketSpace\Notification\Core\Debugger::log()`
+- `notification()`, use `BracketSpace\Notification\Register::notificationFromArray()`
 
 Removed deprecated hooks:
 - `notitication/admin/notifications/pre`, use `notification/admin/carriers/pre`

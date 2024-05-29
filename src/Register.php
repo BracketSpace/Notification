@@ -17,9 +17,9 @@ class Register
 	/**
 	 * Registers Notification
 	 *
+	 * @since [Next]
 	 * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
 	 * @return \BracketSpace\Notification\Core\Notification
-	 * @since  [Next]
 	 */
 	public static function notification(Core\Notification $notification)
 	{
@@ -30,6 +30,26 @@ class Register
 		do_action('notification/notification/registered', $notification);
 
 		return $notification;
+	}
+
+	/**
+	 * Creates new Notification from array
+	 *
+	 * Accepts both array with Trigger and Carriers objects or static values.
+	 *
+	 * @since [Next]
+	 * @param NotificationUnconvertedData $data Notification data.
+	 * @return \WP_Error|true
+	 */
+	public static function notificationFromArray($data = [])
+	{
+		try {
+			self::notification(Notification::from('array', $data));
+		} catch (\Throwable $e) {
+			return new \WP_Error('notification_error', $e->getMessage());
+		}
+
+		return true;
 	}
 
 	/**
