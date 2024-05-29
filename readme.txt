@@ -356,7 +356,7 @@ Removed deprecated hooks:
 * [Added] Notification converter concept, with array and JSON default converters.
 * [Added] Custom wp_notifications table (with corresponding helper tables).
 * [Changed] Notification is now saved to the custom table instead of wp_posts.
-* [Changed] Global functions moved to namespace and set as deprecated.
+* [Changed] Global functions has been deprecated and got equivalents in respective classes.
 * [Changed] Removed v6 & v7 deprecated functions.
 * [Changed] Minimum required PHP version to 7.4 or newer.
 * [Changed] WordPress Coding Standards to PSR-12 standards.
