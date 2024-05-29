@@ -45,8 +45,7 @@
 			"dependencies/"
 		],
 		"files": [
-			"compat/src-deprecated/functions.php",
-			"src/api.php"
+			"compat/src-deprecated/functions.php"
 		]
 	},
 	"autoload-dev": {
