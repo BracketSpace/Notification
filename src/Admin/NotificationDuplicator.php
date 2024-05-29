@@ -80,22 +80,12 @@ class NotificationDuplicator
 		$newNotification = clone $notification;
 		$newNotification->refreshHash();
 		$newNotification->setEnabled(false);
+		$newNotification->setTitle(sprintf('%s — duplicate', $notification->getTitle()));
 
 		// Create duplicated Notification.
 		Db::upsert($newNotification);
 
-		// Create duplicated WP_Post.
-		$postId = wp_insert_post(
-			[
-				'post_title' => $newNotification->getTitle(),
-				'post_name' => $newNotification->getHash(),
-				'post_content' => '',
-				'post_status' => 'draft',
-				'post_type' => 'notification',
-			]
-		);
-
-		wp_safe_redirect(html_entity_decode(get_edit_post_link($postId)));
+		wp_safe_redirect(html_entity_decode(get_edit_post_link(Db::getLastUpsertedPostId())));
 		exit;
 	}
 }

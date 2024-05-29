@@ -204,13 +204,18 @@ class PostType
 			return;
 		}
 
+		// Another delete process is in progress, abort.
+		if (Db::doingOperation() !== false) {
+			return;
+		}
+
 		wp_delete_post($postId, true);
 	}
 
 	/**
 	 * Removes the Notification from custom table upon WP Post deletion
 	 *
-	 * @action delete_post 100
+	 * @action after_delete_post 100
 	 *
 	 * @since [Next]
 	 * @param int $postId Post ID.
@@ -218,6 +223,11 @@ class PostType
 	 */
 	public function deleteNotification($postId)
 	{
+		// Another delete process is in progress, abort.
+		if (Db::doingOperation() !== false) {
+			return;
+		}
+
 		$notification = Db::postToNotification($postId);
 
 		if ($notification === null) {
@@ -246,6 +256,11 @@ class PostType
 	 */
 	public function save($postId, $post, $update)
 	{
+		// Another save process is in progress, abort.
+		if (Db::doingOperation() !== false) {
+			return;
+		}
+
 		if (
 			! isset($_POST['notification_data_nonce']) ||
 			! wp_verify_nonce(

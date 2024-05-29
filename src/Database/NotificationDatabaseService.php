@@ -24,6 +24,23 @@ use function BracketSpace\Notification\convertNotificationData;
 class NotificationDatabaseService
 {
 	/**
+	 * Indicates whether an operation is in progress.
+	 *
+	 * Returns string with the name of the operation
+	 * or false if no operation is in progress.
+	 *
+	 * @var false|string
+	 */
+	protected static $doingOperation = false;
+
+	/**
+	 * Last ID of the post that has been created or updated.
+	 *
+	 * @var int
+	 */
+	protected static $lastUpsertedPostId = 0;
+
+	/**
 	 * Gets the notifications table name.
 	 *
 	 * @return string The notifications table name.
@@ -51,6 +68,26 @@ class NotificationDatabaseService
 	public static function getNotificationExtrasTableName(): string
 	{
 		return DatabaseService::prefixTable('notification_extras');
+	}
+
+	/**
+	 * Checks whether save process is in progress.
+	 *
+	 * @return false|string
+	 */
+	public static function doingOperation()
+	{
+		return self::$doingOperation;
+	}
+
+	/**
+	 * Gets last upserted Post ID.
+	 *
+	 * @return int
+	 */
+	public static function getLastUpsertedPostId(): int
+	{
+		return self::$lastUpsertedPostId;
 	}
 
 	/**
@@ -88,7 +125,7 @@ class NotificationDatabaseService
 	{
 		$hash = $notification instanceof Notification ? $notification->getHash() : $notification;
 
-		return get_page_by_path($hash, OBJECT, 'post');
+		return get_page_by_path($hash, OBJECT, 'notification');
 	}
 
 	/**
@@ -99,6 +136,8 @@ class NotificationDatabaseService
 	 */
 	public static function upsert(Notification $notification)
 	{
+		self::$doingOperation = 'upsert';
+
 		/**
 		 * This action has been moved from Admin\PostType::save()
 		 */
@@ -156,11 +195,29 @@ class NotificationDatabaseService
 			);
 		}
 
+		// Handle corresponding WP Post entry
+		$post = self::notificationToPost($notification);
+
+		$postData = apply_filters('notification/data/saving/post', [
+			'ID' => $post === null ? 0 : $post->ID,
+			'post_title' => $notification->getTitle(),
+			'post_name' => $notification->getHash(),
+			'post_content' => '',
+			'post_status' => $notification->isEnabled() ? 'publish' : 'draft',
+			'post_type' => 'notification',
+		]);
+
+		file_put_contents(dirname(__FILE__) . '/post.log', print_r($post, true) . "\r\n\r\n", FILE_APPEND);
+
+		self::$lastUpsertedPostId = wp_insert_post($postData);
+
 		/**
 		 * These actions has been moved from Admin\PostType::save()
 		 */
 		do_action_deprecated('notification/data/save/after', [$notification], '[Next]', 'notification/data/saved');
 		do_action('notification/data/saved', $notification);
+
+		self::$doingOperation = false;
 	}
 
 	/**
@@ -279,6 +336,8 @@ class NotificationDatabaseService
 	 */
 	public static function delete($hash)
 	{
+		self::$doingOperation = 'delete';
+
 		DatabaseService::db()->delete(
 			self::getNotificationsTableName(),
 			[
@@ -288,6 +347,13 @@ class NotificationDatabaseService
 
 		self::deleteCarriers($hash);
 		self::deleteExtras($hash);
+
+		$post = self::notificationToPost($hash);
+		if ($post instanceof \WP_Post) {
+			wp_delete_post($post->ID, true);
+		}
+
+		self::$doingOperation = false;
 	}
 
 	/**
