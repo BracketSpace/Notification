@@ -67,24 +67,6 @@ function notification($data = [])
 }
 
 /**
- * Registers settings
- *
- * @param mixed $callback Callback for settings registration, array of string.
- * @param int $priority Action priority.
- * @return void
- * @since  6.0.0
- * @since [Next] Function lives under BracketSpace\Notifiation namespace.
- */
-function registerSettings($callback, $priority = 10)
-{
-	if (!is_callable($callback)) {
-		trigger_error('You have to pass callable while registering the settings', E_USER_ERROR);
-	}
-
-	add_action('notification/settings/register', $callback, $priority);
-}
-
-/**
  * Gets setting values
  *
  * @return mixed
@@ -93,7 +75,7 @@ function registerSettings($callback, $priority = 10)
  */
 function getSettings()
 {
-	return \Notification::component('core_settings')->getSettings();
+	return \Notification::component('settings')->getSettings();
 }
 
 /**
@@ -106,7 +88,7 @@ function getSettings()
  */
 function getSetting($setting)
 {
-	return \Notification::component('core_settings')->getSetting($setting);
+	return \Notification::component('settings')->getSetting($setting);
 }
 
 /**
@@ -120,8 +102,5 @@ function getSetting($setting)
  */
 function updateSetting($setting, $value)
 {
-	return \Notification::component('core_settings')->updateSetting(
-		$setting,
-		$value
-	);
+	return \Notification::component('settings')->updateSetting($setting, $value);
 }

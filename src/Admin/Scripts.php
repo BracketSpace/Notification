@@ -49,7 +49,7 @@ class Scripts
 			'notification/scripts/allowed_hooks',
 			[
 				\Notification::component('admin_extensions')->pageHook,
-				\Notification::component('core_settings')->pageHook,
+				\Notification::component('settings')->pageHook,
 				\Notification::component('admin_wizard')->pageHook,
 				'plugins.php',
 				'post-new.php',

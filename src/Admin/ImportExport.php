@@ -23,6 +23,8 @@ class ImportExport
 	/**
 	 * Registers Import/Export settings
 	 *
+	 * @action notification/settings/register
+	 *
 	 * @param \BracketSpace\Notification\Utils\Settings $settings Settings API object.
 	 * @return void
 	 */

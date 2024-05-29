@@ -19,7 +19,6 @@ use BracketSpace\Notification\Database\Queries\NotificationQueries;
 use function BracketSpace\Notification\notification as notificationNamespaced;
 use function BracketSpace\Notification\getSetting;
 use function BracketSpace\Notification\log;
-use function BracketSpace\Notification\registerSettings;
 use function BracketSpace\Notification\getSettings;
 use function BracketSpace\Notification\updateSetting;
 
@@ -646,7 +645,7 @@ function notification_convert_data($data = []) {
  * @deprecated [Next]
  */
 function notification_register_settings($callback, $priority = 10) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationRegisterSettings');
+	_deprecated_function( __FUNCTION__, '[Next]', 'Use the `notification/settings/register` action directly');
 
 	if (!is_callable($callback)) {
 		trigger_error(
@@ -735,22 +734,6 @@ function notification($data = [])
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\notification()');
 
 	notificationNamespaced($data);
-}
-
-/**
- * Registers settings
- *
- * @param mixed $callback Callback for settings registration, array of string.
- * @param int $priority Action priority.
- * @return void
- * @since  5.0.0
- * @deprecated [Next]
- */
-function notificationRegisterSettings($callback, $priority = 10)
-{
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\registerSettings()');
-
-	registerSettings($callback, $priority);
 }
 
 /**

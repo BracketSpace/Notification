@@ -319,8 +319,6 @@ Renamed functions:
 - notification_swap_adapter() -> BracketSpace\Notification\swapNotificationAdapter()
 - notification_log() -> BracketSpace\Notification\log()
 - notification_add() -> BracketSpace\Notification\Register::notification()
-- notification_convert_data() -> BracketSpace\Notification\Core\Notification::from('array', $array)
-- notification_register_settings() -> BracketSpace\Notification\registerSettings()
 - notification_get_settings() -> BracketSpace\Notification\getSettings()
 - notification_get_setting() -> BracketSpace\Notification\getSetting()
 - notification_update_setting() -> BracketSpace\Notification\updateSetting()
@@ -348,6 +346,8 @@ Hook depracations:
 
 Function and method deprecations:
  - `BracketSpace\Notification\Admin\PostType::getAllNotifications()`, use `BracketSpace\Notification\Database\NotificationDatabaseService::getAll()`
+ - `notification_convert_data()`, use `BracketSpace\Notification\Core\Notification::from('array', $array)`
+ - `notification_register_settings()`, use the `notification/settings/register` action directly
 
 **Full changelog**
 

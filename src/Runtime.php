@@ -280,32 +280,6 @@ class Runtime
 	{
 		$this->registerHooks();
 
-		registerSettings([$this->component('admin_settings'), 'generalSettings']);
-		registerSettings(
-			[$this->component('admin_settings'), 'triggersSettings'],
-			20
-		);
-		registerSettings(
-			[$this->component('admin_settings'), 'carriersSettings'],
-			30
-		);
-		registerSettings(
-			[$this->component('admin_settings'), 'emailsSettings'],
-			40
-		);
-		registerSettings(
-			[$this->component('admin_sync'), 'settings'],
-			50
-		);
-		registerSettings(
-			[$this->component('admin_impexp'), 'settings'],
-			60
-		);
-		registerSettings(
-			[$this->component('admin_debugging'), 'debuggingSettings'],
-			70
-		);
-
 		// DocHooks compatibility.
 		if (DocHooksHelper::is_enabled() || !$this->getFilesystem()->exists('compat/register-hooks.php')) {
 			return;
