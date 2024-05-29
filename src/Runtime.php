@@ -194,7 +194,7 @@ class Runtime
 	 * @since 7.0.0
 	 * @since [Next] It uses component aliases for backward compatibility.
 	 * @param string $name Component name.
-	 * @return mixed        Component or null
+	 * @return mixed       Component or null
 	 */
 	public function component($name)
 	{

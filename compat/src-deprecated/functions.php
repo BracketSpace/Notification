@@ -17,7 +17,6 @@ use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\Helper as DocHooksHelper;
 use BracketSpace\Notification\Database\Queries\NotificationQueries;
 use function BracketSpace\Notification\notification as notificationNamespaced;
-use function BracketSpace\Notification\getSetting;
 use function BracketSpace\Notification\log;
 
 /**
@@ -682,9 +681,9 @@ function notification_get_settings() {
  * @deprecated [Next]
  */
 function notification_get_setting($setting) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationGetSetting');
+	_deprecated_function( __FUNCTION__, '[Next]', "\Notification::component('settings')->getSettuing()");
 
-	return notificationGetSetting($setting);
+	return \Notification::component('settings')->getSetting($setting);
 }
 
 /**
@@ -698,7 +697,7 @@ function notification_get_setting($setting) {
 function notification_update_setting($setting, $value) {
 	_deprecated_function( __FUNCTION__, '[Next]', "\Notification::component('settings')->updateSetting(setting, value)");
 
-	return \Notification::component('settings')->updateSetting($setting, $value)
+	return \Notification::component('settings')->updateSetting($setting, $value);
 }
 
 /**
@@ -732,35 +731,4 @@ function notification($data = [])
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\notification()');
 
 	notificationNamespaced($data);
-}
-
-/**
- * Gets single setting value
- *
- * @param string $setting setting name in `a/b/c` format.
- * @return mixed
- * @since  5.0.0
- * @since  7.0.0 The `notifications` section has been changed to `carriers`.
- * @deprecated [Next]
- */
-function notificationGetSetting($setting)
-{
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\getSetting()');
-
-	return getSetting($setting);
-}
-
-/**
- * Updates single setting value.
- *
- * @param string $setting setting name in `a/b/c` format.
- * @param mixed $value setting value.
- * @return  mixed
- * @deprecated [Next]
- */
-function notificationUpdateSetting($setting, $value)
-{
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\updateSetting()');
-
-	return updateSetting($setting, $value);
 }

@@ -17,7 +17,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\ErrorHandler;
 use BracketSpace\Notification\Interfaces\Sendable;
 use BracketSpace\Notification\Interfaces\Triggerable;
-use function BracketSpace\Notification\getSetting;
 
 /**
  * Processor class
@@ -41,7 +40,7 @@ class Processor
 
 				$bpEnabled = apply_filters(
 					'notification/trigger/process_in_background',
-					getSetting('general/advanced/background_processing'),
+					\Notification::component('settings')->getSetting('general/advanced/background_processing'),
 					$trigger
 				);
 

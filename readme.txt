@@ -327,7 +327,8 @@ Function and method deprecations:
 - `notification_convert_data()`, use `BracketSpace\Notification\Core\Notification::from('array', $array)`
 - `notification_register_settings()`, use the `notification/settings/register` action directly
 - `notification_get_settings()`, use `\Notification::component('settings')->getSettings()`
-- `notification_get_setting()`, use `\Notification::component('settings')->getSettings()`
+- `notification_update_setting()`, use `\Notification::component('settings')->updateSetting()`
+- `notification_get_setting()`, use `\Notification::component('settings')->getSetting()`
 - `notification_adapt()`, use `BracketSpace\Notification\Core\Notification::to()`
 - `notification_adapt_from()`, use `BracketSpace\Notification\Core\Notification::from()`
 - `notification_swap_adapter()`, use `::from()` and `::to()` methods on the `BracketSpace\Notification\Core\Notification` class

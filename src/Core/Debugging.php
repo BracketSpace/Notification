@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Core;
 
 use function BracketSpace\Notification\log;
-use function BracketSpace\Notification\getSetting;
+
 /**
  * Debugging class
  */
@@ -201,7 +201,7 @@ class Debugging
 	 */
 	public function catchNotification($carrier, $trigger, $notification)
 	{
-		if (!getSetting('debugging/settings/debug_log')) {
+		if (! \Notification::component('settings')->getSetting('debugging/settings/debug_log')) {
 			return;
 		}
 
@@ -241,7 +241,7 @@ class Debugging
 		if (
 			apply_filters(
 				'notification/debug/suppress',
-				(bool)getSetting('debugging/settings/debug_suppressing'),
+				(bool)\Notification::component('settings')->getSetting('debugging/settings/debug_suppressing'),
 				$data['notification'],
 				$data['carrier'],
 				$data['trigger']

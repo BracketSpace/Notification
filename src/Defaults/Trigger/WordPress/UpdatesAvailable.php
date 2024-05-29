@@ -12,7 +12,6 @@ namespace BracketSpace\Notification\Defaults\Trigger\WordPress;
 
 use BracketSpace\Notification\Defaults\MergeTag;
 use BracketSpace\Notification\Abstracts;
-use function BracketSpace\Notification\getSetting;
 
 /**
  * WordPress Updates Available trigger class
@@ -68,7 +67,10 @@ class UpdatesAvailable extends Abstracts\Trigger
 		}
 
 		// Don't send any empty notifications unless the Setting is enabled.
-		if (!$hasUpdates && !getSetting('triggers/wordpress/updates_send_anyway')) {
+		if (
+			! $hasUpdates &&
+			! \Notification::component('settings')->getSetting('triggers/wordpress/updates_send_anyway')
+		) {
 			return false;
 		}
 	}

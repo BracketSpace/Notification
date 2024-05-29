@@ -15,7 +15,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Register;
-use function BracketSpace\Notification\getSetting;
 
 /**
  * WordPress integration class
@@ -176,8 +175,11 @@ class WordPressIntegration
 	 */
 	public function proxyTransitionCommentStatusToPublished($commentNewStatus, $commentOldStatus, $comment)
 	{
-		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-		if ($comment->comment_approved === 'spam' && getSetting('triggers/comment/akismet')) {
+		if (
+			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+			$comment->comment_approved === 'spam' &&
+			\Notification::component('settings')->getSetting('triggers/comment/akismet')
+		) {
 			return;
 		}
 

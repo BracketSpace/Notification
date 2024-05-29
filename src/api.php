@@ -26,7 +26,10 @@ use BracketSpace\Notification\Core\Notification;
  */
 function log($component, $type, $message)
 {
-	if ($type !== 'notification' && !getSetting('debugging/settings/error_log')) {
+	if (
+		$type !== 'notification' &&
+		! \Notification::component('settings')->getSetting('debugging/settings/error_log')
+	) {
 		return false;
 	}
 
@@ -64,17 +67,4 @@ function notification($data = [])
 	}
 
 	return true;
-}
-
-/**
- * Gets single setting value
- *
- * @param string $setting setting name in `a/b/c` format.
- * @return mixed
- * @since  6.0.0
- * @since [Next] Function lives under BracketSpace\Notifiation namespace.
- */
-function getSetting($setting)
-{
-	return \Notification::component('settings')->getSetting($setting);
 }

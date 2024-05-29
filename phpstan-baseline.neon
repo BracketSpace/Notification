@@ -466,7 +466,22 @@ parameters:
 			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
 
 		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 1
+			path: compat/src-deprecated/functions.php
+
+		-
+			message: "#^Cannot call method getSettings\\(\\) on mixed\\.$#"
+			count: 1
+			path: compat/src-deprecated/functions.php
+
+		-
 			message: "#^Cannot call method parse_value\\(\\) on mixed\\.$#"
+			count: 1
+			path: compat/src-deprecated/functions.php
+
+		-
+			message: "#^Cannot call method updateSetting\\(\\) on mixed\\.$#"
 			count: 1
 			path: compat/src-deprecated/functions.php
 
@@ -528,6 +543,11 @@ parameters:
 		-
 			message: "#^Cannot access offset 'type' on mixed\\.$#"
 			count: 1
+			path: src/Abstracts/Carrier.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 2
 			path: src/Abstracts/Carrier.php
 
 		-
@@ -601,6 +621,11 @@ parameters:
 			path: src/Abstracts/Recipient.php
 
 		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Abstracts/Trigger.php
+
+		-
 			message: "#^Cannot call method getSlug\\(\\) on mixed\\.$#"
 			count: 2
 			path: src/Abstracts/Trigger.php
@@ -619,6 +644,11 @@ parameters:
 			message: "#^Cannot call method getEndpoint\\(\\) on mixed\\.$#"
 			count: 1
 			path: src/Admin/CheckRestApi.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 2
+			path: src/Admin/Debugging.php
 
 		-
 			message: "#^Cannot call method removeLogs\\(\\) on mixed\\.$#"
@@ -971,14 +1001,19 @@ parameters:
 			path: src/Api/Controller/SelectInputController.php
 
 		-
-			message: "#^Parameter \\#1 \\$schedule of method BracketSpace\\\\Notification\\\\Core\\\\Cron\\:\\:schedule\\(\\) expects string, mixed given\\.$#"
-			count: 2
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 1
 			path: src/Core/Cron.php
 
 		-
 			message: "#^Parameter \\#1 \\$timestamp of function wp_unschedule_event expects int, int\\|false given\\.$#"
 			count: 1
 			path: src/Core/Cron.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 2
+			path: src/Core/Debugging.php
 
 		-
 			message: "#^Cannot cast mixed to string\\.$#"
@@ -1071,6 +1106,11 @@ parameters:
 			path: src/Core/Notification.php
 
 		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Core/Processor.php
+
+		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Resolver\\:\\:clear\\(\\) should return string but returns string\\|null\\.$#"
 			count: 1
 			path: src/Core/Resolver.php
@@ -1126,6 +1166,11 @@ parameters:
 			path: src/Defaults/Carrier/Email.php
 
 		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 8
+			path: src/Defaults/Carrier/Email.php
+
+		-
 			message: "#^Cannot access offset 'hide' on mixed\\.$#"
 			count: 1
 			path: src/Defaults/Carrier/Webhook.php
@@ -1138,6 +1183,11 @@ parameters:
 		-
 			message: "#^Cannot access offset 'value' on mixed\\.$#"
 			count: 1
+			path: src/Defaults/Carrier/Webhook.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 2
 			path: src/Defaults/Carrier/Webhook.php
 
 		-
@@ -1158,6 +1208,11 @@ parameters:
 		-
 			message: "#^Cannot access offset 'value' on mixed\\.$#"
 			count: 1
+			path: src/Defaults/Carrier/WebhookJson.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 2
 			path: src/Defaults/Carrier/WebhookJson.php
 
 		-
@@ -1651,6 +1706,11 @@ parameters:
 			path: src/Defaults/Trigger/Comment/CommentAdded.php
 
 		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Comment/CommentAdded.php
+
+		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Comment/CommentAdded.php
@@ -1661,6 +1721,11 @@ parameters:
 			path: src/Defaults/Trigger/Comment/CommentApproved.php
 
 		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Comment/CommentApproved.php
+
+		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Comment/CommentApproved.php
@@ -1681,6 +1746,11 @@ parameters:
 			path: src/Defaults/Trigger/Comment/CommentReplied.php
 
 		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Comment/CommentReplied.php
+
+		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Comment/CommentReplied.php
@@ -1691,6 +1761,11 @@ parameters:
 			path: src/Defaults/Trigger/Comment/CommentSpammed.php
 
 		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Comment/CommentSpammed.php
+
+		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Comment/CommentSpammed.php
@@ -1698,6 +1773,11 @@ parameters:
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
 			count: 2
+			path: src/Defaults/Trigger/Comment/CommentTrashed.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 1
 			path: src/Defaults/Trigger/Comment/CommentTrashed.php
 
 		-
@@ -1722,6 +1802,11 @@ parameters:
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/Comment/CommentUnapproved.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/Comment/CommentUnapproved.php
 
@@ -1971,6 +2056,11 @@ parameters:
 			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
 
 		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
+
+		-
 			message: "#^Parameter \\#1 \\$updateType of method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\WordPress\\\\UpdatesAvailable\\:\\:getUpdatesCount\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
@@ -1986,9 +2076,24 @@ parameters:
 			path: src/ErrorHandler.php
 
 		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 14
+			path: src/Integration/WordPressEmails.php
+
+		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Integration\\\\WordPressEmails\\:\\:getSettingForUserRole\\(\\) is unused\\.$#"
 			count: 1
 			path: src/Integration/WordPressEmails.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Integration/WordPressIntegration.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 2
+			path: src/Repository/CarrierRepository.php
 
 		-
 			message: "#^Parameter \\#1 \\$carrier of static method BracketSpace\\\\Notification\\\\Register\\:\\:carrier\\(\\) expects BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable, mixed given\\.$#"
@@ -2001,103 +2106,8 @@ parameters:
 			path: src/Repository/Converter/ArrayConverter.php
 
 		-
-			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
-			count: 3
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$commentType of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentAdded constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$commentType of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentApproved constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$commentType of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentPublished constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$commentType of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentReplied constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$commentType of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentSpammed constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$commentType of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrashed constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$commentType of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentUnapproved constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$postType of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostAdded constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$postType of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostApproved constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$postType of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostDrafted constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$postType of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostPending constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$postType of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostPublished constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$postType of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostPublishedPrivately constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$postType of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostScheduled constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$postType of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrashed constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$postType of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostUpdated constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$taxonomy of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermAdded constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$taxonomy of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermDeleted constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/TriggerRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$taxonomy of class BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Taxonomy\\\\TermUpdated constructor expects string, mixed given\\.$#"
-			count: 1
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 9
 			path: src/Repository/TriggerRepository.php
 
 		-
@@ -2327,16 +2337,6 @@ parameters:
 
 		-
 			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/api.php
-
-		-
-			message: "#^Cannot call method getSettings\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/api.php
-
-		-
-			message: "#^Cannot call method updateSetting\\(\\) on mixed\\.$#"
 			count: 1
 			path: src/api.php
 

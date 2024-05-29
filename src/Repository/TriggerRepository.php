@@ -12,7 +12,6 @@ namespace BracketSpace\Notification\Repository;
 
 use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Defaults\Trigger;
-use function BracketSpace\Notification\getSetting;
 
 /**
  * Trigger Repository.
@@ -28,11 +27,11 @@ class TriggerRepository
 
 		self::registerTaxonomyTriggers();
 
-		if (getSetting('triggers/user/enable')) {
+		if (\Notification::component('settings')->getSetting('triggers/user/enable')) {
 			self::registerUserTriggers();
 		}
 
-		if (getSetting('triggers/media/enable')) {
+		if (\Notification::component('settings')->getSetting('triggers/media/enable')) {
 			self::registerMediaTriggers();
 		}
 
@@ -40,15 +39,15 @@ class TriggerRepository
 
 		self::registerWpTriggers();
 
-		if (getSetting('triggers/plugin/enable')) {
+		if (\Notification::component('settings')->getSetting('triggers/plugin/enable')) {
 			self::registerPluginTriggers();
 		}
 
-		if (getSetting('triggers/theme/enable')) {
+		if (\Notification::component('settings')->getSetting('triggers/theme/enable')) {
 			self::registerThemeTriggers();
 		}
 
-		if (!getSetting('triggers/privacy/enable')) {
+		if (!\Notification::component('settings')->getSetting('triggers/privacy/enable')) {
 			return;
 		}
 
@@ -60,7 +59,7 @@ class TriggerRepository
 	 */
 	public static function registerPostTriggers()
 	{
-		$postTypes = getSetting('triggers/post_types/types');
+		$postTypes = \Notification::component('settings')->getSetting('triggers/post_types/types');
 
 		if (!$postTypes) {
 			return;
@@ -84,7 +83,7 @@ class TriggerRepository
 	 */
 	public static function registerTaxonomyTriggers()
 	{
-		$taxonomies = getSetting('triggers/taxonomies/types');
+		$taxonomies = \Notification::component('settings')->getSetting('triggers/taxonomies/types');
 
 		if (!$taxonomies) {
 			return;
@@ -129,7 +128,7 @@ class TriggerRepository
 	 */
 	public static function registerCommentTriggers()
 	{
-		$commentTypes = getSetting('triggers/comment/types');
+		$commentTypes = \Notification::component('settings')->getSetting('triggers/comment/types');
 
 		if (!$commentTypes) {
 			return;
@@ -151,7 +150,7 @@ class TriggerRepository
 	 */
 	public static function registerWpTriggers()
 	{
-		if (getSetting('triggers/wordpress/updates')) {
+		if (\Notification::component('settings')->getSetting('triggers/wordpress/updates')) {
 			Register::trigger(new Trigger\WordPress\UpdatesAvailable());
 		}
 
