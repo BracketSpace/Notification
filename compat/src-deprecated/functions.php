@@ -598,21 +598,6 @@ function notification_add(\BracketSpace\Notification\Core\Notification $notifica
 }
 
 /**
- * Adds Notification to Store
- *
- * @since  6.0.0
- * @deprecated [Next]
- * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
- * @return void
- */
-function notificationAdd(\BracketSpace\Notification\Core\Notification $notification)
-{
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Register::notification()');
-
-	Register::notification($notification);
-}
-
-/**
  * Converts the static data to Trigger and Carrier objects
  *
  * If no `trigger` nor `carriers` keys are available it does nothing.
