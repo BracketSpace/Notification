@@ -198,14 +198,17 @@ class NotificationDatabaseService
 		// Handle corresponding WP Post entry
 		$post = self::notificationToPost($notification);
 
-		$postData = apply_filters('notification/data/saving/post', [
-			'ID' => $post === null ? 0 : $post->ID,
-			'post_title' => $notification->getTitle(),
-			'post_name' => $notification->getHash(),
-			'post_content' => '',
-			'post_status' => $notification->isEnabled() ? 'publish' : 'draft',
-			'post_type' => 'notification',
-		]);
+		$postData = apply_filters(
+			'notification/data/saving/post',
+			[
+				'ID' => $post === null ? 0 : $post->ID,
+				'post_title' => $notification->getTitle(),
+				'post_name' => $notification->getHash(),
+				'post_content' => '',
+				'post_status' => $notification->isEnabled() ? 'publish' : 'draft',
+				'post_type' => 'notification',
+			]
+		);
 
 		self::$lastUpsertedPostId = wp_insert_post($postData);
 
