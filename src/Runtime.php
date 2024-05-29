@@ -191,12 +191,29 @@ class Runtime
 	/**
 	 * Gets runtime component
 	 *
+	 * @since 7.0.0
+	 * @since [Next] It uses component aliases for backward compatibility.
 	 * @param string $name Component name.
 	 * @return mixed        Component or null
-	 * @since  7.0.0
 	 */
 	public function component($name)
 	{
+		$aliases = [
+			'core_settings' => 'settings',
+		];
+
+		if (isset($aliases[$name])) {
+			$newName = $aliases[$name];
+
+			_deprecated_argument(
+				__METHOD__,
+				'[Next]',
+				sprintf('You used deprecated `%s` component name, use `%s` instead', $name, $newName)
+			);
+
+			$name = $newName;
+		}
+
 		return $this->components[$name] ?? null;
 	}
 
@@ -223,7 +240,7 @@ class Runtime
 		$this->addComponent('core_cron', new Core\Cron());
 		$this->addComponent('core_whitelabel', new Core\Whitelabel());
 		$this->addComponent('core_debugging', new Core\Debugging());
-		$this->addComponent('core_settings', new Core\Settings());
+		$this->addComponent('settings', new Core\Settings());
 		$this->addComponent('core_upgrade', new Core\Upgrade());
 		$this->addComponent('core_sync', new Core\Sync());
 		$this->addComponent('core_binder', new Core\Binder());

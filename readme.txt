@@ -325,6 +325,9 @@ Renamed functions:
 - notification_get_setting() -> BracketSpace\Notification\getSetting()
 - notification_update_setting() -> BracketSpace\Notification\updateSetting()
 
+Renamed runtime components:
+- core_settings -> settings
+
 Removed deprecated hooks:
 - `notitication/admin/notifications/pre`, use `notification/admin/carriers/pre`
 - `notitication/admin/notifications`, use `notification/admin/carriers`
@@ -362,6 +365,7 @@ Function and method deprecations:
 * [Changed] Trigger dropdown is now taller for better UX.
 * [Changed] Notification table is now filtered from uneccessary columns.
 * [Changed] Multiple function, method and hook deprecations, see above for detailed list and replacements.
+* [Changed] Runtime components names, see above for detailed list and replacements.
 * [Fixed] Shortcodes being uncorrectly stripped leaving closing "]" behind.
 * [Fixed] PHP 8.2 deprecations.
 * [Fixed] Stripping shortcodes in carrier fields.
