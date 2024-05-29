@@ -16,7 +16,6 @@ use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Database\NotificationDatabaseService;
 use BracketSpace\Notification\Utils\Settings\CoreFields;
 use BracketSpace\Notification\Utils\Settings\Fields as SpecificFields;
-use BracketSpace\Notification\Database\Queries\NotificationQueries;
 use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
 
 /**
@@ -120,7 +119,7 @@ class Sync
 	 */
 	public function loadNotificationToJson($hash)
 	{
-		$notification = NotificationQueries::withHash($hash);
+		$notification = NotificationDatabaseService::get($hash);
 
 		if ($notification === null) {
 			return;
@@ -147,11 +146,7 @@ class Sync
 				if ($notification->getHash() === $hash) {
 					NotificationDatabaseService::upsert($notification);
 
-					/**
-					 * Get post edit link from freshly inserted notification
-					 * @todo 3mp4ad
-					 */
-					return get_edit_post_link(0, 'admin');
+					return get_edit_post_link(NotificationDatabaseService::getLastUpsertedPostId(), 'admin');
 				}
 			} catch (\Throwable $e) {
 				// Do nothing.

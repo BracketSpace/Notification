@@ -451,6 +451,11 @@ parameters:
 			path: compat/src-deprecated/Adapter/WordPress.php
 
 		-
+			message: "#^Parameter \\#1 \\$args of function get_posts expects array\\{numberposts\\?\\: int, category\\?\\: int\\|string, include\\?\\: array\\<int\\>, exclude\\?\\: array\\<int\\>, suppress_filters\\?\\: bool, attachment_id\\?\\: int, author\\?\\: int\\|string, author_name\\?\\: string, \\.\\.\\.\\}\\|null, array\\{posts_per_page\\: \\-1, post_type\\: 'notification', post_status\\?\\: array\\{'publish', 'draft'\\}, suppress_filters\\?\\: 0\\} given\\.$#"
+			count: 1
+			path: compat/src-deprecated/Database/Queries/NotificationQueries.php
+
+		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:add\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
@@ -1139,11 +1144,6 @@ parameters:
 			message: "#^Parameter \\#3 \\$subject of function preg_replace expects array\\|string, mixed given\\.$#"
 			count: 1
 			path: src/Core/Upgrade.php
-
-		-
-			message: "#^Parameter \\#1 \\$args of function get_posts expects array\\{numberposts\\?\\: int, category\\?\\: int\\|string, include\\?\\: array\\<int\\>, exclude\\?\\: array\\<int\\>, suppress_filters\\?\\: bool, attachment_id\\?\\: int, author\\?\\: int\\|string, author_name\\?\\: string, \\.\\.\\.\\}\\|null, array\\{posts_per_page\\: \\-1, post_type\\: 'notification', post_status\\?\\: array\\{'publish', 'draft'\\}, suppress_filters\\?\\: 0\\} given\\.$#"
-			count: 1
-			path: src/Database/Queries/NotificationQueries.php
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Database\\\\Queries\\\\UserQueries\\:\\:all\\(\\) should return array\\<int, array\\{ID\\: string, user_email\\: string, display_name\\: string\\}\\> but returns mixed\\.$#"

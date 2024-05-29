@@ -12,11 +12,11 @@ use BracketSpace\Notification\Core\Resolver;
 use BracketSpace\Notification\Core\Sync;
 use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Core\Whitelabel;
+use BracketSpace\Notification\Database\NotificationDatabaseService;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\Helper as DocHooksHelper;
-use BracketSpace\Notification\Database\Queries\NotificationQueries;
 
 /**
  * Helper function.
@@ -118,9 +118,9 @@ function notification_filesystem( $deprecated ) {
  * @return     array
  */
 function notification_get_posts( $trigger_slug = null, $all = false ) {
-	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Database\\Queries\\NotificationQueries::all()' );
+	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Database\\NotificationDatabaseService::getAll()' );
 
-	return NotificationQueries::all( $all );
+	return NotificationDatabaseService::getAll();
 }
 
 /**
@@ -132,9 +132,9 @@ function notification_get_posts( $trigger_slug = null, $all = false ) {
  * @return     mixed        null or Notification object
  */
 function notification_get_post_by_hash( $hash ) {
-	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Database\\Queries\\NotificationQueries::with_hash()' );
+	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Database\\NotificationDatabaseService::get()' );
 
-	return NotificationQueries::withHash( $hash );
+	return NotificationDatabaseService::get( $hash );
 }
 
 /**

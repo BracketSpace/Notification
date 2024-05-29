@@ -370,6 +370,7 @@ Removed deprecated hooks:
 * [Fixed] Email carrier header "From" prioritized over header in settings.
 * [Fixed] User password reset link requires encoded username.
 * [Removed] DOING_NOTIFICATION_SAVE constant.
+* [Removed] NotificationQueries class in favor of NotificationDatabaseService.
 
 == Upgrade Notice ==
 

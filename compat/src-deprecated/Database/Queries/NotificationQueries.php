@@ -15,9 +15,19 @@ use BracketSpace\Notification\Database\NotificationDatabaseService as Db;
 
 /**
  * Notification Queries class
+ *
+ * @deprecated [Next]
  */
 class NotificationQueries
 {
+	/**
+	 * Class constructor
+	 */
+	public function __construct()
+	{
+		notification_deprecated_class( __CLASS__, '[Next]' );
+	}
+
 	/**
 	 * Gets Notification posts.
 	 *

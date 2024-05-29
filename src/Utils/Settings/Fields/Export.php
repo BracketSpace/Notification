@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Utils\Settings\Fields;
 
 use BracketSpace\Notification\Core\Templates;
-use BracketSpace\Notification\Database\Queries\NotificationQueries;
+use BracketSpace\Notification\Database\NotificationDatabaseService;
 
 /**
  * Export class
@@ -35,7 +35,7 @@ class Export
 		Templates::render(
 			'export/notifications',
 			[
-				'notifications' => NotificationQueries::all(true),
+				'notifications' => NotificationDatabaseService::getAll(),
 				'download_link' => $downloadLink,
 			]
 		);

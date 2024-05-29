@@ -10,11 +10,10 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Utils\Settings\Fields;
 
-use BracketSpace\Notification\Admin\PostType;
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Sync as CoreSync;
 use BracketSpace\Notification\Core\Templates;
-use BracketSpace\Notification\Database\Queries\NotificationQueries;
+use BracketSpace\Notification\Database\NotificationDatabaseService;
 
 /**
  * SyncTable class
@@ -30,18 +29,15 @@ class SyncTable
 	public function input($field)
 	{
 		// Get all Notifications.
-		$wpJsonNotifiactions = PostType::getAllNotifications();
+		$wpNotifiactions = NotificationDatabaseService::getAll();
 		$jsonNotifications = CoreSync::getAllJson();
 		$collection = [];
 
 		// Load the WP Notifications first.
-		foreach ($wpJsonNotifiactions as $notification) {
-			/**
-			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null
-			 */
-			$notificationAdapter = NotificationQueries::withHash($notification->getHash());
+		foreach ($wpNotifiactions as $notification) {
+			$post = NotificationDatabaseService::notificationToPost($notification);
 
-			if ($notificationAdapter === null) {
+			if ($post === null) {
 				continue;
 			}
 
@@ -49,7 +45,7 @@ class SyncTable
 				'source' => 'WordPress',
 				'has_json' => false,
 				'up_to_date' => false,
-				'post_id' => $notificationAdapter->getId(),
+				'post_id' => $post->ID,
 				'notification' => $notification,
 			];
 		}
