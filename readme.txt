@@ -314,14 +314,24 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 Renamed functions:
 - notification() -> BracketSpace\Notification\notification()
-- notification_adapt() -> BracketSpace\Notification\adaptNotification()
-- notification_adapt_from() -> BracketSpace\Notification\adaptNotificationFrom()
-- notification_swap_adapter() -> BracketSpace\Notification\swapNotificationAdapter()
 - notification_log() -> BracketSpace\Notification\log()
-- notification_add() -> BracketSpace\Notification\Register::notification()
 
 Renamed runtime components:
 - core_settings -> settings
+
+Hook depracations:
+- `notification/data/save/after`, use `notification/data/saved`
+
+Function and method deprecations:
+- `BracketSpace\Notification\Admin\PostType::getAllNotifications()`, use `BracketSpace\Notification\Database\NotificationDatabaseService::getAll()`
+- `notification_convert_data()`, use `BracketSpace\Notification\Core\Notification::from('array', $array)`
+- `notification_register_settings()`, use the `notification/settings/register` action directly
+- `notification_get_settings()`, use `\Notification::component('settings')->getSettings()`
+- `notification_get_setting()`, use `\Notification::component('settings')->getSettings()`
+- `notification_adapt()`, use `BracketSpace\Notification\Core\Notification::to()`
+- `notification_adapt_from()`, use `BracketSpace\Notification\Core\Notification::from()`
+- `notification_swap_adapter()`, use `::from()` and `::to()` methods on the `BracketSpace\Notification\Core\Notification` class
+- `notification_add()`, use `BracketSpace\Notification\Register::notification()`
 
 Removed deprecated hooks:
 - `notitication/admin/notifications/pre`, use `notification/admin/carriers/pre`
@@ -337,16 +347,6 @@ Removed deprecated hooks:
 - `notification/webhook/args`, use `notification/carrier/webhook/args`
 - `notification/webhook/args/{$type}`, use `notification/carrier/webhook/args/{$type}`
 - `notification/notification/form_fields/values`, use `notification/carrier/fields/values`
-
-Hook depracations:
-- `notification/data/save/after`, use `notification/data/saved`
-
-Function and method deprecations:
- - `BracketSpace\Notification\Admin\PostType::getAllNotifications()`, use `BracketSpace\Notification\Database\NotificationDatabaseService::getAll()`
- - `notification_convert_data()`, use `BracketSpace\Notification\Core\Notification::from('array', $array)`
- - `notification_register_settings()`, use the `notification/settings/register` action directly
- - `notification_get_settings()`, use `\Notification::component('settings')->getSettings()`
- - `notification_get_setting()`, use `\Notification::component('settings')->getSettings()`
 
 **Full changelog**
 
