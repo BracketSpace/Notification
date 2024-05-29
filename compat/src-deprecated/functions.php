@@ -6,6 +6,7 @@
  */
 
 use BracketSpace\Notification\Admin\Wizard;
+use BracketSpace\Notification\Core\Debugging;
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Resolver;
 use BracketSpace\Notification\Core\Sync;
@@ -17,7 +18,6 @@ use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\Helper as DocHooksHelper;
 use BracketSpace\Notification\Database\Queries\NotificationQueries;
 use function BracketSpace\Notification\notification as notificationNamespaced;
-use function BracketSpace\Notification\log;
 
 /**
  * Helper function.
@@ -571,17 +571,17 @@ function notification_swap_adapter($newAdapterName, Interfaces\Adaptable $adapte
 /**
  * Logs the message in database
  *
+ * @since  6.0.0
+ * @deprecated [Next]
  * @param string $component Component nice name, like `Core` or `Any Plugin Name`.
  * @param string $type Log type, values: notification|error|warning.
  * @param string $message Log formatted message.
  * @return bool|\WP_Error
- * @since  6.0.0
- * @deprecated [Next]
  */
 function notification_log($component, $type, $message) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationLog');
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Core\\Debugging::log()');
 
-	return notificationLog($component, $type, $message);
+	return Debugging::log($component, $type, $message);
 }
 
 /**
@@ -699,24 +699,6 @@ function notification_update_setting($setting, $value) {
 
 	return \Notification::component('settings')->updateSetting($setting, $value);
 }
-
-/**
- * Logs the message in database
- *
- * @param string $component Component nice name, like `Core` or `Any Plugin Name`.
- * @param string $type Log type, values: notification|error|warning.
- * @param string $message Log formatted message.
- * @return bool|\WP_Error
- * @since  6.0.0
- * @deprecated [Next]
- */
-function notificationLog($component, $type, $message)
-{
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\log()');
-
-	return log($component, $type, $message);
-}
-
 
 /**
  * Creates new Notification from array

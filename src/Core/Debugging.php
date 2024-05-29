@@ -10,8 +10,6 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 
-use function BracketSpace\Notification\log;
-
 /**
  * Debugging class
  */
@@ -41,6 +39,39 @@ class Debugging
 		global $wpdb;
 
 		$this->logsTable = $wpdb->prefix . 'notification_logs';
+	}
+
+	/**
+	 * Logs the message in database
+	 *
+	 * @since [Next]
+	 * @param string $component Component nice name, like `Core` or `Any Plugin Name`.
+	 * @param string $type Log type, values: notification|error|warning.
+	 * @param string $message Log formatted message.
+	 * @return bool|\WP_Error
+	 */
+	public static function log($component, $type, $message)
+	{
+		if (
+			$type !== 'notification' &&
+			! \Notification::component('settings')->getSetting('debugging/settings/error_log')
+		) {
+			return false;
+		}
+
+		$debugger = \Notification::component('core_debugging');
+
+		$logData = [
+			'component' => $component,
+			'type' => $type,
+			'message' => $message,
+		];
+
+		try {
+			return $debugger->addLog($logData);
+		} catch (\Throwable $e) {
+			return new \WP_Error('wrong_log_data', $e->getMessage());
+		}
 	}
 
 	/**
@@ -231,7 +262,8 @@ class Debugging
 				'name' => $trigger->getName(),
 			],
 		];
-		log(
+
+		self::log(
 			'Core',
 			'notification',
 			(string)wp_json_encode($data)

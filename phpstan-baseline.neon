@@ -1011,8 +1011,13 @@ parameters:
 			path: src/Core/Cron.php
 
 		-
+			message: "#^Cannot call method addLog\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Core/Debugging.php
+
+		-
 			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 2
+			count: 3
 			path: src/Core/Debugging.php
 
 		-
@@ -2329,16 +2334,6 @@ parameters:
 			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\WpObjectHelper\\:\\:getCommentTypes\\(\\) should return array\\<string, string\\> but returns mixed\\.$#"
 			count: 1
 			path: src/Utils/WpObjectHelper.php
-
-		-
-			message: "#^Cannot call method addLog\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/api.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/api.php
 
 		-
 			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"

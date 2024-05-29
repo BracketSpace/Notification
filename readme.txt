@@ -314,7 +314,6 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 Renamed functions:
 - notification() -> BracketSpace\Notification\notification()
-- notification_log() -> BracketSpace\Notification\log()
 
 Renamed runtime components:
 - core_settings -> settings
@@ -333,6 +332,7 @@ Function and method deprecations:
 - `notification_adapt_from()`, use `BracketSpace\Notification\Core\Notification::from()`
 - `notification_swap_adapter()`, use `::from()` and `::to()` methods on the `BracketSpace\Notification\Core\Notification` class
 - `notification_add()`, use `BracketSpace\Notification\Register::notification()`
+- `notification_log()`, use `BracketSpace\Notification\Core\Debugger::log()`
 
 Removed deprecated hooks:
 - `notitication/admin/notifications/pre`, use `notification/admin/carriers/pre`

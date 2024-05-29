@@ -15,40 +15,6 @@ namespace BracketSpace\Notification;
 use BracketSpace\Notification\Core\Notification;
 
 /**
- * Logs the message in database
- *
- * @param string $component Component nice name, like `Core` or `Any Plugin Name`.
- * @param string $type Log type, values: notification|error|warning.
- * @param string $message Log formatted message.
- * @return bool|\WP_Error
- * @since  6.0.0
- * @since [Next] Function lives under BracketSpace\Notifiation namespace.
- */
-function log($component, $type, $message)
-{
-	if (
-		$type !== 'notification' &&
-		! \Notification::component('settings')->getSetting('debugging/settings/error_log')
-	) {
-		return false;
-	}
-
-	$debugger = \Notification::component('core_debugging');
-
-	$logData = [
-		'component' => $component,
-		'type' => $type,
-		'message' => $message,
-	];
-
-	try {
-		return $debugger->addLog($logData);
-	} catch (\Throwable $e) {
-		return new \WP_Error('wrong_log_data', $e->getMessage());
-	}
-}
-
-/**
  * Creates new Notification from array
  *
  * Accepts both array with Trigger and Carriers objects or static values.
