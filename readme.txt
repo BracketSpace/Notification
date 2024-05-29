@@ -306,6 +306,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 **Compatibility Breaking Changes**
 
+- Notifications are now saved into the custom table instead of relying on wp_posts.
 - Class methods and properties has been changed from snake_case to camelCase.
 - In Post Triggers, dynamic property `$trigger->{$post_type}` has been replaced with static prop `$trigger->post`.
 - The same as above applies to Post Trigger datetime tags, namely: postCreationDatetime, postPublicationDatetime, and postModificationDatetime.
@@ -350,6 +351,8 @@ Function and method deprecations:
 * [Added] New trigger after user confirms his new email address.
 * [Added] New trigger after admin confirms new site email address.
 * [Added] notification/admin/allow_column/$column filter.
+* [Added] Custom wp_notifications table (with corresponding helper tables).
+* [Changed] Notification is now saved to the custom table instead of wp_posts.
 * [Changed] Global functions moved to namespace and set as deprecated.
 * [Changed] Removed v6 & v7 deprecated functions.
 * [Changed] Minimum required PHP version to 7.4 or newer.
