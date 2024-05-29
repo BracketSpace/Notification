@@ -44,7 +44,7 @@ class Register
 	public static function notificationFromArray($data = [])
 	{
 		try {
-			self::notification(Notification::from('array', $data));
+			self::notification(Core\Notification::from('array', $data));
 		} catch (\Throwable $e) {
 			return new \WP_Error('notification_error', $e->getMessage());
 		}
