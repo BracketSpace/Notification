@@ -219,16 +219,17 @@ class PostType
 	 *
 	 * @since [Next]
 	 * @param int $postId Post ID.
+	 * @param \WP_Post $post WP Post object.
 	 * @return void
 	 */
-	public function deleteNotification($postId)
+	public function deleteNotification($postId, $post)
 	{
 		// Another delete process is in progress, abort.
 		if (Db::doingOperation() !== false) {
 			return;
 		}
 
-		$notification = Db::postToNotification($postId);
+		$notification = Db::postToNotification($post);
 
 		if ($notification === null) {
 			return;
