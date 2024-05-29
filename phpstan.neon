@@ -25,6 +25,17 @@ parameters:
 				version?: int,
 			}
 		'''
+		NotificationUnconvertedData: '''
+			array{
+				hash?: string,
+				title?: string,
+				trigger?: BracketSpace\Notification\Interfaces\Triggerable|string,
+				carriers?: array<string,BracketSpace\Notification\Interfaces\Sendable|array<string,mixed>>,
+				enabled?: bool,
+				extras?: array<string, array<mixed>|bool|float|int|string>,
+				version?: int,
+			}
+		'''
 	excludePaths:
 		- dependencies/
 		- src/Utils/EDDUpdater.php

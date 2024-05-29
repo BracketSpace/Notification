@@ -14,7 +14,6 @@ namespace BracketSpace\Notification\Database;
 
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Store\Notification as NotificationStore;
-use function BracketSpace\Notification\convertNotificationData;
 
 /**
  * This class describes a notification database service.
@@ -301,7 +300,7 @@ class NotificationDatabaseService
 			[]
 		);
 
-		return new Notification(convertNotificationData($notificationData));
+		return Notification::from('array', $notificationData);
 	}
 
 	/**

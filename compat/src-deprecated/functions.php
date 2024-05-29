@@ -19,7 +19,6 @@ use BracketSpace\Notification\Database\Queries\NotificationQueries;
 use function BracketSpace\Notification\notification as notificationNamespaced;
 use function BracketSpace\Notification\getSetting;
 use function BracketSpace\Notification\log;
-use function BracketSpace\Notification\convertNotificationData;
 use function BracketSpace\Notification\registerSettings;
 use function BracketSpace\Notification\getSettings;
 use function BracketSpace\Notification\updateSetting;
@@ -630,9 +629,11 @@ function notificationAdd(\BracketSpace\Notification\Core\Notification $notificat
  * @deprecated [Next]
  */
 function notification_convert_data($data = []) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationConvertData');
+	_deprecated_function( __FUNCTION__, '[Next]', "Bracketspace\\Notification\\Core\\Notification::from('array', ...)");
 
-	return notificationConvertData($data);
+	$notification = Notification::from('array', $data);
+
+	return (array)$notification->to('array');
 }
 
 /**
@@ -734,24 +735,6 @@ function notification($data = [])
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\notification()');
 
 	notificationNamespaced($data);
-}
-
-/**
- * Converts the static data to Trigger and Carrier objects
- *
- * If no `trigger` nor `carriers` keys are available it does nothing.
- * If the data is already in form of objects it does nothing.
- *
- * @param array<mixed> $data Notification static data.
- * @return array<mixed>       Converted data.
- * @since  6.0.0
- * @deprecated [Next]
- */
-function notificationConvertData($data = [])
-{
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\convertNotificationData()');
-
-	return convertNotificationData($data);
 }
 
 /**

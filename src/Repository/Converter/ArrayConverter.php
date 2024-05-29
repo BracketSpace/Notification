@@ -10,15 +10,15 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Repository\Converter;
 
 use BracketSpace\Notification\Core\Notification;
-use BracketSpace\Notification\Interfaces\Convertable;
-use function BracketSpace\Notification\convertNotificationData;
+use BracketSpace\Notification\Interfaces;
+use BracketSpace\Notification\Store;
 
 /**
  * Array Converter class
  *
  * @since [Next]
  */
-class ArrayConverter implements Convertable
+class ArrayConverter implements Interfaces\Convertable
 {
 	/**
 	 * Creates Notification from a specific representation
@@ -26,12 +26,41 @@ class ArrayConverter implements Convertable
 	 * @filter notification/from/array
 	 *
 	 * @since [Next]
-	 * @param NotificationData $data The notification representation
+	 * @param NotificationUnconvertedData $data The notification representation
 	 * @return Notification
 	 */
 	public function from($data): Notification
 	{
-		return new Notification(convertNotificationData($data));
+		// Trigger conversion.
+		if (!empty($data['trigger']) && !($data['trigger'] instanceof Interfaces\Triggerable)) {
+			$data['trigger'] = Store\Trigger::get($data['trigger']);
+		}
+
+		// Carriers conversion.
+		if (isset($data['carriers'])) {
+			$carriers = [];
+
+			foreach ($data['carriers'] as $carrierSlug => $carrierData) {
+				if ($carrierData instanceof Interfaces\Sendable) {
+					$carriers[$carrierSlug] = $carrierData;
+					continue;
+				}
+
+				$registeredCarrier = Store\Carrier::get($carrierSlug);
+
+				if (empty($registeredCarrier)) {
+					continue;
+				}
+
+				$carrier = clone $registeredCarrier;
+				$carrier->setData($carrierData);
+				$carriers[$carrierSlug] = $carrier;
+			}
+
+			$data['carriers'] = $carriers;
+		}
+
+		return new Notification($data);
 	}
 
 	/**

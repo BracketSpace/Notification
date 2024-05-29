@@ -11,7 +11,6 @@ namespace BracketSpace\Notification\Repository\Converter;
 
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Interfaces\Convertable;
-use function BracketSpace\Notification\convertNotificationData;
 
 /**
  * JSON Converter class
@@ -43,7 +42,7 @@ class JsonConverter implements Convertable
 			throw $invalidException;
 		}
 
-		return new Notification(convertNotificationData((array)$jsonData));
+		return Notification::from('array', (array)$jsonData);
 	}
 
 	/**

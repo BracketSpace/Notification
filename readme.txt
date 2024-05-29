@@ -319,7 +319,7 @@ Renamed functions:
 - notification_swap_adapter() -> BracketSpace\Notification\swapNotificationAdapter()
 - notification_log() -> BracketSpace\Notification\log()
 - notification_add() -> BracketSpace\Notification\Register::notification()
-- notification_convert_data() -> BracketSpace\Notification\convertNotificationData()
+- notification_convert_data() -> BracketSpace\Notification\Core\Notification::from('array', $array)
 - notification_register_settings() -> BracketSpace\Notification\registerSettings()
 - notification_get_settings() -> BracketSpace\Notification\getSettings()
 - notification_get_setting() -> BracketSpace\Notification\getSetting()
@@ -352,6 +352,7 @@ Function and method deprecations:
 * [Added] New trigger after user confirms his new email address.
 * [Added] New trigger after admin confirms new site email address.
 * [Added] notification/admin/allow_column/$column filter.
+* [Added] Notification converter concept, with array and JSON default converters.
 * [Added] Custom wp_notifications table (with corresponding helper tables).
 * [Changed] Notification is now saved to the custom table instead of wp_posts.
 * [Changed] Global functions moved to namespace and set as deprecated.

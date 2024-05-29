@@ -411,6 +411,11 @@ parameters:
 			path: compat/register-hooks.php
 
 		-
+			message: "#^Parameter \\#1 \\$data of method BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:setup\\(\\) expects array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, carriers\\?\\: array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\}, array given\\.$#"
+			count: 1
+			path: compat/src-deprecated/Abstracts/Adapter.php
+
+		-
 			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|null given\\.$#"
 			count: 1
 			path: compat/src-deprecated/Adapter/JSON.php
@@ -431,7 +436,7 @@ parameters:
 			path: compat/src-deprecated/Adapter/WordPress.php
 
 		-
-			message: "#^Parameter \\#1 \\$data of function BracketSpace\\\\Notification\\\\convertNotificationData expects array, array\\<string, array\\<string, array\\|bool\\|BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\|float\\|int\\|string\\>\\|bool\\|BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable\\|int\\|string\\>\\|null given\\.$#"
+			message: "#^Parameter \\#1 \\$data of function notification_convert_data expects array, array\\<string, array\\<string, array\\|bool\\|BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\|float\\|int\\|string\\>\\|bool\\|BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable\\|int\\|string\\>\\|null given\\.$#"
 			count: 1
 			path: compat/src-deprecated/Adapter/WordPress.php
 
@@ -1989,6 +1994,11 @@ parameters:
 			message: "#^Parameter \\#1 \\$carrier of static method BracketSpace\\\\Notification\\\\Register\\:\\:carrier\\(\\) expects BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable, mixed given\\.$#"
 			count: 3
 			path: src/Repository/CarrierRepository.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of class BracketSpace\\\\Notification\\\\Core\\\\Notification constructor expects array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, carriers\\?\\: array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\}, array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable\\|string\\|null, carriers\\?\\: array\\<string, array\\<string, mixed\\>\\|BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\} given\\.$#"
+			count: 1
+			path: src/Repository/Converter/ArrayConverter.php
 
 		-
 			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"

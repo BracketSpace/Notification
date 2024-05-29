@@ -52,63 +52,18 @@ function log($component, $type, $message)
  *
  * @since  6.0.0
  * @since [Next] Function lives under BracketSpace\Notifiation namespace.
- * @param NotificationData $data Notification data.
+ * @param NotificationUnconvertedData $data Notification data.
  * @return \WP_Error | true
  */
 function notification($data = [])
 {
 	try {
-		Register::notification(new Notification(convertNotificationData($data)));
+		Register::notification(Notification::from('array', $data));
 	} catch (\Throwable $e) {
 		return new \WP_Error('notification_error', $e->getMessage());
 	}
 
 	return true;
-}
-
-/**
- * Converts the static data to Trigger and Carrier objects
- *
- * If no `trigger` nor `carriers` keys are available it does nothing.
- * If the data is already in form of objects it does nothing.
- *
- * @param array<mixed> $data Notification static data.
- * @return NotificationData Converted data.
- * @since  6.0.0
- * @since [Next] Function lives under BracketSpace\Notifiation namespace.
- */
-function convertNotificationData($data = [])
-{
-	// Trigger conversion.
-	if (!empty($data['trigger']) && !($data['trigger'] instanceof Interfaces\Triggerable)) {
-		$data['trigger'] = Store\Trigger::get($data['trigger']);
-	}
-
-	// Carriers conversion.
-	if (isset($data['carriers'])) {
-		$carriers = [];
-
-		foreach ($data['carriers'] as $carrierSlug => $carrierData) {
-			if ($carrierData instanceof Interfaces\Sendable) {
-				$carriers[$carrierSlug] = $carrierData;
-				continue;
-			}
-
-			$registeredCarrier = Store\Carrier::get($carrierSlug);
-
-			if (empty($registeredCarrier)) {
-				continue;
-			}
-
-			$carrier = clone $registeredCarrier;
-			$carrier->setData($carrierData);
-			$carriers[$carrierSlug] = $carrier;
-		}
-
-		$data['carriers'] = $carriers;
-	}
-
-	return $data;
 }
 
 /**
