@@ -318,7 +318,7 @@ Renamed functions:
 - notification_adapt_from() -> BracketSpace\Notification\adaptNotificationFrom()
 - notification_swap_adapter() -> BracketSpace\Notification\swapNotificationAdapter()
 - notification_log() -> BracketSpace\Notification\log()
-- notification_add() -> BracketSpace\Notification\addNotification()
+- notification_add() -> BracketSpace\Notification\Register::notification()
 - notification_convert_data() -> BracketSpace\Notification\convertNotificationData()
 - notification_register_settings() -> BracketSpace\Notification\registerSettings()
 - notification_get_settings() -> BracketSpace\Notification\getSettings()

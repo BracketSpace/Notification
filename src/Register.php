@@ -15,6 +15,24 @@ namespace BracketSpace\Notification;
 class Register
 {
 	/**
+	 * Registers Notification
+	 *
+	 * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
+	 * @return \BracketSpace\Notification\Core\Notification
+	 * @since  [Next]
+	 */
+	public static function notification(Core\Notification $notification)
+	{
+		Store\Notification::insert(
+			$notification->getHash(),
+			$notification
+		);
+		do_action('notification/notification/registered', $notification);
+
+		return $notification;
+	}
+
+	/**
 	 * Registers Carrier
 	 *
 	 * @param \BracketSpace\Notification\Interfaces\Sendable $carrier Carrier object.

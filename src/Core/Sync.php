@@ -13,7 +13,7 @@ namespace BracketSpace\Notification\Core;
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
 use BracketSpace\Notification\Database\NotificationDatabaseService as Db;
-use function BracketSpace\Notification\addNotification;
+use BracketSpace\Notification\Register;
 
 /**
  * Sync class
@@ -87,7 +87,7 @@ class Sync
 				$notification = Notification::from('json', $json);
 
 				if ($notification->isEnabled()) {
-					addNotification($notification);
+					Register::notification($notification);
 				}
 			} catch (\Throwable $e) {
 				// Do nothing.

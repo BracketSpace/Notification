@@ -14,6 +14,7 @@ use BracketSpace\Notification\Database\NotificationDatabaseService;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 use BracketSpace\Notification\Interfaces\Triggerable;
+use BracketSpace\Notification\Register;
 use function BracketSpace\Notification\getSetting;
 
 /**
@@ -52,7 +53,7 @@ class WordPressIntegration
 		 */
 		$notifications = $cache->collect(static fn() => NotificationDatabaseService::getAll());
 
-		array_map('BracketSpace\Notification\addNotification', $notifications);
+		array_map([Register::class, 'notification'], $notifications);
 	}
 
 	/**

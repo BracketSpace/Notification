@@ -26,7 +26,6 @@ use BracketSpace\Notification\Core\Notification;
  */
 function log($component, $type, $message)
 {
-
 	if ($type !== 'notification' && !getSetting('debugging/settings/error_log')) {
 		return false;
 	}
@@ -51,38 +50,20 @@ function log($component, $type, $message)
  *
  * Accepts both array with Trigger and Carriers objects or static values.
  *
- * @param NotificationData $data Notification data.
- * @return \WP_Error | true
  * @since  6.0.0
  * @since [Next] Function lives under BracketSpace\Notifiation namespace.
+ * @param NotificationData $data Notification data.
+ * @return \WP_Error | true
  */
 function notification($data = [])
 {
-
 	try {
-		addNotification(new Notification(convertNotificationData($data)));
+		Register::notification(new Notification(convertNotificationData($data)));
 	} catch (\Throwable $e) {
 		return new \WP_Error('notification_error', $e->getMessage());
 	}
 
 	return true;
-}
-
-/**
- * Adds Notification to Store
- *
- * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
- * @return void
- * @since  6.0.0
- * @since [Next] Function lives under BracketSpace\Notifiation namespace.
- */
-function addNotification(Notification $notification)
-{
-	Store\Notification::insert(
-		$notification->getHash(),
-		$notification
-	);
-	do_action('notification/notification/registered', $notification);
 }
 
 /**
@@ -141,7 +122,6 @@ function convertNotificationData($data = [])
  */
 function registerSettings($callback, $priority = 10)
 {
-
 	if (!is_callable($callback)) {
 		trigger_error('You have to pass callable while registering the settings', E_USER_ERROR);
 	}

@@ -16,10 +16,9 @@ use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\Helper as DocHooksHelper;
 use BracketSpace\Notification\Database\Queries\NotificationQueries;
-use function BracketSpace\Notification\notification;
+use function BracketSpace\Notification\notification as notificationNamespaced;
 use function BracketSpace\Notification\getSetting;
 use function BracketSpace\Notification\log;
-use function BracketSpace\Notification\addNotification;
 use function BracketSpace\Notification\convertNotificationData;
 use function BracketSpace\Notification\registerSettings;
 use function BracketSpace\Notification\getSettings;
@@ -593,22 +592,30 @@ function notification_log($component, $type, $message) {
 /**
  * Adds Notification to Store
  *
- * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
- * @return void
  * @since  6.0.0
  * @deprecated [Next]
+ * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
+ * @return void
  */
 function notification_add(\BracketSpace\Notification\Core\Notification $notification) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationAdd');
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Register::notification()');
 
-	Store\Notification::insert(
-		$notification->getHash(),
-		$notification
-	);
-	do_action(
-		'notification/notification/registered',
-		$notification
-	);
+	Register::notification($notification);
+}
+
+/**
+ * Adds Notification to Store
+ *
+ * @since  6.0.0
+ * @deprecated [Next]
+ * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
+ * @return void
+ */
+function notificationAdd(\BracketSpace\Notification\Core\Notification $notification)
+{
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Register::notification()');
+
+	Register::notification($notification);
 }
 
 /**
@@ -713,20 +720,6 @@ function notificationLog($component, $type, $message)
 	return log($component, $type, $message);
 }
 
-/**
- * Adds Notification to Store
- *
- * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
- * @return void
- * @since  6.0.0
- * @deprecated [Next]
- */
-function notificationAdd(\BracketSpace\Notification\Core\Notification $notification)
-{
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\addNotification()');
-
-	addNotification($notification);
-}
 
 /**
  * Creates new Notification from array
@@ -740,9 +733,8 @@ function notification($data = [])
 {
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\notification()');
 
-	notification($data);
+	notificationNamespaced($data);
 }
-
 
 /**
  * Converts the static data to Trigger and Carrier objects
