@@ -134,7 +134,7 @@ class Settings
 	/**
 	 * Registers Triggers settings
 	 *
-	 * @action notification/settings/register
+	 * @action notification/settings/register 20
 	 *
 	 * @param \BracketSpace\Notification\Utils\Settings $settings Settings API object.
 	 * @return void
@@ -349,7 +349,7 @@ class Settings
 	/**
 	 * Registers Carrier settings
 	 *
-	 * @action notification/settings/register
+	 * @action notification/settings/register 30
 	 *
 	 * @param \BracketSpace\Notification\Utils\Settings $settings Settings API object.
 	 * @return void
@@ -484,7 +484,7 @@ class Settings
 	/**
 	 * Registers Emails settings
 	 *
-	 * @action notification/settings/register
+	 * @action notification/settings/register 40
 	 *
 	 * @param \BracketSpace\Notification\Utils\Settings $settings Settings API object.
 	 * @return void

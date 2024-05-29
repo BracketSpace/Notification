@@ -22,7 +22,7 @@ class Debugging
 	/**
 	 * Registers Debugging settings
 	 *
-	 * @action notification/settings/register
+	 * @action notification/settings/register 70
 	 *
 	 * @param \BracketSpace\Notification\Utils\Settings $settings Settings API object.
 	 * @return void
