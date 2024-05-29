@@ -313,6 +313,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 - Hook `notification/data/save` and `notification/data/save/after` now pass Core\Notification instance in the first param instead of the WordPress adapter instance.
 
 Renamed functions:
+- notification() -> BracketSpace\Notification\notification()
 - notification_adapt() -> BracketSpace\Notification\adaptNotification()
 - notification_adapt_from() -> BracketSpace\Notification\adaptNotificationFrom()
 - notification_swap_adapter() -> BracketSpace\Notification\swapNotificationAdapter()

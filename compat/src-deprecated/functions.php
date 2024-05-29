@@ -16,6 +16,7 @@ use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\Helper as DocHooksHelper;
 use BracketSpace\Notification\Database\Queries\NotificationQueries;
+use function BracketSpace\Notification\notification;
 use function BracketSpace\Notification\getSetting;
 use function BracketSpace\Notification\log;
 use function BracketSpace\Notification\addNotification;
@@ -725,6 +726,21 @@ function notificationAdd(\BracketSpace\Notification\Core\Notification $notificat
 	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\addNotification()');
 
 	addNotification($notification);
+}
+
+/**
+ * Creates new Notification from array
+ *
+ * @param NotificationData $data Notification data.
+ * @return void
+ * @since  6.0.0
+ * @deprecated [Next]
+ */
+function notification($data = [])
+{
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\notification()');
+
+	notification($data);
 }
 
 
