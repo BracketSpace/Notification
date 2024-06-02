@@ -26,7 +26,7 @@ class Upgrade
 	 *
 	 * @var int
 	 */
-	public static $dataVersion = 2;
+	public static $dataVersion = 3;
 
 	/**
 	 * Version of database tables
@@ -302,10 +302,8 @@ class Upgrade
 		);
 
 		foreach ($notifications as $notificationRaw) {
-			$data = json_decode(
-				$notificationRaw->postContent,
-				true
-			);
+			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+			$data = json_decode($notificationRaw->post_content, true);
 
 			$data['trigger'] = preg_replace(
 				array_keys($this->triggerSlugReplacements()),
@@ -337,5 +335,41 @@ class Upgrade
 			['%s'],
 			['%s']
 		);
+	}
+
+	/**
+	 * Upgrades data to v3.
+	 * - 1. Moves the notifications to custom table.
+	 *
+	 * @since [Next]
+	 * @return void
+	 */
+	public function upgradeToV3()
+	{
+		$db = DatabaseService::db();
+
+		// 1. Moves the notifications to custom table.
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$notifications = (array)$db->get_results(
+			"SELECT p.ID, p.post_content
+			FROM {$db->posts} p
+			WHERE p.post_type = 'notification' AND p.post_content<>''"
+		);
+
+		foreach ($notifications as $notificationRaw) {
+			try {
+				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+				$notification = Notification::from('json', $notificationRaw->post_content);
+			} catch (\Throwable $e) {
+				continue;
+			}
+
+			if (! $notification instanceof Notification) {
+				continue;
+			}
+
+			NotificationDatabaseService::upsert($notification);
+		}
 	}
 }
