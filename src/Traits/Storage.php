@@ -41,20 +41,18 @@ trait Storage
 	/**
 	 * Inserts an item at a specific index.
 	 *
+	 * @since 8.0.0
+	 * @since [Next] Has third `$replace` param
 	 * @param int|string $index Item index.
 	 * @param TItem $item Item to add.
+	 * @param bool $replace If should be replaced if exists, default: false.
 	 * @return void
-	 * @since  8.0.0
 	 */
-	public static function insert($index, $item)
+	public static function insert($index, $item, $replace = false)
 	{
-		if (static::has($index)) {
+		if (static::has($index) && $replace === false) {
 			ErrorHandler::error(
-				sprintf(
-					'Item at index %s in %s Store already exists.',
-					$index,
-					self::class
-				)
+				sprintf('Item at index %s in %s Store already exists.', $index, self::class)
 			);
 
 			return;
