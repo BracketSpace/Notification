@@ -336,15 +336,6 @@ class Wizard
 
 			NotificationDatabaseService::upsert($notification);
 		}
-
-		/**
-		 * @todo 3mp4ad
-		 * This cache should be cleared in Adapter save method.
-		 * Now it's used in Admin\PostType::save() as well
-		 */
-		$cache = new CacheDriver\ObjectCache('notification');
-		$cache->set_key('notifications');
-		$cache->delete();
 	}
 
 	/**
