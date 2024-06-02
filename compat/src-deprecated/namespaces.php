@@ -33,6 +33,10 @@ spl_autoload_register(function ($class) {
 
 			$newClass = str_replace($oldNamespace, $newNamespace, $class);
 
+			if (! class_exists($newClass)) {
+				break;
+			}
+
 			notification_deprecated_class($class, $version, $newClass);
 
 			class_alias($newClass, $class);
