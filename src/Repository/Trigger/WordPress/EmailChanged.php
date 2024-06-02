@@ -96,6 +96,7 @@ class EmailChanged extends Abstracts\Trigger
 		$this->addMergeTag(new MergeTag\User\UserFirstName());
 		$this->addMergeTag(new MergeTag\User\UserLastName());
 		$this->addMergeTag(new MergeTag\User\UserNicename());
+		$this->addMergeTag(new MergeTag\User\UserNickname());
 
 		$this->addMergeTag(
 			new MergeTag\EmailTag(

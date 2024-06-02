@@ -114,6 +114,17 @@ class MediaTrashed extends MediaTrigger
 		);
 
 		$this->addMergeTag(
+			new MergeTag\User\UserNickname(
+				[
+					'slug' => 'attachment_trashing_user_nickname',
+					'name' => __('Attachment trashing user nickname', 'notification'),
+					'property_name' => 'trashing_user',
+					'group' => __('Trashing user', 'notification'),
+				]
+			)
+		);
+
+		$this->addMergeTag(
 			new MergeTag\User\UserDisplayName(
 				[
 					'slug' => 'attachment_trashing_user_display_name',

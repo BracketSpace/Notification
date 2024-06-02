@@ -1711,6 +1711,11 @@ parameters:
 			path: src/Repository/MergeTag/User/UserNicename.php
 
 		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserNickname.php
+
+		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\User\\\\UserPasswordResetLink\\:\\:\\$keyPropertyName \\(string\\) does not accept mixed\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/User/UserPasswordResetLink.php

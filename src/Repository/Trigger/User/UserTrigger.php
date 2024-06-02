@@ -70,6 +70,7 @@ abstract class UserTrigger extends Abstracts\Trigger
 		$this->addMergeTag(new MergeTag\User\UserLogin());
 		$this->addMergeTag(new MergeTag\User\UserEmail());
 		$this->addMergeTag(new MergeTag\User\UserRole());
+		$this->addMergeTag(new MergeTag\User\UserNickname());
 		$this->addMergeTag(new MergeTag\User\Avatar());
 
 		$this->addMergeTag(

@@ -356,6 +356,7 @@ Removed deprecated hooks:
 * [Added] notification/admin/allow_column/$column filter.
 * [Added] Notification converter concept, with array and JSON default converters.
 * [Added] Custom wp_notifications table (with corresponding helper tables).
+* [Added] User nickname merge tag.
 * [Changed] Notification is now saved to the custom table instead of wp_posts.
 * [Changed] Global functions has been deprecated and got equivalents in respective classes.
 * [Changed] Removed v6 & v7 deprecated functions.

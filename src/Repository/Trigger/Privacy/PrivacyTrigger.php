@@ -121,6 +121,16 @@ abstract class PrivacyTrigger extends Abstracts\Trigger
 		);
 
 		$this->addMergeTag(
+			new MergeTag\User\UserNickname(
+				[
+					'slug' => 'data_owner_nickname',
+					'name' => __('Data owner nickname', 'notification'),
+					'group' => __('Data owner', 'notification'),
+				]
+			)
+		);
+
+		$this->addMergeTag(
 			new MergeTag\User\UserDisplayName(
 				[
 					'slug' => 'data_owner_display_name',

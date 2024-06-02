@@ -349,6 +349,19 @@ abstract class CommentTrigger extends Abstracts\Trigger
 		);
 
 		$this->addMergeTag(
+			new MergeTag\User\UserNickname(
+				[
+					'slug' => 'post_author_user_nickname',
+					// Translators: singular post name.
+					'name' => sprintf(__('%s author user nickname', 'notification'), __('Post', 'notification')),
+					'property_name' => 'post_author',
+					// Translators: Post type name.
+					'group' => sprintf(__('%s author', 'notification'), $postTypeName),
+				]
+			)
+		);
+
+		$this->addMergeTag(
 			new MergeTag\User\UserDisplayName(
 				[
 					'slug' => 'post_author_user_display_name',
