@@ -61,9 +61,14 @@ class Register
 	 */
 	public static function notificationIfNewer(Core\Notification $notification)
 	{
-		$exNotification = Store\Notification::get($notification->getHash());
+		if (Store\Notification::has($notification->getHash())) {
+			$exNotification = Store\Notification::get($notification->getHash());
 
-		if ($exNotification instanceof Core\Notification) {
+			if (! $exNotification instanceof Core\Notification) {
+				// Something went wrong, just insert the notification.
+				Store\Notification::insert($notification->getHash(), $notification);
+			}
+
 			// Existing Notification is newer or the same, do nothing.
 			if (version_compare((string)$exNotification->getVersion(), (string)$notification->getVersion(), '>=')) {
 				return $exNotification;
