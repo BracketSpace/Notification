@@ -114,7 +114,7 @@ interface Sendable extends Nameable
 	 * Gets the recipients field
 	 * Calls the field closure.
 	 *
-	 * @return \BracketSpace\Notification\Defaults\Field\RecipientsField|null
+	 * @return \BracketSpace\Notification\Repository\Field\RecipientsField|null
 	 * @since  8.0.0
 	 */
 	public function getRecipientsField();

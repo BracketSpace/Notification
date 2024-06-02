@@ -1,6 +1,6 @@
 <?php
 /**
- * Register defaults.
+ * Register Repository.
  *
  * @package notification
  */

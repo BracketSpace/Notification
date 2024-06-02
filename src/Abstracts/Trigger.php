@@ -212,7 +212,7 @@ abstract class Trigger implements Triggerable
 	public function addQuickMergeTag($propertyName, $label, $group = null)
 	{
 		return $this->addMergeTag(
-			new \BracketSpace\Notification\Defaults\MergeTag\StringTag(
+			new \BracketSpace\Notification\Repository\MergeTag\StringTag(
 				[
 					'slug' => $propertyName,
 					'name' => $label,

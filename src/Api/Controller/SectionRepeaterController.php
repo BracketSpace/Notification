@@ -86,7 +86,7 @@ class SectionRepeaterController extends RepeaterController
 	{
 		$values = $this->getValues($this->postId, $this->carrier, $this->field) ?? [];
 
-		/** @var \BracketSpace\Notification\Defaults\Field\SectionRepeater */
+		/** @var \BracketSpace\Notification\Repository\Field\SectionRepeater */
 		$field = $this->getCarrierFields();
 
 		$populatedSections = $this->getSectionsFields($field->sections);
