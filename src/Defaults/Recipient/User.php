@@ -12,7 +12,7 @@ namespace BracketSpace\Notification\Defaults\Recipient;
 
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\Field;
-use BracketSpace\Notification\Queries\UserQueries;
+use BracketSpace\Notification\Database\Queries\UserQueries;
 
 /**
  * User recipient

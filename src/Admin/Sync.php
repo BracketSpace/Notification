@@ -10,14 +10,13 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 
+use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Sync as CoreSync;
 use BracketSpace\Notification\Core\Templates;
+use BracketSpace\Notification\Database\NotificationDatabaseService;
 use BracketSpace\Notification\Utils\Settings\CoreFields;
 use BracketSpace\Notification\Utils\Settings\Fields as SpecificFields;
 use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
-use BracketSpace\Notification\Queries\NotificationQueries;
-use function BracketSpace\Notification\adaptNotificationFrom;
-use function BracketSpace\Notification\swapNotificationAdapter;
 
 /**
  * Sync class
@@ -27,6 +26,8 @@ class Sync
 	/**
 	 * Registers synchronization settings
 	 * Hooks into the Import / Export settings.
+	 *
+	 * @action notification/settings/register 50
 	 *
 	 * @param \BracketSpace\Notification\Utils\Settings $settings Settings API object.
 	 * @return void
@@ -47,11 +48,10 @@ class Sync
 				],
 				'render' => [new CoreFields\Message(), 'input'],
 				'sanitize' => [new CoreFields\Message(), 'sanitize'],
-				'description' => __('Bulk actions for the table below.'),
 			]
 		);
 
-		if (!CoreSync::isSyncing()) {
+		if (! CoreSync::isSyncing()) {
 			return;
 		}
 
@@ -118,10 +118,7 @@ class Sync
 	 */
 	public function loadNotificationToJson($hash)
 	{
-		/**
-		 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null
-		 */
-		$notification = NotificationQueries::withHash($hash);
+		$notification = NotificationDatabaseService::get($hash);
 
 		if ($notification === null) {
 			return;
@@ -143,22 +140,12 @@ class Sync
 
 		foreach ($jsonNotifications as $json) {
 			try {
-				/**
-				 * JSON Adapter
-				 *
-				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
-				 */
-				$jsonAdapter = adaptNotificationFrom('JSON', $json);
+				$notification = Notification::from('json', $json);
 
-				if ($jsonAdapter->getHash() === $hash) {
-					/**
-					 * WordPress Adapter
-					 *
-					 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
-					 */
-					$wpAdapter = swapNotificationAdapter('WordPress', $jsonAdapter);
-					$wpAdapter->save();
-					return get_edit_post_link($wpAdapter->getId(), 'admin');
+				if ($notification->getHash() === $hash) {
+					NotificationDatabaseService::upsert($notification);
+
+					return get_edit_post_link(NotificationDatabaseService::getLastUpsertedPostId(), 'admin');
 				}
 			} catch (\Throwable $e) {
 				// Do nothing.

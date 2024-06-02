@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Traits;
 
-use function BracketSpace\Notification\log;
+use BracketSpace\Notification\Core\Debugging;
 
 /**
  * Webhook trait
@@ -58,7 +58,7 @@ trait Webhook
 		$response = wp_remote_request($url, $remoteArgs);
 
 		if (is_wp_error($response)) {
-			log(
+			Debugging::log(
 				$this->getName(),
 				'error',
 				// phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
@@ -76,7 +76,7 @@ trait Webhook
 		$code = wp_remote_retrieve_response_code($response);
 
 		if ($code < 200 || $code >= 300) {
-			log(
+			Debugging::log(
 				$this->getName(),
 				'warning',
 				// phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged

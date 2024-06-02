@@ -10,11 +10,10 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Defaults\Carrier;
 
-use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Core\Debugging;
 use BracketSpace\Notification\Defaults\Field;
-use function BracketSpace\Notification\log;
-use function BracketSpace\Notification\getSetting;
+use BracketSpace\Notification\Interfaces\Triggerable;
 
 /**
  * Email Carrier
@@ -59,8 +58,8 @@ class Email extends Abstracts\Carrier
 			)
 		);
 
-		$bodyField = getSetting('carriers/email/type') === 'html' &&
-					!getSetting(
+		$bodyField = \Notification::component('settings')->getSetting('carriers/email/type') === 'html' &&
+					! \Notification::component('settings')->getSetting(
 						'carriers/email/unfiltered_html'
 					)
 			? new Field\EditorField(
@@ -88,7 +87,7 @@ class Email extends Abstracts\Carrier
 
 		$this->addRecipientsField();
 
-		if (!getSetting('carriers/email/headers')) {
+		if (! \Notification::component('settings')->getSetting('carriers/email/headers')) {
 			return;
 		}
 
@@ -139,66 +138,31 @@ class Email extends Abstracts\Carrier
 	 */
 	public function send(Triggerable $trigger)
 	{
-		$defaultHtmlMime = getSetting('carriers/email/type') === 'html';
-		$htmlMime = apply_filters_deprecated(
-			'notification/email/use_html_mime',
-			[$defaultHtmlMime, $this, $trigger],
-			'6.0.0',
-			'notification/carrier/email/use_html_mime'
-		);
-
-		$htmlMime = apply_filters('notification/carrier/email/use_html_mime', $htmlMime, $this, $trigger);
+		$defaultHtmlMime = \Notification::component('settings')->getSetting('carriers/email/type') === 'html';
+		$htmlMime = apply_filters('notification/carrier/email/use_html_mime', $defaultHtmlMime, $this, $trigger);
 
 		if ($htmlMime) {
-			add_filter(
-				'wp_mail_content_type',
-				[$this, 'setMailType']
-			);
+			add_filter('wp_mail_content_type', [$this, 'setMailType']);
 		}
 
 		$data = $this->data;
 
-		$recipients = apply_filters_deprecated(
-			'notification/email/recipients',
-			[$data['parsed_recipients'], $this, $trigger],
-			'6.0.0',
-			'notification/carrier/email/recipients'
+		$recipients = apply_filters(
+			'notification/carrier/email/recipients',
+			$data['parsed_recipients'],
+			$this,
+			$trigger
 		);
-		$recipients = apply_filters('notification/carrier/email/recipients', $recipients, $this, $trigger);
 
-		$subject = apply_filters_deprecated(
-			'notification/email/subject',
-			[$data['subject'], $this, $trigger],
-			'6.0.0',
-			'notification/carrier/email/subject'
-		);
-		$subject = apply_filters('notification/carrier/email/subject', $subject, $this, $trigger);
+		$subject = apply_filters('notification/carrier/email/subject', $data['subject'], $this, $trigger);
 
-		$message = apply_filters_deprecated(
-			'notification/email/message/pre',
-			[$data['body'], $this, $trigger],
-			'6.0.0',
-			'notification/carrier/email/message/pre'
-		);
-		$message = apply_filters('notification/carrier/email/message/pre', $message, $this, $trigger);
+		$message = apply_filters('notification/carrier/email/message/pre', $data['body'], $this, $trigger);
 
-		$useAutop = apply_filters_deprecated(
-			'notification/email/message/use_autop',
-			[$htmlMime, $this, $trigger],
-			'6.0.0',
-			'notification/carrier/email/message/use_autop'
-		);
-		$useAutop = apply_filters('notification/carrier/email/message/use_autop', $useAutop, $this, $trigger);
+		$useAutop = apply_filters('notification/carrier/email/message/use_autop', $htmlMime, $this, $trigger);
 		if ($useAutop) {
 			$message = wpautop($message);
 		}
 
-		$message = apply_filters_deprecated(
-			'notification/email/message',
-			[$message, $this, $trigger],
-			'6.0.0',
-			'notification/carrier/email/message'
-		);
 		$message = apply_filters('notification/carrier/email/message', $message, $this, $trigger);
 
 		// Fix for wp_mail not being processed with empty message.
@@ -213,40 +177,21 @@ class Email extends Abstracts\Carrier
 			$headers[] = $fromHeader;
 		}
 
-		if (getSetting('carriers/email/headers') && !empty($data['headers'])) {
+		if (\Notification::component('settings')->getSetting('carriers/email/headers') && !empty($data['headers'])) {
 			foreach ($data['headers'] as $header) {
 				$headers[] = $header['key'] . ': ' . $header['value'];
 			}
 		}
 
-		$headers = apply_filters_deprecated(
-			'notification/email/headers',
-			[$headers, $this, $trigger],
-			'6.0.0',
-			'notification/carrier/email/headers'
-		);
 		$headers = apply_filters('notification/carrier/email/headers', $headers, $this, $trigger);
-
-		$attachments = apply_filters_deprecated(
-			'notification/email/attachments',
-			[[], $this, $trigger],
-			'6.0.0',
-			'notification/carrier/email/attachments'
-		);
-		$attachments = apply_filters('notification/carrier/email/attachments', $attachments, $this, $trigger);
+		$attachments = apply_filters('notification/carrier/email/attachments', [], $this, $trigger);
 
 		$errors = [];
 
 		// Fire an email one by one.
 		foreach ($recipients as $to) {
 			try {
-				wp_mail(
-					$to,
-					$subject,
-					$message,
-					$headers,
-					$attachments
-				);
+				wp_mail($to, $subject, $message, $headers, $attachments);
 			} catch (\Throwable $e) {
 				if (!isset($errors[$e->getMessage()])) {
 					$errors[$e->getMessage()] = [
@@ -259,7 +204,7 @@ class Email extends Abstracts\Carrier
 		}
 
 		foreach ($errors as $error => $errorData) {
-			log(
+			Debugging::log(
 				$this->getName(),
 				'error',
 				// phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
@@ -298,7 +243,7 @@ class Email extends Abstracts\Carrier
 	 **/
 	public function allowUnfilteredHtmlBody($carrierData, $rawData)
 	{
-		if (getSetting('carriers/email/unfiltered_html')) {
+		if (\Notification::component('settings')->getSetting('carriers/email/unfiltered_html')) {
 			$carrierData['body'] = $rawData['body'];
 		}
 
@@ -313,9 +258,9 @@ class Email extends Abstracts\Carrier
 	protected function getFromHeaderSetting()
 	{
 		/** @var string $fromName */
-		$fromName = getSetting('carriers/email/from_name');
+		$fromName = \Notification::component('settings')->getSetting('carriers/email/from_name');
 		/** @var string $fromEmail */
-		$fromEmail = getSetting('carriers/email/from_email');
+		$fromEmail = \Notification::component('settings')->getSetting('carriers/email/from_email');
 
 		return sprintf('From: %s <%s>', $fromName, $fromEmail);
 	}

@@ -15,6 +15,79 @@ namespace BracketSpace\Notification;
 class Register
 {
 	/**
+	 * Registers Notification
+	 *
+	 * @since [Next]
+	 * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
+	 * @return \BracketSpace\Notification\Core\Notification
+	 */
+	public static function notification(Core\Notification $notification)
+	{
+		Store\Notification::insert(
+			$notification->getHash(),
+			$notification
+		);
+		do_action('notification/notification/registered', $notification);
+
+		return $notification;
+	}
+
+	/**
+	 * Creates new Notification from array
+	 *
+	 * Accepts both array with Trigger and Carriers objects or static values.
+	 *
+	 * @since [Next]
+	 * @param NotificationUnconvertedData $data Notification data.
+	 * @return \WP_Error|true
+	 */
+	public static function notificationFromArray($data = [])
+	{
+		try {
+			self::notification(Core\Notification::from('array', $data));
+		} catch (\Throwable $e) {
+			return new \WP_Error('notification_error', $e->getMessage());
+		}
+
+		return true;
+	}
+
+	/**
+	 * Registers Notification if newer version is provided or doesn't exist at all
+	 *
+	 * @since [Next]
+	 * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
+	 * @return \BracketSpace\Notification\Core\Notification
+	 */
+	public static function notificationIfNewer(Core\Notification $notification)
+	{
+		if (Store\Notification::has($notification->getHash())) {
+			$exNotification = Store\Notification::get($notification->getHash());
+
+			if (! $exNotification instanceof Core\Notification) {
+				// Something went wrong, just insert the notification.
+				Store\Notification::insert($notification->getHash(), $notification);
+				return $notification;
+			}
+
+			// Existing Notification is newer or the same, do nothing.
+			if (version_compare((string)$exNotification->getVersion(), (string)$notification->getVersion(), '>=')) {
+				return $exNotification;
+			}
+
+			// Notification is newer, replace it in the store.
+			Store\Notification::insert($notification->getHash(), $notification, true);
+
+			return $notification;
+		}
+
+		// Notification doesn't exist in store, just insert it.
+		Store\Notification::insert($notification->getHash(), $notification);
+
+		return $notification;
+	}
+
+	/**
 	 * Registers Carrier
 	 *
 	 * @param \BracketSpace\Notification\Interfaces\Sendable $carrier Carrier object.

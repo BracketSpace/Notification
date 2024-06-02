@@ -14,7 +14,6 @@ use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Defaults\Field;
 use BracketSpace\Notification\Traits\Webhook as WebhookTrait;
-use function BracketSpace\Notification\getSetting;
 
 /**
  * Webhook Carrier
@@ -93,7 +92,7 @@ class Webhook extends Abstracts\Carrier
 			)
 		);
 
-		if (!getSetting('carriers/webhook/headers')) {
+		if (! \Notification::component('settings')->getSetting('carriers/webhook/headers')) {
 			return;
 		}
 
@@ -144,12 +143,6 @@ class Webhook extends Abstracts\Carrier
 		$data = $this->data;
 
 		$args = $this->parseArgs($data['args']);
-		$args = apply_filters_deprecated(
-			'notification/webhook/args',
-			[$args, $this, $trigger],
-			'6.0.0',
-			'notification/carrier/webhook/args'
-		);
 		$args = apply_filters('notification/carrier/webhook/args', $args, $this, $trigger);
 
 		if ($data['json']) {
@@ -161,31 +154,20 @@ class Webhook extends Abstracts\Carrier
 			? ['Content-Type' => 'application/json']
 			: [];
 
-		if (getSetting('carriers/webhook/headers')) {
+		if (\Notification::component('settings')->getSetting('carriers/webhook/headers')) {
 			$headers = array_merge($headers, $this->parseArgs($data['headers']));
 		}
 
 		// Call each URL separately.
 		foreach ($data['urls'] as $url) {
-			$filteredArgs = apply_filters_deprecated(
-				'notification/webhook/args/' . $url['type'],
-				[$args, $this, $trigger],
-				'6.0.0',
-				'notification/carrier/webhook/args/' . $url['type']
-			);
 			$filteredArgs = apply_filters(
-				'notification/carrier/webhook/args/' . $url['type'],
-				$filteredArgs,
+				sprintf('notification/carrier/webhook/args/%s', $url['type']),
+				$args,
 				$this,
 				$trigger
 			);
 
-			$this->httpRequest(
-				$url['recipient'],
-				$filteredArgs,
-				$headers,
-				$url['type']
-			);
+			$this->httpRequest($url['recipient'], $filteredArgs, $headers, $url['type']);
 		}
 	}
 }

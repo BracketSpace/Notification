@@ -10,8 +10,9 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Api\Controller;
 
+use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Database\NotificationDatabaseService as Db;
 use BracketSpace\Notification\Store;
-use function BracketSpace\Notification\adaptNotificationFrom;
 
 /**
  * RepeaterHandler class
@@ -101,19 +102,24 @@ class RepeaterController
 	 */
 	public function getValues($postId, $carrier, $field)
 	{
-		$notification = adaptNotificationFrom('WordPress', $postId);
+		$notification = Db::postToNotification($postId);
+
+		if (! $notification instanceof Notification) {
+			return [];
+		}
+
 		$carrier = $notification->getCarrier($carrier);
 
 		if ($carrier) {
 			if ($carrier->hasRecipientsField()) {
 				$recipientsField = $carrier->getRecipientsField();
 
-				if ($field === $recipientsField->getRawName()) {
+				if ($recipientsField !== null && $field === $recipientsField->getRawName()) {
 					return $carrier->getRecipients();
 				}
 			}
 
-			return $carrier->getFieldValue($field);
+			return (array)$carrier->getFieldValue($field);
 		}
 
 		return [];

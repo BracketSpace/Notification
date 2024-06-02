@@ -5,7 +5,7 @@ namespace Tests;
 use Brain\Monkey;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
-class UnitTestCase extends \PHPUnit\Framework\TestCase
+class UnitTestCase extends \WP_UnitTestCase
 {
 	use MockeryPHPUnitIntegration;
 
@@ -13,11 +13,11 @@ class UnitTestCase extends \PHPUnit\Framework\TestCase
 	 * Test set up.
 	 *
 	 * @since  [Next]
-	 * @rerutn void
+	 * @return void
 	 */
 	protected function setUp(): void
 	{
-		parent::setUp();
+		parent::set_up();
 		Monkey\setUp();
 	}
 
@@ -25,13 +25,13 @@ class UnitTestCase extends \PHPUnit\Framework\TestCase
 	 * Test tear down.
 	 *
 	 * @since  [Next]
-	 * @rerutn void
+	 * @return void
 	 */
 	protected function tearDown(): void
 	{
 		Monkey\tearDown();
 		$this->addToAssertionCount(\Mockery::getContainer()->mockery_getExpectationCount());
 		\Mockery::close();
-		parent::tearDown();
+		parent::tear_down();
 	}
 }

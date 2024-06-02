@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 
-use function BracketSpace\Notification\adaptNotificationFrom;
+use BracketSpace\Notification\Database\NotificationDatabaseService as Db;
 
 /**
  * PostTable class
@@ -88,12 +88,11 @@ class PostTable
 	 */
 	public function tableColumnContent($column, $postId)
 	{
-		/**
-		 * WordPress Adapter
-		 *
-		 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
-		 */
-		$notification = adaptNotificationFrom('WordPress', $postId);
+		$notification = Db::postToNotification($postId);
+
+		if ($notification === null) {
+			return;
+		}
 
 		switch ($column) {
 			case 'hash':
@@ -242,7 +241,7 @@ class PostTable
 	 *
 	 * @param string $redirectTo Redirect to link.
 	 * @param string $doaction Action to perform.
-	 * @param array<mixed> $postIds Array with post ids.
+	 * @param array<int> $postIds Array with post ids.
 	 * @return string              Redirect link.
 	 * @since  7.1.0
 	 */
@@ -258,9 +257,15 @@ class PostTable
 		);
 
 		foreach ($postIds as $postId) {
-			$notification = adaptNotificationFrom('WordPress', $postId);
+			$notification = Db::postToNotification($postId);
+
+			if ($notification === null) {
+				continue;
+			}
+
 			$notification->setEnabled($doaction === 'enable');
-			$notification->save();
+
+			Db::upsert($notification);
 		}
 
 		$action = sprintf('bulk_%s_notifications', $doaction);

@@ -45,8 +45,7 @@
 			"dependencies/"
 		],
 		"files": [
-			"compat/src-deprecated/functions.php",
-			"src/api.php"
+			"compat/src-deprecated/functions.php"
 		]
 	},
 	"autoload-dev": {
@@ -63,8 +62,8 @@
 		}
 	},
 	"scripts": {
-		"phpcbf": "phpcbf --parallel=4",
-		"phpcs": "phpcs --parallel=4",
+		"phpcbf": "phpcbf",
+		"phpcs": "phpcs",
 		"phplint": "parallel-lint --exclude node_modules --exclude vendor .",
 		"phpstan": "phpstan analyze --memory-limit=-1",
 		"prefix-namespaces": [

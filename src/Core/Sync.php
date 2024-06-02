@@ -12,8 +12,8 @@ namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
-use function BracketSpace\Notification\adaptNotificationFrom;
-use function BracketSpace\Notification\swapNotificationAdapter;
+use BracketSpace\Notification\Database\NotificationDatabaseService as Db;
+use BracketSpace\Notification\Register;
 
 /**
  * Sync class
@@ -37,7 +37,7 @@ class Sync
 	 */
 	public static function getAllJson()
 	{
-		if (!self::isSyncing()) {
+		if (! self::isSyncing()) {
 			return [];
 		}
 
@@ -84,15 +84,10 @@ class Sync
 
 		foreach ($notifications as $json) {
 			try {
-				/**
-				 * JSON Adapter
-				 *
-				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
-				 */
-				$adapter = adaptNotificationFrom('JSON', $json);
+				$notification = Notification::from('json', $json);
 
-				if ($adapter->isEnabled()) {
-					$adapter->registerNotification();
+				if ($notification->isEnabled()) {
+					Register::notificationIfNewer($notification);
 				}
 			} catch (\Throwable $e) {
 				// Do nothing.
@@ -104,13 +99,13 @@ class Sync
 	/**
 	 * Saves local JSON file
 	 *
-	 * @action notification/data/save/after
+	 * @action notification/data/saved
 	 *
-	 * @param \BracketSpace\Notification\Defaults\Adapter\WordPress $wpAdapter WordPress adapter.
-	 * @return void
 	 * @since  6.0.0
+	 * @param Notification $notification Notification.
+	 * @return void
 	 */
-	public static function saveLocalJson($wpAdapter)
+	public static function saveLocalJson($notification)
 	{
 		if (!self::isSyncing()) {
 			return;
@@ -122,11 +117,9 @@ class Sync
 			return;
 		}
 
-		$file = $wpAdapter->getHash() . '.json';
-		$json = swapNotificationAdapter('JSON', $wpAdapter)
-			->save();
+		$file = $notification->getHash() . '.json';
 
-		$fs->put_contents($file, $json);
+		$fs->put_contents($file, $notification->to('json'));
 	}
 
 	/**
@@ -150,8 +143,13 @@ class Sync
 			return;
 		}
 
-		$adapter = adaptNotificationFrom('WordPress', $postId);
-		$file = $adapter->getHash() . '.json';
+		$notification = Db::postToNotification($postId);
+
+		if (! $notification instanceof Notification) {
+			return;
+		}
+
+		$file = $notification->getHash() . '.json';
 
 		if (!$fs->exists($file)) {
 			return;
@@ -172,7 +170,7 @@ class Sync
 	//phpcs:ignore SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue.NullabilitySymbolRequired
 	public static function enable(string $path = null)
 	{
-		if (!$path) {
+		if (! $path) {
 			$path = trailingslashit(get_stylesheet_directory()) . 'notifications';
 		}
 
@@ -189,11 +187,11 @@ class Sync
 
 		$fs = static::getSyncFs();
 
-		if (!$fs) {
+		if (! $fs) {
 			return;
 		}
 
-		if (!$fs->exists('') || !$fs->is_dir('')) {
+		if (! $fs->exists('') || ! $fs->is_dir('')) {
 			$fs->mkdir('');
 		}
 
@@ -202,10 +200,7 @@ class Sync
 		}
 
 		$fs->touch('index.php');
-		$fs->put_contents(
-			'index.php',
-			'<?php' . "\r\n" . '// Keep this file here.' . "\r\n"
-		);
+		$fs->put_contents('index.php', '<?php' . "\r\n" . '// Keep this file here.' . "\r\n");
 	}
 
 	/**
@@ -238,7 +233,7 @@ class Sync
 	 */
 	public static function getSyncFs()
 	{
-		if (!static::isSyncing()) {
+		if (! static::isSyncing()) {
 			return null;
 		}
 

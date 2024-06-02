@@ -11,12 +11,13 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 
+use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Templates;
+use BracketSpace\Notification\Database\NotificationDatabaseService as Db;
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
-use function BracketSpace\Notification\adaptNotificationFrom;
 
 /**
  * Screen class
@@ -26,12 +27,59 @@ class Screen
 	use Casegnostic;
 
 	/**
+	 * Currently displayed Notification
+	 *
+	 * @var ?Notification
+	 */
+	private static $currentNotification = null;
+
+	/**
 	 * TABLE OF CONTENTS: -------------------------------
+	 * - Helpers.
+	 * - Setup.
 	 * - Display.
 	 * - Screen Help.
 	 * - AJAX Renders.
 	 * --------------------------------------------------
 	 */
+
+	/**
+	 * --------------------------------------------------
+	 * Helpers.
+	 * --------------------------------------------------
+	 */
+
+	/**
+	 * Gets currently displayed Notification.
+	 *
+	 * @return ?Notification
+	 */
+	public static function getCurrentNotification()
+	{
+		return self::$currentNotification;
+	}
+
+	/**
+	 * --------------------------------------------------
+	 * Setup.
+	 * --------------------------------------------------
+	 */
+
+	/**
+	 * Renders main column on the Notification edit screen.
+	 *
+	 * @action load-post.php
+	 *
+	 * @return void
+	 */
+	public function setupNotification()
+	{
+		if (! isset($_GET['post'])) {
+			return;
+		}
+
+		self::$currentNotification = Db::postToNotification($_GET['post']);
+	}
 
 	/**
 	 * --------------------------------------------------
@@ -53,9 +101,9 @@ class Screen
 			return;
 		}
 
-		$notificationPost = adaptNotificationFrom('WordPress', $post);
+		$notification = self::getCurrentNotification() ?? new Notification();
 
-		do_action('notification/post/column/main', $notificationPost);
+		do_action('notification/post/column/main', $notification);
 	}
 
 	/**
@@ -63,13 +111,13 @@ class Screen
 	 *
 	 * @action notification/post/column/main
 	 *
-	 * @param \BracketSpace\Notification\Core\Notification $notificationPost Notification Post object.
+	 * @param Notification $notification Notification object.
 	 * @return void
 	 */
-	public function renderTriggerSelect($notificationPost)
+	public function renderTriggerSelect($notification)
 	{
 		$groupedTriggers = Store\Trigger::grouped();
-		$trigger = $notificationPost->getTrigger();
+		$trigger = $notification->getTrigger();
 
 		// Add merge tags.
 		if ($trigger) {
@@ -85,7 +133,7 @@ class Screen
 				'triggers' => $groupedTriggers,
 				'has_triggers' => !empty($groupedTriggers),
 				'select_name' => 'notification_trigger',
-				'notification' => $notificationPost,
+				'notification' => $notification,
 			]
 		);
 	}
@@ -96,26 +144,19 @@ class Screen
 	 *
 	 * @action notification/post/column/main 20
 	 *
-	 * @param \BracketSpace\Notification\Core\Notification $notificationPost Notification Post object.
+	 * @param Notification $notification Notification object.
 	 * @return void
 	 */
-	public function renderCarrierBoxes($notificationPost)
+	public function renderCarrierBoxes($notification)
 	{
 		echo sprintf('<h3 class="carriers-section-title">%s</h3>', esc_html__('Carriers', 'notification'));
 
-		do_action_deprecated(
-			'notitication/admin/notifications/pre',
-			[$notificationPost],
-			'6.0.0',
-			'notification/admin/carriers/pre'
-		);
-
-		do_action('notification/admin/carriers/pre', $notificationPost);
+		do_action('notification/admin/carriers/pre', $notification);
 
 		echo '<div id="carrier-boxes">';
 
 		foreach (Store\Carrier::all() as $_carrier) {
-			$carrier = $notificationPost->getCarrier($_carrier->getSlug());
+			$carrier = $notification->getCarrier($_carrier->getSlug());
 
 			// If Carrier wasn't set before, use the blank one.
 			if (!$carrier) {
@@ -146,16 +187,7 @@ class Screen
 
 		echo '</div>';
 
-		do_action_deprecated(
-			'notitication/admin/notifications',
-			[
-				$notificationPost,
-			],
-			'6.0.0',
-			'notification/admin/carriers'
-		);
-
-		do_action('notification/admin/carriers', $notificationPost);
+		do_action('notification/admin/carriers', $notification);
 	}
 
 	/**
@@ -163,13 +195,13 @@ class Screen
 	 *
 	 * @action notification/admin/carriers
 	 *
-	 * @param \BracketSpace\Notification\Defaults\Adapter\WordPress $notificationPost Notification Post object.
+	 * @param Notification $notification Notification object.
 	 * @return void
 	 */
-	public function renderCarriersWidget($notificationPost)
+	public function renderCarriersWidget($notification)
 	{
 		$carriers = Store\Carrier::all();
-		$exists = $notificationPost->getCarriers();
+		$exists = $notification->getCarriers();
 
 		Templates::render(
 			'carriers/widget-add',
@@ -230,7 +262,7 @@ class Screen
 	/**
 	 * Renders Save metabox
 	 *
-	 * @param object $post current WP_Post.
+	 * @param \WP_Post $post current WP_Post.
 	 * @return void
 	 */
 	public function renderSaveMetabox($post)
@@ -239,15 +271,12 @@ class Screen
 			? __('Delete Permanently', 'notification')
 			: __('Move to Trash', 'notification');
 
-		// New posts has the status auto-draft and in this case the Notification should be enabled.
-		$enabled = get_post_status($post->ID) !== 'draft';
-
 		Templates::render(
 			'save-metabox',
 			[
-				'enabled' => $enabled,
 				'post_id' => $post->ID,
 				'delete_link_label' => $deleteText,
+				'notification' => Db::postToNotification($post) ?? new Notification(),
 			]
 		);
 	}
@@ -271,27 +300,22 @@ class Screen
 		);
 
 		// enable metabox.
-		add_filter(
-			'notification/admin/allow_metabox/notification_merge_tags',
-			'__return_true'
-		);
+		add_filter('notification/admin/allow_metabox/notification_merge_tags', '__return_true');
 	}
 
 	/**
 	 * Renders Merge Tags metabox
 	 *
-	 * @param object $post current WP_Post.
+	 * @param \WP_Post $post current WP_Post.
 	 * @return void
 	 */
 	public function renderMergeTagsMetabox($post)
 	{
-		$notification = adaptNotificationFrom('WordPress', $post);
+		$notification = Db::postToNotification($post) ?? new Notification();
 		$trigger = $notification->getTrigger();
-		$triggerSlug = $trigger
-			? $trigger->getSlug()
-			: false;
+		$triggerSlug = $trigger ? $trigger->getSlug() : false;
 
-		if (!$triggerSlug) {
+		if (! $triggerSlug) {
 			Templates::render('mergetag/metabox-notrigger');
 			return;
 		}
@@ -387,7 +411,7 @@ class Screen
 		// phpcs:disable Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 		global $wp_meta_boxes;
 
-		if (!isset($wp_meta_boxes['notification'])) {
+		if (! isset($wp_meta_boxes['notification'])) {
 			return;
 		}
 

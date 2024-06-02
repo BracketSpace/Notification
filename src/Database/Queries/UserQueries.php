@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-namespace BracketSpace\Notification\Queries;
+namespace BracketSpace\Notification\Database\Queries;
 
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;

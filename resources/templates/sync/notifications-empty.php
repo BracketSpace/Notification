@@ -13,4 +13,4 @@ declare(strict_types=1);
  * @var \BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
-esc_html_e('All Notifications are synchronized and up to date.');
+esc_html_e('All Notifications are synchronized and up to date.', 'notification');

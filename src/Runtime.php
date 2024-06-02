@@ -191,12 +191,29 @@ class Runtime
 	/**
 	 * Gets runtime component
 	 *
+	 * @since 7.0.0
+	 * @since [Next] It uses component aliases for backward compatibility.
 	 * @param string $name Component name.
-	 * @return mixed        Component or null
-	 * @since  7.0.0
+	 * @return mixed       Component or null
 	 */
 	public function component($name)
 	{
+		$aliases = [
+			'core_settings' => 'settings',
+		];
+
+		if (isset($aliases[$name])) {
+			$newName = $aliases[$name];
+
+			_deprecated_argument(
+				__METHOD__,
+				'[Next]',
+				sprintf('You used deprecated `%s` component name, use `%s` instead', $name, $newName)
+			);
+
+			$name = $newName;
+		}
+
 		return $this->components[$name] ?? null;
 	}
 
@@ -223,7 +240,7 @@ class Runtime
 		$this->addComponent('core_cron', new Core\Cron());
 		$this->addComponent('core_whitelabel', new Core\Whitelabel());
 		$this->addComponent('core_debugging', new Core\Debugging());
-		$this->addComponent('core_settings', new Core\Settings());
+		$this->addComponent('settings', new Core\Settings());
 		$this->addComponent('core_upgrade', new Core\Upgrade());
 		$this->addComponent('core_sync', new Core\Sync());
 		$this->addComponent('core_binder', new Core\Binder());
@@ -246,7 +263,7 @@ class Runtime
 			$this->addComponent('admin_upsell', new Admin\Upsell());
 		}
 
-		$this->addComponent('integration_wp', new Integration\WordPress());
+		$this->addComponent('integration_wp', new Integration\WordPressIntegration());
 		$this->addComponent('integration_wp_emails', new Integration\WordPressEmails());
 		$this->addComponent('integration_2fa', new Integration\TwoFactor());
 
@@ -262,32 +279,6 @@ class Runtime
 	public function actions()
 	{
 		$this->registerHooks();
-
-		registerSettings([$this->component('admin_settings'), 'generalSettings']);
-		registerSettings(
-			[$this->component('admin_settings'), 'triggersSettings'],
-			20
-		);
-		registerSettings(
-			[$this->component('admin_settings'), 'carriersSettings'],
-			30
-		);
-		registerSettings(
-			[$this->component('admin_settings'), 'emailsSettings'],
-			40
-		);
-		registerSettings(
-			[$this->component('admin_sync'), 'settings'],
-			50
-		);
-		registerSettings(
-			[$this->component('admin_impexp'), 'settings'],
-			60
-		);
-		registerSettings(
-			[$this->component('admin_debugging'), 'debuggingSettings'],
-			70
-		);
 
 		// DocHooks compatibility.
 		if (DocHooksHelper::is_enabled() || !$this->getFilesystem()->exists('compat/register-hooks.php')) {
@@ -316,6 +307,7 @@ class Runtime
 				'carriers',
 				'recipients',
 				'triggers',
+				'converters',
 			],
 			[
 				Repository\GlobalMergeTagRepository::class,
@@ -323,6 +315,7 @@ class Runtime
 				Repository\CarrierRepository::class,
 				Repository\RecipientRepository::class,
 				Repository\TriggerRepository::class,
+				Repository\ConverterRepository::class,
 			]
 		);
 	}

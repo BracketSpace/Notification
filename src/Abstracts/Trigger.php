@@ -14,7 +14,6 @@ use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Interfaces\Taggable;
 use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Traits;
-use function BracketSpace\Notification\getSetting;
 
 /**
  * Trigger abstract class
@@ -379,7 +378,7 @@ abstract class Trigger implements Triggerable
 
 		return apply_filters(
 			'notification/trigger/process_in_background',
-			getSetting('general/advanced/background_processing'),
+			\Notification::component('settings')->getSetting('general/advanced/background_processing'),
 			$this
 		);
 	}

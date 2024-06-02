@@ -6,25 +6,17 @@
  */
 
 use BracketSpace\Notification\Admin\Wizard;
+use BracketSpace\Notification\Core\Debugging;
+use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Resolver;
 use BracketSpace\Notification\Core\Sync;
 use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Core\Whitelabel;
+use BracketSpace\Notification\Database\NotificationDatabaseService;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\Helper as DocHooksHelper;
-use BracketSpace\Notification\Queries\NotificationQueries;
-use function BracketSpace\Notification\getSetting;
-use function BracketSpace\Notification\adaptNotification;
-use function BracketSpace\Notification\adaptNotificationFrom;
-use function BracketSpace\Notification\swapNotificationAdapter;
-use function BracketSpace\Notification\log;
-use function BracketSpace\Notification\addNotification;
-use function BracketSpace\Notification\convertNotificationData;
-use function BracketSpace\Notification\registerSettings;
-use function BracketSpace\Notification\getSettings;
-use function BracketSpace\Notification\updateSetting;
 
 /**
  * Helper function.
@@ -126,9 +118,9 @@ function notification_filesystem( $deprecated ) {
  * @return     array
  */
 function notification_get_posts( $trigger_slug = null, $all = false ) {
-	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Queries\\NotificationQueries::all()' );
+	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Database\\NotificationDatabaseService::getAll()' );
 
-	return NotificationQueries::all( $all );
+	return NotificationDatabaseService::getAll();
 }
 
 /**
@@ -140,9 +132,9 @@ function notification_get_posts( $trigger_slug = null, $all = false ) {
  * @return     mixed        null or Notification object
  */
 function notification_get_post_by_hash( $hash ) {
-	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Queries\\NotificationQueries::with_hash()' );
+	_deprecated_function( __FUNCTION__, '8.0.0', 'BracketSpace\\Notification\\Database\\NotificationDatabaseService::get()' );
 
-	return NotificationQueries::withHash( $hash );
+	return NotificationDatabaseService::get( $hash );
 }
 
 /**
@@ -157,7 +149,7 @@ function notification_post_is_new( $post ) {
 	_deprecated_function( __FUNCTION__, '8.0.0' );
 
 	/** @var BracketSpace\Notification\Defaults\Adapter\WordPress $notification */
-	$notification = notificationAdaptFrom( 'WordPress', $post );
+	$notification = notification_adapt_from( 'WordPress', $post );
 	return $notification->isNew();
 }
 
@@ -520,9 +512,21 @@ function notification_get_global_merge_tags() {
  * @deprecated [Next]
  */
 function notification_adapt($adapterName, \BracketSpace\Notification\Core\Notification $notification) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationAdapt');
+	_deprecated_function( __FUNCTION__, '[Next]', 'Notification::to()');
 
-	return notificationAdapt($adapterName, $notification);
+	if (class_exists($adapterName)) {
+		$adapter = new $adapterName($notification);
+	} elseif (class_exists('BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapterName)) {
+		$adapterName = 'BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapterName;
+		$adapter = new $adapterName($notification);
+	} else {
+		throw new \Exception(
+			sprintf('Couldn\'t find %s adapter', $adapterName)
+		);
+	}
+
+	/** @var \BracketSpace\Notification\Interfaces\Adaptable $adapter */
+	return $adapter;
 }
 
 /**
@@ -536,9 +540,13 @@ function notification_adapt($adapterName, \BracketSpace\Notification\Core\Notifi
  * @deprecated [Next]
  */
 function notification_adapt_from($adapterName, $data) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationAdaptFrom');
+	_deprecated_function( __FUNCTION__, '[Next]', 'Notification::from()');
 
-	return notificationAdaptFrom($adapterName, $data);
+	$adapter = notification_adapt(
+		$adapterName,
+		new Notification()
+	);
+	return $adapter->read($data);
 }
 
 /**
@@ -551,46 +559,42 @@ function notification_adapt_from($adapterName, $data) {
  * @deprecated [Next]
  */
 function notification_swap_adapter($newAdapterName, Interfaces\Adaptable $adapter) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationSwapAdapter');
+	_deprecated_function( __FUNCTION__, '[Next]');
 
-	return notificationSwapAdapter($newAdapterName, $adapter);
+	return notification_adapt(
+		$newAdapterName,
+		$adapter->getNotification()
+	);
 }
 
 /**
  * Logs the message in database
  *
+ * @since  6.0.0
+ * @deprecated [Next]
  * @param string $component Component nice name, like `Core` or `Any Plugin Name`.
  * @param string $type Log type, values: notification|error|warning.
  * @param string $message Log formatted message.
  * @return bool|\WP_Error
- * @since  6.0.0
- * @deprecated [Next]
  */
 function notification_log($component, $type, $message) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationLog');
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Core\\Debugging::log()');
 
-	return notificationLog($component, $type, $message);
+	return Debugging::log($component, $type, $message);
 }
 
 /**
  * Adds Notification to Store
  *
- * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
- * @return void
  * @since  6.0.0
  * @deprecated [Next]
+ * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
+ * @return void
  */
 function notification_add(\BracketSpace\Notification\Core\Notification $notification) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationAdd');
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Register::notification()');
 
-	Store\Notification::insert(
-		$notification->getHash(),
-		$notification
-	);
-	do_action(
-		'notification/notification/registered',
-		$notification
-	);
+	Register::notification($notification);
 }
 
 /**
@@ -605,9 +609,11 @@ function notification_add(\BracketSpace\Notification\Core\Notification $notifica
  * @deprecated [Next]
  */
 function notification_convert_data($data = []) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationConvertData');
+	_deprecated_function( __FUNCTION__, '[Next]', "Bracketspace\\Notification\\Core\\Notification::from('array', ...)");
 
-	return notificationConvertData($data);
+	$notification = Notification::from('array', $data);
+
+	return (array)$notification->to('array');
 }
 
 /**
@@ -620,7 +626,7 @@ function notification_convert_data($data = []) {
  * @deprecated [Next]
  */
 function notification_register_settings($callback, $priority = 10) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationRegisterSettings');
+	_deprecated_function( __FUNCTION__, '[Next]', 'Use the `notification/settings/register` action directly');
 
 	if (!is_callable($callback)) {
 		trigger_error(
@@ -644,9 +650,9 @@ function notification_register_settings($callback, $priority = 10) {
  * @deprecated [Next]
  */
 function notification_get_settings() {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationGetSettings');
+	_deprecated_function( __FUNCTION__, '[Next]', "\Notification::component('settings')->getSettings()");
 
-	return notificationGetSettings();
+	return \Notification::component('settings')->getSettings();
 }
 
 /**
@@ -659,184 +665,36 @@ function notification_get_settings() {
  * @deprecated [Next]
  */
 function notification_get_setting($setting) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationGetSetting');
+	_deprecated_function( __FUNCTION__, '[Next]', "\Notification::component('settings')->getSettuing()");
 
-	return notificationGetSetting($setting);
+	return \Notification::component('settings')->getSetting($setting);
 }
 
 /**
  * Updates single setting value.
  *
+ * @deprecated [Next]
  * @param string $setting setting name in `a/b/c` format.
  * @param mixed $value setting value.
  * @return  mixed
- * @deprecated [Next]
  */
 function notification_update_setting($setting, $value) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'notificationUpdateSetting');
+	_deprecated_function( __FUNCTION__, '[Next]', "\Notification::component('settings')->updateSetting(setting, value)");
 
-	return notificationUpdateSetting($setting, $value);
+	return \Notification::component('settings')->updateSetting($setting, $value);
 }
 
-
 /**
- * Adapts Notification object
- * Default adapters are: WordPress || JSON
+ * Creates new Notification from array
  *
- * @param string $adapterName Adapter class name.
- * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
- * @return \BracketSpace\Notification\Interfaces\Adaptable
- * @throws \Exception If adapter wasn't found.
  * @since  6.0.0
  * @deprecated [Next]
- */
-function notificationAdapt($adapterName, \BracketSpace\Notification\Core\Notification $notification) {
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\adaptNotification()');
-
-	return adaptNotification($adapterName, $notification);
-}
-
-/**
- * Adapts Notification from input data
- * Default adapters are: WordPress || JSON
- *
- * @param string $adapterName Adapter class name.
- * @param mixed $data Input data needed by adapter.
- * @return \BracketSpace\Notification\Interfaces\Adaptable
- * @since  6.0.0
- * @deprecated [Next]
- */
-function notificationAdaptFrom($adapterName, $data)
-{
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\adaptNotificationFrom()');
-
-	return adaptNotificationFrom($adapterName, $data);
-}
-
-/**
- * Changes one adapter to another
- *
- * @param string $newAdapterName Adapter class name.
- * @param \BracketSpace\Notification\Interfaces\Adaptable $adapter Adapter.
- * @return \BracketSpace\Notification\Interfaces\Adaptable
- * @since  6.0.0
- * @deprecated [Next]
- */
-function notificationSwapAdapter($newAdapterName, Interfaces\Adaptable $adapter)
-{
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\swapNotificationAdapter()');
-
-	return swapNotificationAdapter($newAdapterName, $adapter);
-}
-
-/**
- * Logs the message in database
- *
- * @param string $component Component nice name, like `Core` or `Any Plugin Name`.
- * @param string $type Log type, values: notification|error|warning.
- * @param string $message Log formatted message.
- * @return bool|\WP_Error
- * @since  6.0.0
- * @deprecated [Next]
- */
-function notificationLog($component, $type, $message)
-{
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\log()');
-
-	return log($component, $type, $message);
-}
-
-/**
- * Adds Notification to Store
- *
- * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
+ * @param NotificationUnconvertedData $data Notification data.
  * @return void
- * @since  6.0.0
- * @deprecated [Next]
  */
-function notificationAdd(\BracketSpace\Notification\Core\Notification $notification)
+function notification($data = [])
 {
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\addNotification()');
+	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\Register::notificationFromArray()');
 
-	addNotification($notification);
-}
-
-
-/**
- * Converts the static data to Trigger and Carrier objects
- *
- * If no `trigger` nor `carriers` keys are available it does nothing.
- * If the data is already in form of objects it does nothing.
- *
- * @param array<mixed> $data Notification static data.
- * @return array<mixed>       Converted data.
- * @since  6.0.0
- * @deprecated [Next]
- */
-function notificationConvertData($data = [])
-{
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\convertNotificationData()');
-
-	return convertNotificationData($data);
-}
-
-/**
- * Registers settings
- *
- * @param mixed $callback Callback for settings registration, array of string.
- * @param int $priority Action priority.
- * @return void
- * @since  5.0.0
- * @deprecated [Next]
- */
-function notificationRegisterSettings($callback, $priority = 10)
-{
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\registerSettings()');
-
-	registerSettings($callback, $priority);
-}
-
-/**
- * Gets setting values
- *
- * @return mixed
- * @since 5.0.0
- * @deprecated [Next]
- */
-function notificationGetSettings()
-{
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\getSettings()');
-
-	return getSettings();
-}
-
-/**
- * Gets single setting value
- *
- * @param string $setting setting name in `a/b/c` format.
- * @return mixed
- * @since  5.0.0
- * @since  7.0.0 The `notifications` section has been changed to `carriers`.
- * @deprecated [Next]
- */
-function notificationGetSetting($setting)
-{
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\getSetting()');
-
-	return getSetting($setting);
-}
-
-/**
- * Updates single setting value.
- *
- * @param string $setting setting name in `a/b/c` format.
- * @param mixed $value setting value.
- * @return  mixed
- * @deprecated [Next]
- */
-function notificationUpdateSetting($setting, $value)
-{
-	_deprecated_function( __FUNCTION__, '[Next]', 'BracketSpace\\Notification\\updateSetting()');
-
-	return updateSetting($setting, $value);
+	Register::notificationFromArray($data);
 }

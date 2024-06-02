@@ -41,7 +41,7 @@ $notifications = $get('notifications');
 						<input
 							type="checkbox"
 							name="export-items"
-							value="<?php echo esc_attr($notification->getId()); ?>"
+							value="<?php echo esc_attr($notification->getHash()); ?>"
 						>
 						<?php echo esc_html($notification->getTitle()); ?>
 					</label>

@@ -10,14 +10,66 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Integration;
 
+use BracketSpace\Notification\Database\NotificationDatabaseService;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 use BracketSpace\Notification\Interfaces\Triggerable;
-use function BracketSpace\Notification\getSetting;
+use BracketSpace\Notification\Register;
 
 /**
  * WordPress integration class
  */
-class WordPress
+class WordPressIntegration
 {
+	/**
+	 * Notifications cache key
+	 *
+	 * @var string
+	 */
+	protected static $notificationsCacheKey = 'notifications';
+
+	/**
+	 * --------------------------
+	 * Loaders & Cache
+	 * --------------------------
+	 */
+
+	/**
+	 * Loads all Notifications from Database
+	 *
+	 * @action notification/init 9999999
+	 *
+	 * @since [Next]
+	 * @return void
+	 */
+	public function loadDatabaseNotifications()
+	{
+		$driver = new CacheDriver\ObjectCache('notification');
+		$cache = new Cache($driver, static::$notificationsCacheKey);
+
+		/**
+		 * @var array<\BracketSpace\Notification\Core\Notification>
+		 */
+		$notifications = $cache->collect(static fn() => NotificationDatabaseService::getAll());
+
+		array_map([Register::class, 'notificationIfNewer'], $notifications);
+	}
+
+	/**
+	 * Clears the Notifications cache
+	 *
+	 * @action notification/data/saved
+	 *
+	 * @since [Next]
+	 * @return void
+	 */
+	public static function clearNotificationsCache()
+	{
+		$cache = new CacheDriver\ObjectCache('notification');
+		$cache->set_key(static::$notificationsCacheKey);
+		$cache->delete();
+	}
+
 	/**
 	 * --------------------------
 	 * Duplicate prevention
@@ -73,7 +125,7 @@ class WordPress
 	 * @action wp_insert_comment
 	 *
 	 * @param int $commentId Comment ID.
-	 * @param object $comment Comment object.
+	 * @param \WP_Comment $comment Comment object.
 	 * @return void
 	 * @since 5.3.1
 	 */
@@ -117,14 +169,17 @@ class WordPress
 	 *
 	 * @param string $commentNewStatus New comment status.
 	 * @param string $commentOldStatus Old comment status.
-	 * @param object $comment Comment object.
+	 * @param \WP_Comment $comment Comment object.
 	 * @return void
 	 * @since 6.2.0
 	 */
 	public function proxyTransitionCommentStatusToPublished($commentNewStatus, $commentOldStatus, $comment)
 	{
-		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-		if ($comment->comment_approved === 'spam' && getSetting('triggers/comment/akismet')) {
+		if (
+			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+			$comment->comment_approved === 'spam' &&
+			\Notification::component('settings')->getSetting('triggers/comment/akismet')
+		) {
 			return;
 		}
 

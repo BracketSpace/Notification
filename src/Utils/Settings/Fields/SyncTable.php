@@ -10,11 +10,10 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Utils\Settings\Fields;
 
-use BracketSpace\Notification\Admin\PostType;
+use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Sync as CoreSync;
 use BracketSpace\Notification\Core\Templates;
-use BracketSpace\Notification\Queries\NotificationQueries;
-use function BracketSpace\Notification\adaptNotificationFrom;
+use BracketSpace\Notification\Database\NotificationDatabaseService;
 
 /**
  * SyncTable class
@@ -30,26 +29,15 @@ class SyncTable
 	public function input($field)
 	{
 		// Get all Notifications.
-		$wpJsonNotifiactions = PostType::getAllNotifications();
+		$wpNotifiactions = NotificationDatabaseService::getAll();
 		$jsonNotifications = CoreSync::getAllJson();
 		$collection = [];
 
 		// Load the WP Notifications first.
-		foreach ($wpJsonNotifiactions as $json) {
-			try {
-				$adapter = adaptNotificationFrom('JSON', $json);
-				$notification = $adapter->getNotification();
-			} catch (\Throwable $e) {
-				// Do nothing.
-				continue;
-			}
+		foreach ($wpNotifiactions as $notification) {
+			$post = NotificationDatabaseService::notificationToPost($notification);
 
-			/**
-			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null
-			 */
-			$notificationAdapter = NotificationQueries::withHash($notification->getHash());
-
-			if ($notificationAdapter === null) {
+			if ($post === null) {
 				continue;
 			}
 
@@ -57,7 +45,7 @@ class SyncTable
 				'source' => 'WordPress',
 				'has_json' => false,
 				'up_to_date' => false,
-				'post_id' => $notificationAdapter->getId(),
+				'post_id' => $post->ID,
 				'notification' => $notification,
 			];
 		}
@@ -65,8 +53,7 @@ class SyncTable
 		// Compare against JSON.
 		foreach ($jsonNotifications as $json) {
 			try {
-				$adapter = adaptNotificationFrom('JSON', $json);
-				$notification = $adapter->getNotification();
+				$notification = Notification::from('json', $json);
 			} catch (\Throwable $e) {
 				// Do nothing.
 				continue;
@@ -77,13 +64,7 @@ class SyncTable
 
 				$wpNotification = $collection[$notification->getHash()]['notification'];
 
-				if (
-					version_compare(
-						(string)$wpNotification->getVersion(),
-						(string)$notification->getVersion(),
-						'>='
-					)
-				) {
+				if (version_compare((string)$wpNotification->getVersion(), (string)$notification->getVersion(), '>=')) {
 					$collection[$notification->getHash()]['up_to_date'] = true;
 				}
 			} else {
@@ -98,7 +79,7 @@ class SyncTable
 
 		// Filter synchronized.
 		foreach ($collection as $key => $data) {
-			if (!$data['up_to_date']) {
+			if (! $data['up_to_date']) {
 				continue;
 			}
 

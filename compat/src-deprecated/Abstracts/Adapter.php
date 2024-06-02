@@ -14,12 +14,12 @@ use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Helpers\CaseHelper;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Core\Notification;
-use function BracketSpace\Notification\addNotification;
 
 /**
  * Adapter class
  *
  * @mixin \BracketSpace\Notification\Core\Notification
+ * @deprecated [Next]
  */
 abstract class Adapter implements Interfaces\Adaptable
 {
@@ -39,6 +39,8 @@ abstract class Adapter implements Interfaces\Adaptable
 	 */
 	public function __construct(Notification $notification)
 	{
+		notification_deprecated_class( __CLASS__, '[Next]' );
+
 		$this->notification = $notification;
 	}
 
@@ -81,6 +83,7 @@ abstract class Adapter implements Interfaces\Adaptable
 	/**
 	 * Sets up Notification object with data.
 	 *
+	 * phpcs:ignore SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName
 	 * @param array<mixed> $data Data array.
 	 * @return \BracketSpace\Notification\Core\Notification
 	 * @since  6.0.0
@@ -109,6 +112,6 @@ abstract class Adapter implements Interfaces\Adaptable
 	 */
 	public function registerNotification()
 	{
-		addNotification($this->getNotification());
+		notification_add($this->getNotification());
 	}
 }

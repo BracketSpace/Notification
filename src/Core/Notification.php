@@ -23,6 +23,7 @@ class Notification
 	 * @var string
 	 */
 	private $hash;
+
 	/**
 	 * Title
 	 *
@@ -40,7 +41,7 @@ class Notification
 	/**
 	 * Carriers
 	 *
-	 * @var array<mixed>
+	 * @var Interfaces\Sendable[]
 	 */
 	private $carriers = [];
 
@@ -54,7 +55,7 @@ class Notification
 	/**
 	 * Extras
 	 *
-	 * @var array<mixed>
+	 * @var array<string, array<mixed>|bool|float|int|string>
 	 */
 	private $extras = [];
 
@@ -82,7 +83,7 @@ class Notification
 	/**
 	 * Constructor
 	 *
-	 * @param array<mixed> $data Notification data.
+	 * @param NotificationData $data Notification data.
 	 * @since 6.0.0
 	 */
 	public function __construct($data = [])
@@ -115,7 +116,7 @@ class Notification
 	/**
 	 * Sets up Notification data from array.
 	 *
-	 * @param array<mixed> $data Data array.
+	 * @param NotificationData $data Data array.
 	 * @return $this
 	 * @throws \Exception If wrong arguments has been passed.
 	 * @since  6.0.0
@@ -189,39 +190,6 @@ class Notification
 	}
 
 	/**
-	 * Dumps the object to array
-	 *
-	 * @param bool $onlyEnabledCarriers If only enabled Carriers should be saved.
-	 * @return array<mixed>
-	 * @since  6.0.0
-	 */
-	public function toArray($onlyEnabledCarriers = false)
-	{
-		$carriers = [];
-		$_carriers = $onlyEnabledCarriers
-			? $this->getEnabledCarriers()
-			: $this->getCarriers();
-		foreach ($_carriers as $carrierSlug => $carrier) {
-			$carriers[$carrierSlug] = $carrier->getData();
-		}
-
-		$trigger = $this->getTrigger();
-
-		return [
-			'hash' => $this->getHash(),
-			'title' => $this->getTitle(),
-			'trigger' => $trigger
-				? $trigger->getSlug()
-				: '',
-			'carriers' => $carriers,
-			'enabled' => $this->isEnabled(),
-			'extras' => $this->getExtras(),
-			'version' => $this->getVersion(),
-		];
-
-	}
-
-	/**
 	 * Checks if enabled
 	 * Alias for `get_enabled()` method
 	 *
@@ -248,7 +216,7 @@ class Notification
 	 * Gets single Carrier object
 	 *
 	 * @param string $carrierSlug Carrier slug.
-	 * @return mixed                Carrier object or null.
+	 * @return Interfaces\Sendable|null
 	 * @since  6.0.0
 	 */
 	public function getCarrier($carrierSlug)
@@ -262,7 +230,7 @@ class Notification
 	/**
 	 * Gets enabled Carriers
 	 *
-	 * @return array<mixed>
+	 * @return array<string,Interfaces\Sendable>
 	 * @since  6.0.0
 	 */
 	public function getEnabledCarriers()
@@ -350,7 +318,7 @@ class Notification
 	 * Sets Carriers
 	 * Makes sure that the Notification slug is used as key.
 	 *
-	 * @param array<mixed> $carriers Array of Carriers.
+	 * @param array<string,Interfaces\Sendable> $carriers Array of Carriers.
 	 * @return void
 	 * @since  6.0.0
 	 */
@@ -401,7 +369,7 @@ class Notification
 	 * Gets single extra data value.
 	 *
 	 * @param string $key Extra data key.
-	 * @return mixed       Extra data value or null
+	 * @return array<mixed>|bool|float|int|string|null Extra data value or null
 	 * @since  6.0.0
 	 */
 	public function getExtra($key)
@@ -433,7 +401,7 @@ class Notification
 	 * Add extra data
 	 *
 	 * @param string $key Extra data key.
-	 * @param mixed $value Extra data value.
+	 * @param array<mixed>|bool|float|int|string $value Extra data value.
 	 * @return $this
 	 * @throws \Exception If extra is not type of array, string or number or boolean.
 	 * @since  6.0.0
@@ -522,7 +490,7 @@ class Notification
 	}
 
 	/**
-	 * @return mixed[]
+	 * @return array<string, array<mixed>|bool|float|int|string>
 	 */
 	public function getExtras(): array
 	{
@@ -530,7 +498,7 @@ class Notification
 	}
 
 	/**
-	 * @param mixed[] $extras
+	 * @param array<string, array<mixed>|bool|float|int|string> $extras
 	 * @return Notification
 	 */
 	public function setExtras(array $extras): Notification
@@ -576,7 +544,7 @@ class Notification
 	}
 
 	/**
-	 * @return array<mixed>
+	 * @return array<string,Interfaces\Sendable>
 	 */
 	public function getCarriers()
 	{
@@ -610,5 +578,65 @@ class Notification
 	public function setSourcePostId($postId)
 	{
 		$this->sourcePostId = $postId;
+	}
+
+	/**
+	 * Dumps the object to array
+	 *
+	 * @since  6.0.0
+	 * @deprecated [Next] Use Converter instead, via $notification->to('array') method
+	 * @param bool $onlyEnabledCarriers If only enabled Carriers should be saved.
+	 * @return NotificationData|null
+	 */
+	public function toArray($onlyEnabledCarriers = false)
+	{
+		_deprecated_function(__METHOD__, '[Next]', 'Notification::to');
+
+		$array = $this->to('array', ['onlyEnabledCarriers' => $onlyEnabledCarriers]);
+
+		if (! is_array($array)) {
+			return null;
+		}
+
+		return $array;
+	}
+
+	/**
+	 * Creates Notification from a specific representation
+	 *
+	 * @since [Next]
+	 * @throws \Exception When no Notification object comes back from the filter
+	 * @param string $type The type of representation, ie. array or json
+	 * @param string|array<mixed,mixed> $data The notification representation
+	 * @return self
+	 */
+	public static function from(string $type, $data): Notification
+	{
+		$filterName = sprintf('notification/from/%s', $type);
+		$notification = apply_filters($filterName, $data);
+
+		if (! $notification instanceof self) {
+			throw new \Exception(
+				sprintf(
+					"The %s filter didn't return a Notification object. Make sure the filter is correctly hooked",
+					$filterName
+				)
+			);
+		}
+
+		return $notification;
+	}
+
+	/**
+	 * Converts the notification to another type of representation.
+	 *
+	 * @since [Next]
+	 * @param string $type The type of representation, ie. array or json
+	 * @param array<string|int,mixed> $config The additional configuration of the converter
+	 * @return mixed
+	 */
+	public function to(string $type, array $config = [])
+	{
+		return apply_filters(sprintf('notification/to/%s', $type), $this, $config);
 	}
 }

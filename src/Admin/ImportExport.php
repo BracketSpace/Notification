@@ -10,10 +10,9 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 
+use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Database\NotificationDatabaseService as Db;
 use BracketSpace\Notification\Utils\Settings\Fields as SettingFields;
-use BracketSpace\Notification\Queries\NotificationQueries;
-use function BracketSpace\Notification\adaptNotificationFrom;
-use function BracketSpace\Notification\swapNotificationAdapter;
 
 /**
  * Import/Export class
@@ -22,6 +21,8 @@ class ImportExport
 {
 	/**
 	 * Registers Import/Export settings
+	 *
+	 * @action notification/settings/register 60
 	 *
 	 * @param \BracketSpace\Notification\Utils\Settings $settings Settings API object.
 	 * @return void
@@ -71,10 +72,7 @@ class ImportExport
 		try {
 			$exportMethod = [$this, 'prepare' . ucfirst($type) . 'ExportData'];
 			$data = is_callable($exportMethod)
-				? call_user_func(
-					$exportMethod,
-					explode(',', sanitize_text_field(wp_unslash($_GET['items'] ?? '')))
-				)
+				? call_user_func($exportMethod, explode(',', sanitize_text_field(wp_unslash($_GET['items'] ?? ''))))
 				: null;
 		} catch (\Throwable $e) {
 			wp_die(
@@ -104,11 +102,12 @@ class ImportExport
 	/**
 	 * Prepares notifications data for export
 	 *
+	 * @since 6.0.0
+	 * @since 8.0.2 Accepts the items argument, instead reading it from GET.
+	 * @since [Next] Uses NotificationDatabaseService instead of get_posts().
 	 * @param array<int,string> $items Items to export.
 	 * @return array<int,string>
 	 * @throws \Exception When no items selected for export.
-	 * @since  6.0.0
-	 * @since  8.0.2 Accepts the items argument, instead reading it from GET.
 	 */
 	public function prepareNotificationsExportData(array $items = [])
 	{
@@ -117,28 +116,15 @@ class ImportExport
 		}
 
 		$data = [];
-		$posts = get_posts(
-			[
-				'post_type' => 'notification',
-				'post_status' => ['publish', 'draft'],
-				'posts_per_page' => -1,
-				'post__in' => $items,
-			]
-		);
 
-		foreach ($posts as $wppost) {
-			$wpAdapter = adaptNotificationFrom('WordPress', $wppost);
+		foreach ($items as $notificationHash) {
+			$notification = Db::get($notificationHash);
 
-			/**
-			 * JSON Adapter
-			 *
-			 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
-			 */
-			$jsonAdapter = swapNotificationAdapter('JSON', $wpAdapter);
-			$json = $jsonAdapter->save(null, false);
+			if (! $notification instanceof Notification) {
+				continue;
+			}
 
-			// Decode because it's encoded in the last step of export.
-			$data[] = json_decode($json);
+			$data[] = $notification->to('array');
 		}
 
 		return $data;
@@ -171,27 +157,18 @@ class ImportExport
 		}
 
 		// phpcs:disable
-		$file = fopen(
-			$_FILES[0]['tmp_name'],
-			'rb'
-		);
+		$file = fopen($_FILES[0]['tmp_name'], 'rb');
 
-		if (!$file) {
+		if (! $file) {
 			wp_send_json_error("Can't read the file.");
 		}
 
-		$json = fread(
-			$file,
-			filesize($_FILES[0]['tmp_name'])
-		);
+		$json = fread($file, filesize($_FILES[0]['tmp_name']));
 		fclose($file);
 		unlink($_FILES[0]['tmp_name']);
 		// phpcs:enable
 
-		$data = json_decode(
-			$json,
-			true
-		);
+		$data = json_decode($json, true);
 		$type = sanitize_text_field(wp_unslash($_POST['type']));
 
 		// Wrap the singular notification into a collection.
@@ -225,34 +202,18 @@ class ImportExport
 		$updated = 0;
 
 		foreach ($data as $notificationData) {
-			$jsonAdapter = adaptNotificationFrom('JSON', wp_json_encode($notificationData));
+			$notification = Notification::from('json', (string)wp_json_encode($notificationData));
 
-			/**
-			 * WordPress Adapter
-			 *
-			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
-			 */
-			$wpAdapter = swapNotificationAdapter('WordPress', $jsonAdapter);
-
-			/**
-			 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null
-			 */
-			$existingNotification = NotificationQueries::withHash($wpAdapter->getHash());
+			$existingNotification = Db::get($notification->getHash());
 
 			if ($existingNotification === null) {
-				$wpAdapter->save();
+				Db::upsert($notification);
 				$added++;
 			} else {
-				if ($existingNotification->getVersion() >= $wpAdapter->getVersion()) {
+				if ($existingNotification->getVersion() >= $notification->getVersion()) {
 					$skipped++;
 				} else {
-					$post = $existingNotification->getPost();
-
-					if (is_null($post)) {
-						continue;
-					}
-
-					$wpAdapter->setPost($post)->save();
+					Db::upsert($notification);
 					$updated++;
 				}
 			}

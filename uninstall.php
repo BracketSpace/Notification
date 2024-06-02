@@ -56,9 +56,11 @@ if (isset($un['licenses']) && $un['licenses'] === 'true') {
 	delete_option('notification_licenses');
 }
 
-// Remove logs table.
-$logsTable = $wpdb->prefix . 'notification_logs';
-$wpdb->query( "DROP TABLE IF EXISTS ${logsTable}"  ); // phpcs:ignore
+// Remove tables.
+$wpdb->query($wpdb->prepare('DROP TABLE IF EXISTS %i', $wpdb->prefix . 'notification_logs')); // phpcs:ignore
+$wpdb->query($wpdb->prepare('DROP TABLE IF EXISTS %i', $wpdb->prefix . 'notifications')); // phpcs:ignore
+$wpdb->query($wpdb->prepare('DROP TABLE IF EXISTS %i', $wpdb->prefix . 'notification_carriers')); // phpcs:ignore
+$wpdb->query($wpdb->prepare('DROP TABLE IF EXISTS %i', $wpdb->prefix . 'notification_extras')); // phpcs:ignore
 
 // Remove other things.
 delete_option('notification_story_dismissed');

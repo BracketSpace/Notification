@@ -16,6 +16,13 @@ namespace BracketSpace\Notification\Interfaces;
 interface Sendable extends Nameable
 {
 	/**
+	 * Activates the Carrier
+	 *
+	 * @return $this
+	 */
+	public function activate();
+
+	/**
 	 * Sends the carrier
 	 *
 	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger trigger object.
@@ -60,6 +67,13 @@ interface Sendable extends Nameable
 	public function setData($data);
 
 	/**
+	 * Gets data
+	 *
+	 * @return array<string,mixed>
+	 */
+	public function getData();
+
+	/**
 	 * Enables the Carrier
 	 *
 	 * @return $this
@@ -80,6 +94,21 @@ interface Sendable extends Nameable
 	 * @return mixed              Field object or null.
 	 */
 	public function getFormField($fieldName);
+
+	/**
+	 * Gets the saved recipients
+	 *
+	 * @return array<mixed>
+	 */
+	public function getRecipients();
+
+	/**
+	 * Gets field value
+	 *
+	 * @param string $fieldSlug field slug.
+	 * @return mixed            value or null if field not available
+	 */
+	public function getFieldValue($fieldSlug);
 
 	/**
 	 * Gets the recipients field

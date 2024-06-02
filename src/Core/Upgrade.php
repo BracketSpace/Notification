@@ -10,10 +10,11 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 
+use BracketSpace\Notification\Database\DatabaseService;
+use BracketSpace\Notification\Database\NotificationDatabaseService;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Utils\WpObjectHelper;
 use BracketSpace\Notification\Store;
-use BracketSpace\Notification\Queries\NotificationQueries;
 
 /**
  * Upgrade class
@@ -25,14 +26,14 @@ class Upgrade
 	 *
 	 * @var int
 	 */
-	public static $dataVersion = 2;
+	public static $dataVersion = 3;
 
 	/**
 	 * Version of database tables
 	 *
 	 * @var int
 	 */
-	public static $dbVersion = 1;
+	public static $dbVersion = 3;
 
 	/**
 	 * Data version setting key name
@@ -66,7 +67,7 @@ class Upgrade
 
 		while ($dataVersion < static::$dataVersion) {
 			$dataVersion++;
-			$upgradeMethod = [$this, 'upgrade_to_v' . $dataVersion];
+			$upgradeMethod = [$this, sprintf('upgradeToV%d', $dataVersion)];
 
 			if (!method_exists($upgradeMethod[0], $upgradeMethod[1]) || !is_callable($upgradeMethod)) {
 				continue;
@@ -98,19 +99,22 @@ class Upgrade
 			return;
 		}
 
-		global $wpdb;
+		$db = DatabaseService::db();
 
 		$charsetCollate = '';
 
-		if (!empty($wpdb->charset)) {
-			$charsetCollate = "DEFAULT CHARACTER SET {$wpdb->charset}";
+		if (!empty($db->charset)) {
+			$charsetCollate = "DEFAULT CHARACTER SET {$db->charset}";
 		}
 
-		if (!empty($wpdb->collate)) {
-			$charsetCollate .= " COLLATE {$wpdb->collate}";
+		if (!empty($db->collate)) {
+			$charsetCollate .= " COLLATE {$db->collate}";
 		}
 
-		$logsTable = $wpdb->prefix . 'notification_logs';
+		$logsTable = DatabaseService::prefixTable('notification_logs');
+		$notificationsTable = NotificationDatabaseService::getNotificationsTableName();
+		$notificationCarriersTable = NotificationDatabaseService::getNotificationCarriersTableName();
+		$notificationExtrasTable = NotificationDatabaseService::getNotificationExtrasTableName();
 
 		$sql = "
 		CREATE TABLE {$logsTable} (
@@ -120,6 +124,40 @@ class Upgrade
 			message text NOT NULL,
 			component text NOT NULL,
 			UNIQUE KEY ID (ID)
+		) $charsetCollate;
+
+		CREATE TABLE {$notificationsTable} (
+			hash varchar(150) NOT NULL,
+			title tinytext NOT NULL,
+			trigger_slug varchar(250) NOT NULL,
+			enabled tinyint(1) NOT NULL DEFAULT '0',
+			created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+			updated_at timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+			PRIMARY KEY  (hash),
+			UNIQUE KEY hash (hash)
+		) $charsetCollate;
+
+		CREATE TABLE {$notificationCarriersTable} (
+			ID bigint(20) NOT NULL AUTO_INCREMENT,
+			notification_hash varchar(150) NOT NULL,
+			slug varchar(150) NOT NULL,
+			data json NULL DEFAULT NULL,
+			enabled tinyint(1) NULL DEFAULT '0',
+			created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+			updated_at timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+			PRIMARY KEY  (ID),
+			KEY notification_hash (notification_hash)
+		) $charsetCollate;
+
+		CREATE TABLE {$notificationExtrasTable} (
+			ID bigint(20) NOT NULL AUTO_INCREMENT,
+			notification_hash varchar(150) NOT NULL,
+			slug varchar(150) NOT NULL,
+			data json NULL DEFAULT NULL,
+			created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+			updated_at timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+			PRIMARY KEY  (ID),
+			KEY notification_hash (notification_hash)
 		) $charsetCollate;
 		";
 
@@ -166,13 +204,7 @@ class Upgrade
 
 		// Set data.
 		$data = get_post_meta($postId, '_notification_type_' . $carrier->getSlug(), true);
-		$fieldValues = apply_filters_deprecated(
-			'notification/notification/form_fields/values',
-			[$data, $carrier],
-			'6.0.0',
-			'notification/carrier/fields/values'
-		);
-		$fieldValues = apply_filters('notification/carrier/fields/values', $fieldValues, $carrier);
+		$fieldValues = apply_filters('notification/carrier/fields/values', $data, $carrier);
 
 		foreach ($carrier->getFormFields() as $field) {
 			if (!isset($fieldValues[$field->getRawName()])) {
@@ -230,49 +262,7 @@ class Upgrade
 	public function upgradeToV1()
 	{
 		// 1. Save the Notification cache in post_content field.
-		$notifications = NotificationQueries::all(true);
-		foreach ($notifications as $adapter) {
-			$post = $adapter->getPost();
-
-			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-			$adapter->setHash($post->post_name);
-			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-			$adapter->setTitle($post->post_title);
-
-			// Trigger.
-			$triggerSlug = get_post_meta($adapter->getId(), '_trigger', true);
-			$trigger = Store\Trigger::get($triggerSlug);
-
-			if (!empty($trigger)) {
-				$adapter->setTrigger($trigger);
-			}
-
-			// Carriers.
-			$rawCarriers = (array)Store\Carrier::all();
-			$carriers = [];
-
-			foreach ($rawCarriers as $carrier) {
-				if (empty($carrier)) {
-					continue;
-				}
-
-				$carriers[$carrier->getSlug()] = $this->populateCarrier(
-					clone $carrier,
-					$adapter->getId()
-				);
-			}
-
-			if (!empty($carriers)) {
-				$adapter->setCarriers($carriers);
-			}
-
-			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-			$adapter->setEnabled($post->post_status === 'publish');
-			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-			$adapter->setVersion((int)strtotime($post->post_modified_gmt));
-
-			$adapter->save();
-		}
+		// This portion of the updater is no longer maintained and requires manual action.
 
 		// 2. Delete trashed Notifications.
 		$trashedNotifications = get_posts(
@@ -300,22 +290,20 @@ class Upgrade
 	 */
 	public function upgradeToV2()
 	{
-		global $wpdb;
+		$db = DatabaseService::db();
 
 		// 1. Changes the Trigger slugs.
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-		$notifications = $wpdb->getResults(
+		$notifications = (array)$db->get_results(
 			"SELECT p.ID, p.post_content
-			FROM {$wpdb->posts} p
+			FROM {$db->posts} p
 			WHERE p.post_type = 'notification'"
 		);
 
 		foreach ($notifications as $notificationRaw) {
-			$data = json_decode(
-				$notificationRaw->postContent,
-				true
-			);
+			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+			$data = json_decode($notificationRaw->post_content, true);
 
 			$data['trigger'] = preg_replace(
 				array_keys($this->triggerSlugReplacements()),
@@ -324,13 +312,10 @@ class Upgrade
 			);
 
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-			$wpdb->update(
-				$wpdb->posts,
+			$db->update(
+				$db->posts,
 				[
-					'post_content' => wp_json_encode(
-						$data,
-						JSON_UNESCAPED_UNICODE
-					),
+					'post_content' => wp_json_encode($data, JSON_UNESCAPED_UNICODE),
 				],
 				[
 					'ID' => $notificationRaw->ID,
@@ -343,12 +328,48 @@ class Upgrade
 		// 2. Changes the settings section `notifications` to `carriers`.
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-		$wpdb->update(
-			$wpdb->options,
+		$db->update(
+			$db->options,
 			['option_name' => 'notification_carriers'],
 			['option_name' => 'notification_notifications'],
 			['%s'],
 			['%s']
 		);
+	}
+
+	/**
+	 * Upgrades data to v3.
+	 * - 1. Moves the notifications to custom table.
+	 *
+	 * @since [Next]
+	 * @return void
+	 */
+	public function upgradeToV3()
+	{
+		$db = DatabaseService::db();
+
+		// 1. Moves the notifications to custom table.
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$notifications = (array)$db->get_results(
+			"SELECT p.ID, p.post_content
+			FROM {$db->posts} p
+			WHERE p.post_type = 'notification' AND p.post_content<>''"
+		);
+
+		foreach ($notifications as $notificationRaw) {
+			try {
+				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+				$notification = Notification::from('json', $notificationRaw->post_content);
+			} catch (\Throwable $e) {
+				continue;
+			}
+
+			if (! $notification instanceof Notification) {
+				continue;
+			}
+
+			NotificationDatabaseService::upsert($notification);
+		}
 	}
 }

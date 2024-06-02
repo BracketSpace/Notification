@@ -11,10 +11,11 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Defaults\Adapter;
 
 use BracketSpace\Notification\Abstracts;
-use function BracketSpace\Notification\convertNotificationData;
 
 /**
  * JSON Adapter class
+ *
+ * @deprecated [Next]
  */
 class JSON extends Abstracts\Adapter
 {
@@ -33,7 +34,7 @@ class JSON extends Abstracts\Adapter
 			throw new \Exception('Read method of JSON adapter expects valid JSON string');
 		}
 
-		$this->setupNotification(convertNotificationData((array)$data));
+		$this->setupNotification(notification_convert_data((array)$data));
 		$this->setSource('JSON');
 
 		return $this;
