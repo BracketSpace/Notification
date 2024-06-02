@@ -27,7 +27,7 @@ spl_autoload_register(function ($class) {
 			// Check for exclusions.
 			foreach ($exclusions as $excludedNamespace) {
 				if (strpos($class, $excludedNamespace) !== 0) {
-					continue;
+					break 2;
 				}
 			}
 
