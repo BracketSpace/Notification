@@ -142,6 +142,15 @@ class NotificationDatabaseService
 		 */
 		do_action('notification/data/save', $notification);
 
+		// Get information about created_at currently saved in db
+		$createdAt = DatabaseService::db()->get_var(
+			DatabaseService::db()->prepare(
+				'SELECT created_at FROM %i WHERE hash = %s',
+				self::getNotificationsTableName(),
+				$notification->getHash()
+			)
+		);
+
 		// Insert main notification object.
 		DatabaseService::db()->replace(
 			self::getNotificationsTableName(),
@@ -150,12 +159,16 @@ class NotificationDatabaseService
 				'title' => $notification->getTitle(),
 				'trigger_slug' => $notification->getTrigger() ? $notification->getTrigger()->getSlug() : '',
 				'enabled' => $notification->isEnabled(),
+				'created_at' => $createdAt ?? current_time('mysql', true),
+				'updated_at' => current_time('mysql', true),
 			],
 			[
 				'%s',
 				'%s',
 				'%s',
 				'%d',
+				'%s',
+				'%s',
 			]
 		);
 
@@ -170,12 +183,14 @@ class NotificationDatabaseService
 					'slug' => $carrier->getSlug(),
 					'data' => wp_json_encode($carrier->getData(), JSON_UNESCAPED_UNICODE),
 					'enabled' => $carrier->isEnabled(),
+					'updated_at' => current_time('mysql', true),
 				],
 				[
 					'%s',
 					'%s',
 					'%s',
 					'%d',
+					'%s',
 				]
 			);
 		}
@@ -190,6 +205,7 @@ class NotificationDatabaseService
 					'notification_hash' => $notification->getHash(),
 					'slug' => $extraKey,
 					'data' => wp_json_encode($extraData, JSON_UNESCAPED_UNICODE),
+					'updated_at' => current_time('mysql', true),
 				]
 			);
 		}
@@ -259,6 +275,10 @@ class NotificationDatabaseService
 		}
 
 		$notificationData['trigger'] = $notificationData['trigger_slug'];
+
+		// Set version based on creation or last update date.
+		$versionDate = $notificationData['updated_at'] ?? $notificationData['created_at'] ?? 'now';
+		$notificationData['version'] = strtotime($versionDate);
 
 		$carriersDataRaw = DatabaseService::db()->get_results(
 			DatabaseService::db()->prepare(

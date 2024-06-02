@@ -746,11 +746,6 @@ parameters:
 			path: src/Admin/ImportExport.php
 
 		-
-			message: "#^Parameter \\#1 \\$args of function get_posts expects array\\{numberposts\\?\\: int, category\\?\\: int\\|string, include\\?\\: array\\<int\\>, exclude\\?\\: array\\<int\\>, suppress_filters\\?\\: bool, attachment_id\\?\\: int, author\\?\\: int\\|string, author_name\\?\\: string, \\.\\.\\.\\}\\|null, array\\{post_type\\: 'notification', post_status\\: array\\{'publish', 'draft'\\}, posts_per_page\\: \\-1, post__in\\: non\\-empty\\-array\\<int, string\\>\\} given\\.$#"
-			count: 1
-			path: src/Admin/ImportExport.php
-
-		-
 			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
 			count: 1
 			path: src/Admin/ImportExport.php
