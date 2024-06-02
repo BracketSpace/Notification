@@ -53,6 +53,35 @@ class Register
 	}
 
 	/**
+	 * Registers Notification if newer version is provided or doesn't exist at all
+	 *
+	 * @since [Next]
+	 * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
+	 * @return \BracketSpace\Notification\Core\Notification
+	 */
+	public static function notificationIfNewer(Core\Notification $notification)
+	{
+		$exNotification = Store\Notification::get($notification->getHash());
+
+		if ($exNotification instanceof Core\Notification) {
+			// Existing Notification is newer or the same, do nothing.
+			if (version_compare((string)$exNotification->getVersion(), (string)$notification->getVersion(), '>=')) {
+				return $exNotification;
+			}
+
+			// Notification is newer, replace it in the store.
+			Store\Notification::insert($notification->getHash(), $notification, true);
+
+			return $notification;
+		}
+
+		// Notification doesn't exist in store, just insert it.
+		Store\Notification::insert($notification->getHash(), $notification);
+
+		return $notification;
+	}
+
+	/**
 	 * Registers Carrier
 	 *
 	 * @param \BracketSpace\Notification\Interfaces\Sendable $carrier Carrier object.
