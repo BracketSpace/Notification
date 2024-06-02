@@ -23,6 +23,10 @@ $links = paginate_links(
 	]
 );
 
+if ($links === null) {
+	return;
+}
+
 ?>
 
 <div class="log-pagination">
