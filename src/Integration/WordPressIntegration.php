@@ -92,13 +92,13 @@ class WordPressIntegration
 	public function identifyTrigger($triggerKey, Triggerable $trigger)
 	{
 		$coveredTriggers = [
-			'BracketSpace\Notification\Defaults\Trigger\Post\PostTrigger' => static function ($trigger) {
+			'BracketSpace\Notification\Repository\Trigger\Post\PostTrigger' => static function ($trigger) {
 				return $trigger->{$trigger->getPostType()}->ID;
 			},
-			'BracketSpace\Notification\Defaults\Trigger\User\UserTrigger' => static function ($trigger) {
+			'BracketSpace\Notification\Repository\Trigger\User\UserTrigger' => static function ($trigger) {
 				return $trigger->userId;
 			},
-			'BracketSpace\Notification\Defaults\Trigger\Comment\CommentTrigger' => static function ($trigger) {
+			'BracketSpace\Notification\Repository\Trigger\Comment\CommentTrigger' => static function ($trigger) {
 				return $trigger->comment->commentID;
 			},
 		];

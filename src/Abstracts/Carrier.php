@@ -11,8 +11,8 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Abstracts;
 
 use BracketSpace\Notification\Core\Resolver;
-use BracketSpace\Notification\Defaults\Field;
-use BracketSpace\Notification\Defaults\Field\RecipientsField;
+use BracketSpace\Notification\Repository\Field;
+use BracketSpace\Notification\Repository\Field\RecipientsField;
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Interfaces\Triggerable;
@@ -39,7 +39,7 @@ abstract class Carrier implements Interfaces\Sendable
 	/**
 	 * Recipients form field closure
 	 *
-	 * @var callable(): \BracketSpace\Notification\Defaults\Field\RecipientsField|null
+	 * @var callable(): \BracketSpace\Notification\Repository\Field\RecipientsField|null
 	 */
 	protected $recipientsField;
 
@@ -284,7 +284,7 @@ abstract class Carrier implements Interfaces\Sendable
 	 * Gets the recipients field
 	 * Calls the field closure.
 	 *
-	 * @return \BracketSpace\Notification\Defaults\Field\RecipientsField|null
+	 * @return \BracketSpace\Notification\Repository\Field\RecipientsField|null
 	 * @since  8.0.0
 	 */
 	public function getRecipientsField()

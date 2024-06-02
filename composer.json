@@ -45,6 +45,8 @@
 			"dependencies/"
 		],
 		"files": [
+			"compat/src-deprecated/helpers.php",
+			"compat/src-deprecated/namespaces.php",
 			"compat/src-deprecated/functions.php"
 		]
 	},

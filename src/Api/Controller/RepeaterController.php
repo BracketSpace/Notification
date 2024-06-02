@@ -52,7 +52,7 @@ class RepeaterController
 	public function formFieldData($data = null)
 	{
 		if (empty($data)) {
-			/** @var \BracketSpace\Notification\Defaults\Field\RepeaterField */
+			/** @var \BracketSpace\Notification\Repository\Field\RepeaterField */
 			$carrierFields = $this->getCarrierFields();
 			$data = $carrierFields->fields;
 		}

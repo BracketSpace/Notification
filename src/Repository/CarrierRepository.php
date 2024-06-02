@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Register defaults.
+ * Register Repository.
  *
  * @package notification
  */
@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository;
 
-use BracketSpace\Notification\Defaults\Carrier;
 use BracketSpace\Notification\Register;
 use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\Helper as DocHooksHelper;
 

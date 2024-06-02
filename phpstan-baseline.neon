@@ -1151,926 +1151,6 @@ parameters:
 			path: src/Database/Queries/UserQueries.php
 
 		-
-			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
-			count: 1
-			path: src/Defaults/Carrier/Email.php
-
-		-
-			message: "#^Cannot access offset 'key' on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Carrier/Email.php
-
-		-
-			message: "#^Cannot access offset 'value' on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Carrier/Email.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 8
-			path: src/Defaults/Carrier/Email.php
-
-		-
-			message: "#^Cannot access offset 'hide' on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Carrier/Webhook.php
-
-		-
-			message: "#^Cannot access offset 'key' on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Carrier/Webhook.php
-
-		-
-			message: "#^Cannot access offset 'value' on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Carrier/Webhook.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 2
-			path: src/Defaults/Carrier/Webhook.php
-
-		-
-			message: "#^Parameter \\#1 \\$args of method BracketSpace\\\\Notification\\\\Defaults\\\\Carrier\\\\Webhook\\:\\:parseArgs\\(\\) expects array, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Carrier/Webhook.php
-
-		-
-			message: "#^Cannot access offset 'hide' on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Carrier/WebhookJson.php
-
-		-
-			message: "#^Cannot access offset 'key' on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Carrier/WebhookJson.php
-
-		-
-			message: "#^Cannot access offset 'value' on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Carrier/WebhookJson.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 2
-			path: src/Defaults/Carrier/WebhookJson.php
-
-		-
-			message: "#^Parameter \\#1 \\$args of method BracketSpace\\\\Notification\\\\Defaults\\\\Carrier\\\\WebhookJson\\:\\:parseArgs\\(\\) expects array, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Carrier/WebhookJson.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, string\\|false given\\.$#"
-			count: 1
-			path: src/Defaults/Field/CodeEditorField.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\CodeEditorField\\:\\:\\$settings \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Field/CodeEditorField.php
-
-		-
-			message: "#^Parameter \\#1 \\$color of function sanitize_hex_color expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/ColorPickerField.php
-
-		-
-			message: "#^Parameter \\#1 \\$haystack of function strpos expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/ColorPickerField.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/ColorPickerField.php
-
-		-
-			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/ColorPickerField.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\EditorField\\:\\:field\\(\\) should return string but returns string\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Field/EditorField.php
-
-		-
-			message: "#^Parameter \\#1 \\$content of function wp_editor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/EditorField.php
-
-		-
-			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/EditorField.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\EditorField\\:\\:\\$settings \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Field/EditorField.php
-
-		-
-			message: "#^Parameter \\#1 \\$post_id of function wp_get_attachment_thumb_url expects int, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/ImageField.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/ImageField.php
-
-		-
-			message: "#^Cannot cast mixed to string\\.$#"
-			count: 1
-			path: src/Defaults/Field/InputField.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/InputField.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\InputField\\:\\:\\$type \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Field/InputField.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/MessageField.php
-
-		-
-			message: "#^Parameter \\#3 \\$subject of function preg_replace expects array\\|string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/MessageField.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\MessageField\\:\\:\\$message \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Field/MessageField.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\NonceField\\:\\:\\$nonceKey \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Field/NonceField.php
-
-		-
-			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
-			count: 1
-			path: src/Defaults/Field/RepeaterField.php
-
-		-
-			message: "#^Cannot access offset string on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Field/RepeaterField.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/RepeaterField.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\RepeaterField\\:\\:\\$fields \\(array\\<BracketSpace\\\\Notification\\\\Abstracts\\\\Field\\>\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Field/RepeaterField.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/SectionRepeater.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_html expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/SectionRepeater.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\SectionRepeater\\:\\:\\$sections \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Field/SectionRepeater.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\SectionsField\\:\\:\\$sections \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Field/SectionsField.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function sanitize_text_field expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/SelectField.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_html expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/SelectField.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\SelectField\\:\\:\\$options \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Field/SelectField.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function sanitize_textarea_field expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Field/TextareaField.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\TextareaField\\:\\:\\$placeholder \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Field/TextareaField.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentActionApprove\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentActionApprove.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentActionDelete\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentActionDelete.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentActionSpam\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentActionSpam.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentActionTrash\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentActionTrash.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentAuthorIP\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentAuthorIP.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentAuthorUrl\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentAuthorUrl.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentAuthorUserAgent\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentAuthorUserAgent.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentContent\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentContent.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentContentHtml\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentContentHtml.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentID\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentID.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentIsReply\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentIsReply.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentStatus\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentStatus.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentType\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentType.php
-
-		-
-			message: "#^Parameter \\#1 \\$email of function sanitize_email expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/EmailTag.php
-
-		-
-			message: "#^Cannot cast mixed to string\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/HtmlTag.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/IntegerTag.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Media/AttachmentDirectUrl.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Media/AttachmentID.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Media/AttachmentMimeType.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Media/AttachmentPage.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Media/AttachmentTitle.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Post/FeaturedImageId.php
-
-		-
-			message: "#^Parameter \\#1 \\$attachment_id of function wp_get_attachment_image_url expects int, int\\|false given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Post/FeaturedImageUrl.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Post/FeaturedImageUrl.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Post/PostContent.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Post/PostContentHtml.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Post/PostExcerpt.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Post/PostID.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Post/PostPermalink.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Post/PostSlug.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Post/PostStatus.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$label\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Post/PostTerms.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$name\\.$#"
-			count: 2
-			path: src/Defaults/MergeTag/Post/PostTerms.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Post/PostTerms.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Post/PostTitle.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Post/PostType.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Post/RevisionLink.php
-
-		-
-			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, int\\|WP_Post given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Post/RevisionLink.php
-
-		-
-			message: "#^Parameter \\#1 \\$attachment_id of function wp_get_attachment_image_url expects int, int\\|false given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Post/ThumbnailUrl.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Post/ThumbnailUrl.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function sanitize_text_field expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/StringTag.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Taxonomy/TaxonomyName.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Taxonomy/TaxonomySlug.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Taxonomy/TermDescription.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Taxonomy/TermID.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Taxonomy/TermName.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Taxonomy/TermPermalink.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/Taxonomy/TermSlug.php
-
-		-
-			message: "#^Parameter \\#1 \\$url of function esc_url expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/UrlTag.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/User/Avatar.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/User/AvatarUrl.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/User/UserBio.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/User/UserDisplayName.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/User/UserEmail.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/User/UserFirstName.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/User/UserID.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/User/UserLastName.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/User/UserLogin.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/User/UserNicename.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\User\\\\UserPasswordResetLink\\:\\:\\$keyPropertyName \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/User/UserPasswordResetLink.php
-
-		-
-			message: "#^Cannot access property \\$name on WP_Role\\|null\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/User/UserRole.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/MergeTag/User/UserRole.php
-
-		-
-			message: "#^Parameter \\#1 \\$args of function get_users expects array\\{blog_id\\?\\: int, role\\?\\: array\\<string\\>\\|string, role__in\\?\\: array\\<string\\>, role__not_in\\?\\: array\\<string\\>, meta_key\\?\\: array\\<string\\>\\|string, meta_value\\?\\: array\\<string\\>\\|string, meta_compare\\?\\: string, meta_compare_key\\?\\: string, \\.\\.\\.\\}, array\\{include\\: non\\-empty\\-array\\<int, string\\>, fields\\: array\\{'user_email'\\}\\} given\\.$#"
-			count: 1
-			path: src/Defaults/Recipient/UserID.php
-
-		-
-			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Resolver/Basic.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentAdded.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentAdded.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentAdded.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentApproved.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentApproved.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentApproved.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentPublished.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentPublished.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentReplied.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentReplied.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentReplied.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
-			count: 2
-			path: src/Defaults/Trigger/Comment/CommentSpammed.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentSpammed.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentSpammed.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
-			count: 2
-			path: src/Defaults/Trigger/Comment/CommentTrashed.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentTrashed.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentTrashed.php
-
-		-
-			message: "#^Parameter \\#1 \\$comment_id of function get_comment_type expects int\\|WP_Comment, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentTrigger.php
-
-		-
-			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentTrigger.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$post \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentTrigger.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentUnapproved.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentUnapproved.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentUnapproved.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Media\\\\MediaTrigger\\:\\:\\$attachment \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Media/MediaAdded.php
-
-		-
-			message: "#^Cannot access property \\$post_date_gmt on WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Media/MediaTrashed.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Media\\\\MediaTrigger\\:\\:\\$attachment \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Media/MediaTrashed.php
-
-		-
-			message: "#^Cannot access property \\$post_date_gmt on WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Media/MediaUpdated.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Media\\\\MediaTrigger\\:\\:\\$attachment \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Media/MediaUpdated.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostAdded.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostApproved.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostDrafted.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPending.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPublished.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPublishedPrivately.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostScheduled.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostTrashed.php
-
-		-
-			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostTrigger.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostUpdated.php
-
-		-
-			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Privacy/DataEraseRequest.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\DataEraseRequest\\:\\:context\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Privacy/DataEraseRequest.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Privacy/DataEraseRequest.php
-
-		-
-			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Privacy/DataErased.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\DataErased\\:\\:context\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Privacy/DataErased.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Privacy/DataErased.php
-
-		-
-			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Privacy/DataExportRequest.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\DataExportRequest\\:\\:context\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Privacy/DataExportRequest.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Privacy/DataExportRequest.php
-
-		-
-			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Privacy/DataExported.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\DataExported\\:\\:context\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Privacy/DataExported.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Privacy/DataExported.php
-
-		-
-			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Taxonomy/TermTrigger.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserDeleted\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserDeleted.php
-
-		-
-			message: "#^Cannot access offset 'hash' on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserEmailChangeRequest.php
-
-		-
-			message: "#^Cannot access offset 'newemail' on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserEmailChangeRequest.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserEmailChangeRequest\\:\\:\\$newUserEmail \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserEmailChangeRequest.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserEmailChangeRequest\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserEmailChangeRequest.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserLogin.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserLogin\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserLogin.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserLogout\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserLogout.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserPasswordChanged.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserPasswordChanged\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserPasswordChanged.php
-
-		-
-			message: "#^Cannot access property \\$data on WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserPasswordResetRequest.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserProfileUpdated\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserProfileUpdated.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserRegistered\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserRegistered.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserRoleChanged\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserRoleChanged.php
-
-		-
-			message: "#^Cannot access offset 'hash' on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/WordPress/EmailChangeRequest.php
-
-		-
-			message: "#^Cannot access offset 'newemail' on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/WordPress/EmailChangeRequest.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\WordPress\\\\EmailChangeRequest\\:\\:\\$newAdminEmail \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/WordPress/EmailChangeRequest.php
-
-		-
-			message: "#^Argument of an invalid type array\\|false supplied for foreach, only iterables are supported\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
-
-		-
-			message: "#^Cannot access property \\$current on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
-
-		-
-			message: "#^Cannot access property \\$version on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
-
-		-
-			message: "#^Parameter \\#1 \\$updateType of method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\WordPress\\\\UpdatesAvailable\\:\\:getUpdatesCount\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
-
-		-
-			message: "#^Parameter \\#1 \\$updateType of method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\WordPress\\\\UpdatesAvailable\\:\\:hasUpdates\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
-
-		-
 			message: "#^Invalid type object to throw\\.$#"
 			count: 1
 			path: src/ErrorHandler.php
@@ -2091,6 +1171,76 @@ parameters:
 			path: src/Integration/WordPressIntegration.php
 
 		-
+			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: src/Repository/Carrier/Email.php
+
+		-
+			message: "#^Cannot access offset 'key' on mixed\\.$#"
+			count: 1
+			path: src/Repository/Carrier/Email.php
+
+		-
+			message: "#^Cannot access offset 'value' on mixed\\.$#"
+			count: 1
+			path: src/Repository/Carrier/Email.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 8
+			path: src/Repository/Carrier/Email.php
+
+		-
+			message: "#^Cannot access offset 'hide' on mixed\\.$#"
+			count: 1
+			path: src/Repository/Carrier/Webhook.php
+
+		-
+			message: "#^Cannot access offset 'key' on mixed\\.$#"
+			count: 1
+			path: src/Repository/Carrier/Webhook.php
+
+		-
+			message: "#^Cannot access offset 'value' on mixed\\.$#"
+			count: 1
+			path: src/Repository/Carrier/Webhook.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 2
+			path: src/Repository/Carrier/Webhook.php
+
+		-
+			message: "#^Parameter \\#1 \\$args of method BracketSpace\\\\Notification\\\\Repository\\\\Carrier\\\\Webhook\\:\\:parseArgs\\(\\) expects array, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Carrier/Webhook.php
+
+		-
+			message: "#^Cannot access offset 'hide' on mixed\\.$#"
+			count: 1
+			path: src/Repository/Carrier/WebhookJson.php
+
+		-
+			message: "#^Cannot access offset 'key' on mixed\\.$#"
+			count: 1
+			path: src/Repository/Carrier/WebhookJson.php
+
+		-
+			message: "#^Cannot access offset 'value' on mixed\\.$#"
+			count: 1
+			path: src/Repository/Carrier/WebhookJson.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 2
+			path: src/Repository/Carrier/WebhookJson.php
+
+		-
+			message: "#^Parameter \\#1 \\$args of method BracketSpace\\\\Notification\\\\Repository\\\\Carrier\\\\WebhookJson\\:\\:parseArgs\\(\\) expects array, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Carrier/WebhookJson.php
+
+		-
 			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
 			count: 2
 			path: src/Repository/CarrierRepository.php
@@ -2104,6 +1254,856 @@ parameters:
 			message: "#^Parameter \\#1 \\$data of class BracketSpace\\\\Notification\\\\Core\\\\Notification constructor expects array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, carriers\\?\\: array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\}, array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable\\|string\\|null, carriers\\?\\: array\\<string, array\\<string, mixed\\>\\|BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\} given\\.$#"
 			count: 1
 			path: src/Repository/Converter/ArrayConverter.php
+
+		-
+			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, string\\|false given\\.$#"
+			count: 1
+			path: src/Repository/Field/CodeEditorField.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\CodeEditorField\\:\\:\\$settings \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Field/CodeEditorField.php
+
+		-
+			message: "#^Parameter \\#1 \\$color of function sanitize_hex_color expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Field/ColorPickerField.php
+
+		-
+			message: "#^Parameter \\#1 \\$haystack of function strpos expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Field/ColorPickerField.php
+
+		-
+			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Field/ColorPickerField.php
+
+		-
+			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Field/ColorPickerField.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\EditorField\\:\\:field\\(\\) should return string but returns string\\|false\\.$#"
+			count: 1
+			path: src/Repository/Field/EditorField.php
+
+		-
+			message: "#^Parameter \\#1 \\$content of function wp_editor expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Field/EditorField.php
+
+		-
+			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Field/EditorField.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\EditorField\\:\\:\\$settings \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Field/EditorField.php
+
+		-
+			message: "#^Parameter \\#1 \\$post_id of function wp_get_attachment_thumb_url expects int, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Field/ImageField.php
+
+		-
+			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Field/ImageField.php
+
+		-
+			message: "#^Cannot cast mixed to string\\.$#"
+			count: 1
+			path: src/Repository/Field/InputField.php
+
+		-
+			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Field/InputField.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\InputField\\:\\:\\$type \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Field/InputField.php
+
+		-
+			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Field/MessageField.php
+
+		-
+			message: "#^Parameter \\#3 \\$subject of function preg_replace expects array\\|string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Field/MessageField.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\MessageField\\:\\:\\$message \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Field/MessageField.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\NonceField\\:\\:\\$nonceKey \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Field/NonceField.php
+
+		-
+			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: src/Repository/Field/RepeaterField.php
+
+		-
+			message: "#^Cannot access offset string on mixed\\.$#"
+			count: 1
+			path: src/Repository/Field/RepeaterField.php
+
+		-
+			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Field/RepeaterField.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\RepeaterField\\:\\:\\$fields \\(array\\<BracketSpace\\\\Notification\\\\Abstracts\\\\Field\\>\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Field/RepeaterField.php
+
+		-
+			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Field/SectionRepeater.php
+
+		-
+			message: "#^Parameter \\#1 \\$text of function esc_html expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Field/SectionRepeater.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\SectionRepeater\\:\\:\\$sections \\(array\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Field/SectionRepeater.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\SectionsField\\:\\:\\$sections \\(array\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Field/SectionsField.php
+
+		-
+			message: "#^Parameter \\#1 \\$str of function sanitize_text_field expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Field/SelectField.php
+
+		-
+			message: "#^Parameter \\#1 \\$text of function esc_html expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Field/SelectField.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\SelectField\\:\\:\\$options \\(array\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Field/SelectField.php
+
+		-
+			message: "#^Parameter \\#1 \\$str of function sanitize_textarea_field expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Field/TextareaField.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\TextareaField\\:\\:\\$placeholder \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Field/TextareaField.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentActionApprove\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Comment/CommentActionApprove.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentActionDelete\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Comment/CommentActionDelete.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentActionSpam\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Comment/CommentActionSpam.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentActionTrash\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Comment/CommentActionTrash.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentAuthorIP\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Comment/CommentAuthorIP.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentAuthorUrl\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Comment/CommentAuthorUrl.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentAuthorUserAgent\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Comment/CommentAuthorUserAgent.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentContent\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Comment/CommentContent.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentContentHtml\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Comment/CommentContentHtml.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentID\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Comment/CommentID.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentIsReply\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Comment/CommentIsReply.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentStatus\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Comment/CommentStatus.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentType\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Comment/CommentType.php
+
+		-
+			message: "#^Parameter \\#1 \\$email of function sanitize_email expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/EmailTag.php
+
+		-
+			message: "#^Cannot cast mixed to string\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/HtmlTag.php
+
+		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/IntegerTag.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Media/AttachmentDirectUrl.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Media/AttachmentID.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Media/AttachmentMimeType.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Media/AttachmentPage.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Media/AttachmentTitle.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/FeaturedImageId.php
+
+		-
+			message: "#^Parameter \\#1 \\$attachment_id of function wp_get_attachment_image_url expects int, int\\|false given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/FeaturedImageUrl.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/FeaturedImageUrl.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/PostContent.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/PostContentHtml.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/PostExcerpt.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/PostID.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/PostPermalink.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/PostSlug.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/PostStatus.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$label\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/PostTerms.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$name\\.$#"
+			count: 2
+			path: src/Repository/MergeTag/Post/PostTerms.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/PostTerms.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/PostTitle.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/PostType.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/RevisionLink.php
+
+		-
+			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, int\\|WP_Post given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/RevisionLink.php
+
+		-
+			message: "#^Parameter \\#1 \\$attachment_id of function wp_get_attachment_image_url expects int, int\\|false given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/ThumbnailUrl.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/ThumbnailUrl.php
+
+		-
+			message: "#^Parameter \\#1 \\$str of function sanitize_text_field expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/StringTag.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Taxonomy/TaxonomyName.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Taxonomy/TaxonomySlug.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Taxonomy/TermDescription.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Taxonomy/TermID.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Taxonomy/TermName.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Taxonomy/TermPermalink.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Taxonomy/TermSlug.php
+
+		-
+			message: "#^Parameter \\#1 \\$url of function esc_url expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/UrlTag.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/Avatar.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/AvatarUrl.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserBio.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserDisplayName.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserEmail.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserFirstName.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserID.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserLastName.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserLogin.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserNicename.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\User\\\\UserPasswordResetLink\\:\\:\\$keyPropertyName \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserPasswordResetLink.php
+
+		-
+			message: "#^Cannot access property \\$name on WP_Role\\|null\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserRole.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserRole.php
+
+		-
+			message: "#^Parameter \\#1 \\$args of function get_users expects array\\{blog_id\\?\\: int, role\\?\\: array\\<string\\>\\|string, role__in\\?\\: array\\<string\\>, role__not_in\\?\\: array\\<string\\>, meta_key\\?\\: array\\<string\\>\\|string, meta_value\\?\\: array\\<string\\>\\|string, meta_compare\\?\\: string, meta_compare_key\\?\\: string, \\.\\.\\.\\}, array\\{include\\: non\\-empty\\-array\\<int, string\\>, fields\\: array\\{'user_email'\\}\\} given\\.$#"
+			count: 1
+			path: src/Repository/Recipient/UserID.php
+
+		-
+			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Resolver/Basic.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentAdded.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentAdded.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentAdded.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentApproved.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentApproved.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentApproved.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentPublished.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentPublished.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentReplied.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentReplied.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentReplied.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			count: 2
+			path: src/Repository/Trigger/Comment/CommentSpammed.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentSpammed.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentSpammed.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			count: 2
+			path: src/Repository/Trigger/Comment/CommentTrashed.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentTrashed.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentTrashed.php
+
+		-
+			message: "#^Parameter \\#1 \\$comment_id of function get_comment_type expects int\\|WP_Comment, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentTrigger.php
+
+		-
+			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentTrigger.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$post \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentTrigger.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentUnapproved.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentUnapproved.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentUnapproved.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Media\\\\MediaTrigger\\:\\:\\$attachment \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Media/MediaAdded.php
+
+		-
+			message: "#^Cannot access property \\$post_date_gmt on WP_Post\\|null\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Media/MediaTrashed.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Media\\\\MediaTrigger\\:\\:\\$attachment \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Media/MediaTrashed.php
+
+		-
+			message: "#^Cannot access property \\$post_date_gmt on WP_Post\\|null\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Media/MediaUpdated.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Media\\\\MediaTrigger\\:\\:\\$attachment \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Media/MediaUpdated.php
+
+		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Post/PostAdded.php
+
+		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Post/PostApproved.php
+
+		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Post/PostDrafted.php
+
+		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Post/PostPending.php
+
+		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Post/PostPublished.php
+
+		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Post/PostPublishedPrivately.php
+
+		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Post/PostScheduled.php
+
+		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Post/PostTrashed.php
+
+		-
+			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Post/PostTrigger.php
+
+		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Post/PostUpdated.php
+
+		-
+			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Privacy/DataEraseRequest.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\DataEraseRequest\\:\\:context\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Privacy/DataEraseRequest.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Privacy/DataEraseRequest.php
+
+		-
+			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Privacy/DataErased.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\DataErased\\:\\:context\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Privacy/DataErased.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Privacy/DataErased.php
+
+		-
+			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Privacy/DataExportRequest.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\DataExportRequest\\:\\:context\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Privacy/DataExportRequest.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Privacy/DataExportRequest.php
+
+		-
+			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Privacy/DataExported.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\DataExported\\:\\:context\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Privacy/DataExported.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Privacy/DataExported.php
+
+		-
+			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Taxonomy/TermTrigger.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserDeleted\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/User/UserDeleted.php
+
+		-
+			message: "#^Cannot access offset 'hash' on mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/User/UserEmailChangeRequest.php
+
+		-
+			message: "#^Cannot access offset 'newemail' on mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/User/UserEmailChangeRequest.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserEmailChangeRequest\\:\\:\\$newUserEmail \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/User/UserEmailChangeRequest.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserEmailChangeRequest\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/User/UserEmailChangeRequest.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
+			count: 1
+			path: src/Repository/Trigger/User/UserLogin.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserLogin\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/User/UserLogin.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserLogout\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/User/UserLogout.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
+			count: 1
+			path: src/Repository/Trigger/User/UserPasswordChanged.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserPasswordChanged\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/User/UserPasswordChanged.php
+
+		-
+			message: "#^Cannot access property \\$data on WP_User\\|false\\.$#"
+			count: 1
+			path: src/Repository/Trigger/User/UserPasswordResetRequest.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserProfileUpdated\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/User/UserProfileUpdated.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserRegistered\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/User/UserRegistered.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserRoleChanged\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/User/UserRoleChanged.php
+
+		-
+			message: "#^Cannot access offset 'hash' on mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/WordPress/EmailChangeRequest.php
+
+		-
+			message: "#^Cannot access offset 'newemail' on mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/WordPress/EmailChangeRequest.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\WordPress\\\\EmailChangeRequest\\:\\:\\$newAdminEmail \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/WordPress/EmailChangeRequest.php
+
+		-
+			message: "#^Argument of an invalid type array\\|false supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
+
+		-
+			message: "#^Cannot access property \\$current on mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
+
+		-
+			message: "#^Cannot access property \\$version on mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
+
+		-
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
+
+		-
+			message: "#^Parameter \\#1 \\$updateType of method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\WordPress\\\\UpdatesAvailable\\:\\:getUpdatesCount\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
+
+		-
+			message: "#^Parameter \\#1 \\$updateType of method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\WordPress\\\\UpdatesAvailable\\:\\:hasUpdates\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
 
 		-
 			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"

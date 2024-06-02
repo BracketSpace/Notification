@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Register defaults.
+ * Register Repository.
  *
  * @package notification
  */
@@ -11,7 +11,6 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Repository;
 
 use BracketSpace\Notification\Register;
-use BracketSpace\Notification\Defaults\Trigger;
 
 /**
  * Trigger Repository.
