@@ -483,7 +483,6 @@ function notification_adapt($adapterName, \BracketSpace\Notification\Core\Notifi
 	if (class_exists($adapterName)) {
 		$adapter = new $adapterName($notification);
 	} elseif (class_exists('BracketSpace\\Notification\\Repository\\Adapter\\' . $adapterName)) {
-	} elseif (class_exists('BracketSpace\\Notification\\Repository\\Adapter\\' . $adapterName)) {
 		$adapterName = 'BracketSpace\\Notification\\Repository\\Adapter\\' . $adapterName;
 		$adapter = new $adapterName($notification);
 	} else {

@@ -421,6 +421,11 @@ parameters:
 			path: compat/src-deprecated/Adapter/JSON.php
 
 		-
+			message: "#^Call to method save\\(\\) on an unknown class BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\JSON\\.$#"
+			count: 1
+			path: compat/src-deprecated/Adapter/WordPress.php
+
+		-
 			message: "#^Offset 'enabled' does not exist on array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, carriers\\?\\: array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\}\\|null\\.$#"
 			count: 1
 			path: compat/src-deprecated/Adapter/WordPress.php
@@ -436,6 +441,11 @@ parameters:
 			path: compat/src-deprecated/Adapter/WordPress.php
 
 		-
+			message: "#^PHPDoc tag @var contains unknown class BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\JSON\\.$#"
+			count: 1
+			path: compat/src-deprecated/Adapter/WordPress.php
+
+		-
 			message: "#^Parameter \\#1 \\$data of function notification_convert_data expects array, array\\<string, array\\<string, array\\|bool\\|BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\|float\\|int\\|string\\>\\|bool\\|BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable\\|int\\|string\\>\\|null given\\.$#"
 			count: 1
 			path: compat/src-deprecated/Adapter/WordPress.php
@@ -446,8 +456,13 @@ parameters:
 			path: compat/src-deprecated/Adapter/WordPress.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\WordPress\\:\\:\\$post \\(WP_Post\\) in empty\\(\\) is not falsy\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Adapter\\\\WordPress\\:\\:\\$post \\(WP_Post\\) in empty\\(\\) is not falsy\\.$#"
 			count: 2
+			path: compat/src-deprecated/Adapter/WordPress.php
+
+		-
+			message: "#^Unable to resolve the template type T in call to function wp_slash$#"
+			count: 1
 			path: compat/src-deprecated/Adapter/WordPress.php
 
 		-
@@ -522,16 +537,11 @@ parameters:
 
 		-
 			message: "#^$#"
-			count: 2
+			count: 1
 			path: compat/src-deprecated/helpers.php
 
 		-
 			message: "#^Class \"BracketSpace\\\\Notification\\\\Repository\\\\Adapter\\\\JSON\" not found$#"
-			count: 1
-			path: compat/src-deprecated/namespaces.php
-
-		-
-			message: "#^Class \"BracketSpace\\\\Notification\\\\Repository\\\\Adapter\\\\WordPress\" not found$#"
 			count: 1
 			path: compat/src-deprecated/namespaces.php
 
