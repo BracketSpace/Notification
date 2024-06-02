@@ -343,6 +343,22 @@ abstract class PostTrigger extends Abstracts\Trigger
 		);
 
 		$this->addMergeTag(
+			new MergeTag\User\UserNickname(
+				[
+					'slug' => sprintf(
+						'%s_author_user_nickname',
+						$this->postType
+					),
+
+					// translators: singular post name.
+					'name' => sprintf(__('%s author user nickname', 'notification'), $postTypeName),
+					'property_name' => 'author',
+					'group' => __('Author', 'notification'),
+				]
+			)
+		);
+
+		$this->addMergeTag(
 			new MergeTag\User\UserDisplayName(
 				[
 					'slug' => sprintf(
@@ -481,6 +497,22 @@ abstract class PostTrigger extends Abstracts\Trigger
 
 					// translators: singular post name.
 					'name' => sprintf(__('%s last editor nicename', 'notification'), $postTypeName),
+					'property_name' => 'last_editor',
+					'group' => __('Last editor', 'notification'),
+				]
+			)
+		);
+
+		$this->addMergeTag(
+			new MergeTag\User\UserNickname(
+				[
+					'slug' => sprintf(
+						'%s_last_editor_nickname',
+						$this->postType
+					),
+
+					// translators: singular post name.
+					'name' => sprintf(__('%s last editor nickname', 'notification'), $postTypeName),
 					'property_name' => 'last_editor',
 					'group' => __('Last editor', 'notification'),
 				]

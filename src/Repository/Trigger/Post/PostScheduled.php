@@ -190,6 +190,21 @@ class PostScheduled extends PostTrigger
 		);
 
 		$this->addMergeTag(
+			new MergeTag\User\UserNickname(
+				[
+					'slug' => sprintf(
+						'%s_scheduling_user_nickname',
+						$this->postType
+					),
+					// translators: singular post name.
+					'name' => sprintf(__('%s scheduling user nickname', 'notification'), $postTypeName),
+					'property_name' => 'scheduling_user',
+					'group' => __('Scheduling user', 'notification'),
+				]
+			)
+		);
+
+		$this->addMergeTag(
 			new MergeTag\User\UserDisplayName(
 				[
 					'slug' => sprintf(

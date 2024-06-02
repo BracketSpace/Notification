@@ -124,6 +124,16 @@ abstract class MediaTrigger extends Abstracts\Trigger
 		);
 
 		$this->addMergeTag(
+			new MergeTag\User\UserNickname(
+				[
+					'slug' => 'attachment_author_user_nickname',
+					'name' => __('Attachment author user nickname', 'notification'),
+					'group' => __('Author', 'notification'),
+				]
+			)
+		);
+
+		$this->addMergeTag(
 			new MergeTag\User\UserDisplayName(
 				[
 					'slug' => 'attachment_author_user_display_name',

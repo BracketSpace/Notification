@@ -168,6 +168,21 @@ class PostTrashed extends PostTrigger
 		);
 
 		$this->addMergeTag(
+			new MergeTag\User\UserNickname(
+				[
+					'slug' => sprintf(
+						'%s_trashing_user_nickname',
+						$this->postType
+					),
+					// translators: singular post name.
+					'name' => sprintf(__('%s trashing user nickname', 'notification'), $postTypeName),
+					'property_name' => 'trashing_user',
+					'group' => __('Trashing user', 'notification'),
+				]
+			)
+		);
+
+		$this->addMergeTag(
 			new MergeTag\User\UserDisplayName(
 				[
 					'slug' => sprintf(

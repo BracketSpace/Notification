@@ -168,6 +168,21 @@ class PostApproved extends PostTrigger
 		);
 
 		$this->addMergeTag(
+			new MergeTag\User\UserNickname(
+				[
+					'slug' => sprintf(
+						'%s_approving_user_nickname',
+						$this->postType
+					),
+					// translators: singular post name.
+					'name' => sprintf(__('%s approving user nickname', 'notification'), $postTypeName),
+					'property_name' => 'approving_user',
+					'group' => __('Approving user', 'notification'),
+				]
+			)
+		);
+
+		$this->addMergeTag(
 			new MergeTag\User\UserDisplayName(
 				[
 					'slug' => sprintf(

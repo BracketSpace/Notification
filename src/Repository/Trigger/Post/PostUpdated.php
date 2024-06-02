@@ -190,6 +190,21 @@ class PostUpdated extends PostTrigger
 		);
 
 		$this->addMergeTag(
+			new MergeTag\User\UserNickname(
+				[
+					'slug' => sprintf(
+						'%s_updating_user_nickname',
+						$this->postType
+					),
+					// translators: singular post name.
+					'name' => sprintf(__('%s updating user nickname', 'notification'), $postTypeName),
+					'property_name' => 'updating_user',
+					'group' => __('Updating user', 'notification'),
+				]
+			)
+		);
+
+		$this->addMergeTag(
 			new MergeTag\User\UserDisplayName(
 				[
 					'slug' => sprintf(

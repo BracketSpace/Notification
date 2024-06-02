@@ -117,6 +117,17 @@ class MediaUpdated extends MediaTrigger
 		);
 
 		$this->addMergeTag(
+			new MergeTag\User\UserNickname(
+				[
+					'slug' => 'attachment_updating_user_nickname',
+					'name' => __('Attachment updating user nickname', 'notification'),
+					'property_name' => 'updating_user',
+					'group' => __('Updating user', 'notification'),
+				]
+			)
+		);
+
+		$this->addMergeTag(
 			new MergeTag\User\UserFirstName(
 				[
 					'slug' => 'attachment_updating_user_firstname',
