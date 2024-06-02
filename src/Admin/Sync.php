@@ -48,11 +48,10 @@ class Sync
 				],
 				'render' => [new CoreFields\Message(), 'input'],
 				'sanitize' => [new CoreFields\Message(), 'sanitize'],
-				'description' => __('Bulk actions for the table below.'),
 			]
 		);
 
-		if (!CoreSync::isSyncing()) {
+		if (! CoreSync::isSyncing()) {
 			return;
 		}
 

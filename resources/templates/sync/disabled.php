@@ -18,8 +18,8 @@ echo wp_kses_data(
 	// Translators: %s Function name.
 	__(
 		sprintf(
-			'Synchronization is disabled. You can enable it with %s function',
-			'<code>notification_sync()</code>'
+			'Synchronization is disabled. You can enable it with %s',
+			'<code>\BracketSpace\Notification\Core\Sync::enable()</code>'
 		),
 		'notification'
 	)

@@ -37,7 +37,7 @@ class Sync
 	 */
 	public static function getAllJson()
 	{
-		if (!self::isSyncing()) {
+		if (! self::isSyncing()) {
 			return [];
 		}
 
@@ -87,7 +87,7 @@ class Sync
 				$notification = Notification::from('json', $json);
 
 				if ($notification->isEnabled()) {
-					Register::notification($notification);
+					Register::notificationIfNewer($notification);
 				}
 			} catch (\Throwable $e) {
 				// Do nothing.
@@ -170,7 +170,7 @@ class Sync
 	//phpcs:ignore SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue.NullabilitySymbolRequired
 	public static function enable(string $path = null)
 	{
-		if (!$path) {
+		if (! $path) {
 			$path = trailingslashit(get_stylesheet_directory()) . 'notifications';
 		}
 
@@ -187,11 +187,11 @@ class Sync
 
 		$fs = static::getSyncFs();
 
-		if (!$fs) {
+		if (! $fs) {
 			return;
 		}
 
-		if (!$fs->exists('') || !$fs->is_dir('')) {
+		if (! $fs->exists('') || ! $fs->is_dir('')) {
 			$fs->mkdir('');
 		}
 
@@ -200,10 +200,7 @@ class Sync
 		}
 
 		$fs->touch('index.php');
-		$fs->put_contents(
-			'index.php',
-			'<?php' . "\r\n" . '// Keep this file here.' . "\r\n"
-		);
+		$fs->put_contents('index.php', '<?php' . "\r\n" . '// Keep this file here.' . "\r\n");
 	}
 
 	/**
@@ -236,7 +233,7 @@ class Sync
 	 */
 	public static function getSyncFs()
 	{
-		if (!static::isSyncing()) {
+		if (! static::isSyncing()) {
 			return null;
 		}
 

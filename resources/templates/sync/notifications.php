@@ -29,23 +29,12 @@ declare(strict_types=1);
 		<tr>
 			<td class="title">
 				<?php if (isset($item['post_id'])) : ?>
-				<a
-					href="
-					<?php
-					echo esc_url(
-						(string)get_edit_post_link(
-							$item['post_id'],
-							'admin'
-						)
-					);
-					?>
-					"
-				>
+					<a href="<?php echo esc_url((string)get_edit_post_link($item['post_id'], 'admin')); ?>">
 				<?php endif ?>
 					<?php echo esc_html($item['notification']->getTitle()); ?>
-					<?php if (isset($item['post_id'])) : ?>
-				</a>
-					<?php endif ?>
+				<?php if (isset($item['post_id'])) : ?>
+					</a>
+				<?php endif ?>
 			</td>
 			<td class="hash">
 				<code><?php echo esc_html($hash); ?></code>

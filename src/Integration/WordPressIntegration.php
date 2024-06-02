@@ -52,7 +52,7 @@ class WordPressIntegration
 		 */
 		$notifications = $cache->collect(static fn() => NotificationDatabaseService::getAll());
 
-		array_map([Register::class, 'notification'], $notifications);
+		array_map([Register::class, 'notificationIfNewer'], $notifications);
 	}
 
 	/**

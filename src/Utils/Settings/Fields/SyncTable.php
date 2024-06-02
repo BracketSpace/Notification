@@ -64,13 +64,7 @@ class SyncTable
 
 				$wpNotification = $collection[$notification->getHash()]['notification'];
 
-				if (
-					version_compare(
-						(string)$wpNotification->getVersion(),
-						(string)$notification->getVersion(),
-						'>='
-					)
-				) {
+				if (version_compare((string)$wpNotification->getVersion(), (string)$notification->getVersion(), '>=')) {
 					$collection[$notification->getHash()]['up_to_date'] = true;
 				}
 			} else {
@@ -85,7 +79,7 @@ class SyncTable
 
 		// Filter synchronized.
 		foreach ($collection as $key => $data) {
-			if (!$data['up_to_date']) {
+			if (! $data['up_to_date']) {
 				continue;
 			}
 
