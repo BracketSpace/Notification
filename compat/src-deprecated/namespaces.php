@@ -12,10 +12,23 @@ spl_autoload_register(function ($class) {
 		],
 	];
 
+	// Classes meant to be left as is, ie. deprecated ones.
+	$exclusions = [
+		'BracketSpace\Notification\Defaults\Adapter',
+	];
+
 	foreach ($deprecations as $version => $map) {
 		foreach ($map as $oldNamespace => $newNamespace) {
+			// Match the loaded classname.
 			if (strpos($class, $oldNamespace) !== 0) {
 				continue;
+			}
+
+			// Check for exclusions.
+			foreach ($exclusions as $excludedNamespace) {
+				if (strpos($class, $excludedNamespace) !== 0) {
+					continue;
+				}
 			}
 
 			$newClass = str_replace($oldNamespace, $newNamespace, $class);

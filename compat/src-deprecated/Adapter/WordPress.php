@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-namespace BracketSpace\Notification\Repository\Adapter;
+namespace BracketSpace\Notification\Defaults\Adapter;
 
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Core\Notification;

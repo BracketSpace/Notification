@@ -114,7 +114,7 @@ function notification_get_post_by_hash( $hash ) {
 function notification_post_is_new( $post ) {
 	_deprecated_function( __FUNCTION__, '8.0.0' );
 
-	/** @var BracketSpace\Notification\Repository\Adapter\WordPress $notification */
+	/** @var BracketSpace\Notification\Defaults\Adapter\WordPress $notification */
 	$notification = notification_adapt_from( 'WordPress', $post );
 	return $notification->isNew();
 }
@@ -482,8 +482,8 @@ function notification_adapt($adapterName, \BracketSpace\Notification\Core\Notifi
 
 	if (class_exists($adapterName)) {
 		$adapter = new $adapterName($notification);
-	} elseif (class_exists('BracketSpace\\Notification\\Repository\\Adapter\\' . $adapterName)) {
-		$adapterName = 'BracketSpace\\Notification\\Repository\\Adapter\\' . $adapterName;
+	} elseif (class_exists('BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapterName)) {
+		$adapterName = 'BracketSpace\\Notification\\Defaults\\Adapter\\' . $adapterName;
 		$adapter = new $adapterName($notification);
 	} else {
 		throw new \Exception(
