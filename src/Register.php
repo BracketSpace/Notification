@@ -67,6 +67,7 @@ class Register
 			if (! $exNotification instanceof Core\Notification) {
 				// Something went wrong, just insert the notification.
 				Store\Notification::insert($notification->getHash(), $notification);
+				return;
 			}
 
 			// Existing Notification is newer or the same, do nothing.
