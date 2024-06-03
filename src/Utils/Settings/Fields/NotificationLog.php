@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Utils\Settings\Fields;
 
+use BracketSpace\Notification\Core\Debugging;
 use BracketSpace\Notification\Core\Templates;
 
 /**
@@ -25,7 +26,7 @@ class NotificationLog
 	 */
 	public function input($field)
 	{
-		$debug = \Notification::component('core_debugging');
+		$debug = \Notification::component(Debugging::class);
 
 		// This is a simple pagination request.
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended

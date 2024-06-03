@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Integration;
 
+use BracketSpace\Notification\Core\Settings;
+
 /**
  * WordPress integration class
  */
@@ -59,14 +61,14 @@ class WordPressEmails
 
 		if (
 			$isAdminNotify &&
-			\Notification::component('settings')->getSetting('integration/emails/new_user_to_admin') !== 'true'
+			\Notification::component(Settings::class)->getSetting('integration/emails/new_user_to_admin') !== 'true'
 		) {
 			wp_new_user_notification($userId, null, 'admin');
 		}
 
 		if (
 			! $isUserNotify ||
-			\Notification::component('settings')->getSetting('integration/emails/new_user_to_user') === 'true'
+			\Notification::component(Settings::class)->getSetting('integration/emails/new_user_to_user') === 'true'
 		) {
 			return;
 		}
@@ -86,7 +88,7 @@ class WordPressEmails
 	 */
 	public function disablePostAuthorNotify($maybeNotify, $commentId)
 	{
-		if (\Notification::component('settings')->getSetting('integration/emails/post_author') === 'true') {
+		if (\Notification::component(Settings::class)->getSetting('integration/emails/post_author') === 'true') {
 			$maybeNotify = false;
 		}
 
@@ -105,7 +107,7 @@ class WordPressEmails
 	 */
 	public function disableCommentModeratorNotify($maybeNotify, $commentId)
 	{
-		if (\Notification::component('settings')->getSetting('integration/emails/comment_moderator') === 'true') {
+		if (\Notification::component(Settings::class)->getSetting('integration/emails/comment_moderator') === 'true') {
 			$maybeNotify = false;
 		}
 
@@ -123,7 +125,8 @@ class WordPressEmails
 	public function disablePasswordChangeNotifyToAdmin()
 	{
 		if (
-			\Notification::component('settings')->getSetting('integration/emails/password_change_to_admin') !== 'true'
+			\Notification::component(Settings::class)
+				->getSetting('integration/emails/password_change_to_admin') !== 'true'
 		) {
 			return;
 		}
@@ -143,7 +146,7 @@ class WordPressEmails
 	public function disableSendConfirmationOnProfileEmail()
 	{
 		if (
-			\Notification::component('settings')
+			\Notification::component(Settings::class)
 				->getSetting('integration/emails/send_confirmation_on_profile_email') !== 'true'
 		) {
 			return;
@@ -169,7 +172,7 @@ class WordPressEmails
 	public function disableSendConfirmationOnAdminEmail()
 	{
 		if (
-			\Notification::component('settings')
+			\Notification::component(Settings::class)
 				->getSetting('integration/emails/send_confirmation_on_admin_email') !== 'true'
 		) {
 			return;
@@ -191,7 +194,7 @@ class WordPressEmails
 	 */
 	public function disableSendConfirmationOnAdminEmailChanged()
 	{
-		return \Notification::component('settings')
+		return \Notification::component(Settings::class)
 			->getSetting('integration/emails/send_confirmation_on_admin_email_changed') !== 'true';
 	}
 
@@ -209,7 +212,8 @@ class WordPressEmails
 	public function disablePasswordChangeNotifyToUser($send, $user, $userdata)
 	{
 		if (
-			\Notification::component('settings')->getSetting('integration/emails/password_change_to_user') === 'true'
+			\Notification::component(Settings::class)
+				->getSetting('integration/emails/password_change_to_user') === 'true'
 		) {
 			$send = false;
 		}
@@ -229,7 +233,8 @@ class WordPressEmails
 	public function disablePasswordResetNotifyToUser($message)
 	{
 		if (
-			\Notification::component('settings')->getSetting('integration/emails/password_forgotten_to_user') === 'true'
+			\Notification::component(Settings::class)
+				->getSetting('integration/emails/password_forgotten_to_user') === 'true'
 		) {
 			return '';
 		}
@@ -250,7 +255,10 @@ class WordPressEmails
 	 */
 	public function disableEmailChangeNotifyToUser($send, $user, $userdata)
 	{
-		if (\Notification::component('settings')->getSetting('integration/emails/email_change_to_user') === 'true') {
+		if (
+			\Notification::component(Settings::class)
+				->getSetting('integration/emails/email_change_to_user') === 'true'
+		) {
 			$send = false;
 		}
 
@@ -273,7 +281,8 @@ class WordPressEmails
 	{
 		if (
 			$type === 'success' &&
-			\Notification::component('settings')->getSetting('integration/emails/automatic_wp_core_update') === 'true'
+			\Notification::component(Settings::class)
+				->getSetting('integration/emails/automatic_wp_core_update') === 'true'
 		) {
 			$send = false;
 		}
@@ -296,7 +305,7 @@ class WordPressEmails
 		$isAdmin = ($user && is_array($user->roles) && in_array('administrator', $user->roles, true));
 
 		return $isAdmin
-			? \Notification::component('settings')->getSetting('integration/emails/' . $slug . '_to_admin')
-			: \Notification::component('settings')->getSetting('integration/emails/' . $slug . '_to_user');
+			? \Notification::component(Settings::class)->getSetting('integration/emails/' . $slug . '_to_admin')
+			: \Notification::component(Settings::class)->getSetting('integration/emails/' . $slug . '_to_user');
 	}
 }

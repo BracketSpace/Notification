@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 
+use BracketSpace\Notification\Core\Settings;
 use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
 
 /**
@@ -48,9 +49,9 @@ class Scripts
 		$allowedHooks = apply_filters(
 			'notification/scripts/allowed_hooks',
 			[
-				\Notification::component('admin_extensions')->pageHook,
-				\Notification::component('settings')->pageHook,
-				\Notification::component('admin_wizard')->pageHook,
+				\Notification::component(Extensions::class)->pageHook,
+				\Notification::component(Settings::class)->pageHook,
+				\Notification::component(Wizard::class)->pageHook,
 				'plugins.php',
 				'post-new.php',
 				'post.php',
@@ -102,18 +103,9 @@ class Scripts
 				'postId' => get_the_ID(),
 				'rest_nonce' => wp_create_nonce('wp_rest'),
 				'csrfToken' => wp_create_nonce('notification_csrf'),
-				'select_rest_url' => get_rest_url(
-					null,
-					'notification/v1/repeater-field/select/'
-				),
-				'repeater_rest_url' => get_rest_url(
-					null,
-					'notification/v1/repeater-field/'
-				),
-				'section_repeater_rest_url' => get_rest_url(
-					null,
-					'notification/v1/section-repeater-field/'
-				),
+				'select_rest_url' => get_rest_url(null, 'notification/v1/repeater-field/select/'),
+				'repeater_rest_url' => get_rest_url(null, 'notification/v1/repeater-field/'),
+				'section_repeater_rest_url' => get_rest_url(null, 'notification/v1/section-repeater-field/'),
 			]
 		);
 

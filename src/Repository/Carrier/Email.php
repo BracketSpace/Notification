@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Carrier;
 
+use BracketSpace\Notification\Core\Settings;
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Core\Debugging;
 use BracketSpace\Notification\Repository\Field;
@@ -58,8 +59,8 @@ class Email extends Abstracts\Carrier
 			)
 		);
 
-		$bodyField = \Notification::component('settings')->getSetting('carriers/email/type') === 'html' &&
-					! \Notification::component('settings')->getSetting(
+		$bodyField = \Notification::component(Settings::class)->getSetting('carriers/email/type') === 'html' &&
+					! \Notification::component(Settings::class)->getSetting(
 						'carriers/email/unfiltered_html'
 					)
 			? new Field\EditorField(
@@ -87,7 +88,7 @@ class Email extends Abstracts\Carrier
 
 		$this->addRecipientsField();
 
-		if (! \Notification::component('settings')->getSetting('carriers/email/headers')) {
+		if (! \Notification::component(Settings::class)->getSetting('carriers/email/headers')) {
 			return;
 		}
 
@@ -138,7 +139,7 @@ class Email extends Abstracts\Carrier
 	 */
 	public function send(Triggerable $trigger)
 	{
-		$defaultHtmlMime = \Notification::component('settings')->getSetting('carriers/email/type') === 'html';
+		$defaultHtmlMime = \Notification::component(Settings::class)->getSetting('carriers/email/type') === 'html';
 		$htmlMime = apply_filters('notification/carrier/email/use_html_mime', $defaultHtmlMime, $this, $trigger);
 
 		if ($htmlMime) {
@@ -177,7 +178,10 @@ class Email extends Abstracts\Carrier
 			$headers[] = $fromHeader;
 		}
 
-		if (\Notification::component('settings')->getSetting('carriers/email/headers') && !empty($data['headers'])) {
+		if (
+			\Notification::component(Settings::class)->getSetting('carriers/email/headers') &&
+			! empty($data['headers'])
+		) {
 			foreach ($data['headers'] as $header) {
 				$headers[] = $header['key'] . ': ' . $header['value'];
 			}
@@ -243,7 +247,7 @@ class Email extends Abstracts\Carrier
 	 **/
 	public function allowUnfilteredHtmlBody($carrierData, $rawData)
 	{
-		if (\Notification::component('settings')->getSetting('carriers/email/unfiltered_html')) {
+		if (\Notification::component(Settings::class)->getSetting('carriers/email/unfiltered_html')) {
 			$carrierData['body'] = $rawData['body'];
 		}
 
@@ -258,9 +262,9 @@ class Email extends Abstracts\Carrier
 	protected function getFromHeaderSetting()
 	{
 		/** @var string $fromName */
-		$fromName = \Notification::component('settings')->getSetting('carriers/email/from_name');
+		$fromName = \Notification::component(Settings::class)->getSetting('carriers/email/from_name');
 		/** @var string $fromEmail */
-		$fromEmail = \Notification::component('settings')->getSetting('carriers/email/from_email');
+		$fromEmail = \Notification::component(Settings::class)->getSetting('carriers/email/from_email');
 
 		return sprintf('From: %s <%s>', $fromName, $fromEmail);
 	}

@@ -312,9 +312,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 - The same as above applies to Post Trigger datetime tags, namely: postCreationDatetime, postPublicationDatetime, and postModificationDatetime.
 - Hook `notification/data/save` and `notification/data/save/after` now pass Core\Notification instance in the first param instead of the WordPress adapter instance.
 - Namespace `BracketSpace\Notification\Defaults\` has been changed to `BracketSpace\Notification\Repository\`
-
-Renamed runtime components:
-- core_settings -> settings
+- Runtime components are now referenced by FQCN (Fully Qualified Class Name), instead of the name.
 
 Hook depracations:
 - `notification/data/save/after`, use `notification/data/saved`
@@ -367,6 +365,7 @@ Removed deprecated hooks:
 * [Changed] Multiple function, method and hook deprecations, see above for detailed list and replacements.
 * [Changed] Runtime components names, see above for detailed list and replacements.
 * [Changed] Namespace `BracketSpace\Notification\Defaults\` to `BracketSpace\Notification\Repository\`.
+* [Changed] Runtime components are now referenced by FQCN (Fully Qualified Class Name), instead of the name.
 * [Fixed] Shortcodes being uncorrectly stripped leaving closing "]" behind.
 * [Fixed] PHP 8.2 deprecations.
 * [Fixed] Stripping shortcodes in carrier fields.
