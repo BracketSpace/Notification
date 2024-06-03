@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Trigger\Comment;
 
+use BracketSpace\Notification\Core\Settings;
 use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
@@ -57,7 +58,7 @@ class CommentTrashed extends CommentTrigger
 
 		if (
 			$this->comment->comment_approved === 'spam' &&
-			\Notification::component('settings')->getSetting('triggers/comment/akismet')
+			\Notification::component(Settings::class)->getSetting('triggers/comment/akismet')
 		) {
 			return false;
 		}

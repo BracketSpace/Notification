@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 
+use BracketSpace\Notification\Api\Api;
+
 /**
  * CheckRestApi class
  */
@@ -32,16 +34,11 @@ class CheckRestApi
 			$isEdit = $currentScreen->base === 'post' && $currentScreen->post_type === 'notification';
 		}
 
-		if (!$isEdit) {
+		if (! $isEdit) {
 			return;
 		}
 
-		$response = wp_remote_get(
-			get_rest_url(
-				null,
-				\Notification::component('api')->getEndpoint('check')
-			)
-		);
+		$response = wp_remote_get(get_rest_url(null, \Notification::component(Api::class)->getEndpoint('check')));
 
 		$message = json_decode(wp_remote_retrieve_body($response), true);
 

@@ -9,6 +9,7 @@ use BracketSpace\Notification\Admin\Wizard;
 use BracketSpace\Notification\Core\Debugging;
 use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Resolver;
+use BracketSpace\Notification\Core\Settings;
 use BracketSpace\Notification\Core\Sync;
 use BracketSpace\Notification\Core\Templates;
 use BracketSpace\Notification\Core\Whitelabel;
@@ -616,9 +617,9 @@ function notification_register_settings($callback, $priority = 10) {
  * @deprecated [Next]
  */
 function notification_get_settings() {
-	_deprecated_function( __FUNCTION__, '[Next]', "\Notification::component('settings')->getSettings()");
+	_deprecated_function( __FUNCTION__, '[Next]', "\Notification::component(Settings::class)->getSettings()");
 
-	return \Notification::component('settings')->getSettings();
+	return \Notification::component(Settings::class)->getSettings();
 }
 
 /**
@@ -631,9 +632,9 @@ function notification_get_settings() {
  * @deprecated [Next]
  */
 function notification_get_setting($setting) {
-	_deprecated_function( __FUNCTION__, '[Next]', "\Notification::component('settings')->getSettuing()");
+	_deprecated_function( __FUNCTION__, '[Next]', "\Notification::component(Settings::class)->getSettuing()");
 
-	return \Notification::component('settings')->getSetting($setting);
+	return \Notification::component(Settings::class)->getSetting($setting);
 }
 
 /**
@@ -645,9 +646,9 @@ function notification_get_setting($setting) {
  * @return  mixed
  */
 function notification_update_setting($setting, $value) {
-	_deprecated_function( __FUNCTION__, '[Next]', "\Notification::component('settings')->updateSetting(setting, value)");
+	_deprecated_function( __FUNCTION__, '[Next]', "\Notification::component(Settings::class)->updateSetting(setting, value)");
 
-	return \Notification::component('settings')->updateSetting($setting, $value);
+	return \Notification::component(Settings::class)->updateSetting($setting, $value);
 }
 
 /**

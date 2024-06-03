@@ -59,7 +59,7 @@ if ( ! class_exists( 'Notification' ) ) :
 		 * Gets runtime component
 		 *
 		 * @since  7.0.0
-		 * @param  string $componentName Component name.
+		 * @param  class-string $componentName Component name.
 		 * @return mixed
 		 */
 		public static function component( $componentName ) {

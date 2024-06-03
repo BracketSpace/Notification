@@ -65,7 +65,7 @@ class Cron
 	public function registerCheckUpdatesEvent()
 	{
 		$event = wp_get_schedule('notification_check_wordpress_updates');
-		$schedule = \Notification::component('settings')->getSetting('triggers/wordpress/updates_cron_period');
+		$schedule = \Notification::component(Settings::class)->getSetting('triggers/wordpress/updates_cron_period');
 
 		if ($event === false) {
 			$this->schedule($schedule, 'notification_check_wordpress_updates');

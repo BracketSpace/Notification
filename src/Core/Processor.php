@@ -40,7 +40,7 @@ class Processor
 
 				$bpEnabled = apply_filters(
 					'notification/trigger/process_in_background',
-					\Notification::component('settings')->getSetting('general/advanced/background_processing'),
+					\Notification::component(Settings::class)->getSetting('general/advanced/background_processing'),
 					$trigger
 				);
 
