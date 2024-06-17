@@ -36,86 +36,49 @@ $license = $ext['license']->get();
 		<div class="desc column-description">
 			<?php if (empty($license)) : ?>
 				<p>
-				<?php
-				esc_html_e(
-					'To receive updates, please enter your valid license key.',
-					'notification'
-				);
-				?>
-					</p>
+					<?php esc_html_e('To receive updates, please enter your valid license key.', 'notification'); ?>
+				</p>
 			<?php else : ?>
 				<?php if ($license->expires !== 'lifetime') : ?>
 					<p>
 					<?php
 					printf(
 						// translators: 1. Expiration date.
-						esc_html__(
-							'Your license expires on %s.',
-							'notification'
-						),
-						esc_html(
-							date_i18n(
-								get_option('date_format'),
-								strtotime(
-									$license->expires,
-									time()
-								)
-							)
-						)
+						esc_html__('Your license expires on %s.', 'notification'),
+						esc_html(date_i18n(get_option('date_format'), strtotime((string)$license->expires, time())))
 					);
 					?>
-						</p>
+					</p>
 				<?php else : ?>
 					<p>
-					<?php
-					esc_html_e(
-						'Your license never expires.',
-						'notification'
-					);
-					?>
-						</p>
+						<?php esc_html_e('Your license never expires.', 'notification'); ?>
+					</p>
 				<?php endif ?>
-				<?php
-				if (
-					in_array(
-						$license->license,
-						['inactive', 'site_inactive'],
-						true
-					)
-				) :
-					?>
+				<?php if (in_array($license->license, ['inactive', 'site_inactive'], true)) : ?>
 					<p style="color: red;">
-					<?php
-					esc_html_e(
-						'Your license is inactive.',
-						'notification'
-					);
-					?>
-						</p>
+						<?php esc_html_e('Your license is inactive.', 'notification'); ?>
+					</p>
 				<?php endif ?>
 				<?php if ($license->license === 'expired') : ?>
 					<p style="color: red;">
-					<?php
-					esc_html_e(
-						'Your license is expired.',
-						'notification'
-					);
-					?>
-						</p>
+						<?php esc_html_e('Your license is expired.', 'notification'); ?>
+						<?php
+							$renewalUrl = add_query_arg(
+								'edd_license_key',
+								$ext['license']->getKey(),
+								'https://bracketspace.com/payment/'
+							);
+						?>
+						<a href="<?php echo esc_attr($renewalUrl); ?>" target="_blank">
+							<?php esc_html_e('Renew now', 'notification'); ?>
+						</a>
+					</p>
 				<?php endif ?>
 			<?php endif ?>
 			<p>
-				<a
-					href="<?php echo esc_url($ext['url']); ?>"
-					target="_blank"
-				>
-				<?php
-				esc_html_e(
-					'Visit the store',
-					'notification'
-				);
-				?>
-					</a>
+				<a href="<?php echo esc_url($ext['url']); ?>" target="_blank">
+					<?php esc_html_e('Visit the store', 'notification'); ?>
+				</a>
 			</p>
 		</div>
 	</div>
@@ -161,14 +124,14 @@ $license = $ext['license']->get();
 			<input
 				type="hidden"
 				name="license-key"
-				value="<?php echo esc_attr($license->licenseKey); ?>"
+				value="<?php echo esc_attr($ext['license']->getKey()); ?>"
 			>
 			<div class="column-license">
 				<input
 					type="text"
 					name="placeholder"
 					disabled="disabled"
-					value="<?php echo esc_attr($license->licenseKey); ?>"
+					value="<?php echo esc_attr($ext['license']->getKey()); ?>"
 					class="widefat"
 				>
 			</div>

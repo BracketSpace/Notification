@@ -148,22 +148,15 @@ class Extensions
 	 */
 	public function getRawExtensions()
 	{
-		$driver = new CacheDriver\Transient(
-			ErrorHandler::debugEnabled()
-				? 60
-				: DAY_IN_SECONDS
-		);
-		$cache = new Cache(
-			$driver,
-			'notification_extensions'
-		);
+		$driver = new CacheDriver\Transient(ErrorHandler::debugEnabled() ? 60 : DAY_IN_SECONDS);
+		$cache = new Cache($driver, 'notification_extensions');
 
 		return $cache->collect(
 			function () {
 				$response = wp_remote_get($this->apiUrl);
 				$extensions = [];
 
-				if (!is_wp_error($response) && wp_remote_retrieve_response_code($response) === 200) {
+				if (! is_wp_error($response) && wp_remote_retrieve_response_code($response) === 200) {
 					$extensions = json_decode(wp_remote_retrieve_body($response), true);
 				}
 
@@ -196,51 +189,8 @@ class Extensions
 			[
 				'premium_extensions' => $this->premiumExtensions,
 				'extensions' => $this->extensions,
-				'bundles' => static::getBundles(),
 			]
 		);
-	}
-
-	/**
-	 * Gets bundles
-	 *
-	 * @return array<int, array{name: string, description: string, price: int}>
-	 * @since  8.0.0
-	 */
-	public static function getBundles()
-	{
-		return [
-			[
-				'name' => 'All-In',
-				'description' => __(
-					'Every available Notification extension and all the
-					<strong>future extensions</strong>
-					at a static price!
-					You get the whole package and the price will never
-					change even if a new add-on will be released.',
-					'notification'
-				),
-				'price' => 249,
-			],
-			[
-				'name' => 'Standard',
-				'description' => esc_html__(
-					'All extensions from Essential bundle plus much needed Carriers:
-					Discord, Mailgun, Slack and Twilio.
-					Use multiple notification channels!',
-					'notification'
-				),
-				'price' => 199,
-			],
-			[
-				'name' => 'Essential',
-				'description' => esc_html__(
-					'Crucial extensions including Conditionals, Custom Fields and File Log',
-					'notification'
-				),
-				'price' => 99,
-			],
-		];
 	}
 
 	/**
@@ -339,7 +289,8 @@ class Extensions
 			$licenseData = $activation->get_error_data();
 			$params = [
 				'activation-status' => $activation->get_error_message(),
-				'extension' => rawurlencode($licenseData->itemName),
+				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+				'extension' => rawurlencode($licenseData->item_name),
 			];
 
 			if ($activation->get_error_message() === 'expired') {
@@ -528,26 +479,12 @@ class Extensions
 	}
 
 	/**
-	 * Displays activation notice nag
+	 * Gets extensions with invalid license
 	 *
-	 * @action admin_notices
-	 *
-	 * @return void
+	 * @return array<string>
 	 */
-	public function activationNag()
+	public function getInvalidLicenseExtensions()
 	{
-		if (Whitelabel::isWhitelabeled()) {
-			return;
-		}
-
-		if (!current_user_can('manage_options')) {
-			return;
-		}
-
-		if (get_current_screen()->id === $this->pageHook) {
-			return;
-		}
-
 		$extensions = $this->getRawExtensions();
 
 		if (empty($extensions)) {
@@ -557,7 +494,7 @@ class Extensions
 		$invalidExtensions = [];
 
 		foreach ($extensions as $extension) {
-			if (!isset($extension['edd']) || !is_plugin_active($extension['slug'])) {
+			if (! isset($extension['edd']) || ! is_plugin_active($extension['slug'])) {
 				continue;
 			}
 
@@ -570,24 +507,58 @@ class Extensions
 			$invalidExtensions[] = $extension['edd']['item_name'];
 		}
 
-		if ($invalidExtensions === []) {
+		return $invalidExtensions;
+	}
+
+	/**
+	 * Displays activation notice nag
+	 *
+	 * @action admin_notices
+	 *
+	 * @return void
+	 */
+	public function activationNag()
+	{
+		if (Whitelabel::isWhitelabeled()) {
+			return;
+		}
+
+		if (! current_user_can('manage_options')) {
+			return;
+		}
+
+		if (get_current_screen()->id === $this->pageHook) {
+			return;
+		}
+
+		$invalidExtensions = $this->getInvalidLicenseExtensions();
+
+		if (empty($invalidExtensions)) {
 			return;
 		}
 
 		$message = _n(
-			'Please activate the following plugin to get the updates.',
-			'Please activate the following plugins to get the updates.',
+			'The Notification extension license is inactive,
+			which means your WordPress <strong>might break</strong>.',
+			'The Notification extension licenses are inactive,
+			which means your WordPress <strong>might break</strong>.',
 			count($invalidExtensions),
 			'notification'
 		);
 
 		$extensionsLink = sprintf(
-			'<a href="%s">%s</a>',
+			'<a href="%s" class="button button-small button-secondary">%s</a>',
 			admin_url('edit.php?post_type=notification&page=extensions'),
-			__('Go to Extensions', 'notification')
+			__('Inspect the issue', 'notification')
 		);
 
-		$message .= ' ' . $extensionsLink;
+		$additionalLink = sprintf(
+			'or <a href="%s" target="_blank">%s</a>',
+			'https://bracketspace.com/expired-license/',
+			__('read more about inactive license', 'notification')
+		);
+
+		$message .= sprintf(' %s %s', $extensionsLink, $additionalLink);
 
 		Templates::render(
 			'extension/activation-error',
@@ -596,5 +567,35 @@ class Extensions
 				'extensions' => $invalidExtensions,
 			]
 		);
+	}
+
+	/**
+	 * Displays inactive license warning
+	 *
+	 * @action notification/admin/extensions/premium/pre
+	 *
+	 * @return void
+	 */
+	public function inactiveLicenseWarning()
+	{
+		if (Whitelabel::isWhitelabeled()) {
+			return;
+		}
+
+		if (! current_user_can('manage_options')) {
+			return;
+		}
+
+		if (get_current_screen()->id !== $this->pageHook) {
+			return;
+		}
+
+		$invalidExtensions = $this->getInvalidLicenseExtensions();
+
+		if (empty($invalidExtensions)) {
+			return;
+		}
+
+		Templates::render('extension/inactive-license', ['extensions' => $invalidExtensions]);
 	}
 }

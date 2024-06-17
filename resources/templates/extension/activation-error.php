@@ -17,11 +17,19 @@ declare(strict_types=1);
 
 <div class="error">
 	<p><?php echo wp_kses_post($get('message')); ?></p>
-	<?php if (!empty($get('extensions'))) : ?>
-		<ul style="list-style: disc; padding-left: 20px;">
-			<?php foreach ($get('extensions') as $extension) : ?>
-				<li><?php echo esc_html($extension); ?></li>
-			<?php endforeach; ?>
-		</ul>
+	<?php if (! empty($get('extensions'))) : ?>
+		<p>
+			<?php
+			echo esc_html(
+				_n(
+					'Extension',
+					'Extensions',
+					count($get('extensions')),
+					'notification'
+				)
+			);
+			?>
+			: <?php echo esc_html(implode(', ', $get('extensions'))); ?>
+		</p>
 	<?php endif ?>
 </div>

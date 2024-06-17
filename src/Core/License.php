@@ -96,25 +96,18 @@ class License
 			return false;
 		}
 
-		$driver = new CacheDriver\Transient(
-			ErrorHandler::debugEnabled() ? 60 : DAY_IN_SECONDS
-		);
-		$cache = new Cache(
-			$driver,
-			sprintf('notification_license_check_%s', $this->extension['slug'])
-		);
+		$driver = new CacheDriver\Transient(ErrorHandler::debugEnabled() ? 60 : DAY_IN_SECONDS);
+		$cache = new Cache($driver, sprintf('notification_license_check_%s', $this->extension['slug']));
 
 		return $cache->collect(
 			function () use ($licenseData) {
-				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-				$licenseCheck = $this->check($licenseData->license_key);
+				$licenseCheck = $this->check($licenseData->licenseKey);
 
 				if (is_wp_error($licenseCheck)) {
 					return $licenseData->license === 'valid';
 				}
 
-				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-				$licenseCheck->license_key = $licenseData->license_key;
+				$licenseCheck->licenseKey = $licenseData->licenseKey;
 				$licenseData = $licenseCheck;
 				$this->save($licenseData);
 
@@ -224,6 +217,14 @@ class License
 		$licenseData->licenseKey = $licenseKey;
 		$this->save($licenseData);
 
+		$driver = new CacheDriver\ObjectCache('notification_license');
+		$cache = new Cache($driver, $this->extension['slug']);
+		$cache->delete();
+
+		$driver = new CacheDriver\Transient(ErrorHandler::debugEnabled() ? 60 : DAY_IN_SECONDS);
+		$cache = new Cache($driver, sprintf('notification_license_check_%s', $this->extension['slug']));
+		$cache->delete();
+
 		return $licenseData;
 	}
 
@@ -248,7 +249,7 @@ class License
 				'timeout' => 15,
 				'body' => [
 					'edd_action' => 'deactivate_license',
-					'license' => trim($licenseData->licenseKey),
+					'license' => trim((string)$licenseData->licenseKey),
 					'item_name' => rawurlencode($itemName),
 					'url' => home_url(),
 				],
@@ -274,6 +275,14 @@ class License
 
 		$this->remove();
 
+		$driver = new CacheDriver\ObjectCache('notification_license');
+		$cache = new Cache($driver, $this->extension['slug']);
+		$cache->delete();
+
+		$driver = new CacheDriver\Transient(ErrorHandler::debugEnabled() ? 60 : DAY_IN_SECONDS);
+		$cache = new Cache($driver, sprintf('notification_license_check_%s', $this->extension['slug']));
+		$cache->delete();
+
 		return $licenseData;
 	}
 
@@ -286,7 +295,7 @@ class License
 	 */
 	public function check($licenseKey = '')
 	{
-		$licenseKey = trim($licenseKey);
+		$licenseKey = trim((string)$licenseKey);
 		$error = false;
 
 		/** @var string $itemName */
@@ -314,6 +323,9 @@ class License
 			);
 		}
 
-		return json_decode(wp_remote_retrieve_body($response));
+		$licenseData = json_decode(wp_remote_retrieve_body($response));
+		$licenseData->licenseKey = $licenseKey;
+
+		return $licenseData;
 	}
 }
