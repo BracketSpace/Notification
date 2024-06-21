@@ -34,7 +34,7 @@ class UserQueries
 
 				// We're using direct db call for performance purposes - we only need the post_content field.
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
-				return $wpdb->getResults(
+				return $wpdb->get_results(
 					"SELECT ID, user_email, display_name FROM $wpdb->users",
 					'ARRAY_A'
 				);
@@ -62,7 +62,7 @@ class UserQueries
 
 				// We're using direct db call for performance purposes - we only need the post_content field.
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-				return $wpdb->getResults(
+				return $wpdb->get_results(
 					$wpdb->prepare(
 						"SELECT u.ID, u.user_email, u.display_name
 					FROM $wpdb->users AS u
