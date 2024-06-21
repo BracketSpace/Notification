@@ -68,6 +68,7 @@
 		"phpcs": "phpcs",
 		"phplint": "parallel-lint --exclude node_modules --exclude vendor --exclude dependencies .",
 		"phpstan": "phpstan analyze --memory-limit=-1",
+		"generate-stubs": "generate-stubs --finder=compat/stub-finder.php --out=compat/stubs.php --force",
 		"prefix-namespaces": [
 			"strauss",
 			"composer dump-autoload"

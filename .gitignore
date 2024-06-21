@@ -9,6 +9,7 @@ package-lock.json
 /dependencies/
 /tests/_wordpress/
 /vendor-bin/**/vendor/
+compat/stubs.php
 
 ### Windows ###
 # Windows image file caches
@@ -105,4 +106,3 @@ Session.vim
 *~
 # auto-generated tag files
 tags
-
