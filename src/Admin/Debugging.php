@@ -11,7 +11,6 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Core\Debugging as CoreDebugging;
-use BracketSpace\Notification\Core\Settings;
 use BracketSpace\Notification\Utils\Settings\CoreFields;
 use BracketSpace\Notification\Utils\Settings\Fields as SpecificFields;
 
@@ -130,8 +129,8 @@ class Debugging
 	{
 		if (
 			get_post_type() !== 'notification' ||
-			! \Notification::component(Settings::class)->getSetting('debugging/settings/debug_log') ||
-			! \Notification::component(Settings::class)->getSetting('debugging/settings/debug_suppressing')
+			! \Notification::settings()->getSetting('debugging/settings/debug_log') ||
+			! \Notification::settings()->getSetting('debugging/settings/debug_suppressing')
 		) {
 			return;
 		}

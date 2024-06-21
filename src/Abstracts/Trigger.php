@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Abstracts;
 
-use BracketSpace\Notification\Core\Settings;
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Interfaces\Taggable;
 use BracketSpace\Notification\Interfaces\Triggerable;
@@ -379,7 +378,7 @@ abstract class Trigger implements Triggerable
 
 		return apply_filters(
 			'notification/trigger/process_in_background',
-			\Notification::component(Settings::class)->getSetting('general/advanced/background_processing'),
+			\Notification::settings()->getSetting('general/advanced/background_processing'),
 			$this
 		);
 	}

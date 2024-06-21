@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Integration;
 
-use BracketSpace\Notification\Core\Settings;
 use BracketSpace\Notification\Database\NotificationDatabaseService;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
 use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
@@ -179,7 +178,7 @@ class WordPressIntegration
 		if (
 			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 			$comment->comment_approved === 'spam' &&
-			\Notification::component(Settings::class)->getSetting('triggers/comment/akismet')
+			\Notification::settings()->getSetting('triggers/comment/akismet')
 		) {
 			return;
 		}

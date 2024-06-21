@@ -11,7 +11,6 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Abstracts;
 
 use BracketSpace\Notification\Core\Resolver;
-use BracketSpace\Notification\Core\Settings;
 use BracketSpace\Notification\Repository\Field;
 use BracketSpace\Notification\Repository\Field\RecipientsField;
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
@@ -422,7 +421,7 @@ abstract class Carrier implements Interfaces\Sendable
 		// Unused tags.
 		$stripMergeTags = apply_filters(
 			'notification/resolve/strip_empty_mergetags',
-			\Notification::component(Settings::class)->getSetting('general/content/strip_empty_tags')
+			\Notification::settings()->getSetting('general/content/strip_empty_tags')
 		);
 
 		if ($stripMergeTags) {
@@ -432,7 +431,7 @@ abstract class Carrier implements Interfaces\Sendable
 		// Shortcodes.
 		$stripShortcodes = apply_filters(
 			'notification/carrier/field/value/strip_shortcodes',
-			\Notification::component(Settings::class)->getSetting('general/content/strip_shortcodes')
+			\Notification::settings()->getSetting('general/content/strip_shortcodes')
 		);
 
 		$resolved = $stripShortcodes

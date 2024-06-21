@@ -617,7 +617,7 @@ function notification_register_settings($callback, $priority = 10) {
  * @deprecated [Next]
  */
 function notification_get_settings() {
-	_deprecated_function( __FUNCTION__, '[Next]', "\Notification::component(Settings::class)->getSettings()");
+	_deprecated_function( __FUNCTION__, '[Next]', "\Notification::settings()->getSettings()");
 
 	return \Notification::component(Settings::class)->getSettings();
 }
@@ -632,7 +632,7 @@ function notification_get_settings() {
  * @deprecated [Next]
  */
 function notification_get_setting($setting) {
-	_deprecated_function( __FUNCTION__, '[Next]', "\Notification::component(Settings::class)->getSettuing()");
+	_deprecated_function( __FUNCTION__, '[Next]', "\Notification::settings()->getSetting()");
 
 	return \Notification::component(Settings::class)->getSetting($setting);
 }
@@ -646,7 +646,7 @@ function notification_get_setting($setting) {
  * @return  mixed
  */
 function notification_update_setting($setting, $value) {
-	_deprecated_function( __FUNCTION__, '[Next]', "\Notification::component(Settings::class)->updateSetting(setting, value)");
+	_deprecated_function( __FUNCTION__, '[Next]', "\Notification::settings()->updateSetting(setting, value)");
 
 	return \Notification::component(Settings::class)->updateSetting($setting, $value);
 }

@@ -54,7 +54,7 @@ class Debugging
 	{
 		if (
 			$type !== 'notification' &&
-			! \Notification::component(Settings::class)->getSetting('debugging/settings/error_log')
+			! \Notification::settings()->getSetting('debugging/settings/error_log')
 		) {
 			return false;
 		}
@@ -232,7 +232,7 @@ class Debugging
 	 */
 	public function catchNotification($carrier, $trigger, $notification)
 	{
-		if (! \Notification::component(Settings::class)->getSetting('debugging/settings/debug_log')) {
+		if (! \Notification::settings()->getSetting('debugging/settings/debug_log')) {
 			return;
 		}
 
@@ -273,7 +273,7 @@ class Debugging
 		if (
 			apply_filters(
 				'notification/debug/suppress',
-				(bool)\Notification::component(Settings::class)->getSetting('debugging/settings/debug_suppressing'),
+				(bool)\Notification::settings()->getSetting('debugging/settings/debug_suppressing'),
 				$data['notification'],
 				$data['carrier'],
 				$data['trigger']

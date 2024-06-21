@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Carrier;
 
-use BracketSpace\Notification\Core\Settings;
 use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Repository\Field;
@@ -93,7 +92,7 @@ class Webhook extends Abstracts\Carrier
 			)
 		);
 
-		if (! \Notification::component(Settings::class)->getSetting('carriers/webhook/headers')) {
+		if (! \Notification::settings()->getSetting('carriers/webhook/headers')) {
 			return;
 		}
 
@@ -155,7 +154,7 @@ class Webhook extends Abstracts\Carrier
 			? ['Content-Type' => 'application/json']
 			: [];
 
-		if (\Notification::component(Settings::class)->getSetting('carriers/webhook/headers')) {
+		if (\Notification::settings()->getSetting('carriers/webhook/headers')) {
 			$headers = array_merge($headers, $this->parseArgs($data['headers']));
 		}
 

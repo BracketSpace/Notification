@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 
-use BracketSpace\Notification\Core\Settings;
 use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
 
 /**
@@ -50,7 +49,7 @@ class Scripts
 			'notification/scripts/allowed_hooks',
 			[
 				\Notification::component(Extensions::class)->pageHook,
-				\Notification::component(Settings::class)->pageHook,
+				\Notification::settings()->pageHook,
 				\Notification::component(Wizard::class)->pageHook,
 				'plugins.php',
 				'post-new.php',

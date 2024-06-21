@@ -4,7 +4,7 @@
  * Description: Customisable email and webhook notifications with powerful developer friendly API for custom triggers and notifications. Send alerts easily.
  * Author: BracketSpace
  * Author URI: https://bracketspace.com
- * Version: 8.0.15
+ * Version: 9.0.0
  * Requires PHP: 7.4
  * Requires at least: 4.9
  * License: GPL3
@@ -90,6 +90,23 @@ if ( ! class_exists( 'Notification' ) ) :
 		 * Gets plugin filesystem
 		 *
 		 * @since  8.0.0
+		 * @throws \Exception When settings class wasn't invoked yet.
+		 * @return BracketSpace\Notification\Core\Settings
+		 */
+		public static function settings() {
+			$settings = self::component('BracketSpace\Notification\Core\Settings');
+
+			if (! $settings instanceof BracketSpace\Notification\Core\Settings) {
+				throw new Exception( 'Notification runtime has not been invoked yet.' );
+			}
+
+			return $settings;
+		}
+
+		/**
+		 * Gets plugin settings instance
+		 *
+		 * @since  [Next]
 		 * @throws \Exception When runtime wasn't invoked yet.
 		 * @return \BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem
 		 */
