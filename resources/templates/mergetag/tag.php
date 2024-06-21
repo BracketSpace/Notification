@@ -23,8 +23,9 @@ $tag = $get('tag');
 	<code
 		class="notification-merge-tag"
 		data-clipboard-text="{<?php echo esc_attr($tag->getSlug()); ?>}"
-	>{<?php echo esc_attr($tag->getSlug()); ?>
-		}</code>
+	>
+		{<?php echo esc_attr($tag->getSlug()); ?>}
+	</code>
 </div>
 <?php $description = $tag->getDescription(); ?>
 <?php if (!empty($description)) : ?>

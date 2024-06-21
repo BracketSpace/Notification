@@ -28,29 +28,22 @@ esc_html_e(
 	<?php foreach ($get('tags') as $tag) : ?>
 		<tr>
 			<td><strong><?php echo esc_attr($tag->getName()); ?></strong></td>
-			<td><code
+			<td>
+				<code
 					class="notification-merge-tag"
 					data-clipboard-text="{<?php echo esc_attr($tag->getSlug()); ?>}"
-				>{
-				<?php
-				echo esc_html(
-					$tag->getSlug()
-				);
-				?>
-					}</code></td>
+				>
+					{<?php echo esc_html($tag->getSlug()); ?>}
+				</code>
+			</td>
 			<td>
 				<?php $description = $tag->getDescription(); ?>
-				<?php if (!empty($description)) : ?>
+				<?php if (! empty($description)) : ?>
 					<p class="description">
 						<?php if ($tag->isDescriptionExample()) : ?>
 							<strong>
-							<?php
-							esc_html_e(
-								'Example:',
-								'notification'
-							);
-							?>
-								</strong>
+								<?php esc_html_e('Example:', 'notification'); ?>
+							</strong>
 						<?php endif ?>
 						<?php echo wp_kses_data($description); ?>
 					</p>
