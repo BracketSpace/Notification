@@ -7,6 +7,33 @@ on:
 
 jobs:
 
+  # Generates stub file
+  stubs:
+    name: Genrate stubs
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+        extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
+        coverage: none
+    - name: Install stub generator globally
+      run: composer global require php-stubs/generator --dev
+    - name: Install Composer dependencies
+      uses: "ramsey/composer-install@v2"
+      with:
+        composer-options: "--no-dev"
+    - name: Create stubs
+      run: composer generate-stubs
+    - name: Upload stubs as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: notification-stubs
+        path: compat/stubs.php
+
   # Builds the package and creates artifact with dist files
   build:
     name: Build
