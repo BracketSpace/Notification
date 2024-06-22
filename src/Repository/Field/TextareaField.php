@@ -10,12 +10,10 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Field;
 
-use BracketSpace\Notification\Abstracts\Field;
-
 /**
  * Textarea field class
  */
-class TextareaField extends Field
+class TextareaField extends BaseField
 {
 	/**
 	 * Field placeholder

@@ -10,13 +10,12 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Recipient;
 
-use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Repository\Field;
 
 /**
  * Webhook recipient
  */
-class Webhook extends Abstracts\Recipient
+class Webhook extends BaseRecipient
 {
 	/**
 	 * Recipient constructor

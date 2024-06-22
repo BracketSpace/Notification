@@ -10,13 +10,13 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Trigger\User;
 
-use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Repository\Trigger\BaseTrigger;
 use BracketSpace\Notification\Repository\MergeTag;
 
 /**
  * User trigger class
  */
-abstract class UserTrigger extends Abstracts\Trigger
+abstract class UserTrigger extends BaseTrigger
 {
 	/**
 	 * User ID

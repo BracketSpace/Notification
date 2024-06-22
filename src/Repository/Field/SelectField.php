@@ -10,12 +10,10 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Field;
 
-use BracketSpace\Notification\Abstracts\Field;
-
 /**
  * Select field class
  */
-class SelectField extends Field
+class SelectField extends BaseField
 {
 	/**
 	 * Field options

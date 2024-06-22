@@ -11,12 +11,12 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Repository\Trigger\WordPress;
 
 use BracketSpace\Notification\Repository\MergeTag;
-use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Repository\Trigger\BaseTrigger;
 
 /**
  * Site email changed trigger
  */
-class EmailChanged extends Abstracts\Trigger
+class EmailChanged extends BaseTrigger
 {
 	/**
 	 * User object

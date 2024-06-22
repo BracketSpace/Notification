@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-namespace BracketSpace\Notification\Abstracts;
+namespace BracketSpace\Notification\Repository\Recipient;
 
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Interfaces;
@@ -17,7 +17,7 @@ use BracketSpace\Notification\Traits;
 /**
  * Recipient abstract class
  */
-abstract class Recipient implements Interfaces\Receivable
+abstract class BaseRecipient implements Interfaces\Receivable
 {
 	use Traits\ClassUtils;
 	use Traits\HasName;

@@ -10,12 +10,10 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\MergeTag;
 
-use BracketSpace\Notification\Abstracts\MergeTag;
-
 /**
  * URL merge tag class
  */
-class UrlTag extends MergeTag
+class UrlTag extends BaseMergeTag
 {
 	/**
 	 * MergeTag value type

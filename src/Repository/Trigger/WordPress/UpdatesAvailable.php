@@ -11,12 +11,12 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Repository\Trigger\WordPress;
 
 use BracketSpace\Notification\Repository\MergeTag;
-use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Repository\Trigger\BaseTrigger;
 
 /**
  * WordPress Updates Available trigger class
  */
-class UpdatesAvailable extends Abstracts\Trigger
+class UpdatesAvailable extends BaseTrigger
 {
 	/**
 	 * Update types

@@ -10,14 +10,14 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Trigger\Taxonomy;
 
-use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Repository\Trigger\BaseTrigger;
 use BracketSpace\Notification\Repository\MergeTag;
 use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Taxonomy trigger class
  */
-abstract class TermTrigger extends Abstracts\Trigger
+abstract class TermTrigger extends BaseTrigger
 {
 	/**
 	 * Taxonomy slug

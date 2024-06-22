@@ -10,13 +10,13 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Trigger\Theme;
 
-use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Repository\Trigger\BaseTrigger;
 use BracketSpace\Notification\Repository\MergeTag;
 
 /**
  * Theme trigger class
  */
-abstract class ThemeTrigger extends Abstracts\Trigger
+abstract class ThemeTrigger extends BaseTrigger
 {
 	/**
 	 * Theme object

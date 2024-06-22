@@ -10,12 +10,10 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Field;
 
-use BracketSpace\Notification\Abstracts\Field;
-
 /**
  * Repeater field class
  */
-class RepeaterField extends Field
+class RepeaterField extends BaseField
 {
 	/**
 	 * Current repeater row

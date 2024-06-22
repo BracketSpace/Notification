@@ -10,12 +10,10 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\MergeTag;
 
-use BracketSpace\Notification\Abstracts\MergeTag;
-
 /**
  * HTML merge tag class
  */
-class HtmlTag extends MergeTag
+class HtmlTag extends BaseMergeTag
 {
 	/**
 	 * MergeTag value type

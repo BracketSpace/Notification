@@ -10,14 +10,14 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Trigger\Post;
 
-use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Repository\Trigger\BaseTrigger;
 use BracketSpace\Notification\Repository\MergeTag;
 use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Post trigger class
  */
-abstract class PostTrigger extends Abstracts\Trigger
+abstract class PostTrigger extends BaseTrigger
 {
 	/**
 	 * Post Type slug

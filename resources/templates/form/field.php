@@ -14,7 +14,7 @@ declare(strict_types=1);
  */
 
 $field = $get('current_field');
-\assert($field instanceof BracketSpace\Notification\Abstracts\Field);
+\assert($field instanceof BracketSpace\Notification\Repository\Field\BaseField);
 
 $carrier = $get('carrier');
 \assert(\is_string($carrier));

@@ -10,12 +10,10 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\MergeTag;
 
-use BracketSpace\Notification\Abstracts\MergeTag;
-
 /**
  * IP merge tag class
  */
-class IPTag extends MergeTag
+class IPTag extends BaseMergeTag
 {
 	/**
 	 * MergeTag value type

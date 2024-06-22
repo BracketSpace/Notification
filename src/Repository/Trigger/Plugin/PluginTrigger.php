@@ -10,13 +10,13 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Trigger\Plugin;
 
-use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Repository\Trigger\BaseTrigger;
 use BracketSpace\Notification\Repository\MergeTag;
 
 /**
  * Plugin trigger class
  */
-abstract class PluginTrigger extends Abstracts\Trigger
+abstract class PluginTrigger extends BaseTrigger
 {
 	/**
 	 * Plugin details array

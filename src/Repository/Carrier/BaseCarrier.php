@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-namespace BracketSpace\Notification\Abstracts;
+namespace BracketSpace\Notification\Repository\Carrier;
 
 use BracketSpace\Notification\Core\Resolver;
 use BracketSpace\Notification\Repository\Field;
@@ -22,7 +22,7 @@ use BracketSpace\Notification\Traits;
 /**
  * Carrier abstract class
  */
-abstract class Carrier implements Interfaces\Sendable
+abstract class BaseCarrier implements Interfaces\Sendable
 {
 	use Casegnostic;
 	use Traits\ClassUtils;
@@ -32,7 +32,7 @@ abstract class Carrier implements Interfaces\Sendable
 	/**
 	 * Form fields
 	 *
-	 * @var array<mixed>
+	 * @var array<Field\BaseField>
 	 */
 	public $formFields = [];
 
@@ -74,7 +74,7 @@ abstract class Carrier implements Interfaces\Sendable
 	/**
 	 * Restricted form field keys
 	 *
-	 * @var array<mixed>
+	 * @var array<string>
 	 */
 	public $restrictedFields = ['_nonce', 'activated', 'enabled'];
 
@@ -184,7 +184,7 @@ abstract class Carrier implements Interfaces\Sendable
 	 */
 	public function formFields()
 	{
-		if (!method_exists($this, 'form_fields')) {
+		if (! method_exists($this, 'form_fields')) {
 			return;
 		}
 

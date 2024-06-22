@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-namespace BracketSpace\Notification\Abstracts;
+namespace BracketSpace\Notification\Repository\MergeTag;
 
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Traits;
@@ -16,7 +16,7 @@ use BracketSpace\Notification\Traits;
 /**
  * MergeTag abstract class
  */
-abstract class MergeTag implements Interfaces\Taggable
+abstract class BaseMergeTag implements Interfaces\Taggable
 {
 	use Traits\ClassUtils;
 	use Traits\HasDescription;

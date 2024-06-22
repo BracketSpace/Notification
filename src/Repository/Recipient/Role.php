@@ -10,14 +10,13 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Recipient;
 
-use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Repository\Field;
 use BracketSpace\Notification\Database\Queries\UserQueries;
 
 /**
  * Role recipient
  */
-class Role extends Abstracts\Recipient
+class Role extends BaseRecipient
 {
 	/**
 	 * Recipient constructor

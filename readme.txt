@@ -311,8 +311,16 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 - In Post Triggers, dynamic property `$trigger->{$post_type}` has been replaced with static prop `$trigger->post`.
 - The same as above applies to Post Trigger datetime tags, namely: postCreationDatetime, postPublicationDatetime, and postModificationDatetime.
 - Hook `notification/data/save` and `notification/data/save/after` now pass Core\Notification instance in the first param instead of the WordPress adapter instance.
-- Namespace `BracketSpace\Notification\Defaults\` has been changed to `BracketSpace\Notification\Repository\`
 - Runtime components are now referenced by FQCN (Fully Qualified Class Name), instead of the name.
+
+Namespace changes:
+- `BracketSpace\Notification\Defaults\` changed to `BracketSpace\Notification\Repository\`
+- `BracketSpace\Notification\Abstracts\Carrier` changed to `BracketSpace\Notification\Repository\Carrier\BaseCarrier`
+- `BracketSpace\Notification\Abstracts\Field` changed to `BracketSpace\Notification\Repository\Field\BaseField`
+- `BracketSpace\Notification\Abstracts\MergeTag` changed to `BracketSpace\Notification\Repository\MergeTag\BaseMergeTag`
+- `BracketSpace\Notification\Abstracts\Recipient` changed to `BracketSpace\Notification\Repository\Recipient\BaseRecipient`
+- `BracketSpace\Notification\Abstracts\Resolver` changed to `BracketSpace\Notification\Repository\Resolver\BaseResolver`
+- `BracketSpace\Notification\Abstracts\Trigger` changed to `BracketSpace\Notification\Repository\Trigger\BaseTrigger`
 
 Hook depracations:
 - `notification/data/save/after`, use `notification/data/saved`
@@ -366,6 +374,7 @@ Removed deprecated hooks:
 * [Changed] Runtime components names, see above for detailed list and replacements.
 * [Changed] Namespace `BracketSpace\Notification\Defaults\` to `BracketSpace\Notification\Repository\`.
 * [Changed] Runtime components are now referenced by FQCN (Fully Qualified Class Name), instead of the name.
+* [Changed] Abstract classes are now renamed BaseSomething convention and placed in Repository dir.
 * [Fixed] Shortcodes being uncorrectly stripped leaving closing "]" behind.
 * [Fixed] PHP 8.2 deprecations.
 * [Fixed] Stripping shortcodes in carrier fields.

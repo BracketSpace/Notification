@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Carrier;
 
-use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Core\Debugging;
 use BracketSpace\Notification\Repository\Field;
 use BracketSpace\Notification\Interfaces\Triggerable;
@@ -18,7 +17,7 @@ use BracketSpace\Notification\Interfaces\Triggerable;
 /**
  * Email Carrier
  */
-class Email extends Abstracts\Carrier
+class Email extends BaseCarrier
 {
 	/**
 	 * Carrier icon

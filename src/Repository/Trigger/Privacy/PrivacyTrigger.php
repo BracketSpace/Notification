@@ -10,13 +10,13 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Trigger\Privacy;
 
-use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Repository\Trigger\BaseTrigger;
 use BracketSpace\Notification\Repository\MergeTag;
 
 /**
  * Privacy trigger abstract class
  */
-abstract class PrivacyTrigger extends Abstracts\Trigger
+abstract class PrivacyTrigger extends BaseTrigger
 {
 	/**
 	 * User request object

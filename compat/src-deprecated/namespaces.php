@@ -9,6 +9,12 @@ spl_autoload_register(function ($class) {
 	$deprecations = [
 		'[Next]' => [
 			'BracketSpace\Notification\Defaults' => 'BracketSpace\Notification\Repository',
+			'BracketSpace\Notification\Abstracts\Carrier' => 'BracketSpace\Notification\Repository\Carrier\BaseCarrier',
+			'BracketSpace\Notification\Abstracts\Field' => 'BracketSpace\Notification\Repository\Field\BaseField',
+			'BracketSpace\Notification\Abstracts\MergeTag' => 'BracketSpace\Notification\Repository\MergeTag\BaseMergeTag',
+			'BracketSpace\Notification\Abstracts\Recipient' => 'BracketSpace\Notification\Repository\Recipient\BaseRecipient',
+			'BracketSpace\Notification\Abstracts\Resolver' => 'BracketSpace\Notification\Repository\Resolver\BaseResolver',
+			'BracketSpace\Notification\Abstracts\Trigger' => 'BracketSpace\Notification\Repository\Trigger\BaseTrigger',
 		],
 	];
 

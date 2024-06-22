@@ -10,12 +10,10 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\MergeTag;
 
-use BracketSpace\Notification\Abstracts\MergeTag;
-
 /**
  * Boolean merge tag class
  */
-class BooleanTag extends MergeTag
+class BooleanTag extends BaseMergeTag
 {
 	/**
 	 * MergeTag value type

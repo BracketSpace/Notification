@@ -10,12 +10,10 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Field;
 
-use BracketSpace\Notification\Abstracts\Field;
-
 /**
  * Editor field class
  */
-class CodeEditorField extends Field
+class CodeEditorField extends BaseField
 {
 	/**
 	 * Editor settings

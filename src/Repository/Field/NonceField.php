@@ -10,12 +10,10 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Field;
 
-use BracketSpace\Notification\Abstracts\Field;
-
 /**
  * Nonce field class
  */
-class NonceField extends Field
+class NonceField extends BaseField
 {
 	/**
 	 * Nonce key

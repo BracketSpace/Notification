@@ -11,14 +11,13 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Repository\Carrier;
 
 use BracketSpace\Notification\Interfaces\Triggerable;
-use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Repository\Field;
 use BracketSpace\Notification\Traits\Webhook as WebhookTrait;
 
 /**
  * Webhook Carrier
  */
-class Webhook extends Abstracts\Carrier
+class Webhook extends BaseCarrier
 {
 	use WebhookTrait;
 

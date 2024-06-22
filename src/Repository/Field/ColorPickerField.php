@@ -10,12 +10,10 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Field;
 
-use BracketSpace\Notification\Abstracts\Field;
-
 /**
  * Color Picker field class
  */
-class ColorPickerField extends Field
+class ColorPickerField extends BaseField
 {
 	/**
 	 * Returns field HTML

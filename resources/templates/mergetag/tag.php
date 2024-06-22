@@ -14,7 +14,7 @@ declare(strict_types=1);
  */
 
 $tag = $get('tag');
-\assert($tag instanceof BracketSpace\Notification\Abstracts\MergeTag);
+\assert($tag instanceof BracketSpace\Notification\Repository\MergeTag\BaseMergeTag);
 
 ?>
 

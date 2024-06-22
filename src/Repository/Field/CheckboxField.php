@@ -10,12 +10,10 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Field;
 
-use BracketSpace\Notification\Abstracts\Field;
-
 /**
  * Checkbox field class
  */
-class CheckboxField extends Field
+class CheckboxField extends BaseField
 {
 	/**
 	 * Checkbox label text

@@ -10,12 +10,10 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Field;
 
-use BracketSpace\Notification\Abstracts\Field;
-
 /**
  * Image field class
  */
-class ImageField extends Field
+class ImageField extends BaseField
 {
 	/**
 	 * Returns field HTML

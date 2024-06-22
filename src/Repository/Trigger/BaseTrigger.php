@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-namespace BracketSpace\Notification\Abstracts;
+namespace BracketSpace\Notification\Repository\Trigger;
 
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Interfaces\Taggable;
@@ -18,7 +18,7 @@ use BracketSpace\Notification\Traits;
 /**
  * Trigger abstract class
  */
-abstract class Trigger implements Triggerable
+abstract class BaseTrigger implements Triggerable
 {
 	use Traits\ClassUtils;
 	use Traits\HasDescription;

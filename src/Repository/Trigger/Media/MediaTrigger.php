@@ -10,13 +10,13 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Trigger\Media;
 
-use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Repository\Trigger\BaseTrigger;
 use BracketSpace\Notification\Repository\MergeTag;
 
 /**
  * Media trigger class
  */
-abstract class MediaTrigger extends Abstracts\Trigger
+abstract class MediaTrigger extends BaseTrigger
 {
 	/**
 	 * Attachment post object

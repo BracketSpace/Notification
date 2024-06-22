@@ -10,13 +10,12 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Recipient;
 
-use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Repository\Field;
 
 /**
  * Email recipient
  */
-class Email extends Abstracts\Recipient
+class Email extends BaseRecipient
 {
 	/**
 	 * Recipient constructor

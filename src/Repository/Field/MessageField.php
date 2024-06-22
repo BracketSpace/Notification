@@ -10,12 +10,10 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Field;
 
-use BracketSpace\Notification\Abstracts\Field;
-
 /**
  * Input field class
  */
-class MessageField extends Field
+class MessageField extends BaseField
 {
 	/**
 	 * Message

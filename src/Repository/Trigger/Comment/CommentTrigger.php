@@ -11,13 +11,13 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Repository\Trigger\Comment;
 
 use BracketSpace\Notification\Repository\MergeTag;
-use BracketSpace\Notification\Abstracts;
+use BracketSpace\Notification\Repository\Trigger\BaseTrigger;
 use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Comment trigger class
  */
-abstract class CommentTrigger extends Abstracts\Trigger
+abstract class CommentTrigger extends BaseTrigger
 {
 	/**
 	 * Comment Type slug

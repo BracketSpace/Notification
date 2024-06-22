@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-namespace BracketSpace\Notification\Abstracts;
+namespace BracketSpace\Notification\Repository\Resolver;
 
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Interfaces\Triggerable;
@@ -16,7 +16,7 @@ use BracketSpace\Notification\Interfaces\Triggerable;
 /**
  * Resolver class
  */
-abstract class Resolver implements Interfaces\Resolvable
+abstract class BaseResolver implements Interfaces\Resolvable
 {
 	/**
 	 * Resolver priority

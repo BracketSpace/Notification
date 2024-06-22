@@ -16,13 +16,12 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Resolver;
 
-use BracketSpace\Notification\Abstracts;
 use BracketSpace\Notification\Interfaces\Triggerable;
 
 /**
  * Basic resolver
  */
-class Basic extends Abstracts\Resolver
+class Basic extends BaseResolver
 {
 	/**
 	 * Resolver priority

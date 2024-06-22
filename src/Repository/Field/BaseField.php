@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-namespace BracketSpace\Notification\Abstracts;
+namespace BracketSpace\Notification\Repository\Field;
 
 use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Interfaces;
@@ -16,7 +16,7 @@ use BracketSpace\Notification\Interfaces;
 /**
  * Field abstract class
  */
-abstract class Field implements Interfaces\Fillable
+abstract class BaseField implements Interfaces\Fillable
 {
 	use Casegnostic;
 
