@@ -551,11 +551,6 @@ parameters:
 			path: src/Abstracts/Carrier.php
 
 		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 2
-			path: src/Abstracts/Carrier.php
-
-		-
 			message: "#^Cannot call method getValue\\(\\) on mixed\\.$#"
 			count: 1
 			path: src/Abstracts/Carrier.php
@@ -626,11 +621,6 @@ parameters:
 			path: src/Abstracts/Recipient.php
 
 		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Abstracts/Trigger.php
-
-		-
 			message: "#^Cannot call method getSlug\\(\\) on mixed\\.$#"
 			count: 2
 			path: src/Abstracts/Trigger.php
@@ -649,11 +639,6 @@ parameters:
 			message: "#^Cannot call method getEndpoint\\(\\) on mixed\\.$#"
 			count: 1
 			path: src/Admin/CheckRestApi.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 2
-			path: src/Admin/Debugging.php
 
 		-
 			message: "#^Cannot call method removeLogs\\(\\) on mixed\\.$#"
@@ -822,7 +807,7 @@ parameters:
 
 		-
 			message: "#^Cannot access property \\$pageHook on mixed\\.$#"
-			count: 3
+			count: 2
 			path: src/Admin/Scripts.php
 
 		-
@@ -1016,11 +1001,6 @@ parameters:
 			path: src/Api/Controller/SelectInputController.php
 
 		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Core/Cron.php
-
-		-
 			message: "#^Parameter \\#1 \\$timestamp of function wp_unschedule_event expects int, int\\|false given\\.$#"
 			count: 1
 			path: src/Core/Cron.php
@@ -1028,11 +1008,6 @@ parameters:
 		-
 			message: "#^Cannot call method addLog\\(\\) on mixed\\.$#"
 			count: 1
-			path: src/Core/Debugging.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 3
 			path: src/Core/Debugging.php
 
 		-
@@ -1121,11 +1096,6 @@ parameters:
 			path: src/Core/Notification.php
 
 		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Core/Processor.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Resolver\\:\\:clear\\(\\) should return string but returns string\\|null\\.$#"
 			count: 1
 			path: src/Core/Resolver.php
@@ -1166,19 +1136,9 @@ parameters:
 			path: src/ErrorHandler.php
 
 		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 14
-			path: src/Integration/WordPressEmails.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Integration\\\\WordPressEmails\\:\\:getSettingForUserRole\\(\\) is unused\\.$#"
 			count: 1
 			path: src/Integration/WordPressEmails.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Integration/WordPressIntegration.php
 
 		-
 			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
@@ -1196,11 +1156,6 @@ parameters:
 			path: src/Repository/Carrier/Email.php
 
 		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 8
-			path: src/Repository/Carrier/Email.php
-
-		-
 			message: "#^Cannot access offset 'hide' on mixed\\.$#"
 			count: 1
 			path: src/Repository/Carrier/Webhook.php
@@ -1213,11 +1168,6 @@ parameters:
 		-
 			message: "#^Cannot access offset 'value' on mixed\\.$#"
 			count: 1
-			path: src/Repository/Carrier/Webhook.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 2
 			path: src/Repository/Carrier/Webhook.php
 
 		-
@@ -1241,19 +1191,9 @@ parameters:
 			path: src/Repository/Carrier/WebhookJson.php
 
 		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 2
-			path: src/Repository/Carrier/WebhookJson.php
-
-		-
 			message: "#^Parameter \\#1 \\$args of method BracketSpace\\\\Notification\\\\Repository\\\\Carrier\\\\WebhookJson\\:\\:parseArgs\\(\\) expects array, mixed given\\.$#"
 			count: 1
 			path: src/Repository/Carrier/WebhookJson.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 2
-			path: src/Repository/CarrierRepository.php
 
 		-
 			message: "#^Parameter \\#1 \\$carrier of static method BracketSpace\\\\Notification\\\\Register\\:\\:carrier\\(\\) expects BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable, mixed given\\.$#"
@@ -1756,22 +1696,12 @@ parameters:
 			path: src/Repository/Trigger/Comment/CommentAdded.php
 
 		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Comment/CommentAdded.php
-
-		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentAdded.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Comment/CommentApproved.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentApproved.php
 
@@ -1796,11 +1726,6 @@ parameters:
 			path: src/Repository/Trigger/Comment/CommentReplied.php
 
 		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Comment/CommentReplied.php
-
-		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentReplied.php
@@ -1811,11 +1736,6 @@ parameters:
 			path: src/Repository/Trigger/Comment/CommentSpammed.php
 
 		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Comment/CommentSpammed.php
-
-		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentSpammed.php
@@ -1823,11 +1743,6 @@ parameters:
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
 			count: 2
-			path: src/Repository/Trigger/Comment/CommentTrashed.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 1
 			path: src/Repository/Trigger/Comment/CommentTrashed.php
 
 		-
@@ -1852,11 +1767,6 @@ parameters:
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Comment/CommentUnapproved.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentUnapproved.php
 
@@ -2106,11 +2016,6 @@ parameters:
 			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
 
 		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
-
-		-
 			message: "#^Parameter \\#1 \\$updateType of method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\WordPress\\\\UpdatesAvailable\\:\\:getUpdatesCount\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
@@ -2119,11 +2024,6 @@ parameters:
 			message: "#^Parameter \\#1 \\$updateType of method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\WordPress\\\\UpdatesAvailable\\:\\:hasUpdates\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
-
-		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
-			count: 9
-			path: src/Repository/TriggerRepository.php
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Runtime\\:\\:components\\(\\) return type has no value type specified in iterable type array\\.$#"

@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 
+use BracketSpace\Notification\ErrorHandler;
+
 /**
  * Cron class
  */
@@ -66,6 +68,11 @@ class Cron
 	{
 		$event = wp_get_schedule('notification_check_wordpress_updates');
 		$schedule = \Notification::settings()->getSetting('triggers/wordpress/updates_cron_period');
+
+		if (! is_string($schedule)) {
+			ErrorHandler::error('Update cron period is not a string');
+			return;
+		}
 
 		if ($event === false) {
 			$this->schedule($schedule, 'notification_check_wordpress_updates');

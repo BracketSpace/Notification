@@ -58,9 +58,12 @@ class TriggerRepository
 	 */
 	public static function registerPostTriggers()
 	{
+		/**
+		 * @var array<string>
+		 */
 		$postTypes = \Notification::settings()->getSetting('triggers/post_types/types');
 
-		if (!$postTypes) {
+		if (! is_array($postTypes)) {
 			return;
 		}
 
@@ -82,9 +85,12 @@ class TriggerRepository
 	 */
 	public static function registerTaxonomyTriggers()
 	{
+		/**
+		 * @var array<string>
+		 */
 		$taxonomies = \Notification::settings()->getSetting('triggers/taxonomies/types');
 
-		if (!$taxonomies) {
+		if (! is_array($taxonomies)) {
 			return;
 		}
 
@@ -127,9 +133,12 @@ class TriggerRepository
 	 */
 	public static function registerCommentTriggers()
 	{
+		/**
+		 * @var array<string>
+		 */
 		$commentTypes = \Notification::settings()->getSetting('triggers/comment/types');
 
-		if (!$commentTypes) {
+		if (! is_array($commentTypes)) {
 			return;
 		}
 
