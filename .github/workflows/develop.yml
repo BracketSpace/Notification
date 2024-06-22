@@ -53,6 +53,8 @@ jobs:
       uses: "ramsey/composer-install@v2"
       with:
         composer-options: "--no-dev"
+    - name: Run Strauss
+      run: composer run-script prefix-namespaces-prod
     - name: Setup Node
       uses: actions/setup-node@v4
       with:

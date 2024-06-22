@@ -69,15 +69,22 @@
 		"phplint": "parallel-lint --exclude node_modules --exclude vendor --exclude dependencies .",
 		"phpstan": "phpstan analyze --memory-limit=-1",
 		"generate-stubs": "generate-stubs --finder=compat/stub-finder.php --out=compat/stubs.php --force",
-		"prefix-namespaces": [
+		"prefix-namespaces-dev": [
 			"strauss",
 			"composer dump-autoload"
 		],
+		"prefix-namespaces-prod": [
+			"strauss --deleteVendorPackages=true",
+			"composer dump-autoload",
+			"rm -r vendor/bin",
+			"rm -r vendor/brianhenryie",
+			"find vendor -type d -empty -delete"
+		],
 		"post-install-cmd": [
-			"@prefix-namespaces"
+			"@prefix-namespaces-dev"
 		],
 		"post-update-cmd": [
-			"@prefix-namespaces"
+			"@prefix-namespaces-dev"
 		]
 	}
 }

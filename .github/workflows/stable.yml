@@ -20,12 +20,12 @@ jobs:
         php-version: '7.4'
         extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
         coverage: none
-    - name: Install Strauss globally
-      run: composer global require brianhenryie/strauss
     - name: Install Composer dependencies
       uses: "ramsey/composer-install@v2"
       with:
         composer-options: "--no-dev"
+    - name: Run Strauss
+      run: composer run-script prefix-namespaces-prod
     - name: Setup Node
       uses: actions/setup-node@v4
       with:
@@ -170,15 +170,11 @@ jobs:
       - name: Install Node dependencies
         run: yarn install --no-progress
       - name: Install Composer dependencies
-        run: composer install --no-progress
-      - name: Install Composer build dependencies
-        run: composer bin build install --no-progress
-      - name: Compose dependencies
-        run: composer compose
-      - name: Remove dev depencencies
-        run: |
-          rm -rf vendor
-          composer install --no-dev --no-progress
+        uses: "ramsey/composer-install@v2"
+        with:
+          composer-options: "--no-dev"
+      - name: Run Strauss
+        run: composer run-script prefix-namespaces-prod
       - name: Build static assets
         run: yarn build:production
       - name: Create .distignore file
