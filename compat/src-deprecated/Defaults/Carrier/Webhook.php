@@ -8,16 +8,19 @@
 
 declare(strict_types=1);
 
-namespace BracketSpace\Notification\Repository\Carrier;
+namespace BracketSpace\Notification\Defaults\Carrier;
 
 use BracketSpace\Notification\Interfaces\Triggerable;
+use BracketSpace\Notification\Repository\Carrier\BaseCarrier;
 use BracketSpace\Notification\Repository\Field;
 use BracketSpace\Notification\Traits\Webhook as WebhookTrait;
 
 /**
  * Webhook Carrier
+ *
+ * @deprecated [Next]
  */
-class WebhookJson extends BaseCarrier
+class Webhook extends BaseCarrier
 {
 	use WebhookTrait;
 
@@ -46,16 +49,47 @@ class WebhookJson extends BaseCarrier
 		);
 
 		$this->addFormField(
-			new Field\CodeEditorField(
+			new Field\RepeaterField(
+				[
+					'label' => __('Arguments', 'notification'),
+					'name' => 'args',
+					'add_button_label' => __('Add argument', 'notification'),
+					'fields' => [
+						new Field\CheckboxField(
+							[
+								'label' => __('Hide', 'notification-slack'),
+								'name' => 'hide',
+								'checkbox_label' => __('Hide if empty value', 'notification'),
+							]
+						),
+						new Field\InputField(
+							[
+								'label' => __('Key', 'notification'),
+								'name' => 'key',
+								'resolvable' => true,
+								'description' => __('You can use merge tags', 'notification'),
+							]
+						),
+						new Field\InputField(
+							[
+								'label' => __('Value', 'notification'),
+								'name' => 'value',
+								'resolvable' => true,
+								'allow_linebreaks' => true,
+								'description' => __('You can use merge tags', 'notification'),
+							]
+						),
+					],
+				]
+			)
+		);
+
+		$this->addFormField(
+			new Field\CheckboxField(
 				[
 					'label' => __('JSON', 'notification'),
 					'name' => 'json',
-					'resolvable' => true,
-					'settings' => [
-						'mode' => 'application/json',
-						'lineNumbers' => true,
-					],
-					'description' => __('You can use merge tags', 'notification'),
+					'checkbox_label' => __('Send the arguments in JSON format', 'notification'),
 				]
 			)
 		);
@@ -114,7 +148,7 @@ class WebhookJson extends BaseCarrier
 		$args = apply_filters('notification/carrier/webhook/args', $args, $this, $trigger);
 
 		if ($data['json']) {
-			$args = $data['json'];
+			$args = wp_json_encode($args);
 		}
 
 		// Headers.
@@ -123,10 +157,7 @@ class WebhookJson extends BaseCarrier
 			: [];
 
 		if (\Notification::settings()->getSetting('carriers/webhook/headers')) {
-			$headers = array_merge(
-				$headers,
-				$this->parseArgs($data['headers'])
-			);
+			$headers = array_merge($headers, $this->parseArgs($data['headers']));
 		}
 
 		// Call each URL separately.

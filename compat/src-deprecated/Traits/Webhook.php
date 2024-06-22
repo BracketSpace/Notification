@@ -14,6 +14,8 @@ use BracketSpace\Notification\Core\Debugging;
 
 /**
  * Webhook trait
+ *
+ * @deprecated [Next]
  */
 trait Webhook
 {
@@ -26,6 +28,8 @@ trait Webhook
 	 */
 	public function __construct($name)
 	{
+		notification_deprecated_class( __CLASS__, '[Next]' );
+
 		$slug = strtolower(str_replace(' ', '_', $name));
 
 		parent::__construct($slug, __($name, 'notification'));

@@ -273,6 +273,7 @@ class Runtime
 		$this->addComponent(new Integration\TwoFactor());
 
 		$this->addComponent(new Api\Api());
+		$this->addComponent(new Compat\WebhookCompat());
 	}
 
 	/**
