@@ -32,7 +32,7 @@ abstract class BaseCarrier implements Interfaces\Sendable
 	/**
 	 * Form fields
 	 *
-	 * @var array<Field\BaseField>
+	 * @var array<Interfaces\Fillable>
 	 */
 	public $formFields = [];
 
@@ -60,7 +60,7 @@ abstract class BaseCarrier implements Interfaces\Sendable
 	/**
 	 * Recipients form field resolved data
 	 *
-	 * @var mixed
+	 * @var array<mixed>
 	 */
 	public $recipientsResolvedData;
 
@@ -333,7 +333,7 @@ abstract class BaseCarrier implements Interfaces\Sendable
 	 * Gets form fields array
 	 *
 	 * @param string $fieldName Field name.
-	 * @return mixed              Field object or null.
+	 * @return Interfaces\Fillable|null Field object or null.
 	 * @since  6.0.0
 	 */
 	public function getFormField($fieldName)
@@ -435,15 +435,11 @@ abstract class BaseCarrier implements Interfaces\Sendable
 		);
 
 		$resolved = $stripShortcodes
-			? preg_replace(
-				'/\[[^\]]*\]/',
-				'',
-				$resolved
-			)
+			? preg_replace('/\[[^\]]*\]/', '', $resolved)
 			: do_shortcode($resolved);
 
 		// Unescape escaped {.
-		$resolved = str_replace('!{', '{', $resolved);
+		$resolved = str_replace('!{', '{', (string)$resolved);
 
 		return apply_filters('notification/carrier/field/value/resolved', $resolved, null);
 	}
@@ -467,7 +463,7 @@ abstract class BaseCarrier implements Interfaces\Sendable
 
 		$recipientsField = $this->getRecipientsField();
 
-		if (!$recipientsField) {
+		if (! $recipientsField) {
 			return;
 		}
 
@@ -485,19 +481,22 @@ abstract class BaseCarrier implements Interfaces\Sendable
 	 */
 	public function parseRecipients()
 	{
-		if (!$this->recipientsResolvedData) {
+		if (! $this->recipientsResolvedData) {
 			return [];
 		}
 
 		$parsedRecipients = [];
 
-		foreach ($this->recipientsResolvedData as $recipient) {
+		foreach ($this->recipientsResolvedData as $recipientData) {
+			$recipient = RecipientStore::get($this->getSlug(), $recipientData['type']);
+
+			if (! $recipient instanceof Interfaces\Receivable) {
+				continue;
+			}
+
 			$parsedRecipients = array_merge(
 				$parsedRecipients,
-				(array)RecipientStore::get(
-					$this->getSlug(),
-					$recipient['type']
-				)->parseValue($recipient['recipient']) ?? []
+				(array)$recipient->parseValue($recipientData['recipient'])
 			);
 		}
 
@@ -586,7 +585,7 @@ abstract class BaseCarrier implements Interfaces\Sendable
 	 */
 	public function isActive()
 	{
-		return !empty($this->getFieldValue('activated'));
+		return ! empty($this->getFieldValue('activated'));
 	}
 
 	/**
@@ -621,7 +620,7 @@ abstract class BaseCarrier implements Interfaces\Sendable
 	 */
 	public function isEnabled()
 	{
-		return !empty($this->getFieldValue('enabled'));
+		return ! empty($this->getFieldValue('enabled'));
 	}
 
 	/**

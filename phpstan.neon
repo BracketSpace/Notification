@@ -1,6 +1,6 @@
 includes:
 	- vendor/szepeviktor/phpstan-wordpress/extension.neon
-	- phpstan-baseline.neon
+	# - phpstan-baseline.neon
 parameters:
 	level: max
 	inferPrivatePropertyTypeFromConstructor: true

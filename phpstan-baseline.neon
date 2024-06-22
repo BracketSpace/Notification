@@ -536,106 +536,6 @@ parameters:
 			path: notification.php
 
 		-
-			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Cannot access offset 'recipient' on mixed\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Cannot access offset 'type' on mixed\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Cannot call method getValue\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Cannot call method parseValue\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Cannot call method setValue\\(\\) on mixed\\.$#"
-			count: 4
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Cannot clone non\\-object variable \\$field of type mixed\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Carrier\\:\\:getFormFields\\(\\) should return array\\<BracketSpace\\\\Notification\\\\Interfaces\\\\Fillable\\> but returns array\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Parameter \\#2 \\$slug of static method BracketSpace\\\\Notification\\\\Store\\\\Recipient\\:\\:get\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, string\\|null given\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Field\\:\\:__get\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Field.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Field\\:\\:getLabel\\(\\) should return string but returns mixed\\.$#"
-			count: 1
-			path: src/Abstracts/Field.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Field\\:\\:getRawName\\(\\) should return string but returns mixed\\.$#"
-			count: 1
-			path: src/Abstracts/Field.php
-
-		-
-			message: "#^Parameter \\#1 \\$string of function substr expects string, string\\|false given\\.$#"
-			count: 1
-			path: src/Abstracts/Field.php
-
-		-
-			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setSlug\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Abstracts/MergeTag.php
-
-		-
-			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Abstracts\\\\Recipient\\:\\:setSlug\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Abstracts/Recipient.php
-
-		-
-			message: "#^Cannot call method getSlug\\(\\) on mixed\\.$#"
-			count: 2
-			path: src/Abstracts/Trigger.php
-
-		-
-			message: "#^Cannot call method isHidden\\(\\) on mixed\\.$#"
-			count: 2
-			path: src/Abstracts/Trigger.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:getMergeTags\\(\\) should return array\\<BracketSpace\\\\Notification\\\\Interfaces\\\\Taggable\\> but returns array\\.$#"
-			count: 1
-			path: src/Abstracts/Trigger.php
-
-		-
 			message: "#^Cannot call method getEndpoint\\(\\) on mixed\\.$#"
 			count: 1
 			path: src/Admin/CheckRestApi.php
@@ -1141,6 +1041,36 @@ parameters:
 			path: src/Integration/WordPressEmails.php
 
 		-
+			message: "#^Cannot access offset 'recipient' on mixed\\.$#"
+			count: 1
+			path: src/Repository/Carrier/BaseCarrier.php
+
+		-
+			message: "#^Cannot access offset 'type' on mixed\\.$#"
+			count: 1
+			path: src/Repository/Carrier/BaseCarrier.php
+
+		-
+			message: "#^Cannot call method setValue\\(\\) on BracketSpace\\\\Notification\\\\Interfaces\\\\Fillable\\|null\\.$#"
+			count: 4
+			path: src/Repository/Carrier/BaseCarrier.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of method BracketSpace\\\\Notification\\\\Interfaces\\\\Receivable\\:\\:parseValue\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Carrier/BaseCarrier.php
+
+		-
+			message: "#^Parameter \\#2 \\$slug of static method BracketSpace\\\\Notification\\\\Store\\\\Recipient\\:\\:get\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Carrier/BaseCarrier.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Carrier\\\\BaseCarrier\\:\\:\\$recipientsResolvedData \\(array\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/Carrier/BaseCarrier.php
+
+		-
 			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: src/Repository/Carrier/Email.php
@@ -1204,6 +1134,26 @@ parameters:
 			message: "#^Parameter \\#1 \\$data of class BracketSpace\\\\Notification\\\\Core\\\\Notification constructor expects array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, carriers\\?\\: array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\}, array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable\\|string\\|null, carriers\\?\\: array\\<string, array\\<string, mixed\\>\\|BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\} given\\.$#"
 			count: 1
 			path: src/Repository/Converter/ArrayConverter.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\BaseField\\:\\:__get\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Repository/Field/BaseField.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\BaseField\\:\\:getLabel\\(\\) should return string but returns mixed\\.$#"
+			count: 1
+			path: src/Repository/Field/BaseField.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\BaseField\\:\\:getRawName\\(\\) should return string but returns mixed\\.$#"
+			count: 1
+			path: src/Repository/Field/BaseField.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function substr expects string, string\\|false given\\.$#"
+			count: 1
+			path: src/Repository/Field/BaseField.php
 
 		-
 			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, string\\|false given\\.$#"
@@ -1316,7 +1266,7 @@ parameters:
 			path: src/Repository/Field/RepeaterField.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\RepeaterField\\:\\:\\$fields \\(array\\<BracketSpace\\\\Notification\\\\Abstracts\\\\Field\\>\\) does not accept mixed\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\RepeaterField\\:\\:\\$fields \\(array\\<BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\BaseField\\>\\) does not accept mixed\\.$#"
 			count: 1
 			path: src/Repository/Field/RepeaterField.php
 
@@ -1364,6 +1314,11 @@ parameters:
 			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\TextareaField\\:\\:\\$placeholder \\(string\\) does not accept mixed\\.$#"
 			count: 1
 			path: src/Repository/Field/TextareaField.php
+
+		-
+			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setSlug\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/BaseMergeTag.php
 
 		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentActionApprove\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
@@ -1446,32 +1401,32 @@ parameters:
 			path: src/Repository/MergeTag/IntegerTag.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Media/AttachmentDirectUrl.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Media/AttachmentID.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Media/AttachmentMimeType.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Media/AttachmentPage.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Media/AttachmentTitle.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Post/FeaturedImageId.php
 
@@ -1481,42 +1436,42 @@ parameters:
 			path: src/Repository/MergeTag/Post/FeaturedImageUrl.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Post/FeaturedImageUrl.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Post/PostContent.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Post/PostContentHtml.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Post/PostExcerpt.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Post/PostID.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Post/PostPermalink.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Post/PostSlug.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Post/PostStatus.php
 
@@ -1531,22 +1486,22 @@ parameters:
 			path: src/Repository/MergeTag/Post/PostTerms.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Post/PostTerms.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Post/PostTitle.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Post/PostType.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Post/RevisionLink.php
 
@@ -1561,7 +1516,7 @@ parameters:
 			path: src/Repository/MergeTag/Post/ThumbnailUrl.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Post/ThumbnailUrl.php
 
@@ -1571,37 +1526,37 @@ parameters:
 			path: src/Repository/MergeTag/StringTag.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Taxonomy/TaxonomyName.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Taxonomy/TaxonomySlug.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Taxonomy/TermDescription.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Taxonomy/TermID.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Taxonomy/TermName.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Taxonomy/TermPermalink.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Taxonomy/TermSlug.php
 
@@ -1611,57 +1566,57 @@ parameters:
 			path: src/Repository/MergeTag/UrlTag.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/User/Avatar.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/User/AvatarUrl.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/User/UserBio.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/User/UserDisplayName.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/User/UserEmail.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/User/UserFirstName.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/User/UserID.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/User/UserLastName.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/User/UserLogin.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/User/UserNicename.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/User/UserNickname.php
 
@@ -1676,9 +1631,14 @@ parameters:
 			path: src/Repository/MergeTag/User/UserRole.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/User/UserRole.php
+
+		-
+			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Repository\\\\Recipient\\\\BaseRecipient\\:\\:setSlug\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Recipient/BaseRecipient.php
 
 		-
 			message: "#^Parameter \\#1 \\$args of function get_users expects array\\{blog_id\\?\\: int, role\\?\\: array\\<string\\>\\|string, role__in\\?\\: array\\<string\\>, role__not_in\\?\\: array\\<string\\>, meta_key\\?\\: array\\<string\\>\\|string, meta_value\\?\\: array\\<string\\>\\|string, meta_compare\\?\\: string, meta_compare_key\\?\\: string, \\.\\.\\.\\}, array\\{include\\: non\\-empty\\-array\\<int, string\\>, fields\\: array\\{'user_email'\\}\\} given\\.$#"
@@ -1689,6 +1649,21 @@ parameters:
 			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/Resolver/Basic.php
+
+		-
+			message: "#^Cannot call method getSlug\\(\\) on mixed\\.$#"
+			count: 2
+			path: src/Repository/Trigger/BaseTrigger.php
+
+		-
+			message: "#^Cannot call method isHidden\\(\\) on mixed\\.$#"
+			count: 2
+			path: src/Repository/Trigger/BaseTrigger.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\BaseTrigger\\:\\:getMergeTags\\(\\) should return array\\<BracketSpace\\\\Notification\\\\Interfaces\\\\Taggable\\> but returns array\\.$#"
+			count: 1
+			path: src/Repository/Trigger/BaseTrigger.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
@@ -1756,7 +1731,7 @@ parameters:
 			path: src/Repository/Trigger/Comment/CommentTrigger.php
 
 		-
-			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\BaseTrigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentTrigger.php
 
@@ -1841,7 +1816,7 @@ parameters:
 			path: src/Repository/Trigger/Post/PostTrashed.php
 
 		-
-			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\BaseTrigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/Repository/Trigger/Post/PostTrigger.php
 
@@ -1911,7 +1886,7 @@ parameters:
 			path: src/Repository/Trigger/Privacy/DataExported.php
 
 		-
-			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\BaseTrigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/Repository/Trigger/Taxonomy/TermTrigger.php
 
