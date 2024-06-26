@@ -142,34 +142,16 @@ class Webhook extends BaseCarrier
 	 */
 	public function send(Triggerable $trigger)
 	{
-		$data = $this->data;
-
-		$args = $this->parseArgs($data['args']);
-		$args = apply_filters('notification/carrier/webhook/args', $args, $this, $trigger);
-
-		if ($data['json']) {
-			$args = wp_json_encode($args);
-		}
-
-		// Headers.
-		$headers = $data['json']
-			? ['Content-Type' => 'application/json']
-			: [];
-
-		if (\Notification::settings()->getSetting('carriers/webhook/headers')) {
-			$headers = array_merge($headers, $this->parseArgs($data['headers']));
-		}
-
-		// Call each URL separately.
-		foreach ($data['urls'] as $url) {
-			$filteredArgs = apply_filters(
-				sprintf('notification/carrier/webhook/args/%s', $url['type']),
-				$args,
-				$this,
-				$trigger
-			);
-
-			$this->httpRequest($url['recipient'], $filteredArgs, $headers, $url['type']);
-		}
+		/**
+		 * ================== WARNING! ==================
+		 *
+		 * The Webhook carrier is not available in the plugin since version 9.
+		 *
+		 * We moved that function into a more robust paid extension that can
+		 * also handle incoming webhooks.
+		 *
+		 * Read more: https://docs.bracketspace.com/notification/extensions/webhooks#webhooks-dont-work-after-upgrading-to-notification-v9
+		 * Extension: https://bracketspace.com/downloads/notification-webhooks/
+		 */
 	}
 }
