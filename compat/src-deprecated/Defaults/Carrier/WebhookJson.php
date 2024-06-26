@@ -40,6 +40,26 @@ class WebhookJson extends BaseCarrier
 	 */
 	public function formFields()
 	{
+		$this->addFormField(
+			new Field\MessageField(
+				[
+					'name' => 'deprecated',
+					'label' => __('Deprecated', 'notification'),
+					'type' => 'error',
+					'message' =>
+						'<p>' . __("This carrier doesn't work since Notification v9.", 'notification') . '</p>' .
+						'<a
+							href="https://bracketspace.com/downloads/notification-webhooks
+								?utm_source=wp&utm_medium=carrier-box&utm_id=deprecated-webhook"
+							class="button button-small button-secondary"
+							target="_blank"
+						>' .
+							esc_html__('Get Notification : Webhooks extension', 'notification') .
+						'</a>',
+				]
+			)
+		);
+
 		$this->addRecipientsField(
 			[
 				'label' => __('URLs', 'notification'),

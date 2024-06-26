@@ -261,3 +261,12 @@
 		text-align: center;
 	}
 }
+
+// Deprecated Webhooks
+#notification-carrier-webhook-box,
+#notification-carrier-webhook_json-box {
+	.deprecated td {
+		background-color: #fcf0f1;
+		border-radius: 5px;
+	}
+}
