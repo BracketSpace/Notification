@@ -251,7 +251,6 @@ class Runtime
 		$this->addComponent(new Core\Binder());
 		$this->addComponent(new Core\Processor());
 
-		$this->addComponent(new Admin\CheckRestApi());
 		$this->addComponent(new Admin\ImportExport());
 		$this->addComponent(new Admin\Settings());
 		$this->addComponent(new Admin\NotificationDuplicator());
@@ -274,6 +273,7 @@ class Runtime
 
 		$this->addComponent(new Api\Api());
 		$this->addComponent(new Compat\WebhookCompat());
+		$this->addComponent(new Compat\RestApiCompat());
 	}
 
 	/**

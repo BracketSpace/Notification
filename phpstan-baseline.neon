@@ -566,11 +566,6 @@ parameters:
 			path: notification.php
 
 		-
-			message: "#^Cannot call method getEndpoint\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Admin/CheckRestApi.php
-
-		-
 			message: "#^Cannot call method removeLogs\\(\\) on mixed\\.$#"
 			count: 1
 			path: src/Admin/Debugging.php
@@ -929,6 +924,11 @@ parameters:
 			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\SelectInputController\\:\\:sendResponse\\(\\) has parameter \\$request with generic class WP_REST_Request but does not specify its types\\: T$#"
 			count: 1
 			path: src/Api/Controller/SelectInputController.php
+
+		-
+			message: "#^Cannot call method getEndpoint\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Compat/RestApiCompat.php
 
 		-
 			message: "#^Parameter \\#1 \\$timestamp of function wp_unschedule_event expects int, int\\|false given\\.$#"
