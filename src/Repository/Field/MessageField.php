@@ -58,10 +58,6 @@ class MessageField extends BaseField
 
 		$this->message = $params['message'];
 
-		if (isset($params['type'])) {
-			$this->type = $params['type'];
-		}
-
 		if (isset($params['name'])) {
 			$this->name = $params['name'];
 		}
@@ -76,34 +72,17 @@ class MessageField extends BaseField
 	 */
 	public function field()
 	{
-		return sprintf(
-			'<input type="%s" name="%s" id="%s" value="%s" placeholder="%s" class="widefat %s" %s %s>',
-			esc_attr($this->type),
-			esc_attr($this->getName()),
-			esc_attr($this->getId()),
-			esc_attr($this->getValue()),
-			esc_attr($this->placeholder),
-			esc_attr($this->cssClass()),
-			$this->maybeDisable(),
-			esc_attr($this->atts)
-		);
+		return wp_kses_post(is_callable($this->message) ? $this->message() : $this->message);
 	}
 
 	/**
 	 * Sanitizes the value sent by user
 	 *
 	 * @param mixed $value value to sanitize.
-	 * @return mixed        sanitized value
+	 * @return null
 	 */
 	public function sanitize($value)
 	{
-		$value = preg_replace(
-			'@<(script|style)[^>]*?>.*?</\\1>@si',
-			'',
-			$value
-		); // Remove script and style tags.
-
-		$value = trim($value); // Remove whitespace.
-		return $value;
+		return null;
 	}
 }
