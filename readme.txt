@@ -306,6 +306,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 **Compatibility Breaking Changes**
 
+- Webook and Webhook JSON Carriers are now deprecated and won't work. [Read more about that change](https://docs.bracketspace.com/notification/extensions/webhooks)
 - Notifications are now saved into the custom table instead of relying on wp_posts.
 - Class methods and properties has been changed from snake_case to camelCase.
 - In Post Triggers, dynamic property `$trigger->{$post_type}` has been replaced with static prop `$trigger->post`.
@@ -382,6 +383,7 @@ Removed deprecated hooks:
 * [Fixed] User password reset link requires encoded username.
 * [Removed] DOING_NOTIFICATION_SAVE constant.
 * [Removed] NotificationQueries class in favor of NotificationDatabaseService.
+* [Removed] Webook and Webhook JSON Carriers.
 
 == Upgrade Notice ==
 
@@ -389,6 +391,7 @@ Removed deprecated hooks:
 Minimum required PHP version is 7.4.
 Compatibility breaking changes. Please make sure to review the changelog before upgrading and adjust your customizations.
 The premium plugins won't work with Notification [Next] unless updated.
+Webook and Webhook JSON Carriers are now deprecated and won't work unless you get an add-on.
 
 = 8.0.0 =
 Compatibility breaking changes and security fixes. Please make sure to review the changelog before upgrading and adjust your customizations.
