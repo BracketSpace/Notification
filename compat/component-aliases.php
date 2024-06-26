@@ -8,6 +8,7 @@
 use BracketSpace\Notification\Admin;
 use BracketSpace\Notification\Api;
 use BracketSpace\Notification\Core;
+use BracketSpace\Notification\Compat;
 use BracketSpace\Notification\Integration;
 
 return [
@@ -19,7 +20,7 @@ return [
 	'core_sync' => Core\Sync::class,
 	'core_binder' => Core\Binder::class,
 	'core_processor' => Core\Processor::class,
-	'test_rest_api' => Admin\CheckRestApi::class,
+	'test_rest_api' => Compat\RestApiCompat::class,
 	'admin_impexp' => Admin\ImportExport::class,
 	'admin_settings' => Admin\Settings::class,
 	'admin_duplicator' => Admin\NotificationDuplicator::class,

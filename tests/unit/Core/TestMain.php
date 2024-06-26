@@ -52,7 +52,6 @@ class TestMain extends \WP_UnitTestCase {
 			'BracketSpace\Notification\Core\Sync',
 			'BracketSpace\Notification\Core\Binder',
 			'BracketSpace\Notification\Core\Processor',
-			'BracketSpace\Notification\Admin\CheckRestApi',
 			'BracketSpace\Notification\Admin\ImportExport',
 			'BracketSpace\Notification\Admin\Settings',
 			'BracketSpace\Notification\Admin\NotificationDuplicator',
@@ -69,6 +68,8 @@ class TestMain extends \WP_UnitTestCase {
 			'BracketSpace\Notification\Integration\WordPressEmails',
 			'BracketSpace\Notification\Integration\TwoFactor',
 			'BracketSpace\Notification\Api\Api',
+			'BracketSpace\Notification\Compat\WebhookCompat',
+			'BracketSpace\Notification\Compat\RestApiCompat',
 		];
 
 		foreach ($instances as $className) {

@@ -1,28 +1,28 @@
 <?php
-
 /**
- * CheckRestApi class
+ * RestApi compat class
  *
  * @package notification
  */
 
 declare(strict_types=1);
 
-namespace BracketSpace\Notification\Admin;
+namespace BracketSpace\Notification\Compat;
 
 use BracketSpace\Notification\Api\Api;
 
 /**
- * CheckRestApi class
+ * RestApi compat class
  */
-class CheckRestApi
+class RestApiCompat
 {
 	/**
 	 * Method sends request to API, based on response checks whether REST API works correctly
 	 *
+	 * @action admin_notices
+	 *
 	 * @return void
 	 * @since 8.0.12
-	 * @action admin_notices
 	 */
 	public function testRestApi()
 	{
@@ -54,8 +54,11 @@ class CheckRestApi
 
 		printf(
 			'<div class="notice notice-error"><p>%1$s</p></div>',
-			'The Notification plugin requires enabled REST API endpoint:notification/v1/.
-			Please ensure your WP REST API works correctly.'
+			esc_html__(
+				"The Notification plugin requires enabled REST API endpoint: notification/v1/.
+				Please ensure your WP REST API works correctly and you're not blocking this endpoint from access.",
+				'notification'
+			)
 		);
 	}
 }
