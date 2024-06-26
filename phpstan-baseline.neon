@@ -456,6 +456,36 @@ parameters:
 			path: compat/src-deprecated/Database/Queries/NotificationQueries.php
 
 		-
+			message: "#^Cannot access offset 'hide' on mixed\\.$#"
+			count: 1
+			path: compat/src-deprecated/Defaults/Carrier/Webhook.php
+
+		-
+			message: "#^Cannot access offset 'key' on mixed\\.$#"
+			count: 1
+			path: compat/src-deprecated/Defaults/Carrier/Webhook.php
+
+		-
+			message: "#^Cannot access offset 'value' on mixed\\.$#"
+			count: 1
+			path: compat/src-deprecated/Defaults/Carrier/Webhook.php
+
+		-
+			message: "#^Cannot access offset 'hide' on mixed\\.$#"
+			count: 1
+			path: compat/src-deprecated/Defaults/Carrier/WebhookJson.php
+
+		-
+			message: "#^Cannot access offset 'key' on mixed\\.$#"
+			count: 1
+			path: compat/src-deprecated/Defaults/Carrier/WebhookJson.php
+
+		-
+			message: "#^Cannot access offset 'value' on mixed\\.$#"
+			count: 1
+			path: compat/src-deprecated/Defaults/Carrier/WebhookJson.php
+
+		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:add\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
@@ -1086,46 +1116,6 @@ parameters:
 			path: src/Repository/Carrier/Email.php
 
 		-
-			message: "#^Cannot access offset 'hide' on mixed\\.$#"
-			count: 1
-			path: src/Repository/Carrier/Webhook.php
-
-		-
-			message: "#^Cannot access offset 'key' on mixed\\.$#"
-			count: 1
-			path: src/Repository/Carrier/Webhook.php
-
-		-
-			message: "#^Cannot access offset 'value' on mixed\\.$#"
-			count: 1
-			path: src/Repository/Carrier/Webhook.php
-
-		-
-			message: "#^Parameter \\#1 \\$args of method BracketSpace\\\\Notification\\\\Repository\\\\Carrier\\\\Webhook\\:\\:parseArgs\\(\\) expects array, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Carrier/Webhook.php
-
-		-
-			message: "#^Cannot access offset 'hide' on mixed\\.$#"
-			count: 1
-			path: src/Repository/Carrier/WebhookJson.php
-
-		-
-			message: "#^Cannot access offset 'key' on mixed\\.$#"
-			count: 1
-			path: src/Repository/Carrier/WebhookJson.php
-
-		-
-			message: "#^Cannot access offset 'value' on mixed\\.$#"
-			count: 1
-			path: src/Repository/Carrier/WebhookJson.php
-
-		-
-			message: "#^Parameter \\#1 \\$args of method BracketSpace\\\\Notification\\\\Repository\\\\Carrier\\\\WebhookJson\\:\\:parseArgs\\(\\) expects array, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Carrier/WebhookJson.php
-
-		-
 			message: "#^Parameter \\#1 \\$carrier of static method BracketSpace\\\\Notification\\\\Register\\:\\:carrier\\(\\) expects BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable, mixed given\\.$#"
 			count: 3
 			path: src/Repository/CarrierRepository.php
@@ -1231,12 +1221,7 @@ parameters:
 			path: src/Repository/Field/InputField.php
 
 		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/MessageField.php
-
-		-
-			message: "#^Parameter \\#3 \\$subject of function preg_replace expects array\\|string, mixed given\\.$#"
+			message: "#^Call to an undefined method BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\MessageField\\:\\:message\\(\\)\\.$#"
 			count: 1
 			path: src/Repository/Field/MessageField.php
 
