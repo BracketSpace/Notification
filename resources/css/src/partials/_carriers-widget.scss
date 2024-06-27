@@ -270,3 +270,10 @@
 		border-radius: 5px;
 	}
 }
+
+.notification-carriers__carriers {
+	li[data-nt-button="webhook"],
+	li[data-nt-button="webhook_json"] {
+		display: none;
+	}
+}
