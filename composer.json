@@ -65,7 +65,7 @@
 				"file_patterns": [
 					"compat/src-deprecated/helpers.php"
 				]
-			},
+			}
 		}
 	},
 	"scripts": {
