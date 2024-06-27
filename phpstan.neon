@@ -37,6 +37,7 @@ parameters:
 			}
 		'''
 	excludePaths:
+		- compat/src-deprecated/helpers.php
 		- compat/stubs.php
 		- dependencies/
 		- src/Utils/EDDUpdater.php
