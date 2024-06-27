@@ -64,12 +64,12 @@ class DumpHooks
 					);
 					continue;
 				}
-				$callbackObjectName = "\$this->component( '" . $componentName . "' )";
+				$callbackObjectName = "\$this->component('" . $componentName . "')";
 			}
 
 			foreach ($hooks as $hook) {
 				$hookFunctions[] = sprintf(
-					"add_%s( '%s', [ %s, '%s' ], %d, %d );",
+					"add_%s('%s', [%s, '%s'], %d, %d);",
 					$hook['type'],
 					$hook['name'],
 					$callbackObjectName,
