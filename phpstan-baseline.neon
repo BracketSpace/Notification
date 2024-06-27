@@ -1,7 +1,7 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'action_clear_logs'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'actionClearLogs'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
@@ -11,57 +11,57 @@ parameters:
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'activation_nag'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'activationNag'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'activation_notices'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'activationNotices'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'add_conditionals…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'addConditionalsMeta…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'add_help'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'addHelp'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'add_merge_tags_meta…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'addMergeTagsMetaBox'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'add_notifications'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'addNotifications'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'add_save_meta_box'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'addSaveMetaBox'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'add_trigger_action'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'addTriggerAction'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'ajax_change…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'ajaxChangeNotificat…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'ajax_render_merge…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'ajaxRenderMergeTags'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'ajax_sync'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'ajaxSync'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
@@ -71,37 +71,47 @@ parameters:
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'bypass_trash'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'bypassTrash'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'carriers_list'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'carriersList'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'carriers_settings…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'carriersSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'catch_notification'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'carriersSettingsUps…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'check_upgrade'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'catchNotification'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'custom_development'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'checkUpgrade'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'custom_fields_merge…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'clearNotificationsC…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'customDevelopment'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'customFieldsMergeTa…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
@@ -111,87 +121,122 @@ parameters:
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'debug_warning'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'debugWarning'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'delete_local_json'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'debuggingSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'disable_password…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'deleteLocalJson'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'disable_send…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'deleteNotification'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'disablePasswordChan…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'disableSendConfirma…'\\} given\\.$#"
 			count: 2
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'display_bulk…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'displayBulkActionsA…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'enqueue_scripts'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'displayNotice'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'export_request'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'emailsSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'handle_cron'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'enqueueScripts'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'import_request'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'exportRequest'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'load_local_json'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'generalSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'maybe_redirect'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'handleCron'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'metabox_cleanup'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'importRequest'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'notification…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'inactiveLicenseWarn…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'process_queue'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'loadDatabaseNotific…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'proxy_comment_reply'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'loadLocalJson'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'proxy_post_comment…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'maybeRedirect'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'proxy_transition…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'metaboxCleanup'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'notificationDuplica…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'processQueue'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'proxyCommentReply'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'proxyPostCommentToP…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'proxyTransitionComm…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
@@ -201,57 +246,57 @@ parameters:
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'register_check…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'registerCheckUpdate…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'register_page'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'registerPage'\\} given\\.$#"
 			count: 3
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'register_settings'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'registerSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'remove_defaults'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'removeDefaults'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'render_carrier_boxes'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'renderCarrierBoxes'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'render_carriers…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'renderCarriersWidget'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'render_main_column'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'renderMainColumn'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'render_trigger…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'renderTriggerSelect'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'replace_new_user…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'replaceNewUserNotif…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'rest_api_init'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'restApiInit'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'review_queue_switch'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'reviewQueueSwitch'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
@@ -261,37 +306,47 @@ parameters:
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'save_local_json'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'saveLocalJson'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'save_settings'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'saveSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'scheduled_triggers…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'scheduledTriggersSe…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'setup_notifications'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'settings'\\} given\\.$#"
+			count: 2
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'setupNotification'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'table_column_content'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'tableColumnContent'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'test_rest_api'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'testRestApi'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'triggers_settings…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'triggersSettings'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'triggersSettingsUps…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
@@ -301,112 +356,117 @@ parameters:
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'upgrade_db'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'upgradeDb'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'user_login_with_2fa'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'userLoginWith2fa'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'add_duplicate_row…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'addDuplicateRowActi…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'adjust_bulk_actions'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'adjustBulkActions'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'adjust_trash_link'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'adjustTrashLink'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'bulk_action_messages'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'bulkActionMessages'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'change_post_statuses'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'changePostStatuses'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'create_notification…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'columnCleanup'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disable_automatic…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disableAutomaticWpC…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disable_comment…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disableCommentModer…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disable_email…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disableEmailChangeN…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disable_password…'\\} given\\.$#"
-			count: 2
-			path: compat/register-hooks.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disable_post_author…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disablePasswordChan…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'filter_email_from…'\\} given\\.$#"
-			count: 2
-			path: compat/register-hooks.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'filter_post_types'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disablePasswordRese…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'handle_status_bulk…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disablePostAuthorNo…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'identify_trigger'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disableSendConfirma…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'post_updated…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'filterPostTypes'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'register_intervals'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'handleStatusBulkAct…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'remove_quick_edit'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'identifyTrigger'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'remove_status…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'postUpdatedMessages'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'table_columns'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'registerIntervals'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'removeQuickEdit'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'removeStatusDisplay'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'tableColumns'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
