@@ -43,6 +43,12 @@
 		flex-wrap: wrap;
 		justify-content: center;
 		margin: -10px;
+
+		// Deprecated webhooks.
+		li[data-nt-button="webhook"],
+		li[data-nt-button="webhook_json"] {
+			display: none;
+		}
 	}
 
 	&__carrier {
@@ -268,12 +274,5 @@
 	.deprecated td {
 		background-color: #fcf0f1;
 		border-radius: 5px;
-	}
-}
-
-.notification-carriers__carriers {
-	li[data-nt-button="webhook"],
-	li[data-nt-button="webhook_json"] {
-		display: none;
 	}
 }
