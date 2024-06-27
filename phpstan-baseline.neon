@@ -676,7 +676,7 @@ parameters:
 			path: src/Admin/ImportExport.php
 
 		-
-			message: "#^Parameter \\#2 \\$length of function fread expects int\\<0, max\\>, int\\<0, max\\>\\|false given\\.$#"
+			message: "#^Parameter \\#2 \\$length of function fread expects int\\<1, max\\>, int\\<0, max\\>\\|false given\\.$#"
 			count: 1
 			path: src/Admin/ImportExport.php
 
@@ -1049,6 +1049,11 @@ parameters:
 			message: "#^Parameter \\#3 \\$subject of function preg_replace expects array\\|string, mixed given\\.$#"
 			count: 1
 			path: src/Core/Upgrade.php
+
+		-
+			message: "#^Cannot access offset mixed on mixed\\.$#"
+			count: 2
+			path: src/Database/NotificationDatabaseService.php
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Database\\\\Queries\\\\UserQueries\\:\\:all\\(\\) should return array\\<int, array\\{ID\\: string, user_email\\: string, display_name\\: string\\}\\> but returns mixed\\.$#"
