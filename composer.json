@@ -60,7 +60,7 @@
 		"strauss": {
 			"namespace_prefix": "BracketSpace\\Notification\\Dependencies\\",
 			"target_directory": "dependencies",
-			"classmap_prefix": "BRSET_"
+			"classmap_prefix": ""
 		}
 	},
 	"scripts": {
