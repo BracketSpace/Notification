@@ -60,7 +60,12 @@
 		"strauss": {
 			"namespace_prefix": "BracketSpace\\Notification\\Dependencies\\",
 			"target_directory": "dependencies",
-			"classmap_prefix": ""
+			"classmap_prefix": "BracketSpace_Notification_Dependencies_",
+			"exclude_from_prefix": {
+				"file_patterns": [
+					"compat/src-deprecated/helpers.php"
+				]
+			},
 		}
 	},
 	"scripts": {
