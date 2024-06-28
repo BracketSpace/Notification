@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Repository;
 
 use BracketSpace\Notification\Register;
+use BracketSpace\Notification\Defaults\Recipient\Webhook;
 
 /**
  * Recipient Repository.
@@ -42,7 +43,7 @@ class RecipientRepository
 		Register::recipient('email', new Recipient\Role());
 
 		foreach (self::$webhookRecipientTypes as $type => $name) {
-			$recipient = new Recipient\Webhook($type, $name);
+			$recipient = new Webhook($type, $name);
 
 			Register::recipient('webhook', $recipient);
 			Register::recipient('webhook_json', $recipient);

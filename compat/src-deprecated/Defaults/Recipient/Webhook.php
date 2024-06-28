@@ -8,12 +8,14 @@
 
 declare(strict_types=1);
 
-namespace BracketSpace\Notification\Repository\Recipient;
+namespace BracketSpace\Notification\Defaults\Recipient;
 
 use BracketSpace\Notification\Repository\Field;
 
 /**
  * Webhook recipient
+ *
+ * @deprecated [Next]
  */
 class Webhook extends BaseRecipient
 {
@@ -26,6 +28,8 @@ class Webhook extends BaseRecipient
 	 */
 	public function __construct($slug, $name)
 	{
+		notification_deprecated_class( __CLASS__, '[Next]' );
+
 		parent::__construct(
 			[
 				'slug' => $slug,
