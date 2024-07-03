@@ -453,32 +453,6 @@ class Settings
 					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
 				]
 			);
-
-		$carriers->addGroup(__('Webhook', 'notification'), 'webhook')
-			->addField(
-				[
-					'name' => __('Enable', 'notification'),
-					'slug' => 'enable',
-					'default' => 'true',
-					'addons' => [
-						'label' => __('Enable Webhook Carrier', 'notification'),
-					],
-					'render' => [new CoreFields\Checkbox(), 'input'],
-					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
-				]
-			)
-			->addField(
-				[
-					'name' => __('Headers', 'notification'),
-					'slug' => 'headers',
-					'default' => false,
-					'addons' => [
-						'label' => __('Allow to configure webhook headers', 'notification'),
-					],
-					'render' => [new CoreFields\Checkbox(), 'input'],
-					'sanitize' => [new CoreFields\Checkbox(), 'sanitize'],
-				]
-			);
 	}
 
 	/**

@@ -42,6 +42,10 @@ class RecipientRepository
 		Register::recipient('email', new Recipient\UserID());
 		Register::recipient('email', new Recipient\Role());
 
+		if (! apply_filters('notification/compat/webhook/register', true)) {
+			return;
+		}
+
 		foreach (self::$webhookRecipientTypes as $type => $name) {
 			$recipient = new Webhook($type, $name);
 
