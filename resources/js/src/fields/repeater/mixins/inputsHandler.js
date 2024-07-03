@@ -60,7 +60,7 @@ export const inputsHandler = {
 				headers: {
 					'Content-Type':
 						'application/x-www-form-urlencoded; charset=UTF-8',
-					'X-WP-Nonce': notification.rest_nonce,
+					'X-WP-Nonce': notification.restNonce,
 				},
 				body: data,
 			})

@@ -9,12 +9,12 @@ export const init = {
 		apiCall() {
 			this.postID = notification.postId;
 
-			fetch(`${notification.section_repeater_rest_url}${this.postID}`, {
+			fetch(`${notification.sectionRepeaterRestUrl}${this.postID}`, {
 				method: 'POST',
 				headers: {
 					Accept: 'application/json',
 					'Content-Type': 'application/json',
-					'X-WP-Nonce': notification.rest_nonce,
+					'X-WP-Nonce': notification.restNonce,
 				},
 				body: JSON.stringify(this.type),
 			})

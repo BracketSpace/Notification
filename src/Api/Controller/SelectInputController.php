@@ -38,7 +38,7 @@ class SelectInputController
 		if ($recipient) {
 			$input = $recipient->input();
 
-			$data['optiocns'] = $input->options;
+			$data['options'] = $input->options;
 			$data['pretty'] = $input->pretty;
 			$data['label'] = $input->label;
 			$data['checkbox_label'] = $input->checkboxLabel;
