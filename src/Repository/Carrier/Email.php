@@ -41,6 +41,36 @@ class Email extends BaseCarrier
 	}
 
 	/**
+	 * Gets the default name for "From" header.
+	 *
+	 * @return  string
+	 */
+	public static function getDefaultFromName(): string
+	{
+		return 'WordPress';
+	}
+
+	/**
+	 * Gets the default email for "From" header.
+	 *
+	 * @return  string
+	 */
+	public static function getDefaultFromEmail(): string
+	{
+		if (!empty($_SERVER['SERVER_NAME'])) {
+			$sitename = strtolower(sanitize_text_field(wp_unslash($_SERVER['SERVER_NAME'])));
+
+			if (substr($sitename, 0, 4) === 'www.') {
+				$sitename = substr($sitename, 4);
+			}
+		} else {
+			$sitename = 'example.com';
+		}
+
+		return 'wordpress@' . $sitename;
+	}
+
+	/**
 	 * Used to register Carrier form fields
 	 * Uses $this->addFormField();
 	 *
@@ -169,23 +199,8 @@ class Email extends BaseCarrier
 			$message = ' ';
 		}
 
-		$headers = [];
+		$headers = apply_filters('notification/carrier/email/headers', $this->getHeaders(), $this, $trigger);
 
-		$fromHeader = $this->getFromHeaderSetting();
-		if ($fromHeader) {
-			$headers[] = $fromHeader;
-		}
-
-		if (
-			\Notification::settings()->getSetting('carriers/email/headers') &&
-			! empty($data['headers'])
-		) {
-			foreach ($data['headers'] as $header) {
-				$headers[] = $header['key'] . ': ' . $header['value'];
-			}
-		}
-
-		$headers = apply_filters('notification/carrier/email/headers', $headers, $this, $trigger);
 		$attachments = apply_filters('notification/carrier/email/attachments', [], $this, $trigger);
 
 		$errors = [];
@@ -253,17 +268,63 @@ class Email extends BaseCarrier
 	}
 
 	/**
-	 * Retrieve email "From" header from settings.
+	 * Gets the list of headers.
 	 *
-	 * @return string
+	 * @return  array<string>
 	 */
-	protected function getFromHeaderSetting()
+	protected function getHeaders(): array
 	{
-		/** @var string $fromName */
-		$fromName = \Notification::settings()->getSetting('carriers/email/from_name');
-		/** @var string $fromEmail */
-		$fromEmail = \Notification::settings()->getSetting('carriers/email/from_email');
+		$headers = $this->getCarrierHeaders();
+		$headers['from'] ??= $this->getDefaultFromHeader();
 
-		return sprintf('From: %s <%s>', $fromName, $fromEmail);
+		return array_map(
+			static function ($value, $key) {
+				return sprintf('%s: %s', $key, $value);
+			},
+			array_values($headers),
+			array_keys($headers)
+		);
+	}
+
+	/**
+	 * Gets organized list of carrier headers.
+	 *
+	 * @return  array<string, string>
+	 */
+	protected function getCarrierHeaders(): array
+	{
+		if (!\Notification::settings()->getSetting('carriers/email/headers')) {
+			return [];
+		}
+
+		$data = is_array($this->data['headers'] ?? null) ? $this->data['headers'] : [];
+		$headers = [];
+
+		foreach ($data as $header) {
+			if (!is_array($header) || !is_string($header['key'] ?? null) || !is_string($header['value'] ?? null)) {
+				continue;
+			}
+
+			$headers[strtolower($header['key'])] = $header['value'];
+		}
+
+		return array_filter($headers);
+	}
+
+	/**
+	 * Gets the default "From" header value.
+	 *
+	 * @return  string
+	 */
+	protected function getDefaultFromHeader(): string
+	{
+		$fromEmail = \Notification::settings()->getSetting('carriers/email/from_email');
+		$fromName = \Notification::settings()->getSetting('carriers/email/from_name');
+
+		return sprintf(
+			'%s <%s>',
+			is_string($fromName) && strlen($fromName) ? $fromName : self::getDefaultFromName(),
+			is_string($fromEmail) && strlen($fromEmail) ? $fromEmail : self::getDefaultFromEmail()
+		);
 	}
 }

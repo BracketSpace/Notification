@@ -1166,21 +1166,6 @@ parameters:
 			path: src/Repository/Carrier/BaseCarrier.php
 
 		-
-			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
-			count: 1
-			path: src/Repository/Carrier/Email.php
-
-		-
-			message: "#^Cannot access offset 'key' on mixed\\.$#"
-			count: 1
-			path: src/Repository/Carrier/Email.php
-
-		-
-			message: "#^Cannot access offset 'value' on mixed\\.$#"
-			count: 1
-			path: src/Repository/Carrier/Email.php
-
-		-
 			message: "#^Parameter \\#1 \\$carrier of static method BracketSpace\\\\Notification\\\\Register\\:\\:carrier\\(\\) expects BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable, mixed given\\.$#"
 			count: 3
 			path: src/Repository/CarrierRepository.php

@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Admin;
 
+use BracketSpace\Notification\Repository\Carrier\Email;
 use BracketSpace\Notification\Utils\Settings\CoreFields;
 use BracketSpace\Notification\Utils\WpObjectHelper;
 
@@ -356,17 +357,6 @@ class Settings
 	 */
 	public function carriersSettings($settings)
 	{
-		if (!empty($_SERVER['SERVER_NAME'])) {
-			$sitename = strtolower(sanitize_text_field(wp_unslash($_SERVER['SERVER_NAME'])));
-			if (substr($sitename, 0, 4) === 'www.') {
-				$sitename = substr($sitename, 4);
-			}
-		} else {
-			$sitename = 'example.com';
-		}
-
-		$defaultFromEmail = 'wordpress@' . $sitename;
-
 		$carriers = $settings->addSection(__('Carriers', 'notification'), 'carriers');
 
 		$carriers->addGroup(__('Email', 'notification'), 'email')
@@ -423,7 +413,7 @@ class Settings
 					'description' => sprintf(
 						// Translators: %s default value.
 						__('Leave blank to use default value: %s', 'notification'),
-						'<code>WordPress</code>'
+						'<code>' . Email::getDefaultFromName() . '</code>'
 					),
 				]
 			)
@@ -437,7 +427,7 @@ class Settings
 					'description' => sprintf(
 						// Translators: %s default value.
 						__('Leave blank to use default value: %s', 'notification'),
-						'<code>' . $defaultFromEmail . '</code>'
+						'<code>' . Email::getDefaultFromEmail() . '</code>'
 					),
 				]
 			)
