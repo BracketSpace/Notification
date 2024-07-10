@@ -36,7 +36,7 @@ class Notification
 	 *
 	 * @var Interfaces\Triggerable|null
 	 */
-	private $trigger;
+	private $trigger = null;
 
 	/**
 	 * Carriers
@@ -638,5 +638,49 @@ class Notification
 	public function to(string $type, array $config = [])
 	{
 		return apply_filters(sprintf('notification/to/%s', $type), $this, $config);
+	}
+
+	/**
+	 * Serialized Notification instance.
+	 *
+	 * @return  array<string, mixed>
+	 */
+	public function __serialize(): array
+	{
+		/** @var array<string, mixed> */
+		return $this->to('array');
+	}
+
+	/**
+	 * Unserializes Notification instance.
+	 *
+	 * @param   array<string, mixed>   $data
+	 * @return  void
+	 */
+	public function __unserialize(array $data): void
+	{
+		$this->hash = $data['hash'];
+		$this->title = $data['title'];
+		$this->enabled = $data['enabled'];
+		$this->extras = $data['extras'];
+		$this->version = $data['version'];
+		$this->trigger = is_string($data['trigger']) ? Store\Trigger::get($data['trigger']) : null;
+		$this->carriers = array_filter(
+			array_map(
+				function($carrierSlug, $carrierData) {
+					$carrier = Store\Carrier::get($carrierSlug);
+
+					if (!$carrier instanceof Interfaces\Sendable) {
+						return null;
+					}
+
+					$carrier->setData($carrierData);
+
+					return $carrier;
+				},
+				array_keys($data['carriers']),
+				array_values($data['carriers'])
+			)
+		);
 	}
 }

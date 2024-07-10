@@ -1081,7 +1081,47 @@ parameters:
 			path: src/Core/License.php
 
 		-
+			message: "#^Parameter \\#1 \\$array of function array_keys expects array, mixed given\\.$#"
+			count: 1
+			path: src/Core/Notification.php
+
+		-
+			message: "#^Parameter \\#1 \\$array of function array_values expects array, mixed given\\.$#"
+			count: 1
+			path: src/Core/Notification.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of method BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\:\\:setData\\(\\) expects array\\<string, mixed\\>, mixed given\\.$#"
+			count: 1
+			path: src/Core/Notification.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:\\$enabled \\(bool\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Core/Notification.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:\\$extras \\(array\\<string, array\\|bool\\|float\\|int\\|string\\>\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Core/Notification.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:\\$hash \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Core/Notification.php
+
+		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:\\$sourcePostId is never read, only written\\.$#"
+			count: 1
+			path: src/Core/Notification.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:\\$title \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Core/Notification.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:\\$version \\(int\\) does not accept mixed\\.$#"
 			count: 1
 			path: src/Core/Notification.php
 
