@@ -163,8 +163,8 @@ class TriggerRepository
 		}
 
 		Register::trigger(new Trigger\WordPress\EmailChangeRequest());
-
 		Register::trigger(new Trigger\WordPress\EmailChanged());
+		Register::trigger(new Trigger\WordPress\Updated());
 	}
 
 	/**
