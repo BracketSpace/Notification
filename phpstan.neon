@@ -25,6 +25,17 @@ parameters:
 				version?: int,
 			}
 		'''
+		NotificationAsArray: '''
+			array{
+				hash: string,
+				title: string,
+				trigger: string,
+				carriers: array<string,array<string,mixed>>,
+				enabled: bool,
+				extras: array<string, array<mixed>|bool|float|int|string>,
+				version: int,
+			}
+		'''
 		NotificationUnconvertedData: '''
 			array{
 				hash?: string,

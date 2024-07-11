@@ -643,18 +643,18 @@ class Notification
 	/**
 	 * Serialized Notification instance.
 	 *
-	 * @return  array<string, mixed>
+	 * @return  NotificationAsArray
 	 */
 	public function __serialize(): array
 	{
-		/** @var array<string, mixed> */
+		/** @var NotificationAsArray */
 		return $this->to('array');
 	}
 
 	/**
 	 * Unserializes Notification instance.
 	 *
-	 * @param   array<string, mixed>   $data
+	 * @param   NotificationAsArray   $data
 	 * @return  void
 	 */
 	public function __unserialize(array $data): void

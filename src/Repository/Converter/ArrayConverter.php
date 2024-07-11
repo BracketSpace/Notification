@@ -71,7 +71,7 @@ class ArrayConverter implements Interfaces\Convertable
 	 * @since [Next]
 	 * @param Notification $notification Notification instance
 	 * @param array<string|int,mixed> $config The additional configuration of the converter
-	 * @return mixed
+	 * @return NotificationAsArray
 	 */
 	public function to(Notification $notification, array $config = [])
 	{
