@@ -302,8 +302,15 @@ class Upgrade
 		);
 
 		foreach ($notifications as $notificationRaw) {
-			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-			$data = json_decode($notificationRaw->post_content, true);
+			// phpcs:disable Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+			$data = strlen($notificationRaw->post_content) > 0
+				? json_decode($notificationRaw->post_content, true)
+				: null;
+			// phpcs:enable Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+
+			if (!is_array($data) || !is_string($data['trigger'] ?? null)) {
+				continue;
+			}
 
 			$data['trigger'] = preg_replace(
 				array_keys($this->triggerSlugReplacements()),
