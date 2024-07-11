@@ -360,6 +360,7 @@ Removed deprecated hooks:
 * [Added] Option to disable notification about admin email address changed.
 * [Added] New trigger after user confirms his new email address.
 * [Added] New trigger after admin confirms new site email address.
+* [Added] New trigger after WordPress update.
 * [Added] notification/admin/allow_column/$column filter.
 * [Added] Notification converter concept, with array and JSON default converters.
 * [Added] Custom wp_notifications table (with corresponding helper tables).
