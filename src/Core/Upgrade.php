@@ -12,9 +12,10 @@ namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\Database\DatabaseService;
 use BracketSpace\Notification\Database\NotificationDatabaseService;
+use BracketSpace\Notification\Integration\WordPressIntegration;
 use BracketSpace\Notification\Interfaces;
-use BracketSpace\Notification\Utils\WpObjectHelper;
 use BracketSpace\Notification\Store;
+use BracketSpace\Notification\Utils\WpObjectHelper;
 
 /**
  * Upgrade class
@@ -347,6 +348,7 @@ class Upgrade
 	/**
 	 * Upgrades data to v3.
 	 * - 1. Moves the notifications to custom table.
+	 * - 2. Clears notifications cache.
 	 *
 	 * @since [Next]
 	 * @return void
@@ -378,5 +380,9 @@ class Upgrade
 
 			NotificationDatabaseService::upsert($notification);
 		}
+
+		// 2. Clears notifications cache.
+
+		WordPressIntegration::clearNotificationsCache();
 	}
 }
