@@ -19,7 +19,7 @@ add_action('notification/init', [$this->component('BracketSpace\Notification\Cor
 add_action('notification/carrier/pre-send', [$this->component('BracketSpace\Notification\Core\Debugging'), 'catchNotification'], 1000000, 3);
 add_action('admin_menu', [$this->component('BracketSpace\Notification\Core\Settings'), 'registerPage'], 20, 0);
 add_action('notification/init', [$this->component('BracketSpace\Notification\Core\Settings'), 'registerSettings'], 5, 0);
-add_action('admin_init', [$this->component('BracketSpace\Notification\Core\Upgrade'), 'checkUpgrade'], 10, 0);
+add_action('notification/init', [$this->component('BracketSpace\Notification\Core\Upgrade'), 'checkUpgrade'], 100, 0);
 add_action('notification/init', [$this->component('BracketSpace\Notification\Core\Upgrade'), 'upgradeDb'], 10, 0);
 add_action('notification/init', [$this->component('BracketSpace\Notification\Core\Sync'), 'loadLocalJson'], 100, 0);
 add_action('notification/data/saved', [$this->component('BracketSpace\Notification\Core\Sync'), 'saveLocalJson'], 10, 1);
