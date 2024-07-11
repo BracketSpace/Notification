@@ -643,7 +643,7 @@ class Notification
 	/**
 	 * Serialized Notification instance.
 	 *
-	 * @return  NotificationAsArray
+	 * @return NotificationAsArray
 	 */
 	public function __serialize(): array
 	{
@@ -654,8 +654,8 @@ class Notification
 	/**
 	 * Unserializes Notification instance.
 	 *
-	 * @param   NotificationAsArray   $data
-	 * @return  void
+	 * @param NotificationAsArray $data Notification data as array
+	 * @return void
 	 */
 	public function __unserialize(array $data): void
 	{
