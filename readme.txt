@@ -382,7 +382,7 @@ Removed deprecated hooks:
 * [Fixed] Stripping shortcodes in carrier fields.
 * [Fixed] Email carrier header "From" prioritized over header in settings.
 * [Fixed] User password reset link requires encoded username.
-* [Fixed] Notification class serialization
+* [Fixed] Notification class serialization.
 * [Removed] DOING_NOTIFICATION_SAVE constant.
 * [Removed] NotificationQueries class in favor of NotificationDatabaseService.
 * [Removed] Webook and Webhook JSON Carriers.
