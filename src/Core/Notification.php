@@ -654,7 +654,7 @@ class Notification
 	/**
 	 * Unserializes Notification instance.
 	 *
-	 * @param NotificationAsArray $data Notification data as array
+	 * @param NotificationAsArray $data Notification data as array.
 	 * @return void
 	 */
 	public function __unserialize(array $data): void
