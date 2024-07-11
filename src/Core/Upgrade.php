@@ -52,7 +52,7 @@ class Upgrade
 	/**
 	 * Checks if an upgrade is required
 	 *
-	 * @action admin_init
+	 * @action notification/init 100
 	 *
 	 * @return void
 	 * @since  6.0.0
