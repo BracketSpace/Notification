@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Database;
 
 use BracketSpace\Notification\Core\Notification;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 use BracketSpace\Notification\Store\Notification as NotificationStore;
 
 /**
@@ -233,6 +234,8 @@ class NotificationDatabaseService
 		do_action_deprecated('notification/data/save/after', [$notification], '[Next]', 'notification/data/saved');
 		do_action('notification/data/saved', $notification);
 
+		static::getCache($notification->getHash())->delete();
+
 		self::$doingOperation = false;
 	}
 
@@ -261,66 +264,76 @@ class NotificationDatabaseService
 	 */
 	public static function get($hash)
 	{
-		$notificationData = DatabaseService::db()->get_row(
-			DatabaseService::db()->prepare(
-				'SELECT * FROM %i WHERE hash = %s',
-				self::getNotificationsTableName(),
-				$hash
-			),
-			'ARRAY_A'
-		);
+		$cache = static::getCache($hash);
 
-		if ($notificationData === null) {
-			return null;
+		$notification = $cache->get();
+
+		if (!$notification instanceof Notification) {
+			$notificationData = DatabaseService::db()->get_row(
+				DatabaseService::db()->prepare(
+					'SELECT * FROM %i WHERE hash = %s',
+					self::getNotificationsTableName(),
+					$hash
+				),
+				'ARRAY_A'
+			);
+
+			if ($notificationData === null) {
+				return null;
+			}
+
+			$notificationData['trigger'] = $notificationData['trigger_slug'];
+
+			// Set version based on creation or last update date.
+			$versionDate = $notificationData['updated_at'] ?? $notificationData['created_at'] ?? 'now';
+			$notificationData['version'] = strtotime($versionDate);
+
+			$carriersDataRaw = DatabaseService::db()->get_results(
+				DatabaseService::db()->prepare(
+					'SELECT * FROM %i WHERE notification_hash = %s',
+					self::getNotificationCarriersTableName(),
+					$hash
+				),
+				'ARRAY_A'
+			);
+
+			$notificationData['carriers'] = array_reduce(
+				(array)$carriersDataRaw,
+				static function ($carriers, $data) {
+					if (is_string($data['data'])) {
+						$carriers[$data['slug']] = json_decode($data['data'], true);
+					}
+					return $carriers;
+				},
+				[]
+			);
+
+			$extrasDataRaw = DatabaseService::db()->get_results(
+				DatabaseService::db()->prepare(
+					'SELECT * FROM %i WHERE notification_hash = %s',
+					self::getNotificationExtrasTableName(),
+					$hash
+				),
+				'ARRAY_A'
+			);
+
+			$notificationData['extras'] = array_reduce(
+				(array)$extrasDataRaw,
+				static function ($extras, $data) {
+					if (is_string($data['data'])) {
+						$extras[$data['slug']] = json_decode($data['data'], true);
+					}
+					return $extras;
+				},
+				[]
+			);
+
+			$notification = Notification::from('array', $notificationData);
+
+			$cache->set($notification);
 		}
 
-		$notificationData['trigger'] = $notificationData['trigger_slug'];
-
-		// Set version based on creation or last update date.
-		$versionDate = $notificationData['updated_at'] ?? $notificationData['created_at'] ?? 'now';
-		$notificationData['version'] = strtotime($versionDate);
-
-		$carriersDataRaw = DatabaseService::db()->get_results(
-			DatabaseService::db()->prepare(
-				'SELECT * FROM %i WHERE notification_hash = %s',
-				self::getNotificationCarriersTableName(),
-				$hash
-			),
-			'ARRAY_A'
-		);
-
-		$notificationData['carriers'] = array_reduce(
-			(array)$carriersDataRaw,
-			static function ($carriers, $data) {
-				if (is_string($data['data'])) {
-					$carriers[$data['slug']] = json_decode($data['data'], true);
-				}
-				return $carriers;
-			},
-			[]
-		);
-
-		$extrasDataRaw = DatabaseService::db()->get_results(
-			DatabaseService::db()->prepare(
-				'SELECT * FROM %i WHERE notification_hash = %s',
-				self::getNotificationExtrasTableName(),
-				$hash
-			),
-			'ARRAY_A'
-		);
-
-		$notificationData['extras'] = array_reduce(
-			(array)$extrasDataRaw,
-			static function ($extras, $data) {
-				if (is_string($data['data'])) {
-					$extras[$data['slug']] = json_decode($data['data'], true);
-				}
-				return $extras;
-			},
-			[]
-		);
-
-		return Notification::from('array', $notificationData);
+		return $notification;
 	}
 
 	/**
@@ -373,6 +386,8 @@ class NotificationDatabaseService
 			wp_delete_post($post->ID, true);
 		}
 
+		static::getCache($hash)->delete();
+
 		self::$doingOperation = false;
 	}
 
@@ -406,5 +421,30 @@ class NotificationDatabaseService
 				'notification_hash' => $hash,
 			]
 		);
+	}
+
+	/**
+	 * Gets the cache instance for single notification.
+	 *
+	 * @param string $hash Notification hash.
+	 * @return CacheDriver\ObjectCache
+	 */
+	protected static function getCache($hash)
+	{
+		$cache = new CacheDriver\ObjectCache('notification');
+		$cache->set_key(static::getCacheKey($hash));
+
+		return $cache;
+	}
+
+	/**
+	 * Gets the cache key for single notification.
+	 *
+	 * @param string $hash Notification hash.
+	 * @return string
+	 */
+	protected static function getCacheKey($hash)
+	{
+		return sprintf('notification-%s', $hash);
 	}
 }

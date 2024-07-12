@@ -12,7 +12,7 @@ namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\Database\DatabaseService;
 use BracketSpace\Notification\Database\NotificationDatabaseService;
-use BracketSpace\Notification\Integration\WordPressIntegration;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 use BracketSpace\Notification\Interfaces;
 use BracketSpace\Notification\Store;
 use BracketSpace\Notification\Utils\WpObjectHelper;
@@ -383,6 +383,8 @@ class Upgrade
 
 		// 2. Clears notifications cache.
 
-		WordPressIntegration::clearNotificationsCache();
+		$cache = new CacheDriver\ObjectCache('notification');
+		$cache->set_key('notifications');
+		$cache->delete();
 	}
 }
