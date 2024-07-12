@@ -19,7 +19,6 @@ use BracketSpace\Notification\Register;
  */
 class WordPressIntegration
 {
-
 	/**
 	 * --------------------------
 	 * Loaders & Cache
