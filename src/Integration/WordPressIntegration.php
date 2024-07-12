@@ -11,8 +11,6 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Integration;
 
 use BracketSpace\Notification\Database\NotificationDatabaseService;
-use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
-use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 use BracketSpace\Notification\Interfaces\Triggerable;
 use BracketSpace\Notification\Register;
 
@@ -21,12 +19,6 @@ use BracketSpace\Notification\Register;
  */
 class WordPressIntegration
 {
-	/**
-	 * Notifications cache key
-	 *
-	 * @var string
-	 */
-	protected static $notificationsCacheKey = 'notifications';
 
 	/**
 	 * --------------------------
@@ -44,30 +36,9 @@ class WordPressIntegration
 	 */
 	public function loadDatabaseNotifications()
 	{
-		$driver = new CacheDriver\ObjectCache('notification');
-		$cache = new Cache($driver, static::$notificationsCacheKey);
-
-		/**
-		 * @var array<\BracketSpace\Notification\Core\Notification>
-		 */
-		$notifications = $cache->collect(static fn() => NotificationDatabaseService::getAll());
+		$notifications = NotificationDatabaseService::getAll();
 
 		array_map([Register::class, 'notificationIfNewer'], $notifications);
-	}
-
-	/**
-	 * Clears the Notifications cache
-	 *
-	 * @action notification/data/saved
-	 *
-	 * @since [Next]
-	 * @return void
-	 */
-	public static function clearNotificationsCache()
-	{
-		$cache = new CacheDriver\ObjectCache('notification');
-		$cache->set_key(static::$notificationsCacheKey);
-		$cache->delete();
 	}
 
 	/**
