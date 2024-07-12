@@ -266,9 +266,9 @@ class NotificationDatabaseService
 	{
 		$cache = static::getCache($hash);
 
-		$notification = $cache->get();
+		$notificationData = $cache->get();
 
-		if (!$notification instanceof Notification) {
+		if (!is_array($notificationData)) {
 			$notificationData = DatabaseService::db()->get_row(
 				DatabaseService::db()->prepare(
 					'SELECT * FROM %i WHERE hash = %s',
@@ -328,12 +328,10 @@ class NotificationDatabaseService
 				[]
 			);
 
-			$notification = Notification::from('array', $notificationData);
-
-			$cache->set($notification);
+			$cache->set($notificationData);
 		}
 
-		return $notification;
+		return Notification::from('array', $notificationData);
 	}
 
 	/**
