@@ -51,7 +51,8 @@ $logs = $get('logs');
 							echo esc_html(
 								date_i18n(
 									$get('datetime_format'),
-									strtotime($log->timeLogged)
+									// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+									strtotime($log->time_logged)
 								)
 							);
 							?>
@@ -62,7 +63,8 @@ $logs = $get('logs');
 								sprintf(
 								// translators: Time ago.
 									__('%s ago'),
-									human_time_diff(strtotime($log->timeLogged))
+									// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+									human_time_diff(strtotime($log->time_logged))
 								)
 							);
 							?>
