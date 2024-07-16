@@ -28,8 +28,6 @@ class Webhook extends BaseRecipient
 	 */
 	public function __construct($slug, $name)
 	{
-		notification_deprecated_class( __CLASS__, '[Next]' );
-
 		parent::__construct(
 			[
 				'slug' => $slug,
