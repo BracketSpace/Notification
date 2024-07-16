@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Defaults\Recipient;
 
 use BracketSpace\Notification\Repository\Field;
+use BracketSpace\Notification\Repository\Recipient\BaseRecipient;
 
 /**
  * Webhook recipient
