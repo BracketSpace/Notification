@@ -19,11 +19,18 @@ use BracketSpace\Notification\Repository\Trigger\BaseTrigger;
 class EmailChangeRequest extends BaseTrigger
 {
 	/**
-	 * User login
+	 * User object
+	 *
+	 * @var \WP_User
+	 */
+	public $userObject;
+
+	/**
+	 * Old admin email
 	 *
 	 * @var string
 	 */
-	public $userLogin;
+	public $oldAdminEmail;
 
 	/**
 	 * New admin email
@@ -33,7 +40,14 @@ class EmailChangeRequest extends BaseTrigger
 	public $newAdminEmail;
 
 	/**
-	 * Confirmation email
+	 * Site URL.
+	 *
+	 * @var  string
+	 */
+	public $siteUrl;
+
+	/**
+	 * Confirmation URL.
 	 *
 	 * @var string
 	 */
@@ -47,10 +61,6 @@ class EmailChangeRequest extends BaseTrigger
 	public $emailChangeDatetime;
 
 	/**
-	 * [description]
-	 */
-
-	/**
 	 * Constructor
 	 */
 	public function __construct()
@@ -60,7 +70,15 @@ class EmailChangeRequest extends BaseTrigger
 			__('Site email change request', 'notification')
 		);
 
-		$this->addAction('update_option_new_admin_email', 10, 2);
+		/**
+		 * Those actions must be executed after `update_option_new_admin_email`
+		 * function in order to get change request hash.
+		 *
+		 * @see /wp-admin/includes/admin-filters.php
+		 * @see /wp-admin/includes/misc.php
+		 */
+		$this->addAction('add_option_new_admin_email', 20, 2);
+		$this->addAction('update_option_new_admin_email', 20, 2);
 
 		$this->setGroup(__('WordPress', 'notification'));
 
@@ -72,26 +90,32 @@ class EmailChangeRequest extends BaseTrigger
 	/**
 	 * Sets trigger's context
 	 *
-	 * @param string $oldValue Old email value.
-	 * @param string $value New email value.
+	 * @param mixed $_unused Unused.
+	 * @param string $newEmail New email value.
 	 *
 	 * @return mixed
 	 * @since 8.0.0
-	 *
 	 */
-	public function context($oldValue, $value)
+	public function context($_unused, $newEmail)
 	{
-		if ($oldValue === $value) {
+		$user = wp_get_current_user();
+
+		if (! $user instanceof \WP_User) {
 			return false;
 		}
 
 		$data = get_option('adminhash');
-		$currentUser = wp_get_current_user();
-		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-		$this->userLogin = $currentUser->user_login;
-		$this->newAdminEmail = $data['newemail'];
-		$this->confirmationUrl = esc_url(admin_url('options.php?adminhash=' . $data['hash']));
+
+		if (!is_array($data) || !isset($data['hash'])) {
+			return false;
+		}
+
+		$this->userObject = $user;
+		$this->oldAdminEmail = is_string(get_option('admin_email')) ? get_option('admin_email') : '';
+		$this->newAdminEmail = $newEmail;
 		$this->emailChangeDatetime = time();
+		$this->siteUrl = get_site_url();
+		$this->confirmationUrl = esc_url(admin_url('options.php?adminhash=' . $data['hash']));
 	}
 
 	/**
@@ -102,35 +126,24 @@ class EmailChangeRequest extends BaseTrigger
 	 */
 	public function mergeTags()
 	{
-		$this->addMergeTag(
-			new MergeTag\DateTime\DateTime(
-				[
-					'slug' => 'site_email_change_datetime',
-					'name' => __('Site email change time', 'notification'),
-				]
-			)
-		);
+		$this->addMergeTag(new MergeTag\User\UserID());
+		$this->addMergeTag(new MergeTag\User\UserLogin());
+		$this->addMergeTag(new MergeTag\User\UserEmail());
+		$this->addMergeTag(new MergeTag\User\UserRole());
+		$this->addMergeTag(new MergeTag\User\Avatar());
+		$this->addMergeTag(new MergeTag\User\UserDisplayName());
+		$this->addMergeTag(new MergeTag\User\UserFirstName());
+		$this->addMergeTag(new MergeTag\User\UserLastName());
+		$this->addMergeTag(new MergeTag\User\UserNicename());
+		$this->addMergeTag(new MergeTag\User\UserNickname());
 
 		$this->addMergeTag(
-			new MergeTag\StringTag(
+			new MergeTag\UrlTag(
 				[
-					'slug' => 'admin_login',
-					'name' => __('Admin login', 'notification'),
+					'slug' => 'site_url',
+					'name' => __('Site url', 'notification'),
 					'resolver' => static function ($trigger) {
-						return $trigger->userLogin;
-					},
-					'group' => __('Site', 'notification'),
-				]
-			)
-		);
-
-		$this->addMergeTag(
-			new MergeTag\EmailTag(
-				[
-					'slug' => 'new_email',
-					'name' => __('New email address', 'notification'),
-					'resolver' => static function ($trigger) {
-						return $trigger->newAdminEmail;
+						return $trigger->siteUrl;
 					},
 					'group' => __('Site', 'notification'),
 				]
@@ -151,14 +164,37 @@ class EmailChangeRequest extends BaseTrigger
 		);
 
 		$this->addMergeTag(
-			new MergeTag\UrlTag(
+			new MergeTag\DateTime\DateTime(
 				[
-					'slug' => 'site_url',
-					'name' => __('Site url', 'notification'),
+					'slug' => 'email_change_datetime',
+					'name' => __('Site email change time', 'notification'),
+					'group' => __('Email', 'notification'),
+				]
+			)
+		);
+
+		$this->addMergeTag(
+			new MergeTag\EmailTag(
+				[
+					'slug' => 'old_email',
+					'name' => __('Old email address', 'notification'),
 					'resolver' => static function ($trigger) {
-						return $trigger->siteUrl;
+						return $trigger->oldAdminEmail;
 					},
-					'group' => __('Site', 'notification'),
+					'group' => __('Email', 'notification'),
+				]
+			)
+		);
+
+		$this->addMergeTag(
+			new MergeTag\EmailTag(
+				[
+					'slug' => 'new_email',
+					'name' => __('New email address', 'notification'),
+					'resolver' => static function ($trigger) {
+						return $trigger->newAdminEmail;
+					},
+					'group' => __('Email', 'notification'),
 				]
 			)
 		);

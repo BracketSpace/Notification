@@ -1921,26 +1921,6 @@ parameters:
 			path: src/Repository/Trigger/User/UserDeleted.php
 
 		-
-			message: "#^Cannot access offset 'hash' on mixed\\.$#"
-			count: 1
-			path: src/Repository/Trigger/User/UserEmailChangeRequest.php
-
-		-
-			message: "#^Cannot access offset 'newemail' on mixed\\.$#"
-			count: 1
-			path: src/Repository/Trigger/User/UserEmailChangeRequest.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserEmailChangeRequest\\:\\:\\$newUserEmail \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Trigger/User/UserEmailChangeRequest.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserEmailChangeRequest\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Trigger/User/UserEmailChangeRequest.php
-
-		-
 			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
 			count: 1
 			path: src/Repository/Trigger/User/UserLogin.php
@@ -1984,21 +1964,6 @@ parameters:
 			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserRoleChanged\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
 			count: 1
 			path: src/Repository/Trigger/User/UserRoleChanged.php
-
-		-
-			message: "#^Cannot access offset 'hash' on mixed\\.$#"
-			count: 1
-			path: src/Repository/Trigger/WordPress/EmailChangeRequest.php
-
-		-
-			message: "#^Cannot access offset 'newemail' on mixed\\.$#"
-			count: 1
-			path: src/Repository/Trigger/WordPress/EmailChangeRequest.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\WordPress\\\\EmailChangeRequest\\:\\:\\$newAdminEmail \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Trigger/WordPress/EmailChangeRequest.php
 
 		-
 			message: "#^Argument of an invalid type array\\|false supplied for foreach, only iterables are supported\\.$#"

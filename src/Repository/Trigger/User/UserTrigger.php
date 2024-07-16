@@ -78,6 +78,7 @@ abstract class UserTrigger extends BaseTrigger
 				[
 					'slug' => 'user_registered_datetime',
 					'name' => __('User registration date', 'notification'),
+					'group' => __('User', 'notification'),
 				]
 			)
 		);
