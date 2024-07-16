@@ -59,7 +59,7 @@ $logs = $get('logs');
 							"
 						>
 							<?php
-							esc_html(
+							echo esc_html(
 								sprintf(
 								// translators: Time ago.
 									__('%s ago'),
