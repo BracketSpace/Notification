@@ -98,8 +98,5 @@ class PostDrafted extends PostTrigger
 		$this->author = get_userdata((int)$this->post->post_author);
 		$this->lastEditor = get_userdata((int)get_post_meta($this->post->ID, '_edit_last', true));
 		$this->publishingUser = get_userdata(get_current_user_id());
-
-		$this->postCreationDatetime = strtotime($this->post->post_date_gmt);
-		$this->postModificationDatetime = strtotime($this->post->post_modified_gmt);
 	}
 }

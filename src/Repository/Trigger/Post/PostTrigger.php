@@ -48,27 +48,6 @@ abstract class PostTrigger extends BaseTrigger
 	public $post;
 
 	/**
-	 * Post creation timestamp.
-	 *
-	 * @var int|false
-	 */
-	public $postCreationDatetime;
-
-	/**
-	 * Post publication timestamp.
-	 *
-	 * @var int|false
-	 */
-	public $postPublicationDatetime;
-
-	/**
-	 * Post modification timestamp.
-	 *
-	 * @var int|false
-	 */
-	public $postModificationDatetime;
-
-	/**
 	 * Constructor
 	 *
 	 * @param array<mixed> $params trigger configuration params.
@@ -257,7 +236,9 @@ abstract class PostTrigger extends BaseTrigger
 
 					// translators: singular post name.
 					'name' => sprintf(__('%s creation date and time', 'notification'), $postTypeName),
-					'timestamp' => $this->postCreationDatetime,
+					'timestamp' => static function ($trigger) {
+						return strtotime($trigger->post->post_date_gmt);
+					},
 				]
 			)
 		);
@@ -272,7 +253,9 @@ abstract class PostTrigger extends BaseTrigger
 
 					// translators: singular post name.
 					'name' => sprintf(__('%s modification date and time', 'notification'), $postTypeName),
-					'timestamp' => $this->postModificationDatetime,
+					'timestamp' => static function ($trigger) {
+						return strtotime($trigger->post->post_modified_gmt);
+					},
 				]
 			)
 		);
@@ -598,5 +581,40 @@ abstract class PostTrigger extends BaseTrigger
 				]
 			)
 		);
+	}
+
+	/**
+	 * Gets the value of deprecated properties.
+	 *
+	 * @param   string  $property
+	 * @return  mixed
+	 */
+	public function __get($property)
+	{
+		$propertyMap = [
+			'postCreationDatetime' => function () {
+				return strtotime($this->post->post_date_gmt);
+			},
+			'postPublicationDatetime' => function () {
+				return strtotime($this->post->post_date_gmt);
+			},
+			'postModificationDatetime' => function () {
+				return strtotime($this->post->post_modified_gmt);
+			},
+		];
+
+		if (in_array($property, array_keys($propertyMap), true)) {
+			wp_trigger_error(
+				static::class,
+				sprintf(
+					'Property `%s` is deprecated since [Next], use `post` property instead.',
+					$property
+				)
+			);
+
+			return call_user_func($propertyMap[$property]);
+		}
+
+		trigger_error('Undefined property: ' . static::class . '::$' . $property, E_USER_WARNING);
 	}
 }
