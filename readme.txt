@@ -377,6 +377,7 @@ Removed deprecated hooks:
 * [Changed] Namespace `BracketSpace\Notification\Defaults\` to `BracketSpace\Notification\Repository\`.
 * [Changed] Runtime components are now referenced by FQCN (Fully Qualified Class Name), instead of the name.
 * [Changed] Abstract classes are now renamed BaseSomething convention and placed in Repository dir.
+* [Changed] Date-related merge tags (`Date`, `DateTime` and `Time`) now requires `timestamp` argument to be callable.
 * [Fixed] Shortcodes being uncorrectly stripped leaving closing "]" behind.
 * [Fixed] PHP 8.2 deprecations.
 * [Fixed] Stripping shortcodes in carrier fields.

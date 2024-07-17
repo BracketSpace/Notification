@@ -5,7 +5,7 @@
  *
  * Requirements:
  * - Trigger property of the merge tag slug with timestamp
- * - or 'timestamp' parameter in arguments with timestamp
+ * - or 'timestamp' parameter in arguments with callback to resolve value
  *
  * @package notification
  */
@@ -45,6 +45,10 @@ class Time extends StringTag
 			]
 		);
 
+		if (isset($args['timestamp']) && !is_callable($args['timestamp'])) {
+			_deprecated_argument(__METHOD__, '[Next]', '"timestamp" option must be callable.');
+		}
+
 		if (!isset($args['group'])) {
 			$this->setGroup(__('Date', 'notification'));
 		}
@@ -59,8 +63,12 @@ class Time extends StringTag
 
 		if (!isset($args['resolver'])) {
 			$args['resolver'] = function ($trigger) use ($args) {
-
-				if (isset($args['timestamp'])) {
+				if (isset($args['timestamp']) && is_callable($args['timestamp'])) {
+					$timestamp = call_user_func($args['timestamp'], $trigger);
+				} elseif (isset($args['timestamp']) && !is_callable($args['timestamp'])) {
+					/**
+					 * @deprecated [Next] "timestamp" option must be callable.
+					 */
 					$timestamp = $args['timestamp'];
 				} elseif (isset($trigger->{CaseHelper::toCamel($this->getSlug())})) {
 					$timestamp = $trigger->{CaseHelper::toCamel($this->getSlug())};

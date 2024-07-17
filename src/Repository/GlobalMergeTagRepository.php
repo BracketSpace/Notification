@@ -170,7 +170,9 @@ class GlobalMergeTagRepository
 					'slug' => 'date',
 					'name' => __('Trigger execution date', 'notification'),
 					'hidden' => true,
-					'timestamp' => time(),
+					'timestamp' => static function () {
+						return time();
+					},
 				]
 			)
 		);
@@ -181,7 +183,9 @@ class GlobalMergeTagRepository
 					'slug' => 'date_time',
 					'name' => __('Trigger execution date and time', 'notification'),
 					'hidden' => true,
-					'timestamp' => time(),
+					'timestamp' => static function () {
+						return time();
+					},
 				]
 			)
 		);
@@ -192,7 +196,9 @@ class GlobalMergeTagRepository
 					'slug' => 'time',
 					'name' => __('Trigger execution time', 'notification'),
 					'hidden' => true,
-					'timestamp' => time(),
+					'timestamp' => static function () {
+						return time();
+					},
 				]
 			)
 		);
