@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Traits;
 
+use BracketSpace\Notification\ErrorHandler;
+
 /**
  * HasName trait
  */
@@ -53,7 +55,9 @@ trait HasReturnField
 		$availableReturnFields = ['ID', 'user_email'];
 
 		if (!in_array($returnField, $availableReturnFields, true)) {
-			trigger_error(sprintf('Recipient return field "%s" is not supported.', $returnField), E_USER_ERROR);
+			ErrorHandler::error(sprintf('Recipient return field "%s" is not supported.', $returnField));
+
+			$returnField = $this->getDefaultReturnField();
 		}
 
 		$this->returnField = $returnField;
