@@ -11,12 +11,15 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Repository\Recipient;
 
 use BracketSpace\Notification\Repository\Field;
+use BracketSpace\Notification\Traits;
 
 /**
  * User ID recipient
  */
 class UserID extends BaseRecipient
 {
+	use Traits\HasReturnField;
+
 	/**
 	 * Recipient constructor
 	 *
@@ -25,15 +28,18 @@ class UserID extends BaseRecipient
 	 */
 	public function __construct($params = [])
 	{
+		$this->setReturnField(
+			is_string($params['return_field'] ?? null)
+				? $params['return_field']
+				: $this->getDefaultReturnField()
+		);
+
 		parent::__construct(
-			array_merge(
-				$params,
-				[
-					'slug' => 'user_id',
-					'name' => __('User ID', 'notification'),
-					'default_value' => '',
-				]
-			)
+			[
+				'slug' => 'user_id',
+				'name' => __('User ID', 'notification'),
+				'default_value' => '',
+			]
 		);
 	}
 
@@ -57,11 +63,11 @@ class UserID extends BaseRecipient
 		$users = get_users(
 			[
 				'include' => $userIds,
-				'fields' => [$this->returnField],
+				'fields' => [$this->getReturnField()],
 			]
 		);
 
-		return wp_list_pluck($users, $this->returnField);
+		return wp_list_pluck($users, $this->getReturnField());
 	}
 
 	/**

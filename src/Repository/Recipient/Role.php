@@ -10,14 +10,17 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\Recipient;
 
-use BracketSpace\Notification\Repository\Field;
 use BracketSpace\Notification\Database\Queries\UserQueries;
+use BracketSpace\Notification\Repository\Field;
+use BracketSpace\Notification\Traits;
 
 /**
  * Role recipient
  */
 class Role extends BaseRecipient
 {
+	use Traits\HasReturnField;
+
 	/**
 	 * Recipient constructor
 	 *
@@ -26,15 +29,18 @@ class Role extends BaseRecipient
 	 */
 	public function __construct($params = [])
 	{
+		$this->setReturnField(
+			is_string($params['return_field'] ?? null)
+				? $params['return_field']
+				: $this->getDefaultReturnField()
+		);
+
 		parent::__construct(
-			array_merge(
-				$params,
-				[
-					'slug' => 'role',
-					'name' => __('Role', 'notification'),
-					'default_value' => 'administrator',
-				]
-			)
+			[
+				'slug' => 'role',
+				'name' => __('Role', 'notification'),
+				'default_value' => 'administrator',
+			]
 		);
 	}
 
@@ -50,13 +56,7 @@ class Role extends BaseRecipient
 			$value = $this->getDefaultValue();
 		}
 
-		$values = [];
-
-		foreach (UserQueries::withRole($value) as $user) {
-			$values[] = $user[$this->returnField];
-		}
-
-		return $values;
+		return wp_list_pluck(UserQueries::withRole($value), $this->getReturnField());
 	}
 
 	/**
