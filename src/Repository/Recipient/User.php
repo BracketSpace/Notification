@@ -22,15 +22,19 @@ class User extends BaseRecipient
 	 * Recipient constructor
 	 *
 	 * @since 5.0.0
+	 * @param array<mixed> $params recipient configuration params.
 	 */
-	public function __construct()
+	public function __construct($params = [])
 	{
 		parent::__construct(
-			[
-				'slug' => 'user',
-				'name' => __('User', 'notification'),
-				'default_value' => get_current_user_id(),
-			]
+			array_merge(
+				$params,
+				[
+					'slug' => 'user',
+					'name' => __('User', 'notification'),
+					'default_value' => get_current_user_id(),
+				]
+			)
 		);
 	}
 
@@ -49,8 +53,7 @@ class User extends BaseRecipient
 		$user = get_userdata((int)$value);
 
 		if ($user) {
-			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-			return [$user->user_email];
+			return [$user->{$this->returnField}];
 		}
 
 		return [];
