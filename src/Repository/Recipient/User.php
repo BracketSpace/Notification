@@ -12,12 +12,15 @@ namespace BracketSpace\Notification\Repository\Recipient;
 
 use BracketSpace\Notification\Repository\Field;
 use BracketSpace\Notification\Database\Queries\UserQueries;
+use BracketSpace\Notification\Traits;
 
 /**
  * User recipient
  */
 class User extends BaseRecipient
 {
+	use Traits\HasReturnField;
+
 	/**
 	 * Recipient constructor
 	 *
@@ -26,15 +29,18 @@ class User extends BaseRecipient
 	 */
 	public function __construct($params = [])
 	{
+		$this->setReturnField(
+			is_string($params['return_field'] ?? null)
+				? $params['return_field']
+				: $this->getDefaultReturnField()
+		);
+
 		parent::__construct(
-			array_merge(
-				$params,
-				[
-					'slug' => 'user',
-					'name' => __('User', 'notification'),
-					'default_value' => get_current_user_id(),
-				]
-			)
+			[
+				'slug' => 'user',
+				'name' => __('User', 'notification'),
+				'default_value' => get_current_user_id(),
+			]
 		);
 	}
 
@@ -53,7 +59,7 @@ class User extends BaseRecipient
 		$user = get_userdata((int)$value);
 
 		if ($user) {
-			return [$user->{$this->returnField}];
+			return [$user->{$this->getReturnField()}];
 		}
 
 		return [];

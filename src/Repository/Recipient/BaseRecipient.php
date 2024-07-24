@@ -25,18 +25,6 @@ abstract class BaseRecipient implements Interfaces\Receivable
 	use Casegnostic;
 
 	/**
-	 * List of available return fields.
-	 */
-	protected const AVAILABLE_RETURN_FIELDS = ['ID', 'user_email'];
-
-	/**
-	 * Return field key name.
-	 *
-	 * @var string
-	 */
-	protected $returnField = 'user_email';
-
-	/**
 	 * Recipient input default value
 	 *
 	 * @var string
@@ -57,16 +45,6 @@ abstract class BaseRecipient implements Interfaces\Receivable
 
 		if (!empty($params['name'])) {
 			$this->setName($params['name']);
-		}
-
-		if (is_string($params['return_field'] ?? null)) {
-			$returnField = $params['return_field'];
-
-			if (!in_array($returnField, self::AVAILABLE_RETURN_FIELDS, true)) {
-				trigger_error(sprintf('Recipient return field "%s" is not supported.', $returnField), E_USER_ERROR);
-			}
-
-			$this->returnField = $returnField;
 		}
 
 		if (!isset($params['default_value'])) {
