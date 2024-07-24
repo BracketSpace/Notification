@@ -22,15 +22,19 @@ class Role extends BaseRecipient
 	 * Recipient constructor
 	 *
 	 * @since 5.0.0
+	 * @param array<mixed> $params recipient configuration params.
 	 */
-	public function __construct()
+	public function __construct($params = [])
 	{
 		parent::__construct(
-			[
-				'slug' => 'role',
-				'name' => __('Role', 'notification'),
-				'default_value' => 'administrator',
-			]
+			array_merge(
+				$params,
+				[
+					'slug' => 'role',
+					'name' => __('Role', 'notification'),
+					'default_value' => 'administrator',
+				]
+			)
 		);
 	}
 
@@ -46,13 +50,13 @@ class Role extends BaseRecipient
 			$value = $this->getDefaultValue();
 		}
 
-		$emails = [];
+		$values = [];
 
 		foreach (UserQueries::withRole($value) as $user) {
-			$emails[] = $user['user_email'];
+			$values[] = $user[$this->returnField];
 		}
 
-		return $emails;
+		return $values;
 	}
 
 	/**

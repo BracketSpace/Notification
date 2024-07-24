@@ -1661,11 +1661,6 @@ parameters:
 			path: src/Repository/Recipient/BaseRecipient.php
 
 		-
-			message: "#^Parameter \\#1 \\$args of function get_users expects array\\{blog_id\\?\\: int, role\\?\\: array\\<string\\>\\|string, role__in\\?\\: array\\<string\\>, role__not_in\\?\\: array\\<string\\>, meta_key\\?\\: array\\<string\\>\\|string, meta_value\\?\\: array\\<string\\>\\|string, meta_compare\\?\\: string, meta_compare_key\\?\\: string, \\.\\.\\.\\}, array\\{include\\: non\\-empty\\-array\\<int, string\\>, fields\\: array\\{'user_email'\\}\\} given\\.$#"
-			count: 1
-			path: src/Repository/Recipient/UserID.php
-
-		-
 			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/Resolver/Basic.php

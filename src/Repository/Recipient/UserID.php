@@ -21,15 +21,19 @@ class UserID extends BaseRecipient
 	 * Recipient constructor
 	 *
 	 * @since 5.0.0
+	 * @param array<mixed> $params recipient configuration params.
 	 */
-	public function __construct()
+	public function __construct($params = [])
 	{
 		parent::__construct(
-			[
-				'slug' => 'user_id',
-				'name' => __('User ID', 'notification'),
-				'default_value' => '',
-			]
+			array_merge(
+				$params,
+				[
+					'slug' => 'user_id',
+					'name' => __('User ID', 'notification'),
+					'default_value' => '',
+				]
+			)
 		);
 	}
 
@@ -45,15 +49,19 @@ class UserID extends BaseRecipient
 			return [];
 		}
 
-		$userIds = array_map('trim', explode(',', $value));
+		$userIds = array_map(
+			static fn($userId) => intval(trim($userId)),
+			explode(',', $value)
+		);
+
 		$users = get_users(
 			[
 				'include' => $userIds,
-				'fields' => ['user_email'],
+				'fields' => [$this->returnField],
 			]
 		);
 
-		return wp_list_pluck($users, 'user_email');
+		return wp_list_pluck($users, $this->returnField);
 	}
 
 	/**
