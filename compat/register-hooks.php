@@ -90,7 +90,6 @@ add_action('notification/settings/section/carriers/before', [$this->component('B
 add_action('notification/carrier/list/after', [$this->component('BracketSpace\Notification\Admin\Upsell'), 'carriersList'], 10, 0);
 add_action('notification/settings/sidebar/after', [$this->component('BracketSpace\Notification\Admin\Upsell'), 'customDevelopment'], 10, 0);
 add_action('notification/init', [$this->component('BracketSpace\Notification\Integration\WordPressIntegration'), 'loadDatabaseNotifications'], 9999999, 0);
-add_action('notification/data/saved', [$this->component('BracketSpace\Notification\Integration\WordPressIntegration'), 'clearNotificationsCache'], 10, 0);
 add_filter('notification/background_processing/trigger_key', [$this->component('BracketSpace\Notification\Integration\WordPressIntegration'), 'identifyTrigger'], 10, 2);
 add_action('wp_insert_comment', [$this->component('BracketSpace\Notification\Integration\WordPressIntegration'), 'proxyCommentReply'], 10, 2);
 add_action('comment_post', [$this->component('BracketSpace\Notification\Integration\WordPressIntegration'), 'proxyPostCommentToPublished'], 10, 2);
