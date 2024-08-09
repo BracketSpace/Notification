@@ -143,7 +143,7 @@ class SectionRepeater extends BaseField
 		$this->headers = [];
 
 		$html = sprintf(
-			'<table class="section-repeater fields-repeater %s" id="%s" "%s">',
+			'<table class="section-repeater fields-repeater %s" id="%s" %s>',
 			esc_attr($this->cssClass()),
 			esc_attr($this->getId()),
 			$dataAttr
