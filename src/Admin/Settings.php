@@ -682,4 +682,24 @@ class Settings
 
 		return $postTypes;
 	}
+
+	/**
+	 * Filters list of allowed HTML tags and attributes for field description.
+	 *
+	 * @filter wp_kses_allowed_html
+	 *
+	 * @param   array<string, array<string, bool>> $tags    List of allowed tags.
+	 * @param   string                             $context Current context.
+	 * @return  array<mixed>
+	 */
+	public function filterAllowedDescriptionHtml(array $tags, string $context): array
+	{
+		if ($context !== 'notification/field_description') {
+			return $tags;
+		}
+
+		$tags['a']['target'] = true;
+
+		return $tags;
+	}
 }

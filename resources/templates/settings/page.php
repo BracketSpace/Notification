@@ -171,8 +171,9 @@ if (!isset($currentSection)) {
 										<?php if (!empty($fieldDescription)) : ?>
 											<small class="description">
 											<?php
-											echo wp_kses_data(
-												$fieldDescription
+											echo wp_kses(
+												$fieldDescription,
+												wp_kses_allowed_html('notification/field_description')
 											);
 											?>
 																		</small>

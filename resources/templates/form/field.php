@@ -66,7 +66,14 @@ $dataCarrier = $carrier
 		?>
 		<?php $description = $field->getDescription(); ?>
 		<?php if (!empty($description)) : ?>
-			<p class="description"><?php echo wp_kses_data($description); ?></p>
+			<p class="description">
+				<?php
+				echo wp_kses(
+					$description,
+					wp_kses_allowed_html('notification/field_description')
+				);
+				?>
+			</p>
 		<?php endif ?>
 		<?php
 		do_action_deprecated(

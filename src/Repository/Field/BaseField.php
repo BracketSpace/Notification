@@ -120,7 +120,7 @@ abstract class BaseField implements Interfaces\Fillable
 		if (isset($params['description'])) {
 			$this->description = wp_kses(
 				$params['description'],
-				wp_kses_allowed_html('data')
+				wp_kses_allowed_html('notification/field_description')
 			);
 		}
 
