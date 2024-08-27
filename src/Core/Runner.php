@@ -125,6 +125,10 @@ class Runner
 	public function setNotifications()
 	{
 		foreach (NotificationStore::withTrigger($this->trigger->getSlug()) as $notification) {
+			if (!$notification->isEnabled()) {
+				continue;
+			}
+
 			$this->attachNotification($notification);
 		}
 	}
