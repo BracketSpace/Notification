@@ -63,7 +63,7 @@ jobs:
         run: |
           echo "::set-output name=package-name::${{ secrets.SLUG }}-${GITHUB_REF#refs/tags/}"
       - name: Download artifact
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: build
           path: ${{ secrets.SLUG }}
@@ -87,7 +87,7 @@ jobs:
         run: |
           echo "::set-output name=package-name::${{ secrets.SLUG }}-${GITHUB_REF#refs/tags/}"
       - name: Download artifact
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: ${{ steps.vars.outputs.package-name }}
           path: .
@@ -121,7 +121,7 @@ jobs:
           grep -oPz "(?s)${START}.*?\n\K.*?(?=${END})" readme.txt > changelog.txt
           truncate -s-2 changelog.txt
       - name: Download artifact
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: ${{ steps.vars.outputs.package-name }}
           path: .
