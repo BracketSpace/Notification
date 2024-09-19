@@ -18,13 +18,6 @@ use BracketSpace\Notification\Repository\MergeTag;
 class UserLoginFailed extends UserTrigger
 {
 	/**
-	 * User login failure date and time
-	 *
-	 * @var int|false
-	 */
-	public $userLoginFailedDatetime;
-
-	/**
 	 * Constructor
 	 */
 	public function __construct()
@@ -65,9 +58,6 @@ class UserLoginFailed extends UserTrigger
 		if (!$user instanceof \WP_User) {
 			return false;
 		}
-
-		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
-		$this->userLoginFailedDatetime = time();
 	}
 
 	/**
@@ -90,6 +80,9 @@ class UserLoginFailed extends UserTrigger
 				[
 					'slug' => 'user_login_failed_datetime',
 					'name' => __('User login failed datetime', 'notification'),
+					'timestamp' => static function () {
+						return time();
+					},
 				]
 			)
 		);

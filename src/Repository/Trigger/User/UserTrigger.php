@@ -33,13 +33,6 @@ abstract class UserTrigger extends BaseTrigger
 	public $userObject;
 
 	/**
-	 * User registration date and time
-	 *
-	 * @var int|false
-	 */
-	public $userRegisteredDatetime;
-
-	/**
 	 * Constructor
 	 *
 	 * @param string $slug $params trigger slug.
@@ -79,6 +72,9 @@ abstract class UserTrigger extends BaseTrigger
 					'slug' => 'user_registered_datetime',
 					'name' => __('User registration date', 'notification'),
 					'group' => __('User', 'notification'),
+					'timestamp' => static function (UserTrigger $trigger) {
+						return strtotime($trigger->userObject->user_registered);
+					},
 				]
 			)
 		);

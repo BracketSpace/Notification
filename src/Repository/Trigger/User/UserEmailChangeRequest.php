@@ -46,13 +46,6 @@ class UserEmailChangeRequest extends UserTrigger
 	public $confirmationUrl;
 
 	/**
-	 * Email change timestamp
-	 *
-	 * @var int
-	 */
-	public $emailChangeDatetime;
-
-	/**
 	 * Constructor
 	 */
 	public function __construct()
@@ -104,12 +97,10 @@ class UserEmailChangeRequest extends UserTrigger
 
 		$this->userId = $userId;
 		$this->userObject = $user;
-		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
 
 		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 		$this->oldUserEmail = $user->user_email;
 		$this->newUserEmail = $data['newemail'];
-		$this->emailChangeDatetime = time();
 		$this->siteUrl = get_site_url();
 		$this->confirmationUrl = esc_url(admin_url('profile.php?newuseremail=' . $data['hash']));
 	}
@@ -162,6 +153,9 @@ class UserEmailChangeRequest extends UserTrigger
 					'slug' => 'email_change_datetime',
 					'name' => __('Email change time', 'notification'),
 					'group' => __('Email', 'notification'),
+					'timestamp' => static function () {
+						return time();
+					},
 				]
 			)
 		);

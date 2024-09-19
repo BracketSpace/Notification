@@ -18,20 +18,6 @@ use BracketSpace\Notification\Repository\MergeTag;
 class UserPasswordChanged extends UserTrigger
 {
 	/**
-	 * User meta data
-	 *
-	 * @var array<mixed>
-	 */
-	public $userMeta;
-
-	/**
-	 * Password change date and time
-	 *
-	 * @var int|false
-	 */
-	public $passwordChangeDatetime;
-
-	/**
 	 * Constructor
 	 */
 	public function __construct()
@@ -63,10 +49,7 @@ class UserPasswordChanged extends UserTrigger
 			return;
 		}
 
-		$this->userMeta = get_user_meta($this->userId);
-
-		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
-		$this->passwordChangeDatetime = time();
+		$this->userObject = $user;
 	}
 
 	/**
@@ -89,6 +72,9 @@ class UserPasswordChanged extends UserTrigger
 				[
 					'slug' => 'password_change_datetime',
 					'name' => __('Password change date', 'notification'),
+					'timestamp' => static function () {
+						return time();
+					},
 				]
 			)
 		);

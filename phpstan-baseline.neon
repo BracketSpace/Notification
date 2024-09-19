@@ -1906,32 +1906,12 @@ parameters:
 			path: src/Repository/Trigger/Taxonomy/TermTrigger.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserDeleted\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Trigger/User/UserDeleted.php
-
-		-
 			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
 			count: 1
 			path: src/Repository/Trigger/User/UserLogin.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserLogin\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Trigger/User/UserLogin.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserLogout\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Trigger/User/UserLogout.php
-
-		-
 			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
-			count: 1
-			path: src/Repository/Trigger/User/UserPasswordChanged.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserPasswordChanged\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
 			count: 1
 			path: src/Repository/Trigger/User/UserPasswordChanged.php
 
@@ -1939,21 +1919,6 @@ parameters:
 			message: "#^Cannot access property \\$data on WP_User\\|false\\.$#"
 			count: 1
 			path: src/Repository/Trigger/User/UserPasswordResetRequest.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserProfileUpdated\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Trigger/User/UserProfileUpdated.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserRegistered\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Trigger/User/UserRegistered.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\User\\\\UserRoleChanged\\:\\:\\$userMeta \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Trigger/User/UserRoleChanged.php
 
 		-
 			message: "#^Argument of an invalid type array\\|false supplied for foreach, only iterables are supported\\.$#"

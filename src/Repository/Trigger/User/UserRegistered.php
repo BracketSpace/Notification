@@ -19,13 +19,6 @@ use BracketSpace\Notification\Repository\MergeTag;
 class UserRegistered extends UserTrigger
 {
 	/**
-	 * User meta data
-	 *
-	 * @var array<mixed>
-	 */
-	public $userMeta;
-
-	/**
 	 * Constructor
 	 */
 	public function __construct()
@@ -59,9 +52,6 @@ class UserRegistered extends UserTrigger
 		}
 
 		$this->userObject = $user;
-		$this->userMeta = get_user_meta($this->userId);
-
-		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
 	}
 
 	/**

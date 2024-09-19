@@ -18,13 +18,6 @@ use BracketSpace\Notification\Repository\MergeTag;
 class UserPasswordResetRequest extends UserTrigger
 {
 	/**
-	 * Password reset request date and time
-	 *
-	 * @var int|false
-	 */
-	public $passwordResetRequestDatetime;
-
-	/**
 	 * Password reset key
 	 *
 	 * @var string
@@ -87,11 +80,7 @@ class UserPasswordResetRequest extends UserTrigger
 		}
 
 		$this->userObject = $user;
-
 		$this->passwordResetKey = $resetKey;
-
-		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
-		$this->passwordResetRequestDatetime = time();
 	}
 
 	/**
@@ -115,6 +104,9 @@ class UserPasswordResetRequest extends UserTrigger
 				[
 					'slug' => 'password_reset_request_datetime',
 					'name' => __('Password reset request date', 'notification'),
+					'timestamp' => static function () {
+						return time();
+					},
 				]
 			)
 		);

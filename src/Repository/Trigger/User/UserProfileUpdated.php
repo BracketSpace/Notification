@@ -18,20 +18,6 @@ use BracketSpace\Notification\Repository\MergeTag;
 class UserProfileUpdated extends UserTrigger
 {
 	/**
-	 * User meta data
-	 *
-	 * @var array<mixed>
-	 */
-	public $userMeta;
-
-	/**
-	 * User profile update date and time
-	 *
-	 * @var int|false
-	 */
-	public $userProfileUpdatedDatetime;
-
-	/**
 	 * Constructor
 	 */
 	public function __construct()
@@ -68,10 +54,6 @@ class UserProfileUpdated extends UserTrigger
 		}
 
 		$this->userObject = $user;
-		$this->userMeta = get_user_meta($this->userId);
-
-		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
-		$this->userProfileUpdatedDatetime = time();
 	}
 
 	/**
@@ -94,6 +76,9 @@ class UserProfileUpdated extends UserTrigger
 				[
 					'slug' => 'user_profile_updated_datetime',
 					'name' => __('User profile update time', 'notification'),
+					'timestamp' => static function () {
+						return time();
+					},
 				]
 			)
 		);

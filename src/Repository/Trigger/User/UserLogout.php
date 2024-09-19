@@ -18,20 +18,6 @@ use BracketSpace\Notification\Repository\MergeTag;
 class UserLogout extends UserTrigger
 {
 	/**
-	 * User meta data
-	 *
-	 * @var array<mixed>
-	 */
-	public $userMeta;
-
-	/**
-	 * User logout date and time
-	 *
-	 * @var int|false
-	 */
-	public $userLogoutDatetime;
-
-	/**
 	 * Constructor
 	 */
 	public function __construct()
@@ -68,10 +54,6 @@ class UserLogout extends UserTrigger
 		}
 
 		$this->userObject = $user;
-		$this->userMeta = get_user_meta($userId);
-
-		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
-		$this->userLogoutDatetime = time();
 	}
 
 	/**
@@ -94,6 +76,9 @@ class UserLogout extends UserTrigger
 				[
 					'slug' => 'user_logout_datetime',
 					'name' => __('User logout time', 'notification'),
+					'timestamp' => static function () {
+						return time();
+					},
 				]
 			)
 		);

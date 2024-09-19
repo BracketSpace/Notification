@@ -18,13 +18,6 @@ use BracketSpace\Notification\Repository\MergeTag;
 class UserRoleChanged extends UserTrigger
 {
 	/**
-	 * User meta data
-	 *
-	 * @var array<mixed>
-	 */
-	public $userMeta;
-
-	/**
 	 * New role
 	 *
 	 * @var string
@@ -37,13 +30,6 @@ class UserRoleChanged extends UserTrigger
 	 * @var string
 	 */
 	public $oldRole;
-
-	/**
-	 * User role change date and time
-	 *
-	 * @var int|false
-	 */
-	public $userRoleChangeDatetime;
 
 	/**
 	 * Constructor
@@ -85,12 +71,8 @@ class UserRoleChanged extends UserTrigger
 		}
 
 		$this->userObject = $user;
-		$this->userMeta = get_user_meta($this->userId);
 		$this->newRole = $role;
 		$this->oldRole = implode(', ', $oldRoles);
-
-		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
-		$this->userRoleChangeDatetime = time();
 	}
 
 	/**
@@ -139,6 +121,9 @@ class UserRoleChanged extends UserTrigger
 				[
 					'slug' => 'user_role_change_datetime',
 					'name' => __('User role change datetime', 'notification'),
+					'timestamp' => static function () {
+						return time();
+					},
 				]
 			)
 		);

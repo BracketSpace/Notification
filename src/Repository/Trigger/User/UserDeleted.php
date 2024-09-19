@@ -18,20 +18,6 @@ use BracketSpace\Notification\Repository\MergeTag;
 class UserDeleted extends UserTrigger
 {
 	/**
-	 * User meta data
-	 *
-	 * @var array<mixed>
-	 */
-	public $userMeta;
-
-	/**
-	 * User deletion date and time
-	 *
-	 * @var int|false
-	 */
-	public $userDeletedDatetime;
-
-	/**
 	 * Constructor
 	 */
 	public function __construct()
@@ -63,10 +49,6 @@ class UserDeleted extends UserTrigger
 		}
 
 		$this->userObject = $user;
-		$this->userMeta = get_user_meta($this->userId);
-
-		$this->userRegisteredDatetime = strtotime($this->userObject->user_registered);
-		$this->userDeletedDatetime = time();
 	}
 
 	/**
@@ -89,6 +71,9 @@ class UserDeleted extends UserTrigger
 				[
 					'slug' => 'user_deleted_datetime',
 					'name' => __('User deletion time', 'notification'),
+					'timestamp' => static function () {
+						return time();
+					},
 				]
 			)
 		);
