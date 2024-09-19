@@ -76,7 +76,7 @@ jobs:
         src: '.'
         dest: 'build'
     - name: Upload artifact
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v4
       with:
         name: build
         path: build
@@ -96,7 +96,7 @@ jobs:
         run: |
           zip -rq ${{ secrets.SLUG }}-dev.zip ${{ secrets.SLUG }}
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ secrets.SLUG }}-dev
           path: ${{ secrets.SLUG }}-dev.zip
