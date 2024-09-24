@@ -102,7 +102,13 @@ class RepeaterController
 	 */
 	public function getValues($postId, $carrier, $field)
 	{
-		$notification = Db::postToNotification($postId);
+		$notification = apply_filters(
+			'notification/field/repeater/notification_instance',
+			Db::postToNotification($postId),
+			$postId,
+			$carrier,
+			$field
+		);
 
 		if (! $notification instanceof Notification) {
 			return [];
