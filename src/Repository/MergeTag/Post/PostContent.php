@@ -29,14 +29,14 @@ class PostContent extends StringTag
 	 */
 	public function __construct($params = [])
 	{
-		$this->setTriggerProp($params['post_type'] ?? 'post');
+		$this->setTriggerProp($params['property_name'] ?? 'post');
 
-		$postTypeName = WpObjectHelper::getPostTypeName($this->getTriggerProp());
+		$postTypeName = WpObjectHelper::getPostTypeName($params['post_type'] ?? 'post');
 
 		$args = wp_parse_args(
 			$params,
 			[
-				'slug' => sprintf('%s_content', $this->getTriggerProp()),
+				'slug' => sprintf('%s_content', $params['post_type'] ?? 'post'),
 				// translators: singular post name.
 				'name' => sprintf(__('%s content', 'notification'), $postTypeName),
 				'description' => __(

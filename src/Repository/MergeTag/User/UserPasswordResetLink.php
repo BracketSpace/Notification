@@ -40,7 +40,7 @@ class UserPasswordResetLink extends StringTag
 			$this->keyPropertyName = $params['key_property_name'];
 		}
 
-		$this->setTriggerProp($params['user_property_name'] ?? 'user_object');
+		$this->setTriggerProp($params['property_name'] ?? 'user_object');
 
 		$args = wp_parse_args(
 			[

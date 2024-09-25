@@ -311,6 +311,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 - Class methods and properties has been changed from snake_case to camelCase.
 - In Post Triggers, dynamic property `$trigger->{$post_type}` has been replaced with static prop `$trigger->post`.
 - The same as above applies to Post Trigger datetime tags, namely: postCreationDatetime, postPublicationDatetime, and postModificationDatetime.
+- Post Merge Tags will now use `property_name` attribute rather than `post_type` to set trigger property used by resolvers.
 - Hook `notification/data/save` and `notification/data/save/after` now pass Core\Notification instance in the first param instead of the WordPress adapter instance.
 - Runtime components are now referenced by FQCN (Fully Qualified Class Name), instead of the name.
 
@@ -379,6 +380,7 @@ Removed deprecated hooks:
 * [Changed] Runtime components are now referenced by FQCN (Fully Qualified Class Name), instead of the name.
 * [Changed] Abstract classes are now renamed BaseSomething convention and placed in Repository dir.
 * [Changed] Date-related merge tags (`Date`, `DateTime` and `Time`) now requires `timestamp` argument to be callable.
+* [Changed] Unify attribute name used by resolvers to `property_name` in all Merge Tags.
 * [Fixed] Shortcodes being uncorrectly stripped leaving closing "]" behind.
 * [Fixed] PHP 8.2 deprecations.
 * [Fixed] Stripping shortcodes in carrier fields.
