@@ -44,6 +44,10 @@
 				a {
 					cursor: pointer;
 					text-decoration: none;
+
+					&:focus {
+						box-shadow: none;
+					}
 				}
 
 				&::after {
