@@ -16,7 +16,7 @@ use BracketSpace\Notification\Store;
 /**
  * Array Converter class
  *
- * @since [Next]
+ * @since 9.0.0
  */
 class ArrayConverter implements Interfaces\Convertable
 {
@@ -25,7 +25,7 @@ class ArrayConverter implements Interfaces\Convertable
 	 *
 	 * @filter notification/from/array
 	 *
-	 * @since [Next]
+	 * @since 9.0.0
 	 * @param NotificationUnconvertedData $data The notification representation
 	 * @return Notification
 	 */
@@ -68,7 +68,7 @@ class ArrayConverter implements Interfaces\Convertable
 	 *
 	 * @filter notification/to/array
 	 *
-	 * @since [Next]
+	 * @since 9.0.0
 	 * @param Notification $notification Notification instance
 	 * @param array<string|int,mixed> $config The additional configuration of the converter
 	 * @return NotificationAsArray

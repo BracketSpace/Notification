@@ -217,7 +217,7 @@ class PostType
 	 *
 	 * @action after_delete_post 100
 	 *
-	 * @since [Next]
+	 * @since 9.0.0
 	 * @param int $postId Post ID.
 	 * @param \WP_Post $post WP Post object.
 	 * @return void
@@ -249,7 +249,7 @@ class PostType
 	 *
 	 * @action save_post_notification
 	 *
-	 * @since [Next] We're saving the Notification to custom table instead of Post Type. Post is just the shell.
+	 * @since 9.0.0 We're saving the Notification to custom table instead of Post Type. Post is just the shell.
 	 * @param int $postId Current post ID.
 	 * @param \WP_Post $post WP_Post object.
 	 * @param bool $update If existing notification is updated.
@@ -381,7 +381,7 @@ class PostType
 	/**
 	 * Gets all Notifications from database.
 	 *
-	 * @deprecated [Next] Use BracketSpace\Notification\Database\NotificationDatabaseService::getAll();
+	 * @deprecated 9.0.0 Use BracketSpace\Notification\Database\NotificationDatabaseService::getAll();
 	 * @since  6.0.0
 	 * @return array<Notification>
 	 */
@@ -389,7 +389,7 @@ class PostType
 	{
 		_deprecated_function(
 			__METHOD__,
-			'[Next]',
+			'9.0.0',
 			'BracketSpace\Notification\Database\NotificationDatabaseService::getAll'
 		);
 

@@ -18,7 +18,7 @@ use BracketSpace\Notification\Traits\Webhook as WebhookTrait;
 /**
  * Webhook Carrier
  *
- * @deprecated [Next]
+ * @deprecated 9.0.0
  */
 class Webhook extends BaseCarrier
 {

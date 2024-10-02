@@ -584,13 +584,13 @@ class Notification
 	 * Dumps the object to array
 	 *
 	 * @since  6.0.0
-	 * @deprecated [Next] Use Converter instead, via $notification->to('array') method
+	 * @deprecated 9.0.0 Use Converter instead, via $notification->to('array') method
 	 * @param bool $onlyEnabledCarriers If only enabled Carriers should be saved.
 	 * @return NotificationData|null
 	 */
 	public function toArray($onlyEnabledCarriers = false)
 	{
-		_deprecated_function(__METHOD__, '[Next]', 'Notification::to');
+		_deprecated_function(__METHOD__, '9.0.0', 'Notification::to');
 
 		$array = $this->to('array', ['onlyEnabledCarriers' => $onlyEnabledCarriers]);
 
@@ -604,7 +604,7 @@ class Notification
 	/**
 	 * Creates Notification from a specific representation
 	 *
-	 * @since [Next]
+	 * @since 9.0.0
 	 * @throws \Exception When no Notification object comes back from the filter
 	 * @param string $type The type of representation, ie. array or json
 	 * @param string|array<mixed,mixed> $data The notification representation
@@ -630,7 +630,7 @@ class Notification
 	/**
 	 * Converts the notification to another type of representation.
 	 *
-	 * @since [Next]
+	 * @since 9.0.0
 	 * @param string $type The type of representation, ie. array or json
 	 * @param array<string|int,mixed> $config The additional configuration of the converter
 	 * @return mixed

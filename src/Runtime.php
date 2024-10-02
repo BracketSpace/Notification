@@ -163,9 +163,9 @@ class Runtime
 	 *
 	 * @throws \Exception When component is already registered.
 	 * @since 7.0.0
-	 * @since [Next] Only the component name is accepter
+	 * @since 9.0.0 Only the component name is accepter
 	 * @param mixed $component Component.
-	 * @param null $deprecated Deprecated since [Next].
+	 * @param null $deprecated Deprecated since 9.0.0.
 	 * @return $this
 	 */
 	public function addComponent($component, $deprecated = null)
@@ -173,7 +173,7 @@ class Runtime
 		if ($deprecated !== null) {
 			_deprecated_argument(
 				__METHOD__,
-				'[Next]',
+				'9.0.0',
 				'Method accepts only one argument - the object itself.'
 			);
 
@@ -199,7 +199,7 @@ class Runtime
 	 * Gets runtime component
 	 *
 	 * @since 7.0.0
-	 * @since [Next] Components are referenced by FQCN.
+	 * @since 9.0.0 Components are referenced by FQCN.
 	 * @param string $name Component name.
 	 * @return mixed       Component or null
 	 */
@@ -212,7 +212,7 @@ class Runtime
 
 			_deprecated_argument(
 				__METHOD__,
-				'[Next]',
+				'9.0.0',
 				sprintf('You used deprecated `%s` component name, use `%s` instead', $name, $newName)
 			);
 

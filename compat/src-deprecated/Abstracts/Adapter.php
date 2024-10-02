@@ -19,7 +19,7 @@ use BracketSpace\Notification\Core\Notification;
  * Adapter class
  *
  * @mixin \BracketSpace\Notification\Core\Notification
- * @deprecated [Next]
+ * @deprecated 9.0.0
  */
 abstract class Adapter implements Interfaces\Adaptable
 {
@@ -39,7 +39,7 @@ abstract class Adapter implements Interfaces\Adaptable
 	 */
 	public function __construct(Notification $notification)
 	{
-		notification_deprecated_class( __CLASS__, '[Next]' );
+		notification_deprecated_class( __CLASS__, '9.0.0' );
 
 		$this->notification = $notification;
 	}

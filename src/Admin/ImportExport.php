@@ -104,7 +104,7 @@ class ImportExport
 	 *
 	 * @since 6.0.0
 	 * @since 8.0.2 Accepts the items argument, instead reading it from GET.
-	 * @since [Next] Uses NotificationDatabaseService instead of get_posts().
+	 * @since 9.0.0 Uses NotificationDatabaseService instead of get_posts().
 	 * @param array<int,string> $items Items to export.
 	 * @return array<int,string>
 	 * @throws \Exception When no items selected for export.

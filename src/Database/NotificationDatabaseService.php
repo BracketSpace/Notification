@@ -19,7 +19,7 @@ use BracketSpace\Notification\Store\Notification as NotificationStore;
 /**
  * This class describes a notification database service.
  *
- * @since [Next]
+ * @since 9.0.0
  */
 class NotificationDatabaseService
 {
@@ -231,7 +231,7 @@ class NotificationDatabaseService
 		/**
 		 * These actions has been moved from Admin\PostType::save()
 		 */
-		do_action_deprecated('notification/data/save/after', [$notification], '[Next]', 'notification/data/saved');
+		do_action_deprecated('notification/data/save/after', [$notification], '9.0.0', 'notification/data/saved');
 		do_action('notification/data/saved', $notification);
 
 		static::getCache($notification->getHash())->delete();

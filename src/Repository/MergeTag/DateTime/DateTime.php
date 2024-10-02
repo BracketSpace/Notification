@@ -26,7 +26,7 @@ class DateTime extends StringTag
 	 * Merge tag constructor
 	 *
 	 * @param array<mixed> $params merge tag configuration params.
-	 * @since [Next] The automatic property lookup searches for camelCase prop first.
+	 * @since 9.0.0 The automatic property lookup searches for camelCase prop first.
 	 * @since 7.0.0 Expects the timestamp without an offset.
 	 *               You can pass timezone argument as well, use GMT if timestamp is with offset.
 	 * @since 5.0.0
@@ -47,7 +47,7 @@ class DateTime extends StringTag
 		);
 
 		if (isset($args['timestamp']) && !is_callable($args['timestamp'])) {
-			_deprecated_argument(__METHOD__, '[Next]', '"timestamp" option must be callable.');
+			_deprecated_argument(__METHOD__, '9.0.0', '"timestamp" option must be callable.');
 		}
 
 		if (!isset($args['description'])) {
@@ -64,7 +64,7 @@ class DateTime extends StringTag
 					$timestamp = call_user_func($args['timestamp'], $trigger);
 				} elseif (isset($args['timestamp']) && !is_callable($args['timestamp'])) {
 					/**
-					 * @deprecated [Next] "timestamp" option must be callable.
+					 * @deprecated 9.0.0 "timestamp" option must be callable.
 					 */
 					$timestamp = $args['timestamp'];
 				} elseif (isset($trigger->{CaseHelper::toCamel($this->getSlug())})) {

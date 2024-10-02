@@ -17,7 +17,7 @@ class Register
 	/**
 	 * Registers Notification
 	 *
-	 * @since [Next]
+	 * @since 9.0.0
 	 * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
 	 * @return \BracketSpace\Notification\Core\Notification
 	 */
@@ -37,7 +37,7 @@ class Register
 	 *
 	 * Accepts both array with Trigger and Carriers objects or static values.
 	 *
-	 * @since [Next]
+	 * @since 9.0.0
 	 * @param NotificationUnconvertedData $data Notification data.
 	 * @return \WP_Error|true
 	 */
@@ -55,7 +55,7 @@ class Register
 	/**
 	 * Registers Notification if newer version is provided or doesn't exist at all
 	 *
-	 * @since [Next]
+	 * @since 9.0.0
 	 * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
 	 * @return \BracketSpace\Notification\Core\Notification
 	 */

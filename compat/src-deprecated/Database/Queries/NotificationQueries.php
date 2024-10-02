@@ -16,7 +16,7 @@ use BracketSpace\Notification\Database\NotificationDatabaseService as Db;
 /**
  * Notification Queries class
  *
- * @deprecated [Next]
+ * @deprecated 9.0.0
  */
 class NotificationQueries
 {
@@ -25,7 +25,7 @@ class NotificationQueries
 	 */
 	public function __construct()
 	{
-		notification_deprecated_class( __CLASS__, '[Next]' );
+		notification_deprecated_class( __CLASS__, '9.0.0' );
 	}
 
 	/**

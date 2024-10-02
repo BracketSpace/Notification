@@ -17,7 +17,7 @@ use BracketSpace\Notification\Core\Notification;
  * WordPress Adapter class
  *
  * @mixin \BracketSpace\Notification\Core\Notification
- * @deprecated [Next]
+ * @deprecated 9.0.0
  */
 class WordPress extends Abstracts\Adapter
 {

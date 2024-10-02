@@ -16,7 +16,7 @@ use BracketSpace\Notification\Repository\Recipient\BaseRecipient;
 /**
  * Webhook recipient
  *
- * @deprecated [Next]
+ * @deprecated 9.0.0
  */
 class Webhook extends BaseRecipient
 {

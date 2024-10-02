@@ -350,7 +350,7 @@ class Upgrade
 	 * - 1. Moves the notifications to custom table.
 	 * - 2. Clears notifications cache.
 	 *
-	 * @since [Next]
+	 * @since 9.0.0
 	 * @return void
 	 */
 	public function upgradeToV3()
