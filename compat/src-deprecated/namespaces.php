@@ -7,7 +7,7 @@
 
 spl_autoload_register(function ($class) {
 	$deprecations = [
-		'[Next]' => [
+		'9.0.0' => [
 			'BracketSpace\Notification\Defaults' => 'BracketSpace\Notification\Repository',
 			'BracketSpace\Notification\Abstracts\Carrier' => 'BracketSpace\Notification\Repository\Carrier\BaseCarrier',
 			'BracketSpace\Notification\Abstracts\Field' => 'BracketSpace\Notification\Repository\Field\BaseField',

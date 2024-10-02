@@ -15,7 +15,7 @@ use BracketSpace\Notification\Interfaces\Convertable;
 /**
  * JSON Converter class
  *
- * @since [Next]
+ * @since 9.0.0
  */
 class JsonConverter implements Convertable
 {
@@ -24,7 +24,7 @@ class JsonConverter implements Convertable
 	 *
 	 * @filter notification/from/json
 	 *
-	 * @since [Next]
+	 * @since 9.0.0
 	 * @param string $data The notification representation
 	 * @return Notification
 	 */
@@ -50,7 +50,7 @@ class JsonConverter implements Convertable
 	 *
 	 * @filter notification/to/json
 	 *
-	 * @since [Next]
+	 * @since 9.0.0
 	 * @param Notification $notification Notification instance
 	 * @param array<string|int,mixed> $config The additional configuration of the converter
 	 * @return mixed

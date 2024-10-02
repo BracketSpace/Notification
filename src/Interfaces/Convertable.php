@@ -19,7 +19,7 @@ interface Convertable
 	/**
 	 * Creates Notification from a specific representation
 	 *
-	 * @since [Next]
+	 * @since 9.0.0
 	 * @param string|array<mixed,mixed> $data The notification representation
 	 * @return Notification
 	 */
@@ -28,7 +28,7 @@ interface Convertable
 	/**
 	 * Converts the notification to another type of representation
 	 *
-	 * @since [Next]
+	 * @since 9.0.0
 	 * @param Notification $notification Notification instance
 	 * @param array<string|int,mixed> $config The additional configuration of the converter
 	 * @return mixed

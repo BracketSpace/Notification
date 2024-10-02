@@ -15,7 +15,7 @@ use BracketSpace\Notification\Abstracts;
 /**
  * JSON Adapter class
  *
- * @deprecated [Next]
+ * @deprecated 9.0.0
  */
 class JSON extends Abstracts\Adapter
 {

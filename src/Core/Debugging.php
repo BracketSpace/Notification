@@ -44,7 +44,7 @@ class Debugging
 	/**
 	 * Logs the message in database
 	 *
-	 * @since [Next]
+	 * @since 9.0.0
 	 * @param string $component Component nice name, like `Core` or `Any Plugin Name`.
 	 * @param string $type Log type, values: notification|error|warning.
 	 * @param string $message Log formatted message.

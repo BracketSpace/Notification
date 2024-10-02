@@ -17,7 +17,7 @@ use BracketSpace\Notification\Store\Carrier;
 /**
  * WebhookCompat class
  *
- * @since [Next]
+ * @since 9.0.0
  */
 class WebhookCompat
 {

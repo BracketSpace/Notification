@@ -86,7 +86,7 @@ abstract class BaseTrigger implements Triggerable
 			return;
 		}
 
-		_deprecated_function(__METHOD__, '[Next]', 'Trigger::mergeTags');
+		_deprecated_function(__METHOD__, '9.0.0', 'Trigger::mergeTags');
 
 		$this->merge_tags();
 	}

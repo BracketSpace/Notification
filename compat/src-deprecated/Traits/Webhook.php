@@ -15,7 +15,7 @@ use BracketSpace\Notification\Core\Debugging;
 /**
  * Webhook trait
  *
- * @deprecated [Next]
+ * @deprecated 9.0.0
  */
 trait Webhook
 {

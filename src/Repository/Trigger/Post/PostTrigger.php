@@ -607,7 +607,7 @@ abstract class PostTrigger extends BaseTrigger
 			wp_trigger_error(
 				static::class,
 				sprintf(
-					'Property `%s` is deprecated since [Next], use `post` property instead.',
+					'Property `%s` is deprecated since 9.0.0, use `post` property instead.',
 					$property
 				)
 			);

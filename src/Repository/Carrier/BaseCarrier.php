@@ -188,7 +188,7 @@ abstract class BaseCarrier implements Interfaces\Sendable
 			return;
 		}
 
-		_deprecated_function(__METHOD__, '[Next]', 'Carrier::formFields');
+		_deprecated_function(__METHOD__, '9.0.0', 'Carrier::formFields');
 
 		$this->form_fields();
 	}

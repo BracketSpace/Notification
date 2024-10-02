@@ -12,7 +12,7 @@ class UnitTestCase extends \WP_UnitTestCase
 	/**
 	 * Test set up.
 	 *
-	 * @since  [Next]
+	 * @since  9.0.0
 	 * @return void
 	 */
 	protected function setUp(): void
@@ -24,7 +24,7 @@ class UnitTestCase extends \WP_UnitTestCase
 	/**
 	 * Test tear down.
 	 *
-	 * @since  [Next]
+	 * @since  9.0.0
 	 * @return void
 	 */
 	protected function tearDown(): void

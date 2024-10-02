@@ -42,7 +42,7 @@ trait Storage
 	 * Inserts an item at a specific index.
 	 *
 	 * @since 8.0.0
-	 * @since [Next] Has third `$replace` param
+	 * @since 9.0.0 Has third `$replace` param
 	 * @param int|string $index Item index.
 	 * @param TItem $item Item to add.
 	 * @param bool $replace If should be replaced if exists, default: false.

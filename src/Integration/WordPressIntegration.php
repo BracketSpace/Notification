@@ -30,7 +30,7 @@ class WordPressIntegration
 	 *
 	 * @action notification/init 9999999
 	 *
-	 * @since [Next]
+	 * @since 9.0.0
 	 * @return void
 	 */
 	public function loadDatabaseNotifications()

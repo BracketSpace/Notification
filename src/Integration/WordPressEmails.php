@@ -187,7 +187,7 @@ class WordPressEmails
 	 *
 	 * @filter send_site_admin_email_change_email
 	 *
-	 * @since [Next]
+	 * @since 9.0.0
 	 * @return bool
 	 */
 	public function disableSendConfirmationOnAdminEmailChanged()

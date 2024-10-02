@@ -106,7 +106,7 @@ if ( ! class_exists( 'Notification' ) ) :
 		/**
 		 * Gets plugin settings instance
 		 *
-		 * @since  [Next]
+		 * @since  9.0.0
 		 * @throws \Exception When runtime wasn't invoked yet.
 		 * @return \BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem
 		 */
