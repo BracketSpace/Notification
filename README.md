@@ -119,6 +119,7 @@ This covers all the taxonomies. Use `category`, `post_tag`, `another_taxonomy` i
 | Trigger name | Trigger slug |
 | :--- | :--- |
 | Available updates | `wordpress/updates_available` |
+| WordPress updated | `wordpress/updated` |
 
 </details>
 

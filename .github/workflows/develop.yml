@@ -7,6 +7,33 @@ on:
 
 jobs:
 
+  # Generates stub file
+  stubs:
+    name: Genrate stubs
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+        extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
+        coverage: none
+    - name: Install stub generator globally
+      run: composer global require php-stubs/generator --dev
+    - name: Install Composer dependencies
+      uses: "ramsey/composer-install@v2"
+      with:
+        composer-options: "--no-dev"
+    - name: Create stubs
+      run: composer generate-stubs
+    - name: Upload stubs as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: notification-stubs
+        path: compat/stubs.php
+
   # Builds the package and creates artifact with dist files
   build:
     name: Build
@@ -14,45 +41,27 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Setup PHP 7.4
+    - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
         php-version: '7.4'
         extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
         coverage: none
-    - name: Setup Node
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12'
-    - name: Setup variables
-      id: vars
-      run: |
-        echo "::set-output name=yarn-cache-path::$(yarn cache dir)"
-        echo "::set-output name=composer-cache-path::$(composer config cache-files-dir)"
-    - name: Cache Yarn
-      uses: actions/cache@v1
-      with:
-        path: ${{ steps.vars.outputs.yarn-cache-path }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: ${{ runner.os }}-yarn-
-    - name: Cache Composer
-      uses: actions/cache@v1
-      with:
-        path: ${{ steps.vars.outputs.composer-cache-path }}
-        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-        restore-keys: ${{ runner.os }}-composer-
-    - name: Install Node dependencies
-      run: yarn install --no-progress
+    - name: Install Strauss globally
+      run: composer global require brianhenryie/strauss
     - name: Install Composer dependencies
-      run: composer install --no-progress
-    - name: Install Composer build dependencies
-      run: composer bin build install --no-progress
-    - name: Compose dependencies
-      run: composer compose
-    - name: Remove dev depencencies
-      run: |
-        rm -rf vendor
-        composer install --no-dev --no-progress
+      uses: "ramsey/composer-install@v2"
+      with:
+        composer-options: "--no-dev"
+    - name: Run Strauss
+      run: composer run-script prefix-namespaces-prod
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: '16'
+        cache: yarn
+    - name: Install yarn dependencies
+      run: yarn install --immutable
     - name: Build static assets
       run: yarn build
     - name: Create build dir
@@ -67,7 +76,7 @@ jobs:
         src: '.'
         dest: 'build'
     - name: Upload artifact
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v4
       with:
         name: build
         path: build
@@ -79,7 +88,7 @@ jobs:
     needs: build
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4
         with:
           name: build
           path: ${{ secrets.SLUG }}
@@ -87,7 +96,7 @@ jobs:
         run: |
           zip -rq ${{ secrets.SLUG }}-dev.zip ${{ secrets.SLUG }}
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ secrets.SLUG }}-dev
           path: ${{ secrets.SLUG }}-dev.zip
@@ -99,7 +108,7 @@ jobs:
     needs: pack
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4
         with:
           name: ${{ secrets.SLUG }}-dev
           path: .

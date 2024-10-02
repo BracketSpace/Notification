@@ -1,73 +1,83 @@
 <?php
+
 /**
  * Synchronization
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Admin;
 
-use BracketSpace\Notification\Admin\PostType;
+use BracketSpace\Notification\Core\Notification;
 use BracketSpace\Notification\Core\Sync as CoreSync;
 use BracketSpace\Notification\Core\Templates;
+use BracketSpace\Notification\Database\NotificationDatabaseService;
 use BracketSpace\Notification\Utils\Settings\CoreFields;
 use BracketSpace\Notification\Utils\Settings\Fields as SpecificFields;
 use BracketSpace\Notification\Dependencies\Micropackage\Ajax\Response;
-use BracketSpace\Notification\Queries\NotificationQueries;
 
 /**
  * Sync class
  */
-class Sync {
-
+class Sync
+{
 	/**
 	 * Registers synchronization settings
 	 * Hooks into the Import / Export settings.
 	 *
-	 * @param object $settings Settings API object.
+	 * @action notification/settings/register 50
+	 *
+	 * @param \BracketSpace\Notification\Utils\Settings $settings Settings API object.
 	 * @return void
 	 */
-	public function settings( $settings ) {
+	public function settings($settings)
+	{
+		$importExport = $settings->addSection(__('Import / Export', 'notification'), 'import_export');
+		$syncGroup = $importExport->addGroup(__('Synchronization', 'notification'), 'sync');
 
-		$import_export = $settings->add_section( __( 'Import / Export', 'notification' ), 'import_export' );
-		$sync_group    = $import_export->add_group( __( 'Synchronization', 'notification' ), 'sync' );
+		$syncGroup->description('Synchronization allow to export or load the Notifications from JSON files.');
 
-		$sync_group->description( 'Synchronization allow to export or load the Notifications from JSON files.' );
+		$syncGroup->addField(
+			[
+				'name' => __('Actions', 'notification'),
+				'slug' => 'actions',
+				'addons' => [
+					'message' => [$this, 'templateActions'],
+				],
+				'render' => [new CoreFields\Message(), 'input'],
+				'sanitize' => [new CoreFields\Message(), 'sanitize'],
+			]
+		);
 
-		$sync_group->add_field( [
-			'name'        => __( 'Actions', 'notification' ),
-			'slug'        => 'actions',
-			'addons'      => [
-				'message' => [ $this, 'template_actions' ],
-			],
-			'render'      => [ new CoreFields\Message(), 'input' ],
-			'sanitize'    => [ new CoreFields\Message(), 'sanitize' ],
-			'description' => __( 'Bulk actions for the table below.' ),
-		] );
-
-		if ( CoreSync::is_syncing() ) {
-			$sync_group->add_field( [
-				'name'     => __( 'Notifications', 'notification' ),
-				'slug'     => 'notifications',
-				'render'   => [ new SpecificFields\SyncTable(), 'input' ],
-				'sanitize' => '__return_null',
-			] );
+		if (! CoreSync::isSyncing()) {
+			return;
 		}
 
+		$syncGroup->addField(
+			[
+				'name' => __('Notifications', 'notification'),
+				'slug' => 'notifications',
+				'render' => [new SpecificFields\SyncTable(), 'input'],
+				'sanitize' => '__return_null',
+			]
+		);
 	}
 
 	/**
 	 * Gets the actions template
 	 *
-	 * @since  6.0.0
 	 * @return string
+	 * @since  6.0.0
 	 */
-	public function template_actions() {
-		if ( ! CoreSync::is_syncing() ) {
-			return Templates::get( 'sync/disabled' );
+	public function templateActions()
+	{
+		if (!CoreSync::isSyncing()) {
+			return Templates::get('sync/disabled');
 		}
 
-		return Templates::get( 'sync/actions' );
+		return Templates::get('sync/actions');
 	}
 
 	/**
@@ -77,81 +87,70 @@ class Sync {
 	 *
 	 * @return void
 	 */
-	public function ajax_sync() {
-		check_ajax_referer( 'notification_csrf' );
+	public function ajaxSync()
+	{
+		check_ajax_referer('notification_csrf');
 
 		$ajax = new Response();
 		$data = $_POST;
 
-		if ( method_exists( $this, 'load_notification_to_' . $data['type'] ) ) {
-			$response = call_user_func( [ $this, 'load_notification_to_' . $data['type'] ], $data['hash'] );
-		} else {
-			$response = false;
+		$callable = [$this, 'loadNotificationTo' . ucfirst($data['type'])];
+
+		$response = method_exists($callable[0], $callable[1]) && is_callable($callable)
+			? call_user_func($callable, $data['hash'])
+			: false;
+
+		if ($response === false) {
+			$ajax->error(
+				__('Something went wrong while importing the Notification, please refresh the page and try again.')
+			);
 		}
 
-		if ( false === $response ) {
-			$ajax->error( __( 'Something went wrong while importing the Notification, please refresh the page and try again.' ) );
-		}
-
-		$ajax->send( $response );
+		$ajax->send($response);
 	}
 
 	/**
 	 * Loads the Notification to JSON
 	 *
-	 * @since  6.0.0
-	 * @param  string $hash Notification hash.
+	 * @param string $hash Notification hash.
 	 * @return void
+	 * @since  6.0.0
 	 */
-	public function load_notification_to_json( $hash ) {
-		/**
-		 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress|null
-		 */
-		$notification = NotificationQueries::with_hash( $hash );
+	public function loadNotificationToJson($hash)
+	{
+		$notification = NotificationDatabaseService::get($hash);
 
-		if ( null === $notification ) {
+		if ($notification === null) {
 			return;
 		}
 
-		CoreSync::save_local_json( $notification );
+		CoreSync::saveLocalJson($notification);
 	}
 
 	/**
 	 * Loads the Notification to JSON
 	 *
-	 * @since  6.0.0
-	 * @param  string $hash Notification hash.
+	 * @param string $hash Notification hash.
 	 * @return mixed
+	 * @since  6.0.0
 	 */
-	public function load_notification_to_wordpress( $hash ) {
+	public function loadNotificationToWordpress($hash)
+	{
+		$jsonNotifications = CoreSync::getAllJson();
 
-		$json_notifications = CoreSync::get_all_json();
-
-		foreach ( $json_notifications as $json ) {
+		foreach ($jsonNotifications as $json) {
 			try {
-				/**
-				 * JSON Adapter
-				 *
-				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
-				 */
-				$json_adapter = notification_adapt_from( 'JSON', $json );
+				$notification = Notification::from('json', $json);
 
-				if ( $json_adapter->get_hash() === $hash ) {
-					/**
-					 * WordPress Adapter
-					 *
-					 * @var \BracketSpace\Notification\Defaults\Adapter\WordPress
-					 */
-					$wp_adapter = notification_swap_adapter( 'WordPress', $json_adapter );
-					$wp_adapter->save();
-					return get_edit_post_link( $wp_adapter->get_id(), 'admin' );
+				if ($notification->getHash() === $hash) {
+					NotificationDatabaseService::upsert($notification);
+
+					return get_edit_post_link(NotificationDatabaseService::getLastUpsertedPostId(), 'admin');
 				}
-			} catch ( \Exception $e ) {
+			} catch (\Throwable $e) {
 				// Do nothing.
 				return false;
 			}
 		}
-
 	}
-
 }

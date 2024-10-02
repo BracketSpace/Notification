@@ -1,4 +1,5 @@
 <?php
+
 /**
  * License class
  * Used by paid extensions to save and retrieve license from database
@@ -6,6 +7,8 @@
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 
@@ -16,12 +19,12 @@ use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDri
 /**
  * License class
  */
-class License {
-
+class License
+{
 	/**
 	 * Extension data
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	protected $extension;
 
@@ -30,248 +33,299 @@ class License {
 	 *
 	 * @var string
 	 */
-	protected $license_storage = 'notification_licenses';
+	protected $licenseStorage = 'notification_licenses';
 
 	/**
 	 * Class constructor
 	 *
+	 * @param array<mixed> $extension extension data.
 	 * @since 5.1.0
-	 * @param array $extension extension data.
 	 */
-	public function __construct( array $extension ) {
+	public function __construct(array $extension)
+	{
 		$this->extension = $extension;
 	}
 
 	/**
 	 * Gets all licenses from database
 	 *
+	 * @return array<mixed> licenses
 	 * @since  5.1.0
-	 * @return array licenses
 	 */
-	public function get_licenses() {
-		return get_option( $this->license_storage, [] );
+	public function getLicenses()
+	{
+		return get_option($this->licenseStorage, []);
 	}
 
 	/**
 	 * Gets single license info
 	 *
-	 * @since  5.1.0
 	 * @return mixed license data or false
+	 * @since  5.1.0
 	 */
-	public function get() {
-		$driver = new CacheDriver\ObjectCache( 'notification_license' );
-		$cache  = new Cache( $driver, $this->extension['slug'] );
+	public function get()
+	{
+		$driver = new CacheDriver\ObjectCache('notification_license');
+		$cache = new Cache($driver, $this->extension['slug']);
 
-		return $cache->collect( function () {
-			$licenses = $this->get_licenses();
-			$license  = false;
+		return $cache->collect(
+			function () {
+				$licenses = $this->getLicenses();
+				$license = false;
 
-			if ( isset( $licenses[ $this->extension['slug'] ] ) ) {
-				$license = $licenses[ $this->extension['slug'] ];
+				if (isset($licenses[$this->extension['slug']])) {
+					$license = $licenses[$this->extension['slug']];
+				}
+
+				return $license;
 			}
-
-			return $license;
-		} );
+		);
 	}
 
 	/**
 	 * Checks if license is valid
 	 *
+	 * @return bool
 	 * @since  5.1.0
-	 * @return boolean
 	 */
-	public function is_valid() {
-		$license_data = $this->get();
+	public function isValid()
+	{
+		$licenseData = $this->get();
 
-		if ( empty( $license_data ) ) {
+		if (empty($licenseData)) {
 			return false;
 		}
 
-		$driver = new CacheDriver\Transient( ErrorHandler::debug_enabled() ? 60 : DAY_IN_SECONDS );
-		$cache  = new Cache( $driver, sprintf( 'notification_license_check_%s', $this->extension['slug'] ) );
+		$driver = new CacheDriver\Transient(ErrorHandler::debugEnabled() ? 60 : DAY_IN_SECONDS);
+		$cache = new Cache($driver, sprintf('notification_license_check_%s', $this->extension['slug']));
 
-		return $cache->collect( function () use ( $license_data ) {
-			$license_check = $this->check( $license_data->license_key );
+		return $cache->collect(
+			function () use ($licenseData) {
+				$licenseCheck = $this->check($licenseData->licenseKey);
 
-			if ( is_wp_error( $license_check ) ) {
-				return 'valid' === $license_data->license;
+				if (is_wp_error($licenseCheck)) {
+					return $licenseData->license === 'valid';
+				}
+
+				$licenseCheck->licenseKey = $licenseData->licenseKey;
+				$licenseData = $licenseCheck;
+				$this->save($licenseData);
+
+				return $licenseData->license === 'valid';
 			}
-
-			$license_check->license_key = $license_data->license_key;
-			$license_data               = $license_check;
-			$this->save( $license_data );
-
-			return 'valid' === $license_data->license;
-		} );
+		);
 	}
 
 	/**
 	 * Gets the license key
 	 *
-	 * @since  7.1.1
 	 * @return string
+	 * @since  7.1.1
 	 */
-	public function get_key() {
-		$license_data = $this->get();
-		return $license_data->license_key ?? '';
+	public function getKey()
+	{
+		$licenseData = $this->get();
+		return $licenseData->licenseKey ?? '';
 	}
 
 	/**
 	 * Saves single license info
 	 *
-	 * @since  5.1.0
-	 * @param object $license_data license data from API.
+	 * @param object $licenseData license data from API.
 	 * @return void
+	 * @since  5.1.0
 	 */
-	public function save( $license_data ) {
-		$driver = new CacheDriver\ObjectCache( 'notification_license' );
-		$cache  = new Cache( $driver, $this->extension['slug'] );
-		$cache->set( $license_data );
+	public function save($licenseData)
+	{
+		$driver = new CacheDriver\ObjectCache('notification_license');
+		$cache = new Cache($driver, $this->extension['slug']);
+		$cache->set($licenseData);
 
-		$licenses                             = $this->get_licenses();
-		$licenses[ $this->extension['slug'] ] = $license_data;
+		$licenses = $this->getLicenses();
+		$licenses[$this->extension['slug']] = $licenseData;
 
-		update_option( $this->license_storage, $licenses );
+		update_option($this->licenseStorage, $licenses);
 	}
 
 	/**
 	 * Removes single license from database
 	 *
-	 * @since  5.1.0
 	 * @return void
+	 * @since  5.1.0
 	 */
-	public function remove() {
-		$driver = new CacheDriver\ObjectCache( 'notification_license' );
-		$cache  = new Cache( $driver, $this->extension['slug'] );
+	public function remove()
+	{
+		$driver = new CacheDriver\ObjectCache('notification_license');
+		$cache = new Cache($driver, $this->extension['slug']);
 		$cache->delete();
 
-		$licenses = $this->get_licenses();
-		if ( isset( $licenses[ $this->extension['slug'] ] ) ) {
-			unset( $licenses[ $this->extension['slug'] ] );
+		$licenses = $this->getLicenses();
+		if (isset($licenses[$this->extension['slug']])) {
+			unset($licenses[$this->extension['slug']]);
 		}
 
-		update_option( $this->license_storage, $licenses );
+		update_option($this->licenseStorage, $licenses);
 	}
 
 	/**
 	 * Activates the license
 	 *
-	 * @since  5.1.0
-	 * @param  string $license_key license key.
+	 * @param string $licenseKey license key.
 	 * @return mixed               WP_Error or License data
+	 * @since  5.1.0
 	 */
-	public function activate( $license_key = '' ) {
+	public function activate($licenseKey = '')
+	{
+		$licenseKey = trim($licenseKey);
+		$error = false;
 
-		$license_key = trim( $license_key );
-		$error       = false;
+		/** @var string $itemName */
+		$itemName = $this->extension['edd']['item_name'];
 
 		// Call the custom API.
 		$response = wp_remote_post(
 			$this->extension['edd']['store_url'],
 			[
 				'timeout' => 15,
-				'body'    => [
+				'body' => [
 					'edd_action' => 'activate_license',
-					'license'    => $license_key,
-					'item_name'  => rawurlencode( $this->extension['edd']['item_name'] ),
-					'url'        => home_url(),
+					'license' => $licenseKey,
+					'item_name' => rawurlencode($itemName),
+					'url' => home_url(),
 				],
 			]
 		);
 
 		// Make sure the response came back okay.
-		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
-			return new \WP_Error( 'notification_license_error', 'http-error' );
+		if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
+			return new \WP_Error(
+				'notification_license_error',
+				'http-error'
+			);
 		}
 
-		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+		$licenseData = json_decode(wp_remote_retrieve_body($response));
 
-		if ( false === $license_data->success ) {
-			return new \WP_Error( 'notification_license_error', $license_data->error, $license_data );
+		if ($licenseData->success === false) {
+			return new \WP_Error(
+				'notification_license_error',
+				$licenseData->error,
+				$licenseData
+			);
 		}
 
-		$license_data->license_key = $license_key;
-		$this->save( $license_data );
+		$licenseData->licenseKey = $licenseKey;
+		$this->save($licenseData);
 
-		return $license_data;
+		$driver = new CacheDriver\ObjectCache('notification_license');
+		$cache = new Cache($driver, $this->extension['slug']);
+		$cache->delete();
 
+		$driver = new CacheDriver\Transient(ErrorHandler::debugEnabled() ? 60 : DAY_IN_SECONDS);
+		$cache = new Cache($driver, sprintf('notification_license_check_%s', $this->extension['slug']));
+		$cache->delete();
+
+		return $licenseData;
 	}
 
 	/**
 	 * Deactivates the license
 	 *
-	 * @since  5.1.0
 	 * @return mixed WP_Error or License data
+	 * @since  5.1.0
 	 */
-	public function deactivate() {
+	public function deactivate()
+	{
+		$licenseData = $this->get();
+		$error = false;
 
-		$license_data = $this->get();
-		$error        = false;
+		/** @var string $itemName */
+		$itemName = $this->extension['edd']['item_name'];
 
 		// Call the custom API.
 		$response = wp_remote_post(
 			$this->extension['edd']['store_url'],
 			[
 				'timeout' => 15,
-				'body'    => [
+				'body' => [
 					'edd_action' => 'deactivate_license',
-					'license'    => trim( $license_data->license_key ),
-					'item_name'  => rawurlencode( $this->extension['edd']['item_name'] ),
-					'url'        => home_url(),
+					'license' => trim((string)$licenseData->licenseKey),
+					'item_name' => rawurlencode($itemName),
+					'url' => home_url(),
 				],
 			]
 		);
 
 		// Make sure the response came back okay.
-		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
-			return new \WP_Error( 'notification_license_error', 'http-error' );
+		if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
+			return new \WP_Error(
+				'notification_license_error',
+				'http-error'
+			);
 		}
 
-		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+		$licenseData = json_decode(wp_remote_retrieve_body($response));
 
-		if ( ! in_array( $license_data->license, [ 'deactivated', 'failed' ], true ) ) {
-			return new \WP_Error( 'notification_license_error', 'deactivation-error' );
+		if (!in_array($licenseData->license, ['deactivated', 'failed'], true)) {
+			return new \WP_Error(
+				'notification_license_error',
+				'deactivation-error'
+			);
 		}
 
 		$this->remove();
 
-		return $license_data;
+		$driver = new CacheDriver\ObjectCache('notification_license');
+		$cache = new Cache($driver, $this->extension['slug']);
+		$cache->delete();
 
+		$driver = new CacheDriver\Transient(ErrorHandler::debugEnabled() ? 60 : DAY_IN_SECONDS);
+		$cache = new Cache($driver, sprintf('notification_license_check_%s', $this->extension['slug']));
+		$cache->delete();
+
+		return $licenseData;
 	}
 
 	/**
 	 * Checks the license
 	 *
-	 * @since  5.1.0
-	 * @param  string $license_key license key.
+	 * @param string $licenseKey license key.
 	 * @return object              WP_Error or license object
+	 * @since  5.1.0
 	 */
-	public function check( $license_key = '' ) {
+	public function check($licenseKey = '')
+	{
+		$licenseKey = trim((string)$licenseKey);
+		$error = false;
 
-		$license_key = trim( $license_key );
-		$error       = false;
+		/** @var string $itemName */
+		$itemName = $this->extension['edd']['item_name'];
 
 		// Call the custom API.
 		$response = wp_remote_post(
 			$this->extension['edd']['store_url'],
 			[
 				'timeout' => 15,
-				'body'    => [
+				'body' => [
 					'edd_action' => 'check_license',
-					'license'    => $license_key,
-					'item_name'  => rawurlencode( $this->extension['edd']['item_name'] ),
-					'url'        => home_url(),
+					'license' => $licenseKey,
+					'item_name' => rawurlencode($itemName),
+					'url' => home_url(),
 				],
 			]
 		);
 
 		// Make sure the response came back okay.
-		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
-			return new \WP_Error( 'notification_license_error', 'http-error' );
+		if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
+			return new \WP_Error(
+				'notification_license_error',
+				'http-error'
+			);
 		}
 
-		return json_decode( wp_remote_retrieve_body( $response ) );
+		$licenseData = json_decode(wp_remote_retrieve_body($response));
+		$licenseData->licenseKey = $licenseKey;
 
+		return $licenseData;
 	}
-
 }

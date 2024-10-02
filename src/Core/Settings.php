@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Settings class
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 
@@ -12,13 +15,14 @@ use BracketSpace\Notification\Utils\Settings as SettingsAPI;
 /**
  * Settings class
  */
-class Settings extends SettingsAPI {
-
+class Settings extends SettingsAPI
+{
 	/**
 	 * Settings constructor
 	 */
-	public function __construct() {
-		parent::__construct( 'notification' );
+	public function __construct()
+	{
+		parent::__construct('notification');
 	}
 
 	/**
@@ -28,35 +32,38 @@ class Settings extends SettingsAPI {
 	 *
 	 * @return void
 	 */
-	public function register_page() {
-
-		if ( ! apply_filters( 'notification/whitelabel/settings', true ) ) {
+	public function registerPage()
+	{
+		if (!apply_filters('notification/whitelabel/settings', true)) {
 			return;
 		}
 
-		$settings_access = apply_filters( 'notification/whitelabel/settings/access', false );
-		if ( false !== $settings_access && ! in_array( get_current_user_id(), $settings_access, true ) ) {
+		$settingsAccess = apply_filters('notification/whitelabel/settings/access', false);
+
+		if ($settingsAccess !== false && !in_array(get_current_user_id(), $settingsAccess, true)) {
 			return;
 		}
 
 		// Change settings position if white labelled.
-		if ( true !== apply_filters( 'notification/whitelabel/cpt/parent', true ) ) {
-			$parent_hook     = apply_filters( 'notification/whitelabel/cpt/parent', 'edit.php?post_type=notification' );
-			$page_menu_label = __( 'Notification settings', 'notification' );
+		if (apply_filters('notification/whitelabel/cpt/parent', true) !== true) {
+			$parentHook = apply_filters(
+				'notification/whitelabel/cpt/parent',
+				'edit.php?post_type=notification'
+			);
+			$pageMenuLabel = __('Notification settings', 'notification');
 		} else {
-			$parent_hook     = 'edit.php?post_type=notification';
-			$page_menu_label = __( 'Settings', 'notification' );
+			$parentHook = 'edit.php?post_type=notification';
+			$pageMenuLabel = __('Settings', 'notification');
 		}
 
-		$this->page_hook = add_submenu_page(
-			$parent_hook,
-			__( 'Notification settings', 'notification' ),
-			$page_menu_label,
+		$this->pageHook = (string)add_submenu_page(
+			$parentHook,
+			__('Notification settings', 'notification'),
+			$pageMenuLabel,
 			'manage_options',
 			'settings',
-			[ $this, 'settings_page' ]
+			[$this, 'settingsPage']
 		);
-
 	}
 
 	/**
@@ -66,8 +73,8 @@ class Settings extends SettingsAPI {
 	 *
 	 * @return void
 	 */
-	public function register_settings() {
-		do_action( 'notification/settings/register', $this );
+	public function registerSettings()
+	{
+		do_action('notification/settings/register', $this);
 	}
-
 }

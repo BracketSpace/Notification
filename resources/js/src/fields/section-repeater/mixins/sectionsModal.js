@@ -1,7 +1,7 @@
 export const sectionsModal = {
 	data() {
 		return {
-			modalOpen: false
+			modalOpen: false,
 		};
 	},
 	methods: {
@@ -12,9 +12,9 @@ export const sectionsModal = {
 
 			this.modalOpen = true;
 
-			window.addEventListener("click", event => {
+			window.addEventListener('click', (event) => {
 				if (
-					!event.target.classList.contains("add-new-sections-field")
+					!event.target.classList.contains('add-new-sections-field')
 				) {
 					this.modalOpen = false;
 				}
@@ -32,6 +32,6 @@ export const sectionsModal = {
 		createSubSection(section) {
 			this.addSubFieldSection(section.name);
 			this.modalOpen = false;
-		}
-	}
+		},
+	},
 };

@@ -1,27 +1,106 @@
 <?php
-/**
- * Register class
+
+/**Register class
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification;
 
 /**
  * Register class
  */
-class Register {
+class Register
+{
+	/**
+	 * Registers Notification
+	 *
+	 * @since 9.0.0
+	 * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
+	 * @return \BracketSpace\Notification\Core\Notification
+	 */
+	public static function notification(Core\Notification $notification)
+	{
+		Store\Notification::insert(
+			$notification->getHash(),
+			$notification
+		);
+		do_action('notification/notification/registered', $notification);
+
+		return $notification;
+	}
+
+	/**
+	 * Creates new Notification from array
+	 *
+	 * Accepts both array with Trigger and Carriers objects or static values.
+	 *
+	 * @since 9.0.0
+	 * @param NotificationUnconvertedData $data Notification data.
+	 * @return \WP_Error|true
+	 */
+	public static function notificationFromArray($data = [])
+	{
+		try {
+			self::notification(Core\Notification::from('array', $data));
+		} catch (\Throwable $e) {
+			return new \WP_Error('notification_error', $e->getMessage());
+		}
+
+		return true;
+	}
+
+	/**
+	 * Registers Notification if newer version is provided or doesn't exist at all
+	 *
+	 * @since 9.0.0
+	 * @param \BracketSpace\Notification\Core\Notification $notification Notification object.
+	 * @return \BracketSpace\Notification\Core\Notification
+	 */
+	public static function notificationIfNewer(Core\Notification $notification)
+	{
+		if (Store\Notification::has($notification->getHash())) {
+			$exNotification = Store\Notification::get($notification->getHash());
+
+			if (! $exNotification instanceof Core\Notification) {
+				// Something went wrong, just insert the notification.
+				Store\Notification::insert($notification->getHash(), $notification);
+				return $notification;
+			}
+
+			// Existing Notification is newer or the same, do nothing.
+			if (version_compare((string)$exNotification->getVersion(), (string)$notification->getVersion(), '>=')) {
+				return $exNotification;
+			}
+
+			// Notification is newer, replace it in the store.
+			Store\Notification::insert($notification->getHash(), $notification, true);
+
+			return $notification;
+		}
+
+		// Notification doesn't exist in store, just insert it.
+		Store\Notification::insert($notification->getHash(), $notification);
+
+		return $notification;
+	}
 
 	/**
 	 * Registers Carrier
 	 *
+	 * @param \BracketSpace\Notification\Interfaces\Sendable $carrier Carrier object.
+	 * @return \BracketSpace\Notification\Interfaces\Sendable
 	 * @since  8.0.0
-	 * @param  Interfaces\Sendable $carrier Carrier object.
-	 * @return Interfaces\Sendable
 	 */
-	public static function carrier( Interfaces\Sendable $carrier ) {
-		Store\Carrier::insert( $carrier->get_slug(), $carrier );
-		do_action( 'notification/carrier/registered', $carrier );
+	public static function carrier(Interfaces\Sendable $carrier)
+	{
+		Store\Carrier::insert(
+			$carrier->getSlug(),
+			$carrier
+		);
+		do_action('notification/carrier/registered', $carrier);
 
 		return $carrier;
 	}
@@ -29,14 +108,19 @@ class Register {
 	/**
 	 * Registers Recipient
 	 *
+	 * @param string $carrierSlug Carrier slug.
+	 * @param \BracketSpace\Notification\Interfaces\Receivable $recipient Recipient object.
+	 * @return \BracketSpace\Notification\Interfaces\Receivable
 	 * @since  8.0.0
-	 * @param  string                $carrier_slug Carrier slug.
-	 * @param  Interfaces\Receivable $recipient    Recipient object.
-	 * @return Interfaces\Receivable
 	 */
-	public static function recipient( string $carrier_slug, Interfaces\Receivable $recipient ) {
-		Store\Recipient::insert( $carrier_slug, $recipient->get_slug(), $recipient );
-		do_action( 'notification/recipient/registered', $recipient, $carrier_slug );
+	public static function recipient(string $carrierSlug, Interfaces\Receivable $recipient)
+	{
+		Store\Recipient::insert(
+			$carrierSlug,
+			$recipient->getSlug(),
+			$recipient
+		);
+		do_action('notification/recipient/registered', $recipient, $carrierSlug);
 
 		return $recipient;
 	}
@@ -44,13 +128,17 @@ class Register {
 	/**
 	 * Registers Recipient
 	 *
+	 * @param \BracketSpace\Notification\Interfaces\Resolvable $resolver Resolver object.
+	 * @return \BracketSpace\Notification\Interfaces\Resolvable
 	 * @since  8.0.0
-	 * @param  Interfaces\Resolvable $resolver Resolver object.
-	 * @return Interfaces\Resolvable
 	 */
-	public static function resolver( Interfaces\Resolvable $resolver ) {
-		Store\Resolver::insert( $resolver->get_slug(), $resolver );
-		do_action( 'notification/resolver/registered', $resolver );
+	public static function resolver(Interfaces\Resolvable $resolver)
+	{
+		Store\Resolver::insert(
+			$resolver->getSlug(),
+			$resolver
+		);
+		do_action('notification/resolver/registered', $resolver);
 
 		return $resolver;
 	}
@@ -58,13 +146,17 @@ class Register {
 	/**
 	 * Registers Trigger
 	 *
+	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger object.
+	 * @return \BracketSpace\Notification\Interfaces\Triggerable
 	 * @since  8.0.0
-	 * @param  Interfaces\Triggerable $trigger Trigger object.
-	 * @return Interfaces\Triggerable
 	 */
-	public static function trigger( Interfaces\Triggerable $trigger ) {
-		Store\Trigger::insert( $trigger->get_slug(), $trigger );
-		do_action( 'notification/trigger/registered', $trigger );
+	public static function trigger(Interfaces\Triggerable $trigger)
+	{
+		Store\Trigger::insert(
+			$trigger->getSlug(),
+			$trigger
+		);
+		do_action('notification/trigger/registered', $trigger);
 
 		return $trigger;
 	}
@@ -72,21 +164,27 @@ class Register {
 	/**
 	 * Registers Global Merge Tag
 	 *
+	 * @param \BracketSpace\Notification\Interfaces\Taggable $mergeTag MergeTag object.
+	 * @return \BracketSpace\Notification\Interfaces\Taggable
 	 * @since  8.0.0
-	 * @param  Interfaces\Taggable $merge_tag MergeTag object.
-	 * @return Interfaces\Taggable
 	 */
-	public static function global_merge_tag( Interfaces\Taggable $merge_tag ) {
-		Store\GlobalMergeTag::insert( $merge_tag->get_slug(), $merge_tag );
+	public static function globalMergeTag(Interfaces\Taggable $mergeTag)
+	{
+		Store\GlobalMergeTag::insert(
+			$mergeTag->getSlug(),
+			$mergeTag
+		);
 
-		do_action( 'notification/global_merge_tag/registered', $merge_tag );
+		do_action('notification/global_merge_tag/registered', $mergeTag);
 
 		// Register the Merge Tag.
-		add_action( 'notification/trigger/merge_tags', function ( $trigger ) use ( $merge_tag ) {
-			$trigger->add_merge_tag( clone $merge_tag );
-		} );
+		add_action(
+			'notification/trigger/merge_tags',
+			static function ($trigger) use ($mergeTag) {
+				$trigger->addMergeTag(clone $mergeTag);
+			}
+		);
 
-		return $merge_tag;
+		return $mergeTag;
 	}
-
 }

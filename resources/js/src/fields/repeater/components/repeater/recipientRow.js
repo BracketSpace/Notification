@@ -1,8 +1,8 @@
-import Vue from "vue/dist/vue.js";
-import { fieldHandler } from "../../mixins/fieldHandler";
-import { inputsHandler } from "../../mixins/inputsHandler";
+import Vue from 'vue/dist/vue.js';
+import { fieldHandler } from '../../mixins/fieldHandler';
+import { inputsHandler } from '../../mixins/inputsHandler';
 
-Vue.component("recipient-row", {
+Vue.component('recipient-row', {
 	template: `
 	<tr class="row">
 		<td class="handle"><span class="handle-index">{{keyIndex + 1}}</span></td>
@@ -41,6 +41,6 @@ Vue.component("recipient-row", {
 		<td class="trash" @click="removeField(keyIndex, fields)"></td>
 	</tr>
 	`,
-	props: ["field", "keyIndex", "fields", "type"],
-	mixins: [fieldHandler, inputsHandler]
+	props: ['field', 'keyIndex', 'fields', 'type'],
+	mixins: [fieldHandler, inputsHandler],
 });

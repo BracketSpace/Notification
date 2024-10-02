@@ -4,7 +4,9 @@
  * Description: Customisable email and webhook notifications with powerful developer friendly API for custom triggers and notifications. Send alerts easily.
  * Author: BracketSpace
  * Author URI: https://bracketspace.com
- * Version: 8.0.15
+ * Version: 9.0.0
+ * Requires PHP: 7.4
+ * Requires at least: 5.8
  * License: GPL3
  * Text Domain: notification
  * Domain Path: /languages
@@ -30,14 +32,14 @@ if ( ! class_exists( 'Notification' ) ) :
 		 * Initializes the plugin runtime
 		 *
 		 * @since  7.0.0
-		 * @param  string $plugin_file Main plugin file.
+		 * @param  string $pluginFile Main plugin file.
 		 * @return BracketSpace\Notification\Runtime
 		 */
-		public static function init( $plugin_file ) {
+		public static function init( $pluginFile ) {
 			if ( ! isset( self::$runtime ) ) {
 				// Autoloading.
-				require_once dirname( $plugin_file ) . '/vendor/autoload.php';
-				self::$runtime = new BracketSpace\Notification\Runtime( $plugin_file );
+				require_once dirname( $pluginFile ) . '/vendor/autoload.php';
+				self::$runtime = new BracketSpace\Notification\Runtime( $pluginFile );
 			}
 
 			return self::$runtime;
@@ -57,11 +59,11 @@ if ( ! class_exists( 'Notification' ) ) :
 		 * Gets runtime component
 		 *
 		 * @since  7.0.0
-		 * @param  string $component_name Component name.
+		 * @param  class-string $componentName Component name.
 		 * @return mixed
 		 */
-		public static function component( $component_name ) {
-			return isset( self::$runtime ) ? self::$runtime->component( $component_name ) : null;
+		public static function component( $componentName ) {
+			return isset( self::$runtime ) ? self::$runtime->component( $componentName ) : null;
 		}
 
 		/**
@@ -88,6 +90,23 @@ if ( ! class_exists( 'Notification' ) ) :
 		 * Gets plugin filesystem
 		 *
 		 * @since  8.0.0
+		 * @throws \Exception When settings class wasn't invoked yet.
+		 * @return BracketSpace\Notification\Core\Settings
+		 */
+		public static function settings() {
+			$settings = self::component('BracketSpace\Notification\Core\Settings');
+
+			if (! $settings instanceof BracketSpace\Notification\Core\Settings) {
+				throw new Exception( 'Notification runtime has not been invoked yet.' );
+			}
+
+			return $settings;
+		}
+
+		/**
+		 * Gets plugin settings instance
+		 *
+		 * @since  9.0.0
 		 * @throws \Exception When runtime wasn't invoked yet.
 		 * @return \BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem
 		 */
@@ -96,7 +115,7 @@ if ( ! class_exists( 'Notification' ) ) :
 				throw new Exception( 'Notification runtime has not been invoked yet.' );
 			}
 
-			return self::$runtime->get_filesystem();
+			return self::$runtime->getFilesystem();
 		}
 
 	}

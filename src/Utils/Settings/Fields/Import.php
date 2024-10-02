@@ -1,28 +1,30 @@
 <?php
+
 /**
  * Import field class
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Utils\Settings\Fields;
 
 use BracketSpace\Notification\Core\Templates;
-use BracketSpace\Notification\Utils\Settings\Field;
 
 /**
  * Import class
  */
-class Import {
-
+class Import
+{
 	/**
 	 * Field markup.
 	 *
-	 * @param  Field $field Field instance.
+	 * @param \BracketSpace\Notification\Utils\Settings\Field $field Field instance.
 	 * @return void
 	 */
-	public function input( $field ) {
-		Templates::render( 'import/notifications' );
+	public function input($field)
+	{
+		Templates::render('import/notifications');
 	}
-
 }

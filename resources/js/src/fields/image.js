@@ -1,19 +1,19 @@
 /* global jQuery */
-(function($) {
+(function ($) {
 	const __ = wp.i18n.__;
 
-	$(document).ready(function() {
-		const $imageField = $(".notification-image-field");
+	$(document).ready(function () {
+		const $imageField = $('.notification-image-field');
 		let $clickedImageField = false;
 
-		$("body").on(
-			"click",
-			".notification-image-field .image .preview, .notification-image-field .select-image",
-			function(event) {
+		$('body').on(
+			'click',
+			'.notification-image-field .image .preview, .notification-image-field .select-image',
+			function (event) {
 				event.preventDefault();
 
 				$clickedImageField = $(this).parents(
-					".notification-image-field"
+					'.notification-image-field'
 				);
 
 				if (wp.media.frames.frame) {
@@ -22,57 +22,57 @@
 				}
 
 				wp.media.frames.frame = wp.media({
-					title: __("Select image", "notification"),
+					title: __('Select image', 'notification'),
 					multiple: false,
 					library: {
-						type: "image"
+						type: 'image',
 					},
 					button: {
-						text: __("Use selected image", "notification")
-					}
+						text: __('Use selected image', 'notification'),
+					},
 				});
 
 				const mediaSetImage = () => {
 					const selection = wp.media.frames.frame
 						.state()
-						.get("selection");
+						.get('selection');
 
 					if (!selection) {
 						return;
 					}
 
-					selection.each(function(attachment) {
-						$clickedImageField.addClass("selected");
+					selection.each(function (attachment) {
+						$clickedImageField.addClass('selected');
 						$clickedImageField
-							.find(".image-input")
+							.find('.image-input')
 							.val(attachment.id);
 						$clickedImageField
-							.find(".image .preview")
+							.find('.image .preview')
 							.attr(
-								"src",
+								'src',
 								attachment.attributes.sizes.thumbnail.url
 							);
 					});
 				};
 
-				wp.media.frames.frame.on("select", mediaSetImage);
+				wp.media.frames.frame.on('select', mediaSetImage);
 				wp.media.frames.frame.open();
 			}
 		);
 
-		$imageField.find(".image .clear").on("click", function(event) {
+		$imageField.find('.image .clear').on('click', function (event) {
 			event.preventDefault();
 			$(this)
-				.parents(".notification-image-field")
-				.removeClass("selected");
+				.parents('.notification-image-field')
+				.removeClass('selected');
 			$(this)
-				.parents(".notification-image-field")
-				.find(".image-input")
-				.val("");
+				.parents('.notification-image-field')
+				.find('.image-input')
+				.val('');
 			$(this)
-				.parents(".notification-image-field")
-				.find(".image .preview")
-				.attr("src", "");
+				.parents('.notification-image-field')
+				.find('.image .preview')
+				.attr('src', '');
 		});
 	});
 })(jQuery);

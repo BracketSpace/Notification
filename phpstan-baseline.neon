@@ -1,442 +1,587 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'action_clear_logs'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'actionClearLogs'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'activate'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'activate'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'activation_nag'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'activationNag'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'activation_notices'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'activationNotices'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'add_conditionals…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'addConditionalsMeta…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'add_help'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'addHelp'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'add_merge_tags_meta…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'addMergeTagsMetaBox'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'add_notifications'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'addNotifications'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'add_save_meta_box'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'addSaveMetaBox'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'add_trigger_action'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'addTriggerAction'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'ajax_change…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'ajaxChangeNotificat…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'ajax_render_merge…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'ajaxRenderMergeTags'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'ajax_sync'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'ajaxSync'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'bind'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'bind'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'bypass_trash'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'bypassTrash'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'carriers_list'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'carriersList'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'carriers_settings…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'carriersSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'catch_notification'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'carriersSettingsUps…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'check_upgrade'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'catchNotification'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'custom_development'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'checkUpgrade'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'custom_fields_merge…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'customDevelopment'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'deactivate'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'customFieldsMergeTa…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'debug_warning'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'deactivate'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'delete_local_json'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'debugWarning'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'disable_password…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'debuggingSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'disable_send…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'deleteLocalJson'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'deleteNotification'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'disablePasswordChan…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'disableSendConfirma…'\\} given\\.$#"
 			count: 2
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'display_bulk…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'displayBulkActionsA…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'enqueue_scripts'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'displayNotice'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'export_request'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'emailsSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'handle_cron'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'enqueueScripts'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'import_request'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'exportRequest'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'load_local_json'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'generalSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'maybe_redirect'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'handleCron'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'metabox_cleanup'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'importRequest'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'notification…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'inactiveLicenseWarn…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'process_queue'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'loadDatabaseNotific…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'proxy_comment_reply'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'loadLocalJson'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'proxy_post_comment…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'maybeRedirect'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'proxy_transition…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'metaboxCleanup'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'register'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'notificationDuplica…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'register_check…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'processQueue'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'register_page'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'proxyCommentReply'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'proxyPostCommentToP…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'proxyTransitionComm…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'register'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'registerCheckUpdate…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'registerPage'\\} given\\.$#"
 			count: 3
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'register_settings'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'registerSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'remove_defaults'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'removeDefaults'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'render_carrier_boxes'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'renderCarrierBoxes'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'render_carriers…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'renderCarriersWidget'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'render_main_column'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'renderMainColumn'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'render_trigger…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'renderTriggerSelect'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'replace_new_user…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'replaceNewUserNotif…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'rest_api_init'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'restApiInit'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'review_queue_switch'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'reviewQueueSwitch'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'save'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'save'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'save_local_json'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'saveLocalJson'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'save_settings'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'saveSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'scheduled_triggers…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'scheduledTriggersSe…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'setup_notifications'\\) given\\.$#"
-			count: 1
-			path: compat/register-hooks.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'table_column_content'\\) given\\.$#"
-			count: 1
-			path: compat/register-hooks.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'test_rest_api'\\) given\\.$#"
-			count: 1
-			path: compat/register-hooks.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'triggers_settings…'\\) given\\.$#"
-			count: 1
-			path: compat/register-hooks.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'updater'\\) given\\.$#"
-			count: 1
-			path: compat/register-hooks.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'upgrade_db'\\) given\\.$#"
-			count: 1
-			path: compat/register-hooks.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\(mixed, 'user_login_with_2fa'\\) given\\.$#"
-			count: 1
-			path: compat/register-hooks.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'add_duplicate_row…'\\) given\\.$#"
-			count: 1
-			path: compat/register-hooks.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'adjust_bulk_actions'\\) given\\.$#"
-			count: 1
-			path: compat/register-hooks.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'adjust_trash_link'\\) given\\.$#"
-			count: 1
-			path: compat/register-hooks.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'bulk_action_messages'\\) given\\.$#"
-			count: 1
-			path: compat/register-hooks.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'change_post_statuses'\\) given\\.$#"
-			count: 1
-			path: compat/register-hooks.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'create_notification…'\\) given\\.$#"
-			count: 1
-			path: compat/register-hooks.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'disable_automatic…'\\) given\\.$#"
-			count: 1
-			path: compat/register-hooks.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'disable_comment…'\\) given\\.$#"
-			count: 1
-			path: compat/register-hooks.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'disable_email…'\\) given\\.$#"
-			count: 1
-			path: compat/register-hooks.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'disable_password…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'settings'\\} given\\.$#"
 			count: 2
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'disable_post_author…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'setupNotification'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'filter_email_from…'\\) given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'tableColumnContent'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'testRestApi'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'triggersSettings'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'triggersSettingsUps…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'updater'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'upgradeDb'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'userLoginWith2fa'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'addDuplicateRowActi…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'adjustBulkActions'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'adjustTrashLink'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'bulkActionMessages'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'changePostStatuses'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'columnCleanup'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disableAutomaticWpC…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disableCommentModer…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disableEmailChangeN…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disablePasswordChan…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disablePasswordRese…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disablePostAuthorNo…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disableSendConfirma…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'filterPostTypes'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'handleStatusBulkAct…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'identifyTrigger'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'postUpdatedMessages'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'registerIntervals'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'removeQuickEdit'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'removeStatusDisplay'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'tableColumns'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of method BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:setup\\(\\) expects array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, carriers\\?\\: array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\}, array given\\.$#"
+			count: 1
+			path: compat/src-deprecated/Abstracts/Adapter.php
+
+		-
+			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|null given\\.$#"
+			count: 1
+			path: compat/src-deprecated/Adapter/JSON.php
+
+		-
+			message: "#^Offset 'enabled' does not exist on array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, carriers\\?\\: array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\}\\|null\\.$#"
+			count: 1
+			path: compat/src-deprecated/Adapter/WordPress.php
+
+		-
+			message: "#^Offset 'hash' does not exist on array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, carriers\\?\\: array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\}\\|null\\.$#"
 			count: 2
-			path: compat/register-hooks.php
+			path: compat/src-deprecated/Adapter/WordPress.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'filter_post_types'\\) given\\.$#"
+			message: "#^Offset 'title' does not exist on array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, carriers\\?\\: array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\}\\|null\\.$#"
 			count: 1
-			path: compat/register-hooks.php
+			path: compat/src-deprecated/Adapter/WordPress.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'handle_status_bulk…'\\) given\\.$#"
+			message: "#^Parameter \\#1 \\$data of function notification_convert_data expects array, array\\<string, array\\<string, array\\|bool\\|BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\|float\\|int\\|string\\>\\|bool\\|BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable\\|int\\|string\\>\\|null given\\.$#"
 			count: 1
-			path: compat/register-hooks.php
+			path: compat/src-deprecated/Adapter/WordPress.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'identify_trigger'\\) given\\.$#"
+			message: "#^Parameter \\#1 \\$postarr of function wp_insert_post expects array\\{ID\\?\\: int, post_author\\?\\: int, post_date\\?\\: string, post_date_gmt\\?\\: string, post_content\\?\\: string, post_content_filtered\\?\\: string, post_title\\?\\: string, post_excerpt\\?\\: string, \\.\\.\\.\\}, array\\{ID\\: int, post_content\\: mixed, post_type\\: string, post_title\\: string, post_name\\: string, post_status\\: 'draft'\\|'publish'\\} given\\.$#"
 			count: 1
-			path: compat/register-hooks.php
+			path: compat/src-deprecated/Adapter/WordPress.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'post_updated…'\\) given\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\WordPress\\:\\:\\$post \\(WP_Post\\) in empty\\(\\) is not falsy\\.$#"
+			count: 2
+			path: compat/src-deprecated/Adapter/WordPress.php
+
+		-
+			message: "#^Parameter \\#1 \\$args of function get_posts expects array\\{numberposts\\?\\: int, category\\?\\: int\\|string, include\\?\\: array\\<int\\>, exclude\\?\\: array\\<int\\>, suppress_filters\\?\\: bool, attachment_id\\?\\: int, author\\?\\: int\\|string, author_name\\?\\: string, \\.\\.\\.\\}\\|null, array\\{posts_per_page\\: \\-1, post_type\\: 'notification', post_status\\?\\: array\\{'publish', 'draft'\\}, suppress_filters\\?\\: 0\\} given\\.$#"
 			count: 1
-			path: compat/register-hooks.php
+			path: compat/src-deprecated/Database/Queries/NotificationQueries.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'register_intervals'\\) given\\.$#"
+			message: "#^Cannot access offset 'hide' on mixed\\.$#"
 			count: 1
-			path: compat/register-hooks.php
+			path: compat/src-deprecated/Defaults/Carrier/Webhook.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'remove_quick_edit'\\) given\\.$#"
+			message: "#^Cannot access offset 'key' on mixed\\.$#"
 			count: 1
-			path: compat/register-hooks.php
+			path: compat/src-deprecated/Defaults/Carrier/Webhook.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'remove_status…'\\) given\\.$#"
+			message: "#^Cannot access offset 'value' on mixed\\.$#"
 			count: 1
-			path: compat/register-hooks.php
+			path: compat/src-deprecated/Defaults/Carrier/Webhook.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\(mixed, 'table_columns'\\) given\\.$#"
+			message: "#^Cannot access offset 'hide' on mixed\\.$#"
 			count: 1
-			path: compat/register-hooks.php
+			path: compat/src-deprecated/Defaults/Carrier/WebhookJson.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:add\\(\\) has no return typehint specified\\.$#"
+			message: "#^Cannot access offset 'key' on mixed\\.$#"
+			count: 1
+			path: compat/src-deprecated/Defaults/Carrier/WebhookJson.php
+
+		-
+			message: "#^Cannot access offset 'value' on mixed\\.$#"
+			count: 1
+			path: compat/src-deprecated/Defaults/Carrier/WebhookJson.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:add\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:delete\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:set\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
 
 		-
-			message: "#^Function notification_get_notification_recipients\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
 			count: 1
 			path: compat/src-deprecated/functions.php
 
 		-
-			message: "#^Function notification_get_notifications\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Cannot call method getSettings\\(\\) on mixed\\.$#"
+			count: 1
+			path: compat/src-deprecated/functions.php
+
+		-
+			message: "#^Cannot call method parse_value\\(\\) on mixed\\.$#"
+			count: 1
+			path: compat/src-deprecated/functions.php
+
+		-
+			message: "#^Cannot call method updateSetting\\(\\) on mixed\\.$#"
 			count: 1
 			path: compat/src-deprecated/functions.php
 
 		-
 			message: "#^Function notification_get_posts\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: compat/src-deprecated/functions.php
+
+		-
+			message: "#^Function notification_get_recipient\\(\\) should return BracketSpace\\\\Notification\\\\Interfaces\\\\Receivable\\|null but returns mixed\\.$#"
 			count: 1
 			path: compat/src-deprecated/functions.php
 
@@ -456,6 +601,11 @@ parameters:
 			path: compat/src-deprecated/functions.php
 
 		-
+			message: "#^Parameter \\#1 \\$path of static method BracketSpace\\\\Notification\\\\Core\\\\Sync\\:\\:enable\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: compat/src-deprecated/functions.php
+
+		-
 			message: "#^Call to static method create\\(\\) on an unknown class StubsGenerator\\\\Finder\\.$#"
 			count: 1
 			path: compat/stub-finder.php
@@ -466,132 +616,12 @@ parameters:
 			path: notification.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Adapter\\:\\:__call\\(\\) has parameter \\$arguments with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Adapter.php
+			message: "#^Static property Notification\\:\\:\\$runtime \\(BracketSpace\\\\Notification\\\\Runtime\\) in isset\\(\\) is not nullable\\.$#"
+			count: 4
+			path: notification.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Adapter\\:\\:setup_notification\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Adapter.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(BracketSpace\\\\Notification\\\\Core\\\\Notification, string\\) given\\.$#"
-			count: 1
-			path: src/Abstracts/Adapter.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Carrier\\:\\:get_data\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Carrier\\:\\:set_data\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function md5 expects string, string\\|false given\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, string\\|null given\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Abstracts\\\\Carrier\\:\\:\\$data type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Abstracts\\\\Carrier\\:\\:\\$form_fields type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Abstracts\\\\Carrier\\:\\:\\$restricted_fields type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Carrier.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Field\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Field.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Field\\:\\:__get\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Field.php
-
-		-
-			message: "#^Parameter \\#1 \\$string of function substr expects string, string\\|false given\\.$#"
-			count: 1
-			path: src/Abstracts/Field.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/MergeTag.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:set_resolver\\(\\) has no return typehint specified\\.$#"
-			count: 1
-			path: src/Abstracts/MergeTag.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\MergeTag\\:\\:set_trigger\\(\\) has no return typehint specified\\.$#"
-			count: 1
-			path: src/Abstracts/MergeTag.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Recipient\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Recipient.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Recipient\\:\\:parse_value\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Recipient.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Resolver\\:\\:resolve_merge_tag\\(\\) has parameter \\$match with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Resolver.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:add_action\\(\\) has no return typehint specified\\.$#"
-			count: 1
-			path: src/Abstracts/Trigger.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:add_quick_merge_tag\\(\\) has no return typehint specified\\.$#"
-			count: 1
-			path: src/Abstracts/Trigger.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:get_action_args\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Trigger.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:get_cache\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Trigger.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:set_cache\\(\\) has parameter \\$cache with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Trigger.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Abstracts\\\\Trigger\\:\\:\\$merge_tags type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Abstracts/Trigger.php
-
-		-
-			message: "#^Call to an undefined method object\\:\\:add_section\\(\\)\\.$#"
+			message: "#^Cannot call method removeLogs\\(\\) on mixed\\.$#"
 			count: 1
 			path: src/Admin/Debugging.php
 
@@ -601,63 +631,98 @@ parameters:
 			path: src/Admin/Debugging.php
 
 		-
-			message: "#^Cannot access property \\$id on WP_Screen\\|null\\.$#"
+			message: "#^Cannot access offset 'author' on mixed\\.$#"
 			count: 1
 			path: src/Admin/Extensions.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\Extensions\\:\\:get_raw_extension\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/Extensions.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\Extensions\\:\\:get_raw_extensions\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/Extensions.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Admin\\\\Extensions\\:\\:\\$extensions type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/Extensions.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Admin\\\\Extensions\\:\\:\\$page_hook \\(string\\) does not accept string\\|false\\.$#"
-			count: 1
-			path: src/Admin/Extensions.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Admin\\\\Extensions\\:\\:\\$premium_extensions type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/Extensions.php
-
-		-
-			message: "#^Call to an undefined method object\\:\\:add_section\\(\\)\\.$#"
-			count: 1
-			path: src/Admin/ImportExport.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\ImportExport\\:\\:process_notifications_import_request\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/ImportExport.php
-
-		-
-			message: "#^Offset 0 does not exist on array\\<string, mixed\\>\\.$#"
-			count: 3
-			path: src/Admin/ImportExport.php
-
-		-
-			message: "#^Parameter \\#1 \\$fp of function fclose expects resource, resource\\|false given\\.$#"
-			count: 1
-			path: src/Admin/ImportExport.php
-
-		-
-			message: "#^Parameter \\#1 \\$fp of function fread expects resource, resource\\|false given\\.$#"
-			count: 1
-			path: src/Admin/ImportExport.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func expects callable\\(\\)\\: mixed, array\\(\\$this\\(BracketSpace\\\\Notification\\\\Admin\\\\ImportExport\\), non\\-empty\\-string\\) given\\.$#"
+			message: "#^Cannot access offset 'edd' on mixed\\.$#"
 			count: 2
+			path: src/Admin/Extensions.php
+
+		-
+			message: "#^Cannot access offset 'item_name' on mixed\\.$#"
+			count: 2
+			path: src/Admin/Extensions.php
+
+		-
+			message: "#^Cannot access offset 'slug' on mixed\\.$#"
+			count: 3
+			path: src/Admin/Extensions.php
+
+		-
+			message: "#^Cannot access offset 'store_url' on mixed\\.$#"
+			count: 1
+			path: src/Admin/Extensions.php
+
+		-
+			message: "#^Cannot access property \\$expires on mixed\\.$#"
+			count: 1
+			path: src/Admin/Extensions.php
+
+		-
+			message: "#^Cannot access property \\$id on WP_Screen\\|null\\.$#"
+			count: 2
+			path: src/Admin/Extensions.php
+
+		-
+			message: "#^Cannot access property \\$itemName on mixed\\.$#"
+			count: 1
+			path: src/Admin/Extensions.php
+
+		-
+			message: "#^Cannot access property \\$item_name on mixed\\.$#"
+			count: 1
+			path: src/Admin/Extensions.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\Extensions\\:\\:getInvalidLicenseExtensions\\(\\) should return array\\<string\\> but empty return statement found\\.$#"
+			count: 1
+			path: src/Admin/Extensions.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\Extensions\\:\\:getInvalidLicenseExtensions\\(\\) should return array\\<string\\> but returns array\\<int\\<0, max\\>, mixed\\>\\.$#"
+			count: 1
+			path: src/Admin/Extensions.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\Extensions\\:\\:getRawExtension\\(\\) should return array\\|false but returns mixed\\.$#"
+			count: 1
+			path: src/Admin/Extensions.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\Extensions\\:\\:getRawExtensions\\(\\) should return array but returns mixed\\.$#"
+			count: 1
+			path: src/Admin/Extensions.php
+
+		-
+			message: "#^Parameter \\#1 \\$apiUrl of class BracketSpace\\\\Notification\\\\Utils\\\\EDDUpdater constructor expects string, mixed given\\.$#"
+			count: 1
+			path: src/Admin/Extensions.php
+
+		-
+			message: "#^Parameter \\#1 \\$extension of class BracketSpace\\\\Notification\\\\Core\\\\License constructor expects array, mixed given\\.$#"
+			count: 2
+			path: src/Admin/Extensions.php
+
+		-
+			message: "#^Parameter \\#1 \\$format of function date_i18n expects string, mixed given\\.$#"
+			count: 1
+			path: src/Admin/Extensions.php
+
+		-
+			message: "#^Parameter \\#1 \\$plugin of function is_plugin_active expects string, mixed given\\.$#"
+			count: 1
+			path: src/Admin/Extensions.php
+
+		-
+			message: "#^Cannot access offset 'hash' on mixed\\.$#"
+			count: 1
+			path: src/Admin/ImportExport.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\ImportExport\\:\\:prepareNotificationsExportData\\(\\) should return array\\<int, string\\> but returns array\\<int\\<0, max\\>, mixed\\>\\.$#"
+			count: 1
 			path: src/Admin/ImportExport.php
 
 		-
@@ -666,12 +731,7 @@ parameters:
 			path: src/Admin/ImportExport.php
 
 		-
-			message: "#^Parameter \\#1 \\$post of method BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\WordPress\\:\\:set_post\\(\\) expects WP_Post, WP_Post\\|null given\\.$#"
-			count: 1
-			path: src/Admin/ImportExport.php
-
-		-
-			message: "#^Parameter \\#2 \\$length of function fread expects int, int\\|false given\\.$#"
+			message: "#^Parameter \\#2 \\$length of function fread expects int\\<1, max\\>, int\\<0, max\\>\\|false given\\.$#"
 			count: 1
 			path: src/Admin/ImportExport.php
 
@@ -682,26 +742,6 @@ parameters:
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
-			path: src/Admin/NotificationDuplicator.php
-
-		-
-			message: "#^Cannot access property \\$post_title on WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Admin/NotificationDuplicator.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\NotificationDuplicator\\:\\:add_duplicate_row_action\\(\\) has parameter \\$row_actions with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/NotificationDuplicator.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\NotificationDuplicator\\:\\:add_duplicate_row_action\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/NotificationDuplicator.php
-
-		-
-			message: "#^Parameter \\#1 \\$id of function get_edit_post_link expects int\\|WP_Post, int\\|WP_Error given\\.$#"
 			count: 1
 			path: src/Admin/NotificationDuplicator.php
 
@@ -721,124 +761,14 @@ parameters:
 			path: src/Admin/PostTable.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostTable\\:\\:adjust_bulk_actions\\(\\) has parameter \\$actions with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostTable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostTable\\:\\:adjust_bulk_actions\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostTable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostTable\\:\\:adjust_trash_link\\(\\) has parameter \\$row_actions with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostTable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostTable\\:\\:adjust_trash_link\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostTable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostTable\\:\\:handle_status_bulk_actions\\(\\) has parameter \\$post_ids with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostTable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostTable\\:\\:remove_quick_edit\\(\\) has parameter \\$row_actions with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostTable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostTable\\:\\:remove_quick_edit\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostTable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostTable\\:\\:remove_status_display\\(\\) has parameter \\$post_states with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostTable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostTable\\:\\:remove_status_display\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostTable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostTable\\:\\:table_columns\\(\\) has parameter \\$columns with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostTable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostTable\\:\\:table_columns\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostTable.php
-
-		-
-			message: "#^Parameter \\#1 \\$url of function esc_url expects string, string\\|void given\\.$#"
-			count: 1
-			path: src/Admin/PostTable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostType\\:\\:bulk_action_messages\\(\\) has parameter \\$bulk_counts with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#3 \\$number of function _n expects int, mixed given\\.$#"
 			count: 1
 			path: src/Admin/PostType.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostType\\:\\:bulk_action_messages\\(\\) has parameter \\$bulk_messages with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, mixed given\\.$#"
 			count: 1
 			path: src/Admin/PostType.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostType\\:\\:bulk_action_messages\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostType.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostType\\:\\:change_post_statuses\\(\\) has parameter \\$statuses with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostType.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostType\\:\\:change_post_statuses\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostType.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostType\\:\\:create_notification_hash\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostType.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostType\\:\\:create_notification_hash\\(\\) has parameter \\$postarr with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostType.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostType\\:\\:create_notification_hash\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostType.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostType\\:\\:get_all_notifications\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostType.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostType\\:\\:post_updated_messages\\(\\) has parameter \\$messages with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostType.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\PostType\\:\\:post_updated_messages\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/PostType.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
-			count: 2
-			path: src/Admin/Screen.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
@@ -851,24 +781,14 @@ parameters:
 			path: src/Admin/Screen.php
 
 		-
-			message: "#^Call to an undefined method object\\:\\:get_carriers\\(\\)\\.$#"
-			count: 1
-			path: src/Admin/Screen.php
-
-		-
-			message: "#^Call to an undefined method object\\:\\:get_merge_tags\\(\\)\\.$#"
-			count: 1
-			path: src/Admin/Screen.php
-
-		-
 			message: "#^Call to an undefined method object\\:\\:set_help_sidebar\\(\\)\\.$#"
 			count: 1
 			path: src/Admin/Screen.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\Screen\\:\\:prepare_merge_tag_groups\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/Screen.php
+			message: "#^Cannot access property \\$pageHook on mixed\\.$#"
+			count: 2
+			path: src/Admin/Scripts.php
 
 		-
 			message: "#^Parameter \\#4 \\$ver of function wp_enqueue_script expects bool\\|string\\|null, int\\|false given\\.$#"
@@ -881,124 +801,189 @@ parameters:
 			path: src/Admin/Scripts.php
 
 		-
-			message: "#^Call to an undefined method object\\:\\:add_section\\(\\)\\.$#"
-			count: 4
-			path: src/Admin/Settings.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\Settings\\:\\:filter_post_types\\(\\) has parameter \\$post_types with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/Settings.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\Settings\\:\\:filter_post_types\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/Settings.php
-
-		-
-			message: "#^Call to an undefined method object\\:\\:add_section\\(\\)\\.$#"
-			count: 1
-			path: src/Admin/Sync.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func expects callable\\(\\)\\: mixed, array\\(\\$this\\(BracketSpace\\\\Notification\\\\Admin\\\\Sync\\), non\\-empty\\-string\\) given\\.$#"
-			count: 1
-			path: src/Admin/Sync.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\Wizard\\:\\:add_notifications\\(\\) has parameter \\$notifications with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/Admin/Wizard.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\Wizard\\:\\:get_settings\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Admin/Wizard.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Admin\\\\Wizard\\:\\:\\$page_hook \\(string\\) does not accept string\\|false\\.$#"
-			count: 1
-			path: src/Admin/Wizard.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Api\\\\Api\\:\\:\\$routes type has no value type specified in iterable type array\\.$#"
+			message: "#^Cannot access offset 'args' on mixed\\.$#"
 			count: 1
 			path: src/Api/Api.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\RepeaterController\\:\\:form_data\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Cannot access offset 'path' on mixed\\.$#"
+			count: 1
+			path: src/Api/Api.php
+
+		-
+			message: "#^Parameter \\#2 \\$route of function register_rest_route expects string, mixed given\\.$#"
+			count: 1
+			path: src/Api/Api.php
+
+		-
+			message: "#^Parameter \\#3 \\$args of function register_rest_route expects array, mixed given\\.$#"
+			count: 1
+			path: src/Api/Api.php
+
+		-
+			message: "#^Cannot access property \\$checkboxLabel on mixed\\.$#"
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\RepeaterController\\:\\:form_field_data\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			message: "#^Cannot access property \\$cssClass on mixed\\.$#"
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\RepeaterController\\:\\:form_field_data\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Cannot access property \\$description on mixed\\.$#"
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\RepeaterController\\:\\:get_values\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Cannot access property \\$disabled on mixed\\.$#"
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\RepeaterController\\:\\:normalize_values\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
+			message: "#^Cannot access property \\$fieldTypeHtml on mixed\\.$#"
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\RepeaterController\\:\\:normalize_values\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Api/Controller/RepeaterController.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\RepeaterController\\:\\:parse_params\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Api/Controller/RepeaterController.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\SectionRepeaterController\\:\\:form_data\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Api/Controller/SectionRepeaterController.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\SectionRepeaterController\\:\\:get_sections_fields\\(\\) has parameter \\$sections with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Api/Controller/SectionRepeaterController.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\SectionRepeaterController\\:\\:get_sections_fields\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Api/Controller/SectionRepeaterController.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\SectionRepeaterController\\:\\:group_fields\\(\\) has parameter \\$fields with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Api/Controller/SectionRepeaterController.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\SectionRepeaterController\\:\\:group_fields\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Api/Controller/SectionRepeaterController.php
-
-		-
-			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, int\\|string given\\.$#"
+			message: "#^Cannot access property \\$fields on mixed\\.$#"
 			count: 2
-			path: src/Cli/DumpHooks.php
+			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Cron\\:\\:register_intervals\\(\\) has parameter \\$intervals with no value type specified in iterable type array\\.$#"
+			message: "#^Cannot access property \\$id on mixed\\.$#"
 			count: 1
-			path: src/Core/Cron.php
+			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Cron\\:\\:register_intervals\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Cannot access property \\$label on mixed\\.$#"
 			count: 1
-			path: src/Core/Cron.php
+			path: src/Api/Controller/RepeaterController.php
+
+		-
+			message: "#^Cannot access property \\$message on mixed\\.$#"
+			count: 1
+			path: src/Api/Controller/RepeaterController.php
+
+		-
+			message: "#^Cannot access property \\$multipleSection on mixed\\.$#"
+			count: 1
+			path: src/Api/Controller/RepeaterController.php
+
+		-
+			message: "#^Cannot access property \\$name on mixed\\.$#"
+			count: 1
+			path: src/Api/Controller/RepeaterController.php
+
+		-
+			message: "#^Cannot access property \\$nested on mixed\\.$#"
+			count: 1
+			path: src/Api/Controller/RepeaterController.php
+
+		-
+			message: "#^Cannot access property \\$options on mixed\\.$#"
+			count: 1
+			path: src/Api/Controller/RepeaterController.php
+
+		-
+			message: "#^Cannot access property \\$placeholder on mixed\\.$#"
+			count: 1
+			path: src/Api/Controller/RepeaterController.php
+
+		-
+			message: "#^Cannot access property \\$pretty on mixed\\.$#"
+			count: 1
+			path: src/Api/Controller/RepeaterController.php
+
+		-
+			message: "#^Cannot access property \\$rows on mixed\\.$#"
+			count: 1
+			path: src/Api/Controller/RepeaterController.php
+
+		-
+			message: "#^Cannot access property \\$section on mixed\\.$#"
+			count: 1
+			path: src/Api/Controller/RepeaterController.php
+
+		-
+			message: "#^Cannot access property \\$sections on mixed\\.$#"
+			count: 1
+			path: src/Api/Controller/RepeaterController.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\RepeaterController\\:\\:getCarrierFields\\(\\) should return array but returns mixed\\.$#"
+			count: 1
+			path: src/Api/Controller/RepeaterController.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\RepeaterController\\:\\:sendResponse\\(\\) has parameter \\$request with generic class WP_REST_Request but does not specify its types\\: T$#"
+			count: 1
+			path: src/Api/Controller/RepeaterController.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\RepeaterController\\:\\:\\$carrier \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Api/Controller/RepeaterController.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\RepeaterController\\:\\:\\$field \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Api/Controller/RepeaterController.php
+
+		-
+			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: src/Api/Controller/SectionRepeaterController.php
+
+		-
+			message: "#^Cannot access offset 'fields' on mixed\\.$#"
+			count: 2
+			path: src/Api/Controller/SectionRepeaterController.php
+
+		-
+			message: "#^Cannot access offset 'multiple_section' on mixed\\.$#"
+			count: 1
+			path: src/Api/Controller/SectionRepeaterController.php
+
+		-
+			message: "#^Cannot access offset 'name' on mixed\\.$#"
+			count: 2
+			path: src/Api/Controller/SectionRepeaterController.php
+
+		-
+			message: "#^Cannot access offset 'sections' on mixed\\.$#"
+			count: 1
+			path: src/Api/Controller/SectionRepeaterController.php
+
+		-
+			message: "#^Cannot access offset 'special_section' on mixed\\.$#"
+			count: 1
+			path: src/Api/Controller/SectionRepeaterController.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\RepeaterController\\:\\:formFieldData\\(\\) expects array\\|null, mixed given\\.$#"
+			count: 2
+			path: src/Api/Controller/SectionRepeaterController.php
+
+		-
+			message: "#^Cannot call method input\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Api/Controller/SelectInputController.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\SelectInputController\\:\\:sendResponse\\(\\) has parameter \\$request with generic class WP_REST_Request but does not specify its types\\: T$#"
+			count: 1
+			path: src/Api/Controller/SelectInputController.php
+
+		-
+			message: "#^Cannot call method getEndpoint\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Compat/RestApiCompat.php
 
 		-
 			message: "#^Parameter \\#1 \\$timestamp of function wp_unschedule_event expects int, int\\|false given\\.$#"
@@ -1006,27 +991,12 @@ parameters:
 			path: src/Core/Cron.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Debugging\\:\\:add_log\\(\\) has parameter \\$log_data with no value type specified in iterable type array\\.$#"
+			message: "#^Cannot call method addLog\\(\\) on mixed\\.$#"
 			count: 1
 			path: src/Core/Debugging.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Debugging\\:\\:get_logs\\(\\) has parameter \\$types with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Core/Debugging.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Debugging\\:\\:get_logs\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Core/Debugging.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Debugging\\:\\:remove_logs\\(\\) has parameter \\$types with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Core/Debugging.php
-
-		-
-			message: "#^Parameter \\#3 \\$message of function notification_log expects string, string\\|false given\\.$#"
+			message: "#^Cannot cast mixed to string\\.$#"
 			count: 1
 			path: src/Core/Debugging.php
 
@@ -1036,74 +1006,79 @@ parameters:
 			path: src/Core/License.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$license_key\\.$#"
+			message: "#^Access to an undefined property object\\:\\:\\$licenseKey\\.$#"
 			count: 1
 			path: src/Core/License.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\License\\:\\:__construct\\(\\) has parameter \\$extension with no value type specified in iterable type array\\.$#"
+			message: "#^Cannot access offset 'item_name' on mixed\\.$#"
+			count: 3
+			path: src/Core/License.php
+
+		-
+			message: "#^Cannot access offset 'store_url' on mixed\\.$#"
+			count: 3
+			path: src/Core/License.php
+
+		-
+			message: "#^Cannot access property \\$error on mixed\\.$#"
 			count: 1
 			path: src/Core/License.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\License\\:\\:get_licenses\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Cannot access property \\$license on mixed\\.$#"
+			count: 2
+			path: src/Core/License.php
+
+		-
+			message: "#^Cannot access property \\$licenseKey on mixed\\.$#"
+			count: 6
+			path: src/Core/License.php
+
+		-
+			message: "#^Cannot access property \\$success on mixed\\.$#"
 			count: 1
 			path: src/Core/License.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Core\\\\License\\:\\:\\$extension type has no value type specified in iterable type array\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\License\\:\\:check\\(\\) should return object but returns mixed\\.$#"
 			count: 1
 			path: src/Core/License.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:__call\\(\\) has parameter \\$arguments with no value type specified in iterable type array\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\License\\:\\:getLicenses\\(\\) should return array but returns mixed\\.$#"
 			count: 1
-			path: src/Core/Notification.php
+			path: src/Core/License.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:__construct\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\License\\:\\:isValid\\(\\) should return bool but returns mixed\\.$#"
 			count: 1
-			path: src/Core/Notification.php
+			path: src/Core/License.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:get_enabled_carriers\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$licenseData of method BracketSpace\\\\Notification\\\\Core\\\\License\\:\\:save\\(\\) expects object, mixed given\\.$#"
 			count: 1
-			path: src/Core/Notification.php
+			path: src/Core/License.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:set_carrier_data\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Core/Notification.php
+			message: "#^Parameter \\#1 \\$url of function wp_remote_post expects string, mixed given\\.$#"
+			count: 3
+			path: src/Core/License.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:set_carriers\\(\\) has parameter \\$carriers with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Core/Notification.php
+			message: "#^Parameter \\#2 \\$key of class BracketSpace\\\\Notification\\\\Dependencies\\\\Micropackage\\\\Cache\\\\Cache constructor expects string, mixed given\\.$#"
+			count: 5
+			path: src/Core/License.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:setup\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Core/Notification.php
+			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			count: 3
+			path: src/Core/License.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:to_array\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:\\$sourcePostId is never read, only written\\.$#"
 			count: 1
 			path: src/Core/Notification.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:\\$carriers type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Core/Notification.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:\\$extras type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Core/Notification.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Interfaces\\\\Adaptable\\:\\:save\\(\\) invoked with 2 parameters, 0 required\\.$#"
-			count: 1
-			path: src/Core/Processor.php
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Resolver\\:\\:clear\\(\\) should return string but returns string\\|null\\.$#"
@@ -1116,1279 +1091,859 @@ parameters:
 			path: src/Core/Resolver.php
 
 		-
-			message: "#^Parameter \\#3 \\$subject of function preg_replace_callback expects array\\|string, string\\|null given\\.$#"
+			message: "#^Parameter \\#2 \\$contents of method WP_Filesystem_Base\\:\\:put_contents\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Core/Resolver.php
+			path: src/Core/Sync.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\:\\:\\$page_hook \\(string\\) does not accept string\\|false\\.$#"
-			count: 1
-			path: src/Core/Settings.php
-
-		-
-			message: "#^Cannot access property \\$post_modified_gmt on WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Core/Upgrade.php
-
-		-
-			message: "#^Cannot access property \\$post_name on WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Core/Upgrade.php
-
-		-
-			message: "#^Cannot access property \\$post_status on WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Core/Upgrade.php
-
-		-
-			message: "#^Cannot access property \\$post_title on WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Core/Upgrade.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Upgrade\\:\\:trigger_slug_replacements\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Core/Upgrade.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func expects callable\\(\\)\\: mixed, array\\(\\$this\\(BracketSpace\\\\Notification\\\\Core\\\\Upgrade\\), non\\-empty\\-string\\) given\\.$#"
-			count: 1
-			path: src/Core/Upgrade.php
-
-		-
-			message: "#^Parameter \\#1 \\$version of method BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:set_version\\(\\) expects int, int\\|false given\\.$#"
-			count: 1
-			path: src/Core/Upgrade.php
-
-		-
-			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|null given\\.$#"
-			count: 1
-			path: src/Defaults/Adapter/JSON.php
-
-		-
-			message: "#^Parameter \\#1 \\$post of method BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\WordPress\\:\\:set_post\\(\\) expects WP_Post, WP_Post\\|null given\\.$#"
+			message: "#^Cannot access offset mixed on mixed\\.$#"
 			count: 2
-			path: src/Defaults/Adapter/WordPress.php
+			path: src/Database/NotificationDatabaseService.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Carrier\\\\Email\\:\\:allow_unfiltered_html_body\\(\\) has parameter \\$carrier_data with no value type specified in iterable type array\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Database\\\\Queries\\\\UserQueries\\:\\:all\\(\\) should return array\\<int, array\\{ID\\: string, user_email\\: string, display_name\\: string\\}\\> but returns mixed\\.$#"
 			count: 1
-			path: src/Defaults/Carrier/Email.php
+			path: src/Database/Queries/UserQueries.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Carrier\\\\Email\\:\\:allow_unfiltered_html_body\\(\\) has parameter \\$raw_data with no value type specified in iterable type array\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Database\\\\Queries\\\\UserQueries\\:\\:withRole\\(\\) should return array\\<int, array\\{ID\\: string, user_email\\: string, display_name\\: string\\}\\> but returns mixed\\.$#"
 			count: 1
-			path: src/Defaults/Carrier/Email.php
+			path: src/Database/Queries/UserQueries.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Carrier\\\\Email\\:\\:allow_unfiltered_html_body\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Invalid type object to throw\\.$#"
 			count: 1
-			path: src/Defaults/Carrier/Email.php
+			path: src/ErrorHandler.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Carrier\\\\Webhook\\:\\:http_request\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Integration\\\\WordPressEmails\\:\\:getSettingForUserRole\\(\\) is unused\\.$#"
 			count: 1
-			path: src/Defaults/Carrier/Webhook.php
+			path: src/Integration/WordPressEmails.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Carrier\\\\Webhook\\:\\:http_request\\(\\) has parameter \\$headers with no value type specified in iterable type array\\.$#"
+			message: "#^Cannot access offset 'recipient' on mixed\\.$#"
 			count: 1
-			path: src/Defaults/Carrier/Webhook.php
+			path: src/Repository/Carrier/BaseCarrier.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Carrier\\\\Webhook\\:\\:parse_args\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Cannot access offset 'type' on mixed\\.$#"
 			count: 1
-			path: src/Defaults/Carrier/Webhook.php
+			path: src/Repository/Carrier/BaseCarrier.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Carrier\\\\Webhook\\:\\:parse_args\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Carrier/Webhook.php
+			message: "#^Cannot call method setValue\\(\\) on BracketSpace\\\\Notification\\\\Interfaces\\\\Fillable\\|null\\.$#"
+			count: 4
+			path: src/Repository/Carrier/BaseCarrier.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Carrier\\\\WebhookJson\\:\\:http_request\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$value of method BracketSpace\\\\Notification\\\\Interfaces\\\\Receivable\\:\\:parseValue\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/Carrier/WebhookJson.php
+			path: src/Repository/Carrier/BaseCarrier.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Carrier\\\\WebhookJson\\:\\:http_request\\(\\) has parameter \\$headers with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#2 \\$slug of static method BracketSpace\\\\Notification\\\\Store\\\\Recipient\\:\\:get\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/Carrier/WebhookJson.php
+			path: src/Repository/Carrier/BaseCarrier.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Carrier\\\\WebhookJson\\:\\:parse_args\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Carrier\\\\BaseCarrier\\:\\:\\$recipientsResolvedData \\(array\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/Carrier/WebhookJson.php
+			path: src/Repository/Carrier/BaseCarrier.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Carrier\\\\WebhookJson\\:\\:parse_args\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Carrier/WebhookJson.php
+			message: "#^Parameter \\#1 \\$carrier of static method BracketSpace\\\\Notification\\\\Register\\:\\:carrier\\(\\) expects BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable, mixed given\\.$#"
+			count: 3
+			path: src/Repository/CarrierRepository.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\CheckboxField\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$data of class BracketSpace\\\\Notification\\\\Core\\\\Notification constructor expects array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, carriers\\?\\: array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\}, array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable\\|string\\|null, carriers\\?\\: array\\<string, array\\<string, mixed\\>\\|BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\} given\\.$#"
 			count: 1
-			path: src/Defaults/Field/CheckboxField.php
+			path: src/Repository/Converter/ArrayConverter.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\CodeEditorField\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\BaseField\\:\\:__get\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: src/Defaults/Field/CodeEditorField.php
+			path: src/Repository/Field/BaseField.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\BaseField\\:\\:getLabel\\(\\) should return string but returns mixed\\.$#"
+			count: 1
+			path: src/Repository/Field/BaseField.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\BaseField\\:\\:getRawName\\(\\) should return string but returns mixed\\.$#"
+			count: 1
+			path: src/Repository/Field/BaseField.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function substr expects string, string\\|false given\\.$#"
+			count: 1
+			path: src/Repository/Field/BaseField.php
 
 		-
 			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, string\\|false given\\.$#"
 			count: 1
-			path: src/Defaults/Field/CodeEditorField.php
+			path: src/Repository/Field/CodeEditorField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\EditorField\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\CodeEditorField\\:\\:\\$settings \\(string\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/Field/EditorField.php
+			path: src/Repository/Field/CodeEditorField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\EditorField\\:\\:field\\(\\) should return string but returns string\\|false\\.$#"
+			message: "#^Parameter \\#1 \\$color of function sanitize_hex_color expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/Field/EditorField.php
+			path: src/Repository/Field/ColorPickerField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\InputField\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$haystack of function strpos expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/Field/InputField.php
+			path: src/Repository/Field/ColorPickerField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\MessageField\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/Field/MessageField.php
+			path: src/Repository/Field/ColorPickerField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\NonceField\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/Field/NonceField.php
+			path: src/Repository/Field/ColorPickerField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\RecipientsField\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\EditorField\\:\\:field\\(\\) should return string but returns string\\|false\\.$#"
 			count: 1
-			path: src/Defaults/Field/RecipientsField.php
+			path: src/Repository/Field/EditorField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\RepeaterField\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$content of function wp_editor expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/Field/RepeaterField.php
+			path: src/Repository/Field/EditorField.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\RepeaterField\\:\\:\\$data_attr type has no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/Field/RepeaterField.php
+			path: src/Repository/Field/EditorField.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\RepeaterField\\:\\:\\$headers type has no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\EditorField\\:\\:\\$settings \\(string\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/Field/RepeaterField.php
+			path: src/Repository/Field/EditorField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\SectionRepeater\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$post_id of function wp_get_attachment_thumb_url expects int, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/Field/SectionRepeater.php
+			path: src/Repository/Field/ImageField.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\SectionRepeater\\:\\:\\$data_attr type has no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/Field/SectionRepeater.php
+			path: src/Repository/Field/ImageField.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\SectionRepeater\\:\\:\\$headers type has no value type specified in iterable type array\\.$#"
+			message: "#^Cannot cast mixed to string\\.$#"
 			count: 1
-			path: src/Defaults/Field/SectionRepeater.php
+			path: src/Repository/Field/InputField.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\SectionRepeater\\:\\:\\$section_labels type has no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/Field/SectionRepeater.php
+			path: src/Repository/Field/InputField.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\SectionRepeater\\:\\:\\$sections type has no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\InputField\\:\\:\\$type \\(string\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/Field/SectionRepeater.php
+			path: src/Repository/Field/InputField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\SectionsField\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Call to an undefined method BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\MessageField\\:\\:message\\(\\)\\.$#"
 			count: 1
-			path: src/Defaults/Field/SectionsField.php
+			path: src/Repository/Field/MessageField.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\SectionsField\\:\\:\\$sections type has no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\MessageField\\:\\:\\$message \\(string\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/Field/SectionsField.php
+			path: src/Repository/Field/MessageField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\SelectField\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\NonceField\\:\\:\\$nonceKey \\(string\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/Field/SelectField.php
+			path: src/Repository/Field/NonceField.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\SelectField\\:\\:\\$options type has no value type specified in iterable type array\\.$#"
+			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
 			count: 1
-			path: src/Defaults/Field/SelectField.php
+			path: src/Repository/Field/RepeaterField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Field\\\\TextareaField\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Cannot access offset string on mixed\\.$#"
 			count: 1
-			path: src/Defaults/Field/TextareaField.php
+			path: src/Repository/Field/RepeaterField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentActionApprove\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentActionApprove.php
+			path: src/Repository/Field/RepeaterField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentActionDelete\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\RepeaterField\\:\\:\\$fields \\(array\\<BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\BaseField\\>\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentActionDelete.php
+			path: src/Repository/Field/RepeaterField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentActionSpam\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentActionSpam.php
+			path: src/Repository/Field/SectionRepeater.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentActionTrash\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$text of function esc_html expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentActionTrash.php
+			path: src/Repository/Field/SectionRepeater.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentAuthorIP\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\SectionRepeater\\:\\:\\$sections \\(array\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentAuthorIP.php
+			path: src/Repository/Field/SectionRepeater.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentAuthorUrl\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\SectionsField\\:\\:\\$sections \\(array\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentAuthorUrl.php
+			path: src/Repository/Field/SectionsField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentAuthorUserAgent\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$str of function sanitize_text_field expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentAuthorUserAgent.php
+			path: src/Repository/Field/SelectField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentContent\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$text of function esc_html expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentContent.php
+			path: src/Repository/Field/SelectField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentContentHtml\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\SelectField\\:\\:\\$options \\(array\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentContentHtml.php
+			path: src/Repository/Field/SelectField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentID\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$str of function sanitize_textarea_field expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentID.php
+			path: src/Repository/Field/TextareaField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentIsReply\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\TextareaField\\:\\:\\$placeholder \\(string\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentIsReply.php
+			path: src/Repository/Field/TextareaField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentStatus\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setSlug\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentStatus.php
+			path: src/Repository/MergeTag/BaseMergeTag.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Comment\\\\CommentType\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentActionApprove\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Comment/CommentType.php
+			path: src/Repository/MergeTag/Comment/CommentActionApprove.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\DateTime\\\\Date\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentActionDelete\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/DateTime/Date.php
+			path: src/Repository/MergeTag/Comment/CommentActionDelete.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\DateTime\\\\DateTime\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentActionSpam\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/DateTime/DateTime.php
+			path: src/Repository/MergeTag/Comment/CommentActionSpam.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\DateTime\\\\Time\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentActionTrash\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/DateTime/Time.php
+			path: src/Repository/MergeTag/Comment/CommentActionTrash.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Media\\\\AttachmentDirectUrl\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentAuthorIP\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Media/AttachmentDirectUrl.php
+			path: src/Repository/MergeTag/Comment/CommentAuthorIP.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Media\\\\AttachmentID\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentAuthorUrl\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Media/AttachmentID.php
+			path: src/Repository/MergeTag/Comment/CommentAuthorUrl.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Media\\\\AttachmentMimeType\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentAuthorUserAgent\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Media/AttachmentMimeType.php
+			path: src/Repository/MergeTag/Comment/CommentAuthorUserAgent.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Media\\\\AttachmentPage\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentContent\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Media/AttachmentPage.php
+			path: src/Repository/MergeTag/Comment/CommentContent.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Media\\\\AttachmentTitle\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentContentHtml\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Media/AttachmentTitle.php
+			path: src/Repository/MergeTag/Comment/CommentContentHtml.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Post\\\\FeaturedImageId\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentID\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Post/FeaturedImageId.php
+			path: src/Repository/MergeTag/Comment/CommentID.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Post\\\\FeaturedImageUrl\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentIsReply\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Post/FeaturedImageUrl.php
+			path: src/Repository/MergeTag/Comment/CommentIsReply.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentStatus\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Comment/CommentStatus.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentType\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Comment/CommentType.php
+
+		-
+			message: "#^Parameter \\#1 \\$email of function sanitize_email expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/EmailTag.php
+
+		-
+			message: "#^Cannot cast mixed to string\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/HtmlTag.php
+
+		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/IntegerTag.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Media/AttachmentDirectUrl.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Media/AttachmentID.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Media/AttachmentMimeType.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Media/AttachmentPage.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Media/AttachmentTitle.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/FeaturedImageId.php
 
 		-
 			message: "#^Parameter \\#1 \\$attachment_id of function wp_get_attachment_image_url expects int, int\\|false given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Post/FeaturedImageUrl.php
+			path: src/Repository/MergeTag/Post/FeaturedImageUrl.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Post\\\\PostContent\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Post/PostContent.php
+			path: src/Repository/MergeTag/Post/FeaturedImageUrl.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Post\\\\PostContentHtml\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Post/PostContentHtml.php
+			path: src/Repository/MergeTag/Post/PostContent.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Post\\\\PostExcerpt\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Post/PostExcerpt.php
+			path: src/Repository/MergeTag/Post/PostContentHtml.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Post\\\\PostID\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Post/PostID.php
+			path: src/Repository/MergeTag/Post/PostExcerpt.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Post\\\\PostPermalink\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Post/PostPermalink.php
+			path: src/Repository/MergeTag/Post/PostID.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Post\\\\PostSlug\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Post/PostSlug.php
+			path: src/Repository/MergeTag/Post/PostPermalink.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Post\\\\PostStatus\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Post/PostStatus.php
+			path: src/Repository/MergeTag/Post/PostSlug.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/Post/PostStatus.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$label\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Post/PostTerms.php
+			path: src/Repository/MergeTag/Post/PostTerms.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$name\\.$#"
 			count: 2
-			path: src/Defaults/MergeTag/Post/PostTerms.php
+			path: src/Repository/MergeTag/Post/PostTerms.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Post\\\\PostTerms\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Post/PostTerms.php
+			path: src/Repository/MergeTag/Post/PostTerms.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Post\\\\PostTitle\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Post/PostTitle.php
+			path: src/Repository/MergeTag/Post/PostTitle.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Post\\\\PostType\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Post/PostType.php
+			path: src/Repository/MergeTag/Post/PostType.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Post\\\\RevisionLink\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Post/RevisionLink.php
+			path: src/Repository/MergeTag/Post/RevisionLink.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\Post\\\\ThumbnailUrl\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, int\\|WP_Post given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Post/ThumbnailUrl.php
+			path: src/Repository/MergeTag/Post/RevisionLink.php
 
 		-
 			message: "#^Parameter \\#1 \\$attachment_id of function wp_get_attachment_image_url expects int, int\\|false given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/Post/ThumbnailUrl.php
+			path: src/Repository/MergeTag/Post/ThumbnailUrl.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\User\\\\Avatar\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/User/Avatar.php
+			path: src/Repository/MergeTag/Post/ThumbnailUrl.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\User\\\\AvatarUrl\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$str of function sanitize_text_field expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/User/AvatarUrl.php
+			path: src/Repository/MergeTag/StringTag.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\User\\\\UserBio\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/User/UserBio.php
+			path: src/Repository/MergeTag/Taxonomy/TaxonomyName.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\User\\\\UserDisplayName\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/User/UserDisplayName.php
+			path: src/Repository/MergeTag/Taxonomy/TaxonomySlug.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\User\\\\UserEmail\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/User/UserEmail.php
+			path: src/Repository/MergeTag/Taxonomy/TermDescription.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\User\\\\UserFirstName\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/User/UserFirstName.php
+			path: src/Repository/MergeTag/Taxonomy/TermID.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\User\\\\UserID\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/User/UserID.php
+			path: src/Repository/MergeTag/Taxonomy/TermName.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\User\\\\UserLastName\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/User/UserLastName.php
+			path: src/Repository/MergeTag/Taxonomy/TermPermalink.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\User\\\\UserLogin\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/User/UserLogin.php
+			path: src/Repository/MergeTag/Taxonomy/TermSlug.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\User\\\\UserNicename\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$url of function esc_url expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/User/UserNicename.php
+			path: src/Repository/MergeTag/UrlTag.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\User\\\\UserPasswordResetLink\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/User/UserPasswordResetLink.php
+			path: src/Repository/MergeTag/User/Avatar.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/AvatarUrl.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserBio.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserDisplayName.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserEmail.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserFirstName.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserID.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserLastName.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserLogin.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserNicename.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserNickname.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\User\\\\UserPasswordResetLink\\:\\:\\$keyPropertyName \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Repository/MergeTag/User/UserPasswordResetLink.php
 
 		-
 			message: "#^Cannot access property \\$name on WP_Role\\|null\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/User/UserRole.php
+			path: src/Repository/MergeTag/User/UserRole.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\MergeTag\\\\User\\\\UserRole\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/MergeTag/User/UserRole.php
+			path: src/Repository/MergeTag/User/UserRole.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Recipient\\\\Administrator\\:\\:parse_value\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Repository\\\\Recipient\\\\BaseRecipient\\:\\:setSlug\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/Recipient/Administrator.php
+			path: src/Repository/Recipient/BaseRecipient.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Recipient\\\\Email\\:\\:parse_value\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/Recipient/Email.php
+			path: src/Repository/Resolver/Basic.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Recipient\\\\Role\\:\\:parse_value\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Recipient/Role.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Recipient\\\\User\\:\\:parse_value\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Recipient/User.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Recipient\\\\UserID\\:\\:parse_value\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Recipient/UserID.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Recipient\\\\Webhook\\:\\:parse_value\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Recipient/Webhook.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Resolver\\\\Basic\\:\\:resolve_merge_tag\\(\\) has parameter \\$match with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Resolver/Basic.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentAdded.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentAdded.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentApproved.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentApproved.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentPublished.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentPublished.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentReplied.php
-
-		-
-			message: "#^Cannot access property \\$comment_author on WP_Comment\\|null\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentReplied.php
-
-		-
-			message: "#^Cannot access property \\$comment_author_email on WP_Comment\\|null\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentReplied.php
-
-		-
-			message: "#^Cannot access property \\$user_id on WP_Comment\\|null\\.$#"
+			message: "#^Cannot call method getSlug\\(\\) on mixed\\.$#"
 			count: 2
-			path: src/Defaults/Trigger/Comment/CommentReplied.php
+			path: src/Repository/Trigger/BaseTrigger.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentReplied\\:\\:\\$parent_comment \\(WP_Comment\\) does not accept WP_Comment\\|null\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentReplied.php
+			message: "#^Cannot call method isHidden\\(\\) on mixed\\.$#"
+			count: 2
+			path: src/Repository/Trigger/BaseTrigger.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\BaseTrigger\\:\\:getMergeTags\\(\\) should return array\\<BracketSpace\\\\Notification\\\\Interfaces\\\\Taggable\\> but returns array\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Comment/CommentReplied.php
+			path: src/Repository/Trigger/BaseTrigger.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentAdded.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentAdded.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentApproved.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentApproved.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentPublished.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentPublished.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentReplied.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentReplied.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
 			count: 2
-			path: src/Defaults/Trigger/Comment/CommentSpammed.php
+			path: src/Repository/Trigger/Comment/CommentSpammed.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Comment/CommentSpammed.php
+			path: src/Repository/Trigger/Comment/CommentSpammed.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
 			count: 2
-			path: src/Defaults/Trigger/Comment/CommentTrashed.php
+			path: src/Repository/Trigger/Comment/CommentTrashed.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Comment/CommentTrashed.php
+			path: src/Repository/Trigger/Comment/CommentTrashed.php
 
 		-
-			message: "#^Cannot access property \\$post_author on WP_Post\\|null\\.$#"
+			message: "#^Parameter \\#1 \\$comment_id of function get_comment_type expects int\\|WP_Comment, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Comment/CommentTrigger.php
+			path: src/Repository/Trigger/Comment/CommentTrigger.php
+
+		-
+			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\BaseTrigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentTrigger.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$post \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentTrigger.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentUnapproved.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Comment/CommentUnapproved.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Media\\\\MediaTrigger\\:\\:\\$attachment \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
+			count: 1
+			path: src/Repository/Trigger/Media/MediaAdded.php
 
 		-
 			message: "#^Cannot access property \\$post_date_gmt on WP_Post\\|null\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Comment/CommentTrigger.php
+			path: src/Repository/Trigger/Media/MediaTrashed.php
 
 		-
-			message: "#^Cannot access property \\$post_modified_gmt on WP_Post\\|null\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Media\\\\MediaTrigger\\:\\:\\$attachment \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Comment/CommentTrigger.php
-
-		-
-			message: "#^Cannot access property \\$post_type on WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentTrigger.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentTrigger.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$post \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentTrigger.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$post_author \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentTrigger.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentUnapproved.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Comment/CommentUnapproved.php
-
-		-
-			message: "#^Cannot access property \\$post_author on WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Media/MediaAdded.php
+			path: src/Repository/Trigger/Media/MediaTrashed.php
 
 		-
 			message: "#^Cannot access property \\$post_date_gmt on WP_Post\\|null\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Media/MediaAdded.php
+			path: src/Repository/Trigger/Media/MediaUpdated.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Media\\\\MediaTrigger\\:\\:\\$attachment \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Media\\\\MediaTrigger\\:\\:\\$attachment \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Media/MediaAdded.php
+			path: src/Repository/Trigger/Media/MediaUpdated.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Media\\\\MediaTrigger\\:\\:\\$user_object \\(WP_User\\) does not accept WP_User\\|false\\.$#"
+			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Media/MediaAdded.php
+			path: src/Repository/Trigger/Post/PostAdded.php
 
 		-
-			message: "#^Cannot access property \\$post_date_gmt on WP_Post\\|null\\.$#"
+			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Media/MediaTrashed.php
+			path: src/Repository/Trigger/Post/PostApproved.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Media\\\\MediaTrashed\\:\\:\\$trashing_user \\(WP_User\\) does not accept WP_User\\|false\\.$#"
+			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Media/MediaTrashed.php
+			path: src/Repository/Trigger/Post/PostDrafted.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Media\\\\MediaTrigger\\:\\:\\$attachment \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
+			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Media/MediaTrashed.php
+			path: src/Repository/Trigger/Post/PostPending.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Media\\\\MediaTrigger\\:\\:\\$user_object \\(WP_User\\) does not accept WP_User\\|false\\.$#"
+			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Media/MediaTrashed.php
+			path: src/Repository/Trigger/Post/PostPublished.php
 
 		-
-			message: "#^Cannot access property \\$post_date_gmt on WP_Post\\|null\\.$#"
+			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Media/MediaUpdated.php
+			path: src/Repository/Trigger/Post/PostPublishedPrivately.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Media\\\\MediaTrigger\\:\\:\\$attachment \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
+			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Media/MediaUpdated.php
+			path: src/Repository/Trigger/Post/PostScheduled.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Media\\\\MediaTrigger\\:\\:\\$user_object \\(WP_User\\) does not accept WP_User\\|false\\.$#"
+			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Media/MediaUpdated.php
+			path: src/Repository/Trigger/Post/PostTrashed.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Media\\\\MediaUpdated\\:\\:\\$updating_user \\(WP_User\\) does not accept WP_User\\|false\\.$#"
+			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\BaseTrigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Media/MediaUpdated.php
+			path: src/Repository/Trigger/Post/PostTrigger.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Plugin\\\\Activated\\:\\:\\$plugin_activation_date_time \\(string\\) does not accept int\\.$#"
+			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Plugin/Activated.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Plugin\\\\Deactivated\\:\\:\\$plugin_deactivation_date_time \\(string\\) does not accept int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Plugin/Deactivated.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Plugin\\\\Installed\\:\\:context\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Plugin/Installed.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Plugin\\\\Installed\\:\\:\\$plugin_installation_date_time \\(string\\) does not accept int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Plugin/Installed.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Plugin\\\\PluginTrigger\\:\\:\\$plugin type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Plugin/PluginTrigger.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Plugin\\\\Removed\\:\\:\\$plugin_deletion_date_time \\(string\\) does not accept int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Plugin/Removed.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Plugin\\\\Updated\\:\\:context\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Plugin/Updated.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Plugin\\\\Updated\\:\\:\\$plugin_update_date_time \\(string\\) does not accept int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Plugin/Updated.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostAdded.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_author\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostAdded.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_date_gmt\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostAdded.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_modified_gmt\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostAdded.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_status\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostAdded.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostAdded.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostApproved.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_author\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostApproved.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_date_gmt\\.$#"
-			count: 2
-			path: src/Defaults/Trigger/Post/PostApproved.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_modified_gmt\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostApproved.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostApproved.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostDrafted.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_author\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostDrafted.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_date_gmt\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostDrafted.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_modified_gmt\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostDrafted.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostDrafted.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPending.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_author\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPending.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_date_gmt\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPending.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_modified_gmt\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPending.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPending.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPublished.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_author\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPublished.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_date_gmt\\.$#"
-			count: 2
-			path: src/Defaults/Trigger/Post/PostPublished.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_modified_gmt\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPublished.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostPublished.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostScheduled.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_author\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostScheduled.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_date_gmt\\.$#"
-			count: 2
-			path: src/Defaults/Trigger/Post/PostScheduled.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_modified_gmt\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostScheduled.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostScheduled.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostTrashed.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_author\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostTrashed.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_date_gmt\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostTrashed.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_modified_gmt\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostTrashed.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostTrashed.php
-
-		-
-			message: "#^Cannot access property \\$name on string\\|WP_Taxonomy\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostTrigger.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Post\\\\PostTrigger\\:\\:__construct\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Post/PostTrigger.php
+			path: src/Repository/Trigger/Post/PostUpdated.php
 
 		-
 			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Privacy/DataEraseRequest.php
+			path: src/Repository/Trigger/Privacy/DataEraseRequest.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\DataEraseRequest\\:\\:context\\(\\) has no return typehint specified\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\DataEraseRequest\\:\\:context\\(\\) has no return type specified\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Privacy/DataEraseRequest.php
+			path: src/Repository/Trigger/Privacy/DataEraseRequest.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$data_operation_time \\(string\\) does not accept int\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Privacy/DataEraseRequest.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Privacy/DataEraseRequest.php
+			path: src/Repository/Trigger/Privacy/DataEraseRequest.php
 
 		-
 			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Privacy/DataErased.php
+			path: src/Repository/Trigger/Privacy/DataErased.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\DataErased\\:\\:context\\(\\) has no return typehint specified\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\DataErased\\:\\:context\\(\\) has no return type specified\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Privacy/DataErased.php
+			path: src/Repository/Trigger/Privacy/DataErased.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$data_operation_time \\(string\\) does not accept int\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Privacy/DataErased.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Privacy/DataErased.php
+			path: src/Repository/Trigger/Privacy/DataErased.php
 
 		-
 			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Privacy/DataExportRequest.php
+			path: src/Repository/Trigger/Privacy/DataExportRequest.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\DataExportRequest\\:\\:context\\(\\) has no return typehint specified\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\DataExportRequest\\:\\:context\\(\\) has no return type specified\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Privacy/DataExportRequest.php
+			path: src/Repository/Trigger/Privacy/DataExportRequest.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$data_operation_time \\(string\\) does not accept int\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Privacy/DataExportRequest.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Privacy/DataExportRequest.php
+			path: src/Repository/Trigger/Privacy/DataExportRequest.php
 
 		-
 			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Privacy/DataExported.php
+			path: src/Repository/Trigger/Privacy/DataExported.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\DataExported\\:\\:context\\(\\) has no return typehint specified\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\DataExported\\:\\:context\\(\\) has no return type specified\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Privacy/DataExported.php
+			path: src/Repository/Trigger/Privacy/DataExported.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\DataExported\\:\\:\\$json_report_pathname \\(string\\) does not accept string\\|null\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Privacy/DataExported.php
+			path: src/Repository/Trigger/Privacy/DataExported.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$data_operation_time \\(string\\) does not accept int\\.$#"
+			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\BaseTrigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/Privacy/DataExported.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Privacy/DataExported.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Theme\\\\Installed\\:\\:context\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Theme/Installed.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Theme\\\\Installed\\:\\:\\$theme_installation_date_time \\(string\\) does not accept int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Theme/Installed.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Theme\\\\Switched\\:\\:\\$theme_switch_date_time \\(string\\) does not accept int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Theme/Switched.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Theme\\\\Updated\\:\\:context\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Theme/Updated.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\Theme\\\\Updated\\:\\:\\$theme_update_date_time \\(string\\) does not accept int\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/Theme/Updated.php
-
-		-
-			message: "#^Cannot access property \\$user_registered on WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserDeleted.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserDeleted\\:\\:\\$user_meta type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserDeleted.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserTrigger\\:\\:\\$user_object \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserDeleted.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserEmailChangeRequest\\:\\:\\$user_meta type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserEmailChangeRequest.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserTrigger\\:\\:\\$user_object \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserEmailChangeRequest.php
+			path: src/Repository/Trigger/Taxonomy/TermTrigger.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/User/UserLogin.php
-
-		-
-			message: "#^Cannot access property \\$user_registered on WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserLogin.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserLogin\\:\\:\\$user_meta type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserLogin.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserTrigger\\:\\:\\$user_object \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserLogin.php
-
-		-
-			message: "#^Cannot access property \\$user_registered on WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserLoginFailed.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserTrigger\\:\\:\\$user_object \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserLoginFailed.php
-
-		-
-			message: "#^Cannot access property \\$user_registered on WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserLogout.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserLogout\\:\\:\\$user_meta type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserLogout.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserTrigger\\:\\:\\$user_object \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserLogout.php
+			path: src/Repository/Trigger/User/UserLogin.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/User/UserPasswordChanged.php
-
-		-
-			message: "#^Cannot access property \\$user_registered on WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserPasswordChanged.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserPasswordChanged\\:\\:\\$user_meta type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserPasswordChanged.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserTrigger\\:\\:\\$user_object \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserPasswordChanged.php
+			path: src/Repository/Trigger/User/UserPasswordChanged.php
 
 		-
 			message: "#^Cannot access property \\$data on WP_User\\|false\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/User/UserPasswordResetRequest.php
-
-		-
-			message: "#^Cannot access property \\$user_registered on WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserPasswordResetRequest.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserTrigger\\:\\:\\$user_object \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserPasswordResetRequest.php
-
-		-
-			message: "#^Cannot access property \\$user_registered on WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserProfileUpdated.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserProfileUpdated\\:\\:\\$user_meta type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserProfileUpdated.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserTrigger\\:\\:\\$user_object \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserProfileUpdated.php
-
-		-
-			message: "#^Cannot access property \\$user_registered on WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserRegistered.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserRegistered\\:\\:\\$user_meta type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserRegistered.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserTrigger\\:\\:\\$user_object \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserRegistered.php
-
-		-
-			message: "#^Cannot access property \\$user_registered on WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserRoleChanged.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserRoleChanged\\:\\:context\\(\\) has parameter \\$old_roles with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserRoleChanged.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserRoleChanged\\:\\:\\$user_meta type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserRoleChanged.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\User\\\\UserTrigger\\:\\:\\$user_object \\(WP_User\\) does not accept WP_User\\|false\\.$#"
-			count: 1
-			path: src/Defaults/Trigger/User/UserRoleChanged.php
+			path: src/Repository/Trigger/User/UserPasswordResetRequest.php
 
 		-
 			message: "#^Argument of an invalid type array\\|false supplied for foreach, only iterables are supported\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
+			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
 
 		-
-			message: "#^Cannot access offset mixed on \\(array&nonEmpty\\)\\|false\\.$#"
+			message: "#^Cannot access property \\$current on mixed\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
+			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
 
 		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func expects callable\\(\\)\\: mixed, array\\(mixed, non\\-empty\\-string\\) given\\.$#"
+			message: "#^Cannot access property \\$version on mixed\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
+			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
 
 		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func expects callable\\(\\)\\: mixed, non\\-empty\\-string given\\.$#"
+			message: "#^Parameter \\#1 \\$updateType of method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\WordPress\\\\UpdatesAvailable\\:\\:getUpdatesCount\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
+			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Trigger\\\\WordPress\\\\UpdatesAvailable\\:\\:\\$update_types type has no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$updateType of method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\WordPress\\\\UpdatesAvailable\\:\\:hasUpdates\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: src/Defaults/Trigger/WordPress/UpdatesAvailable.php
-
-		-
-			message: "#^Call to an undefined method object\\:\\:add_action\\(\\)\\.$#"
-			count: 1
-			path: src/Integration/TwoFactor.php
-
-		-
-			message: "#^Call to an undefined method object\\:\\:get_slug\\(\\)\\.$#"
-			count: 1
-			path: src/Integration/TwoFactor.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
-			count: 2
-			path: src/Integration/WordPress.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Integration\\\\WordPressEmails\\:\\:disable_email_change_notify_to_user\\(\\) has parameter \\$user with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Integration/WordPressEmails.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Integration\\\\WordPressEmails\\:\\:disable_email_change_notify_to_user\\(\\) has parameter \\$userdata with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Integration/WordPressEmails.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Integration\\\\WordPressEmails\\:\\:disable_password_change_notify_to_user\\(\\) has parameter \\$user with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Integration/WordPressEmails.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Integration\\\\WordPressEmails\\:\\:disable_password_change_notify_to_user\\(\\) has parameter \\$userdata with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Integration/WordPressEmails.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Interfaces\\\\Receivable\\:\\:parse_value\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Interfaces/Receivable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Interfaces\\\\Resolvable\\:\\:resolve_merge_tag\\(\\) has parameter \\$match with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Interfaces/Resolvable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Interfaces\\\\Taggable\\:\\:set_trigger\\(\\) has no return typehint specified\\.$#"
-			count: 1
-			path: src/Interfaces/Taggable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Queries\\\\NotificationQueries\\:\\:all\\(\\) should return array\\<int, BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\WordPress\\> but returns array\\<int, BracketSpace\\\\Notification\\\\Interfaces\\\\Adaptable\\>\\.$#"
-			count: 1
-			path: src/Queries/NotificationQueries.php
+			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Runtime\\:\\:components\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -2396,29 +1951,129 @@ parameters:
 			path: src/Runtime.php
 
 		-
-			message: "#^Parameter \\#2 \\$callable of static method WP_CLI\\:\\:add_command\\(\\) expects callable\\(\\)\\: mixed, 'BracketSpace\\\\\\\\Notification\\\\\\\\Cli\\\\\\\\DumpHooks' given\\.$#"
+			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, mixed given\\.$#"
 			count: 1
-			path: src/Runtime.php
+			path: src/Store/Carrier.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Runtime\\:\\:\\$components type has no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
 			count: 1
-			path: src/Runtime.php
+			path: src/Store/Carrier.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Settings\\:\\:get_sections\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, mixed given\\.$#"
+			count: 1
+			path: src/Store/GlobalMergeTag.php
+
+		-
+			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Store/GlobalMergeTag.php
+
+		-
+			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, mixed given\\.$#"
+			count: 1
+			path: src/Store/Notification.php
+
+		-
+			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Store/Notification.php
+
+		-
+			message: "#^Cannot access offset string on mixed\\.$#"
+			count: 1
+			path: src/Store/Recipient.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Store\\\\Recipient\\:\\:all\\(\\) should return array\\<string, array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Receivable\\>\\> but returns array\\.$#"
+			count: 1
+			path: src/Store/Recipient.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Store\\\\Recipient\\:\\:allForCarrier\\(\\) should return array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Receivable\\> but returns mixed\\.$#"
+			count: 1
+			path: src/Store/Recipient.php
+
+		-
+			message: "#^Unsafe access to private property BracketSpace\\\\Notification\\\\Store\\\\Recipient\\:\\:\\$items through static\\:\\:\\.$#"
+			count: 8
+			path: src/Store/Recipient.php
+
+		-
+			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, mixed given\\.$#"
+			count: 1
+			path: src/Store/Resolver.php
+
+		-
+			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Store/Resolver.php
+
+		-
+			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, mixed given\\.$#"
+			count: 1
+			path: src/Store/Trigger.php
+
+		-
+			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Store/Trigger.php
+
+		-
+			message: "#^Cannot access offset 'host' on array\\{scheme\\?\\: string, host\\?\\: string, port\\?\\: int, user\\?\\: string, pass\\?\\: string, path\\?\\: string, query\\?\\: string, fragment\\?\\: string\\}\\|false\\.$#"
 			count: 1
 			path: src/Utils/Settings.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Settings\\:\\:get_settings\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Cannot access offset 'path' on array\\{scheme\\?\\: string, host\\?\\: string, port\\?\\: int, user\\?\\: string, pass\\?\\: string, path\\?\\: string, query\\?\\: string, fragment\\?\\: string\\}\\|false\\.$#"
+			count: 3
+			path: src/Utils/Settings.php
+
+		-
+			message: "#^Cannot access offset 'scheme' on array\\{scheme\\?\\: string, host\\?\\: string, port\\?\\: int, user\\?\\: string, pass\\?\\: string, path\\?\\: string, query\\?\\: string, fragment\\?\\: string\\}\\|false\\.$#"
 			count: 1
 			path: src/Utils/Settings.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\:\\:\\$sections type has no value type specified in iterable type array\\.$#"
+			message: "#^Cannot access offset mixed on mixed\\.$#"
+			count: 2
+			path: src/Utils/Settings.php
+
+		-
+			message: "#^Cannot access offset string on mixed\\.$#"
+			count: 3
+			path: src/Utils/Settings.php
+
+		-
+			message: "#^Cannot call method getGroups\\(\\) on mixed\\.$#"
+			count: 4
+			path: src/Utils/Settings.php
+
+		-
+			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Settings\\:\\:addSection\\(\\) should return BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Section but returns mixed\\.$#"
 			count: 1
 			path: src/Utils/Settings.php
+
+		-
+			message: "#^Parameter \\#1 \\$text of function esc_html expects string, mixed given\\.$#"
+			count: 1
+			path: src/Utils/Settings/CoreFields/Button.php
+
+		-
+			message: "#^Parameter \\#1 \\$url of function esc_url_raw expects string, mixed given\\.$#"
+			count: 1
+			path: src/Utils/Settings/CoreFields/Button.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of function wp_kses_data expects string, mixed given\\.$#"
+			count: 1
+			path: src/Utils/Settings/CoreFields/Checkbox.php
+
+		-
+			message: "#^Parameter \\#3 \\$settings of function wp_editor expects array\\{wpautop\\?\\: bool, media_buttons\\?\\: bool, default_editor\\?\\: string, drag_drop_upload\\?\\: bool, textarea_name\\?\\: string, textarea_rows\\?\\: int, tabindex\\?\\: int\\|string, tabfocus_elements\\?\\: string, \\.\\.\\.\\}, array\\{textarea_name\\: string, editor_css\\: null, wpautop\\: mixed, media_buttons\\: mixed, textarea_rows\\: mixed, teeny\\: mixed\\} given\\.$#"
+			count: 1
+			path: src/Utils/Settings/CoreFields/Editor.php
 
 		-
 			message: "#^Parameter \\#1 \\$url of function esc_url expects string, string\\|false given\\.$#"
@@ -2426,14 +2081,64 @@ parameters:
 			path: src/Utils/Settings/CoreFields/Image.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Field\\:\\:addons\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
+			count: 3
+			path: src/Utils/Settings/CoreFields/Number.php
+
+		-
+			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
+			count: 3
+			path: src/Utils/Settings/CoreFields/Range.php
+
+		-
+			message: "#^Parameter \\#1 \\$str of function sanitize_text_field expects string, mixed given\\.$#"
+			count: 1
+			path: src/Utils/Settings/CoreFields/Select.php
+
+		-
+			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Field\\:\\:\\$addons \\(string\\) does not accept mixed\\.$#"
 			count: 1
 			path: src/Utils/Settings/Field.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Group\\:\\:add_field\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Field\\:\\:\\$description \\(string\\) does not accept mixed\\.$#"
 			count: 1
-			path: src/Utils/Settings/Group.php
+			path: src/Utils/Settings/Field.php
+
+		-
+			message: "#^Cannot call method getLogs\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Utils/Settings/Fields/ErrorLog.php
+
+		-
+			message: "#^Cannot call method getLogsCount\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Utils/Settings/Fields/ErrorLog.php
+
+		-
+			message: "#^Cannot access offset 'carrier' on mixed\\.$#"
+			count: 1
+			path: src/Utils/Settings/Fields/NotificationLog.php
+
+		-
+			message: "#^Cannot access offset 'notification' on mixed\\.$#"
+			count: 1
+			path: src/Utils/Settings/Fields/NotificationLog.php
+
+		-
+			message: "#^Cannot access offset 'trigger' on mixed\\.$#"
+			count: 1
+			path: src/Utils/Settings/Fields/NotificationLog.php
+
+		-
+			message: "#^Cannot call method getLogs\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Utils/Settings/Fields/NotificationLog.php
+
+		-
+			message: "#^Cannot call method getLogsCount\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Utils/Settings/Fields/NotificationLog.php
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Group\\:\\:collapse\\(\\) should return BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Group but returns bool\\|BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Group\\.$#"
@@ -2441,37 +2146,62 @@ parameters:
 			path: src/Utils/Settings/Group.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Group\\:\\:get_fields\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Parameter \\#2 \\$name of class BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Field constructor expects string, mixed given\\.$#"
 			count: 1
 			path: src/Utils/Settings/Group.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Group\\:\\:\\$fields type has no value type specified in iterable type array\\.$#"
+			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Group\\:\\:\\$description \\(string\\) does not accept mixed\\.$#"
 			count: 1
 			path: src/Utils/Settings/Group.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Section\\:\\:get_groups\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Section\\:\\:addGroup\\(\\) should return BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Group but returns mixed\\.$#"
 			count: 1
 			path: src/Utils/Settings/Section.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Section\\:\\:\\$groups type has no value type specified in iterable type array\\.$#"
+			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\WpObjectHelper\\:\\:getCommentTypes\\(\\) should return array\\<string, string\\> but returns mixed\\.$#"
 			count: 1
-			path: src/Utils/Settings/Section.php
+			path: src/Utils/WpObjectHelper.php
 
 		-
-			message: "#^Function notification\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
 			count: 1
-			path: src/api.php
+			path: uninstall.php
 
 		-
-			message: "#^Function notification_convert_data\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			message: "#^Cannot access offset 'license' on mixed\\.$#"
 			count: 1
-			path: src/api.php
+			path: uninstall.php
 
 		-
-			message: "#^Function notification_convert_data\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Cannot access offset 'licenses' on mixed\\.$#"
 			count: 1
-			path: src/api.php
+			path: uninstall.php
+
+		-
+			message: "#^Cannot access offset 'notifications' on mixed\\.$#"
+			count: 1
+			path: uninstall.php
+
+		-
+			message: "#^Cannot access offset 'settings' on mixed\\.$#"
+			count: 1
+			path: uninstall.php
+
+		-
+			message: "#^Cannot access offset 'uninstallation' on mixed\\.$#"
+			count: 1
+			path: uninstall.php
+
+		-
+			message: "#^Cannot call method deactivate\\(\\) on mixed\\.$#"
+			count: 1
+			path: uninstall.php
+
+		-
+			message: "#^Cannot call method isValid\\(\\) on mixed\\.$#"
+			count: 1
+			path: uninstall.php
 

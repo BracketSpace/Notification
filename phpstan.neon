@@ -1,0 +1,54 @@
+includes:
+	- vendor/szepeviktor/phpstan-wordpress/extension.neon
+	- phpstan-baseline.neon
+parameters:
+	level: max
+	inferPrivatePropertyTypeFromConstructor: true
+	treatPhpDocTypesAsCertain: false
+	scanFiles:
+		- vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
+	paths:
+		- notification.php
+		- load.php
+		- uninstall.php
+		- src/
+		- compat/
+	typeAliases:
+		NotificationData: '''
+			array{
+				hash?: string,
+				title?: string,
+				trigger?: BracketSpace\Notification\Interfaces\Triggerable,
+				carriers?: array<string,BracketSpace\Notification\Interfaces\Sendable>,
+				enabled?: bool,
+				extras?: array<string, array<mixed>|bool|float|int|string>,
+				version?: int,
+			}
+		'''
+		NotificationAsArray: '''
+			array{
+				hash: string,
+				title: string,
+				trigger: string,
+				carriers: array<string,array<string,mixed>>,
+				enabled: bool,
+				extras: array<string, array<mixed>|bool|float|int|string>,
+				version: int,
+			}
+		'''
+		NotificationUnconvertedData: '''
+			array{
+				hash?: string,
+				title?: string,
+				trigger?: BracketSpace\Notification\Interfaces\Triggerable|string,
+				carriers?: array<string,BracketSpace\Notification\Interfaces\Sendable|array<string,mixed>>,
+				enabled?: bool,
+				extras?: array<string, array<mixed>|bool|float|int|string>,
+				version?: int,
+			}
+		'''
+	excludePaths:
+		- compat/src-deprecated/helpers.php
+		- compat/stubs.php
+		- dependencies/
+		- src/Utils/EDDUpdater.php

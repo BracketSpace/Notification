@@ -1,14 +1,14 @@
-import Vue from "vue/dist/vue.js";
-import { init } from "./mixins/init";
-import { sectionsModal } from "./mixins/sectionsModal";
-import { sectionsHandler } from "./mixins/sectionsHandler";
+import Vue from 'vue/dist/vue.js';
+import { init } from './mixins/init';
+import { sectionsModal } from './mixins/sectionsModal';
+import { sectionsHandler } from './mixins/sectionsHandler';
 
-document.addEventListener("DOMContentLoaded", () => {
-	const sectionWrappers = document.querySelectorAll(".vue-section-repeater");
+document.addEventListener('DOMContentLoaded', () => {
+	const sectionWrappers = document.querySelectorAll('.vue-section-repeater');
 	const sectionRepeaters = {};
 
 	for (const wrapper of sectionWrappers) {
-		const wrapperId = wrapper.getAttribute("id");
+		const wrapperId = wrapper.getAttribute('id');
 
 		sectionRepeaters[wrapperId] = new Vue({
 			el: `#${wrapperId}`,
@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
 				values: {},
 				subFieldValues: [],
 				baseFields: {},
-				repeaterError: false
-			}
+				repeaterError: false,
+			},
 		});
 	}
 });

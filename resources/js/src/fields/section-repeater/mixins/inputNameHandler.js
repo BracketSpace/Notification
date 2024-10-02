@@ -2,7 +2,7 @@ export const inputNameHandler = {
 	data() {
 		return {
 			parentFieldName: null,
-			nested: false
+			nested: false,
 		};
 	},
 	mounted() {
@@ -16,6 +16,6 @@ export const inputNameHandler = {
 				this.parentField.toLowerCase()
 			);
 			this.nested = Object.freeze(parent.nested);
-		}
-	}
+		},
+	},
 };

@@ -1,17 +1,20 @@
 <?php
+
 /**
  * Api class
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Api;
 
 /**
  * Api class
  */
-class Api {
-
+class Api
+{
 	/**
 	 * Endpoint namespace
 	 *
@@ -22,24 +25,25 @@ class Api {
 	/**
 	 * Route configuration
 	 *
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $routes = [];
 
 	/**
 	 * Constructor method
 	 *
-	 * @since 7.0.0
 	 * @return void
+	 * @since 7.0.0
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 		$this->routes[] = [
 			'path' => '/repeater-field/(?P<id>\d+)',
 			'args' => [
-				'methods'             => 'POST',
-				'callback'            => [ new Controller\RepeaterController(), 'send_response' ],
-				'permission_callback' => function () {
-					return current_user_can( 'manage_options' );
+				'methods' => 'POST',
+				'callback' => [new Controller\RepeaterController(), 'sendResponse'],
+				'permission_callback' => static function () {
+					return current_user_can('manage_options');
 				},
 			],
 		];
@@ -47,10 +51,10 @@ class Api {
 		$this->routes[] = [
 			'path' => '/section-repeater-field/(?P<id>\d+)',
 			'args' => [
-				'methods'             => 'POST',
-				'callback'            => [ new Controller\SectionRepeaterController(), 'send_response' ],
-				'permission_callback' => function () {
-					return current_user_can( 'manage_options' );
+				'methods' => 'POST',
+				'callback' => [new Controller\SectionRepeaterController(), 'sendResponse'],
+				'permission_callback' => static function () {
+					return current_user_can('manage_options');
 				},
 			],
 		];
@@ -58,10 +62,10 @@ class Api {
 		$this->routes[] = [
 			'path' => 'repeater-field/select',
 			'args' => [
-				'methods'             => 'POST',
-				'callback'            => [ new Controller\SelectInputController(), 'send_response' ],
-				'permission_callback' => function () {
-					return current_user_can( 'manage_options' );
+				'methods' => 'POST',
+				'callback' => [new Controller\SelectInputController(), 'sendResponse'],
+				'permission_callback' => static function () {
+					return current_user_can('manage_options');
 				},
 			],
 		];
@@ -69,8 +73,8 @@ class Api {
 		$this->routes[] = [
 			'path' => 'check',
 			'args' => [
-				'methods'             => 'GET',
-				'callback'            => [ new Controller\CheckRestApiController(), 'send_response' ],
+				'methods' => 'GET',
+				'callback' => [new Controller\CheckRestApiController(), 'sendResponse'],
 				'permission_callback' => '__return_true',
 			],
 		];
@@ -80,31 +84,25 @@ class Api {
 	 * Registers rest api route.
 	 *
 	 * @action rest_api_init
-	 * @since 7.0.0
 	 * @return void
+	 * @since 7.0.0
 	 */
-	public function rest_api_init() {
-
-		foreach ( $this->routes as $route ) {
-			register_rest_route( $this->namespace, $route['path'], $route['args'] );
+	public function restApiInit()
+	{
+		foreach ($this->routes as $route) {
+			register_rest_route($this->namespace, $route['path'], $route['args']);
 		}
-
 	}
 
 	/**
 	 * Gets API endpoint
 	 *
-	 * @since 8.0.13
 	 * @param string $endpoint Endopint name.
 	 * @return string
+	 * @since 8.0.13
 	 */
-	public function get_endpoint( $endpoint ) {
-
-		return sprintf(
-			'%s/%s/',
-			$this->namespace,
-			untrailingslashit( $endpoint )
-		);
-
+	public function getEndpoint($endpoint)
+	{
+		return sprintf('%s/%s/', $this->namespace, untrailingslashit($endpoint));
 	}
 }

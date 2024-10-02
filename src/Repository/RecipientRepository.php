@@ -1,49 +1,56 @@
 <?php
+
 /**
- * Register defaults.
+ * Register Repository.
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Repository;
 
 use BracketSpace\Notification\Register;
-use BracketSpace\Notification\Defaults\Recipient;
+use BracketSpace\Notification\Defaults\Recipient\Webhook;
 
 /**
  * Recipient Repository.
  */
-class RecipientRepository {
-
+class RecipientRepository
+{
 	/**
 	 * Webhook recipient types.
 	 *
 	 * @var array<string,string>
 	 */
-	public static $webhook_recipient_types = [
-		'post'   => 'POST',
-		'get'    => 'GET',
-		'put'    => 'PUT',
+	public static $webhookRecipientTypes = [
+		'post' => 'POST',
+		'get' => 'GET',
+		'put' => 'PUT',
 		'delete' => 'DELETE',
-		'patch'  => 'PATCH',
+		'patch' => 'PATCH',
 	];
 
 	/**
 	 * @return void
 	 */
-	public static function register() {
-		Register::recipient( 'email', new Recipient\Email() );
-		Register::recipient( 'email', new Recipient\Administrator() );
-		Register::recipient( 'email', new Recipient\User() );
-		Register::recipient( 'email', new Recipient\UserID() );
-		Register::recipient( 'email', new Recipient\Role() );
+	public static function register()
+	{
+		Register::recipient('email', new Recipient\Email());
+		Register::recipient('email', new Recipient\Administrator());
+		Register::recipient('email', new Recipient\User());
+		Register::recipient('email', new Recipient\UserID());
+		Register::recipient('email', new Recipient\Role());
 
-		foreach ( self::$webhook_recipient_types as $type => $name ) {
-			$recipient = new Recipient\Webhook( $type, $name );
+		if (! apply_filters('notification/compat/webhook/register', true)) {
+			return;
+		}
 
-			Register::recipient( 'webhook', $recipient );
-			Register::recipient( 'webhook_json', $recipient );
+		foreach (self::$webhookRecipientTypes as $type => $name) {
+			$recipient = new Webhook($type, $name);
+
+			Register::recipient('webhook', $recipient);
+			Register::recipient('webhook_json', $recipient);
 		}
 	}
-
 }

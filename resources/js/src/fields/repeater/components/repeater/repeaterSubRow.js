@@ -1,9 +1,9 @@
-import Vue from "vue/dist/vue.js";
-import { fieldHandler } from "../../mixins/fieldHandler";
-import { inputsHandler } from "../../mixins/inputsHandler";
-import sortableHandle from "../../mixins/sortableHandle";
+import Vue from 'vue/dist/vue.js';
+import { fieldHandler } from '../../mixins/fieldHandler';
+import { inputsHandler } from '../../mixins/inputsHandler';
+import sortableHandle from '../../mixins/sortableHandle';
 
-Vue.component("repeater-sub-row", {
+Vue.component('repeater-sub-row', {
 	template: `<tr class="row"><td class="sub-handle"><span class="handle-index">{{keyIndex + 1}}</span></td>
 		<template v-for="( subfield, index ) in field">
 			<td :class="'subfield ' + subfield.name">
@@ -50,17 +50,17 @@ Vue.component("repeater-sub-row", {
 			</template>
 		<td class="trash" @click="removeSubfield(keyIndex)"></td>
 	</tr>`,
-	props: ["field", "type", "keyIndex", "row", "rowIndex", "subName"],
+	props: ['field', 'type', 'keyIndex', 'row', 'rowIndex', 'subName'],
 	mixins: [fieldHandler, inputsHandler],
 	mounted() {
 		this.sortable();
 	},
 	methods: {
 		removeSubfield(index) {
-			this.$emit("sub-field-removed", index);
+			this.$emit('sub-field-removed', index);
 		},
 		sortable() {
 			sortableHandle();
-		}
-	}
+		},
+	},
 });

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Whitelabel class
  * Removes unused plugin things
@@ -6,19 +7,25 @@
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Core;
+
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 
 /**
  * Whitelabel class
  */
-class Whitelabel {
+class Whitelabel
+{
+	use Casegnostic;
 
 	/**
 	 * If plugin is in whitelabel mode.
 	 *
 	 * @var bool
 	 */
-	protected static $is_whitelabeled = false;
+	protected static $isWhitelabeled = false;
 
 	/**
 	 * Removes defaults:
@@ -28,60 +35,82 @@ class Whitelabel {
 	 *
 	 * @return void
 	 */
-	public function remove_defaults() {
-		if ( ! self::is_whitelabeled() ) {
+	public function removeDefaults()
+	{
+		if (!self::isWhitelabeled()) {
 			return;
 		}
 
-		add_filter( 'notification/load/default/triggers', '__return_false' );
+		add_filter(
+			'notification/load/default/triggers',
+			'__return_false'
+		);
 	}
 
 	/**
 	 * Sets the plugin in white label mode.
 	 *
-	 * @since  8.0.0
-	 * @param  array<string,mixed> $args white label args.
+	 * @param array<string,mixed> $args white label args.
 	 * @return void
+	 * @since  8.0.0
 	 */
-	public static function enable( array $args = [] ) {
-		static::$is_whitelabeled = true;
+	public static function enable(array $args = [])
+	{
+		static::$isWhitelabeled = true;
 
 		// Upselling.
-		add_filter( 'notification/upselling', '__return_false' );
+		add_filter(
+			'notification/upselling',
+			'__return_false'
+		);
 
 		// Change Notification CPT page.
-		if ( isset( $args['page_hook'] ) && ! empty( $args['page_hook'] ) ) {
-			add_filter( 'notification/whitelabel/cpt/parent', function ( $hook ) use ( $args ) {
-				return $args['page_hook'];
-			} );
+		if (! empty($args['page_hook'])) {
+			add_filter(
+				'notification/whitelabel/cpt/parent',
+				static function ($hook) use ($args) {
+					return $args['page_hook'];
+				}
+			);
 		}
 
 		// Remove extensions.
-		if ( isset( $args['extensions'] ) && false === $args['extensions'] ) {
-			add_filter( 'notification/whitelabel/extensions', '__return_false' );
+		if (isset($args['extensions']) && $args['extensions'] === false) {
+			add_filter(
+				'notification/whitelabel/extensions',
+				'__return_false'
+			);
 		}
 
 		// Remove settings.
-		if ( isset( $args['settings'] ) && false === $args['settings'] ) {
-			add_filter( 'notification/whitelabel/settings', '__return_false' );
+		if (isset($args['settings']) && $args['settings'] === false) {
+			add_filter(
+				'notification/whitelabel/settings',
+				'__return_false'
+			);
 		}
 
 		// Settings access.
-		if ( isset( $args['settings_access'] ) ) {
-			add_filter( 'notification/whitelabel/settings/access', function ( $access ) use ( $args ) {
-				return (array) $args['settings_access'];
-			} );
+		if (!isset($args['settings_access'])) {
+			return;
 		}
+
+		add_filter(
+			'notification/whitelabel/settings/access',
+			static function ($access) use ($args) {
+				return (array)$args['settings_access'];
+			}
+		);
 	}
 
 	/**
 	 * Checks if the plugin is in white label mode.
 	 *
-	 * @since  8.0.0
 	 * @return bool
+	 * @since  8.0.0
 	 */
-	public static function is_whitelabeled() : bool {
-		return static::$is_whitelabeled;
+	public static function isWhitelabeled(): bool
+	{
+		return static::$isWhitelabeled;
 	}
-
 }

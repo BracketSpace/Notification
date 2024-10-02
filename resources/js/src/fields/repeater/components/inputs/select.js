@@ -1,9 +1,9 @@
 /* global jQuery, notification */
-import Vue from "vue/dist/vue.js";
-import { inputsHandler } from "../../mixins/inputsHandler";
-import { fieldHandler } from "../../mixins/fieldHandler";
+import Vue from 'vue/dist/vue.js';
+import { inputsHandler } from '../../mixins/inputsHandler';
+import { fieldHandler } from '../../mixins/fieldHandler';
 
-Vue.component("notification-select", {
+Vue.component('notification-select', {
 	template: `<select
 		:id="subfield.id"
 		:name="createFieldName(type, keyIndex, subfield) + '[' + subfield.name + ']'"
@@ -15,17 +15,17 @@ Vue.component("notification-select", {
 		</template>
 	</select>
 	`,
-	props: ["field", "type", "keyIndex", "subfield"],
+	props: ['field', 'type', 'keyIndex', 'subfield'],
 	mixins: [inputsHandler, fieldHandler],
 	data() {
 		return {
-			selectized: null
+			selectized: null,
 		};
 	},
 	mounted() {
 		this.initSelectize();
 		notification.hooks.doAction(
-			"notification.carrier.select.initialized",
+			'notification.carrier.select.initialized',
 			this
 		);
 	},
@@ -39,7 +39,7 @@ Vue.component("notification-select", {
 
 		this.initSelectize();
 		notification.hooks.doAction(
-			"notification.carrier.select.changed",
+			'notification.carrier.select.changed',
 			this
 		);
 	},
@@ -59,9 +59,9 @@ Vue.component("notification-select", {
 			}
 		},
 		initSelectize() {
-			if (this.$el.classList.contains("notification-pretty-select")) {
+			if (this.$el.classList.contains('notification-pretty-select')) {
 				this.selectized = jQuery(this.$el).selectize();
 			}
-		}
-	}
+		},
+	},
 });

@@ -1,54 +1,62 @@
 <?php
+
 /**
  * Synchronization
  *
  * @package notification
  */
 
+declare(strict_types=1);
+
 namespace BracketSpace\Notification\Core;
 
-use BracketSpace\Notification\Defaults\Adapter\WordPress;
+use BracketSpace\Notification\Dependencies\Micropackage\Casegnostic\Casegnostic;
 use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
+use BracketSpace\Notification\Database\NotificationDatabaseService as Db;
+use BracketSpace\Notification\Register;
 
 /**
  * Sync class
  */
-class Sync {
+class Sync
+{
+	use Casegnostic;
 
 	/**
 	 * Sync path
 	 *
 	 * @var string|null
 	 */
-	protected static $sync_path;
+	protected static $syncPath;
 
 	/**
 	 * Gets all Notifications from JSON files
 	 *
-	 * @since  6.0.0
 	 * @return array<int,string>
+	 * @since  6.0.0
 	 */
-	public static function get_all_json() {
-		if ( ! self::is_syncing() ) {
+	public static function getAllJson()
+	{
+		if (! self::isSyncing()) {
 			return [];
 		}
 
-		$fs = static::get_sync_fs();
+		$fs = static::getSyncFs();
 
 		$notifications = [];
 
-		if ( ! $fs ) {
+		if (!$fs) {
 			return $notifications;
 		}
 
-		foreach ( (array) $fs->dirlist( '/' ) as $filename => $file ) {
-			if ( 1 !== preg_match( '/.*\.json/', $filename ) ) {
+		foreach ((array)$fs->dirlist('/') as $filename => $file) {
+			if (preg_match('/.*\.json/', (string)$filename) !== 1) {
 				continue;
 			}
 
-			$json = $fs->get_contents( $filename );
+			$json = $fs->get_contents((string)$filename);
 
-			if ( empty( $json ) ) {
+			if (empty($json)) {
 				continue;
 			}
 
@@ -63,29 +71,25 @@ class Sync {
 	 *
 	 * @action notification/init 100
 	 *
-	 * @since  6.0.0
 	 * @return void
+	 * @since  6.0.0
 	 */
-	public function load_local_json() {
-		if ( ! self::is_syncing() ) {
+	public function loadLocalJson()
+	{
+		if (!self::isSyncing()) {
 			return;
 		}
 
-		$notifications = self::get_all_json();
+		$notifications = self::getAllJson();
 
-		foreach ( $notifications as $json ) {
+		foreach ($notifications as $json) {
 			try {
-				/**
-				 * JSON Adapter
-				 *
-				 * @var \BracketSpace\Notification\Defaults\Adapter\JSON
-				 */
-				$adapter = notification_adapt_from( 'JSON', $json );
+				$notification = Notification::from('json', $json);
 
-				if ( $adapter->is_enabled() ) {
-					$adapter->register_notification();
+				if ($notification->isEnabled()) {
+					Register::notificationIfNewer($notification);
 				}
-			} catch ( \Exception $e ) {
+			} catch (\Throwable $e) {
 				// Do nothing.
 				return;
 			}
@@ -95,27 +99,27 @@ class Sync {
 	/**
 	 * Saves local JSON file
 	 *
-	 * @action notification/data/save/after
+	 * @action notification/data/saved
 	 *
 	 * @since  6.0.0
-	 * @param  WordPress $wp_adapter WordPress adapter.
+	 * @param Notification $notification Notification.
 	 * @return void
 	 */
-	public static function save_local_json( $wp_adapter ) {
-		if ( ! self::is_syncing() ) {
+	public static function saveLocalJson($notification)
+	{
+		if (!self::isSyncing()) {
 			return;
 		}
 
-		$fs = static::get_sync_fs();
+		$fs = static::getSyncFs();
 
-		if ( ! $fs ) {
+		if (!$fs) {
 			return;
 		}
 
-		$file = $wp_adapter->get_hash() . '.json';
-		$json = notification_swap_adapter( 'JSON', $wp_adapter )->save();
+		$file = $notification->getHash() . '.json';
 
-		$fs->put_contents( $file, $json );
+		$fs->put_contents($file, $notification->to('json'));
 	}
 
 	/**
@@ -123,107 +127,127 @@ class Sync {
 	 *
 	 * @action delete_post
 	 *
-	 * @since  6.0.0
-	 * @param  integer $post_id Deleted Post ID.
+	 * @param int $postId Deleted Post ID.
 	 * @return void
+	 * @since  6.0.0
 	 */
-	public function delete_local_json( $post_id ) {
-		if ( ! self::is_syncing() || 'notification' !== get_post_type( $post_id ) ) {
+	public function deleteLocalJson($postId)
+	{
+		if (!self::isSyncing() || get_post_type($postId) !== 'notification') {
 			return;
 		}
 
-		$fs = static::get_sync_fs();
+		$fs = static::getSyncFs();
 
-		if ( ! $fs ) {
+		if (!$fs) {
 			return;
 		}
 
-		$adapter = notification_adapt_from( 'WordPress', $post_id );
-		$file    = $adapter->get_hash() . '.json';
+		$notification = Db::postToNotification($postId);
 
-		if ( $fs->exists( $file ) ) {
-			$fs->delete( $file );
+		if (! $notification instanceof Notification) {
+			return;
 		}
+
+		$file = $notification->getHash() . '.json';
+
+		if (!$fs->exists($file)) {
+			return;
+		}
+
+		$fs->delete($file);
 	}
 
 	/**
 	 * Enables the notification syncing
-	 * By default path used is current theme's `notifiations` dir.
+	 * By default path used is current theme's `notifications` dir.
 	 *
-	 * @since  8.0.0
-	 * @throws \Exception If provided path is not a directory.
-	 * @param  string $path full json directory path or null to use default.
+	 * @param string $path full json directory path or null to use default.
 	 * @return void
+	 * @throws \Exception If provided path is not a directory.
+	 * @since  8.0.0
 	 */
-	public static function enable( string $path = null ) {
-		if ( ! $path ) {
-			$path = trailingslashit( get_stylesheet_directory() ) . 'notifications';
+	//phpcs:ignore SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue.NullabilitySymbolRequired
+	public static function enable(string $path = null)
+	{
+		if (! $path) {
+			$path = trailingslashit(get_stylesheet_directory()) . 'notifications';
 		}
 
-		if ( self::is_syncing() ) {
-			throw new \Exception( sprintf( 'Synchronization has been already enabled and it\'s syncing to: %s', self::get_sync_path() ) );
+		if (self::isSyncing()) {
+			throw new \Exception(
+				sprintf(
+					'Synchronization has been already enabled and it\'s syncing to: %s',
+					self::getSyncPath()
+				)
+			);
 		}
 
-		static::$sync_path = $path;
+		static::$syncPath = $path;
 
-		$fs = static::get_sync_fs();
+		$fs = static::getSyncFs();
 
-		if ( ! $fs ) {
+		if (! $fs) {
 			return;
 		}
 
-		if ( ! $fs->exists( '' ) || ! $fs->is_dir( '' ) ) {
-			$fs->mkdir( '' );
+		if (! $fs->exists('') || ! $fs->is_dir('')) {
+			$fs->mkdir('');
 		}
 
-		if ( ! $fs->exists( 'index.php' ) ) {
-			$fs->touch( 'index.php' );
-			$fs->put_contents( 'index.php', '<?php' . "\r\n" . '// Keep this file here.' . "\r\n" );
+		if ($fs->exists('index.php')) {
+			return;
 		}
+
+		$fs->touch('index.php');
+		$fs->put_contents('index.php', '<?php' . "\r\n" . '// Keep this file here.' . "\r\n");
 	}
 
 	/**
 	 * Disables the synchronization.
 	 *
-	 * @since  8.0.0
 	 * @return void
+	 * @since  8.0.0
 	 */
-	public static function disable() {
-		static::$sync_path = null;
+	public static function disable()
+	{
+		static::$syncPath = null;
 	}
 
 	/**
 	 * Gets the synchronization path.
 	 *
-	 * @since  8.0.0
 	 * @return string|null
+	 * @since  8.0.0
 	 */
-	public static function get_sync_path() {
-		return static::$sync_path;
+	public static function getSyncPath()
+	{
+		return static::$syncPath;
 	}
 
 	/**
 	 * Gets the sync dir filesystem.
 	 *
+	 * @return \BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem|null
 	 * @since  8.0.2
-	 * @return Filesystem|null
 	 */
-	public static function get_sync_fs() {
-		if ( ! static::is_syncing() ) {
+	public static function getSyncFs()
+	{
+		if (! static::isSyncing()) {
 			return null;
 		}
 
-		return new Filesystem( (string) static::get_sync_path() );
+		return new Filesystem((string)static::getSyncPath());
 	}
 
 	/**
 	 * Gets the synchronization path.
 	 *
-	 * @since  8.0.0
 	 * @return bool
+	 * @since  8.0.0
 	 */
-	public static function is_syncing() : bool {
-		return null !== static::$sync_path;
+	public static function isSyncing(): bool
+	{
+		return static::$syncPath !== null;
 	}
-
 }

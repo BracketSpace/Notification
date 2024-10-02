@@ -1,45 +1,45 @@
 <?php
+
 /**
  * Binds the Trigger actions
  *
  * @package notification
  */
 
-namespace BracketSpace\Notification\Core;
+declare(strict_types=1);
 
-use BracketSpace\Notification\Interfaces\Triggerable;
+namespace BracketSpace\Notification\Core;
 
 /**
  * Binder class
  */
-class Binder {
-
+class Binder
+{
 	/**
 	 * Binds the trigger registered actions
 	 *
 	 * @action notification/trigger/registered 100
 	 *
-	 * @since 8.0.0
-	 * @param Triggerable[]|Triggerable $triggers Array of Triggers or single Trigger.
+	 * @param array<\BracketSpace\Notification\Interfaces\Triggerable> $triggers Array of Triggers or single Trigger.
 	 * @return void
+	 * @since 8.0.0
 	 */
-	public static function bind( $triggers ) {
-
-		if ( ! is_array( $triggers ) ) {
-			$triggers = [ $triggers ];
+	public static function bind($triggers)
+	{
+		if (!is_array($triggers)) {
+			$triggers = [$triggers];
 		}
 
-		foreach ( $triggers as $trigger ) {
-			foreach ( $trigger->get_actions() as $action ) {
+		foreach ($triggers as $trigger) {
+			\assert($trigger instanceof \BracketSpace\Notification\Interfaces\Triggerable);
+			foreach ($trigger->getActions() as $action) {
 				add_action(
 					$action['tag'],
-					[ new Runner( $trigger ), 'run' ],
+					[new Runner($trigger), 'run'],
 					$action['priority'],
 					$action['accepted_args']
 				);
 			}
 		}
-
 	}
-
 }

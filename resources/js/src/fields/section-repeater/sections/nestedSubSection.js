@@ -1,8 +1,8 @@
-import Vue from "vue/dist/vue.js";
-import { sectionsModal } from "../mixins/sectionsModal";
-import { sectionsHandler } from "../mixins/sectionsHandler";
+import Vue from 'vue/dist/vue.js';
+import { sectionsModal } from '../mixins/sectionsModal';
+import { sectionsHandler } from '../mixins/sectionsHandler';
 
-Vue.component("nested-sub-section", {
+Vue.component('nested-sub-section', {
 	template: `<td class="nested-section-repeater">
 		<template v-for="(row, index) in rows">
 			<section-sub-row
@@ -34,13 +34,13 @@ Vue.component("nested-sub-section", {
 	</td>
 	`,
 	props: [
-		"row",
-		"type",
-		"rowIndex",
-		"parentField",
-		"subFieldValues",
-		"baseFields",
-		"sectionSubRows"
+		'row',
+		'type',
+		'rowIndex',
+		'parentField',
+		'subFieldValues',
+		'baseFields',
+		'sectionSubRows',
 	],
 	mixins: [sectionsModal, sectionsHandler],
 	data() {
@@ -50,7 +50,7 @@ Vue.component("nested-sub-section", {
 			rows: [],
 			rowCount: 0,
 			subSections: [],
-			emptyModal: false
+			emptyModal: false,
 		};
 	},
 	mounted() {
@@ -66,7 +66,7 @@ Vue.component("nested-sub-section", {
 			const sectionValues = allValues[this.rowIndex];
 
 			if (sectionValues) {
-				sectionValues.forEach(value => {
+				sectionValues.forEach((value) => {
 					const field = Object.keys(value)[0];
 					const fieldValue = Object.assign({}, value[field]);
 
@@ -87,7 +87,7 @@ Vue.component("nested-sub-section", {
 
 			const sectionName = section.name || section.label;
 
-			const forbidenSection = this.rows.filter(rowSection => {
+			const forbiddenSection = this.rows.filter((rowSection) => {
 				const addedSection = rowSection.name || rowSection.label;
 
 				if (sectionName === addedSection) {
@@ -97,13 +97,13 @@ Vue.component("nested-sub-section", {
 				return section.special && rowSection.special ? true : false;
 			});
 
-			return 0 < forbidenSection.length ? false : true;
+			return 0 < forbiddenSection.length ? false : true;
 		},
 		testModal() {
-			const modal = this.$el.querySelector(".section-modal");
+			const modal = this.$el.querySelector('.section-modal');
 			let isEmpty = false;
 
-			const modalSections = [...modal.childNodes].filter(node => {
+			const modalSections = [...modal.childNodes].filter((node) => {
 				return node.classList;
 			});
 
@@ -115,6 +115,6 @@ Vue.component("nested-sub-section", {
 		},
 		addSubSection(section) {
 			this.createSubSection(section);
-		}
-	}
+		},
+	},
 });

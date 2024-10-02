@@ -5,28 +5,28 @@
 	}
 
 	.image {
-		position: relative;
 		display: none;
+		position: relative;
 
 		.clear {
-			position: absolute;
-			top: -9px;
-			right: -9px;
-			border: 1px solid #fff;
-			font-size: 26px;
-			height: 26px;
-			width: 28px;
 			background: #fff;
+			border: 1px solid #fff;
 			border-radius: 50%;
 			cursor: pointer;
+			font-size: 26px;
+			height: 26px;
+			position: absolute;
+			right: -9px;
+			top: -9px;
+			width: 28px;
 		}
 
 		.preview {
 			border: 1px solid #e5e5e5;
 			border-radius: 5px;
-			max-width: 200px;
-			height: auto;
 			cursor: pointer;
+			height: auto;
+			max-width: 200px;
 		}
 
 	}

@@ -1,9 +1,12 @@
 <?php
+
 /**
  * Storage trait
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Traits;
 
@@ -11,103 +14,108 @@ use BracketSpace\Notification\ErrorHandler;
 
 /**
  * Storage trait
+ *
+ * @template TItem
  */
-trait Storage {
-
+trait Storage
+{
 	/**
 	 * Stored items
 	 *
-	 * @var array<mixed>
+	 * @var array<TItem>
 	 */
-	private static $items = [];
+	protected static $items = [];
 
 	/**
 	 * Adds an item to the Store
 	 *
-	 * @since  8.0.0
-	 * @param  mixed $item Item to add.
+	 * @param TItem $item Item to add.
 	 * @return void
+	 * @since  8.0.0
 	 */
-	public static function add( $item ) {
+	public static function add($item)
+	{
 		static::$items[] = $item;
 	}
 
 	/**
-	 * Inserts an item at a specifc index.
+	 * Inserts an item at a specific index.
 	 *
-	 * @since  8.0.0
-	 * @param  int|string $index Item index.
-	 * @param  mixed      $item  Item to add.
+	 * @since 8.0.0
+	 * @since 9.0.0 Has third `$replace` param
+	 * @param int|string $index Item index.
+	 * @param TItem $item Item to add.
+	 * @param bool $replace If should be replaced if exists, default: false.
 	 * @return void
 	 */
-	public static function insert( $index, $item ) {
-		if ( static::has( $index ) ) {
+	public static function insert($index, $item, $replace = false)
+	{
+		if (static::has($index) && $replace === false) {
 			ErrorHandler::error(
-				sprintf(
-					'Item at index %s in %s Store already exists.',
-					$index,
-					__CLASS__
-				)
+				sprintf('Item at index %s in %s Store already exists.', $index, self::class)
 			);
 
 			return;
 		}
 
-		static::$items[ $index ] = $item;
+		static::$items[$index] = $item;
 	}
 
 	/**
 	 * Gets all items
 	 *
+	 * @return array<TItem>
 	 * @since  8.0.0
-	 * @return array<mixed>
 	 */
-	public static function all() : array {
+	public static function all(): array
+	{
 		return static::$items;
 	}
 
 	/**
 	 * Removes all items from the store
 	 *
-	 * @since  8.0.0
 	 * @return void
+	 * @since  8.0.0
 	 */
-	public static function clear() {
+	public static function clear()
+	{
 		static::$items = [];
 	}
 
 	/**
 	 * Get item by index
 	 *
+	 * @param mixed $index Intex of an item.
+	 * @return TItem|null
 	 * @since  8.0.0
-	 * @param  mixed $index Intex of an item.
-	 * @return mixed
 	 */
-	public static function get( $index ) {
-		if ( ! static::has( $index ) ) {
+	public static function get($index)
+	{
+		if (!static::has($index)) {
 			ErrorHandler::error(
 				sprintf(
 					'Item %s in %s Store doesn\'t exists.',
 					$index,
-					__CLASS__
+					self::class
 				)
 			);
 
-			return;
+			return null;
 		}
 
-		return static::$items[ $index ];
+		return static::$items[$index];
 	}
 
 	/**
 	 * Checks if the Storage has item
 	 *
-	 * @since  8.0.0
-	 * @param  mixed $index Intex of an item.
+	 * @param mixed $index Intex of an item.
 	 * @return bool
+	 * @since  8.0.0
 	 */
-	public static function has( $index ) : bool {
-		return array_key_exists( $index, static::$items );
+	public static function has($index): bool
+	{
+		return array_key_exists($index, static::$items);
 	}
-
 }

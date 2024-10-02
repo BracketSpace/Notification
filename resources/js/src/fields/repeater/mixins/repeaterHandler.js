@@ -4,11 +4,11 @@ export const repeaterHandler = {
 			fields: [],
 			values: this.nestedValues[this.rowIndex],
 			subModel: [],
-			subRowName: null
+			subRowName: null,
 		};
 	},
 	mounted() {
-		this.$emit("add-nested-field");
+		this.$emit('add-nested-field');
 		this.addSubFieldRows();
 		this.addFieldValues();
 	},
@@ -16,7 +16,7 @@ export const repeaterHandler = {
 		addNestedSubField(e) {
 			e.preventDefault();
 			this.addField();
-			this.$emit("add-nested-field");
+			this.$emit('add-nested-field');
 		},
 		removeSubField(index) {
 			this.removeField(index, this.fields);
@@ -26,6 +26,6 @@ export const repeaterHandler = {
 				this.rowCount = this.values.length;
 				this.addFields(this.rowCount, this.model);
 			}
-		}
-	}
+		},
+	},
 };

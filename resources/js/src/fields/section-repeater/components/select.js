@@ -1,10 +1,10 @@
 /* global jQuery, notification */
-import Vue from "vue/dist/vue.js";
-import { inputsHandler } from "../../repeater/mixins/inputsHandler";
-import { fieldHandler } from "../../repeater/mixins/fieldHandler";
-import { inputNameHandler } from "../mixins/inputNameHandler";
+import Vue from 'vue/dist/vue.js';
+import { inputsHandler } from '../../repeater/mixins/inputsHandler';
+import { fieldHandler } from '../../repeater/mixins/fieldHandler';
+import { inputNameHandler } from '../mixins/inputNameHandler';
 
-Vue.component("notification-section-select", {
+Vue.component('notification-section-select', {
 	template: `<select
 		:id="subfield.id"
 		:name="inputName"
@@ -17,18 +17,18 @@ Vue.component("notification-section-select", {
 	</select>
 	`,
 	props: [
-		"field",
-		"type",
-		"keyIndex",
-		"subfield",
-		"sectionName",
-		"inputType",
-		"parentField"
+		'field',
+		'type',
+		'keyIndex',
+		'subfield',
+		'sectionName',
+		'inputType',
+		'parentField',
 	],
 	mixins: [inputsHandler, fieldHandler, inputNameHandler],
 	data() {
 		return {
-			selectized: null
+			selectized: null,
 		};
 	},
 	mounted() {
@@ -44,7 +44,7 @@ Vue.component("notification-section-select", {
 
 		this.initSelectize();
 		notification.hooks.doAction(
-			"notification.carrier.select.changed",
+			'notification.carrier.select.changed',
 			this
 		);
 	},
@@ -59,11 +59,11 @@ Vue.component("notification-section-select", {
 				this.subfield
 			);
 			const fieldName = `[${this.parentFieldName}][${this.keyIndex}]`;
-			if ("repeater" === this.inputType) {
+			if ('repeater' === this.inputType) {
 				return `${baseFieldName}${fieldName.toLowerCase()}[${this.sectionName.toLowerCase()}][${this.subfield.name.toLowerCase()}]`;
 			}
 			return `${baseFieldName}${fieldName.toLowerCase()}[${this.subfield.name.toLowerCase()}]`;
-		}
+		},
 	},
 	methods: {
 		selectUpdate(subfield, field, $event) {
@@ -78,9 +78,9 @@ Vue.component("notification-section-select", {
 			}
 		},
 		initSelectize() {
-			if (this.$el.classList.contains("notification-pretty-select")) {
+			if (this.$el.classList.contains('notification-pretty-select')) {
 				this.selectized = jQuery(this.$el).selectize();
 			}
-		}
-	}
+		},
+	},
 });

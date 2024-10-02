@@ -1,10 +1,13 @@
 <?php
+
 /**
  * Runner class
  * Responsible for running Triggers and executing Carriers.
  *
  * @package notification
  */
+
+declare(strict_types=1);
 
 namespace BracketSpace\Notification\Core;
 
@@ -15,12 +18,12 @@ use BracketSpace\Notification\Interfaces\Triggerable;
 /**
  * Runner class
  */
-class Runner {
-
+class Runner
+{
 	/**
 	 * Trigger instance
 	 *
-	 * @var Triggerable
+	 * @var \BracketSpace\Notification\Interfaces\Triggerable
 	 */
 	protected $trigger;
 
@@ -34,17 +37,18 @@ class Runner {
 	/**
 	 * Storage for Trigger's Notifications
 	 *
-	 * @var CoreNotification[]
+	 * @var array<\BracketSpace\Notification\Core\Notification>
 	 */
 	protected $notifications = [];
 
 	/**
 	 * Constructor
 	 *
+	 * @param \BracketSpace\Notification\Interfaces\Triggerable $trigger Trigger in subject.
 	 * @since 8.0.0
-	 * @param Triggerable $trigger Trigger in subject.
 	 */
-	final public function __construct( Triggerable $trigger ) {
+	final public function __construct(Triggerable $trigger)
+	{
 		$this->trigger = $trigger;
 	}
 
@@ -54,58 +58,63 @@ class Runner {
 	 * Adds the specific Carrier and corresponding Trigger
 	 * to the Queue for later execution.
 	 *
-	 * @since  8.0.0
-	 * @param  mixed[] ...$context Callback args setting context.
+	 * @param array<mixed> ...$context Callback args setting context.
 	 * @return void
+	 * @since  8.0.0
 	 */
-	public function run( ...$context ) {
-
-		$this->set_notifications();
+	public function run(...$context)
+	{
+		$this->setNotifications();
 
 		// If no Notifications use the Trigger, bail.
-		if ( ! $this->has_notifications() ) {
+		if (!$this->hasNotifications()) {
 			return;
 		}
 
-		$trigger = $this->get_trigger();
+		$trigger = $this->getTrigger();
 
 		// Setup the Trigger context.
-		if ( method_exists( $trigger, 'action' ) ) {
-			$result = call_user_func_array( [ $trigger, 'action' ], $context );
-
-			$class = get_class( $trigger );
-			_deprecated_function(
-				sprintf( '%s::action()', esc_html( $class ) ),
-				'8.0.0',
-				sprintf( '%s::context()', esc_html( $class ) )
+		if (method_exists($trigger, 'action')) {
+			$result = call_user_func_array(
+				[$trigger, 'action'],
+				$context
 			);
-		} elseif ( method_exists( $trigger, 'context' ) ) {
-			$result = call_user_func_array( [ $trigger, 'context' ], $context );
+
+			$class = get_class($trigger);
+			_deprecated_function(
+				sprintf('%s::action()', esc_html($class)),
+				'8.0.0',
+				sprintf('%s::context()', esc_html($class))
+			);
+		} elseif (method_exists($trigger, 'context')) {
+			$result = call_user_func_array(
+				[$trigger, 'context'],
+				$context
+			);
 		} else {
 			$result = null;
 		}
 
-		if ( false === $result ) {
+		if ($result === false) {
 			$trigger->stop();
 		}
 
-		do_action( 'notification/trigger/action/did', $trigger, current_action() );
+		do_action('notification/trigger/action/did', $trigger, current_action());
 
-		if ( $trigger->is_stopped() ) {
+		if ($trigger->isStopped()) {
 			return;
 		}
 
 		// Setup notifications and prepare the carriers.
-		foreach ( $this->get_notifications() as $notification ) {
+		foreach ($this->getNotifications() as $notification) {
 			/**
 			 * If an item already exists in the queue, we are replacing it with the new version.
 			 * This doesn't prevents the duplicates coming from two separate requests.
 			 */
-			Queue::add_replace( $notification, $trigger );
+			Queue::addReplace($notification, $trigger);
 
-			do_action( 'notification/processed', $notification );
+			do_action('notification/processed', $notification);
 		}
-
 	}
 
 	/**
@@ -113,27 +122,34 @@ class Runner {
 	 *
 	 * @return void
 	 */
-	public function set_notifications() {
-		foreach ( NotificationStore::with_trigger( $this->trigger->get_slug() ) as $notification ) {
-			$this->attach_notification( $notification );
+	public function setNotifications()
+	{
+		foreach (NotificationStore::withTrigger($this->trigger->getSlug()) as $notification) {
+			if (!$notification->isEnabled()) {
+				continue;
+			}
+
+			$this->attachNotification($notification);
 		}
 	}
 
 	/**
 	 * Gets attached Notifications
 	 *
-	 * @return CoreNotification[]
+	 * @return array<\BracketSpace\Notification\Core\Notification>
 	 */
-	public function get_notifications() {
+	public function getNotifications()
+	{
 		return $this->notifications;
 	}
 
 	/**
 	 * Gets the copy of attached Trigger.
 	 *
-	 * @return Triggerable
+	 * @return \BracketSpace\Notification\Interfaces\Triggerable
 	 */
-	public function get_trigger() {
+	public function getTrigger()
+	{
 		return clone $this->trigger;
 	}
 
@@ -142,30 +158,35 @@ class Runner {
 	 *
 	 * @return bool
 	 */
-	public function has_notifications() {
-		return $this->get_notifications() !== [];
+	public function hasNotifications()
+	{
+		return $this->getNotifications() !== [];
 	}
 
 	/**
 	 * Attaches the Notification
 	 *
-	 * @param  CoreNotification $notification Notification class.
+	 * @param \BracketSpace\Notification\Core\Notification $notification Notification class.
 	 * @return void
 	 */
-	public function attach_notification( CoreNotification $notification ) {
-		$this->notifications[ $notification->get_hash() ] = clone $notification;
+	public function attachNotification(CoreNotification $notification)
+	{
+		$this->notifications[$notification->getHash()] = clone $notification;
 	}
 
 	/**
 	 * Detaches the Notification
 	 *
-	 * @param  CoreNotification $notification Notification class.
+	 * @param \BracketSpace\Notification\Core\Notification $notification Notification class.
 	 * @return void
 	 */
-	public function detach_notification( CoreNotification $notification ) {
-		if ( isset( $this->notifications[ $notification->get_hash() ] ) ) {
-			unset( $this->notifications[ $notification->get_hash() ] );
+	public function detachNotification(CoreNotification $notification)
+	{
+		if (!isset($this->notifications[$notification->getHash()])) {
+			return;
 		}
+
+		unset($this->notifications[$notification->getHash()]);
 	}
 
 	/**
@@ -173,9 +194,9 @@ class Runner {
 	 *
 	 * @return $this
 	 */
-	public function detach_all_notifications() {
+	public function detachAllNotifications()
+	{
 		$this->notifications = [];
 		return $this;
 	}
-
 }

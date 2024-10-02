@@ -5,8 +5,8 @@
 #notification_merge_tags .inside { /* stylelint-disable-line */
 
 	.notification-search-merge-tags {
-		margin-top: 10px;
 		margin-bottom: 20px;
+		margin-top: 10px;
 	}
 
 	h2 {
@@ -14,28 +14,28 @@
 		padding: 0;
 
 		a {
-			position: relative;
-			display: block;
-			padding: 12px 0;
 			border-bottom: 1px solid rgba(229, 229, 229, 0.6);
-			font-weight: 600;
-			text-transform: uppercase;
 			color: #636363;
-			text-decoration: none;
+			display: block;
+			font-weight: 600;
 			max-width: 100%;
-			text-overflow: ellipsis;
 			overflow: hidden;
+			padding: 12px 0;
+			position: relative;
+			text-decoration: none;
+			text-overflow: ellipsis;
+			text-transform: uppercase;
 
 			&::after {
-				content: "";
-				position: absolute;
-				top: 20px;
-				right: 10px;
-				width: 0;
-				height: 0;
 				border-left: 5px solid transparent;
 				border-right: 5px solid transparent;
 				border-top: 5px solid #636363;
+				content: "";
+				height: 0;
+				position: absolute;
+				right: 10px;
+				top: 20px;
+				width: 0;
 			}
 		}
 	}
@@ -44,9 +44,9 @@
 
 		li {
 
+			margin-bottom: 20px;
 			position: relative;
 			width: 100%;
-			margin-bottom: 20px;
 
 			.intro {
 				width: calc(100% - 30px);
@@ -56,66 +56,65 @@
 					font-weight: 600;
 					margin-bottom: 5px;
 					max-width: 100%;
-					text-overflow: ellipsis;
 					overflow: hidden;
+					text-overflow: ellipsis;
 				}
 
 				code {
-					display: inline-block;
-					cursor: pointer;
-					word-wrap: nowrap;
-					max-width: 100%;
-					text-overflow: ellipsis;
-					overflow: hidden;
 					box-sizing: border-box;
+					cursor: pointer;
+					display: inline-block;
+					max-width: 100%;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					word-wrap: nowrap;
 				}
 			}
 
-
 			.question-mark {
-				font-size: 14px;
-				position: absolute;
-				float: right;
-				right: 0;
-				top: 10px;
-				border-radius: 50%;
 				background-color: #888;
+				border-radius: 50%;
 				color: #fff;
-				width: 20px;
-				height: 20px;
-				text-align: center;
-				line-height: 20px;
 				cursor: pointer;
+				float: right;
+				font-size: 14px;
+				height: 20px;
+				line-height: 20px;
+				position: absolute;
+				right: 0;
+				text-align: center;
+				top: 10px;
+				width: 20px;
 
 				.description {
-					position: absolute;
-					visibility: hidden;
 					box-shadow: 0 0 8px #eaeaea;
-					right: -3px;
-					top: 160%;
-					z-index: 15;
 					min-width: 200px;
+					position: absolute;
+					right: -3px;
 					text-align: left;
+					top: 160%;
+					visibility: hidden;
+					z-index: 15;
 
 					.description-container {
-						border: 1px solid #e5e5e5;
 						background: #fff;
+						border: 1px solid #e5e5e5;
 						color: #333;
-						padding: 10px;
 						font-size: 12px;
 						line-height: 16px;
+						padding: 10px;
 						position: relative;
 
 						&::after,
 						&::before {
-							bottom: 100%;
-							right: 0;
 							border: solid transparent;
+							bottom: 100%;
 							content: " ";
 							height: 0;
-							width: 0;
-							position: absolute;
 							pointer-events: none;
+							position: absolute;
+							right: 0;
+							width: 0;
 							z-index: 18;
 						}
 
@@ -165,8 +164,8 @@ body.post-type-notification {
 			padding: 0;
 
 			.misc-pub-section {
-				padding: 10px;
 				overflow: auto;
+				padding: 10px;
 
 				.row-label {
 					float: left;
