@@ -59,12 +59,6 @@ How easy extending the Notification plugin is? Let's see:
 
 [See the developer documentation](https://docs.bracketspace.com/notification/developer/general) if you don't believe us.
 
-= DEFAULT CARRIERS =
-
-* Email
-* Webhook
-* Webhook JSON
-
 = DEFAULT RECIPIENTS =
 
 The plugin comes with few registered by default recipient types for Email Carrier:
@@ -173,6 +167,7 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 
 = AWESOME EXTENSIONS =
 
+* [Webhooks](https://bracketspace.com/downloads/notification-webhooks/) - send and receive Webhooks
 * [Conditionals](https://bracketspace.com/downloads/notification-conditionals/) - send Notifications in certain conditions
 * [Custom Fields](https://bracketspace.com/downloads/notification-custom-fields/) - use any meta value in your Notifications
 * [Slack](https://bracketspace.com/downloads/notification-slack/) - post messages to Slack channel
