@@ -220,7 +220,10 @@ class NotificationDatabaseService
 				'ID' => $post === null ? 0 : $post->ID,
 				'post_title' => $notification->getTitle(),
 				'post_name' => $notification->getHash(),
-				'post_content' => '',
+				/**
+				 * @todo Remove backward compatibility content save.
+				 */
+				'post_content' => $notification->to('json'),
 				'post_status' => $notification->isEnabled() ? 'publish' : 'draft',
 				'post_type' => 'notification',
 			]

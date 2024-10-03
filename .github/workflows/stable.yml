@@ -101,7 +101,7 @@ jobs:
           name: ${{ steps.vars.outputs.package-name }}
           path: .
       - name: Release
-        uses: softprops/action-gh-release@v4
+        uses: softprops/action-gh-release@v2
         with:
           body_path: changelog.txt
           files: ${{ steps.vars.outputs.package-name }}.zip

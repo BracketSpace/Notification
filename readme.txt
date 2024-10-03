@@ -2,8 +2,8 @@
 Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
-Tested up to: 6.2
-Stable tag: 9.0.0
+Tested up to: 6.6
+Stable tag: 9.0.1
 Requires PHP: 7.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -58,12 +58,6 @@ How easy extending the Notification plugin is? Let's see:
 * Creating new Extension - we have a [Boilerplate](https://github.com/BracketSpace/Notification-Extension-Boilerplate/) ready for you to start hacking
 
 [See the developer documentation](https://docs.bracketspace.com/notification/developer/general) if you don't believe us.
-
-= DEFAULT CARRIERS =
-
-* Email
-* Webhook
-* Webhook JSON
 
 = DEFAULT RECIPIENTS =
 
@@ -173,6 +167,7 @@ Along the Trigger specific Merge Tags, you can use the below anywhere:
 
 = AWESOME EXTENSIONS =
 
+* [Webhooks](https://bracketspace.com/downloads/notification-webhooks/) - send and receive Webhooks
 * [Conditionals](https://bracketspace.com/downloads/notification-conditionals/) - send Notifications in certain conditions
 * [Custom Fields](https://bracketspace.com/downloads/notification-custom-fields/) - use any meta value in your Notifications
 * [Slack](https://bracketspace.com/downloads/notification-slack/) - post messages to Slack channel
@@ -301,6 +296,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 7. Default email disabler
 
 == Changelog ==
+
+= 9.0.1 =
+* [Changed] Notification data is now kept in the wp_posts table for easier reverting to previous version.
 
 = 9.0.0 =
 
