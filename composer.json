@@ -6,7 +6,7 @@
 	"require": {
 		"php": "^7.4 | ^8.0",
 		"composer-runtime-api": "^2.0",
-		"brianhenryie/strauss": "^0.19.1",
+		"brianhenryie/strauss": "^0.19.4",
 		"enshrined/svg-sanitize": "^0.16.0",
 		"micropackage/ajax": "^1.0",
 		"micropackage/cache": "^1.0",
@@ -63,7 +63,7 @@
 			"classmap_prefix": "BracketSpace_Notification_Dependencies_",
 			"exclude_from_prefix": {
 				"file_patterns": [
-					"compat/src-deprecated/helpers.php"
+					"#compat\/src-deprecated\/helpers.php#"
 				]
 			}
 		}
