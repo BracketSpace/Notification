@@ -101,8 +101,8 @@ class CommentReplied extends CommentTrigger
 		$this->parentCommentUserObject = new \StdClass();
 		$this->parentCommentUserObject->ID = ($this->parentComment->user_id)
 			? ($this->parentComment->user_id) : 0;
-		$this->parentCommentUserObject->displayName = $this->parentComment->comment_author;
-		$this->parentCommentUserObject->userEmail = $this->parentComment->comment_author_email;
+		$this->parentCommentUserObject->display_name = $this->parentComment->comment_author;
+		$this->parentCommentUserObject->user_email = $this->parentComment->comment_author_email;
 
 		parent::assignProperties();
 	}

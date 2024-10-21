@@ -110,8 +110,8 @@ abstract class CommentTrigger extends BaseTrigger
 		$this->userObject = new \StdClass();
 		$this->userObject->ID = ($this->comment->user_id)
 			? ($this->comment->user_id) : 0;
-		$this->userObject->displayName = $this->comment->comment_author;
-		$this->userObject->userEmail = $this->comment->comment_author_email;
+		$this->userObject->display_name = $this->comment->comment_author;
+		$this->userObject->user_email = $this->comment->comment_author_email;
 
 		$this->post = get_post((int)$this->comment->comment_post_ID);
 
