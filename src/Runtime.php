@@ -121,7 +121,7 @@ class Runtime
 			return;
 		}
 
-		\WP_CLI::addCommand('notification dump-hooks', Cli\DumpHooks::class);
+		\WP_CLI::add_command('notification dump-hooks', Cli\DumpHooks::class);
 	}
 
 	/**

@@ -297,6 +297,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] WP CLI add command function is not giving warnings anymore.
+
 = 9.0.1 =
 * [Changed] Notification data is now kept in the wp_posts table for easier reverting to previous version.
 
