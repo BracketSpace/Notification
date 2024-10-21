@@ -1916,11 +1916,6 @@ parameters:
 			path: src/Repository/Trigger/User/UserPasswordChanged.php
 
 		-
-			message: "#^Cannot access property \\$data on WP_User\\|false\\.$#"
-			count: 1
-			path: src/Repository/Trigger/User/UserPasswordResetRequest.php
-
-		-
 			message: "#^Argument of an invalid type array\\|false supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
