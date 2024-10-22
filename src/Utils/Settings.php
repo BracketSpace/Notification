@@ -359,15 +359,21 @@ class Settings
 
 		// URI.
 		$themeUrl = wp_parse_url(get_stylesheet_directory_uri());
-		$themePos = strpos($this->path, $themeUrl['path']);
+		$themePos = strpos($this->path, $themeUrl['path'] ?? '');
 
 		if ($themePos !== false) { // loaded from theme.
 			$pluginRelativeDir = str_replace(
-				$themeUrl['path'],
+				$themeUrl['path'] ?? '',
 				'',
 				substr($this->path, $themePos)
 			);
-			$this->uri = $themeUrl['scheme'] . '://' . $themeUrl['host'] . $themeUrl['path'] . $pluginRelativeDir;
+			$this->uri = sprintf(
+				'%s://%s%s%s',
+				$themeUrl['scheme'] ?? '',
+				$themeUrl['host'] ?? '',
+				$themeUrl['path'] ?? '',
+				$pluginRelativeDir
+			);
 		} else { // loaded from plugin.
 			$this->uri = trailingslashit(plugins_url('', dirname(__FILE__)));
 		}

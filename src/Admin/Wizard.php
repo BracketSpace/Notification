@@ -347,7 +347,7 @@ class Wizard
 		if (get_option($this->dismissedOption) !== false) {
 			update_option($this->dismissedOption, true);
 		} else {
-			add_option($this->dismissedOption, true, '', 'no');
+			add_option($this->dismissedOption, true, '', false);
 		}
 	}
 

@@ -72,7 +72,7 @@
 		"phpcbf": "phpcbf --parallel=4",
 		"phpcs": "phpcs --parallel=4",
 		"phplint": "parallel-lint --exclude node_modules --exclude vendor --exclude dependencies .",
-		"phpstan": "phpstan analyze --memory-limit=-1",
+		"phpstan": "phpstan analyze --memory-limit=-1 -v",
 		"generate-stubs": "generate-stubs --finder=compat/stub-finder.php --out=compat/stubs.php --force",
 		"prefix-namespaces-dev": [
 			"strauss",

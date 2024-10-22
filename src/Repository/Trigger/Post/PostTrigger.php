@@ -605,6 +605,7 @@ abstract class PostTrigger extends BaseTrigger
 
 		if (in_array($property, array_keys($propertyMap), true)) {
 			wp_trigger_error(
+				// @phpstan-ignore argument.type
 				static::class,
 				sprintf(
 					'Property `%s` is deprecated since 9.0.0, use `post` property instead.',
