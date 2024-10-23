@@ -303,6 +303,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Fixed] Do not escape HTML entities in URL merge tags.
 * [Fixed] Fix user password setup link and user password reset link resolvers.
 * [Fixed] Post triggers various user merge tags.
+* [Fixed] Comment triggers post author merge tags.
 
 = 9.0.1 =
 * [Changed] Notification data is now kept in the wp_posts table for easier reverting to previous version.

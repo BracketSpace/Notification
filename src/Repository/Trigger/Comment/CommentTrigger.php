@@ -302,7 +302,7 @@ abstract class CommentTrigger extends BaseTrigger
 					'slug' => 'post_author_user_ID',
 					// Translators: singular post name.
 					'name' => sprintf(__('%s author user ID', 'notification'), __('Post', 'notification')),
-					'property_name' => 'post_author',
+					'property_name' => 'postAuthor',
 					// Translators: Post type name.
 					'group' => sprintf(__('%s author', 'notification'), $postTypeName),
 				]
@@ -315,7 +315,7 @@ abstract class CommentTrigger extends BaseTrigger
 					'slug' => 'post_author_user_login',
 					// Translators: singular post name.
 					'name' => sprintf(__('%s author user login', 'notification'), __('Post', 'notification')),
-					'property_name' => 'post_author',
+					'property_name' => 'postAuthor',
 					// Translators: Post type name.
 					'group' => sprintf(__('%s author', 'notification'), $postTypeName),
 				]
@@ -328,7 +328,7 @@ abstract class CommentTrigger extends BaseTrigger
 					'slug' => 'post_author_user_email',
 					// Translators: singular post name.
 					'name' => sprintf(__('%s author user email', 'notification'), __('Post', 'notification')),
-					'property_name' => 'post_author',
+					'property_name' => 'postAuthor',
 					// Translators: Post type name.
 					'group' => sprintf(__('%s author', 'notification'), $postTypeName),
 				]
@@ -341,7 +341,7 @@ abstract class CommentTrigger extends BaseTrigger
 					'slug' => 'post_author_user_nicename',
 					// Translators: singular post name.
 					'name' => sprintf(__('%s author user nicename', 'notification'), __('Post', 'notification')),
-					'property_name' => 'post_author',
+					'property_name' => 'postAuthor',
 					// Translators: Post type name.
 					'group' => sprintf(__('%s author', 'notification'), $postTypeName),
 				]
@@ -354,7 +354,7 @@ abstract class CommentTrigger extends BaseTrigger
 					'slug' => 'post_author_user_nickname',
 					// Translators: singular post name.
 					'name' => sprintf(__('%s author user nickname', 'notification'), __('Post', 'notification')),
-					'property_name' => 'post_author',
+					'property_name' => 'postAuthor',
 					// Translators: Post type name.
 					'group' => sprintf(__('%s author', 'notification'), $postTypeName),
 				]
@@ -367,7 +367,7 @@ abstract class CommentTrigger extends BaseTrigger
 					'slug' => 'post_author_user_display_name',
 					// Translators: singular post name.
 					'name' => sprintf(__('%s author user display name', 'notification'), __('Post', 'notification')),
-					'property_name' => 'post_author',
+					'property_name' => 'postAuthor',
 					// Translators: Post type name.
 					'group' => sprintf(__('%s author', 'notification'), $postTypeName),
 				]
@@ -380,7 +380,7 @@ abstract class CommentTrigger extends BaseTrigger
 					'slug' => 'post_author_user_firstname',
 					// Translators: singular post name.
 					'name' => sprintf(__('%s author user first name', 'notification'), __('Post', 'notification')),
-					'property_name' => 'post_author',
+					'property_name' => 'postAuthor',
 					// Translators: Post type name.
 					'group' => sprintf(__('%s author', 'notification'), $postTypeName),
 				]
@@ -393,7 +393,7 @@ abstract class CommentTrigger extends BaseTrigger
 					'slug' => 'post_author_user_lastname',
 					// Translators: singular post name.
 					'name' => sprintf(__('%s author user last name', 'notification'), __('Post', 'notification')),
-					'property_name' => 'post_author',
+					'property_name' => 'postAuthor',
 					// Translators: Post type name.
 					'group' => sprintf(__('%s author', 'notification'), $postTypeName),
 				]
