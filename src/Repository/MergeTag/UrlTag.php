@@ -41,6 +41,6 @@ class UrlTag extends BaseMergeTag
 	 */
 	public function sanitize($value)
 	{
-		return esc_url($value);
+		return is_string($value) ? esc_url_raw($value) : '';
 	}
 }

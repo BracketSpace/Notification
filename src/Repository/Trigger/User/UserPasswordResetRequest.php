@@ -50,10 +50,11 @@ class UserPasswordResetRequest extends UserTrigger
 	 */
 	public function context($username, $resetKey)
 	{
-		$user = get_user_by(
-			'login',
-			$username
-		);
+		$user = get_user_by('login', $username);
+
+		if (!$user instanceof \WP_User) {
+			return false;
+		}
 
 		/**
 		 * Bail if we are handling the registration.
@@ -71,14 +72,7 @@ class UserPasswordResetRequest extends UserTrigger
 			return false;
 		}
 
-		$this->userId = $user->data->ID;
-
-		$user = get_userdata($this->userId);
-
-		if (!$user instanceof \WP_User) {
-			return false;
-		}
-
+		$this->userId = $user->ID;
 		$this->userObject = $user;
 		$this->passwordResetKey = $resetKey;
 	}

@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
 Requires at least: 4.9
 Tested up to: 6.6
-Stable tag: 9.0.1
+Stable tag: 9.0.2
 Requires PHP: 7.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -296,6 +296,14 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 7. Default email disabler
 
 == Changelog ==
+
+= 9.0.2 =
+* [Fixed] WP CLI add command function is not giving warnings anymore.
+* [Fixed] Comment author email and display name merge tags.
+* [Fixed] Do not escape HTML entities in URL merge tags.
+* [Fixed] Fix user password setup link and user password reset link resolvers.
+* [Fixed] Post triggers various user merge tags.
+* [Fixed] Comment triggers post author merge tags.
 
 = 9.0.1 =
 * [Changed] Notification data is now kept in the wp_posts table for easier reverting to previous version.

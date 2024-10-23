@@ -135,7 +135,7 @@ class PostUpdated extends PostTrigger
 					),
 					// translators: singular post name.
 					'name' => sprintf(__('%s updating user ID', 'notification'), $postTypeName),
-					'property_name' => 'updating_user',
+					'property_name' => 'updatingUser',
 					'group' => __('Updating user', 'notification'),
 				]
 			)
@@ -150,7 +150,7 @@ class PostUpdated extends PostTrigger
 					),
 					// translators: singular post name.
 					'name' => sprintf(__('%s updating user login', 'notification'), $postTypeName),
-					'property_name' => 'updating_user',
+					'property_name' => 'updatingUser',
 					'group' => __('Updating user', 'notification'),
 				]
 			)
@@ -165,7 +165,7 @@ class PostUpdated extends PostTrigger
 					),
 					// translators: singular post name.
 					'name' => sprintf(__('%s updating user email', 'notification'), $postTypeName),
-					'property_name' => 'updating_user',
+					'property_name' => 'updatingUser',
 					'group' => __('Updating user', 'notification'),
 				]
 			)
@@ -180,7 +180,7 @@ class PostUpdated extends PostTrigger
 					),
 					// translators: singular post name.
 					'name' => sprintf(__('%s updating user nicename', 'notification'), $postTypeName),
-					'property_name' => 'updating_user',
+					'property_name' => 'updatingUser',
 					'group' => __('Updating user', 'notification'),
 				]
 			)
@@ -195,7 +195,7 @@ class PostUpdated extends PostTrigger
 					),
 					// translators: singular post name.
 					'name' => sprintf(__('%s updating user nickname', 'notification'), $postTypeName),
-					'property_name' => 'updating_user',
+					'property_name' => 'updatingUser',
 					'group' => __('Updating user', 'notification'),
 				]
 			)
@@ -210,7 +210,7 @@ class PostUpdated extends PostTrigger
 					),
 					// translators: singular post name.
 					'name' => sprintf(__('%s updating user display name', 'notification'), $postTypeName),
-					'property_name' => 'updating_user',
+					'property_name' => 'updatingUser',
 					'group' => __('Updating user', 'notification'),
 				]
 			)
@@ -225,7 +225,7 @@ class PostUpdated extends PostTrigger
 					),
 					// translators: singular post name.
 					'name' => sprintf(__('%s updating user first name', 'notification'), $postTypeName),
-					'property_name' => 'updating_user',
+					'property_name' => 'updatingUser',
 					'group' => __('Updating user', 'notification'),
 				]
 			)
@@ -240,7 +240,7 @@ class PostUpdated extends PostTrigger
 					),
 					// translators: singular post name.
 					'name' => sprintf(__('%s updating user last name', 'notification'), $postTypeName),
-					'property_name' => 'updating_user',
+					'property_name' => 'updatingUser',
 					'group' => __('Updating user', 'notification'),
 				]
 			)
@@ -255,7 +255,7 @@ class PostUpdated extends PostTrigger
 					),
 					// translators: singular post name.
 					'name' => sprintf(__('%s updating user email', 'notification'), $postTypeName),
-					'property_name' => 'updating_user',
+					'property_name' => 'updatingUser',
 					'group' => __('Updating user', 'notification'),
 				]
 			)
@@ -270,7 +270,7 @@ class PostUpdated extends PostTrigger
 					),
 					// translators: singular post name.
 					'name' => sprintf(__('%s updating user role', 'notification'), $postTypeName),
-					'property_name' => 'updating_user',
+					'property_name' => 'updatingUser',
 					'group' => __('Updating user', 'notification'),
 				]
 			)

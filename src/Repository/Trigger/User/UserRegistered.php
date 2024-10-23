@@ -82,7 +82,7 @@ class UserRegistered extends UserTrigger
 							sprintf(
 								'wp-login.php?action=rp&key=%s&login=%s',
 								$trigger->getPasswordResetKey(),
-								rawurlencode($trigger->userObject->userLogin)
+								rawurlencode($trigger->userObject->user_login)
 							),
 							'login'
 						);

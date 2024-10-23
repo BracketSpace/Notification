@@ -1581,11 +1581,6 @@ parameters:
 			path: src/Repository/MergeTag/Taxonomy/TermSlug.php
 
 		-
-			message: "#^Parameter \\#1 \\$url of function esc_url expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/UrlTag.php
-
-		-
 			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/User/Avatar.php
@@ -1916,11 +1911,6 @@ parameters:
 			path: src/Repository/Trigger/User/UserPasswordChanged.php
 
 		-
-			message: "#^Cannot access property \\$data on WP_User\\|false\\.$#"
-			count: 1
-			path: src/Repository/Trigger/User/UserPasswordResetRequest.php
-
-		-
 			message: "#^Argument of an invalid type array\\|false supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
@@ -2019,21 +2009,6 @@ parameters:
 			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/Store/Trigger.php
-
-		-
-			message: "#^Cannot access offset 'host' on array\\{scheme\\?\\: string, host\\?\\: string, port\\?\\: int, user\\?\\: string, pass\\?\\: string, path\\?\\: string, query\\?\\: string, fragment\\?\\: string\\}\\|false\\.$#"
-			count: 1
-			path: src/Utils/Settings.php
-
-		-
-			message: "#^Cannot access offset 'path' on array\\{scheme\\?\\: string, host\\?\\: string, port\\?\\: int, user\\?\\: string, pass\\?\\: string, path\\?\\: string, query\\?\\: string, fragment\\?\\: string\\}\\|false\\.$#"
-			count: 3
-			path: src/Utils/Settings.php
-
-		-
-			message: "#^Cannot access offset 'scheme' on array\\{scheme\\?\\: string, host\\?\\: string, port\\?\\: int, user\\?\\: string, pass\\?\\: string, path\\?\\: string, query\\?\\: string, fragment\\?\\: string\\}\\|false\\.$#"
-			count: 1
-			path: src/Utils/Settings.php
 
 		-
 			message: "#^Cannot access offset mixed on mixed\\.$#"
