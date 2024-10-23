@@ -432,7 +432,7 @@ abstract class PostTrigger extends BaseTrigger
 
 					// translators: singular post name.
 					'name' => sprintf(__('%s last editor ID', 'notification'), $postTypeName),
-					'property_name' => 'last_editor',
+					'property_name' => 'lastEditor',
 					'group' => __('Last editor', 'notification'),
 				]
 			)
@@ -448,7 +448,7 @@ abstract class PostTrigger extends BaseTrigger
 
 					// translators: singular post name.
 					'name' => sprintf(__('%s last editor login', 'notification'), $postTypeName),
-					'property_name' => 'last_editor',
+					'property_name' => 'lastEditor',
 					'group' => __('Last editor', 'notification'),
 				]
 			)
@@ -464,7 +464,7 @@ abstract class PostTrigger extends BaseTrigger
 
 					// translators: singular post name.
 					'name' => sprintf(__('%s last editor email', 'notification'), $postTypeName),
-					'property_name' => 'last_editor',
+					'property_name' => 'lastEditor',
 					'group' => __('Last editor', 'notification'),
 				]
 			)
@@ -480,7 +480,7 @@ abstract class PostTrigger extends BaseTrigger
 
 					// translators: singular post name.
 					'name' => sprintf(__('%s last editor nicename', 'notification'), $postTypeName),
-					'property_name' => 'last_editor',
+					'property_name' => 'lastEditor',
 					'group' => __('Last editor', 'notification'),
 				]
 			)
@@ -496,7 +496,7 @@ abstract class PostTrigger extends BaseTrigger
 
 					// translators: singular post name.
 					'name' => sprintf(__('%s last editor nickname', 'notification'), $postTypeName),
-					'property_name' => 'last_editor',
+					'property_name' => 'lastEditor',
 					'group' => __('Last editor', 'notification'),
 				]
 			)
@@ -512,7 +512,7 @@ abstract class PostTrigger extends BaseTrigger
 
 					// translators: singular post name.
 					'name' => sprintf(__('%s last editor display name', 'notification'), $postTypeName),
-					'property_name' => 'last_editor',
+					'property_name' => 'lastEditor',
 					'group' => __('Last editor', 'notification'),
 				]
 			)
@@ -528,7 +528,7 @@ abstract class PostTrigger extends BaseTrigger
 
 					// translators: singular post name.
 					'name' => sprintf(__('%s last editor first name', 'notification'), $postTypeName),
-					'property_name' => 'last_editor',
+					'property_name' => 'lastEditor',
 					'group' => __('Last editor', 'notification'),
 				]
 			)
@@ -544,7 +544,7 @@ abstract class PostTrigger extends BaseTrigger
 
 					// translators: singular post name.
 					'name' => sprintf(__('%s last editor last name', 'notification'), $postTypeName),
-					'property_name' => 'last_editor',
+					'property_name' => 'lastEditor',
 					'group' => __('Last editor', 'notification'),
 				]
 			)
@@ -560,7 +560,7 @@ abstract class PostTrigger extends BaseTrigger
 
 					// translators: singular post name.
 					'name' => sprintf(__('%s last editor avatar', 'notification'), $postTypeName),
-					'property_name' => 'last_editor',
+					'property_name' => 'lastEditor',
 					'group' => __('Last editor', 'notification'),
 				]
 			)
@@ -576,7 +576,7 @@ abstract class PostTrigger extends BaseTrigger
 
 					// translators: singular post name.
 					'name' => sprintf(__('%s last editor role', 'notification'), $postTypeName),
-					'property_name' => 'last_editor',
+					'property_name' => 'lastEditor',
 					'group' => __('Last editor', 'notification'),
 				]
 			)
