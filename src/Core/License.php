@@ -73,12 +73,12 @@ class License
 				$licenses = $this->getLicenses();
 				$license = new \stdClass();
 
-				if ( ! isset($licenses[$this->extension['slug']])) {
+				if (! isset($licenses[$this->extension['slug']])) {
 					return false;
 				}
 
-				foreach ($licenses[$this->extension['slug']] as $key => $value) {
-					$keyMapped = lcfirst(str_replace('_', '', ucwords($key, '_')));
+				foreach ((array)$licenses[$this->extension['slug']] as $key => $value) {
+					$keyMapped = lcfirst(str_replace('_', '', ucwords((string)$key, '_')));
 					$license->$keyMapped = $value;
 				}
 
