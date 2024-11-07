@@ -297,6 +297,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] No license activated in v8 being displayed in the admin.
+
 = 9.0.2 =
 * [Fixed] WP CLI add command function is not giving warnings anymore.
 * [Fixed] Comment author email and display name merge tags.
