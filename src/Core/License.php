@@ -65,16 +65,21 @@ class License
 	 */
 	public function get()
 	{
-		$driver = new CacheDriver\ObjectCache('notification_license');
+		$driver = new CacheDriver\ObjectCache('notification_license/v2');
 		$cache = new Cache($driver, $this->extension['slug']);
 
 		return $cache->collect(
 			function () {
 				$licenses = $this->getLicenses();
-				$license = false;
+				$license = new \stdClass();
 
-				if (isset($licenses[$this->extension['slug']])) {
-					$license = $licenses[$this->extension['slug']];
+				if (! isset($licenses[$this->extension['slug']])) {
+					return false;
+				}
+
+				foreach ((array)$licenses[$this->extension['slug']] as $key => $value) {
+					$keyMapped = lcfirst(str_replace('_', '', ucwords((string)$key, '_')));
+					$license->$keyMapped = $value;
 				}
 
 				return $license;
