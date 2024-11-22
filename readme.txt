@@ -297,6 +297,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Fix issues with invalid JSON of Notification in wp_posts table.
+
 = 9.0.3 =
 * [Fixed] No license activated in v8 being displayed in the admin.
 
