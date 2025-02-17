@@ -49,7 +49,7 @@ class WordPressIntegration
 	/**
 	 * Prevents the duplicate notifications
 	 *
-	 * Gutenberg or other editors, especiallyu when used within other
+	 * Gutenberg or other editors, especially when used within other
 	 * plugins which manipulate the data.
 	 *
 	 * @filter notification/background_processing/trigger_key
@@ -63,7 +63,7 @@ class WordPressIntegration
 	{
 		$coveredTriggers = [
 			'BracketSpace\Notification\Repository\Trigger\Post\PostTrigger' => static function ($trigger) {
-				return $trigger->{$trigger->getPostType()}->ID;
+				return $trigger->post->ID;
 			},
 			'BracketSpace\Notification\Repository\Trigger\User\UserTrigger' => static function ($trigger) {
 				return $trigger->userId;

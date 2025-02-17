@@ -299,6 +299,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = 9.0.4 =
 * [Fixed] Fix issues with invalid JSON of Notification in wp_posts table.
+* [Fixed] Duplicate email prevention not working for custom post types.
 
 = 9.0.3 =
 * [Fixed] No license activated in v8 being displayed in the admin.
