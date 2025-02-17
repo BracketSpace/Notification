@@ -223,7 +223,7 @@ class NotificationDatabaseService
 				/**
 				 * @todo Remove backward compatibility content save.
 				 */
-				'post_content' => $notification->to('json'),
+				'post_content' => wp_slash($notification->to('json')),
 				'post_status' => $notification->isEnabled() ? 'publish' : 'draft',
 				'post_type' => 'notification',
 			]
