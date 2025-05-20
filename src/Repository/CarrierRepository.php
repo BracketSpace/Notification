@@ -13,8 +13,6 @@ namespace BracketSpace\Notification\Repository;
 use BracketSpace\Notification\Defaults\Carrier\Webhook;
 use BracketSpace\Notification\Defaults\Carrier\WebhookJson;
 use BracketSpace\Notification\Register;
-use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\Helper as DocHooksHelper;
-
 /**
  * Carrier Repository.
  */
@@ -26,7 +24,7 @@ class CarrierRepository
 	public static function register()
 	{
 		if (\Notification::settings()->getSetting('carriers/email/enable')) {
-			Register::carrier(DocHooksHelper::hook(new Carrier\Email()));
+			Register::carrier(\Notification::component(Carrier\Email::class));
 		}
 
 		if (
@@ -36,7 +34,7 @@ class CarrierRepository
 			return;
 		}
 
-		Register::carrier(DocHooksHelper::hook(new Webhook('Webhook')));
-		Register::carrier(DocHooksHelper::hook(new WebhookJson('Webhook JSON')));
+		Register::carrier(new Webhook('Webhook'));
+		Register::carrier(new WebhookJson('Webhook JSON'));
 	}
 }

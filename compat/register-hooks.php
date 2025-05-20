@@ -35,6 +35,7 @@ add_action('notification/settings/register', [$this->component('BracketSpace\Not
 add_action('notification/settings/register', [$this->component('BracketSpace\Notification\Admin\Settings'), 'carriersSettings'], 30, 1);
 add_action('notification/settings/register', [$this->component('BracketSpace\Notification\Admin\Settings'), 'emailsSettings'], 40, 1);
 add_filter('notification/settings/triggers/valid_post_types', [$this->component('BracketSpace\Notification\Admin\Settings'), 'filterPostTypes'], 10, 1);
+add_filter('wp_kses_allowed_html', [$this->component('BracketSpace\Notification\Admin\Settings'), 'filterAllowedDescriptionHtml'], 10, 2);
 add_filter('post_row_actions', [$this->component('BracketSpace\Notification\Admin\NotificationDuplicator'), 'addDuplicateRowAction'], 50, 2);
 add_action('admin_post_notification_duplicate', [$this->component('BracketSpace\Notification\Admin\NotificationDuplicator'), 'notificationDuplicate'], 10, 0);
 add_action('init', [$this->component('BracketSpace\Notification\Admin\PostType'), 'register'], 10, 0);
@@ -110,3 +111,8 @@ add_action('two_factor_user_authenticated', [$this->component('BracketSpace\Noti
 add_action('rest_api_init', [$this->component('BracketSpace\Notification\Api\Api'), 'restApiInit'], 10, 0);
 add_action('admin_notices', [$this->component('BracketSpace\Notification\Compat\WebhookCompat'), 'displayNotice'], 10, 0);
 add_action('admin_notices', [$this->component('BracketSpace\Notification\Compat\RestApiCompat'), 'testRestApi'], 10, 0);
+add_filter('notification/from/json', [$this->component('BracketSpace\Notification\Repository\Converter\JsonConverter'), 'from'], 10, 1);
+add_filter('notification/to/json', [$this->component('BracketSpace\Notification\Repository\Converter\JsonConverter'), 'to'], 10, 2);
+add_filter('notification/from/array', [$this->component('BracketSpace\Notification\Repository\Converter\ArrayConverter'), 'from'], 10, 1);
+add_filter('notification/to/array', [$this->component('BracketSpace\Notification\Repository\Converter\ArrayConverter'), 'to'], 10, 2);
+add_filter('notification/carrier/form/data/values', [$this->component('BracketSpace\Notification\Repository\Carrier\Email'), 'allowUnfilteredHtmlBody'], 10, 2);
