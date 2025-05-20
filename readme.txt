@@ -297,6 +297,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Dochooks compatibility file has been updated.
+
 = 9.0.4 =
 * [Fixed] Fix issues with invalid JSON of Notification in wp_posts table.
 * [Fixed] Duplicate email prevention not working for custom post types.
