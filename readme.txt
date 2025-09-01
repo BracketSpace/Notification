@@ -297,6 +297,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Code editor field width is now properly constrained to 100% of its container.
+
 = 9.0.5 =
 * [Fixed] Dochooks compatibility file has been updated.
 
