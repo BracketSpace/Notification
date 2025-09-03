@@ -299,6 +299,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 * [Fixed] Code editor field width is now properly constrained to 100% of its container.
+* [Fixed] Repeater fields layout incompatibility with other plugins.
 
 = 9.0.5 =
 * [Fixed] Dochooks compatibility file has been updated.
