@@ -419,11 +419,23 @@ class Extensions
 		$activation = $license->deactivate();
 
 		if (is_wp_error($activation)) {
+			$errorMessage = $activation->get_error_message();
 			$licenseData = $activation->get_error_data();
-			$params = [
-				'activation-status' => $activation->get_error_message(),
-				'extension' => rawurlencode($licenseData->itemName),
-			];
+			
+			// If API deactivation failed but we have license data, try to remove locally anyway
+			if ($errorMessage === 'deactivation-error' && !empty($licenseData)) {
+				// Force local removal for stubborn licenses
+				$license->remove();
+				$params = [
+					'activation-status' => 'force-deactivated',
+					'extension' => rawurlencode($extension['edd']['item_name']),
+				];
+			} else {
+				$params = [
+					'activation-status' => $errorMessage,
+					'extension' => rawurlencode($extension['edd']['item_name']),
+				];
+			}
 
 			wp_safe_redirect(add_query_arg($params, $data['_wp_http_referer']));
 			exit;
@@ -538,6 +550,11 @@ class Extensions
 			case 'deactivated':
 				$view = 'success';
 				$message = __('Your license has been deactivated.', 'notification');
+				break;
+
+			case 'force-deactivated':
+				$view = 'success';
+				$message = __('Your license has been deactivated locally (API deactivation failed, but license removed from this site).', 'notification');
 				break;
 
 			case 'wrong-nonce':

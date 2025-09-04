@@ -279,12 +279,24 @@ class License
 
 		$licenseData = json_decode(wp_remote_retrieve_body($response));
 
-		// Accept deactivated, failed, or expired as valid responses
-		// For expired licenses, we still want to remove them locally
-		if (!in_array($licenseData->license, ['deactivated', 'failed', 'expired'], true)) {
+		// For deactivation, we're more permissive - if the API responds successfully,
+		// we allow most statuses since the goal is to remove the license locally
+		// Only reject if it's clearly an error response or API failure
+		$validDeactivationStatuses = [
+			'deactivated',  // Successfully deactivated
+			'failed',       // Deactivation failed but that's OK
+			'expired',      // License expired
+			'inactive',     // Already inactive
+			'site_inactive', // Already inactive for this site
+			'invalid',      // Invalid license - still want to remove locally
+			'revoked'       // Revoked license - still want to remove locally
+		];
+
+		if (!in_array($licenseData->license, $validDeactivationStatuses, true)) {
 			return new \WP_Error(
 				'notification_license_error',
-				'deactivation-error'
+				'deactivation-error',
+				$licenseData
 			);
 		}
 
