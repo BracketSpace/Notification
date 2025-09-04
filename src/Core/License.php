@@ -150,7 +150,7 @@ class License
 	 */
 	public function save($licenseData)
 	{
-		$driver = new CacheDriver\ObjectCache('notification_license');
+		$driver = new CacheDriver\ObjectCache('notification_license/v2');
 		$cache = new Cache($driver, $this->extension['slug']);
 		$cache->set($licenseData);
 
@@ -168,7 +168,7 @@ class License
 	 */
 	public function remove()
 	{
-		$driver = new CacheDriver\ObjectCache('notification_license');
+		$driver = new CacheDriver\ObjectCache('notification_license/v2');
 		$cache = new Cache($driver, $this->extension['slug']);
 		$cache->delete();
 
@@ -230,7 +230,7 @@ class License
 		$licenseData->licenseKey = $licenseKey;
 		$this->save($licenseData);
 
-		$driver = new CacheDriver\ObjectCache('notification_license');
+		$driver = new CacheDriver\ObjectCache('notification_license/v2');
 		$cache = new Cache($driver, $this->extension['slug']);
 		$cache->delete();
 
@@ -279,7 +279,9 @@ class License
 
 		$licenseData = json_decode(wp_remote_retrieve_body($response));
 
-		if (!in_array($licenseData->license, ['deactivated', 'failed'], true)) {
+		// Accept deactivated, failed, or expired as valid responses
+		// For expired licenses, we still want to remove them locally
+		if (!in_array($licenseData->license, ['deactivated', 'failed', 'expired'], true)) {
 			return new \WP_Error(
 				'notification_license_error',
 				'deactivation-error'
@@ -288,7 +290,7 @@ class License
 
 		$this->remove();
 
-		$driver = new CacheDriver\ObjectCache('notification_license');
+		$driver = new CacheDriver\ObjectCache('notification_license/v2');
 		$cache = new Cache($driver, $this->extension['slug']);
 		$cache->delete();
 

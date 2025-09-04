@@ -300,6 +300,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 = [Next] =
 * [Added] "Refresh All Licenses" button in Extensions page to manually check all extension license statuses from the store.
 * [Fixed] Extension license status not refreshing after reactivation in store, showing stale "inactive" warnings despite valid licenses.
+* [Fixed] Deactivate license button not working for expired licenses.
+* [Fixed] Deactivated licenses still appearing in extension boxes due to cache key mismatch.
+* [Fixed] Renewal links not appearing for licenses expired in the past but cached with different status.
 * [Fixed] Code editor field width is now properly constrained to 100% of its container.
 * [Fixed] Repeater fields layout incompatibility with other plugins.
 
