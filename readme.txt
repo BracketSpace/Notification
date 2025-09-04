@@ -1,6 +1,6 @@
 === Notification - Custom Notifications and Alerts for WordPress ===
 Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn, mateuszgbiorczyk
-Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
+Tags: notification, notify, alert, email, mail
 Requires at least: 4.9
 Tested up to: 6.8
 Stable tag: 9.0.5
