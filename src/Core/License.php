@@ -112,9 +112,17 @@ class License
 					return $licenseData->license === 'valid';
 				}
 
-				$licenseCheck->licenseKey = $licenseData->licenseKey;
-				$licenseData = $licenseCheck;
-				$this->save($licenseData);
+				// Always update stored license data if API returned different status
+				if ($licenseCheck->license !== $licenseData->license || 
+					$licenseCheck->expires !== $licenseData->expires) {
+					$licenseCheck->licenseKey = $licenseData->licenseKey;
+					$this->save($licenseCheck);
+					$licenseData = $licenseCheck;
+				} else {
+					$licenseCheck->licenseKey = $licenseData->licenseKey;
+					$licenseData = $licenseCheck;
+					$this->save($licenseData);
+				}
 
 				return $licenseData->license === 'valid';
 			}
