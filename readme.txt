@@ -299,10 +299,13 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 * [Added] "Refresh All Licenses" button in Extensions page to manually check all extension license statuses from the store.
+* [Changed] Updated package.json files to support Node.js 22 compatibility with explicit engine requirements.
 * [Fixed] Extension license status not refreshing after reactivation in store, showing stale "inactive" warnings despite valid licenses.
 * [Fixed] Deactivate license button not working for expired licenses and other license statuses.
 * [Fixed] Deactivated licenses still appearing in extension boxes due to cache key mismatch.
 * [Fixed] Renewal links not appearing for licenses expired in the past but cached with different status.
+* [Fixed] Password reset and setup links now properly handle email addresses with @ symbols and usernames with spaces in merge tags.
+* [Added] Comprehensive unit tests for password reset and setup link encoding to prevent regression.
 * [Fixed] Code editor field width is now properly constrained to 100% of its container.
 * [Fixed] Repeater fields layout incompatibility with other plugins.
 

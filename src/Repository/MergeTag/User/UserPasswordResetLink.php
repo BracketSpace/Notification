@@ -53,11 +53,21 @@ class UserPasswordResetLink extends StringTag
 				'example' => true,
 				'group' => __('User action', 'notification'),
 				'resolver' => function ($trigger) {
+					$user = $trigger->{$this->getTriggerProp()};
+					$userLogin = $user->user_login ?? '';
+					
+					// Defensive check: ensure user_login is valid
+					// If user_login is empty or corrupted, use the user_email as fallback
+					// when the user was likely registered with an email address
+					if (empty($userLogin) && !empty($user->user_email) && is_email($user->user_email)) {
+						$userLogin = $user->user_email;
+					}
+					
 					return network_site_url(
 						sprintf(
 							'wp-login.php?action=rp&key=%s&login=%s',
 							$trigger->{$this->keyPropertyName},
-							rawurlencode($trigger->{$this->getTriggerProp()}->user_login)
+							rawurlencode($userLogin)
 						)
 					);
 				},

@@ -2,6 +2,10 @@
 	"name": "notification",
 	"version": "7.0.0",
 	"description": "Notification plugin",
+	"engines": {
+		"node": ">=18.0.0",
+		"npm": ">=8.0.0"
+	},
 	"scripts": {
 		"build": "mp-scripts build --mode=development",
 		"build:production": "mp-scripts build --mode=production",
@@ -12,13 +16,14 @@
 		"fix:js": "mp-scripts lint-js --fix",
 		"lint": "run-p \"lint:*\"",
 		"fix": "run-p \"fix:*\"",
+		"start-env": "wp-env start",
 		"test-php": "wp-env run tests-wordpress --env-cwd=wp-content/plugins/notification ./vendor/bin/pest -- --configuration phpunit.xml"
 	},
 	"author": "BracketSpace",
 	"license": "GPL-3.0-or-later",
 	"devDependencies": {
 		"@micropackage/scripts": "^1.2.5",
-		"@wordpress/env": "^9.7.0",
+		"@wordpress/env": "^10.30.0",
 		"npm-run-all": "^4.1.5"
 	},
 	"dependencies": {
