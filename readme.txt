@@ -300,6 +300,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 = [Next] =
 * [Added] "Refresh All Licenses" button in Extensions page to manually check all extension license statuses from the store.
 * [Changed] Updated package.json files to support Node.js 22 compatibility with explicit engine requirements.
+* [Changed] Improved GitHub workflows - removed development workflow and enhanced stable workflow with automatic WordPress.org deployment alongside GitHub releases.
 * [Fixed] Extension license status not refreshing after reactivation in store, showing stale "inactive" warnings despite valid licenses.
 * [Fixed] Deactivate license button not working for expired licenses and other license statuses.
 * [Fixed] Deactivated licenses still appearing in extension boxes due to cache key mismatch.

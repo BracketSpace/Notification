@@ -91,10 +91,20 @@ jobs:
           echo "::set-output name=package-name::${{ secrets.SLUG }}-${GITHUB_REF#refs/tags/}"
       - name: Parse changelog
         run: |
-          START="= ${{ steps.vars.outputs.version }} ="
-          END="= [0-9]+.[0-9]+.[0-9]+ =|==|\$"
-          grep -oPz "(?s)${START}.*?\n\K.*?(?=${END})" readme.txt > changelog.txt
-          truncate -s-2 changelog.txt
+          VERSION="${{ steps.vars.outputs.version }}"
+          # Extract the changelog content for the current version, excluding the version header
+          awk -v ver="$VERSION" '
+          /^= / { 
+            if ($0 ~ "= " ver " =") { 
+              found=1; 
+              next 
+            } 
+            else if (found && /^= [0-9]/) { 
+              exit 
+            }
+          }
+          found && /^\*/ { print }
+          ' readme.txt > changelog.txt
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
@@ -107,3 +117,37 @@ jobs:
           files: ${{ steps.vars.outputs.package-name }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Deploy to WordPress.org
+  wordpress-org-release:
+    name: Deploy to WordPress.org
+    runs-on: ubuntu-latest
+    needs: pack
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .wordpress-org
+      - name: Setup variables
+        id: vars
+        run: |
+          echo "::set-output name=version::${GITHUB_REF#refs/tags/}"
+          echo "::set-output name=package-name::${{ secrets.SLUG }}-${GITHUB_REF#refs/tags/}"
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ steps.vars.outputs.package-name }}
+          path: .
+      - name: Extract plugin files
+        run: |
+          unzip -q ${{ steps.vars.outputs.package-name }}.zip
+          ls -la ${{ secrets.SLUG }}/
+      - name: Deploy to WordPress.org
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        with:
+          BUILD_DIR: ${{ secrets.SLUG }}
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: ${{ secrets.SLUG }}
