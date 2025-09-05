@@ -14,12 +14,12 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\MergeTag\User;
 
-use BracketSpace\Notification\Repository\MergeTag\StringTag;
+use BracketSpace\Notification\Repository\MergeTag\UrlTag;
 
 /**
  * User login merge tag class
  */
-class UserPasswordResetLink extends StringTag
+class UserPasswordResetLink extends UrlTag
 {
 	/**
 	 * Trigger property to get the reset key from
@@ -63,12 +63,20 @@ class UserPasswordResetLink extends StringTag
 						$userLogin = $user->user_email;
 					}
 					
+					// WordPress sanitizes usernames, removing special characters like @ and spaces
+					// For password reset links, we need the original unsanitized value
+					// If the original user_login would be different after sanitization, use email instead
+					if (!empty($userLogin) && sanitize_user($userLogin) !== $userLogin && !empty($user->user_email) && is_email($user->user_email)) {
+						$userLogin = $user->user_email;
+					}
+					
 					return network_site_url(
 						sprintf(
 							'wp-login.php?action=rp&key=%s&login=%s',
 							$trigger->{$this->keyPropertyName},
 							rawurlencode($userLogin)
-						)
+						),
+						'login'
 					);
 				},
 			]

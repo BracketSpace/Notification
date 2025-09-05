@@ -87,6 +87,13 @@ class UserRegistered extends UserTrigger
 							$userLogin = $trigger->userObject->user_email;
 						}
 						
+						// WordPress sanitizes usernames, removing special characters like @ and spaces
+						// For password reset links, we need the original unsanitized value
+						// If the original user_login would be different after sanitization, use email instead
+						if (!empty($userLogin) && sanitize_user($userLogin) !== $userLogin && !empty($trigger->userObject->user_email) && is_email($trigger->userObject->user_email)) {
+							$userLogin = $trigger->userObject->user_email;
+						}
+						
 						return network_site_url(
 							sprintf(
 								'wp-login.php?action=rp&key=%s&login=%s',
