@@ -435,11 +435,11 @@ abstract class BaseCarrier implements Interfaces\Sendable
 		);
 
 		$resolved = $stripShortcodes
-			? preg_replace('/\[[^\]]*\]/', '', $resolved)
+			? (preg_replace('/\[[^\]]*\]/', '', $resolved) ?? $resolved)
 			: do_shortcode($resolved);
 
 		// Unescape escaped {.
-		$resolved = str_replace('!{', '{', (string)$resolved);
+		$resolved = str_replace('!{', '{', $resolved);
 
 		return apply_filters('notification/carrier/field/value/resolved', $resolved, null);
 	}

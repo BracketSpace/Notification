@@ -1026,16 +1026,6 @@ parameters:
 			path: src/Core/Notification.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Resolver\\:\\:clear\\(\\) should return string but returns string\\|null\\.$#"
-			count: 1
-			path: src/Core/Resolver.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\Resolver\\:\\:resolve\\(\\) should return string but returns string\\|null\\.$#"
-			count: 1
-			path: src/Core/Resolver.php
-
-		-
 			message: "#^Parameter \\#2 \\$contents of method WP_Filesystem_Base\\:\\:put_contents\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Core/Sync.php
@@ -1152,16 +1142,6 @@ parameters:
 
 		-
 			message: "#^Cannot cast mixed to string\\.$#"
-			count: 1
-			path: src/Repository/Field/InputField.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function trim expects string, string\\|null given\\.$#"
-			count: 1
-			path: src/Repository/Field/InputField.php
-
-		-
-			message: "#^Parameter \\#3 \\$subject of function preg_replace expects array\\|string, string\\|null given\\.$#"
 			count: 1
 			path: src/Repository/Field/InputField.php
 

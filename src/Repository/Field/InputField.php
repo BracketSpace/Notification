@@ -109,7 +109,7 @@ class InputField extends BaseField
 			'@<(script|style)[^>]*?>.*?</\\1>@si',
 			'',
 			$stringValue
-		);
+		) ?? $stringValue;
 
 		// Remove line breaks.
 		if ($this->allowLinebreaks !== true) {
@@ -117,7 +117,7 @@ class InputField extends BaseField
 				'/[\r\n\t ]+/',
 				' ',
 				$stringValue
-			);
+			) ?? $stringValue;
 		}
 
 		// Remove whitespace.
