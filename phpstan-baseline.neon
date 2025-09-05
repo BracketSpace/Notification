@@ -236,6 +236,11 @@ parameters:
 			path: compat/register-hooks.php
 
 		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'refreshAllLicenses'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
 			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'register'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
@@ -631,11 +636,6 @@ parameters:
 			path: src/Admin/Debugging.php
 
 		-
-			message: "#^Parameter \\#1 \\$location of function wp_safe_redirect expects string, string\\|false given\\.$#"
-			count: 1
-			path: src/Admin/Debugging.php
-
-		-
 			message: "#^Cannot access property \\$expires on mixed\\.$#"
 			count: 1
 			path: src/Admin/Extensions.php
@@ -677,11 +677,6 @@ parameters:
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
-			count: 1
-			path: src/Admin/NotificationDuplicator.php
-
-		-
-			message: "#^Parameter \\#1 \\$string of function html_entity_decode expects string, string\\|null given\\.$#"
 			count: 1
 			path: src/Admin/NotificationDuplicator.php
 
@@ -861,16 +856,6 @@ parameters:
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\RepeaterController\\:\\:\\$carrier \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Api/Controller/RepeaterController.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\RepeaterController\\:\\:\\$field \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Api/Controller/RepeaterController.php
-
-		-
 			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: src/Api/Controller/SectionRepeaterController.php
@@ -931,33 +916,18 @@ parameters:
 			path: src/Core/Debugging.php
 
 		-
-			message: "#^Cannot cast mixed to string\\.$#"
-			count: 1
-			path: src/Core/Debugging.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$expires\\.$#"
-			count: 1
-			path: src/Core/License.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$license\\.$#"
-			count: 2
-			path: src/Core/License.php
-
-		-
 			message: "#^Access to an undefined property object\\:\\:\\$licenseKey\\.$#"
 			count: 2
 			path: src/Core/License.php
 
 		-
 			message: "#^Cannot access offset 'item_name' on mixed\\.$#"
-			count: 3
+			count: 2
 			path: src/Core/License.php
 
 		-
 			message: "#^Cannot access offset 'store_url' on mixed\\.$#"
-			count: 3
+			count: 2
 			path: src/Core/License.php
 
 		-
@@ -966,18 +936,13 @@ parameters:
 			path: src/Core/License.php
 
 		-
-			message: "#^Cannot access property \\$expires on mixed\\.$#"
+			message: "#^Cannot access property \\$license on mixed\\.$#"
 			count: 1
 			path: src/Core/License.php
 
 		-
-			message: "#^Cannot access property \\$license on mixed\\.$#"
-			count: 3
-			path: src/Core/License.php
-
-		-
 			message: "#^Cannot access property \\$licenseKey on mixed\\.$#"
-			count: 7
+			count: 4
 			path: src/Core/License.php
 
 		-
@@ -987,11 +952,6 @@ parameters:
 
 		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\License\\:\\:check\\(\\) should return object but returns mixed\\.$#"
-			count: 1
-			path: src/Core/License.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\License\\:\\:getLicenses\\(\\) should return array but returns mixed\\.$#"
 			count: 1
 			path: src/Core/License.php
 
@@ -1007,17 +967,17 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$url of function wp_remote_post expects string, mixed given\\.$#"
-			count: 3
+			count: 2
 			path: src/Core/License.php
 
 		-
 			message: "#^Parameter \\#2 \\$key of class BracketSpace\\\\Notification\\\\Dependencies\\\\Micropackage\\\\Cache\\\\Cache constructor expects string, mixed given\\.$#"
-			count: 5
+			count: 2
 			path: src/Core/License.php
 
 		-
 			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
-			count: 3
+			count: 2
 			path: src/Core/License.php
 
 		-
@@ -1051,36 +1011,6 @@ parameters:
 			path: src/ErrorHandler.php
 
 		-
-			message: "#^Cannot access offset 'recipient' on mixed\\.$#"
-			count: 1
-			path: src/Repository/Carrier/BaseCarrier.php
-
-		-
-			message: "#^Cannot access offset 'type' on mixed\\.$#"
-			count: 1
-			path: src/Repository/Carrier/BaseCarrier.php
-
-		-
-			message: "#^Cannot call method setValue\\(\\) on BracketSpace\\\\Notification\\\\Interfaces\\\\Fillable\\|null\\.$#"
-			count: 4
-			path: src/Repository/Carrier/BaseCarrier.php
-
-		-
-			message: "#^Parameter \\#1 \\$value of method BracketSpace\\\\Notification\\\\Interfaces\\\\Receivable\\:\\:parseValue\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Carrier/BaseCarrier.php
-
-		-
-			message: "#^Parameter \\#2 \\$slug of static method BracketSpace\\\\Notification\\\\Store\\\\Recipient\\:\\:get\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Carrier/BaseCarrier.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Carrier\\\\BaseCarrier\\:\\:\\$recipientsResolvedData \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Carrier/BaseCarrier.php
-
-		-
 			message: "#^Parameter \\#1 \\$carrier of static method BracketSpace\\\\Notification\\\\Register\\:\\:carrier\\(\\) expects BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable, mixed given\\.$#"
 			count: 1
 			path: src/Repository/CarrierRepository.php
@@ -1096,71 +1026,6 @@ parameters:
 			path: src/Repository/Field/BaseField.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\BaseField\\:\\:getLabel\\(\\) should return string but returns mixed\\.$#"
-			count: 1
-			path: src/Repository/Field/BaseField.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\BaseField\\:\\:getRawName\\(\\) should return string but returns mixed\\.$#"
-			count: 1
-			path: src/Repository/Field/BaseField.php
-
-		-
-			message: "#^Parameter \\#1 \\$string of function substr expects string, string\\|false given\\.$#"
-			count: 1
-			path: src/Repository/Field/BaseField.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, string\\|false given\\.$#"
-			count: 1
-			path: src/Repository/Field/CodeEditorField.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\CodeEditorField\\:\\:\\$settings \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Field/CodeEditorField.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\EditorField\\:\\:field\\(\\) should return string but returns string\\|false\\.$#"
-			count: 1
-			path: src/Repository/Field/EditorField.php
-
-		-
-			message: "#^Parameter \\#1 \\$content of function wp_editor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/EditorField.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\EditorField\\:\\:\\$settings \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Field/EditorField.php
-
-		-
-			message: "#^Parameter \\#1 \\$post_id of function wp_get_attachment_thumb_url expects int, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/ImageField.php
-
-		-
-			message: "#^Cannot cast mixed to string\\.$#"
-			count: 1
-			path: src/Repository/Field/InputField.php
-
-		-
-			message: "#^Call to an undefined method BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\MessageField\\:\\:message\\(\\)\\.$#"
-			count: 1
-			path: src/Repository/Field/MessageField.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\MessageField\\:\\:\\$message \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Field/MessageField.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\NonceField\\:\\:\\$nonceKey \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Field/NonceField.php
-
-		-
 			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: src/Repository/Field/RepeaterField.php
@@ -1171,29 +1036,9 @@ parameters:
 			path: src/Repository/Field/RepeaterField.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\RepeaterField\\:\\:\\$fields \\(array\\<BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\BaseField\\>\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Field/RepeaterField.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_html expects string, mixed given\\.$#"
+			message: "#^Cannot cast mixed to string\\.$#"
 			count: 1
 			path: src/Repository/Field/SectionRepeater.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\SectionRepeater\\:\\:\\$sections \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Field/SectionRepeater.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\SectionsField\\:\\:\\$sections \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Field/SectionsField.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_html expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/SelectField.php
 
 		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\SelectField\\:\\:\\$options \\(array\\) does not accept mixed\\.$#"
@@ -1204,16 +1049,6 @@ parameters:
 			message: "#^Parameter \\#1 \\$params of class BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\EmailTag constructor expects array\\{slug\\?\\: string, name\\?\\: string, property_name\\?\\: string, group\\?\\: string\\|null, description\\?\\: string, example\\?\\: bool\\|string, resolver\\?\\: callable\\(\\)\\: mixed\\}, array\\{slug\\: 'admin_email', name\\: string, description\\: mixed, hidden\\: true, resolver\\: Closure\\(mixed\\)\\: mixed\\} given\\.$#"
 			count: 1
 			path: src/Repository/GlobalMergeTagRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$email of function sanitize_email expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/EmailTag.php
-
-		-
-			message: "#^Cannot cast mixed to string\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/HtmlTag.php
 
 		-
 			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
@@ -1556,36 +1391,6 @@ parameters:
 			path: src/Store/Trigger.php
 
 		-
-			message: "#^Cannot access offset mixed on mixed\\.$#"
-			count: 2
-			path: src/Utils/Settings.php
-
-		-
-			message: "#^Cannot access offset string on mixed\\.$#"
-			count: 3
-			path: src/Utils/Settings.php
-
-		-
-			message: "#^Cannot call method getGroups\\(\\) on mixed\\.$#"
-			count: 4
-			path: src/Utils/Settings.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Settings\\:\\:addSection\\(\\) should return BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Section but returns mixed\\.$#"
-			count: 1
-			path: src/Utils/Settings.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_html expects string, mixed given\\.$#"
-			count: 1
-			path: src/Utils/Settings/CoreFields/Button.php
-
-		-
-			message: "#^Parameter \\#1 \\$url of function esc_url_raw expects string, mixed given\\.$#"
-			count: 1
-			path: src/Utils/Settings/CoreFields/Button.php
-
-		-
 			message: "#^Parameter \\#3 \\$settings of function wp_editor expects array\\{wpautop\\?\\: bool, media_buttons\\?\\: bool, default_editor\\?\\: string, drag_drop_upload\\?\\: bool, textarea_name\\?\\: string, textarea_rows\\?\\: int, tabindex\\?\\: int\\|string, tabfocus_elements\\?\\: string, \\.\\.\\.\\}, array\\{textarea_name\\: string, editor_css\\: null, wpautop\\: mixed, media_buttons\\: mixed, textarea_rows\\: mixed, teeny\\: mixed\\} given\\.$#"
 			count: 1
 			path: src/Utils/Settings/CoreFields/Editor.php
@@ -1664,39 +1469,4 @@ parameters:
 			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\WpObjectHelper\\:\\:getCommentTypes\\(\\) should return array\\<string, string\\> but returns mixed\\.$#"
 			count: 1
 			path: src/Utils/WpObjectHelper.php
-
-		-
-			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
-			count: 1
-			path: uninstall.php
-
-		-
-			message: "#^Cannot access offset 'licenses' on mixed\\.$#"
-			count: 1
-			path: uninstall.php
-
-		-
-			message: "#^Cannot access offset 'notifications' on mixed\\.$#"
-			count: 1
-			path: uninstall.php
-
-		-
-			message: "#^Cannot access offset 'settings' on mixed\\.$#"
-			count: 1
-			path: uninstall.php
-
-		-
-			message: "#^Cannot access offset 'uninstallation' on mixed\\.$#"
-			count: 1
-			path: uninstall.php
-
-		-
-			message: "#^Cannot call method deactivate\\(\\) on mixed\\.$#"
-			count: 1
-			path: uninstall.php
-
-		-
-			message: "#^Cannot call method isValid\\(\\) on mixed\\.$#"
-			count: 1
-			path: uninstall.php
 

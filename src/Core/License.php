@@ -52,9 +52,10 @@ class License
 	 * @return array<mixed> licenses
 	 * @since  5.1.0
 	 */
-	public function getLicenses()
+	public function getLicenses(): array
 	{
-		return get_option($this->licenseStorage, []);
+		$licenses = get_option($this->licenseStorage, []);
+		return is_array($licenses) ? $licenses : [];
 	}
 
 	/**
@@ -66,7 +67,8 @@ class License
 	public function get()
 	{
 		$driver = new CacheDriver\ObjectCache('notification_license/v2');
-		$cache = new Cache($driver, $this->extension['slug']);
+		$slug = is_scalar($this->extension['slug'] ?? null) ? (string)$this->extension['slug'] : '';
+		$cache = new Cache($driver, $slug);
 
 		return $cache->collect(
 			function () {
@@ -93,7 +95,7 @@ class License
 	 * @return bool
 	 * @since  5.1.0
 	 */
-	public function isValid()
+	public function isValid(): bool
 	{
 		$licenseData = $this->get();
 
@@ -102,31 +104,47 @@ class License
 		}
 
 		$driver = new CacheDriver\Transient(ErrorHandler::debugEnabled() ? 60 : DAY_IN_SECONDS);
-		$cache = new Cache($driver, sprintf('notification_license_check_%s', $this->extension['slug']));
+		$slug = is_scalar($this->extension['slug'] ?? null) ? (string)$this->extension['slug'] : '';
+		$cache = new Cache($driver, sprintf('notification_license_check_%s', $slug));
 
 		return $cache->collect(
 			function () use ($licenseData) {
+				// Ensure licenseData is object with required properties
+				if (!is_object($licenseData) || !property_exists($licenseData, 'licenseKey')) {
+					return false;
+				}
+
 				$licenseCheck = $this->check($licenseData->licenseKey);
 
 				if (is_wp_error($licenseCheck)) {
-					return $licenseData->license === 'valid';
+					return is_object($licenseData) && property_exists($licenseData, 'license')
+						? $licenseData->license === 'valid' : false;
 				}
 
 				// Always update stored license data if API returned different status
 				if (
-					$licenseCheck->license !== $licenseData->license ||
-					$licenseCheck->expires !== $licenseData->expires
+					is_object($licenseCheck) && is_object($licenseData) &&
+					property_exists($licenseCheck, 'license') && property_exists($licenseData, 'license') &&
+					property_exists($licenseCheck, 'expires') && property_exists($licenseData, 'expires') &&
+					($licenseCheck->license !== $licenseData->license ||
+					$licenseCheck->expires !== $licenseData->expires)
 				) {
 					$licenseCheck->licenseKey = $licenseData->licenseKey;
 					$this->save($licenseCheck);
 					$licenseData = $licenseCheck;
 				} else {
-					$licenseCheck->licenseKey = $licenseData->licenseKey;
-					$licenseData = $licenseCheck;
-					$this->save($licenseData);
+					if (
+						is_object($licenseCheck) && is_object($licenseData) &&
+						property_exists($licenseData, 'licenseKey')
+					) {
+						$licenseCheck->licenseKey = $licenseData->licenseKey;
+						$licenseData = $licenseCheck;
+						$this->save($licenseData);
+					}
 				}
 
-				return $licenseData->license === 'valid';
+				return is_object($licenseData) && property_exists($licenseData, 'license')
+					? $licenseData->license === 'valid' : false;
 			}
 		);
 	}
@@ -153,11 +171,14 @@ class License
 	public function save($licenseData)
 	{
 		$driver = new CacheDriver\ObjectCache('notification_license/v2');
-		$cache = new Cache($driver, $this->extension['slug']);
+		$slug = is_scalar($this->extension['slug'] ?? null) ? (string)$this->extension['slug'] : '';
+		$cache = new Cache($driver, $slug);
 		$cache->set($licenseData);
 
 		$licenses = $this->getLicenses();
-		$licenses[$this->extension['slug']] = $licenseData;
+		if ($slug !== '') {
+			$licenses[$slug] = $licenseData;
+		}
 
 		update_option($this->licenseStorage, $licenses);
 	}
@@ -171,12 +192,13 @@ class License
 	public function remove()
 	{
 		$driver = new CacheDriver\ObjectCache('notification_license/v2');
-		$cache = new Cache($driver, $this->extension['slug']);
+		$slug = is_scalar($this->extension['slug'] ?? null) ? (string)$this->extension['slug'] : '';
+		$cache = new Cache($driver, $slug);
 		$cache->delete();
 
 		$licenses = $this->getLicenses();
-		if (isset($licenses[$this->extension['slug']])) {
-			unset($licenses[$this->extension['slug']]);
+		if ($slug !== '' && isset($licenses[$slug])) {
+			unset($licenses[$slug]);
 		}
 
 		update_option($this->licenseStorage, $licenses);
@@ -194,12 +216,26 @@ class License
 		$licenseKey = trim($licenseKey);
 		$error = false;
 
-		/** @var string $itemName */
-		$itemName = $this->extension['edd']['item_name'];
+		// Ensure we have valid EDD configuration
+		if (!is_array($this->extension) || !isset($this->extension['edd']) || !is_array($this->extension['edd'])) {
+			return new \WP_Error('invalid_config', 'Invalid extension configuration');
+		}
+
+		$eddConfig = $this->extension['edd'];
+		if (!isset($eddConfig['item_name'], $eddConfig['store_url'])) {
+			return new \WP_Error('missing_config', 'Missing EDD configuration');
+		}
+
+		$itemName = is_scalar($eddConfig['item_name']) ? (string)$eddConfig['item_name'] : '';
+		$storeUrl = is_scalar($eddConfig['store_url']) ? (string)$eddConfig['store_url'] : '';
+
+		if ($itemName === '' || $storeUrl === '') {
+			return new \WP_Error('empty_config', 'Empty EDD configuration values');
+		}
 
 		// Call the custom API.
 		$response = wp_remote_post(
-			$this->extension['edd']['store_url'],
+			$storeUrl,
 			[
 				'timeout' => 15,
 				'body' => [

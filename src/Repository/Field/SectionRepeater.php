@@ -101,11 +101,11 @@ class SectionRepeater extends BaseField
 			trigger_error('SectionsRepeater requires section labels param', E_USER_ERROR);
 		}
 
-		$this->sections = $params['sections'];
+		$this->sections = is_array($params['sections']) ? $params['sections'] : [];
 
-		$this->sectionLabels = $params['section_labels'];
+		$this->sectionLabels = is_array($params['section_labels']) ? $params['section_labels'] : [];
 
-		if (isset($params['fields'])) {
+		if (isset($params['fields']) && is_array($params['fields'])) {
 			$this->fields = $params['fields'];
 		}
 
@@ -157,7 +157,7 @@ class SectionRepeater extends BaseField
 		foreach ($this->sectionLabels as $label) {
 			$html .= '<th class="section-repeater-label">';
 
-			$html .= esc_html($label);
+			$html .= esc_html((string)$label);
 
 			$html .= '</th>';
 		}

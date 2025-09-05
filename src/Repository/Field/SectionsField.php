@@ -34,7 +34,7 @@ class SectionsField extends InputField
 			trigger_error('SectionsField requires sections param', E_USER_ERROR);
 		}
 
-		$this->sections = $params['sections'];
+		$this->sections = is_array($params['sections']) ? $params['sections'] : [];
 
 		parent::__construct($params);
 	}

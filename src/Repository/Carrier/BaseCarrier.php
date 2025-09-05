@@ -386,10 +386,12 @@ abstract class BaseCarrier implements Interfaces\Sendable
 			return;
 		}
 
-		$this->recipientsResolvedData = $this->resolveValue(
+		$resolvedValue = $this->resolveValue(
 			$recipientsField->getValue(),
 			$trigger
 		);
+
+		$this->recipientsResolvedData = is_array($resolvedValue) ? $resolvedValue : [];
 	}
 
 	/**
@@ -488,7 +490,14 @@ abstract class BaseCarrier implements Interfaces\Sendable
 		$parsedRecipients = [];
 
 		foreach ($this->recipientsResolvedData as $recipientData) {
-			$recipient = RecipientStore::get($this->getSlug(), $recipientData['type']);
+			if (!is_array($recipientData) || !isset($recipientData['type'], $recipientData['recipient'])) {
+				continue;
+			}
+
+			$type = is_scalar($recipientData['type']) ? (string)$recipientData['type'] : '';
+			$recipientValue = is_scalar($recipientData['recipient']) ? (string)$recipientData['recipient'] : '';
+
+			$recipient = RecipientStore::get($this->getSlug(), $type);
 
 			if (! $recipient instanceof Interfaces\Receivable) {
 				continue;
@@ -496,7 +505,7 @@ abstract class BaseCarrier implements Interfaces\Sendable
 
 			$parsedRecipients = array_merge(
 				$parsedRecipients,
-				(array)$recipient->parseValue($recipientData['recipient'])
+				(array)$recipient->parseValue($recipientValue)
 			);
 		}
 
@@ -596,7 +605,10 @@ abstract class BaseCarrier implements Interfaces\Sendable
 	 */
 	public function activate()
 	{
-		$this->getFormField('activated')->setValue(true);
+		$field = $this->getFormField('activated');
+		if ($field !== null) {
+			$field->setValue(true);
+		}
 		return $this;
 	}
 
@@ -608,7 +620,10 @@ abstract class BaseCarrier implements Interfaces\Sendable
 	 */
 	public function deactivate()
 	{
-		$this->getFormField('activated')->setValue(false);
+		$field = $this->getFormField('activated');
+		if ($field !== null) {
+			$field->setValue(false);
+		}
 		return $this;
 	}
 
@@ -631,7 +646,10 @@ abstract class BaseCarrier implements Interfaces\Sendable
 	 */
 	public function enable()
 	{
-		$this->getFormField('enabled')->setValue(true);
+		$field = $this->getFormField('enabled');
+		if ($field !== null) {
+			$field->setValue(true);
+		}
 		return $this;
 	}
 
@@ -643,7 +661,10 @@ abstract class BaseCarrier implements Interfaces\Sendable
 	 */
 	public function disable()
 	{
-		$this->getFormField('enabled')->setValue(false);
+		$field = $this->getFormField('enabled');
+		if ($field !== null) {
+			$field->setValue(false);
+		}
 		return $this;
 	}
 

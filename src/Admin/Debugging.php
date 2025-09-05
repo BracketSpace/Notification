@@ -187,7 +187,7 @@ class Debugging
 
 		$debug->removeLogs($removeTypes);
 
-		wp_safe_redirect(wp_get_referer());
+		wp_safe_redirect(wp_get_referer() !== false ? wp_get_referer() : admin_url());
 		exit;
 	}
 }

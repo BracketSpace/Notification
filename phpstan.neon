@@ -5,6 +5,7 @@ parameters:
 	level: max
 	inferPrivatePropertyTypeFromConstructor: true
 	treatPhpDocTypesAsCertain: false
+	reportUnmatchedIgnoredErrors: false
 	scanFiles:
 		- vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
 	paths:

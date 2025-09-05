@@ -32,7 +32,7 @@ class CodeEditorField extends BaseField
 	public function __construct($params = [])
 	{
 		if (isset($params['settings'])) {
-			$this->settings = $params['settings'];
+			$this->settings = is_scalar($params['settings']) ? (string)$params['settings'] : 'text';
 		}
 
 		parent::__construct($params);
@@ -67,7 +67,7 @@ class CodeEditorField extends BaseField
 				name="%s"
 			>%s</textarea>',
 			esc_attr($this->getId()),
-			esc_attr(wp_json_encode($settings)),
+			esc_attr(wp_json_encode($settings) !== false ? wp_json_encode($settings) : '{}'),
 			esc_attr($this->getName()),
 			esc_textarea($value)
 		);

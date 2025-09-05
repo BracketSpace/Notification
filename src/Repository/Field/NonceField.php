@@ -34,7 +34,7 @@ class NonceField extends BaseField
 			trigger_error('NonceField requires nonce_key param', E_USER_ERROR);
 		}
 
-		$this->nonceKey = $params['nonce_key'];
+		$this->nonceKey = is_scalar($params['nonce_key']) ? (string)$params['nonce_key'] : '';
 
 		parent::__construct($params);
 	}

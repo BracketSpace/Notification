@@ -85,7 +85,8 @@ class NotificationDuplicator
 		// Create duplicated Notification.
 		Db::upsert($newNotification);
 
-		wp_safe_redirect(html_entity_decode(get_edit_post_link(Db::getLastUpsertedPostId())));
+		$editLink = get_edit_post_link(Db::getLastUpsertedPostId());
+		wp_safe_redirect(html_entity_decode($editLink ? $editLink : admin_url()));
 		exit;
 	}
 }

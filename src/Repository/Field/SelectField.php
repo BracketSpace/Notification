@@ -68,7 +68,7 @@ class SelectField extends BaseField
 				$this->getValue(),
 				$optionValue,
 				false
-			) . '>' . esc_html($optionLabel) . '</option>';
+			) . '>' . esc_html(is_scalar($optionLabel) ? (string)$optionLabel : '') . '</option>';
 		}
 
 		$html .= '</select>';
