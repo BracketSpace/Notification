@@ -58,6 +58,7 @@ add_action('admin_notices', [$this->component('BracketSpace\Notification\Admin\P
 add_action('admin_menu', [$this->component('BracketSpace\Notification\Admin\Extensions'), 'registerPage'], 10, 0);
 add_action('admin_init', [$this->component('BracketSpace\Notification\Admin\Extensions'), 'updater'], 10, 0);
 add_action('admin_post_notification_activate_extension', [$this->component('BracketSpace\Notification\Admin\Extensions'), 'activate'], 10, 0);
+add_action('admin_post_notification_refresh_all_licenses', [$this->component('BracketSpace\Notification\Admin\Extensions'), 'refreshAllLicenses'], 10, 0);
 add_action('admin_post_notification_deactivate_extension', [$this->component('BracketSpace\Notification\Admin\Extensions'), 'deactivate'], 10, 0);
 add_action('admin_notices', [$this->component('BracketSpace\Notification\Admin\Extensions'), 'activationNotices'], 10, 0);
 add_action('admin_notices', [$this->component('BracketSpace\Notification\Admin\Extensions'), 'activationNag'], 10, 0);
