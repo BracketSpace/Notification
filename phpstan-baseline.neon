@@ -561,21 +561,6 @@ parameters:
 			path: compat/src-deprecated/Defaults/Carrier/WebhookJson.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:add\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:delete\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:set\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
-
-		-
 			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
 			count: 1
 			path: compat/src-deprecated/functions.php
@@ -1076,11 +1061,6 @@ parameters:
 			path: src/ErrorHandler.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Integration\\\\WordPressEmails\\:\\:getSettingForUserRole\\(\\) is unused\\.$#"
-			count: 1
-			path: src/Integration/WordPressEmails.php
-
-		-
 			message: "#^Cannot access offset 'recipient' on mixed\\.$#"
 			count: 1
 			path: src/Repository/Carrier/BaseCarrier.php
@@ -1151,37 +1131,12 @@ parameters:
 			path: src/Repository/Field/CodeEditorField.php
 
 		-
-			message: "#^Parameter \\#1 \\$color of function sanitize_hex_color expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/ColorPickerField.php
-
-		-
-			message: "#^Parameter \\#1 \\$haystack of function strpos expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/ColorPickerField.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/ColorPickerField.php
-
-		-
-			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/ColorPickerField.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\EditorField\\:\\:field\\(\\) should return string but returns string\\|false\\.$#"
 			count: 1
 			path: src/Repository/Field/EditorField.php
 
 		-
 			message: "#^Parameter \\#1 \\$content of function wp_editor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/EditorField.php
-
-		-
-			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/Field/EditorField.php
 
@@ -1196,22 +1151,17 @@ parameters:
 			path: src/Repository/Field/ImageField.php
 
 		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/ImageField.php
-
-		-
 			message: "#^Cannot cast mixed to string\\.$#"
 			count: 1
 			path: src/Repository/Field/InputField.php
 
 		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$string of function trim expects string, string\\|null given\\.$#"
 			count: 1
 			path: src/Repository/Field/InputField.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\InputField\\:\\:\\$type \\(string\\) does not accept mixed\\.$#"
+			message: "#^Parameter \\#3 \\$subject of function preg_replace expects array\\|string, string\\|null given\\.$#"
 			count: 1
 			path: src/Repository/Field/InputField.php
 
@@ -1241,19 +1191,9 @@ parameters:
 			path: src/Repository/Field/RepeaterField.php
 
 		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/RepeaterField.php
-
-		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\RepeaterField\\:\\:\\$fields \\(array\\<BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\BaseField\\>\\) does not accept mixed\\.$#"
 			count: 1
 			path: src/Repository/Field/RepeaterField.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/SectionRepeater.php
 
 		-
 			message: "#^Parameter \\#1 \\$text of function esc_html expects string, mixed given\\.$#"
@@ -1271,11 +1211,6 @@ parameters:
 			path: src/Repository/Field/SectionsField.php
 
 		-
-			message: "#^Parameter \\#1 \\$str of function sanitize_text_field expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/SelectField.php
-
-		-
 			message: "#^Parameter \\#1 \\$text of function esc_html expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/Field/SelectField.php
@@ -1284,16 +1219,6 @@ parameters:
 			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\SelectField\\:\\:\\$options \\(array\\) does not accept mixed\\.$#"
 			count: 1
 			path: src/Repository/Field/SelectField.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function sanitize_textarea_field expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/TextareaField.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\TextareaField\\:\\:\\$placeholder \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Field/TextareaField.php
 
 		-
 			message: "#^Parameter \\#1 \\$params of class BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\EmailTag constructor expects array\\{slug\\?\\: string, name\\?\\: string, property_name\\?\\: string, group\\?\\: string\\|null, description\\?\\: string, example\\?\\: bool\\|string, resolver\\?\\: callable\\(\\)\\: mixed\\}, array\\{slug\\: 'admin_email', name\\: string, description\\: mixed, hidden\\: true, resolver\\: Closure\\(mixed\\)\\: mixed\\} given\\.$#"
@@ -1339,11 +1264,6 @@ parameters:
 			message: "#^Parameter \\#1 \\$attachment_id of function wp_get_attachment_image_url expects int, int\\|false given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Post/ThumbnailUrl.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function sanitize_text_field expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/StringTag.php
 
 		-
 			message: "#^Cannot access property \\$name on WP_Role\\|null\\.$#"
@@ -1496,22 +1416,12 @@ parameters:
 			path: src/Repository/Trigger/Privacy/DataEraseRequest.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\DataEraseRequest\\:\\:context\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Privacy/DataEraseRequest.php
-
-		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
 			count: 1
 			path: src/Repository/Trigger/Privacy/DataEraseRequest.php
 
 		-
 			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Privacy/DataErased.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\DataErased\\:\\:context\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: src/Repository/Trigger/Privacy/DataErased.php
 
@@ -1696,11 +1606,6 @@ parameters:
 			path: src/Utils/Settings/CoreFields/Button.php
 
 		-
-			message: "#^Parameter \\#1 \\$data of function wp_kses_data expects string, mixed given\\.$#"
-			count: 1
-			path: src/Utils/Settings/CoreFields/Checkbox.php
-
-		-
 			message: "#^Parameter \\#3 \\$settings of function wp_editor expects array\\{wpautop\\?\\: bool, media_buttons\\?\\: bool, default_editor\\?\\: string, drag_drop_upload\\?\\: bool, textarea_name\\?\\: string, textarea_rows\\?\\: int, tabindex\\?\\: int\\|string, tabfocus_elements\\?\\: string, \\.\\.\\.\\}, array\\{textarea_name\\: string, editor_css\\: null, wpautop\\: mixed, media_buttons\\: mixed, textarea_rows\\: mixed, teeny\\: mixed\\} given\\.$#"
 			count: 1
 			path: src/Utils/Settings/CoreFields/Editor.php
@@ -1709,21 +1614,6 @@ parameters:
 			message: "#^Parameter \\#1 \\$url of function esc_url expects string, string\\|false given\\.$#"
 			count: 1
 			path: src/Utils/Settings/CoreFields/Image.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 3
-			path: src/Utils/Settings/CoreFields/Number.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 3
-			path: src/Utils/Settings/CoreFields/Range.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function sanitize_text_field expects string, mixed given\\.$#"
-			count: 1
-			path: src/Utils/Settings/CoreFields/Select.php
 
 		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Field\\:\\:\\$addons \\(string\\) does not accept mixed\\.$#"

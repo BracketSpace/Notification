@@ -41,6 +41,6 @@ class StringTag extends BaseMergeTag
 	 */
 	public function sanitize($value)
 	{
-		return sanitize_text_field((string)$value);
+		return sanitize_text_field(is_scalar($value) ? (string)$value : '');
 	}
 }

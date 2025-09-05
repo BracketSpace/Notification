@@ -68,10 +68,10 @@ class Select
 	{
 		if (is_array($value)) {
 			foreach ($value as $i => $v) {
-				$value[$i] = sanitize_text_field((string)$v);
+				$value[$i] = sanitize_text_field(is_scalar($v) ? (string)$v : '');
 			}
 		} else {
-			$value = sanitize_text_field((string)$value);
+			$value = sanitize_text_field(is_scalar($value) ? (string)$value : '');
 		}
 
 		return $value;

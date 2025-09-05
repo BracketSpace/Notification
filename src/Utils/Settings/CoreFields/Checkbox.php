@@ -26,6 +26,7 @@ class Checkbox
 	{
 		$checked = in_array($field->value(), ['true', true], true);
 
+		$labelValue = $field->addon('label');
 		printf(
 			'<label><input type="checkbox" id="%s" name="%s" value="true" %s> %s</label>',
 			esc_attr($field->inputId()),
@@ -35,7 +36,7 @@ class Checkbox
 				true,
 				false
 			),
-			wp_kses_data($field->addon('label'))
+			wp_kses_data(is_scalar($labelValue) ? (string)$labelValue : '')
 		);
 	}
 
