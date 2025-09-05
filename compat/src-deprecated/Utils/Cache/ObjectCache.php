@@ -43,9 +43,9 @@ class ObjectCache extends Cache implements Cacheable {
 	 * Sets cache value
 	 *
 	 * @param mixed $value value to store.
-	 * @return object $this
+	 * @return Cacheable $this
 	 */
-	public function set( $value ) {
+	public function set( $value ): Cacheable {
 		wp_cache_set( $this->key, $value, $this->group );
 		return $this;
 	}
@@ -54,9 +54,9 @@ class ObjectCache extends Cache implements Cacheable {
 	 * Adds cache if it's not already set
 	 *
 	 * @param mixed $value value to store.
-	 * @return object $this
+	 * @return Cacheable $this
 	 */
-	public function add( $value ) {
+	public function add( $value ): Cacheable {
 		wp_cache_add( $this->key, $value, $this->group );
 		return $this;
 	}
@@ -74,9 +74,9 @@ class ObjectCache extends Cache implements Cacheable {
 	/**
 	 * Deletes value from cache
 	 *
-	 * @return object $this
+	 * @return Cacheable $this
 	 */
-	public function delete() {
+	public function delete(): Cacheable {
 		wp_cache_delete( $this->key, $this->group );
 		return $this;
 	}

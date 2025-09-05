@@ -55,7 +55,7 @@ class InputField extends BaseField
 	public function __construct($params = [])
 	{
 		if (isset($params['type'])) {
-			$this->type = $params['type'];
+			$this->type = (string)$params['type'];
 		}
 
 		if (isset($params['placeholder'])) {
@@ -85,7 +85,7 @@ class InputField extends BaseField
 			esc_attr($this->type),
 			esc_attr($this->getName()),
 			esc_attr($this->getId()),
-			esc_attr($this->getValue()),
+			esc_attr((string)$this->getValue()),
 			esc_attr($this->placeholder),
 			esc_attr($this->cssClass()),
 			$this->maybeDisable(),

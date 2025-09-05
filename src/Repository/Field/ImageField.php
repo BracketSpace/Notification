@@ -39,7 +39,7 @@ class ImageField extends BaseField
 			esc_attr($class),
 			esc_attr($this->getName()),
 			esc_attr($this->getId()),
-			esc_attr($this->getValue()),
+			esc_attr((string)$this->getValue()),
 			esc_attr($this->cssClass()),
 			$this->maybeDisable(),
 			esc_html__('Select image', 'notification'),

@@ -113,8 +113,10 @@ class License
 				}
 
 				// Always update stored license data if API returned different status
-				if ($licenseCheck->license !== $licenseData->license || 
-					$licenseCheck->expires !== $licenseData->expires) {
+				if (
+					$licenseCheck->license !== $licenseData->license ||
+					$licenseCheck->expires !== $licenseData->expires
+				) {
 					$licenseCheck->licenseKey = $licenseData->licenseKey;
 					$this->save($licenseCheck);
 					$licenseData = $licenseCheck;
@@ -289,7 +291,7 @@ class License
 			'inactive',     // Already inactive
 			'site_inactive', // Already inactive for this site
 			'invalid',      // Invalid license - still want to remove locally
-			'revoked'       // Revoked license - still want to remove locally
+			'revoked',       // Revoked license - still want to remove locally
 		];
 
 		if (!in_array($licenseData->license, $validDeactivationStatuses, true)) {

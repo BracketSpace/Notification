@@ -26,7 +26,7 @@ class ColorPickerField extends BaseField
 			'<input type="text" name="%s" id="%s" value="%s" class="notification-color-picker %s" %s>',
 			esc_attr($this->getName()),
 			esc_attr($this->getId()),
-			esc_attr($this->getValue()),
+			esc_attr((string)$this->getValue()),
 			esc_attr($this->cssClass()),
 			$this->maybeDisable()
 		);

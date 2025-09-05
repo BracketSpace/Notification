@@ -59,7 +59,7 @@ $license = $ext['license']->get();
 						<?php esc_html_e('Your license is inactive.', 'notification'); ?>
 					</p>
 				<?php endif ?>
-				<?php 
+				<?php
 				// Show renewal link if license is expired OR expiration date is in the past
 				$isExpiredStatus = $license->license === 'expired';
 				$isExpiredByDate = false;

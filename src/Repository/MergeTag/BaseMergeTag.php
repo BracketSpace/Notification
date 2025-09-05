@@ -83,7 +83,8 @@ abstract class BaseMergeTag implements Interfaces\Taggable
 	/**
 	 * Merge tag constructor
 	 *
-	 * @param array<mixed> $params merge tag configuration params.
+	 * @param array{slug?: string, name?: string, property_name?: string, group?: string|null, description?: string,
+	 *               example?: bool|string, resolver?: callable} $params merge tag configuration params.
 	 * @since 7.0.0 The resolver closure context is static.
 	 * @since 5.0.0
 	 */

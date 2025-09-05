@@ -47,7 +47,17 @@ $headerPattern = _n(
 		</a>
 		
 		<a 
-			href="<?php echo esc_url(wp_nonce_url(admin_url('admin-post.php?action=notification_refresh_all_licenses'), 'refresh_all_licenses', '_wpnonce')); ?>"
+			href="
+			<?php
+			echo esc_url(
+				wp_nonce_url(
+					admin_url('admin-post.php?action=notification_refresh_all_licenses'),
+					'refresh_all_licenses',
+					'_wpnonce'
+				)
+			);
+			?>
+			"
 			class="button button-secondary"
 			title="<?php esc_attr_e('Check the latest status for all licenses from the store', 'notification'); ?>"
 			style="margin-left: 10px;"

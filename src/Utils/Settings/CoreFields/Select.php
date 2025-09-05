@@ -68,10 +68,10 @@ class Select
 	{
 		if (is_array($value)) {
 			foreach ($value as $i => $v) {
-				$value[$i] = sanitize_text_field($v);
+				$value[$i] = sanitize_text_field((string)$v);
 			}
 		} else {
-			$value = sanitize_text_field($value);
+			$value = sanitize_text_field((string)$value);
 		}
 
 		return $value;

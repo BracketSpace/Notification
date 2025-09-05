@@ -42,9 +42,9 @@ class Transient extends Cache implements Cacheable {
 	 * Sets cache value
 	 *
 	 * @param mixed $value value to store.
-	 * @return object $this
+	 * @return Cacheable $this
 	 */
-	public function set( $value ) {
+	public function set( $value ): Cacheable {
 		set_transient( $this->key, $value, $this->expiration );
 		return $this;
 	}
@@ -53,9 +53,9 @@ class Transient extends Cache implements Cacheable {
 	 * Adds cache if it's not already set
 	 *
 	 * @param mixed $value value to store.
-	 * @return object $this
+	 * @return Cacheable $this
 	 */
-	public function add( $value ) {
+	public function add( $value ): Cacheable {
 		if ( false === $this->get() ) {
 			$this->set( $value );
 		}
@@ -75,9 +75,9 @@ class Transient extends Cache implements Cacheable {
 	/**
 	 * Deletes value from cache
 	 *
-	 * @return object $this
+	 * @return Cacheable $this
 	 */
-	public function delete() {
+	public function delete(): Cacheable {
 		delete_transient( $this->key );
 		return $this;
 	}

@@ -18,14 +18,14 @@ interface Cacheable {
 	 *
 	 * @param mixed $value value to store.
 	 */
-	public function set( $value );
+	public function set( $value ): Cacheable;
 
 	/**
 	 * Adds cache if it's not already set
 	 *
 	 * @param mixed $value value to store.
 	 */
-	public function add( $value );
+	public function add( $value ): Cacheable;
 
 	/**
 	 * Gets value from cache
@@ -38,6 +38,6 @@ interface Cacheable {
 	/**
 	 * Deletes value from cache
 	 */
-	public function delete();
+	public function delete(): Cacheable;
 
 }

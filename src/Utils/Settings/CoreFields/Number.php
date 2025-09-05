@@ -29,10 +29,10 @@ class Number
 			'<label><input type="number" id="%s" name="%s" value="%s" min="%s" max="%s" step="%s" class="widefat"></label>',
 			esc_attr($field->inputId()),
 			esc_attr($field->inputName()),
-			esc_attr($field->value()),
-			esc_attr($field->addon('min')),
-			esc_attr($field->addon('max')),
-			esc_attr($field->addon('step'))
+			esc_attr((string)$field->value()),
+			esc_attr((string)$field->addon('min')),
+			esc_attr((string)$field->addon('max')),
+			esc_attr((string)$field->addon('step'))
 		);
 	}
 
