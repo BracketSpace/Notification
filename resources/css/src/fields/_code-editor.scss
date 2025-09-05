@@ -1,16 +1,16 @@
 .notification-code-editor-field {
-	width: 100%;
 	max-width: 100%;
 	overflow: hidden;
+	width: 100%;
 
 	/* stylelint-disable */
 	+ .CodeMirror {
 		/* stylelint-enable */
 		border: 1px solid #e5e5e5;
-		width: 100% !important;
-		max-width: 100%;
 		box-sizing: border-box;
+		max-width: 100%;
 		overflow: hidden;
+		width: 100% !important;
 
 		.CodeMirror-scroll {
 			max-width: 100%;
@@ -22,8 +22,8 @@
 		}
 
 		pre {
-			word-wrap: break-word;
 			white-space: pre-wrap;
+			word-wrap: break-word;
 		}
 	}
 
