@@ -112,9 +112,19 @@ class License
 					return $licenseData->license === 'valid';
 				}
 
-				$licenseCheck->licenseKey = $licenseData->licenseKey;
-				$licenseData = $licenseCheck;
-				$this->save($licenseData);
+				// Always update stored license data if API returned different status
+				if (
+					$licenseCheck->license !== $licenseData->license ||
+					$licenseCheck->expires !== $licenseData->expires
+				) {
+					$licenseCheck->licenseKey = $licenseData->licenseKey;
+					$this->save($licenseCheck);
+					$licenseData = $licenseCheck;
+				} else {
+					$licenseCheck->licenseKey = $licenseData->licenseKey;
+					$licenseData = $licenseCheck;
+					$this->save($licenseData);
+				}
 
 				return $licenseData->license === 'valid';
 			}
@@ -142,7 +152,7 @@ class License
 	 */
 	public function save($licenseData)
 	{
-		$driver = new CacheDriver\ObjectCache('notification_license');
+		$driver = new CacheDriver\ObjectCache('notification_license/v2');
 		$cache = new Cache($driver, $this->extension['slug']);
 		$cache->set($licenseData);
 
@@ -160,7 +170,7 @@ class License
 	 */
 	public function remove()
 	{
-		$driver = new CacheDriver\ObjectCache('notification_license');
+		$driver = new CacheDriver\ObjectCache('notification_license/v2');
 		$cache = new Cache($driver, $this->extension['slug']);
 		$cache->delete();
 
@@ -222,7 +232,7 @@ class License
 		$licenseData->licenseKey = $licenseKey;
 		$this->save($licenseData);
 
-		$driver = new CacheDriver\ObjectCache('notification_license');
+		$driver = new CacheDriver\ObjectCache('notification_license/v2');
 		$cache = new Cache($driver, $this->extension['slug']);
 		$cache->delete();
 
@@ -271,16 +281,30 @@ class License
 
 		$licenseData = json_decode(wp_remote_retrieve_body($response));
 
-		if (!in_array($licenseData->license, ['deactivated', 'failed'], true)) {
+		// For deactivation, we're more permissive - if the API responds successfully,
+		// we allow most statuses since the goal is to remove the license locally
+		// Only reject if it's clearly an error response or API failure
+		$validDeactivationStatuses = [
+			'deactivated',  // Successfully deactivated
+			'failed',       // Deactivation failed but that's OK
+			'expired',      // License expired
+			'inactive',     // Already inactive
+			'site_inactive', // Already inactive for this site
+			'invalid',      // Invalid license - still want to remove locally
+			'revoked',       // Revoked license - still want to remove locally
+		];
+
+		if (!in_array($licenseData->license, $validDeactivationStatuses, true)) {
 			return new \WP_Error(
 				'notification_license_error',
-				'deactivation-error'
+				'deactivation-error',
+				$licenseData
 			);
 		}
 
 		$this->remove();
 
-		$driver = new CacheDriver\ObjectCache('notification_license');
+		$driver = new CacheDriver\ObjectCache('notification_license/v2');
 		$cache = new Cache($driver, $this->extension['slug']);
 		$cache->delete();
 

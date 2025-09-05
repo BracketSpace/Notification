@@ -1,9 +1,30 @@
 .notification-code-editor-field {
+	max-width: 100%;
+	overflow: hidden;
+	width: 100%;
 
 	/* stylelint-disable */
 	+ .CodeMirror {
 		/* stylelint-enable */
 		border: 1px solid #e5e5e5;
+		box-sizing: border-box;
+		max-width: 100%;
+		overflow: hidden;
+		width: 100% !important;
+
+		.CodeMirror-scroll {
+			max-width: 100%;
+			overflow-x: auto;
+		}
+
+		.CodeMirror-lines {
+			padding: 4px 0;
+		}
+
+		pre {
+			white-space: pre-wrap;
+			word-wrap: break-word;
+		}
 	}
 
 }

@@ -52,6 +52,12 @@ class UserPasswordResetRequest extends UserTrigger
 	{
 		$user = get_user_by('login', $username);
 
+		// Fallback: if user not found by login, try by email
+		// This handles cases where username is an email address
+		if (!$user instanceof \WP_User && is_email($username)) {
+			$user = get_user_by('email', $username);
+		}
+
 		if (!$user instanceof \WP_User) {
 			return false;
 		}

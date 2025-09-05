@@ -78,11 +78,33 @@ class UserRegistered extends UserTrigger
 						),
 					'example' => true,
 					'resolver' => static function ($trigger) {
+						$userLogin = $trigger->userObject->user_login ?? '';
+
+						// Defensive check: ensure user_login is valid
+						// If user_login is empty or corrupted, use the user_email as fallback
+						// when the user was likely registered with an email address
+						if (
+							empty($userLogin) && !empty($trigger->userObject->user_email) &&
+							is_email($trigger->userObject->user_email)
+						) {
+							$userLogin = $trigger->userObject->user_email;
+						}
+
+						// WordPress sanitizes usernames, removing special characters like @ and spaces
+						// For password reset links, we need the original unsanitized value
+						// If the original user_login would be different after sanitization, use email instead
+						if (
+							!empty($userLogin) && sanitize_user($userLogin) !== $userLogin &&
+							!empty($trigger->userObject->user_email) && is_email($trigger->userObject->user_email)
+						) {
+							$userLogin = $trigger->userObject->user_email;
+						}
+
 						return network_site_url(
 							sprintf(
 								'wp-login.php?action=rp&key=%s&login=%s',
 								$trigger->getPasswordResetKey(),
-								rawurlencode($trigger->userObject->user_login)
+								rawurlencode($userLogin)
 							),
 							'login'
 						);

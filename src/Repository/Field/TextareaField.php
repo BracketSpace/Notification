@@ -45,7 +45,7 @@ class TextareaField extends BaseField
 	public function __construct($params = [])
 	{
 		if (isset($params['placeholder'])) {
-			$this->placeholder = $params['placeholder'];
+			$this->placeholder = is_scalar($params['placeholder']) ? (string)$params['placeholder'] : '';
 		}
 
 		if (isset($params['rows'])) {
@@ -88,6 +88,6 @@ class TextareaField extends BaseField
 	 */
 	public function sanitize($value)
 	{
-		return ($this->allowedUnfiltered) ? $value  : sanitize_textarea_field($value);
+		return ($this->allowedUnfiltered) ? $value  : sanitize_textarea_field(is_scalar($value) ? (string)$value : '');
 	}
 }

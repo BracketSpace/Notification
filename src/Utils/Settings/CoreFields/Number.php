@@ -24,15 +24,19 @@ class Number
 	 */
 	public function input($field)
 	{
+		$minValue = $field->addon('min');
+		$maxValue = $field->addon('max');
+		$stepValue = $field->addon('step');
+
 		printf(
 		//phpcs:ignore Generic.Files.LineLength.TooLong
 			'<label><input type="number" id="%s" name="%s" value="%s" min="%s" max="%s" step="%s" class="widefat"></label>',
 			esc_attr($field->inputId()),
 			esc_attr($field->inputName()),
-			esc_attr($field->value()),
-			esc_attr($field->addon('min')),
-			esc_attr($field->addon('max')),
-			esc_attr($field->addon('step'))
+			esc_attr((string)$field->value()),
+			esc_attr(is_scalar($minValue) ? (string)$minValue : ''),
+			esc_attr(is_scalar($maxValue) ? (string)$maxValue : ''),
+			esc_attr(is_scalar($stepValue) ? (string)$stepValue : '')
 		);
 	}
 

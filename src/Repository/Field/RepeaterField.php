@@ -118,7 +118,7 @@ class RepeaterField extends BaseField
 	{
 		$dataAttr = '';
 		foreach ($this->dataAttr as $key => $value) {
-			$dataAttr .= 'data-' . $key . '="' . esc_attr($value) . '" ';
+			$dataAttr .= 'data-' . $key . '="' . esc_attr(is_scalar($value) ? (string)$value : '') . '" ';
 		}
 
 		$this->headers = [];

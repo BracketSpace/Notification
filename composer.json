@@ -7,7 +7,7 @@
 		"php": "^7.4 | ^8.0",
 		"composer-runtime-api": "^2.0",
 		"brianhenryie/strauss": "^0.19.4",
-		"enshrined/svg-sanitize": "^0.16.0",
+		"enshrined/svg-sanitize": "^0.22.0",
 		"micropackage/ajax": "^1.0",
 		"micropackage/cache": "^1.0",
 		"micropackage/casegnostic": "^1.0",
@@ -69,8 +69,8 @@
 		}
 	},
 	"scripts": {
-		"phpcbf": "phpcbf --parallel=4",
-		"phpcs": "phpcs --parallel=4",
+		"phpcbf": "phpcbf",
+		"phpcs": "phpcs",
 		"phplint": "parallel-lint --exclude node_modules --exclude vendor --exclude dependencies .",
 		"phpstan": "phpstan analyze --memory-limit=-1 -v",
 		"generate-stubs": "generate-stubs --finder=compat/stub-finder.php --out=compat/stubs.php --force",

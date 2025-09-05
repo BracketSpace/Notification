@@ -25,7 +25,9 @@ class Date extends StringTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @param array<mixed> $params merge tag configuration params.
+	 * @param array{slug?: string, name?: string, property_name?: string, group?: string|null, description?: string,
+	 *               example?: bool|string, resolver?: callable} $params
+	 *        merge tag configuration params.
 	 * @since 9.0.0 The automatic property lookup searches for camelCase prop first.
 	 * @since 7.0.0 Expects the timestamp without an offset.
 	 *               You can pass timezone argument as well, use GMT if timestamp is with offset.

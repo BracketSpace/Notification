@@ -22,11 +22,12 @@ class ColorPickerField extends BaseField
 	 */
 	public function field()
 	{
+		$value = $this->getValue();
 		return sprintf(
 			'<input type="text" name="%s" id="%s" value="%s" class="notification-color-picker %s" %s>',
 			esc_attr($this->getName()),
 			esc_attr($this->getId()),
-			esc_attr($this->getValue()),
+			esc_attr(is_scalar($value) ? (string)$value : ''),
 			esc_attr($this->cssClass()),
 			$this->maybeDisable()
 		);
@@ -40,11 +41,13 @@ class ColorPickerField extends BaseField
 	 */
 	public function sanitize($value)
 	{
-		if (strpos($value, 'rgba') === false) {
-			return sanitize_hex_color($value);
+		$stringValue = is_scalar($value) ? (string)$value : '';
+
+		if (strpos($stringValue, 'rgba') === false) {
+			return sanitize_hex_color($stringValue);
 		}
 
-		$color = str_replace(' ', '', $value);
+		$color = str_replace(' ', '', $stringValue);
 		sscanf($color, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha);
 		return 'rgba(' . $red . ',' . $green . ',' . $blue . ',' . $alpha . ')';
 	}

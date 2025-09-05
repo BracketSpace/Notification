@@ -1,9 +1,9 @@
 === Notification - Custom Notifications and Alerts for WordPress ===
 Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn, mateuszgbiorczyk
-Tags: notification, notify, alert, email, mail, webhook, API, developer, framework
+Tags: notification, notify, alert, email, mail
 Requires at least: 4.9
-Tested up to: 6.6
-Stable tag: 9.0.5
+Tested up to: 6.8
+Stable tag: 9.0.6
 Requires PHP: 7.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -296,6 +296,20 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 7. Default email disabler
 
 == Changelog ==
+
+= 9.0.6 =
+* [Added] "Refresh All Licenses" button in Extensions page to manually check all extension license statuses from the store.
+* [Changed] Updated package.json files to support Node.js 22 compatibility with explicit engine requirements.
+* [Changed] Improved GitHub workflows - removed development workflow and enhanced stable workflow with automatic WordPress.org deployment alongside GitHub releases.
+* [Fixed] Extension license status not refreshing after reactivation in store, showing stale "inactive" warnings despite valid licenses.
+* [Fixed] Deactivate license button not working for expired licenses and other license statuses.
+* [Fixed] Deactivated licenses still appearing in extension boxes due to cache key mismatch.
+* [Fixed] Renewal links not appearing for licenses expired in the past but cached with different status.
+* [Fixed] Password reset and setup links now properly handle email addresses with @ symbols and usernames with spaces in merge tags.
+* [Added] Comprehensive unit tests for password reset and setup link encoding to prevent regression.
+* [Fixed] Code editor field width is now properly constrained to 100% of its container.
+* [Fixed] Repeater fields layout incompatibility with other plugins.
+* [Fixed] Code linting errors.
 
 = 9.0.5 =
 * [Fixed] Dochooks compatibility file has been updated.

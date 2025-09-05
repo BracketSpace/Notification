@@ -51,7 +51,7 @@ class Runtime
 	/**
 	 * Components
 	 *
-	 * @var array<class-string,mixed>
+	 * @var array<class-string,object>
 	 */
 	protected $components = [];
 
@@ -201,7 +201,7 @@ class Runtime
 	 * @since 7.0.0
 	 * @since 9.0.0 Components are referenced by FQCN.
 	 * @param string $name Component name.
-	 * @return mixed       Component or null
+	 * @return object|null Component or null
 	 */
 	public function component($name)
 	{

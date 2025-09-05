@@ -55,7 +55,7 @@ class InputField extends BaseField
 	public function __construct($params = [])
 	{
 		if (isset($params['type'])) {
-			$this->type = $params['type'];
+			$this->type = (string)$params['type'];
 		}
 
 		if (isset($params['placeholder'])) {
@@ -80,12 +80,13 @@ class InputField extends BaseField
 	 */
 	public function field()
 	{
+		$value = $this->getValue();
 		return sprintf(
 			'<input type="%s" name="%s" id="%s" value="%s" placeholder="%s" class="widefat %s" %s %s>',
 			esc_attr($this->type),
 			esc_attr($this->getName()),
 			esc_attr($this->getId()),
-			esc_attr($this->getValue()),
+			esc_attr(is_scalar($value) ? (string)$value : ''),
 			esc_attr($this->placeholder),
 			esc_attr($this->cssClass()),
 			$this->maybeDisable(),
@@ -101,25 +102,27 @@ class InputField extends BaseField
 	 */
 	public function sanitize($value)
 	{
+		$stringValue = is_scalar($value) ? (string)$value : '';
+
 		// Remove script and style tags.
-		$value = preg_replace(
+		$stringValue = preg_replace(
 			'@<(script|style)[^>]*?>.*?</\\1>@si',
 			'',
-			(string)$value
+			$stringValue
 		);
 
 		// Remove line breaks.
 		if ($this->allowLinebreaks !== true) {
-			$value = preg_replace(
+			$stringValue = preg_replace(
 				'/[\r\n\t ]+/',
 				' ',
-				(string)$value
+				$stringValue
 			);
 		}
 
 		// Remove whitespace.
-		$value = trim((string)$value);
+		$stringValue = trim($stringValue);
 
-		return $value;
+		return $stringValue;
 	}
 }

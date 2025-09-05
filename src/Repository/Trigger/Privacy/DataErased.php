@@ -32,7 +32,7 @@ class DataErased extends PrivacyTrigger
 	 *
 	 * @param int $requestId Request id.
 	 */
-	public function context($requestId)
+	public function context($requestId): void
 	{
 		$this->request = wp_get_user_request($requestId);
 		$user = get_userdata($this->request->user_id);

@@ -287,23 +287,4 @@ class WordPressEmails
 
 		return $send;
 	}
-
-	/**
-	 * Gets setting value for user role
-	 *
-	 * @param mixed $value Default value of setting.
-	 * @param int $userId ID of the user.
-	 * @param string $slug Slug prefix of setting.
-	 * @return mixed  $value
-	 * @since  6.1.0
-	 */
-	private function getSettingForUserRole($value, $userId, $slug)
-	{
-		$user = get_userdata($userId);
-		$isAdmin = ($user && is_array($user->roles) && in_array('administrator', $user->roles, true));
-
-		return $isAdmin
-			? \Notification::settings()->getSetting('integration/emails/' . $slug . '_to_admin')
-			: \Notification::settings()->getSetting('integration/emails/' . $slug . '_to_user');
-	}
 }

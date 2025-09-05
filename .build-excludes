@@ -1,6 +1,7 @@
 .git
 .github
 .wordpress-org
+.yarn
 node_modules
 tests
 vendor-bin
@@ -22,3 +23,7 @@ rector.php
 webpack.config.js
 yarn-error.log
 yarn.lock
+.yarnrc.yml
+.eslintignore
+.stylelintignore
+

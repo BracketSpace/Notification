@@ -85,6 +85,7 @@ class PostPending extends PostTrigger
 		$this->post = $post;
 
 		$this->author = get_userdata((int)$this->post->post_author);
-		$this->lastEditor = get_userdata((int)get_post_meta($this->post->ID, '_edit_last', true));
+		$lastEditId = get_post_meta($this->post->ID, '_edit_last', true);
+		$this->lastEditor = get_userdata(is_numeric($lastEditId) ? (int)$lastEditId : 0);
 	}
 }

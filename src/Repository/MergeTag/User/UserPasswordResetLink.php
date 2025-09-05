@@ -14,12 +14,12 @@ declare(strict_types=1);
 
 namespace BracketSpace\Notification\Repository\MergeTag\User;
 
-use BracketSpace\Notification\Repository\MergeTag\StringTag;
+use BracketSpace\Notification\Repository\MergeTag\UrlTag;
 
 /**
  * User login merge tag class
  */
-class UserPasswordResetLink extends StringTag
+class UserPasswordResetLink extends UrlTag
 {
 	/**
 	 * Trigger property to get the reset key from
@@ -31,7 +31,9 @@ class UserPasswordResetLink extends StringTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @param array<mixed> $params merge tag configuration params.
+	 * @param array{slug?: string, name?: string, property_name?: string, group?: string|null, description?: string,
+	 *               example?: bool|string, resolver?: callable} $params
+	 *        merge tag configuration params.
 	 * @since 5.2.2
 	 */
 	public function __construct($params = [])
@@ -53,12 +55,39 @@ class UserPasswordResetLink extends StringTag
 				'example' => true,
 				'group' => __('User action', 'notification'),
 				'resolver' => function ($trigger) {
+					$user = $trigger->{$this->getTriggerProp()};
+					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+					$userLogin = $user->user_login ?? '';
+
+					// Defensive check: ensure user_login is valid
+					// If user_login is empty or corrupted, use the user_email as fallback
+					// when the user was likely registered with an email address
+					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+					if (empty($userLogin) && !empty($user->user_email) && is_email($user->user_email)) {
+						// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+						$userLogin = $user->user_email;
+					}
+
+					// WordPress sanitizes usernames, removing special characters like @ and spaces
+					// For password reset links, we need the original unsanitized value
+					// If the original user_login would be different after sanitization, use email instead
+					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+					if (
+						!empty($userLogin) && sanitize_user($userLogin) !== $userLogin &&
+						// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+						!empty($user->user_email) && is_email($user->user_email)
+					) {
+						// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+						$userLogin = $user->user_email;
+					}
+
 					return network_site_url(
 						sprintf(
 							'wp-login.php?action=rp&key=%s&login=%s',
 							$trigger->{$this->keyPropertyName},
-							rawurlencode($trigger->{$this->getTriggerProp()}->user_login)
-						)
+							rawurlencode($userLogin)
+						),
+						'login'
 					);
 				},
 			]

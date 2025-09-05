@@ -58,6 +58,9 @@
 		width: 100%;
 
 		tr {
+			&.row {
+				display: table-row;
+			}
 
 			&.model {
 				display: none;
@@ -337,6 +340,7 @@
 			}
 
 			tr.row {
+				display: table-row;
 
 				@media ( max-width: 1680px ) {
 					display: flex;

@@ -84,6 +84,6 @@ class SelectField extends BaseField
 	 */
 	public function sanitize($value)
 	{
-		return sanitize_text_field($value);
+		return sanitize_text_field(is_scalar($value) ? (string)$value : '');
 	}
 }

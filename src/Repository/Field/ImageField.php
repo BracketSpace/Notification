@@ -27,6 +27,7 @@ class ImageField extends BaseField
 			? 'selected'
 			: '';
 
+		$value = $this->getValue();
 		return sprintf(
 			'<div class="notification-image-field %s">
 				<input type="text" name="%s" id="%s" value="%s" class="image-input %s" %s readonly>
@@ -39,11 +40,11 @@ class ImageField extends BaseField
 			esc_attr($class),
 			esc_attr($this->getName()),
 			esc_attr($this->getId()),
-			esc_attr($this->getValue()),
+			esc_attr(is_scalar($value) ? (string)$value : ''),
 			esc_attr($this->cssClass()),
 			$this->maybeDisable(),
 			esc_html__('Select image', 'notification'),
-			wp_get_attachment_thumb_url($this->getValue())
+			wp_get_attachment_thumb_url($value)
 		);
 	}
 

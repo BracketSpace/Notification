@@ -30,6 +30,9 @@ class IntegerTag extends BaseMergeTag
 	 */
 	public function validate($value)
 	{
+		if (!is_scalar($value)) {
+			return false;
+		}
 		return filter_var((int)$value, FILTER_VALIDATE_INT) !== false;
 	}
 

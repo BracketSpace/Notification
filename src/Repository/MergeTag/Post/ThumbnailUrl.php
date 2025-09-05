@@ -24,7 +24,8 @@ class ThumbnailUrl extends UrlTag
 	/**
 	 * Merge tag constructor
 	 *
-	 * @param array<mixed> $params merge tag configuration params.
+	 * @param array{slug?: string, name?: string, property_name?: string, group?: string|null, description?: string,
+	 *               example?: bool|string, resolver?: callable} $params merge tag configuration params.
 	 * @since 6.0.0
 	 */
 	public function __construct($params = [])

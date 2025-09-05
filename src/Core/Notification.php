@@ -575,7 +575,7 @@ class Notification
 	 * @param int $postId The post identifier
 	 * @return void
 	 */
-	public function setSourcePostId($postId)
+	public function setSourcePostId($postId): void
 	{
 		$this->sourcePostId = $postId;
 	}

@@ -54,12 +54,22 @@ $license = $ext['license']->get();
 						<?php esc_html_e('Your license never expires.', 'notification'); ?>
 					</p>
 				<?php endif ?>
-				<?php if (in_array($license->license, ['inactive', 'site_inactive'], true)) : ?>
+				<?php if (!$ext['license']->isValid()) : ?>
 					<p style="color: red;">
 						<?php esc_html_e('Your license is inactive.', 'notification'); ?>
 					</p>
 				<?php endif ?>
-				<?php if ($license->license === 'expired') : ?>
+				<?php
+				// Show renewal link if license is expired OR expiration date is in the past
+				$isExpiredStatus = $license->license === 'expired';
+				$isExpiredByDate = false;
+				if ($license->expires !== 'lifetime') {
+					$expirationTime = strtotime((string)$license->expires);
+					$isExpiredByDate = $expirationTime && $expirationTime < time();
+				}
+				$showRenewal = $isExpiredStatus || $isExpiredByDate;
+				?>
+				<?php if ($showRenewal) : ?>
 					<p style="color: red;">
 						<?php esc_html_e('Your license is expired.', 'notification'); ?>
 						<?php

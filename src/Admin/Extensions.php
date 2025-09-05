@@ -33,14 +33,14 @@ class Extensions
 	/**
 	 * Extensions list
 	 *
-	 * @var array<mixed>
+	 * @var array<array<mixed>>
 	 */
 	private $extensions = [];
 
 	/**
 	 * Premium Extensions list
 	 *
-	 * @var array<mixed>
+	 * @var array<array<mixed>>
 	 */
 	public $premiumExtensions = [];
 
@@ -119,12 +119,19 @@ class Extensions
 		}
 
 		foreach ($extensions as $extension) {
+			// Validate extension data structure
+			if (!is_array($extension) || !isset($extension['slug']) || !is_string($extension['slug'])) {
+				continue;
+			}
+
 			if (isset($extension['wporg'])) {
 				$extension['wporg'] = plugins_api(
 					'plugin_information',
 					$extension['wporg']
 				);
-				$extension['url'] = self_admin_url($extension['url']);
+				if (isset($extension['url']) && is_string($extension['url'])) {
+					$extension['url'] = self_admin_url($extension['url']);
+				}
 			}
 
 			// Fix for the PRO extension having a version number in the directory name.
@@ -132,7 +139,7 @@ class Extensions
 				str_replace('/', '-*/', $extension['slug']);
 			$proInstalled = is_plugin_active($extension['slug']) || !empty(glob($globSlug));
 
-			if (isset($extension['edd']) && $proInstalled) {
+			if (isset($extension['edd']) && is_array($extension['edd']) && $proInstalled) {
 				$extension['license'] = new License($extension);
 				$this->premiumExtensions[] = $extension;
 			} else {
@@ -144,25 +151,30 @@ class Extensions
 	/**
 	 * Gets raw extensions data from API
 	 *
-	 * @return array<mixed>
+	 * @return array<string, array<mixed>>
 	 */
 	public function getRawExtensions()
 	{
 		$driver = new CacheDriver\Transient(ErrorHandler::debugEnabled() ? 60 : DAY_IN_SECONDS);
 		$cache = new Cache($driver, 'notification_extensions');
 
-		return $cache->collect(
+		$result = $cache->collect(
 			function () {
 				$response = wp_remote_get($this->apiUrl);
 				$extensions = [];
 
 				if (! is_wp_error($response) && wp_remote_retrieve_response_code($response) === 200) {
-					$extensions = json_decode(wp_remote_retrieve_body($response), true);
+					$decoded = json_decode(wp_remote_retrieve_body($response), true);
+					if (is_array($decoded)) {
+						$extensions = $decoded;
+					}
 				}
 
 				return $extensions;
 			}
 		);
+
+		return is_array($result) ? $result : [];
 	}
 
 	/**
@@ -216,13 +228,25 @@ class Extensions
 		}
 
 		foreach ($extensions as $extension) {
-			if (!isset($extension['edd']) || !in_array($extension['slug'], $pluginSlugs, true)) {
+			// Validate extension data structure
+			if (
+				!is_array($extension) || !isset($extension['edd'], $extension['slug']) ||
+				!is_array($extension['edd']) || !is_string($extension['slug']) ||
+				!in_array($extension['slug'], $pluginSlugs, true)
+			) {
 				continue;
 			}
 
 			$license = new License($extension);
 
 			$wpPlugin = $wpPlugins[$extension['slug']];
+
+			if (
+				!isset($extension['edd']['store_url'], $extension['edd']['item_name']) ||
+				!is_string($extension['edd']['store_url']) || !is_string($extension['edd']['item_name'])
+			) {
+				continue;
+			}
 
 			new EDDUpdater(
 				$extension['edd']['store_url'],
@@ -271,7 +295,10 @@ class Extensions
 
 		$extension = $this->getRawExtension($data['extension']);
 
-		if ($extension === false) {
+		if (
+			$extension === false || !is_array($extension) ||
+			!isset($extension['edd']['item_name']) || !is_string($extension['edd']['item_name'])
+		) {
 			wp_safe_redirect(
 				add_query_arg(
 					'activation-status',
@@ -290,7 +317,12 @@ class Extensions
 			$params = [
 				'activation-status' => $activation->get_error_message(),
 				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-				'extension' => rawurlencode($licenseData->item_name),
+				'extension' => rawurlencode(
+					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+					isset($licenseData->item_name) && is_string($licenseData->item_name)
+						// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+						? $licenseData->item_name : ''
+				),
 			];
 
 			if ($activation->get_error_message() === 'expired') {
@@ -306,6 +338,83 @@ class Extensions
 				'activation-status',
 				'success',
 				$data['_wp_http_referer']
+			)
+		);
+		exit;
+	}
+
+	/**
+	 * Refreshes license status for all premium extensions.
+	 *
+	 * @action admin_post_notification_refresh_all_licenses
+	 *
+	 * @return void
+	 */
+	public function refreshAllLicenses()
+	{
+		if (!isset($_GET['_wpnonce'])) {
+			return;
+		}
+
+		if (!wp_verify_nonce(wp_unslash(sanitize_key($_GET['_wpnonce'])), 'refresh_all_licenses')) {
+			wp_safe_redirect(
+				add_query_arg(
+					'refresh-status',
+					'wrong-nonce',
+					esc_url_raw(
+						wp_unslash(
+							$_GET['_wp_http_referer'] ??
+							admin_url('edit.php?post_type=notification&page=extensions')
+						)
+					)
+				)
+			);
+			exit;
+		}
+
+		$extensions = $this->getRawExtensions();
+		$refreshedCount = 0;
+		$stillInvalidCount = 0;
+
+		if (!empty($extensions)) {
+			foreach ($extensions as $extension) {
+				// Validate extension data structure
+				if (
+					!is_array($extension) || !isset($extension['edd'], $extension['slug']) ||
+					!is_array($extension['edd']) || !is_string($extension['slug']) ||
+					!is_plugin_active($extension['slug'])
+				) {
+					continue;
+				}
+
+				// Clear all cache and force fresh check
+				$this->clearStaleLicenseCache($extension);
+
+				$license = new License($extension);
+				$isValid = $license->isValid(); // This will trigger a fresh API check
+
+				$refreshedCount++;
+				if ($isValid) {
+					continue;
+				}
+
+				$stillInvalidCount++;
+			}
+		}
+
+		wp_safe_redirect(
+			add_query_arg(
+				[
+					'refresh-status' => 'bulk-complete',
+					'refreshed' => $refreshedCount,
+					'invalid' => $stillInvalidCount,
+				],
+				esc_url_raw(
+					wp_unslash(
+						$_GET['_wp_http_referer'] ??
+						admin_url('edit.php?post_type=notification&page=extensions')
+					)
+				)
 			)
 		);
 		exit;
@@ -344,7 +453,10 @@ class Extensions
 
 		$extension = $this->getRawExtension($data['extension']);
 
-		if ($extension === false) {
+		if (
+			$extension === false || !is_array($extension) ||
+			!isset($extension['edd']['item_name']) || !is_string($extension['edd']['item_name'])
+		) {
 			wp_safe_redirect(
 				add_query_arg(
 					'activation-status',
@@ -359,11 +471,23 @@ class Extensions
 		$activation = $license->deactivate();
 
 		if (is_wp_error($activation)) {
+			$errorMessage = $activation->get_error_message();
 			$licenseData = $activation->get_error_data();
-			$params = [
-				'activation-status' => $activation->get_error_message(),
-				'extension' => rawurlencode($licenseData->itemName),
-			];
+
+			// If API deactivation failed but we have license data, try to remove locally anyway
+			if ($errorMessage === 'deactivation-error' && !empty($licenseData)) {
+				// Force local removal for stubborn licenses
+				$license->remove();
+				$params = [
+					'activation-status' => 'force-deactivated',
+					'extension' => rawurlencode($extension['edd']['item_name']),
+				];
+			} else {
+				$params = [
+					'activation-status' => $errorMessage,
+					'extension' => rawurlencode($extension['edd']['item_name']),
+				];
+			}
 
 			wp_safe_redirect(add_query_arg($params, $data['_wp_http_referer']));
 			exit;
@@ -380,6 +504,68 @@ class Extensions
 	}
 
 	/**
+	 * Displays refresh notices
+	 *
+	 * @return void
+	 */
+	public function refreshNotices()
+	{
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$status = sanitize_key($_GET['refresh-status']);
+
+		switch ($status) {
+			case 'bulk-complete':
+				// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$refreshedCount = absint($_GET['refreshed'] ?? 0);
+				// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$invalidCount = absint($_GET['invalid'] ?? 0);
+
+				if ($invalidCount === 0) {
+					$view = 'success';
+					$message = sprintf(
+						// translators: %d is the number of licenses refreshed
+						_n(
+							'%d license status has been refreshed successfully.',
+							'%d license statuses have been refreshed successfully.',
+							$refreshedCount,
+							'notification'
+						),
+						$refreshedCount
+					);
+				} else {
+					$view = 'error';
+					$message = sprintf(
+						// translators: %1$d is total refreshed, %2$d is still invalid
+						_n(
+							'%1$d license refreshed, but %2$d is still inactive.',
+							'%1$d licenses refreshed, but %2$d are still inactive.',
+							$refreshedCount,
+							'notification'
+						),
+						$refreshedCount,
+						$invalidCount
+					);
+				}
+				break;
+
+			case 'wrong-nonce':
+				$view = 'error';
+				$message = __("Couldn't refresh license statuses, please try again.", 'notification');
+				break;
+
+			default:
+				$view = 'error';
+				$message = __('An error occurred while refreshing license statuses.', 'notification');
+				break;
+		}
+
+		Templates::render(
+			sprintf('extension/activation-%s', $view),
+			['message' => $message]
+		);
+	}
+
+	/**
 	 * Displays activation notices
 	 *
 	 * @action admin_notices
@@ -388,6 +574,13 @@ class Extensions
 	 */
 	public function activationNotices()
 	{
+		// Handle refresh status notices first
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if (isset($_GET['refresh-status'])) {
+			$this->refreshNotices();
+			return;
+		}
+
 		// We're just checking for the status slug.
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if (!isset($_GET['activation-status'])) {
@@ -411,6 +604,15 @@ class Extensions
 				$message = __('Your license has been deactivated.', 'notification');
 				break;
 
+			case 'force-deactivated':
+				$view = 'success';
+				$message = __(
+					'Your license has been deactivated locally ' .
+					'(API deactivation failed, but license removed from this site).',
+					'notification'
+				);
+				break;
+
 			case 'wrong-nonce':
 				$view = 'error';
 				$message = __("Couldn't activate the license, please try again.", 'notification');
@@ -421,10 +623,11 @@ class Extensions
 				$expiration = strtotime(sanitize_text_field(wp_unslash($_GET['expiration'] ?? '')));
 
 				$view = 'error';
+				$dateFormat = get_option('date_format');
 				$message = sprintf(
 					// translators: 1. Date.
 					__('Your license key expired on %s.', 'notification'),
-					date_i18n(get_option('date_format'), $expiration)
+					date_i18n(is_string($dateFormat) ? $dateFormat : 'Y-m-d', $expiration)
 				);
 				break;
 
@@ -479,6 +682,51 @@ class Extensions
 	}
 
 	/**
+	 * Clears stale license cache for extension
+	 *
+	 * @param array{slug: string, edd?: array<mixed>} $extension Extension data.
+	 * @return void
+	 */
+	private function clearStaleLicenseCache(array $extension)
+	{
+		// Clear ObjectCache for license data
+		$driver = new CacheDriver\ObjectCache('notification_license/v2');
+		$cache = new Cache($driver, $extension['slug']);
+		$cache->delete();
+
+		// Clear Transient cache for license check
+		$driver = new CacheDriver\Transient(ErrorHandler::debugEnabled() ? 60 : DAY_IN_SECONDS);
+		$cache = new Cache($driver, sprintf('notification_license_check_%s', $extension['slug']));
+		$cache->delete();
+	}
+
+	/**
+	 * Checks if license data appears stale and needs refresh
+	 *
+	 * @param object|null $licenseData License data object.
+	 * @return bool
+	 */
+	private function isLicenseDataStale($licenseData)
+	{
+		if (empty($licenseData) || !isset($licenseData->license, $licenseData->expires)) {
+			return false;
+		}
+
+		// If license shows inactive/expired status but expiration is in the future, it might be stale
+		if (in_array($licenseData->license, ['inactive', 'site_inactive', 'expired'], true)) {
+			if ($licenseData->expires !== 'lifetime') {
+				$expirationTime = strtotime((string)$licenseData->expires);
+				// If expiration is more than 1 day in the future, data might be stale
+				if ($expirationTime > (time() + DAY_IN_SECONDS)) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Gets extensions with invalid license
 	 *
 	 * @return array<string>
@@ -488,19 +736,35 @@ class Extensions
 		$extensions = $this->getRawExtensions();
 
 		if (empty($extensions)) {
-			return;
+			return [];
 		}
 
 		$invalidExtensions = [];
 
 		foreach ($extensions as $extension) {
-			if (! isset($extension['edd']) || ! is_plugin_active($extension['slug'])) {
+			// Validate extension data structure
+			if (
+				!is_array($extension) || !isset($extension['edd'], $extension['slug']) ||
+				!is_array($extension['edd']) || !is_string($extension['slug']) ||
+				!is_plugin_active($extension['slug'])
+			) {
 				continue;
 			}
 
 			$license = new License($extension);
+			$licenseData = $license->get();
+
+			// Check if license data appears stale and clear cache if so
+			if (is_object($licenseData) && $this->isLicenseDataStale($licenseData)) {
+				$this->clearStaleLicenseCache($extension);
+			}
 
 			if ($license->isValid()) {
+				continue;
+			}
+
+			// Validate edd item_name exists and is string
+			if (!isset($extension['edd']['item_name']) || !is_string($extension['edd']['item_name'])) {
 				continue;
 			}
 

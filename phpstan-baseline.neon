@@ -1,468 +1,488 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'actionClearLogs'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'actionClearLogs'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'activate'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'activate'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'activationNag'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'activationNag'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'activationNotices'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'activationNotices'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'addConditionalsMeta…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'addConditionalsMeta…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'addHelp'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'addHelp'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'addMergeTagsMetaBox'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'addMergeTagsMetaBox'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'addNotifications'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'addNotifications'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'addSaveMetaBox'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'addSaveMetaBox'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'addTriggerAction'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'addTriggerAction'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'ajaxChangeNotificat…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'ajaxChangeNotificat…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'ajaxRenderMergeTags'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'ajaxRenderMergeTags'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'ajaxSync'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'ajaxSync'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'bind'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'bind'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'bypassTrash'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'bypassTrash'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'carriersList'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'carriersList'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'carriersSettings'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'carriersSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'carriersSettingsUps…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'carriersSettingsUps…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'catchNotification'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'catchNotification'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'checkUpgrade'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'checkUpgrade'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'customDevelopment'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'customDevelopment'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'customFieldsMergeTa…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'customFieldsMergeTa…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'deactivate'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'deactivate'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'debugWarning'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'debugWarning'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'debuggingSettings'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'debuggingSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'deleteLocalJson'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'deleteLocalJson'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'deleteNotification'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'deleteNotification'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'disablePasswordChan…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'disablePasswordChan…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'disableSendConfirma…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'disableSendConfirma…'\\} given\\.$#"
 			count: 2
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'displayBulkActionsA…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'displayBulkActionsA…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'displayNotice'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'displayNotice'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'emailsSettings'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'emailsSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'enqueueScripts'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'enqueueScripts'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'exportRequest'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'exportRequest'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'generalSettings'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'generalSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'handleCron'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'handleCron'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'importRequest'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'importRequest'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'inactiveLicenseWarn…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'inactiveLicenseWarn…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'loadDatabaseNotific…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'loadDatabaseNotific…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'loadLocalJson'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'loadLocalJson'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'maybeRedirect'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'maybeRedirect'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'metaboxCleanup'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'metaboxCleanup'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'notificationDuplica…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'notificationDuplica…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'processQueue'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'processQueue'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'proxyCommentReply'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'proxyCommentReply'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'proxyPostCommentToP…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'proxyPostCommentToP…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'proxyTransitionComm…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'proxyTransitionComm…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'register'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'register'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'registerCheckUpdate…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'registerCheckUpdate…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'registerPage'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'registerPage'\\} given\\.$#"
 			count: 3
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'registerSettings'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'registerSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'removeDefaults'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'removeDefaults'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'renderCarrierBoxes'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'renderCarrierBoxes'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'renderCarriersWidget'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'renderCarriersWidget'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'renderMainColumn'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'renderMainColumn'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'renderTriggerSelect'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'renderTriggerSelect'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'replaceNewUserNotif…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'replaceNewUserNotif…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'restApiInit'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'restApiInit'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'reviewQueueSwitch'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'reviewQueueSwitch'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'save'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'save'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'saveLocalJson'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'saveLocalJson'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'saveSettings'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'saveSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'scheduledTriggersSe…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'scheduledTriggersSe…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'settings'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'settings'\\} given\\.$#"
 			count: 2
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'setupNotification'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'setupNotification'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'tableColumnContent'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'tableColumnContent'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'testRestApi'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'testRestApi'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'triggersSettings'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'triggersSettings'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'triggersSettingsUps…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'triggersSettingsUps…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'updater'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'updater'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'upgradeDb'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'upgradeDb'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{mixed, 'userLoginWith2fa'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'userLoginWith2fa'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'addDuplicateRowActi…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'addDuplicateRowActi…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'adjustBulkActions'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'adjustBulkActions'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'adjustTrashLink'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'adjustTrashLink'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'bulkActionMessages'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'allowUnfilteredHtml…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'changePostStatuses'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'bulkActionMessages'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'columnCleanup'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'changePostStatuses'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disableAutomaticWpC…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'columnCleanup'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disableCommentModer…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'disableAutomaticWpC…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disableEmailChangeN…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'disableCommentModer…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disablePasswordChan…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'disableEmailChangeN…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disablePasswordRese…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'disablePasswordChan…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disablePostAuthorNo…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'disablePasswordRese…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'disableSendConfirma…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'disablePostAuthorNo…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'filterPostTypes'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'disableSendConfirma…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'handleStatusBulkAct…'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'filterAllowedDescri…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'identifyTrigger'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'filterPostTypes'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'postUpdatedMessages'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'from'\\} given\\.$#"
+			count: 2
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'handleStatusBulkAct…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'registerIntervals'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'identifyTrigger'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'removeQuickEdit'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'postUpdatedMessages'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'removeStatusDisplay'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'registerIntervals'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{mixed, 'tableColumns'\\} given\\.$#"
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'removeQuickEdit'\\} given\\.$#"
 			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'removeStatusDisplay'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'tableColumns'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'to'\\} given\\.$#"
+			count: 2
 			path: compat/register-hooks.php
 
 		-
@@ -541,21 +561,6 @@ parameters:
 			path: compat/src-deprecated/Defaults/Carrier/WebhookJson.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:add\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:delete\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Interfaces\\\\Cacheable\\:\\:set\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: compat/src-deprecated/Utils/Interfaces/Cacheable.php
-
-		-
 			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
 			count: 1
 			path: compat/src-deprecated/functions.php
@@ -631,31 +636,6 @@ parameters:
 			path: src/Admin/Debugging.php
 
 		-
-			message: "#^Cannot access offset 'author' on mixed\\.$#"
-			count: 1
-			path: src/Admin/Extensions.php
-
-		-
-			message: "#^Cannot access offset 'edd' on mixed\\.$#"
-			count: 2
-			path: src/Admin/Extensions.php
-
-		-
-			message: "#^Cannot access offset 'item_name' on mixed\\.$#"
-			count: 2
-			path: src/Admin/Extensions.php
-
-		-
-			message: "#^Cannot access offset 'slug' on mixed\\.$#"
-			count: 3
-			path: src/Admin/Extensions.php
-
-		-
-			message: "#^Cannot access offset 'store_url' on mixed\\.$#"
-			count: 1
-			path: src/Admin/Extensions.php
-
-		-
 			message: "#^Cannot access property \\$expires on mixed\\.$#"
 			count: 1
 			path: src/Admin/Extensions.php
@@ -666,52 +646,7 @@ parameters:
 			path: src/Admin/Extensions.php
 
 		-
-			message: "#^Cannot access property \\$itemName on mixed\\.$#"
-			count: 1
-			path: src/Admin/Extensions.php
-
-		-
 			message: "#^Cannot access property \\$item_name on mixed\\.$#"
-			count: 1
-			path: src/Admin/Extensions.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\Extensions\\:\\:getInvalidLicenseExtensions\\(\\) should return array\\<string\\> but empty return statement found\\.$#"
-			count: 1
-			path: src/Admin/Extensions.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\Extensions\\:\\:getInvalidLicenseExtensions\\(\\) should return array\\<string\\> but returns array\\<int\\<0, max\\>, mixed\\>\\.$#"
-			count: 1
-			path: src/Admin/Extensions.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\Extensions\\:\\:getRawExtension\\(\\) should return array\\|false but returns mixed\\.$#"
-			count: 1
-			path: src/Admin/Extensions.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\Extensions\\:\\:getRawExtensions\\(\\) should return array but returns mixed\\.$#"
-			count: 1
-			path: src/Admin/Extensions.php
-
-		-
-			message: "#^Parameter \\#1 \\$apiUrl of class BracketSpace\\\\Notification\\\\Utils\\\\EDDUpdater constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Admin/Extensions.php
-
-		-
-			message: "#^Parameter \\#1 \\$extension of class BracketSpace\\\\Notification\\\\Core\\\\License constructor expects array, mixed given\\.$#"
-			count: 2
-			path: src/Admin/Extensions.php
-
-		-
-			message: "#^Parameter \\#1 \\$format of function date_i18n expects string, mixed given\\.$#"
-			count: 1
-			path: src/Admin/Extensions.php
-
-		-
-			message: "#^Parameter \\#1 \\$plugin of function is_plugin_active expects string, mixed given\\.$#"
 			count: 1
 			path: src/Admin/Extensions.php
 
@@ -1001,13 +936,18 @@ parameters:
 			path: src/Core/Debugging.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$license\\.$#"
+			message: "#^Access to an undefined property object\\:\\:\\$expires\\.$#"
 			count: 1
 			path: src/Core/License.php
 
 		-
+			message: "#^Access to an undefined property object\\:\\:\\$license\\.$#"
+			count: 2
+			path: src/Core/License.php
+
+		-
 			message: "#^Access to an undefined property object\\:\\:\\$licenseKey\\.$#"
-			count: 1
+			count: 2
 			path: src/Core/License.php
 
 		-
@@ -1026,13 +966,18 @@ parameters:
 			path: src/Core/License.php
 
 		-
+			message: "#^Cannot access property \\$expires on mixed\\.$#"
+			count: 1
+			path: src/Core/License.php
+
+		-
 			message: "#^Cannot access property \\$license on mixed\\.$#"
-			count: 2
+			count: 3
 			path: src/Core/License.php
 
 		-
 			message: "#^Cannot access property \\$licenseKey on mixed\\.$#"
-			count: 6
+			count: 7
 			path: src/Core/License.php
 
 		-
@@ -1116,11 +1061,6 @@ parameters:
 			path: src/ErrorHandler.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Integration\\\\WordPressEmails\\:\\:getSettingForUserRole\\(\\) is unused\\.$#"
-			count: 1
-			path: src/Integration/WordPressEmails.php
-
-		-
 			message: "#^Cannot access offset 'recipient' on mixed\\.$#"
 			count: 1
 			path: src/Repository/Carrier/BaseCarrier.php
@@ -1152,7 +1092,7 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$carrier of static method BracketSpace\\\\Notification\\\\Register\\:\\:carrier\\(\\) expects BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable, mixed given\\.$#"
-			count: 3
+			count: 1
 			path: src/Repository/CarrierRepository.php
 
 		-
@@ -1191,37 +1131,12 @@ parameters:
 			path: src/Repository/Field/CodeEditorField.php
 
 		-
-			message: "#^Parameter \\#1 \\$color of function sanitize_hex_color expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/ColorPickerField.php
-
-		-
-			message: "#^Parameter \\#1 \\$haystack of function strpos expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/ColorPickerField.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/ColorPickerField.php
-
-		-
-			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/ColorPickerField.php
-
-		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\EditorField\\:\\:field\\(\\) should return string but returns string\\|false\\.$#"
 			count: 1
 			path: src/Repository/Field/EditorField.php
 
 		-
 			message: "#^Parameter \\#1 \\$content of function wp_editor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/EditorField.php
-
-		-
-			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/Field/EditorField.php
 
@@ -1236,22 +1151,17 @@ parameters:
 			path: src/Repository/Field/ImageField.php
 
 		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/ImageField.php
-
-		-
 			message: "#^Cannot cast mixed to string\\.$#"
 			count: 1
 			path: src/Repository/Field/InputField.php
 
 		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$string of function trim expects string, string\\|null given\\.$#"
 			count: 1
 			path: src/Repository/Field/InputField.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\InputField\\:\\:\\$type \\(string\\) does not accept mixed\\.$#"
+			message: "#^Parameter \\#3 \\$subject of function preg_replace expects array\\|string, string\\|null given\\.$#"
 			count: 1
 			path: src/Repository/Field/InputField.php
 
@@ -1281,19 +1191,9 @@ parameters:
 			path: src/Repository/Field/RepeaterField.php
 
 		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/RepeaterField.php
-
-		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\RepeaterField\\:\\:\\$fields \\(array\\<BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\BaseField\\>\\) does not accept mixed\\.$#"
 			count: 1
 			path: src/Repository/Field/RepeaterField.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/SectionRepeater.php
 
 		-
 			message: "#^Parameter \\#1 \\$text of function esc_html expects string, mixed given\\.$#"
@@ -1311,11 +1211,6 @@ parameters:
 			path: src/Repository/Field/SectionsField.php
 
 		-
-			message: "#^Parameter \\#1 \\$str of function sanitize_text_field expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/Field/SelectField.php
-
-		-
 			message: "#^Parameter \\#1 \\$text of function esc_html expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/Field/SelectField.php
@@ -1326,84 +1221,9 @@ parameters:
 			path: src/Repository/Field/SelectField.php
 
 		-
-			message: "#^Parameter \\#1 \\$str of function sanitize_textarea_field expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$params of class BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\EmailTag constructor expects array\\{slug\\?\\: string, name\\?\\: string, property_name\\?\\: string, group\\?\\: string\\|null, description\\?\\: string, example\\?\\: bool\\|string, resolver\\?\\: callable\\(\\)\\: mixed\\}, array\\{slug\\: 'admin_email', name\\: string, description\\: mixed, hidden\\: true, resolver\\: Closure\\(mixed\\)\\: mixed\\} given\\.$#"
 			count: 1
-			path: src/Repository/Field/TextareaField.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\TextareaField\\:\\:\\$placeholder \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/Field/TextareaField.php
-
-		-
-			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setSlug\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/BaseMergeTag.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentActionApprove\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Comment/CommentActionApprove.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentActionDelete\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Comment/CommentActionDelete.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentActionSpam\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Comment/CommentActionSpam.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentActionTrash\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Comment/CommentActionTrash.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentAuthorIP\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Comment/CommentAuthorIP.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentAuthorUrl\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Comment/CommentAuthorUrl.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentAuthorUserAgent\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Comment/CommentAuthorUserAgent.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentContent\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Comment/CommentContent.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentContentHtml\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Comment/CommentContentHtml.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentID\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Comment/CommentID.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentIsReply\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Comment/CommentIsReply.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentStatus\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Comment/CommentStatus.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\Comment\\\\CommentType\\:\\:\\$commentType \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Comment/CommentType.php
+			path: src/Repository/GlobalMergeTagRepository.php
 
 		-
 			message: "#^Parameter \\#1 \\$email of function sanitize_email expects string, mixed given\\.$#"
@@ -1416,36 +1236,6 @@ parameters:
 			path: src/Repository/MergeTag/HtmlTag.php
 
 		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/IntegerTag.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Media/AttachmentDirectUrl.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Media/AttachmentID.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Media/AttachmentMimeType.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Media/AttachmentPage.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Media/AttachmentTitle.php
-
-		-
 			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Post/FeaturedImageId.php
@@ -1454,46 +1244,6 @@ parameters:
 			message: "#^Parameter \\#1 \\$attachment_id of function wp_get_attachment_image_url expects int, int\\|false given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Post/FeaturedImageUrl.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Post/FeaturedImageUrl.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Post/PostContent.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Post/PostContentHtml.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Post/PostExcerpt.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Post/PostID.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Post/PostPermalink.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Post/PostSlug.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Post/PostStatus.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$label\\.$#"
@@ -1506,26 +1256,6 @@ parameters:
 			path: src/Repository/MergeTag/Post/PostTerms.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Post/PostTerms.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Post/PostTitle.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Post/PostType.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Post/RevisionLink.php
-
-		-
 			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, int\\|WP_Post given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/Post/RevisionLink.php
@@ -1536,117 +1266,7 @@ parameters:
 			path: src/Repository/MergeTag/Post/ThumbnailUrl.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Post/ThumbnailUrl.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function sanitize_text_field expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/StringTag.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Taxonomy/TaxonomyName.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Taxonomy/TaxonomySlug.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Taxonomy/TermDescription.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Taxonomy/TermID.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Taxonomy/TermName.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Taxonomy/TermPermalink.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/Taxonomy/TermSlug.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/User/Avatar.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/User/AvatarUrl.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/User/UserBio.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/User/UserDisplayName.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/User/UserEmail.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/User/UserFirstName.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/User/UserID.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/User/UserLastName.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/User/UserLogin.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/User/UserNicename.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/User/UserNickname.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\User\\\\UserPasswordResetLink\\:\\:\\$keyPropertyName \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/User/UserPasswordResetLink.php
-
-		-
 			message: "#^Cannot access property \\$name on WP_Role\\|null\\.$#"
-			count: 1
-			path: src/Repository/MergeTag/User/UserRole.php
-
-		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Repository/MergeTag/User/UserRole.php
 
@@ -1786,62 +1406,12 @@ parameters:
 			path: src/Repository/Trigger/Media/MediaUpdated.php
 
 		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Post/PostAdded.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Post/PostApproved.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Post/PostDrafted.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Post/PostPending.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Post/PostPublished.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Post/PostPublishedPrivately.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Post/PostScheduled.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Post/PostTrashed.php
-
-		-
 			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\BaseTrigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/Repository/Trigger/Post/PostTrigger.php
 
 		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Post/PostUpdated.php
-
-		-
 			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Privacy/DataEraseRequest.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\DataEraseRequest\\:\\:context\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: src/Repository/Trigger/Privacy/DataEraseRequest.php
 
@@ -1852,11 +1422,6 @@ parameters:
 
 		-
 			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Privacy/DataErased.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\DataErased\\:\\:context\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: src/Repository/Trigger/Privacy/DataErased.php
 
@@ -2041,11 +1606,6 @@ parameters:
 			path: src/Utils/Settings/CoreFields/Button.php
 
 		-
-			message: "#^Parameter \\#1 \\$data of function wp_kses_data expects string, mixed given\\.$#"
-			count: 1
-			path: src/Utils/Settings/CoreFields/Checkbox.php
-
-		-
 			message: "#^Parameter \\#3 \\$settings of function wp_editor expects array\\{wpautop\\?\\: bool, media_buttons\\?\\: bool, default_editor\\?\\: string, drag_drop_upload\\?\\: bool, textarea_name\\?\\: string, textarea_rows\\?\\: int, tabindex\\?\\: int\\|string, tabfocus_elements\\?\\: string, \\.\\.\\.\\}, array\\{textarea_name\\: string, editor_css\\: null, wpautop\\: mixed, media_buttons\\: mixed, textarea_rows\\: mixed, teeny\\: mixed\\} given\\.$#"
 			count: 1
 			path: src/Utils/Settings/CoreFields/Editor.php
@@ -2054,21 +1614,6 @@ parameters:
 			message: "#^Parameter \\#1 \\$url of function esc_url expects string, string\\|false given\\.$#"
 			count: 1
 			path: src/Utils/Settings/CoreFields/Image.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 3
-			path: src/Utils/Settings/CoreFields/Number.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of function esc_attr expects string, mixed given\\.$#"
-			count: 3
-			path: src/Utils/Settings/CoreFields/Range.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function sanitize_text_field expects string, mixed given\\.$#"
-			count: 1
-			path: src/Utils/Settings/CoreFields/Select.php
 
 		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Field\\:\\:\\$addons \\(string\\) does not accept mixed\\.$#"
@@ -2142,11 +1687,6 @@ parameters:
 
 		-
 			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
-			count: 1
-			path: uninstall.php
-
-		-
-			message: "#^Cannot access offset 'license' on mixed\\.$#"
 			count: 1
 			path: uninstall.php
 

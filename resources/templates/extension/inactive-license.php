@@ -42,12 +42,27 @@ $headerPattern = _n(
 	</p>
 	<p><?php esc_html_e('Consider getting a valid license for uninterrupted experience.', 'notification'); ?></p>
 	<p>
-	<?php
-		printf(
-			'<a href="%s" target="_blank" class="button button-primary">%s</a>',
-			'https://bracketspace.com/expired-license/',
-			__('Read more about expired license', 'notification')
-		);
-		?>
+		<a href="https://bracketspace.com/expired-license/" target="_blank" class="button button-primary">
+			<?php esc_html_e('Read more about expired license', 'notification'); ?>
+		</a>
+		
+		<a 
+			href="
+			<?php
+			echo esc_url(
+				wp_nonce_url(
+					admin_url('admin-post.php?action=notification_refresh_all_licenses'),
+					'refresh_all_licenses',
+					'_wpnonce'
+				)
+			);
+			?>
+			"
+			class="button button-secondary"
+			title="<?php esc_attr_e('Check the latest status for all licenses from the store', 'notification'); ?>"
+			style="margin-left: 10px;"
+		>
+			<?php esc_html_e('Refresh All Licenses', 'notification'); ?>
+		</a>
 	</p>
 </div>
