@@ -11,7 +11,7 @@
 			$elem.data('settings'),
 			{
 				lineWrapping: true,
-				viewportMargin: Infinity
+				viewportMargin: Infinity,
 			}
 		);
 		let editor = wp.codeEditor.initialize($elem, editorSettings); // eslint-disable-line prefer-const

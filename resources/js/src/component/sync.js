@@ -17,23 +17,23 @@
 
 				$masterButton.attr('disabled', true);
 
-				$('.group-sync .field-notifications tr').each(function (
-					num,
-					notificationRow
-				) {
-					const $button = $(notificationRow).find(
-						'.button.notification-sync'
-					);
-
-					if (
-						$button.data('sync-type') === $masterButton.data('type')
-					) {
-						notification.hooks.doAction(
-							'notification.sync.init',
-							$button
+				$('.group-sync .field-notifications tr').each(
+					function (num, notificationRow) {
+						const $button = $(notificationRow).find(
+							'.button.notification-sync'
 						);
+
+						if (
+							$button.data('sync-type') ===
+							$masterButton.data('type')
+						) {
+							notification.hooks.doAction(
+								'notification.sync.init',
+								$button
+							);
+						}
 					}
-				});
+				);
 			}
 		);
 
