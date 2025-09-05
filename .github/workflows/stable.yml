@@ -145,9 +145,8 @@ jobs:
           ls -la ${{ secrets.SLUG }}/
       - name: Deploy to WordPress.org
         uses: 10up/action-wordpress-plugin-deploy@stable
-        with:
-          BUILD_DIR: ${{ secrets.SLUG }}
         env:
+          BUILD_DIR: ${{ secrets.SLUG }}
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SLUG: ${{ secrets.SLUG }}
