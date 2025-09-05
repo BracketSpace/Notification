@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail
 Requires at least: 4.9
 Tested up to: 6.8
-Stable tag: 9.0.5
+Stable tag: 9.0.6
 Requires PHP: 7.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -297,7 +297,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
-= [Next] =
+= 9.0.6 =
 * [Added] "Refresh All Licenses" button in Extensions page to manually check all extension license statuses from the store.
 * [Changed] Updated package.json files to support Node.js 22 compatibility with explicit engine requirements.
 * [Changed] Improved GitHub workflows - removed development workflow and enhanced stable workflow with automatic WordPress.org deployment alongside GitHub releases.
