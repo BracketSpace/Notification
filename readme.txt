@@ -297,6 +297,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Changed] Added $notification and $trigger parameters to notification/background_processing/delay filter for better context when filtering delay time.
+
 = 9.0.6 =
 * [Added] "Refresh All Licenses" button in Extensions page to manually check all extension license statuses from the store.
 * [Changed] Updated package.json files to support Node.js 22 compatibility with explicit engine requirements.
