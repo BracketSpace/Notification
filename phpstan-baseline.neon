@@ -181,6 +181,11 @@ parameters:
 			path: compat/register-hooks.php
 
 		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'handleLicenseCheck'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
 			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'importRequest'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
@@ -247,6 +252,11 @@ parameters:
 
 		-
 			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'registerCheckUpdate…'\\} given\\.$#"
+			count: 1
+			path: compat/register-hooks.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'registerLicenseChec…'\\} given\\.$#"
 			count: 1
 			path: compat/register-hooks.php
 
@@ -926,11 +936,6 @@ parameters:
 			path: src/Core/License.php
 
 		-
-			message: "#^Cannot access offset 'store_url' on mixed\\.$#"
-			count: 2
-			path: src/Core/License.php
-
-		-
 			message: "#^Cannot access property \\$error on mixed\\.$#"
 			count: 1
 			path: src/Core/License.php
@@ -951,6 +956,11 @@ parameters:
 			path: src/Core/License.php
 
 		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 1
+			path: src/Core/License.php
+
+		-
 			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\License\\:\\:check\\(\\) should return object but returns mixed\\.$#"
 			count: 1
 			path: src/Core/License.php
@@ -966,8 +976,13 @@ parameters:
 			path: src/Core/License.php
 
 		-
-			message: "#^Parameter \\#1 \\$url of function wp_remote_post expects string, mixed given\\.$#"
-			count: 2
+			message: "#^Parameter \\#1 \\$response of function wp_remote_retrieve_body expects array\\|WP_Error, mixed given\\.$#"
+			count: 1
+			path: src/Core/License.php
+
+		-
+			message: "#^Parameter \\#1 \\$response of function wp_remote_retrieve_response_code expects array\\|WP_Error, mixed given\\.$#"
+			count: 1
 			path: src/Core/License.php
 
 		-
@@ -981,9 +996,24 @@ parameters:
 			path: src/Core/License.php
 
 		-
+			message: "#^Parameter \\#3 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			count: 2
+			path: src/Core/License.php
+
+		-
 			message: "#^Property BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:\\$sourcePostId is never read, only written\\.$#"
 			count: 1
 			path: src/Core/Notification.php
+
+		-
+			message: "#^Deprecated in PHP 8\\.4\\: Parameter \\#3 \\$index \\(int\\) is implicitly nullable via default value null\\.$#"
+			count: 1
+			path: src/Core/Queue.php
+
+		-
+			message: "#^Deprecated in PHP 8\\.4\\: Parameter \\#1 \\$path \\(string\\) is implicitly nullable via default value null\\.$#"
+			count: 1
+			path: src/Core/Sync.php
 
 		-
 			message: "#^Parameter \\#2 \\$contents of method WP_Filesystem_Base\\:\\:put_contents\\(\\) expects string, mixed given\\.$#"
