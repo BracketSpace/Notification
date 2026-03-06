@@ -360,6 +360,11 @@ class PostType
 		check_ajax_referer('notification_csrf');
 
 		$ajax = new Response();
+
+		if (!current_user_can('manage_options')) {
+			$ajax->error(__("Notification status couldn't be changed.", 'notification'));
+		}
+
 		$data = $_POST;
 		$errorMessage = __("Notification status couldn't be changed.", 'notification');
 

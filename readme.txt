@@ -2,7 +2,7 @@
 Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail
 Requires at least: 4.9
-Tested up to: 6.8
+Tested up to: 6.9
 Stable tag: 9.0.6
 Requires PHP: 7.4
 License: GPLv3
@@ -298,6 +298,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 == Changelog ==
 
 = [Next] =
+* [Fixed] Hardened security for AJAX handlers, file imports, and database queries
 * [Fixed] Filesystem method filter no longer globally overrides server SSH2/FTP configuration
 * [Added] Background license verification via daily WP-Cron
 * [Added] 24-hour cooldown after failed license server requests to prevent repeated timeouts
