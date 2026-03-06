@@ -303,6 +303,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Changed] Added $notification and $trigger parameters to notification/background_processing/delay filter for better context when filtering delay time.
 * [Changed] License inactive notices suppressed during server communication failures
 * [Fixed] License checks no longer block admin page loads when license server is unreachable
+* [Fixed] Bedrock compatibility for asset URL resolution
 * [Fixed] Various PHP warnings and deprecation notices
 
 = 9.0.6 =

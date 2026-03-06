@@ -97,7 +97,7 @@ class Runtime
 			return;
 		}
 
-		$this->filesystem = new Filesystem(dirname($this->pluginFile));
+		$this->filesystem = new Core\PluginFilesystem(dirname($this->pluginFile), $this->pluginFile);
 		Core\Templates::registerStorage();
 		$this->singletons();
 		$this->cliCommands();
