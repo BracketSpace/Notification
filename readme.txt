@@ -302,6 +302,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Added] 24-hour cooldown after failed license server requests to prevent repeated timeouts
 * [Changed] Added $notification and $trigger parameters to notification/background_processing/delay filter for better context when filtering delay time.
 * [Changed] License inactive notices suppressed during server communication failures
+* [Changed] Upgraded PHPCS dev dependencies for PHP 8.4+ compatibility
 * [Fixed] License checks no longer block admin page loads when license server is unreachable
 * [Fixed] Bedrock compatibility for asset URL resolution
 * [Fixed] Various PHP warnings and deprecation notices
