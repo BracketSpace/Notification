@@ -35,7 +35,9 @@
 		"preferred-install": "dist",
 		"sort-packages": true,
 		"allow-plugins": true,
-		"platform-check": false
+		"platform-check": false,
+		"platform": {
+		}
 	},
 	"autoload": {
 		"psr-4": {
