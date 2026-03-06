@@ -17,6 +17,7 @@ jobs:
         with:
           ref: 'develop'
           fetch-depth: 0
+          persist-credentials: false
       - name: Fetch master branch
         run: git fetch origin master:master
       - name: Install git-flow
@@ -62,15 +63,9 @@ jobs:
         run: git commit -am "Version bump"
       - name: Finish release
         run: git flow release finish ${{ github.event.inputs.new_version }} -m "v${{ github.event.inputs.new_version }}"
-      - name: Push master
-        uses: ad-m/github-push-action@v0.8.0
-        with:
-          github_token: ${{ secrets.WORKER_TOKEN }}
-          branch: 'master'
-      - name: Push develop
-        uses: ad-m/github-push-action@v0.8.0
-        with:
-          github_token: ${{ secrets.WORKER_TOKEN }}
-          branch: 'develop'
-      - name: Push tags
-        run: git push --tags https://x-access-token:${{ secrets.WORKER_TOKEN }}@github.com/${{ github.repository }}.git
+      - name: Push master, develop, and tags
+        run: |
+          REMOTE="https://x-access-token:${{ secrets.WORKER_TOKEN }}@github.com/${{ github.repository }}.git"
+          git push "$REMOTE" master
+          git push "$REMOTE" develop
+          git push "$REMOTE" --tags
