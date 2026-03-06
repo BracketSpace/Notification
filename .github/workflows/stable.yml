@@ -38,14 +38,7 @@ jobs:
     - name: Create build dir
       run: mkdir build
     - name: Copy files
-      uses: Pendect/action-rsyncer@v1.1.0
-      env:
-        DEPLOY_KEY: ${{ secrets.PACKAGES_DEPLOY_KEY }}
-      with:
-        flags: '-avq'
-        options: '--exclude-from=".build-excludes"'
-        src: '.'
-        dest: 'build'
+      run: rsync -avq --exclude-from=".build-excludes" . build/
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
@@ -61,7 +54,7 @@ jobs:
       - name: Setup variables
         id: vars
         run: |
-          echo "::set-output name=package-name::${{ secrets.SLUG }}-${GITHUB_REF#refs/tags/}"
+          echo "package-name=${{ secrets.SLUG }}-${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
@@ -87,8 +80,8 @@ jobs:
       - name: Setup variables
         id: vars
         run: |
-          echo "::set-output name=version::${GITHUB_REF#refs/tags/}"
-          echo "::set-output name=package-name::${{ secrets.SLUG }}-${GITHUB_REF#refs/tags/}"
+          echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          echo "package-name=${{ secrets.SLUG }}-${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
       - name: Parse changelog
         run: |
           VERSION="${{ steps.vars.outputs.version }}"
@@ -132,8 +125,8 @@ jobs:
       - name: Setup variables
         id: vars
         run: |
-          echo "::set-output name=version::${GITHUB_REF#refs/tags/}"
-          echo "::set-output name=package-name::${{ secrets.SLUG }}-${GITHUB_REF#refs/tags/}"
+          echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          echo "package-name=${{ secrets.SLUG }}-${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
@@ -144,7 +137,7 @@ jobs:
           unzip -q ${{ steps.vars.outputs.package-name }}.zip
           ls -la ${{ secrets.SLUG }}/
       - name: Deploy to WordPress.org
-        uses: 10up/action-wordpress-plugin-deploy@stable
+        uses: 10up/action-wordpress-plugin-deploy@2.3.0
         env:
           BUILD_DIR: ${{ secrets.SLUG }}
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}

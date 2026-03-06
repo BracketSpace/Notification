@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout master
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
         with:
           ref: 'master'
       - name: Checkout develop
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
         with:
           ref: 'develop'
           clean: false
@@ -32,30 +32,30 @@ jobs:
       - name: Start release
         run: git flow release start ${{ github.event.inputs.new_version }}
       - name: Replace Next tags with new version number
-        uses: jacobtomlinson/gha-find-replace@master
+        uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "(?i)\\[Next\\]"
           replace: "${{ github.event.inputs.new_version }}"
       - name: Replace stable tag in readme
-        uses: jacobtomlinson/gha-find-replace@master
+        uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "Stable tag: [0-9]+.[0-9]+.[0-9]+"
           replace: "Stable tag: ${{ github.event.inputs.new_version }}"
           include: "readme.txt"
       - name: Replace version tag in main file
-        uses: jacobtomlinson/gha-find-replace@master
+        uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "Version: [0-9]+.[0-9]+.[0-9]+"
           replace: "Version: ${{ github.event.inputs.new_version }}"
           include: "${{ secrets.SLUG }}.php"
       - name: Replace constant tag in main file
-        uses: jacobtomlinson/gha-find-replace@master
+        uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "'NOTIFICATION_VERSION', '[0-9]+.[0-9]+.[0-9]+'"
           replace: "'NOTIFICATION_VERSION', '${{ github.event.inputs.new_version }}'"
           include: "${{ secrets.SLUG }}.php"
       - name: Replace constant tag in Runtime file
-        uses: jacobtomlinson/gha-find-replace@master
+        uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "VERSION = '[0-9]+.[0-9]+.[0-9]+'"
           replace: "VERSION = '${{ github.event.inputs.new_version }}'"
@@ -65,12 +65,12 @@ jobs:
       - name: Finish release
         run: git flow release finish ${{ github.event.inputs.new_version }} -m "v${{ github.event.inputs.new_version }}"
       - name: Push develop and tags
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@v0.8.0
         with:
           github_token: ${{ secrets.WORKER_TOKEN }}
           branch: 'develop'
       - name: Push master
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@v0.8.0
         with:
           github_token: ${{ secrets.WORKER_TOKEN }}
           branch: 'master'
