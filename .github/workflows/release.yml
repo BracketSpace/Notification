@@ -60,7 +60,7 @@ jobs:
           replace: "VERSION = '${{ github.event.inputs.new_version }}'"
           include: "src/classes/Runtime.php"
       - name: Commit version bump
-        run: git commit -am "Version bump"
+        run: git commit -am "Version bump" --allow-empty
       - name: Finish release
         run: git flow release finish ${{ github.event.inputs.new_version }} -m "v${{ github.event.inputs.new_version }}"
       - name: Push master, develop, and tags
