@@ -52,6 +52,6 @@ class Number
 			return 0;
 		}
 
-		return floatval($value);
+		return (float) $value;
 	}
 }

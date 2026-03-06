@@ -31,7 +31,7 @@ class ErrorLog
 		// This is a simple pagination request.
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$page = isset($_GET['error_log_page'])
-			? intval($_GET['error_log_page'])
+			? (int) $_GET['error_log_page']
 			: 1;
 
 		Templates::render(

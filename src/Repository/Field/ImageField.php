@@ -56,6 +56,6 @@ class ImageField extends BaseField
 	 */
 	public function sanitize($value)
 	{
-		return intval($value);
+		return (int) $value;
 	}
 }

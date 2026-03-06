@@ -70,7 +70,7 @@ $headerPattern = _n(
 			on the new Notification plugin features and priority support.",
 			'notification'
 		);
-		?>
+	?>
 	</p>
 	<p><?php esc_html_e('Consider getting a valid license for uninterrupted experience.', 'notification'); ?></p>
 	<p>

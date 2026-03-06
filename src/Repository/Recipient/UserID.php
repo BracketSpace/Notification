@@ -56,7 +56,7 @@ class UserID extends BaseRecipient
 		}
 
 		$userIds = array_map(
-			static fn($userId) => intval(trim($userId)),
+			static fn($userId) => (int) trim($userId),
 			explode(',', $value)
 		);
 

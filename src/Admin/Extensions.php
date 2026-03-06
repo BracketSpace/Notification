@@ -389,11 +389,11 @@ class Extensions
 
 				$license = new License($extension);
 
-			// Bypass cooldown and clear cache for fresh check
-			$license->clearFailedRequestCooldown();
-			$this->clearLicenseCache($extension);
+				// Bypass cooldown and clear cache for fresh check
+				$license->clearFailedRequestCooldown();
+				$this->clearLicenseCache($extension);
 
-			$isValid = $license->isValid(); // This will trigger a fresh API check
+				$isValid = $license->isValid(); // This will trigger a fresh API check
 
 				$refreshedCount++;
 				if ($isValid) {
@@ -871,9 +871,12 @@ class Extensions
 			return;
 		}
 
-		Templates::render('extension/inactive-license', [
+		Templates::render(
+			'extension/inactive-license',
+			[
 			'extensions' => $invalidExtensions,
 			'server_down' => $this->isLicenseServerInCooldown(),
-		]);
+			]
+		);
 	}
 }

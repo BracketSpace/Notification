@@ -13,7 +13,6 @@ namespace BracketSpace\Notification;
 use BracketSpace\Notification\Dependencies\Micropackage\Requirements\Requirements;
 use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\HookTrait;
 use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\Helper as DocHooksHelper;
-use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
 
 /**
  * Runtime class

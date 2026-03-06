@@ -166,22 +166,26 @@ class License
 		$slug = $this->extension['slug'] ?? 'unknown';
 
 		if (is_wp_error($response)) {
-			error_log(sprintf(
-				'[Notification] License %s failed for "%s": %s',
-				$action,
-				$slug,
-				$response->get_error_message()
-			));
+			error_log( // phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
+				sprintf(
+					'[Notification] License %s failed for "%s": %s',
+					$action,
+					$slug,
+					$response->get_error_message()
+				)
+			);
 			return;
 		}
 
-		error_log(sprintf(
-			'[Notification] License %s failed for "%s": HTTP %d — %s',
-			$action,
-			$slug,
-			wp_remote_retrieve_response_code($response),
-			wp_remote_retrieve_body($response)
-		));
+		error_log( // phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
+			sprintf(
+				'[Notification] License %s failed for "%s": HTTP %d — %s',
+				$action,
+				$slug,
+				wp_remote_retrieve_response_code($response),
+				wp_remote_retrieve_body($response)
+			)
+		);
 	}
 
 	/**

@@ -44,6 +44,6 @@ class IntegerTag extends BaseMergeTag
 	 */
 	public function sanitize($value)
 	{
-		return intval($value);
+		return (int) $value;
 	}
 }

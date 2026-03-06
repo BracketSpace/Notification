@@ -47,6 +47,7 @@ class PluginFilesystem extends Filesystem
 	 * @since [Next]
 	 * @return string
 	 */
+	// phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps, Squiz.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
 	protected function base_url()
 	{
 		return plugin_dir_url($this->pluginFile);

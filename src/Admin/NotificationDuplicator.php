@@ -65,7 +65,7 @@ class NotificationDuplicator
 		}
 
 		// Get the source notification post.
-		$source = get_post(intval(wp_unslash($_GET['duplicate'])));
+		$source = get_post((int) wp_unslash($_GET['duplicate']));
 
 		if (get_post_type($source) !== 'notification' || ! $source instanceof \WP_Post) {
 			wp_die("You cannot duplicate post that's not a Notification post");
