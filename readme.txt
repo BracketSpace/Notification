@@ -298,6 +298,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 == Changelog ==
 
 = [Next] =
+* [Fixed] Filesystem method filter no longer globally overrides server SSH2/FTP configuration
 * [Added] Background license verification via daily WP-Cron
 * [Added] 24-hour cooldown after failed license server requests to prevent repeated timeouts
 * [Changed] Added $notification and $trigger parameters to notification/background_processing/delay filter for better context when filtering delay time.

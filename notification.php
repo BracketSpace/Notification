@@ -122,15 +122,23 @@ if ( ! class_exists( 'Notification' ) ) :
 
 endif;
 
-add_action( 'init', function() {
-	Notification::init( __FILE__ )->init();
-}, 5 );
-
 /**
- * Overwrites the Filesystem method
+ * Forces direct filesystem method during plugin initialization.
+ * The vendored micropackage/filesystem library requires WP_Filesystem_Direct.
+ * The filter is removed after init to not interfere with WordPress updates.
  *
  * @since 7.0.4
+ * @since [Next] Scoped to plugin initialization only.
  */
-add_filter( 'filesystem_method', function() {
+$notification_force_direct_fs = static function () {
 	return 'direct';
-}, 1000000 );
+};
+add_filter( 'filesystem_method', $notification_force_direct_fs, 1000000 );
+
+add_action( 'init', function () use ( $notification_force_direct_fs ) {
+	try {
+		Notification::init( __FILE__ )->init();
+	} finally {
+		remove_filter( 'filesystem_method', $notification_force_direct_fs, 1000000 );
+	}
+}, 5 );
