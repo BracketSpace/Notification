@@ -37,10 +37,10 @@ class HtmlTag extends BaseMergeTag
 	 * Sanitizes the merge tag value
 	 *
 	 * @param mixed $value value.
-	 * @return mixed
+	 * @return string
 	 */
-	public function sanitize($value)
+	public function sanitize($value): string
 	{
-		return (string)$value;
+		return is_scalar($value) ? (string)$value : '';
 	}
 }

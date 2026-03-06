@@ -144,7 +144,7 @@ class Debugging
 		foreach ((array)$types as $type) {
 			$escTypes[] = $wpdb->prepare(
 				'%s',
-				(string)$type
+				is_scalar($type) ? (string)$type : ''
 			);
 		}
 
@@ -266,7 +266,7 @@ class Debugging
 		self::log(
 			'Core',
 			'notification',
-			(string)wp_json_encode($data)
+			wp_json_encode($data) !== false ? wp_json_encode($data) : 'Failed to encode data'
 		);
 
 		// Suppress when debug log is active.

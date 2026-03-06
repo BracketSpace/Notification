@@ -32,11 +32,12 @@ trait ClassUtils
 	 */
 	public function getNiceClassName()
 	{
-		return (string)preg_replace(
+		$className = $this->getShortClassName();
+		return (string)(preg_replace(
 			'/(.)(?=[A-Z])/u',
 			'$1 ',
-			$this->getShortClassName()
-		);
+			$className
+		) ?? $className);
 	}
 
 	/**
@@ -46,12 +47,13 @@ trait ClassUtils
 	 */
 	public function getClassSlug()
 	{
+		$className = $this->getShortClassName();
 		return strtolower(
-			(string)preg_replace(
+			(string)(preg_replace(
 				'/(.)(?=[A-Z])/u',
 				'$1-',
-				$this->getShortClassName()
-			)
+				$className
+			) ?? $className)
 		);
 	}
 }

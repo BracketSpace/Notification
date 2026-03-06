@@ -32,7 +32,12 @@ class EditorField extends BaseField
 	public function __construct($params = [])
 	{
 		if (isset($params['settings'])) {
-			$this->settings = $params['settings'];
+			if (is_array($params['settings'])) {
+				$encoded = wp_json_encode($params['settings']);
+				$this->settings = $encoded !== false ? $encoded : '{}';
+			} elseif (is_scalar($params['settings'])) {
+				$this->settings = (string)$params['settings'];
+			}
 		}
 
 		parent::__construct($params);
@@ -56,13 +61,16 @@ class EditorField extends BaseField
 
 		ob_start();
 
+		$value = $this->getValue();
+		$stringValue = is_scalar($value) ? (string)$value : '';
+
 		wp_editor(
-			$this->getValue() ?? '',
+			$stringValue,
 			$this->getId(),
 			$settings
 		);
 
-		return ob_get_clean();
+		return ob_get_clean() !== false ? ob_get_clean() : '';
 	}
 
 	/**

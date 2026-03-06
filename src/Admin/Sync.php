@@ -92,12 +92,25 @@ class Sync
 		check_ajax_referer('notification_csrf');
 
 		$ajax = new Response();
+
+		if (!current_user_can('manage_options')) {
+			$ajax->error(__('Insufficient permissions.', 'notification'));
+		}
+
 		$data = $_POST;
 
-		$callable = [$this, 'loadNotificationTo' . ucfirst($data['type'])];
+		$allowedTypes = ['json', 'wordpress'];
+		$type = sanitize_key($data['type'] ?? '');
+
+		if (!in_array($type, $allowedTypes, true)) {
+			$ajax->error(__('Invalid sync type.', 'notification'));
+		}
+
+		$hash = sanitize_text_field($data['hash'] ?? '');
+		$callable = [$this, 'loadNotificationTo' . ucfirst($type)];
 
 		$response = method_exists($callable[0], $callable[1]) && is_callable($callable)
-			? call_user_func($callable, $data['hash'])
+			? call_user_func($callable, $hash)
 			: false;
 
 		if ($response === false) {

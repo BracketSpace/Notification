@@ -242,14 +242,14 @@ class Extensions
 			$wpPlugin = $wpPlugins[$extension['slug']];
 
 			if (
-				!isset($extension['edd']['store_url'], $extension['edd']['item_name']) ||
-				!is_string($extension['edd']['store_url']) || !is_string($extension['edd']['item_name'])
+				!isset($extension['edd']['item_name']) ||
+				!is_string($extension['edd']['item_name'])
 			) {
 				continue;
 			}
 
 			new EDDUpdater(
-				$extension['edd']['store_url'],
+				License::STORE_URL,
 				$extension['slug'],
 				[
 					'version' => $wpPlugin['Version'],
@@ -387,10 +387,12 @@ class Extensions
 					continue;
 				}
 
-				// Clear all cache and force fresh check
-				$this->clearStaleLicenseCache($extension);
-
 				$license = new License($extension);
+
+				// Bypass cooldown and clear cache for fresh check
+				$license->clearFailedRequestCooldown();
+				$this->clearLicenseCache($extension);
+
 				$isValid = $license->isValid(); // This will trigger a fresh API check
 
 				$refreshedCount++;
@@ -669,6 +671,14 @@ class Extensions
 				);
 				break;
 
+			case 'http-error':
+				$view = 'error';
+				$message = __(
+					'Could not connect to the license server. Please try again later.',
+					'notification'
+				);
+				break;
+
 			default:
 				$view = 'error';
 				$message = __('An error occurred, please try again.', 'notification');
@@ -682,12 +692,12 @@ class Extensions
 	}
 
 	/**
-	 * Clears stale license cache for extension
+	 * Clears license cache for extension
 	 *
 	 * @param array{slug: string, edd?: array<mixed>} $extension Extension data.
 	 * @return void
 	 */
-	private function clearStaleLicenseCache(array $extension)
+	private function clearLicenseCache(array $extension)
 	{
 		// Clear ObjectCache for license data
 		$driver = new CacheDriver\ObjectCache('notification_license/v2');
@@ -701,33 +711,7 @@ class Extensions
 	}
 
 	/**
-	 * Checks if license data appears stale and needs refresh
-	 *
-	 * @param object|null $licenseData License data object.
-	 * @return bool
-	 */
-	private function isLicenseDataStale($licenseData)
-	{
-		if (empty($licenseData) || !isset($licenseData->license, $licenseData->expires)) {
-			return false;
-		}
-
-		// If license shows inactive/expired status but expiration is in the future, it might be stale
-		if (in_array($licenseData->license, ['inactive', 'site_inactive', 'expired'], true)) {
-			if ($licenseData->expires !== 'lifetime') {
-				$expirationTime = strtotime((string)$licenseData->expires);
-				// If expiration is more than 1 day in the future, data might be stale
-				if ($expirationTime > (time() + DAY_IN_SECONDS)) {
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * Gets extensions with invalid license
+	 * Gets extensions with invalid license (read-only, no API calls)
 	 *
 	 * @return array<string>
 	 */
@@ -752,14 +736,9 @@ class Extensions
 			}
 
 			$license = new License($extension);
-			$licenseData = $license->get();
 
-			// Check if license data appears stale and clear cache if so
-			if (is_object($licenseData) && $this->isLicenseDataStale($licenseData)) {
-				$this->clearStaleLicenseCache($extension);
-			}
-
-			if ($license->isValid()) {
+			// Use stored data only — no API calls
+			if ($license->isStoredValid()) {
 				continue;
 			}
 
@@ -772,6 +751,33 @@ class Extensions
 		}
 
 		return $invalidExtensions;
+	}
+
+	/**
+	 * Checks if any license server is in cooldown
+	 *
+	 * @return bool
+	 */
+	public function isLicenseServerInCooldown(): bool
+	{
+		$extensions = $this->getRawExtensions();
+
+		foreach ($extensions as $extension) {
+			if (
+				!is_array($extension) || !isset($extension['edd'], $extension['slug']) ||
+				!is_array($extension['edd']) || !is_string($extension['slug']) ||
+				!is_plugin_active($extension['slug'])
+			) {
+				continue;
+			}
+
+			$license = new License($extension);
+			if ($license->hasRecentlyFailed()) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -798,6 +804,11 @@ class Extensions
 		$invalidExtensions = $this->getInvalidLicenseExtensions();
 
 		if (empty($invalidExtensions)) {
+			return;
+		}
+
+		// Suppress the nag when server is unreachable — don't scare users
+		if ($this->isLicenseServerInCooldown()) {
 			return;
 		}
 
@@ -860,6 +871,12 @@ class Extensions
 			return;
 		}
 
-		Templates::render('extension/inactive-license', ['extensions' => $invalidExtensions]);
+		Templates::render(
+			'extension/inactive-license',
+			[
+			'extensions' => $invalidExtensions,
+			'server_down' => $this->isLicenseServerInCooldown(),
+			]
+		);
 	}
 }

@@ -13,7 +13,6 @@ namespace BracketSpace\Notification;
 use BracketSpace\Notification\Dependencies\Micropackage\Requirements\Requirements;
 use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\HookTrait;
 use BracketSpace\Notification\Dependencies\Micropackage\DocHooks\Helper as DocHooksHelper;
-use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
 
 /**
  * Runtime class
@@ -97,7 +96,7 @@ class Runtime
 			return;
 		}
 
-		$this->filesystem = new Filesystem(dirname($this->pluginFile));
+		$this->filesystem = new Core\PluginFilesystem(dirname($this->pluginFile), $this->pluginFile);
 		Core\Templates::registerStorage();
 		$this->singletons();
 		$this->cliCommands();

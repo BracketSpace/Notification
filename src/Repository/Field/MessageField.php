@@ -18,7 +18,7 @@ class MessageField extends BaseField
 	/**
 	 * Message
 	 *
-	 * @var string
+	 * @var string|callable
 	 */
 	protected $message = '';
 
@@ -56,10 +56,14 @@ class MessageField extends BaseField
 			trigger_error('MessageField requires message param', E_USER_ERROR);
 		}
 
-		$this->message = $params['message'];
+		if (is_callable($params['message'])) {
+			$this->message = $params['message'];
+		} elseif (is_scalar($params['message'])) {
+			$this->message = (string)$params['message'];
+		}
 
 		if (isset($params['name'])) {
-			$this->name = $params['name'];
+			$this->name = is_scalar($params['name']) ? (string)$params['name'] : '';
 		}
 
 		parent::__construct($params);
@@ -72,7 +76,7 @@ class MessageField extends BaseField
 	 */
 	public function field()
 	{
-		return wp_kses_post(is_callable($this->message) ? $this->message() : $this->message);
+		return wp_kses_post(is_callable($this->message) ? call_user_func($this->message) : $this->message);
 	}
 
 	/**

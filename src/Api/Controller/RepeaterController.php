@@ -190,9 +190,9 @@ class RepeaterController
 		/** @var int $id */
 		$id = $params['id'];
 
-		$this->postId = intval($id);
-		$this->carrier = $params['fieldCarrier'];
-		$this->field = $params['fieldType'];
+		$this->postId = (int) $id;
+		$this->carrier = is_scalar($params['fieldCarrier']) ? (string)$params['fieldCarrier'] : '';
+		$this->field = is_scalar($params['fieldType']) ? (string)$params['fieldType'] : '';
 	}
 
 	/**

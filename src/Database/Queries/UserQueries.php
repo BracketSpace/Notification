@@ -60,6 +60,8 @@ class UserQueries
 			static function () use ($role) {
 				global $wpdb;
 
+				$metaKey = $wpdb->get_blog_prefix() . 'capabilities';
+
 				// We're using direct db call for performance purposes - we only need the post_content field.
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 				return $wpdb->get_results(
@@ -67,8 +69,9 @@ class UserQueries
 						"SELECT u.ID, u.user_email, u.display_name
 					FROM $wpdb->users AS u
 					INNER JOIN $wpdb->usermeta AS m ON u.ID = m.user_id
-					WHERE m.meta_key = '{$wpdb->get_blog_prefix()}capabilities'
+					WHERE m.meta_key = %s
 					AND m.meta_value LIKE %s",
+						$metaKey,
 						'%\"' . $wpdb->esc_like($role) . '\"%'
 					),
 					'ARRAY_A'

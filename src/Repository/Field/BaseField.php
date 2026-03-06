@@ -37,16 +37,16 @@ abstract class BaseField implements Interfaces\Fillable
 	/**
 	 * Field label
 	 *
-	 * @var mixed
+	 * @var string
 	 */
-	protected $label;
+	protected $label = '';
 
 	/**
 	 * Field name
 	 *
-	 * @var mixed
+	 * @var string
 	 */
-	protected $name;
+	protected $name = '';
 
 	/**
 	 * Short description
@@ -111,10 +111,11 @@ abstract class BaseField implements Interfaces\Fillable
 			trigger_error('Field requires label and name', E_USER_ERROR);
 		}
 
-		$this->fieldTypeHtml = substr(strrchr(static::class, '\\'), 1);
+		$className = strrchr(static::class, '\\');
+		$this->fieldTypeHtml = $className !== false ? substr($className, 1) : '';
 
-		$this->label = $params['label'];
-		$this->name = $params['name'];
+		$this->label = is_scalar($params['label']) ? (string)$params['label'] : '';
+		$this->name = is_scalar($params['name']) ? (string)$params['name'] : '';
 		$this->id = $this->name . '_' . uniqid();
 
 		if (isset($params['description'])) {

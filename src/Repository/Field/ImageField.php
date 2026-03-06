@@ -44,7 +44,7 @@ class ImageField extends BaseField
 			esc_attr($this->cssClass()),
 			$this->maybeDisable(),
 			esc_html__('Select image', 'notification'),
-			wp_get_attachment_thumb_url($value)
+			wp_get_attachment_thumb_url(is_scalar($value) ? (int)$value : 0)
 		);
 	}
 
@@ -56,6 +56,6 @@ class ImageField extends BaseField
 	 */
 	public function sanitize($value)
 	{
-		return intval($value);
+		return (int) $value;
 	}
 }

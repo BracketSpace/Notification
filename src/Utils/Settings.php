@@ -117,7 +117,7 @@ class Settings
 	 * @param string $slug Section slug.
 	 * @return \BracketSpace\Notification\Utils\Settings\Section
 	 */
-	public function addSection($name, $slug)
+	public function addSection($name, $slug): Section
 	{
 		if (!isset($this->sections[$slug])) {
 			$this->sections[$slug] = new Section(
@@ -127,7 +127,8 @@ class Settings
 			);
 		}
 
-		return $this->sections[$slug];
+		$section = $this->sections[$slug];
+		return $section instanceof Section ? $section : new Section($this->handle, $name, $slug);
 	}
 
 	/**
@@ -180,7 +181,11 @@ class Settings
 		$toSave = [];
 
 		foreach ($settings as $sectionSlug => $groupsValues) {
-			foreach ($this->getSection($sectionSlug)->getGroups() as $group) {
+			$section = $this->getSection($sectionSlug);
+			if (!is_object($section) || !method_exists($section, 'getGroups')) {
+				continue;
+			}
+			foreach ($section->getGroups() as $group) {
 				foreach ($group->getFields() as $field) {
 					$value = isset($groupsValues[$field->group()][$field->slug()])
 						? $field->sanitize($groupsValues[$field->group()][$field->slug()])
@@ -220,6 +225,9 @@ class Settings
 
 			$settings[$sectionSlug] = [];
 
+			if (!is_object($section) || !method_exists($section, 'getGroups')) {
+				continue;
+			}
 			$groups = $section->getGroups();
 
 			foreach ($groups as $groupSlug => $group) {
@@ -228,7 +236,9 @@ class Settings
 				$fields = $group->getFields();
 
 				foreach ($fields as $fieldSlug => $field) {
-					$value = $setting[$groupSlug][$fieldSlug] ?? $field->defaultValue();
+					$value = (is_array($setting) && isset($setting[$groupSlug], $setting[$groupSlug][$fieldSlug]))
+						? $setting[$groupSlug][$fieldSlug]
+						: $field->defaultValue();
 
 					$settings[$sectionSlug][$groupSlug][$fieldSlug] = $value;
 				}
@@ -247,6 +257,9 @@ class Settings
 	public function setupFieldValues()
 	{
 		foreach ($this->getSections() as $sectionSlug => $section) {
+			if (!is_object($section) || !method_exists($section, 'getGroups')) {
+				continue;
+			}
 			foreach ($section->getGroups() as $groupSlug => $group) {
 				foreach ($group->getFields() as $fieldSlug => $field) {
 					$settingName = implode('/', [$sectionSlug, $groupSlug, $fieldSlug]);
@@ -273,7 +286,10 @@ class Settings
 
 		$settings = $this->getSettings();
 
-		if (!isset($settings[$parts[0]], $settings[$parts[0]][$parts[1]], $settings[$parts[0]][$parts[1]][$parts[2]])) {
+		if (
+			!is_array($settings) ||
+			!isset($settings[$parts[0]], $settings[$parts[0]][$parts[1]], $settings[$parts[0]][$parts[1]][$parts[2]])
+		) {
 			return null;
 		}
 
@@ -303,7 +319,7 @@ class Settings
 
 		$section = $this->getSection($sectionSlug);
 
-		if ($section === false) {
+		if ($section === false || !is_object($section) || !method_exists($section, 'getGroups')) {
 			throw new \Exception("Cannot find \"{$sectionSlug}\" settings section.");
 		}
 

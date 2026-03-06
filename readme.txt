@@ -2,8 +2,8 @@
 Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn, mateuszgbiorczyk
 Tags: notification, notify, alert, email, mail
 Requires at least: 4.9
-Tested up to: 6.8
-Stable tag: 9.0.6
+Tested up to: 6.9
+Stable tag: 9.0.7
 Requires PHP: 7.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -296,6 +296,18 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 7. Default email disabler
 
 == Changelog ==
+
+= 9.0.7 =
+* [Fixed] Hardened security for AJAX handlers, file imports, and database queries
+* [Fixed] Filesystem method filter no longer globally overrides server SSH2/FTP configuration
+* [Added] Background license verification via daily WP-Cron
+* [Added] 24-hour cooldown after failed license server requests to prevent repeated timeouts
+* [Changed] Added $notification and $trigger parameters to notification/background_processing/delay filter for better context when filtering delay time.
+* [Changed] License inactive notices suppressed during server communication failures
+* [Changed] Upgraded PHPCS dev dependencies for PHP 8.4+ compatibility
+* [Fixed] License checks no longer block admin page loads when license server is unreachable
+* [Fixed] Bedrock compatibility for asset URL resolution
+* [Fixed] Various PHP warnings and deprecation notices
 
 = 9.0.6 =
 * [Added] "Refresh All Licenses" button in Extensions page to manually check all extension license statuses from the store.

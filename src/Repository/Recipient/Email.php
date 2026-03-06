@@ -55,8 +55,8 @@ class Email extends BaseRecipient
 
 		if (preg_match($pattern, $value, $matches)) {
 			$filterId = $matches[1];
-			$value = preg_replace($pattern, '', $value);
-			$value = is_string($value) ? trim($value) : '';
+			$value = preg_replace($pattern, '', $value) ?? $value;
+			$value = trim($value);
 		}
 
 		$value = apply_filters('notification/recipient/email/' . $filterId, $value);

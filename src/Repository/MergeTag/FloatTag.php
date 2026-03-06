@@ -41,6 +41,6 @@ class FloatTag extends BaseMergeTag
 	 */
 	public function sanitize($value)
 	{
-		return floatval($value);
+		return (float) $value;
 	}
 }

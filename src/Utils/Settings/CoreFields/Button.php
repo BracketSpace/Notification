@@ -25,8 +25,8 @@ class Button
 	{
 		echo sprintf(
 			'<a href="%s" class="button">%s</a>',
-			esc_url_raw($field->addon('url')),
-			esc_html($field->addon('label'))
+			esc_url_raw(is_scalar($field->addon('url')) ? (string)$field->addon('url') : ''),
+			esc_html(is_scalar($field->addon('label')) ? (string)$field->addon('label') : '')
 		);
 	}
 

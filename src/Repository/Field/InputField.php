@@ -55,7 +55,7 @@ class InputField extends BaseField
 	public function __construct($params = [])
 	{
 		if (isset($params['type'])) {
-			$this->type = (string)$params['type'];
+			$this->type = is_scalar($params['type']) ? (string)$params['type'] : 'text';
 		}
 
 		if (isset($params['placeholder'])) {
@@ -109,7 +109,7 @@ class InputField extends BaseField
 			'@<(script|style)[^>]*?>.*?</\\1>@si',
 			'',
 			$stringValue
-		);
+		) ?? $stringValue;
 
 		// Remove line breaks.
 		if ($this->allowLinebreaks !== true) {
@@ -117,7 +117,7 @@ class InputField extends BaseField
 				'/[\r\n\t ]+/',
 				' ',
 				$stringValue
-			);
+			) ?? $stringValue;
 		}
 
 		// Remove whitespace.

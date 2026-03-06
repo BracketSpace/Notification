@@ -65,7 +65,7 @@ class NotificationDuplicator
 		}
 
 		// Get the source notification post.
-		$source = get_post(intval(wp_unslash($_GET['duplicate'])));
+		$source = get_post((int) wp_unslash($_GET['duplicate']));
 
 		if (get_post_type($source) !== 'notification' || ! $source instanceof \WP_Post) {
 			wp_die("You cannot duplicate post that's not a Notification post");
@@ -85,7 +85,8 @@ class NotificationDuplicator
 		// Create duplicated Notification.
 		Db::upsert($newNotification);
 
-		wp_safe_redirect(html_entity_decode(get_edit_post_link(Db::getLastUpsertedPostId())));
+		$editLink = get_edit_post_link(Db::getLastUpsertedPostId());
+		wp_safe_redirect(html_entity_decode($editLink ? $editLink : admin_url()));
 		exit;
 	}
 }

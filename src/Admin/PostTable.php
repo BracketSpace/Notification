@@ -299,10 +299,10 @@ class PostTable
 
 		if (!empty($action['bulk_disable_notifications'])) {
 			$actionType = esc_html__('disabled', 'notification');
-			$bulkCount = intval($action['bulk_disable_notifications']);
+			$bulkCount = (int) $action['bulk_disable_notifications'];
 		} else {
 			$actionType = esc_html__('enabled', 'notification');
-			$bulkCount = intval($action['bulk_enable_notifications']);
+			$bulkCount = (int) $action['bulk_enable_notifications'];
 		}
 
 		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped

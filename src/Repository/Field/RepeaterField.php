@@ -86,15 +86,16 @@ class RepeaterField extends BaseField
 	 */
 	public function __construct($params = [])
 	{
-		if (isset($params['fields'])) {
+		if (isset($params['fields']) && is_array($params['fields'])) {
 			$this->fields = $params['fields'];
 		}
 
-		$this->addButtonLabel = $params['add_button_label'] ?? __('Add new', 'notification');
+		$addButtonLabel = $params['add_button_label'] ?? __('Add new', 'notification');
+		$this->addButtonLabel = is_scalar($addButtonLabel) ? (string)$addButtonLabel : '';
 
 		// additional data tags for repeater table. key => value array.
 		// will be transformed to data-key="value".
-		if (isset($params['data_attr'])) {
+		if (isset($params['data_attr']) && is_array($params['data_attr'])) {
 			$this->dataAttr = $params['data_attr'];
 		}
 

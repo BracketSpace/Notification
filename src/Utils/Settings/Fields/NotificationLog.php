@@ -31,7 +31,7 @@ class NotificationLog
 		// This is a simple pagination request.
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$page = isset($_GET['notification_log_page'])
-			? intval($_GET['notification_log_page'])
+			? (int) $_GET['notification_log_page']
 			: 1;
 		$rawLogs = $debug->getLogs(
 			$page,

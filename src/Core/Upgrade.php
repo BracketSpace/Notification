@@ -317,7 +317,7 @@ class Upgrade
 				array_keys($this->triggerSlugReplacements()),
 				array_values($this->triggerSlugReplacements()),
 				$data['trigger']
-			);
+			) ?? $data['trigger'];
 
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$db->update(

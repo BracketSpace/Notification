@@ -69,6 +69,12 @@ class ImportExport
 		}
 
 		$type = sanitize_text_field(wp_unslash($_GET['type']));
+
+		$allowedTypes = ['notifications'];
+		if (!in_array($type, $allowedTypes, true)) {
+			wp_die(esc_html__('Invalid export type.', 'notification'), '', ['back_link' => true]);
+		}
+
 		try {
 			$exportMethod = [$this, 'prepare' . ucfirst($type) . 'ExportData'];
 			$data = is_callable($exportMethod)
@@ -152,24 +158,46 @@ class ImportExport
 			wp_send_json_error(__('Wrong import type'));
 		}
 
+		$type = sanitize_text_field(wp_unslash($_POST['type']));
+
+		$allowedTypes = ['notifications'];
+		if (!in_array($type, $allowedTypes, true)) {
+			wp_send_json_error(__('Invalid import type.', 'notification'));
+		}
+
 		if (empty($_FILES)) {
 			wp_send_json_error(__('Please select file for import'));
 		}
 
-		// phpcs:disable
-		$file = fopen($_FILES[0]['tmp_name'], 'rb');
+		$file = reset($_FILES);
 
-		if (! $file) {
-			wp_send_json_error("Can't read the file.");
+		if (!is_array($file) || ($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
+			wp_send_json_error(__('File upload error.', 'notification'));
 		}
 
-		$json = fread($file, filesize($_FILES[0]['tmp_name']));
-		fclose($file);
-		unlink($_FILES[0]['tmp_name']);
-		// phpcs:enable
+		$maxSize = 1024 * 1024; // 1MB
+		if ($file['size'] > $maxSize) {
+			wp_send_json_error(__('File exceeds maximum allowed size.', 'notification'));
+		}
+
+		$allowedMimeTypes = ['application/json', 'text/plain', 'text/json'];
+		$finfo = finfo_open(FILEINFO_MIME_TYPE);
+		$mimeType = $finfo !== false ? finfo_file($finfo, $file['tmp_name']) : false;
+
+		if ($mimeType !== false && !in_array($mimeType, $allowedMimeTypes, true)) {
+			wp_delete_file($file['tmp_name']);
+			wp_send_json_error(__('Invalid file type.', 'notification'));
+		}
+
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+		$json = file_get_contents($file['tmp_name']);
+		wp_delete_file($file['tmp_name']);
+
+		if ($json === false) {
+			wp_send_json_error(__("Can't read the file.", 'notification'));
+		}
 
 		$data = json_decode($json, true);
-		$type = sanitize_text_field(wp_unslash($_POST['type']));
 
 		// Wrap the singular notification into a collection.
 		if (isset($data['hash'])) {

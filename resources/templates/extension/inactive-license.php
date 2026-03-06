@@ -13,6 +13,8 @@ declare(strict_types=1);
  * @var \BracketSpace\Notification\Dependencies\Micropackage\Templates\Template $this Template instance.
  */
 
+$serverDown = $get('server_down');
+
 $extensionList = implode(
 	', ',
 	array_map(static fn($ext) => str_replace('Notification : ', '', $ext), $get('extensions'))
@@ -28,6 +30,36 @@ $headerPattern = _n(
 
 ?>
 
+<?php if ($serverDown) : ?>
+<div class="notice notice-warning">
+	<h3><?php esc_html_e('License server is temporarily unreachable', 'notification'); ?></h3>
+	<p>
+		<?php esc_html_e(
+			'License status will be verified automatically. Your extensions will continue to work normally.',
+			'notification'
+		); ?>
+	</p>
+	<p>
+		<a
+			href="
+			<?php
+			echo esc_url(
+				wp_nonce_url(
+					admin_url('admin-post.php?action=notification_refresh_all_licenses'),
+					'refresh_all_licenses',
+					'_wpnonce'
+				)
+			);
+			?>
+			"
+			class="button button-secondary"
+			title="<?php esc_attr_e('Check the latest status for all licenses from the store', 'notification'); ?>"
+		>
+			<?php esc_html_e('Refresh All Licenses', 'notification'); ?>
+		</a>
+	</p>
+</div>
+<?php else : ?>
 <div class="error">
 	<h3><?php echo esc_html(sprintf($headerPattern, $extensionList)); ?></h3>
 	<p>
@@ -38,15 +70,15 @@ $headerPattern = _n(
 			on the new Notification plugin features and priority support.",
 			'notification'
 		);
-		?>
+	?>
 	</p>
 	<p><?php esc_html_e('Consider getting a valid license for uninterrupted experience.', 'notification'); ?></p>
 	<p>
 		<a href="https://bracketspace.com/expired-license/" target="_blank" class="button button-primary">
 			<?php esc_html_e('Read more about expired license', 'notification'); ?>
 		</a>
-		
-		<a 
+
+		<a
 			href="
 			<?php
 			echo esc_url(
@@ -66,3 +98,4 @@ $headerPattern = _n(
 		</a>
 	</p>
 </div>
+<?php endif ?>

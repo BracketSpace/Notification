@@ -37,10 +37,10 @@ class EmailTag extends BaseMergeTag
 	 * Sanitizes the merge tag value
 	 *
 	 * @param mixed $value value.
-	 * @return mixed
+	 * @return string
 	 */
-	public function sanitize($value)
+	public function sanitize($value): string
 	{
-		return sanitize_email($value);
+		return sanitize_email(is_scalar($value) ? (string)$value : '');
 	}
 }

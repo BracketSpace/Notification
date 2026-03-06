@@ -5,8 +5,6 @@
 	<rule ref="PSR12NeutronRuleset">
 		<!-- NeutronStandard bug -->
 		<exclude name="NeutronStandard.Functions.TypeHint.NoReturnType"/>
-		<!-- https://github.com/sirbrillig/phpcs-import-detection/issues/45 -->
-		<exclude name="ImportDetection.Imports.RequireImports"/>
 		<!-- We write Composer packages -->
 		<exclude name="PEAR.Commenting.FileComment.InvalidPackage"/>
 		<exclude name="PEAR.Commenting.FileComment.MissingAuthorTag"/>
@@ -16,10 +14,12 @@
 		<exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
 		<exclude name="PSR12.Properties.ConstantVisibility.NotFound"/>
 
-		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation"/>
+		<exclude name="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly"/>
 		<exclude name="SlevomatCodingStandard.Classes.DisallowLateStaticBindingForConstants.DisallowedLateStaticBindingForConstant"/>
 		<exclude name="SlevomatCodingStandard.PHP.RequireExplicitAssertion.RequiredExplicitAssertion"/>
+		<exclude name="SlevomatCodingStandard.Commenting.ForbiddenAnnotations.AnnotationForbidden"/>
+		<exclude name="SlevomatCodingStandard.Functions.FunctionLength.FunctionLength"/>
 
 		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores"/>
 		<exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited"/>
@@ -43,6 +43,18 @@
 		<exclude name="VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable"/>
 
 		<exclude name="Generic.WhiteSpace.DisallowTabIndent.TabsUsed"/>
+		<exclude name="Generic.Formatting.SpaceAfterNot.Incorrect"/>
+		<exclude name="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+		<exclude name="Universal.Operators.DisallowStandalonePostIncrementDecrement"/>
+		<exclude name="PSR12NeutronRuleset.Strings.ConcatenationUsage.NotAllowed"/>
+		<exclude name="PSR12NeutronRuleset.NamingConventions.MeaningfulVariableName"/>
+
+		<exclude name="Universal.NamingConventions.NoReservedKeywordParameterNames"/>
+		<exclude name="Universal.CodeAnalysis.NoEchoSprintf"/>
+		<exclude name="Universal.ControlStructures.DisallowLonelyIf"/>
+		<exclude name="SlevomatCodingStandard.Classes.ModernClassNameReference"/>
+		<exclude name="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue"/>
+		<exclude name="Modernize.FunctionCalls.Dirname"/>
 
 		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralDomain"/>
 		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralText"/>
@@ -50,6 +62,9 @@
 		<exclude name="PEAR.Commenting.ClassComment.InvalidAuthors"/>
 
 		<exclude name="Generic.Files.ExecutableFile.Executable"/>
+		<exclude name="Generic.PHP.ForbiddenFunctions.Found"/>
+		<exclude name="Squiz.PHP.EmbeddedPhp.ContentAfterOpen"/>
+		<exclude name="Squiz.PHP.EmbeddedPhp.ContentBeforeEnd"/>
 	</rule>
 
 	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent" />

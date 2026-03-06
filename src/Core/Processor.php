@@ -91,7 +91,7 @@ class Processor
 		self::getCache($triggerKey)->set($trigger);
 
 		$result = wp_schedule_single_event(
-			time() + apply_filters('notification/background_processing/delay', 30),
+			time() + apply_filters('notification/background_processing/delay', 30, $notification, $trigger),
 			'notification_background_processing',
 			[
 				$notification->to('json', ['jsonOptions' => JSON_UNESCAPED_UNICODE]),
