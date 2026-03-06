@@ -96,7 +96,10 @@ class Runtime
 			return;
 		}
 
-		$this->filesystem = new Core\PluginFilesystem(dirname($this->pluginFile), $this->pluginFile);
+		$pluginDir = dirname($this->pluginFile);
+		$this->filesystem = file_exists(__DIR__ . '/Core/PluginFilesystem.php')
+			? new Core\PluginFilesystem($pluginDir, $this->pluginFile)
+			: new Dependencies\Micropackage\Filesystem\Filesystem($pluginDir);
 		Core\Templates::registerStorage();
 		$this->singletons();
 		$this->cliCommands();

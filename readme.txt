@@ -297,6 +297,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Plugin crash on certain hosting configurations due to missing build file
+
 = 9.0.8 =
 * [Changed] Optimized plugin package by removing build tool dependencies from the distributed archive
 
