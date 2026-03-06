@@ -63,13 +63,15 @@ class Wizard
 	public function registerPage()
 	{
 		$this->pageHook = add_submenu_page(
-			'',
+			'edit.php?post_type=notification',
 			__('Wizard', 'notification'),
 			__('Wizard', 'notification'),
 			'manage_options',
 			'wizard',
 			[$this, 'wizardPage']
 		);
+
+		remove_submenu_page('edit.php?post_type=notification', 'wizard');
 	}
 
 	/**
