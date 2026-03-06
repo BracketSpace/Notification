@@ -20,12 +20,19 @@ jobs:
         php-version: '7.4'
         extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
         coverage: none
+    - name: Download Strauss
+      run: |
+        curl -sL https://github.com/BrianHenryIE/strauss/releases/download/0.19.5/strauss.phar -o strauss.phar
+        chmod +x strauss.phar
     - name: Install Composer dependencies
       uses: "ramsey/composer-install@v2"
       with:
-        composer-options: "--no-dev"
+        composer-options: "--no-dev --no-scripts"
     - name: Run Strauss
-      run: composer run-script prefix-namespaces-prod
+      run: |
+        php strauss.phar --deleteVendorPackages=true
+        composer dump-autoload --optimize
+        find vendor -type d -empty -delete
     - name: Setup Node
       uses: actions/setup-node@v4
       with:

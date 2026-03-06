@@ -297,6 +297,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Changed] Optimized plugin package by removing build tool dependencies from the distributed archive
+
 = 9.0.7 =
 * [Fixed] Hardened security for AJAX handlers, file imports, and database queries
 * [Fixed] Filesystem method filter no longer globally overrides server SSH2/FTP configuration
