@@ -27,4 +27,6 @@ phpstan.neon
 .yarnrc.yml
 .eslintignore
 .stylelintignore
+CLAUDE.md
+strauss.phar
 

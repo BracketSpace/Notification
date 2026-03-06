@@ -6,7 +6,6 @@
 	"require": {
 		"php": "^7.4 | ^8.0",
 		"composer-runtime-api": "^2.0",
-		"brianhenryie/strauss": "^0.19.4",
 		"enshrined/svg-sanitize": "^0.22.0",
 		"micropackage/ajax": "^1.0",
 		"micropackage/cache": "^1.0",
@@ -17,6 +16,7 @@
 		"micropackage/templates": "^1.1"
 	},
 	"require-dev": {
+		"brianhenryie/strauss": "^0.19.4",
 		"brain/monkey": "^2.6",
 		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
 		"pestphp/pest": "^1.23",
@@ -35,7 +35,9 @@
 		"preferred-install": "dist",
 		"sort-packages": true,
 		"allow-plugins": true,
-		"platform-check": false
+		"platform-check": false,
+		"platform": {
+		}
 	},
 	"autoload": {
 		"psr-4": {
@@ -82,8 +84,7 @@
 		"prefix-namespaces-prod": [
 			"strauss --deleteVendorPackages=true",
 			"composer dump-autoload",
-			"rm -r vendor/bin",
-			"rm -r vendor/brianhenryie",
+			"rm -rf vendor/bin",
 			"find vendor -type d -empty -delete"
 		],
 		"post-install-cmd": [
