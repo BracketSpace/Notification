@@ -62,14 +62,15 @@ jobs:
         run: git commit -am "Version bump"
       - name: Finish release
         run: git flow release finish ${{ github.event.inputs.new_version }} -m "v${{ github.event.inputs.new_version }}"
-      - name: Push develop and tags
-        uses: ad-m/github-push-action@v0.8.0
-        with:
-          github_token: ${{ secrets.WORKER_TOKEN }}
-          branch: 'develop'
-          tags: true
       - name: Push master
         uses: ad-m/github-push-action@v0.8.0
         with:
           github_token: ${{ secrets.WORKER_TOKEN }}
           branch: 'master'
+      - name: Push develop
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          github_token: ${{ secrets.WORKER_TOKEN }}
+          branch: 'develop'
+      - name: Push tags
+        run: git push --tags https://x-access-token:${{ secrets.WORKER_TOKEN }}@github.com/${{ github.repository }}.git
