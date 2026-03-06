@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita, tomaszadamowicz, insejn,
 Tags: notification, notify, alert, email, mail
 Requires at least: 4.9
 Tested up to: 6.9
-Stable tag: 9.0.7
+Stable tag: 9.0.8
 Requires PHP: 7.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -297,7 +297,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
-= [Next] =
+= 9.0.8 =
 * [Changed] Optimized plugin package by removing build tool dependencies from the distributed archive
 
 = 9.0.7 =
