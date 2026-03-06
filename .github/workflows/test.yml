@@ -3,46 +3,8 @@ name: Test
 on: push
 
 jobs:
-  phpcs:
-    name: PHP Coding Standards
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php: ['7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
-          coverage: none
-      - name: Install Composer dependencies
-        uses: "ramsey/composer-install@v2"
-      - name: Coding Standards
-        run: composer phpcs
-  phpstan:
-    name: PHPStan
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php: ['7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
-          coverage: none
-      - name: Install Composer dependencies
-        uses: "ramsey/composer-install@v2"
-      - name: Analyze
-        run: composer phpstan
-  phplint:
-    name: PHP Lint
+  static-analysis:
+    name: Static Analysis
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -60,6 +22,10 @@ jobs:
         uses: "ramsey/composer-install@v2"
       - name: Lint
         run: composer phplint
+      - name: Coding Standards
+        run: composer phpcs
+      - name: PHPStan
+        run: composer phpstan
   phpunit:
     name: PHPUnit
     runs-on: ubuntu-latest
