@@ -17,7 +17,7 @@ use BracketSpace\Notification\Dependencies\Micropackage\Filesystem\Filesystem;
  *
  * Overrides base_url() to use plugin_dir_url() for Bedrock compatibility.
  *
- * @since [Next]
+ * @since 9.0.7
  */
 class PluginFilesystem extends Filesystem
 {
@@ -31,7 +31,7 @@ class PluginFilesystem extends Filesystem
 	/**
 	 * Constructor
 	 *
-	 * @since [Next]
+	 * @since 9.0.7
 	 * @param string $baseDir Absolute path to the base dir.
 	 * @param string $pluginFile Main plugin file path.
 	 */
@@ -44,7 +44,7 @@ class PluginFilesystem extends Filesystem
 	/**
 	 * Gets the base url using plugin_dir_url()
 	 *
-	 * @since [Next]
+	 * @since 9.0.7
 	 * @return string
 	 */
 	// phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps, Squiz.NamingConventions.ValidFunctionName.ScopeNotCamelCaps

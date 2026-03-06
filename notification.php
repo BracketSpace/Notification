@@ -4,7 +4,7 @@
  * Description: Customisable email and webhook notifications with powerful developer friendly API for custom triggers and notifications. Send alerts easily.
  * Author: BracketSpace
  * Author URI: https://bracketspace.com
- * Version: 9.0.6
+ * Version: 9.0.7
  * Requires PHP: 7.4
  * Requires at least: 5.8
  * License: GPL3
@@ -128,7 +128,7 @@ endif;
  * The filter is removed after init to not interfere with WordPress updates.
  *
  * @since 7.0.4
- * @since [Next] Scoped to plugin initialization only.
+ * @since 9.0.7 Scoped to plugin initialization only.
  */
 $notification_force_direct_fs = static function () {
 	return 'direct';
