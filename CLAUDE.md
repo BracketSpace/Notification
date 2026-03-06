@@ -98,9 +98,9 @@ Notifications are stored in both custom tables and `wp_posts` (type `notificatio
 
 ## Changelog & Workflow
 
-- **Changelog**: BEFORE committing, document changes in `readme.txt` under the `== Changelog ==` section. Use format `= X.Y.Z =` with `* [Added/Changed/Fixed] Description`. For unreleased changes, use `[Next]` as the version header (e.g., `= [Next] =`). Keep entries meaningful — don't bloat with granular changes. Group entries by type: Added first, then Changed, then Fixed.
+- **Changelog**: BEFORE committing, document changes in `readme.txt` under the `== Changelog ==` section. Use format `= X.Y.Z =` with `* [Added/Changed/Fixed] Description`. For unreleased changes, use `9.0.7` as the version header (e.g., `= 9.0.7 =`). Keep entries meaningful — don't bloat with granular changes. Group entries by type: Added first, then Changed, then Fixed.
 - **Text domain**: `notification`.
 - **Version bumps**: Version appears in `notification.php` (plugin header + Runtime instantiation). The release workflow handles this automatically.
-- **Unreleased version references**: Use `[Next]` wherever a future version number would go (changelog headers, docblock `@since` tags, etc.). The release workflow automatically replaces `[Next]` with the actual version number.
+- **Unreleased version references**: Use `9.0.7` wherever a future version number would go (changelog headers, docblock `@since` tags, etc.). The release workflow automatically replaces `9.0.7` with the actual version number.
 - **Release**: GitHub Actions workflow using git-flow. `master` is for releases, `develop` is the working branch.
 - **Git**: Gitflow — branch from `develop`, PR back to `develop`. Branch naming: `feature/Name-of-the-Feature`. Conventional Commits.
