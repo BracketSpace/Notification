@@ -77,6 +77,11 @@ if (isset($un['licenses']) && $un['licenses'] === 'true') {
 	}
 
 	delete_option('notification_licenses');
+	$wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE 'notification_license_failed_http_%'"); // phpcs:ignore
+	$timestamp = wp_next_scheduled('notification_check_licenses');
+	if ($timestamp) {
+		wp_unschedule_event($timestamp, 'notification_check_licenses');
+	}
 }
 
 // Remove tables.

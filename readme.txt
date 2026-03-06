@@ -298,7 +298,11 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 == Changelog ==
 
 = [Next] =
+* [Added] Background license verification via daily WP-Cron
+* [Added] 24-hour cooldown after failed license server requests to prevent repeated timeouts
 * [Changed] Added $notification and $trigger parameters to notification/background_processing/delay filter for better context when filtering delay time.
+* [Changed] License inactive notices suppressed during server communication failures
+* [Fixed] License checks no longer block admin page loads when license server is unreachable
 
 = 9.0.6 =
 * [Added] "Refresh All Licenses" button in Extensions page to manually check all extension license statuses from the store.

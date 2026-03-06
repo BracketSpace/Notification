@@ -11,6 +11,8 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Core;
 
 use BracketSpace\Notification\ErrorHandler;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Cache;
+use BracketSpace\Notification\Dependencies\Micropackage\Cache\Driver as CacheDriver;
 
 /**
  * Cron class
@@ -120,5 +122,64 @@ class Cron
 	{
 		$timestamp = wp_next_scheduled($eventName);
 		wp_unschedule_event($timestamp, $eventName);
+	}
+
+	/**
+	 * Registers and schedules the license check event
+	 *
+	 * @action admin_init
+	 *
+	 * @return void
+	 */
+	public function registerLicenseCheckEvent()
+	{
+		if (wp_next_scheduled('notification_check_licenses') !== false) {
+			return;
+		}
+
+		wp_schedule_event(time() + DAY_IN_SECONDS, 'daily', 'notification_check_licenses');
+	}
+
+	/**
+	 * Handles the background license check
+	 *
+	 * @action notification_check_licenses
+	 *
+	 * @return void
+	 */
+	public function handleLicenseCheck()
+	{
+		if (!function_exists('is_plugin_active')) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+
+		/** @var \BracketSpace\Notification\Admin\Extensions $extensions */
+		$extensions = \Notification::component('BracketSpace\Notification\Admin\Extensions');
+		$rawExtensions = $extensions->getRawExtensions();
+
+		foreach ($rawExtensions as $extension) {
+			if (
+				!is_array($extension) || !isset($extension['edd'], $extension['slug']) ||
+				!is_array($extension['edd']) || !is_string($extension['slug']) ||
+				!is_plugin_active($extension['slug'])
+			) {
+				continue;
+			}
+
+			$license = new License($extension);
+
+			if (empty($license->getKey())) {
+				continue;
+			}
+
+			// Clear transient cache for fresh check
+			$driver = new CacheDriver\Transient(ErrorHandler::debugEnabled() ? 60 : DAY_IN_SECONDS);
+			$cache = new Cache($driver, sprintf('notification_license_check_%s', $extension['slug']));
+			$cache->delete();
+
+			// The cooldown in check() ensures: if first extension fails,
+			// all others sharing the same store URL skip instantly.
+			$license->isValid();
+		}
 	}
 }

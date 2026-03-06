@@ -54,10 +54,19 @@ $license = $ext['license']->get();
 						<?php esc_html_e('Your license never expires.', 'notification'); ?>
 					</p>
 				<?php endif ?>
-				<?php if (!$ext['license']->isValid()) : ?>
-					<p style="color: red;">
-						<?php esc_html_e('Your license is inactive.', 'notification'); ?>
-					</p>
+				<?php if (!$ext['license']->isStoredValid()) : ?>
+					<?php if ($ext['license']->hasRecentlyFailed()) : ?>
+						<p style="color: orange;">
+							<?php esc_html_e(
+								'License status could not be verified (server unreachable). Will retry automatically.',
+								'notification'
+							); ?>
+						</p>
+					<?php else : ?>
+						<p style="color: red;">
+							<?php esc_html_e('Your license is inactive.', 'notification'); ?>
+						</p>
+					<?php endif ?>
 				<?php endif ?>
 				<?php
 				// Show renewal link if license is expired OR expiration date is in the past
