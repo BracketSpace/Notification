@@ -12,15 +12,13 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
-        uses: actions/checkout@v4
-        with:
-          ref: 'master'
-      - name: Checkout develop
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           ref: 'develop'
-          clean: false
+          fetch-depth: 0
+      - name: Fetch master branch
+        run: git fetch origin master:master
       - name: Install git-flow
         run: sudo apt-get install git-flow -y
       - name: Configure commiter
@@ -69,6 +67,7 @@ jobs:
         with:
           github_token: ${{ secrets.WORKER_TOKEN }}
           branch: 'develop'
+          tags: true
       - name: Push master
         uses: ad-m/github-push-action@v0.8.0
         with:
