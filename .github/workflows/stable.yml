@@ -144,9 +144,65 @@ jobs:
           unzip -q ${{ steps.vars.outputs.package-name }}.zip
           ls -la ${{ secrets.SLUG }}/
       - name: Deploy to WordPress.org
-        uses: 10up/action-wordpress-plugin-deploy@2.3.0
+        run: |
+          SVN_URL="https://plugins.svn.wordpress.org/${SLUG}/"
+          SVN_DIR="${HOME}/svn-${SLUG}"
+          VERSION="${GITHUB_REF#refs/tags/}"
+
+          # Checkout
+          svn checkout --depth immediates "$SVN_URL" "$SVN_DIR"
+          cd "$SVN_DIR"
+          svn update --set-depth infinity assets
+          svn update --set-depth infinity trunk
+          svn update --set-depth immediates tags
+
+          # Bail if already tagged
+          if [[ -d "tags/$VERSION" ]]; then
+            echo "Version $VERSION already published"
+            exit 0
+          fi
+
+          # Sync build → trunk
+          rsync -rc --delete --delete-excluded "${GITHUB_WORKSPACE}/${SLUG}/" trunk/
+
+          # Sync assets
+          if [[ -d "$GITHUB_WORKSPACE/.wordpress-org" ]]; then
+            rsync -rc --delete "$GITHUB_WORKSPACE/.wordpress-org/" assets/
+          fi
+
+          # Stage changes using svn status (avoids svn add . --force / E155007)
+          svn status | grep '^\?' | sed 's/? *//' | xargs -I% svn add %@
+          svn status | grep '^\!' | sed 's/! *//' | xargs -I% svn rm %@
+
+          # Tag
+          svn cp trunk "tags/$VERSION"
+
+          # Set image MIME types
+          if compgen -G "$SVN_DIR/assets/*.png" > /dev/null; then
+            svn propset svn:mime-type "image/png" "$SVN_DIR/assets/"*.png || true
+          fi
+          if compgen -G "$SVN_DIR/assets/*.jpg" > /dev/null; then
+            svn propset svn:mime-type "image/jpeg" "$SVN_DIR/assets/"*.jpg || true
+          fi
+          if compgen -G "$SVN_DIR/assets/*.gif" > /dev/null; then
+            svn propset svn:mime-type "image/gif" "$SVN_DIR/assets/"*.gif || true
+          fi
+          if compgen -G "$SVN_DIR/assets/*.svg" > /dev/null; then
+            svn propset svn:mime-type "image/svg+xml" "$SVN_DIR/assets/"*.svg || true
+          fi
+
+          # Avoid "directory out of date"
+          svn update
+
+          svn status
+
+          # Commit
+          svn commit -m "Update to version $VERSION from GitHub" \
+            --no-auth-cache --non-interactive \
+            --username "$SVN_USERNAME" --password "$SVN_PASSWORD"
+
+          echo "✓ Plugin deployed!"
         env:
-          BUILD_DIR: ${{ secrets.SLUG }}
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SLUG: ${{ secrets.SLUG }}
