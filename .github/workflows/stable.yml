@@ -143,6 +143,8 @@ jobs:
         run: |
           unzip -q ${{ steps.vars.outputs.package-name }}.zip
           ls -la ${{ secrets.SLUG }}/
+      - name: Install SVN
+        run: sudo apt-get update && sudo apt-get install -y subversion
       - name: Deploy to WordPress.org
         run: |
           SVN_URL="https://plugins.svn.wordpress.org/${SLUG}/"
