@@ -297,6 +297,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Warning on activation when cron period setting is not yet initialized
+
 = 9.0.9 =
 * [Fixed] Plugin crash on certain hosting configurations due to missing build file
 

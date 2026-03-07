@@ -72,8 +72,7 @@ class Cron
 		$schedule = \Notification::settings()->getSetting('triggers/wordpress/updates_cron_period');
 
 		if (! is_string($schedule)) {
-			ErrorHandler::error('Update cron period is not a string');
-			return;
+			$schedule = 'ntfn_week';
 		}
 
 		if ($event === false) {
