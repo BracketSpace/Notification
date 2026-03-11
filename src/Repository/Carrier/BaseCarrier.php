@@ -479,7 +479,7 @@ abstract class BaseCarrier implements Interfaces\Sendable
 	 * When null, the recipient's own return field is used.
 	 *
 	 * @return string|null
-	 * @since  [Next]
+	 * @since  9.0.10
 	 */
 	protected function getRecipientReturnField(): ?string
 	{
