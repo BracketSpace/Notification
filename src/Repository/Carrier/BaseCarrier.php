@@ -473,6 +473,20 @@ abstract class BaseCarrier implements Interfaces\Sendable
 	}
 
 	/**
+	 * Gets the return field name that this carrier requires from recipients.
+	 *
+	 * Override in subclasses to enforce a specific return field (e.g. 'user_email' for Email).
+	 * When null, the recipient's own return field is used.
+	 *
+	 * @return string|null
+	 * @since  9.0.10
+	 */
+	protected function getRecipientReturnField(): ?string
+	{
+		return null;
+	}
+
+	/**
 	 * Parses the recipients to a flat array.
 	 *
 	 * It needs recipients_resolved_data property so the
@@ -487,6 +501,7 @@ abstract class BaseCarrier implements Interfaces\Sendable
 			return [];
 		}
 
+		$carrierReturnField = $this->getRecipientReturnField();
 		$parsedRecipients = [];
 
 		foreach ($this->recipientsResolvedData as $recipientData) {
@@ -502,6 +517,21 @@ abstract class BaseCarrier implements Interfaces\Sendable
 			if (! $recipient instanceof Interfaces\Receivable) {
 				continue;
 			}
+
+			// Clone to avoid mutating shared store instances.
+			$recipient = clone $recipient;
+
+			if ($carrierReturnField !== null && method_exists($recipient, 'setReturnField')) {
+				$recipient->setReturnField($carrierReturnField);
+			}
+
+			/** @var Interfaces\Receivable $recipient */
+			$recipient = apply_filters(
+				'notification/recipient/pre_parse_value',
+				$recipient,
+				$this->getSlug(),
+				$type
+			);
 
 			$parsedRecipients = array_merge(
 				$parsedRecipients,
