@@ -235,6 +235,7 @@ Yes! We offer [custom plugin development](https://bracketspace.com/custom-develo
 == Changelog ==
 
 = [Next] =
+* [Fixed] Carrier recipient data lost during cron background processing, causing emails to receive user IDs instead of email addresses
 * [Fixed] Warning on activation when cron period setting is not yet initialized
 
 = 9.0.9 =

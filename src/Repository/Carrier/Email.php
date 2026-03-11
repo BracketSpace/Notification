@@ -150,6 +150,17 @@ class Email extends BaseCarrier
 	}
 
 	/**
+	 * {@inheritdoc}
+	 *
+	 * @return string
+	 * @since  [Next]
+	 */
+	protected function getRecipientReturnField(): ?string
+	{
+		return 'user_email';
+	}
+
+	/**
 	 * Sets mail type to text/html for wp_mail
 	 *
 	 * @return string mail type
