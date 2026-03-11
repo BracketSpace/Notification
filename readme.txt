@@ -8,7 +8,7 @@ Requires PHP: 7.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Take full control of WordPress emails and notifications. Replace default messages, add custom triggers, and send alerts via email, webhook, Slack, and more.
+Take full control of WordPress notifications. Replace default messages, add custom triggers, and send alerts via email, webhook, and more.
 
 == Description ==
 
