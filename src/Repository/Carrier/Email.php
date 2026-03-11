@@ -153,7 +153,7 @@ class Email extends BaseCarrier
 	 * {@inheritdoc}
 	 *
 	 * @return string
-	 * @since  [Next]
+	 * @since  9.0.10
 	 */
 	protected function getRecipientReturnField(): ?string
 	{

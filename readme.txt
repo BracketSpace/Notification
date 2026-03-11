@@ -3,7 +3,7 @@ Contributors: notification, bracketspace, Kubitomakita
 Tags: notification, notify, alert, email, mail
 Requires at least: 4.9
 Tested up to: 6.9
-Stable tag: 9.0.9
+Stable tag: 9.0.10
 Requires PHP: 7.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -234,7 +234,7 @@ Yes! We offer [custom plugin development](https://bracketspace.com/custom-develo
 
 == Changelog ==
 
-= [Next] =
+= 9.0.10 =
 * [Fixed] Carrier recipient data lost during cron background processing, causing emails to receive user IDs instead of email addresses
 * [Fixed] Warning on activation when cron period setting is not yet initialized
 
