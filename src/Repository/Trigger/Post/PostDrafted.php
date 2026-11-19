@@ -97,7 +97,9 @@ class PostDrafted extends PostTrigger
 
 		$this->author = get_userdata((int)$this->post->post_author);
 		$lastEditId = get_post_meta($this->post->ID, '_edit_last', true);
-		$this->lastEditor = get_userdata(is_numeric($lastEditId) && $lastEditId ? (int)$lastEditId : (int)$this->post->post_author);
+		$this->lastEditor = get_userdata(
+			is_numeric($lastEditId) && $lastEditId ? (int)$lastEditId : (int)$this->post->post_author
+		);
 		$this->publishingUser = get_userdata(get_current_user_id());
 	}
 }
