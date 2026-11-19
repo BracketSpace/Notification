@@ -234,6 +234,9 @@ Yes! We offer [custom plugin development](https://bracketspace.com/custom-develo
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Password reset request trigger firing when a new user is registered
+
 = 9.1.0 =
 * [Changed] Minimum required PHP version is now 8.1
 * [Changed] Tested up to WordPress 7.2
@@ -241,7 +244,6 @@ Yes! We offer [custom plugin development](https://bracketspace.com/custom-develo
 * [Fixed] PHP 8.4, 8.5 and 8.6 deprecation notices and warnings
 * [Fixed] Inconsistent minimum WordPress version requirement
 * [Fixed] Editor field rendering an empty value and ignoring its editor settings
-* [Fixed] Password reset request trigger firing when a new user is registered
 * [Fixed] WordPress updates available trigger not registered and not counting updates, cron period and "send anyway" settings being ignored
 * [Fixed] Email body visual editor not used when HTML email type is selected
 * [Fixed] User merge tags empty in User logout and User login failed triggers
