@@ -7,13 +7,13 @@
 
 namespace BracketSpace\Notification\Tests\Helpers\Objects;
 
-use BracketSpace\Notification\Abstracts\Carrier as AbstractCarrier;
+use BracketSpace\Notification\Repository\Carrier\BaseCarrier;
 use BracketSpace\Notification\Interfaces\Triggerable;
 
 /**
  * Carrier class
  */
-class Carrier extends AbstractCarrier {
+class Carrier extends BaseCarrier {
 
 	/**
 	 * Is sent flag

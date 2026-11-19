@@ -7,19 +7,19 @@
 
 namespace BracketSpace\Notification\Tests\Helpers\Objects;
 
-use BracketSpace\Notification\Abstracts\Trigger;
+use BracketSpace\Notification\Repository\Trigger\BaseTrigger;
 
 /**
  * SimpleTrigger class
  */
-class SimpleTrigger extends Trigger {
+class SimpleTrigger extends BaseTrigger {
 
 	/**
 	 * Constructor
 	 */
 	public function __construct( $tag ) {
 		parent::__construct( $tag , 'Simple Test Trigger' );
-		$this->add_action( 'notification/test' );
+		$this->addAction( 'notification/test' );
 	}
 
 	/**
@@ -28,7 +28,7 @@ class SimpleTrigger extends Trigger {
 	 * @since  5.3.1
 	 * @return void
 	 */
-	public function merge_tags() {
+	public function mergeTags() {
 
 	}
 

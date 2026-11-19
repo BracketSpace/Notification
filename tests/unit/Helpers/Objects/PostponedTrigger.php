@@ -7,19 +7,19 @@
 
 namespace BracketSpace\Notification\Tests\Helpers\Objects;
 
-use BracketSpace\Notification\Abstracts\Trigger;
+use BracketSpace\Notification\Repository\Trigger\BaseTrigger;
 
 /**
  * PostponedTrigger class
  */
-class PostponedTrigger extends Trigger {
+class PostponedTrigger extends BaseTrigger {
 
 	/**
 	 * Constructor
 	 */
 	public function __construct( $tag ) {
 		parent::__construct( $tag , 'Postponed Test Trigger' );
-		$this->add_action( 'notification/test' );
+		$this->addAction( 'notification/test' );
 	}
 
 	/**
@@ -29,7 +29,7 @@ class PostponedTrigger extends Trigger {
 	 * @return void
 	 */
 	public function action() {
-		$this->postpone_action( 'notification/test/postponed' );
+		// Since 8.0.0 every trigger is processed on shutdown, so there is nothing left to postpone.
 	}
 
 	/**
@@ -38,7 +38,7 @@ class PostponedTrigger extends Trigger {
 	 * @since  5.3.1
 	 * @return void
 	 */
-	public function merge_tags() {
+	public function mergeTags() {
 
 	}
 
