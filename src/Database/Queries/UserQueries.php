@@ -35,7 +35,7 @@ class UserQueries
 				// We're using direct db call for performance purposes - we only need the post_content field.
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
 				return $wpdb->get_results(
-					"SELECT ID, user_email, display_name FROM $wpdb->users",
+					sprintf('SELECT ID, user_email, display_name FROM %s', $wpdb->users),
 					'ARRAY_A'
 				);
 			}
@@ -60,7 +60,7 @@ class UserQueries
 			static function () use ($role) {
 				global $wpdb;
 
-				$metaKey = $wpdb->get_blog_prefix() . 'capabilities';
+				$metaKey = sprintf('%scapabilities', $wpdb->get_blog_prefix());
 
 				// We're using direct db call for performance purposes - we only need the post_content field.
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
@@ -72,7 +72,7 @@ class UserQueries
 					WHERE m.meta_key = %s
 					AND m.meta_value LIKE %s",
 						$metaKey,
-						'%\"' . $wpdb->esc_like($role) . '\"%'
+						sprintf('%%\"%s\"%%', $wpdb->esc_like($role))
 					),
 					'ARRAY_A'
 				);

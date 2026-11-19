@@ -105,11 +105,11 @@ class Upgrade
 		$charsetCollate = '';
 
 		if (!empty($db->charset)) {
-			$charsetCollate = "DEFAULT CHARACTER SET {$db->charset}";
+			$charsetCollate = sprintf('DEFAULT CHARACTER SET %s', $db->charset);
 		}
 
 		if (!empty($db->collate)) {
-			$charsetCollate .= " COLLATE {$db->collate}";
+			$charsetCollate .= sprintf(' COLLATE %s', $db->collate);
 		}
 
 		$logsTable = DatabaseService::prefixTable('notification_logs');
@@ -204,7 +204,7 @@ class Upgrade
 		}
 
 		// Set data.
-		$data = get_post_meta($postId, '_notification_type_' . $carrier->getSlug(), true);
+		$data = get_post_meta($postId, sprintf('_notification_type_%s', $carrier->getSlug()), true);
 		$fieldValues = apply_filters('notification/carrier/fields/values', $data, $carrier);
 
 		foreach ($carrier->getFormFields() as $field) {

@@ -235,6 +235,7 @@ Yes! We offer [custom plugin development](https://bracketspace.com/custom-develo
 == Changelog ==
 
 = [Next] =
+* [Changed] Internal code cleanup: string formatting uses sprintf
 * [Fixed] Password reset request trigger firing when a new user is registered
 
 = 9.1.0 =

@@ -37,7 +37,7 @@ class TermUpdated extends TermTrigger
 		parent::__construct(
 			[
 				'taxonomy' => $taxonomy,
-				'slug' => 'taxonomy/' . $taxonomy . '/updated',
+				'slug' => sprintf('taxonomy/%s/updated', $taxonomy),
 			]
 		);
 

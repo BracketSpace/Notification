@@ -67,7 +67,7 @@ class Email extends BaseCarrier
 			$sitename = 'example.com';
 		}
 
-		return 'wordpress@' . $sitename;
+		return sprintf('wordpress@%s', $sitename);
 	}
 
 	/**

@@ -311,24 +311,24 @@ class PostType
 		$carriers = [];
 
 		foreach (Store\Carrier::all() as $carrier) {
-			if (! isset($data['notification_carrier_' . $carrier->getSlug()])) {
+			if (! isset($data[sprintf('notification_carrier_%s', $carrier->getSlug())])) {
 				continue;
 			}
 
-			$carrierData = $data['notification_carrier_' . $carrier->getSlug()];
+			$carrierData = $data[sprintf('notification_carrier_%s', $carrier->getSlug())];
 
 			if (! $carrierData['activated']) {
 				continue;
 			}
 
 			// If nonce not set or false, ignore this form.
-			if (! wp_verify_nonce($carrierData['_nonce'], $carrier->getSlug() . '_carrier_security')) {
+			if (! wp_verify_nonce($carrierData['_nonce'], sprintf('%s_carrier_security', $carrier->getSlug()))) {
 				continue;
 			}
 
 			$carrier->setData($carrierData);
 
-			if (isset($data['notification_carrier_' . $carrier->getSlug() . '_enable'])) {
+			if (isset($data[sprintf('notification_carrier_%s_enable', $carrier->getSlug())])) {
 				$carrier->enable();
 			} else {
 				$carrier->disable();

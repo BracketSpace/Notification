@@ -64,7 +64,7 @@ class DumpHooks
 					);
 					continue;
 				}
-				$callbackObjectName = "\$this->component('" . $componentName . "')";
+				$callbackObjectName = sprintf('$this->component(\'%s\')', $componentName);
 			}
 
 			foreach ($hooks as $hook) {
@@ -86,7 +86,7 @@ class DumpHooks
 					'BracketSpace\\Notification\\',
 					'',
 					$className
-				) . ' added ' . $count . ' hooks'
+				) . sprintf(' added %s hooks', $count)
 			);
 		}
 

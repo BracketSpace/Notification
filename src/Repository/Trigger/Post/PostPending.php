@@ -27,7 +27,7 @@ class PostPending extends PostTrigger
 		parent::__construct(
 			[
 				'post_type' => $postType,
-				'slug' => 'post/' . $postType . '/pending',
+				'slug' => sprintf('post/%s/pending', $postType),
 			]
 		);
 

@@ -53,7 +53,10 @@ class DateTime extends StringTag
 		}
 
 		if (!isset($args['description'])) {
-			$args['description'] = wp_date($args['date_format'] . ' ' . $args['time_format']) . '. ';
+			$args['description'] = sprintf(
+				'%s. ',
+				wp_date(sprintf('%s %s', $args['date_format'], $args['time_format']))
+			);
 			$args['description'] .= __(
 				'You can change the format in General WordPress Settings.',
 				'notification'
@@ -78,7 +81,7 @@ class DateTime extends StringTag
 				}
 
 				return wp_date(
-					$args['date_format'] . ' ' . $args['time_format'],
+					sprintf('%s %s', $args['date_format'], $args['time_format']),
 					$timestamp,
 					$args['timezone']
 				);

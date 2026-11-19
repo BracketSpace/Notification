@@ -278,7 +278,7 @@ class Extensions
 		if (
 			!wp_verify_nonce(
 				wp_unslash(sanitize_key($_POST['_wpnonce'])),
-				'activate_extension_' . wp_unslash(sanitize_key($_POST['extension'] ?? ''))
+				sprintf('activate_extension_%s', wp_unslash(sanitize_key($_POST['extension'] ?? '')))
 			)
 		) {
 			wp_safe_redirect(
@@ -438,7 +438,7 @@ class Extensions
 		if (
 			!wp_verify_nonce(
 				wp_unslash(sanitize_key($_POST['_wpnonce'])),
-				'activate_extension_' . sanitize_key($_POST['extension'] ?? '')
+				sprintf('activate_extension_%s', sanitize_key($_POST['extension'] ?? ''))
 			)
 		) {
 			wp_safe_redirect(

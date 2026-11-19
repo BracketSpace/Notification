@@ -34,7 +34,7 @@ class PostAdded extends PostTrigger
 		parent::__construct(
 			[
 				'post_type' => $postType,
-				'slug' => 'post/' . $postType . '/added',
+				'slug' => sprintf('post/%s/added', $postType),
 			]
 		);
 

@@ -138,7 +138,7 @@ class SectionRepeater extends BaseField
 	{
 		$dataAttr = '';
 		foreach ($this->dataAttr as $key => $value) {
-			$dataAttr .= 'data-' . $key . '="' . esc_attr(is_scalar($value) ? (string)$value : '') . '" ';
+			$dataAttr .= sprintf('data-%s="%s" ', $key, esc_attr(is_scalar($value) ? (string)$value : ''));
 		}
 
 		$this->headers = [];
