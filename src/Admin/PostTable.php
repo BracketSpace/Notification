@@ -11,12 +11,15 @@ declare(strict_types=1);
 namespace BracketSpace\Notification\Admin;
 
 use BracketSpace\Notification\Database\NotificationDatabaseService as Db;
+use BracketSpace\Notification\Store\Recipient as RecipientStore;
 
 /**
  * PostTable class
  */
 class PostTable
 {
+	private const RECIPIENTS_LIMIT = 5;
+
 	/**
 	 * Adds custom table columns
 	 *
@@ -38,6 +41,7 @@ class PostTable
 		$columns['hash'] = __('Hash', 'notification');
 		$columns['trigger'] = __('Trigger', 'notification');
 		$columns['carriers'] = __('Carriers', 'notification');
+		$columns['recipients'] = __('Recipients', 'notification');
 		$columns['date'] = $dateColumn;
 
 		// Whitelist columns.
@@ -48,6 +52,7 @@ class PostTable
 			'hash',
 			'trigger',
 			'carriers',
+			'recipients',
 			'date',
 		];
 
@@ -137,7 +142,121 @@ class PostTable
 					echo '<br>';
 				}
 				break;
+
+			case 'recipients':
+				echo wp_kses($this->recipientsSummary($notification), ['br' => []]);
+				break;
 		}
+	}
+
+	/**
+	 * Builds the recipients summary of enabled carriers, safe to print with wp_kses allowing only <br>.
+	 *
+	 * @param \BracketSpace\Notification\Core\Notification $notification Notification.
+	 * @return string
+	 */
+	public function recipientsSummary($notification)
+	{
+		$lines = [];
+		$names = [];
+
+		foreach ($notification->getEnabledCarriers() as $carrier) {
+			$recipients = $carrier->getRecipients();
+
+			if (!is_array($recipients)) {
+				continue;
+			}
+
+			$labels = [];
+
+			foreach ($recipients as $row) {
+				if (!is_array($row)) {
+					continue;
+				}
+
+				$type = $row['type'] ?? '';
+				$value = $row['recipient'] ?? '';
+
+				$labels = array_merge(
+					$labels,
+					$this->recipientLabels(
+						$carrier->getSlug(),
+						is_string($type) ? $type : '',
+						is_string($value) ? $value : ''
+					)
+				);
+			}
+
+			if (empty($labels)) {
+				continue;
+			}
+
+			$extra = count($labels) - self::RECIPIENTS_LIMIT;
+			$text = esc_html(implode(', ', array_slice($labels, 0, self::RECIPIENTS_LIMIT)));
+
+			if ($extra > 0) {
+				// translators: %d number of hidden recipients.
+				$text .= esc_html(' ' . sprintf(__('+%d more', 'notification'), $extra));
+			}
+
+			$lines[] = $text;
+			$names[] = esc_html($carrier->getName());
+		}
+
+		if (count($lines) > 1) {
+			foreach ($lines as $index => $line) {
+				$lines[$index] = '<strong>' . $names[$index] . ':</strong> ' . $line;
+			}
+		}
+
+		return implode('<br>', $lines);
+	}
+
+	/**
+	 * Gets human readable labels for a single recipient row (not escaped).
+	 *
+	 * @param string $carrierSlug Carrier slug.
+	 * @param string $type Recipient type slug.
+	 * @param string $value Recipient value.
+	 * @return array<string>
+	 */
+	private function recipientLabels($carrierSlug, $type, $value)
+	{
+		$value = trim($value);
+
+		switch ($type) {
+			case 'administrator':
+				return [__('Administrator', 'notification')];
+
+			case 'email':
+				return $value === '' ? [] : [$value];
+
+			case 'role':
+				$names = wp_roles()->get_names();
+				$role = $value === '' ? 'administrator' : $value;
+
+				return [
+					__('Role:', 'notification') . ' ' . (
+						isset($names[$role]) ? translate_user_role($names[$role]) : $role
+					),
+				];
+
+			case 'user_id':
+				$labels = [];
+
+				foreach (array_filter(array_map('trim', explode(',', $value))) as $part) {
+					$user = ctype_digit($part) ? get_userdata((int)$part) : false;
+					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+					$labels[] = __('User:', 'notification') . ' ' . ($user ? $user->display_name : $part);
+				}
+
+				return $labels;
+		}
+
+		$recipient = RecipientStore::all()[$carrierSlug][$type] ?? null;
+		$name = $recipient === null ? $type : $recipient->getName();
+
+		return [$value === '' ? $name : $name . ': ' . $value];
 	}
 
 	/**

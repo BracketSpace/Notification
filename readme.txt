@@ -235,6 +235,7 @@ Yes! We offer [custom plugin development](https://bracketspace.com/custom-develo
 == Changelog ==
 
 = [Next] =
+* [Added] Recipients column in the notifications list, toggleable in Screen Options
 * [Changed] Internal code cleanup: string formatting uses sprintf
 * [Fixed] Password reset request trigger firing when a new user is registered
 
