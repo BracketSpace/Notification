@@ -21,7 +21,7 @@ yarn fix                  # Fix CSS + JS lint issues
 # PHP quality (use Herd for composer/php commands)
 herd composer phpcs       # PHPCS (PSR-12 Neutron Hybrid ruleset)
 herd composer phpcbf      # Auto-fix PHPCS issues
-herd composer phpstan     # PHPStan at max level (uses phpstan-baseline.neon)
+herd composer phpstan     # PHPStan 2 at level 9 (uses phpstan-baseline.neon)
 herd composer phplint     # PHP syntax check
 
 # Testing (uses Pest v1 on PHPUnit 9 - WP core test lib caps PHPUnit at 9.x; Pest 1 needs `-d error_reporting=24575` on PHP 8.4+, requires wp-env)
@@ -92,7 +92,7 @@ Notifications are stored in both custom tables and `wp_posts` (type `notificatio
 ## Coding Conventions
 
 - Extended PSR-12 via `szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset` — tabs for indentation, not spaces
-- PHPStan at max level with a baseline file
+- PHPStan 2 at level 9 (equivalent of PHPStan 1 max) with a baseline file
 - PHP 8.1+ compatibility required (tested up to 8.6)
 - DocHooks annotations: use `@action hook_name [priority]` and `@filter hook_name [priority]` in method docblocks
 
