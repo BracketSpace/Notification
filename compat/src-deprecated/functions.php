@@ -477,6 +477,7 @@ function notification_get_global_merge_tags() {
  * @return \BracketSpace\Notification\Interfaces\Adaptable
  * @since  6.0.0
  * @deprecated 9.0.0
+ * @throws \Exception When required params are missing or invalid.
  */
 function notification_adapt($adapterName, \BracketSpace\Notification\Core\Notification $notification) {
 	_deprecated_function( __FUNCTION__, '9.0.0', 'Notification::to()');
@@ -591,14 +592,14 @@ function notification_convert_data($data = []) {
  * @return void
  * @since  5.0.0
  * @deprecated 9.0.0
+ * @throws \Exception When required params are missing or invalid.
  */
 function notification_register_settings($callback, $priority = 10) {
 	_deprecated_function( __FUNCTION__, '9.0.0', 'Use the `notification/settings/register` action directly');
 
 	if (!is_callable($callback)) {
-		trigger_error(
-			'You have to pass callable while registering the settings',
-			E_USER_ERROR
+		throw new \Exception(
+			'You have to pass callable while registering the settings'
 		);
 	}
 

@@ -29,11 +29,12 @@ class RecipientsField extends RepeaterField
 	 *
 	 * @param array<mixed> $params field configuration parameters.
 	 * @since 5.0.0
+	 * @throws \Exception When required params are missing or invalid.
 	 */
 	public function __construct($params = [])
 	{
 		if (!isset($params['carrier'])) {
-			trigger_error('RecipientsField requires carrier param', E_USER_ERROR);
+			throw new \Exception('RecipientsField requires carrier param');
 		}
 
 		$params = wp_parse_args(

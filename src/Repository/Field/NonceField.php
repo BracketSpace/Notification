@@ -27,11 +27,12 @@ class NonceField extends BaseField
 	 *
 	 * @param array<mixed> $params field configuration parameters.
 	 * @since 5.0.0
+	 * @throws \Exception When required params are missing or invalid.
 	 */
 	public function __construct($params = [])
 	{
 		if (!isset($params['nonce_key'])) {
-			trigger_error('NonceField requires nonce_key param', E_USER_ERROR);
+			throw new \Exception('NonceField requires nonce_key param');
 		}
 
 		$this->nonceKey = is_scalar($params['nonce_key']) ? (string)$params['nonce_key'] : '';

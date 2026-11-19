@@ -1,10 +1,10 @@
 === Notification - Custom Notifications and Alerts for WordPress ===
 Contributors: notification, bracketspace, Kubitomakita
 Tags: notification, notify, alert, email, mail
-Requires at least: 4.9
-Tested up to: 6.9
+Requires at least: 5.8
+Tested up to: 7.2
 Stable tag: 9.0.10
-Requires PHP: 7.4
+Requires PHP: 8.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -234,6 +234,12 @@ Yes! We offer [custom plugin development](https://bracketspace.com/custom-develo
 
 == Changelog ==
 
+= [Next] =
+* [Changed] Minimum required PHP version is now 8.1
+* [Changed] Tested up to WordPress 7.2
+* [Fixed] PHP 8.4, 8.5 and 8.6 deprecation notices
+* [Fixed] Inconsistent minimum WordPress version requirement
+
 = 9.0.10 =
 * [Fixed] Carrier recipient data lost during cron background processing, causing emails to receive user IDs instead of email addresses
 * [Fixed] Warning on activation when cron period setting is not yet initialized
@@ -381,6 +387,9 @@ Removed deprecated hooks:
 * [Removed] Webook and Webhook JSON Carriers.
 
 == Upgrade Notice ==
+
+= [Next] =
+Requires PHP 8.1 or newer.
 
 = 9.0.0 =
 Minimum required PHP version is 7.4.

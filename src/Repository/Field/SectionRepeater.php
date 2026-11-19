@@ -90,15 +90,16 @@ class SectionRepeater extends BaseField
 	 *
 	 * @param array<mixed> $params field configuration parameters.
 	 * @since 5.0.0
+	 * @throws \Exception When required params are missing or invalid.
 	 */
 	public function __construct($params = [])
 	{
 		if (!isset($params['sections'])) {
-			trigger_error('SectionsRepeater requires sections param', E_USER_ERROR);
+			throw new \Exception('SectionsRepeater requires sections param');
 		}
 
 		if (!isset($params['section_labels'])) {
-			trigger_error('SectionsRepeater requires section labels param', E_USER_ERROR);
+			throw new \Exception('SectionsRepeater requires section labels param');
 		}
 
 		$this->sections = is_array($params['sections']) ? $params['sections'] : [];

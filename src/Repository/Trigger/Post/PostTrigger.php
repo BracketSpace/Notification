@@ -51,11 +51,12 @@ abstract class PostTrigger extends BaseTrigger
 	 * Constructor
 	 *
 	 * @param array<mixed> $params trigger configuration params.
+	 * @throws \Exception When required params are missing or invalid.
 	 */
 	public function __construct($params = [])
 	{
 		if (!isset($params['post_type'], $params['slug'])) {
-			trigger_error('PostTrigger requires post_type and slug params.', E_USER_ERROR);
+			throw new \Exception('PostTrigger requires post_type and slug params.');
 		}
 
 		$this->postType = $params['post_type'];

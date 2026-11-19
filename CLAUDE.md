@@ -24,7 +24,7 @@ herd composer phpcbf      # Auto-fix PHPCS issues
 herd composer phpstan     # PHPStan at max level (uses phpstan-baseline.neon)
 herd composer phplint     # PHP syntax check
 
-# Testing (uses Pest v1 on PHPUnit 9, requires wp-env)
+# Testing (uses Pest v3 on PHPUnit 11, requires wp-env)
 yarn start-env            # Start wp-env Docker environment
 yarn test-php             # Run full test suite via wp-env
 
@@ -93,14 +93,14 @@ Notifications are stored in both custom tables and `wp_posts` (type `notificatio
 
 - Extended PSR-12 via `szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset` — tabs for indentation, not spaces
 - PHPStan at max level with a baseline file
-- PHP 7.4+ compatibility required (tested up to 8.4)
+- PHP 8.1+ compatibility required (tested up to 8.6)
 - DocHooks annotations: use `@action hook_name [priority]` and `@filter hook_name [priority]` in method docblocks
 
 ## Changelog & Workflow
 
-- **Changelog**: BEFORE committing, document changes in `readme.txt` under the `== Changelog ==` section. Use format `= X.Y.Z =` with `* [Added/Changed/Fixed] Description`. For unreleased changes, use `9.0.7` as the version header (e.g., `= 9.0.7 =`). Keep entries meaningful — don't bloat with granular changes. Group entries by type: Added first, then Changed, then Fixed.
+- **Changelog**: BEFORE committing, document changes in `readme.txt` under the `== Changelog ==` section. Use format `= X.Y.Z =` with `* [Added/Changed/Fixed] Description`. Unreleased changes go under `= [Next] =`. Keep entries meaningful — don't bloat with granular changes. Group entries by type: Added first, then Changed, then Fixed.
 - **Text domain**: `notification`.
 - **Version bumps**: Version appears in `notification.php` (plugin header + Runtime instantiation). The release workflow handles this automatically.
-- **Unreleased version references**: Use `9.0.7` wherever a future version number would go (changelog headers, docblock `@since` tags, etc.). The release workflow automatically replaces `9.0.7` with the actual version number.
+- **Unreleased version references**: Use `[Next]` for `@since` tags of unreleased code. The release workflow (`.github/workflows/release.yml`) replaces `[Next]` (case-insensitive) with the actual version number.
 - **Release**: GitHub Actions workflow using git-flow. `master` is for releases, `develop` is the working branch.
 - **Git**: Gitflow — branch from `develop`, PR back to `develop`. Branch naming: `feature/Name-of-the-Feature`. Conventional Commits.
