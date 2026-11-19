@@ -114,12 +114,12 @@ abstract class BaseCarrier implements Interfaces\Sendable
 			[
 				'label' => '',
 				'name' => '_nonce',
-				'nonce_key' => $this->getSlug() . '_carrier_security',
+				'nonce_key' => sprintf('%s_carrier_security', $this->getSlug()),
 				'resolvable' => false,
 			]
 		);
 
-		$nonceField->setSection('notification_carrier_' . $this->getSlug());
+		$nonceField->setSection(sprintf('notification_carrier_%s', $this->getSlug()));
 
 		$this->formFields[$nonceField->getRawName()] = $nonceField;
 
@@ -135,7 +135,7 @@ abstract class BaseCarrier implements Interfaces\Sendable
 			]
 		);
 
-		$activatedField->setSection('notification_carrier_' . $this->getSlug());
+		$activatedField->setSection(sprintf('notification_carrier_%s', $this->getSlug()));
 
 		$this->formFields[$activatedField->getRawName()] = $activatedField;
 
@@ -151,7 +151,7 @@ abstract class BaseCarrier implements Interfaces\Sendable
 			]
 		);
 
-		$enabledField->setSection('notification_carrier_' . $this->getSlug());
+		$enabledField->setSection(sprintf('notification_carrier_%s', $this->getSlug()));
 
 		$this->formFields[$enabledField->getRawName()] = $enabledField;
 
@@ -233,7 +233,7 @@ abstract class BaseCarrier implements Interfaces\Sendable
 		}
 
 		$addingField = clone $field;
-		$addingField->setSection('notification_carrier_' . $this->getSlug());
+		$addingField->setSection(sprintf('notification_carrier_%s', $this->getSlug()));
 
 		$this->formFields[$field->getRawName()] = $addingField;
 
@@ -469,7 +469,7 @@ abstract class BaseCarrier implements Interfaces\Sendable
 			return;
 		}
 
-		$this->data['parsed_' . $recipientsField->getRawName()] = $this->parseRecipients();
+		$this->data[sprintf('parsed_%s', $recipientsField->getRawName())] = $this->parseRecipients();
 	}
 
 	/**

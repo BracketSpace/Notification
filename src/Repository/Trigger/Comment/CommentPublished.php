@@ -26,7 +26,7 @@ class CommentPublished extends CommentTrigger
 	{
 		parent::__construct(
 			[
-				'slug' => 'comment/' . $commentType . '/published',
+				'slug' => sprintf('comment/%s/published', $commentType),
 				// Translators: %s comment type.
 				'name' => sprintf(__('%s published', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 				'comment_type' => $commentType,

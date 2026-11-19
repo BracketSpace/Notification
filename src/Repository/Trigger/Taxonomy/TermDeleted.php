@@ -37,7 +37,7 @@ class TermDeleted extends TermTrigger
 		parent::__construct(
 			[
 				'taxonomy' => $taxonomy,
-				'slug' => 'taxonomy/' . $taxonomy . '/deleted',
+				'slug' => sprintf('taxonomy/%s/deleted', $taxonomy),
 			]
 		);
 

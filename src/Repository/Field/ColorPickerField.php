@@ -49,6 +49,6 @@ class ColorPickerField extends BaseField
 
 		$color = str_replace(' ', '', $stringValue);
 		sscanf($color, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha);
-		return 'rgba(' . $red . ',' . $green . ',' . $blue . ',' . $alpha . ')';
+		return sprintf('rgba(%s,%s,%s,%s)', $red, $green, $blue, $alpha);
 	}
 }

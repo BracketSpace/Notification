@@ -168,7 +168,7 @@ class Settings
 		if (
 			wp_verify_nonce(
 				sanitize_text_field(wp_unslash($_POST['nonce'] ?? '')),
-				'save_' . $this->handle . '_settings'
+				sprintf('save_%s_settings', $this->handle)
 			) === false
 		) {
 			wp_die('Can\'t touch this');
@@ -176,7 +176,7 @@ class Settings
 
 		$data = $_POST;
 
-		$settings = $data[$this->handle . '_settings'];
+		$settings = $data[sprintf('%s_settings', $this->handle)];
 
 		$toSave = [];
 
@@ -197,7 +197,7 @@ class Settings
 		}
 
 		foreach ($toSave as $section => $value) {
-			update_option($this->handle . '_' . $section, $value);
+			update_option(sprintf('%s_%s', $this->handle, $section), $value);
 		}
 
 		do_action($this->handle . '/settings/saved', $toSave, $this);
@@ -221,7 +221,7 @@ class Settings
 		$settings = [];
 
 		foreach ($this->getSections() as $sectionSlug => $section) {
-			$setting = get_option($this->handle . '_' . $sectionSlug);
+			$setting = get_option(sprintf('%s_%s', $this->handle, $sectionSlug));
 
 			$settings[$sectionSlug] = [];
 
@@ -320,7 +320,7 @@ class Settings
 		$section = $this->getSection($sectionSlug);
 
 		if ($section === false || !is_object($section) || !method_exists($section, 'getGroups')) {
-			throw new \Exception("Cannot find \"{$sectionSlug}\" settings section.");
+			throw new \Exception(sprintf('Cannot find "%s" settings section.', $sectionSlug));
 		}
 
 		$sanitized = false;
@@ -341,7 +341,7 @@ class Settings
 		}
 
 		if ($sanitized === false) {
-			throw new \Exception("Cannot update \"{$setting}\" setting.");
+			throw new \Exception(sprintf('Cannot update "%s" setting.', $setting));
 		}
 
 		$settings = $this->getSettings();
@@ -360,7 +360,7 @@ class Settings
 
 		$settings[$sectionSlug][$groupSlug][$fieldSlug] = $value;
 
-		return update_option($this->handle . '_' . $sectionSlug, $settings);
+		return update_option(sprintf('%s_%s', $this->handle, $sectionSlug), $settings);
 	}
 
 	/**

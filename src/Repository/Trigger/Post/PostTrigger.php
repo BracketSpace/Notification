@@ -617,6 +617,6 @@ abstract class PostTrigger extends BaseTrigger
 			return call_user_func($propertyMap[$property]);
 		}
 
-		trigger_error('Undefined property: ' . static::class . '::$' . $property, E_USER_WARNING);
+		trigger_error(sprintf('Undefined property: %s::$%s', static::class, $property), E_USER_WARNING);
 	}
 }

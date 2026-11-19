@@ -52,7 +52,7 @@ class Date extends StringTag
 		}
 
 		if (!isset($args['description'])) {
-			$args['description'] = wp_date($args['date_format']) . '. ';
+			$args['description'] = sprintf('%s. ', wp_date($args['date_format']));
 			$args['description'] .= __(
 				'You can change the format in General WordPress Settings.',
 				'notification'

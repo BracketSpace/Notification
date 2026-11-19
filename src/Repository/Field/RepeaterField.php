@@ -119,13 +119,17 @@ class RepeaterField extends BaseField
 	{
 		$dataAttr = '';
 		foreach ($this->dataAttr as $key => $value) {
-			$dataAttr .= 'data-' . $key . '="' . esc_attr(is_scalar($value) ? (string)$value : '') . '" ';
+			$dataAttr .= sprintf('data-%s="%s" ', $key, esc_attr(is_scalar($value) ? (string)$value : ''));
 		}
 
 		$this->headers = [];
 
-		$html =
-			'<table class="fields-repeater ' . $this->cssClass() . '" id="' . $this->getId() . '" ' . $dataAttr . '>';
+		$html = sprintf(
+			'<table class="fields-repeater %s" id="%s" %s>',
+			$this->cssClass(),
+			$this->getId(),
+			$dataAttr
+		);
 
 		$html .= '<thead>';
 		$html .= '<tr class="row header">';
@@ -138,7 +142,7 @@ class RepeaterField extends BaseField
 				continue;
 			}
 
-			$html .= '<th class="' . esc_attr($subField->getRawName()) . '">';
+			$html .= sprintf('<th class="%s">', esc_attr($subField->getRawName()));
 
 			$this->headers[$subField->getRawName()] = $subField->getLabel();
 
@@ -147,7 +151,7 @@ class RepeaterField extends BaseField
 			$description = $subField->getDescription();
 
 			if ($this->printHeaderDescription && !empty($description)) {
-				$html .= '<small class="description">' . $description . '</small>';
+				$html .= sprintf('<small class="description">%s</small>', $description);
 			}
 
 			$html .= '</th>';
@@ -174,9 +178,10 @@ class RepeaterField extends BaseField
 			$this->restApiError()
 		);
 
-		$html .= '<a href="#" class="button button-secondary add-new-repeater-field" @click="addField">' . esc_html(
-			$this->addButtonLabel
-		) . '</a>';
+		$html .= sprintf(
+			'<a href="#" class="button button-secondary add-new-repeater-field" @click="addField">%s</a>',
+			esc_html($this->addButtonLabel)
+		);
 
 		return $html;
 	}

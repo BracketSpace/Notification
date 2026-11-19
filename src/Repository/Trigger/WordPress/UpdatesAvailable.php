@@ -95,13 +95,13 @@ class UpdatesAvailable extends BaseTrigger
 						$lists = [];
 
 						foreach ($trigger->updateTypes as $updateType) {
-							$getUpdatesListMethod = [$trigger, 'get' . ucfirst($updateType) . 'UpdatesList'];
+							$getUpdatesListMethod = [$trigger, sprintf('get%sUpdatesList', ucfirst($updateType))];
 
 							if (!$trigger->hasUpdates($updateType) || !is_callable($getUpdatesListMethod)) {
 								continue;
 							}
 
-							$html = '<h3>' . $trigger->getListTitle($updateType) . '</h3>';
+							$html = sprintf('<h3>%s</h3>', $trigger->getListTitle($updateType));
 							$html .= call_user_func($getUpdatesListMethod);
 							$lists[] = $html;
 						}

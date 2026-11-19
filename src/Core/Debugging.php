@@ -38,7 +38,7 @@ class Debugging
 	{
 		global $wpdb;
 
-		$this->logsTable = $wpdb->prefix . 'notification_logs';
+		$this->logsTable = sprintf('%snotification_logs', $wpdb->prefix);
 	}
 
 	/**
@@ -148,10 +148,11 @@ class Debugging
 			);
 		}
 
-		$query = 'SELECT SQL_CALC_FOUND_ROWS * FROM ' . $this->logsTable . ' WHERE type IN(' . implode(
-			',',
-			$escTypes
-		) . ')';
+		$query = sprintf(
+			'SELECT SQL_CALC_FOUND_ROWS * FROM %s WHERE type IN(%s)',
+			$this->logsTable,
+			implode(',', $escTypes)
+		);
 
 		// Component.
 		if (!empty($component)) {
@@ -166,10 +167,10 @@ class Debugging
 
 		// Pagination.
 		$offset = $page > 1
-			? 'OFFSET ' . ($page - 1) * $this->logsPerPage
+			? sprintf('OFFSET %s', ($page - 1) * $this->logsPerPage)
 			: '';
 
-		$query .= ' LIMIT ' . $this->logsPerPage . ' ' . $offset;
+		$query .= sprintf(' LIMIT %s %s', $this->logsPerPage, $offset);
 
 		// We need to get the live results.
 		// phpcs:ignore

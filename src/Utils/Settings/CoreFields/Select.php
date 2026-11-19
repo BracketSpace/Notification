@@ -29,15 +29,19 @@ class Select
 			? 'multiple="multiple"'
 			: '';
 		$name = $field->addon('multiple')
-			? $field->inputName() . '[]'
+			? sprintf('%s[]', $field->inputName())
 			: $field->inputName();
 		$pretty = $field->addon('pretty')
 			? 'pretty-select'
 			: '';
 
-		echo '<select ' . esc_attr($multiple) . ' name="' . esc_attr($name) . '" id="' . esc_attr(
-			$field->inputId()
-		) . '" class="' . esc_attr($pretty) . '">';
+		printf(
+			'<select %s name="%s" id="%s" class="%s">',
+			esc_attr($multiple),
+			esc_attr($name),
+			esc_attr($field->inputId()),
+			esc_attr($pretty)
+		);
 
 		$options = is_callable($field->addon('options'))
 			? $field->addon('options')()

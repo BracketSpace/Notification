@@ -42,7 +42,7 @@ class PostPublishedPrivately extends PostTrigger
 		parent::__construct(
 			[
 				'post_type' => $postType,
-				'slug' => 'post/' . $postType . '/published-privately',
+				'slug' => sprintf('post/%s/published-privately', $postType),
 			]
 		);
 

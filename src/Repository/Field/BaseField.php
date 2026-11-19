@@ -117,7 +117,7 @@ abstract class BaseField implements Interfaces\Fillable
 
 		$this->label = is_scalar($params['label']) ? (string)$params['label'] : '';
 		$this->name = is_scalar($params['name']) ? (string)$params['name'] : '';
-		$this->id = $this->name . '_' . uniqid();
+		$this->id = sprintf('%s_%s', $this->name, uniqid());
 
 		if (isset($params['description'])) {
 			$this->description = wp_kses(
@@ -238,7 +238,7 @@ abstract class BaseField implements Interfaces\Fillable
 	 */
 	public function getName()
 	{
-		return $this->getSection() . '[' . $this->name . ']';
+		return sprintf('%s[%s]', $this->getSection(), $this->name);
 	}
 
 	/**

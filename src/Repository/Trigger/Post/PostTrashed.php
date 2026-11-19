@@ -35,7 +35,7 @@ class PostTrashed extends PostTrigger
 		parent::__construct(
 			[
 				'post_type' => $postType,
-				'slug' => 'post/' . $postType . '/trashed',
+				'slug' => sprintf('post/%s/trashed', $postType),
 			]
 		);
 

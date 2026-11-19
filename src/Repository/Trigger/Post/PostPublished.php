@@ -42,7 +42,7 @@ class PostPublished extends PostTrigger
 		parent::__construct(
 			[
 				'post_type' => $postType,
-				'slug' => 'post/' . $postType . '/published',
+				'slug' => sprintf('post/%s/published', $postType),
 			]
 		);
 

@@ -107,7 +107,7 @@ class Sync
 		}
 
 		$hash = sanitize_text_field($data['hash'] ?? '');
-		$callable = [$this, 'loadNotificationTo' . ucfirst($type)];
+		$callable = [$this, sprintf('loadNotificationTo%s', ucfirst($type))];
 
 		$response = method_exists($callable[0], $callable[1]) && is_callable($callable)
 			? call_user_func($callable, $hash)
