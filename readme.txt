@@ -234,6 +234,9 @@ Yes! We offer [custom plugin development](https://bracketspace.com/custom-develo
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Password reset request trigger firing when a new user is registered
+
 = 9.1.0 =
 * [Changed] Minimum required PHP version is now 8.1
 * [Changed] Tested up to WordPress 7.2
