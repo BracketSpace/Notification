@@ -42,7 +42,9 @@ class UserNicename extends StringTag
 				'example' => true,
 				'group' => __('User', 'notification'),
 				'resolver' => function ($trigger) {
-					return $trigger->{$this->getTriggerProp()}->user_nicename;
+					$user = $trigger->{$this->getTriggerProp()};
+					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+					return $user instanceof \WP_User ? $user->user_nicename : '';
 				},
 			]
 		);

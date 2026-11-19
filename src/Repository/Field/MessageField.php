@@ -49,11 +49,12 @@ class MessageField extends BaseField
 	 * @param array<mixed> $params field configuration parameters.
 	 * @since 6.3.1 Allow for whitespace characters.
 	 * @since 5.0.0
+	 * @throws \Exception When required params are missing or invalid.
 	 */
 	public function __construct($params = [])
 	{
 		if (!isset($params['message'])) {
-			trigger_error('MessageField requires message param', E_USER_ERROR);
+			throw new \Exception('MessageField requires message param');
 		}
 
 		if (is_callable($params['message'])) {

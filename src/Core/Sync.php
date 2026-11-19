@@ -168,7 +168,7 @@ class Sync
 	 * @since  8.0.0
 	 */
 	//phpcs:ignore SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue.NullabilitySymbolRequired
-	public static function enable(string $path = null)
+	public static function enable(?string $path = null)
 	{
 		if (! $path) {
 			$path = trailingslashit(get_stylesheet_directory()) . 'notifications';

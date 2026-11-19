@@ -7,13 +7,13 @@
 
 namespace BracketSpace\Notification\Tests\Helpers\Objects;
 
-use BracketSpace\Notification\Abstracts\Resolver as AbstractResolver;
+use BracketSpace\Notification\Repository\Resolver\BaseResolver;
 use BracketSpace\Notification\Interfaces\Triggerable;
 
 /**
  * Resolver class
  */
-class Resolver extends AbstractResolver {
+class Resolver extends BaseResolver {
 
 	/**
 	 * Dummy resolver slug
@@ -21,26 +21,8 @@ class Resolver extends AbstractResolver {
 	 * @since 6.3.0
 	 * @return string
 	 */
-	public function get_slug() {
+	public function getSlug() {
 		return 'BracketSpace-Notification-Dummy';
-	}
-
-	/**
-	 * Gets merge tag pattern
-	 *
-	 * @return void
-	 */
-	public function get_pattern() {
-
-	}
-
-	/**
-	 * Gets resolver priority
-	 *
-	 * @return void
-	 */
-	public function get_priority() {
-
 	}
 
 	/**
@@ -48,10 +30,10 @@ class Resolver extends AbstractResolver {
 	 *
 	 * @param array       $match   Match array.
 	 * @param Triggerable $trigger Trigger object.
-	 * @return void
+	 * @return string
 	 */
-	public function resolve_merge_tag( $match, Triggerable $trigger ) {
-
+	public function resolveMergeTag( $match, Triggerable $trigger ) {
+		return '';
 	}
 
 }

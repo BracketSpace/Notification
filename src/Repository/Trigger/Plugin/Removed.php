@@ -54,7 +54,7 @@ class Removed extends PluginTrigger
 	/**
 	 * Registers attached merge tags.
 	 *
-	 * @return void.
+	 * @return void
 	 */
 	public function mergeTags()
 	{

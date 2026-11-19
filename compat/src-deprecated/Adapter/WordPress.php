@@ -46,7 +46,7 @@ class WordPress extends Abstracts\Adapter
 	{
 		if ($input instanceof \WP_Post) {
 			$this->setPost($input);
-		} elseif (is_integer($input)) {
+		} elseif (is_int($input)) {
 			$post = get_post($input);
 
 			if (!$post instanceof \WP_Post) {

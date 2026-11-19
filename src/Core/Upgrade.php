@@ -27,7 +27,7 @@ class Upgrade
 	 *
 	 * @var int
 	 */
-	public static $dataVersion = 3;
+	public static $dataVersion = 4;
 
 	/**
 	 * Version of database tables
@@ -386,5 +386,29 @@ class Upgrade
 		$cache = new CacheDriver\ObjectCache('notification');
 		$cache->set_key('notifications');
 		$cache->delete();
+	}
+
+	/**
+	 * Upgrades data to v4.
+	 * - 1. Restores the triggers WordPress settings group key.
+	 *
+	 * Version 9.0.10 registered the group as `WordPress`, while the code
+	 * and the previous versions use `wordpress`.
+	 *
+	 * @since 9.1.0
+	 * @return void
+	 */
+	public function upgradeToV4()
+	{
+		$settings = get_option('notification_triggers');
+
+		if (!is_array($settings) || !isset($settings['WordPress'])) {
+			return;
+		}
+
+		$settings['wordpress'] ??= $settings['WordPress'];
+		unset($settings['WordPress']);
+
+		update_option('notification_triggers', $settings);
 	}
 }

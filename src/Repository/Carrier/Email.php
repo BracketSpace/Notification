@@ -71,6 +71,27 @@ class Email extends BaseCarrier
 	}
 
 	/**
+	 * Rebuilds the form fields.
+	 *
+	 * The Carrier is created as a Runtime component before the settings
+	 * are registered, so the fields depending on them need to be rebuilt.
+	 *
+	 * @return void
+	 * @since  9.1.0
+	 */
+	public function refreshFormFields()
+	{
+		$this->formFields = array_intersect_key(
+			$this->formFields,
+			array_flip(['_nonce', 'activated', 'enabled'])
+		);
+		$this->recipientsField = null;
+		$this->recipientsFieldIndex = 0;
+
+		$this->formFields();
+	}
+
+	/**
 	 * Used to register Carrier form fields
 	 * Uses $this->addFormField();
 	 *

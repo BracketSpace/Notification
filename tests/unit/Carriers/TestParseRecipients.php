@@ -113,7 +113,6 @@ it('returns user_email from getRecipientReturnField for Email carrier', function
 	$email = new Email();
 
 	$reflection = new \ReflectionMethod($email, 'getRecipientReturnField');
-	$reflection->setAccessible(true);
 
 	expect($reflection->invoke($email))->toBe('user_email');
 });
@@ -122,7 +121,6 @@ it('returns null from getRecipientReturnField by default', function () {
 	$carrier = new CarrierWithRecipients();
 
 	$reflection = new \ReflectionMethod($carrier, 'getRecipientReturnField');
-	$reflection->setAccessible(true);
 
 	expect($reflection->invoke($carrier))->toBeNull();
 });

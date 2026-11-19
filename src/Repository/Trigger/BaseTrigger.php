@@ -133,11 +133,12 @@ abstract class BaseTrigger implements Triggerable
 	 * @since 8.0.0 Only stores the action params in collection.
 	 * @return void
 	 *
+	 * @throws \Exception When required params are missing or invalid.
 	 */
 	public function addAction($tag, $priority = 10, $acceptedArgs = 1)
 	{
 		if (empty($tag)) {
-			trigger_error('Action tag cannot be empty', E_USER_ERROR);
+			throw new \Exception('Action tag cannot be empty');
 		}
 
 		array_push(
@@ -157,11 +158,12 @@ abstract class BaseTrigger implements Triggerable
 	 * @param int $priority action priority, default 10.
 	 * @param mixed $deprecated deprecated.
 	 * @return void
+	 * @throws \Exception When required params are missing or invalid.
 	 */
 	public function removeAction($tag, $priority = 10, $deprecated = null)
 	{
 		if (empty($tag)) {
-			trigger_error('Action tag cannot be empty', E_USER_ERROR);
+			throw new \Exception('Action tag cannot be empty');
 		}
 
 		foreach ($this->actions as $actionIndex => $action) {

@@ -1,14 +1,14 @@
 === Notification - Custom Notifications and Alerts for WordPress ===
 Contributors: notification, bracketspace, Kubitomakita
 Tags: notification, notify, alert, email, mail
-Requires at least: 4.9
-Tested up to: 6.9
-Stable tag: 9.0.10
-Requires PHP: 7.4
+Requires at least: 5.8
+Tested up to: 7.2
+Stable tag: 9.1.0
+Requires PHP: 8.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Take full control of WordPress emails and notifications. Replace default messages, add custom triggers, and send alerts via email, webhook, Slack, and more.
+Take full control of WordPress notifications. Replace default messages, add custom triggers, and send alerts via email, webhook, and more.
 
 == Description ==
 
@@ -113,7 +113,7 @@ BracketSpace - the company behind this plugin provides [custom WordPress plugin 
 
 = Requirements =
 
-This plugin requires at least PHP 7.4.
+This plugin requires at least PHP 8.1.
 
 = Plugin install =
 
@@ -233,6 +233,21 @@ Yes! We offer [custom plugin development](https://bracketspace.com/custom-develo
 7. Default email disabler
 
 == Changelog ==
+
+= 9.1.0 =
+* [Changed] Minimum required PHP version is now 8.1
+* [Changed] Tested up to WordPress 7.2
+* [Changed] Incorrect API usage by developers (e.g. missing trigger slug or merge tag resolver) now throws an exception instead of a PHP fatal error
+* [Fixed] PHP 8.4, 8.5 and 8.6 deprecation notices and warnings
+* [Fixed] Inconsistent minimum WordPress version requirement
+* [Fixed] Editor field rendering an empty value and ignoring its editor settings
+* [Fixed] WordPress updates available trigger not registered and not counting updates, cron period and "send anyway" settings being ignored
+* [Fixed] Email body visual editor not used when HTML email type is selected
+* [Fixed] User merge tags empty in User logout and User login failed triggers
+* [Fixed] Attachment page link, comment status and term link merge tags always empty
+* [Fixed] Warnings from user merge tags in post triggers when the post has no last editor, now falling back to the post author
+* [Fixed] Warnings from user merge tags when the user is not available, e.g. when media is deleted by WP-CLI or cron
+* [Security] Updated bundled SVG sanitizer library to version 1.1
 
 = 9.0.10 =
 * [Fixed] Carrier recipient data lost during cron background processing, causing emails to receive user IDs instead of email addresses
@@ -381,6 +396,9 @@ Removed deprecated hooks:
 * [Removed] Webook and Webhook JSON Carriers.
 
 == Upgrade Notice ==
+
+= 9.1.0 =
+Requires PHP 8.1 or newer.
 
 = 9.0.0 =
 Minimum required PHP version is 7.4.

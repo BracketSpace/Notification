@@ -33,6 +33,7 @@ class TermPermalink extends UrlTag
 		$this->setTriggerProp($params['property_name'] ?? 'term');
 
 		$args = wp_parse_args(
+			$params,
 			[
 				'slug' => sprintf('%s_link', $this->getTriggerProp()),
 				'name' => __('Term link', 'notification'),
@@ -40,8 +41,7 @@ class TermPermalink extends UrlTag
 				'example' => true,
 				'group' => __('Term', 'notification'),
 				'resolver' => static function ($trigger) {
-					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-					return $trigger->term_permalink;
+					return $trigger->termPermalink;
 				},
 			]
 		);
