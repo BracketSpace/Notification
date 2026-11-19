@@ -42,12 +42,17 @@ class UserRole extends StringTag
 				'example' => true,
 				'group' => __('User', 'notification'),
 				'resolver' => function () {
+					$user = $this->trigger->{$this->getTriggerProp()};
+					if (!$user instanceof \WP_User) {
+						return '';
+					}
+
 					$roles = array_map(
 						static function ($role) {
 							$roleObject = get_role($role);
 							return translate_user_role(ucfirst($roleObject->name));
 						},
-						$this->trigger->{$this->getTriggerProp()}->roles
+						$user->roles
 					);
 
 					return implode(', ', $roles);

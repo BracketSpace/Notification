@@ -19,9 +19,9 @@ class EditorField extends BaseField
 	 * Editor settings
 	 *
 	 * @see https://codex.wordpress.org/Function_Reference/wp_editor#Arguments
-	 * @var string
+	 * @var array<mixed>
 	 */
-	protected $settings = 'text';
+	protected $settings = [];
 
 	/**
 	 * Field constructor
@@ -31,13 +31,8 @@ class EditorField extends BaseField
 	 */
 	public function __construct($params = [])
 	{
-		if (isset($params['settings'])) {
-			if (is_array($params['settings'])) {
-				$encoded = wp_json_encode($params['settings']);
-				$this->settings = $encoded !== false ? $encoded : '{}';
-			} elseif (is_scalar($params['settings'])) {
-				$this->settings = (string)$params['settings'];
-			}
+		if (isset($params['settings']) && is_array($params['settings'])) {
+			$this->settings = $params['settings'];
 		}
 
 		parent::__construct($params);

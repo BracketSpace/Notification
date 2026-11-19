@@ -239,12 +239,13 @@ Yes! We offer [custom plugin development](https://bracketspace.com/custom-develo
 * [Changed] Tested up to WordPress 7.2
 * [Fixed] PHP 8.4, 8.5 and 8.6 deprecation notices and warnings
 * [Fixed] Inconsistent minimum WordPress version requirement
-* [Fixed] Editor field rendering an empty value in the field output
+* [Fixed] Editor field rendering an empty value and ignoring its editor settings
 * [Fixed] WordPress updates available trigger not registered and not counting updates, cron period and "send anyway" settings being ignored
 * [Fixed] Email body visual editor not used when HTML email type is selected
 * [Fixed] User merge tags empty in User logout and User login failed triggers
 * [Fixed] Attachment page link, comment status and term link merge tags always empty
 * [Fixed] Warnings from user merge tags in post triggers when the post has no last editor, now falling back to the post author
+* [Fixed] Warnings from user merge tags when the user is not available, e.g. when media is deleted by WP-CLI or cron
 * [Security] Updated bundled SVG sanitizer library to version 1.1
 
 = 9.0.10 =
