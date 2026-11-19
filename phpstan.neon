@@ -2,8 +2,7 @@ includes:
 	- vendor/szepeviktor/phpstan-wordpress/extension.neon
 	- phpstan-baseline.neon
 parameters:
-	level: max
-	inferPrivatePropertyTypeFromConstructor: true
+	level: 9
 	treatPhpDocTypesAsCertain: false
 	reportUnmatchedIgnoredErrors: false
 	scanFiles:
@@ -50,6 +49,6 @@ parameters:
 		'''
 	excludePaths:
 		- compat/src-deprecated/helpers.php
-		- compat/stubs.php
+		- compat/stubs.php (?)
 		- dependencies/
 		- src/Utils/EDDUpdater.php

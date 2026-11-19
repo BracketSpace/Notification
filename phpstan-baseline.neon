@@ -1,1502 +1,2348 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'actionClearLogs'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''actionClearLogs''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'activate'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''activate''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'activationNag'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''activationNag''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'activationNotices'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''activationNotices''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'addConditionalsMeta…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''addConditionalsMeta…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'addHelp'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''addHelp''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'addMergeTagsMetaBox'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''addMergeTagsMetaBox''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'addNotifications'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''addNotifications''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'addSaveMetaBox'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''addSaveMetaBox''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'addTriggerAction'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''addTriggerAction''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'ajaxChangeNotificat…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''ajaxChangeNotificat…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'ajaxRenderMergeTags'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''ajaxRenderMergeTags''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'ajaxSync'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''ajaxSync''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'bind'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''bind''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'bypassTrash'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''bypassTrash''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'carriersList'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''carriersList''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'carriersSettings'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''carriersSettings''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'carriersSettingsUps…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''carriersSettingsUps…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'catchNotification'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''catchNotification''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'checkUpgrade'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''checkUpgrade''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'customDevelopment'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''customDevelopment''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'customFieldsMergeTa…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''customFieldsMergeTa…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'deactivate'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''deactivate''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'debugWarning'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''debugWarning''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'debuggingSettings'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''debuggingSettings''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'deleteLocalJson'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''deleteLocalJson''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'deleteNotification'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''deleteNotification''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'disablePasswordChan…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''disablePasswordChan…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'disableSendConfirma…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''disableSendConfirma…''\} given\.$#'
+			identifier: argument.type
 			count: 2
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'displayBulkActionsA…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''displayBulkActionsA…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'displayNotice'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''displayNotice''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'emailsSettings'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''emailsSettings''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'enqueueScripts'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''enqueueScripts''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'exportRequest'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''exportRequest''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'generalSettings'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''generalSettings''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'handleCron'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''handleCron''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'handleLicenseCheck'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''handleLicenseCheck''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'importRequest'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''importRequest''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'inactiveLicenseWarn…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''inactiveLicenseWarn…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'loadDatabaseNotific…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''loadDatabaseNotific…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'loadLocalJson'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''loadLocalJson''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'maybeRedirect'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''maybeRedirect''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'metaboxCleanup'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''metaboxCleanup''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'notificationDuplica…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''notificationDuplica…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'processQueue'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''processQueue''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'proxyCommentReply'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''proxyCommentReply''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'proxyPostCommentToP…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''proxyPostCommentToP…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'proxyTransitionComm…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''proxyTransitionComm…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'refreshAllLicenses'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''refreshAllLicenses''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'register'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''register''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'registerCheckUpdate…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''registerCheckUpdate…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'registerLicenseChec…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''registerLicenseChec…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'registerPage'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''registerPage''\} given\.$#'
+			identifier: argument.type
 			count: 3
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'registerSettings'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''registerSettings''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'removeDefaults'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''removeDefaults''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'renderCarrierBoxes'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''renderCarrierBoxes''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'renderCarriersWidget'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''renderCarriersWidget''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'renderMainColumn'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''renderMainColumn''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'renderTriggerSelect'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''renderTriggerSelect''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'replaceNewUserNotif…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''replaceNewUserNotif…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'restApiInit'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''restApiInit''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'reviewQueueSwitch'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''reviewQueueSwitch''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'save'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''save''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'saveLocalJson'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''saveLocalJson''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'saveSettings'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''saveSettings''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'scheduledTriggersSe…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''scheduledTriggersSe…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'settings'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''settings''\} given\.$#'
+			identifier: argument.type
 			count: 2
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'setupNotification'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''setupNotification''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'tableColumnContent'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''tableColumnContent''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'testRestApi'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''testRestApi''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'triggersSettings'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''triggersSettings''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'triggersSettingsUps…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''triggersSettingsUps…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'updater'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''updater''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'upgradeDb'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''upgradeDb''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_action expects callable\\(\\)\\: mixed, array\\{object\\|null, 'userLoginWith2fa'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_action expects callable\(\)\: mixed, array\{object\|null, ''userLoginWith2fa''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'addDuplicateRowActi…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''addDuplicateRowActi…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'adjustBulkActions'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''adjustBulkActions''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'adjustTrashLink'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''adjustTrashLink''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'allowUnfilteredHtml…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''allowUnfilteredHtml…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'bulkActionMessages'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''bulkActionMessages''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'changePostStatuses'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''changePostStatuses''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'columnCleanup'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''columnCleanup''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'disableAutomaticWpC…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''disableAutomaticWpC…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'disableCommentModer…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''disableCommentModer…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'disableEmailChangeN…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''disableEmailChangeN…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'disablePasswordChan…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''disablePasswordChan…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'disablePasswordRese…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''disablePasswordRese…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'disablePostAuthorNo…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''disablePostAuthorNo…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'disableSendConfirma…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''disableSendConfirma…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'filterAllowedDescri…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''filterAllowedDescri…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'filterPostTypes'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''filterPostTypes''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'from'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''from''\} given\.$#'
+			identifier: argument.type
 			count: 2
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'handleStatusBulkAct…'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''handleStatusBulkAct…''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'identifyTrigger'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''identifyTrigger''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'postUpdatedMessages'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''postUpdatedMessages''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'registerIntervals'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''registerIntervals''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'removeQuickEdit'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''removeQuickEdit''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'removeStatusDisplay'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''removeStatusDisplay''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'tableColumns'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''tableColumns''\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function add_filter expects callable\\(\\)\\: mixed, array\\{object\\|null, 'to'\\} given\\.$#"
+			message: '#^Parameter \#2 \$callback of function add_filter expects callable\(\)\: mixed, array\{object\|null, ''to''\} given\.$#'
+			identifier: argument.type
 			count: 2
 			path: compat/register-hooks.php
 
 		-
-			message: "#^Parameter \\#1 \\$data of method BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:setup\\(\\) expects array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, carriers\\?\\: array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\}, array given\\.$#"
+			message: '#^Parameter \#1 \$data of method BracketSpace\\Notification\\Core\\Notification\:\:setup\(\) expects array\{hash\?\: string, title\?\: string, trigger\?\: BracketSpace\\Notification\\Interfaces\\Triggerable, carriers\?\: array\<string, BracketSpace\\Notification\\Interfaces\\Sendable\>, enabled\?\: bool, extras\?\: array\<string, array\<mixed\>\|bool\|float\|int\|string\>, version\?\: int\}, array\<mixed\> given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/src-deprecated/Abstracts/Adapter.php
 
 		-
-			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|null given\\.$#"
+			message: '#^Parameter \#1 \$json of function json_decode expects string, string\|null given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/src-deprecated/Adapter/JSON.php
 
 		-
-			message: "#^Offset 'enabled' does not exist on array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, carriers\\?\\: array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\}\\|null\\.$#"
+			message: '#^Offset ''enabled'' might not exist on array\{hash\: string, title\?\: string, trigger\?\: BracketSpace\\Notification\\Interfaces\\Triggerable, carriers\?\: array\<string, BracketSpace\\Notification\\Interfaces\\Sendable\>, enabled\?\: bool, extras\?\: array\<string, array\<mixed\>\|bool\|float\|int\|string\>, version\?\: int\}\.$#'
+			identifier: offsetAccess.notFound
 			count: 1
 			path: compat/src-deprecated/Adapter/WordPress.php
 
 		-
-			message: "#^Offset 'hash' does not exist on array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, carriers\\?\\: array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\}\\|null\\.$#"
+			message: '#^Offset ''hash'' might not exist on array\{hash\?\: string, title\?\: string, trigger\?\: BracketSpace\\Notification\\Interfaces\\Triggerable, carriers\?\: array\<string, BracketSpace\\Notification\\Interfaces\\Sendable\>, enabled\?\: bool, extras\?\: array\<string, array\<mixed\>\|bool\|float\|int\|string\>, version\?\: int\}\|null\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: compat/src-deprecated/Adapter/WordPress.php
+
+		-
+			message: '#^Offset ''title'' might not exist on array\{hash\: string, title\?\: string, trigger\?\: BracketSpace\\Notification\\Interfaces\\Triggerable, carriers\?\: array\<string, BracketSpace\\Notification\\Interfaces\\Sendable\>, enabled\?\: bool, extras\?\: array\<string, array\<mixed\>\|bool\|float\|int\|string\>, version\?\: int\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: compat/src-deprecated/Adapter/WordPress.php
+
+		-
+			message: '#^Parameter \#1 \$data of function notification_convert_data expects array\<mixed\>, array\<string, array\<string, array\<mixed\>\|bool\|BracketSpace\\Notification\\Interfaces\\Sendable\|float\|int\|string\>\|bool\|BracketSpace\\Notification\\Interfaces\\Triggerable\|int\|string\>\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: compat/src-deprecated/Adapter/WordPress.php
+
+		-
+			message: '#^Parameter \#1 \$postarr of function wp_insert_post expects array\{ID\?\: int, post_author\?\: int, post_date\?\: string, post_date_gmt\?\: string, post_content\?\: string, post_content_filtered\?\: string, post_title\?\: string, post_excerpt\?\: string, \.\.\.\}, array\{ID\: int, post_content\: array\|string, post_type\: string, post_title\: string, post_name\: string, post_status\: ''draft''\|''publish''\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: compat/src-deprecated/Adapter/WordPress.php
+
+		-
+			message: '#^Parameter \#1 \$value of function wp_slash expects array\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: compat/src-deprecated/Adapter/WordPress.php
+
+		-
+			message: '#^Property BracketSpace\\Notification\\Defaults\\Adapter\\WordPress\:\:\$post \(WP_Post\) in empty\(\) is not falsy\.$#'
+			identifier: empty.property
 			count: 2
 			path: compat/src-deprecated/Adapter/WordPress.php
 
 		-
-			message: "#^Offset 'title' does not exist on array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, carriers\\?\\: array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\}\\|null\\.$#"
-			count: 1
-			path: compat/src-deprecated/Adapter/WordPress.php
-
-		-
-			message: "#^Parameter \\#1 \\$data of function notification_convert_data expects array, array\\<string, array\\<string, array\\|bool\\|BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\|float\\|int\\|string\\>\\|bool\\|BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable\\|int\\|string\\>\\|null given\\.$#"
-			count: 1
-			path: compat/src-deprecated/Adapter/WordPress.php
-
-		-
-			message: "#^Parameter \\#1 \\$postarr of function wp_insert_post expects array\\{ID\\?\\: int, post_author\\?\\: int, post_date\\?\\: string, post_date_gmt\\?\\: string, post_content\\?\\: string, post_content_filtered\\?\\: string, post_title\\?\\: string, post_excerpt\\?\\: string, \\.\\.\\.\\}, array\\{ID\\: int, post_content\\: mixed, post_type\\: string, post_title\\: string, post_name\\: string, post_status\\: 'draft'\\|'publish'\\} given\\.$#"
-			count: 1
-			path: compat/src-deprecated/Adapter/WordPress.php
-
-		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Defaults\\\\Adapter\\\\WordPress\\:\\:\\$post \\(WP_Post\\) in empty\\(\\) is not falsy\\.$#"
-			count: 2
-			path: compat/src-deprecated/Adapter/WordPress.php
-
-		-
-			message: "#^Parameter \\#1 \\$args of function get_posts expects array\\{numberposts\\?\\: int, category\\?\\: int\\|string, include\\?\\: array\\<int\\>, exclude\\?\\: array\\<int\\>, suppress_filters\\?\\: bool, attachment_id\\?\\: int, author\\?\\: int\\|string, author_name\\?\\: string, \\.\\.\\.\\}\\|null, array\\{posts_per_page\\: \\-1, post_type\\: 'notification', post_status\\?\\: array\\{'publish', 'draft'\\}, suppress_filters\\?\\: 0\\} given\\.$#"
+			message: '#^Parameter \#1 \$args of function get_posts expects array\{numberposts\?\: int, category\?\: int\|string, include\?\: array\<int\>, exclude\?\: array\<int\>, suppress_filters\?\: bool, attachment_id\?\: int, author\?\: int\|string, author_name\?\: string, \.\.\.\}\|null, array\{posts_per_page\: \-1, post_type\: ''notification'', post_status\?\: array\{''publish'', ''draft''\}, suppress_filters\?\: 0\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/src-deprecated/Database/Queries/NotificationQueries.php
 
 		-
-			message: "#^Cannot access offset 'hide' on mixed\\.$#"
+			message: '#^Cannot access offset ''hide'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: compat/src-deprecated/Defaults/Carrier/Webhook.php
 
 		-
-			message: "#^Cannot access offset 'key' on mixed\\.$#"
+			message: '#^Cannot access offset ''key'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: compat/src-deprecated/Defaults/Carrier/Webhook.php
 
 		-
-			message: "#^Cannot access offset 'value' on mixed\\.$#"
+			message: '#^Cannot access offset ''value'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: compat/src-deprecated/Defaults/Carrier/Webhook.php
 
 		-
-			message: "#^Cannot access offset 'hide' on mixed\\.$#"
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: compat/src-deprecated/Defaults/Carrier/Webhook.php
+
+		-
+			message: '#^Cannot access offset ''hide'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: compat/src-deprecated/Defaults/Carrier/WebhookJson.php
 
 		-
-			message: "#^Cannot access offset 'key' on mixed\\.$#"
+			message: '#^Cannot access offset ''key'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: compat/src-deprecated/Defaults/Carrier/WebhookJson.php
 
 		-
-			message: "#^Cannot access offset 'value' on mixed\\.$#"
+			message: '#^Cannot access offset ''value'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: compat/src-deprecated/Defaults/Carrier/WebhookJson.php
 
 		-
-			message: "#^Cannot call method getSetting\\(\\) on mixed\\.$#"
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: compat/src-deprecated/Defaults/Carrier/WebhookJson.php
+
+		-
+			message: '#^Cannot call method getSetting\(\) on mixed\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: compat/src-deprecated/functions.php
 
 		-
-			message: "#^Cannot call method getSettings\\(\\) on mixed\\.$#"
+			message: '#^Cannot call method getSettings\(\) on mixed\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: compat/src-deprecated/functions.php
 
 		-
-			message: "#^Cannot call method parse_value\\(\\) on mixed\\.$#"
+			message: '#^Cannot call method parse_value\(\) on mixed\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: compat/src-deprecated/functions.php
 
 		-
-			message: "#^Cannot call method updateSetting\\(\\) on mixed\\.$#"
+			message: '#^Cannot call method updateSetting\(\) on mixed\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: compat/src-deprecated/functions.php
 
 		-
-			message: "#^Function notification_get_posts\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Function notification_get_posts\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: compat/src-deprecated/functions.php
 
 		-
-			message: "#^Function notification_get_recipient\\(\\) should return BracketSpace\\\\Notification\\\\Interfaces\\\\Receivable\\|null but returns mixed\\.$#"
+			message: '#^Function notification_get_recipient\(\) should return BracketSpace\\Notification\\Interfaces\\Receivable\|null but returns mixed\.$#'
+			identifier: return.type
 			count: 1
 			path: compat/src-deprecated/functions.php
 
 		-
-			message: "#^Function notification_get_template\\(\\) has parameter \\$vars with no value type specified in iterable type array\\.$#"
+			message: '#^Function notification_get_template\(\) has parameter \$vars with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: compat/src-deprecated/functions.php
 
 		-
-			message: "#^Function notification_template\\(\\) has parameter \\$vars with no value type specified in iterable type array\\.$#"
+			message: '#^Function notification_template\(\) has parameter \$vars with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: compat/src-deprecated/functions.php
 
 		-
-			message: "#^Function notification_whitelabel\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: '#^Function notification_whitelabel\(\) has parameter \$args with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: compat/src-deprecated/functions.php
 
 		-
-			message: "#^Parameter \\#1 \\$path of static method BracketSpace\\\\Notification\\\\Core\\\\Sync\\:\\:enable\\(\\) expects string\\|null, mixed given\\.$#"
+			message: '#^Parameter \#1 \$path of static method BracketSpace\\Notification\\Core\\Sync\:\:enable\(\) expects string\|null, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: compat/src-deprecated/functions.php
 
 		-
-			message: "#^Call to static method create\\(\\) on an unknown class StubsGenerator\\\\Finder\\.$#"
+			message: '#^Call to static method create\(\) on an unknown class StubsGenerator\\Finder\.$#'
+			identifier: class.notFound
 			count: 1
 			path: compat/stub-finder.php
 
 		-
-			message: "#^Method Notification\\:\\:components\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method Notification\:\:components\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: notification.php
 
 		-
-			message: "#^Static property Notification\\:\\:\\$runtime \\(BracketSpace\\\\Notification\\\\Runtime\\) in isset\\(\\) is not nullable\\.$#"
+			message: '#^Static property Notification\:\:\$runtime \(BracketSpace\\Notification\\Runtime\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
 			count: 4
 			path: notification.php
 
 		-
-			message: "#^Cannot call method removeLogs\\(\\) on mixed\\.$#"
+			message: '#^Binary operation "\." between ''notification_clear…'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
 			path: src/Admin/Debugging.php
 
 		-
-			message: "#^Cannot access property \\$expires on mixed\\.$#"
+			message: '#^Cannot call method removeLogs\(\) on mixed\.$#'
+			identifier: method.nonObject
 			count: 1
-			path: src/Admin/Extensions.php
+			path: src/Admin/Debugging.php
 
 		-
-			message: "#^Cannot access property \\$id on WP_Screen\\|null\\.$#"
+			message: '#^Cannot access offset ''item_name'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 2
 			path: src/Admin/Extensions.php
 
 		-
-			message: "#^Cannot access property \\$item_name on mixed\\.$#"
+			message: '#^Cannot access property \$expires on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Admin/Extensions.php
 
 		-
-			message: "#^Cannot access offset 'hash' on mixed\\.$#"
+			message: '#^Cannot access property \$id on WP_Screen\|null\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: src/Admin/Extensions.php
+
+		-
+			message: '#^Cannot access property \$item_name on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/Admin/Extensions.php
+
+		-
+			message: '#^Method BracketSpace\\Notification\\Admin\\Extensions\:\:getRawExtensions\(\) should return array\<string, array\<mixed\>\> but returns array\<mixed\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Admin/Extensions.php
+
+		-
+			message: '#^Parameter \#1 \$key of function sanitize_key expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 7
+			path: src/Admin/Extensions.php
+
+		-
+			message: '#^Parameter \#1 \$licenseKey of method BracketSpace\\Notification\\Core\\License\:\:activate\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Admin/Extensions.php
+
+		-
+			message: '#^Parameter \#1 \$maybeint of function absint expects array\|bool\|float\|int\|resource\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Admin/Extensions.php
+
+		-
+			message: '#^Parameter \#1 \$slug of method BracketSpace\\Notification\\Admin\\Extensions\:\:getRawExtension\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Admin/Extensions.php
+
+		-
+			message: '#^Parameter \#1 \$str of function sanitize_text_field expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Admin/Extensions.php
+
+		-
+			message: '#^Parameter \#1 \$title of function sanitize_title_with_dashes expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Admin/Extensions.php
+
+		-
+			message: '#^Parameter \#1 \$url of function esc_url_raw expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 4
+			path: src/Admin/Extensions.php
+
+		-
+			message: '#^Parameter \#2 \$args of function plugins_api expects array\{slug\?\: string, per_page\?\: int, page\?\: int, number\?\: int, search\?\: string, tag\?\: string, author\?\: string, user\?\: string, \.\.\.\}\|object, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Admin/Extensions.php
+
+		-
+			message: '#^Cannot access offset ''hash'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/Admin/ImportExport.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Admin\\\\ImportExport\\:\\:prepareNotificationsExportData\\(\\) should return array\\<int, string\\> but returns array\\<int\\<0, max\\>, mixed\\>\\.$#"
+			message: '#^Method BracketSpace\\Notification\\Admin\\ImportExport\:\:prepareNotificationsExportData\(\) should return array\<int, string\> but returns list\<mixed\>\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Admin/ImportExport.php
 
 		-
-			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
+			message: '#^Parameter \#1 \$data of callable passed to call_user_func\(\) expects array\<mixed\>, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Admin/ImportExport.php
 
 		-
-			message: "#^Parameter \\#2 \\$length of function fread expects int\\<1, max\\>, int\\<0, max\\>\\|false given\\.$#"
+			message: '#^Parameter \#1 \$file of function wp_delete_file expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Admin/ImportExport.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function file_get_contents expects string, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Admin/ImportExport.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
+			message: '#^Parameter \#1 \$str of function sanitize_text_field expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: src/Admin/ImportExport.php
+
+		-
+			message: '#^Parameter \#2 \$filename of function finfo_file expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Admin/ImportExport.php
+
+		-
+			message: '#^Access to an undefined property object\:\:\$ID\.$#'
+			identifier: property.notFound
 			count: 1
 			path: src/Admin/NotificationDuplicator.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
+			message: '#^Access to an undefined property object\:\:\$post_type\.$#'
+			identifier: property.notFound
 			count: 1
 			path: src/Admin/NotificationDuplicator.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Admin/NotificationDuplicator.php
+
+		-
+			message: '#^Access to an undefined property object\:\:\$ID\.$#'
+			identifier: property.notFound
 			count: 1
 			path: src/Admin/PostTable.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
+			message: '#^Access to an undefined property object\:\:\$post_type\.$#'
+			identifier: property.notFound
 			count: 2
 			path: src/Admin/PostTable.php
 
 		-
-			message: "#^Parameter \\#3 \\$number of function _n expects int, mixed given\\.$#"
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 2
+			path: src/Admin/PostTable.php
+
+		-
+			message: '#^Binary operation "\." between ''change_notification…'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
 			path: src/Admin/PostType.php
 
 		-
-			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, mixed given\\.$#"
+			message: '#^Cannot access offset ''_nonce'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/Admin/PostType.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$post_type\\.$#"
+			message: '#^Cannot access offset ''activated'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Admin/PostType.php
+
+		-
+			message: '#^Parameter \#1 \$data of method BracketSpace\\Notification\\Interfaces\\Sendable\:\:setData\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Admin/PostType.php
+
+		-
+			message: '#^Parameter \#1 \$hash of method BracketSpace\\Notification\\Core\\Notification\:\:setHash\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Admin/PostType.php
+
+		-
+			message: '#^Parameter \#1 \$nonce of function wp_verify_nonce expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Admin/PostType.php
+
+		-
+			message: '#^Parameter \#1 \$post of static method BracketSpace\\Notification\\Database\\NotificationDatabaseService\:\:postToNotification\(\) expects int\|WP_Post, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Admin/PostType.php
+
+		-
+			message: '#^Parameter \#1 \$str of function sanitize_text_field expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Admin/PostType.php
+
+		-
+			message: '#^Parameter \#1 \$title of method BracketSpace\\Notification\\Core\\Notification\:\:setTitle\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Admin/PostType.php
+
+		-
+			message: '#^Parameter \#3 \$number of function _n expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Admin/PostType.php
+
+		-
+			message: '#^Parameter \#3 \$subject of function str_replace expects array\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Admin/PostType.php
+
+		-
+			message: '#^Access to an undefined property object\:\:\$post_type\.$#'
+			identifier: property.notFound
 			count: 1
 			path: src/Admin/Screen.php
 
 		-
-			message: "#^Call to an undefined method object\\:\\:add_help_tab\\(\\)\\.$#"
+			message: '#^Call to an undefined method object\:\:add_help_tab\(\)\.$#'
+			identifier: method.notFound
 			count: 1
 			path: src/Admin/Screen.php
 
 		-
-			message: "#^Call to an undefined method object\\:\\:set_help_sidebar\\(\\)\\.$#"
+			message: '#^Call to an undefined method object\:\:set_help_sidebar\(\)\.$#'
+			identifier: method.notFound
 			count: 1
 			path: src/Admin/Screen.php
 
 		-
-			message: "#^Cannot access property \\$pageHook on mixed\\.$#"
+			message: '#^Parameter \#1 \$post of static method BracketSpace\\Notification\\Database\\NotificationDatabaseService\:\:postToNotification\(\) expects int\|WP_Post, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Admin/Screen.php
+
+		-
+			message: '#^Parameter \#1 \$str of function sanitize_text_field expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Admin/Screen.php
+
+		-
+			message: '#^Cannot access property \$pageHook on mixed\.$#'
+			identifier: property.nonObject
 			count: 2
 			path: src/Admin/Scripts.php
 
 		-
-			message: "#^Parameter \\#4 \\$ver of function wp_enqueue_script expects bool\\|string\\|null, int\\|false given\\.$#"
+			message: '#^Parameter \#4 \$ver of function wp_enqueue_script expects bool\|string\|null, int\|false given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Admin/Scripts.php
 
 		-
-			message: "#^Parameter \\#4 \\$ver of function wp_enqueue_style expects bool\\|string\\|null, int\\|false given\\.$#"
+			message: '#^Parameter \#4 \$ver of function wp_enqueue_style expects bool\|string\|null, int\|false given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Admin/Scripts.php
 
 		-
-			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			message: '#^Parameter \#1 \$key of function sanitize_key expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Admin/Sync.php
+
+		-
+			message: '#^Parameter \#1 \$str of function sanitize_text_field expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Admin/Sync.php
+
+		-
+			message: '#^Parameter \#1 \$key of function sanitize_key expects string, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Admin/Wizard.php
 
 		-
-			message: "#^Cannot access offset 'args' on mixed\\.$#"
+			message: '#^Parameter \#1 \$notifications of method BracketSpace\\Notification\\Admin\\Wizard\:\:addNotifications\(\) expects array\<mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Admin/Wizard.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Admin/Wizard.php
+
+		-
+			message: '#^Cannot access offset ''args'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/Api/Api.php
 
 		-
-			message: "#^Cannot access offset 'path' on mixed\\.$#"
+			message: '#^Cannot access offset ''path'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/Api/Api.php
 
 		-
-			message: "#^Parameter \\#2 \\$route of function register_rest_route expects string, mixed given\\.$#"
+			message: '#^Parameter \#1 \$route_namespace of function register_rest_route expects non\-falsy\-string, string given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Api/Api.php
 
 		-
-			message: "#^Parameter \\#3 \\$args of function register_rest_route expects array, mixed given\\.$#"
+			message: '#^Parameter \#2 \$route of function register_rest_route expects non\-falsy\-string, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Api/Api.php
 
 		-
-			message: "#^Cannot access property \\$checkboxLabel on mixed\\.$#"
+			message: '#^Parameter \#3 \$args of function register_rest_route expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Api/Api.php
+
+		-
+			message: '#^Cannot access property \$checkboxLabel on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Cannot access property \\$cssClass on mixed\\.$#"
+			message: '#^Cannot access property \$cssClass on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Cannot access property \\$description on mixed\\.$#"
+			message: '#^Cannot access property \$description on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Cannot access property \\$disabled on mixed\\.$#"
+			message: '#^Cannot access property \$disabled on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Cannot access property \\$fieldTypeHtml on mixed\\.$#"
+			message: '#^Cannot access property \$fieldTypeHtml on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Cannot access property \\$fields on mixed\\.$#"
+			message: '#^Cannot access property \$fields on mixed\.$#'
+			identifier: property.nonObject
 			count: 2
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Cannot access property \\$id on mixed\\.$#"
+			message: '#^Cannot access property \$id on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Cannot access property \\$label on mixed\\.$#"
+			message: '#^Cannot access property \$label on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Cannot access property \\$message on mixed\\.$#"
+			message: '#^Cannot access property \$message on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Cannot access property \\$multipleSection on mixed\\.$#"
+			message: '#^Cannot access property \$multipleSection on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Cannot access property \\$name on mixed\\.$#"
+			message: '#^Cannot access property \$name on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Cannot access property \\$nested on mixed\\.$#"
+			message: '#^Cannot access property \$nested on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Cannot access property \\$options on mixed\\.$#"
+			message: '#^Cannot access property \$options on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Cannot access property \\$placeholder on mixed\\.$#"
+			message: '#^Cannot access property \$placeholder on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Cannot access property \\$pretty on mixed\\.$#"
+			message: '#^Cannot access property \$pretty on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Cannot access property \\$rows on mixed\\.$#"
+			message: '#^Cannot access property \$rows on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Cannot access property \\$section on mixed\\.$#"
+			message: '#^Cannot access property \$section on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Cannot access property \\$sections on mixed\\.$#"
+			message: '#^Cannot access property \$sections on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\RepeaterController\\:\\:getCarrierFields\\(\\) should return array but returns mixed\\.$#"
+			message: '#^Method BracketSpace\\Notification\\Api\\Controller\\RepeaterController\:\:getCarrierFields\(\) should return array\<mixed\> but returns mixed\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Api/Controller/RepeaterController.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\RepeaterController\\:\\:sendResponse\\(\\) has parameter \\$request with generic class WP_REST_Request but does not specify its types\\: T$#"
-			count: 1
-			path: src/Api/Controller/RepeaterController.php
-
-		-
-			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
 			count: 1
 			path: src/Api/Controller/SectionRepeaterController.php
 
 		-
-			message: "#^Cannot access offset 'fields' on mixed\\.$#"
+			message: '#^Cannot access offset ''fields'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 2
 			path: src/Api/Controller/SectionRepeaterController.php
 
 		-
-			message: "#^Cannot access offset 'multiple_section' on mixed\\.$#"
+			message: '#^Cannot access offset ''multiple_section'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/Api/Controller/SectionRepeaterController.php
 
 		-
-			message: "#^Cannot access offset 'name' on mixed\\.$#"
+			message: '#^Cannot access offset ''name'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 2
 			path: src/Api/Controller/SectionRepeaterController.php
 
 		-
-			message: "#^Cannot access offset 'sections' on mixed\\.$#"
+			message: '#^Cannot access offset ''sections'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/Api/Controller/SectionRepeaterController.php
 
 		-
-			message: "#^Cannot access offset 'special_section' on mixed\\.$#"
+			message: '#^Cannot access offset ''special_section'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/Api/Controller/SectionRepeaterController.php
 
 		-
-			message: "#^Parameter \\#1 \\$data of method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\RepeaterController\\:\\:formFieldData\\(\\) expects array\\|null, mixed given\\.$#"
+			message: '#^Parameter \#1 \$data of method BracketSpace\\Notification\\Api\\Controller\\RepeaterController\:\:formFieldData\(\) expects array\<mixed\>\|null, mixed given\.$#'
+			identifier: argument.type
 			count: 2
 			path: src/Api/Controller/SectionRepeaterController.php
 
 		-
-			message: "#^Cannot call method input\\(\\) on mixed\\.$#"
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: src/Api/Controller/SectionRepeaterController.php
+
+		-
+			message: '#^Cannot call method input\(\) on mixed\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: src/Api/Controller/SelectInputController.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Api\\\\Controller\\\\SelectInputController\\:\\:sendResponse\\(\\) has parameter \\$request with generic class WP_REST_Request but does not specify its types\\: T$#"
+			message: '#^Parameter \#1 \$carrierSlug of static method BracketSpace\\Notification\\Store\\Recipient\:\:get\(\) expects string, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Api/Controller/SelectInputController.php
 
 		-
-			message: "#^Cannot call method getEndpoint\\(\\) on mixed\\.$#"
+			message: '#^Parameter \#2 \$slug of static method BracketSpace\\Notification\\Store\\Recipient\:\:get\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Api/Controller/SelectInputController.php
+
+		-
+			message: '#^Cannot call method getEndpoint\(\) on mixed\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: src/Compat/RestApiCompat.php
 
 		-
-			message: "#^Parameter \\#1 \\$timestamp of function wp_unschedule_event expects int, int\\|false given\\.$#"
+			message: '#^Parameter \#1 \$timestamp of function wp_unschedule_event expects int, int\|false given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Core/Cron.php
 
 		-
-			message: "#^Cannot call method addLog\\(\\) on mixed\\.$#"
+			message: '#^Cannot call method addLog\(\) on mixed\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: src/Core/Debugging.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$licenseKey\\.$#"
+			message: '#^Access to an undefined property object\:\:\$licenseKey\.$#'
+			identifier: property.notFound
 			count: 2
 			path: src/Core/License.php
 
 		-
-			message: "#^Cannot access offset 'item_name' on mixed\\.$#"
-			count: 2
-			path: src/Core/License.php
-
-		-
-			message: "#^Cannot access property \\$error on mixed\\.$#"
-			count: 1
-			path: src/Core/License.php
-
-		-
-			message: "#^Cannot access property \\$license on mixed\\.$#"
-			count: 1
-			path: src/Core/License.php
-
-		-
-			message: "#^Cannot access property \\$licenseKey on mixed\\.$#"
+			message: '#^Call to function is_object\(\) with object will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
 			count: 4
 			path: src/Core/License.php
 
 		-
-			message: "#^Cannot access property \\$success on mixed\\.$#"
-			count: 1
-			path: src/Core/License.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Core/License.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\License\\:\\:check\\(\\) should return object but returns mixed\\.$#"
-			count: 1
-			path: src/Core/License.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Core\\\\License\\:\\:isValid\\(\\) should return bool but returns mixed\\.$#"
-			count: 1
-			path: src/Core/License.php
-
-		-
-			message: "#^Parameter \\#1 \\$licenseData of method BracketSpace\\\\Notification\\\\Core\\\\License\\:\\:save\\(\\) expects object, mixed given\\.$#"
-			count: 1
-			path: src/Core/License.php
-
-		-
-			message: "#^Parameter \\#1 \\$response of function wp_remote_retrieve_body expects array\\|WP_Error, mixed given\\.$#"
-			count: 1
-			path: src/Core/License.php
-
-		-
-			message: "#^Parameter \\#1 \\$response of function wp_remote_retrieve_response_code expects array\\|WP_Error, mixed given\\.$#"
-			count: 1
-			path: src/Core/License.php
-
-		-
-			message: "#^Parameter \\#2 \\$key of class BracketSpace\\\\Notification\\\\Dependencies\\\\Micropackage\\\\Cache\\\\Cache constructor expects string, mixed given\\.$#"
+			message: '#^Cannot access offset ''item_name'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 2
 			path: src/Core/License.php
 
 		-
-			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			message: '#^Cannot access property \$error on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/Core/License.php
+
+		-
+			message: '#^Cannot access property \$license on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/Core/License.php
+
+		-
+			message: '#^Cannot access property \$licenseKey on mixed\.$#'
+			identifier: property.nonObject
+			count: 4
+			path: src/Core/License.php
+
+		-
+			message: '#^Cannot access property \$success on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/Core/License.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Core/License.php
+
+		-
+			message: '#^Method BracketSpace\\Notification\\Core\\License\:\:check\(\) should return object but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Core/License.php
+
+		-
+			message: '#^Method BracketSpace\\Notification\\Core\\License\:\:isValid\(\) should return bool but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Core/License.php
+
+		-
+			message: '#^Parameter \#1 \$licenseData of method BracketSpace\\Notification\\Core\\License\:\:save\(\) expects object, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/License.php
+
+		-
+			message: '#^Parameter \#1 \$response of function wp_remote_retrieve_body expects array\|WP_Error, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/License.php
+
+		-
+			message: '#^Parameter \#1 \$response of function wp_remote_retrieve_response_code expects array\|WP_Error, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/License.php
+
+		-
+			message: '#^Parameter \#2 \$key of class BracketSpace\\Notification\\Dependencies\\Micropackage\\Cache\\Cache constructor expects string, mixed given\.$#'
+			identifier: argument.type
 			count: 2
 			path: src/Core/License.php
 
 		-
-			message: "#^Parameter \\#3 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
 			count: 2
 			path: src/Core/License.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Core\\\\Notification\\:\\:\\$sourcePostId is never read, only written\\.$#"
+			message: '#^Parameter \#3 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Core/License.php
+
+		-
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 2
+			path: src/Core/License.php
+
+		-
+			message: '#^Method BracketSpace\\Notification\\Core\\Notification\:\:toArray\(\) should return array\{hash\?\: string, title\?\: string, trigger\?\: BracketSpace\\Notification\\Interfaces\\Triggerable, carriers\?\: array\<string, BracketSpace\\Notification\\Interfaces\\Sendable\>, enabled\?\: bool, extras\?\: array\<string, array\<mixed\>\|bool\|float\|int\|string\>, version\?\: int\}\|null but returns array\<mixed, mixed\>\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Core/Notification.php
 
 		-
-			message: "#^Deprecated in PHP 8\\.4\\: Parameter \\#3 \\$index \\(int\\) is implicitly nullable via default value null\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Core\\Notification\:\:\$sourcePostId is never read, only written\.$#'
+			identifier: property.onlyWritten
 			count: 1
-			path: src/Core/Queue.php
+			path: src/Core/Notification.php
 
 		-
-			message: "#^Deprecated in PHP 8\\.4\\: Parameter \\#1 \\$path \\(string\\) is implicitly nullable via default value null\\.$#"
-			count: 1
-			path: src/Core/Sync.php
-
-		-
-			message: "#^Parameter \\#2 \\$contents of method WP_Filesystem_Base\\:\\:put_contents\\(\\) expects string, mixed given\\.$#"
+			message: '#^Parameter \#2 \$contents of method WP_Filesystem_Base\:\:put_contents\(\) expects string, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Core/Sync.php
 
 		-
-			message: "#^Cannot access offset mixed on mixed\\.$#"
+			message: '#^Cannot use \+\+ on mixed\.$#'
+			identifier: postInc.type
+			count: 1
+			path: src/Core/Upgrade.php
+
+		-
+			message: '#^Instanceof between BracketSpace\\Notification\\Core\\Notification and BracketSpace\\Notification\\Core\\Notification will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: src/Core/Upgrade.php
+
+		-
+			message: '#^Parameter \#2 \$replacement of function preg_replace expects array\<float\|int\|string\>\|string, list\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Upgrade.php
+
+		-
+			message: '#^Cannot access offset mixed on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 2
 			path: src/Database/NotificationDatabaseService.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Database\\\\Queries\\\\UserQueries\\:\\:all\\(\\) should return array\\<int, array\\{ID\\: string, user_email\\: string, display_name\\: string\\}\\> but returns mixed\\.$#"
+			message: '#^Parameter \#1 \$datetime of function strtotime expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Database/NotificationDatabaseService.php
+
+		-
+			message: '#^Parameter \#1 \$value of function wp_slash expects array\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Database/NotificationDatabaseService.php
+
+		-
+			message: '#^Method BracketSpace\\Notification\\Database\\Queries\\UserQueries\:\:all\(\) should return array\<int, array\{ID\: string, user_email\: string, display_name\: string\}\> but returns mixed\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Database/Queries/UserQueries.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Database\\\\Queries\\\\UserQueries\\:\\:withRole\\(\\) should return array\\<int, array\\{ID\\: string, user_email\\: string, display_name\\: string\\}\\> but returns mixed\\.$#"
+			message: '#^Method BracketSpace\\Notification\\Database\\Queries\\UserQueries\:\:withRole\(\) should return array\<int, array\{ID\: string, user_email\: string, display_name\: string\}\> but returns mixed\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Database/Queries/UserQueries.php
 
 		-
-			message: "#^Invalid type object to throw\\.$#"
+			message: '#^Invalid type object to throw\.$#'
+			identifier: throw.notThrowable
 			count: 1
 			path: src/ErrorHandler.php
 
 		-
-			message: "#^Parameter \\#1 \\$carrier of static method BracketSpace\\\\Notification\\\\Register\\:\\:carrier\\(\\) expects BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable, mixed given\\.$#"
+			message: '#^Parameter \#1 \$array of function array_unique expects an array of values castable to string, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Repository/Carrier/BaseCarrier.php
+
+		-
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: src/Repository/Carrier/BaseCarrier.php
+
+		-
+			message: '#^Parameter \#1 \$str of function sanitize_text_field expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Repository/Carrier/Email.php
+
+		-
+			message: '#^Parameter \#1 \$carrier of static method BracketSpace\\Notification\\Register\:\:carrier\(\) expects BracketSpace\\Notification\\Interfaces\\Sendable, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Repository/CarrierRepository.php
 
 		-
-			message: "#^Parameter \\#1 \\$data of class BracketSpace\\\\Notification\\\\Core\\\\Notification constructor expects array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable, carriers\\?\\: array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\}, array\\{hash\\?\\: string, title\\?\\: string, trigger\\?\\: BracketSpace\\\\Notification\\\\Interfaces\\\\Triggerable\\|string\\|null, carriers\\?\\: array\\<string, array\\<string, mixed\\>\\|BracketSpace\\\\Notification\\\\Interfaces\\\\Sendable\\>, enabled\\?\\: bool, extras\\?\\: array\\<string, array\\|bool\\|float\\|int\\|string\\>, version\\?\\: int\\} given\\.$#"
+			message: '#^Parameter \#1 \$data of class BracketSpace\\Notification\\Core\\Notification constructor expects array\{hash\?\: string, title\?\: string, trigger\?\: BracketSpace\\Notification\\Interfaces\\Triggerable, carriers\?\: array\<string, BracketSpace\\Notification\\Interfaces\\Sendable\>, enabled\?\: bool, extras\?\: array\<string, array\<mixed\>\|bool\|float\|int\|string\>, version\?\: int\}, array\{hash\?\: string, title\?\: string, trigger\?\: BracketSpace\\Notification\\Interfaces\\Triggerable\|string\|null, carriers\?\: array\<string, BracketSpace\\Notification\\Interfaces\\Sendable\>, enabled\?\: bool, extras\?\: array\<string, array\<mixed\>\|bool\|float\|int\|string\>, version\?\: int\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Repository/Converter/ArrayConverter.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\BaseField\\:\\:__get\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Parameter \#2 \$flags of function wp_json_encode expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Repository/Converter/JsonConverter.php
+
+		-
+			message: '#^Method BracketSpace\\Notification\\Repository\\Field\\BaseField\:\:__get\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/Repository/Field/BaseField.php
 
 		-
-			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Field\\CheckboxField\:\:\$checkboxLabel \(string\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Repository/Field/CheckboxField.php
+
+		-
+			message: '#^Method BracketSpace\\Notification\\Repository\\Field\\EditorField\:\:field\(\) should return string but returns string\|false\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Repository/Field/EditorField.php
+
+		-
+			message: '#^Property BracketSpace\\Notification\\Repository\\Field\\InputField\:\:\$allowLinebreaks \(bool\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Repository/Field/InputField.php
+
+		-
+			message: '#^Property BracketSpace\\Notification\\Repository\\Field\\InputField\:\:\$atts \(string\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Repository/Field/InputField.php
+
+		-
+			message: '#^Property BracketSpace\\Notification\\Repository\\Field\\InputField\:\:\$placeholder \(string\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Repository/Field/InputField.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
 			count: 1
 			path: src/Repository/Field/RepeaterField.php
 
 		-
-			message: "#^Cannot access offset string on mixed\\.$#"
+			message: '#^Cannot access offset string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/Repository/Field/RepeaterField.php
 
 		-
-			message: "#^Cannot cast mixed to string\\.$#"
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 2
+			path: src/Repository/Field/RepeaterField.php
+
+		-
+			message: '#^Property BracketSpace\\Notification\\Repository\\Field\\RepeaterField\:\:\$carrier \(BracketSpace\\Notification\\Interfaces\\Sendable\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Repository/Field/RepeaterField.php
+
+		-
+			message: '#^Property BracketSpace\\Notification\\Repository\\Field\\RepeaterField\:\:\$fields \(array\<BracketSpace\\Notification\\Repository\\Field\\BaseField\>\) does not accept array\<mixed, mixed\>\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Repository/Field/RepeaterField.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
 			count: 1
 			path: src/Repository/Field/SectionRepeater.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Field\\\\SelectField\\:\\:\\$options \\(array\\) does not accept mixed\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Field\\SectionRepeater\:\:\$addButtonLabel \(string\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Repository/Field/SectionRepeater.php
+
+		-
+			message: '#^Property BracketSpace\\Notification\\Repository\\Field\\SectionRepeater\:\:\$carrier \(BracketSpace\\Notification\\Interfaces\\Sendable\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Repository/Field/SectionRepeater.php
+
+		-
+			message: '#^Property BracketSpace\\Notification\\Repository\\Field\\SectionRepeater\:\:\$dataAttr \(array\<mixed\>\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Repository/Field/SectionRepeater.php
+
+		-
+			message: '#^Property BracketSpace\\Notification\\Repository\\Field\\SectionRepeater\:\:\$fields \(array\<BracketSpace\\Notification\\Repository\\Field\\BaseField\>\) does not accept array\<mixed, mixed\>\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Repository/Field/SectionRepeater.php
+
+		-
+			message: '#^Property BracketSpace\\Notification\\Repository\\Field\\SelectField\:\:\$options \(array\<mixed\>\) does not accept mixed\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Repository/Field/SelectField.php
 
 		-
-			message: "#^Parameter \\#1 \\$params of class BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\EmailTag constructor expects array\\{slug\\?\\: string, name\\?\\: string, property_name\\?\\: string, group\\?\\: string\\|null, description\\?\\: string, example\\?\\: bool\\|string, resolver\\?\\: callable\\(\\)\\: mixed\\}, array\\{slug\\: 'admin_email', name\\: string, description\\: mixed, hidden\\: true, resolver\\: Closure\\(mixed\\)\\: mixed\\} given\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Field\\TextareaField\:\:\$rows \(int\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Repository/Field/TextareaField.php
+
+		-
+			message: '#^Parameter \#1 \$params of class BracketSpace\\Notification\\Repository\\MergeTag\\EmailTag constructor expects array\{slug\?\: string, name\?\: string, property_name\?\: string, group\?\: string\|null, description\?\: string, example\?\: bool\|string, resolver\?\: callable\(\)\: mixed\}, array\{slug\: ''admin_email'', name\: string, description\: mixed, hidden\: true, resolver\: Closure\(mixed\)\: mixed\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Repository/GlobalMergeTagRepository.php
 
 		-
-			message: "#^Parameter \\#1 \\$triggerPropertyName of method BracketSpace\\\\Notification\\\\Repository\\\\MergeTag\\\\BaseMergeTag\\:\\:setTriggerProp\\(\\) expects string, mixed given\\.$#"
+			message: '#^Parameter \#1 \$postTypeSlug of static method BracketSpace\\Notification\\Utils\\WpObjectHelper\:\:getPostTypeName\(\) expects string, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Repository/MergeTag/Post/FeaturedImageId.php
 
 		-
-			message: "#^Parameter \\#1 \\$attachment_id of function wp_get_attachment_image_url expects int, int\\|false given\\.$#"
+			message: '#^Parameter \#1 \$triggerPropertyName of method BracketSpace\\Notification\\Repository\\MergeTag\\BaseMergeTag\:\:setTriggerProp\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Repository/MergeTag/Post/FeaturedImageId.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Repository/MergeTag/Post/FeaturedImageId.php
+
+		-
+			message: '#^Parameter \#1 \$attachment_id of function wp_get_attachment_image_url expects int, int\|false given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Repository/MergeTag/Post/FeaturedImageUrl.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$label\\.$#"
+			message: '#^Access to an undefined property object\:\:\$label\.$#'
+			identifier: property.notFound
 			count: 1
 			path: src/Repository/MergeTag/Post/PostTerms.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$name\\.$#"
+			message: '#^Access to an undefined property object\:\:\$name\.$#'
+			identifier: property.notFound
 			count: 2
 			path: src/Repository/MergeTag/Post/PostTerms.php
 
 		-
-			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, int\\|WP_Post given\\.$#"
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, int\|WP_Post given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Repository/MergeTag/Post/RevisionLink.php
 
 		-
-			message: "#^Parameter \\#1 \\$attachment_id of function wp_get_attachment_image_url expects int, int\\|false given\\.$#"
+			message: '#^Parameter \#1 \$attachment_id of function wp_get_attachment_image_url expects int, int\|false given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Repository/MergeTag/Post/ThumbnailUrl.php
 
 		-
-			message: "#^Cannot access property \\$name on WP_Role\\|null\\.$#"
+			message: '#^Cannot access property \$name on WP_Role\|null\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Repository/MergeTag/User/UserRole.php
 
 		-
-			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Repository\\\\Recipient\\\\BaseRecipient\\:\\:setSlug\\(\\) expects string, mixed given\\.$#"
+			message: '#^Parameter \#1 \$name of method BracketSpace\\Notification\\Repository\\Recipient\\BaseRecipient\:\:setName\(\) expects string, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Repository/Recipient/BaseRecipient.php
 
 		-
-			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, mixed given\\.$#"
+			message: '#^Parameter \#1 \$slug of method BracketSpace\\Notification\\Repository\\Recipient\\BaseRecipient\:\:setSlug\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Repository/Recipient/BaseRecipient.php
+
+		-
+			message: '#^Property BracketSpace\\Notification\\Repository\\Recipient\\BaseRecipient\:\:\$defaultValue \(string\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Repository/Recipient/BaseRecipient.php
+
+		-
+			message: '#^Parameter \#1 \$email of function sanitize_email expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Repository/Recipient/Email.php
+
+		-
+			message: '#^Parameter \#3 \$subject of function str_replace expects array\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Repository/Resolver/Basic.php
 
 		-
-			message: "#^Cannot call method getSlug\\(\\) on mixed\\.$#"
+			message: '#^Cannot call method getSlug\(\) on mixed\.$#'
+			identifier: method.nonObject
 			count: 2
 			path: src/Repository/Trigger/BaseTrigger.php
 
 		-
-			message: "#^Cannot call method isHidden\\(\\) on mixed\\.$#"
+			message: '#^Cannot call method isHidden\(\) on mixed\.$#'
+			identifier: method.nonObject
 			count: 2
 			path: src/Repository/Trigger/BaseTrigger.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\BaseTrigger\\:\\:getMergeTags\\(\\) should return array\\<BracketSpace\\\\Notification\\\\Interfaces\\\\Taggable\\> but returns array\\.$#"
-			count: 1
+			message: '#^Method BracketSpace\\Notification\\Repository\\Trigger\\BaseTrigger\:\:getMergeTags\(\) should return array\<BracketSpace\\Notification\\Interfaces\\Taggable\> but returns array\<mixed\>\.$#'
+			identifier: return.type
+			count: 2
 			path: src/Repository/Trigger/BaseTrigger.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			message: '#^Access to an undefined property object\:\:\$comment_approved\.$#'
+			identifier: property.notFound
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentAdded.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Trigger\\Comment\\CommentTrigger\:\:\$comment \(WP_Comment\) does not accept object\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentAdded.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			message: '#^Access to an undefined property object\:\:\$comment_approved\.$#'
+			identifier: property.notFound
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentApproved.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Trigger\\Comment\\CommentTrigger\:\:\$comment \(WP_Comment\) does not accept object\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentApproved.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			message: '#^Access to an undefined property object\:\:\$comment_approved\.$#'
+			identifier: property.notFound
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentPublished.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Trigger\\Comment\\CommentTrigger\:\:\$comment \(WP_Comment\) does not accept object\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentPublished.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			message: '#^Access to an undefined property object\:\:\$comment_approved\.$#'
+			identifier: property.notFound
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentReplied.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Trigger\\Comment\\CommentTrigger\:\:\$comment \(WP_Comment\) does not accept object\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentReplied.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			message: '#^Access to an undefined property object\:\:\$comment_approved\.$#'
+			identifier: property.notFound
 			count: 2
 			path: src/Repository/Trigger/Comment/CommentSpammed.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Trigger\\Comment\\CommentTrigger\:\:\$comment \(WP_Comment\) does not accept object\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentSpammed.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			message: '#^Access to an undefined property object\:\:\$comment_approved\.$#'
+			identifier: property.notFound
 			count: 2
 			path: src/Repository/Trigger/Comment/CommentTrashed.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Trigger\\Comment\\CommentTrigger\:\:\$comment \(WP_Comment\) does not accept object\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentTrashed.php
 
 		-
-			message: "#^Parameter \\#1 \\$comment_id of function get_comment_type expects int\\|WP_Comment, mixed given\\.$#"
+			message: '#^Parameter \#1 \$comment_id of function get_comment_type expects int\|WP_Comment, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentTrigger.php
 
 		-
-			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\BaseTrigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Trigger\\Comment\\CommentTrigger\:\:\$post \(WP_Post\) does not accept WP_Post\|null\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentTrigger.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$post \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
-			count: 1
-			path: src/Repository/Trigger/Comment/CommentTrigger.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$comment_approved\\.$#"
+			message: '#^Access to an undefined property object\:\:\$comment_approved\.$#'
+			identifier: property.notFound
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentUnapproved.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Comment\\\\CommentTrigger\\:\\:\\$comment \\(WP_Comment\\) does not accept object\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Trigger\\Comment\\CommentTrigger\:\:\$comment \(WP_Comment\) does not accept object\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Repository/Trigger/Comment/CommentUnapproved.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Media\\\\MediaTrigger\\:\\:\\$attachment \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Trigger\\Media\\MediaTrigger\:\:\$attachment \(WP_Post\) does not accept WP_Post\|null\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Repository/Trigger/Media/MediaAdded.php
 
 		-
-			message: "#^Cannot access property \\$post_date_gmt on WP_Post\\|null\\.$#"
+			message: '#^Cannot access property \$post_date_gmt on WP_Post\|null\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Repository/Trigger/Media/MediaTrashed.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Media\\\\MediaTrigger\\:\\:\\$attachment \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Trigger\\Media\\MediaTrigger\:\:\$attachment \(WP_Post\) does not accept WP_Post\|null\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Repository/Trigger/Media/MediaTrashed.php
 
 		-
-			message: "#^Cannot access property \\$post_date_gmt on WP_Post\\|null\\.$#"
+			message: '#^Cannot access property \$post_date_gmt on WP_Post\|null\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Repository/Trigger/Media/MediaUpdated.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Media\\\\MediaTrigger\\:\\:\\$attachment \\(WP_Post\\) does not accept WP_Post\\|null\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Trigger\\Media\\MediaTrigger\:\:\$attachment \(WP_Post\) does not accept WP_Post\|null\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Repository/Trigger/Media/MediaUpdated.php
 
 		-
-			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\BaseTrigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
+			message: '#^PHPDoc tag @return has invalid value \(void\.\)\: Unexpected token "\.", expected TOKEN_HORIZONTAL_WS at offset 59 on line 4$#'
+			identifier: phpDoc.parseError
 			count: 1
-			path: src/Repository/Trigger/Post/PostTrigger.php
+			path: src/Repository/Trigger/Plugin/Installed.php
 
 		-
-			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
+			message: '#^PHPDoc tag @return has invalid value \(void\.\)\: Unexpected token "\.", expected TOKEN_HORIZONTAL_WS at offset 59 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: src/Repository/Trigger/Plugin/Removed.php
+
+		-
+			message: '#^Found usage of constant WP_POST_REVISIONS\. Use wp_revisions_to_keep\(\) instead\.$#'
+			identifier: phpstanWP.wpConstant.fetch
+			count: 1
+			path: src/Repository/Trigger/Post/PostUpdated.php
+
+		-
+			message: '#^Cannot access property \$user_id on WP_User_Request\|false\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Repository/Trigger/Privacy/DataEraseRequest.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Trigger\\Privacy\\PrivacyTrigger\:\:\$request \(WP_User_Request\) does not accept WP_User_Request\|false\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Repository/Trigger/Privacy/DataEraseRequest.php
 
 		-
-			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
+			message: '#^Cannot access property \$user_id on WP_User_Request\|false\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Repository/Trigger/Privacy/DataErased.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Trigger\\Privacy\\PrivacyTrigger\:\:\$request \(WP_User_Request\) does not accept WP_User_Request\|false\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Repository/Trigger/Privacy/DataErased.php
 
 		-
-			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
+			message: '#^Cannot access property \$user_id on WP_User_Request\|false\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Repository/Trigger/Privacy/DataExportRequest.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\DataExportRequest\\:\\:context\\(\\) has no return type specified\\.$#"
+			message: '#^Method BracketSpace\\Notification\\Repository\\Trigger\\Privacy\\DataExportRequest\:\:context\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/Repository/Trigger/Privacy/DataExportRequest.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Trigger\\Privacy\\PrivacyTrigger\:\:\$request \(WP_User_Request\) does not accept WP_User_Request\|false\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Repository/Trigger/Privacy/DataExportRequest.php
 
 		-
-			message: "#^Cannot access property \\$user_id on WP_User_Request\\|false\\.$#"
+			message: '#^Cannot access property \$user_id on WP_User_Request\|false\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Repository/Trigger/Privacy/DataExported.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\DataExported\\:\\:context\\(\\) has no return type specified\\.$#"
+			message: '#^Method BracketSpace\\Notification\\Repository\\Trigger\\Privacy\\DataExported\:\:context\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/Repository/Trigger/Privacy/DataExported.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\Privacy\\\\PrivacyTrigger\\:\\:\\$request \\(WP_User_Request\\) does not accept WP_User_Request\\|false\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Trigger\\Privacy\\PrivacyTrigger\:\:\$request \(WP_User_Request\) does not accept WP_User_Request\|false\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Repository/Trigger/Privacy/DataExported.php
 
 		-
-			message: "#^Parameter \\#1 \\$slug of method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\BaseTrigger\\:\\:__construct\\(\\) expects string\\|null, mixed given\\.$#"
+			message: '#^Binary operation "\." between ''profile\.php…'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
-			path: src/Repository/Trigger/Taxonomy/TermTrigger.php
+			path: src/Repository/Trigger/User/UserEmailChangeRequest.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Repository\\Trigger\\User\\UserEmailChangeRequest\:\:\$newUserEmail \(string\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Repository/Trigger/User/UserEmailChangeRequest.php
+
+		-
+			message: '#^Access to an undefined property object\:\:\$ID\.$#'
+			identifier: property.notFound
 			count: 1
 			path: src/Repository/Trigger/User/UserLogin.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$ID\\.$#"
+			message: '#^Parameter \#1 \$str of function sanitize_text_field expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: src/Repository/Trigger/User/UserLogin.php
+
+		-
+			message: '#^Access to an undefined property object\:\:\$ID\.$#'
+			identifier: property.notFound
 			count: 1
 			path: src/Repository/Trigger/User/UserPasswordChanged.php
 
 		-
-			message: "#^Argument of an invalid type array\\|false supplied for foreach, only iterables are supported\\.$#"
+			message: '#^Parameter \#2 \$array of function implode expects array\<string\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Repository/Trigger/User/UserRoleChanged.php
+
+		-
+			message: '#^Binary operation "\." between ''options\.php…'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/Repository/Trigger/WordPress/EmailChangeRequest.php
+
+		-
+			message: '#^Access to an undefined property WP_Theme\:\:\$Name\.$#'
+			identifier: property.notFound
 			count: 1
 			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
 
 		-
-			message: "#^Cannot access property \\$current on mixed\\.$#"
+			message: '#^Access to an undefined property WP_Theme\:\:\$Version\.$#'
+			identifier: property.notFound
 			count: 1
 			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
 
 		-
-			message: "#^Cannot access property \\$version on mixed\\.$#"
+			message: '#^Access to an undefined property object\:\:\$Name\.$#'
+			identifier: property.notFound
 			count: 1
 			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
 
 		-
-			message: "#^Parameter \\#1 \\$updateType of method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\WordPress\\\\UpdatesAvailable\\:\\:getUpdatesCount\\(\\) expects string, mixed given\\.$#"
+			message: '#^Access to an undefined property object\:\:\$Version\.$#'
+			identifier: property.notFound
 			count: 1
 			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
 
 		-
-			message: "#^Parameter \\#1 \\$updateType of method BracketSpace\\\\Notification\\\\Repository\\\\Trigger\\\\WordPress\\\\UpdatesAvailable\\:\\:hasUpdates\\(\\) expects string, mixed given\\.$#"
+			message: '#^Access to an undefined property object\:\:\$update\.$#'
+			identifier: property.notFound
 			count: 1
 			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Runtime\\:\\:components\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Argument of an invalid type array\|false supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
+
+		-
+			message: '#^Cannot access offset ''new_version'' on bool\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
+
+		-
+			message: '#^Cannot access property \$current on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
+
+		-
+			message: '#^Cannot access property \$version on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
+
+		-
+			message: '#^Parameter \#1 \$updateType of method BracketSpace\\Notification\\Repository\\Trigger\\WordPress\\UpdatesAvailable\:\:getUpdatesCount\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
+
+		-
+			message: '#^Parameter \#1 \$updateType of method BracketSpace\\Notification\\Repository\\Trigger\\WordPress\\UpdatesAvailable\:\:hasUpdates\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
+
+		-
+			message: '#^Method BracketSpace\\Notification\\Runtime\:\:components\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/Runtime.php
 
 		-
-			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, mixed given\\.$#"
+			message: '#^Parameter \#1 \$key of function array_key_exists expects int\|string, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Store/Carrier.php
 
 		-
-			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Store/Carrier.php
 
 		-
-			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, mixed given\\.$#"
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: src/Store/Carrier.php
+
+		-
+			message: '#^Parameter \#1 \$key of function array_key_exists expects int\|string, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Store/GlobalMergeTag.php
 
 		-
-			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Store/GlobalMergeTag.php
 
 		-
-			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, mixed given\\.$#"
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: src/Store/GlobalMergeTag.php
+
+		-
+			message: '#^Parameter \#1 \$key of function array_key_exists expects int\|string, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Store/Notification.php
 
 		-
-			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Store/Notification.php
 
 		-
-			message: "#^Cannot access offset string on mixed\\.$#"
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: src/Store/Notification.php
+
+		-
+			message: '#^Cannot access offset string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/Store/Recipient.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Store\\\\Recipient\\:\\:all\\(\\) should return array\\<string, array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Receivable\\>\\> but returns array\\.$#"
+			message: '#^Method BracketSpace\\Notification\\Store\\Recipient\:\:all\(\) should return array\<string, array\<string, BracketSpace\\Notification\\Interfaces\\Receivable\>\> but returns array\<mixed\>\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Store/Recipient.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Store\\\\Recipient\\:\\:allForCarrier\\(\\) should return array\\<string, BracketSpace\\\\Notification\\\\Interfaces\\\\Receivable\\> but returns mixed\\.$#"
+			message: '#^Method BracketSpace\\Notification\\Store\\Recipient\:\:allForCarrier\(\) should return array\<string, BracketSpace\\Notification\\Interfaces\\Receivable\> but returns mixed\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Store/Recipient.php
 
 		-
-			message: "#^Unsafe access to private property BracketSpace\\\\Notification\\\\Store\\\\Recipient\\:\\:\\$items through static\\:\\:\\.$#"
+			message: '#^Unsafe access to private property BracketSpace\\Notification\\Store\\Recipient\:\:\$items through static\:\:\.$#'
+			identifier: staticClassAccess.privateProperty
 			count: 8
 			path: src/Store/Recipient.php
 
 		-
-			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, mixed given\\.$#"
+			message: '#^Parameter \#1 \$key of function array_key_exists expects int\|string, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Store/Resolver.php
 
 		-
-			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Store/Resolver.php
 
 		-
-			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, mixed given\\.$#"
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: src/Store/Resolver.php
+
+		-
+			message: '#^Parameter \#1 \$key of function array_key_exists expects int\|string, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Store/Trigger.php
 
 		-
-			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Store/Trigger.php
 
 		-
-			message: "#^Parameter \\#3 \\$settings of function wp_editor expects array\\{wpautop\\?\\: bool, media_buttons\\?\\: bool, default_editor\\?\\: string, drag_drop_upload\\?\\: bool, textarea_name\\?\\: string, textarea_rows\\?\\: int, tabindex\\?\\: int\\|string, tabfocus_elements\\?\\: string, \\.\\.\\.\\}, array\\{textarea_name\\: string, editor_css\\: null, wpautop\\: mixed, media_buttons\\: mixed, textarea_rows\\: mixed, teeny\\: mixed\\} given\\.$#"
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: src/Store/Trigger.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/Utils/Settings.php
+
+		-
+			message: '#^Cannot access offset mixed on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: src/Utils/Settings.php
+
+		-
+			message: '#^Cannot access offset string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 5
+			path: src/Utils/Settings.php
+
+		-
+			message: '#^Parameter \#1 \$slug of method BracketSpace\\Notification\\Utils\\Settings\:\:getSection\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Utils/Settings.php
+
+		-
+			message: '#^Parameter \#1 \$str of function sanitize_text_field expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Utils/Settings.php
+
+		-
+			message: '#^Parameter \#3 \$settings of function wp_editor expects array\{wpautop\?\: bool, media_buttons\?\: bool, default_editor\?\: string, drag_drop_upload\?\: bool, textarea_name\?\: string, textarea_rows\?\: int, tabindex\?\: int\|string, tabfocus_elements\?\: string, \.\.\.\}, array\{textarea_name\: string, editor_css\: null, wpautop\: mixed, media_buttons\: mixed, textarea_rows\: mixed, teeny\: mixed\} given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Utils/Settings/CoreFields/Editor.php
 
 		-
-			message: "#^Parameter \\#1 \\$url of function esc_url expects string, string\\|false given\\.$#"
+			message: '#^Parameter \#1 \$url of function esc_url expects string, string\|false given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Utils/Settings/CoreFields/Image.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Field\\:\\:\\$addons \\(string\\) does not accept mixed\\.$#"
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 2
+			path: src/Utils/Settings/Field.php
+
+		-
+			message: '#^Property BracketSpace\\Notification\\Utils\\Settings\\Field\:\:\$addons \(string\) does not accept mixed\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Utils/Settings/Field.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Field\\:\\:\\$description \\(string\\) does not accept mixed\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Utils\\Settings\\Field\:\:\$description \(string\) does not accept mixed\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Utils/Settings/Field.php
 
 		-
-			message: "#^Cannot call method getLogs\\(\\) on mixed\\.$#"
+			message: '#^Binary operation "\." between mixed and '' '' results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
 			path: src/Utils/Settings/Fields/ErrorLog.php
 
 		-
-			message: "#^Cannot call method getLogsCount\\(\\) on mixed\\.$#"
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
 			path: src/Utils/Settings/Fields/ErrorLog.php
 
 		-
-			message: "#^Cannot access offset 'carrier' on mixed\\.$#"
+			message: '#^Cannot call method getLogs\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Utils/Settings/Fields/ErrorLog.php
+
+		-
+			message: '#^Cannot call method getLogsCount\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Utils/Settings/Fields/ErrorLog.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Utils/Settings/Fields/ErrorLog.php
+
+		-
+			message: '#^Binary operation "\." between mixed and '' '' results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
 			path: src/Utils/Settings/Fields/NotificationLog.php
 
 		-
-			message: "#^Cannot access offset 'notification' on mixed\\.$#"
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
 			path: src/Utils/Settings/Fields/NotificationLog.php
 
 		-
-			message: "#^Cannot access offset 'trigger' on mixed\\.$#"
+			message: '#^Cannot access offset ''carrier'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/Utils/Settings/Fields/NotificationLog.php
 
 		-
-			message: "#^Cannot call method getLogs\\(\\) on mixed\\.$#"
+			message: '#^Cannot access offset ''notification'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/Utils/Settings/Fields/NotificationLog.php
 
 		-
-			message: "#^Cannot call method getLogsCount\\(\\) on mixed\\.$#"
+			message: '#^Cannot access offset ''trigger'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/Utils/Settings/Fields/NotificationLog.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Group\\:\\:collapse\\(\\) should return BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Group but returns bool\\|BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Group\\.$#"
+			message: '#^Cannot call method getLogs\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Utils/Settings/Fields/NotificationLog.php
+
+		-
+			message: '#^Cannot call method getLogsCount\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Utils/Settings/Fields/NotificationLog.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Utils/Settings/Fields/NotificationLog.php
+
+		-
+			message: '#^Method BracketSpace\\Notification\\Utils\\Settings\\Group\:\:collapse\(\) should return BracketSpace\\Notification\\Utils\\Settings\\Group but returns bool\|BracketSpace\\Notification\\Utils\\Settings\\Group\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Utils/Settings/Group.php
 
 		-
-			message: "#^Parameter \\#2 \\$name of class BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Field constructor expects string, mixed given\\.$#"
+			message: '#^Property BracketSpace\\Notification\\Utils\\Settings\\Group\:\:\$description \(string\) does not accept mixed\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/Utils/Settings/Group.php
 
 		-
-			message: "#^Property BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Group\\:\\:\\$description \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Utils/Settings/Group.php
-
-		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Section\\:\\:addGroup\\(\\) should return BracketSpace\\\\Notification\\\\Utils\\\\Settings\\\\Group but returns mixed\\.$#"
+			message: '#^Method BracketSpace\\Notification\\Utils\\Settings\\Section\:\:addGroup\(\) should return BracketSpace\\Notification\\Utils\\Settings\\Group but returns mixed\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Utils/Settings/Section.php
 
 		-
-			message: "#^Method BracketSpace\\\\Notification\\\\Utils\\\\WpObjectHelper\\:\\:getCommentTypes\\(\\) should return array\\<string, string\\> but returns mixed\\.$#"
+			message: '#^Method BracketSpace\\Notification\\Utils\\WpObjectHelper\:\:getCommentTypes\(\) should return array\<string, string\> but returns mixed\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Utils/WpObjectHelper.php
 
