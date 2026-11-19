@@ -395,7 +395,7 @@ class Upgrade
 	 * Version 9.0.10 registered the group as `WordPress`, while the code
 	 * and the previous versions use `wordpress`.
 	 *
-	 * @since [Next]
+	 * @since 9.1.0
 	 * @return void
 	 */
 	public function upgradeToV4()
