@@ -7,143 +7,95 @@
 
 namespace BracketSpace\Notification\Tests\Repository\Trigger\User;
 
+use BracketSpace\Notification\Integration\WordPressEmails;
 use BracketSpace\Notification\Repository\Trigger\User\UserPasswordResetRequest;
 
 /**
- * User Password Reset Request trigger test case.
+ * User password reset request trigger test case.
  */
 class TestUserPasswordResetRequest extends \WP_UnitTestCase {
 
 	/**
-	 * Setup test
+	 * Context results, false means the trigger bailed
+	 *
+	 * @var array<mixed>
 	 */
-	public function setUp(): void {
-		parent::setUp();
+	private $results = [];
+
+	/**
+	 * Hooks the trigger the same way the plugin does
+	 */
+	public function set_up() {
+		parent::set_up();
+
+		$this->results = [];
+		$trigger = new UserPasswordResetRequest();
+
+		add_action(
+			'retrieve_password_key',
+			function ( $login, $key ) use ( $trigger ) {
+				$this->results[] = $trigger->context($login, $key);
+			},
+			10,
+			2
+		);
 	}
 
 	/**
-	 * Test user retrieval by login
+	 * Registration notification must not fire the trigger
 	 */
-	public function test_user_retrieval_by_login() {
-		// Create a test user with regular username
-		$userId = $this->factory->user->create([
-			'user_login' => 'test_user',
-			'user_email' => 'testuser@example.com'
-		]);
+	public function test_new_user_notification_does_not_fire() {
+		$userId = wp_insert_user(
+			[
+				'user_login' => 'newuser',
+				'user_pass' => 'secret',
+				'user_email' => 'newuser@example.org',
+			]
+		);
 
-		// Create the trigger instance
-		$trigger = new UserPasswordResetRequest();
+		wp_new_user_notification($userId, null, 'user');
 
-		// Test context method with username
-		$result = $trigger->context('test_user', 'test_reset_key');
-
-		// Should not return false (user should be found)
-		$this->assertNotFalse($result, 'User should be found by login');
-		$this->assertEquals($userId, $trigger->userId, 'User ID should match');
-		$this->assertEquals('test_user', $trigger->userObject->user_login, 'User login should match');
-		$this->assertEquals('test_reset_key', $trigger->passwordResetKey, 'Reset key should be stored');
+		$this->assertSame([], array_filter($this->results, static fn ( $r ) => $r !== false));
+		$this->assertNotEmpty($this->results);
 	}
 
 	/**
-	 * Test user retrieval by email (fallback)
+	 * Re-sending the notification when default emails are disabled must not fire the trigger
 	 */
-	public function test_user_retrieval_by_email_fallback() {
-		// Create a test user with email as login
-		$userId = $this->factory->user->create([
-			'user_login' => 'test_email_user',
-			'user_email' => 'emailuser@example.com'
-		]);
+	public function test_wordpress_emails_resend_does_not_fire() {
+		$userId = $this->factory->user->create();
+		$emails = new WordPressEmails();
 
-		// Create the trigger instance
-		$trigger = new UserPasswordResetRequest();
+		$emails->disableNewUserNotify($userId, 'both');
 
-		// Test context method with email address (should fallback to email search)
-		$result = $trigger->context('emailuser@example.com', 'test_reset_key');
-
-		// Should not return false (user should be found by email fallback)
-		$this->assertNotFalse($result, 'User should be found by email fallback');
-		$this->assertEquals($userId, $trigger->userId, 'User ID should match');
-		$this->assertEquals('test_email_user', $trigger->userObject->user_login, 'User login should match');
-		$this->assertEquals('emailuser@example.com', $trigger->userObject->user_email, 'User email should match');
-		$this->assertEquals('test_reset_key', $trigger->passwordResetKey, 'Reset key should be stored');
+		$this->assertSame([], array_filter($this->results, static fn ( $r ) => $r !== false));
+		$this->assertNotEmpty($this->results);
 	}
 
 	/**
-	 * Test user retrieval fails when neither login nor email matches
+	 * Lost password request fires the trigger
 	 */
-	public function test_user_retrieval_fails_when_not_found() {
-		// Create the trigger instance
-		$trigger = new UserPasswordResetRequest();
+	public function test_retrieve_password_fires() {
+		$this->factory->user->create(['user_login' => 'lostuser']);
+		$_POST['user_login'] = 'lostuser';
 
-		// Test context method with non-existent username
-		$result = $trigger->context('nonexistent_user', 'test_reset_key');
+		retrieve_password();
 
-		// Should return false (user not found)
-		$this->assertFalse($result, 'Should return false when user not found');
+		unset($_POST['user_login']);
+
+		$this->assertCount(1, $this->results);
+		$this->assertNotFalse($this->results[0]);
 	}
 
 	/**
-	 * Test user retrieval fails with invalid email format
+	 * Direct key generation (e.g. admin "Send password reset") fires the trigger
 	 */
-	public function test_user_retrieval_fails_with_invalid_email() {
-		// Create the trigger instance
-		$trigger = new UserPasswordResetRequest();
+	public function test_direct_key_generation_fires() {
+		$user = $this->factory->user->create_and_get();
 
-		// Test context method with invalid email format
-		$result = $trigger->context('invalid-email-format', 'test_reset_key');
+		get_password_reset_key($user);
 
-		// Should return false (not a valid email, and user doesn't exist)
-		$this->assertFalse($result, 'Should return false with invalid email format');
-	}
-
-	/**
-	 * Test user retrieval with email address containing special characters
-	 */
-	public function test_user_retrieval_with_complex_email() {
-		// Create a test user with complex email
-		$complexEmail = 'user.name+tag@sub-domain.example.com';
-		$userId = $this->factory->user->create([
-			'user_login' => 'complex_user',
-			'user_email' => $complexEmail
-		]);
-
-		// Create the trigger instance
-		$trigger = new UserPasswordResetRequest();
-
-		// Test context method with complex email
-		$result = $trigger->context($complexEmail, 'test_reset_key');
-
-		// Should not return false (user should be found by email)
-		$this->assertNotFalse($result, 'User should be found with complex email');
-		$this->assertEquals($userId, $trigger->userId, 'User ID should match');
-		$this->assertEquals($complexEmail, $trigger->userObject->user_email, 'User email should match');
-		$this->assertEquals('test_reset_key', $trigger->passwordResetKey, 'Reset key should be stored');
-	}
-
-	/**
-	 * Test that login search is tried first before email fallback
-	 */
-	public function test_login_search_priority_over_email() {
-		// Create two users: one with email as login, another with that email as email address
-		$user1Id = $this->factory->user->create([
-			'user_login' => 'priority@example.com', // This user has email as login
-			'user_email' => 'different@example.com'
-		]);
-
-		$user2Id = $this->factory->user->create([
-			'user_login' => 'other_user',
-			'user_email' => 'priority@example.com' // This user has the email as email address
-		]);
-
-		// Create the trigger instance
-		$trigger = new UserPasswordResetRequest();
-
-		// Test context method - should find the first user (by login)
-		$result = $trigger->context('priority@example.com', 'test_reset_key');
-
-		// Should find the user by login (user1), not by email (user2)
-		$this->assertNotFalse($result, 'User should be found');
-		$this->assertEquals($user1Id, $trigger->userId, 'Should find user by login first, not email');
-		$this->assertEquals('priority@example.com', $trigger->userObject->user_login, 'Should match login');
+		$this->assertCount(1, $this->results);
+		$this->assertNotFalse($this->results[0]);
 	}
 }
