@@ -235,13 +235,13 @@ Yes! We offer [custom plugin development](https://bracketspace.com/custom-develo
 == Changelog ==
 
 = [Next] =
+* [Changed] Internal code cleanup: string formatting uses sprintf
 * [Fixed] Password reset request trigger firing when a new user is registered
 
 = 9.1.0 =
 * [Changed] Minimum required PHP version is now 8.1
 * [Changed] Tested up to WordPress 7.2
 * [Changed] Incorrect API usage by developers (e.g. missing trigger slug or merge tag resolver) now throws an exception instead of a PHP fatal error
-* [Changed] Internal code cleanup: string formatting uses sprintf
 * [Fixed] PHP 8.4, 8.5 and 8.6 deprecation notices and warnings
 * [Fixed] Inconsistent minimum WordPress version requirement
 * [Fixed] Editor field rendering an empty value and ignoring its editor settings
