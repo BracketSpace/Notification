@@ -26,7 +26,7 @@
 		"phpcompatibility/phpcompatibility-paragonie": "^2.0@dev",
 		"phpcompatibility/phpcompatibility-wp": "^3.0@dev",
 		"wp-coding-standards/wpcs": "3.4.1 as 2.3.0",
-		"phpunit/phpunit": "9.6.33",
+		"phpunit/phpunit": "^9",
 		"szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^1.0",
 		"phpstan/phpstan": "^2.0",
 		"szepeviktor/phpstan-wordpress": "^2.0",
