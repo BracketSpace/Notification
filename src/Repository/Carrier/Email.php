@@ -77,7 +77,7 @@ class Email extends BaseCarrier
 	 * are registered, so the fields depending on them need to be rebuilt.
 	 *
 	 * @return void
-	 * @since  [Next]
+	 * @since  9.1.0
 	 */
 	public function refreshFormFields()
 	{

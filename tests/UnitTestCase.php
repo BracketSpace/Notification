@@ -28,7 +28,7 @@ class UnitTestCase extends \WP_UnitTestCase
 	 * its annotations, but Pest 1 test methods are not real class methods.
 	 * In that case only the deprecation tracking hooks are registered.
 	 *
-	 * @since  [Next]
+	 * @since  9.1.0
 	 * @return void
 	 */
 	public function expectDeprecated()
