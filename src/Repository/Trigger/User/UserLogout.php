@@ -47,6 +47,8 @@ class UserLogout extends UserTrigger
 			$userId = get_current_user_id();
 		}
 
+		$this->userId = (int)$userId;
+
 		$user = get_userdata($this->userId);
 
 		if (!$user instanceof \WP_User) {

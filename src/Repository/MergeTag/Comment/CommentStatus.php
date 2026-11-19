@@ -53,19 +53,19 @@ class CommentStatus extends StringTag
 				'example' => true,
 				'group' => $commentTypeName,
 				'resolver' => function ($trigger) {
-					if ($trigger->{$this->getTriggerProp() === '1'}->comment_approved) {
+					if ($trigger->{$this->getTriggerProp()}->comment_approved === '1') {
 						return __('Approved', 'notification');
 					}
 
-					if ($trigger->{$this->getTriggerProp() === '0'}->comment_approved) {
+					if ($trigger->{$this->getTriggerProp()}->comment_approved === '0') {
 						return __('Unapproved', 'notification');
 					}
 
-					if ($trigger->{$this->getTriggerProp() === 'spam'}->comment_approved) {
+					if ($trigger->{$this->getTriggerProp()}->comment_approved === 'spam') {
 						return __('Marked as spam', 'notification');
 					}
 
-					if ($trigger->{$this->getTriggerProp() === 'trash'}->comment_approved) {
+					if ($trigger->{$this->getTriggerProp()}->comment_approved === 'trash') {
 						return __('Trashed', 'notification');
 					}
 				},

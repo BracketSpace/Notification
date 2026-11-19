@@ -24,7 +24,13 @@ class CarrierRepository
 	public static function register()
 	{
 		if (\Notification::settings()->getSetting('carriers/email/enable')) {
-			Register::carrier(\Notification::component(Carrier\Email::class));
+			$email = \Notification::component(Carrier\Email::class);
+
+			// The Carrier is created before the settings are registered.
+			if ($email instanceof Carrier\Email) {
+				$email->refreshFormFields();
+				Register::carrier($email);
+			}
 		}
 
 		if (

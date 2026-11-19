@@ -219,6 +219,10 @@ class UpdatesAvailable extends BaseTrigger
 	{
 		$updates = get_core_updates();
 
+		if (!is_array($updates)) {
+			$updates = [];
+		}
+
 		foreach ($updates as $updateKey => $update) {
 			if ($update->current !== $update->version) {
 				continue;
@@ -272,7 +276,7 @@ class UpdatesAvailable extends BaseTrigger
 				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 				$update->Version,
 				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-				$update->update->newVersion
+				$update->update->new_version
 			) . '</li>';
 		}
 
@@ -325,12 +329,20 @@ class UpdatesAvailable extends BaseTrigger
 	public function getUpdatesCount($updateType = 'all')
 	{
 		if ($updateType !== 'all') {
-			$getUpdatesMethod = 'get' . ucfirst($updateType) . 'Updates';
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+			require_once ABSPATH . 'wp-admin/includes/update.php';
+
+			// WordPress functions: get_core_updates, get_plugin_updates, get_theme_updates.
+			$getUpdatesMethod = sprintf('get_%s_updates', $updateType);
 
 			/** @var array<string, mixed> */
 			$updates = is_callable($getUpdatesMethod)
 				? call_user_func($getUpdatesMethod)
 				: [];
+
+			if (!is_array($updates)) {
+				$updates = [];
+			}
 
 			if ($updateType === 'core') {
 				foreach ($updates as $updateKey => $update) {

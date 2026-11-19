@@ -37,8 +37,8 @@ class AttachmentPage extends UrlTag
 				'description' => __('http://example.com/forest-landscape/', 'notification'),
 				'example' => true,
 				'group' => __('Attachment', 'notification'),
-				'resolver' => function () {
-					return get_permalink($this->{$this->getTriggerProp()}->attachment->ID);
+				'resolver' => function ($trigger) {
+					return get_permalink($trigger->{$this->getTriggerProp()}->ID);
 				},
 			]
 		);

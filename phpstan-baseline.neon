@@ -1513,12 +1513,6 @@ parameters:
 			path: src/Repository/Carrier/Email.php
 
 		-
-			message: '#^Parameter \#1 \$carrier of static method BracketSpace\\Notification\\Register\:\:carrier\(\) expects BracketSpace\\Notification\\Interfaces\\Sendable, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Repository/CarrierRepository.php
-
-		-
 			message: '#^Parameter \#1 \$data of class BracketSpace\\Notification\\Core\\Notification constructor expects array\{hash\?\: string, title\?\: string, trigger\?\: BracketSpace\\Notification\\Interfaces\\Triggerable, carriers\?\: array\<string, BracketSpace\\Notification\\Interfaces\\Sendable\>, enabled\?\: bool, extras\?\: array\<string, array\<mixed\>\|bool\|float\|int\|string\>, version\?\: int\}, array\{hash\?\: string, title\?\: string, trigger\?\: BracketSpace\\Notification\\Interfaces\\Triggerable\|string\|null, carriers\?\: array\<string, BracketSpace\\Notification\\Interfaces\\Sendable\>, enabled\?\: bool, extras\?\: array\<string, array\<mixed\>\|bool\|float\|int\|string\>, version\?\: int\} given\.$#'
 			identifier: argument.type
 			count: 1
@@ -2001,12 +1995,6 @@ parameters:
 		-
 			message: '#^Access to an undefined property object\:\:\$update\.$#'
 			identifier: property.notFound
-			count: 1
-			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
-
-		-
-			message: '#^Argument of an invalid type array\|false supplied for foreach, only iterables are supported\.$#'
-			identifier: foreach.nonIterable
 			count: 1
 			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
 

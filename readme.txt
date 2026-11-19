@@ -113,7 +113,7 @@ BracketSpace - the company behind this plugin provides [custom WordPress plugin 
 
 = Requirements =
 
-This plugin requires at least PHP 7.4.
+This plugin requires at least PHP 8.1.
 
 = Plugin install =
 
@@ -240,6 +240,11 @@ Yes! We offer [custom plugin development](https://bracketspace.com/custom-develo
 * [Fixed] PHP 8.4, 8.5 and 8.6 deprecation notices and warnings
 * [Fixed] Inconsistent minimum WordPress version requirement
 * [Fixed] Editor field rendering an empty value in the field output
+* [Fixed] WordPress updates available trigger not registered and not counting updates, cron period and "send anyway" settings being ignored
+* [Fixed] Email body visual editor not used when HTML email type is selected
+* [Fixed] User merge tags empty in User logout and User login failed triggers
+* [Fixed] Attachment page link, comment status and term link merge tags always empty
+* [Fixed] Warnings from user merge tags in post triggers when the post has no last editor, now falling back to the post author
 * [Security] Updated bundled SVG sanitizer library to version 1.1
 
 = 9.0.10 =

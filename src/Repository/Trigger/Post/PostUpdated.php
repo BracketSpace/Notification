@@ -111,7 +111,7 @@ class PostUpdated extends PostTrigger
 
 		$this->author = get_userdata((int)$this->post->post_author);
 		$lastEditId = get_post_meta($this->post->ID, '_edit_last', true);
-		$this->lastEditor = get_userdata(is_numeric($lastEditId) ? (int)$lastEditId : 0);
+		$this->lastEditor = get_userdata(is_numeric($lastEditId) && $lastEditId ? (int)$lastEditId : (int)$this->post->post_author);
 		$this->updatingUser = get_userdata($updatingUserId);
 	}
 
