@@ -306,7 +306,7 @@ class UpdatesAvailable extends BaseTrigger
 				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 				$update->Version,
 				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
-				$update->update['new_version']
+				$update->update['new_version'] ?? ''
 			) . '</li>';
 		}
 

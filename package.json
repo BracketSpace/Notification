@@ -17,7 +17,7 @@
 		"lint": "run-p \"lint:*\"",
 		"fix": "run-p \"fix:*\"",
 		"start-env": "wp-env start",
-		"test-php": "wp-env run tests-wordpress --env-cwd=wp-content/plugins/notification ./vendor/bin/pest -- --configuration phpunit.xml"
+		"test-php": "wp-env run tests-wordpress --env-cwd=wp-content/plugins/notification php -d error_reporting=24575 ./vendor/bin/pest -- --configuration phpunit.xml"
 	},
 	"author": "BracketSpace",
 	"license": "GPL-3.0-or-later",

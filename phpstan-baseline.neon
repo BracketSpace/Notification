@@ -607,12 +607,6 @@ parameters:
 			path: compat/src-deprecated/Abstracts/Adapter.php
 
 		-
-			message: '#^Parameter \#1 \$json of function json_decode expects string, string\|null given\.$#'
-			identifier: argument.type
-			count: 1
-			path: compat/src-deprecated/Adapter/JSON.php
-
-		-
 			message: '#^Offset ''enabled'' might not exist on array\{hash\: string, title\?\: string, trigger\?\: BracketSpace\\Notification\\Interfaces\\Triggerable, carriers\?\: array\<string, BracketSpace\\Notification\\Interfaces\\Sendable\>, enabled\?\: bool, extras\?\: array\<string, array\<mixed\>\|bool\|float\|int\|string\>, version\?\: int\}\.$#'
 			identifier: offsetAccess.notFound
 			count: 1
@@ -1549,12 +1543,6 @@ parameters:
 			path: src/Repository/Field/CheckboxField.php
 
 		-
-			message: '#^Method BracketSpace\\Notification\\Repository\\Field\\EditorField\:\:field\(\) should return string but returns string\|false\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Repository/Field/EditorField.php
-
-		-
 			message: '#^Property BracketSpace\\Notification\\Repository\\Field\\InputField\:\:\$allowLinebreaks \(bool\) does not accept mixed\.$#'
 			identifier: assign.propertyType
 			count: 1
@@ -1879,18 +1867,6 @@ parameters:
 			path: src/Repository/Trigger/Media/MediaUpdated.php
 
 		-
-			message: '#^PHPDoc tag @return has invalid value \(void\.\)\: Unexpected token "\.", expected TOKEN_HORIZONTAL_WS at offset 59 on line 4$#'
-			identifier: phpDoc.parseError
-			count: 1
-			path: src/Repository/Trigger/Plugin/Installed.php
-
-		-
-			message: '#^PHPDoc tag @return has invalid value \(void\.\)\: Unexpected token "\.", expected TOKEN_HORIZONTAL_WS at offset 59 on line 4$#'
-			identifier: phpDoc.parseError
-			count: 1
-			path: src/Repository/Trigger/Plugin/Removed.php
-
-		-
 			message: '#^Found usage of constant WP_POST_REVISIONS\. Use wp_revisions_to_keep\(\) instead\.$#'
 			identifier: phpstanWP.wpConstant.fetch
 			count: 1
@@ -2031,12 +2007,6 @@ parameters:
 		-
 			message: '#^Argument of an invalid type array\|false supplied for foreach, only iterables are supported\.$#'
 			identifier: foreach.nonIterable
-			count: 1
-			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
-
-		-
-			message: '#^Cannot access offset ''new_version'' on bool\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/Repository/Trigger/WordPress/UpdatesAvailable.php
 

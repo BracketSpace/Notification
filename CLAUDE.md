@@ -24,7 +24,7 @@ herd composer phpcbf      # Auto-fix PHPCS issues
 herd composer phpstan     # PHPStan at max level (uses phpstan-baseline.neon)
 herd composer phplint     # PHP syntax check
 
-# Testing (uses Pest v3 on PHPUnit 11, requires wp-env)
+# Testing (uses Pest v1 on PHPUnit 9 - WP core test lib caps PHPUnit at 9.x; Pest 1 needs `-d error_reporting=24575` on PHP 8.4+, requires wp-env)
 yarn start-env            # Start wp-env Docker environment
 yarn test-php             # Run full test suite via wp-env
 
@@ -37,7 +37,7 @@ herd composer install     # Installs deps + runs Strauss namespace prefixing
 ```bash
 # Via wp-env (the standard way):
 wp-env run tests-wordpress --env-cwd=wp-content/plugins/notification \
-  ./vendor/bin/pest -- --configuration phpunit.xml --filter="test name pattern"
+  php -d error_reporting=24575 ./vendor/bin/pest -- --configuration phpunit.xml --filter="test name pattern"
 ```
 
 ### Hook Documentation

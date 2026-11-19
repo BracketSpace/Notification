@@ -70,7 +70,7 @@ class EditorField extends BaseField
 			$settings
 		);
 
-		return ob_get_clean() !== false ? ob_get_clean() : '';
+		return (string)ob_get_clean();
 	}
 
 	/**

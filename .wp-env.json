@@ -1,5 +1,6 @@
 {
 	"phpVersion": "8.1",
+	"core": "https://wordpress.org/wordpress-7.2-RC2.zip",
 	"mappings": {
 		"wp-content/plugins/notification": "."
 	}

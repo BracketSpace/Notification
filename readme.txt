@@ -237,8 +237,10 @@ Yes! We offer [custom plugin development](https://bracketspace.com/custom-develo
 = [Next] =
 * [Changed] Minimum required PHP version is now 8.1
 * [Changed] Tested up to WordPress 7.2
-* [Fixed] PHP 8.4, 8.5 and 8.6 deprecation notices
+* [Fixed] PHP 8.4, 8.5 and 8.6 deprecation notices and warnings
 * [Fixed] Inconsistent minimum WordPress version requirement
+* [Fixed] Editor field rendering an empty value in the field output
+* [Security] Updated bundled SVG sanitizer library to version 1.1
 
 = 9.0.10 =
 * [Fixed] Carrier recipient data lost during cron background processing, causing emails to receive user IDs instead of email addresses
