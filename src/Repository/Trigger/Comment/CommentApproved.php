@@ -26,7 +26,7 @@ class CommentApproved extends CommentTrigger
 	{
 		parent::__construct(
 			[
-				'slug' => 'comment/' . $commentType . '/approved',
+				'slug' => sprintf('comment/%s/approved', $commentType),
 				// Translators: %s comment type.
 				'name' => sprintf(__('%s approved', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 				'comment_type' => $commentType,

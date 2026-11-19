@@ -399,7 +399,7 @@ class License
 	 */
 	public function getFailedRequestCacheKey(): string
 	{
-		return 'notification_license_failed_http_' . md5(self::STORE_URL);
+		return sprintf('notification_license_failed_http_%s', md5(self::STORE_URL));
 	}
 
 	/**

@@ -26,7 +26,7 @@ class CommentUnapproved extends CommentTrigger
 	{
 		parent::__construct(
 			[
-				'slug' => 'comment/' . $commentType . '/unapproved',
+				'slug' => sprintf('comment/%s/unapproved', $commentType),
 				'name' => sprintf(
 				// Translators: %s comment type.
 					__('%s unapproved', 'notification'),

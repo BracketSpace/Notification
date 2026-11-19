@@ -174,9 +174,9 @@ class Screen
 				[
 					'slug' => $carrier->getSlug(),
 					'carrier' => $carrier,
-					'id' => 'notification-carrier-' . $carrier->getSlug() . '-box',
-					'name' => 'notification_carrier_' . $carrier->getSlug() . '_enable',
-					'active_name' => 'notification_carrier_' . $carrier->getSlug() . '_active',
+					'id' => sprintf('notification-carrier-%s-box', $carrier->getSlug()),
+					'name' => sprintf('notification_carrier_%s_enable', $carrier->getSlug()),
+					'active_name' => sprintf('notification_carrier_%s_active', $carrier->getSlug()),
 					'title' => $carrier->getName(),
 					'content' => $this->getCarrierForm($carrier),
 					'open' => $carrier->isEnabled(),

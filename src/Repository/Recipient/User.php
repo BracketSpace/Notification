@@ -75,7 +75,7 @@ class User extends BaseRecipient
 		$opts = [];
 
 		foreach (UserQueries::all() as $user) {
-			$opts[$user['ID']] = esc_html($user['display_name']) . ' (' . $user['user_email'] . ')';
+			$opts[$user['ID']] = sprintf('%s (%s)', esc_html($user['display_name']), $user['user_email']);
 		}
 
 		return new Field\SelectField(

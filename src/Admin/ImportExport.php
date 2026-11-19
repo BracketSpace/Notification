@@ -76,7 +76,7 @@ class ImportExport
 		}
 
 		try {
-			$exportMethod = [$this, 'prepare' . ucfirst($type) . 'ExportData'];
+			$exportMethod = [$this, sprintf('prepare%sExportData', ucfirst($type))];
 			$data = is_callable($exportMethod)
 				? call_user_func($exportMethod, explode(',', sanitize_text_field(wp_unslash($_GET['items'] ?? ''))))
 				: null;
@@ -205,7 +205,7 @@ class ImportExport
 		}
 
 		try {
-			$processMethod = [$this, 'process' . ucfirst($type) . 'ImportRequest'];
+			$processMethod = [$this, sprintf('process%sImportRequest', ucfirst($type))];
 			$result = is_callable($processMethod)
 				? call_user_func($processMethod, $data)
 				: 'Process method not available';

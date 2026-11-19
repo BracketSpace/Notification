@@ -34,7 +34,7 @@ class PostDrafted extends PostTrigger
 		parent::__construct(
 			[
 				'post_type' => $postType,
-				'slug' => 'post/' . $postType . '/drafted',
+				'slug' => sprintf('post/%s/drafted', $postType),
 			]
 		);
 

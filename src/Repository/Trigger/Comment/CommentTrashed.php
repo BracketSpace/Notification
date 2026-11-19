@@ -26,7 +26,7 @@ class CommentTrashed extends CommentTrigger
 	{
 		parent::__construct(
 			[
-				'slug' => 'comment/' . $commentType . '/trashed',
+				'slug' => sprintf('comment/%s/trashed', $commentType),
 				// Translators: %s comment type.
 				'name' => sprintf(__('%s trashed', 'notification'), WpObjectHelper::getCommentTypeName($commentType)),
 				'comment_type' => $commentType,

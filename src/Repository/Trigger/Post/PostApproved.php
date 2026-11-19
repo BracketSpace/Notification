@@ -35,7 +35,7 @@ class PostApproved extends PostTrigger
 		parent::__construct(
 			[
 				'post_type' => $postType,
-				'slug' => 'post/' . $postType . '/approved',
+				'slug' => sprintf('post/%s/approved', $postType),
 			]
 		);
 

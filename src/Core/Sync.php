@@ -117,7 +117,7 @@ class Sync
 			return;
 		}
 
-		$file = $notification->getHash() . '.json';
+		$file = sprintf('%s.json', $notification->getHash());
 
 		$fs->put_contents($file, $notification->to('json'));
 	}
@@ -149,7 +149,7 @@ class Sync
 			return;
 		}
 
-		$file = $notification->getHash() . '.json';
+		$file = sprintf('%s.json', $notification->getHash());
 
 		if (!$fs->exists($file)) {
 			return;
@@ -171,7 +171,7 @@ class Sync
 	public static function enable(?string $path = null)
 	{
 		if (! $path) {
-			$path = trailingslashit(get_stylesheet_directory()) . 'notifications';
+			$path = sprintf('%snotifications', trailingslashit(get_stylesheet_directory()));
 		}
 
 		if (self::isSyncing()) {

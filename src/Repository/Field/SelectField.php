@@ -57,18 +57,23 @@ class SelectField extends BaseField
 	 */
 	public function field()
 	{
-		$cssClasses = $this->pretty . ' ' . $this->cssClass();
+		$cssClasses = sprintf('%s %s', $this->pretty, $this->cssClass());
 
-		$html = '<select name="' . esc_attr($this->getName()) . '" id="' . esc_attr(
-			$this->getId()
-		) . '" class="' . $cssClasses . '" ' . $this->maybeDisable() . '>';
+		$html = sprintf(
+			'<select name="%s" id="%s" class="%s" %s>',
+			esc_attr($this->getName()),
+			esc_attr($this->getId()),
+			$cssClasses,
+			$this->maybeDisable()
+		);
 
 		foreach ($this->options as $optionValue => $optionLabel) {
-			$html .= '<option value="' . esc_attr($optionValue) . '" ' . selected(
-				$this->getValue(),
-				$optionValue,
-				false
-			) . '>' . esc_html(is_scalar($optionLabel) ? (string)$optionLabel : '') . '</option>';
+			$html .= sprintf(
+				'<option value="%s" %s>%s</option>',
+				esc_attr($optionValue),
+				selected($this->getValue(), $optionValue, false),
+				esc_html(is_scalar($optionLabel) ? (string)$optionLabel : '')
+			);
 		}
 
 		$html .= '</select>';

@@ -149,7 +149,7 @@ class UserRegistered extends UserTrigger
 			Debugging::log(
 				'Core',
 				'error',
-				'User registration trigger error: ' . $resetKey->get_error_message()
+				sprintf('User registration trigger error: %s', $resetKey->get_error_message())
 			);
 			return '';
 		}

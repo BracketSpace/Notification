@@ -35,7 +35,7 @@ class PostUpdated extends PostTrigger
 		parent::__construct(
 			[
 				'post_type' => $postType,
-				'slug' => 'post/' . $postType . '/updated',
+				'slug' => sprintf('post/%s/updated', $postType),
 			]
 		);
 

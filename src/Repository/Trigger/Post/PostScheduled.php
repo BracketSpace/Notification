@@ -35,7 +35,7 @@ class PostScheduled extends PostTrigger
 		parent::__construct(
 			[
 				'post_type' => $postType,
-				'slug' => 'post/' . $postType . '/scheduled',
+				'slug' => sprintf('post/%s/scheduled', $postType),
 			]
 		);
 
