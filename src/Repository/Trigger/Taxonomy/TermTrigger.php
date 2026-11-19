@@ -44,11 +44,12 @@ abstract class TermTrigger extends BaseTrigger
 	 * Constructor
 	 *
 	 * @param array<mixed> $params trigger configuration params.
+	 * @throws \Exception When required params are missing or invalid.
 	 */
 	public function __construct($params = [])
 	{
 		if (!isset($params['taxonomy'], $params['slug'])) {
-			trigger_error('TaxonomyTrigger requires taxonomy slug and trigger slug.', E_USER_ERROR);
+			throw new \Exception('TaxonomyTrigger requires taxonomy slug and trigger slug.');
 		}
 
 		$this->taxonomy = WpObjectHelper::getTaxonomy($params['taxonomy']);

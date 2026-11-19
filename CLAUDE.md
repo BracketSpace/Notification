@@ -21,10 +21,10 @@ yarn fix                  # Fix CSS + JS lint issues
 # PHP quality (use Herd for composer/php commands)
 herd composer phpcs       # PHPCS (PSR-12 Neutron Hybrid ruleset)
 herd composer phpcbf      # Auto-fix PHPCS issues
-herd composer phpstan     # PHPStan at max level (uses phpstan-baseline.neon)
+herd composer phpstan     # PHPStan 2 at level 9 (uses phpstan-baseline.neon)
 herd composer phplint     # PHP syntax check
 
-# Testing (uses Pest v1 on PHPUnit 9, requires wp-env)
+# Testing (uses Pest v1 on PHPUnit 9 - WP core test lib caps PHPUnit at 9.x; Pest 1 needs `-d error_reporting=24575` on PHP 8.4+, requires wp-env)
 yarn start-env            # Start wp-env Docker environment
 yarn test-php             # Run full test suite via wp-env
 
@@ -37,7 +37,7 @@ herd composer install     # Installs deps + runs Strauss namespace prefixing
 ```bash
 # Via wp-env (the standard way):
 wp-env run tests-wordpress --env-cwd=wp-content/plugins/notification \
-  ./vendor/bin/pest -- --configuration phpunit.xml --filter="test name pattern"
+  php -d error_reporting=24575 ./vendor/bin/pest -- --configuration phpunit.xml --filter="test name pattern"
 ```
 
 ### Hook Documentation
@@ -92,15 +92,15 @@ Notifications are stored in both custom tables and `wp_posts` (type `notificatio
 ## Coding Conventions
 
 - Extended PSR-12 via `szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset` — tabs for indentation, not spaces
-- PHPStan at max level with a baseline file
-- PHP 7.4+ compatibility required (tested up to 8.4)
+- PHPStan 2 at level 9 (equivalent of PHPStan 1 max) with a baseline file
+- PHP 8.1+ compatibility required (tested up to 8.6)
 - DocHooks annotations: use `@action hook_name [priority]` and `@filter hook_name [priority]` in method docblocks
 
 ## Changelog & Workflow
 
-- **Changelog**: BEFORE committing, document changes in `readme.txt` under the `== Changelog ==` section. Use format `= X.Y.Z =` with `* [Added/Changed/Fixed] Description`. For unreleased changes, use `9.0.7` as the version header (e.g., `= 9.0.7 =`). Keep entries meaningful — don't bloat with granular changes. Group entries by type: Added first, then Changed, then Fixed.
+- **Changelog**: BEFORE committing, document changes in `readme.txt` under the `== Changelog ==` section. Use format `= X.Y.Z =` with `* [Added/Changed/Fixed] Description`. Unreleased changes go under `= [Next] =`. Keep entries meaningful — don't bloat with granular changes. Group entries by type: Added first, then Changed, then Fixed.
 - **Text domain**: `notification`.
 - **Version bumps**: Version appears in `notification.php` (plugin header + Runtime instantiation). The release workflow handles this automatically.
-- **Unreleased version references**: Use `9.0.7` wherever a future version number would go (changelog headers, docblock `@since` tags, etc.). The release workflow automatically replaces `9.0.7` with the actual version number.
+- **Unreleased version references**: Use `[Next]` for `@since` tags of unreleased code. The release workflow (`.github/workflows/release.yml`) replaces `[Next]` (case-insensitive) with the actual version number.
 - **Release**: GitHub Actions workflow using git-flow. `master` is for releases, `develop` is the working branch.
 - **Git**: Gitflow — branch from `develop`, PR back to `develop`. Branch naming: `feature/Name-of-the-Feature`. Conventional Commits.

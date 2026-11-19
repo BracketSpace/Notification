@@ -42,7 +42,8 @@ class UserNickname extends StringTag
 				'example' => true,
 				'group' => __('User', 'notification'),
 				'resolver' => function ($trigger) {
-					return $trigger->{$this->getTriggerProp()}->nickname;
+					$user = $trigger->{$this->getTriggerProp()};
+					return $user instanceof \WP_User ? $user->nickname : '';
 				},
 			]
 		);

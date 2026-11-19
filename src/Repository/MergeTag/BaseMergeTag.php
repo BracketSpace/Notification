@@ -87,11 +87,12 @@ abstract class BaseMergeTag implements Interfaces\Taggable
 	 *               example?: bool|string, resolver?: callable} $params merge tag configuration params.
 	 * @since 7.0.0 The resolver closure context is static.
 	 * @since 5.0.0
+	 * @throws \Exception When required params are missing or invalid.
 	 */
 	public function __construct($params = [])
 	{
 		if (!isset($params['slug'], $params['name'], $params['resolver'])) {
-			trigger_error('Merge tag requires resolver', E_USER_ERROR);
+			throw new \Exception('Merge tag requires resolver');
 		}
 
 		if (!empty($params['slug'])) {
@@ -164,7 +165,7 @@ abstract class BaseMergeTag implements Interfaces\Taggable
 
 		if (!empty($value) && !$this->validate($value)) {
 			$errorType = (defined('WP_DEBUG') && WP_DEBUG)
-				? E_USER_ERROR
+				? E_USER_WARNING
 				: E_USER_NOTICE;
 			trigger_error('Resolved value is a wrong type', $errorType);
 		}
@@ -233,11 +234,12 @@ abstract class BaseMergeTag implements Interfaces\Taggable
 	 * @param mixed $resolver Resolver, can be either a closure or array or string.
 	 * @since 5.2.2
 	 * @return void
+	 * @throws \Exception When required params are missing or invalid.
 	 */
 	public function setResolver($resolver)
 	{
 		if (!is_callable($resolver)) {
-			trigger_error('Merge tag resolver has to be callable', E_USER_ERROR);
+			throw new \Exception('Merge tag resolver has to be callable');
 		}
 
 		$this->resolver = $resolver;

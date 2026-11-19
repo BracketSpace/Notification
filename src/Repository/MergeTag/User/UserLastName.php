@@ -42,7 +42,9 @@ class UserLastName extends StringTag
 				'example' => true,
 				'group' => __('User', 'notification'),
 				'resolver' => function ($trigger) {
-					return $trigger->{$this->getTriggerProp()}->last_name;
+					$user = $trigger->{$this->getTriggerProp()};
+					// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+					return $user instanceof \WP_User ? $user->last_name : '';
 				},
 			]
 		);

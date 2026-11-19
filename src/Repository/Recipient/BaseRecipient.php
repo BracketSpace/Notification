@@ -36,6 +36,7 @@ abstract class BaseRecipient implements Interfaces\Receivable
 	 *
 	 * @param array<mixed> $params recipient configuration params.
 	 * @since 5.0.0
+	 * @throws \Exception When required params are missing or invalid.
 	 */
 	public function __construct($params = [])
 	{
@@ -48,7 +49,7 @@ abstract class BaseRecipient implements Interfaces\Receivable
 		}
 
 		if (!isset($params['default_value'])) {
-			trigger_error('Recipient requires default_value', E_USER_ERROR);
+			throw new \Exception('Recipient requires default_value');
 		}
 
 		$this->defaultValue = $params['default_value'];

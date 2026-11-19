@@ -42,7 +42,8 @@ class UserID extends IntegerTag
 				'example' => true,
 				'group' => __('User', 'notification'),
 				'resolver' => function ($trigger) {
-					return $trigger->{$this->getTriggerProp()}->ID;
+					$user = $trigger->{$this->getTriggerProp()};
+					return $user instanceof \WP_User ? $user->ID : '';
 				},
 			]
 		);

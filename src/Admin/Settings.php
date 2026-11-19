@@ -287,8 +287,8 @@ class Settings
 				]
 			);
 
-		// phpcs:ignore WordPress.WP.CapitalPDangit.Misspelled
-		$triggers->addGroup(__('WordPress', 'notification'), 'WordPress')
+		// phpcs:ignore WordPress.WP.CapitalPDangit.Misspelled, WordPress.WP.CapitalPDangit.MisspelledInText
+		$triggers->addGroup(__('WordPress', 'notification'), 'wordpress')
 			->addField(
 				[
 					'name' => __('Updates', 'notification'),

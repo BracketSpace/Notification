@@ -28,7 +28,7 @@ class JSON extends Abstracts\Adapter
 	 */
 	public function read($input = null)
 	{
-		$data = json_decode($input, true);
+		$data = json_decode((string)$input, true);
 
 		if (json_last_error() !== JSON_ERROR_NONE) {
 			throw new \Exception('Read method of JSON adapter expects valid JSON string');

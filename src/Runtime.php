@@ -84,9 +84,9 @@ class Runtime
 		$requirements = new Requirements(
 			__('Notification', 'notification'),
 			[
-				'php' => '7.4',
+				'php' => '8.1',
 				'php_extensions' => ['xml'],
-				'wp' => '5.3',
+				'wp' => '5.8',
 			]
 		);
 

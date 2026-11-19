@@ -86,11 +86,12 @@ abstract class CommentTrigger extends BaseTrigger
 	 * Constructor
 	 *
 	 * @param array<mixed> $params trigger configuration params.
+	 * @throws \Exception When required params are missing or invalid.
 	 */
 	public function __construct($params = [])
 	{
 		if (!isset($params['comment_type'], $params['slug'], $params['name'])) {
-			trigger_error('CommentTrigger requires comment_type, slug and name params.', E_USER_ERROR);
+			throw new \Exception('CommentTrigger requires comment_type, slug and name params.');
 		}
 
 		$this->commentType = $params['comment_type'];

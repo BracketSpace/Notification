@@ -45,7 +45,8 @@ class UserBio extends StringTag
 				'example' => true,
 				'group' => __('User', 'notification'),
 				'resolver' => function ($trigger) {
-					return $trigger->{$this->getTriggerProp()}->description;
+					$user = $trigger->{$this->getTriggerProp()};
+					return $user instanceof \WP_User ? $user->description : '';
 				},
 			]
 		);

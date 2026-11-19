@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="BracketSpace Coding Style">
-	<config name="minimum_supported_wp_version" value="5.7"/>
+	<config name="minimum_supported_wp_version" value="5.8"/>
 
 	<rule ref="PSR12NeutronRuleset">
 		<!-- NeutronStandard bug -->
@@ -61,6 +61,7 @@
 		<exclude name="WordPress.Security.NonceVerification.Recommended"/>
 		<exclude name="PEAR.Commenting.ClassComment.InvalidAuthors"/>
 
+		<exclude name="PSR12NeutronRuleset.Security.SuperglobalKeys.DisallowedKey"/>
 		<exclude name="Generic.Files.ExecutableFile.Executable"/>
 		<exclude name="Generic.PHP.ForbiddenFunctions.Found"/>
 		<exclude name="Squiz.PHP.EmbeddedPhp.ContentAfterOpen"/>
@@ -108,7 +109,7 @@
 	</rule>
 
 	<rule ref="PHPCompatibilityWP"/>
-	<config name="testVersion" value="7.4-"/>
+	<config name="testVersion" value="8.1-"/>
 
 	<!-- Check all PHP files in directory tree by default. -->
 	<arg name="extensions" value="php"/>

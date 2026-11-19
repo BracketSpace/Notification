@@ -53,11 +53,7 @@ class UserLoginFailed extends UserTrigger
 		}
 
 		$this->userId = $user->ID;
-		$user = get_userdata($this->userId);
-
-		if (!$user instanceof \WP_User) {
-			return false;
-		}
+		$this->userObject = $user;
 	}
 
 	/**

@@ -104,11 +104,12 @@ abstract class BaseField implements Interfaces\Fillable
 	 *
 	 * @param array<mixed> $params field configuration params.
 	 * @since 5.0.0
+	 * @throws \Exception When required params are missing or invalid.
 	 */
 	public function __construct($params = [])
 	{
 		if (!isset($params['label'], $params['name'])) {
-			trigger_error('Field requires label and name', E_USER_ERROR);
+			throw new \Exception('Field requires label and name');
 		}
 
 		$className = strrchr(static::class, '\\');
