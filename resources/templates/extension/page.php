@@ -60,7 +60,7 @@ $premiumExtensions = (array)$get('premium_extensions');
 						?>
 						"
 						class="plugin-icon"
-						alt="<?php echo esc_attr_e('Notification PRO', 'notification'); ?>"
+						alt="<?php esc_attr_e('Notification PRO', 'notification'); ?>"
 					>
 				</div>
 
