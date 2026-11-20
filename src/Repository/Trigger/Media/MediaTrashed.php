@@ -31,19 +31,35 @@ class MediaTrashed extends MediaTrigger
 	{
 		parent::__construct('media/trashed', __('Media trashed', 'notification'));
 
+		// Media Trash (MEDIA_TRASH) moves the attachment to trash with wp_trash_post().
+		$this->addAction('wp_trash_post', 10, 1);
+		// Without Media Trash the attachment is deleted right away.
 		$this->addAction('delete_attachment', 10, 1);
-		$this->setDescription(__('Fires when attachment is removed', 'notification'));
+		$this->setDescription(
+			__('Fires when attachment is moved to trash, or deleted when Media Trash is disabled', 'notification')
+		);
 	}
 
 	/**
 	 * Sets trigger's context
 	 *
 	 * @param int $attachmentId Attachment Post ID.
-	 * @return void
+	 * @return mixed void or false if no notifications should be sent
 	 */
 	public function context($attachmentId)
 	{
-		$this->attachment = get_post($attachmentId);
+		$attachment = get_post($attachmentId);
+
+		if (!$attachment instanceof \WP_Post || get_post_type($attachment) !== 'attachment') {
+			return false;
+		}
+
+		// The attachment was moved to trash before, this is the permanent deletion.
+		if (get_post_status($attachment) === 'trash') {
+			return false;
+		}
+
+		$this->attachment = $attachment;
 
 		$this->userId = get_current_user_id();
 
