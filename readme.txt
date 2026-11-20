@@ -238,6 +238,7 @@ Yes! We offer [custom plugin development](https://bracketspace.com/custom-develo
 * [Added] Recipients column in the notifications list, toggleable in Screen Options
 * [Changed] Internal code cleanup: string formatting uses sprintf
 * [Fixed] Password reset request trigger firing when a new user is registered
+* [Fixed] Media trashed trigger now fires when an attachment is moved to Media Trash, not later when it is deleted from the trash
 
 = 9.1.0 =
 * [Changed] Minimum required PHP version is now 8.1
